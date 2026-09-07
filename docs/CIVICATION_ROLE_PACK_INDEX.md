@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 71
+- complete_reference_v2: 72
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 182
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 23
+- missing: 22
 
 ## Rolleindeks
 
@@ -224,11 +224,11 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | politikk | diktator | politikk_diktator | Diktator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | politikk | fylkespolitiker | politikk_fylkespolitiker | Fylkespolitiker | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | politikk | komiteleder | politikk_komiteleder | Komitéleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| politikk | politikk_kommunal_ledelse | politikk_kommunal_ledelse | Kommunal politisk ledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | politikk | kommunestyrerepresentant | politikk_kommunestyrerepresentant | Kommunestyrerepresentant | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | politikk | ordforer | politikk_ordforer | Ordfører | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | politikk | organisasjonssekretaer | politikk_organisasjonssekretaer | Organisasjonssekretær | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | politikk | partileder | politikk_partileder | Partileder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| politikk | politikk_kommunal_ledelse | politikk_kommunal_ledelse | politikk_kommunal_ledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | politikk | politikk_organisasjonsarbeid | politikk_organisasjonsarbeid | politikk_organisasjonsarbeid | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | politikk | politikk_parlamentarisk_arbeid | politikk_parlamentarisk_arbeid | politikk_parlamentarisk_arbeid | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | politikk | politikk_politisk_radgivning | politikk_politisk_radgivning | politikk_politisk_radgivning | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |

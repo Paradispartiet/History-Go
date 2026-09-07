@@ -1,0 +1,202 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "politikk_kommunal_ledelse_foundation_v1",
+  "category": "politikk",
+  "role_scope": "politikk_kommunal_ledelse",
+  "title": "Kommunal politisk ledelse",
+  "description": "Seksten steg fra kontroll av election_or_mandate og kommunalt mandat til saksgrunnlag, habilitet, dagsorden, kollegial behandling, offentlig begrunnelse, implementering og etterkontroll.",
+  "arc": {
+    "from": "Ny ordfører som må lære at election_or_mandate gir et avgrenset demokratisk mandat, ikke personlig vedtaksmyndighet, rett til å omskrive administrativ faglighet eller adgang til å bruke kommunale ressurser som partikanal.",
+    "to": "En demokratisk ansvarlig ordfører som kan holde saksgrunnlag, politisk prioritering, habilitet, delegasjon, møteledelse, kollegiale vedtak, representasjon, partirolle og implementering adskilt og sporbare.",
+    "core_questions": [
+      "Hva er administrasjonens dokumenterte saksgrunnlag, og hva er den folkevalgtes politiske prioritering?",
+      "Er jeg habil, hvilket organ eier beslutningen, og hvilken delegasjon eller hjemmel finnes faktisk?",
+      "Hva ble faktisk vedtatt og protokollert, hvem skal implementere det, og hvilket nytt premiss skal gjenåpne saken?"
+    ]
+  },
+  "outcome_rules": {
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0
+    },
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "kommunal_ledelse_mandat_habilitet_eller_prosessvikt"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom job med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom people med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "knowledge",
+      "phase": "intro",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom knowledge med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_history_go_politikkontekst"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom job med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom people med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "conflict",
+      "phase": "advanced",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom conflict med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_habilitet_og_styringspress"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom job med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom people med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom event med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_krise_og_premissendring"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "micro",
+      "phase": "advanced",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom micro med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_rask_prosedyreavklaring"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom job med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 12,
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom people med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 13,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom followup med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_vedtak_implementering_og_oppfolging"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mastery",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom story med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_demokratisk_ledelse_og_mandat"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 15,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom consequence med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_tillit_ansvar_og_etterspill"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg gjennom job med synlig election_or_mandate, mandat, saksgrunnlag, habilitet, korrekt organ, alternativer, vedtak, parti-/kommunegrense, handoff og etterkontroll.",
+      "allowed_families": [
+        "kommunal_ledelse_job"
+      ],
+      "fallback_types": []
+    }
+  ]
+}

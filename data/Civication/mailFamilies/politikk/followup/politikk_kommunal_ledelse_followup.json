@@ -1,0 +1,90 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_kommunal_ledelse",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "kommunal_ledelse_vedtak_implementering_og_oppfolging",
+      "purpose": "Trene followup i kommunal politisk ledelse gjennom ett versjonert demokratisk beslutningsspor uten å blande election_or_mandate, administrativ faglighet, habilitet, kollegialt vedtak og representasjonsrolle.",
+      "learning_focus": [
+        "demokratisk_ledelse",
+        "election_or_mandate",
+        "habilitet",
+        "fag_politikk_skille",
+        "kollegialt_vedtak",
+        "oppfolging"
+      ],
+      "mails": [
+        {
+          "id": "kommunal_ledelse_followup_001",
+          "mail_type": "followup",
+          "mail_family": "kommunal_ledelse_vedtak_implementering_og_oppfolging",
+          "role_scope": "politikk_kommunal_ledelse",
+          "phase": "afternoon",
+          "priority": 132,
+          "from": "Sara",
+          "people_ref": "sara_kommunedirektor_politikk_kommunal_ledelse",
+          "place_id": "saksgrunnlag_og_administrativt_skille_kommune",
+          "subject": "Følg protokollert vedtak gjennom administrasjon og tjenester",
+          "summary": "Følg protokollert vedtak gjennom administrasjon og tjenester. Dette steget føres i mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Election_or_mandate, faktisk mandat, beslutningseier, administrativt saksgrunnlag, faglig uenighet, økonomiske og rettslige premisser, habilitet, delegasjon, dagsorden, alternative forslag, votering, protokollert vedtak, offentlig begrunnelse, parti-/kommunegrense, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Ordfører kan bare materialiseres etter dokumentert election_or_mandate; Politikk-badge, terskel 85, XP, situated reputation, nettverk, popularitet eller medietrykk kan aldri oppfylle denne gaten. Ordføreren kan lede og representere innen lov, reglement, vedtak og delegasjon, men kan ikke sette kollegiale organer til side, omskrive administrativ faglighet, delta ved inhabilitet eller bruke kommunale ressurser som partikanal. History Go kan gi lokalhistorisk og institusjonell kontekst, men er ikke saksutredning, juridisk vurdering, habilitetsavgjørelse, budsjettvedtak eller demokratisk mandat. En god løsning gjør derfor eksplisitt hva som er fakta, hva som er politisk prioritering, hvilket organ som faktisk kan beslutte, hvem som må tre til side, hva man venter på og hva som skal gjenåpne saken.",
+          "situation": [
+            "Beslutningssporet viser election_or_mandate, saksgrunnlag, habilitet, korrekt organ, alternative forslag, åpne ventepunkter og hva et eventuelt vedtak skal følges opp mot.",
+            "Presset er reelt: flertall, parti, medielogikk, lokal konflikt eller krise kan gjøre det fristende å behandle ønsket utfall som om både prosedyre og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skillet mellom administrativ faglighet, folkevalgt prioritering, kollegial myndighet og offentlig representasjon og som tåler handoff og avgrenset rework."
+          ],
+          "task_domain": "kommunal_politisk_ledelse",
+          "competency": "demokratisk_ledelse_habilitet_delegasjon_fag_politikk_skille_og_oppfolging",
+          "pressure": "flertall_parti_administrasjon_lov_innbyggere_media_og_tid",
+          "choice_axis": "etterprovbar_kollegial_ledelse_vs_personlig_mandatglidning_og_rolleblanding",
+          "consequence_axis": "demokratisk_tillit_gyldighet_og_korrigerbarhet_vs_prosessfeil_og_ansvarsuklarhet",
+          "narrative_arc": "followup",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Før følg protokollert vedtak gjennom administrasjon og tjenester gjennom korrekt demokratisk beslutningsspor",
+              "reply": "Jeg fører følg protokollert vedtak gjennom administrasjon og tjenester gjennom det kommunale beslutningssporet i stedet for å bruke ordførertittelen som snarvei. Først kontrollerer jeg election_or_mandate, egen habilitet, korrekt organ og delegasjon. Deretter bevarer jeg administrasjonens saksgrunnlag og uenighet, skiller dette fra politiske alternativer og sørger for at forslag, votering og protokoll viser hva som faktisk ble besluttet. Kommunikasjon bygger på vedtak og sikker kunnskap, partiaktivitet holdes adskilt fra kommunens ressurser, og implementeringen får ansvarlig eier, frist og etterkontroll. Nye fakta eller rettslige premisser gjenåpner bare berørte ledd med tidligere dokumentasjon intakt.",
+              "effect": 1,
+              "tags": [
+                "election_or_mandate",
+                "habilitet",
+                "kollegialt_vedtak",
+                "sporbarhet"
+              ],
+              "feedback": "Grepet bevarer lokaldemokratisk etterprøvbarhet fordi administrasjon, folkevalgte, mindretall, innbyggere, kontrollorganer og senere beslutningstakere kan se hva som var saksgrunnlag, hva som var politisk prioritering, hvilken habilitets- og delegasjonsvurdering som gjaldt, hvilke forslag som faktisk ble votert over og hvilket vedtak som bar implementeringen. Ordføreren bruker dermed et reelt demokratisk mandat uten å gjøre møteledelse, popularitet eller partiposisjon til egen hjemmel, og saken kan korrigeres normalt dersom nye fakta, økonomiske forhold eller juridiske vurderinger endrer premissene.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk følg protokollert vedtak gjennom administrasjon og tjenester gjennom tittel og politisk tempo",
+              "reply": "Jeg lukker følg protokollert vedtak gjennom administrasjon og tjenester ved å bruke ordførertittel, flertallspress og politisk tempo som om det var tilstrekkelig beslutningsgrunnlag. Administrativt råd tones ned når det er upraktisk, mulig inhabilitet behandles som et omdømmeproblem, og det holdes uklart om saken faktisk er vedtatt av riktig organ. Jeg kommuniserer ønsket utfall før protokoll og delegasjon er avklart, lar parti- og kommunerolle flyte sammen og vurderer implementeringen som ferdig når budskapet er levert. Dersom nye fakta kommer senere, forsøker jeg å beskytte den tidligere kommunikasjonen i stedet for å gjenåpne det berørte beslutningsleddet.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "rolleblanding",
+                "prosessrisiko"
+              ],
+              "feedback": "Løsningen kan gi kortsiktig tempo, men den blander demokratisk mandat, møteledelse, faglig grunnlag og kommunikasjon på en måte som gjør både gyldighet og ansvar uklart. Når administrativ uenighet tones ned, habilitet ikke avklares, beslutningseier blir uklar eller et politisk løfte presenteres som vedtak, kan verken kommunestyret, administrasjonen eller innbyggerne etterprøve hva som faktisk skjedde. Nye fakta blir da en personlig og institusjonell tillitskrise i stedet for et normalt grunnlag for avgrenset rework, og kommunen risikerer både prosessfeil, rolleblanding og dårlig implementering.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

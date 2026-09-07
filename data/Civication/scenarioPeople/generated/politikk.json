@@ -819,7 +819,68 @@
     "existing_other_people": []
   },
   "cross_category_existing_references": [],
-  "missing_people_candidates": [],
+  "missing_people_candidates": [
+    {
+      "id": "elin_formannskapssekretaer_politikk_kommunal_ledelse",
+      "name": "elin_formannskapssekretaer_politikk_kommunal_ledelse",
+      "category": "politikk",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/politikk/politikk_kommunal_ledelse.json"
+      ],
+      "scenario_roles": [
+        "politikk_kommunal_ledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "jonas_kommuneadvokat_politikk_kommunal_ledelse",
+      "name": "jonas_kommuneadvokat_politikk_kommunal_ledelse",
+      "category": "politikk",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/politikk/politikk_kommunal_ledelse.json"
+      ],
+      "scenario_roles": [
+        "politikk_kommunal_ledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "omar_innbyggerdialog_beredskap_politikk_kommunal_ledelse",
+      "name": "omar_innbyggerdialog_beredskap_politikk_kommunal_ledelse",
+      "category": "politikk",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/politikk/politikk_kommunal_ledelse.json"
+      ],
+      "scenario_roles": [
+        "politikk_kommunal_ledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "sara_kommunedirektor_politikk_kommunal_ledelse",
+      "name": "sara_kommunedirektor_politikk_kommunal_ledelse",
+      "category": "politikk",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/politikk/politikk_kommunal_ledelse.json"
+      ],
+      "scenario_roles": [
+        "politikk_kommunal_ledelse"
+      ],
+      "verification_required": true
+    }
+  ],
   "roles": [
     {
       "role_id": "politikk_aktivist",
@@ -932,6 +993,43 @@
         "direct": 0,
         "strong": 0,
         "contextual": 114,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "politikk_kommunal_ledelse",
+      "role_scope": "politikk_kommunal_ledelse",
+      "title": "Kommunal politisk ledelse",
+      "source": "data/Civication/roleModels/politikk/politikk_kommunal_ledelse.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [
+          "antonio_de_oliveira_salazar",
+          "gerd_liv_valla",
+          "katti_anker_moller",
+          "reiulf_steen",
+          "theis_lundegaard",
+          "ulrik_olsen"
+        ],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "kommunal",
+        "ledelse",
+        "politisk"
+      ],
+      "resolved_counts": {
+        "total": 114,
+        "existing_place_people": 114,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 6,
+        "contextual": 108,
         "excluded": 0
       }
     },
