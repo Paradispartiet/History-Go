@@ -25,6 +25,12 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
+      - name: Replay on fresh main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
       - name: Materialize Vinderen canonical production
         run: |
           python - <<'PY'
@@ -32,7 +38,10 @@ jobs:
           path = Path('tools/materialize-vinderen-place-production.mjs')
           source = path.read_text()
           old = '  return match[1].replaceAll("&amp;", "&");'
-          new = '  const ogImage = match[1].replaceAll("&amp;", "&");\n  return new URL(ogImage, pageUrl).toString();'
+          new = '''  const ogImage = match[1].replaceAll("&amp;", "&");
+  const resolved = new URL(ogImage, pageUrl);
+  const redirectTarget = resolved.pathname === "/_fbredir" ? resolved.searchParams.get("to") : null;
+  return redirectTarget || resolved.toString();'''
           if old not in source:
               raise SystemExit('Expected Oslobilder og:image return not found')
           path.write_text(source.replace(old, new, 1))
@@ -65,8 +74,6 @@ jobs:
           npm run build:web:check
       - name: Commit permanent Vinderen production
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           rm -f tools/materialize-vinderen-place-production.mjs .github/workflows/temp-vinderen-materialize.yml
           git add -A
           git commit -m "Complete Vinderen Place production"
