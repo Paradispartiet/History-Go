@@ -109,6 +109,7 @@ jobs:
           npm run civication:history-people:build
           npm run build:web
           node scripts/build-quiz-production-context.mjs --category by --target vinderen --output data/quiz/production_context/by/vinderen.json
+          node scripts/build-fagverk-release-manifest.mjs
       - name: Validate place index
         run: npm run places:index:check
       - name: Validate stories
