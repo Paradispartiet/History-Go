@@ -1,0 +1,95 @@
+name: TEMP Bankplassen zero measurement
+
+on:
+  push:
+    branches:
+      - agent/bankplassen-zero-measurement-20260907-temp
+    paths:
+      - '.github/workflows/TEMP_bankplassen_zero_measurement.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: fa57879d358f06e65e5e6dbadd829ef448e25f5e
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - run: npm ci
+      - name: Bankplassen structural zero measurement
+        run: |
+          set -euxo pipefail
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const read = p => JSON.parse(fs.readFileSync(p,'utf8'));
+          const exists = p => fs.existsSync(p);
+          const placePath='data/places/by/oslo/places/bankplassen.json';
+          const place=read(placePath);
+          const runtime=read('data/runtime/place-open/bankplassen.json');
+          const brands=read('data/brands/brands_by_place.json');
+          const manifest=read('data/people/manifest.json');
+          const people=manifest.files.flatMap(file=>{
+            const p=`data/people/${file.slice('people/'.length)}`;
+            const v=read(p); return Array.isArray(v)?v:Array.isArray(v.people)?v.people:[v];
+          });
+          const directPeople=people.filter(person => [person.placeId,person.place_id,person.source_place_id,...(person.places||[]),...(person.placeIds||[])].includes('bankplassen'));
+          const quiz=read('data/quiz/by/bankplassen_sets_merged.json');
+          const qs=quiz.sets.flatMap(s=>s.questions);
+          const distribution=[0,1,2,3].map(i=>qs.filter(q=>q.answerIndex===i).length);
+          const files=(cmd)=>[];
+          const languageCandidates=[
+            'data/leksikon/sprak/places/europe/norway/oslo/bankplassen.json',
+            'data/leksikon/places/oslo/by/leksikon_bankplassen.json',
+            'data/stories/stories_bankplassen.json',
+            'reports/place-production/bankplassen-workcard-current.json',
+            'bilder/QuizCards/Bankplassen.webp',
+            'bilder/QuizCards/bankplassen.webp'
+          ];
+          const out={
+            base:'fa57879d358f06e65e5e6dbadd829ef448e25f5e',
+            place:{
+              id:place.id, category:place.category,
+              underbadge_ids:place.underbadge_ids??null,
+              production_profile:place.production_profile??null,
+              profile_status:place.profile_status??null,
+              production_status:place.production_status??null,
+              image:place.image??null, cardImage:place.cardImage??null, frontImage:place.frontImage??null,
+              collection_ids:place.place_card_profile?.collection_ids??null,
+              object_count:Array.isArray(place.objects)?place.objects.length:null,
+              civication_store_count:Array.isArray(place.civication_store)?place.civication_store.length:null,
+              structure_count:Array.isArray(place.structures)?place.structures.length:0,
+              fagverk:place.fagverk?{schema:place.fagverk.schema,level:place.fagverk.level,status:place.fagverk.status,article:place.fagverk.article?.length,lenses:place.fagverk.lenses?.length,questions:place.fagverk.guiding_questions?.length,sources:place.fagverk.source_urls?.length}:null
+            },
+            runtime:{people:runtime.people?.map(x=>x.id),brands:runtime.brands?.map(x=>({id:x.id,logo:x.logo,image:x.image,imageMeta:x.imageMeta})),objects:runtime.objects?.map(x=>x.id),structures:runtime.structures?.map(x=>x.id),leksikon:runtime.leksikon?.length,stories:runtime.stories?.length,lesespor:runtime.lesespor?.length,language:runtime.language??null},
+            directPeople:directPeople.map(x=>({id:x.id,image:x.image??x.cardImage??x.popupImage??null,profileStatus:x.profileStatus??null})),
+            brandsByPlace:brands.bankplassen??null,
+            quiz:{sets:quiz.sets.length,questions:qs.length,answerIndexDistribution:distribution,profile:quiz.size_class??quiz.profile??null,first14TheoryFree:qs.slice(0,14).every(q=>!q.method_id&&!q.thinker_id&&!q.theory_ref)},
+            candidateFiles:Object.fromEntries(languageCandidates.map(p=>[p,exists(p)]))
+          };
+          console.log('BANKPLASSEN_ZERO_MEASUREMENT='+JSON.stringify(out,null,2));
+          NODE
+          echo '--- local Bankplassen image assets ---'
+          find bilder -type f | grep -i 'bankplassen' || true
+          echo '--- QuizCard/runtime mappings ---'
+          grep -Rni --exclude-dir=node_modules -E 'bankplassen.*QuizCards|QuizCards.*bankplassen|Bankplassen\.webp|bankplassen\.webp' js data scripts tests 2>/dev/null | head -100 || true
+          echo '--- language/leksikon/lesespor/stories hits ---'
+          find data/leksikon data/lesespor data/stories -type f | grep -i bankplassen || true
+      - name: Baseline Bankplassen and current global contracts
+        run: |
+          set -euxo pipefail
+          node --test tests/bankplassen-place-completion-v1.test.mjs
+          npm run place-open:check
+          npm run epoker:places:check
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run leksikon:ids:check
+          npm run check:stories
