@@ -79,6 +79,23 @@ jobs:
         run: node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
       - name: Verify Scenario People audit
         run: node --test tests/civication-scenario-people.test.mjs
+      - name: Diagnose Albumutgivelse composed invariant
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo '=== generated/tracked test identity ==='
+          ls -l tests/civication-role-model-reference-v2.test.js || true
+          git ls-files --stage tests/civication-role-model-reference-v2.test.js || true
+          echo '=== test content ==='
+          if [ -f tests/civication-role-model-reference-v2.test.js ]; then
+            sed -n '1,180p' tests/civication-role-model-reference-v2.test.js
+          fi
+          echo '=== Albumutgivelse workspace hits ==='
+          grep -R -n --exclude-dir=node_modules --exclude-dir=.git 'Albumutgivelse' data tests scripts reports docs .github || true
+          echo '=== albumutgivelse case-insensitive workspace hits ==='
+          grep -R -n -i --exclude-dir=node_modules --exclude-dir=.git 'albumutgivelse' data tests scripts reports docs .github || true
+          echo '=== untracked/generated test paths ==='
+          git status --short tests data/Civication | sed -n '1,240p'
       - name: Verify full Civication suite
         run: node tests/run-civication-tests.mjs
       - name: Verify job learning profiles
