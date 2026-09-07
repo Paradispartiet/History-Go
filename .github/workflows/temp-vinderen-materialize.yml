@@ -95,6 +95,8 @@ jobs:
           path.write_text(source)
           PY
           node tools/materialize-vinderen-place-production.mjs
+      - name: Normalize Vinderen quiz production contract
+        run: node tools/normalize-vinderen-quiz-production.mjs
       - name: Regenerate canonical derivatives
         run: |
           npm run places:index:build
@@ -133,7 +135,7 @@ jobs:
         run: npm run build:web:check
       - name: Commit permanent Vinderen production
         run: |
-          rm -f tools/materialize-vinderen-place-production.mjs .github/workflows/temp-vinderen-materialize.yml
+          rm -f tools/materialize-vinderen-place-production.mjs tools/normalize-vinderen-quiz-production.mjs .github/workflows/temp-vinderen-materialize.yml
           git add -A
           git commit -m "Complete Vinderen Place production"
           git push origin HEAD:agent/vinderen-place-production-20260907
