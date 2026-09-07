@@ -46,11 +46,15 @@ jobs:
           from pathlib import Path
           p=Path('scripts/TEMP_materialize_religion_formidling_og_kulturarv_prerequisites.mjs')
           s=p.read_text()
-          old="faktisk berører.`,effects:{stats:"
-          new="faktisk berører.',effects:{stats:"
-          if s.count(old) != 1:
-              raise SystemExit(f'Expected exactly one mismatched feedback terminator, found {s.count(old)}')
-          p.write_text(s.replace(old,new))
+          replacements=[
+              ("faktisk berører.`,effects:{stats:", "faktisk berører.',effects:{stats:"),
+              ("myndighetsglidningen.`,effects:{stats:", "myndighetsglidningen.',effects:{stats:"),
+          ]
+          for old,new in replacements:
+              if s.count(old) != 1:
+                  raise SystemExit(f'Expected exactly one mismatched feedback terminator for {old!r}, found {s.count(old)}')
+              s=s.replace(old,new)
+          p.write_text(s)
           PY
       - name: Syntax
         run: node --check scripts/TEMP_materialize_religion_formidling_og_kulturarv_prerequisites.mjs
