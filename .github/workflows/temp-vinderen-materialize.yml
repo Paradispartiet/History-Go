@@ -1,0 +1,62 @@
+name: TEMP Vinderen materialize
+
+on:
+  push:
+    branches:
+      - agent/vinderen-place-production-20260907
+    paths:
+      - .github/workflows/temp-vinderen-materialize.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: agent/vinderen-place-production-20260907
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Materialize Vinderen canonical production
+        run: node tools/materialize-vinderen-place-production.mjs
+      - name: Regenerate canonical derivatives
+        run: |
+          npm run places:index:build
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run knowledge:canonical:write
+          npm run place-open:build
+          npm run epoker:places:build
+          npm run civication:history-people:build
+          npm run build:web
+      - name: Validate focused production gates
+        run: |
+          npm run places:index:check
+          npm run check:stories
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-rendering.test.mjs tests/fagverk-place-substance-audit.test.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run knowledge:canonical:check
+          npm run place-open:check
+          npm run epoker:places:check
+          npm run civication:history-people:check
+          npm run build:web:check
+      - name: Commit permanent Vinderen production
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f tools/materialize-vinderen-place-production.mjs .github/workflows/temp-vinderen-materialize.yml
+          git add -A
+          git commit -m "Complete Vinderen Place production"
+          git push origin HEAD:agent/vinderen-place-production-20260907
