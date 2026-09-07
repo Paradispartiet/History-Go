@@ -38,10 +38,26 @@ jobs:
           set -euo pipefail
           git fetch origin main
           git merge-base --is-ancestor origin/main HEAD || { echo 'Branch is stale versus main before materialization.' >&2; exit 1; }
+      - name: Patch TEMP materializer syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/TEMP_materialize_religion_formidling_og_kulturarv_prerequisites.mjs')
+          s=p.read_text()
+          old="faktisk berører.`,effects:{stats:"
+          new="faktisk berører.',effects:{stats:"
+          if s.count(old) != 1:
+              raise SystemExit(f'Expected exactly one mismatched feedback terminator, found {s.count(old)}')
+          p.write_text(s.replace(old,new))
+          PY
       - name: Syntax
         run: node --check scripts/TEMP_materialize_religion_formidling_og_kulturarv_prerequisites.mjs
       - name: Materialize
         run: node scripts/TEMP_materialize_religion_formidling_og_kulturarv_prerequisites.mjs
+      - name: Restore TEMP materializer source
+        run: git checkout -- scripts/TEMP_materialize_religion_formidling_og_kulturarv_prerequisites.mjs
       - name: Generate canonical derived surfaces
         run: |
           set -euo pipefail
