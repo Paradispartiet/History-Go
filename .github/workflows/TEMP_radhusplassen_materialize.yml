@@ -6,6 +6,8 @@ on:
       - agent/radhusplassen-materialize-20260908
     paths:
       - '.github/workflows/TEMP_radhusplassen_materialize.yml'
+      - 'tools/materialize-radhusplassen.mjs'
+      - 'tests/radhusplassen-completion.test.mjs'
 
 permissions:
   contents: write
@@ -24,9 +26,26 @@ jobs:
         run: npm ci
       - name: Materialize canonical Rådhusplassen production
         run: |
-          set -euxo pipefail
-          node --check tools/materialize-radhusplassen.mjs
-          node tools/materialize-radhusplassen.mjs
+          set -uo pipefail
+          set +e
+          {
+            node --check tools/materialize-radhusplassen.mjs &&
+            node tools/materialize-radhusplassen.mjs
+          } > /tmp/radhusplassen-materialize.log 2>&1
+          status=$?
+          cat /tmp/radhusplassen-materialize.log
+          if [ "$status" -ne 0 ]; then
+            mkdir -p reports/place-production
+            cp /tmp/radhusplassen-materialize.log reports/place-production/radhusplassen-materialize-error.txt
+            git config user.name 'history-go-materializer'
+            git config user.email 'actions@users.noreply.github.com'
+            git add reports/place-production/radhusplassen-materialize-error.txt
+            git commit -m 'TEMP record Rådhusplassen materializer failure' || true
+            git push origin HEAD:refs/heads/agent/radhusplassen-materialize-20260908
+            exit "$status"
+          fi
+          rm -f reports/place-production/radhusplassen-materialize-error.txt
+          set -e
       - name: Regenerate deterministic canonical outputs
         run: |
           set -euxo pipefail
