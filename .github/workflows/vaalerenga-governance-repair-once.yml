@@ -1,4 +1,4 @@
-name: TEMP Vålerenga isolated temporal rule repair
+name: TEMP Vålerenga place-only governance repair
 
 on:
   push:
@@ -10,13 +10,13 @@ permissions:
 
 jobs:
   repair:
-    if: github.event.head_commit.message == 'Run isolated Vålerenga temporal rule repair'
+    if: github.event.head_commit.message == 'Run Vålerenga place-only governance repair'
     runs-on: ubuntu-latest
     env:
       LOCKED_MAIN: 278e37537ee02ef6bc9fb2f908c41c7aa4da95e8
-      RULE_BRANCH: agent/vaalerenga-temporal-token-fix-20260907
+      BRANCH: agent/vaalerenga-place-production-replay-20260907
     steps:
-      - name: Checkout trigger branch
+      - name: Checkout repair branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -27,73 +27,60 @@ jobs:
           node-version: '22'
           cache: npm
 
-      - name: Lock fresh main and create isolated rule branch
+      - name: Lock fresh main
         run: |
           git fetch origin main
           test "$(git rev-parse origin/main)" = "$LOCKED_MAIN"
-          git checkout -B "$RULE_BRANCH" "$LOCKED_MAIN"
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Apply temporal-token validator repair only
+      - name: Apply place-only governance repair
+        run: node scripts/vaalerenga-governance-repair-once.mjs
+
+      - name: Regenerate derived Place state
         run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
+          npm run places:index:build
+          npm run place-open:build
 
-          const validatorPath = 'scripts/validate-place-description-production-v4_2.mjs';
-          const testPath = 'tests/place-description-production-v4_2.test.mjs';
+      - name: Re-record current READ-FIRST evidence
+        run: |
+          node scripts/place-production-rule-preflight.mjs record --workcard reports/place-production/vaalerenga-workcard-current.json --place-id vaalerenga --category by
+          node scripts/place-production-rule-preflight.mjs check --base "$LOCKED_MAIN"
 
-          let validator = fs.readFileSync(validatorPath, 'utf8');
-          const oldTemporal = "  return TEMPORAL_MARKERS.some((marker) => normalized.includes(normalizeComparable(marker)));";
-          const newTemporal = [
-            "  return TEMPORAL_MARKERS.some((marker) => {",
-            "    const needle = normalizeComparable(marker);",
-            "    return new RegExp(`(?:^|\\\\s)${escapeRegex(needle)}(?=\\\\s|$)`, 'u').test(normalized);",
-            "  });"
-          ].join('\n');
-          if (!validator.includes(oldTemporal)) throw new Error('Temporal validator precondition no longer matches');
-          validator = validator.replace(oldTemporal, newTemporal);
-          fs.writeFileSync(validatorPath, validator);
-
-          let tests = fs.readFileSync(testPath, 'utf8');
-          const anchor = [
-            "  assert.equal(containsTemporalClaim('Museet drives av kommunen i dag.'), true);",
-            "  assert.equal(containsTemporalClaim('Museet stengte i 1984.'), false);"
-          ].join('\n');
-          const replacement = [
-            "  assert.equal(containsTemporalClaim('Museet drives av kommunen i dag.'), true);",
-            "  assert.equal(containsTemporalClaim('Museet er nå kommunalt drevet.'), true);",
-            "  assert.equal(containsTemporalClaim('Området lå ennå utenfor bygrensen.'), false);",
-            "  assert.equal(containsTemporalClaim('Museet stengte i 1984.'), false);"
-          ].join('\n');
-          if (!tests.includes(anchor)) throw new Error('Temporal regression-test anchor no longer matches');
-          tests = tests.replace(anchor, replacement);
-          fs.writeFileSync(testPath, tests);
-          NODE
-
-      - name: Verify isolated rule repair
+      - name: Run exact Vålerenga and description regression suite
         run: |
           node --check scripts/validate-place-description-production-v4_2.mjs
+          node --check scripts/validate-place-description-production-v4_2_policy.mjs
           node --test tests/place-description-production-v4_2.test.mjs
           node --test tests/place-description-length-policy.test.mjs
           node --test tests/place-description-ingress-policy.test.mjs
+          node --test tests/vaalerenga-completion.test.mjs
 
-      - name: Commit rule-only tree
+      - name: Recheck focused Place contracts
         run: |
-          git add scripts/validate-place-description-production-v4_2.mjs tests/place-description-production-v4_2.test.mjs
+          npm run places:index:check
+          npm run place-open:check
+          npm run test:place-open
+          node scripts/place-production-rule-preflight.mjs check --base "$LOCKED_MAIN"
+
+      - name: Commit clean permanent tree
+        run: |
+          git rm .github/workflows/vaalerenga-governance-repair-once.yml scripts/vaalerenga-governance-repair-once.mjs
+          git add -A
           git diff --cached --check
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'Fix temporal marker token matching'
+          git commit -m 'Repair Vålerenga governance gates'
 
-      - name: Run changed-scope isolation and repository hygiene
-        run: |
-          node scripts/validate-place-description-production-v4_2_policy.mjs --changed --base "$LOCKED_MAIN" --head "$(git rev-parse HEAD)"
-          REPO_HYGIENE_BASE_SHA="$LOCKED_MAIN" REPO_HYGIENE_HEAD_SHA="$(git rev-parse HEAD)" node scripts/audit-repository-hygiene-v1.mjs
+      - name: Run exact changed-description PR-isolation gate
+        run: node scripts/validate-place-description-production-v4_2_policy.mjs --changed --base "$LOCKED_MAIN" --head "$(git rev-parse HEAD)"
 
-      - name: Publish isolated rule branch
+      - name: Run exact repository hygiene
+        run: REPO_HYGIENE_BASE_SHA="$LOCKED_MAIN" REPO_HYGIENE_HEAD_SHA="$(git rev-parse HEAD)" node scripts/audit-repository-hygiene-v1.mjs
+
+      - name: Publish clean fast-forward result
         run: |
           git fetch origin main
           test "$(git rev-parse origin/main)" = "$LOCKED_MAIN"
-          git push origin "HEAD:refs/heads/$RULE_BRANCH"
+          git push origin "HEAD:refs/heads/$BRANCH"
