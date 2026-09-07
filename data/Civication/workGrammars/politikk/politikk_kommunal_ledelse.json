@@ -1,1 +1,226 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"politikk","role_scope":"politikk_kommunal_ledelse","role_id":"politikk_kommunal_ledelse","badge_binding":{"badge_titles":["Ordfører"],"thresholds":[85]},"work_world":"Kommunal politisk ledelse der folkevalgte organer, administrasjon, innbyggere og lokale konflikter må håndteres innen lov og mandat.","authority_boundary":{"may":["lede møter innen formelt mandat","representere kommunen der rollen gir fullmakt","søke kompromiss mellom politiske posisjoner"],"may_not":["sette kollegiale vedtak til side","instruere administrasjonen uten rettslig eller politisk grunnlag","delta i saker ved inhabilitet","bruke vervet som privat fullmakt"]},"task_families":["møteledelse","lokal_forhandling","innbyggerdialog","representasjon","habilitetsvurdering"],"work_loops":["sak -> administrativt grunnlag -> politisk behandling -> møte -> vedtak -> offentlig forklaring","konflikt -> parter -> mandat -> dialog -> prosedyre -> legitim avgjørelse"],"practice_stories":[{"id":"fastlast_mote","setup":"Kommunestyret står fast i en konflikt som truer møteplanen.","decision":"Bruk møteledelse og prosedyre til å sikre reell behandling, ikke til å presse fram ønsket resultat.","learning":"demokratisk ledelse beskytter prosessen også under konflikt"},{"id":"habilitet","setup":"Du har en nær relasjon til en aktør i en viktig plansak.","decision":"Avklar habilitet før du deltar videre og la riktig organ håndtere saken.","learning":"legitimitet krever grenser for egen deltakelse"},{"id":"administrasjonspress","setup":"Et flertall vil at administrasjonen skal endre en faglig konklusjon uten nytt grunnlag.","decision":"Skill politisk bestilling fra faglig integritet og bruk formelle kanaler.","learning":"politisk styring er ikke det samme som å skrive fagkonklusjonen"},{"id":"lokal_krise","setup":"En lokal hendelse krever rask offentlig kommunikasjon før alle fakta er klare.","decision":"Koordiner med beredskap og kommuniser sikkert om det som faktisk er kjent.","learning":"ordførerrollen må ikke fylle kunnskapshull med gjetning"},{"id":"parti_og_kommune","setup":"Partiet ønsker å bruke kommunale kanaler til valgkamp.","decision":"Hold institusjonell kommunikasjon og partiarbeid adskilt.","learning":"offentlig rolle og partirolle har forskjellige ressurser og mandat"}],"quality_axes":["demokratisk_ledelse","møteledelse","habilitet","forhandling","offentlig_kommunikasjon","institusjonsforståelse"]}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "politikk",
+  "role_scope": "politikk_kommunal_ledelse",
+  "role_id": "politikk_kommunal_ledelse",
+  "badge_binding": {
+    "badge_id": "politikk",
+    "badge_titles": [
+      "Ordfører"
+    ]
+  },
+  "work_world": "Kommunal politisk ledelse der folkevalgte organer, administrasjon, innbyggere og lokale konflikter må håndteres innen election_or_mandate, lov, habilitet, delegasjon og kollegiale vedtak.",
+  "authority_boundary": {
+    "may": [
+      "utøve ordførerfunksjoner når election_or_mandate og faktisk kommunalt mandat er dokumentert",
+      "lede kommunestyremøter og andre møter innen lov, reglement og delegert rolle",
+      "representere kommunen offentlig innen vedtak, fullmakter og sikker kunnskap",
+      "søke kompromiss mellom politiske posisjoner uten å skjule alternativer, dissens eller beslutningseier",
+      "be om administrativ utredning og oppfølging gjennom formelle kanaler når oppgaven ligger innen politisk organ og delegasjon"
+    ],
+    "may_not": [
+      "materialisere ordførermyndighet uten election_or_mandate",
+      "sette kollegiale vedtak til side eller gjøre møteledelse til personlig beslutningsrett",
+      "instruere administrasjonen til å endre faglige konklusjoner eller skjule vesentlig risiko uten rettslig og politisk grunnlag",
+      "delta i eller påvirke en sak når habilitetsreglene krever at spilleren trer til side",
+      "bruke kommunale ressurser, kanaler eller representasjonsrolle som privat eller partipolitisk fullmakt",
+      "bruke History Go, Politikk-badge, XP, situated reputation, popularitet eller medietrykk som valgresultat, mandat, hjemmel, saksutredning eller kommunalt vedtak"
+    ]
+  },
+  "task_families": [
+    "moteledelse",
+    "lokal_forhandling",
+    "innbyggerdialog",
+    "representasjon",
+    "habilitetsvurdering",
+    "saksgrunnlag_og_delegasjon",
+    "vedtaksoppfolging"
+  ],
+  "work_loops": [
+    "sak -> administrativt grunnlag -> habilitet og hjemmel -> politisk behandling -> møte -> vedtak -> offentlig forklaring -> implementering -> etterkontroll",
+    "lokal konflikt eller krise -> sikre fakta -> avklare ansvar og mandat -> dialog -> korrekt organ -> legitim avgjørelse eller midlertidig handling -> oppfølging"
+  ],
+  "practice_stories": [
+    {
+      "id": "fastlast_mote",
+      "setup": "Kommunestyret står fast i en konflikt som truer møteplanen.",
+      "decision": "Bruk møteledelse og prosedyre til å sikre reell behandling, ikke til å presse fram ønsket resultat.",
+      "learning": "demokratisk ledelse beskytter prosessen også under konflikt"
+    },
+    {
+      "id": "habilitet",
+      "setup": "Du har en nær relasjon til en aktør i en viktig plansak.",
+      "decision": "Avklar habilitet før du deltar videre og la riktig organ håndtere saken.",
+      "learning": "legitimitet krever grenser for egen deltakelse"
+    },
+    {
+      "id": "administrasjonspress",
+      "setup": "Et flertall vil at administrasjonen skal endre en faglig konklusjon uten nytt grunnlag.",
+      "decision": "Skill politisk bestilling fra faglig integritet og bruk formelle kanaler.",
+      "learning": "politisk styring er ikke det samme som å skrive fagkonklusjonen"
+    },
+    {
+      "id": "lokal_krise",
+      "setup": "En lokal hendelse krever rask offentlig kommunikasjon før alle fakta er klare.",
+      "decision": "Koordiner med beredskap og kommuniser sikkert om det som faktisk er kjent.",
+      "learning": "ordførerrollen må ikke fylle kunnskapshull med gjetning"
+    },
+    {
+      "id": "parti_og_kommune",
+      "setup": "Partiet ønsker å bruke kommunale kanaler til valgkamp.",
+      "decision": "Hold institusjonell kommunikasjon og partiarbeid adskilt.",
+      "learning": "offentlig rolle og partirolle har forskjellige ressurser og mandat"
+    }
+  ],
+  "quality_axes": [
+    "demokratisk_ledelse",
+    "moteledelse",
+    "habilitet",
+    "forhandling",
+    "offentlig_kommunikasjon",
+    "institusjonsforstaelse",
+    "administrativ_integritet",
+    "sporbarhet"
+  ],
+  "pressure_axes": [
+    "flertallspress_vs_kollegial_prosedyre",
+    "partiinteresse_vs_kommuneansvar",
+    "politisk_tempo_vs_administrativt_og_rettslig_grunnlag",
+    "offentlig_press_vs_habilitet_og_rolleklarhet"
+  ],
+  "actor_grammar": [
+    {
+      "id": "sara_kommunedirektor_politikk_kommunal_ledelse",
+      "name": "Sara",
+      "role": "kommunedirektør",
+      "workplace_ids": [
+        "saksgrunnlag_og_administrativt_skille_kommune"
+      ]
+    },
+    {
+      "id": "jonas_kommuneadvokat_politikk_kommunal_ledelse",
+      "name": "Jonas",
+      "role": "kommuneadvokat og habilitetsrådgiver",
+      "workplace_ids": [
+        "habilitet_hjemmel_og_vedtaksrom_kommune"
+      ]
+    },
+    {
+      "id": "elin_formannskapssekretaer_politikk_kommunal_ledelse",
+      "name": "Elin",
+      "role": "formannskapssekretær og møtekoordinator",
+      "workplace_ids": [
+        "kommunestyresal_og_moteledelse_kommune"
+      ]
+    },
+    {
+      "id": "omar_innbyggerdialog_beredskap_politikk_kommunal_ledelse",
+      "name": "Omar",
+      "role": "rådgiver for innbyggerdialog og beredskapskommunikasjon",
+      "workplace_ids": [
+        "innbyggerdialog_beredskap_og_oppfolging_kommune"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "kommunestyresal_og_moteledelse_kommune",
+      "name": "Kommunestyresal og møteledelse",
+      "function": "Her kobles innkalling, dagsorden, sakskart, habilitet, taleliste, forslag, votering, protokoll og korrekt organ. Ordføreren kan lede prosedyren innen reglement og faktisk mandat, men kan ikke bruke klubbe, taletid eller posisjon til å erstatte kollegial behandling, skjule alternative forslag eller gjøre en personlig preferanse til kommunestyrevedtak."
+    },
+    {
+      "id": "saksgrunnlag_og_administrativt_skille_kommune",
+      "name": "Saksgrunnlag og administrativt skille",
+      "function": "Her versjoneres administrasjonens utredning, økonomiske konsekvenser, risiko, tjenestefaglige råd, alternative løsninger og uenighet før politisk behandling. Rommet gjør eksplisitt at folkevalgte kan prioritere annerledes innen lovlig handlingsrom, men ikke kreve at administrasjonen omskriver fakta eller gjør partiprogram og valgkampløfter til faglig konklusjon."
+    },
+    {
+      "id": "habilitet_hjemmel_og_vedtaksrom_kommune",
+      "name": "Habilitet, hjemmel og vedtaksrom",
+      "function": "Her kontrolleres election_or_mandate, habilitet, delegasjon, kommunelovens og forvaltningsrettens rammer, budsjettbindinger og hvilket organ som faktisk kan treffe beslutningen. Politisk flertall, hastverk eller ordførertittel registreres aldri som egen hjemmel, og tvil må være synlig før møteledelse, representasjon eller styringssignal kan brukes videre."
+    },
+    {
+      "id": "innbyggerdialog_beredskap_og_oppfolging_kommune",
+      "name": "Innbyggerdialog, beredskap og oppfølging",
+      "function": "Her samles berørte grupper, offentlig kommunikasjon, kriseinformasjon, tjenestekonsekvenser, implementeringsansvar, frister, målepunkter og senere kontroll. Ordføreren representerer kommunen innen faktisk mandat, men private løfter, medietrykk og partikommunikasjon kan ikke konverteres til kommunale vedtak; nye fakta og gjennomføringsfunn kan gjenåpne berørte deler med bevart protokoll."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg",
+    "description": "Et vedvarende, versjonert kommunalt beslutningsspor som holder election_or_mandate, faktisk mandat, beslutningseier, administrativt saksgrunnlag, økonomi, risiko, habilitet, delegasjon, dagsorden, forslag, votering, vedtak, offentlig begrunnelse, implementeringsansvar, ventepunkt, innbyggerdialog, parti-/kommunegrense, etterkontroll og rework som separate felt.",
+    "states": [
+      "election_or_mandate_bekreftet",
+      "mandat_avgrenset",
+      "beslutningseier_registrert",
+      "saksgrunnlag_bestilt",
+      "saksgrunnlag_mottatt",
+      "faglig_uenighet_synlig",
+      "okonomipremiss_registrert",
+      "habilitet_vurderes",
+      "habilitet_avklart",
+      "hjemmel_og_delegasjon_vurderes",
+      "dagsorden_klar",
+      "alternative_forslag_registrert",
+      "venter_pa_avklaring",
+      "politisk_behandling",
+      "votering",
+      "vedtak_protokollert",
+      "offentlig_begrunnelse",
+      "implementering",
+      "innbyggeroppfolging",
+      "etterkontroll",
+      "rework",
+      "gjenapnet",
+      "lukket_med_rest_usikkerhet"
+    ],
+    "handoff_rule": "Neste aktør overtar synlig election_or_mandate og mandat, beslutningseier, saksgrunnlag, habilitet, hjemmel og delegasjon, politiske alternativer, vedtak, implementeringsansvar, ventepunkt og neste kontroll. Handoff kan aldri skape et mandat, omskrive administrativ faglighet, skjule inhabilitet eller gjøre partiønske til kommunalt vedtak."
+  },
+  "rhythm_contract": {
+    "loop": "sak -> saksgrunnlag -> waiting/venting på habilitet, hjemmel, økonomi, utvalg/formannskap, kommunestyre eller nye fakta -> politisk behandling -> møte og vedtak -> handoff -> implementering -> innbyggerdialog -> etterkontroll -> revisjon/rework",
+    "waiting_states": [
+      "administrativ_saksutredning",
+      "habilitetsavklaring",
+      "juridisk_hjemmelsavklaring",
+      "budsjett_og_okonomiavklaring",
+      "utvalgs_eller_formannskapsbehandling",
+      "kommunestyrebehandling",
+      "implementering_etterkontroll_eller_nye_fakta"
+    ],
+    "rework_rule": "Nye fakta, endret habilitetsvurdering, rettslig avklaring, økonomiske premisser, nytt politisk forslag, kommunestyrevedtak eller implementeringsfunn gjenåpner bare berørte ledd med tidligere saksgrunnlag, forslag, votering, protokoll og begrunnelse bevart."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_politikk_kommunal_ledelse_lokaldemokratisk_kontekst",
+      "badge_id": "politikk",
+      "use": "History Go kan forbedre spørsmål om lokal politisk historie, institusjoner, steder og demokratiske konflikter, men Politikk-badge er ikke election_or_mandate, kan ikke erstatte kommunal utredning, habilitetskontroll eller juridisk vurdering og kan ikke skape et kommunestyrevedtak."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "career_offer_policy_by_title",
+    "entry_policy_by_title": {
+      "Ordfører": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "election_or_mandate"
+        ]
+      }
+    },
+    "first_object": "mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg",
+    "first_task": "Bekreft election_or_mandate og faktisk kommunalt mandat. Registrer beslutningseier, administrativt saksgrunnlag, økonomiske og rettslige premisser, habilitet, korrekt organ, alternative politiske forslag, hva som må vente på formell behandling og hva History Go eller Politikk-badge ikke beviser eller gir myndighet til før første møteledelses- eller representasjonshandling."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "politikk_kommunal_ledelse",
+    "no_generic_fallback": true
+  }
+}

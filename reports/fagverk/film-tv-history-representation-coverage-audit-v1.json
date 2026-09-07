@@ -1,0 +1,287 @@
+{
+  "schema": "history_go_film_tv_history_representation_coverage_audit_v1",
+  "version": "1.0.0",
+  "audited_at": "2026-09-07",
+  "status": "OPEN_GAPS_FAIL_CLOSED",
+  "subject_id": "film_tv",
+  "owner": "film_tv_history_representation_coverage",
+  "baseline": {
+    "main_sha": "a7f940db30462048d949720c485b1cb65932a6b7",
+    "expected_production_verified_core_scenarios": 613,
+    "core_selection_frozen_during_audit": true,
+    "chapter_19_period": "2020-now",
+    "chapter_19_frozen_observation_baseline": "2020-2025",
+    "important_boundary": "The expected 613 count is the selection baseline supplied to this audit. This report does not claim a complete exact-ID rescan of all 613 until the atlas inventory is deterministically mapped into this gate. Existing chapter/case evidence is used for the first fail-closed gap pass."
+  },
+  "research_question": "Finnes det en vesentlig teknologisk, industriell, geografisk, estetisk, distribusjonsmessig eller arbeidsmessig utvikling i filmhistorien som dagens produksjonsverifiserte scenarioer ikke kan lære bort gjennom konkret evidens?",
+  "principles": {
+    "core_first": "Behold dagens kjerne mens representasjonen auditeres; ikke øk scenarioantallet for å forbedre en liste i seg selv.",
+    "topic_is_not_coverage": "At et tema, emne eller fagverkkapittel finnes er ikke tilstrekkelig. Sterk status krever konkret case-/scenarioevidens som kan lære bort utviklingen.",
+    "prestige_is_not_reason": "Festivalpris, Oscar, kritikerkonsensus, kanonstatus eller personlig preferanse er aldri alene gyldig opptaksgrunn.",
+    "systems_over_tokens": "Ikke-vestlige kinoer skal måles som produksjons-, finansierings-, distribusjons- og publikumsystemer, ikke som enkeltstående nasjonalitetsmarkører.",
+    "enrichment_before_addition": "Hvis et eksisterende produksjonsverifisert scenario kan berikes slik at et hull lukkes uten ny scenarioidentitet, skal berikelse foretrekkes.",
+    "no_quota_completion": "Antall filmer, regioner eller sjangre er integritetstellinger og diagnostikk, ikke målkvoter."
+  },
+  "coverage_scale": {
+    "0": {
+      "label": "uncovered",
+      "definition": "Ingen verifisert case-/scenarioevidens i den målte flaten lærer utviklingen tilfredsstillende."
+    },
+    "1": {
+      "label": "weak",
+      "definition": "Temaet finnes eller ett case berører det, men produksjonshistorisk dybde, systemdekning eller scenarioforankring er utilstrekkelig."
+    },
+    "2": {
+      "label": "covered",
+      "definition": "Minst ett sterkt, kildeforbundet case/scenario kan lære utviklingen bort med eksplisitt produksjons-, institusjons-, teknologi-, arbeids- eller distribusjonsevidens."
+    },
+    "3": {
+      "label": "triangulated",
+      "definition": "Flere komplementære case/scenarioer viser utviklingen fra ulike geografier, produksjonsskalaer, institusjoner eller arbeidsmåter."
+    }
+  },
+  "audit_axes": [
+    "technology_and_format",
+    "production_economics_and_organization",
+    "institutions_and_industry_systems",
+    "geography_and_transnational_production",
+    "aesthetics_and_form",
+    "genre_and_popular_cinema",
+    "labor_crew_and_union_history",
+    "distribution_exhibition_and_audience_behavior",
+    "production_scale_studio_midbudget_microbudget_independent",
+    "regulation_power_finance_and_coproduction",
+    "preservation_restoration_and_material_survival",
+    "accessibility_sustainability_and_environmental_production"
+  ],
+  "evidence_layers": {
+    "level_1_curriculum": "Canonical emne/kapittel exists.",
+    "level_2_case": "Inspectable source-bound case exists and is used by a verified claim/chapter.",
+    "level_3_atlas_scenario": "Exact production-verified scenario identity is mapped to the historical development.",
+    "closure_rule": "A final 2 or 3 for the 613-atlas audit requires level_3_atlas_scenario evidence. Until exact scenario mapping is present, cross-curriculum evidence can raise a row only to provisional/weak for atlas-closure purposes."
+  },
+  "verified_existing_strengths": [
+    {
+      "development_id": "early_cinema_apparatus_projection_programming",
+      "initial_status": 3,
+      "evidence_scope": "verified_film_history_chapter",
+      "case_ids": ["case-lumiere-views", "case-melies-moon", "case-alice-guy"],
+      "why": "Apparat, opptak/projeksjon, trick-film/studioarbeid, programvisning og arbeids-/selskapshistorie kan sammenlignes."
+    },
+    {
+      "development_id": "silent_sound_transition",
+      "initial_status": 2,
+      "evidence_scope": "verified_film_history_chapter",
+      "case_ids": ["case-jazz-sunrise"],
+      "why": "Part-talkie, lyd-på-plate og optisk lydspor skilles eksplisitt fra ideen om ett globalt øyeblikk."
+    },
+    {
+      "development_id": "classical_hollywood_studio_system",
+      "initial_status": 2,
+      "evidence_scope": "verified_film_history_chapter",
+      "case_ids": ["case-hollywood-studios"],
+      "why": "Studioorganisering, etablering, geografi og institusjonell konsolidering er eksplisitt caseinnhold."
+    },
+    {
+      "development_id": "modernism_new_waves_alternative_movements",
+      "initial_status": 3,
+      "evidence_scope": "verified_film_history_chapter",
+      "case_ids": ["case-french-new-wave", "case-cinema-novo", "case-hustruer"],
+      "why": "Ulike produksjonsmåter, formvalg, nasjonale/transnasjonale rammer og senere kanonisering kan trianguleres."
+    },
+    {
+      "development_id": "decolonial_transnational_historiography",
+      "initial_status": 3,
+      "evidence_scope": "verified_film_history_chapter",
+      "case_ids": ["case-cinema-novo", "case-soleil-o", "case-indian-early-sound", "case-regeneration", "case-norwegian-transnational"],
+      "why": "Dekningen inkluderer produksjon, finansiering/distribusjon, recovery-historiografi og transnasjonale spor fremfor ett additivt verdensfilmavsnitt."
+    },
+    {
+      "development_id": "nordic_norwegian_silent_and_institution_history",
+      "initial_status": 3,
+      "evidence_scope": "verified_film_history_chapter",
+      "case_ids": ["case-danish-golden-age", "case-nordic-women", "case-markens-grode", "case-filmens-hus", "case-hustruer"],
+      "why": "Selskap, eksport, stjerner, utstillere/musikere, filmografisk objektdata og institusjonshistorie er representert."
+    },
+    {
+      "development_id": "animation_technique_labor_and_delivery_history",
+      "initial_status": 3,
+      "evidence_scope": "verified_film_history_chapter",
+      "case_ids": ["case-gertie-upa", "case-snowman"],
+      "why": "Teknikk, studioalternativer, manuelt arbeid, kamera, musikk og TV-leveranse kan sammenlignes historisk."
+    },
+    {
+      "development_id": "exhibition_and_viewing_history",
+      "initial_status": 3,
+      "evidence_scope": "verified_film_history_plus_existing_exhibition_chapter",
+      "case_ids": ["case-lumiere-views", "case-nordic-women", "case-filmens-hus"],
+      "why": "Tidlig programvisning, silent-era utstillere/musikere og senere institusjonelle visningsrom finnes, og repoet har et reauditiert kapittel for kinoer/visningssteder/publikum."
+    }
+  ],
+  "priority_gaps": [
+    {
+      "development_id": "modern_popular_commercial_cinema_as_industry",
+      "initial_status": 1,
+      "priority": "P0",
+      "axis_ids": ["production_economics_and_organization", "genre_and_popular_cinema", "distribution_exhibition_and_audience_behavior"],
+      "evidence_found": ["case-hollywood-studios"],
+      "gap": "Klassisk studiosystem er dekket, men senere massepublikums-, blockbuster-, franchise- og kommersiell mellomklassefilm er ikke tilsvarende triangulert i det målte filmhistoriske casegrunnlaget.",
+      "admission_implication": "Søk først etter eksisterende 613-scenarioer som dokumenterer publikumsatferd, distribusjon og industriell omlegging før ny film foreslås."
+    },
+    {
+      "development_id": "genre_industries_horror_action_comedy_romance_exploitation_local_popular",
+      "initial_status": 1,
+      "priority": "P0",
+      "axis_ids": ["genre_and_popular_cinema", "production_economics_and_organization", "geography_and_transnational_production"],
+      "evidence_found": ["case-hollywood-studios", "case-indian-early-sound"],
+      "gap": "Sjanger finnes analytisk og historisk, men de store populærsjangrene er ikke dokumentert som flere distinkte produksjons-/distribusjonssystemer i dette casegrunnlaget."
+    },
+    {
+      "development_id": "india_modern_industry_system",
+      "initial_status": 1,
+      "priority": "P0",
+      "axis_ids": ["institutions_and_industry_systems", "geography_and_transnational_production", "distribution_exhibition_and_audience_behavior"],
+      "evidence_found": ["case-indian-early-sound"],
+      "gap": "India finnes historisk fra tidlig film/lyd/posterkultur, men moderne industrisystem, språkmarkeder, finansiering, stjerne-/distribusjonsøkonomi og digitale overganger er ikke triangulert her."
+    },
+    {
+      "development_id": "china_industry_system",
+      "initial_status": 0,
+      "priority": "P0",
+      "axis_ids": ["institutions_and_industry_systems", "geography_and_transnational_production", "regulation_power_finance_and_coproduction"],
+      "evidence_found": [],
+      "gap": "Ingen eksplisitt Kina-case i det verifiserte filmhistoriske casegrunnlaget som er kontrollert i denne første passeringen."
+    },
+    {
+      "development_id": "nigeria_nollywood_industry_system",
+      "initial_status": 0,
+      "priority": "P0",
+      "axis_ids": ["institutions_and_industry_systems", "production_scale_studio_midbudget_microbudget_independent", "distribution_exhibition_and_audience_behavior"],
+      "evidence_found": [],
+      "gap": "Ingen eksplisitt Nollywood-/Nigeria-case i det verifiserte filmhistoriske casegrunnlaget som er kontrollert i denne første passeringen."
+    },
+    {
+      "development_id": "south_korea_industry_system",
+      "initial_status": 0,
+      "priority": "P0",
+      "axis_ids": ["institutions_and_industry_systems", "production_economics_and_organization", "distribution_exhibition_and_audience_behavior"],
+      "evidence_found": [],
+      "gap": "Ingen eksplisitt sørkoreansk industrisystem-case i det verifiserte filmhistoriske casegrunnlaget som er kontrollert i denne første passeringen."
+    },
+    {
+      "development_id": "japan_industry_system",
+      "initial_status": 0,
+      "priority": "P1",
+      "axis_ids": ["institutions_and_industry_systems", "genre_and_popular_cinema", "geography_and_transnational_production"],
+      "evidence_found": [],
+      "gap": "Ingen eksplisitt japansk industrisystem-case i det verifiserte filmhistoriske casegrunnlaget som er kontrollert i denne første passeringen."
+    },
+    {
+      "development_id": "latin_america_beyond_single_movement",
+      "initial_status": 1,
+      "priority": "P1",
+      "axis_ids": ["institutions_and_industry_systems", "geography_and_transnational_production"],
+      "evidence_found": ["case-cinema-novo"],
+      "gap": "Cinema Novo gir sterk brasiliansk bevegelseshistorie, men Latin-Amerika som flere industri-, finansierings- og distribusjonssystemer er ikke triangulert."
+    },
+    {
+      "development_id": "mena_industry_systems",
+      "initial_status": 0,
+      "priority": "P0",
+      "axis_ids": ["institutions_and_industry_systems", "geography_and_transnational_production", "regulation_power_finance_and_coproduction"],
+      "evidence_found": [],
+      "gap": "Ingen eksplisitt MENA-industrisystem-case i det verifiserte filmhistoriske casegrunnlaget som er kontrollert i denne første passeringen."
+    },
+    {
+      "development_id": "microbudget_digital_workflows_and_independent_distribution",
+      "initial_status": 0,
+      "priority": "P0",
+      "axis_ids": ["technology_and_format", "production_scale_studio_midbudget_microbudget_independent", "distribution_exhibition_and_audience_behavior"],
+      "evidence_found": [],
+      "gap": "Ingen eksplisitt historisk case i den målte flaten kobler rimelige digitale kameraer/postverktøy, microbudget-organisering og selvstendig distribusjon."
+    },
+    {
+      "development_id": "streaming_native_feature_production_economics",
+      "initial_status": 0,
+      "priority": "P0",
+      "axis_ids": ["production_economics_and_organization", "institutions_and_industry_systems", "distribution_exhibition_and_audience_behavior"],
+      "evidence_found": [],
+      "gap": "Repoet har plattform- og distribusjonsfaglighet, men denne første passeringen finner ikke en filmhistorisk case som alene kan dokumentere streaming-native spillefilmproduksjon, vinduer og produksjonsøkonomi."
+    },
+    {
+      "development_id": "labor_union_vfx_outsourcing_intimacy_coordination_post_history",
+      "initial_status": 1,
+      "priority": "P0",
+      "axis_ids": ["labor_crew_and_union_history", "production_economics_and_organization", "technology_and_format"],
+      "evidence_found": ["cross-curriculum: skapende-arbeid-teknologi-og-ansvar"],
+      "gap": "Arbeid og virtual production finnes som faglighet, men nyere arbeidshistorie må scenarioforankres på tvers av fagforeninger, VFX/outsourcing, nye crew-roller, intimacy coordination og postproduksjon."
+    },
+    {
+      "development_id": "preservation_restoration_material_survival_as_history_maker",
+      "initial_status": 1,
+      "priority": "P1",
+      "axis_ids": ["preservation_restoration_and_material_survival", "institutions_and_industry_systems"],
+      "evidence_found": ["cross-curriculum: kulturarv-kanon-stjerner-og-minne"],
+      "gap": "Arkiv og bevaring finnes som eget faglig lag og filmhistoriebriefen avgrenser bevaringspraksis ut av kapitlet; atlas-audit må derfor bevise eksplisitt scenarioforbindelse før dette kan lukkes som 2/3."
+    }
+  ],
+  "chapter_19_fail_closed_matrix": [
+    {"development_id":"pandemic_shutdown_protocol_and_recovery","initial_status":1,"priority":"P0","required_evidence":"production shutdown/restart rules, insurance/protocol effects, schedule/budget/crew consequences mapped to an exact scenario"},
+    {"development_id":"theatrical_windows_and_release_strategy","initial_status":1,"priority":"P0","required_evidence":"cinema/platform window decision with territory, distributor/platform and production-economic consequence"},
+    {"development_id":"streaming_native_feature_economics","initial_status":0,"priority":"P0","required_evidence":"commission/finance/rights/delivery model for a feature made primarily for a platform"},
+    {"development_id":"virtual_production_and_in_camera_vfx","initial_status":1,"priority":"P0","required_evidence":"exact production scenario tying LED/in-camera workflow to departments, schedule, budget or post pipeline"},
+    {"development_id":"vfx_labor_outsourcing_and_post_pipeline","initial_status":0,"priority":"P0","required_evidence":"vendor/crew geography, labor organization and post/VFX workflow as historical production evidence"},
+    {"development_id":"union_contracts_and_industrial_action","initial_status":0,"priority":"P0","required_evidence":"collective bargaining/strike or contract change with demonstrated production consequence"},
+    {"development_id":"intimacy_coordination_and_new_crew_roles","initial_status":0,"priority":"P1","required_evidence":"documented role/protocol adoption and its effect on rehearsal, blocking, consent or production organization"},
+    {"development_id":"generative_ai_and_machine_learning_in_production_or_post","initial_status":1,"priority":"P0","required_evidence":"specific bounded use/non-use, rights/labor implication and inspectable production evidence"},
+    {"development_id":"sustainable_production_and_carbon_constraints","initial_status":1,"priority":"P1","required_evidence":"measured or rule-bound production change affecting travel, energy, materials, sets or procurement"},
+    {"development_id":"regional_incentives_studios_and_production_infrastructure","initial_status":1,"priority":"P0","required_evidence":"territorial incentive/infrastructure choice linked to location, crew base, budget or vendor ecosystem"},
+    {"development_id":"microbudget_digital_and_self_distribution","initial_status":0,"priority":"P0","required_evidence":"low-cost capture/post plus financing and distribution path outside conventional studio/platform commissioning"},
+    {"development_id":"franchise_blockbuster_and_mass_audience_industrial_model","initial_status":0,"priority":"P0","required_evidence":"tentpole/franchise production organization, format/exhibition strategy and audience/distribution consequence"},
+    {"development_id":"contemporary_popular_genres_as_industries","initial_status":0,"priority":"P0","required_evidence":"at least complementary horror/action/comedy/romance/local-popular cases whose value is industrial rather than merely aesthetic"}
+  ],
+  "candidate_admission_gate": {
+    "default": "REJECT_NEW_IDENTITY",
+    "allowed_reasons": [
+      "closes_status_0_to_at_least_2",
+      "raises_status_1_to_at_least_2",
+      "raises_status_2_to_3_where_current_coverage_is_geographically_economically_or_institutionally_skewed"
+    ],
+    "required_before_new_identity": [
+      "exact_historical_development_id",
+      "current_coverage_status_with_evidence",
+      "search_for_existing_613_scenarios_that_can_close_gap",
+      "proof_that_in_place_enrichment_is_insufficient",
+      "production_verification_source_set",
+      "explicit_axis_contribution",
+      "distinctiveness_against_existing_cases",
+      "no_award_or_festival_status_as_primary_rationale"
+    ],
+    "hard_reject_reasons": [
+      "important_movie_only",
+      "festival_or_award_winner_only",
+      "critical_consensus_only",
+      "nationality_token_only",
+      "duplicates_an_already_triangulated_development_without_new_system_evidence"
+    ]
+  },
+  "closure_contract": {
+    "selection_may_be_called_representationally_audited": false,
+    "reason": "P0 status-0 and status-1 developments remain in the first pass, and exact mapping of all 613 scenario identities to the matrix is not yet represented in this report.",
+    "required_to_close": [
+      "map_every_production_verified_atlas_scenario_to_zero_or_more_historical_development_ids",
+      "recompute_all_rows_from_exact_scenario_evidence",
+      "resolve_or_explicitly_accept_every_P0_status_0_or_1",
+      "prove_no_major_technology_industry_geography_aesthetics_labor_distribution_or_exhibition_development_is_orphaned",
+      "record_each_new_candidate_as_gap_closing_hypothesis_not_permanent_canon entitlement"
+    ]
+  },
+  "evidence_paths": [
+    "docs/FILM_TV_CURRICULUM_COMPLETENESS_V1.md",
+    "data/fag/TV_og_Film/film_tv_history_movements_historiography_source_claim_brief_v1.json",
+    "data/fagverk/film_tv/skapende-arbeid-teknologi-og-ansvar.json",
+    "data/fagverk/film_tv/industri-regulering-og-distribusjon.json",
+    "data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne.json",
+    "reports/fagverk/film-tv-existing-chapter-reaudit-v1-audit.json"
+  ]
+}

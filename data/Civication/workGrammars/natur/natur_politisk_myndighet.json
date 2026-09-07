@@ -1,18 +1,219 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,
-  "category":"natur","role_scope":"natur_politisk_myndighet","role_id":"natur_politisk_myndighet",
-  "badge_binding":{"badge_id":"natur","badge_titles":["Statsråd (klima og miljø)"]},
-  "work_world":"Politisk klima- og miljøledelse der demokratiske prioriteringer må være tydelig skilt fra faglige råd og forankret i et reelt offentlig mandat.",
-  "task_families":["politisk_prioritering","departemental_styring","stortingssvar","offentlig_kommunikasjon","regjeringskoordinering"],
-  "work_loops":["faggrunnlag -> politiske alternativer -> avveiing -> beslutning -> begrunnelse -> ansvar","krise -> fakta -> juridisk_og_faglig_ramme -> politisk_handling -> offentlighet -> oppfølging"],
-  "pressure_axes":["faglige_rad_vs_politisk_prioritering","kortsiktig_press_vs_langsiktig_miljo","aapenhet_vs_forhandlingsrom"],
-  "practice_stories":[
-    {"id":"fag_mot_politikk","setup":"Faglige råd peker én vei, mens regjeringsplattformen peker en annen.","decision":"Skill tydelig mellom kunnskapsgrunnlaget og den politiske avveiingen.","learning":"politikk kan velge, men skal ikke omskrive fakta"},
-    {"id":"miljokrise","setup":"En akutt miljøhendelse krever rask politisk respons.","decision":"Sikre fakta, hjemmel og ansvar før tiltak kommuniseres som besluttet.","learning":"hastighet opphever ikke rolle- og rettsgrenser"},
-    {"id":"stortingssvar","setup":"Stortinget spør om et omstridt miljøtiltak.","decision":"Svar på det som er kjent, skill usikkerhet fra politisk vurdering og korriger feil åpent.","learning":"demokratisk ansvar krever etterprøvbarhet"},
-    {"id":"departementskonflikt","setup":"To departementer vil prioritere ulike samfunnshensyn.","decision":"Synliggjør naturkonsekvens, handlingsrom og politisk kompromiss.","learning":"tverrsektorielle konflikter skal ikke gjemmes i fagspråk"},
-    {"id":"kompromiss","setup":"Et flertall krever et kompromiss med dokumentert naturkostnad.","decision":"Gjør kostnaden eksplisitt og begrunn den politiske avveiingen uten å kalle den faglig optimal.","learning":"ansvarlighet starter med å navngi hva som ofres"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "natur",
+  "role_scope": "natur_politisk_myndighet",
+  "role_id": "natur_politisk_myndighet",
+  "badge_binding": {
+    "badge_id": "natur",
+    "badge_titles": [
+      "Statsråd (klima og miljø)"
+    ]
+  },
+  "work_world": "Politisk klima- og miljøledelse der demokratiske prioriteringer må være tydelig skilt fra faglige råd og forankret i et reelt offentlig mandat.",
+  "task_families": [
+    "politisk_prioritering",
+    "departemental_styring",
+    "stortingssvar",
+    "offentlig_kommunikasjon",
+    "regjeringskoordinering"
   ],
-  "quality_axes":["demokratisk_ansvar","fag_politikk_skille","rettslig_mandat","åpenhet","prioritering","krisehåndtering"],
-  "authority_boundary":{"may":["utøve politisk myndighet etter eksplisitt offentlig utnevnelse"],"may_not":["oppstå som myndighet fra Badge-poeng","fabrikere offentlig mandat","presentere politikk som naturvitenskapelig nødvendighet"]}
+  "work_loops": [
+    "faggrunnlag -> politiske alternativer -> avveiing -> hjemmel og mandat -> beslutning -> begrunnelse -> ansvar -> oppfølging",
+    "krise -> fakta og usikkerhet -> juridisk og faglig ramme -> politisk handling -> offentlighet -> implementering -> etterkontroll"
+  ],
+  "pressure_axes": [
+    "faglige_rad_vs_politisk_prioritering",
+    "kortsiktig_press_vs_langsiktig_miljo",
+    "aapenhet_vs_forhandlingsrom"
+  ],
+  "practice_stories": [
+    {
+      "id": "fag_mot_politikk",
+      "setup": "Faglige råd peker én vei, mens regjeringsplattformen peker en annen.",
+      "decision": "Skill tydelig mellom kunnskapsgrunnlaget og den politiske avveiingen.",
+      "learning": "politikk kan velge, men skal ikke omskrive fakta"
+    },
+    {
+      "id": "miljokrise",
+      "setup": "En akutt miljøhendelse krever rask politisk respons.",
+      "decision": "Sikre fakta, hjemmel og ansvar før tiltak kommuniseres som besluttet.",
+      "learning": "hastighet opphever ikke rolle- og rettsgrenser"
+    },
+    {
+      "id": "stortingssvar",
+      "setup": "Stortinget spør om et omstridt miljøtiltak.",
+      "decision": "Svar på det som er kjent, skill usikkerhet fra politisk vurdering og korriger feil åpent.",
+      "learning": "demokratisk ansvar krever etterprøvbarhet"
+    },
+    {
+      "id": "departementskonflikt",
+      "setup": "To departementer vil prioritere ulike samfunnshensyn.",
+      "decision": "Synliggjør naturkonsekvens, handlingsrom og politisk kompromiss.",
+      "learning": "tverrsektorielle konflikter skal ikke gjemmes i fagspråk"
+    },
+    {
+      "id": "kompromiss",
+      "setup": "Et flertall krever et kompromiss med dokumentert naturkostnad.",
+      "decision": "Gjør kostnaden eksplisitt og begrunn den politiske avveiingen uten å kalle den faglig optimal.",
+      "learning": "ansvarlighet starter med å navngi hva som ofres"
+    }
+  ],
+  "quality_axes": [
+    "demokratisk_ansvar",
+    "fag_politikk_skille",
+    "rettslig_mandat",
+    "åpenhet",
+    "prioritering",
+    "krisehåndtering"
+  ],
+  "authority_boundary": {
+    "may": [
+      "utøve politisk myndighet når public_office_appointment og faktisk mandat er dokumentert",
+      "prioritere mellom lovlige politiske alternativer og begrunne avveiingen",
+      "gi styringssignaler innen gjeldende konstitusjonelle, lovlige og delegerte rammer",
+      "representere politiske valg offentlig med tydelig skille mellom fakta, usikkerhet og normativ prioritering",
+      "eskalere saker til regjering eller Storting når beslutningen ligger utenfor eget mandat"
+    ],
+    "may_not": [
+      "materialisere statsrådsmyndighet uten public_office_appointment",
+      "fabrikere hjemmel, budsjettmyndighet eller regjeringsbeslutning",
+      "fremstille politisk preferanse som naturvitenskapelig fakta eller faglig nødvendighet",
+      "redigere bort vesentlige faglige råd, usikkerhet eller naturkostnader for å beskytte et ønsket politisk utfall",
+      "bruke History Go, Natur-badge, XP, omdømme eller popularitet som offentlig utnevnelse, saksbehandlet evidens eller rettslig hjemmel"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "ingrid_departementsrad_natur_politisk_myndighet",
+      "name": "Ingrid",
+      "role": "departementsråd",
+      "workplace_ids": [
+        "departementalt_beslutningsrom_natur"
+      ]
+    },
+    {
+      "id": "yusuf_ekspedisjonssjef_faggrunnlag_natur_politisk_myndighet",
+      "name": "Yusuf",
+      "role": "ekspedisjonssjef for faggrunnlag",
+      "workplace_ids": [
+        "faggrunnlag_og_usikkerhetsbord_natur"
+      ]
+    },
+    {
+      "id": "maria_regjeringsradgiver_natur_politisk_myndighet",
+      "name": "Maria",
+      "role": "regjeringsrådgiver og samordner",
+      "workplace_ids": [
+        "regjeringssamordning_og_avveiingsrom_natur"
+      ]
+    },
+    {
+      "id": "henrik_juridisk_og_stortingskontakt_natur_politisk_myndighet",
+      "name": "Henrik",
+      "role": "juridisk rådgiver og stortingskontakt",
+      "workplace_ids": [
+        "hjemmel_storting_og_oppfolgingsrom_natur"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "departementalt_beslutningsrom_natur",
+      "name": "Departementalt beslutningsrom",
+      "function": "Her skilles offentlig utnevnelse, konstitusjonelt og delegert mandat, regjeringsplattform, politiske mål, beslutningseier og forvaltningsfaglige premisser før statsråden gir styringssignal. Rommet gjør eksplisitt hvilke beslutninger som ligger hos statsråden, regjeringen, Stortinget, forvaltningen eller andre myndigheter, og hindrer at politisk vilje behandles som hjemmel."
+    },
+    {
+      "id": "faggrunnlag_og_usikkerhetsbord_natur",
+      "name": "Faggrunnlag- og usikkerhetsbord",
+      "function": "Her versjoneres natur- og klimafaglige råd, datagrunnlag, usikkerhet, metodebegrensninger, alternative tolkninger og faglig dissens. Statsråden kan velge politisk mellom lovlige alternativer, men kan ikke omskrive faggrunnlaget, skjule vesentlig usikkerhet eller gjøre History Go-kunnskap til saksbehandlet evidens."
+    },
+    {
+      "id": "regjeringssamordning_og_avveiingsrom_natur",
+      "name": "Regjeringssamordnings- og avveiingsrom",
+      "function": "Her synliggjøres konflikter mellom klima, natur, økonomi, energi, transport, distrikt, arbeidsliv og fordelingsvirkninger før et politisk kompromiss utformes. Hver avveiing beholder naturkostnad, vinnere, tapere, premisser, alternativ og hvilken institusjon som faktisk eier neste beslutning."
+    },
+    {
+      "id": "hjemmel_storting_og_oppfolgingsrom_natur",
+      "name": "Hjemmel-, stortings- og oppfølgingsrom",
+      "function": "Her kobles rettslig grunnlag, budsjettvedtak, stortingsforpliktelser, spørsmål og svar, instruksjonslinjer, implementeringsansvar, frister, indikatorer og etterkontroll. Politisk hastverk, popularitet eller flertallsønske kan ikke registreres som juridisk hjemmel, og nye fakta eller rettslige avklaringer kan gjenåpne berørte deler med bevart beslutningsspor."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg",
+    "description": "Et vedvarende, versjonert statsråds- og beslutningsspor som holder public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, fordelings- og naturkonsekvenser, hjemmel, budsjettpremiss, regjeringssamordning, beslutning, offentlig begrunnelse, implementeringsansvar, ventepunkt, stortingsoppfølging, indikatorer og rework som separate felt.",
+    "states": [
+      "utnevnelse_bekreftet",
+      "mandat_avgrenset",
+      "beslutningseier_registrert",
+      "faggrunnlag_innhentet",
+      "usikkerhet_markert",
+      "alternativer_utredet",
+      "naturkostnad_synlig",
+      "fordelingsvirkning_synlig",
+      "hjemmel_vurderes",
+      "budsjettpremiss_avklart",
+      "regjeringssamordning",
+      "politisk_avveiing",
+      "venter_pa_avklaring",
+      "beslutningsklar",
+      "besluttet",
+      "offentlig_begrunnelse",
+      "implementering",
+      "stortingsoppfolging",
+      "etterkontroll",
+      "rework",
+      "gjenapnet",
+      "lukket_med_rest_usikkerhet"
+    ],
+    "handoff_rule": "Neste aktør overtar synlig utnevnelse og mandat, beslutningseier, faggrunnlag og usikkerhet, politisk avveiing, hjemmel, natur- og fordelingskostnad, implementeringsansvar, ventepunkt og neste kontroll. Handoff kan aldri skape public_office_appointment, ny hjemmel eller skjule et faglig råd."
+  },
+  "rhythm_contract": {
+    "loop": "faggrunnlag -> alternativer -> waiting/venting på hjemmel, budsjett, regjeringssamordning, Storting eller nye data -> politisk avveiing -> beslutning -> handoff -> implementering -> offentlig og parlamentarisk oppfølging -> etterkontroll -> revisjon/rework",
+    "waiting_states": [
+      "oppdatert_faggrunnlag",
+      "juridisk_hjemmelsavklaring",
+      "budsjett_eller_finansavklaring",
+      "regjeringssamordning",
+      "stortingsbehandling",
+      "forvaltningsmessig_implementering",
+      "etterkontroll_eller_nye_data"
+    ],
+    "rework_rule": "Nye fagdata, endret usikkerhet, rettslig avklaring, budsjettvedtak, regjeringsbeslutning, stortingsvedtak eller implementeringsfunn gjenåpner bare berørte premisser og beslutningsledd med bevart tidligere begrunnelse."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_natur_politisk_myndighet_sted_og_okologikontekst",
+      "badge_id": "natur",
+      "use": "History Go kan forbedre spørsmål om arter, steder, økologi og naturhistorie, men Natur-badge er ikke public_office_appointment, kan ikke erstatte utredning eller feltdata, skape hjemmel eller gi regjeringen eller Stortingets myndighet."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "career_offer_policy_by_title",
+    "entry_policy_by_title": {
+      "Statsråd (klima og miljø)": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "public_office_appointment"
+        ]
+      }
+    },
+    "first_object": "utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg",
+    "first_task": "Bekreft public_office_appointment og faktisk mandat. Registrer beslutningseier, faggrunnlag, vesentlig usikkerhet, minst to politiske alternativer, natur- og fordelingskostnad, hjemmelsbehov, hvilket organ som eier neste beslutning og hva History Go ikke beviser eller gir myndighet til før første styringssignal sendes."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "natur_politisk_myndighet",
+    "no_generic_fallback": true
+  }
 }

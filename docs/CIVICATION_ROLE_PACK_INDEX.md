@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 70
+- complete_reference_v2: 72
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 182
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 24
+- missing: 22
 
 ## Rolleindeks
 
@@ -206,10 +206,10 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | natur | feltassistent | natur_feltassistent | Feltassistent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | natur | feltobservator | natur_feltobservator | Feltobservatør | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | natur | forsker_miljo_natur | natur_forsker_miljo_natur | Forsker (miljø/natur) | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| natur | natur_politisk_myndighet | natur_politisk_myndighet | Klima- og miljøpolitisk myndighet | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | natur | natur_miljoledelse | natur_miljoledelse | Miljø- og naturledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | natur | miljodirektor | natur_miljodirektor | Miljødirektør | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | natur | miljosjef | natur_miljosjef | Miljøsjef | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| natur | natur_politisk_myndighet | natur_politisk_myndighet | natur_politisk_myndighet | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | natur | naturforvalter | natur_naturforvalter | Naturforvalter | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | natur | natur_forvaltning_og_radgivning | natur_forvaltning_og_radgivning | Naturforvaltning og miljørådgivning | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | natur | naturinteressert | natur_naturinteressert | Naturinteressert | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
@@ -224,11 +224,11 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | politikk | diktator | politikk_diktator | Diktator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | politikk | fylkespolitiker | politikk_fylkespolitiker | Fylkespolitiker | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | politikk | komiteleder | politikk_komiteleder | Komitéleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| politikk | politikk_kommunal_ledelse | politikk_kommunal_ledelse | Kommunal politisk ledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | politikk | kommunestyrerepresentant | politikk_kommunestyrerepresentant | Kommunestyrerepresentant | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | politikk | ordforer | politikk_ordforer | Ordfører | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | politikk | organisasjonssekretaer | politikk_organisasjonssekretaer | Organisasjonssekretær | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | politikk | partileder | politikk_partileder | Partileder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| politikk | politikk_kommunal_ledelse | politikk_kommunal_ledelse | politikk_kommunal_ledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | politikk | politikk_organisasjonsarbeid | politikk_organisasjonsarbeid | politikk_organisasjonsarbeid | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | politikk | politikk_parlamentarisk_arbeid | politikk_parlamentarisk_arbeid | politikk_parlamentarisk_arbeid | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | politikk | politikk_politisk_radgivning | politikk_politisk_radgivning | politikk_politisk_radgivning | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
