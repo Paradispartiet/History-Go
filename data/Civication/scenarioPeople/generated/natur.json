@@ -192,6 +192,36 @@
       "verification_required": true
     },
     {
+      "id": "henrik_plan_regelverksradgiver_natur_forvaltning_og_radgivning",
+      "name": "henrik_plan_regelverksradgiver_natur_forvaltning_og_radgivning",
+      "category": "natur",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/natur/natur_forvaltning_og_radgivning.json"
+      ],
+      "scenario_roles": [
+        "natur_forvaltning_og_radgivning"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "ingrid_fagansvarlig_natur_forvaltning_og_radgivning",
+      "name": "ingrid_fagansvarlig_natur_forvaltning_og_radgivning",
+      "category": "natur",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/natur/natur_forvaltning_og_radgivning.json"
+      ],
+      "scenario_roles": [
+        "natur_forvaltning_og_radgivning"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "ingrid_seniorforsker_natur_biologi_og_forskning",
       "name": "ingrid_seniorforsker_natur_biologi_og_forskning",
       "category": "natur",
@@ -252,6 +282,21 @@
       "verification_required": true
     },
     {
+      "id": "mona_prosjekt_kvalitetssikrer_natur_forvaltning_og_radgivning",
+      "name": "mona_prosjekt_kvalitetssikrer_natur_forvaltning_og_radgivning",
+      "category": "natur",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/natur/natur_forvaltning_og_radgivning.json"
+      ],
+      "scenario_roles": [
+        "natur_forvaltning_og_radgivning"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "noah_statistiker_dataforvalter_natur_biologi_og_forskning",
       "name": "noah_statistiker_dataforvalter_natur_biologi_og_forskning",
       "category": "natur",
@@ -278,6 +323,21 @@
       ],
       "scenario_roles": [
         "natur_felt_og_formidling"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "sara_kart_dataanalytiker_natur_forvaltning_og_radgivning",
+      "name": "sara_kart_dataanalytiker_natur_forvaltning_og_radgivning",
+      "category": "natur",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/natur/natur_forvaltning_og_radgivning.json"
+      ],
+      "scenario_roles": [
+        "natur_forvaltning_og_radgivning"
       ],
       "verification_required": true
     },
@@ -513,6 +573,37 @@
         "direct": 0,
         "strong": 6,
         "contextual": 16,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "natur_forvaltning_og_radgivning",
+      "role_scope": "natur_forvaltning_og_radgivning",
+      "title": "Naturforvaltning og miljørådgivning",
+      "source": "data/Civication/roleModels/natur/natur_forvaltning_og_radgivning.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "forvaltning",
+        "miljøradgivning",
+        "naturforvaltning",
+        "radgivning"
+      ],
+      "resolved_counts": {
+        "total": 22,
+        "existing_place_people": 22,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 22,
         "excluded": 0
       }
     },
