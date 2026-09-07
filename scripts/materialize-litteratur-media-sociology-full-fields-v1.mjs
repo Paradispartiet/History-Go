@@ -171,7 +171,7 @@ const areas = [
       ['ls01', 'The Rules of Art', 'https://www.sup.org/books/art-and-visual-culture/rules-art', 'Stanford University Press'],
       ['ls02', 'The Pickwick Papers', 'https://www.gutenberg.org/ebooks/580', 'Project Gutenberg'],
       ['ls03', 'Deichman Bjørvika', 'https://deichman.no/bibliotekene/bj%C3%B8rvika', 'Deichman'],
-      ['ls04', 'Penguin Books: Our story', 'https://www.penguin.co.uk/company/about-us/our-story', 'Penguin Books'],
+      ['ls04', 'Penguin Books: Our story', 'https://www.penguin.co.uk/about/who-we-are', 'Penguin Books'],
       ['ls05', 'Knut Hamsun – Biographical', 'https://www.nobelprize.org/prizes/literature/1920/hamsun/biographical/', 'Nobel Prize Outreach'],
       ['ls06', 'Toni Morrison – Facts', 'https://www.nobelprize.org/prizes/literature/1993/morrison/facts/', 'Nobel Prize Outreach'],
       ['ls07', 'The origins of the Booker Prize', 'https://thebookerprizes.com/the-origins-of-our-prizes', 'Booker Prize Foundation'],
