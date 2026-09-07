@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 73
+- complete_reference_v2: 75
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 182
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 21
+- missing: 19
 
 ## Rolleindeks
 
@@ -229,11 +229,11 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | politikk | ordforer | politikk_ordforer | Ordfører | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | politikk | politikk_organisasjonsarbeid | politikk_organisasjonsarbeid | Organisasjonsarbeid | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | politikk | organisasjonssekretaer | politikk_organisasjonssekretaer | Organisasjonssekretær | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| politikk | politikk_parlamentarisk_arbeid | politikk_parlamentarisk_arbeid | Parlamentarisk arbeid | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | politikk | partileder | politikk_partileder | Partileder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| politikk | politikk_parlamentarisk_arbeid | politikk_parlamentarisk_arbeid | politikk_parlamentarisk_arbeid | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
-| politikk | politikk_politisk_radgivning | politikk_politisk_radgivning | politikk_politisk_radgivning | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | politikk | politikk_regjeringsledelse | politikk_regjeringsledelse | politikk_regjeringsledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | politikk | politisk_radgiver | politikk_politisk_radgiver | Politisk rådgiver | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| politikk | politikk_politisk_radgivning | politikk_politisk_radgivning | Politisk rådgivning | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | politikk | president | politikk_president | President | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | politikk | samfunnsengasjert_borger | politikk_samfunnsengasjert_borger | Samfunnsengasjert borger | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | politikk | statsminister | politikk_statsminister | Statsminister | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |

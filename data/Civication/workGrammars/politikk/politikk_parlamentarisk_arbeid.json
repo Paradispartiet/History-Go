@@ -1,1 +1,244 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"politikk","role_scope":"politikk_parlamentarisk_arbeid","role_id":"politikk_parlamentarisk_arbeid","badge_binding":{"badge_titles":["Stortingsrepresentant"],"thresholds":[150]},"work_world":"Parlamentarisk arbeid der komitébehandling, partigruppe, høringer og plenumsarbeid må holdes innen Stortingets prosedyrer.","authority_boundary":{"may":["fremme og vurdere politiske forslag innen mandatet","delta i komitébehandling og plenumsarbeid","stille spørsmål og kreve begrunnelser gjennom parlamentariske kanaler"],"may_not":["late som egen stemme er et vedtak fra Stortinget","sette konstitusjonelle prosedyrer til side","misbruke fortrolig materiale","presentere partistandpunkt som gjeldende rett eller offentlig vedtak"]},"task_families":["komitebehandling","horing","lov_og_budsjettanalyse","debattforberedelse","representantkontakt"],"work_loops":["sak -> dokumenter -> komité -> høring -> innstilling -> plenum -> oppfølging","påstand -> kilde -> konsekvens -> partivurdering -> parlamentarisk handling -> offentlig begrunnelse"],"practice_stories":[{"id":"horing_konflikt","setup":"En høring gir sterke, motstridende beskrivelser av samme forslag.","decision":"Sammenlign premisser og dokumentasjon før du trekker parlamentarisk konklusjon.","learning":"representasjon krever mer enn å telle de høyeste stemmene"},{"id":"partipress","setup":"Partigruppen ønsker en konklusjon før komitégrunnlaget er ferdig.","decision":"Synliggjør hva som fortsatt er uavklart og hvilke konsekvenser en tidlig binding har.","learning":"partidisiplin opphever ikke behovet for beslutningsgrunnlag"},{"id":"fortrolig_info","setup":"Du får informasjon som ikke kan brukes offentlig ennå.","decision":"Respekter fortroligheten og finn lovlige måter å undersøke saken videre på.","learning":"parlamentarisk kontroll krever også informasjonsgrenser"},{"id":"velgerkrav","setup":"En velgergruppe krever at du lover et konkret resultat du ikke kan kontrollere alene.","decision":"Forklar mandat, prosess og hva du faktisk kan fremme eller stemme for.","learning":"representanten har påvirkning, ikke individuell vedtaksmyndighet"},{"id":"lovforslag","setup":"Et forslag har et populært mål, men uklar rettslig virkning.","decision":"Etterspør konsekvens- og lovanalyse før du behandler virkemiddelet.","learning":"god politikk vurderer både mål og mekanisme"}],"quality_axes":["parlamentarisk_prosedyre","komitearbeid","lovforståelse","argumentasjon","representasjon","kildekritikk"]}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "politikk",
+  "role_scope": "politikk_parlamentarisk_arbeid",
+  "role_id": "politikk_parlamentarisk_arbeid",
+  "badge_binding": {
+    "badge_id": "politikk",
+    "badge_titles": [
+      "Stortingsrepresentant"
+    ],
+    "thresholds": [
+      150
+    ]
+  },
+  "work_world": "Parlamentarisk arbeid der election_or_mandate, dokumentgrunnlag, komité, høring, partigruppe, innstilling, plenum og oppfølging holdes sammen uten at personlig påvirkning eller partiposisjon blir til individuell Stortingsmyndighet.",
+  "authority_boundary": {
+    "may": [
+      "utøve Stortingsrepresentantens parlamentariske funksjoner bare når election_or_mandate er dokumentert og aktivt",
+      "delta i komitéarbeid, høringer, partigruppe, spørsmål, forslag, debatt og avstemning innen Stortingets prosedyrer",
+      "be om dokumentasjon, stille kontrollspørsmål, fremme politiske alternativer og forklare egen stemme og partiets posisjon presist",
+      "behandle fortrolig eller begrenset materiale bare innen faktisk tilgang, formål og parlamentarisk regelverk",
+      "følge opp vedtak og konsekvenser gjennom korrekte parlamentariske og offentlige kanaler"
+    ],
+    "may_not": [
+      "materialisere Stortingsrepresentantens rolle eller myndighet uten election_or_mandate",
+      "late som egen stemme, partigruppens standpunkt, komitémerknad eller forhandling er et vedtak fra Stortinget",
+      "sette parlamentariske prosedyrer, habilitet, tilgangsgrenser eller fortrolighet til side på grunn av politisk hastverk",
+      "presentere politisk argumentasjon, partistandpunkt eller uverifisert påstand som gjeldende rett, vedtatt budsjett eller offentlig faktum",
+      "love velgere, organisasjoner eller lobbyaktører et resultat som representanten ikke kan beslutte alene",
+      "bruke Politikk-badge, XP, History Go-kunnskap, situated reputation, popularitet eller partistatus som valgresultat, mandat, lovgrunnlag, evidens eller Stortingsvedtak"
+    ]
+  },
+  "task_families": [
+    "komitebehandling_og_innstilling",
+    "horing_og_interesseanalyse",
+    "lov_og_budsjettanalyse",
+    "partigruppe_og_forhandling",
+    "debatt_forslag_og_votering",
+    "representantkontakt_og_kontroll"
+  ],
+  "work_loops": [
+    "sak -> dokumenter -> komité -> høring -> analyse -> forhandling -> innstilling -> plenum -> vedtak -> oppfølging",
+    "påstand eller krav -> kilde og interesse -> konsekvens -> partivurdering -> parlamentarisk handling -> offentlig begrunnelse -> senere kontroll"
+  ],
+  "practice_stories": [
+    {
+      "id": "horing_konflikt",
+      "setup": "En høring gir sterke, motstridende beskrivelser av samme forslag.",
+      "decision": "Sammenlign premisser, interesser og dokumentasjon før parlamentarisk konklusjon.",
+      "learning": "representasjon krever mer enn å telle de høyeste stemmene"
+    },
+    {
+      "id": "partipress",
+      "setup": "Partigruppen ønsker en konklusjon før komitégrunnlaget er ferdig.",
+      "decision": "Synliggjør hva som fortsatt er uavklart og hva tidlig binding vil gjøre med senere behandling.",
+      "learning": "partidisiplin opphever ikke behovet for beslutningsgrunnlag"
+    },
+    {
+      "id": "fortrolig_info",
+      "setup": "Representanten får informasjon som ikke kan brukes offentlig ennå.",
+      "decision": "Respekter tilgangsgrensen og finn lovlige parlamentariske måter å undersøke saken videre på.",
+      "learning": "parlamentarisk kontroll krever også informasjonsgrenser"
+    },
+    {
+      "id": "velgerkrav",
+      "setup": "En velgergruppe krever løfte om et konkret resultat.",
+      "decision": "Forklar mandat, prosess og hva representanten faktisk kan fremme, påvirke eller stemme for.",
+      "learning": "representanten har påvirkning, ikke individuell vedtaksmyndighet"
+    },
+    {
+      "id": "lovforslag",
+      "setup": "Et forslag har et populært mål, men uklar rettslig og budsjettmessig virkning.",
+      "decision": "Etterspør mekanisme, lovanalyse og konsekvens før virkemiddelet bindes.",
+      "learning": "god politikk vurderer både mål og mekanisme"
+    }
+  ],
+  "quality_axes": [
+    "parlamentarisk_prosedyre",
+    "komitearbeid",
+    "lov_og_budsjettforstaelse",
+    "argumentasjon",
+    "representasjon",
+    "kildekritikk",
+    "fortrolighet",
+    "sporbarhet"
+  ],
+  "pressure_axes": [
+    "partipress_vs_ferdig_komitegrunnlag",
+    "medietempo_vs_kilde_og_prosedyre",
+    "sterk_tilgang_vs_representativ_horing",
+    "politisk_gevinst_vs_fortrolighet",
+    "velgerforventning_vs_kollegial_vedtaksmyndighet"
+  ],
+  "actor_grammar": [
+    {
+      "id": "sigrid_komitesekretaer_politikk_parlamentarisk_arbeid",
+      "name": "Sigrid",
+      "role": "komitésekretær og prosesskoordinator",
+      "workplace_ids": [
+        "komite_saksmappe_og_innstillingsspor_politikk_parlamentarisk_arbeid",
+        "plenum_sporsmal_vedtak_og_oppfolging_politikk_parlamentarisk_arbeid"
+      ]
+    },
+    {
+      "id": "amir_lov_og_budsjettanalytiker_politikk_parlamentarisk_arbeid",
+      "name": "Amir",
+      "role": "lov- og budsjettanalytiker",
+      "workplace_ids": [
+        "komite_saksmappe_og_innstillingsspor_politikk_parlamentarisk_arbeid",
+        "horing_innspill_og_kildegrunnlag_politikk_parlamentarisk_arbeid"
+      ]
+    },
+    {
+      "id": "nora_partigruppekoordinator_politikk_parlamentarisk_arbeid",
+      "name": "Nora",
+      "role": "partigruppekoordinator og parlamentarisk rådgiver",
+      "workplace_ids": [
+        "partigruppe_forhandlings_og_mandatrom_politikk_parlamentarisk_arbeid",
+        "komite_saksmappe_og_innstillingsspor_politikk_parlamentarisk_arbeid"
+      ]
+    },
+    {
+      "id": "leila_horings_og_velgerkontakt_politikk_parlamentarisk_arbeid",
+      "name": "Leila",
+      "role": "hørings- og velgerkontakt",
+      "workplace_ids": [
+        "horing_innspill_og_kildegrunnlag_politikk_parlamentarisk_arbeid",
+        "plenum_sporsmal_vedtak_og_oppfolging_politikk_parlamentarisk_arbeid"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "komite_saksmappe_og_innstillingsspor_politikk_parlamentarisk_arbeid",
+      "name": "Komitéens saksmappe og innstillingsspor",
+      "function": "Her bindes sak, dokumentversjoner, lov- og budsjettgrunnlag, frister, komitémøter, spørsmål, forslag, merknader, flertall og mindretall, innstilling og neste formelle steg sammen. Arbeidsflaten gjør det synlig hva Stortingsrepresentanten faktisk har lest og vurdert, hva som fortsatt er uavklart, og hva som er komitétekst versus partiposisjon eller personlig standpunkt. Ingen merknad, forhandling eller tidsfrist kan registreres som Stortingsvedtak før korrekt parlamentarisk behandling har skjedd."
+    },
+    {
+      "id": "horing_innspill_og_kildegrunnlag_politikk_parlamentarisk_arbeid",
+      "name": "Hørings-, innspills- og kildegrunnlaget",
+      "function": "Her registreres høringsaktør, interesse, erfaring, faktapåstand, dokumentasjon, kilde, usikkerhet, motstridende innspill, hvem som ikke er representert, oppfølgingsspørsmål og hvordan innspillet faktisk brukes i komitéarbeidet. Flaten hindrer at tilgang, emosjonelt trykk eller en enkelt sterk fortelling blir behandlet som hele kunnskapsgrunnlaget, samtidig som erfaringskunnskap bevares som relevant evidens der den faktisk belyser konsekvenser."
+    },
+    {
+      "id": "partigruppe_forhandlings_og_mandatrom_politikk_parlamentarisk_arbeid",
+      "name": "Partigruppens forhandlings- og mandatrom",
+      "function": "Her skilles partiprogram, gruppestandpunkt, forhandlingsposisjon, foreløpige kompromisser, individuell representantvurdering, legitime interne uenigheter og det som faktisk må fremmes eller stemmes over parlamentarisk. Rommet gjør tydelig at partidisiplin og politisk strategi er reelle arbeidsbetingelser, men verken partileder, gruppemøte, meningsmåling eller sosial standing kan konverteres til Stortingsvedtak, lov, budsjettfullmakt eller nytt election_or_mandate."
+    },
+    {
+      "id": "plenum_sporsmal_vedtak_og_oppfolging_politikk_parlamentarisk_arbeid",
+      "name": "Plenum-, spørsmåls-, vedtaks- og oppfølgingssporet",
+      "function": "Her kobles debattforberedelse, forslag, spørsmål, votering, vedtak, offentlig begrunnelse, kontrollspørsmål, velgerkommunikasjon og senere oppfølging til den samme parlamentariske saken. Flaten skiller hva representanten ønsket, hva partiet fremmet, hva komiteen innstilte og hva Stortinget faktisk besluttet. Nye fakta, rettslige avklaringer eller gjennomføringsfunn kan gjenåpne relevante vurderinger uten å omskrive tidligere dokumenter, stemmegivning eller offentlig begrunnelse."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "parlamentarisk_sakslogg_dokument_horing_innstilling_plenum_og_oppfolging",
+    "description": "Versjonert parlamentarisk sakslogg som bevarer election_or_mandate, sak og dokumentversjoner, kilde- og høringsgrunnlag, komitéspørsmål, forslag og merknader, partivurdering, innstilling, fortrolighet, plenumshandling, votering, faktisk vedtak, offentlig begrunnelse, ventepunkt, handoff og bounded rework gjennom samme saksforløp.",
+    "states": [
+      "election_or_mandate_bekreftet",
+      "sak_registrert",
+      "dokumentversjoner_laset",
+      "kildegrunnlag_kartlagt",
+      "horing_planlagt",
+      "innspill_og_interesser_registrert",
+      "motstridende_evidens_synlig",
+      "komitesporsmal_forberedt",
+      "venter_pa_svar_eller_nye_dokumenter",
+      "lov_og_budsjettvirkning_analysert",
+      "partigruppeposisjon_forelopig",
+      "forhandling_og_alternativer_registrert",
+      "komitemerknader_under_arbeid",
+      "innstilling_klar",
+      "fortrolighet_og_tilgang_kontrollert",
+      "plenum_forslag_og_debatt_forberedt",
+      "votering_gjennomfort",
+      "stortingsvedtak_registrert",
+      "offentlig_begrunnelse_publisert",
+      "oppfolging_og_kontroll",
+      "avvik_eller_nytt_premiss",
+      "bounded_rework_og_ny_handoff",
+      "lukket_med_sporbarhet"
+    ],
+    "handoff_rule": "Neste aktør mottar gjeldende sakslogg med aktivt election_or_mandate, dokumentversjon, kilde- og høringsgrunnlag, komitéstatus, partiposisjon, forslag, fortrolighetsgrense, hva som faktisk er besluttet, hva som venter og hva som må bekreftes. Handoff kan aldri skape mandat eller gjøre parti-, komité- eller personlig posisjon til Stortingsvedtak."
+  },
+  "rhythm_contract": {
+    "loop": "sak -> dokumentasjon -> høring -> waiting/venting på svar, lov- eller budsjettavklaring, komité eller partiforhandling -> innstilling -> plenum -> votering -> handoff -> offentlig begrunnelse -> oppfølging -> bounded rework",
+    "waiting_states": [
+      "horing_og_skriftlige_innspill",
+      "departement_eller_faglige_svar",
+      "lov_og_budsjettavklaring",
+      "komitemote_og_innstilling",
+      "partigruppe_og_forhandling",
+      "plenum_og_votering",
+      "oppfolging_nye_fakta_eller_kontroll"
+    ],
+    "rework_rule": "Nye dokumenter, korrigert faktagrunnlag, ny rettslig eller budsjettmessig avklaring, endret forhandlingsposisjon, komitémerknad, votering eller gjennomføringsfunn gjenåpner bare berørte ledd. Tidligere versjon, høringsgrunnlag, forslag, stemmegivning og offentlig begrunnelse beholdes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_politikk_parlamentarisk_historie_og_institusjoner",
+      "badge_id": "politikk",
+      "use": "History Go kan gi historisk og institusjonell kontekst om Stortinget, representasjon, lovgivning, demokratiske konflikter og tidligere politiske beslutninger og dermed forbedre hvilke spørsmål representanten stiller. Det kan ikke skape election_or_mandate, erstatte aktuell lovtekst, budsjettgrunnlag eller komitédokumenter, åpne fortrolig materiale eller gjøre en historisk analogi til evidens for dagens vedtak."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "career_offer_policy_by_title",
+    "entry_policy_by_title": {
+      "Stortingsrepresentant": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "election_or_mandate"
+        ]
+      }
+    },
+    "first_object": "parlamentarisk_sakslogg_dokument_horing_innstilling_plenum_og_oppfolging",
+    "first_task": "Bekreft election_or_mandate før første parlamentariske handling. Registrer den første saken med dokumentversjon, beslutnings- og prosessnivå, kildegrunnlag, høringsbehov, komitéfrist, partigruppens foreløpige posisjon, fortrolighetsgrense, hva som må vente, og hva Politikk-badge eller History Go ikke gir myndighet eller evidens til."
+  },
+  "situated_reputation_contract": {
+    "global_score_allowed": false,
+    "audiences": [
+      "komite_og_parlamentariske_kolleger",
+      "partigruppe_og_politiske_medspillere",
+      "horingsaktorer_organisasjoner_og_velgere",
+      "faglige_og_juridiske_kilder",
+      "offentlighet_og_medier"
+    ],
+    "rule": "Standing følger konkret pålitelighet i prosedyre, kildebruk, representasjon, fortrolighet og offentlig begrunnelse hos den aktuelle gruppen. Den gir aldri election_or_mandate, stemmerett utover faktisk mandat, tilgang til fortrolig materiale, lovgrunnlag eller rett til å fremstille en partiposisjon som Stortingsvedtak."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "politikk_parlamentarisk_arbeid",
+    "no_generic_fallback": true
+  }
+}

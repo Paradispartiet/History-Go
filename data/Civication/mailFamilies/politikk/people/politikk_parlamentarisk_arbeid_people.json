@@ -1,0 +1,291 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_parlamentarisk_arbeid",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "parlamentarisk_arbeid_profesjonelle_relations",
+      "purpose": "Trene people som del av et versjonert parlamentarisk saksforløp der election_or_mandate, dokumentasjon, høring, komité, partigruppe, innstilling, plenum, vedtak og oppfølging forblir eksplisitte og korrigerbare.",
+      "learning_focus": [
+        "parlamentarisk_prosedyre",
+        "komite_og_innstilling",
+        "horing_og_representasjon",
+        "kildekritikk",
+        "fortrolighet",
+        "election_or_mandate"
+      ],
+      "mails": [
+        {
+          "id": "parlamentarisk_arbeid_people_005",
+          "mail_type": "people",
+          "mail_family": "parlamentarisk_arbeid_profesjonelle_relations",
+          "role_scope": "politikk_parlamentarisk_arbeid",
+          "phase": "afternoon",
+          "priority": 124,
+          "from": "Nora",
+          "people_ref": "nora_partigruppekoordinator_politikk_parlamentarisk_arbeid",
+          "place_id": "partigruppe_forhandlings_og_mandatrom_politikk_parlamentarisk_arbeid",
+          "subject": "Nora trenger en status som skiller partibinding fra parlamentarisk resultat",
+          "summary": "Nora trenger en status som skiller partibinding fra parlamentarisk resultat. Målet er å forklare hva partigruppen ønsker, hva som fortsatt forhandles, og hva som først kan bli resultat etter komité eller votering. Dette steget føres i parlamentarisk_sakslogg_dokument_horing_innstilling_plenum_og_oppfolging. Aktivt election_or_mandate, sak og dokumentversjon, kilde- og høringsgrunnlag, komitéstatus, partigruppens posisjon, forslag og merknader, fortrolighetsgrense, innstilling, plenumshandling, votering, faktisk vedtak, offentlig begrunnelse, ventepunkt, handoff og oppfølging skal være separate og versjonerte felt. Stortingsrepresentant er appointment_required bak election_or_mandate: Politikk-badge, XP, History Go-kunnskap, situated reputation, partistatus, popularitet og medietrykk kan aldri materialisere mandatet, åpne fortrolig materiale, gjøre en partiposisjon til lov eller Stortingsvedtak eller gjøre en historisk analogi til evidens for dagens sak. En god løsning viser derfor hvilket beslutningsnivå man er på, hva som er dokumentert, hvem som fortsatt må høres eller svare, hva representanten faktisk kan gjøre nå, og hvilket nytt premiss som legitimt skal gjenåpne analysen.",
+          "situation": [
+            "Den parlamentariske saksloggen viser gjeldende dokumentversjon, kilde- og høringsgrunnlag, komitéstatus, partiposisjon, forslag, fortrolighet, frister og åpne ventepunkter knyttet til at du skal forklare hva partigruppen ønsker, hva som fortsatt forhandles, og hva som først kan bli resultat etter komité eller votering.",
+            "Presset er reelt: partigruppe, medier, velgere, høringsaktører, komitéfrist eller politisk gevinst kan gjøre det fristende å behandle en foreløpig posisjon som ferdig parlamentarisk resultat eller en sterk påstand som tilstrekkelig evidens.",
+            "Du må velge et grep som tåler senere kontroll, bevarer election_or_mandate og tilgangsgrenser, skiller politisk vurdering fra dokumentert premiss og gjør bounded rework mulig uten å slette tidligere dokumentversjon, forslag, stemme eller offentlig begrunnelse."
+          ],
+          "task_domain": "parlamentarisk_arbeid",
+          "competency": "parlamentarisk_prosedyre_komite_horing_kildebruk_forhandling_og_mandat",
+          "pressure": "partigruppe_medier_velgere_horingsaktorer_tid_fortrolighet_og_kollegial_beslutning",
+          "choice_axis": "sporbar_mandatbundet_og_kildebevisst_parlamentarisk_prosess_vs_tidlig_resultat_og_mandatglidning",
+          "consequence_axis": "legitimitet_etterprovbarhet_og_korrigerbarhet_vs_overloving_kildefeil_og_tillitstap",
+          "narrative_arc": "people",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Før nora trenger en status som skiller partibinding fra parlamentarisk resultat gjennom det sporbare parlamentariske saksforløpet",
+              "reply": "Jeg fører dette gjennom parlamentarisk_sakslogg_dokument_horing_innstilling_plenum_og_oppfolging i stedet for å løse det som et talepunkt eller en privat politisk snarvei. Først bekrefter jeg election_or_mandate og riktig prosessnivå. Deretter låser jeg dokumentversjon, skiller kilde, interesse og politisk vurdering, registrerer hørings- og komitéstatus, partigruppens foreløpige posisjon, fortrolighetsgrense, forslag, frister og hva vi faktisk venter på. Jeg handler bare innen representantens reelle mandat, sender komplett handoff til riktig parlamentarisk aktør og beholder tidligere versjon hvis nye fakta krever bounded rework. History Go brukes til kontekst og bedre spørsmål, aldri som valgresultat, lovgrunnlag eller evidens for dagens sak.",
+              "effect": 1,
+              "tags": [
+                "election_or_mandate",
+                "parlamentarisk_sporbarhet",
+                "kildekritikk",
+                "komite_og_horing"
+              ],
+              "feedback": "Grepet gjør det mulig for komitékolleger, partigruppe, høringsaktører, velgere og offentlighet å se hva som var dokumentert premiss, hva som var politisk vurdering, hvilken posisjon partiet hadde, hva komiteen innstilte og hva Stortinget faktisk vedtok. Representanten får handlingskraft gjennom spørsmål, forslag, forhandling og stemme uten å gjøre påvirkning til individuell vedtaksmyndighet. Når et nytt dokument eller premiss kommer, kan bare berørt analyse eller forslag gjenåpnes med tidligere versjon, høringsgrunnlag, merknad og offentlig forklaring bevart.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk nora trenger en status som skiller partibinding fra parlamentarisk resultat gjennom tidlig politisk binding",
+              "reply": "Jeg prioriterer tempo og budskap foran sakslogg og prosess. Jeg behandler partigruppens ønske eller en sterk høringsaktørs påstand som tilstrekkelig grunnlag, lar dokumentversjon og fortrolighet være uklare og kommuniserer utfallet før komité, innstilling eller votering faktisk er ferdig. Dersom nye fakta kommer, forsøker jeg å forsvare det tidligere løftet og justerer forklaringen etterpå i stedet for å gjenåpne den delen av analysen som faktisk endret seg.",
+              "effect": -1,
+              "tags": [
+                "tidlig_resultatbinding",
+                "kilde_og_prosessrisiko",
+                "mandatglidning"
+              ],
+              "feedback": "Løsningen kan gi kortsiktig politisk tydelighet, men den gjør det uklart hva som var kilde, partiposisjon, komitéarbeid og faktisk Stortingsbeslutning. Når høring, dokumentasjon, fortrolighet og votering blandes sammen, kan representanten både overdrive egen myndighet og svekke senere kontroll. Nye fakta blir da et omdømmeproblem som skal forklares bort i stedet for et avgrenset rework i en dokumentert parlamentarisk prosess, og velgere eller organisasjoner kan sitte igjen med et løfte som aldri lå innen én representants beslutningsrett.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "parlamentarisk_arbeid_people_006",
+          "mail_type": "people",
+          "mail_family": "parlamentarisk_arbeid_profesjonelle_relations",
+          "role_scope": "politikk_parlamentarisk_arbeid",
+          "phase": "evening",
+          "priority": 125,
+          "from": "Amir",
+          "people_ref": "amir_lov_og_budsjettanalytiker_politikk_parlamentarisk_arbeid",
+          "place_id": "horing_innspill_og_kildegrunnlag_politikk_parlamentarisk_arbeid",
+          "subject": "Amir finner et tall som brukes politisk på en måte dokumentet ikke støtter",
+          "summary": "Amir finner et tall som brukes politisk på en måte dokumentet ikke støtter. Målet er å korrigere kildebruk og usikkerhet før talepunktet blir offentlig uten å late som faglig analyse bestemmer politisk konklusjon. Dette steget føres i parlamentarisk_sakslogg_dokument_horing_innstilling_plenum_og_oppfolging. Aktivt election_or_mandate, sak og dokumentversjon, kilde- og høringsgrunnlag, komitéstatus, partigruppens posisjon, forslag og merknader, fortrolighetsgrense, innstilling, plenumshandling, votering, faktisk vedtak, offentlig begrunnelse, ventepunkt, handoff og oppfølging skal være separate og versjonerte felt. Stortingsrepresentant er appointment_required bak election_or_mandate: Politikk-badge, XP, History Go-kunnskap, situated reputation, partistatus, popularitet og medietrykk kan aldri materialisere mandatet, åpne fortrolig materiale, gjøre en partiposisjon til lov eller Stortingsvedtak eller gjøre en historisk analogi til evidens for dagens sak. En god løsning viser derfor hvilket beslutningsnivå man er på, hva som er dokumentert, hvem som fortsatt må høres eller svare, hva representanten faktisk kan gjøre nå, og hvilket nytt premiss som legitimt skal gjenåpne analysen.",
+          "situation": [
+            "Den parlamentariske saksloggen viser gjeldende dokumentversjon, kilde- og høringsgrunnlag, komitéstatus, partiposisjon, forslag, fortrolighet, frister og åpne ventepunkter knyttet til at du skal korrigere kildebruk og usikkerhet før talepunktet blir offentlig uten å late som faglig analyse bestemmer politisk konklusjon.",
+            "Presset er reelt: partigruppe, medier, velgere, høringsaktører, komitéfrist eller politisk gevinst kan gjøre det fristende å behandle en foreløpig posisjon som ferdig parlamentarisk resultat eller en sterk påstand som tilstrekkelig evidens.",
+            "Du må velge et grep som tåler senere kontroll, bevarer election_or_mandate og tilgangsgrenser, skiller politisk vurdering fra dokumentert premiss og gjør bounded rework mulig uten å slette tidligere dokumentversjon, forslag, stemme eller offentlig begrunnelse."
+          ],
+          "task_domain": "parlamentarisk_arbeid",
+          "competency": "parlamentarisk_prosedyre_komite_horing_kildebruk_forhandling_og_mandat",
+          "pressure": "partigruppe_medier_velgere_horingsaktorer_tid_fortrolighet_og_kollegial_beslutning",
+          "choice_axis": "sporbar_mandatbundet_og_kildebevisst_parlamentarisk_prosess_vs_tidlig_resultat_og_mandatglidning",
+          "consequence_axis": "legitimitet_etterprovbarhet_og_korrigerbarhet_vs_overloving_kildefeil_og_tillitstap",
+          "narrative_arc": "people",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Før amir finner et tall som brukes politisk på en måte dokumentet ikke støtter gjennom det sporbare parlamentariske saksforløpet",
+              "reply": "Jeg fører dette gjennom parlamentarisk_sakslogg_dokument_horing_innstilling_plenum_og_oppfolging i stedet for å løse det som et talepunkt eller en privat politisk snarvei. Først bekrefter jeg election_or_mandate og riktig prosessnivå. Deretter låser jeg dokumentversjon, skiller kilde, interesse og politisk vurdering, registrerer hørings- og komitéstatus, partigruppens foreløpige posisjon, fortrolighetsgrense, forslag, frister og hva vi faktisk venter på. Jeg handler bare innen representantens reelle mandat, sender komplett handoff til riktig parlamentarisk aktør og beholder tidligere versjon hvis nye fakta krever bounded rework. History Go brukes til kontekst og bedre spørsmål, aldri som valgresultat, lovgrunnlag eller evidens for dagens sak.",
+              "effect": 1,
+              "tags": [
+                "election_or_mandate",
+                "parlamentarisk_sporbarhet",
+                "kildekritikk",
+                "komite_og_horing"
+              ],
+              "feedback": "Grepet gjør det mulig for komitékolleger, partigruppe, høringsaktører, velgere og offentlighet å se hva som var dokumentert premiss, hva som var politisk vurdering, hvilken posisjon partiet hadde, hva komiteen innstilte og hva Stortinget faktisk vedtok. Representanten får handlingskraft gjennom spørsmål, forslag, forhandling og stemme uten å gjøre påvirkning til individuell vedtaksmyndighet. Når et nytt dokument eller premiss kommer, kan bare berørt analyse eller forslag gjenåpnes med tidligere versjon, høringsgrunnlag, merknad og offentlig forklaring bevart.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk amir finner et tall som brukes politisk på en måte dokumentet ikke støtter gjennom tidlig politisk binding",
+              "reply": "Jeg prioriterer tempo og budskap foran sakslogg og prosess. Jeg behandler partigruppens ønske eller en sterk høringsaktørs påstand som tilstrekkelig grunnlag, lar dokumentversjon og fortrolighet være uklare og kommuniserer utfallet før komité, innstilling eller votering faktisk er ferdig. Dersom nye fakta kommer, forsøker jeg å forsvare det tidligere løftet og justerer forklaringen etterpå i stedet for å gjenåpne den delen av analysen som faktisk endret seg.",
+              "effect": -1,
+              "tags": [
+                "tidlig_resultatbinding",
+                "kilde_og_prosessrisiko",
+                "mandatglidning"
+              ],
+              "feedback": "Løsningen kan gi kortsiktig politisk tydelighet, men den gjør det uklart hva som var kilde, partiposisjon, komitéarbeid og faktisk Stortingsbeslutning. Når høring, dokumentasjon, fortrolighet og votering blandes sammen, kan representanten både overdrive egen myndighet og svekke senere kontroll. Nye fakta blir da et omdømmeproblem som skal forklares bort i stedet for et avgrenset rework i en dokumentert parlamentarisk prosess, og velgere eller organisasjoner kan sitte igjen med et løfte som aldri lå innen én representants beslutningsrett.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "parlamentarisk_arbeid_people_007",
+          "mail_type": "people",
+          "mail_family": "parlamentarisk_arbeid_profesjonelle_relations",
+          "role_scope": "politikk_parlamentarisk_arbeid",
+          "phase": "forenoon",
+          "priority": 126,
+          "from": "Leila",
+          "people_ref": "leila_horings_og_velgerkontakt_politikk_parlamentarisk_arbeid",
+          "place_id": "horing_innspill_og_kildegrunnlag_politikk_parlamentarisk_arbeid",
+          "subject": "Leila melder at én organisasjon har fått langt mer tilgang enn berørte grupper",
+          "summary": "Leila melder at én organisasjon har fått langt mer tilgang enn berørte grupper. Målet er å rebalansere hørings- og velgerkontakt og synliggjøre hvem som mangler uten å gjøre representativitet til mekanisk likevekt. Dette steget føres i parlamentarisk_sakslogg_dokument_horing_innstilling_plenum_og_oppfolging. Aktivt election_or_mandate, sak og dokumentversjon, kilde- og høringsgrunnlag, komitéstatus, partigruppens posisjon, forslag og merknader, fortrolighetsgrense, innstilling, plenumshandling, votering, faktisk vedtak, offentlig begrunnelse, ventepunkt, handoff og oppfølging skal være separate og versjonerte felt. Stortingsrepresentant er appointment_required bak election_or_mandate: Politikk-badge, XP, History Go-kunnskap, situated reputation, partistatus, popularitet og medietrykk kan aldri materialisere mandatet, åpne fortrolig materiale, gjøre en partiposisjon til lov eller Stortingsvedtak eller gjøre en historisk analogi til evidens for dagens sak. En god løsning viser derfor hvilket beslutningsnivå man er på, hva som er dokumentert, hvem som fortsatt må høres eller svare, hva representanten faktisk kan gjøre nå, og hvilket nytt premiss som legitimt skal gjenåpne analysen.",
+          "situation": [
+            "Den parlamentariske saksloggen viser gjeldende dokumentversjon, kilde- og høringsgrunnlag, komitéstatus, partiposisjon, forslag, fortrolighet, frister og åpne ventepunkter knyttet til at du skal rebalansere hørings- og velgerkontakt og synliggjøre hvem som mangler uten å gjøre representativitet til mekanisk likevekt.",
+            "Presset er reelt: partigruppe, medier, velgere, høringsaktører, komitéfrist eller politisk gevinst kan gjøre det fristende å behandle en foreløpig posisjon som ferdig parlamentarisk resultat eller en sterk påstand som tilstrekkelig evidens.",
+            "Du må velge et grep som tåler senere kontroll, bevarer election_or_mandate og tilgangsgrenser, skiller politisk vurdering fra dokumentert premiss og gjør bounded rework mulig uten å slette tidligere dokumentversjon, forslag, stemme eller offentlig begrunnelse."
+          ],
+          "task_domain": "parlamentarisk_arbeid",
+          "competency": "parlamentarisk_prosedyre_komite_horing_kildebruk_forhandling_og_mandat",
+          "pressure": "partigruppe_medier_velgere_horingsaktorer_tid_fortrolighet_og_kollegial_beslutning",
+          "choice_axis": "sporbar_mandatbundet_og_kildebevisst_parlamentarisk_prosess_vs_tidlig_resultat_og_mandatglidning",
+          "consequence_axis": "legitimitet_etterprovbarhet_og_korrigerbarhet_vs_overloving_kildefeil_og_tillitstap",
+          "narrative_arc": "people",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Før leila melder at én organisasjon har fått langt mer tilgang enn berørte grupper gjennom det sporbare parlamentariske saksforløpet",
+              "reply": "Jeg fører dette gjennom parlamentarisk_sakslogg_dokument_horing_innstilling_plenum_og_oppfolging i stedet for å løse det som et talepunkt eller en privat politisk snarvei. Først bekrefter jeg election_or_mandate og riktig prosessnivå. Deretter låser jeg dokumentversjon, skiller kilde, interesse og politisk vurdering, registrerer hørings- og komitéstatus, partigruppens foreløpige posisjon, fortrolighetsgrense, forslag, frister og hva vi faktisk venter på. Jeg handler bare innen representantens reelle mandat, sender komplett handoff til riktig parlamentarisk aktør og beholder tidligere versjon hvis nye fakta krever bounded rework. History Go brukes til kontekst og bedre spørsmål, aldri som valgresultat, lovgrunnlag eller evidens for dagens sak.",
+              "effect": 1,
+              "tags": [
+                "election_or_mandate",
+                "parlamentarisk_sporbarhet",
+                "kildekritikk",
+                "komite_og_horing"
+              ],
+              "feedback": "Grepet gjør det mulig for komitékolleger, partigruppe, høringsaktører, velgere og offentlighet å se hva som var dokumentert premiss, hva som var politisk vurdering, hvilken posisjon partiet hadde, hva komiteen innstilte og hva Stortinget faktisk vedtok. Representanten får handlingskraft gjennom spørsmål, forslag, forhandling og stemme uten å gjøre påvirkning til individuell vedtaksmyndighet. Når et nytt dokument eller premiss kommer, kan bare berørt analyse eller forslag gjenåpnes med tidligere versjon, høringsgrunnlag, merknad og offentlig forklaring bevart.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk leila melder at én organisasjon har fått langt mer tilgang enn berørte grupper gjennom tidlig politisk binding",
+              "reply": "Jeg prioriterer tempo og budskap foran sakslogg og prosess. Jeg behandler partigruppens ønske eller en sterk høringsaktørs påstand som tilstrekkelig grunnlag, lar dokumentversjon og fortrolighet være uklare og kommuniserer utfallet før komité, innstilling eller votering faktisk er ferdig. Dersom nye fakta kommer, forsøker jeg å forsvare det tidligere løftet og justerer forklaringen etterpå i stedet for å gjenåpne den delen av analysen som faktisk endret seg.",
+              "effect": -1,
+              "tags": [
+                "tidlig_resultatbinding",
+                "kilde_og_prosessrisiko",
+                "mandatglidning"
+              ],
+              "feedback": "Løsningen kan gi kortsiktig politisk tydelighet, men den gjør det uklart hva som var kilde, partiposisjon, komitéarbeid og faktisk Stortingsbeslutning. Når høring, dokumentasjon, fortrolighet og votering blandes sammen, kan representanten både overdrive egen myndighet og svekke senere kontroll. Nye fakta blir da et omdømmeproblem som skal forklares bort i stedet for et avgrenset rework i en dokumentert parlamentarisk prosess, og velgere eller organisasjoner kan sitte igjen med et løfte som aldri lå innen én representants beslutningsrett.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "parlamentarisk_arbeid_people_008",
+          "mail_type": "people",
+          "mail_family": "parlamentarisk_arbeid_profesjonelle_relations",
+          "role_scope": "politikk_parlamentarisk_arbeid",
+          "phase": "afternoon",
+          "priority": 127,
+          "from": "Sigrid",
+          "people_ref": "sigrid_komitesekretaer_politikk_parlamentarisk_arbeid",
+          "place_id": "komite_saksmappe_og_innstillingsspor_politikk_parlamentarisk_arbeid",
+          "subject": "Sigrid stopper et dokument som fortsatt har uklar versjon og fortrolighet",
+          "summary": "Sigrid stopper et dokument som fortsatt har uklar versjon og fortrolighet. Målet er å kontrollere dokumentversjon, tilgang, komitéstatus og hva som kan brukes offentlig før parlamentarisk handling. Dette steget føres i parlamentarisk_sakslogg_dokument_horing_innstilling_plenum_og_oppfolging. Aktivt election_or_mandate, sak og dokumentversjon, kilde- og høringsgrunnlag, komitéstatus, partigruppens posisjon, forslag og merknader, fortrolighetsgrense, innstilling, plenumshandling, votering, faktisk vedtak, offentlig begrunnelse, ventepunkt, handoff og oppfølging skal være separate og versjonerte felt. Stortingsrepresentant er appointment_required bak election_or_mandate: Politikk-badge, XP, History Go-kunnskap, situated reputation, partistatus, popularitet og medietrykk kan aldri materialisere mandatet, åpne fortrolig materiale, gjøre en partiposisjon til lov eller Stortingsvedtak eller gjøre en historisk analogi til evidens for dagens sak. En god løsning viser derfor hvilket beslutningsnivå man er på, hva som er dokumentert, hvem som fortsatt må høres eller svare, hva representanten faktisk kan gjøre nå, og hvilket nytt premiss som legitimt skal gjenåpne analysen.",
+          "situation": [
+            "Den parlamentariske saksloggen viser gjeldende dokumentversjon, kilde- og høringsgrunnlag, komitéstatus, partiposisjon, forslag, fortrolighet, frister og åpne ventepunkter knyttet til at du skal kontrollere dokumentversjon, tilgang, komitéstatus og hva som kan brukes offentlig før parlamentarisk handling.",
+            "Presset er reelt: partigruppe, medier, velgere, høringsaktører, komitéfrist eller politisk gevinst kan gjøre det fristende å behandle en foreløpig posisjon som ferdig parlamentarisk resultat eller en sterk påstand som tilstrekkelig evidens.",
+            "Du må velge et grep som tåler senere kontroll, bevarer election_or_mandate og tilgangsgrenser, skiller politisk vurdering fra dokumentert premiss og gjør bounded rework mulig uten å slette tidligere dokumentversjon, forslag, stemme eller offentlig begrunnelse."
+          ],
+          "task_domain": "parlamentarisk_arbeid",
+          "competency": "parlamentarisk_prosedyre_komite_horing_kildebruk_forhandling_og_mandat",
+          "pressure": "partigruppe_medier_velgere_horingsaktorer_tid_fortrolighet_og_kollegial_beslutning",
+          "choice_axis": "sporbar_mandatbundet_og_kildebevisst_parlamentarisk_prosess_vs_tidlig_resultat_og_mandatglidning",
+          "consequence_axis": "legitimitet_etterprovbarhet_og_korrigerbarhet_vs_overloving_kildefeil_og_tillitstap",
+          "narrative_arc": "people",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Før sigrid stopper et dokument som fortsatt har uklar versjon og fortrolighet gjennom det sporbare parlamentariske saksforløpet",
+              "reply": "Jeg fører dette gjennom parlamentarisk_sakslogg_dokument_horing_innstilling_plenum_og_oppfolging i stedet for å løse det som et talepunkt eller en privat politisk snarvei. Først bekrefter jeg election_or_mandate og riktig prosessnivå. Deretter låser jeg dokumentversjon, skiller kilde, interesse og politisk vurdering, registrerer hørings- og komitéstatus, partigruppens foreløpige posisjon, fortrolighetsgrense, forslag, frister og hva vi faktisk venter på. Jeg handler bare innen representantens reelle mandat, sender komplett handoff til riktig parlamentarisk aktør og beholder tidligere versjon hvis nye fakta krever bounded rework. History Go brukes til kontekst og bedre spørsmål, aldri som valgresultat, lovgrunnlag eller evidens for dagens sak.",
+              "effect": 1,
+              "tags": [
+                "election_or_mandate",
+                "parlamentarisk_sporbarhet",
+                "kildekritikk",
+                "komite_og_horing"
+              ],
+              "feedback": "Grepet gjør det mulig for komitékolleger, partigruppe, høringsaktører, velgere og offentlighet å se hva som var dokumentert premiss, hva som var politisk vurdering, hvilken posisjon partiet hadde, hva komiteen innstilte og hva Stortinget faktisk vedtok. Representanten får handlingskraft gjennom spørsmål, forslag, forhandling og stemme uten å gjøre påvirkning til individuell vedtaksmyndighet. Når et nytt dokument eller premiss kommer, kan bare berørt analyse eller forslag gjenåpnes med tidligere versjon, høringsgrunnlag, merknad og offentlig forklaring bevart.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk sigrid stopper et dokument som fortsatt har uklar versjon og fortrolighet gjennom tidlig politisk binding",
+              "reply": "Jeg prioriterer tempo og budskap foran sakslogg og prosess. Jeg behandler partigruppens ønske eller en sterk høringsaktørs påstand som tilstrekkelig grunnlag, lar dokumentversjon og fortrolighet være uklare og kommuniserer utfallet før komité, innstilling eller votering faktisk er ferdig. Dersom nye fakta kommer, forsøker jeg å forsvare det tidligere løftet og justerer forklaringen etterpå i stedet for å gjenåpne den delen av analysen som faktisk endret seg.",
+              "effect": -1,
+              "tags": [
+                "tidlig_resultatbinding",
+                "kilde_og_prosessrisiko",
+                "mandatglidning"
+              ],
+              "feedback": "Løsningen kan gi kortsiktig politisk tydelighet, men den gjør det uklart hva som var kilde, partiposisjon, komitéarbeid og faktisk Stortingsbeslutning. Når høring, dokumentasjon, fortrolighet og votering blandes sammen, kan representanten både overdrive egen myndighet og svekke senere kontroll. Nye fakta blir da et omdømmeproblem som skal forklares bort i stedet for et avgrenset rework i en dokumentert parlamentarisk prosess, og velgere eller organisasjoner kan sitte igjen med et løfte som aldri lå innen én representants beslutningsrett.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
