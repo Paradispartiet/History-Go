@@ -1,0 +1,33 @@
+name: TEMP Bankplassen frontImage materialize
+
+on:
+  push:
+    branches:
+      - agent/bankplassen-frontimage-materialize-20260907-temp
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Create local portrait asset from verified Commons source
+        shell: bash
+        run: |
+          set -euxo pipefail
+          SRC='https://commons.wikimedia.org/wiki/Special:Redirect/file/Bankplassen%2C%20Oslo%202023.jpg'
+          mkdir -p bilder/places
+          curl --fail --location --retry 3 --user-agent 'History-Go place production/1.0 (source materialization)' "$SRC" -o /tmp/bankplassen-source.jpg
+          command -v magick >/dev/null || { sudo apt-get update; sudo apt-get install -y imagemagick; }
+          magick identify /tmp/bankplassen-source.jpg
+          magick /tmp/bankplassen-source.jpg -auto-orient -resize '900x1200^' -gravity center -crop 900x1200+0+0 -strip -quality 88 bilder/places/bankplassen_front_portrait.webp
+          test "$(magick identify -format '%wx%h' bilder/places/bankplassen_front_portrait.webp)" = '900x1200'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/bankplassen_front_portrait.webp
+          git commit -m 'Materialize Bankplassen portrait front image'
+          git push origin HEAD
