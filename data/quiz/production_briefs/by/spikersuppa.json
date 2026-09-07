@@ -1,0 +1,541 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "by",
+  "targetId": "spikersuppa",
+  "profile_hint": "rich",
+  "reviewed_at": "2026-09-07",
+  "review_note": "Oslo kommune, Oslo byleksikon, SNL, Lokalhistoriewiki og museumskatalogisert bildemateriale bærer en 5×7-pakke som skiller Spikersuppa fra hele Eidsvolls plass og skiller observerbare spor fra historiske forklaringer.",
+  "scope": {
+    "place": "Spikersuppa",
+    "production_profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "total_questions": 35,
+    "normal_opening_questions": 21
+  },
+  "sources": {
+    "municipality": {
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/idrett/idrettsanlegg/spikersuppa/",
+      "source_type": "primary_institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for de påstandene som er bundet til kilde-ID-en."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Spikersuppa",
+      "source_type": "edited_or_local_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for de påstandene som er bundet til kilde-ID-en."
+    },
+    "snl": {
+      "url": "https://snl.no/Eidsvolls_plass",
+      "source_type": "edited_or_local_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for de påstandene som er bundet til kilde-ID-en."
+    },
+    "localwiki": {
+      "url": "https://lokalhistoriewiki.no/wiki/Spikersuppa",
+      "source_type": "edited_or_local_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for de påstandene som er bundet til kilde-ID-en."
+    },
+    "oslo_hjort": {
+      "url": "https://oslobilder.no/OMU/OB.F20944b",
+      "source_type": "museum_catalog",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for de påstandene som er bundet til kilde-ID-en."
+    },
+    "oslo_lekende": {
+      "url": "https://www.oslobilder.no/OMU/OB.F09699",
+      "source_type": "museum_catalog",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for de påstandene som er bundet til kilde-ID-en."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_torg_plasser_som_scene",
+      "em_by_offentlige_rom_motesteder",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_sesongbruk_uteomrader"
+    ],
+    "topic_hook_ids": [
+      "byliv_aapne_rom",
+      "urb_offentlig_rom_ide",
+      "urb_byidealer",
+      "byliv_midlertidighet"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_for_etter"
+    ],
+    "thinker_ids": [
+      "william_h_whyte",
+      "kevin_lynch",
+      "jan_gehl",
+      "nigel_thrift"
+    ],
+    "works": [
+      "The Social Life of Small Urban Spaces",
+      "The Image of the City",
+      "Life Between Buildings",
+      "Non-Representational Theory"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/spikersuppa_sets_merged.json",
+      "data/quiz/manifest.json",
+      "data/quiz/by"
+    ],
+    "active_before": {
+      "file": "data/quiz/by/spikersuppa_sets_merged.json",
+      "set_count": 5,
+      "question_count": 30,
+      "finding": "Legacy 5×6-bank finnes, men mangler dagens 21/7/7-kontrakt og full knowledge/theory-binding."
+    },
+    "decisions": [
+      "Behold legacy-banken som kilde- og regressjonsreferanse, men aktiver ny canonical rich 5×7-fil.",
+      "Lås progresjonen til 21 fact + 7 context + 7 concept; teori og metode bindes i finalfasen."
+    ],
+    "knowledge_migration": "Alle 35 canonicale spørsmål får stabile By Knowledge-ID-er."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem selvstendige læringsjobber dekker navneopphav/plan, offentlig kunst, tunnelbrudd, Narvisen/sesongbruk og kildekritisk metode uten utfyllingsspørsmål."
+  },
+  "held_back_candidates": [
+    "Påstander om publikumsopplevelse uten brukerdata.",
+    "Påstander om Spigerverket eller Narvesen som eier av plassen.",
+    "Optisk eksakt før–etter-sammenligning av fotografier med ulike ståsteder.",
+    "Flere Object-kort uten like sterk bildeproveniens."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_spikersuppa_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Spikersuppa er den vestlige bassengdelen av Eidsvolls plass.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Spikersuppa ligger langs Karl Johans gate i den sentrale institutionsaksen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Speilbassenget ble etablert i 1956.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Arnstein Arneberg sto bak planen.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christiania Spigerverk finansierte anlegget som ga opphav til kallenavnet.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Navnet spiller på Christiania Spigerverks rolle i 1956-anlegget.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Speilbassenget er den sentrale fysiske strukturen.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Begge skulpturene ble satt opp i 1958.",
+      "source_ids": [
+        "localwiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Arne N. Vigeland laget Hjortegruppe.",
+      "source_ids": [
+        "oslo_hjort"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Arne Durban laget Lekende barn.",
+      "source_ids": [
+        "localwiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bassenget ble revet under tunnelarbeidene og senere gjenoppført.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tunnelarbeidene mellom Nationaltheatret og Stortinget gravde opp store deler av plassen.",
+      "source_ids": [
+        "localwiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Gjenoppføringen endret bassenganlegget, så dagens geometri er et senere lag.",
+      "source_ids": [
+        "localwiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Narvesen finansierte skøytebanen som åpnet i 1994.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_sesongbruk_uteomrader"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Narvisen er kallenavnet som knyttes til Narvesens finansiering av skøytebanen.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_sesongbruk_uteomrader"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Stedet har en tydelig årstidsrytme mellom vann-/oppholdsrom og skøytebruk.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_sesongbruk_uteomrader"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Spikersuppa behandles som et avgrenset delrom innenfor den bredere Eidsvolls plass.",
+      "source_ids": [
+        "localwiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Finansieringen dokumenterer et bidrag, ikke privat eierskap til plassen.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Narvesen finansierte skøytebanen som et eget senere lag.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_sesongbruk_uteomrader"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Et foto dokumenterer et avgrenset tidspunkt, ikke hele driften eller publikumsopplevelsen.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_sesongbruk_uteomrader"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Skulpturen er et konkret, datert og stedsspesifikt fysisk spor.",
+      "source_ids": [
+        "oslo_hjort"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Et dokumentert brudd i 1970-årene gjør kontinuitet og endring til separate spørsmål.",
+      "source_ids": [
+        "localwiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Et kallenavn er et språkspor og må kobles til kilder for institusjonelle forhold.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Offentlig kunst kan observeres og dateres uten å gjøre udokumenterte publikumsantakelser.",
+      "source_ids": [
+        "localwiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fotografier må avgrenses til motiv, tidspunkt og ståsted.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Feltobservasjon kan skille varig materialitet fra midlertidig bruk.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_sesongbruk_uteomrader"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Spikersuppas sentrale plassering kan analyseres romlig uten å utlede persondata.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Sesongprogrammering viser hvordan offentlig rom kan skifte bruk uten å skifte identitet.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_sesongbruk_uteomrader"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Feltobservasjon dokumenterer dagens synlige forhold og må suppleres med historiske kilder.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Før–etter-analyse kan teste dokumenterte endringer uten å gjøre kameraulikheter til historisk bevis.",
+      "source_ids": [
+        "localwiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Lynch kan strukturere romlig observasjon, mens lokale kilder bærer de historiske påstandene.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Gehl gir et analysegrep for byliv, ikke en erstatning for stedsspesifikk evidens.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ett bilde dokumenterer et tidspunkt og kan ikke alene generaliseres til hele året.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_sesongbruk_uteomrader"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Spikersuppa blir analytisk sterk når dokumenterte lag holdes separate og deretter leses sammen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_spikersuppa_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kombinasjonen av feltspor og kilder gir sterkere analyse enn noen av dem alene.",
+      "source_ids": [
+        "localwiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    }
+  ]
+}
