@@ -41,18 +41,22 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Syntax-check TEMP materializer and focused test
+      - name: Syntax-check TEMP materializer, depth helper and focused test
         run: |
           node --check scripts/TEMP_materialize_natur_forvaltning_og_radgivning_role_world.mjs
+          node --check scripts/TEMP_enrich_natur_forvaltning_og_radgivning_role_world_depth.mjs
           node --check tests/civication-natur-forvaltning-og-radgivning-role-world-rollout.test.js
 
-      - name: Materialize Role World candidate
+      - name: Materialize and depth-enrich Role World candidate
         id: materialize
         continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/TEMP_materialize_natur_forvaltning_og_radgivning_role_world.mjs 2>&1 | tee /tmp/natur-forvaltning-og-radgivning-role-world-materializer.log
+          {
+            node scripts/TEMP_materialize_natur_forvaltning_og_radgivning_role_world.mjs
+            node scripts/TEMP_enrich_natur_forvaltning_og_radgivning_role_world_depth.mjs
+          } 2>&1 | tee /tmp/natur-forvaltning-og-radgivning-role-world-materializer.log
 
       - name: Persist materializer diagnostic fail-closed
         if: steps.materialize.outcome != 'success'
@@ -160,6 +164,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -f scripts/TEMP_materialize_natur_forvaltning_og_radgivning_role_world.mjs
+          rm -f scripts/TEMP_enrich_natur_forvaltning_og_radgivning_role_world_depth.mjs
           rm -f .github/workflows/TEMP-civication-natur-forvaltning-og-radgivning-role-world.yml
           rm -f reports/TEMP/natur-forvaltning-og-radgivning-role-world-materializer.log
           rm -f reports/TEMP/natur-forvaltning-og-radgivning-role-world-build.log
