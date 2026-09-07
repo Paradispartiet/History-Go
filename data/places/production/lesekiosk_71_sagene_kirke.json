@@ -61,7 +61,7 @@
       "temporalStatus": "current"
     },
     {
-      "id": "claim_lesekiosk_71_sagene_kirke_coordinate",
+      "id": "claim_lesekiosk_71_sagene_kirke_map_anchor",
       "claim": "Den offisielle Lesekiosk-kartlenken for Lesekiosk 71 – Sagene kirke oppgir kartankeret 59.9377174, 10.7528534.",
       "sourceUrl": "https://lesekiosk.no/finn-en-kiosk/",
       "sourceLocation": "Offisiell Lesekiosk-kartlenke fra aktuell kioskoversikt.",
@@ -83,6 +83,21 @@
       "claimKind": "identity",
       "evidenceMode": "direct",
       "temporalStatus": "current"
+    },
+    {
+      "id": "claim_lesekiosk_71_sagene_kirke_coordinate",
+      "claim": "OpenStreetMap kartlegger tvillingkioskene ved Sagene kirke som to separate public_bookcase-punkter; koblingen mellom kiosknummer 70/71 og hvert enkelt punkt er fortsatt uavklart.",
+      "sourceUrl": "https://www.openstreetmap.org/node/10069592235",
+      "sourceLocation": "OSM node 10069592235 og det separate paret osm-node:10069592234.",
+      "sourceType": "catalogue",
+      "verifiedAt": "2026-09-07",
+      "status": "verified",
+      "claimKind": "ordinary",
+      "evidenceMode": "direct",
+      "temporalStatus": "current",
+      "independentSourceUrls": [
+        "https://www.openstreetmap.org/node/10069592234"
+      ]
     }
   ],
   "sentenceCoverage": {
@@ -139,13 +154,13 @@
   "reviews": {
     "factual": {
       "status": "passed",
-      "reviewedAt": "2026-08-26",
-      "reviewer": "History GO independent source and place-specificity audit"
+      "reviewedAt": "2026-09-07",
+      "reviewer": "History GO object-coordinate source audit"
     },
     "editorial": {
       "status": "passed",
-      "reviewedAt": "2026-08-26",
-      "reviewer": "History GO independent source and place-specificity audit",
+      "reviewedAt": "2026-09-07",
+      "reviewer": "History GO object-coordinate source audit",
       "introducedNewFacts": false
     }
   },
@@ -155,10 +170,10 @@
   "completion": {
     "completedUnder": "4.2",
     "currentStatus": "current",
-    "sourceVerifiedAt": "2026-08-26",
+    "sourceVerifiedAt": "2026-09-07",
     "claimsVerified": {
-      "verified": 5,
-      "total": 5
+      "verified": 6,
+      "total": 6
     },
     "factualReview": "passed",
     "editorialReview": "passed",

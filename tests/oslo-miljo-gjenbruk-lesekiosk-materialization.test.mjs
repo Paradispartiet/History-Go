@@ -47,6 +47,7 @@ test('alle 21 Lesekiosker er egne litteratursteder med egne stabile ID-er',()=>{
   assert.equal(files.length,21,'det skal materialiseres nøyaktig 21 Lesekiosker');
   const places=files.map(file=>read(path.join(KIOSK_DIR,file)));
   const sourceIds=new Set(source.candidates.map(candidate=>candidate.id));
+  const sourceById=new Map(source.candidates.map(candidate=>[candidate.id,candidate]));
   const materializedIds=new Set(places.map(place=>place.id));
   assert.equal(materializedIds.size,21,'alle Lesekiosk-ID-er må være unike');
   assert.deepEqual(materializedIds,sourceIds,'materialisering skal følge intake-inventoryen uten tillegg eller frafall');
@@ -58,8 +59,14 @@ test('alle 21 Lesekiosker er egne litteratursteder med egne stabile ID-er',()=>{
     assert.equal(place.micro_place_profile?.quizMode,'none');
     assert.equal(place.place_card_profile,undefined,`${place.id} skal bruke forenklet PlaceCard`);
     assert.ok(Number.isFinite(place.lat)&&Number.isFinite(place.lon),`${place.id} mangler kartanker`);
-    assert.equal(place.sourceProvider,'official_map');
-    assert.equal(place.coordStatus,'needs_manual_visual_qa');
+    const candidate=sourceById.get(place.id);
+    assert.equal(place.lat,candidate.lat,`${place.id} må følge korrigert inventory-latitude`);
+    assert.equal(place.lon,candidate.lon,`${place.id} må følge korrigert inventory-longitude`);
+    assert.deepEqual(new Set(['osm','google_places']).has(place.sourceProvider),true,`${place.id} må bruke objektkilde`);
+    assert.equal(place.sourceObjectId,candidate.coordinate?.sourceObjectId,`${place.id} må bevare stabil kilde-ID`);
+    assert.notEqual(place.geocodeAccuracy,'approximate',`${place.id} kan ikke lenger bruke det grove områdeankeret`);
+    if([70,71].includes(candidate.kioskNumber)) assert.equal(place.coordStatus,'needs_manual_visual_qa');
+    else assert.ok(place.coordStatus.startsWith('verified'),`${place.id} må ha verifisert objektpunkt`);
     const packet=read(path.join(PROD_DIR,`${place.id}.json`));
     assert.equal(packet.status,'ready_v4_2',`${place.id} mangler ferdig 4.2-produksjonspakke`);
     assert.equal(packet.quizReadiness?.questions?.length,0,`${place.id} skal ikke få konstruert quiz`);
@@ -93,6 +100,11 @@ test('Sagene 70 og 71 forblir to separate canonical litteraturmarkører',()=>{
   assert.match(seventyOne.name,/71/);
   assert.equal(seventy.category,'litteratur');
   assert.equal(seventyOne.category,'litteratur');
+  assert.notDeepEqual([seventy.lat,seventy.lon],[seventyOne.lat,seventyOne.lon],'Sagene-paret skal bruke to separate objektpunkter');
+  assert.equal(seventy.coordStatus,'needs_manual_visual_qa');
+  assert.equal(seventyOne.coordStatus,'needs_manual_visual_qa');
+  assert.match(seventy.coordNote,/nummer.*70\/71.*ikke dokumentert/iu);
+  assert.match(seventyOne.coordNote,/nummer.*70\/71.*ikke dokumentert/iu);
 });
 
 test('materialisering kan ikke godkjenne sin egen review',()=>{
