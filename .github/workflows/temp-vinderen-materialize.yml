@@ -66,6 +66,7 @@ jobs:
               'https://commons.wikimedia.org/wiki/Special:Redirect/file/Vinderen%20skole.jpg': 'https://upload.wikimedia.org/wikipedia/commons/5/5d/Vinderen_skole.jpg',
               'const condImage = await resolveOgImage(urls.conditoriPhotoPage);': 'const condImage = "https://dms07.dimu.org/image/02RWgryHoU?dimension=600x600";',
               'planned_phase: index < 7 ? "opening" : index < 21 ? "middle" : index < 28 ? "context" : "theory"': 'planned_phase: index < 7 ? "opening" : index < 21 ? "middle" : index < 28 ? "bridge" : "final"',
+              'family: index < 21 ? "fact" : index < 28 ? "context" : "concept"': 'family: index < 21 ? "fact" : index < 28 ? "context" : "concept_theory"',
           }
           for old, new in replacements.items():
               if old not in source:
