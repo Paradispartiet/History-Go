@@ -1,0 +1,219 @@
+{
+  "schema": "history_go_litteratur_maintenance_source_refresh_v1",
+  "version": "1.0.0",
+  "subject_id": "litteratur",
+  "round_id": "source_refresh_round11_2026_09_07",
+  "baseline_main_sha": "3e7f1e5a856cb76b2b0b71db99553a03c42b2294",
+  "checked_at": "2026-09-07",
+  "status": "verified",
+  "scope": {
+    "area_id": "medier_intermedialitet_adapsjon",
+    "canonical_source_mutation": true,
+    "new_strict_subcategory": false,
+    "place_production": false,
+    "maintenance_evidence_only": false,
+    "replacement_policy": "replace_only_when_same-resource-or-authoritative-successor-url-is-verified"
+  },
+  "source_checks": [
+    {
+      "claims_source_id": "mi01",
+      "title": "Remediation",
+      "publisher": "MIT Press",
+      "verification_state": "verified_live",
+      "canonical_url": "https://mitpress.mit.edu/9780262024525/remediation/",
+      "evidence": "MIT Press currently serves the same Bolter and Grusin title at the canonical ISBN endpoint, including the remediation description and bibliographic metadata.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi02",
+      "title": "A Theory of Adaptation",
+      "publisher": "Routledge",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://www.routledge.com/A-Theory-of-Adaptation/Hutcheon/p/book/9780415539388",
+      "evidence": "Direct crawling is blocked with HTTP 403, while Routledge search currently resolves the exact ISBN endpoint as Linda Hutcheon's second edition with the expected adaptation description and contents. A crawler restriction is not source death.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi03",
+      "title": "Film and Literature: An Introduction and Reader",
+      "publisher": "Routledge",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://www.routledge.com/Film-and-Literature-An-Introduction-and-Reader/Corrigan/p/book/9780415560108",
+      "evidence": "Direct crawling is blocked with HTTP 403, while Routledge search currently resolves the exact ISBN endpoint as Timothy Corrigan's second edition with the expected film-literature description and contents. A crawler restriction is not source death.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi04",
+      "title": "Electronic Literature Collection",
+      "publisher": "Electronic Literature Organization",
+      "verification_state": "verified_live",
+      "canonical_url": "https://collection.eliterature.org/",
+      "evidence": "The ELO collection root is live and currently indexes volumes 1 through 4.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi05",
+      "title": "Electronic Literature Collection 3: About",
+      "publisher": "Electronic Literature Organization",
+      "verification_state": "verified_live",
+      "canonical_url": "https://collection.eliterature.org/3/about.html",
+      "evidence": "The ELC3 About page remains live with the expected editorial statement, 114 entries, 26 countries, 13 languages and preservation discussion.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi06",
+      "title": "Twine",
+      "publisher": "Twine",
+      "verification_state": "verified_live",
+      "canonical_url": "https://twinery.org/",
+      "evidence": "Twine's canonical homepage is live, defines Twine as an open-source nonlinear storytelling tool and documents direct HTML publishing.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi07",
+      "title": "Twine Cookbook",
+      "publisher": "Twine",
+      "verification_state": "verified_live",
+      "canonical_url": "https://twinery.org/cookbook/",
+      "evidence": "The Twine Cookbook remains live with current sections for story formats, variables, conditionals and HTML/CSS/JavaScript workflows.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi08",
+      "title": "The Language of New Media",
+      "publisher": "MIT Press",
+      "verification_state": "verified_live",
+      "canonical_url": "https://mitpress.mit.edu/9780262296915/the-language-of-new-media/",
+      "evidence": "MIT Press currently serves the same Lev Manovich title at the canonical ISBN endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi09",
+      "title": "Pride & Prejudice",
+      "publisher": "Focus Features",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.focusfeatures.com/pride_and_prejudice",
+      "evidence": "Focus Features currently serves the official Pride & Prejudice film page with synopsis, cast and production metadata.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi10",
+      "title": "Maus",
+      "publisher": "Penguin Random House",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.penguinrandomhouse.com/books/171065/the-complete-maus-by-art-spiegelman/",
+      "evidence": "Penguin Random House currently serves The Complete Maus at the canonical product endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi11",
+      "title": "Persepolis",
+      "publisher": "Penguin Random House",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.penguinrandomhouse.com/books/160890/the-complete-persepolis-by-marjane-satrapi/",
+      "canonical_url": "https://www.penguinrandomhouse.com/books/160892/the-complete-persepolis-by-marjane-satrapi/",
+      "evidence": "The former PRH product id 160890 no longer resolves as the canonical title page. Penguin Random House currently serves the same title, author and complete-edition bibliographic record at product id 160892, including current hardcover and paperback formats.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "mi12",
+      "title": "80 Days",
+      "publisher": "inkle",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.inklestudios.com/80days/",
+      "evidence": "inkle currently serves the official 80 Days page with the expected narrative-adventure description, route choice and platform information.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi13",
+      "title": "Depression Quest",
+      "publisher": "Depression Quest",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://www.depressionquest.com/",
+      "evidence": "The canonical project endpoint is not reliably crawlable. Current developer/publisher-controlled distribution on Steam and the Quinnspiracy itch.io page independently identifies the same Depression Quest work, creators and choice-restriction mechanics. Those distribution pages are not proven authoritative successors for the original project page, so replacement is not justified.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi14",
+      "title": "About the Electronic Literature Organization",
+      "publisher": "Electronic Literature Organization",
+      "verification_state": "verified_live",
+      "canonical_url": "https://eliterature.org/about/",
+      "evidence": "The ELO About page remains live with the organization's mission and preservation/publication role.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi15",
+      "title": "Pride and Prejudice – LibriVox recording",
+      "publisher": "LibriVox",
+      "verification_state": "verified_live",
+      "canonical_url": "https://librivox.org/pride-and-prejudice-by-jane-austen/",
+      "evidence": "LibriVox currently serves the same Pride and Prejudice recording catalog page and chapter-file metadata.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi16",
+      "title": "Folger Shakespeare Audio Editions",
+      "publisher": "Folger Shakespeare Library",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.folger.edu/explore/shakespeares-works/folger-shakespeare-audio-editions/",
+      "evidence": "Folger currently serves its Shakespeare Audio Editions page and full-cast recording information at the canonical endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi17",
+      "title": "Pride and Prejudice – Project Gutenberg",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/1342",
+      "evidence": "Project Gutenberg ebook 1342 remains live as Pride and Prejudice with current HTML, EPUB and plain-text access.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi18",
+      "title": "Shakespeare Unlimited",
+      "publisher": "Folger Shakespeare Library",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.folger.edu/podcasts/shakespeare-unlimited/",
+      "evidence": "Folger currently serves Shakespeare Unlimited at the canonical podcast endpoint with the program description and episode archive.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "mi19",
+      "title": "The Yellow Kid makes his move",
+      "publisher": "Library of Congress",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.loc.gov/exhibitions/comic-art/about-this-exhibition/early-years-1890s-to-1920s/the-yellow-kid-makes-his-move/",
+      "evidence": "The Library of Congress currently serves the same curated Yellow Kid exhibition object page at the canonical endpoint.",
+      "action": "retain_canonical_url"
+    }
+  ],
+  "materialization": {
+    "replacement_targets": [
+      "data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/medier_intermedialitet_adapsjon/claims.json",
+      "scripts/materialize-litteratur-media-sociology-full-fields-v1.mjs",
+      "data/quiz/litteratur/litteratur_subject_pathways_v1.json",
+      "data/knowledge/subjects/litteratur/knowledge_units.generated.json"
+    ]
+  },
+  "summary": {
+    "canonical_sources_checked": 19,
+    "verified_live": 15,
+    "verified_identity_endpoint_restricted": 3,
+    "verified_authoritative_replacement": 1,
+    "canonical_url_replacements": 1
+  },
+  "quality_gates": {
+    "all_19_area_sources_accounted_for": true,
+    "one_authoritative_replacement_materialized": true,
+    "replacement_identity_preserved": true,
+    "restricted_endpoints_not_treated_as_source_death": true,
+    "canonical_source_ids_preserved": true,
+    "pathway_source_count_preserved": true,
+    "claim_provenance_scope_unchanged": true,
+    "theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true,
+    "completion_status_preserved": true,
+    "knowledge_provenance_checked_source_id_aware": true
+  }
+}
