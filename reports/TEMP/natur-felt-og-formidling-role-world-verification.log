@@ -1,13 +1,10 @@
 === Focused Natur Felt og formidling Role World test ===
-node:assert:883
+node:internal/assert/utils:77
     throw err;
     ^
 
-AssertionError [ERR_ASSERTION]: The input did not match the regular expression /korrig/i. Input:
-
-'Natur / Felt og formidling er særskilt bundet til direkte observasjon, prøve/foto-metadata, HMS, vær, sårbar natur, artsusikkerhet, besøksveiledning og offentlig korreksjon i felt. Den er ikke en forskningsverden med laboratorie/replikasjonsfokus, ikke en kunstpublikumsverden og ikke generell programkoordinering. Privat etterklang er koblet til feltberedskap, usikre funn og publikumspress.'
-
-    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/civication-natur-felt-og-formidling-role-world-rollout.test.js:112:129)
+AssertionError [ERR_ASSERTION]: jonas_metadata_handoff: 367
+    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/civication-natur-felt-og-formidling-role-world-rollout.test.js:142:10)
     at Module._compile (node:internal/modules/cjs/loader:1781:14)
     at Object..js (node:internal/modules/cjs/loader:1913:10)
     at Module.load (node:internal/modules/cjs/loader:1505:32)
@@ -15,11 +12,11 @@ AssertionError [ERR_ASSERTION]: The input did not match the regular expression /
     at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
     at node:internal/main/run_main_module:36:49 {
-  generatedMessage: true,
+  generatedMessage: false,
   code: 'ERR_ASSERTION',
-  actual: 'Natur / Felt og formidling er særskilt bundet til direkte observasjon, prøve/foto-metadata, HMS, vær, sårbar natur, artsusikkerhet, besøksveiledning og offentlig korreksjon i felt. Den er ikke en forskningsverden med laboratorie/replikasjonsfokus, ikke en kunstpublikumsverden og ikke generell programkoordinering. Privat etterklang er koblet til feltberedskap, usikre funn og publikumspress.',
-  expected: /korrig/i,
-  operator: 'match',
+  actual: false,
+  expected: true,
+  operator: '==',
   diff: 'simple'
 }
 
