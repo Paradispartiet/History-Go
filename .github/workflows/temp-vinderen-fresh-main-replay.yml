@@ -24,6 +24,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git fetch origin main
           set +e
           git merge --no-commit --no-ff origin/main
@@ -67,8 +69,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git rm .github/workflows/temp-vinderen-fresh-main-replay.yml
           git add -A
           git status --short
