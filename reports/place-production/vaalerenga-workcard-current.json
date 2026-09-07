@@ -1,0 +1,115 @@
+{
+  "schema": "history_go_place_workcard_v2",
+  "place_id": "vaalerenga",
+  "category": "by",
+  "status": "complete",
+  "completed_at": "2026-09-05",
+  "active_phase": "complete",
+  "source_review": "complete",
+  "production_verified_at": "2026-09-05",
+  "quiz_profile": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "fact": 21,
+    "context": 7,
+    "concept": 7
+  },
+  "quizcard_status": {
+    "status": "PASS_CREATED",
+    "asset": "bilder/QuizCards/Vaalerenga.PNG",
+    "runtime_mapping": "js/ui/place-card.js"
+  },
+  "fagverk_status": {
+    "status": "curated_full",
+    "level": "full"
+  },
+  "chronology_status": "PASS_10",
+  "story_status": "PASS_2_episode_v1",
+  "language_status": "PASS_6",
+  "lesespor_status": "PASS_4_approved",
+  "objects_status": "PASS_one_signature_object",
+  "brands_status": "PASS_one_authentic_brand",
+  "people_status": "PASS_one_direct_profile",
+  "structures_status": "PASS_two_direct_structures",
+  "branch_status": "ready_for_pr",
+  "live_status": "pending_merge",
+  "quality_gate": "30/30",
+  "canonical_next": "vinderen",
+  "held_back_candidates": [
+    "Fotballhistorie uten direkte behov i denne bypakken.",
+    "Generelle påstander om alle beboeres arbeideridentitet.",
+    "Udokumenterte virkninger av trafikkomleggingen for hver enkelt beboer.",
+    "Flere Objects uten tilstrekkelig stedsspesifikk bildeproveniens."
+  ],
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "PASS",
+    "place_id": "vaalerenga",
+    "category": "by",
+    "recorded_at": "2026-09-06T06:53:27.879Z",
+    "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
+    "files": [
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
+        "sha256": "7bc841caf668af4ea824f822d2adb5303843da604e63186656a2f6b1237110a7"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+        "sha256": "526abb31a897f9a1d93ed2daf12d9ebf1183c82c0e544e5bb9ceb6a54764eb8e"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_PROFILES.md",
+        "sha256": "0cfdc52b458645d8c22396c6d4adacb1a0661d9eab1f0d2baaab27b9cfa21490"
+      },
+      {
+        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+      },
+      {
+        "path": "data/places/README_place_rounds.md",
+        "sha256": "0d61d07992306ca5a694a5cd7b010bd1466430c937787d0e2fcb61ff168f765b"
+      },
+      {
+        "path": "data/badges/index.json",
+        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+      },
+      {
+        "path": "data/badges/place_production_routing_v1.json",
+        "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
+      },
+      {
+        "path": "docs/PLACE_OBJECTS_CANONICAL.md",
+        "sha256": "ccc3f438c8c235d9b60c9d0280a215c1862220b1988a4f6a7bca7060b53c1799"
+      },
+      {
+        "path": "data/brands/brand_rules_v1_1.json",
+        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+      },
+      {
+        "path": "data/badges/by.json",
+        "sha256": "0f204192dffe6695405a0351f96cfd041419e9555e9d6375af0814253b3dcac7"
+      }
+    ],
+    "contract_snapshot": {
+      "full_place_collection_count": 4,
+      "candidate_collections": [
+        "people",
+        "objects",
+        "brands",
+        "structures"
+      ],
+      "category_expression": "structures",
+      "related_is_placecard_collection": false,
+      "no_filler": true,
+      "routing_order": [
+        "universal_canonical_core",
+        "primary_badge_family",
+        "active_underbadge_ids",
+        "place_specific_source_review",
+        "confirmed_production_profile",
+        "final_content_plan"
+      ]
+    }
+  }
+}
