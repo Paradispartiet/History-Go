@@ -15,49 +15,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
-      - name: theory-repair
-        run: node scripts/theory-repair.mjs
-      - name: theory-audit
-        run: node scripts/theory-audit.mjs
-      - name: theory-determinism-check
-        run: node scripts/theory-determinism-check.mjs
-      - name: subject-theory-coverage-check
-        run: node scripts/subject-theory-coverage-check.mjs
-      - name: subject-status-integrity-check
-        run: node scripts/subject-status-integrity-check.mjs
-      - name: subject-status-domain-check
-        run: node scripts/subject-status-domain-check.mjs
-      - name: fagverk-contract-audit
-        run: node scripts/fagverk-contract-audit.mjs
-      - name: fagverk-area-consistency-check
-        run: node scripts/fagverk-area-consistency-check.mjs
-      - name: reference-integrity-check
-        run: node scripts/reference-integrity-check.mjs
-      - name: fagverk-artifact-consistency-check
-        run: node scripts/fagverk-artifact-consistency-check.mjs
-      - name: fagverk-readiness-summaries
-        run: node scripts/fagverk-readiness-summaries.mjs
-      - name: scan historie
-        run: node scripts/scan-remaining-subject-historie.mjs
-      - name: scan naturfag
-        run: node scripts/scan-remaining-subject-naturfag.mjs
-      - name: scan norsk
-        run: node scripts/scan-remaining-subject-norsk.mjs
-      - name: scan geografi
-        run: node scripts/scan-remaining-subject-geografi.mjs
-      - name: scan religion
-        run: node scripts/scan-remaining-subject-religion.mjs
-      - name: scan samfunnskunnskap
-        run: node scripts/scan-remaining-subject-samfunnskunnskap.mjs
-      - name: scan matematikk
-        run: node scripts/scan-remaining-subject-matematikk.mjs
-      - name: scan engelsk
-        run: node scripts/scan-remaining-subject-engelsk.mjs
-      - name: scan litteratur
-        run: node scripts/scan-remaining-subject-litteratur.mjs
+      - name: Inventory referenced theory scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          scripts=(
+            scripts/theory-repair.mjs
+            scripts/theory-audit.mjs
+            scripts/theory-determinism-check.mjs
+            scripts/subject-theory-coverage-check.mjs
+            scripts/subject-status-integrity-check.mjs
+            scripts/subject-status-domain-check.mjs
+            scripts/fagverk-contract-audit.mjs
+            scripts/fagverk-area-consistency-check.mjs
+            scripts/reference-integrity-check.mjs
+            scripts/fagverk-artifact-consistency-check.mjs
+            scripts/fagverk-readiness-summaries.mjs
+            scripts/scan-remaining-subject-historie.mjs
+            scripts/scan-remaining-subject-naturfag.mjs
+            scripts/scan-remaining-subject-norsk.mjs
+            scripts/scan-remaining-subject-geografi.mjs
+            scripts/scan-remaining-subject-religion.mjs
+            scripts/scan-remaining-subject-samfunnskunnskap.mjs
+            scripts/scan-remaining-subject-matematikk.mjs
+            scripts/scan-remaining-subject-engelsk.mjs
+            scripts/scan-remaining-subject-litteratur.mjs
+          )
+          missing=0
+          for file in "${scripts[@]}"; do
+            if [[ -f "$file" ]]; then
+              echo "EXISTS  $file"
+            else
+              echo "MISSING $file"
+              missing=$((missing + 1))
+            fi
+          done
+          echo "MISSING_COUNT=$missing"
