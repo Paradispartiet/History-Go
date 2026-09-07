@@ -1,0 +1,206 @@
+name: Spikersuppa completion temp
+
+on:
+  push:
+    branches:
+      - agent/spikersuppa-place-production-20260907
+    paths:
+      - .tmp/spikersuppa-completion-trigger
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/spikersuppa-place-production-20260907
+          fetch-depth: 0
+      - name: Lock main
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected=30faf84e4459cba8819a1a46058dbef0b5b45d69
+          actual=$(git ls-remote origin refs/heads/main | cut -f1)
+          echo "expected=$expected"
+          echo "actual=$actual"
+          test "$actual" = "$expected"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Patch verified builder issues and museum image sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("tools/build-spikersuppa-completion.mjs")
+          text = p.read_text()
+          replacements = {
+            "em_by_midlertidig_bruk_og_arrangementer": "em_by_sesongbruk_uteomrader",
+            "History-Go-Spikersuppa-completion/1.0": "History-Go/1.0 (https://github.com/Paradispartiet/History-Go; contact: paradispartiet@gmail.com)",
+            'source: "wikimedia_commons"': 'source: "oslobilder"',
+            'creator: "Bjoertvedt"': 'creator: "Ørsted, Henrik"',
+            'credit: "Bjoertvedt / Wikimedia Commons"': 'credit: "Ørsted, Henrik / Oslo Museum / OB.A8872"',
+            'creator: "Ssu"': 'creator: "Ørsted, Henrik"',
+            'credit: "Ssu / Wikimedia Commons"': 'credit: "Ørsted, Henrik / Oslo Museum / OB.A8872"',
+            'creator: "Quistnix"': 'creator: "Mittet & Co"',
+            'credit: "Quistnix / Wikimedia Commons"': 'credit: "Mittet & Co / Oslo Museum / OB.F20944a"',
+            'license: "CC BY-SA 4.0"': 'license: "Creative Commons 3.0 (see source record)"',
+            'licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"': 'licenseUrl: urls.commonsLandscapePage',
+            'license: "CC BY 1.0"': 'license: "Creative Commons 3.0 (see source record)"',
+            'licenseUrl: "https://creativecommons.org/licenses/by/1.0/"': 'licenseUrl: urls.commonsSkatingPage',
+            'originalDimensions: "4535x2034"': 'originalDimensions: `${osloPlaceSourceMeta.width}x${osloPlaceSourceMeta.height}`',
+            'originalDimensions: "4170x5560"': 'originalDimensions: `${osloPlaceSourceMeta.width}x${osloPlaceSourceMeta.height}`',
+            'Dokumenterer Spikersuppa som åpent park- og bassengrom foran Stortinget i desember 2015.': 'Dokumenterer Spikersuppa som park- og bassengrom i april 1980; kilden er historisk og brukes ikke som bevis for dagens tilstand.',
+            'Dokumenterer Spikersuppa og Stortinget fra offentlig område i 2025.': 'Stående 3:4-utnitt av Oslo Museums dokumentasjon av Spikersuppa i april 1980; kilden er historisk.',
+            'date: "2003-03"': 'date: "circa 1960"',
+            'Dokumenterer skøytebruk i Spikersuppa i mars 2003, ikke et normalnivå for aktivitet.': 'Dokumenterer Hjortegruppe og bassengmiljøet omkring 1960; brukes som historisk sammenligningsbilde, ikke som dokumentasjon av skøytebruk.',
+            'spikersuppa_skoyter_2003.webp': 'spikersuppa_1960.webp',
+            'spikersuppa_2015.webp': 'spikersuppa_1980.webp',
+            'Spikersuppa: skøytebruk i 2003 og parkrom i 2015': 'Spikersuppa: bassengmiljø omkring 1960 og parkrom våren 1980',
+            'before: { year: 2003': 'before: { year: 1960',
+            'caption: "Commons-foto dokumenterer skøytebruk i mars 2003."': 'caption: "Oslo Museums foto dokumenterer Hjortegruppe og bassengmiljøet omkring 1960."',
+            'now: { year: 2015': 'now: { year: 1980',
+            'caption: "Commons-foto dokumenterer det åpne parkrommet i desember 2015."': 'caption: "Oslo Museums foto dokumenterer Spikersuppa som park- og bassengrom i april 1980."'
+          }
+          for old, new in replacements.items():
+            if old not in text:
+              raise SystemExit(f"Expected builder token missing: {old}")
+            text = text.replace(old, new)
+
+          old = "const fetchBuffer = async url => {\n  let lastStatus = 0;"
+          new = "const downloadCache = new Map();\nconst fetchBuffer = async url => {\n  if (downloadCache.has(url)) return downloadCache.get(url);\n  let lastStatus = 0;"
+          if old not in text:
+            raise SystemExit("Expected fetchBuffer prologue missing")
+          text = text.replace(old, new, 1)
+          old = "if (response.ok) return Buffer.from(await response.arrayBuffer());"
+          new = "if (response.ok) { const buffer = Buffer.from(await response.arrayBuffer()); downloadCache.set(url, buffer); return buffer; }"
+          if old not in text:
+            raise SystemExit("Expected fetchBuffer success branch missing")
+          text = text.replace(old, new, 1)
+
+          old = 'if (match?.[1]) return match[1].replaceAll("&amp;", "&");'
+          new = '''if (match?.[1]) {
+            const raw = match[1].replaceAll("&amp;", "&");
+            const resolved = new URL(raw, pageUrl);
+            if (resolved.pathname === "/_fbredir") {
+              const target = resolved.searchParams.get("to");
+              if (target) return target;
+            }
+            return resolved.href;
+          }'''
+          if old not in text:
+            raise SystemExit("Expected fetchOgImage return missing")
+          text = text.replace(old, new, 1)
+
+          old = 'write("data/quiz/manifest.json", quizManifest);\n\nconst builtContext = await runBuildQuizProductionContext({ root, categoryId: "by", targetId: placeId, outputPath: contextFile });'
+          new = (
+            'write("data/quiz/manifest.json", quizManifest);\n'
+            'const quizFagManifest = read("data/fag/fag_manifest.json");\n'
+            'if (!quizFagManifest.by?.quizProduction?.targets) throw new Error("by.quizProduction.targets mangler i fag_manifest");\n'
+            'quizFagManifest.by.quizProduction.targets[placeId] = {\n'
+            '  source_brief: "../quiz/production_briefs/by/spikersuppa.json",\n'
+            '  context_artifact: "../quiz/production_context/by/spikersuppa.json",\n'
+            '  quiz_file: "../quiz/by/spikersuppa_sets.json"\n'
+            '};\n'
+            'write("data/fag/fag_manifest.json", quizFagManifest);\n\n'
+            'const builtContext = await runBuildQuizProductionContext({ root, categoryId: "by", targetId: placeId, outputPath: contextFile });'
+          )
+          if old not in text:
+            raise SystemExit("Expected quiz production context call missing")
+          text = text.replace(old, new, 1)
+
+          marker = 'await outputImage({ url: urls.commonsLandscapeAsset'
+          if marker not in text:
+            raise SystemExit("Expected first image output missing")
+          source_setup = r'''urls.commonsLandscapePage = "https://www.oslobilder.no/OMU/OB.A8872";
+          urls.commonsPortraitPage = urls.commonsLandscapePage;
+          urls.commonsSkatingPage = "https://oslobilder.no/OMU/OB.F20944a";
+          urls.commonsLandscapeAsset = await fetchOgImage(urls.commonsLandscapePage);
+          urls.commonsPortraitAsset = urls.commonsLandscapeAsset;
+          urls.commonsSkatingAsset = await fetchOgImage(urls.commonsSkatingPage);
+          const osloPlaceSourceMeta = await sharp(await fetchBuffer(urls.commonsLandscapeAsset)).metadata();
+          '''
+          text = text.replace(marker, source_setup + "\n" + marker, 1)
+          p.write_text(text)
+          PY
+          ! grep -q 'em_by_midlertidig_bruk_og_arrangementer' tools/build-spikersuppa-completion.mjs
+          ! grep -q 'wikimedia_commons' tools/build-spikersuppa-completion.mjs
+          ! grep -q 'Wikimedia Commons' tools/build-spikersuppa-completion.mjs
+          grep -q 'OB.A8872' tools/build-spikersuppa-completion.mjs
+          grep -q 'OB.F20944a' tools/build-spikersuppa-completion.mjs
+          grep -q 'downloadCache' tools/build-spikersuppa-completion.mjs
+          grep -q 'resolved.pathname === "/_fbredir"' tools/build-spikersuppa-completion.mjs
+          grep -q 'quizFagManifest.by.quizProduction.targets\[placeId\]' tools/build-spikersuppa-completion.mjs
+      - name: Materialize Spikersuppa
+        shell: bash
+        run: |
+          set -uo pipefail
+          log=/tmp/spikersuppa-materialize.log
+          if node tools/build-spikersuppa-completion.mjs >"$log" 2>&1; then
+            cat "$log"
+          else
+            rc=$?
+            cat "$log"
+            git reset --hard HEAD
+            mkdir -p .tmp
+            tail -n 120 "$log" > .tmp/spikersuppa-materialize-error.txt
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add .tmp/spikersuppa-materialize-error.txt
+            git commit -m "Capture Spikersuppa materialization failure"
+            git push origin HEAD:agent/spikersuppa-place-production-20260907
+            exit "$rc"
+          fi
+      - name: Rebuild generated contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run places:index:build
+          npm run civication:history-people:build
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+          npm run place-open:build
+          npm run epoker:places:build
+          npm run knowledge:canonical:write
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/spikersuppa-place-images.json
+      - name: Focused completion gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test tests/spikersuppa-completion.test.mjs
+          npm run build:tools --silent
+          node dist/tools/check_stories_integrity.mjs
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-content
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run knowledge:canonical:check
+          npm run civication:history-people:check
+          npm run places:index:check
+          npm run epoker:places:check
+          npm run place-open:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-place-images.mjs --mode=changed
+      - name: Recheck main and commit clean result
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected=30faf84e4459cba8819a1a46058dbef0b5b45d69
+          actual=$(git ls-remote origin refs/heads/main | cut -f1)
+          test "$actual" = "$expected"
+          rm -f .github/workflows/spikersuppa-completion-temp.yml .tmp/spikersuppa-completion-trigger .tmp/spikersuppa-materialize-error.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          test -n "$(git diff --cached --name-only)"
+          git commit -m "Complete Spikersuppa Place production"
+          git push origin HEAD:agent/spikersuppa-place-production-20260907
