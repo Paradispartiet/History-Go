@@ -51,7 +51,7 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          set -o pipefail
+          set -euo pipefail
           node scripts/TEMP_materialize_natur_forvaltning_og_radgivning_prerequisites.mjs 2>&1 | tee /tmp/natur-forvaltning-og-radgivning-prerequisites-materializer.log
 
       - name: Persist materializer diagnostic fail-closed
@@ -75,7 +75,7 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          set -o pipefail
+          set -euo pipefail
           {
             echo '=== Role pack audit ==='
             node scripts/audit-civication-role-packs.mjs
@@ -83,6 +83,10 @@ jobs:
             node scripts/audit-civication-career-gameplay.mjs --write
             echo '=== Role World readiness audit ==='
             node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+            echo '=== Scene Registry generation ==='
+            node scripts/build-civication-scene-registry.mjs
+            echo '=== Scenario People generation ==='
+            node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
           } 2>&1 | tee /tmp/natur-forvaltning-og-radgivning-prerequisites-build.log
 
       - name: Persist generated-surface diagnostic fail-closed
@@ -106,7 +110,7 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          set -o pipefail
+          set -euo pipefail
           {
             echo '=== Focused Natur Forvaltning og rådgivning prerequisites ==='
             node tests/civication-natur-forvaltning-og-radgivning-prerequisites.test.js
