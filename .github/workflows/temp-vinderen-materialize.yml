@@ -31,29 +31,36 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           git merge --no-edit origin/main
-      - name: Probe verified image endpoints
+      - name: Cache verified source images
         run: |
-          code=$(curl -sS -L -o /tmp/vinderen-conditori-source \
-            -w '%{http_code}' \
-            -A 'Mozilla/5.0 History-Go-Vinderen-production/1.0' \
-            -e 'https://www.oslobilder.no/BAR/A-20027/Ua/0022/013' \
-            'https://dms07.dimu.org/image/02RWgryHoU?dimension=600x600')
-          echo "Oslobilder active DIMU status: $code"
-          test "$code" = "200"
-          test -s /tmp/vinderen-conditori-source
-          urls=(
-            'https://upload.wikimedia.org/wikipedia/commons/c/cd/Vinderen_Torvet,_Oslo.jpg'
-            'https://upload.wikimedia.org/wikipedia/commons/9/9b/Vinderen_stasjon_-_2010-08-07_at_17-50-16.jpg'
-            'https://upload.wikimedia.org/wikipedia/commons/8/8d/Holmenkollbanen_at_Vindern.jpg'
-            'https://upload.wikimedia.org/wikipedia/commons/5/53/Rasmus_Larsen_Windern.jpg'
-            'https://upload.wikimedia.org/wikipedia/commons/5/5d/Vinderen_skole.jpg'
-          )
-          for url in "${urls[@]}"; do
-            code=$(curl -sS -I -L -o /dev/null -w '%{http_code}' -A 'History-Go-Vinderen-production/1.0 (source verification)' "$url")
-            echo "$code $url"
-            test "$code" = "200"
-            sleep 1
-          done
+          set -euo pipefail
+          cache=/tmp/vinderen-image-cache
+          mkdir -p "$cache"
+          download_image() {
+            local name="$1"
+            local url="$2"
+            local referer="${3:-}"
+            local args=(
+              --fail-with-body --silent --show-error --location
+              --retry 7 --retry-all-errors --retry-delay 5
+              --connect-timeout 20 --max-time 180
+              --user-agent 'History-Go-Vinderen-production/1.0 (source materialization)'
+              --output "$cache/$name"
+            )
+            if [ -n "$referer" ]; then args+=(--referer "$referer"); fi
+            echo "Caching $name"
+            curl "${args[@]}" "$url"
+            test -s "$cache/$name"
+            file "$cache/$name"
+            sleep 5
+          }
+          # Fetch each remote source exactly once. Train first because Commons had rate-limited it in the previous run.
+          download_image train.jpg 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Holmenkollbanen_at_Vindern.jpg'
+          download_image place.jpg 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Vinderen_Torvet,_Oslo.jpg'
+          download_image station.jpg 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Vinderen_stasjon_-_2010-08-07_at_17-50-16.jpg'
+          download_image rasmus.jpg 'https://upload.wikimedia.org/wikipedia/commons/5/53/Rasmus_Larsen_Windern.jpg'
+          download_image school.jpg 'https://upload.wikimedia.org/wikipedia/commons/5/5d/Vinderen_skole.jpg'
+          download_image conditori.jpg 'https://dms07.dimu.org/image/02RWgryHoU?dimension=600x600' 'https://www.oslobilder.no/BAR/A-20027/Ua/0022/013'
       - name: Materialize Vinderen canonical production
         run: |
           python - <<'PY'
@@ -72,11 +79,23 @@ jobs:
               if old not in source:
                   raise SystemExit(f'Expected materializer token not found: {old}')
               source = source.replace(old, new, 1)
-          old_fetch = 'const response = await fetch(url, { redirect: "follow", headers: { "user-agent": "History-Go-Vinderen-production/1.0" } });'
-          new_fetch = 'const headers = { "user-agent": "Mozilla/5.0 History-Go-Vinderen-production/1.0" };\n    if (url.includes("dms07.dimu.org")) headers.referer = urls.conditoriPhotoPage;\n    const response = await fetch(url, { redirect: "follow", headers });'
-          if old_fetch not in source:
-              raise SystemExit('Expected fetchBuffer request not found')
-          source = source.replace(old_fetch, new_fetch, 1)
+          marker = 'const imageCache = new Map();\nasync function fetchBuffer(url) {\n  if (imageCache.has(url)) return imageCache.get(url);'
+          replacement = '''const imageCache = new Map();
+const diskImageCache = new Map([
+  ["https://upload.wikimedia.org/wikipedia/commons/c/cd/Vinderen_Torvet,_Oslo.jpg", "/tmp/vinderen-image-cache/place.jpg"],
+  ["https://upload.wikimedia.org/wikipedia/commons/9/9b/Vinderen_stasjon_-_2010-08-07_at_17-50-16.jpg", "/tmp/vinderen-image-cache/station.jpg"],
+  ["https://upload.wikimedia.org/wikipedia/commons/8/8d/Holmenkollbanen_at_Vindern.jpg", "/tmp/vinderen-image-cache/train.jpg"],
+  ["https://upload.wikimedia.org/wikipedia/commons/5/53/Rasmus_Larsen_Windern.jpg", "/tmp/vinderen-image-cache/rasmus.jpg"],
+  ["https://upload.wikimedia.org/wikipedia/commons/5/5d/Vinderen_skole.jpg", "/tmp/vinderen-image-cache/school.jpg"],
+  ["https://dms07.dimu.org/image/02RWgryHoU?dimension=600x600", "/tmp/vinderen-image-cache/conditori.jpg"]
+]);
+async function fetchBuffer(url) {
+  const cachedPath = diskImageCache.get(url);
+  if (cachedPath) return fs.readFileSync(cachedPath);
+  if (imageCache.has(url)) return imageCache.get(url);'''
+          if marker not in source:
+              raise SystemExit('Expected fetchBuffer cache marker not found')
+          source = source.replace(marker, replacement, 1)
           path.write_text(source)
           PY
           node tools/materialize-vinderen-place-production.mjs
