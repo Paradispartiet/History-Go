@@ -109,7 +109,7 @@ assert.match(world.cross_role_proof.rule,/candidate_when_shared_work_is_real/i);
 assert.match(world.cross_role_proof.rule,/shared|delt/i);
 assert.match(world.cross_role_proof.rule,/uten cross-role-link|uten.*link/i);
 assert.deepEqual(world.editorial_uniqueness.not_copy_of,['natur/natur_biologi_og_forskning','kunst/kunst_publikum_og_formidling','subkultur/subkultur_program_og_koordinering']);
-for (const term of [/observasjon/i,/metadata/i,/HMS/i,/vær/i,/sårbar/i,/artsusikkerhet/i,/besøks/i,/korrig/i,/privat/i]) assert.match(world.editorial_uniqueness.rule,term);
+for (const term of [/observasjon/i,/metadata/i,/HMS/i,/vær/i,/sårbar/i,/artsusikkerhet/i,/besøks/i,/korrig|korreksjon/i,/privat/i]) assert.match(world.editorial_uniqueness.rule,term);
 
 assert.equal(world.season.days,14);
 assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
