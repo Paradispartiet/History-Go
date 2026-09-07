@@ -1,0 +1,201 @@
+{
+  "schema": "history_go_litteratur_maintenance_source_refresh_v1",
+  "version": "1.0.0",
+  "subject_id": "litteratur",
+  "round_id": "source_refresh_round12_2026_09_07",
+  "baseline_main_sha": "cfd71894002f7d69349406419190022a7a0c3e0c",
+  "checked_at": "2026-09-07",
+  "status": "verified",
+  "scope": {
+    "area_id": "litteratursosiologi_institusjoner_offentlighet",
+    "canonical_source_mutation": true,
+    "new_strict_subcategory": false,
+    "place_production": false,
+    "maintenance_evidence_only": false,
+    "replacement_policy": "replace_only_when_same-resource-or-authoritative-successor-url-is-verified"
+  },
+  "source_checks": [
+    {
+      "claims_source_id": "ls01",
+      "title": "The Rules of Art",
+      "publisher": "Stanford University Press",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://www.sup.org/books/art-and-visual-culture/rules-art",
+      "evidence": "The Stanford University Press endpoint blocks direct crawling, while current bibliographic records continue to identify The Rules of Art as the same Stanford University Press title. No authoritative successor URL is proven.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls02",
+      "title": "The Pickwick Papers",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/580",
+      "evidence": "Project Gutenberg ebook 580 remains live as The Pickwick Papers by Charles Dickens with current bibliographic metadata and full text.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls03",
+      "title": "Deichman Bjørvika",
+      "publisher": "Deichman",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://deichman.no/bibliotekene/bj%C3%B8rvika",
+      "evidence": "The canonical Deichman endpoint blocks this crawler, while current Deichman-owned information continues to identify Deichman Bjørvika, its location and public-library services. No replacement is justified.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls04",
+      "title": "Penguin Books: Our story",
+      "publisher": "Penguin Books",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.penguin.co.uk/company/about-us/our-story",
+      "canonical_url": "https://www.penguin.co.uk/about/who-we-are",
+      "evidence": "Penguin's current site links its history/Our story navigation to the authoritative Who we are page, which documents the 1934 train-platform origin, the 1935 launch and the paperback publishing model. This is the current same-publisher successor to the legacy company/about-us path.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "ls05",
+      "title": "Knut Hamsun – Biographical",
+      "publisher": "Nobel Prize Outreach",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://www.nobelprize.org/prizes/literature/1920/hamsun/biographical/",
+      "evidence": "Direct crawling is restricted, while current Nobel Prize search resolves the exact Hamsun biographical page and canonical path. The source identity is current and replacement is unnecessary.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls06",
+      "title": "Toni Morrison – Facts",
+      "publisher": "Nobel Prize Outreach",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://www.nobelprize.org/prizes/literature/1993/morrison/facts/",
+      "evidence": "Direct crawling is restricted, while current Nobel Prize search resolves the exact Toni Morrison Facts page and canonical path. The source identity is current and replacement is unnecessary.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls07",
+      "title": "The origins of the Booker Prize",
+      "publisher": "Booker Prize Foundation",
+      "verification_state": "verified_live",
+      "canonical_url": "https://thebookerprizes.com/the-origins-of-our-prizes",
+      "evidence": "The Booker Prize Foundation currently serves the same origins and prize-history page at the canonical endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls08",
+      "title": "PEN: Why freedom of expression matters",
+      "publisher": "PEN International",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.pen-international.org/why-freedom-of-expression-matters",
+      "evidence": "PEN International currently serves the same freedom-of-expression page at the canonical endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls09",
+      "title": "PEN condemns book bans",
+      "publisher": "PEN International",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.pen-international.org/news/pens-global-community-condemns-book-ban-around-the-world",
+      "evidence": "PEN International currently serves the same global book-ban statement at the canonical endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls10",
+      "title": "Madame Bovary",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/2413",
+      "evidence": "Project Gutenberg ebook 2413 remains live as Madame Bovary with bibliographic metadata and full text.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls11",
+      "title": "Miniguide: det norske litterære systemet",
+      "publisher": "Den norske Forfatterforening",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.forfatterforeningen.no/content/uploads/2020/12/Miniguide-det-norske-litteraere-systemet.pdf",
+      "evidence": "Den norske Forfatterforening currently serves the PDF at the canonical URL; the document identifies itself as Miniguide til det norske litterære systemet.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls12",
+      "title": "Årsmelding 2025–2026",
+      "publisher": "Den norske Forfatterforening",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.forfatterforeningen.no/content/uploads/2026/02/Arsmelding-2025-2026-1.pdf",
+      "evidence": "Den norske Forfatterforening currently serves the 2025–2026 annual-report PDF at the canonical URL.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls13",
+      "title": "About the Booker Prize",
+      "publisher": "Booker Prize Foundation",
+      "verification_state": "verified_live",
+      "canonical_url": "https://thebookerprizes.com/booker-prize/about-the-booker-prize",
+      "evidence": "The Booker Prize Foundation currently serves the same About the Booker Prize page at the canonical endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls14",
+      "title": "About Deichman",
+      "publisher": "Deichman",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://deichman.no/vi-tilbyr",
+      "evidence": "The canonical endpoint is not reliably crawlable, while current Deichman-owned material continues to document Deichman's lending, events, digital and public-space services. No authoritative successor URL is proven.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls15",
+      "title": "Innkjøpsordninger for litteratur",
+      "publisher": "Kulturdirektoratet",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.kulturdirektoratet.no/fag/litteratur/innkjopsordninger",
+      "evidence": "Kulturdirektoratet currently serves the official literature purchasing-schemes page at the canonical endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls16",
+      "title": "Norsk kulturbarometer 2023",
+      "publisher": "Statistisk sentralbyrå",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.ssb.no/kultur-og-fritid/kultur/artikler/norsk-kulturbarometer-2023",
+      "evidence": "Statistics Norway currently serves Norsk kulturbarometer 2023 at the canonical article endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "ls17",
+      "title": "Bokavtalen – avtaletekst",
+      "publisher": "Bokhandlerforeningen",
+      "verification_state": "verified_live",
+      "canonical_url": "https://bokhandlerforeningen.no/politikk-og-mening/bokavtalen/bokavtalen-avtaletekst/",
+      "evidence": "Bokhandlerforeningen currently serves the Bokavtalen agreement text at the canonical endpoint.",
+      "action": "retain_canonical_url"
+    }
+  ],
+  "materialization": {
+    "replacement_targets": [
+      "data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/litteratursosiologi_institusjoner_offentlighet/claims.json",
+      "scripts/materialize-litteratur-media-sociology-full-fields-v1.mjs",
+      "data/quiz/litteratur/litteratur_subject_pathways_v1.json",
+      "data/knowledge/subjects/litteratur/knowledge_units.generated.json"
+    ]
+  },
+  "summary": {
+    "canonical_sources_checked": 17,
+    "verified_live": 11,
+    "verified_identity_endpoint_restricted": 5,
+    "verified_authoritative_replacement": 1,
+    "canonical_url_replacements": 1
+  },
+  "quality_gates": {
+    "all_17_area_sources_accounted_for": true,
+    "one_authoritative_replacement_materialized": true,
+    "replacement_identity_preserved": true,
+    "restricted_endpoints_not_treated_as_source_death": true,
+    "canonical_source_ids_preserved": true,
+    "pathway_source_count_preserved": true,
+    "claim_provenance_scope_unchanged": true,
+    "theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true,
+    "completion_status_preserved": true,
+    "knowledge_provenance_checked_source_id_aware": true
+  }
+}

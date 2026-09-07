@@ -14,6 +14,7 @@ on:
       - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/forfatterskap_intertekstualitet/claims.json'
       - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/tekstkritikk_bokhistorie_arkiv/claims.json'
       - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/medier_intermedialitet_adapsjon/claims.json'
+      - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/litteratursosiologi_institusjoner_offentlighet/claims.json'
       - 'data/quiz/litteratur/litteratur_subject_pathways_v1.json'
       - 'data/knowledge/subjects/litteratur/knowledge_units.generated.json'
       - 'scripts/materialize-litteratur-poetics-style-v1.mjs'
@@ -34,6 +35,7 @@ on:
       - 'scripts/audit-litteratur-maintenance-source-refresh-round9.mjs'
       - 'scripts/audit-litteratur-maintenance-source-refresh-round10.mjs'
       - 'scripts/audit-litteratur-maintenance-source-refresh-round11.mjs'
+      - 'scripts/audit-litteratur-maintenance-source-refresh-round12.mjs'
       - 'tests/litteratur-maintenance-source-refresh-round1.test.mjs'
       - 'tests/litteratur-maintenance-source-refresh-round2.test.mjs'
       - 'tests/litteratur-maintenance-source-refresh-round3.test.mjs'
@@ -45,6 +47,7 @@ on:
       - 'tests/litteratur-maintenance-source-refresh-round9.test.mjs'
       - 'tests/litteratur-maintenance-source-refresh-round10.test.mjs'
       - 'tests/litteratur-maintenance-source-refresh-round11.test.mjs'
+      - 'tests/litteratur-maintenance-source-refresh-round12.test.mjs'
       - '.github/workflows/litteratur-maintenance-integrity.yml'
 
 permissions:
@@ -120,6 +123,11 @@ jobs:
           node --check scripts/audit-litteratur-maintenance-source-refresh-round11.mjs
           node scripts/audit-litteratur-maintenance-source-refresh-round11.mjs
           node --test tests/litteratur-maintenance-source-refresh-round11.test.mjs
+      - name: Audit Litteratur source refresh round 12
+        run: |
+          node --check scripts/audit-litteratur-maintenance-source-refresh-round12.mjs
+          node scripts/audit-litteratur-maintenance-source-refresh-round12.mjs
+          node --test tests/litteratur-maintenance-source-refresh-round12.test.mjs
       - name: Preserve Litteratur assessment and theory integrity
         run: |
           node scripts/audit-litteratur-assessment-v1.mjs
