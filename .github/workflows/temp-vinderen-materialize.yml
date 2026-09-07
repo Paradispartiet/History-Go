@@ -31,17 +31,27 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           git merge --no-edit origin/main
+      - name: Probe verified Oslobilder image endpoint
+        run: |
+          code=$(curl -sS -L -o /tmp/vinderen-conditori-source \
+            -w '%{http_code}' \
+            -A 'Mozilla/5.0 History-Go-Vinderen-production/1.0' \
+            -e 'https://www.oslobilder.no/BAR/A-20027/Ua/0022/013' \
+            'https://dms07.dimu.org/image/02RWgryHoU?dimension=600x600')
+          echo "Oslobilder active DIMU status: $code"
+          test "$code" = "200"
+          test -s /tmp/vinderen-conditori-source
       - name: Materialize Vinderen canonical production
         run: |
           python - <<'PY'
           from pathlib import Path
           path = Path('tools/materialize-vinderen-place-production.mjs')
           source = path.read_text()
-          old = '  return match[1].replaceAll("&amp;", "&");'
-          new = '  const direct = html.match(/href=["\\\'\\\"](https?:\\/\\/dms\\d+\\.dimu\\.org\\/image\\/[^"\\\'\\\"]+)/i);\n  if (direct) return direct[1].replaceAll("&amp;", "&");\n  return match[1].replaceAll("&amp;", "&");'
-          if old not in source:
-              raise SystemExit('Expected Oslobilder og:image return not found')
-          source = source.replace(old, new, 1)
+          old_cond = 'const condImage = await resolveOgImage(urls.conditoriPhotoPage);'
+          new_cond = 'const condImage = "https://dms07.dimu.org/image/02RWgryHoU?dimension=600x600";'
+          if old_cond not in source:
+              raise SystemExit('Expected Vinderen Conditori resolver not found')
+          source = source.replace(old_cond, new_cond, 1)
           old_headers = 'headers: { "user-agent": "History-Go-Vinderen-production/1.0" }'
           new_headers = 'headers: { "user-agent": "Mozilla/5.0 History-Go-Vinderen-production/1.0", "referer": urls.conditoriPhotoPage }'
           if old_headers not in source:
