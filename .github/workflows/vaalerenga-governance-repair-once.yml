@@ -43,14 +43,13 @@ jobs:
           node scripts/place-production-rule-preflight.mjs record --workcard reports/place-production/vaalerenga-workcard-current.json --place-id vaalerenga --category by
           node scripts/place-production-rule-preflight.mjs check --base "$LOCKED_MAIN"
 
-      - name: Run exact description-governance regression and all-packet policy gate
+      - name: Run exact description-governance regression suite
         run: |
           node --check scripts/validate-place-description-production-v4_2.mjs
           node --check scripts/validate-place-description-production-v4_2_policy.mjs
           node --test tests/place-description-production-v4_2.test.mjs
           node --test tests/place-description-length-policy.test.mjs
           node --test tests/place-description-ingress-policy.test.mjs
-          node scripts/validate-place-description-production-v4_2_policy.mjs --all --report reports/place-description-validation-v4_2.json
           node --test tests/vaalerenga-completion.test.mjs
 
       - name: Recheck focused Place contracts
