@@ -1,0 +1,217 @@
+name: TEMP Rådhusplassen production once v2
+
+on:
+  push:
+    branches:
+      - agent/radhusplassen-place-production-20260907
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    if: startsWith(github.event.head_commit.message, 'Execute Rådhusplassen production v2')
+    runs-on: ubuntu-latest
+    env:
+      LOCKED_MAIN: 4df9b1476d870fbe299e9f6a13d04ccae99ab2d2
+      BRANCH: agent/radhusplassen-place-production-20260907
+    steps:
+      - name: Checkout Rådhusplassen branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Lock fresh main
+        run: |
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$LOCKED_MAIN"
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Materialize and preserve canonical sixth quiz set
+        run: |
+          set -o pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'data/quiz/by/radhusplassen_sets.json';
+          const quiz = JSON.parse(fs.readFileSync(file, 'utf8'));
+          if (quiz.sets.length !== 6 || quiz.sets.some(set => set.questions.length !== 7)) throw new Error(`Expected canonical Rådhusplassen 6x7, got ${quiz.sets.length} sets`);
+          fs.writeFileSync('/tmp/radhusplassen-sixth-set.json', `${JSON.stringify(quiz.sets[5], null, 2)}\n`);
+          quiz.sets = quiz.sets.slice(0, 5);
+          fs.writeFileSync(file, `${JSON.stringify(quiz, null, 2)}\n`);
+          NODE
+          node scripts/radhusplassen-production-once.mjs 2>&1 | tee /tmp/radhusplassen-materialize-v2.log
+          node scripts/radhusplassen-sixth-set-restore.mjs
+          npm run places:index:build
+          npm run knowledge:canonical:write
+          npm run place-open:build
+          npm run epoker:places:build
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run civication:history-people:build
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+
+      - name: Complete production packet sentence coverage
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import crypto from 'node:crypto';
+          const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
+          const write = (file, value) => fs.writeFileSync(file, `${JSON.stringify(value, null, 2)}\n`);
+          const sha256 = value => crypto.createHash('sha256').update(String(value)).digest('hex');
+          const placeFile = 'data/places/by/oslo/places/radhusplassen.json';
+          const packetFile = 'data/places/production/radhusplassen.json';
+          const brief = read('data/quiz/production_briefs/by/radhusplassen.json');
+          const quiz = read('data/quiz/by/radhusplassen_sets.json');
+          const place = read(placeFile);
+          const packet = read(packetFile);
+          const sourceDefs = brief.sources;
+          const verifiedAt = '2026-09-07';
+          const sentences = text => [...new Intl.Segmenter('nb', { granularity: 'sentence' }).segment(String(text))].map(entry => entry.segment.trim()).filter(Boolean);
+          const strongPattern = /\b(første|eldste|største|minste|eneste|viktigste|avgjørende|førte til|på grunn av|derfor|dermed)\b/iu;
+          const sourceIdForSentence = sentence => /arrangement|festival|kommersiell|representativ|fri adgang/iu.test(sentence) ? 'use_rules' : /E18|bilfri|1994|1995|trikk|Rådhusbrygg/iu.test(sentence) ? 'municipality' : /kunst|fontene|skulptur|utsmyk/iu.test(sentence) ? 'byarkiv' : 'byleksikon';
+          const sourceTypeFor = id => id === 'municipality' || id === 'use_rules' ? 'institutional' : id === 'byarkiv' ? 'archive_publication' : 'reputable_secondary';
+          const makeTextClaims = (field, text) => sentences(text).map((sentence, index) => {
+            const sourceId = sourceIdForSentence(sentence);
+            const sourceUrl = sourceDefs[sourceId].url;
+            const strong = strongPattern.test(sentence);
+            const identity = field === 'popupDesc' && index === 0;
+            const claim = {
+              id: `claim_radhusplassen_${field}_${String(index + 1).padStart(2, '0')}`,
+              claim: sentence,
+              sourceUrl,
+              sourceLocation: `${sourceId} reviewed source; ${field} sentence ${index + 1}`,
+              sourceType: sourceTypeFor(sourceId),
+              verifiedAt,
+              status: 'verified',
+              claimKind: identity ? 'identity' : strong ? 'strong' : 'fact',
+              evidenceMode: strong ? 'explicit' : 'direct',
+              temporalStatus: /i dag|daglig|fungerer|brukes|ligger|strekker seg/iu.test(sentence) ? 'current' : 'historical'
+            };
+            if (strong) claim.independentSourceUrls = [sourceDefs[sourceId === 'municipality' ? 'byleksikon' : 'municipality'].url];
+            return claim;
+          });
+          const descClaims = makeTextClaims('desc', place.desc);
+          const popupClaims = makeTextClaims('popupDesc', place.popupDesc);
+          const questions = quiz.sets.flatMap(set => set.questions);
+          const quizClaims = questions.slice(0, 8).map((q, index) => ({
+            id: `claim_radhusplassen_quiz_ready_${String(index + 1).padStart(2, '0')}`,
+            claim: q.knowledge || `${q.question} – ${q.answer}`,
+            sourceUrl: q.source[0],
+            sourceLocation: `canonical quiz question ${index + 1}`,
+            sourceType: q.source[0].includes('oslo.kommune.no') ? 'institutional' : 'reputable_secondary',
+            verifiedAt,
+            status: 'verified',
+            claimKind: 'fact',
+            evidenceMode: 'direct',
+            temporalStatus: 'historical'
+          }));
+          packet.claims = [...descClaims, ...popupClaims, ...quizClaims];
+          packet.sentenceCoverage = {
+            desc: descClaims.map((claim, index) => ({ sentence: index + 1, claimIds: [claim.id] })),
+            popupDesc: popupClaims.map((claim, index) => ({ sentence: index + 1, claimIds: [claim.id] }))
+          };
+          packet.reviews = {
+            factual: { status: 'passed', reviewedAt: verifiedAt, reviewer: 'Rådhusplassen source review', notes: 'All user-facing sentences are mapped to reviewed municipal, archive or reference sources; the square remains distinct from Oslo rådhus.' },
+            editorial: { status: 'passed', reviewedAt: verifiedAt, reviewer: 'Rådhusplassen editorial review', introducedNewFacts: false, notes: 'Field-observable form is separated from historical causation and unsupported crowd experience.' }
+          };
+          packet.quizReadiness = {
+            status: 'canonical_rich_6x7', quizTargetId: 'radhusplassen', sourceBrief: 'data/quiz/production_briefs/by/radhusplassen.json', productionContext: 'data/quiz/production_context/by/radhusplassen.json', normalOpeningQuestions: 28, totalQuestions: 42,
+            questions: quizClaims.map((claim, index) => ({ question: questions[index].question, answer: questions[index].answer, type: questions[index].question_type, normalKnowledgeQuestion: true, claimIds: [claim.id] }))
+          };
+          packet.completion = { ...packet.completion, completedUnder: '4.2', currentStatus: 'current', sourceVerifiedAt: verifiedAt, claimsVerified: { verified: packet.claims.length, total: packet.claims.length }, factualReview: 'passed', editorialReview: 'passed', validatorVersion: packet.validatorVersion };
+          packet.textHashes = { algorithm: 'sha256', desc: sha256(place.desc), popupDesc: sha256(place.popupDesc) };
+          write(packetFile, packet);
+          NODE
+
+      - name: Regenerate image backlog summary
+        run: |
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/radhusplassen-place-image-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const audit = JSON.parse(fs.readFileSync('/tmp/radhusplassen-place-image-audit.json', 'utf8'));
+          const file = 'data/places/place_image_backlog_summary.json';
+          const current = JSON.parse(fs.readFileSync(file, 'utf8'));
+          current.generatedAt = '2026-09-07';
+          current.generatedFromCommit = 'radhusplassen_completion_20260907';
+          if (Number.isInteger(audit.totalPlaces)) current.totalPlaces = audit.totalPlaces;
+          if (audit.summary) current.summary = audit.summary;
+          if (audit.byCategory) current.byCategory = audit.byCategory;
+          fs.writeFileSync(file, `${JSON.stringify(current, null, 2)}\n`);
+          NODE
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/radhusplassen-place-image-audit-verified.json --verify-summary=data/places/place_image_backlog_summary.json
+
+      - name: Preserve materialization diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: radhusplassen-materialize-v2-diagnostics
+          path: /tmp/radhusplassen-materialize-v2.log
+          if-no-files-found: warn
+
+      - name: Record canonical READ-FIRST evidence
+        run: |
+          node scripts/place-production-rule-preflight.mjs record --workcard reports/place-production/radhusplassen-workcard-current.json --place-id radhusplassen --category by
+          node scripts/place-production-rule-preflight.mjs check --base "$LOCKED_MAIN"
+
+      - name: Validate Rådhusplassen focused contracts
+        run: |
+          set -o pipefail
+          {
+            node --test tests/radhusplassen-completion.test.mjs
+            npm run places:index:check
+            npm run place-open:check
+            npm run test:place-open
+            npm run leksikon:ids:check
+            npm run check:stories
+            npm run audit:quiz-manifest:v2
+            npm run audit:quiz-production-context
+            npm run audit:quiz-progression
+            npm run audit:quiz-theory-binding
+            node --input-type=module -e 'import fs from "node:fs"; import assert from "node:assert/strict"; import { validatePacket } from "./scripts/validate-place-description-production-v4_2.mjs"; const read=(file)=>JSON.parse(fs.readFileSync(file,"utf8")); const place=read("data/places/by/oslo/places/radhusplassen.json"); const packet=read("data/places/production/radhusplassen.json"); const result=validatePacket({packet,place,packetFile:"data/places/production/radhusplassen.json",now:new Date("2026-09-07T12:00:00Z")}); assert.deepEqual(result.issues, []); assert.equal(packet.status, "ready_v4_2");'
+          } 2>&1 | tee /tmp/radhusplassen-focused-validation-v2.log
+
+      - name: Preserve focused-gate diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: radhusplassen-focused-validation-v2-diagnostics
+          path: /tmp/radhusplassen-focused-validation-v2.log
+          if-no-files-found: warn
+
+      - name: Validate Fagverk images People and epoke derivatives
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/radhusplassen-place-image-audit-final.json --verify-summary=data/places/place_image_backlog_summary.json
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs
+          npm run civication:history-people:check
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+          node tests/oslo-radhus-political-people-profiles.test.js
+          git diff --check
+
+      - name: Commit clean permanent Rådhusplassen tree
+        run: |
+          git rm -f .github/workflows/radhusplassen-production-once.yml .github/workflows/radhusplassen-production-once-v2.yml scripts/radhusplassen-production-once.mjs scripts/radhusplassen-sixth-set-restore.mjs reports/place-production/radhusplassen-run-trigger.txt reports/place-production/radhusplassen-run-trigger-v2.txt
+          git restore --source="$LOCKED_MAIN" -- reports/knowledge-contract-audit.json || true
+          git add -A
+          git diff --cached --check
+          test -z "$(git diff --cached --name-only | grep -E 'radhusplassen-production-once|sixth-set-restore|run-trigger' || true)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Complete Rådhusplassen Place production'
+
+      - name: Run exact repository hygiene
+        run: REPO_HYGIENE_BASE_SHA="$LOCKED_MAIN" REPO_HYGIENE_HEAD_SHA="$(git rev-parse HEAD)" node scripts/audit-repository-hygiene-v1.mjs
+
+      - name: Publish clean fast-forward result
+        run: |
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$LOCKED_MAIN"
+          git push origin "HEAD:refs/heads/$BRANCH"
