@@ -96,7 +96,7 @@ const areas = [
       ['mi08', 'The Language of New Media', 'https://mitpress.mit.edu/9780262296915/the-language-of-new-media/', 'MIT Press'],
       ['mi09', 'Pride & Prejudice', 'https://www.focusfeatures.com/pride_and_prejudice', 'Focus Features'],
       ['mi10', 'Maus', 'https://www.penguinrandomhouse.com/books/171065/the-complete-maus-by-art-spiegelman/', 'Penguin Random House'],
-      ['mi11', 'Persepolis', 'https://www.penguinrandomhouse.com/books/160890/the-complete-persepolis-by-marjane-satrapi/', 'Penguin Random House'],
+      ['mi11', 'Persepolis', 'https://www.penguinrandomhouse.com/books/160892/the-complete-persepolis-by-marjane-satrapi/', 'Penguin Random House'],
       ['mi12', '80 Days', 'https://www.inklestudios.com/80days/', 'inkle'],
       ['mi13', 'Depression Quest', 'https://www.depressionquest.com/', 'Depression Quest'],
       ['mi14', 'About the Electronic Literature Organization', 'https://eliterature.org/about/', 'Electronic Literature Organization']
