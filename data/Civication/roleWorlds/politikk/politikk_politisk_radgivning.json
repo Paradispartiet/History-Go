@@ -1,0 +1,1341 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_politisk_radgivning",
+  "title": "Politikk / Politisk rådgivning — maktnærhet, beslutningsstøtte og situert standing",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Hvordan kan en Politisk rådgiver være tett på makt, påvirke beslutninger og levere raske politiske råd uten å gjøre nærhet, lojalitet, informasjonstilgang eller sosial standing til egen formell myndighet?",
+    "description": "Role World-en lukker situated_reputation rundt den allerede komplette Politisk rådgivning-foundationen. Employer_appointment, 16-stegs plan, fire fiktive scenarioaktører, fire arbeidsflater, begge canonical work loops, radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging, waiting/handoff/rework og authority boundary beholdes uendret. Standing er publikums- og relasjonsspesifikk og kan aldri fungere som arbeidsgiverutnevnelse, delegasjon, fortrolighetstilgang, evidens eller beslutning."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "bureaucratic_power",
+    "loyalty_up_down",
+    "shame_reputation",
+    "public_attention",
+    "status_anxiety",
+    "public_private_leakage",
+    "class_power",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "politisk_ledelsesrom_der_bestilling_rad_og_faktisk_beslutning_ma_holdes_adskilt_under_tidspress",
+    "fakta_kilde_og_alternativanalyse_der_usikkerhet_motargumenter_og_gjennomforbarhet_ma_overleve_politisk_preferanse",
+    "interessent_og_moteflate_der_lobbytilgang_erfaringskunnskap_og_skjev_representasjon_ma_gjores_synlig",
+    "fortrolig_informasjonsrom_der_taktisk_verdi_ikke_kan_overstyre_tilgang_formal_eller_sporbarhet",
+    "presse_og_kommunikasjonsflate_der_rad_forelopig_posisjon_beslutning_og_offentlig_lovnad_ma_skillles",
+    "juridisk_og_okonomisk_kontrollflate_der_populaere_virkemidler_proves_mot_hjemmel_kostnad_og_implementering",
+    "gjennomforings_og_handoffflate_der_beslutningens_forutsetninger_ma_overleve_overgangen_fra_politikk_til_forvaltning",
+    "oppfolgingsrom_der_nye_fakta_og_resultater_kan_gjenapne_rad_uten_a_omskrive_tidligere_beslutning_eller_budskap",
+    "privat_og_partiintern_kultur_der_naerhet_lojalitet_karrierepress_og_status_kan_presse_rollegrenser"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "ingrid_beslutningseier_world",
+      "social_function": "Ingrid gjør forskjellen mellom politisk bestilling, rådgiverens anbefaling og faktisk beslutning synlig når tidsfrister og politisk eierskap skaper press for å omtale en foreløpig preferanse som ferdig resultat.",
+      "class_position": "Politisk leder og formell beslutningseier innen sitt faktiske mandat, med sterk makt over rådgiverens arbeidsinnhold og karriere, men uten rett til å gjøre lojalitet til erstatning for kildegrunnlag eller tilgangsregler.",
+      "status": "Høy politisk og organisatorisk status; hennes tillit betyr mye for rådgiverens handlingsrom, men den kan ikke utvide rådgiverens formelle myndighet.",
+      "power_over_player": "Kan bestille arbeid, kreve raske alternativer, velge politisk retning og evaluere rådgiverens prestasjon, men kan ikke gjøre rådgiverens standing til employer_appointment, delegasjon eller beslutning utover den faktiske rollen.",
+      "wants": "At beslutninger kommer tidsnok, med tydelige konsekvenser og et politisk brukbart råd som ikke tvinger henne til å gjette hvilke premisser som er sikre.",
+      "conceals": "At ønsket om framdrift og tydelighet kan gjøre motargumenter, usikkerhet eller implementeringsrisiko politisk upraktiske akkurat når de er mest beslutningsrelevante.",
+      "speech_style": "Kort, beslutningsorientert og tidsbevisst; spør hva alternativene er, hva som står på spill, hva du anbefaler og hva hun må avgjøre nå.",
+      "teaches_player": "At profesjonell lojalitet er å gjøre beslutningseieren bedre informert, ikke å gjøre hennes første preferanse til skjult premiss for hele analysen."
+    },
+    {
+      "id": "marius_fagkontroll_world",
+      "social_function": "Marius tester om rådgiveren kan komprimere faglig kompleksitet uten å forvandle usikker evidens til sikker politisk påstand eller skjule at ulike alternativer bygger på ulike forutsetninger.",
+      "class_position": "Fag- og utredningskontakt med sterk ekspertmakt over premisser og kvalitet, men uten rett til å bestemme den politiske prioriteringen.",
+      "status": "Høy faglig standing når kilde, metode, usikkerhet og konsekvens kan etterprøves og når analysen ikke endres opportunistisk etter ønsket politisk konklusjon.",
+      "power_over_player": "Kan returnere svakt grunnlag, kreve kilde og presisere hva data faktisk viser, men kan ikke ansette rådgiveren, gi delegasjon eller gjøre faglig vurdering til politisk vedtak.",
+      "wants": "At råd skiller dokumentert faktum, modellantakelser, rettslige eller økonomiske premisser og normative valg tydelig nok til at uenighet kan være presis.",
+      "conceals": "At ekspertmiljøer også kan undervurdere erfaringer, fordelingsvirkninger eller politiske hensyn som er reelle, men vanskeligere å måle.",
+      "speech_style": "Presis og kildeorientert; spør hva påstanden bygger på, hvilket premiss som bærer konklusjonen, og hva som ville fått deg til å endre råd.",
+      "teaches_player": "At god politisk rådgivning ikke velger mellom fag og politikk, men gjør grensen og overgangen mellom dem etterprøvbar."
+    },
+    {
+      "id": "samira_kommunikasjon_world",
+      "social_function": "Samira gjør offentlig tempo til en stresstest av om rådgiveren kan skille faktum, råd, beslutning og budskap når medier krever et enkelt svar før hele saken er ferdig.",
+      "class_position": "Presse- og kommunikasjonsrådgiver med høy innflytelse over offentlig framstilling, men uten rett til å fatte selve den politiske beslutningen eller åpne fortrolig materiale.",
+      "status": "Høy kommunikativ standing når budskap tåler faktasjekk, korrigering og senere dokumentinnsyn uten at det må konstrueres en ny historie om hva som skjedde.",
+      "power_over_player": "Kan stoppe uholdbare formuleringer, presse fram avklaringer og gjøre omdømmerisiko synlig, men kan ikke gi employer_appointment, delegasjon eller gjøre mediepress til beslutningsmyndighet.",
+      "wants": "At offentligheten får et tydelig budskap som er politisk forståelig uten å love mer enn det beslutningen faktisk innebærer eller skjule vesentlig usikkerhet.",
+      "conceals": "At kommunikasjonslogikken kan belønne tidlig sikkerhet og enkle konfliktlinjer selv når den mest ansvarlige formuleringen må være mer betinget.",
+      "speech_style": "Rask, konkret og publikumsorientert; spør hva vi vet, hva som er besluttet, hva som kan sies, og hvilket spørsmål som vil avsløre en uklarhet.",
+      "teaches_player": "At korrigering kan være tegn på institusjonell styrke når den er sporbar, rask og ikke brukes til å omskrive tidligere råd eller beslutning."
+    },
+    {
+      "id": "amina_interessent_world",
+      "social_function": "Amina gjør tilgang, lobbykraft og representasjon konkret ved å vise hvem som får møter, hvilke interesser som følger innspillene og hvilke berørte grupper som ikke har samme institusjonelle kapasitet.",
+      "class_position": "Interessent- og forvaltningskontakt med bred relasjonell tilgang, men uten rett til å love beslutninger eller gjøre møtefrekvens til evidens.",
+      "status": "Høy relasjonell legitimitet når innspill gjengis korrekt, særinteresser merkes tydelig og berørte perspektiver ikke forsvinner fordi de er mindre profesjonelt organisert.",
+      "power_over_player": "Kan utfordre skjev møtekalender, kreve at interesse og kilde skilles og eskalere uautoriserte løfter, men kan ikke gi rådgiveren myndighet eller erstatte beslutningseieren.",
+      "wants": "At beslutningsgrunnlaget viser hvem som påvirker, hva de faktisk bidrar med, hvilke interesser de har, og hvilke grupper eller konsekvenser som fortsatt mangler.",
+      "conceals": "At også en dyktig relasjonsfunksjon kan bli fanget av de mest tilgjengelige og velformulerte aktørene og dermed reprodusere skjevhet uten bevisst favorisering.",
+      "speech_style": "Relasjonell og sammenlignende; spør hvem som er representert, hva de vil, hva de dokumenterer, hvem som mangler og hva som faktisk ble lovet.",
+      "teaches_player": "At tilgang er politisk relevant informasjon, men aldri i seg selv evidens, mandat eller rett til et bestemt resultat."
+    },
+    {
+      "id": "juridisk_okonomisk_kontroll_world",
+      "social_function": "En juridisk eller økonomisk kontrollaktør viser hvordan et politisk attraktivt råd kan møte harde grenser i hjemmel, budsjett, anskaffelse, implementering eller dokumentasjonskrav.",
+      "class_position": "Kontroll- og fagfunksjon med reell stoppe- og varslingsmakt innen eget område, men uten rett til å velge politisk mål eller prioritere mellom legitime alternativer alene.",
+      "status": "Høy institusjonell standing når grensene blir synlige før beslutningen låses, og når kontroll ikke brukes som skjult politisk veto.",
+      "power_over_player": "Kan kreve avklaring, returnere mangelfullt underlag og markere ulovlig eller ufinansiert handling, men kan ikke gi rådgiveren arbeidsgiverutnevnelse eller overta beslutningseierens politiske valg.",
+      "wants": "At hvert alternativ viser faktisk hjemmel, kostnad, finansiering, gjennomføringsavhengigheter og hvilke kontrollpunkter som fortsatt er åpne.",
+      "conceals": "At kontrollspråk kan framstå mer verdinøytralt enn det er når tolkning, risikotoleranse og ressursprioritering også påvirker hva som anbefales.",
+      "speech_style": "Avgrensende og dokumentnær; spør hvilket grunnlag som gjelder, hvor kostnaden ligger, hvem som har fullmakt og hva som må dokumenteres før gjennomføring.",
+      "teaches_player": "At rådgiveren må kunne forklare begrensninger uten å gjøre dem til unnskyldning for å slippe å utvikle reelle politiske alternativer."
+    },
+    {
+      "id": "seniorradgiver_intern_makt_world",
+      "social_function": "En seniorrådgiver gjør intern rang, karrierelogikk og uformell innflytelse synlig når den nye rådgiveren må velge mellom å bevare et upopulært premiss og å tilpasse seg den etablerte linjen.",
+      "class_position": "Erfaren kollega med stor uformell adgang til ledelsen og definisjonsmakt over hva som oppfattes som politisk realistisk, men uten egen formell rett til å fatte lederens beslutning.",
+      "status": "Høy intern status basert på erfaring, nettverk og tidligere treff; denne standing kan åpne dører sosialt, men er ikke delegasjon eller evidens.",
+      "power_over_player": "Kan påvirke hvilke saker som prioriteres, gi karriereråd og ramme inn hva som virker naivt eller profesjonelt, men kan ikke legitimt kreve kildeforfalskning, lekkasje eller rolleoverskridelse.",
+      "wants": "At teamet forstår den politiske konteksten, unngår unødvendige nederlag og gir ledelsen råd som faktisk kan brukes.",
+      "conceals": "At erfaring kan bli til selektiv hukommelse og at tidligere suksess kan gjøre en etablert strategi vanskeligere å utfordre når premissene har endret seg.",
+      "speech_style": "Erfaringsbasert og taktisk; viser til hva som pleier å fungere, hvem som må med, og hvilke konflikter det er dumt å åpne uten plan.",
+      "teaches_player": "At intern standing kan være verdifull informasjon om organisasjonen uten noen gang å bli sannhetsbevis eller formell myndighet."
+    },
+    {
+      "id": "organisasjonsrepresentant_lobby_world",
+      "social_function": "En ressurssterk organisasjonsrepresentant tester om rådgiveren kan ta ekspertise og berørte erfaringer alvorlig uten å la nærhet, tilgang eller profesjonell påvirkningskraft bli til særskilt beslutningsrett.",
+      "class_position": "Ekstern interessent med kunnskap, nettverk og offentlig påvirkning, men uten intern arbeidsgivermyndighet eller rett til å binde beslutningseieren.",
+      "status": "Høy ekstern standing når organisasjonen oppfattes som kunnskapsrik og representativ, men troverdighet må fortsatt skilles fra konkret evidens i den enkelte saken.",
+      "power_over_player": "Kan gi informasjon, mobilisere offentlig støtte, kritisere prosessen og skape politisk kostnad, men kan ikke gi employer_appointment, fortrolighetstilgang eller kreve et bestemt vedtak.",
+      "wants": "At organisasjonens erfaringer og interesser får reell betydning i beslutningsgrunnlaget og at møteadgang ikke bare blir symbolsk lytting.",
+      "conceals": "At selv legitim representasjon kan gi insentiv til å framstille egen konsekvens som mer generell, sikker eller akutt enn dokumentasjonen fullt ut støtter.",
+      "speech_style": "Overbevisende og caseorientert; kombinerer erfaring, tall og politiske konsekvenser og spør hva som skal til for at beslutningseieren endrer kurs.",
+      "teaches_player": "At påvirkning må dokumenteres og kontekstualiseres; rådgiveren skal verken demonisere lobbyisme eller behandle tilgang som nøytral evidens."
+    },
+    {
+      "id": "privat_relation_rollegrense_world",
+      "social_function": "En nær privat relasjon viser hva maktnær arbeid gjør med tilgjengelighet, identitet og informasjonsgrenser når rådgiveren tar med arbeidspress og taus kunnskap hjem.",
+      "class_position": "Privat nærstående uten arbeidsmessig delegasjon, tilgang eller rett til å få vite fortrolig innhold selv når relasjonen er preget av tillit.",
+      "status": "Høy emosjonell betydning som kan påvirke rådgiverens trivsel og selvbilde, men aldri gi profesjonell tilgang eller politisk myndighet.",
+      "power_over_player": "Kan utfordre arbeidsbelastning, fravær og moralske kompromisser og påvirke privatlivet sterkt, men kan ikke legitimt kreve fortrolige detaljer eller særbehandling.",
+      "wants": "At rådgiveren fortsatt er et menneske utenfor rollen, kan forklare belastning uten å lekke innhold og ikke lar nærhet til politisk makt bli hele identiteten.",
+      "conceals": "At frustrasjon over hemmelighold og uforutsigbar arbeidstid kan gjøre uformelle spørsmål om saker til en test av intimitet og lojalitet.",
+      "speech_style": "Hverdagslig og direkte; spør hvorfor alt haster, hva jobben gjør med deg, og om du kan være til stede uten å fortelle det du ikke kan dele.",
+      "teaches_player": "At profesjonell integritet også er evnen til å beskytte privatliv og fortrolighet uten å bruke taushetsplikt som skjold mot alle vanskelige samtaler."
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "bestilling_beslutningseier_og_radstanding",
+      "meaning": "Om politisk ledelse kan stole på at bestilling, rådgiverens anbefaling og faktisk beslutning forblir tydelig adskilt selv når tempo og lojalitetspress øker.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "kilde_usikkerhet_og_faglig_redelighet_standing",
+      "meaning": "Om fag- og kontrollmiljøer kan stole på at kilde, antakelse, usikkerhet og politisk vurdering ikke blandes for å produsere ønsket konklusjon.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "alternativ_risiko_og_gjennomforbarhet_standing",
+      "meaning": "Om beslutningseieren faktisk får realistiske alternativer med synlig risiko, avhengigheter og konsekvenser fremfor ett forkledd favorittvalg.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "fortrolighet_tilgang_og_informasjonsintegritet_standing",
+      "meaning": "Om kolleger og beslutningseiere kan stole på at sensitiv informasjon brukes innen faktisk rolle, formål og tilgang også når lekkasje kunne gitt taktisk gevinst.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "interessenttilgang_og_representasjonsstanding",
+      "meaning": "Om berørte og organisasjoner opplever at tilgangsskjevhet, interesser og manglende perspektiver gjøres synlig og behandles begrunnet.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "kommunikasjon_korrigering_og_offentlig_sporbarhet_standing",
+      "meaning": "Om presse og offentlighet kan skille hva som var kjent, anbefalt og besluttet, og om feil korrigeres uten historieskriving.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "gjennomforing_handoff_og_resultatstanding",
+      "meaning": "Om gjennomføringsleddet mottar beslutning, premisser, ansvar og åpne risikoer tydelig nok til at politikk kan testes mot faktisk resultat.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rolleintegritet_maktnaerhet_og_lojalitetsstanding",
+      "meaning": "Om interne kolleger kan stole på at nærhet til politisk ledelse brukes til bedre beslutningsstøtte og ikke til skjult myndighet eller kildeforfalskning.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "privat_profesjonell_grense_standing",
+      "meaning": "Om private relasjoner kan sameksistere med maktnært arbeid uten at fortrolighet, identitet og arbeidspress flyter sammen til særtilgang eller permanent fravær.",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "situated_reputation_model": {
+    "global_score_allowed": false,
+    "audiences": [
+      {
+        "id": "politisk_ledelse_og_beslutningseier",
+        "standing_axis": "bestilling_beslutningseier_og_radstanding",
+        "cares_about": [
+          "klare råd og synlig beslutningseier",
+          "ærlige konsekvenser også når de er politisk vanskelige"
+        ],
+        "cannot_grant": "Dette publikummet kan reagere med tillit, skepsis, samarbeid eller sosial standing, men reaksjonen kan ikke gi Politisk rådgiver employer_appointment, delegasjon, beslutningsmyndighet, fortrolighetstilgang eller rett til å love en offentlig beslutning. History Go og Politikk-badge kan forbedre historiske og institusjonelle spørsmål, men er ikke evidens for dagens sak, kildegrunnlag, fullmakt eller arbeidsgiverutnevnelse. Selv sterk popularitet, lederens personlige tillit, nettverk eller tidligere suksess kan ikke gjøre et råd til faktisk beslutning; korrekt beslutningseier, dokumentasjon og rollegrense må fortsatt være eksplisitt. For politisk_ledelse_og_beslutningseier gjelder grensen også når saken haster, når en politisk seier står på spill eller når en nær relasjon gjør uformell tilgang fristende."
+      },
+      {
+        "id": "fag_forvaltning_og_juridisk_okonomisk_kontroll",
+        "standing_axis": "kilde_usikkerhet_og_faglig_redelighet_standing",
+        "cares_about": [
+          "kildepresisjon og eksplisitt usikkerhet",
+          "skille mellom faglig vurdering og politisk valg"
+        ],
+        "cannot_grant": "Dette publikummet kan reagere med tillit, skepsis, samarbeid eller sosial standing, men reaksjonen kan ikke gi Politisk rådgiver employer_appointment, delegasjon, beslutningsmyndighet, fortrolighetstilgang eller rett til å love en offentlig beslutning. History Go og Politikk-badge kan forbedre historiske og institusjonelle spørsmål, men er ikke evidens for dagens sak, kildegrunnlag, fullmakt eller arbeidsgiverutnevnelse. Selv sterk popularitet, lederens personlige tillit, nettverk eller tidligere suksess kan ikke gjøre et råd til faktisk beslutning; korrekt beslutningseier, dokumentasjon og rollegrense må fortsatt være eksplisitt. For fag_forvaltning_og_juridisk_okonomisk_kontroll gjelder grensen også når saken haster, når en politisk seier står på spill eller når en nær relasjon gjør uformell tilgang fristende."
+      },
+      {
+        "id": "kommunikasjon_presse_og_offentlighet",
+        "standing_axis": "kommunikasjon_korrigering_og_offentlig_sporbarhet_standing",
+        "cares_about": [
+          "korrekt skille mellom råd og beslutning",
+          "rask og sporbar korrigering når premisser endres"
+        ],
+        "cannot_grant": "Dette publikummet kan reagere med tillit, skepsis, samarbeid eller sosial standing, men reaksjonen kan ikke gi Politisk rådgiver employer_appointment, delegasjon, beslutningsmyndighet, fortrolighetstilgang eller rett til å love en offentlig beslutning. History Go og Politikk-badge kan forbedre historiske og institusjonelle spørsmål, men er ikke evidens for dagens sak, kildegrunnlag, fullmakt eller arbeidsgiverutnevnelse. Selv sterk popularitet, lederens personlige tillit, nettverk eller tidligere suksess kan ikke gjøre et råd til faktisk beslutning; korrekt beslutningseier, dokumentasjon og rollegrense må fortsatt være eksplisitt. For kommunikasjon_presse_og_offentlighet gjelder grensen også når saken haster, når en politisk seier står på spill eller når en nær relasjon gjør uformell tilgang fristende."
+      },
+      {
+        "id": "interessenter_organisasjoner_og_berorte",
+        "standing_axis": "interessenttilgang_og_representasjonsstanding",
+        "cares_about": [
+          "redelig gjengivelse av interesser og innspill",
+          "fravær av uautoriserte løfter og særtilgang"
+        ],
+        "cannot_grant": "Dette publikummet kan reagere med tillit, skepsis, samarbeid eller sosial standing, men reaksjonen kan ikke gi Politisk rådgiver employer_appointment, delegasjon, beslutningsmyndighet, fortrolighetstilgang eller rett til å love en offentlig beslutning. History Go og Politikk-badge kan forbedre historiske og institusjonelle spørsmål, men er ikke evidens for dagens sak, kildegrunnlag, fullmakt eller arbeidsgiverutnevnelse. Selv sterk popularitet, lederens personlige tillit, nettverk eller tidligere suksess kan ikke gjøre et råd til faktisk beslutning; korrekt beslutningseier, dokumentasjon og rollegrense må fortsatt være eksplisitt. For interessenter_organisasjoner_og_berorte gjelder grensen også når saken haster, når en politisk seier står på spill eller når en nær relasjon gjør uformell tilgang fristende."
+      },
+      {
+        "id": "kolleger_partiapparat_og_interne_maktlinjer",
+        "standing_axis": "rolleintegritet_maktnaerhet_og_lojalitetsstanding",
+        "cares_about": [
+          "lojalitet uten kildeforfalskning",
+          "forutsigbare rolle- og fortrolighetsgrenser"
+        ],
+        "cannot_grant": "Dette publikummet kan reagere med tillit, skepsis, samarbeid eller sosial standing, men reaksjonen kan ikke gi Politisk rådgiver employer_appointment, delegasjon, beslutningsmyndighet, fortrolighetstilgang eller rett til å love en offentlig beslutning. History Go og Politikk-badge kan forbedre historiske og institusjonelle spørsmål, men er ikke evidens for dagens sak, kildegrunnlag, fullmakt eller arbeidsgiverutnevnelse. Selv sterk popularitet, lederens personlige tillit, nettverk eller tidligere suksess kan ikke gjøre et råd til faktisk beslutning; korrekt beslutningseier, dokumentasjon og rollegrense må fortsatt være eksplisitt. For kolleger_partiapparat_og_interne_maktlinjer gjelder grensen også når saken haster, når en politisk seier står på spill eller når en nær relasjon gjør uformell tilgang fristende."
+      },
+      {
+        "id": "gjennomforingsledd_og_offentlig_forvaltning",
+        "standing_axis": "gjennomforing_handoff_og_resultatstanding",
+        "cares_about": [
+          "komplett handoff fra beslutning til implementering",
+          "synlige premisser, risikoer og senere resultater"
+        ],
+        "cannot_grant": "Dette publikummet kan reagere med tillit, skepsis, samarbeid eller sosial standing, men reaksjonen kan ikke gi Politisk rådgiver employer_appointment, delegasjon, beslutningsmyndighet, fortrolighetstilgang eller rett til å love en offentlig beslutning. History Go og Politikk-badge kan forbedre historiske og institusjonelle spørsmål, men er ikke evidens for dagens sak, kildegrunnlag, fullmakt eller arbeidsgiverutnevnelse. Selv sterk popularitet, lederens personlige tillit, nettverk eller tidligere suksess kan ikke gjøre et råd til faktisk beslutning; korrekt beslutningseier, dokumentasjon og rollegrense må fortsatt være eksplisitt. For gjennomforingsledd_og_offentlig_forvaltning gjelder grensen også når saken haster, når en politisk seier står på spill eller når en nær relasjon gjør uformell tilgang fristende."
+      },
+      {
+        "id": "private_relations_og_rollegrenser",
+        "standing_axis": "privat_profesjonell_grense_standing",
+        "cares_about": [
+          "grenser mellom privatliv og fortrolig arbeid",
+          "fravær av særbehandling gjennom nærhet"
+        ],
+        "cannot_grant": "Dette publikummet kan reagere med tillit, skepsis, samarbeid eller sosial standing, men reaksjonen kan ikke gi Politisk rådgiver employer_appointment, delegasjon, beslutningsmyndighet, fortrolighetstilgang eller rett til å love en offentlig beslutning. History Go og Politikk-badge kan forbedre historiske og institusjonelle spørsmål, men er ikke evidens for dagens sak, kildegrunnlag, fullmakt eller arbeidsgiverutnevnelse. Selv sterk popularitet, lederens personlige tillit, nettverk eller tidligere suksess kan ikke gjøre et råd til faktisk beslutning; korrekt beslutningseier, dokumentasjon og rollegrense må fortsatt være eksplisitt. For private_relations_og_rollegrenser gjelder grensen også når saken haster, når en politisk seier står på spill eller når en nær relasjon gjør uformell tilgang fristende."
+      }
+    ],
+    "divergence_examples": [
+      "Et tydelig nei til å skjule en vesentlig risiko kan svekke kortsiktig standing hos en utålmodig leder og styrke tilliten hos fag- og kontrollmiljøet.",
+      "En bredere interessentkartlegging kan irritere en ressurssterk organisasjon som mister særtilgang og samtidig øke legitimiteten hos mindre organiserte berørte grupper.",
+      "Å vente med et budskap til faktagrunnlaget er kontrollert kan koste kommunikativt tempo og styrke senere offentlig etterprøvbarhet.",
+      "En offentlig korrigering kan gi kortsiktig omdømmetap og samtidig øke tilliten hos dem som ser at rådgivningsloggen ikke omskrives.",
+      "Et fortrolig notat som ikke brukes taktisk kan frustrere interne strateger og styrke informasjonsintegriteten hos beslutningseier og forvaltning.",
+      "Å vise tre reelle alternativer i stedet for ett forkledd favorittvalg kan oppleves mindre lojalt og samtidig gjøre den faktiske beslutningen mer robust.",
+      "Å gjenåpne et råd etter nye gjennomføringsdata kan svekke status som den som alltid har svaret og styrke standing som korrigerbar rådgiver.",
+      "Å holde private relasjoner utenfor fortrolig informasjon kan skape privat friksjon og samtidig beskytte både relasjonen, arbeidet og institusjonen."
+    ],
+    "authority_separation": "Det finnes ingen global reputation-score som kan låse opp myndighet. Politisk rådgiver er appointment_required og krever employer_appointment; høy standing kan ikke skape arbeidsgiverutnevnelse, delegasjon, gjøre et råd til beslutning, åpne fortrolig materiale eller erstatte kildegrunnlag og evidens. History Go og Politikk-badge kan forbedre historiske og institusjonelle spørsmål, men er ikke fullmakt. Tillit hos politisk ledelse, fag og forvaltning, presse, interessenter, kolleger, gjennomføringsledd og private relasjoner kan utvikle seg forskjellig og skal aldri summeres til én myndighetsscore."
+  },
+  "existing_work_continuity": {
+    "new_runtime_state": false,
+    "work_loops": [
+      "bestilling -> fakta -> alternativer -> konsekvens -> råd -> beslutningseier",
+      "hendelse -> verifisering -> politisk betydning -> responsalternativer -> anbefaling -> oppfølging"
+    ],
+    "persistent_work_object": "radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging",
+    "waiting_states": [
+      "faglig_dokumentasjon",
+      "juridisk_avklaring",
+      "budsjett_eller_okonomiavklaring",
+      "politisk_prioritering",
+      "interessent_eller_forvaltningssvar",
+      "kommunikasjonsavklaring",
+      "oppfolging_nye_fakta_eller_resultat"
+    ],
+    "handoff_rule": "Neste aktør mottar gjeldende rådgivningslogg med employer_appointment, bestilling, beslutningseier, dokumentversjon, kilder, usikkerhet, alternativer, risiko, fortrolighet, anbefaling, faktisk beslutning, hva som venter og hva som må bekreftes. Handoff kan aldri gjøre rådgiverens anbefaling til beslutning eller gi ny myndighet.",
+    "rework_rule": "Nye dokumenter, korrigert faktagrunnlag, ny juridisk eller økonomisk avklaring, endret politisk prioritering, beslutning eller gjennomføringsfunn gjenåpner bare berørte ledd. Tidligere versjon, anbefaling, beslutning og offentlig kommunikasjon beholdes."
+  },
+  "history_go_affordance": {
+    "badge_id": "politikk",
+    "source_ref": "data/Civication/mailFamilies/politikk/knowledge/politikk_politisk_radgivning_knowledge.json#politisk_radgivning_knowledge_014",
+    "better_question": "History Go skal gjøre spilleren bedre til å spørre hvordan politisk beslutningsstøtte faktisk virker over tid: Hvem var den formelle beslutningseieren, hvilke institusjoner og maktforhold formet handlingsrommet, hvilke kilder og interesser ble behandlet som autoritative, hvilke alternativer ble avvist før offentligheten så saken, og hvordan ble ansvar fordelt mellom politisk ledelse, rådgivere og forvaltning? Historiske eksempler kan skjerpe blikket for ministerstyre, embetsverk, partiapparat, lobbyisme, kommunikasjon, reformer og maktnære nettverk. Men læringskunnskapen skal brukes til bedre spørsmål, analogier og kontroll av egne antakelser. Spilleren må fortsatt hente dagens dokumenter, rettslige og økonomiske premisser, fortrolighetsgrenser, bestilling, employer_appointment og faktisk beslutning fra autoritative samtidige spor. Slik blir historisk kunnskap et verktøy for analyse uten å bli en snarvei fra innsikt til myndighet.",
+    "authority_boundary": "History Go og Politikk-badge kan ikke gi employer_appointment, delegasjon, fortrolighetstilgang eller beslutningsmyndighet, kan ikke erstatte aktuelle saksdokumenter, juridisk eller økonomisk evidens, og kan ikke gjøre en historisk analogi eller rådgiverens standing til dagens politiske beslutning. Rådgiveren må alltid skille læringskunnskap fra faktisk bestilling, kildegrunnlag, råd og beslutningseier."
+  },
+  "cross_role_proof": {
+    "required_for_rollout": false,
+    "shared_work_object_found": false,
+    "new_runtime": false,
+    "status": "not_required_for_rollout",
+    "rule": "Ingen cross-role-link materialiseres fordi Politisk rådgivning kan lukkes på sitt eget vedvarende rådgivningsobjekt; tematisk nærhet til parlamentarisk eller regjeringsarbeid er ikke nok uten et genuint delt canonical work-object."
+  },
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 1, morning: Første arbeidsdag begynner med en hastebestilling fra Ingrid; rådgiveren må bekrefte employer_appointment, beslutningseier, frist og hvilket spørsmål som faktisk skal avklares før et notat blir behandlet som politikk. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "beslutningseier_og_rad"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_001"
+        ],
+        "standing_audience": "politisk_ledelse_og_beslutningseier",
+        "standing_consequence": "Standing hos politisk_ledelse_og_beslutningseier kan endres på dag 1/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 1, lunch: Første arbeidsdag begynner med en hastebestilling fra Ingrid; rådgiveren må bekrefte employer_appointment, beslutningseier, frist og hvilket spørsmål som faktisk skal avklares før et notat blir behandlet som politikk. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kilde_usikkerhet_og_alternativer"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_002"
+        ],
+        "standing_audience": "fag_forvaltning_og_juridisk_okonomisk_kontroll",
+        "standing_consequence": "Standing hos fag_forvaltning_og_juridisk_okonomisk_kontroll kan endres på dag 1/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Første arbeidsdag begynner med en hastebestilling fra Ingrid; rådgiveren må bekrefte employer_appointment, beslutningseier, frist og hvilket spørsmål som faktisk skal avklares før et notat blir behandlet som politikk. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "interessenttilgang_og_representasjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_003"
+        ],
+        "standing_audience": "kommunikasjon_presse_og_offentlighet",
+        "standing_consequence": "Standing hos kommunikasjon_presse_og_offentlighet kan endres på dag 1/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Første arbeidsdag begynner med en hastebestilling fra Ingrid; rådgiveren må bekrefte employer_appointment, beslutningseier, frist og hvilket spørsmål som faktisk skal avklares før et notat blir behandlet som politikk. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "fortrolighet_og_informasjonsmakt"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_004"
+        ],
+        "standing_audience": "interessenter_organisasjoner_og_berorte",
+        "standing_consequence": "Standing hos interessenter_organisasjoner_og_berorte kan endres på dag 1/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 2, morning: Et tall som allerede sirkulerer i mediene viser seg å bygge på en annen definisjon enn briefen forutsetter; kilde, usikkerhet og politisk konsekvens må skilles før svaret låses. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kommunikasjon_og_offentlig_korrigering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_005"
+        ],
+        "standing_audience": "kolleger_partiapparat_og_interne_maktlinjer",
+        "standing_consequence": "Standing hos kolleger_partiapparat_og_interne_maktlinjer kan endres på dag 2/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: Et tall som allerede sirkulerer i mediene viser seg å bygge på en annen definisjon enn briefen forutsetter; kilde, usikkerhet og politisk konsekvens må skilles før svaret låses. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "gjennomforing_og_bounded_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_006"
+        ],
+        "standing_audience": "gjennomforingsledd_og_offentlig_forvaltning",
+        "standing_consequence": "Standing hos gjennomforingsledd_og_offentlig_forvaltning kan endres på dag 2/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Et tall som allerede sirkulerer i mediene viser seg å bygge på en annen definisjon enn briefen forutsetter; kilde, usikkerhet og politisk konsekvens må skilles før svaret låses. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "maktnaerhet_karriere_og_privatrand"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_007"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private_relations_og_rollegrenser kan endres på dag 2/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Et tall som allerede sirkulerer i mediene viser seg å bygge på en annen definisjon enn briefen forutsetter; kilde, usikkerhet og politisk konsekvens må skilles før svaret låses. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "beslutningseier_og_rad"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_008"
+        ],
+        "standing_audience": "politisk_ledelse_og_beslutningseier",
+        "standing_consequence": "Standing hos politisk_ledelse_og_beslutningseier kan endres på dag 2/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: Møteplanen viser at profesjonelle organisasjoner har hatt gjentatt tilgang mens en direkte berørt gruppe knapt er representert; rådgiveren må gjøre skjevheten synlig uten å late som alle innspill er like sterke. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kilde_usikkerhet_og_alternativer"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/conflict/politikk_politisk_radgivning_conflict.json#politisk_radgivning_conflict_009"
+        ],
+        "standing_audience": "fag_forvaltning_og_juridisk_okonomisk_kontroll",
+        "standing_consequence": "Standing hos fag_forvaltning_og_juridisk_okonomisk_kontroll kan endres på dag 3/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 3, lunch: Møteplanen viser at profesjonelle organisasjoner har hatt gjentatt tilgang mens en direkte berørt gruppe knapt er representert; rådgiveren må gjøre skjevheten synlig uten å late som alle innspill er like sterke. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "interessenttilgang_og_representasjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/story/politikk_politisk_radgivning_story.json#politisk_radgivning_story_010"
+        ],
+        "standing_audience": "kommunikasjon_presse_og_offentlighet",
+        "standing_consequence": "Standing hos kommunikasjon_presse_og_offentlighet kan endres på dag 3/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Møteplanen viser at profesjonelle organisasjoner har hatt gjentatt tilgang mens en direkte berørt gruppe knapt er representert; rådgiveren må gjøre skjevheten synlig uten å late som alle innspill er like sterke. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "fortrolighet_og_informasjonsmakt"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/event/politikk_politisk_radgivning_event.json#politisk_radgivning_event_011"
+        ],
+        "standing_audience": "interessenter_organisasjoner_og_berorte",
+        "standing_consequence": "Standing hos interessenter_organisasjoner_og_berorte kan endres på dag 3/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Møteplanen viser at profesjonelle organisasjoner har hatt gjentatt tilgang mens en direkte berørt gruppe knapt er representert; rådgiveren må gjøre skjevheten synlig uten å late som alle innspill er like sterke. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kommunikasjon_og_offentlig_korrigering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/micro/politikk_politisk_radgivning_micro.json#politisk_radgivning_micro_012"
+        ],
+        "standing_audience": "kolleger_partiapparat_og_interne_maktlinjer",
+        "standing_consequence": "Standing hos kolleger_partiapparat_og_interne_maktlinjer kan endres på dag 3/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 4, morning: Ingrid ber om tre realistiske alternativer, og hvert valg har forskjellig rettslig, økonomisk og fordelingsmessig risiko; rådgiveren må anbefale uten å konstruere ett alternativ som det eneste faktabaserte. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "gjennomforing_og_bounded_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/followup/politikk_politisk_radgivning_followup.json#politisk_radgivning_followup_013"
+        ],
+        "standing_audience": "gjennomforingsledd_og_offentlig_forvaltning",
+        "standing_consequence": "Standing hos gjennomforingsledd_og_offentlig_forvaltning kan endres på dag 4/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 4, lunch: Ingrid ber om tre realistiske alternativer, og hvert valg har forskjellig rettslig, økonomisk og fordelingsmessig risiko; rådgiveren må anbefale uten å konstruere ett alternativ som det eneste faktabaserte. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "maktnaerhet_karriere_og_privatrand"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/knowledge/politikk_politisk_radgivning_knowledge.json#politisk_radgivning_knowledge_014"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private_relations_og_rollegrenser kan endres på dag 4/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Ingrid ber om tre realistiske alternativer, og hvert valg har forskjellig rettslig, økonomisk og fordelingsmessig risiko; rådgiveren må anbefale uten å konstruere ett alternativ som det eneste faktabaserte. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "beslutningseier_og_rad"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/consequence/politikk_politisk_radgivning_consequence.json#politisk_radgivning_consequence_015"
+        ],
+        "standing_audience": "politisk_ledelse_og_beslutningseier",
+        "standing_consequence": "Standing hos politisk_ledelse_og_beslutningseier kan endres på dag 4/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Ingrid ber om tre realistiske alternativer, og hvert valg har forskjellig rettslig, økonomisk og fordelingsmessig risiko; rådgiveren må anbefale uten å konstruere ett alternativ som det eneste faktabaserte. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kilde_usikkerhet_og_alternativer"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_001"
+        ],
+        "standing_audience": "fag_forvaltning_og_juridisk_okonomisk_kontroll",
+        "standing_consequence": "Standing hos fag_forvaltning_og_juridisk_okonomisk_kontroll kan endres på dag 4/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 5, morning: Et fortrolig notat inneholder informasjon som ville gitt en klar taktisk fordel i offentlig debatt; fristelsen er stor, men tilgang, formål og informasjonsintegritet er en hard grense. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "interessenttilgang_og_representasjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_002"
+        ],
+        "standing_audience": "kommunikasjon_presse_og_offentlighet",
+        "standing_consequence": "Standing hos kommunikasjon_presse_og_offentlighet kan endres på dag 5/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 5, lunch: Et fortrolig notat inneholder informasjon som ville gitt en klar taktisk fordel i offentlig debatt; fristelsen er stor, men tilgang, formål og informasjonsintegritet er en hard grense. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "fortrolighet_og_informasjonsmakt"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_003"
+        ],
+        "standing_audience": "interessenter_organisasjoner_og_berorte",
+        "standing_consequence": "Standing hos interessenter_organisasjoner_og_berorte kan endres på dag 5/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Et fortrolig notat inneholder informasjon som ville gitt en klar taktisk fordel i offentlig debatt; fristelsen er stor, men tilgang, formål og informasjonsintegritet er en hard grense. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kommunikasjon_og_offentlig_korrigering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_004"
+        ],
+        "standing_audience": "kolleger_partiapparat_og_interne_maktlinjer",
+        "standing_consequence": "Standing hos kolleger_partiapparat_og_interne_maktlinjer kan endres på dag 5/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Et fortrolig notat inneholder informasjon som ville gitt en klar taktisk fordel i offentlig debatt; fristelsen er stor, men tilgang, formål og informasjonsintegritet er en hard grense. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "gjennomforing_og_bounded_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_005"
+        ],
+        "standing_audience": "gjennomforingsledd_og_offentlig_forvaltning",
+        "standing_consequence": "Standing hos gjennomforingsledd_og_offentlig_forvaltning kan endres på dag 5/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 6, morning: En mediesak eksploderer før det faglige grunnlaget er ferdig; Samira trenger et budskap mens Marius fortsatt undersøker hva som faktisk kan dokumenteres. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "maktnaerhet_karriere_og_privatrand"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_006"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private_relations_og_rollegrenser kan endres på dag 6/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 6, lunch: En mediesak eksploderer før det faglige grunnlaget er ferdig; Samira trenger et budskap mens Marius fortsatt undersøker hva som faktisk kan dokumenteres. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "beslutningseier_og_rad"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_007"
+        ],
+        "standing_audience": "politisk_ledelse_og_beslutningseier",
+        "standing_consequence": "Standing hos politisk_ledelse_og_beslutningseier kan endres på dag 6/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: En mediesak eksploderer før det faglige grunnlaget er ferdig; Samira trenger et budskap mens Marius fortsatt undersøker hva som faktisk kan dokumenteres. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kilde_usikkerhet_og_alternativer"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_008"
+        ],
+        "standing_audience": "fag_forvaltning_og_juridisk_okonomisk_kontroll",
+        "standing_consequence": "Standing hos fag_forvaltning_og_juridisk_okonomisk_kontroll kan endres på dag 6/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: En mediesak eksploderer før det faglige grunnlaget er ferdig; Samira trenger et budskap mens Marius fortsatt undersøker hva som faktisk kan dokumenteres. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "interessenttilgang_og_representasjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/conflict/politikk_politisk_radgivning_conflict.json#politisk_radgivning_conflict_009"
+        ],
+        "standing_audience": "kommunikasjon_presse_og_offentlighet",
+        "standing_consequence": "Standing hos kommunikasjon_presse_og_offentlighet kan endres på dag 6/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 7, morning: En seniorrådgiver antyder at et ubehagelig motargument bør tones ned fordi ledelsen allerede har investert politisk i retningen; profesjonell lojalitet og karrierestatus trekker i motsatt retning av kildeintegritet. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "fortrolighet_og_informasjonsmakt"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/story/politikk_politisk_radgivning_story.json#politisk_radgivning_story_010"
+        ],
+        "standing_audience": "interessenter_organisasjoner_og_berorte",
+        "standing_consequence": "Standing hos interessenter_organisasjoner_og_berorte kan endres på dag 7/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 7, lunch: En seniorrådgiver antyder at et ubehagelig motargument bør tones ned fordi ledelsen allerede har investert politisk i retningen; profesjonell lojalitet og karrierestatus trekker i motsatt retning av kildeintegritet. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kommunikasjon_og_offentlig_korrigering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/event/politikk_politisk_radgivning_event.json#politisk_radgivning_event_011"
+        ],
+        "standing_audience": "kolleger_partiapparat_og_interne_maktlinjer",
+        "standing_consequence": "Standing hos kolleger_partiapparat_og_interne_maktlinjer kan endres på dag 7/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: En seniorrådgiver antyder at et ubehagelig motargument bør tones ned fordi ledelsen allerede har investert politisk i retningen; profesjonell lojalitet og karrierestatus trekker i motsatt retning av kildeintegritet. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "gjennomforing_og_bounded_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/micro/politikk_politisk_radgivning_micro.json#politisk_radgivning_micro_012"
+        ],
+        "standing_audience": "gjennomforingsledd_og_offentlig_forvaltning",
+        "standing_consequence": "Standing hos gjennomforingsledd_og_offentlig_forvaltning kan endres på dag 7/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: En seniorrådgiver antyder at et ubehagelig motargument bør tones ned fordi ledelsen allerede har investert politisk i retningen; profesjonell lojalitet og karrierestatus trekker i motsatt retning av kildeintegritet. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "maktnaerhet_karriere_og_privatrand"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/followup/politikk_politisk_radgivning_followup.json#politisk_radgivning_followup_013"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private_relations_og_rollegrenser kan endres på dag 7/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 8, morning: Juridisk og økonomisk kontroll viser at det mest populære virkemiddelet har en svak hjemmels- eller finansieringslinje; rådgiveren må utvikle bedre alternativer i stedet for å skjule begrensningen. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "beslutningseier_og_rad"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/knowledge/politikk_politisk_radgivning_knowledge.json#politisk_radgivning_knowledge_014"
+        ],
+        "standing_audience": "politisk_ledelse_og_beslutningseier",
+        "standing_consequence": "Standing hos politisk_ledelse_og_beslutningseier kan endres på dag 8/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 8, lunch: Juridisk og økonomisk kontroll viser at det mest populære virkemiddelet har en svak hjemmels- eller finansieringslinje; rådgiveren må utvikle bedre alternativer i stedet for å skjule begrensningen. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kilde_usikkerhet_og_alternativer"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/consequence/politikk_politisk_radgivning_consequence.json#politisk_radgivning_consequence_015"
+        ],
+        "standing_audience": "fag_forvaltning_og_juridisk_okonomisk_kontroll",
+        "standing_consequence": "Standing hos fag_forvaltning_og_juridisk_okonomisk_kontroll kan endres på dag 8/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Juridisk og økonomisk kontroll viser at det mest populære virkemiddelet har en svak hjemmels- eller finansieringslinje; rådgiveren må utvikle bedre alternativer i stedet for å skjule begrensningen. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "interessenttilgang_og_representasjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_001"
+        ],
+        "standing_audience": "kommunikasjon_presse_og_offentlighet",
+        "standing_consequence": "Standing hos kommunikasjon_presse_og_offentlighet kan endres på dag 8/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Juridisk og økonomisk kontroll viser at det mest populære virkemiddelet har en svak hjemmels- eller finansieringslinje; rådgiveren må utvikle bedre alternativer i stedet for å skjule begrensningen. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "fortrolighet_og_informasjonsmakt"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_002"
+        ],
+        "standing_audience": "interessenter_organisasjoner_og_berorte",
+        "standing_consequence": "Standing hos interessenter_organisasjoner_og_berorte kan endres på dag 8/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 9, morning: Beslutningseieren endrer politisk prioritering etter nye forhandlinger; tidligere analyse er fortsatt historisk korrekt, men anbefalingen må revideres uten at dokumentasjonen skrives om. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kommunikasjon_og_offentlig_korrigering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_003"
+        ],
+        "standing_audience": "kolleger_partiapparat_og_interne_maktlinjer",
+        "standing_consequence": "Standing hos kolleger_partiapparat_og_interne_maktlinjer kan endres på dag 9/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 9, lunch: Beslutningseieren endrer politisk prioritering etter nye forhandlinger; tidligere analyse er fortsatt historisk korrekt, men anbefalingen må revideres uten at dokumentasjonen skrives om. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "gjennomforing_og_bounded_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_004"
+        ],
+        "standing_audience": "gjennomforingsledd_og_offentlig_forvaltning",
+        "standing_consequence": "Standing hos gjennomforingsledd_og_offentlig_forvaltning kan endres på dag 9/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Beslutningseieren endrer politisk prioritering etter nye forhandlinger; tidligere analyse er fortsatt historisk korrekt, men anbefalingen må revideres uten at dokumentasjonen skrives om. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "maktnaerhet_karriere_og_privatrand"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_005"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private_relations_og_rollegrenser kan endres på dag 9/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Beslutningseieren endrer politisk prioritering etter nye forhandlinger; tidligere analyse er fortsatt historisk korrekt, men anbefalingen må revideres uten at dokumentasjonen skrives om. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "beslutningseier_og_rad"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_006"
+        ],
+        "standing_audience": "politisk_ledelse_og_beslutningseier",
+        "standing_consequence": "Standing hos politisk_ledelse_og_beslutningseier kan endres på dag 9/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 10, morning: Den faktiske beslutningen tas; nå må budskap og spørsmål-og-svar vise hva som ble valgt, hva rådgiveren opprinnelig anbefalte, og hvilke premisser som fortsatt er åpne. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kilde_usikkerhet_og_alternativer"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_007"
+        ],
+        "standing_audience": "fag_forvaltning_og_juridisk_okonomisk_kontroll",
+        "standing_consequence": "Standing hos fag_forvaltning_og_juridisk_okonomisk_kontroll kan endres på dag 10/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: Den faktiske beslutningen tas; nå må budskap og spørsmål-og-svar vise hva som ble valgt, hva rådgiveren opprinnelig anbefalte, og hvilke premisser som fortsatt er åpne. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "interessenttilgang_og_representasjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_008"
+        ],
+        "standing_audience": "kommunikasjon_presse_og_offentlighet",
+        "standing_consequence": "Standing hos kommunikasjon_presse_og_offentlighet kan endres på dag 10/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Den faktiske beslutningen tas; nå må budskap og spørsmål-og-svar vise hva som ble valgt, hva rådgiveren opprinnelig anbefalte, og hvilke premisser som fortsatt er åpne. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "fortrolighet_og_informasjonsmakt"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/conflict/politikk_politisk_radgivning_conflict.json#politisk_radgivning_conflict_009"
+        ],
+        "standing_audience": "interessenter_organisasjoner_og_berorte",
+        "standing_consequence": "Standing hos interessenter_organisasjoner_og_berorte kan endres på dag 10/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Den faktiske beslutningen tas; nå må budskap og spørsmål-og-svar vise hva som ble valgt, hva rådgiveren opprinnelig anbefalte, og hvilke premisser som fortsatt er åpne. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kommunikasjon_og_offentlig_korrigering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/story/politikk_politisk_radgivning_story.json#politisk_radgivning_story_010"
+        ],
+        "standing_audience": "kolleger_partiapparat_og_interne_maktlinjer",
+        "standing_consequence": "Standing hos kolleger_partiapparat_og_interne_maktlinjer kan endres på dag 10/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: Saken går til gjennomføring, og handoff avdekker at ett viktig ansvar og en risikoforutsetning mangler eier; rådgivningens kvalitet testes først når noen andre skal implementere beslutningen. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "gjennomforing_og_bounded_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/event/politikk_politisk_radgivning_event.json#politisk_radgivning_event_011"
+        ],
+        "standing_audience": "gjennomforingsledd_og_offentlig_forvaltning",
+        "standing_consequence": "Standing hos gjennomforingsledd_og_offentlig_forvaltning kan endres på dag 11/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 11, lunch: Saken går til gjennomføring, og handoff avdekker at ett viktig ansvar og en risikoforutsetning mangler eier; rådgivningens kvalitet testes først når noen andre skal implementere beslutningen. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "maktnaerhet_karriere_og_privatrand"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/micro/politikk_politisk_radgivning_micro.json#politisk_radgivning_micro_012"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private_relations_og_rollegrenser kan endres på dag 11/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Saken går til gjennomføring, og handoff avdekker at ett viktig ansvar og en risikoforutsetning mangler eier; rådgivningens kvalitet testes først når noen andre skal implementere beslutningen. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "beslutningseier_og_rad"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/followup/politikk_politisk_radgivning_followup.json#politisk_radgivning_followup_013"
+        ],
+        "standing_audience": "politisk_ledelse_og_beslutningseier",
+        "standing_consequence": "Standing hos politisk_ledelse_og_beslutningseier kan endres på dag 11/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Saken går til gjennomføring, og handoff avdekker at ett viktig ansvar og en risikoforutsetning mangler eier; rådgivningens kvalitet testes først når noen andre skal implementere beslutningen. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kilde_usikkerhet_og_alternativer"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/knowledge/politikk_politisk_radgivning_knowledge.json#politisk_radgivning_knowledge_014"
+        ],
+        "standing_audience": "fag_forvaltning_og_juridisk_okonomisk_kontroll",
+        "standing_consequence": "Standing hos fag_forvaltning_og_juridisk_okonomisk_kontroll kan endres på dag 11/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 12, morning: Et tidlig resultat i gjennomføringen motsier en sentral antakelse i rådet; bounded rework må gjenåpne berørt analyse uten å late som den opprinnelige beslutningen aldri ble tatt. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "interessenttilgang_og_representasjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/consequence/politikk_politisk_radgivning_consequence.json#politisk_radgivning_consequence_015"
+        ],
+        "standing_audience": "kommunikasjon_presse_og_offentlighet",
+        "standing_consequence": "Standing hos kommunikasjon_presse_og_offentlighet kan endres på dag 12/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 12, lunch: Et tidlig resultat i gjennomføringen motsier en sentral antakelse i rådet; bounded rework må gjenåpne berørt analyse uten å late som den opprinnelige beslutningen aldri ble tatt. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "fortrolighet_og_informasjonsmakt"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_001"
+        ],
+        "standing_audience": "interessenter_organisasjoner_og_berorte",
+        "standing_consequence": "Standing hos interessenter_organisasjoner_og_berorte kan endres på dag 12/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Et tidlig resultat i gjennomføringen motsier en sentral antakelse i rådet; bounded rework må gjenåpne berørt analyse uten å late som den opprinnelige beslutningen aldri ble tatt. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kommunikasjon_og_offentlig_korrigering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_002"
+        ],
+        "standing_audience": "kolleger_partiapparat_og_interne_maktlinjer",
+        "standing_consequence": "Standing hos kolleger_partiapparat_og_interne_maktlinjer kan endres på dag 12/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Et tidlig resultat i gjennomføringen motsier en sentral antakelse i rådet; bounded rework må gjenåpne berørt analyse uten å late som den opprinnelige beslutningen aldri ble tatt. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "gjennomforing_og_bounded_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_003"
+        ],
+        "standing_audience": "gjennomforingsledd_og_offentlig_forvaltning",
+        "standing_consequence": "Standing hos gjennomforingsledd_og_offentlig_forvaltning kan endres på dag 12/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 13, morning: Offentligheten oppdager et tidligere for sterkt talepunkt; korrigering kan koste kortsiktig ansikt, men alternativet er å forsvare en påstand som rådgivningsloggen ikke lenger støtter. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "maktnaerhet_karriere_og_privatrand"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_004"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private_relations_og_rollegrenser kan endres på dag 13/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 13, lunch: Offentligheten oppdager et tidligere for sterkt talepunkt; korrigering kan koste kortsiktig ansikt, men alternativet er å forsvare en påstand som rådgivningsloggen ikke lenger støtter. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "beslutningseier_og_rad"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_005"
+        ],
+        "standing_audience": "politisk_ledelse_og_beslutningseier",
+        "standing_consequence": "Standing hos politisk_ledelse_og_beslutningseier kan endres på dag 13/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Offentligheten oppdager et tidligere for sterkt talepunkt; korrigering kan koste kortsiktig ansikt, men alternativet er å forsvare en påstand som rådgivningsloggen ikke lenger støtter. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kilde_usikkerhet_og_alternativer"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_006"
+        ],
+        "standing_audience": "fag_forvaltning_og_juridisk_okonomisk_kontroll",
+        "standing_consequence": "Standing hos fag_forvaltning_og_juridisk_okonomisk_kontroll kan endres på dag 13/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Offentligheten oppdager et tidligere for sterkt talepunkt; korrigering kan koste kortsiktig ansikt, men alternativet er å forsvare en påstand som rådgivningsloggen ikke lenger støtter. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "interessenttilgang_og_representasjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_007"
+        ],
+        "standing_audience": "kommunikasjon_presse_og_offentlighet",
+        "standing_consequence": "Standing hos kommunikasjon_presse_og_offentlighet kan endres på dag 13/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 14, morning: Saken lukkes med etterkontroll og institusjonell hukommelse; rådgiveren må kunne forklare bestilling, fakta, alternativer, råd, beslutning, gjennomføring og læring uten å gjøre egen innflytelse til formell myndighet. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må fastslå hva som er bestilt, hva som er kjent, hvem som eier beslutningen og hvilke åpne premisser som må inn i loggen før handling. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "fortrolighet_og_informasjonsmakt"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_008"
+        ],
+        "standing_audience": "interessenter_organisasjoner_og_berorte",
+        "standing_consequence": "Standing hos interessenter_organisasjoner_og_berorte kan endres på dag 14/morning fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 14, lunch: Saken lukkes med etterkontroll og institusjonell hukommelse; rådgiveren må kunne forklare bestilling, fakta, alternativer, råd, beslutning, gjennomføring og læring uten å gjøre egen innflytelse til formell myndighet. Lunsjen gjør relasjonene synlige: den samme rådgiverhandlingen leses ulikt av ledelse, fagmiljø, kommunikasjon, interessenter, kolleger eller private relasjoner, og standing kan derfor divergere. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "kommunikasjon_og_offentlig_korrigering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/conflict/politikk_politisk_radgivning_conflict.json#politisk_radgivning_conflict_009"
+        ],
+        "standing_audience": "kolleger_partiapparat_og_interne_maktlinjer",
+        "standing_consequence": "Standing hos kolleger_partiapparat_og_interne_maktlinjer kan endres på dag 14/lunch fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Saken lukkes med etterkontroll og institusjonell hukommelse; rådgiveren må kunne forklare bestilling, fakta, alternativer, råd, beslutning, gjennomføring og læring uten å gjøre egen innflytelse til formell myndighet. Ettermiddagen tvinger fram en anbefaling, venting eller eskalering. Spilleren må gi politisk brukbar beslutningsstøtte uten å gjøre lojalitet, status eller tidsnød til myndighet eller evidens. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "gjennomforing_og_bounded_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/story/politikk_politisk_radgivning_story.json#politisk_radgivning_story_010"
+        ],
+        "standing_audience": "gjennomforingsledd_og_offentlig_forvaltning",
+        "standing_consequence": "Standing hos gjennomforingsledd_og_offentlig_forvaltning kan endres på dag 14/afternoon fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Saken lukkes med etterkontroll og institusjonell hukommelse; rådgiveren må kunne forklare bestilling, fakta, alternativer, råd, beslutning, gjennomføring og læring uten å gjøre egen innflytelse til formell myndighet. Kvelden viser privat og forsinket konsekvens: arbeidsvalget følger rådgiveren ut av møtet gjennom tillit, korrigering, arbeidspress og spørsmål om hvor rollen slutter, men uten å endre formell myndighet. radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging oppdateres med employer_appointment, bestilling, beslutningseier, gjeldende dokumentversjon, kilde og usikkerhet, alternativer, konsekvenser og risiko, interessentinnspill, fortrolighetsgrense, rådgiverens anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og senere resultat. Spilleren skal kunne være politisk skarp, rask og lojal mot oppdraget, men må eksplisitt skille nærhet til makt fra egen myndighet, kilde fra interesse, faglig vurdering fra politisk valg, råd fra beslutning og fortrolig kunnskap fra offentlig argument. Dersom nye fakta, juridiske premisser, økonomiske avklaringer eller gjennomføringsfunn oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, anbefaling, beslutning og kommunikasjon beholdes. Dermed blir scenen et valg om profesjonell maktbruk og institusjonell korrigerbarhet, ikke bare om å levere et raskt svar.",
+        "thread_ids": [
+          "maktnaerhet_karriere_og_privatrand"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/event/politikk_politisk_radgivning_event.json#politisk_radgivning_event_011"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private_relations_og_rollegrenser kan endres på dag 14/evening fordi gruppen vurderer konkret pålitelighet i analyse, rolleintegritet, kildebruk, fortrolighet og korrigerbarhet. En handling kan styrke tillit hos én gruppe og svekke den hos en annen. Reaksjonen er situert og kan påvirke tone, tilgang til samarbeid og sosial tillit, men kan aldri gi Politisk rådgiver employer_appointment, delegasjon, fortrolighetstilgang, beslutningsmyndighet eller gjøre History Go, Politikk-badge, nettverk eller popularitet til evidens for dagens sak."
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "beslutningseier_og_rad",
+      "relationship": "Forholdet mellom rådgiver og beslutningseier utvikler seg gjennom bestilling, motstand, anbefaling og faktisk beslutning. Tråden tester om rådgiveren kan være tydelig og innflytelsesrik uten å overta myndighet eller skjule ubehagelige premisser for å bevare lederens tillit. Standing bygges og brytes langsomt gjennom gjentatte valg, ikke gjennom ett enkelt riktig svar. Spilleren skal senere møte hukommelsen om hva som ble sagt, hvilke premisser som ble synliggjort, hvem som fikk tilgang, og om tidligere usikkerhet ble behandlet redelig. Tillit kan derfor utvikle seg ulikt mellom politisk ledelse, fagmiljø, presse, interessenter, kolleger, gjennomføringsledd og private relasjoner, uten at noen av disse reaksjonene blir formell myndighet. Når Ingrid vender tilbake til saken, skal hun kunne se om rådgiveren tidligere utfordret henne på et vanskelig premiss, om anbefalingen faktisk ble fulgt, og om uenigheten ble bevart uten å omskrive beslutningen. Det gjør lederens tillit avhengig av både politisk nytte og etterprøvbar rolleintegritet.",
+      "beat_refs": [
+        "1/morning",
+        "2/evening",
+        "4/afternoon",
+        "6/lunch",
+        "8/morning",
+        "9/evening",
+        "11/afternoon",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "kilde_usikkerhet_og_alternativer",
+      "relationship": "Kildegrunnlaget vender tilbake gjennom hele sesongen og viser hvordan definisjoner, nye dokumenter, faglig uenighet og gjennomføringsfunn endrer hvilke råd som er forsvarlige. Tråden gjør korrigerbarhet til profesjonell styrke og krever at tidligere versjoner bevares. Standing bygges og brytes langsomt gjennom gjentatte valg, ikke gjennom ett enkelt riktig svar. Spilleren skal senere møte hukommelsen om hva som ble sagt, hvilke premisser som ble synliggjort, hvem som fikk tilgang, og om tidligere usikkerhet ble behandlet redelig. Tillit kan derfor utvikle seg ulikt mellom politisk ledelse, fagmiljø, presse, interessenter, kolleger, gjennomføringsledd og private relasjoner, uten at noen av disse reaksjonene blir formell myndighet. Når nye kilder eller resultater kommer, skal Marius og andre kontrollaktører kunne sammenligne dem med den opprinnelige versjonen og se om rådgiveren var tydelig om usikkerhet. Korrigering styrker standing når den er sporbar; opportunistisk historieskriving svekker den.",
+      "beat_refs": [
+        "1/lunch",
+        "3/morning",
+        "4/evening",
+        "6/afternoon",
+        "8/lunch",
+        "10/morning",
+        "11/evening",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "interessenttilgang_og_representasjon",
+      "relationship": "Møter og innspill viser hvordan organisert kapasitet, lobbykraft og berørte erfaringer får ulik tilgang. Rådgiveren må skille interesse fra evidens, registrere manglende perspektiver og unngå både naiv likevekt og skjult favorisering. Standing bygges og brytes langsomt gjennom gjentatte valg, ikke gjennom ett enkelt riktig svar. Spilleren skal senere møte hukommelsen om hva som ble sagt, hvilke premisser som ble synliggjort, hvem som fikk tilgang, og om tidligere usikkerhet ble behandlet redelig. Tillit kan derfor utvikle seg ulikt mellom politisk ledelse, fagmiljø, presse, interessenter, kolleger, gjennomføringsledd og private relasjoner, uten at noen av disse reaksjonene blir formell myndighet. Når de samme organisasjonene eller berørte gruppene vender tilbake, skal møteloggen vise hvem som tidligere ble hørt, hvem som manglet, hvilke interesser som var eksplisitte, og om noen fikk uautoriserte løfter. Relasjonell tillit avhenger av redelig representasjon, ikke lik møtefrekvens.",
+      "beat_refs": [
+        "1/afternoon",
+        "3/lunch",
+        "5/morning",
+        "6/evening",
+        "8/afternoon",
+        "10/lunch",
+        "12/morning",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "fortrolighet_og_informasjonsmakt",
+      "relationship": "Fortrolig materiale skaper asymmetrisk makt. Tråden undersøker om rådgiveren kan bruke sensitiv informasjon legitimt innen formål og tilgang uten lekkasje, privat deling eller taktisk misbruk, selv når politisk gevinst og intern status belønner grensebrudd. Standing bygges og brytes langsomt gjennom gjentatte valg, ikke gjennom ett enkelt riktig svar. Spilleren skal senere møte hukommelsen om hva som ble sagt, hvilke premisser som ble synliggjort, hvem som fikk tilgang, og om tidligere usikkerhet ble behandlet redelig. Tillit kan derfor utvikle seg ulikt mellom politisk ledelse, fagmiljø, presse, interessenter, kolleger, gjennomføringsledd og private relasjoner, uten at noen av disse reaksjonene blir formell myndighet. Når sensitiv informasjon senere blir offentlig, erstattet eller irrelevant, skal tidligere valg om tilgang fortsatt kunne vurderes. Den som avsto fra taktisk lekkasje kan ha tapt kortsiktig status og samtidig bygget varig tillit; den som misbrukte nærhet kan møte forsinket institusjonell og privat kostnad.",
+      "beat_refs": [
+        "1/evening",
+        "3/afternoon",
+        "5/lunch",
+        "7/morning",
+        "8/evening",
+        "10/afternoon",
+        "12/lunch",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "kommunikasjon_og_offentlig_korrigering",
+      "relationship": "Råd og beslutning møter offentligheten gjennom talepunkter, spørsmål og senere korrigering. Tråden tester om klar kommunikasjon kan sameksistere med usikkerhet, og om feil rettes uten at tidligere budskap omskrives til noe mer forsiktig enn det faktisk var. Standing bygges og brytes langsomt gjennom gjentatte valg, ikke gjennom ett enkelt riktig svar. Spilleren skal senere møte hukommelsen om hva som ble sagt, hvilke premisser som ble synliggjort, hvem som fikk tilgang, og om tidligere usikkerhet ble behandlet redelig. Tillit kan derfor utvikle seg ulikt mellom politisk ledelse, fagmiljø, presse, interessenter, kolleger, gjennomføringsledd og private relasjoner, uten at noen av disse reaksjonene blir formell myndighet. Når et gammelt talepunkt siteres på nytt, skal Samira og offentligheten kunne skille hva som var kjent da, hva som senere ble korrigert, og hva beslutningseieren faktisk vedtok. Standing følger evnen til å korrigere uten å late som den tidligere formuleringen aldri eksisterte.",
+      "beat_refs": [
+        "2/morning",
+        "3/evening",
+        "5/afternoon",
+        "7/lunch",
+        "9/morning",
+        "10/evening",
+        "12/afternoon",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "gjennomforing_og_bounded_rework",
+      "relationship": "Beslutningen blir virkelig først i handoff og gjennomføring. Tråden følger hvordan premisser, ansvar, risiko og resultat må kobles tilbake til rådgivningsloggen slik at nye fakta gjenåpner bare berørte ledd og ikke sletter beslutningshistorien. Standing bygges og brytes langsomt gjennom gjentatte valg, ikke gjennom ett enkelt riktig svar. Spilleren skal senere møte hukommelsen om hva som ble sagt, hvilke premisser som ble synliggjort, hvem som fikk tilgang, og om tidligere usikkerhet ble behandlet redelig. Tillit kan derfor utvikle seg ulikt mellom politisk ledelse, fagmiljø, presse, interessenter, kolleger, gjennomføringsledd og private relasjoner, uten at noen av disse reaksjonene blir formell myndighet. Når forvaltningen møter konsekvensene i praksis, skal handoff og rådgivningslogg gjøre det mulig å se hvilke risikoer som var varslet, hvilke premisser som sviktet, og hvilket ansvar som faktisk ble tildelt. Sen læring skal endre framtidige råd uten å slette beslutningshistorien.",
+      "beat_refs": [
+        "2/lunch",
+        "4/morning",
+        "5/evening",
+        "7/afternoon",
+        "9/lunch",
+        "11/morning",
+        "12/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "maktnaerhet_karriere_og_privatrand",
+      "relationship": "Nærhet til politisk ledelse gir sosial status, arbeidspress og identitetsrisiko. Tråden gjør lojalitet oppover, intern rang og private relasjoner til egne konsekvensrom, samtidig som ingen relasjonell standing får bli employer_appointment, delegasjon eller fortrolighetstilgang. Standing bygges og brytes langsomt gjennom gjentatte valg, ikke gjennom ett enkelt riktig svar. Spilleren skal senere møte hukommelsen om hva som ble sagt, hvilke premisser som ble synliggjort, hvem som fikk tilgang, og om tidligere usikkerhet ble behandlet redelig. Tillit kan derfor utvikle seg ulikt mellom politisk ledelse, fagmiljø, presse, interessenter, kolleger, gjennomføringsledd og private relasjoner, uten at noen av disse reaksjonene blir formell myndighet. Når rådgiverens interne status øker eller faller, skal tidligere lojalitetsvalg og private grenser fortsatt ha sosial virkning. Nærhet til ledelsen kan åpne samtaler og skape forventninger, men den må aldri bli delegasjon, særtilgang for venner eller et krav om at faglige motargumenter tones ned.",
+      "beat_refs": [
+        "2/afternoon",
+        "4/lunch",
+        "6/morning",
+        "7/evening",
+        "9/afternoon",
+        "11/lunch",
+        "13/morning",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "aftermath_1_politisk_ledelse_og_beslutningseier",
+      "description": "Etter en krevende arbeidsdag blir konsekvensen hos politisk_ledelse_og_beslutningseier merkbar uten at den kan reduseres til én samlet reputation-score. Rådgiveren må leve med at tydelig kildeavgrensning, et nei til uformell tilgang, en offentlig korrigering eller en utfordring av lederens første preferanse kan oppfattes ulikt av mennesker som har ulike interesser og maktposisjoner. Den private eller sosiale reaksjonen kan påvirke tillit, arbeidsglede og senere samarbeid, men den kan aldri omskrive employer_appointment, delegasjon, beslutningseier, dokumentert evidens eller fortrolighetsgrense.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_001"
+      ]
+    },
+    {
+      "id": "aftermath_2_fag_forvaltning_og_juridisk_okonomisk_kontroll",
+      "description": "Etter en krevende arbeidsdag blir konsekvensen hos fag_forvaltning_og_juridisk_okonomisk_kontroll merkbar uten at den kan reduseres til én samlet reputation-score. Rådgiveren må leve med at tydelig kildeavgrensning, et nei til uformell tilgang, en offentlig korrigering eller en utfordring av lederens første preferanse kan oppfattes ulikt av mennesker som har ulike interesser og maktposisjoner. Den private eller sosiale reaksjonen kan påvirke tillit, arbeidsglede og senere samarbeid, men den kan aldri omskrive employer_appointment, delegasjon, beslutningseier, dokumentert evidens eller fortrolighetsgrense.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_002"
+      ]
+    },
+    {
+      "id": "aftermath_3_kommunikasjon_presse_og_offentlighet",
+      "description": "Etter en krevende arbeidsdag blir konsekvensen hos kommunikasjon_presse_og_offentlighet merkbar uten at den kan reduseres til én samlet reputation-score. Rådgiveren må leve med at tydelig kildeavgrensning, et nei til uformell tilgang, en offentlig korrigering eller en utfordring av lederens første preferanse kan oppfattes ulikt av mennesker som har ulike interesser og maktposisjoner. Den private eller sosiale reaksjonen kan påvirke tillit, arbeidsglede og senere samarbeid, men den kan aldri omskrive employer_appointment, delegasjon, beslutningseier, dokumentert evidens eller fortrolighetsgrense.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_003"
+      ]
+    },
+    {
+      "id": "aftermath_4_interessenter_organisasjoner_og_berorte",
+      "description": "Etter en krevende arbeidsdag blir konsekvensen hos interessenter_organisasjoner_og_berorte merkbar uten at den kan reduseres til én samlet reputation-score. Rådgiveren må leve med at tydelig kildeavgrensning, et nei til uformell tilgang, en offentlig korrigering eller en utfordring av lederens første preferanse kan oppfattes ulikt av mennesker som har ulike interesser og maktposisjoner. Den private eller sosiale reaksjonen kan påvirke tillit, arbeidsglede og senere samarbeid, men den kan aldri omskrive employer_appointment, delegasjon, beslutningseier, dokumentert evidens eller fortrolighetsgrense.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_004"
+      ]
+    },
+    {
+      "id": "aftermath_5_kolleger_partiapparat_og_interne_maktlinjer",
+      "description": "Etter en krevende arbeidsdag blir konsekvensen hos kolleger_partiapparat_og_interne_maktlinjer merkbar uten at den kan reduseres til én samlet reputation-score. Rådgiveren må leve med at tydelig kildeavgrensning, et nei til uformell tilgang, en offentlig korrigering eller en utfordring av lederens første preferanse kan oppfattes ulikt av mennesker som har ulike interesser og maktposisjoner. Den private eller sosiale reaksjonen kan påvirke tillit, arbeidsglede og senere samarbeid, men den kan aldri omskrive employer_appointment, delegasjon, beslutningseier, dokumentert evidens eller fortrolighetsgrense.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_005"
+      ]
+    },
+    {
+      "id": "aftermath_6_gjennomforingsledd_og_offentlig_forvaltning",
+      "description": "Etter en krevende arbeidsdag blir konsekvensen hos gjennomforingsledd_og_offentlig_forvaltning merkbar uten at den kan reduseres til én samlet reputation-score. Rådgiveren må leve med at tydelig kildeavgrensning, et nei til uformell tilgang, en offentlig korrigering eller en utfordring av lederens første preferanse kan oppfattes ulikt av mennesker som har ulike interesser og maktposisjoner. Den private eller sosiale reaksjonen kan påvirke tillit, arbeidsglede og senere samarbeid, men den kan aldri omskrive employer_appointment, delegasjon, beslutningseier, dokumentert evidens eller fortrolighetsgrense.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_006"
+      ]
+    },
+    {
+      "id": "aftermath_7_private_relations_og_rollegrenser",
+      "description": "Etter en krevende arbeidsdag blir konsekvensen hos private_relations_og_rollegrenser merkbar uten at den kan reduseres til én samlet reputation-score. Rådgiveren må leve med at tydelig kildeavgrensning, et nei til uformell tilgang, en offentlig korrigering eller en utfordring av lederens første preferanse kan oppfattes ulikt av mennesker som har ulike interesser og maktposisjoner. Den private eller sosiale reaksjonen kan påvirke tillit, arbeidsglede og senere samarbeid, men den kan aldri omskrive employer_appointment, delegasjon, beslutningseier, dokumentert evidens eller fortrolighetsgrense.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_007"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "delayed_1",
+      "setup_ref": "1/morning",
+      "return_ref": "6/morning",
+      "domains": [
+        "trust",
+        "quality"
+      ],
+      "description": "Et tidligere råd, møte, budskap eller tilgangsvalg vender tilbake etter at nye fakta eller gjennomføringsresultater gjør den langsiktige konsekvensen synlig. Returen skal bruke den bevarte rådgivningsloggen, ikke rekonstruere historien fra dagens preferanse."
+    },
+    {
+      "id": "delayed_2",
+      "setup_ref": "1/evening",
+      "return_ref": "8/evening",
+      "domains": [
+        "risk",
+        "role_integrity"
+      ],
+      "description": "Et tidligere råd, møte, budskap eller tilgangsvalg vender tilbake etter at nye fakta eller gjennomføringsresultater gjør den langsiktige konsekvensen synlig. Returen skal bruke den bevarte rådgivningsloggen, ikke rekonstruere historien fra dagens preferanse."
+    },
+    {
+      "id": "delayed_3",
+      "setup_ref": "2/evening",
+      "return_ref": "10/evening",
+      "domains": [
+        "trust",
+        "quality"
+      ],
+      "description": "Et tidligere råd, møte, budskap eller tilgangsvalg vender tilbake etter at nye fakta eller gjennomføringsresultater gjør den langsiktige konsekvensen synlig. Returen skal bruke den bevarte rådgivningsloggen, ikke rekonstruere historien fra dagens preferanse."
+    },
+    {
+      "id": "delayed_4",
+      "setup_ref": "3/afternoon",
+      "return_ref": "12/morning",
+      "domains": [
+        "risk",
+        "role_integrity"
+      ],
+      "description": "Et tidligere råd, møte, budskap eller tilgangsvalg vender tilbake etter at nye fakta eller gjennomføringsresultater gjør den langsiktige konsekvensen synlig. Returen skal bruke den bevarte rådgivningsloggen, ikke rekonstruere historien fra dagens preferanse."
+    },
+    {
+      "id": "delayed_5",
+      "setup_ref": "4/afternoon",
+      "return_ref": "13/lunch",
+      "domains": [
+        "trust",
+        "quality"
+      ],
+      "description": "Et tidligere råd, møte, budskap eller tilgangsvalg vender tilbake etter at nye fakta eller gjennomføringsresultater gjør den langsiktige konsekvensen synlig. Returen skal bruke den bevarte rådgivningsloggen, ikke rekonstruere historien fra dagens preferanse."
+    },
+    {
+      "id": "delayed_6",
+      "setup_ref": "5/afternoon",
+      "return_ref": "14/morning",
+      "domains": [
+        "risk",
+        "role_integrity"
+      ],
+      "description": "Et tidligere råd, møte, budskap eller tilgangsvalg vender tilbake etter at nye fakta eller gjennomføringsresultater gjør den langsiktige konsekvensen synlig. Returen skal bruke den bevarte rådgivningsloggen, ikke rekonstruere historien fra dagens preferanse."
+    },
+    {
+      "id": "delayed_7",
+      "setup_ref": "6/evening",
+      "return_ref": "14/evening",
+      "domains": [
+        "trust",
+        "quality"
+      ],
+      "description": "Et tidligere råd, møte, budskap eller tilgangsvalg vender tilbake etter at nye fakta eller gjennomføringsresultater gjør den langsiktige konsekvensen synlig. Returen skal bruke den bevarte rådgivningsloggen, ikke rekonstruere historien fra dagens preferanse."
+    },
+    {
+      "id": "delayed_8",
+      "setup_ref": "7/evening",
+      "return_ref": "14/lunch",
+      "domains": [
+        "risk",
+        "role_integrity"
+      ],
+      "description": "Et tidligere råd, møte, budskap eller tilgangsvalg vender tilbake etter at nye fakta eller gjennomføringsresultater gjør den langsiktige konsekvensen synlig. Returen skal bruke den bevarte rådgivningsloggen, ikke rekonstruere historien fra dagens preferanse."
+    }
+  ],
+  "materialization": {
+    "authored_dimensions": [
+      "situated_reputation"
+    ],
+    "no_new_runtime": true,
+    "existing_plan_preserved": true,
+    "existing_role_model_preserved": true,
+    "existing_people_foundation_preserved": true,
+    "existing_work_grammar_preserved": true,
+    "existing_persistent_work_preserved": true,
+    "existing_rhythm_preserved": true,
+    "career_title_gates_preserved": true,
+    "cross_role_link_materialized": false,
+    "source_refs": [
+      "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_001",
+      "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_002",
+      "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_003",
+      "data/Civication/mailFamilies/politikk/job/politikk_politisk_radgivning_job.json#politisk_radgivning_job_004",
+      "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_005",
+      "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_006",
+      "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_007",
+      "data/Civication/mailFamilies/politikk/people/politikk_politisk_radgivning_people.json#politisk_radgivning_people_008",
+      "data/Civication/mailFamilies/politikk/conflict/politikk_politisk_radgivning_conflict.json#politisk_radgivning_conflict_009",
+      "data/Civication/mailFamilies/politikk/story/politikk_politisk_radgivning_story.json#politisk_radgivning_story_010",
+      "data/Civication/mailFamilies/politikk/event/politikk_politisk_radgivning_event.json#politisk_radgivning_event_011",
+      "data/Civication/mailFamilies/politikk/micro/politikk_politisk_radgivning_micro.json#politisk_radgivning_micro_012",
+      "data/Civication/mailFamilies/politikk/followup/politikk_politisk_radgivning_followup.json#politisk_radgivning_followup_013",
+      "data/Civication/mailFamilies/politikk/knowledge/politikk_politisk_radgivning_knowledge.json#politisk_radgivning_knowledge_014",
+      "data/Civication/mailFamilies/politikk/consequence/politikk_politisk_radgivning_consequence.json#politisk_radgivning_consequence_015"
+    ]
+  }
+}
