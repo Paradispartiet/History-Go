@@ -67,6 +67,7 @@ jobs:
               'const condImage = await resolveOgImage(urls.conditoriPhotoPage);': 'const condImage = "https://dms07.dimu.org/image/02RWgryHoU?dimension=600x600";',
               'planned_phase: index < 7 ? "opening" : index < 21 ? "middle" : index < 28 ? "context" : "theory"': 'planned_phase: index < 7 ? "opening" : index < 21 ? "middle" : index < 28 ? "bridge" : "final"',
               'family: index < 21 ? "fact" : index < 28 ? "context" : "concept"': 'family: index < 21 ? "fact" : index < 28 ? "context" : "concept_theory"',
+              'q.primary_knowledge_unit_id = `ku_by_vinderen_${String(index + 1).padStart(2, "0")}`;': 'q.primary_knowledge_unit_id = `ku_by_vinderen_${String(index + 1).padStart(2, "0")}`;\n  q.knowledge_unit_ids = [q.primary_knowledge_unit_id];',
           }
           for old, new in replacements.items():
               if old not in source:
