@@ -65,6 +65,20 @@ jobs:
           node scripts/audit-civication-role-world-rollout-readiness.mjs --write
           node scripts/build-civication-scene-registry.mjs --write
           node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+      - name: Diagnose broken role-pack mappings
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const index = JSON.parse(fs.readFileSync('data/Civication/rolePackIndex.json', 'utf8'));
+          const broken = index.roles.filter((row) => row.status === 'broken_mapping');
+          console.log('BROKEN_MAPPING_COUNT=' + broken.length);
+          console.log(JSON.stringify(broken, null, 2));
+          if (broken.length) {
+            console.log('=== matching role-model manifest entries ===');
+            const manifest = JSON.parse(fs.readFileSync('data/Civication/roleModels/manifest.json', 'utf8'));
+            console.log(JSON.stringify({files:(manifest.files||[]).filter((p)=>broken.some((r)=>p.includes('/'+r.role_scope+'.json'))), paths:manifest.paths||null, role_models:manifest.role_models||null}, null, 2));
+          }
+          NODE
       - name: Verify Religion Fagledelse prerequisites
         run: node tests/civication-religion-fagledelse-prerequisites.test.js
       - name: Verify Religion life/career split
@@ -79,23 +93,6 @@ jobs:
         run: node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
       - name: Verify Scenario People audit
         run: node --test tests/civication-scenario-people.test.mjs
-      - name: Diagnose Albumutgivelse composed invariant
-        shell: bash
-        run: |
-          set -euo pipefail
-          echo '=== generated/tracked test identity ==='
-          ls -l tests/civication-role-model-reference-v2.test.js || true
-          git ls-files --stage tests/civication-role-model-reference-v2.test.js || true
-          echo '=== test content ==='
-          if [ -f tests/civication-role-model-reference-v2.test.js ]; then
-            sed -n '1,180p' tests/civication-role-model-reference-v2.test.js
-          fi
-          echo '=== Albumutgivelse workspace hits ==='
-          grep -R -n --exclude-dir=node_modules --exclude-dir=.git 'Albumutgivelse' data tests scripts reports docs .github || true
-          echo '=== albumutgivelse case-insensitive workspace hits ==='
-          grep -R -n -i --exclude-dir=node_modules --exclude-dir=.git 'albumutgivelse' data tests scripts reports docs .github || true
-          echo '=== untracked/generated test paths ==='
-          git status --short tests data/Civication | sed -n '1,240p'
       - name: Verify full Civication suite
         run: node tests/run-civication-tests.mjs
       - name: Verify job learning profiles
