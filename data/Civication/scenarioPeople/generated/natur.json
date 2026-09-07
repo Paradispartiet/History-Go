@@ -222,6 +222,21 @@
       "verification_required": true
     },
     {
+      "id": "henrik_juridisk_og_stortingskontakt_natur_politisk_myndighet",
+      "name": "henrik_juridisk_og_stortingskontakt_natur_politisk_myndighet",
+      "category": "natur",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/natur/natur_politisk_myndighet.json"
+      ],
+      "scenario_roles": [
+        "natur_politisk_myndighet"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "henrik_plan_regelverksradgiver_natur_forvaltning_og_radgivning",
       "name": "henrik_plan_regelverksradgiver_natur_forvaltning_og_radgivning",
       "category": "natur",
@@ -233,6 +248,21 @@
       ],
       "scenario_roles": [
         "natur_forvaltning_og_radgivning"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "ingrid_departementsrad_natur_politisk_myndighet",
+      "name": "ingrid_departementsrad_natur_politisk_myndighet",
+      "category": "natur",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/natur/natur_politisk_myndighet.json"
+      ],
+      "scenario_roles": [
+        "natur_politisk_myndighet"
       ],
       "verification_required": true
     },
@@ -308,6 +338,21 @@
       ],
       "scenario_roles": [
         "natur_biologi_og_forskning"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "maria_regjeringsradgiver_natur_politisk_myndighet",
+      "name": "maria_regjeringsradgiver_natur_politisk_myndighet",
+      "category": "natur",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/natur/natur_politisk_myndighet.json"
+      ],
+      "scenario_roles": [
+        "natur_politisk_myndighet"
       ],
       "verification_required": true
     },
@@ -413,6 +458,21 @@
       ],
       "scenario_roles": [
         "natur_miljoledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "yusuf_ekspedisjonssjef_faggrunnlag_natur_politisk_myndighet",
+      "name": "yusuf_ekspedisjonssjef_faggrunnlag_natur_politisk_myndighet",
+      "category": "natur",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/natur/natur_politisk_myndighet.json"
+      ],
+      "scenario_roles": [
+        "natur_politisk_myndighet"
       ],
       "verification_required": true
     }
@@ -902,6 +962,37 @@
         "direct": 0,
         "strong": 3,
         "contextual": 19,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "natur_politisk_myndighet",
+      "role_scope": "natur_politisk_myndighet",
+      "title": "Klima- og miljøpolitisk myndighet",
+      "source": "data/Civication/roleModels/natur/natur_politisk_myndighet.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "klima",
+        "miljøpolitisk",
+        "myndighet",
+        "politisk"
+      ],
+      "resolved_counts": {
+        "total": 22,
+        "existing_place_people": 22,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 22,
         "excluded": 0
       }
     },

@@ -391,6 +391,15 @@
     "data/Civication/mailFamilies/natur/followup/natur_miljoledelse_followup.json",
     "data/Civication/mailFamilies/natur/knowledge/natur_miljoledelse_knowledge.json",
     "data/Civication/mailFamilies/natur/consequence/natur_miljoledelse_consequence.json",
+    "data/Civication/mailFamilies/natur/job/natur_politisk_myndighet_job.json",
+    "data/Civication/mailFamilies/natur/people/natur_politisk_myndighet_people.json",
+    "data/Civication/mailFamilies/natur/story/natur_politisk_myndighet_story.json",
+    "data/Civication/mailFamilies/natur/conflict/natur_politisk_myndighet_conflict.json",
+    "data/Civication/mailFamilies/natur/event/natur_politisk_myndighet_event.json",
+    "data/Civication/mailFamilies/natur/micro/natur_politisk_myndighet_micro.json",
+    "data/Civication/mailFamilies/natur/followup/natur_politisk_myndighet_followup.json",
+    "data/Civication/mailFamilies/natur/knowledge/natur_politisk_myndighet_knowledge.json",
+    "data/Civication/mailFamilies/natur/consequence/natur_politisk_myndighet_consequence.json",
     "data/Civication/mailFamilies/psykologi/job/fagansvarlig_job.json",
     "data/Civication/mailFamilies/psykologi/people/fagansvarlig_people.json",
     "data/Civication/mailFamilies/psykologi/story/fagansvarlig_story.json",
@@ -193124,6 +193133,2016 @@
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før regjeringspress møter et ubehagelig naturfaglig råd gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk regjeringspress møter et ubehagelig naturfaglig råd gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Ingrid",
+        "id": "politisk_myndighet_conflict_001",
+        "mail_family": "politisk_myndighet_faglig_integritet_og_styringspress",
+        "mail_type": "conflict",
+        "narrative_arc": "conflict",
+        "people_ref": "ingrid_departementsrad_natur_politisk_myndighet",
+        "phase": "forenoon",
+        "place_id": "departementalt_beslutningsrom_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 120,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/conflict/natur_politisk_myndighet_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Regjeringspress møter et ubehagelig naturfaglig råd",
+        "summary": "Regjeringspress møter et ubehagelig naturfaglig råd. Dette conflict-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_conflict_001",
+      "mail_type": "conflict",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før regjeringspress møter et ubehagelig naturfaglig råd gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk regjeringspress møter et ubehagelig naturfaglig råd gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Regjeringspress møter et ubehagelig naturfaglig råd",
+          "summary": "Regjeringspress møter et ubehagelig naturfaglig råd. Dette conflict-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_conflict_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "departementalt_beslutningsrom_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_conflict_001",
+          "source_path": "data/Civication/mailFamilies/natur/conflict/natur_politisk_myndighet_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_conflict_001",
+        "version": 1
+      },
+      "source_hash": "2e42d317d1d8c43b2e3640ac3936084b8b61d1198c945c48be25349ca1ff3f96",
+      "source_path": "data/Civication/mailFamilies/natur/conflict/natur_politisk_myndighet_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før skjult naturkostnad kommer tilbake som tillits- og styringsproblem gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk skjult naturkostnad kommer tilbake som tillits- og styringsproblem gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Maria",
+        "id": "politisk_myndighet_consequence_001",
+        "mail_family": "politisk_myndighet_prioritering_og_etterspill",
+        "mail_type": "consequence",
+        "narrative_arc": "consequence",
+        "people_ref": "maria_regjeringsradgiver_natur_politisk_myndighet",
+        "phase": "forenoon",
+        "place_id": "regjeringssamordning_og_avveiingsrom_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 120,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/consequence/natur_politisk_myndighet_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Skjult naturkostnad kommer tilbake som tillits- og styringsproblem",
+        "summary": "Skjult naturkostnad kommer tilbake som tillits- og styringsproblem. Dette consequence-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_consequence_001",
+      "mail_type": "consequence",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før skjult naturkostnad kommer tilbake som tillits- og styringsproblem gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk skjult naturkostnad kommer tilbake som tillits- og styringsproblem gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Skjult naturkostnad kommer tilbake som tillits- og styringsproblem",
+          "summary": "Skjult naturkostnad kommer tilbake som tillits- og styringsproblem. Dette consequence-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_consequence_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "regjeringssamordning_og_avveiingsrom_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_consequence_001",
+          "source_path": "data/Civication/mailFamilies/natur/consequence/natur_politisk_myndighet_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_consequence_001",
+        "version": 1
+      },
+      "source_hash": "0093dd972be01256d2df561c20d82a7b3b4dddf1e3a7dd3d431832d9481c9f8d",
+      "source_path": "data/Civication/mailFamilies/natur/consequence/natur_politisk_myndighet_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før nye fakta endrer premisset etter politisk beslutning gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk nye fakta endrer premisset etter politisk beslutning gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Maria",
+        "id": "politisk_myndighet_event_001",
+        "mail_family": "politisk_myndighet_avvik_og_premissendring",
+        "mail_type": "event",
+        "narrative_arc": "event",
+        "people_ref": "maria_regjeringsradgiver_natur_politisk_myndighet",
+        "phase": "forenoon",
+        "place_id": "regjeringssamordning_og_avveiingsrom_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 120,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/event/natur_politisk_myndighet_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Nye fakta endrer premisset etter politisk beslutning",
+        "summary": "Nye fakta endrer premisset etter politisk beslutning. Dette event-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_event_001",
+      "mail_type": "event",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før nye fakta endrer premisset etter politisk beslutning gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk nye fakta endrer premisset etter politisk beslutning gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Nye fakta endrer premisset etter politisk beslutning",
+          "summary": "Nye fakta endrer premisset etter politisk beslutning. Dette event-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_event_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "regjeringssamordning_og_avveiingsrom_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_event_001",
+          "source_path": "data/Civication/mailFamilies/natur/event/natur_politisk_myndighet_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_event_001",
+        "version": 1
+      },
+      "source_hash": "f973c2da91a131339e2b7e82c06987da63b2dddfb98cbd47804640646961b45d",
+      "source_path": "data/Civication/mailFamilies/natur/event/natur_politisk_myndighet_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før implementeringen virker svakere enn forutsatt gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk implementeringen virker svakere enn forutsatt gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Ingrid",
+        "id": "politisk_myndighet_followup_001",
+        "mail_family": "politisk_myndighet_etterkontroll_og_oppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "followup",
+        "people_ref": "ingrid_departementsrad_natur_politisk_myndighet",
+        "phase": "forenoon",
+        "place_id": "departementalt_beslutningsrom_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 120,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/followup/natur_politisk_myndighet_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Implementeringen virker svakere enn forutsatt",
+        "summary": "Implementeringen virker svakere enn forutsatt. Dette followup-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_followup_001",
+      "mail_type": "followup",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før implementeringen virker svakere enn forutsatt gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk implementeringen virker svakere enn forutsatt gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Implementeringen virker svakere enn forutsatt",
+          "summary": "Implementeringen virker svakere enn forutsatt. Dette followup-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_followup_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "departementalt_beslutningsrom_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_followup_001",
+          "source_path": "data/Civication/mailFamilies/natur/followup/natur_politisk_myndighet_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_followup_001",
+        "version": 1
+      },
+      "source_hash": "7c269a914d627fad760cfbf463b58c40d26cc999f0d5da18d6ed1efb720a53fd",
+      "source_path": "data/Civication/mailFamilies/natur/followup/natur_politisk_myndighet_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før prioriter mellom lovlige tiltak med synlig naturkostnad gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk prioriter mellom lovlige tiltak med synlig naturkostnad gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Ingrid",
+        "id": "politisk_myndighet_job_001",
+        "mail_family": "politisk_myndighet_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "ingrid_departementsrad_natur_politisk_myndighet",
+        "phase": "forenoon",
+        "place_id": "departementalt_beslutningsrom_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 120,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/job/natur_politisk_myndighet_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Prioriter mellom lovlige tiltak med synlig naturkostnad",
+        "summary": "Prioriter mellom lovlige tiltak med synlig naturkostnad. Dette job-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_job_001",
+      "mail_type": "job",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før prioriter mellom lovlige tiltak med synlig naturkostnad gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk prioriter mellom lovlige tiltak med synlig naturkostnad gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Prioriter mellom lovlige tiltak med synlig naturkostnad",
+          "summary": "Prioriter mellom lovlige tiltak med synlig naturkostnad. Dette job-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_job_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "departementalt_beslutningsrom_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_job_001",
+          "source_path": "data/Civication/mailFamilies/natur/job/natur_politisk_myndighet_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_job_001",
+        "version": 1
+      },
+      "source_hash": "9c2b6c84a0cfdd54f2bb3ccc3b5de275a6c4e91185698619228ac0bcf64515a7",
+      "source_path": "data/Civication/mailFamilies/natur/job/natur_politisk_myndighet_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før avklar hjemmel før et hastegrep kommuniseres som besluttet gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk avklar hjemmel før et hastegrep kommuniseres som besluttet gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Yusuf",
+        "id": "politisk_myndighet_job_002",
+        "mail_family": "politisk_myndighet_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "yusuf_ekspedisjonssjef_faggrunnlag_natur_politisk_myndighet",
+        "phase": "afternoon",
+        "place_id": "faggrunnlag_og_usikkerhetsbord_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 121,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/job/natur_politisk_myndighet_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Avklar hjemmel før et hastegrep kommuniseres som besluttet",
+        "summary": "Avklar hjemmel før et hastegrep kommuniseres som besluttet. Dette job-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_job_002",
+      "mail_type": "job",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før avklar hjemmel før et hastegrep kommuniseres som besluttet gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk avklar hjemmel før et hastegrep kommuniseres som besluttet gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Avklar hjemmel før et hastegrep kommuniseres som besluttet",
+          "summary": "Avklar hjemmel før et hastegrep kommuniseres som besluttet. Dette job-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_job_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faggrunnlag_og_usikkerhetsbord_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_job_002",
+          "source_path": "data/Civication/mailFamilies/natur/job/natur_politisk_myndighet_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_job_002",
+        "version": 1
+      },
+      "source_hash": "658f70bde95e9ae6b9067d29b94729d680ad926b538dc231d44187d2cbf4df4d",
+      "source_path": "data/Civication/mailFamilies/natur/job/natur_politisk_myndighet_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før svar stortinget med tydelig skille mellom fakta og politikk gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk svar stortinget med tydelig skille mellom fakta og politikk gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Maria",
+        "id": "politisk_myndighet_job_003",
+        "mail_family": "politisk_myndighet_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "maria_regjeringsradgiver_natur_politisk_myndighet",
+        "phase": "forenoon",
+        "place_id": "regjeringssamordning_og_avveiingsrom_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 122,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/job/natur_politisk_myndighet_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Svar Stortinget med tydelig skille mellom fakta og politikk",
+        "summary": "Svar Stortinget med tydelig skille mellom fakta og politikk. Dette job-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_job_003",
+      "mail_type": "job",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før svar stortinget med tydelig skille mellom fakta og politikk gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk svar stortinget med tydelig skille mellom fakta og politikk gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Svar Stortinget med tydelig skille mellom fakta og politikk",
+          "summary": "Svar Stortinget med tydelig skille mellom fakta og politikk. Dette job-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_job_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "regjeringssamordning_og_avveiingsrom_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_job_003",
+          "source_path": "data/Civication/mailFamilies/natur/job/natur_politisk_myndighet_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_job_003",
+        "version": 1
+      },
+      "source_hash": "d46f8d87529342e8bd456b611a38390b73c799f30590d98f13cefcbac16d6c03",
+      "source_path": "data/Civication/mailFamilies/natur/job/natur_politisk_myndighet_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før samordne en departementskonflikt uten å gjemme kostnaden gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk samordne en departementskonflikt uten å gjemme kostnaden gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Henrik",
+        "id": "politisk_myndighet_job_004",
+        "mail_family": "politisk_myndighet_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "henrik_juridisk_og_stortingskontakt_natur_politisk_myndighet",
+        "phase": "afternoon",
+        "place_id": "hjemmel_storting_og_oppfolgingsrom_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 123,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/job/natur_politisk_myndighet_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Samordne en departementskonflikt uten å gjemme kostnaden",
+        "summary": "Samordne en departementskonflikt uten å gjemme kostnaden. Dette job-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_job_004",
+      "mail_type": "job",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før samordne en departementskonflikt uten å gjemme kostnaden gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk samordne en departementskonflikt uten å gjemme kostnaden gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Samordne en departementskonflikt uten å gjemme kostnaden",
+          "summary": "Samordne en departementskonflikt uten å gjemme kostnaden. Dette job-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_job_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "hjemmel_storting_og_oppfolgingsrom_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_job_004",
+          "source_path": "data/Civication/mailFamilies/natur/job/natur_politisk_myndighet_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_job_004",
+        "version": 1
+      },
+      "source_hash": "1ae30897cc331a9ea1ec64b6bc369303bebfee21149ec623c7c12cd45a2471f5",
+      "source_path": "data/Civication/mailFamilies/natur/job/natur_politisk_myndighet_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før history go utløser et spørsmål, ikke et myndighetsgrunnlag gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk history go utløser et spørsmål, ikke et myndighetsgrunnlag gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Yusuf",
+        "id": "politisk_myndighet_knowledge_001",
+        "mail_family": "politisk_myndighet_history_go_naturkontekst",
+        "mail_type": "knowledge",
+        "narrative_arc": "knowledge",
+        "people_ref": "yusuf_ekspedisjonssjef_faggrunnlag_natur_politisk_myndighet",
+        "phase": "forenoon",
+        "place_id": "faggrunnlag_og_usikkerhetsbord_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 120,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/knowledge/natur_politisk_myndighet_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "History Go utløser et spørsmål, ikke et myndighetsgrunnlag",
+        "summary": "History Go utløser et spørsmål, ikke et myndighetsgrunnlag. Dette knowledge-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_knowledge_001",
+      "mail_type": "knowledge",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før history go utløser et spørsmål, ikke et myndighetsgrunnlag gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk history go utløser et spørsmål, ikke et myndighetsgrunnlag gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "History Go utløser et spørsmål, ikke et myndighetsgrunnlag",
+          "summary": "History Go utløser et spørsmål, ikke et myndighetsgrunnlag. Dette knowledge-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_knowledge_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faggrunnlag_og_usikkerhetsbord_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_knowledge_001",
+          "source_path": "data/Civication/mailFamilies/natur/knowledge/natur_politisk_myndighet_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_knowledge_001",
+        "version": 1
+      },
+      "source_hash": "bf922ff12f5f3813ce4459e9dd2e042e577c63349d0a908c599cce2e73ad4669",
+      "source_path": "data/Civication/mailFamilies/natur/knowledge/natur_politisk_myndighet_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før avklar hvilket organ som faktisk kan beslutte gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk avklar hvilket organ som faktisk kan beslutte gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Henrik",
+        "id": "politisk_myndighet_micro_001",
+        "mail_family": "politisk_myndighet_rask_prioriteringsavklaring",
+        "mail_type": "micro",
+        "narrative_arc": "micro",
+        "people_ref": "henrik_juridisk_og_stortingskontakt_natur_politisk_myndighet",
+        "phase": "forenoon",
+        "place_id": "hjemmel_storting_og_oppfolgingsrom_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 120,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/micro/natur_politisk_myndighet_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Avklar hvilket organ som faktisk kan beslutte",
+        "summary": "Avklar hvilket organ som faktisk kan beslutte. Dette micro-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_micro_001",
+      "mail_type": "micro",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før avklar hvilket organ som faktisk kan beslutte gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk avklar hvilket organ som faktisk kan beslutte gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Avklar hvilket organ som faktisk kan beslutte",
+          "summary": "Avklar hvilket organ som faktisk kan beslutte. Dette micro-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_micro_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "hjemmel_storting_og_oppfolgingsrom_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_micro_001",
+          "source_path": "data/Civication/mailFamilies/natur/micro/natur_politisk_myndighet_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_micro_001",
+        "version": 1
+      },
+      "source_hash": "bd21615010206365e3f3beace51ddba6452bd77ade8f4d94c75b16f56eea91fd",
+      "source_path": "data/Civication/mailFamilies/natur/micro/natur_politisk_myndighet_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før embetsverket nekter å omskrive faggrunnlaget gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk embetsverket nekter å omskrive faggrunnlaget gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Ingrid",
+        "id": "politisk_myndighet_people_001",
+        "mail_family": "politisk_myndighet_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "ingrid_departementsrad_natur_politisk_myndighet",
+        "phase": "forenoon",
+        "place_id": "departementalt_beslutningsrom_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 120,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/people/natur_politisk_myndighet_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Embetsverket nekter å omskrive faggrunnlaget",
+        "summary": "Embetsverket nekter å omskrive faggrunnlaget. Dette people-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_people_001",
+      "mail_type": "people",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før embetsverket nekter å omskrive faggrunnlaget gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk embetsverket nekter å omskrive faggrunnlaget gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Embetsverket nekter å omskrive faggrunnlaget",
+          "summary": "Embetsverket nekter å omskrive faggrunnlaget. Dette people-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_people_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "departementalt_beslutningsrom_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_people_001",
+          "source_path": "data/Civication/mailFamilies/natur/people/natur_politisk_myndighet_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_people_001",
+        "version": 1
+      },
+      "source_hash": "2587c5b3f20f832bb0e7c3f7539953b843ededfa4e397a8bb0eede472b343dd6",
+      "source_path": "data/Civication/mailFamilies/natur/people/natur_politisk_myndighet_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før samordneren gjør et kostbart kompromiss eksplisitt gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk samordneren gjør et kostbart kompromiss eksplisitt gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Yusuf",
+        "id": "politisk_myndighet_people_002",
+        "mail_family": "politisk_myndighet_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "yusuf_ekspedisjonssjef_faggrunnlag_natur_politisk_myndighet",
+        "phase": "afternoon",
+        "place_id": "faggrunnlag_og_usikkerhetsbord_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 121,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/people/natur_politisk_myndighet_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Samordneren gjør et kostbart kompromiss eksplisitt",
+        "summary": "Samordneren gjør et kostbart kompromiss eksplisitt. Dette people-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_people_002",
+      "mail_type": "people",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før samordneren gjør et kostbart kompromiss eksplisitt gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk samordneren gjør et kostbart kompromiss eksplisitt gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Samordneren gjør et kostbart kompromiss eksplisitt",
+          "summary": "Samordneren gjør et kostbart kompromiss eksplisitt. Dette people-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_people_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faggrunnlag_og_usikkerhetsbord_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_people_002",
+          "source_path": "data/Civication/mailFamilies/natur/people/natur_politisk_myndighet_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_people_002",
+        "version": 1
+      },
+      "source_hash": "4f5235a5363744133ad08e5285787c9deea7e4dea494c12647ae558b014282fd",
+      "source_path": "data/Civication/mailFamilies/natur/people/natur_politisk_myndighet_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før juridisk rådgiver avgrenser statsrådens mandat gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk juridisk rådgiver avgrenser statsrådens mandat gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Maria",
+        "id": "politisk_myndighet_people_003",
+        "mail_family": "politisk_myndighet_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "maria_regjeringsradgiver_natur_politisk_myndighet",
+        "phase": "forenoon",
+        "place_id": "regjeringssamordning_og_avveiingsrom_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 122,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/people/natur_politisk_myndighet_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Juridisk rådgiver avgrenser statsrådens mandat",
+        "summary": "Juridisk rådgiver avgrenser statsrådens mandat. Dette people-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_people_003",
+      "mail_type": "people",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før juridisk rådgiver avgrenser statsrådens mandat gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk juridisk rådgiver avgrenser statsrådens mandat gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Juridisk rådgiver avgrenser statsrådens mandat",
+          "summary": "Juridisk rådgiver avgrenser statsrådens mandat. Dette people-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_people_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "regjeringssamordning_og_avveiingsrom_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_people_003",
+          "source_path": "data/Civication/mailFamilies/natur/people/natur_politisk_myndighet_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_people_003",
+        "version": 1
+      },
+      "source_hash": "eb261ad73cc6cbcc123ebb7997b5204d621fe0a269fbbd7b2f34096bc8920a50",
+      "source_path": "data/Civication/mailFamilies/natur/people/natur_politisk_myndighet_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før fagavdelingen markerer ny og vesentlig usikkerhet gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk fagavdelingen markerer ny og vesentlig usikkerhet gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Henrik",
+        "id": "politisk_myndighet_people_004",
+        "mail_family": "politisk_myndighet_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "henrik_juridisk_og_stortingskontakt_natur_politisk_myndighet",
+        "phase": "afternoon",
+        "place_id": "hjemmel_storting_og_oppfolgingsrom_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 123,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/people/natur_politisk_myndighet_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Fagavdelingen markerer ny og vesentlig usikkerhet",
+        "summary": "Fagavdelingen markerer ny og vesentlig usikkerhet. Dette people-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_people_004",
+      "mail_type": "people",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før fagavdelingen markerer ny og vesentlig usikkerhet gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk fagavdelingen markerer ny og vesentlig usikkerhet gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Fagavdelingen markerer ny og vesentlig usikkerhet",
+          "summary": "Fagavdelingen markerer ny og vesentlig usikkerhet. Dette people-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_people_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "hjemmel_storting_og_oppfolgingsrom_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_people_004",
+          "source_path": "data/Civication/mailFamilies/natur/people/natur_politisk_myndighet_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_people_004",
+        "version": 1
+      },
+      "source_hash": "70c86bf7fb5779d1ed5551a6639f39d9d838d39fefddbbe03d7e37225bc1774f",
+      "source_path": "data/Civication/mailFamilies/natur/people/natur_politisk_myndighet_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "etterprovbar_politisk_avveiing_vs_mandatglidning_og_faglig_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før statsråden må eie kompromisset offentlig gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt.",
+            "tags": [
+              "mandat",
+              "fag_politikk_skille",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk statsråden må eie kompromisset offentlig gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert.",
+            "tags": [
+              "tempo",
+              "mandatglidning",
+              "faglig_omskriving"
+            ]
+          }
+        ],
+        "competency": "fag_politikk_skille_mandat_hjemmel_avveiing_og_demokratisk_oppfolging",
+        "consequence_axis": "demokratisk_tillit_og_korrigerbarhet_vs_skjult_kostnad_og_ansvarsuklarhet",
+        "from": "Yusuf",
+        "id": "politisk_myndighet_story_001",
+        "mail_family": "politisk_myndighet_lederansvar_og_mandat",
+        "mail_type": "story",
+        "narrative_arc": "story",
+        "people_ref": "yusuf_ekspedisjonssjef_faggrunnlag_natur_politisk_myndighet",
+        "phase": "forenoon",
+        "place_id": "faggrunnlag_og_usikkerhetsbord_natur",
+        "pressure": "faglige_rad_rettslig_handlingsrom_regjeringspress_storting_offentlighet_og_naturkostnad",
+        "priority": 120,
+        "role_scope": "natur_politisk_myndighet",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/story/natur_politisk_myndighet_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+          "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+          "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+        ],
+        "subject": "Statsråden må eie kompromisset offentlig",
+        "summary": "Statsråden må eie kompromisset offentlig. Dette story-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken.",
+        "task_domain": "klima_og_miljopolitisk_myndighet"
+      },
+      "id": "politisk_myndighet_story_001",
+      "mail_type": "story",
+      "role_scope": "natur_politisk_myndighet",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer demokratisk og faglig etterprøvbarhet fordi embetsverk, regjering, Storting, berørte grupper og senere kontroll kan se hva som var fakta, hva som var usikkert, hvilken politisk verdiavveiing som ble gjort, hvilken hjemmel som bar tiltaket, hvem som eide beslutningen og hva implementeringen skulle måles mot. Statsråden bruker dermed reelt offentlig mandat uten å gjøre politisk makt til vitenskapelig evidens, og saken kan korrigeres når nye data eller rettslige premisser endres.",
+            "id": "A",
+            "label": "Før statsråden må eie kompromisset offentlig gjennom mandat- og beslutningssporet",
+            "reply": "Jeg skiller først dokumentert faggrunnlag, vesentlig usikkerhet og rettslig ramme fra den politiske avveiingen. Deretter registrerer jeg hvilket organ som faktisk eier beslutningen, hvilke alternativer som er lovlige, hvilke natur- og fordelingskostnader hvert alternativ har og hva som må vente på budsjett, regjering eller Storting. Hvis jeg velger et alternativ som avviker fra faglig anbefaling, bevarer jeg anbefalingen uendret og begrunner verdiprioriteringen som politisk. Nye fakta, ny hjemmelsvurdering eller svak implementering gjenåpner bare berørte ledd med tidligere begrunnelse intakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi kortsiktig politisk tempo, men den blander offentlig mandat, faglig evidens og kommunikasjon på en måte som gjør både ansvar og korrigering vanskelig. Når faglige råd tones ned, beslutningseier blir uklar eller hjemmel tas for gitt, kan verken Stortinget, forvaltningen eller offentligheten se hvilken del som var kunnskap og hvilken del som var politisk valg. Nye fakta blir da en omdømmekrise i stedet for et normalt grunnlag for rework.",
+            "id": "B",
+            "label": "Lukk statsråden må eie kompromisset offentlig gjennom tittel og politisk tempo",
+            "reply": "Jeg bruker statsrådstittelen og den politiske tidsplanen som tilstrekkelig grunnlag for å presse saken gjennom. Faglige innvendinger tones ned til de passer kommunikasjonen, og jeg lar det være uklart om beslutningen egentlig ligger hos departementet, regjeringen eller Stortinget. Naturkostnad og usikkerhet beskrives som om de var løst av det politiske valget, og implementeringen lukkes når budskapet er levert i stedet for når premissene faktisk er kontrollert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Beslutningssporet viser offentlig utnevnelse og mandat, faggrunnlag og usikkerhet, rettslig ramme, politiske alternativer, beslutningseier, åpne ventepunkter og hva implementeringen skal måles mot.",
+            "Presset er reelt: politisk tid, medielogikk, regjeringsforhandling eller krise kan gjøre det fristende å behandle ønsket utfall som om både fag og hjemmel allerede var avklart.",
+            "Du må velge et grep som bevarer skille mellom kunnskap, politikk og myndighet og som lar saken håndteres med handoff og avgrenset rework når premissene endres."
+          ],
+          "subject": "Statsråden må eie kompromisset offentlig",
+          "summary": "Statsråden må eie kompromisset offentlig. Dette story-steget føres i utnevnelse_mandat_faggrunnlag_avveiing_hjemmel_beslutning_ansvar_og_oppfolgingslogg. Public_office_appointment, faktisk mandat, beslutningseier, faggrunnlag, usikkerhet, politiske alternativer, natur- og fordelingskostnader, rettslig hjemmel, budsjettpremiss, regjeringssamordning, stortingsrolle, offentlig begrunnelse, implementeringsansvar, ventepunkt og etterkontroll skal være separate og versjonerte felt. Statsråd (klima og miljø) kan bare materialiseres etter dokumentert public_office_appointment. Natur-badge, XP, ekspertise, omdømme eller popularitet kan aldri oppfylle denne gaten. Statsråden kan velge mellom lovlige politiske alternativer og stå ansvarlig for avveiingen, men kan ikke fabrikere hjemmel, gjøre regjeringsønske til naturvitenskapelig fakta, skjule vesentlig faglig usikkerhet eller opptre som om eget mandat erstatter regjeringen, Stortinget eller annen kompetent myndighet. History Go kan skjerpe spørsmål om natur, steder og økologi, men er ikke saksutredning, feltdata, juridisk vurdering eller beslutningshjemmel. En god løsning gjør derfor eksplisitt hva som er kunnskap, hva som er politikk, hvem som faktisk kan beslutte, hvilken kostnad som aksepteres, hva man venter på og hvilket nytt premiss som skal gjenåpne saken."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "politisk_myndighet_story_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faggrunnlag_og_usikkerhetsbord_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "politisk_myndighet_story_001",
+          "source_path": "data/Civication/mailFamilies/natur/story/natur_politisk_myndighet_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_politisk_myndighet.mail.politisk_myndighet_story_001",
+        "version": 1
+      },
+      "source_hash": "81b6745bf94b062e6df8804d323913602a251925d80888c59a5949f7f9126de2",
+      "source_path": "data/Civication/mailFamilies/natur/story/natur_politisk_myndighet_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
       "category": "psykologi",
       "compatibility_projection": {
         "category": "psykologi",
@@ -253983,7 +256002,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "0f35ccc0e3d740f3490681f0234a04f9e338fdb5722c04c01ac9ef19b6c4616a",
+  "registry_hash": "38686610d6c95202be61865310255d49e62f4fd1b1eb37915537f079bf91abab",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -255278,6 +257297,23 @@
       "miljoledelse_knowledge_001",
       "miljoledelse_consequence_001"
     ],
+    "natur/natur_politisk_myndighet": [
+      "politisk_myndighet_job_001",
+      "politisk_myndighet_job_002",
+      "politisk_myndighet_job_003",
+      "politisk_myndighet_job_004",
+      "politisk_myndighet_people_001",
+      "politisk_myndighet_people_002",
+      "politisk_myndighet_people_003",
+      "politisk_myndighet_people_004",
+      "politisk_myndighet_story_001",
+      "politisk_myndighet_conflict_001",
+      "politisk_myndighet_event_001",
+      "politisk_myndighet_micro_001",
+      "politisk_myndighet_followup_001",
+      "politisk_myndighet_knowledge_001",
+      "politisk_myndighet_consequence_001"
+    ],
     "psykologi/fagansvarlig": [
       "psykologi_fagansvarlig_job_avvik_001",
       "psykologi_fagansvarlig_people_skjonn_001",
@@ -255787,11 +257823,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 602,
+    "compiled_source_file_count": 611,
     "ignored_source_file_count": 1,
-    "input_file_count": 603,
-    "role_count": 72,
-    "scene_count": 1630,
+    "input_file_count": 612,
+    "role_count": 73,
+    "scene_count": 1645,
     "shadowed_duplicate_count": 0
   },
   "version": 1
