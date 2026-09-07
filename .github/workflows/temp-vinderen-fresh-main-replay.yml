@@ -1,0 +1,77 @@
+name: TEMP Vinderen fresh-main replay
+
+on:
+  push:
+    branches:
+      - agent/vinderen-place-production-20260907
+
+permissions:
+  contents: write
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vinderen-place-production-20260907
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Replay onto fresh main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          set +e
+          git merge --no-commit --no-ff origin/main
+          rc=$?
+          set -e
+          if [ "$rc" -ne 0 ]; then
+            unresolved="$(git diff --name-only --diff-filter=U)"
+            if [ "$unresolved" != "data/Civication/scenarioPeople_index.json" ]; then
+              echo "Unexpected merge conflicts:"
+              printf '%s\n' "$unresolved"
+              exit 1
+            fi
+            git checkout --ours -- data/Civication/scenarioPeople_index.json
+            git add data/Civication/scenarioPeople_index.json
+          fi
+          test -z "$(git diff --name-only --diff-filter=U)"
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate combined deterministic outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+      - name: Validate focused Vinderen gates on fresh main
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/vinderen-workcard-current.json
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+          node --test tests/civication-scenario-people.test.mjs
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all
+          npm run test:quiz-content-audit
+          npm run test:quiz-production
+          node --test tests/quiz-answer-shuffle-runtime.test.mjs tests/quiz-answer-position-governance.test.mjs
+          BASE_SHA="$(git rev-parse origin/main)"
+          node scripts/audit-quiz-answer-position-bias.mjs --base "$BASE_SHA" --head HEAD
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs tests/fagverk-history-period-deeplink.test.mjs tests/place-card-meta-surfaces.test.mjs
+          REPO_HYGIENE_BASE_SHA="$BASE_SHA" REPO_HYGIENE_HEAD_SHA="HEAD" node scripts/audit-repository-hygiene-v1.mjs
+      - name: Commit permanent fresh-main replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git rm .github/workflows/temp-vinderen-fresh-main-replay.yml
+          git add -A
+          git status --short
+          git diff --cached --check
+          git commit -m "Replay Vinderen on fresh main"
+          git push origin HEAD:agent/vinderen-place-production-20260907
