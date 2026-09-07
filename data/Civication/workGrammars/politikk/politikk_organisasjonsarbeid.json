@@ -1,1 +1,235 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"politikk","role_scope":"politikk_organisasjonsarbeid","role_id":"politikk_organisasjonsarbeid","badge_binding":{"badge_titles":["Organisasjonssekretær"],"thresholds":[25]},"work_world":"Sekretariatsarbeid der vedtak, medlemmer, møter og praktisk drift må henge sammen.","authority_boundary":{"may":["forberede møter og saksgrunnlag innen mandat","koordinere aktivitet og følge opp vedtak","eskalere uklarheter til ansvarlig organ"],"may_not":["forfalske eller omskrive vedtak","bruke organisasjonens midler uten fullmakt","dele medlems- eller personopplysninger uten grunnlag","uttale seg som valgt organ uten mandat"]},"task_families":["møteforberedelse","medlemsoppfølging","dokumentasjon","arrangementskoordinering","vedtaksoppfølging"],"work_loops":["behov -> saksgrunnlag -> møte -> vedtak -> oppfølging -> dokumentasjon","aktivitet -> ressursplan -> koordinering -> gjennomføring -> avvik -> læring"],"practice_stories":[{"id":"uklart_vedtak","setup":"Et vedtak er formulert så uklart at to grupper tolker det forskjellig.","decision":"Avklar ordlyd og beslutningsprotokoll før gjennomføring, og løft reell tvil til riktig organ.","learning":"sekretariatet skal gjennomføre vedtak, ikke oppfinne dem"},{"id":"lav_deltakelse","setup":"Et viktig medlemsmøte har få påmeldte.","decision":"Kartlegg barrierer, forbedre informasjon og foreslå praktiske grep uten å manipulere medlemslisten.","learning":"mobilisering krever tillit og ryddige data"},{"id":"referatstrid","setup":"To deltakere krever ulike versjoner av et referat.","decision":"Skill observerbare hendelser fra vurderinger og bruk avtalte godkjenningsrutiner.","learning":"dokumentasjon er institusjonell hukommelse"},{"id":"hastesak","setup":"Ledelsen vil sende et utspill før nødvendig fullmakt er avklart.","decision":"Forbered underlaget, men vent med bindende handling til mandatet er klart.","learning":"tempo opphever ikke fullmaktsgrenser"},{"id":"persondata","setup":"En kampanjegruppe ber om komplett medlemsliste for målrettet kontakt.","decision":"Begrens deling til legitimt behov og etabler riktig tilgang.","learning":"organisasjonsarbeid må beskytte medlemmer også når kampanjen haster"}],"quality_axes":["organisasjonsforståelse","møtearbeid","dokumentasjon","medlemsdialog","koordinering","integritet"]}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "politikk",
+  "role_scope": "politikk_organisasjonsarbeid",
+  "role_id": "politikk_organisasjonsarbeid",
+  "badge_binding": {
+    "badge_id": "politikk",
+    "badge_titles": [
+      "Organisasjonssekretær"
+    ],
+    "thresholds": [
+      25
+    ]
+  },
+  "work_world": "Sekretariatsarbeid der medlemskontakt, møter, vedtak, aktiviteter, ressursbruk og oppfølging holdes sammen i ett versjonert organisasjonsspor uten at administrativ koordinering blir til valgt eller økonomisk myndighet.",
+  "authority_boundary": {
+    "may": [
+      "forberede møter, saksgrunnlag, medlemsdialog og aktivitetsunderlag innen eksplisitt administrativt mandat",
+      "koordinere oppgaver, arrangementer og handoffs og følge opp faktiske vedtak med synlig eier og frist",
+      "dokumentere status, uenighet, ventepunkter og avvik og eskalere uklar myndighet til riktig beslutningseier",
+      "behandle medlemsopplysninger bare når tilgang og arbeidsgrunnlag er relevant og dokumenterbart"
+    ],
+    "may_not": [
+      "forfalske, omskrive eller utvide vedtak eller fremstille forslag og lederbestillinger som om de var besluttet av valgt organ",
+      "dele eller bruke medlems- og personopplysninger uten legitimt arbeidsgrunnlag, nødvendig tilgang eller relevant personvernkontroll",
+      "bruke organisasjonens midler, inngå avtaler eller love økonomiske forpliktelser uten faktisk fullmakt",
+      "uttale seg som valgt organ, tillitsvalgt eller politisk beslutningseier uten mandat",
+      "bruke Politikk-badge, XP, History Go-kunnskap, situated reputation, vennskap eller intern status som fullmakt, vedtak, samtykke, budsjettgodkjenning eller valgt mandat"
+    ]
+  },
+  "task_families": [
+    "mote_og_saksforberedelse",
+    "medlemsoppfolging",
+    "referat_og_dokumentasjon",
+    "aktivitets_og_arrangementskoordinering",
+    "vedtaksoppfolging",
+    "lokal_og_sentral_handoff"
+  ],
+  "work_loops": [
+    "behov -> saksgrunnlag -> møte -> vedtak -> oppfølging -> dokumentasjon",
+    "aktivitet -> ressursplan -> koordinering -> gjennomføring -> avvik -> læring"
+  ],
+  "practice_stories": [
+    {
+      "id": "uklart_vedtak",
+      "setup": "Et vedtak er formulert så uklart at to grupper tolker det forskjellig.",
+      "decision": "Avklar ordlyd og beslutningsprotokoll før gjennomføring, og løft reell tvil til riktig organ.",
+      "learning": "sekretariatet skal gjennomføre vedtak, ikke oppfinne dem"
+    },
+    {
+      "id": "lav_deltakelse",
+      "setup": "Et viktig medlemsmøte har få påmeldte.",
+      "decision": "Kartlegg barrierer, forbedre informasjon og foreslå praktiske grep uten å manipulere medlemslisten.",
+      "learning": "mobilisering krever tillit og ryddige data"
+    },
+    {
+      "id": "referatstrid",
+      "setup": "To deltakere krever ulike versjoner av et referat.",
+      "decision": "Skill observerbare hendelser fra vurderinger og bruk avtalte godkjenningsrutiner.",
+      "learning": "dokumentasjon er institusjonell hukommelse"
+    },
+    {
+      "id": "hastesak",
+      "setup": "Ledelsen vil sende et utspill eller starte en aktivitet før nødvendig fullmakt er avklart.",
+      "decision": "Forbered underlaget, men vent med bindende handling til mandat, ansvar og ressursgrunnlag er klart.",
+      "learning": "tempo opphever ikke fullmaktsgrenser"
+    },
+    {
+      "id": "persondata",
+      "setup": "En kampanjegruppe ber om komplett medlemsliste for målrettet kontakt.",
+      "decision": "Begrens deling til legitimt behov og etabler riktig tilgang og behandlingsgrunnlag.",
+      "learning": "organisasjonsarbeid må beskytte medlemmer også når mobilisering haster"
+    }
+  ],
+  "quality_axes": [
+    "organisasjonsforstaelse",
+    "mote_og_vedtaksarbeid",
+    "dokumentasjon",
+    "medlemsdialog",
+    "koordinering",
+    "integritet"
+  ],
+  "pressure_axes": [
+    "tempo_vs_sporbarhet",
+    "lederonske_vs_faktisk_vedtak",
+    "mobilisering_vs_personvern",
+    "arrangementsfrist_vs_kapasitet_og_fullmakt",
+    "lokal_narhet_vs_lik_og_begrunnet_behandling"
+  ],
+  "actor_grammar": [
+    {
+      "id": "maja_organisasjonsleder_politikk_organisasjonsarbeid",
+      "name": "Maja",
+      "role": "organisasjonsleder og nærmeste bestiller",
+      "workplace_ids": [
+        "moteplan_vedtak_og_referatbord_politikk_organisasjonsarbeid",
+        "oppfolgingslogg_lokal_og_sentral_handoff_politikk_organisasjonsarbeid"
+      ]
+    },
+    {
+      "id": "jonas_medlemsdata_og_okonomi_politikk_organisasjonsarbeid",
+      "name": "Jonas",
+      "role": "medlemsdata- og økonomiansvarlig",
+      "workplace_ids": [
+        "medlemsregister_og_henvendelsesflate_politikk_organisasjonsarbeid",
+        "aktivitetsplan_ressurs_og_arrangementsrom_politikk_organisasjonsarbeid"
+      ]
+    },
+    {
+      "id": "amina_lokal_og_fylkeslagskontakt_politikk_organisasjonsarbeid",
+      "name": "Amina",
+      "role": "lokal- og fylkeslagskontakt",
+      "workplace_ids": [
+        "medlemsregister_og_henvendelsesflate_politikk_organisasjonsarbeid",
+        "oppfolgingslogg_lokal_og_sentral_handoff_politikk_organisasjonsarbeid"
+      ]
+    },
+    {
+      "id": "eirik_mote_og_arrangementskoordinator_politikk_organisasjonsarbeid",
+      "name": "Eirik",
+      "role": "møte- og arrangementskoordinator",
+      "workplace_ids": [
+        "moteplan_vedtak_og_referatbord_politikk_organisasjonsarbeid",
+        "aktivitetsplan_ressurs_og_arrangementsrom_politikk_organisasjonsarbeid"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "moteplan_vedtak_og_referatbord_politikk_organisasjonsarbeid",
+      "name": "Møteplan-, vedtaks- og referatbordet",
+      "function": "Her kobles innkalling, saksliste, saksgrunnlag, møteformat, beslutningseier, beslutning eller vedtak, referatversjon, dissens, ansvar og frister. Flaten skiller tydelig mellom forslag, diskusjon, administrativ oppsummering og faktisk beslutning, slik at sekretariatet kan forberede og dokumentere uten å omskrive det valgte organet eller gjøre en leders bestilling til vedtak."
+    },
+    {
+      "id": "medlemsregister_og_henvendelsesflate_politikk_organisasjonsarbeid",
+      "name": "Medlemsregister- og henvendelsesflaten",
+      "function": "Her registreres medlemshenvendelser, kontaktbehov, tilgang, behandlingsgrunnlag, samtykke der det er relevant, kanal, eier, svarfrist og videre handoff. Flaten gjør det synlig at medlemskap ikke betyr fri bruk av alle opplysninger, og at mobilisering, service og kampanjearbeid må skille legitimt arbeidsbehov fra nysgjerrighet, sosial nærhet eller ønsket om raskest mulig kontaktliste."
+    },
+    {
+      "id": "aktivitetsplan_ressurs_og_arrangementsrom_politikk_organisasjonsarbeid",
+      "name": "Aktivitetsplan-, ressurs- og arrangementsrommet",
+      "function": "Her bindes aktivitetens formål, målgruppe, dato, kapasitet, bemanning, frivilliginnsats, budsjett, innkjøp, leverandørstatus, tilgjengelighet, kommunikasjon og åpne avhengigheter sammen. Flaten skiller estimat, bestilling, godkjent kostnad og faktisk forpliktelse, slik at høyt tempo eller entusiasme ikke kan skjule manglende fullmakt, urealistisk bemanning eller kostnader som flyttes over på frivillige."
+    },
+    {
+      "id": "oppfolgingslogg_lokal_og_sentral_handoff_politikk_organisasjonsarbeid",
+      "name": "Oppfølgingsloggen for lokal og sentral handoff",
+      "function": "Her følges vedtak, medlemssaker og aktiviteter etter at første svar eller møte er ferdig. Loggen viser hvem som eier neste steg, hva som er sendt til lokallag, ledelse, økonomi eller annen funksjon, hvilket ventepunkt som gjelder, hva som er bekreftet, og hvilket nytt premiss som skal gjenåpne saken. Dermed blir oppfølging institusjonell hukommelse i stedet for personavhengige løfter og private huskelister."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging",
+    "description": "Versjonert organisasjonslogg som bevarer medlemssak eller aktivitetsbehov, beslutningseier, møte- og saksgrunnlag, tilgang/personvern, vedtak eller avklaring, referat, ansvar, frister, ressurs- og budsjettstatus, kommunikasjon, ventepunkt, handoff, avvik, bounded rework og etterkontroll gjennom samme arbeidsforløp.",
+    "states": [
+      "henvendelse_eller_behov_registrert",
+      "eier_og_mandat_avklart",
+      "medlems_og_tilgangsgrunnlag_kontrollert",
+      "personvern_og_kanal_avklart",
+      "motegrunnlag_under_forberedelse",
+      "dagsorden_og_dokumentversjon_laset",
+      "innkalling_eller_aktivitet_distribuert",
+      "venter_pa_innspill_fullmakt_budsjett_eller_bekreftelse",
+      "mote_eller_avklaring_gjennomfort",
+      "vedtak_eller_beslutning_registrert",
+      "referat_og_uenighet_dokumentert",
+      "ansvar_og_frister_fordelt",
+      "medlemsoppfolging_i_gang",
+      "aktivitet_eller_arrangement_planlagt",
+      "ressurs_og_budsjettkontroll",
+      "handoff_til_lokallag_ledelse_okonomi_eller_partner",
+      "under_gjennomforing",
+      "avvik_eller_endret_premiss",
+      "bounded_rework_og_ny_handoff",
+      "etterkontroll_og_lukket_med_sporbarhet"
+    ],
+    "handoff_rule": "Neste aktør mottar gjeldende organisasjonslogg-versjon med faktisk vedtak eller bestilling, eier, relevant medlems-/tilgangsgrunnlag, ansvar, frist, ressurs- og budsjettstatus, åpne spørsmål, ventepunkt og hva som må bekreftes før status kan endres. Handoff kan ikke gjøre forslag til vedtak eller gi ny myndighet."
+  },
+  "rhythm_contract": {
+    "loop": "behov -> avgrensning -> medlem/data eller saksgrunnlag -> møte/aktivitet -> waiting/venting på innspill, fullmakt, budsjett eller bekreftelse -> vedtak/avklaring -> handoff -> gjennomføring -> etterkontroll -> bounded rework -> lukking",
+    "waiting_states": [
+      "medlems_eller_lokallagsinnspill",
+      "leder_eller_valgt_organs_avklaring",
+      "personvern_eller_tilgangskontroll",
+      "budsjett_eller_okonomifullmakt",
+      "lokale_ressurser_og_frivilligkapasitet",
+      "leverandor_eller_arrangementsbekreftelse",
+      "referat_eller_vedtaksavklaring"
+    ],
+    "rework_rule": "Ny medlemsinformasjon, korrigert referat, nytt vedtak, endret kapasitet, budsjett, tilgangsgrunnlag eller dokumentert lokal tilbakemelding gjenåpner bare berørte ledd. Tidligere versjon, beslutningseier, begrunnelse, varsling og handoff beholdes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_politikk_organisasjonsdemokrati_og_institusjonell_hukommelse",
+      "badge_id": "politikk",
+      "use": "History Go og Politikk-kunnskap kan forbedre spørsmål om organisasjonsdemokrati, lokal politisk historie, institusjonell hukommelse, representasjon, makt og hvordan tidligere vedtak eller organisasjonsformer påvirker dagens valg. Det direkte career offer består uendret, men History Go kan ikke skape valgt mandat, gjøre et forslag til vedtak, gi personvern- eller medlemsdatatilgang, godkjenne budsjett, inngå avtale eller erstatte organisasjonens faktiske regler og beslutningsprosess."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "direct",
+    "entry_policy_by_title": {
+      "Organisasjonssekretær": {
+        "policy": "direct",
+        "qualification_ids": []
+      }
+    },
+    "first_object": "organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging",
+    "first_task": "Registrer den første medlemssaken eller aktiviteten med faktisk eier, hva som er forespørsel versus vedtak, relevant tilgang/personvern, møte- eller aktivitetsgrunnlag, ressursstatus, frist, ventepunkt og neste handoff før du lover et resultat."
+  },
+  "situated_reputation_contract": {
+    "global_score_allowed": false,
+    "audiences": [
+      "medlemmer_og_frivillige",
+      "lokal_og_fylkeslag",
+      "ledelse_og_tillitsvalgte",
+      "okonomi_personvern_og_administrasjon",
+      "samarbeidspartnere_og_arrangement"
+    ],
+    "rule": "Standing følger konkret pålitelighet i svar, dokumentasjon, likebehandling og oppfølging hos den aktuelle gruppen. Den gir aldri valgt mandat, økonomisk fullmakt, fri medlemsdatatilgang, signaturrett eller rett til å endre vedtak."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "politikk_organisasjonsarbeid",
+    "no_generic_fallback": true
+  }
+}

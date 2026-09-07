@@ -2,7 +2,7 @@
 
 **Status:** GREEN — controlled role-by-role rollout open
 **Canonical career roles audited:** 85
-**Classification:** 70 rollout_ready / 13 needs_role_authored_work / 2 blocked
+**Classification:** 71 rollout_ready / 12 needs_role_authored_work / 2 blocked
 **Current broad_rollout_allowed:** true (controlled rollout open)
 
 ## Gate decision
@@ -27,7 +27,7 @@ A PASS with policy open means controlled role-by-role rollout may proceed. It do
 
 ## First structurally varied wave candidates
 
-_No safe first-wave set is available yet._
+- **politikk/politikk_organisasjonsarbeid** — public_administration; rollout_ready; queue #1
 
 The first wave is a recommendation, not a batch PR: every role still gets its own PR. Cross-role linkage is optional and only used when the work object is genuinely shared.
 
@@ -35,7 +35,7 @@ The first wave is a recommendation, not a batch PR: every role still gets its ow
 
 | Rank | Role | Class | Structural family | Cross-role | Main authored debt |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | `politikk/politikk_organisasjonsarbeid` | needs_role_authored_work | public_administration | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 1 | `politikk/politikk_organisasjonsarbeid` | rollout_ready | public_administration | not_required_for_rollout | — |
 | 2 | `politikk/politikk_parlamentarisk_arbeid` | needs_role_authored_work | public_administration | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
 | 3 | `politikk/politikk_politisk_radgivning` | needs_role_authored_work | public_administration | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
 | 4 | `politikk/politikk_regjeringsledelse` | needs_role_authored_work | public_administration | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
