@@ -1,0 +1,60 @@
+name: TEMP Bankplassen modern contract build4
+
+on:
+  push:
+    branches:
+      - agent/bankplassen-modern-place-contract-build4-20260908-temp
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - name: Replay locked build3 recipe with corrected place-open assertion
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python3 -m pip install --quiet pyyaml
+          curl --fail --location --retry 3 \
+            'https://raw.githubusercontent.com/Paradispartiet/History-Go/agent/bankplassen-modern-place-contract-build3-20260907-temp/.github/workflows/TEMP_bankplassen_modern_contract_build3.yml' \
+            -o /tmp/bankplassen-build3.yml
+          python3 - <<'PY'
+          import subprocess, yaml
+          from pathlib import Path
+
+          workflow = yaml.safe_load(Path('/tmp/bankplassen-build3.yml').read_text())
+          steps = workflow['jobs']['build-and-verify']['steps']
+          ran = []
+          for step in steps:
+              script = step.get('run') if isinstance(step, dict) else None
+              if not script:
+                  continue
+              name = step.get('name', 'unnamed run step')
+              script = script.replace(
+                  'assert.equal(placeOpen.structures.length, 1);',
+                  'assert.equal(placeOpen.place.structures.length, 1);'
+              )
+              print(f'\n===== {name} =====', flush=True)
+              subprocess.run(['bash', '-euo', 'pipefail', '-c', script], check=True)
+              ran.append(name)
+          expected = [
+              'Assert locked base ancestry',
+              'Materialize verified portrait asset',
+              'Apply fail-closed Bankplassen contract delta',
+              'Prove pre-existing Place content was preserved',
+              'Build deterministic derived data',
+              'Verify Bankplassen contract and shared gates',
+              'Commit permanent Bankplassen outputs only',
+          ]
+          assert ran == expected, (ran, expected)
+          PY
