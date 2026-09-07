@@ -59,6 +59,21 @@
       "verification_required": true
     },
     {
+      "id": "leila_representasjon_og_samfunnskontakt_religion_fagledelse",
+      "name": "leila_representasjon_og_samfunnskontakt_religion_fagledelse",
+      "category": "religion",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/religion/religion_fagledelse.json"
+      ],
+      "scenario_roles": [
+        "religion_fagledelse"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "mina_prosjektleder",
       "name": "mina_prosjektleder",
       "category": "religion",
@@ -70,6 +85,21 @@
       ],
       "scenario_roles": [
         "religion_forskning"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "nora_personal_og_drift_religion_fagledelse",
+      "name": "nora_personal_og_drift_religion_fagledelse",
+      "category": "religion",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/religion/religion_fagledelse.json"
+      ],
+      "scenario_roles": [
+        "religion_fagledelse"
       ],
       "verification_required": true
     },
@@ -89,6 +119,21 @@
       "verification_required": true
     },
     {
+      "id": "ragnhild_seniorfaglig_kvalitetskontakt_religion_fagledelse",
+      "name": "ragnhild_seniorfaglig_kvalitetskontakt_religion_fagledelse",
+      "category": "religion",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/religion/religion_fagledelse.json"
+      ],
+      "scenario_roles": [
+        "religion_fagledelse"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "sara_metodekollega",
       "name": "sara_metodekollega",
       "category": "religion",
@@ -102,9 +147,52 @@
         "religion_forskning"
       ],
       "verification_required": true
+    },
+    {
+      "id": "yusuf_juss_etikk_og_habilitet_religion_fagledelse",
+      "name": "yusuf_juss_etikk_og_habilitet_religion_fagledelse",
+      "category": "religion",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/religion/religion_fagledelse.json"
+      ],
+      "scenario_roles": [
+        "religion_fagledelse"
+      ],
+      "verification_required": true
     }
   ],
   "roles": [
+    {
+      "role_id": "religion_fagledelse",
+      "role_scope": "religion_fagledelse",
+      "title": "Religion – fagledelse",
+      "source": "data/Civication/roleModels/religion/religion_fagledelse.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "fagledelse"
+      ],
+      "resolved_counts": {
+        "total": 3,
+        "existing_place_people": 3,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 3,
+        "excluded": 0
+      }
+    },
     {
       "role_id": "religion_forskning",
       "role_scope": "religion_forskning",

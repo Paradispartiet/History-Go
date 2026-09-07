@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 76
+- complete_reference_v2: 77
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 182
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 18
+- missing: 17
 
 ## Rolleindeks
 
@@ -255,8 +255,8 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | psykologi | psykologi_miljoarbeid | psykologi_sosialassistent | Sosialassistent | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
 | psykologi | spesialistpsykolog | psykologi_spesialistpsykolog | Spesialistpsykolog | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | psykologi | psykologi_arbeids_og_karriereveiledning | psykologi_veileder | Veileder | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
+| religion | religion_fagledelse | religion_fagledelse | Religion – fagledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | religion | religion_forskning | religion_forskning | Religion – forskning | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
-| religion | religion_fagledelse | religion_fagledelse | religion_fagledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | religion | religion_formidling_og_kulturarv | religion_formidling_og_kulturarv | religion_formidling_og_kulturarv | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | religion | religion_utredning_og_radgivning | religion_utredning_og_radgivning | religion_utredning_og_radgivning | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | scenekunst | scenekunst_dramaturgi_og_utvikling | scenekunst_dramaturgi_og_utvikling | Dramaturgi og utvikling | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |

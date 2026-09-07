@@ -1,0 +1,89 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_fagledelse",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "religion_fagledelse_mandat_kvalitet_og_press",
+      "purpose": "Trene conflict som del av et versjonert fagledelsesforløp med employer_appointment, faktisk delegasjon, prioritering, faglig integritet, pluralisme, kontroll og oppfølging.",
+      "learning_focus": [
+        "employer_appointment",
+        "delegasjonsklarhet",
+        "faglig_integritet",
+        "pluralisme",
+        "sporbarhet"
+      ],
+      "mails": [
+        {
+          "id": "religion_fagledelse_conflict_009",
+          "mail_type": "conflict",
+          "mail_family": "religion_fagledelse_mandat_kvalitet_og_press",
+          "role_scope": "religion_fagledelse",
+          "phase": "forenoon",
+          "priority": 129,
+          "from": "Ragnhild",
+          "people_ref": "ragnhild_seniorfaglig_kvalitetskontakt_religion_fagledelse",
+          "place_id": "faglig_kvalitet_uenighet_og_kildegrunnlag_religion_fagledelse",
+          "subject": "Press om å tone ned en konklusjon",
+          "summary": "Press om å tone ned en konklusjon. Målet er å beskytte faglig grunnlag når en viktig aktør ønsker en annen konklusjon. Dette føres i fagledelseslogg_mandat_prioritering_ressurser_kvalitet_uenighet_beslutning_og_oppfolging, der employer_appointment, konkret tittel, faktisk delegasjon, mandat, prioritering, ressurser, ansvar, faglig grunnlag, dokumentert uenighet, representasjon, juss/etikk/habilitet, beslutning, handoff, resultat og bounded rework holdes separate og versjonerte. Alle fem ledertitler er appointment_required bak employer_appointment, og verken Religion-badge, XP, History Go, situated reputation, prestisje eller tittelnavn kan skape større personal-, budsjett- eller beslutningsmyndighet enn faktisk delegasjon.",
+          "situation": [
+            "Fagledelsesloggen viser gjeldende tittel, delegasjon, mandat, kapasitet, faglig grunnlag og åpne kontrollpunkter knyttet til at du skal beskytte faglig grunnlag når en viktig aktør ønsker en annen konklusjon.",
+            "Press fra tid, overordnet ledelse, ansatte, samarbeidspartnere, tros- og livssynsaktører eller offentlighet kan gjøre det fristende å skjule uenighet, hoppe over kontroll eller behandle status som fullmakt.",
+            "Velg et grep som tåler senere kontroll, bevarer pluralisme og faktisk delegasjon og gjør bounded rework mulig uten å slette tidligere vurdering eller beslutning."
+          ],
+          "task_domain": "religion_fagledelse",
+          "competency": "mandat_prioritering_kvalitet_pluralisme_rolleintegritet_og_oppfolging",
+          "pressure": "tid_kapasitet_status_eksternt_press_uenighet_og_kontrollgrenser",
+          "choice_axis": "sporbar_mandatavgrenset_og_faglig_redelig_ledelse_vs_statusstyrt_snarlig_overstyring",
+          "consequence_axis": "kvalitet_tillit_legitimitet_og_korrigerbarhet_vs_myndighetsglidning_tillitstap_og_risiko",
+          "narrative_arc": "conflict",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Før press om å tone ned en konklusjon gjennom det sporbare fagledelsesforløpet",
+              "reply": "Jeg fører saken gjennom fagledelseslogg_mandat_prioritering_ressurser_kvalitet_uenighet_beslutning_og_oppfolging. Først bekrefter jeg employer_appointment, konkret tittel og faktisk delegasjon. Deretter låser jeg mandat og dokumentversjon, gjør kapasitet og ansvar synlig, bevarer faglig grunnlag og uenighet, kartlegger representasjon og kontrollpunkter og tar bare den beslutningen rollen faktisk eier. Handoff beskriver hva som venter og hvem som må bekrefte neste steg. History Go brukes til kontekst og bedre spørsmål, aldri som fullmakt eller dagens evidens.",
+              "effect": 1,
+              "tags": [
+                "employer_appointment",
+                "delegasjonsklarhet",
+                "faglig_integritet",
+                "pluralisme"
+              ],
+              "feedback": "Grepet gjør prioritering, faglig vurdering, representasjon, kontroll og faktisk lederbeslutning etterprøvbart. Det gir lederen reell innflytelse gjennom mandat, prioritering og kvalitet uten å gjøre status eller badge til myndighet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Løs press om å tone ned en konklusjon gjennom status og tidlig overstyring",
+              "reply": "Jeg bruker tittel, tempo og forventning som om de var tilstrekkelig fullmakt. Jeg lar uenighet, representasjon, kapasitet eller kontrollgrense bli uklare og binder ansatte eller eksterne aktører til en beslutning før det er tydelig hvem som faktisk har myndighet. Hvis nye fakta kommer, forsvarer jeg den tidligere linjen i stedet for å gjenåpne berørt del av saken.",
+              "effect": -1,
+              "tags": [
+                "myndighetsglidning",
+                "presset_konklusjon",
+                "skjult_risiko"
+              ],
+              "feedback": "Løsningen kan gi kortsiktig fart, men svekker sporbarhet og gjør tittel til erstatning for delegasjon. Det øker risiko for faglig press, dårlig arbeidsmiljø, skjev representasjon og vanskelig korrigering.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,15 +1,258 @@
 {
-  "schema":"civication_role_model_v1","version":2,
-  "source":{"badge_file":"data/badges/religion.json","badge_id":"religion","evidence":"data/Civication/religionCareerLifeEvidence.json"},
-  "category":"religion","role_scope":"religion_fagledelse","role_id":"religion_fagledelse","title":"Religion – fagledelse",
-  "core_narrative":["Fagledelse for religionsrelatert kunnskapsarbeid handler om mandat, prioritering, kvalitet, folk og institusjonelt ansvar; den oppstår gjennom konkret ansettelse eller utnevnelse, aldri gjennom Badge-progresjon alene."],
-  "work_life":{"daily_work":["prioritere arbeid og ressurser","fordele ansvar og følge opp kvalitet","håndtere risiko, konflikter og eksterne forventninger","sikre at beslutninger har dokumentert faglig og institusjonelt grunnlag"],"responsibilities":["holde mandat og ansvarslinjer tydelige","beskytte faglig integritet under press","skille institusjonens rolle fra trosaktørers eller politiske aktørers interesser","sørge for forsvarlig eskalering når juridiske, etiske eller sikkerhetsmessige spørsmål oppstår"],"work_environment":["institusjon, forvaltning, museum, forsknings- eller kunnskapsorganisasjon"],"status_position":["ledermyndighet følger faktisk utnevnelse og organisatorisk ansvar"]},
-  "career_path":{"entry_from":["faglig arbeid kombinert med konkret leder- eller fagansvarsutnevnelse"],"progression_to":["større enhets- eller direktøransvar etter ny formell beslutning"],"possible_promotions":["seksjons-, avdelings- eller direktørnivå"],"possible_exits":["fagspesialist, forskning, rådgivning eller annen ledelse"],"career_risks":["politiserte prioriteringer, rolleblanding, symbolsk makt uten etterprøvbarhet eller press mot faglig uavhengighet"]},
-  "required_knowledge":{"education_basis":["relevant fagkompetanse, ledelse, institusjonsforståelse, kvalitet og etikk"],"skills":["prioritering","personalledelse","kvalitetssikring","konflikthåndtering","beslutningsdokumentasjon"],"category_knowledge":["livssynsmangfold, representasjon, forsknings- og formidlingsetikk og institusjonelle ansvarslinjer"],"history_go_badges":["religion"],"place_connections":[],"people_connections":[]},
-  "authority_boundaries":{"can":["fordele arbeid innen faktisk mandat","sette kvalitetskrav og eskaleringsrutiner","prioritere ressurser og ta dokumenterte organisatoriske beslutninger"],"cannot":["skape ledermyndighet fra Badge-status","overstyre lovpålagte, etiske eller faglige kontrollmekanismer","tale på vegne av tros- eller livssynssamfunn uten mandat","bruke institusjonell makt til å gjøre omstridte trosoppfatninger til offentlig fagfasit"]},
-  "challenges":[{"id":"politisk_press","title":"Press på faglig konklusjon","description":"En ekstern aktør ønsker at institusjonen toner ned en faglig ubehagelig konklusjon.","pressure":"lojalitet_vs_faglig_integritet","affects":["trust","quality","risk"]}],
-  "dilemmas":[{"id":"representasjon_i_krise","title":"Hvem får definere saken?","setup":"En konflikt eskalerer og flere grupper hevder å representere samme tradisjon.","choice_axis":"fart_vs_representativitet","consequence_axis":"kontroll_vs_legitimitet","mail_hooks":["job","conflict","people","faction_choice"]}],
-  "competence_axes":[{"id":"mandatklarhet","label":"Mandatklarhet"},{"id":"faglig_integritet","label":"Faglig integritet"},{"id":"kvalitetsledelse","label":"Kvalitetsledelse"},{"id":"pluralisme","label":"Pluralisme"},{"id":"eskalering","label":"Forsvarlig eskalering"}],
-  "ideal_type_problems":[{"id":"badge_lik_myndighet","label":"Prestisje forveksles med myndighet"},{"id":"presset_konklusjon","label":"Eksternt press omskriver faglig konklusjon"}],
-  "notes":["Deler arbeidsverden mellom Fagansvarlig, Seksjonsleder, Avdelingsleder, Avdelingsdirektør og Direktør."]
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "source": {
+    "badge_file": "data/badges/religion.json",
+    "badge_id": "religion",
+    "evidence": "data/Civication/religionCareerLifeEvidence.json"
+  },
+  "category": "religion",
+  "role_scope": "religion_fagledelse",
+  "role_id": "religion_fagledelse",
+  "title": "Religion – fagledelse",
+  "badge_titles": [
+    "Fagansvarlig",
+    "Seksjonsleder",
+    "Avdelingsleder",
+    "Avdelingsdirektør",
+    "Direktør"
+  ],
+  "core_narrative": [
+    "Religion-fagledelse gjør mandat, prioritering, mennesker, ressurser, faglig kvalitet, pluralisme og institusjonelt ansvar til ett sporbar arbeidsforløp uten å gjøre lederstatus til sannhets- eller representasjonsmonopol.",
+    "Alle fem canonicale ledertitler er appointment_required bak employer_appointment. Badge-terskler viser progresjon, men verken Fagansvarlig eller Direktør materialiseres eller får større faktisk delegasjon gjennom poeng alene.",
+    "Arbeidet veksler mellom prioritering, faglig uenighet, representasjon, juridiske og etiske grenser, personal- og kapasitetsproblem, eksternt press, handoff og bounded rework."
+  ],
+  "work_life": {
+    "daily_work": [
+      "oppdatere fagledelseslogg_mandat_prioritering_ressurser_kvalitet_uenighet_beslutning_og_oppfolging med employer_appointment, konkret tittel, delegasjon, prioritering, ressurser, faglig grunnlag, uenighet, representasjon, risiko, beslutning, handoff og resultat",
+      "prioritere oppdrag og kapasitet etter mandat, risiko og samfunnsoppdrag",
+      "lede kvalitetssikring uten å skjule usikkerhet eller legitim faglig uenighet",
+      "håndtere representasjons-, habilitets-, etikk- og interessepress uten å gjøre institusjonen til dommer over troslegitimitet",
+      "følge beslutninger gjennom ansvarlig handoff, kontroll, resultat og bounded rework"
+    ],
+    "responsibilities": [
+      "employer_appointment_og_delegasjonsklarhet",
+      "prioritering_og_ressursansvar",
+      "faglig_integritet_og_kvalitet",
+      "personalledelse_og_arbeidsmiljo",
+      "pluralisme_og_representasjon",
+      "etikk_habilitet_og_juss",
+      "sporbar_beslutning_og_oppfolging"
+    ],
+    "work_environment": [
+      "Kunnskaps-, kultur-, forsknings-, museums- eller forvaltningsmiljøer som arbeider med religion, livssyn, kulturarv, samfunn og offentlig kunnskapsproduksjon."
+    ],
+    "status_position": [
+      "Fagansvarlig, Seksjonsleder, Avdelingsleder, Avdelingsdirektør og Direktør er appointment_required og krever employer_appointment; konkret myndighet følger i tillegg faktisk delegasjon og organisatorisk ansvar."
+    ],
+    "workplaces": [
+      "mandat_prioritering_og_ressursstyring_religion_fagledelse",
+      "faglig_kvalitet_uenighet_og_kildegrunnlag_religion_fagledelse",
+      "representasjon_etikk_habilitet_og_eksternt_press_religion_fagledelse",
+      "beslutning_handoff_og_oppfolging_religion_fagledelse"
+    ]
+  },
+  "authority_boundaries": {
+    "can": [
+      "fordele arbeid og prioritere ressurser innen dokumentert arbeidsgiverutnevnelse og faktisk delegasjon",
+      "sette og følge opp faglige kvalitetskrav, dokumentasjon og forsvarlige kontrollpunkter",
+      "lede ansatte og oppdrag bare innen reelt personal-, budsjett- og beslutningsmandat",
+      "dokumentere faglig uenighet, representasjonsbegrensninger og risiko før institusjonell beslutning",
+      "eskalere juridiske, etiske, habilitets-, sikkerhets- og arbeidsmiljøspørsmål til riktig beslutningseier"
+    ],
+    "cannot": [
+      "materialisere ansettelse i rollen som Fagansvarlig, Seksjonsleder, Avdelingsleder, Avdelingsdirektør eller Direktør uten dokumentert employer_appointment",
+      "anta at høyere Religion-badge eller tittel automatisk gir budsjett-, personal- eller beslutningsmyndighet utover faktisk delegasjon",
+      "presse faglige funn, kilder eller dokumentert uenighet til ønsket politisk, religiøs eller institusjonell konklusjon",
+      "tale på vegne av tros- eller livssynssamfunn eller avgjøre intern religiøs legitimitet uten mandat",
+      "omgå juridiske, etiske, habilitets-, personvern-, sikkerhets- eller arbeidsmiljøkontroller fordi saken haster",
+      "bruke Religion-badge, XP, History Go-kunnskap, situated reputation, nettverk eller prestisje som employer_appointment, delegasjon, evidens eller formell ledermyndighet"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "fordele arbeid og prioritere ressurser innen dokumentert arbeidsgiverutnevnelse og faktisk delegasjon",
+      "sette og følge opp faglige kvalitetskrav, dokumentasjon og forsvarlige kontrollpunkter",
+      "lede ansatte og oppdrag bare innen reelt personal-, budsjett- og beslutningsmandat",
+      "dokumentere faglig uenighet, representasjonsbegrensninger og risiko før institusjonell beslutning",
+      "eskalere juridiske, etiske, habilitets-, sikkerhets- og arbeidsmiljøspørsmål til riktig beslutningseier"
+    ],
+    "may_not": [
+      "materialisere ansettelse i rollen som Fagansvarlig, Seksjonsleder, Avdelingsleder, Avdelingsdirektør eller Direktør uten dokumentert employer_appointment",
+      "anta at høyere Religion-badge eller tittel automatisk gir budsjett-, personal- eller beslutningsmyndighet utover faktisk delegasjon",
+      "presse faglige funn, kilder eller dokumentert uenighet til ønsket politisk, religiøs eller institusjonell konklusjon",
+      "tale på vegne av tros- eller livssynssamfunn eller avgjøre intern religiøs legitimitet uten mandat",
+      "omgå juridiske, etiske, habilitets-, personvern-, sikkerhets- eller arbeidsmiljøkontroller fordi saken haster",
+      "bruke Religion-badge, XP, History Go-kunnskap, situated reputation, nettverk eller prestisje som employer_appointment, delegasjon, evidens eller formell ledermyndighet"
+    ]
+  },
+  "competence_axes": [
+    "mandatklarhet",
+    "prioritering",
+    "kvalitetsledelse",
+    "personalledelse",
+    "pluralisme",
+    "kildekritikk",
+    "etikk_og_habilitet",
+    "eskalering",
+    "sporbarhet"
+  ],
+  "ideal_type_problems": [
+    "eksternt press på faglig konklusjon",
+    "to viktige leveranser og utilstrekkelig kapasitet",
+    "reell faglig uenighet før offentlig leveranse",
+    "flere aktører hevder å representere samme tradisjon",
+    "leder ønsker å hoppe over kvalitetssikring",
+    "høyere tittel blir feilaktig behandlet som generell fullmakt"
+  ],
+  "career_path": {
+    "entry_from": [
+      "Fagansvarlig og alle høyere ledertitler krever dokumentert employer_appointment; badge, XP, standing og History Go kan ikke oppfylle gaten."
+    ],
+    "progression_to": [
+      "Ny ledertittel eller større ansvar krever ny faktisk arbeidsgiverbeslutning og relevant delegasjon; badge-threshold alene endrer ikke myndighet."
+    ],
+    "possible_promotions": [
+      "Seksjonsleder, Avdelingsleder, Avdelingsdirektør eller Direktør gjennom konkret organisasjons- og arbeidsgiverbeslutning."
+    ],
+    "possible_exits": [
+      "Fagspesialist, forskning, rådgivning, formidling eller annen ledelse uten å beholde delegasjon og tilgang fra tidligere rolle."
+    ],
+    "career_risks": [
+      "lederstatus kan forveksles med faglig sannhetsmonopol",
+      "ressurspress kan gjøre kvalitets- og arbeidsmiljøkontroll til salderingspost",
+      "eksternt press kan gjøre representasjon og interesse vanskelig å skille fra evidens"
+    ]
+  },
+  "required_knowledge": {
+    "education_basis": [
+      "Relevant faglig kompetanse og lederforståelse forbedrer arbeidet, men employer_appointment og faktisk delegasjon må fortsatt dokumenteres."
+    ],
+    "skills": [
+      "mandatavklaring",
+      "prioritering",
+      "ressursstyring",
+      "kvalitetssikring",
+      "personalledelse",
+      "konflikthåndtering",
+      "kildekritikk",
+      "pluralisme",
+      "representasjonsanalyse",
+      "etikk",
+      "habilitet",
+      "beslutningsdokumentasjon",
+      "handoff",
+      "bounded_rework"
+    ],
+    "category_knowledge": [
+      "Religion og livssyn som mangfoldige historiske og samtidige felt, representasjon, organisasjonsformer, forsknings- og formidlingsetikk, institusjonelle ansvarslinjer og skillet mellom trosutsagn, erfaringskunnskap og faglig evidens."
+    ],
+    "history_go_badges": [
+      "religion"
+    ],
+    "place_connections": [
+      "mandat_prioritering_og_ressursstyring_religion_fagledelse",
+      "faglig_kvalitet_uenighet_og_kildegrunnlag_religion_fagledelse",
+      "representasjon_etikk_habilitet_og_eksternt_press_religion_fagledelse",
+      "beslutning_handoff_og_oppfolging_religion_fagledelse"
+    ],
+    "people_connections": [
+      "ragnhild_seniorfaglig_kvalitetskontakt_religion_fagledelse",
+      "yusuf_juss_etikk_og_habilitet_religion_fagledelse",
+      "nora_personal_og_drift_religion_fagledelse",
+      "leila_representasjon_og_samfunnskontakt_religion_fagledelse"
+    ],
+    "boundary": "History Go kan styrke historisk og institusjonell forståelse av religion, livssyn, organisasjoner og makt, men kan ikke gi employer_appointment, delegasjon, representasjonsmandat, dagens kilder eller beslutningsmyndighet."
+  },
+  "challenges": [
+    {
+      "id": "fagledelse_under_press",
+      "title": "Fagledelse under press",
+      "description": "Lederen må levere, prioritere og ta ansvar samtidig som faglig uenighet, pluralisme, kapasitet og kontrollgrenser forblir synlige.",
+      "pressure": "tempo_status_og_eksternt_press_vs_mandat_kvalitet_pluralisme_og_sporbarhet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "institusjonell_stemme_for_tidlig",
+      "title": "Én institusjonell stemme før grunnlaget er modent",
+      "setup": "Ledelsen og en ekstern aktør ønsker et entydig svar mens fagfolk er reelt uenige og flere grupper bestrider hvem som representerer tradisjonen.",
+      "choice_axis": "sporbar_uenighet_og_mandat_vs_tidlig_enhetlig_fasit",
+      "consequence_axis": "kvalitet_legitimitet_og_korrigerbarhet_vs_presset_konklusjon_og_tillitstap",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "ragnhild_seniorfaglig_kvalitetskontakt_religion_fagledelse",
+      "name": "Ragnhild",
+      "role": "senior faglig kvalitetskontakt",
+      "workplace_ids": [
+        "faglig_kvalitet_uenighet_og_kildegrunnlag_religion_fagledelse",
+        "mandat_prioritering_og_ressursstyring_religion_fagledelse"
+      ],
+      "function": "Ragnhild gjør faglig integritet operativ. Hun leder kvalitetssikring, synliggjør reell faglig uenighet og markerer når et politisk, institusjonelt eller eksternt ønske forsøker å gjøre en omstridt tolkning til sikker faglig konklusjon. Hun forventer at lederens prioritering kan forklares uten at kilder, metode, representasjon eller usikkerhet omskrives.",
+      "authority_relation": "Ragnhild kan returnere svakt grunnlag, kreve dokumentert uenighet og anbefale faglig stopp eller ny kvalitetssikring. Hun kan ikke gi employer_appointment, gjøre Fagansvarlig til Direktør, utvide lederens faktiske delegasjon eller gjøre egen ekspertstatus til endelig institusjonell beslutning.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "yusuf_juss_etikk_og_habilitet_religion_fagledelse",
+      "name": "Yusuf",
+      "role": "juridisk, etisk og habilitetskontakt",
+      "workplace_ids": [
+        "representasjon_etikk_habilitet_og_eksternt_press_religion_fagledelse",
+        "beslutning_handoff_og_oppfolging_religion_fagledelse"
+      ],
+      "function": "Yusuf tester om prioritering, personalgrep, samarbeid, innkjøp, representasjon og offentlig kommunikasjon faktisk tåler lov, habilitet, personvern, etikk og institusjonens mandat. Han skiller mellom et vanskelig valg som lederen kan ta og en grense som krever særskilt hjemmel, eskalering eller annen beslutningseier.",
+      "authority_relation": "Yusuf kan kreve avklaring, stoppe ulovlig eller uforsvarlig prosess og eskalere habilitets- eller sikkerhetsrisiko. Han kan ikke gi lederutnevnelse, overføre budsjett- eller personalfullmakt eller gjøre Religion-badge, History Go eller sosial standing til hjemmel.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "nora_personal_og_drift_religion_fagledelse",
+      "name": "Nora",
+      "role": "personal- og driftskoordinator",
+      "workplace_ids": [
+        "mandat_prioritering_og_ressursstyring_religion_fagledelse",
+        "beslutning_handoff_og_oppfolging_religion_fagledelse"
+      ],
+      "function": "Nora gjør kapasitet, arbeidsmiljø, kompetanse, frister og faktisk organisering synlig når lederen må prioritere mellom oppdrag. Hun holder oversikt over hvem som har ansvar, hva som venter, hvilke ressurser som mangler og hvilke personal- eller arbeidsmiljøspørsmål som ikke kan løses gjennom en rask faglig ordre.",
+      "authority_relation": "Nora kan dokumentere kapasitet, koordinere handoff og eskalere personal- og arbeidsmiljørisiko. Hun kan ikke skape personalmyndighet fra tittelnavn alene, gi employer_appointment eller la høyere badge-tier erstatte konkret delegasjon, HR-prosess eller beslutning.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "leila_representasjon_og_samfunnskontakt_religion_fagledelse",
+      "name": "Leila",
+      "role": "representasjons- og samfunnskontakt",
+      "workplace_ids": [
+        "representasjon_etikk_habilitet_og_eksternt_press_religion_fagledelse",
+        "faglig_kvalitet_uenighet_og_kildegrunnlag_religion_fagledelse"
+      ],
+      "function": "Leila kartlegger hvem som hevder å representere tros- og livssynstradisjoner, hvem som faktisk blir berørt av institusjonens arbeid, og hvilke stemmer som mangler. Hun gjør forskjellen mellom legitim erfaringskunnskap, organisasjonsinteresse, teologisk posisjon, juridisk rettighet og faglig evidens eksplisitt.",
+      "authority_relation": "Leila kan utfordre skjev representasjon, kreve sporbar interessemerking og foreslå bredere kontakt. Hun kan ikke gi en ekstern aktør vetorett, gjøre møteadgang til evidens, gi ledermyndighet eller la institusjonen avgjøre intern religiøs legitimitet uten mandat.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ]
 }

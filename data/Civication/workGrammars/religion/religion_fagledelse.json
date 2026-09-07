@@ -1,15 +1,275 @@
 {
-  "schema":"civication_work_grammar_v1","version":1,"category":"religion","role_scope":"religion_fagledelse","role_id":"religion_fagledelse",
-  "badge_binding":{"badge_id":"religion","badge_titles":["Fagansvarlig","Seksjonsleder","Avdelingsleder","Avdelingsdirektør","Direktør"],"tier_thresholds":[500,1000,1250,1550,1900]},
-  "work_world":"Fagledelse: prioritere mennesker, ressurser og kvalitet i religionsrelatert kunnskapsarbeid innen eksplisitt organisatorisk mandat og ansvarslinje.",
-  "authority_boundary":{"can":["fordele ansvar innen mandat","sette kvalitetskrav og prioriteringer","eskalere juridiske, etiske og sikkerhetsmessige spørsmål","beslutte organisatoriske tiltak som faktisk ligger i rollen"],"cannot":["skape myndighet fra Badge-poeng","overstyre kontrollmekanismer uten hjemmel","tale for trosgrupper uten mandat","presse faglige funn til ønsket politisk eller institusjonell konklusjon"]},
-  "work_loops":["avklar mandat, mål og ansvarslinjer","prioriter arbeid etter risiko, samfunnsoppdrag og kapasitet","sørg for faglig kvalitet og dokumentert uenighet","håndter press og konflikter uten å skjule premissene","følg opp beslutning, konsekvens og behov for korrigering"],
-  "practice_stories":[
-    {"id":"politisk_press","title":"Ekstern aktør vil tone ned funn","problem":"En viktig samarbeidspartner misliker en dokumentert konklusjon.","good_practice":"Beskytt faglig integritet, dokumenter presset og håndter relasjonen innen formelle ansvarslinjer."},
-    {"id":"knapp_kapasitet","title":"To viktige leveranser, én ressurs","problem":"Kapasiteten dekker ikke begge oppdragene innen frist.","good_practice":"Prioriter eksplisitt etter risiko og mandat, og gjør kostnaden ved valget synlig."},
-    {"id":"intern_uenighet","title":"Fagfolk er reelt uenige","problem":"Ledelsen ønsker én institusjonell stemme før kunnskapsgrunnlaget er modent.","good_practice":"Skill beslutningsbehov fra faglig konsensus og dokumenter legitim uenighet."},
-    {"id":"representantstrid","title":"Flere hevder å representere samme tradisjon","problem":"Institusjonen presses til å velge én talsperson.","good_practice":"Kartlegg mandat, representativitet og sakens behov uten å gjøre institusjonen til dommer over intern religiøs legitimitet."},
-    {"id":"leder_overstyrer_metode","title":"Leder vil hoppe over kvalitetssikring","problem":"Fristen brukes som begrunnelse for å kutte en sentral faglig kontroll.","good_practice":"Vurder risiko, finn et forsvarlig minimum og dokumenter det som eventuelt ikke kan kvalitetssikres."}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "religion",
+  "role_scope": "religion_fagledelse",
+  "role_id": "religion_fagledelse",
+  "badge_binding": {
+    "badge_id": "religion",
+    "badge_titles": [
+      "Fagansvarlig",
+      "Seksjonsleder",
+      "Avdelingsleder",
+      "Avdelingsdirektør",
+      "Direktør"
+    ],
+    "thresholds": [
+      500,
+      1000,
+      1250,
+      1550,
+      1900
+    ]
+  },
+  "work_world": "Fagledelse i religionsrelatert kunnskapsarbeid der employer_appointment, konkret delegasjon, prioritering, mennesker, ressurser, faglig kvalitet, pluralisme og institusjonell beslutning holdes sammen uten myndighets- eller sannhetsglidning.",
+  "authority_boundary": {
+    "may": [
+      "fordele arbeid og prioritere ressurser innen dokumentert arbeidsgiverutnevnelse og faktisk delegasjon",
+      "sette og følge opp faglige kvalitetskrav, dokumentasjon og forsvarlige kontrollpunkter",
+      "lede ansatte og oppdrag bare innen reelt personal-, budsjett- og beslutningsmandat",
+      "dokumentere faglig uenighet, representasjonsbegrensninger og risiko før institusjonell beslutning",
+      "eskalere juridiske, etiske, habilitets-, sikkerhets- og arbeidsmiljøspørsmål til riktig beslutningseier"
+    ],
+    "may_not": [
+      "materialisere ansettelse i rollen som Fagansvarlig, Seksjonsleder, Avdelingsleder, Avdelingsdirektør eller Direktør uten dokumentert employer_appointment",
+      "anta at høyere Religion-badge eller tittel automatisk gir budsjett-, personal- eller beslutningsmyndighet utover faktisk delegasjon",
+      "presse faglige funn, kilder eller dokumentert uenighet til ønsket politisk, religiøs eller institusjonell konklusjon",
+      "tale på vegne av tros- eller livssynssamfunn eller avgjøre intern religiøs legitimitet uten mandat",
+      "omgå juridiske, etiske, habilitets-, personvern-, sikkerhets- eller arbeidsmiljøkontroller fordi saken haster",
+      "bruke Religion-badge, XP, History Go-kunnskap, situated reputation, nettverk eller prestisje som employer_appointment, delegasjon, evidens eller formell ledermyndighet"
+    ]
+  },
+  "task_families": [
+    "mandatavklaring",
+    "prioritering_og_ressursstyring",
+    "faglig_kvalitet",
+    "personalledelse",
+    "representasjon_og_pluralisme",
+    "etikk_habilitet_og_risiko",
+    "beslutning_og_oppfolging"
   ],
-  "quality_axes":["mandatklarhet","faglig_integritet","prioriteringskvalitet","pluralisme","ansvarslinje","eskalering"]
+  "work_loops": [
+    "mandat -> prioritering -> fordeling -> faglig kvalitet -> beslutning -> handoff -> oppfølging",
+    "faglig uenighet eller eksternt press -> kilde og representasjon -> juridisk/etisk risiko -> ledervalg -> dokumentasjon -> kontroll -> bounded rework"
+  ],
+  "practice_stories": [
+    {
+      "id": "politisk_press",
+      "setup": "En ekstern eller politisk aktør ønsker at en dokumentert konklusjon tones ned.",
+      "decision": "Dokumenter presset og bevar faglig grunnlag og riktig beslutningseier.",
+      "learning": "lederlojalitet kan ikke omskrive faglig evidens"
+    },
+    {
+      "id": "knapp_kapasitet",
+      "setup": "To viktige leveranser konkurrerer om samme kompetanse og frist.",
+      "decision": "Prioriter eksplisitt etter mandat, risiko, kapasitet og konsekvens og dokumenter hva som utsettes.",
+      "learning": "prioritering er et ansvar, ikke skjult ressursmangel"
+    },
+    {
+      "id": "intern_uenighet",
+      "setup": "Fagfolk er reelt uenige mens offentligheten ønsker ett svar.",
+      "decision": "Skill beslutningsbehov fra faglig konsensus og bevar dokumentert uenighet.",
+      "learning": "institusjonell tydelighet må ikke bli falsk enighet"
+    },
+    {
+      "id": "representantstrid",
+      "setup": "Flere grupper hevder å representere samme tradisjon.",
+      "decision": "Kartlegg mandat, interesse og berørte perspektiver uten å kåre intern religiøs legitimitet.",
+      "learning": "representasjon må undersøkes, ikke antas"
+    },
+    {
+      "id": "leder_overstyrer_kontroll",
+      "setup": "En høyt plassert leder vil hoppe over en sentral kvalitets- eller habilitetskontroll.",
+      "decision": "Avklar faktisk delegasjon, risiko og forsvarlig minimum og eskaler hvis grensen ligger utenfor rollen.",
+      "learning": "tittel og tempo er ikke hjemmel"
+    }
+  ],
+  "quality_axes": [
+    "mandatklarhet",
+    "faglig_integritet",
+    "prioriteringskvalitet",
+    "personalledelse",
+    "pluralisme",
+    "ansvarslinje",
+    "etikk_habilitet",
+    "eskalering",
+    "sporbarhet"
+  ],
+  "pressure_axes": [
+    "eksternt_press_vs_faglig_integritet",
+    "kapasitetskrise_vs_forsvarlig_prioritering",
+    "institusjonell_enhet_vs_dokumentert_uenighet",
+    "representasjonskrav_vs_mandat_og_pluralisme",
+    "lederstatus_vs_faktisk_delegasjon"
+  ],
+  "actor_grammar": [
+    {
+      "id": "ragnhild_seniorfaglig_kvalitetskontakt_religion_fagledelse",
+      "name": "Ragnhild",
+      "role": "senior faglig kvalitetskontakt",
+      "workplace_ids": [
+        "faglig_kvalitet_uenighet_og_kildegrunnlag_religion_fagledelse",
+        "mandat_prioritering_og_ressursstyring_religion_fagledelse"
+      ]
+    },
+    {
+      "id": "yusuf_juss_etikk_og_habilitet_religion_fagledelse",
+      "name": "Yusuf",
+      "role": "juridisk, etisk og habilitetskontakt",
+      "workplace_ids": [
+        "representasjon_etikk_habilitet_og_eksternt_press_religion_fagledelse",
+        "beslutning_handoff_og_oppfolging_religion_fagledelse"
+      ]
+    },
+    {
+      "id": "nora_personal_og_drift_religion_fagledelse",
+      "name": "Nora",
+      "role": "personal- og driftskoordinator",
+      "workplace_ids": [
+        "mandat_prioritering_og_ressursstyring_religion_fagledelse",
+        "beslutning_handoff_og_oppfolging_religion_fagledelse"
+      ]
+    },
+    {
+      "id": "leila_representasjon_og_samfunnskontakt_religion_fagledelse",
+      "name": "Leila",
+      "role": "representasjons- og samfunnskontakt",
+      "workplace_ids": [
+        "representasjon_etikk_habilitet_og_eksternt_press_religion_fagledelse",
+        "faglig_kvalitet_uenighet_og_kildegrunnlag_religion_fagledelse"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "mandat_prioritering_og_ressursstyring_religion_fagledelse",
+      "name": "Mandat-, prioriterings- og ressursflaten",
+      "function": "Her registreres employer_appointment, konkret tittel, faktisk delegasjon, samfunnsoppdrag, prioriteringer, kapasitet, personal- og budsjettgrenser, frister og hvem som eier neste beslutning. Flaten hindrer at høyere badge-tier eller uformell status automatisk blir til større lederfullmakt."
+    },
+    {
+      "id": "faglig_kvalitet_uenighet_og_kildegrunnlag_religion_fagledelse",
+      "name": "Faglig kvalitet, uenighet og kildegrunnlag",
+      "function": "Her versjoneres kilder, metode, faglige vurderinger, reell uenighet, representasjonsbegrensninger og hva som fortsatt er usikkert. Lederen kan prioritere og beslutte innen mandatet, men kan ikke skrive om faglig uenighet eller gjøre ønsket institusjonell konklusjon til evidens."
+    },
+    {
+      "id": "representasjon_etikk_habilitet_og_eksternt_press_religion_fagledelse",
+      "name": "Representasjon, etikk, habilitet og eksternt press",
+      "function": "Her registreres eksterne aktører, interesser, habilitet, personvern, etiske grenser, sikkerhet, representasjonskrav og hva institusjonen faktisk kan uttale seg om. Flaten gjør press synlig uten å gi trosaktører, politikere, samarbeidspartnere eller ledere myndighet de ikke har."
+    },
+    {
+      "id": "beslutning_handoff_og_oppfolging_religion_fagledelse",
+      "name": "Beslutning, handoff og oppfølging",
+      "function": "Her bevares beslutningseier, valgt prioritering, begrunnelse, kvalitetssikringsstatus, oppgaver, ansvar, ventepunkter, kommunikasjon, handoff, resultater, avvik og bounded rework. Tidligere beslutninger og faglige premisser beholdes når nye fakta krever korrigering."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "fagledelseslogg_mandat_prioritering_ressurser_kvalitet_uenighet_beslutning_og_oppfolging",
+    "description": "Versjonert fagledelseslogg som bevarer employer_appointment, konkret tittel og delegasjon, mandat, prioriteringer, ressurser, ansvar, faglig grunnlag, dokumentert uenighet, representasjon, juridisk og etisk risiko, beslutning, kommunikasjon, handoff, resultat, avvik og bounded rework.",
+    "states": [
+      "employer_appointment_bekreftet",
+      "tittel_og_delegasjon_avklart",
+      "mandat_og_samfunnsoppdrag_registrert",
+      "prioriteringer_synlige",
+      "kapasitet_og_ressurser_kartlagt",
+      "ansvar_fordelt",
+      "faglig_grunnlag_versjonert",
+      "uenighet_dokumentert",
+      "representasjon_og_interesser_kartlagt",
+      "juss_etikk_habilitet_vurdert",
+      "venter_pa_faglig_kontroll",
+      "venter_pa_personal_eller_ressursavklaring",
+      "venter_pa_ekstern_eller_juridisk_avklaring",
+      "lederbeslutning_utkast",
+      "beslutning_fattet",
+      "handoff_sendt",
+      "kommunikasjon_avklart",
+      "resultat_og_avvik_fulgt_opp",
+      "bounded_rework",
+      "lukket_med_sporbarhet"
+    ],
+    "handoff_rule": "Neste aktør mottar gjeldende fagledelseslogg med employer_appointment, konkret tittel og delegasjon, mandat, prioritering, ansvar, faglig grunnlag, uenighet, representasjon, risiko, beslutning, hva som venter og hva som må bekreftes. Handoff utvider aldri mottakerens eller lederens myndighet."
+  },
+  "rhythm_contract": {
+    "loop": "mandat -> prioritering -> arbeid/fordeling -> waiting på faglig, juridisk, personal- eller ressursavklaring -> kvalitet og representasjon -> lederbeslutning -> handoff -> resultat -> bounded rework",
+    "waiting_states": [
+      "faglig_kvalitetssikring",
+      "personal_eller_arbeidsmiljoavklaring",
+      "budsjett_eller_ressursavklaring",
+      "juridisk_etisk_eller_habilitetsavklaring",
+      "representasjons_eller_interessentsvar",
+      "overordnet_beslutning_eller_delegasjon",
+      "oppfolging_nye_fakta_eller_resultat"
+    ],
+    "rework_rule": "Nye kilder, dokumentert uenighet, endret kapasitet, ny juridisk eller etisk avklaring, korrigert representasjonsgrunnlag eller resultatavvik gjenåpner bare berørte ledd. Tidligere versjon, faglig vurdering, beslutning og kommunikasjon beholdes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_religion_fagledelse_institusjoner_pluralisme_og_historie",
+      "badge_id": "religion",
+      "use": "History Go kan gi historisk og institusjonell kontekst om religion, livssyn, trosorganisasjoner, representasjon, sekularisering, minoriteter og tidligere konflikter og dermed forbedre lederens spørsmål. Det kan ikke skape employer_appointment, delegasjon, dagens kildegrunnlag eller mandat til å tale for en tradisjon."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "career_offer_policy_by_title",
+    "entry_policy_by_title": {
+      "Fagansvarlig": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ]
+      },
+      "Seksjonsleder": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ]
+      },
+      "Avdelingsleder": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ]
+      },
+      "Avdelingsdirektør": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ]
+      },
+      "Direktør": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ]
+      }
+    },
+    "first_object": "fagledelseslogg_mandat_prioritering_ressurser_kvalitet_uenighet_beslutning_og_oppfolging",
+    "first_task": "Bekreft employer_appointment, konkret tittel og faktisk delegasjon før første lederhandling. Registrer første prioriteringssak med mandat, oppdrag, kapasitet, ansvar, faglig grunnlag, uenighet, representasjonsbehov, kontrollpunkter, frist og hva Religion-badge eller History Go ikke gir myndighet til."
+  },
+  "situated_reputation_contract": {
+    "global_score_allowed": false,
+    "audiences": [
+      "fagmiljo_og_ansatte",
+      "overordnet_ledelse_og_styring",
+      "juss_etikk_hr_og_kontroll",
+      "tros_livssynsaktorer_og_berorte",
+      "offentlighet_samarbeidspartnere_og_private_relations"
+    ],
+    "rule": "Standing følger konkret kvalitet, rettferdig prioritering, faglig redelighet, pluralisme, arbeidsmiljø, rolleintegritet og korrigerbarhet hos den aktuelle gruppen. Den gir aldri employer_appointment, delegasjon, budsjett-, personal- eller beslutningsmyndighet."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "religion_fagledelse",
+    "no_generic_fallback": true
+  }
 }
