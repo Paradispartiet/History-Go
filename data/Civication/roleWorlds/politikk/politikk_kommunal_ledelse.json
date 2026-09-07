@@ -1,0 +1,1333 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_kommunal_ledelse",
+  "title": "Politikk / Kommunal ledelse — lokaldemokratisk prosess, rollegrenser og situert standing",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Hvordan kan en ordfører skape framdrift, representasjon og politiske kompromisser i en liten offentlighet der de samme menneskene møtes som kolleger, motparter, innbyggere og private relasjoner, uten at personlig standing blir forvekslet med election_or_mandate eller kollegial kommunal myndighet?",
+    "description": "Role World-en lukker bare situated_reputation rundt den allerede komplette Kommunal ledelse-prerequisiten. Election_or_mandate, 16-stegs plan, fire fiktive scenarioaktører, fire kommunale arbeidsrom, de to canonical work loops, vedvarende beslutningslogg, waiting/handoff/rework og authority boundary beholdes uendret. Standing er audience-spesifikk og kan aldri fungere som valgresultat, habilitetsavgjørelse, hjemmel, evidens, delegasjon eller vedtak."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "bureaucratic_power",
+    "loyalty_up_down",
+    "shame_reputation",
+    "public_attention",
+    "status_anxiety",
+    "public_private_leakage",
+    "class_power",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "kommunestyresal_med_flertall_mindretall_og_protokoll",
+    "formannskap_og_utvalg_med_forhandling_og_kompetansegrenser",
+    "kommunedirektorens_saksgrunnlag_og_administrative_linje",
+    "habilitets_hjemmels_og_delegasjonsavklaring",
+    "innbyggermote_med_berorte_grupper_og_motstridende_interesser",
+    "lokal_medieoffentlighet_og_dokumentkontroll",
+    "kommunale_tjenester_som_implementerer_vedtak",
+    "beredskapsrom_der_fakta_og_roller_ma_holdes_skilte",
+    "privatliv_og_partimiljo_uten_kommunal_myndighet"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "sara_kommunedirektor_world",
+      "social_function": "Sara gjør skillet mellom folkevalgt politisk bestilling og administrasjonens selvstendige saksforberedelse sosialt synlig når tempo, faglighet og implementering kolliderer.",
+      "class_position": "Kommunedirektør med høy administrativ og institusjonell makt innen egen rolle, uten folkevalgt election_or_mandate.",
+      "status": "Høy formell administrativ standing og ansvar for forsvarlig gjennomføring.",
+      "power_over_player": "Kan returnere uklare bestillinger, synliggjøre kapasitet og kreve riktig beslutningsspor, men kan ikke overta politisk prioritering eller gi ordføreren ny fullmakt.",
+      "wants": "At politiske vedtak er lovlige, entydige, finansierbare og mulige å implementere uten omskriving av faggrunnlaget.",
+      "conceals": "At administrasjonen også kan foretrekke løsninger som er enklere å drifte selv når folkevalgte legitimt prioriterer annerledes.",
+      "speech_style": "Nøktern og operativ; spør hva organet faktisk vedtok, hva som er delegert og hva administrasjonen nå skal levere.",
+      "teaches_player": "At god administrativ standing følger av rolleklarhet og korrigerbar handoff, ikke av at administrasjonen alltid får sitt råd fulgt."
+    },
+    {
+      "id": "jonas_kommuneadvokat_world",
+      "social_function": "Jonas gjør habilitet, hjemmel, delegasjon og protokoll til levende grenser når politisk framdrift frister til å behandle tvil som et kommunikasjonshinder.",
+      "class_position": "Kommuneadvokat og habilitetsrådgiver med rettslig prosessmakt, men uten politisk beslutningsmandat.",
+      "status": "Høy juridisk standing når prosessen tåler etterprøving.",
+      "power_over_player": "Kan advare, kreve avklaring og stanse rettslig uforsvarlige premisser, men kan ikke gi election_or_mandate eller velge politisk løsning.",
+      "wants": "At riktig organ, habilitet, hjemmel, delegasjon og beslutningstidspunkt kan dokumenteres uten etterrasjonalisering.",
+      "conceals": "At juridisk forsiktighet kan oppleves som tap av politisk initiativ i konflikter der offentligheten forventer umiddelbare svar.",
+      "speech_style": "Kort og presis; skiller hva som kan gjøres, av hvem, etter hvilken prosess og med hvilken dokumentasjon.",
+      "teaches_player": "At rettslig standing bygges før kontrollen kommer, ved å tåle grenser mens de fortsatt påvirker handlingen."
+    },
+    {
+      "id": "elin_formannskapssekretaer_world",
+      "social_function": "Elin gjør dagsorden, taleliste, forslag, votering og protokoll til synlige maktgrenser og merker raskt når møteledelse glir fra prosedyre til resultatstyring.",
+      "class_position": "Møtekoordinator med høy prosesskunnskap og lavere politisk rang, men reell evne til å avdekke prosedyrefeil.",
+      "status": "Høy situert prosess-standing i møteapparatet.",
+      "power_over_player": "Kan kreve at forslag og votering registreres korrekt og peke på prosessbrudd, men kan ikke avgjøre saken politisk eller gi ny delegasjon.",
+      "wants": "At alle kan se hva som var forslag, hva som ble votert over, og hva som faktisk ble vedtatt.",
+      "conceals": "At den som kontrollerer møteflyten også kan bli utsatt for subtilt press fra både ordfører, flertall og opposisjon.",
+      "speech_style": "Sekvensiell og konkret; spør hvilket punkt, hvilket forslag, hvilken votering og hvilken protokolltekst.",
+      "teaches_player": "At kollegial legitimitet ofte avgjøres av små prosessvalg lenge før den offentlige talen etter møtet."
+    },
+    {
+      "id": "omar_innbyggerdialog_world",
+      "social_function": "Omar gjør avstanden mellom kommunal informasjon, politisk budskap og innbyggernes faktiske erfaringer synlig i kriser, konflikt og implementering.",
+      "class_position": "Rådgiver med kommunikativ tilgang og beredskapsrolle, men uten folkevalgt eller administrativ beslutningsmyndighet.",
+      "status": "Høy situert tillit når kommunikasjon er sikker, presis og tydelig på det som ikke er avklart.",
+      "power_over_player": "Kan advare mot overloving, fange opp misforståelser og foreslå korrigering, men kan ikke gjøre offentlig støtte til vedtak eller valgmandat.",
+      "wants": "At innbyggere forstår hva kommunen vet, hva som er usikkert, hvem som bestemmer og når ny informasjon kommer.",
+      "conceals": "At kommunikasjonspress kan belønne en enkel fortelling selv når saks- og beredskapsbildet er mer sammensatt.",
+      "speech_style": "Klar og publikumsnær; spør hva folk trenger å vite nå, hva vi ikke vet og hvem de kan holde ansvarlig.",
+      "teaches_player": "At offentlig standing kan øke gjennom presis usikkerhet og korrigering, ikke bare gjennom kontrollert budskap."
+    },
+    {
+      "id": "opposisjonsgruppeleder_world",
+      "social_function": "En opposisjonsgruppeleder tester om ordføreren tåler synlig uenighet, alternative forslag og kritiske spørsmål uten å bruke møteledelse eller kommunens kanaler som politisk skjold.",
+      "class_position": "Folkevalgt politisk motpart med legitim talerett og kontrollmakt, uten automatisk flertall eller administrativ instruksjonsrett.",
+      "status": "Varierende politisk status, ofte høy offentlig synlighet.",
+      "power_over_player": "Kan fremme forslag, kreve begrunnelser, mobilisere mindretall og utfordre prosess, men kan ikke alene gjøre sitt syn til kommunestyrevedtak.",
+      "wants": "At flertallets kompromiss, kostnader og prosess kan kritiseres på et faktisk og etterprøvbart grunnlag.",
+      "conceals": "At opposisjonens insentiver også kan belønne forenkling og konflikt selv når prosessen har vært korrekt.",
+      "speech_style": "Spiss og prosessorientert; spør hva som ble lovet, hva som faktisk står i saken, og hvorfor et alternativ ble valgt bort.",
+      "teaches_player": "At demokratisk standing ikke forutsetter enighet; en legitim motpart skal kunne forstå og angripe beslutningen uten å måtte gjette prosessen."
+    },
+    {
+      "id": "lokaljournalist_world",
+      "social_function": "En lokaljournalist kobler protokoll, innbyggererfaring, habilitet og politiske forklaringer og gjør avvik mellom dem offentlig synlige over flere dager.",
+      "class_position": "Uavhengig offentlig aktør uten kommunal beslutningsmyndighet, men med dagsorden- og granskningsmakt.",
+      "status": "Høy lokal synlighet når dokumentasjon og berørte stemmer møtes.",
+      "power_over_player": "Kan stille kritiske spørsmål, publisere motsetninger og følge opp tidligere utsagn, men kan ikke skape election_or_mandate, hjemmel eller vedtak.",
+      "wants": "Et etterprøvbart svar på hvem som visste hva, hva som ble besluttet, og hvordan habilitet og kommunale ressurser ble håndtert.",
+      "conceals": "At medielogikken kan favorisere personkonflikt framfor den langsomme institusjonelle forklaringen.",
+      "speech_style": "Konkret og tidslinjebevisst; viser til dokumenter, sitater og hvem som var til stede da avgjørelsen ble tatt.",
+      "teaches_player": "At offentlig standing overlever kritikk bedre når protokollen og forklaringen allerede henger sammen."
+    },
+    {
+      "id": "tjenesteleder_implementering_world",
+      "social_function": "En kommunal tjenesteleder tester om vedtaket kan oversettes til kapasitet, økonomi, lovlig praksis og målbar oppfølging uten uformell detaljstyring fra politisk nivå.",
+      "class_position": "Operativ leder med ansvar innen delegert administrativ linje, uten folkevalgt beslutningsmandat.",
+      "status": "Høy operativ standing når ansvar og ressurser er tydelige.",
+      "power_over_player": "Kan rapportere gjennomføringsrisiko, behov for rework og konsekvenser for tjenester, men kan ikke omskrive politisk vedtak eller motta partipolitiske instruksjoner.",
+      "wants": "Et vedtak som er tydelig på mål, prioritering, ressurser, ansvar og hvilke nye funn som skal løftes tilbake politisk.",
+      "conceals": "At driftslogikk kan presse fram lokale tilpasninger som i praksis endrer opplevelsen av det politiske vedtaket.",
+      "speech_style": "Operativ og konsekvensorientert; spør hva som skal leveres, med hvilke ressurser, og når avvik må eskaleres.",
+      "teaches_player": "At implementeringsstanding krever respekt for administrativ linje og ærlig avviksrapportering, ikke hyppigere politiske enkeltsignaler."
+    },
+    {
+      "id": "privat_relation_og_partikollega_world",
+      "social_function": "En nær relasjon som også kjenner partimiljøet gjør grensen mellom privat støtte, partilojalitet og kommunens institusjonelle rolle konkret når omdømme og valgpress følger med hjem.",
+      "class_position": "Privat eller partipolitisk likemann uten kommunal beslutningsmyndighet.",
+      "status": "Høy emosjonell eller partiintern betydning uten rett til kommunal fullmakt.",
+      "power_over_player": "Kan utfordre fravær, stress og partistrategi, men kan ikke motta skjermet saksinformasjon eller gjøre partiets råd til kommunal instruks.",
+      "wants": "At personen beholder dømmekraft og relasjoner uten å gjøre hele livet til en forlengelse av ordførerrollen.",
+      "conceals": "At også nære støttespillere kan bli opptatt av omdømme og gjenvalg på en måte som forsterker rolleblanding.",
+      "speech_style": "Direkte og hverdagslig; spør hva som faktisk er kommunens sak, hva som er partiets, og hva som kan vente til neste dag.",
+      "teaches_player": "At personlig og partiintern standing er situert og kan aldri erstatte valgmandat, habilitet eller kollegial kommunal myndighet."
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "kollegial_prosess_og_vedtaksstanding",
+      "meaning": "Om kommunestyret kan stole på at møteledelse, forslag, votering og protokoll ikke brukes som personlig resultatstyring.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "uenighetsrom_og_forhandlingsredelighet_standing",
+      "meaning": "Om politiske motparter kan se reell uenighet og kompromiss uten at flertallstilgang omskrives til personlig myndighet.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "administrativ_integritet_og_rolleavklaring_standing",
+      "meaning": "Om administrasjonen kan bevare faglige og rettslige premisser samtidig som lovlige politiske prioriteringer implementeres.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "habilitet_hjemmel_og_protokollstanding",
+      "meaning": "Om rettslige og prosessuelle grenser blir avklart før makt utøves og tåler senere kontroll.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "offentlig_redelighet_og_representasjonsstanding",
+      "meaning": "Om innbyggere kan skille faktum, politikk, forslag og vedtak i offentlig kommunikasjon.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "implementerbarhet_og_etterkontroll_standing",
+      "meaning": "Om kommunale tjenester får tydelig ansvar og kan rapportere avvik uten uformell detaljstyring.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "privat_parti_kommune_rollegrense_standing",
+      "meaning": "Om privatliv, partiarbeid og kommunal institusjonsrolle forblir faktisk adskilt.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "krise_og_usikkerhetsansvar_standing",
+      "meaning": "Om ordføreren tåler å kommunisere det kommunen ikke vet og lar beredskaps- og faglinjer eie sine fakta.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "lokalkunnskap_mot_system_standing",
+      "meaning": "Om lokal erfaring og stedskunnskap får informere spørsmål og prioritering uten å erstatte saksutredning, rettigheter eller korrekt organ.",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "situated_reputation_model": {
+    "global_score_allowed": false,
+    "audiences": [
+      {
+        "id": "kommunestyre_flertall_og_kollegialt_organ",
+        "standing_axis": "kollegial_prosess_og_vedtaksstanding",
+        "cares_about": [
+          "at møteledelse gjør reell behandling, alternative forslag og votering mulig uten at ordføreren eier utfallet",
+          "at vedtak, protokoll og offentlig forklaring samsvarer med det kompetente organet faktisk besluttet"
+        ],
+        "cannot_grant": "Standing hos kommunestyrets flertall eller det kollegiale organet kan ikke gi election_or_mandate, forlenge et utløpt verv, skape delegasjon, hjemmel eller personlig beslutningsmyndighet for ordføreren. Den kan ikke gjøre History Go eller Politikk-badge til saksutredning, juridisk evidens, habilitetsavgjørelse eller kommunestyrevedtak. Høy tillit i salen kan gjøre møteledelse og kompromissarbeid lettere, men kan ikke sette kollegiale vedtak til side, gjøre et muntlig signal til votering, flytte beslutningseier eller legitimere at ordføreren deltar når habilitetsreglene krever uttreden."
+      },
+      {
+        "id": "mindretall_politiske_grupper_og_forhandlingsmotparter",
+        "standing_axis": "uenighetsrom_og_forhandlingsredelighet_standing",
+        "cares_about": [
+          "at mindretall, alternative forslag og reell uenighet forblir synlige selv når flertallet ønsker rask lukking",
+          "at kompromisser skiller politisk støtte fra formell beslutning og ikke bruker møteledelse som pressmiddel"
+        ],
+        "cannot_grant": "Standing hos mindretall, politiske grupper og forhandlingsmotparter kan ikke gi election_or_mandate, kommunal delegasjon, hjemmel eller rett til å behandle en partipolitisk avtale som kommunalt vedtak. Den kan ikke gjøre History Go eller Politikk-badge til evidens for lovlighet, habilitet, økonomisk dekning eller korrekt saksbehandling. God forhandlingsstanding kan åpne rom for kompromiss, men kan ikke skjule forslag, omgå kollegial votering, oppheve mindretallsrettigheter, flytte kompetanse mellom organer eller gjøre politisk enighet til personlig myndighet for Ordfører."
+      },
+      {
+        "id": "kommunedirektor_og_administrasjon",
+        "standing_axis": "administrativ_integritet_og_rolleavklaring_standing",
+        "cares_about": [
+          "at politiske bestillinger er tydelige uten å diktere administrasjonens faglige eller rettslige konklusjoner",
+          "at implementering bygger på faktisk vedtak, riktig delegasjon, realistisk kapasitet og bevart saksgrunnlag"
+        ],
+        "cannot_grant": "Standing hos kommunedirektør og administrasjon kan ikke gi election_or_mandate, skape folkevalgt verv, delegasjon, hjemmel eller et kommunestyrevedtak som aldri er fattet. Den kan ikke gjøre History Go eller Politikk-badge til saksutredning, tjenestefaglig evidens, økonomisk beregning, habilitetsavgjørelse eller juridisk vurdering. Høy administrativ tillit kan redusere friksjon og forbedre handoff, men kan ikke gi Ordfører rett til å omskrive faglige konklusjoner, bruke kommunale ressurser som partiverktøy, hoppe over riktig organ eller instruere uten gyldig beslutningsgrunnlag."
+      },
+      {
+        "id": "juridisk_prosess_habilitet_og_kontroll",
+        "standing_axis": "habilitet_hjemmel_og_protokollstanding",
+        "cares_about": [
+          "at habilitet, hjemmel, delegasjon, forslag, votering og protokoll avklares før makt utøves eller kommuniseres som avgjort",
+          "at feil kan korrigeres med bevart spor over hva som var kjent, vurdert og faktisk besluttet på tidspunktet"
+        ],
+        "cannot_grant": "Standing hos juridisk prosess, habilitetsfunksjoner og kontroll kan ikke gi election_or_mandate, utvide ordførerens kompetanse, fabrikere hjemmel eller gjøre en etterpåforklaring til et kommunestyrevedtak. Den kan ikke gjøre History Go eller Politikk-badge til juridisk evidens, habilitetsavgjørelse, delegasjonsvedtak eller dokumentasjon på at korrekt møtebehandling fant sted. God kontrollstanding kan vise at Ordfører tåler retting og etterprøving, men kan ikke oppheve inhabilitet, reparere en manglende kollegial votering med popularitet eller gjøre prosessråd til politisk beslutningsmyndighet."
+      },
+      {
+        "id": "innbyggere_berorte_og_lokal_offentlighet",
+        "standing_axis": "offentlig_redelighet_og_representasjonsstanding",
+        "cares_about": [
+          "at innbyggere kan skille dokumenterte fakta, politisk prioritering, usikkerhet, forslag og faktisk vedtak i kommunens kommunikasjon",
+          "at berørte grupper blir møtt uten at medvirkning, protest eller popularitet feilaktig fremstilles som formell beslutningsmyndighet"
+        ],
+        "cannot_grant": "Standing hos innbyggere, berørte grupper og lokal offentlighet kan ikke gi election_or_mandate, delegasjon, hjemmel, habilitet eller rett til å flytte kommunestyrets kollegiale beslutningseier. Den kan ikke gjøre History Go eller Politikk-badge, medieoppmerksomhet, meningsmålinger eller folkemøtestøtte til saksbehandlet evidens eller kommunalt vedtak. Høy offentlig tillit kan gjøre en vanskelig prioritering mer forståelig, men kan ikke gjøre popularitet til myndighet, utslette mindretallsrettigheter, omgå administrativ utredning eller la Ordfører love kommunale resultater som riktig organ ikke har besluttet."
+      },
+      {
+        "id": "implementeringslinje_og_kommunale_tjenester",
+        "standing_axis": "implementerbarhet_og_etterkontroll_standing",
+        "cares_about": [
+          "at vedtak har tydelig ansvar, kapasitet, frist og mål som administrasjon og tjenester faktisk kan følge opp",
+          "at nye driftsfunn, økonomiske premisser og tjenestekonsekvenser kan gjenåpne berørte ledd uten at protokollen omskrives"
+        ],
+        "cannot_grant": "Standing hos implementeringslinjen og kommunale tjenester kan ikke gi election_or_mandate, ny delegasjon, hjemmel eller gjøre et ordførersignal til et vedtak som et annet organ eier. Den kan ikke gjøre History Go eller Politikk-badge til driftsdata, faglig evidens, habilitetsavgjørelse, budsjettdekning eller dokumentasjon på gjennomført implementering. Høy operativ tillit kan gjøre samarbeid enklere, men kan ikke legitimere uformell detaljstyring, skjule kapasitetsproblemer, omskrive resultatmål etterpå eller sette kollegiale prioriteringer og lovlige administrative ansvarslinjer til side."
+      },
+      {
+        "id": "private_relations_og_partigrenser",
+        "standing_axis": "privat_parti_kommune_rollegrense_standing",
+        "cares_about": [
+          "at personen kan legge fra seg ordførervervet privat uten at nærhet, familie eller vennskap blir uformelle beslutnings- eller lekkasjeflater",
+          "at partirollen og kommunens institusjonelle ressurser holdes adskilt selv når valgpress og personlig omdømme øker"
+        ],
+        "cannot_grant": "Standing i private relasjoner eller eget parti kan ikke gi election_or_mandate, kommunal delegasjon, hjemmel, habilitet eller rett til å opptre som om partiets ønske allerede er et kollegialt kommunestyrevedtak. Den kan ikke gjøre History Go eller Politikk-badge til evidens for at en kommunal sak er løst, og privat eller partipolitisk støtte kan ikke erstatte administrativ utredning, korrekt organ eller formell votering. Nærhet kan utfordre stress, fravær og grensebruk, men kan ikke legitimere deling av skjermet informasjon, bruk av kommunale kanaler i partiarbeid eller personlig myndighet utover vervets faktiske ramme."
+      }
+    ],
+    "divergence_examples": [
+      "En ordfører kan ha høy standing hos administrasjonen for rolleklarhet samtidig som et politisk mindretall vurderer kompromisset som dårlig.",
+      "Et lovlig og korrekt protokollert vedtak kan senke offentlig støtte uten å svekke juridisk prosess-standing.",
+      "Å tre ut ved habilitet kan koste kortsiktig politisk innflytelse, men styrke kontroll- og administrasjonsstanding.",
+      "Å avvise partiets ønske om å bruke kommunale kanaler kan svekke partiintern standing og samtidig styrke institusjonell tillit.",
+      "En tydelig krisekommunikasjon om usikkerhet kan bli kritisert i medier samtidig som beredskaps- og faglinjen opplever høyere tillit.",
+      "Et kompromiss kan styrke flertallsstanding og svekke standing hos berørte grupper uten at noen av dem får formell myndighet over saken.",
+      "Administrasjonen kan ha høy implementeringstillit til et vedtak den faglig anbefalte mot, fordi premisser og ansvar fortsatt er tydelige.",
+      "En offentlig korrigering kan koste status samme dag, men forbedre langsiktig protokoll- og etterprøvingsstanding."
+    ],
+    "authority_separation": "Det finnes ingen global reputation score som kan oppgradere en Ordfører eller flytte kommunal myndighet mellom personer og organer. Selve karrieretilbudet for Ordfører forblir appointment_required og kan bare materialiseres når election_or_mandate er dokumentert. Situated reputation beskriver bare hvordan konkrete publikum vurderer prosess, redelighet og samarbeid over tid. Høy standing kan ikke oppheve habilitet, skape hjemmel eller delegasjon, erstatte kollegial kommunestyrebehandling, instruere administrasjon uten korrekt grunnlag eller gjøre popularitet til vedtak. History Go og Politikk-badge kan skjerpe historiske og institusjonelle spørsmål, men er verken saksutredning, juridisk evidens, valgresultat eller kommunal fullmakt."
+  },
+  "history_go_affordance": {
+    "badge_id": "politikk",
+    "source_ref": "data/Civication/mailFamilies/politikk/knowledge/politikk_kommunal_ledelse_knowledge.json#kommunal_ledelse_knowledge_001",
+    "better_question": "History Go kan gjøre en ordfører bedre til å spørre før beslutning ved å synliggjøre hvordan lokale institusjoner, steder, tidligere konflikter, representasjonsformer og demokratiske skifter har utviklet seg over tid. I et konkret kommunalt dilemma kan denne konteksten hjelpe spilleren til å oppdage hvem som mangler i rommet, hvilke historiske bindinger som gjør et forslag symbolsk viktig, hvorfor et område reagerer annerledes enn et annet, og hvilke begreper om demokrati, makt og offentlighet som bør undersøkes nærmere. Den gode handlingen er likevel å bruke kunnskapen til å formulere bedre spørsmål til administrasjonen, juridisk rådgiver, folkevalgte og berørte grupper, ikke til å fylle hull i dagens saksgrunnlag. History Go kan derfor forbedre nysgjerrighet, kildebevissthet og institusjonsforståelse samtidig som den konkrete kommunen fortsatt må dokumentere fakta, økonomi, habilitet, hjemmel, delegasjon, forslag, votering og implementeringsansvar gjennom sine egne prosesser.",
+    "authority_boundary": "History Go og Politikk-badge kan ikke gi election_or_mandate, erstatte kommunal saksutredning, avgjøre habilitet, skape hjemmel eller delegasjon eller gjøre et forslag til kommunestyrevedtak. Historisk og stedlig kunnskap er kontekst for bedre spørsmål, ikke juridisk evidens, administrativ fagkonklusjon eller offentlig myndighet."
+  },
+  "existing_work_continuity": {
+    "new_runtime_state": false,
+    "work_loops": [
+      "sak -> administrativt grunnlag -> habilitet og hjemmel -> politisk behandling -> møte -> vedtak -> offentlig forklaring -> implementering -> etterkontroll",
+      "lokal konflikt eller krise -> sikre fakta -> avklare ansvar og mandat -> dialog -> korrekt organ -> legitim avgjørelse eller midlertidig handling -> oppfølging"
+    ],
+    "persistent_work_object": "mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg",
+    "waiting_states": [
+      "administrativ_saksutredning",
+      "habilitetsavklaring",
+      "juridisk_hjemmelsavklaring",
+      "budsjett_og_okonomiavklaring",
+      "utvalgs_eller_formannskapsbehandling",
+      "kommunestyrebehandling",
+      "implementering_etterkontroll_eller_nye_fakta"
+    ],
+    "handoff_rule": "Neste aktør overtar synlig election_or_mandate og mandat, beslutningseier, saksgrunnlag, habilitet, hjemmel og delegasjon, politiske alternativer, vedtak, implementeringsansvar, ventepunkt og neste kontroll. Handoff kan aldri skape et mandat, omskrive administrativ faglighet, skjule inhabilitet eller gjøre partiønske til kommunalt vedtak.",
+    "rework_rule": "Nye fakta, endret habilitetsvurdering, rettslig avklaring, økonomiske premisser, nytt politisk forslag, kommunestyrevedtak eller implementeringsfunn gjenåpner bare berørte ledd med tidligere saksgrunnlag, forslag, votering, protokoll og begrunnelse bevart."
+  },
+  "cross_role_proof": {
+    "required_for_rollout": false,
+    "shared_work_object_found": false,
+    "new_runtime": false,
+    "status": "not_required_for_rollout",
+    "rule": "Ingen cross-role-link materialiseres fordi Kommunal ledelse allerede er komplett som én rolle og det ikke finnes bevist genuint delt work object som trengs for rollout."
+  },
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 1, morning: Temaet er habilitet, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_001.",
+        "standing_audience": "kommunestyre_flertall_og_kollegialt_organ",
+        "standing_consequence": "Situert konsekvens hos kommunestyre_flertall_og_kollegialt_organ: Måten Ordfører håndterer habilitet på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_001"
+        ],
+        "thread_ids": [
+          "thread_kommunestyre_flertall_og_kollegialt_organ"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 1, lunch: Temaet er habilitet, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_002.",
+        "standing_audience": "mindretall_politiske_grupper_og_forhandlingsmotparter",
+        "standing_consequence": "Situert konsekvens hos mindretall_politiske_grupper_og_forhandlingsmotparter: Måten Ordfører håndterer habilitet på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_002"
+        ],
+        "thread_ids": [
+          "thread_mindretall_politiske_grupper_og_forhandlingsmotparter"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Temaet er habilitet, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_003.",
+        "standing_audience": "kommunedirektor_og_administrasjon",
+        "standing_consequence": "Situert konsekvens hos kommunedirektor_og_administrasjon: Måten Ordfører håndterer habilitet på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_003"
+        ],
+        "thread_ids": [
+          "thread_kommunedirektor_og_administrasjon"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Temaet er habilitet, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_004.",
+        "standing_audience": "juridisk_prosess_habilitet_og_kontroll",
+        "standing_consequence": "Situert konsekvens hos juridisk_prosess_habilitet_og_kontroll: Måten Ordfører håndterer habilitet på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_004"
+        ],
+        "thread_ids": [
+          "thread_juridisk_prosess_habilitet_og_kontroll"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 2, morning: Temaet er lokal konflikt, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_001.",
+        "standing_audience": "innbyggere_berorte_og_lokal_offentlighet",
+        "standing_consequence": "Situert konsekvens hos innbyggere_berorte_og_lokal_offentlighet: Måten Ordfører håndterer lokal konflikt på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_001"
+        ],
+        "thread_ids": [
+          "thread_innbyggere_berorte_og_lokal_offentlighet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: Temaet er lokal konflikt, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_002.",
+        "standing_audience": "implementeringslinje_og_kommunale_tjenester",
+        "standing_consequence": "Situert konsekvens hos implementeringslinje_og_kommunale_tjenester: Måten Ordfører håndterer lokal konflikt på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_002"
+        ],
+        "thread_ids": [
+          "thread_implementeringslinje_og_kommunale_tjenester"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Temaet er lokal konflikt, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_003.",
+        "standing_audience": "private_relations_og_partigrenser",
+        "standing_consequence": "Situert konsekvens hos private_relations_og_partigrenser: Måten Ordfører håndterer lokal konflikt på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_003"
+        ],
+        "thread_ids": [
+          "thread_private_relations_og_partigrenser"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Temaet er lokal konflikt, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_004.",
+        "standing_audience": "kommunestyre_flertall_og_kollegialt_organ",
+        "standing_consequence": "Situert konsekvens hos kommunestyre_flertall_og_kollegialt_organ: Måten Ordfører håndterer lokal konflikt på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_004"
+        ],
+        "thread_ids": [
+          "thread_kommunestyre_flertall_og_kollegialt_organ"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: Temaet er budsjettpress, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/conflict/politikk_kommunal_ledelse_conflict.json#kommunal_ledelse_conflict_001.",
+        "standing_audience": "mindretall_politiske_grupper_og_forhandlingsmotparter",
+        "standing_consequence": "Situert konsekvens hos mindretall_politiske_grupper_og_forhandlingsmotparter: Måten Ordfører håndterer budsjettpress på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/conflict/politikk_kommunal_ledelse_conflict.json#kommunal_ledelse_conflict_001"
+        ],
+        "thread_ids": [
+          "thread_mindretall_politiske_grupper_og_forhandlingsmotparter"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 3, lunch: Temaet er budsjettpress, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/story/politikk_kommunal_ledelse_story.json#kommunal_ledelse_story_001.",
+        "standing_audience": "kommunedirektor_og_administrasjon",
+        "standing_consequence": "Situert konsekvens hos kommunedirektor_og_administrasjon: Måten Ordfører håndterer budsjettpress på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/story/politikk_kommunal_ledelse_story.json#kommunal_ledelse_story_001"
+        ],
+        "thread_ids": [
+          "thread_kommunedirektor_og_administrasjon"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Temaet er budsjettpress, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/event/politikk_kommunal_ledelse_event.json#kommunal_ledelse_event_001.",
+        "standing_audience": "juridisk_prosess_habilitet_og_kontroll",
+        "standing_consequence": "Situert konsekvens hos juridisk_prosess_habilitet_og_kontroll: Måten Ordfører håndterer budsjettpress på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/event/politikk_kommunal_ledelse_event.json#kommunal_ledelse_event_001"
+        ],
+        "thread_ids": [
+          "thread_juridisk_prosess_habilitet_og_kontroll"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Temaet er budsjettpress, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/micro/politikk_kommunal_ledelse_micro.json#kommunal_ledelse_micro_001.",
+        "standing_audience": "innbyggere_berorte_og_lokal_offentlighet",
+        "standing_consequence": "Situert konsekvens hos innbyggere_berorte_og_lokal_offentlighet: Måten Ordfører håndterer budsjettpress på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/micro/politikk_kommunal_ledelse_micro.json#kommunal_ledelse_micro_001"
+        ],
+        "thread_ids": [
+          "thread_innbyggere_berorte_og_lokal_offentlighet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 4, morning: Temaet er administrativ faglighet, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/followup/politikk_kommunal_ledelse_followup.json#kommunal_ledelse_followup_001.",
+        "standing_audience": "implementeringslinje_og_kommunale_tjenester",
+        "standing_consequence": "Situert konsekvens hos implementeringslinje_og_kommunale_tjenester: Måten Ordfører håndterer administrativ faglighet på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/followup/politikk_kommunal_ledelse_followup.json#kommunal_ledelse_followup_001"
+        ],
+        "thread_ids": [
+          "thread_implementeringslinje_og_kommunale_tjenester"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 4, lunch: Temaet er administrativ faglighet, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/knowledge/politikk_kommunal_ledelse_knowledge.json#kommunal_ledelse_knowledge_001.",
+        "standing_audience": "private_relations_og_partigrenser",
+        "standing_consequence": "Situert konsekvens hos private_relations_og_partigrenser: Måten Ordfører håndterer administrativ faglighet på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/knowledge/politikk_kommunal_ledelse_knowledge.json#kommunal_ledelse_knowledge_001"
+        ],
+        "thread_ids": [
+          "thread_private_relations_og_partigrenser"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Temaet er administrativ faglighet, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/consequence/politikk_kommunal_ledelse_consequence.json#kommunal_ledelse_consequence_001.",
+        "standing_audience": "kommunestyre_flertall_og_kollegialt_organ",
+        "standing_consequence": "Situert konsekvens hos kommunestyre_flertall_og_kollegialt_organ: Måten Ordfører håndterer administrativ faglighet på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/consequence/politikk_kommunal_ledelse_consequence.json#kommunal_ledelse_consequence_001"
+        ],
+        "thread_ids": [
+          "thread_kommunestyre_flertall_og_kollegialt_organ"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Temaet er administrativ faglighet, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_001.",
+        "standing_audience": "mindretall_politiske_grupper_og_forhandlingsmotparter",
+        "standing_consequence": "Situert konsekvens hos mindretall_politiske_grupper_og_forhandlingsmotparter: Måten Ordfører håndterer administrativ faglighet på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_001"
+        ],
+        "thread_ids": [
+          "thread_mindretall_politiske_grupper_og_forhandlingsmotparter"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 5, morning: Temaet er møteledelse, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_002.",
+        "standing_audience": "kommunedirektor_og_administrasjon",
+        "standing_consequence": "Situert konsekvens hos kommunedirektor_og_administrasjon: Måten Ordfører håndterer møteledelse på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_002"
+        ],
+        "thread_ids": [
+          "thread_kommunedirektor_og_administrasjon"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 5, lunch: Temaet er møteledelse, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_003.",
+        "standing_audience": "juridisk_prosess_habilitet_og_kontroll",
+        "standing_consequence": "Situert konsekvens hos juridisk_prosess_habilitet_og_kontroll: Måten Ordfører håndterer møteledelse på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_003"
+        ],
+        "thread_ids": [
+          "thread_juridisk_prosess_habilitet_og_kontroll"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Temaet er møteledelse, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_004.",
+        "standing_audience": "innbyggere_berorte_og_lokal_offentlighet",
+        "standing_consequence": "Situert konsekvens hos innbyggere_berorte_og_lokal_offentlighet: Måten Ordfører håndterer møteledelse på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_004"
+        ],
+        "thread_ids": [
+          "thread_innbyggere_berorte_og_lokal_offentlighet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Temaet er møteledelse, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_001.",
+        "standing_audience": "implementeringslinje_og_kommunale_tjenester",
+        "standing_consequence": "Situert konsekvens hos implementeringslinje_og_kommunale_tjenester: Måten Ordfører håndterer møteledelse på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_001"
+        ],
+        "thread_ids": [
+          "thread_implementeringslinje_og_kommunale_tjenester"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 6, morning: Temaet er innbyggerdialog, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_002.",
+        "standing_audience": "private_relations_og_partigrenser",
+        "standing_consequence": "Situert konsekvens hos private_relations_og_partigrenser: Måten Ordfører håndterer innbyggerdialog på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_002"
+        ],
+        "thread_ids": [
+          "thread_private_relations_og_partigrenser"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 6, lunch: Temaet er innbyggerdialog, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_003.",
+        "standing_audience": "kommunestyre_flertall_og_kollegialt_organ",
+        "standing_consequence": "Situert konsekvens hos kommunestyre_flertall_og_kollegialt_organ: Måten Ordfører håndterer innbyggerdialog på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_003"
+        ],
+        "thread_ids": [
+          "thread_kommunestyre_flertall_og_kollegialt_organ"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Temaet er innbyggerdialog, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_004.",
+        "standing_audience": "mindretall_politiske_grupper_og_forhandlingsmotparter",
+        "standing_consequence": "Situert konsekvens hos mindretall_politiske_grupper_og_forhandlingsmotparter: Måten Ordfører håndterer innbyggerdialog på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_004"
+        ],
+        "thread_ids": [
+          "thread_mindretall_politiske_grupper_og_forhandlingsmotparter"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Temaet er innbyggerdialog, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/conflict/politikk_kommunal_ledelse_conflict.json#kommunal_ledelse_conflict_001.",
+        "standing_audience": "kommunedirektor_og_administrasjon",
+        "standing_consequence": "Situert konsekvens hos kommunedirektor_og_administrasjon: Måten Ordfører håndterer innbyggerdialog på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/conflict/politikk_kommunal_ledelse_conflict.json#kommunal_ledelse_conflict_001"
+        ],
+        "thread_ids": [
+          "thread_kommunedirektor_og_administrasjon"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 7, morning: Temaet er parti og kommune, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/story/politikk_kommunal_ledelse_story.json#kommunal_ledelse_story_001.",
+        "standing_audience": "juridisk_prosess_habilitet_og_kontroll",
+        "standing_consequence": "Situert konsekvens hos juridisk_prosess_habilitet_og_kontroll: Måten Ordfører håndterer parti og kommune på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/story/politikk_kommunal_ledelse_story.json#kommunal_ledelse_story_001"
+        ],
+        "thread_ids": [
+          "thread_juridisk_prosess_habilitet_og_kontroll"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 7, lunch: Temaet er parti og kommune, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/event/politikk_kommunal_ledelse_event.json#kommunal_ledelse_event_001.",
+        "standing_audience": "innbyggere_berorte_og_lokal_offentlighet",
+        "standing_consequence": "Situert konsekvens hos innbyggere_berorte_og_lokal_offentlighet: Måten Ordfører håndterer parti og kommune på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/event/politikk_kommunal_ledelse_event.json#kommunal_ledelse_event_001"
+        ],
+        "thread_ids": [
+          "thread_innbyggere_berorte_og_lokal_offentlighet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Temaet er parti og kommune, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/micro/politikk_kommunal_ledelse_micro.json#kommunal_ledelse_micro_001.",
+        "standing_audience": "implementeringslinje_og_kommunale_tjenester",
+        "standing_consequence": "Situert konsekvens hos implementeringslinje_og_kommunale_tjenester: Måten Ordfører håndterer parti og kommune på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/micro/politikk_kommunal_ledelse_micro.json#kommunal_ledelse_micro_001"
+        ],
+        "thread_ids": [
+          "thread_implementeringslinje_og_kommunale_tjenester"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Temaet er parti og kommune, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/followup/politikk_kommunal_ledelse_followup.json#kommunal_ledelse_followup_001.",
+        "standing_audience": "private_relations_og_partigrenser",
+        "standing_consequence": "Situert konsekvens hos private_relations_og_partigrenser: Måten Ordfører håndterer parti og kommune på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/followup/politikk_kommunal_ledelse_followup.json#kommunal_ledelse_followup_001"
+        ],
+        "thread_ids": [
+          "thread_private_relations_og_partigrenser"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 8, morning: Temaet er beredskap, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/knowledge/politikk_kommunal_ledelse_knowledge.json#kommunal_ledelse_knowledge_001.",
+        "standing_audience": "kommunestyre_flertall_og_kollegialt_organ",
+        "standing_consequence": "Situert konsekvens hos kommunestyre_flertall_og_kollegialt_organ: Måten Ordfører håndterer beredskap på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/knowledge/politikk_kommunal_ledelse_knowledge.json#kommunal_ledelse_knowledge_001"
+        ],
+        "thread_ids": [
+          "thread_kommunestyre_flertall_og_kollegialt_organ"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 8, lunch: Temaet er beredskap, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/consequence/politikk_kommunal_ledelse_consequence.json#kommunal_ledelse_consequence_001.",
+        "standing_audience": "mindretall_politiske_grupper_og_forhandlingsmotparter",
+        "standing_consequence": "Situert konsekvens hos mindretall_politiske_grupper_og_forhandlingsmotparter: Måten Ordfører håndterer beredskap på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/consequence/politikk_kommunal_ledelse_consequence.json#kommunal_ledelse_consequence_001"
+        ],
+        "thread_ids": [
+          "thread_mindretall_politiske_grupper_og_forhandlingsmotparter"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Temaet er beredskap, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_001.",
+        "standing_audience": "kommunedirektor_og_administrasjon",
+        "standing_consequence": "Situert konsekvens hos kommunedirektor_og_administrasjon: Måten Ordfører håndterer beredskap på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_001"
+        ],
+        "thread_ids": [
+          "thread_kommunedirektor_og_administrasjon"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Temaet er beredskap, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_002.",
+        "standing_audience": "juridisk_prosess_habilitet_og_kontroll",
+        "standing_consequence": "Situert konsekvens hos juridisk_prosess_habilitet_og_kontroll: Måten Ordfører håndterer beredskap på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_002"
+        ],
+        "thread_ids": [
+          "thread_juridisk_prosess_habilitet_og_kontroll"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 9, morning: Temaet er flertallsforhandling, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_003.",
+        "standing_audience": "innbyggere_berorte_og_lokal_offentlighet",
+        "standing_consequence": "Situert konsekvens hos innbyggere_berorte_og_lokal_offentlighet: Måten Ordfører håndterer flertallsforhandling på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_003"
+        ],
+        "thread_ids": [
+          "thread_innbyggere_berorte_og_lokal_offentlighet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 9, lunch: Temaet er flertallsforhandling, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_004.",
+        "standing_audience": "implementeringslinje_og_kommunale_tjenester",
+        "standing_consequence": "Situert konsekvens hos implementeringslinje_og_kommunale_tjenester: Måten Ordfører håndterer flertallsforhandling på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_004"
+        ],
+        "thread_ids": [
+          "thread_implementeringslinje_og_kommunale_tjenester"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Temaet er flertallsforhandling, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_001.",
+        "standing_audience": "private_relations_og_partigrenser",
+        "standing_consequence": "Situert konsekvens hos private_relations_og_partigrenser: Måten Ordfører håndterer flertallsforhandling på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_001"
+        ],
+        "thread_ids": [
+          "thread_private_relations_og_partigrenser"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Temaet er flertallsforhandling, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_002.",
+        "standing_audience": "kommunestyre_flertall_og_kollegialt_organ",
+        "standing_consequence": "Situert konsekvens hos kommunestyre_flertall_og_kollegialt_organ: Måten Ordfører håndterer flertallsforhandling på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_002"
+        ],
+        "thread_ids": [
+          "thread_kommunestyre_flertall_og_kollegialt_organ"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 10, morning: Temaet er protokoll og kontroll, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_003.",
+        "standing_audience": "mindretall_politiske_grupper_og_forhandlingsmotparter",
+        "standing_consequence": "Situert konsekvens hos mindretall_politiske_grupper_og_forhandlingsmotparter: Måten Ordfører håndterer protokoll og kontroll på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_003"
+        ],
+        "thread_ids": [
+          "thread_mindretall_politiske_grupper_og_forhandlingsmotparter"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: Temaet er protokoll og kontroll, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_004.",
+        "standing_audience": "kommunedirektor_og_administrasjon",
+        "standing_consequence": "Situert konsekvens hos kommunedirektor_og_administrasjon: Måten Ordfører håndterer protokoll og kontroll på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_004"
+        ],
+        "thread_ids": [
+          "thread_kommunedirektor_og_administrasjon"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Temaet er protokoll og kontroll, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/conflict/politikk_kommunal_ledelse_conflict.json#kommunal_ledelse_conflict_001.",
+        "standing_audience": "juridisk_prosess_habilitet_og_kontroll",
+        "standing_consequence": "Situert konsekvens hos juridisk_prosess_habilitet_og_kontroll: Måten Ordfører håndterer protokoll og kontroll på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/conflict/politikk_kommunal_ledelse_conflict.json#kommunal_ledelse_conflict_001"
+        ],
+        "thread_ids": [
+          "thread_juridisk_prosess_habilitet_og_kontroll"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Temaet er protokoll og kontroll, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/story/politikk_kommunal_ledelse_story.json#kommunal_ledelse_story_001.",
+        "standing_audience": "innbyggere_berorte_og_lokal_offentlighet",
+        "standing_consequence": "Situert konsekvens hos innbyggere_berorte_og_lokal_offentlighet: Måten Ordfører håndterer protokoll og kontroll på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/story/politikk_kommunal_ledelse_story.json#kommunal_ledelse_story_001"
+        ],
+        "thread_ids": [
+          "thread_innbyggere_berorte_og_lokal_offentlighet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: Temaet er tjenesteimplementering, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/event/politikk_kommunal_ledelse_event.json#kommunal_ledelse_event_001.",
+        "standing_audience": "implementeringslinje_og_kommunale_tjenester",
+        "standing_consequence": "Situert konsekvens hos implementeringslinje_og_kommunale_tjenester: Måten Ordfører håndterer tjenesteimplementering på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/event/politikk_kommunal_ledelse_event.json#kommunal_ledelse_event_001"
+        ],
+        "thread_ids": [
+          "thread_implementeringslinje_og_kommunale_tjenester"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 11, lunch: Temaet er tjenesteimplementering, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/micro/politikk_kommunal_ledelse_micro.json#kommunal_ledelse_micro_001.",
+        "standing_audience": "private_relations_og_partigrenser",
+        "standing_consequence": "Situert konsekvens hos private_relations_og_partigrenser: Måten Ordfører håndterer tjenesteimplementering på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/micro/politikk_kommunal_ledelse_micro.json#kommunal_ledelse_micro_001"
+        ],
+        "thread_ids": [
+          "thread_private_relations_og_partigrenser"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Temaet er tjenesteimplementering, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/followup/politikk_kommunal_ledelse_followup.json#kommunal_ledelse_followup_001.",
+        "standing_audience": "kommunestyre_flertall_og_kollegialt_organ",
+        "standing_consequence": "Situert konsekvens hos kommunestyre_flertall_og_kollegialt_organ: Måten Ordfører håndterer tjenesteimplementering på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/followup/politikk_kommunal_ledelse_followup.json#kommunal_ledelse_followup_001"
+        ],
+        "thread_ids": [
+          "thread_kommunestyre_flertall_og_kollegialt_organ"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Temaet er tjenesteimplementering, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/knowledge/politikk_kommunal_ledelse_knowledge.json#kommunal_ledelse_knowledge_001.",
+        "standing_audience": "mindretall_politiske_grupper_og_forhandlingsmotparter",
+        "standing_consequence": "Situert konsekvens hos mindretall_politiske_grupper_og_forhandlingsmotparter: Måten Ordfører håndterer tjenesteimplementering på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/knowledge/politikk_kommunal_ledelse_knowledge.json#kommunal_ledelse_knowledge_001"
+        ],
+        "thread_ids": [
+          "thread_mindretall_politiske_grupper_og_forhandlingsmotparter"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 12, morning: Temaet er offentlig korrigering, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/consequence/politikk_kommunal_ledelse_consequence.json#kommunal_ledelse_consequence_001.",
+        "standing_audience": "kommunedirektor_og_administrasjon",
+        "standing_consequence": "Situert konsekvens hos kommunedirektor_og_administrasjon: Måten Ordfører håndterer offentlig korrigering på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/consequence/politikk_kommunal_ledelse_consequence.json#kommunal_ledelse_consequence_001"
+        ],
+        "thread_ids": [
+          "thread_kommunedirektor_og_administrasjon"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 12, lunch: Temaet er offentlig korrigering, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_001.",
+        "standing_audience": "juridisk_prosess_habilitet_og_kontroll",
+        "standing_consequence": "Situert konsekvens hos juridisk_prosess_habilitet_og_kontroll: Måten Ordfører håndterer offentlig korrigering på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_001"
+        ],
+        "thread_ids": [
+          "thread_juridisk_prosess_habilitet_og_kontroll"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Temaet er offentlig korrigering, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_002.",
+        "standing_audience": "innbyggere_berorte_og_lokal_offentlighet",
+        "standing_consequence": "Situert konsekvens hos innbyggere_berorte_og_lokal_offentlighet: Måten Ordfører håndterer offentlig korrigering på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_002"
+        ],
+        "thread_ids": [
+          "thread_innbyggere_berorte_og_lokal_offentlighet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Temaet er offentlig korrigering, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_003.",
+        "standing_audience": "implementeringslinje_og_kommunale_tjenester",
+        "standing_consequence": "Situert konsekvens hos implementeringslinje_og_kommunale_tjenester: Måten Ordfører håndterer offentlig korrigering på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_003"
+        ],
+        "thread_ids": [
+          "thread_implementeringslinje_og_kommunale_tjenester"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 13, morning: Temaet er mindretallsrettigheter, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_004.",
+        "standing_audience": "private_relations_og_partigrenser",
+        "standing_consequence": "Situert konsekvens hos private_relations_og_partigrenser: Måten Ordfører håndterer mindretallsrettigheter på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_004"
+        ],
+        "thread_ids": [
+          "thread_private_relations_og_partigrenser"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 13, lunch: Temaet er mindretallsrettigheter, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_001.",
+        "standing_audience": "kommunestyre_flertall_og_kollegialt_organ",
+        "standing_consequence": "Situert konsekvens hos kommunestyre_flertall_og_kollegialt_organ: Måten Ordfører håndterer mindretallsrettigheter på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_001"
+        ],
+        "thread_ids": [
+          "thread_kommunestyre_flertall_og_kollegialt_organ"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Temaet er mindretallsrettigheter, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_002.",
+        "standing_audience": "mindretall_politiske_grupper_og_forhandlingsmotparter",
+        "standing_consequence": "Situert konsekvens hos mindretall_politiske_grupper_og_forhandlingsmotparter: Måten Ordfører håndterer mindretallsrettigheter på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_002"
+        ],
+        "thread_ids": [
+          "thread_mindretall_politiske_grupper_og_forhandlingsmotparter"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Temaet er mindretallsrettigheter, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_003.",
+        "standing_audience": "kommunedirektor_og_administrasjon",
+        "standing_consequence": "Situert konsekvens hos kommunedirektor_og_administrasjon: Måten Ordfører håndterer mindretallsrettigheter på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_003"
+        ],
+        "thread_ids": [
+          "thread_kommunedirektor_og_administrasjon"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 14, morning: Temaet er etterkontroll, og morgenoppgaven avgrenser saksgrunnlag, habilitet, beslutningseier og hva som fortsatt må vente før politisk handling. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_004.",
+        "standing_audience": "juridisk_prosess_habilitet_og_kontroll",
+        "standing_consequence": "Situert konsekvens hos juridisk_prosess_habilitet_og_kontroll: Måten Ordfører håndterer etterkontroll på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_004"
+        ],
+        "thread_ids": [
+          "thread_juridisk_prosess_habilitet_og_kontroll"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 14, lunch: Temaet er etterkontroll, og lunsjrelasjonen tester hvordan uenighet, status og rolleklarhet virker mellom mennesker uten å flytte formell myndighet. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/conflict/politikk_kommunal_ledelse_conflict.json#kommunal_ledelse_conflict_001.",
+        "standing_audience": "innbyggere_berorte_og_lokal_offentlighet",
+        "standing_consequence": "Situert konsekvens hos innbyggere_berorte_og_lokal_offentlighet: Måten Ordfører håndterer etterkontroll på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/conflict/politikk_kommunal_ledelse_conflict.json#kommunal_ledelse_conflict_001"
+        ],
+        "thread_ids": [
+          "thread_innbyggere_berorte_og_lokal_offentlighet"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Temaet er etterkontroll, og ettermiddagsbeslutningen krever at politisk prioritering skilles fra administrativt grunnlag, forslag skilles fra vedtak og riktig organ beholder kompetansen. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/story/politikk_kommunal_ledelse_story.json#kommunal_ledelse_story_001.",
+        "standing_audience": "implementeringslinje_og_kommunale_tjenester",
+        "standing_consequence": "Situert konsekvens hos implementeringslinje_og_kommunale_tjenester: Måten Ordfører håndterer etterkontroll på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/story/politikk_kommunal_ledelse_story.json#kommunal_ledelse_story_001"
+        ],
+        "thread_ids": [
+          "thread_implementeringslinje_og_kommunale_tjenester"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Temaet er etterkontroll, og kveldskonsekvensen viser hvordan dagens valg følger personen inn i offentlighet, parti eller privatliv uten at standing blir en ny maktressurs. Spilleren må holde election_or_mandate, faktisk mandat, administrativt saksgrunnlag, vesentlig usikkerhet, habilitet, hjemmel og delegasjon, politiske alternativer, møteprosess, forslag, votering, protokoll, offentlig forklaring og implementeringsansvar som separate deler av mandat_saksgrunnlag_habilitet_dagsorden_vedtak_begrunnelse_implementering_og_oppfolgingslogg. Den sosiale motstanden er reell: ordføreren kan vinne støtte ett sted og tape tillit et annet, men ingen slik standing kan bli til personlig vedtaksmyndighet. Det avgjørende grepet er å la det kompetente kollegiale organet eie avgjørelsen, la administrasjonen eie sine faglige og rettslige premisser og gjøre parti-/kommunegrensen synlig. History Go og Politikk-badge kan forbedre spørsmål om institusjon, sted og politisk historie, men kan ikke bevise habilitet, levere saksutredning eller skape election_or_mandate. Nye fakta eller prosessfeil skal derfor gjenåpne bare berørte ledd med tidligere forslag, votering og begrunnelse bevart. Kildereferansen for dette beatet er data/Civication/mailFamilies/politikk/event/politikk_kommunal_ledelse_event.json#kommunal_ledelse_event_001.",
+        "standing_audience": "private_relations_og_partigrenser",
+        "standing_consequence": "Situert konsekvens hos private_relations_og_partigrenser: Måten Ordfører håndterer etterkontroll på påvirker om dette publikummet forventer redelig prosess, tydelige roller og korrigerbarhet neste gang. Effekten er avgrenset til relasjonell standing; den kan ikke gi election_or_mandate, oppheve habilitet, skape hjemmel, flytte kollegial beslutningsmyndighet, instruere administrasjonen eller gjøre History Go eller Politikk-badge til evidens. Andre publikum kan samtidig reagere motsatt, og ingen global score summerer disse vurderingene til offentlig makt.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/event/politikk_kommunal_ledelse_event.json#kommunal_ledelse_event_001"
+        ],
+        "thread_ids": [
+          "thread_private_relations_og_partigrenser"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "thread_kommunestyre_flertall_og_kollegialt_organ",
+      "title": "Lang tråd: kommunestyre flertall og kollegialt organ",
+      "relationship": "Denne fler-dagers tråden følger hvordan Ordførerens standing hos kommunestyre flertall og kollegialt organ endres når politisk tempo møter kollegial prosess, habilitet, administrativ integritet og offentlig etterprøving. Relasjonen gir sosial hukommelse: tidligere ryddighet kan gjøre en vanskelig ny samtale mulig, mens rolleblanding kan gjøre selv lovlige valg tyngre å forklare. Men standing er aldri election_or_mandate, hjemmel, delegasjon eller kommunestyrevedtak. Den kan ikke oppheve inhabilitet, gjøre partistøtte til kommunal myndighet eller gjøre History Go eller Politikk-badge til evidens. Tråden skal derfor vise divergens, reparasjon og forsinkede reaksjoner uten å lage global reputation eller ny runtime.",
+      "beat_refs": [
+        "1/morning",
+        "2/evening",
+        "4/afternoon",
+        "6/lunch",
+        "8/morning",
+        "9/evening",
+        "11/afternoon",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "thread_mindretall_politiske_grupper_og_forhandlingsmotparter",
+      "title": "Lang tråd: mindretall politiske grupper og forhandlingsmotparter",
+      "relationship": "Denne fler-dagers tråden følger hvordan Ordførerens standing hos mindretall politiske grupper og forhandlingsmotparter endres når politisk tempo møter kollegial prosess, habilitet, administrativ integritet og offentlig etterprøving. Relasjonen gir sosial hukommelse: tidligere ryddighet kan gjøre en vanskelig ny samtale mulig, mens rolleblanding kan gjøre selv lovlige valg tyngre å forklare. Men standing er aldri election_or_mandate, hjemmel, delegasjon eller kommunestyrevedtak. Den kan ikke oppheve inhabilitet, gjøre partistøtte til kommunal myndighet eller gjøre History Go eller Politikk-badge til evidens. Tråden skal derfor vise divergens, reparasjon og forsinkede reaksjoner uten å lage global reputation eller ny runtime.",
+      "beat_refs": [
+        "1/lunch",
+        "3/morning",
+        "4/evening",
+        "6/afternoon",
+        "8/lunch",
+        "10/morning",
+        "11/evening",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "thread_kommunedirektor_og_administrasjon",
+      "title": "Lang tråd: kommunedirektor og administrasjon",
+      "relationship": "Denne fler-dagers tråden følger hvordan Ordførerens standing hos kommunedirektor og administrasjon endres når politisk tempo møter kollegial prosess, habilitet, administrativ integritet og offentlig etterprøving. Relasjonen gir sosial hukommelse: tidligere ryddighet kan gjøre en vanskelig ny samtale mulig, mens rolleblanding kan gjøre selv lovlige valg tyngre å forklare. Men standing er aldri election_or_mandate, hjemmel, delegasjon eller kommunestyrevedtak. Den kan ikke oppheve inhabilitet, gjøre partistøtte til kommunal myndighet eller gjøre History Go eller Politikk-badge til evidens. Tråden skal derfor vise divergens, reparasjon og forsinkede reaksjoner uten å lage global reputation eller ny runtime.",
+      "beat_refs": [
+        "1/afternoon",
+        "3/lunch",
+        "5/morning",
+        "6/evening",
+        "8/afternoon",
+        "10/lunch",
+        "12/morning",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "thread_juridisk_prosess_habilitet_og_kontroll",
+      "title": "Lang tråd: juridisk prosess habilitet og kontroll",
+      "relationship": "Denne fler-dagers tråden følger hvordan Ordførerens standing hos juridisk prosess habilitet og kontroll endres når politisk tempo møter kollegial prosess, habilitet, administrativ integritet og offentlig etterprøving. Relasjonen gir sosial hukommelse: tidligere ryddighet kan gjøre en vanskelig ny samtale mulig, mens rolleblanding kan gjøre selv lovlige valg tyngre å forklare. Men standing er aldri election_or_mandate, hjemmel, delegasjon eller kommunestyrevedtak. Den kan ikke oppheve inhabilitet, gjøre partistøtte til kommunal myndighet eller gjøre History Go eller Politikk-badge til evidens. Tråden skal derfor vise divergens, reparasjon og forsinkede reaksjoner uten å lage global reputation eller ny runtime.",
+      "beat_refs": [
+        "1/evening",
+        "3/afternoon",
+        "5/lunch",
+        "7/morning",
+        "8/evening",
+        "10/afternoon",
+        "12/lunch",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "thread_innbyggere_berorte_og_lokal_offentlighet",
+      "title": "Lang tråd: innbyggere berorte og lokal offentlighet",
+      "relationship": "Denne fler-dagers tråden følger hvordan Ordførerens standing hos innbyggere berorte og lokal offentlighet endres når politisk tempo møter kollegial prosess, habilitet, administrativ integritet og offentlig etterprøving. Relasjonen gir sosial hukommelse: tidligere ryddighet kan gjøre en vanskelig ny samtale mulig, mens rolleblanding kan gjøre selv lovlige valg tyngre å forklare. Men standing er aldri election_or_mandate, hjemmel, delegasjon eller kommunestyrevedtak. Den kan ikke oppheve inhabilitet, gjøre partistøtte til kommunal myndighet eller gjøre History Go eller Politikk-badge til evidens. Tråden skal derfor vise divergens, reparasjon og forsinkede reaksjoner uten å lage global reputation eller ny runtime.",
+      "beat_refs": [
+        "2/morning",
+        "3/evening",
+        "5/afternoon",
+        "7/lunch",
+        "9/morning",
+        "10/evening",
+        "12/afternoon",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "thread_implementeringslinje_og_kommunale_tjenester",
+      "title": "Lang tråd: implementeringslinje og kommunale tjenester",
+      "relationship": "Denne fler-dagers tråden følger hvordan Ordførerens standing hos implementeringslinje og kommunale tjenester endres når politisk tempo møter kollegial prosess, habilitet, administrativ integritet og offentlig etterprøving. Relasjonen gir sosial hukommelse: tidligere ryddighet kan gjøre en vanskelig ny samtale mulig, mens rolleblanding kan gjøre selv lovlige valg tyngre å forklare. Men standing er aldri election_or_mandate, hjemmel, delegasjon eller kommunestyrevedtak. Den kan ikke oppheve inhabilitet, gjøre partistøtte til kommunal myndighet eller gjøre History Go eller Politikk-badge til evidens. Tråden skal derfor vise divergens, reparasjon og forsinkede reaksjoner uten å lage global reputation eller ny runtime.",
+      "beat_refs": [
+        "2/lunch",
+        "4/morning",
+        "5/evening",
+        "7/afternoon",
+        "9/lunch",
+        "11/morning",
+        "12/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "thread_private_relations_og_partigrenser",
+      "title": "Lang tråd: private relations og partigrenser",
+      "relationship": "Denne fler-dagers tråden følger hvordan Ordførerens standing hos private relations og partigrenser endres når politisk tempo møter kollegial prosess, habilitet, administrativ integritet og offentlig etterprøving. Relasjonen gir sosial hukommelse: tidligere ryddighet kan gjøre en vanskelig ny samtale mulig, mens rolleblanding kan gjøre selv lovlige valg tyngre å forklare. Men standing er aldri election_or_mandate, hjemmel, delegasjon eller kommunestyrevedtak. Den kan ikke oppheve inhabilitet, gjøre partistøtte til kommunal myndighet eller gjøre History Go eller Politikk-badge til evidens. Tråden skal derfor vise divergens, reparasjon og forsinkede reaksjoner uten å lage global reputation eller ny runtime.",
+      "beat_refs": [
+        "2/afternoon",
+        "4/lunch",
+        "6/morning",
+        "7/evening",
+        "9/afternoon",
+        "11/lunch",
+        "13/morning",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "etter_motet_hjemme",
+      "description": "Etter et hardt kommunestyremøte følger språk og kontrollbehov med hjem. Den private relasjonen kan merke at Ordfører fortsatt argumenterer som møteleder, og krever et rom der nærhet ikke må vinnes gjennom flertall. Dette etterspillet viser at privat verdi ikke følger politisk standing: en god kveld hjemme kan ikke skape election_or_mandate eller reparere habilitet, og en vanskelig kveld kan ikke oppheve et gyldig kollegialt vedtak. Det viktige er å legge bort skjermet informasjon, respektere grenser og la systemet eie neste arbeidssteg.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_001"
+      ]
+    },
+    {
+      "id": "partikollega_etter_kritikk",
+      "description": "Etter offentlig kritikk ønsker en partikollega en raskere og skarpere respons fra ordføreren via kommunens kanaler. Fristelsen er å beskytte partiets omdømme med institusjonell autoritet. Etterspillet trener skillet: partiet kan gi råd og politisk støtte, men kommunale kanaler må følge kommunens rolle, fakta og vedtak. Partiintern standing kan falle når Ordfører sier nei, uten at dette endrer election_or_mandate, habilitet eller formell beslutningsmyndighet.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_003"
+      ]
+    },
+    {
+      "id": "familie_og_beredskapstelefon",
+      "description": "En lokal hendelse gjør at beredskapstelefonen avbryter privat tid. Nærstående ser både plikten og slitasjen, men skal ikke trekkes inn i operative detaljer eller bli uformelle rådgivere. Etterspillet viser at personlig støtte kan gi restitusjon og korrigere kontrollspråk, men aldri fungere som saksutredning, juridisk evidens eller mandat. Ordføreren må tåle at noen problemer eies av beredskaps- og administrasjonslinjen gjennom natten.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_001"
+      ]
+    },
+    {
+      "id": "sosiale_medier_etter_votering",
+      "description": "Etter en omstridt votering fylles sosiale medier av påstander om hva Ordfører personlig har bestemt. Fristelsen er å svare med en like personlig seierstale. Etterspillet krever i stedet at protokollen, organet og forskjellen mellom egen politisk posisjon og kommunens vedtak bevares. Offentlig standing kan svinge kraftig, men popularitet eller kritikk kan ikke endre election_or_mandate, flytte kompetanse eller omskrive den faktiske voteringen.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_003"
+      ]
+    },
+    {
+      "id": "gammelt_vennskap_og_habilitet",
+      "description": "En gammel venn som er berørt av en sak tar kontakt privat etter at habilitetsspørsmålet er blitt offentlig. Relasjonen kan være ekte og viktig, men kan ikke bli en alternativ kanal inn i saken. Etterspillet handler om å forklare grensen uten å gjøre vennskapet til skyld eller bevis: privat nærhet kan utløse behov for habilitetsavklaring, men kan verken avgjøre vurderingen, gi hjemmel eller gjøre personens interesse til kommunalt vedtak.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/conflict/politikk_kommunal_ledelse_conflict.json#kommunal_ledelse_conflict_001"
+      ]
+    },
+    {
+      "id": "slitasje_etter_lang_forhandling",
+      "description": "Etter flere dager med budsjett- og flertallsforhandling merkes slitasjen i søvn, familie og parti. Ordføreren kan ha høy standing hos enkelte forhandlingspartnere og lav hos andre, uten at noen av delene sier noe om privat verdi eller formell myndighet. Etterspillet viser at restitusjon og tydelige grenser er en del av dømmekraften: ingen global reputation score kan kompensere for habilitetsfeil, dårlig saksgrunnlag eller et vedtak som aldri ble fattet.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/event/politikk_kommunal_ledelse_event.json#kommunal_ledelse_event_001"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "habilitet_returnerer",
+      "setup_ref": "1/afternoon",
+      "return_ref": "4/morning",
+      "domains": [
+        "habilitet",
+        "kontroll"
+      ]
+    },
+    {
+      "id": "administrativt_rad_blir_offentlig",
+      "setup_ref": "2/morning",
+      "return_ref": "6/afternoon",
+      "domains": [
+        "administrasjon",
+        "offentlighet"
+      ]
+    },
+    {
+      "id": "kompromiss_koster_i_mindretallet",
+      "setup_ref": "3/lunch",
+      "return_ref": "8/lunch",
+      "domains": [
+        "forhandling",
+        "politikk"
+      ]
+    },
+    {
+      "id": "krisekommunikasjon_etterproves",
+      "setup_ref": "4/evening",
+      "return_ref": "9/morning",
+      "domains": [
+        "beredskap",
+        "medier"
+      ]
+    },
+    {
+      "id": "budsjettpremiss_endres",
+      "setup_ref": "5/afternoon",
+      "return_ref": "10/afternoon",
+      "domains": [
+        "okonomi",
+        "implementering"
+      ]
+    },
+    {
+      "id": "parti_kommune_grense_testes_igjen",
+      "setup_ref": "6/evening",
+      "return_ref": "11/lunch",
+      "domains": [
+        "parti",
+        "institusjon"
+      ]
+    },
+    {
+      "id": "protokollfeil_krever_korrigering",
+      "setup_ref": "7/afternoon",
+      "return_ref": "12/morning",
+      "domains": [
+        "protokoll",
+        "tillit"
+      ]
+    },
+    {
+      "id": "implementering_gjenapner_vedtakspremiss",
+      "setup_ref": "9/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "implementering",
+        "etterkontroll"
+      ]
+    }
+  ],
+  "materialization": {
+    "authored_dimensions": [
+      "situated_reputation"
+    ],
+    "no_new_runtime": true,
+    "existing_plan_preserved": true,
+    "existing_role_model_preserved": true,
+    "existing_people_foundation_preserved": true,
+    "existing_work_grammar_preserved": true,
+    "existing_persistent_work_preserved": true,
+    "existing_rhythm_preserved": true,
+    "career_title_gates_preserved": true,
+    "cross_role_link_materialized": false,
+    "source_refs": [
+      "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_001",
+      "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_002",
+      "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_003",
+      "data/Civication/mailFamilies/politikk/job/politikk_kommunal_ledelse_job.json#kommunal_ledelse_job_004",
+      "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_001",
+      "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_002",
+      "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_003",
+      "data/Civication/mailFamilies/politikk/people/politikk_kommunal_ledelse_people.json#kommunal_ledelse_people_004",
+      "data/Civication/mailFamilies/politikk/conflict/politikk_kommunal_ledelse_conflict.json#kommunal_ledelse_conflict_001",
+      "data/Civication/mailFamilies/politikk/story/politikk_kommunal_ledelse_story.json#kommunal_ledelse_story_001",
+      "data/Civication/mailFamilies/politikk/event/politikk_kommunal_ledelse_event.json#kommunal_ledelse_event_001",
+      "data/Civication/mailFamilies/politikk/micro/politikk_kommunal_ledelse_micro.json#kommunal_ledelse_micro_001",
+      "data/Civication/mailFamilies/politikk/followup/politikk_kommunal_ledelse_followup.json#kommunal_ledelse_followup_001",
+      "data/Civication/mailFamilies/politikk/knowledge/politikk_kommunal_ledelse_knowledge.json#kommunal_ledelse_knowledge_001",
+      "data/Civication/mailFamilies/politikk/consequence/politikk_kommunal_ledelse_consequence.json#kommunal_ledelse_consequence_001"
+    ]
+  }
+}
