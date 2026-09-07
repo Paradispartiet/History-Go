@@ -105,21 +105,32 @@ jobs:
           npm run epoker:places:build
           npm run civication:history-people:build
           npm run build:web
-      - name: Validate focused production gates
-        run: |
-          npm run places:index:check
-          npm run check:stories
-          npm run audit:quiz-manifest:v2
-          npm run audit:quiz-production-context
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
-          node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-rendering.test.mjs tests/fagverk-place-substance-audit.test.mjs
-          node scripts/build-fagverk-release-manifest.mjs --check
-          npm run knowledge:canonical:check
-          npm run place-open:check
-          npm run epoker:places:check
-          npm run civication:history-people:check
-          npm run build:web:check
+      - name: Validate place index
+        run: npm run places:index:check
+      - name: Validate stories
+        run: npm run check:stories
+      - name: Validate quiz manifest
+        run: npm run audit:quiz-manifest:v2
+      - name: Validate quiz production context
+        run: npm run audit:quiz-production-context
+      - name: Validate quiz progression
+        run: npm run audit:quiz-progression
+      - name: Validate quiz theory binding
+        run: npm run audit:quiz-theory-binding
+      - name: Validate Fagverk place pages
+        run: node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-rendering.test.mjs tests/fagverk-place-substance-audit.test.mjs
+      - name: Validate Fagverk release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Validate Knowledge canonical
+        run: npm run knowledge:canonical:check
+      - name: Validate Place Open
+        run: npm run place-open:check
+      - name: Validate epoker places
+        run: npm run epoker:places:check
+      - name: Validate Civication history people
+        run: npm run civication:history-people:check
+      - name: Validate web build
+        run: npm run build:web:check
       - name: Commit permanent Vinderen production
         run: |
           rm -f tools/materialize-vinderen-place-production.mjs .github/workflows/temp-vinderen-materialize.yml
