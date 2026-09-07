@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   replay:
-    if: github.event.head_commit.message == 'Run final Vålerenga canonical replay'
+    if: github.event.head_commit.message == 'Retry final Vålerenga canonical replay'
     runs-on: ubuntu-latest
     env:
       LOCKED_MAIN: 814bda617d7a3646d3a2df4f63088d92256090c3
@@ -44,22 +44,34 @@ jobs:
           import crypto from 'node:crypto';
           import fs from 'node:fs';
 
+          const placePath = 'data/places/by/oslo/places/vaalerenga.json';
           const packetPath = 'data/places/production/vaalerenga.json';
+          const place = JSON.parse(fs.readFileSync(placePath, 'utf8'));
           const packet = JSON.parse(fs.readFileSync(packetPath, 'utf8'));
+
           const plain = 'mens området lå utenfor Christianias bygrense.';
           const canonical = 'mens området ennå lå utenfor Christianias bygrense.';
-          if (!packet.popupDesc?.includes(plain)) throw new Error('Expected temporary Vålerenga wording not found');
-          packet.popupDesc = packet.popupDesc.replace(plain, canonical);
+          if (place.popupDesc?.includes(canonical)) {
+            // Already canonical; keep it byte-for-byte at the semantic value level.
+          } else if (place.popupDesc?.includes(plain)) {
+            place.popupDesc = place.popupDesc.replace(plain, canonical);
+          } else {
+            throw new Error('Neither canonical nor temporary Vålerenga popup wording found');
+          }
 
           const claim = packet.claims?.find((entry) => entry.id === 'claim_vaalerenga_text_04');
           if (!claim) throw new Error('claim_vaalerenga_text_04 missing');
           claim.claim = 'Vålerenga vokste fram som forstad langs Strømsveien fra 1830-årene, mens området ennå lå utenfor Christianias bygrense.';
 
-          packet.textHashes ??= {};
-          packet.textHashes.popupDesc = crypto.createHash('sha256').update(packet.popupDesc, 'utf8').digest('hex');
-          if (packet.textHashes.popupDesc !== '7a3aeb6556b86ef7b8016dfdd157aee9b8cd8f62e2b0d3f71e6371cb3d1a0524') {
-            throw new Error(`Unexpected canonical popupDesc hash: ${packet.textHashes.popupDesc}`);
+          const popupHash = crypto.createHash('sha256').update(place.popupDesc, 'utf8').digest('hex');
+          const expectedPopupHash = '7a3aeb6556b86ef7b8016dfdd157aee9b8cd8f62e2b0d3f71e6371cb3d1a0524';
+          if (popupHash !== expectedPopupHash) {
+            throw new Error(`Unexpected canonical popupDesc hash: ${popupHash}`);
           }
+          packet.textHashes ??= {};
+          packet.textHashes.popupDesc = popupHash;
+
+          fs.writeFileSync(placePath, `${JSON.stringify(place, null, 2)}\n`);
           fs.writeFileSync(packetPath, `${JSON.stringify(packet, null, 2)}\n`);
           NODE
 
