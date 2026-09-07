@@ -43,10 +43,15 @@ jobs:
           node scripts/place-production-rule-preflight.mjs record --workcard reports/place-production/vaalerenga-workcard-current.json --place-id vaalerenga --category by
           node scripts/place-production-rule-preflight.mjs check --base "$LOCKED_MAIN"
 
-      - name: Validate description governance and regression
+      - name: Run exact description-governance regression and all-packet policy gate
         run: |
-          node scripts/validate-place-description-production-v4_2.mjs --all
-          node --test tests/place-description-production-v4_2.test.mjs tests/vaalerenga-completion.test.mjs
+          node --check scripts/validate-place-description-production-v4_2.mjs
+          node --check scripts/validate-place-description-production-v4_2_policy.mjs
+          node --test tests/place-description-production-v4_2.test.mjs
+          node --test tests/place-description-length-policy.test.mjs
+          node --test tests/place-description-ingress-policy.test.mjs
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all --report reports/place-description-validation-v4_2.json
+          node --test tests/vaalerenga-completion.test.mjs
 
       - name: Recheck focused Place contracts
         run: |
@@ -63,6 +68,9 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'Repair Vålerenga governance gates'
+
+      - name: Run exact changed-description PR-isolation gate
+        run: node scripts/validate-place-description-production-v4_2_policy.mjs --changed --base "$LOCKED_MAIN" --head "$(git rev-parse HEAD)"
 
       - name: Run exact repository hygiene
         run: REPO_HYGIENE_BASE_SHA="$LOCKED_MAIN" REPO_HYGIENE_HEAD_SHA="$(git rev-parse HEAD)" node scripts/audit-repository-hygiene-v1.mjs
