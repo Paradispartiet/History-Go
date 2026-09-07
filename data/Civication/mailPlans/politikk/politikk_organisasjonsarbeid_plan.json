@@ -1,0 +1,202 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "politikk_organisasjonsarbeid_foundation_v1",
+  "category": "politikk",
+  "role_scope": "politikk_organisasjonsarbeid",
+  "title": "Politisk organisasjonsarbeid",
+  "description": "Seksten steg fra første medlemssak og møteforberedelse til vedtaksspor, medlemsdata, aktivitet, lokal/sentral handoff, avvik og etterkontroll i ett versjonert organisasjonsspor.",
+  "arc": {
+    "from": "Ny Organisasjonssekretær med direct career offer som må lære at direkte jobbtilgang gir en administrativ rolle, ikke valgt mandat, fri medlemsdatatilgang eller rett til å binde økonomi og politiske beslutninger.",
+    "to": "En pålitelig organisasjonssekretær som kan holde medlemssak, møte, vedtak, data, aktivitet, ressurser, ansvar, handoff og etterkontroll sammen uten at praktisk koordinering blir skjult myndighetsutøvelse.",
+    "core_questions": [
+      "Hva er faktisk vedtatt, hvem eier neste beslutning, og hva er bare forslag eller bestilling?",
+      "Hvilket medlems-, tilgangs-, ressurs- og budsjettgrunnlag finnes faktisk før jeg handler eller kommuniserer?",
+      "Hvem eier neste steg, hva venter vi på, og hvilket nytt premiss skal gjenåpne saken?"
+    ]
+  },
+  "outcome_rules": {
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0
+    },
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "organisasjonsarbeid_sporbarhet_eller_mandatvikt"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom job med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom people med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "knowledge",
+      "phase": "intro",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom knowledge med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_history_go_organisasjonsdemokrati"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom job med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom people med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "conflict",
+      "phase": "advanced",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom conflict med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_mandat_og_referatkonflikt"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom job med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom people med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom event med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_hasteaktivitet_og_kapasitet"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "micro",
+      "phase": "advanced",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom micro med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_rask_rolleavklaring"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom job med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 12,
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom people med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 13,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom followup med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_vedtak_oppfolging_og_handoff"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mastery",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom story med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_frivillighet_og_tillit"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 15,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom consequence med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_tillit_data_og_etterspill"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging gjennom job med synlig beslutningseier, forslag/vedtaksskille, medlems-/tilgangsgrunnlag, ansvar, frist, ressursstatus, ventepunkt, handoff og bounded rework.",
+      "allowed_families": [
+        "organisasjonsarbeid_job"
+      ],
+      "fallback_types": []
+    }
+  ]
+}

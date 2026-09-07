@@ -1,0 +1,90 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_organisasjonsarbeid",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "organisasjonsarbeid_hasteaktivitet_og_kapasitet",
+      "purpose": "Trene event som en del av et versjonert organisasjonsspor der medlemskontakt, møter, vedtak, aktivitet, ressursbruk, handoff og oppfølging forblir eksplisitte og korrigerbare.",
+      "learning_focus": [
+        "organisasjonsforstaelse",
+        "mote_og_vedtaksarbeid",
+        "medlemsdialog",
+        "sporbarhet",
+        "handoff",
+        "mandatgrenser"
+      ],
+      "mails": [
+        {
+          "id": "organisasjonsarbeid_event_011",
+          "mail_type": "event",
+          "mail_family": "organisasjonsarbeid_hasteaktivitet_og_kapasitet",
+          "role_scope": "politikk_organisasjonsarbeid",
+          "phase": "afternoon",
+          "priority": 130,
+          "from": "Eirik",
+          "people_ref": "eirik_mote_og_arrangementskoordinator_politikk_organisasjonsarbeid",
+          "place_id": "aktivitetsplan_ressurs_og_arrangementsrom_politikk_organisasjonsarbeid",
+          "subject": "Et hastearrangement mister lokale ressurser samme morgen",
+          "summary": "Et hastearrangement mister lokale ressurser samme morgen. Målet er å endre omfang og kommunikasjon etter faktisk kapasitet og fullmakt i stedet for å behandle tidligere publisering som et løfte som må presses gjennom. Dette steget føres i organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging. Medlemssak eller aktivitetsbehov, faktisk beslutningseier, hva som er forslag versus vedtak, relevant medlems- og tilgangsgrunnlag, møte- eller aktivitetsunderlag, referatversjon, ansvar, frister, ressurs- og budsjettstatus, kommunikasjon, ventepunkt, handoff, avvik og etterkontroll skal være separate og versjonerte felt. Organisasjonssekretær er et direct career offer: det finnes ingen egen appointment-gate som skal oppfinnes, men direkte jobbtilgang er heller ikke valgt mandat, signaturrett, budsjettfullmakt eller fri medlemsdatatilgang. Politikk-badge, XP, History Go-kunnskap, situated reputation, vennskap og intern status kan aldri omskrive et vedtak, skape samtykke, gi økonomisk fullmakt eller gjøre sekretariatets tekst til stemmen til et valgt organ. En god løsning gjør derfor hvem som eier beslutningen, hva man fortsatt venter på, hva som kan gjennomføres nå, og hva som må gjenåpnes ved nye premisser eksplisitt.",
+          "situation": [
+            "Organisasjonsloggen viser gjeldende sak eller aktivitet, beslutningseier, medlems-/tilgangsgrunnlag, vedtak eller bestilling, ansvar, frister, ressursstatus og åpne ventepunkter knyttet til at du skal endre omfang og kommunikasjon etter faktisk kapasitet og fullmakt i stedet for å behandle tidligere publisering som et løfte som må presses gjennom.",
+            "Presset er reelt: medlemmer, lokallag, ledelse, tidsfrister, arrangement, mobilisering eller kommunikasjon kan gjøre det fristende å behandle en uformell avklaring som ferdig vedtak eller en praktisk snarvei som legitim fullmakt.",
+            "Du må velge et grep som tåler senere handoff og kontroll, bevarer personvern og økonomiske grenser, og gjør bounded rework mulig uten å slette hvem som visste hva eller hvem som faktisk kunne beslutte."
+          ],
+          "task_domain": "politisk_organisasjonsarbeid",
+          "competency": "organisasjonsforstaelse_mote_vedtak_medlemsdialog_handoff_og_integritet",
+          "pressure": "medlemmer_lokallag_ledelse_tid_personvern_okonomi_og_arrangement",
+          "choice_axis": "sporbar_og_mandatbundet_koordinering_vs_uformell_fullmaktsglidning",
+          "consequence_axis": "tillit_etterprovbarhet_og_gjennomforing_vs_data_prosess_og_ansvarsrisiko",
+          "narrative_arc": "event",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Før et hastearrangement mister lokale ressurser samme morgen gjennom det sporbare organisasjonssporet",
+              "reply": "Jeg fører dette gjennom organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging i stedet for å løse det som en privat samtale eller uformell snarvei. Først navngir jeg faktisk beslutningseier og skiller forslag, bestilling og vedtak. Deretter kontrollerer jeg relevant medlems-/tilgangsgrunnlag, referat eller aktivitetsunderlag, ansvar, frister, ressurs- og budsjettstatus og hvilket punkt vi faktisk venter på. Jeg gjennomfører bare det rollen har mandat til, sender en komplett handoff til riktig aktør og beholder tidligere versjon hvis nye fakta krever bounded rework. History Go brukes til kontekst og bedre spørsmål, aldri som fullmakt, samtykke eller beslutning.",
+              "effect": 1,
+              "tags": [
+                "direct_career_offer",
+                "sporbarhet",
+                "mandatgrense",
+                "organisasjonslogg"
+              ],
+              "feedback": "Grepet gjør organisasjonsarbeidet etterprøvbart fordi medlemmer, lokallag, ledelse og senere saksbehandlere kan se hva som var forespørsel, hva som faktisk var vedtak, hvem som eide neste steg, hvilket medlems- eller ressursgrunnlag som gjaldt og hva man ventet på. Sekretariatet får handlingskraft gjennom god koordinering uten å skaffe seg skjult politisk, økonomisk eller personvernmessig myndighet. Når et nytt premiss kommer, kan bare berørt del gjenåpnes med tidligere beslutning, referat, varsling og ansvar bevart, slik at korrigering blir normal drift i stedet for tillitskrise.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk et hastearrangement mister lokale ressurser samme morgen gjennom tempo og uformell praksis",
+              "reply": "Jeg løser dette raskt ved å behandle lederønske, tidligere vane eller sosial nærhet som tilstrekkelig grunnlag. Jeg lar det være uklart om noe er forslag eller vedtak, bruker medlemsopplysninger eller kapasitet bredere enn det som er dokumentert, og går videre med aktivitet eller kommunikasjon før eier, fullmakt, budsjett eller handoff er avklart. Referat og oppfølgingslogg oppdateres etterpå dersom det blir tid, og hvis nye fakta kommer prøver jeg å beskytte den tidligere kommunikasjonen i stedet for å gjenåpne det berørte leddet.",
+              "effect": -1,
+              "tags": [
+                "fullmaktsglidning",
+                "uklar_status",
+                "personvern_eller_ressursrisiko"
+              ],
+              "feedback": "Løsningen kan oppleves rask, men den gjør sekretariatet avhengig av hukommelse, relasjoner og etterrasjonalisering. Når forslag, vedtak, tilgang, kostnad og handoff flyter sammen, vet verken medlemmet, lokallaget, ledelsen eller neste kollega hva som faktisk ble besluttet eller på hvilket grunnlag. Det øker risikoen for feil bruk av medlemsdata, økonomiske løfter uten fullmakt, ulik behandling og referatstrid. Nye premisser blir da et spørsmål om å forsvare en person eller en tidligere melding i stedet for et avgrenset og dokumentert rework i en institusjonell prosess.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

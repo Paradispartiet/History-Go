@@ -1,0 +1,1330 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_organisasjonsarbeid",
+  "title": "Politikk / Organisasjonsarbeid — medlemsdemokrati, sekretariatsintegritet og situert standing",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Hvordan kan en Organisasjonssekretær få en medlemsdrevet organisasjon til å fungere gjennom møter, data, aktiviteter, ressurser og oppfølging uten at sekretariatets nærhet til ledelse og saksflyt blir til skjult demokratisk, økonomisk eller personlig myndighet?",
+    "description": "Role World-en lukker bare situated_reputation rundt de allerede komplette Organisasjonsarbeid-prerequisitene. Direct entry for Organisasjonssekretær, 16-stegs plan, fire fiktive scenarioaktører, fire arbeidsflater, begge canonical work loops, organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging, waiting/handoff/rework og authority boundary beholdes uendret. Standing er publikums- og relasjonsspesifikk og kan aldri fungere som valgt mandat, vedtak, medlemsdatatilgang, personverngrunnlag, budsjettgodkjenning, kontraktsfullmakt eller evidens."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "bureaucratic_power",
+    "loyalty_up_down",
+    "shame_reputation",
+    "public_attention",
+    "status_anxiety",
+    "public_private_leakage",
+    "class_power",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "sekretariat_med_innboks_moteplan_og_vedtaksoppfolging",
+    "valgt_styre_eller_ledelse_der_forslag_diskusjon_og_vedtak_ma_holdes_adskilt",
+    "medlemsregister_og_serviceflate_med_tilgang_personvern_og_behandlingsgrunnlag",
+    "lokallag_og_fylkeslag_med_ulike_kapasiteter_prioriteringer_og_forventninger",
+    "arrangementsrom_med_frivillige_budsjett_leverandorer_og_tidskritiske_avhengigheter",
+    "referat_og_dokumentasjonsflyt_der_uenighet_og_ansvar_skal_overleve_personskifte",
+    "samarbeidsflate_med_eksterne_partnere_der_lovnader_ma_folge_faktisk_fullmakt",
+    "medlemsmote_eller_arsmote_der_sekretariatet_tilrettelegger_uten_a_eie_utfallet",
+    "uformell_intern_organisasjonskultur_der_naerhet_lojalitet_og_status_kan_presse_likebehandling"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "maja_organisasjonsleder_world",
+      "social_function": "Maja gjør forskjellen mellom lederbestilling, administrativ prioritering og faktisk beslutning fra valgt organ synlig når sekretariatet presses til å handle raskere enn mandatet tillater.",
+      "class_position": "Organisasjonsleder med reell arbeidsledelse over sekretariatet, men uten rett til å gjøre personlige ønsker til kollegiale vedtak eller gi videre fullmakter hun ikke selv har.",
+      "status": "Høy intern status og nærhet til beslutningsarenaene, samtidig avhengig av at sekretariatets dokumentasjon gjør grensene etterprøvbare.",
+      "power_over_player": "Kan prioritere arbeid, kreve underlag og følge opp leveranser innen lederfullmakten, men kan ikke gi valgt mandat, fri medlemsdatatilgang eller økonomisk signatur uten faktisk hjemmel i organisasjonens beslutninger.",
+      "wants": "At organisasjonen beveger seg raskt uten at ledelsen mister oversikt over hvem som bestemte hva, hvilke medlemmer som berøres og hva som faktisk er lovet.",
+      "conceals": "At press om synlig framdrift kan gjøre det fristende å la en tydelig lederbestilling gli over i noe som senere omtales som et vedtak.",
+      "speech_style": "Kort, prioriterende og handlingsrettet; spør hvem som eier saken, hvilken frist som gjelder og hva som mangler før handling er legitim.",
+      "teaches_player": "At profesjonell lojalitet til ledelsen også innebærer å stoppe rolleblanding og bevare skillet mellom bestilling, forslag og valgt beslutning."
+    },
+    {
+      "id": "jonas_medlemsdata_okonomi_world",
+      "social_function": "Jonas kobler medlemsdata, tilgang, kostnader og fullmakt og gjør det synlig når et godt organisatorisk formål ikke i seg selv gir rett til bredere databruk eller økonomisk forpliktelse.",
+      "class_position": "Fagansvarlig for medlemsdata og økonomi med kontrollmakt over tilgang og budsjettspor, men uten myndighet til å erstatte valgt organ eller lederens beslutningskompetanse.",
+      "status": "Høy situert tillit når personvern, budsjett og dokumentasjon tåler kontroll etter at tempoet har falt.",
+      "power_over_player": "Kan nekte ubegrunnet tilgang, kreve budsjettavklaring og returnere uklare bestillinger, men kan ikke bruke kontrollfunksjonen til å velge organisasjonens politiske eller demokratiske prioritering.",
+      "wants": "At medlemskontakt og ressursbruk kan forklares med nødvendig tilgang, faktisk arbeidsgrunnlag, godkjent ramme og tydelig eier.",
+      "conceals": "At kontrollkrav kan bli oppfattet som lite fleksible og dermed utsettes helt til kostnader eller databruk allerede har satt spor.",
+      "speech_style": "Presis og kategoriserende; skiller behov fra tilgang, estimat fra godkjent kostnad og praktisk ønske fra faktisk fullmakt.",
+      "teaches_player": "At tillit til sekretariatet bygges ved å gjøre data- og økonomigrenser operative før de blir konfliktstoff."
+    },
+    {
+      "id": "amina_lokal_sentra_handoff_world",
+      "social_function": "Amina representerer friksjonen mellom sentrale prioriteringer og lokale erfaringer og viser om sekretariatets handoff faktisk bevarer innspill, kapasitetsgrenser og ansvar.",
+      "class_position": "Lokal- og fylkeslagskontakt med stor relasjonell rekkevidde og lokalkunnskap, men uten automatisk beslutningsmyndighet over sentralt sekretariat eller andre lag.",
+      "status": "Høy situert legitimitet når lokallag opplever at innspill blir lest korrekt, besvart og ikke omskrevet til en mer bekvem sentral fortelling.",
+      "power_over_player": "Kan eskalere lokale feil, mobilisere tillitsvalgte og gjøre kapasitetsproblemer synlige, men kan ikke gi sekretariatet nytt mandat eller kreve særbehandling utenfor vedtatte rammer.",
+      "wants": "At lokallag får realistiske frister, tydelig støtte og sporbare svar på hva som ble tatt videre, av hvem og med hvilket resultat.",
+      "conceals": "At nære relasjoner til enkelte lag kan skape press for å prioritere de mest høylytte eller ressurssterke miljøene.",
+      "speech_style": "Konkret og lokalt forankret; viser til hvem som faktisk skal gjøre arbeidet, hvilke ressurser de har og hva tidligere løfter betydde i praksis.",
+      "teaches_player": "At lokal tillit krever lik og begrunnet behandling uten å late som ulike lag har samme kapasitet eller samme behov."
+    },
+    {
+      "id": "eirik_arrangement_frivillighet_world",
+      "social_function": "Eirik gjør arrangementer til en stresstest av kapasitet, frivilligbelastning, leverandørforpliktelser, tilgjengelighet og økonomisk mandat.",
+      "class_position": "Møte- og arrangementskoordinator med operativ innflytelse over gjennomføring, men uten fri rett til å pådra organisasjonen kostnader eller disponere frivillige som om de var ansatte.",
+      "status": "Høy praktisk standing når planer tåler virkelige fravær, endringer og leverandøravvik uten at kostnader eller belastning skjules.",
+      "power_over_player": "Kan returnere urealistiske planer, kreve bemanning og markere leverandøravhengigheter, men kan ikke godkjenne budsjett eller inngå avtale uten delegert fullmakt.",
+      "wants": "At hvert arrangement har tydelig formål, bemanning, ressursramme, ansvar, tilgjengelighet, leverandørstatus og plan for avvik.",
+      "conceals": "At arrangementsmiljøet kan normalisere overarbeid og uformelle løfter fordi alle ønsker å redde en synlig dato.",
+      "speech_style": "Operativ og sekvensiell; spør hvem som møter, hvem som betaler, hva som er bekreftet og hva som skjer dersom en kritisk avhengighet faller bort.",
+      "teaches_player": "At god koordinering måler realisme før applaus og beskytter frivillige og organisasjonen mot løfter uten kapasitet."
+    },
+    {
+      "id": "valgt_styreleder_world",
+      "social_function": "En valgt styreleder tester om sekretariatet kan være effektivt og innflytelsesrikt uten å gjøre sin tilgang til saksflyten om til politisk eller demokratisk beslutningsmakt.",
+      "class_position": "Valgt representant med mandat fra organisasjonens demokratiske prosess og myndighet bare innen de rammene vedtekter, vedtak og delegasjon faktisk gir.",
+      "status": "Høy formell legitimitet i beslutningsorganet, men avhengig av korrekt saksgrunnlag og tydelig protokoll for at mandatet skal kunne etterprøves.",
+      "power_over_player": "Kan lede behandling og gi beslutninger innen riktig organ, men kan ikke gjøre sekretariatets administrative handlinger til en privat kanal for å omgå kollegial behandling.",
+      "wants": "At underlag, alternativer, habilitet der relevant, økonomiske konsekvenser og gjennomføringsansvar er tydelige før beslutningen lukkes.",
+      "conceals": "At også valgte ledere kan foretrekke at sekretariatet rydder bort konflikt eller tvil før den når den formelle arenaen.",
+      "speech_style": "Beslutningsorientert; spør hva organet faktisk skal ta stilling til, hvilke alternativer som finnes og hva som må stå i protokollen.",
+      "teaches_player": "At sekretariatets styrke ligger i å gjøre demokratisk beslutning bedre, ikke i å erstatte den."
+    },
+    {
+      "id": "medlem_med_rettighetsbekymring_world",
+      "social_function": "Et medlem med en konkret klage gjør service, innsyn, personvern, likebehandling og intern maktasymmetri synlig fra utsiden av sekretariatets egen arbeidslogikk.",
+      "class_position": "Medlem uten administrativ eller valgt myndighet, men med legitim interesse i hvordan organisasjonen behandler opplysninger, henvendelser og egne regler.",
+      "status": "Situert troverdighet som ikke avhenger av intern rang og som kan øke når dokumentasjonen viser avvik mellom lovnad og faktisk praksis.",
+      "power_over_player": "Kan kreve svar, korrigering og riktig behandling av egen sak og løfte prinsipielle spørsmål videre, men kan ikke få særtilgang til andres data eller gjøre en individuell preferanse til generelt vedtak.",
+      "wants": "Et forståelig svar på hva som skjedde, hvem som hadde tilgang, hvilket regel- eller beslutningsgrunnlag som ble brukt og hva som korrigeres.",
+      "conceals": "At frustrasjon kan gjøre en kompleks prosess til en mer personlig fortelling om hvem som brydde seg eller ikke.",
+      "speech_style": "Erfaringsnær og direkte; spør hva organisasjonen faktisk gjorde, ikke bare hva rutinen sier at den skulle gjøre.",
+      "teaches_player": "At medlemsservice må kunne møte kritikk uten å bruke intern status, relasjoner eller organisasjonsspråk som skjold."
+    },
+    {
+      "id": "ekstern_partner_leverandor_world",
+      "social_function": "En ekstern partner eller leverandør tester om organisasjonens løfter, bestillinger, tidsplan og økonomiske forpliktelser faktisk kommer fra noen som har myndighet til å binde den.",
+      "class_position": "Ekstern aktør med kontrakts- eller samarbeidsmakt, men uten innsyn i interne vedtak utover det som må kommuniseres for å levere korrekt.",
+      "status": "Høy profesjonell standing når avtaler, endringer, ansvar og betaling kommuniseres gjennom stabile og autoriserte kanaler.",
+      "power_over_player": "Kan kreve avklaring, prisjustere, avslå urealistiske endringer og dokumentere hva som ble bestilt, men kan ikke tolke intern entusiasme som økonomisk fullmakt.",
+      "wants": "En entydig bestilling, autorisert kontaktperson, realistisk frist og klar prosess for endringer og avvik.",
+      "conceals": "At en leverandør også kan ha insentiv til å tolke uklare signaler som aksept dersom det øker oppdragets omfang.",
+      "speech_style": "Kontraktsnær og konkret; spør hvem som godkjenner, hva som inngår, når endringen ble bestilt og hvordan kostnaden håndteres.",
+      "teaches_player": "At ekstern troverdighet krever at intern rolleuklarhet stoppes før den blir til et løfte organisasjonen må rydde opp i."
+    },
+    {
+      "id": "privat_relation_og_intern_kollega_world",
+      "social_function": "En nær privat relasjon eller intern kollega viser hvordan arbeidspress, lojalitet, vennskap og intern status kan lekke inn i prioritering, datadeling og hvem som får uformell tilgang til sekretariatet.",
+      "class_position": "Privat eller kollegial likemann uten valgt mandat, datatilgang eller økonomisk fullmakt bare fordi relasjonen er nær.",
+      "status": "Høy emosjonell eller sosial betydning som må holdes atskilt fra administrative rettigheter og organisasjonens formelle beslutninger.",
+      "power_over_player": "Kan påvirke trivsel, intern kultur og opplevelsen av lojalitet, men kan ikke få skjermet medlemsinformasjon, budsjettmyndighet eller prioritet uten legitimt arbeidsgrunnlag.",
+      "wants": "At personen ikke lar hele livet bli en uformell forlengelse av sekretariatets konflikter, frister og interne hierarki.",
+      "conceals": "At hjelp mellom venner og kolleger lett kan bli en kanal for informasjon eller særbehandling som ingen ville forsvart som generell praksis.",
+      "speech_style": "Hverdagslig og direkte; spør hvorfor alt haster, hvem som egentlig bestemte og om samme hjelp ville blitt gitt til en person uten den nære relasjonen.",
+      "teaches_player": "At privat og intern standing kan være viktig uten noen gang å bli mandat, datatilgang, budsjettgodkjenning eller vedtak."
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "vedtaksspor_og_sekretariatsintegritet_standing",
+      "meaning": "Om valgte organer kan stole på at forslag, diskusjon, bestilling og faktisk vedtak forblir adskilt gjennom referat og oppfølging.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "medlemsdata_og_personvernstanding",
+      "meaning": "Om medlemmer og kontrollfunksjoner kan stole på at tilgang følger nødvendig arbeidsgrunnlag og ikke sosial nærhet, mobiliseringspress eller bekvemmelighet.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "lokal_sentra_handoff_standing",
+      "meaning": "Om lokallag og fylkeslag opplever at innspill, kapasitetsgrenser og ansvar overlever handoff til sentralt nivå uten å bli forenklet bort.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "frivilligkapasitet_og_likebehandling_standing",
+      "meaning": "Om frivillige og lokale miljøer kan stole på at belastning, forventninger og støtte fordeles begrunnet fremfor etter status og nærhet.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "arrangement_ressurs_og_leveransestanding",
+      "meaning": "Om praktiske aktører kan stole på at planer, bemanning, leverandører og frister bygger på faktisk kapasitet og bekreftede avhengigheter.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "budsjett_fullmakt_og_avtalestanding",
+      "meaning": "Om økonomi og eksterne parter kan stole på at estimat, godkjenning, bestilling og bindende forpliktelse ikke blandes sammen.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "dokumentasjon_og_institusjonell_hukommelse_standing",
+      "meaning": "Om organisasjonen fortsatt kan forstå beslutninger, uenighet, eier og begrunnelse etter personskifte eller konflikt.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "valgt_organ_vs_administrasjon_standing",
+      "meaning": "Om sekretariatet kan bruke faglig og administrativ innflytelse uten å gjøre tilgang til saksflyten til demokratisk mandat.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "privat_intern_kultur_og_rollegrensestanding",
+      "meaning": "Om vennskap, lojalitet og intern status holdes adskilt fra medlemsdata, særbehandling, budsjett og formell prioritet.",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "situated_reputation_model": {
+    "global_score_allowed": false,
+    "audiences": [
+      {
+        "id": "valgt_ledelse_og_beslutningsorgan",
+        "standing_axis": "vedtaksspor_og_sekretariatsintegritet_standing",
+        "cares_about": [
+          "korrekt saksgrunnlag",
+          "tydelig skille mellom forslag og vedtak"
+        ],
+        "cannot_grant": "Valgt ledelse kan gi beslutninger bare gjennom riktig organ og mandat. Dette publikummet kan ikke gjøre Organisasjonssekretærens standing til valgt mandat, vedtak, fullmakt, medlemsdatatilgang, budsjettgodkjenning, kontrakt, evidens eller noen rettighet skapt av History Go eller Politikk-badge. Denne grensen gjelder også når saken haster, når organisasjonen ønsker mobilisering, når en leder forventer lojalitet, eller når en tidligere vellykket løsning frister til uformell gjenbruk. Publikum kan reagere sosialt på kvalitet og integritet, men kan ikke gjøre reaksjonen til juridisk, demokratisk, økonomisk eller administrativ myndighet."
+      },
+      {
+        "id": "medlemmer_og_medlemsservice",
+        "standing_axis": "medlemsdata_og_personvernstanding",
+        "cares_about": [
+          "forståelige svar",
+          "lik og begrunnet behandling"
+        ],
+        "cannot_grant": "Medlemmer kan gi eller trekke relasjonell tillit, men de kan ikke gjennom standing gi Organisasjonssekretæren valgt mandat, økonomisk fullmakt, tilgang til andres medlemsdata, rett til å omskrive vedtak eller erstatte evidens. History Go og Politikk-badge kan forbedre spørsmål, men kan ikke skape slike rettigheter. Denne grensen gjelder også når saken haster, når organisasjonen ønsker mobilisering, når en leder forventer lojalitet, eller når en tidligere vellykket løsning frister til uformell gjenbruk. Publikum kan reagere sosialt på kvalitet og integritet, men kan ikke gjøre reaksjonen til juridisk, demokratisk, økonomisk eller administrativ myndighet."
+      },
+      {
+        "id": "lokallag_fylkeslag_og_tillitsvalgte",
+        "standing_axis": "lokal_sentra_handoff_standing",
+        "cares_about": [
+          "sporbar handoff",
+          "realistisk støtte til lokal kapasitet"
+        ],
+        "cannot_grant": "Lokale og regionale aktører kan legitimt kreve svar og påvirke interne prosesser, men deres standing kan ikke bli valgt mandat for Organisasjonssekretæren, sentralt vedtak, medlemsdatatilgang, budsjettfullmakt, kontrakt eller evidens. History Go-kunnskap og Politikk-badge kan heller ikke hoppe over den faktiske beslutningslinjen. Denne grensen gjelder også når saken haster, når organisasjonen ønsker mobilisering, når en leder forventer lojalitet, eller når en tidligere vellykket løsning frister til uformell gjenbruk. Publikum kan reagere sosialt på kvalitet og integritet, men kan ikke gjøre reaksjonen til juridisk, demokratisk, økonomisk eller administrativ myndighet."
+      },
+      {
+        "id": "medlemsdata_personvern_og_okonomi",
+        "standing_axis": "budsjett_fullmakt_og_avtalestanding",
+        "cares_about": [
+          "nødvendig tilgang og behandlingsgrunnlag",
+          "sporbar kostnad og faktisk fullmakt"
+        ],
+        "cannot_grant": "Kontroll- og økonomifunksjoner kan stoppe ubegrunnet behandling eller forpliktelse, men standing hos dem kan ikke gi Organisasjonssekretæren valgt mandat, gjøre et forslag til vedtak, utvide medlemsdatatilgang, godkjenne budsjett eller inngå kontrakt uten faktisk fullmakt. History Go, Politikk-badge og annen evidens må holdes adskilt fra myndighet. Denne grensen gjelder også når saken haster, når organisasjonen ønsker mobilisering, når en leder forventer lojalitet, eller når en tidligere vellykket løsning frister til uformell gjenbruk. Publikum kan reagere sosialt på kvalitet og integritet, men kan ikke gjøre reaksjonen til juridisk, demokratisk, økonomisk eller administrativ myndighet."
+      },
+      {
+        "id": "frivillige_arrangementsstab_og_praktiske_leverandorer",
+        "standing_axis": "arrangement_ressurs_og_leveransestanding",
+        "cares_about": [
+          "realistisk bemanning og belastning",
+          "bekreftede leveranser og avvik"
+        ],
+        "cannot_grant": "Praktisk tillit kan gjøre samarbeid bedre, men kan ikke gi Organisasjonssekretæren valgt mandat, økonomisk signatur, medlemsdatatilgang eller rett til å love organisasjonens ressurser uten fullmakt. Standing, History Go, Politikk-badge eller operativ evidens kan ikke gjøre en uautorisert bestilling til vedtak eller bindende kontrakt. Denne grensen gjelder også når saken haster, når organisasjonen ønsker mobilisering, når en leder forventer lojalitet, eller når en tidligere vellykket løsning frister til uformell gjenbruk. Publikum kan reagere sosialt på kvalitet og integritet, men kan ikke gjøre reaksjonen til juridisk, demokratisk, økonomisk eller administrativ myndighet."
+      },
+      {
+        "id": "samarbeidspartnere_og_offentlig_kontakt",
+        "standing_axis": "dokumentasjon_og_institusjonell_hukommelse_standing",
+        "cares_about": [
+          "presise løfter og korrigeringer",
+          "autoriserte kontakt- og beslutningslinjer"
+        ],
+        "cannot_grant": "Eksterne samarbeidspartnere kan vurdere organisasjonen som troverdig, men kan ikke gjennom standing gi Organisasjonssekretæren valgt mandat, intern datatilgang, budsjettmyndighet eller rett til å inngå avtale. History Go og Politikk-badge er lærings- og spørsmålsressurser, ikke evidens for fullmakt eller erstatning for faktisk vedtak. Denne grensen gjelder også når saken haster, når organisasjonen ønsker mobilisering, når en leder forventer lojalitet, eller når en tidligere vellykket løsning frister til uformell gjenbruk. Publikum kan reagere sosialt på kvalitet og integritet, men kan ikke gjøre reaksjonen til juridisk, demokratisk, økonomisk eller administrativ myndighet."
+      },
+      {
+        "id": "private_relations_og_intern_organisasjonskultur",
+        "standing_axis": "privat_intern_kultur_og_rollegrensestanding",
+        "cares_about": [
+          "grenser mellom jobb og privatliv",
+          "fravær av særbehandling gjennom nærhet"
+        ],
+        "cannot_grant": "Private relasjoner og intern sosial status kan påvirke trivsel og lojalitet, men kan ikke gi Organisasjonssekretæren valgt mandat, vedtak, medlemsdatatilgang, budsjettfullmakt eller kontraktsrett. Vennskap, standing, History Go, Politikk-badge og personlig evidens kan ikke erstatte organisasjonens faktiske regler, samtykker og beslutninger. Denne grensen gjelder også når saken haster, når organisasjonen ønsker mobilisering, når en leder forventer lojalitet, eller når en tidligere vellykket løsning frister til uformell gjenbruk. Publikum kan reagere sosialt på kvalitet og integritet, men kan ikke gjøre reaksjonen til juridisk, demokratisk, økonomisk eller administrativ myndighet."
+      }
+    ],
+    "divergence_examples": [
+      "Et raskt arrangement kan øke standing hos synlige deltakere samtidig som frivillige og økonomifunksjonen mister tillit fordi belastning og kostnad ble skjult.",
+      "Et strengt nei til bred medlemslistedeling kan skuffe en kampanjegruppe, men styrke standing hos medlemmer og personvernansvarlige.",
+      "Et referat som beholder reell uenighet kan irritere ledelsen kortsiktig, men styrke valgt organs og lokallagenes tillit til sekretariatets hukommelse.",
+      "En lokal særbestilling som avvises kan svekke standing hos ett lag og samtidig styrke standing hos andre som ser at likebehandling faktisk gjelder.",
+      "En leverandørendring som stoppes til fullmakt er klar kan svekke operativ begeistring og styrke økonomisk og ekstern troverdighet.",
+      "En korrigering av en feilutsendt medlemsmelding kan koste offentlig ansikt, men øke medlemstillit fordi feilen blir dokumentert og rettet.",
+      "Å løfte en uklar lederbestilling til valgt organ kan oppleves tregt internt og samtidig beskytte både leder og sekretariat mot etterfølgende rolleblanding.",
+      "Å si nei til en venns uformelle innsyn kan skape privat friksjon og samtidig styrke profesjonell standing fordi samme tilgangsregel gjelder uavhengig av nærhet."
+    ],
+    "authority_separation": "Det finnes ingen global reputation-score som kan låse opp myndighet. Organisasjonssekretær er et direct career offer, men direct betyr bare tilgang til den administrative jobbrollen; høy standing kan ikke skape valgt mandat, gjøre forslag til vedtak, gi medlemsdatatilgang, godkjenne budsjett, inngå avtale eller overstyre valgt organ. History Go og Politikk-badge kan forbedre spørsmål og historisk forståelse, men er ikke evidens for fullmakt. Sosial tillit hos ledelse, medlemmer, lokallag, frivillige, kontrollfunksjoner, eksterne partnere og private relasjoner kan utvikle seg forskjellig og skal aldri summeres til én myndighetsscore."
+  },
+  "existing_work_continuity": {
+    "new_runtime_state": false,
+    "work_loops": [
+      "behov -> saksgrunnlag -> møte -> vedtak -> oppfølging -> dokumentasjon",
+      "aktivitet -> ressursplan -> koordinering -> gjennomføring -> avvik -> læring"
+    ],
+    "persistent_work_object": "organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging",
+    "waiting_states": [
+      "medlems_eller_lokallagsinnspill",
+      "leder_eller_valgt_organs_avklaring",
+      "personvern_eller_tilgangskontroll",
+      "budsjett_eller_okonomifullmakt",
+      "lokale_ressurser_og_frivilligkapasitet",
+      "leverandor_eller_arrangementsbekreftelse",
+      "referat_eller_vedtaksavklaring"
+    ],
+    "handoff_rule": "Neste aktør mottar gjeldende organisasjonslogg-versjon med faktisk vedtak eller bestilling, eier, relevant medlems-/tilgangsgrunnlag, ansvar, frist, ressurs- og budsjettstatus, åpne spørsmål, ventepunkt og hva som må bekreftes før status kan endres. Handoff kan ikke gjøre forslag til vedtak eller gi ny myndighet.",
+    "rework_rule": "Ny medlemsinformasjon, korrigert referat, nytt vedtak, endret kapasitet, budsjett, tilgangsgrunnlag eller dokumentert lokal tilbakemelding gjenåpner bare berørte ledd. Tidligere versjon, beslutningseier, begrunnelse, varsling og handoff beholdes."
+  },
+  "history_go_affordance": {
+    "badge_id": "politikk",
+    "source_ref": "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_008",
+    "better_question": "History Go skal gjøre spilleren bedre til å spørre hvordan organisasjoner faktisk skaper demokratisk og administrativ kontinuitet: Hvem hadde mandat til å beslutte, hvem forberedte saken, hvordan ble medlemmer representert, hvilke lokale miljøer bar arbeidet, hvordan ble opplysninger og ressurser forvaltet, og hvilke dokumenter gjør at senere aktører kan skille vedtak fra ettertidens fortelling? I stedet for å gi en snarvei til autoritet skal Politikk-kunnskap skjerpe blikket for institusjoner, foreningstradisjoner, medlemsdemokrati, representasjon, frivillighet, organisasjonsmakt og den historiske betydningen av møteformer, protokoller og lokal-sentral organisering. Spilleren kan bruke slik kunnskap til å oppdage bedre analogier, stille mer presise spørsmål og forstå hvorfor en rutine finnes, men må fortsatt hente dagens faktiske vedtak, regler, medlemsgrunnlag, tilgang, budsjett og fullmakt fra organisasjonens egne autoritative spor.",
+    "authority_boundary": "History Go og Politikk-badge kan ikke gi valgt mandat, gjøre et forslag eller en historisk parallell til dagens vedtak, gi medlemsdatatilgang, etablere behandlingsgrunnlag, godkjenne budsjett, inngå kontrakt eller erstatte organisasjonens faktiske evidens og beslutningsprosess. Organisasjonssekretæren må alltid skille læringskunnskap fra dagens autoritative dokumentasjon og fullmakt."
+  },
+  "cross_role_proof": {
+    "required_for_rollout": false,
+    "shared_work_object_found": false,
+    "new_runtime": false,
+    "status": "not_required_for_rollout",
+    "rule": "Ingen cross-role-link materialiseres fordi Organisasjonsarbeid kan lukkes på sitt eget vedvarende arbeidsobjekt; en senere delt arbeidsflate krever et genuint felles canonical objekt, ikke bare tematisk nærhet."
+  },
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 1, morning: En medlemshenvendelse kommer inn samtidig som ledelsen vil ha rask framdrift; første oppgave er å skille behov, eier, tilgang og beslutningsnivå før svaret blir et løfte. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "vedtak_og_sekretariatsintegritet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_001"
+        ],
+        "standing_audience": "valgt_ledelse_og_beslutningsorgan",
+        "standing_consequence": "Standing hos valgt_ledelse_og_beslutningsorgan kan endres på dag 1/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 1, lunch: En medlemshenvendelse kommer inn samtidig som ledelsen vil ha rask framdrift; første oppgave er å skille behov, eier, tilgang og beslutningsnivå før svaret blir et løfte. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "medlemsdata_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_002"
+        ],
+        "standing_audience": "medlemmer_og_medlemsservice",
+        "standing_consequence": "Standing hos medlemmer_og_medlemsservice kan endres på dag 1/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: En medlemshenvendelse kommer inn samtidig som ledelsen vil ha rask framdrift; første oppgave er å skille behov, eier, tilgang og beslutningsnivå før svaret blir et løfte. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_003"
+        ],
+        "standing_audience": "medlemsdata_personvern_og_okonomi",
+        "standing_consequence": "Standing hos medlemsdata_personvern_og_okonomi kan endres på dag 1/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: En medlemshenvendelse kommer inn samtidig som ledelsen vil ha rask framdrift; første oppgave er å skille behov, eier, tilgang og beslutningsnivå før svaret blir et løfte. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "privat_intern_kultur_og_rollegrenser"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_004"
+        ],
+        "standing_audience": "private_relations_og_intern_organisasjonskultur",
+        "standing_consequence": "Standing hos private_relations_og_intern_organisasjonskultur kan endres på dag 1/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 2, morning: Møteplanen fylles med en sak der forslag, tidligere diskusjon og faktisk vedtak flyter sammen; sekretariatet må gjenreise et lesbart beslutningsspor. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "dokumentasjon_handoff_og_hukommelse"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_005"
+        ],
+        "standing_audience": "medlemmer_og_medlemsservice",
+        "standing_consequence": "Standing hos medlemmer_og_medlemsservice kan endres på dag 2/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: Møteplanen fylles med en sak der forslag, tidligere diskusjon og faktisk vedtak flyter sammen; sekretariatet må gjenreise et lesbart beslutningsspor. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "dokumentasjon_handoff_og_hukommelse"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_006"
+        ],
+        "standing_audience": "lokallag_fylkeslag_og_tillitsvalgte",
+        "standing_consequence": "Standing hos lokallag_fylkeslag_og_tillitsvalgte kan endres på dag 2/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Møteplanen fylles med en sak der forslag, tidligere diskusjon og faktisk vedtak flyter sammen; sekretariatet må gjenreise et lesbart beslutningsspor. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "vedtak_og_sekretariatsintegritet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_007"
+        ],
+        "standing_audience": "frivillige_arrangementsstab_og_praktiske_leverandorer",
+        "standing_consequence": "Standing hos frivillige_arrangementsstab_og_praktiske_leverandorer kan endres på dag 2/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Møteplanen fylles med en sak der forslag, tidligere diskusjon og faktisk vedtak flyter sammen; sekretariatet må gjenreise et lesbart beslutningsspor. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_008"
+        ],
+        "standing_audience": "valgt_ledelse_og_beslutningsorgan",
+        "standing_consequence": "Standing hos valgt_ledelse_og_beslutningsorgan kan endres på dag 2/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: Et lokallag ber om støtte til en aktivitet, men kapasitet og tidligere prioriteringer er uklare; handoff må bevare både lokalkunnskap og likebehandling. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "lokal_sentra_likebehandling"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/conflict/politikk_organisasjonsarbeid_conflict.json#organisasjonsarbeid_conflict_009"
+        ],
+        "standing_audience": "lokallag_fylkeslag_og_tillitsvalgte",
+        "standing_consequence": "Standing hos lokallag_fylkeslag_og_tillitsvalgte kan endres på dag 3/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 3, lunch: Et lokallag ber om støtte til en aktivitet, men kapasitet og tidligere prioriteringer er uklare; handoff må bevare både lokalkunnskap og likebehandling. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "lokal_sentra_likebehandling"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/story/politikk_organisasjonsarbeid_story.json#organisasjonsarbeid_story_010"
+        ],
+        "standing_audience": "medlemsdata_personvern_og_okonomi",
+        "standing_consequence": "Standing hos medlemsdata_personvern_og_okonomi kan endres på dag 3/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Et lokallag ber om støtte til en aktivitet, men kapasitet og tidligere prioriteringer er uklare; handoff må bevare både lokalkunnskap og likebehandling. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "lokal_sentra_likebehandling"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/event/politikk_organisasjonsarbeid_event.json#organisasjonsarbeid_event_011"
+        ],
+        "standing_audience": "samarbeidspartnere_og_offentlig_kontakt",
+        "standing_consequence": "Standing hos samarbeidspartnere_og_offentlig_kontakt kan endres på dag 3/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Et lokallag ber om støtte til en aktivitet, men kapasitet og tidligere prioriteringer er uklare; handoff må bevare både lokalkunnskap og likebehandling. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/micro/politikk_organisasjonsarbeid_micro.json#organisasjonsarbeid_micro_012"
+        ],
+        "standing_audience": "medlemmer_og_medlemsservice",
+        "standing_consequence": "Standing hos medlemmer_og_medlemsservice kan endres på dag 3/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 4, morning: En kampanjegruppe ønsker bred bruk av medlemsdata for mobilisering; personvern, nødvendig tilgang og formål må avklares uten å late som mobiliseringsverdi er samtykke. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "medlemsdata_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/followup/politikk_organisasjonsarbeid_followup.json#organisasjonsarbeid_followup_013"
+        ],
+        "standing_audience": "medlemsdata_personvern_og_okonomi",
+        "standing_consequence": "Standing hos medlemsdata_personvern_og_okonomi kan endres på dag 4/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 4, lunch: En kampanjegruppe ønsker bred bruk av medlemsdata for mobilisering; personvern, nødvendig tilgang og formål må avklares uten å late som mobiliseringsverdi er samtykke. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/knowledge/politikk_organisasjonsarbeid_knowledge.json#organisasjonsarbeid_knowledge_014"
+        ],
+        "standing_audience": "frivillige_arrangementsstab_og_praktiske_leverandorer",
+        "standing_consequence": "Standing hos frivillige_arrangementsstab_og_praktiske_leverandorer kan endres på dag 4/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: En kampanjegruppe ønsker bred bruk av medlemsdata for mobilisering; personvern, nødvendig tilgang og formål må avklares uten å late som mobiliseringsverdi er samtykke. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "medlemsdata_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/consequence/politikk_organisasjonsarbeid_consequence.json#organisasjonsarbeid_consequence_015"
+        ],
+        "standing_audience": "private_relations_og_intern_organisasjonskultur",
+        "standing_consequence": "Standing hos private_relations_og_intern_organisasjonskultur kan endres på dag 4/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: En kampanjegruppe ønsker bred bruk av medlemsdata for mobilisering; personvern, nødvendig tilgang og formål må avklares uten å late som mobiliseringsverdi er samtykke. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "privat_intern_kultur_og_rollegrenser"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_001"
+        ],
+        "standing_audience": "lokallag_fylkeslag_og_tillitsvalgte",
+        "standing_consequence": "Standing hos lokallag_fylkeslag_og_tillitsvalgte kan endres på dag 4/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 5, morning: Et arrangement nærmer seg med ubekreftet leverandør, frivillig underskudd og kostnader som fortsatt omtales som estimat; planen må skilles i faktiske forpliktelser. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "frivillighet_arrangement_og_kapasitet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_002"
+        ],
+        "standing_audience": "frivillige_arrangementsstab_og_praktiske_leverandorer",
+        "standing_consequence": "Standing hos frivillige_arrangementsstab_og_praktiske_leverandorer kan endres på dag 5/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 5, lunch: Et arrangement nærmer seg med ubekreftet leverandør, frivillig underskudd og kostnader som fortsatt omtales som estimat; planen må skilles i faktiske forpliktelser. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "frivillighet_arrangement_og_kapasitet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_003"
+        ],
+        "standing_audience": "samarbeidspartnere_og_offentlig_kontakt",
+        "standing_consequence": "Standing hos samarbeidspartnere_og_offentlig_kontakt kan endres på dag 5/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Et arrangement nærmer seg med ubekreftet leverandør, frivillig underskudd og kostnader som fortsatt omtales som estimat; planen må skilles i faktiske forpliktelser. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "frivillighet_arrangement_og_kapasitet",
+          "budsjett_fullmakt_og_eksterne_lofter"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_004"
+        ],
+        "standing_audience": "valgt_ledelse_og_beslutningsorgan",
+        "standing_consequence": "Standing hos valgt_ledelse_og_beslutningsorgan kan endres på dag 5/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Et arrangement nærmer seg med ubekreftet leverandør, frivillig underskudd og kostnader som fortsatt omtales som estimat; planen må skilles i faktiske forpliktelser. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_005"
+        ],
+        "standing_audience": "medlemsdata_personvern_og_okonomi",
+        "standing_consequence": "Standing hos medlemsdata_personvern_og_okonomi kan endres på dag 5/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 6, morning: Et referatutkast utløser konflikt om hva som ble sagt og hva som ble besluttet; dokumentasjonen må tåle uenighet uten å produsere en falsk konsensus. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "vedtak_og_sekretariatsintegritet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_006"
+        ],
+        "standing_audience": "samarbeidspartnere_og_offentlig_kontakt",
+        "standing_consequence": "Standing hos samarbeidspartnere_og_offentlig_kontakt kan endres på dag 6/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 6, lunch: Et referatutkast utløser konflikt om hva som ble sagt og hva som ble besluttet; dokumentasjonen må tåle uenighet uten å produsere en falsk konsensus. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "dokumentasjon_handoff_og_hukommelse"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_007"
+        ],
+        "standing_audience": "private_relations_og_intern_organisasjonskultur",
+        "standing_consequence": "Standing hos private_relations_og_intern_organisasjonskultur kan endres på dag 6/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Et referatutkast utløser konflikt om hva som ble sagt og hva som ble besluttet; dokumentasjonen må tåle uenighet uten å produsere en falsk konsensus. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "vedtak_og_sekretariatsintegritet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_008"
+        ],
+        "standing_audience": "medlemmer_og_medlemsservice",
+        "standing_consequence": "Standing hos medlemmer_og_medlemsservice kan endres på dag 6/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Et referatutkast utløser konflikt om hva som ble sagt og hva som ble besluttet; dokumentasjonen må tåle uenighet uten å produsere en falsk konsensus. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "privat_intern_kultur_og_rollegrenser"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/conflict/politikk_organisasjonsarbeid_conflict.json#organisasjonsarbeid_conflict_009"
+        ],
+        "standing_audience": "frivillige_arrangementsstab_og_praktiske_leverandorer",
+        "standing_consequence": "Standing hos frivillige_arrangementsstab_og_praktiske_leverandorer kan endres på dag 6/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 7, morning: En leder ønsker et offentlig utspill før valgt organ har avklart retningen; sekretariatet kan forberede, men må holde kommunikasjon og beslutning atskilt. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "budsjett_fullmakt_og_eksterne_lofter"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/story/politikk_organisasjonsarbeid_story.json#organisasjonsarbeid_story_010"
+        ],
+        "standing_audience": "private_relations_og_intern_organisasjonskultur",
+        "standing_consequence": "Standing hos private_relations_og_intern_organisasjonskultur kan endres på dag 7/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 7, lunch: En leder ønsker et offentlig utspill før valgt organ har avklart retningen; sekretariatet kan forberede, men må holde kommunikasjon og beslutning atskilt. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/event/politikk_organisasjonsarbeid_event.json#organisasjonsarbeid_event_011"
+        ],
+        "standing_audience": "valgt_ledelse_og_beslutningsorgan",
+        "standing_consequence": "Standing hos valgt_ledelse_og_beslutningsorgan kan endres på dag 7/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: En leder ønsker et offentlig utspill før valgt organ har avklart retningen; sekretariatet kan forberede, men må holde kommunikasjon og beslutning atskilt. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "vedtak_og_sekretariatsintegritet",
+          "budsjett_fullmakt_og_eksterne_lofter"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/micro/politikk_organisasjonsarbeid_micro.json#organisasjonsarbeid_micro_012"
+        ],
+        "standing_audience": "lokallag_fylkeslag_og_tillitsvalgte",
+        "standing_consequence": "Standing hos lokallag_fylkeslag_og_tillitsvalgte kan endres på dag 7/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: En leder ønsker et offentlig utspill før valgt organ har avklart retningen; sekretariatet kan forberede, men må holde kommunikasjon og beslutning atskilt. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "privat_intern_kultur_og_rollegrenser"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/followup/politikk_organisasjonsarbeid_followup.json#organisasjonsarbeid_followup_013"
+        ],
+        "standing_audience": "samarbeidspartnere_og_offentlig_kontakt",
+        "standing_consequence": "Standing hos samarbeidspartnere_og_offentlig_kontakt kan endres på dag 7/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 8, morning: Midtveis viser oppfølgingsloggen at flere saker står hos uklare eiere; arbeidet flyttes fra heroisk problemløsning til tydelig handoff, frist og ventepunkt. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "dokumentasjon_handoff_og_hukommelse"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/knowledge/politikk_organisasjonsarbeid_knowledge.json#organisasjonsarbeid_knowledge_014"
+        ],
+        "standing_audience": "valgt_ledelse_og_beslutningsorgan",
+        "standing_consequence": "Standing hos valgt_ledelse_og_beslutningsorgan kan endres på dag 8/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 8, lunch: Midtveis viser oppfølgingsloggen at flere saker står hos uklare eiere; arbeidet flyttes fra heroisk problemløsning til tydelig handoff, frist og ventepunkt. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "lokal_sentra_likebehandling"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/consequence/politikk_organisasjonsarbeid_consequence.json#organisasjonsarbeid_consequence_015"
+        ],
+        "standing_audience": "medlemmer_og_medlemsservice",
+        "standing_consequence": "Standing hos medlemmer_og_medlemsservice kan endres på dag 8/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Midtveis viser oppfølgingsloggen at flere saker står hos uklare eiere; arbeidet flyttes fra heroisk problemløsning til tydelig handoff, frist og ventepunkt. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "frivillighet_arrangement_og_kapasitet",
+          "dokumentasjon_handoff_og_hukommelse"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_001"
+        ],
+        "standing_audience": "medlemsdata_personvern_og_okonomi",
+        "standing_consequence": "Standing hos medlemsdata_personvern_og_okonomi kan endres på dag 8/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Midtveis viser oppfølgingsloggen at flere saker står hos uklare eiere; arbeidet flyttes fra heroisk problemløsning til tydelig handoff, frist og ventepunkt. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_002"
+        ],
+        "standing_audience": "private_relations_og_intern_organisasjonskultur",
+        "standing_consequence": "Standing hos private_relations_og_intern_organisasjonskultur kan endres på dag 8/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 9, morning: Et medlem mener lokallaget blir behandlet dårligere enn et mer synlig miljø; sekretariatet må forklare kriterier, kontrollere fakta og korrigere reell forskjellsbehandling. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "lokal_sentra_likebehandling"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_003"
+        ],
+        "standing_audience": "medlemmer_og_medlemsservice",
+        "standing_consequence": "Standing hos medlemmer_og_medlemsservice kan endres på dag 9/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 9, lunch: Et medlem mener lokallaget blir behandlet dårligere enn et mer synlig miljø; sekretariatet må forklare kriterier, kontrollere fakta og korrigere reell forskjellsbehandling. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "medlemsdata_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_004"
+        ],
+        "standing_audience": "lokallag_fylkeslag_og_tillitsvalgte",
+        "standing_consequence": "Standing hos lokallag_fylkeslag_og_tillitsvalgte kan endres på dag 9/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Et medlem mener lokallaget blir behandlet dårligere enn et mer synlig miljø; sekretariatet må forklare kriterier, kontrollere fakta og korrigere reell forskjellsbehandling. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "lokal_sentra_likebehandling"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_005"
+        ],
+        "standing_audience": "frivillige_arrangementsstab_og_praktiske_leverandorer",
+        "standing_consequence": "Standing hos frivillige_arrangementsstab_og_praktiske_leverandorer kan endres på dag 9/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Et medlem mener lokallaget blir behandlet dårligere enn et mer synlig miljø; sekretariatet må forklare kriterier, kontrollere fakta og korrigere reell forskjellsbehandling. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "privat_intern_kultur_og_rollegrenser"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_006"
+        ],
+        "standing_audience": "valgt_ledelse_og_beslutningsorgan",
+        "standing_consequence": "Standing hos valgt_ledelse_og_beslutningsorgan kan endres på dag 9/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 10, morning: Et arrangementsavvik skaper ekstra kostnad og frivilligbelastning; bounded rework skal åpne bare de berørte leddene og bevare tidligere beslutningsspor. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "vedtak_og_sekretariatsintegritet",
+          "budsjett_fullmakt_og_eksterne_lofter"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_007"
+        ],
+        "standing_audience": "lokallag_fylkeslag_og_tillitsvalgte",
+        "standing_consequence": "Standing hos lokallag_fylkeslag_og_tillitsvalgte kan endres på dag 10/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: Et arrangementsavvik skaper ekstra kostnad og frivilligbelastning; bounded rework skal åpne bare de berørte leddene og bevare tidligere beslutningsspor. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "frivillighet_arrangement_og_kapasitet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_008"
+        ],
+        "standing_audience": "medlemsdata_personvern_og_okonomi",
+        "standing_consequence": "Standing hos medlemsdata_personvern_og_okonomi kan endres på dag 10/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Et arrangementsavvik skaper ekstra kostnad og frivilligbelastning; bounded rework skal åpne bare de berørte leddene og bevare tidligere beslutningsspor. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "frivillighet_arrangement_og_kapasitet",
+          "dokumentasjon_handoff_og_hukommelse"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/conflict/politikk_organisasjonsarbeid_conflict.json#organisasjonsarbeid_conflict_009"
+        ],
+        "standing_audience": "samarbeidspartnere_og_offentlig_kontakt",
+        "standing_consequence": "Standing hos samarbeidspartnere_og_offentlig_kontakt kan endres på dag 10/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Et arrangementsavvik skaper ekstra kostnad og frivilligbelastning; bounded rework skal åpne bare de berørte leddene og bevare tidligere beslutningsspor. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/story/politikk_organisasjonsarbeid_story.json#organisasjonsarbeid_story_010"
+        ],
+        "standing_audience": "medlemmer_og_medlemsservice",
+        "standing_consequence": "Standing hos medlemmer_og_medlemsservice kan endres på dag 10/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: En ekstern partner viser til en uformell lovnad fra en intern kontakt; sekretariatet må finne ut hva som faktisk ble autorisert før organisasjonen bindes av fortellingen. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "frivillighet_arrangement_og_kapasitet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/event/politikk_organisasjonsarbeid_event.json#organisasjonsarbeid_event_011"
+        ],
+        "standing_audience": "medlemsdata_personvern_og_okonomi",
+        "standing_consequence": "Standing hos medlemsdata_personvern_og_okonomi kan endres på dag 11/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 11, lunch: En ekstern partner viser til en uformell lovnad fra en intern kontakt; sekretariatet må finne ut hva som faktisk ble autorisert før organisasjonen bindes av fortellingen. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "budsjett_fullmakt_og_eksterne_lofter"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/micro/politikk_organisasjonsarbeid_micro.json#organisasjonsarbeid_micro_012"
+        ],
+        "standing_audience": "frivillige_arrangementsstab_og_praktiske_leverandorer",
+        "standing_consequence": "Standing hos frivillige_arrangementsstab_og_praktiske_leverandorer kan endres på dag 11/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: En ekstern partner viser til en uformell lovnad fra en intern kontakt; sekretariatet må finne ut hva som faktisk ble autorisert før organisasjonen bindes av fortellingen. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "budsjett_fullmakt_og_eksterne_lofter"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/followup/politikk_organisasjonsarbeid_followup.json#organisasjonsarbeid_followup_013"
+        ],
+        "standing_audience": "private_relations_og_intern_organisasjonskultur",
+        "standing_consequence": "Standing hos private_relations_og_intern_organisasjonskultur kan endres på dag 11/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En ekstern partner viser til en uformell lovnad fra en intern kontakt; sekretariatet må finne ut hva som faktisk ble autorisert før organisasjonen bindes av fortellingen. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "privat_intern_kultur_og_rollegrenser"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/knowledge/politikk_organisasjonsarbeid_knowledge.json#organisasjonsarbeid_knowledge_014"
+        ],
+        "standing_audience": "lokallag_fylkeslag_og_tillitsvalgte",
+        "standing_consequence": "Standing hos lokallag_fylkeslag_og_tillitsvalgte kan endres på dag 11/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 12, morning: Medlemsdata må korrigeres etter en feil, samtidig som flere arbeidsflater har kopier; saken tester om tilgang, varsling og institusjonell hukommelse faktisk henger sammen. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "medlemsdata_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/consequence/politikk_organisasjonsarbeid_consequence.json#organisasjonsarbeid_consequence_015"
+        ],
+        "standing_audience": "frivillige_arrangementsstab_og_praktiske_leverandorer",
+        "standing_consequence": "Standing hos frivillige_arrangementsstab_og_praktiske_leverandorer kan endres på dag 12/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 12, lunch: Medlemsdata må korrigeres etter en feil, samtidig som flere arbeidsflater har kopier; saken tester om tilgang, varsling og institusjonell hukommelse faktisk henger sammen. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_001"
+        ],
+        "standing_audience": "samarbeidspartnere_og_offentlig_kontakt",
+        "standing_consequence": "Standing hos samarbeidspartnere_og_offentlig_kontakt kan endres på dag 12/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Medlemsdata må korrigeres etter en feil, samtidig som flere arbeidsflater har kopier; saken tester om tilgang, varsling og institusjonell hukommelse faktisk henger sammen. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "medlemsdata_og_tillit",
+          "dokumentasjon_handoff_og_hukommelse"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_002"
+        ],
+        "standing_audience": "valgt_ledelse_og_beslutningsorgan",
+        "standing_consequence": "Standing hos valgt_ledelse_og_beslutningsorgan kan endres på dag 12/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Medlemsdata må korrigeres etter en feil, samtidig som flere arbeidsflater har kopier; saken tester om tilgang, varsling og institusjonell hukommelse faktisk henger sammen. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "privat_intern_kultur_og_rollegrenser"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_003"
+        ],
+        "standing_audience": "medlemsdata_personvern_og_okonomi",
+        "standing_consequence": "Standing hos medlemsdata_personvern_og_okonomi kan endres på dag 12/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 13, morning: Et lokalt innspill endrer et premiss i en allerede besluttet aktivitet; sekretariatet må avgjøre hva som kan tilpasses administrativt og hva som må tilbake til beslutningseier. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "lokal_sentra_likebehandling"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_004"
+        ],
+        "standing_audience": "samarbeidspartnere_og_offentlig_kontakt",
+        "standing_consequence": "Standing hos samarbeidspartnere_og_offentlig_kontakt kan endres på dag 13/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 13, lunch: Et lokalt innspill endrer et premiss i en allerede besluttet aktivitet; sekretariatet må avgjøre hva som kan tilpasses administrativt og hva som må tilbake til beslutningseier. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "medlemsdata_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_005"
+        ],
+        "standing_audience": "private_relations_og_intern_organisasjonskultur",
+        "standing_consequence": "Standing hos private_relations_og_intern_organisasjonskultur kan endres på dag 13/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Et lokalt innspill endrer et premiss i en allerede besluttet aktivitet; sekretariatet må avgjøre hva som kan tilpasses administrativt og hva som må tilbake til beslutningseier. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "vedtak_og_sekretariatsintegritet",
+          "budsjett_fullmakt_og_eksterne_lofter"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_006"
+        ],
+        "standing_audience": "medlemmer_og_medlemsservice",
+        "standing_consequence": "Standing hos medlemmer_og_medlemsservice kan endres på dag 13/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Et lokalt innspill endrer et premiss i en allerede besluttet aktivitet; sekretariatet må avgjøre hva som kan tilpasses administrativt og hva som må tilbake til beslutningseier. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_007"
+        ],
+        "standing_audience": "frivillige_arrangementsstab_og_praktiske_leverandorer",
+        "standing_consequence": "Standing hos frivillige_arrangementsstab_og_praktiske_leverandorer kan endres på dag 13/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 14, morning: Sesongen avsluttes med etterkontroll av vedtak, medlemssaker, arrangement, kostnader og åpne handoffs; målet er en organisasjon som kan forstå arbeidet uten private huskelister. Morgenen handler om arbeidsobjekt og avgrensning: spilleren må registrere hva som faktisk er kjent, hvem som eier beslutningen, hvilken versjon som gjelder og hvilket neste steg som er legitimt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "vedtak_og_sekretariatsintegritet",
+          "budsjett_fullmakt_og_eksterne_lofter"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_008"
+        ],
+        "standing_audience": "private_relations_og_intern_organisasjonskultur",
+        "standing_consequence": "Standing hos private_relations_og_intern_organisasjonskultur kan endres på dag 14/morning fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 14, lunch: Sesongen avsluttes med etterkontroll av vedtak, medlemssaker, arrangement, kostnader og åpne handoffs; målet er en organisasjon som kan forstå arbeidet uten private huskelister. Lunsjen gjør relasjonene synlige: den samme administrative handlingen oppleves forskjellig av medlemmer, lokallag, ledelse, frivillige eller kontrollfunksjoner, og spilleren må tåle at standing divergerer. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "lokal_sentra_likebehandling"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/conflict/politikk_organisasjonsarbeid_conflict.json#organisasjonsarbeid_conflict_009"
+        ],
+        "standing_audience": "valgt_ledelse_og_beslutningsorgan",
+        "standing_consequence": "Standing hos valgt_ledelse_og_beslutningsorgan kan endres på dag 14/lunch fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Sesongen avsluttes med etterkontroll av vedtak, medlemssaker, arrangement, kostnader og åpne handoffs; målet er en organisasjon som kan forstå arbeidet uten private huskelister. Ettermiddagen tvinger fram en beslutning om handling, venting eller eskalering. Spilleren må velge en løsning som er praktisk mulig uten å omforme sosial tillit, tidspress eller lederønske til formell fullmakt. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "medlemsdata_og_tillit",
+          "frivillighet_arrangement_og_kapasitet",
+          "dokumentasjon_handoff_og_hukommelse"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/story/politikk_organisasjonsarbeid_story.json#organisasjonsarbeid_story_010"
+        ],
+        "standing_audience": "lokallag_fylkeslag_og_tillitsvalgte",
+        "standing_consequence": "Standing hos lokallag_fylkeslag_og_tillitsvalgte kan endres på dag 14/afternoon fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Sesongen avsluttes med etterkontroll av vedtak, medlemssaker, arrangement, kostnader og åpne handoffs; målet er en organisasjon som kan forstå arbeidet uten private huskelister. Kvelden viser privat og langsom konsekvens: arbeidspress, intern kultur, vennskap, skam eller stolthet følger personen hjem, men ingen privat reaksjon får endre vedtak, tilgang, budsjett eller dokumentert ansvar. Organisasjonsloggen organisasjonslogg_medlem_mote_vedtak_aktivitet_og_oppfolging må oppdateres med eier, faktisk beslutningsstatus, relevant medlems- og tilgangsgrunnlag, ressurs- og budsjettstatus, frist, ventepunkt og neste handoff. Spilleren skal kunne arbeide effektivt og vise initiativ, men må eksplisitt skille administrativ koordinering fra valgt mandat, forslag fra vedtak, estimat fra godkjent økonomisk forpliktelse og relasjonell nærhet fra rett til medlemsdata. Dersom nye fakta oppstår, brukes bounded rework: bare berørte ledd åpnes igjen, mens tidligere versjon, begrunnelse, varsling og ansvar beholdes. Dermed blir scenen et sosialt og institusjonelt valg om hvordan organisasjonen faktisk husker, fordeler makt og beskytter medlemmer, ikke bare en oppgave om å få noe raskt ferdig.",
+        "thread_ids": [
+          "privat_intern_kultur_og_rollegrenser"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/politikk/event/politikk_organisasjonsarbeid_event.json#organisasjonsarbeid_event_011"
+        ],
+        "standing_audience": "samarbeidspartnere_og_offentlig_kontakt",
+        "standing_consequence": "Standing hos samarbeidspartnere_og_offentlig_kontakt kan endres på dag 14/evening fordi gruppen vurderer om sekretariatet er presist, rettferdig, korrigerbart og tydelig på egne grenser. En rask løsning kan derfor gi høyere standing ett sted og lavere et annet. Denne reaksjonen er situert: den kan påvirke senere tone, tillit og hvor lett samarbeid blir, men den kan aldri gi Organisasjonssekretæren valgt mandat, omskrive et vedtak, utvide medlemsdatatilgang, godkjenne budsjett, inngå kontrakt eller erstatte dokumentert evidens og faktisk fullmakt."
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "vedtak_og_sekretariatsintegritet",
+      "relationship": "Tråden følger hvordan sekretariatet blir stadig mer innflytelsesrikt fordi det kontrollerer tempo, dokumentflyt og oppfølging, samtidig som spilleren må bevise at innflytelse ikke blir til skjult beslutningsmakt. Relasjonen til valgt ledelse utvikler seg gjennom uklare bestillinger, referatstrid og senere etterkontroll. God standing krever at spilleren tåler kortsiktig irritasjon når en sak må tilbake til riktig organ, og at protokoll, ansvar og faktisk vedtak fortsatt kan leses etter at konflikten er over.",
+      "beat_refs": [
+        "1/morning",
+        "2/afternoon",
+        "6/morning",
+        "6/afternoon",
+        "7/afternoon",
+        "10/morning",
+        "13/afternoon",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "medlemsdata_og_tillit",
+      "relationship": "Tråden følger medlemskontakt fra service til mobilisering, feilretting og kontroll av tilgang. Medlemmer og interne funksjoner vurderer ikke bare hvor raskt de får svar, men om opplysninger brukes forutsigbart og med nødvendig arbeidsgrunnlag. Spilleren opplever at et populært mobiliseringstiltak kan koste tillit dersom databruken blir for bred, mens et begrensende svar kan styrke langsiktig standing fordi organisasjonen viser at medlemmer ikke er råmateriale for enhver intern kampanje.",
+      "beat_refs": [
+        "1/lunch",
+        "4/morning",
+        "4/afternoon",
+        "9/lunch",
+        "12/morning",
+        "12/afternoon",
+        "13/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "lokal_sentra_likebehandling",
+      "relationship": "Tråden følger Amina og flere lokale miljøer gjennom støttebehov, kapasitetsforskjeller og opplevelser av sentral favorisering. Spillet skal ikke late som alle lag er like; utfordringen er å gjøre ulike behov og ressurser synlige uten at sosial nærhet eller høy stemme blir skjult prioriteringsregel. Handoff og begrunnelse er derfor selve relasjonen: lokale aktører må kunne se hva som ble tatt videre, hva som ble avvist, og hvem som eier neste steg.",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "8/lunch",
+        "9/morning",
+        "9/afternoon",
+        "13/morning",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "frivillighet_arrangement_og_kapasitet",
+      "relationship": "Tråden følger Eirik, frivillige og praktiske leveranser gjennom et arrangement som gradvis avdekker skjulte avhengigheter. Organisasjonsarbeid blir troverdig først når entusiasme møter faktisk bemanning, tilgjengelighet, kostnad og restitusjon. Spilleren må lære at å redde en dato kan gi synlig kortsiktig suksess og samtidig redusere standing hos dem som bærer ubetalt belastning eller må rydde opp i løfter som aldri var realistiske.",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "8/afternoon",
+        "10/lunch",
+        "10/afternoon",
+        "11/morning",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "budsjett_fullmakt_og_eksterne_lofter",
+      "relationship": "Tråden følger grensene mellom estimat, godkjenning, bestilling og bindende avtale. Interne ledere og eksterne partnere kan begge presse på for å tolke et positivt signal som fullmakt, og spilleren må holde økonomisk ansvar adskilt fra relasjonell smidighet. Standing bygges når leverandører og økonomifunksjonen ser at endringer blir dokumentert og autorisert, selv om det betyr at et ønsket tiltak må endres eller utsettes.",
+      "beat_refs": [
+        "5/afternoon",
+        "7/morning",
+        "7/afternoon",
+        "10/morning",
+        "11/lunch",
+        "11/afternoon",
+        "13/afternoon",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "dokumentasjon_handoff_og_hukommelse",
+      "relationship": "Tråden følger dokumentasjonen som et levende makt- og læringssystem: hvem som eide saken, hva som var uenighet, hvilken versjon som ble sendt, og hvorfor en handoff skjedde. Når personer blir travle eller byttes ut, avsløres forskjellen mellom et sekretariat som husker gjennom private relasjoner og et som har institusjonell hukommelse. Spilleren må gjøre rework begrenset og sporbar i stedet for å skrive historien på nytt.",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "6/lunch",
+        "8/morning",
+        "8/afternoon",
+        "10/afternoon",
+        "12/afternoon",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "privat_intern_kultur_og_rollegrenser",
+      "relationship": "Tråden følger hvordan høyt tempo og intern nærhet påvirker privatliv, vennskap og kollegial lojalitet. Kveldsbeatene viser at en person kan være stolt av å være den som alltid løser alt, samtidig som denne identiteten gjør det lettere å akseptere særbehandling, uformell datadeling eller grenseløs tilgjengelighet. God situated reputation her handler om å være en pålitelig kollega og venn uten å gjøre privat standing til administrativ rettighet.",
+      "beat_refs": [
+        "1/evening",
+        "4/evening",
+        "6/evening",
+        "7/evening",
+        "9/evening",
+        "11/evening",
+        "12/evening",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "alltid_tilgjengelig",
+      "description": "Etter flere dager med raske svar oppdager spilleren at intern standing som den pålitelige problemløseren også skaper forventning om konstant tilgjengelighet. En nær relasjon spør om organisasjonen egentlig har fordelt ansvar eller bare funnet en person som absorberer alle uklare handoffs. Konsekvensen handler om å sette en tydelig kveldgrense og registrere neste eier uten å gjøre omsorg for kolleger til skjult beredskapsordning. Standing kan endres sosialt, men ingen privat ros eller irritasjon kan endre mandat, datarett eller budsjettfullmakt.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_001",
+        "data/Civication/mailFamilies/politikk/conflict/politikk_organisasjonsarbeid_conflict.json#organisasjonsarbeid_conflict_009"
+      ]
+    },
+    {
+      "id": "vennskap_og_medlemsdata",
+      "description": "En venn i organisasjonen spør uformelt om hvem som har meldt seg på eller sluttet å svare. Spilleren kjenner både ønsket om å hjelpe og hvor enkelt en liten opplysning kan bli til en ny intern norm. Etterarbeidet er å forklare hvorfor medlemsinformasjon følger arbeidsgrunnlag og kanal, og å tåle at vennskapet blir litt kjøligere. Den private reaksjonen er reell, men den kan ikke skape datatilgang eller gjøre en sosial forventning til administrativ rettighet.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_006",
+        "data/Civication/mailFamilies/politikk/story/politikk_organisasjonsarbeid_story.json#organisasjonsarbeid_story_010"
+      ]
+    },
+    {
+      "id": "frivillig_skyld",
+      "description": "Et vellykket arrangement skjuler at noen frivillige tok dobbelt skift og ryddet opp i manglende bemanning. Om kvelden oppstår stolthet og skyld samtidig: resultatet ble synlig, men kostnaden ble flyttet over på personer med svakere forhandlingsposisjon. Spilleren må føre belastningen tilbake til ressursplanen og foreslå korrigering før neste aktivitet. Situated standing hos deltakere og frivillige kan divergere uten at noen av delene blir formell fullmakt.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_003",
+        "data/Civication/mailFamilies/politikk/followup/politikk_organisasjonsarbeid_followup.json#organisasjonsarbeid_followup_013"
+      ]
+    },
+    {
+      "id": "referat_som_folger_hjem",
+      "description": "Etter en referatstrid fortsetter spilleren å formulere alternative setninger mentalt hjemme. Fristelsen er å skrive en versjon alle kan leve med, men den institusjonelle oppgaven er å skille observerbart møteforløp, faktisk vedtak og dokumentert uenighet. Privat ubehag blir dermed en læring i profesjonell rolle: sosial fred er ikke det samme som korrekt protokoll, og personlig standing kan ikke omskrive organisasjonens hukommelse.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_002",
+        "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_007"
+      ]
+    },
+    {
+      "id": "lokal_kritikk_og_status",
+      "description": "Et lokallag kritiserer sentralt sekretariat offentlig internt, og spilleren kjenner behovet for å forsvare egen innsats. Kveldsvalget er mellom å bruke intern status til å vinne fortellingen eller å gå tilbake til handoff, kriterier og faktiske svarfrister. En korrigering kan koste ansikt og samtidig gjøre systemet mer rettferdig. Privat skam, stolthet eller støtte endrer ikke hvem som eier beslutningen eller hvilket grunnlag som gjelder.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_004",
+        "data/Civication/mailFamilies/politikk/event/politikk_organisasjonsarbeid_event.json#organisasjonsarbeid_event_011"
+      ]
+    },
+    {
+      "id": "ekstern_lovnad_og_uro",
+      "description": "En leverandør viser til en lovnad som ingen med tydelig fullmakt vil eie. Spilleren kjenner uro fordi et nei kan skade relasjonen, men et ja kan binde organisasjonen uten autorisasjon. Etterarbeidet er å dokumentere hva som ble sagt, hvem som kunne godkjenne, og hvordan partneren får et korrigert svar. Ekstern standing kan påvirke fremtidig samarbeid, men den kan ikke gjøre en uklar samtale til budsjettvedtak eller kontrakt.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_005",
+        "data/Civication/mailFamilies/politikk/knowledge/politikk_organisasjonsarbeid_knowledge.json#organisasjonsarbeid_knowledge_014"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "uklart_vedtak_returnerer",
+      "setup_ref": "2/morning",
+      "return_ref": "6/afternoon",
+      "domains": [
+        "job",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "medlemsdata_tillit_returnerer",
+      "setup_ref": "4/morning",
+      "return_ref": "12/afternoon",
+      "domains": [
+        "relationship",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "lokal_likebehandling_returnerer",
+      "setup_ref": "3/lunch",
+      "return_ref": "9/afternoon",
+      "domains": [
+        "relationship",
+        "reputation",
+        "job"
+      ]
+    },
+    {
+      "id": "frivilligbelastning_returnerer",
+      "setup_ref": "5/lunch",
+      "return_ref": "10/afternoon",
+      "domains": [
+        "relationship",
+        "psyche",
+        "job"
+      ]
+    },
+    {
+      "id": "ekstern_lovnad_returnerer",
+      "setup_ref": "7/morning",
+      "return_ref": "11/afternoon",
+      "domains": [
+        "economy",
+        "reputation",
+        "job"
+      ]
+    },
+    {
+      "id": "handoff_eier_returnerer",
+      "setup_ref": "8/morning",
+      "return_ref": "13/morning",
+      "domains": [
+        "job",
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "privat_grense_returnerer",
+      "setup_ref": "1/evening",
+      "return_ref": "9/evening",
+      "domains": [
+        "psyche",
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "institusjonell_hukommelse_returnerer",
+      "setup_ref": "6/morning",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "job",
+        "narrative",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "authored_dimensions": [
+      "situated_reputation"
+    ],
+    "existing_plan_preserved": true,
+    "existing_role_model_preserved": true,
+    "existing_people_foundation_preserved": true,
+    "existing_work_grammar_preserved": true,
+    "existing_persistent_work_preserved": true,
+    "existing_rhythm_preserved": true,
+    "career_title_gates_preserved": true,
+    "cross_role_link_materialized": false,
+    "source_refs": [
+      "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_001",
+      "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_002",
+      "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_003",
+      "data/Civication/mailFamilies/politikk/job/politikk_organisasjonsarbeid_job.json#organisasjonsarbeid_job_004",
+      "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_005",
+      "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_006",
+      "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_007",
+      "data/Civication/mailFamilies/politikk/people/politikk_organisasjonsarbeid_people.json#organisasjonsarbeid_people_008",
+      "data/Civication/mailFamilies/politikk/conflict/politikk_organisasjonsarbeid_conflict.json#organisasjonsarbeid_conflict_009",
+      "data/Civication/mailFamilies/politikk/story/politikk_organisasjonsarbeid_story.json#organisasjonsarbeid_story_010",
+      "data/Civication/mailFamilies/politikk/event/politikk_organisasjonsarbeid_event.json#organisasjonsarbeid_event_011",
+      "data/Civication/mailFamilies/politikk/micro/politikk_organisasjonsarbeid_micro.json#organisasjonsarbeid_micro_012",
+      "data/Civication/mailFamilies/politikk/followup/politikk_organisasjonsarbeid_followup.json#organisasjonsarbeid_followup_013",
+      "data/Civication/mailFamilies/politikk/knowledge/politikk_organisasjonsarbeid_knowledge.json#organisasjonsarbeid_knowledge_014",
+      "data/Civication/mailFamilies/politikk/consequence/politikk_organisasjonsarbeid_consequence.json#organisasjonsarbeid_consequence_015"
+    ]
+  }
+}
