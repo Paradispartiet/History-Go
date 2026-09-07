@@ -35,6 +35,7 @@ jobs:
           test "$(git rev-parse origin/main)" = "$LOCKED_MAIN"
           git merge-base --is-ancestor "$LOCKED_MAIN" HEAD
           test "$(git diff --name-only "$OLD_BASE" "$FINAL_VAALERENGA" | wc -l | tr -d ' ')" = "51"
+          test -z "$(git diff --name-only "$OLD_BASE" "$FINAL_VAALERENGA" | grep -Ei '(^data/coordinate-evidence/|(^|/)[^/]*coordinate[^/]*$)' || true)"
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
@@ -118,6 +119,23 @@ jobs:
           git add -A
           git diff --cached --check
 
+      - name: Remove coordinate-named generated drift outside verified delta
+        run: |
+          mapfile -t coordinate_files < <(git diff --cached --name-only "$LOCKED_MAIN" | grep -Ei '(^data/coordinate-evidence/|(^|/)[^/]*coordinate[^/]*$)' || true)
+          printf 'Coordinate-like candidate paths outside the verified Vålerenga source delta:\n'
+          printf '%s\n' "${coordinate_files[@]}"
+          for file in "${coordinate_files[@]}"; do
+            test -n "$file" || continue
+            if git cat-file -e "$LOCKED_MAIN:$file" 2>/dev/null; then
+              git checkout "$LOCKED_MAIN" -- "$file"
+            else
+              rm -f -- "$file"
+            fi
+          done
+          git add -A
+          test -z "$(git diff --cached --name-only "$LOCKED_MAIN" | grep -Ei '(^data/coordinate-evidence/|(^|/)[^/]*coordinate[^/]*$)' || true)"
+          git diff --cached --check
+
       - name: Validate focused Vålerenga contracts
         run: |
           npm run build:tools --silent
@@ -164,6 +182,7 @@ jobs:
 
       - name: Validate PR isolation and repository hygiene on candidate
         run: |
+          git diff --name-only "$LOCKED_MAIN"...HEAD
           node scripts/validate-place-description-production-v4_2_policy.mjs --changed --base "$LOCKED_MAIN" --head HEAD
           REPO_HYGIENE_BASE_SHA="$LOCKED_MAIN" REPO_HYGIENE_HEAD_SHA="$(git rev-parse HEAD)" node scripts/audit-repository-hygiene-v1.mjs
           npm run knowledge:canonical:check
