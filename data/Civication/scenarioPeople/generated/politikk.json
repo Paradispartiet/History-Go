@@ -821,6 +821,21 @@
   "cross_category_existing_references": [],
   "missing_people_candidates": [
     {
+      "id": "amina_interessent_og_forvaltningskontakt_politisk_radgivning",
+      "name": "amina_interessent_og_forvaltningskontakt_politisk_radgivning",
+      "category": "politikk",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/politikk/politikk_politisk_radgivning.json"
+      ],
+      "scenario_roles": [
+        "politikk_politisk_radgivning"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "amina_lokal_og_fylkeslagskontakt_politikk_organisasjonsarbeid",
       "name": "amina_lokal_og_fylkeslagskontakt_politikk_organisasjonsarbeid",
       "category": "politikk",
@@ -877,6 +892,21 @@
       ],
       "scenario_roles": [
         "politikk_kommunal_ledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "ingrid_politisk_leder_politisk_radgivning",
+      "name": "ingrid_politisk_leder_politisk_radgivning",
+      "category": "politikk",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/politikk/politikk_politisk_radgivning.json"
+      ],
+      "scenario_roles": [
+        "politikk_politisk_radgivning"
       ],
       "verification_required": true
     },
@@ -941,6 +971,21 @@
       "verification_required": true
     },
     {
+      "id": "marius_fag_og_utredningskontakt_politisk_radgivning",
+      "name": "marius_fag_og_utredningskontakt_politisk_radgivning",
+      "category": "politikk",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/politikk/politikk_politisk_radgivning.json"
+      ],
+      "scenario_roles": [
+        "politikk_politisk_radgivning"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "nora_partigruppekoordinator_politikk_parlamentarisk_arbeid",
       "name": "nora_partigruppekoordinator_politikk_parlamentarisk_arbeid",
       "category": "politikk",
@@ -967,6 +1012,21 @@
       ],
       "scenario_roles": [
         "politikk_kommunal_ledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "samira_presse_og_kommunikasjon_politisk_radgivning",
+      "name": "samira_presse_og_kommunikasjon_politisk_radgivning",
+      "category": "politikk",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/politikk/politikk_politisk_radgivning.json"
+      ],
+      "scenario_roles": [
+        "politikk_politisk_radgivning"
       ],
       "verification_required": true
     },
@@ -1368,6 +1428,41 @@
       "automatic_match_tokens": [
         "politisk",
         "radgiver"
+      ],
+      "resolved_counts": {
+        "total": 114,
+        "existing_place_people": 114,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 5,
+        "contextual": 109,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "politikk_politisk_radgivning",
+      "role_scope": "politikk_politisk_radgivning",
+      "title": "Politisk rådgivning",
+      "source": "data/Civication/roleModels/politikk/politikk_politisk_radgivning.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [
+          "antonio_de_oliveira_salazar",
+          "gerd_liv_valla",
+          "katti_anker_moller",
+          "reiulf_steen",
+          "theis_lundegaard"
+        ],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "politisk",
+        "radgivning"
       ],
       "resolved_counts": {
         "total": 114,
