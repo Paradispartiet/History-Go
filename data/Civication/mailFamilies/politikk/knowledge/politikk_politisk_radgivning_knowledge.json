@@ -1,0 +1,90 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_politisk_radgivning",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "politisk_radgivning_history_go_institusjonskontekst",
+      "purpose": "Trene knowledge som del av et versjonert rådgivningsforløp der employer_appointment, bestilling, kildegrunnlag, alternativer, råd, beslutningseier, fortrolighet og oppfølging forblir eksplisitte og korrigerbare.",
+      "learning_focus": [
+        "beslutningsstotte",
+        "kildekritikk",
+        "alternativanalyse",
+        "fortrolighet",
+        "rolleintegritet",
+        "employer_appointment"
+      ],
+      "mails": [
+        {
+          "id": "politisk_radgivning_knowledge_014",
+          "mail_type": "knowledge",
+          "mail_family": "politisk_radgivning_history_go_institusjonskontekst",
+          "role_scope": "politikk_politisk_radgivning",
+          "phase": "afternoon",
+          "priority": 133,
+          "from": "Marius",
+          "people_ref": "marius_fag_og_utredningskontakt_politisk_radgivning",
+          "place_id": "fakta_kilder_og_alternativanalyse_politisk_radgivning",
+          "subject": "Bruk History Go til bedre institusjonelle spørsmål — ikke til å bevise dagens sak",
+          "summary": "Bruk History Go til bedre institusjonelle spørsmål — ikke til å bevise dagens sak. Målet er å bruke historisk kontekst til analogier og kontrollspørsmål uten å erstatte aktuelle kilder, employer_appointment eller beslutning. Dette steget føres i radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging. Employer_appointment, bestilling, beslutningseier, dokumentversjon, kildegrunnlag, usikkerhet, alternativer, konsekvenser, interessenter, fortrolighet, anbefaling, faktisk beslutning, budskap, ventepunkt, handoff og oppfølging skal være separate og versjonerte felt. Politisk rådgiver er appointment_required bak employer_appointment: Politikk-badge, XP, History Go-kunnskap, situated reputation, nettverk, popularitet eller nærhet til politisk ledelse kan aldri materialisere ansettelsen, åpne fortrolig materiale, gjøre rådgiverens anbefaling til beslutning eller gjøre en historisk analogi til evidens for dagens sak. En god løsning viser derfor hva som er kjent, hva som er usikkert, hvem som eier beslutningen, hva rådgiveren faktisk kan anbefale, hva som må vente, og hvilket nytt premiss som legitimt kan gjenåpne analysen.",
+          "situation": [
+            "Rådgivningsloggen viser bestilling, beslutningseier, dokumentversjon, kilder, alternativer, risiko, fortrolighet og åpne ventepunkter knyttet til at du skal bruke historisk kontekst til analogier og kontrollspørsmål uten å erstatte aktuelle kilder, employer_appointment eller beslutning.",
+            "Presset er reelt: politisk ledelse, medier, interessenter eller kort frist kan gjøre det fristende å skjule usikkerhet, behandle tilgang som evidens eller kommunisere et råd som om det var besluttet.",
+            "Du må velge et grep som tåler senere kontroll, bevarer employer_appointment og tilgangsgrenser, skiller faglig og politisk vurdering fra faktisk beslutning og gjør bounded rework mulig uten å slette tidligere råd, beslutning eller offentlig budskap."
+          ],
+          "task_domain": "politisk_radgivning",
+          "competency": "analyse_beslutningsstotte_kildekritikk_rolleintegritet_og_fortrolighet",
+          "pressure": "politisk_ledelse_medier_interessenter_tid_fortrolighet_og_beslutningseier",
+          "choice_axis": "sporbar_kildebevisst_og_mandatavgrenset_radgivning_vs_tidlig_binding_og_myndighetsglidning",
+          "consequence_axis": "beslutningskvalitet_tillit_og_korrigerbarhet_vs_overloving_kildefeil_og_tillitstap",
+          "narrative_arc": "knowledge",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Før bruk history go til bedre institusjonelle spørsmål — ikke til å bevise dagens sak gjennom det sporbare rådgivningsforløpet",
+              "reply": "Jeg fører dette gjennom radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging. Først bekrefter jeg employer_appointment, bestilling og riktig beslutningseier. Deretter låser jeg dokumentversjon, skiller kilde, fakta, usikkerhet, interesse og politisk vurdering, beskriver reelle alternativer og konsekvenser, markerer fortrolighet og hva vi faktisk venter på. Jeg gir en tydelig anbefaling innen rådgiverrollen, men lar beslutningseieren eie beslutningen og sender komplett handoff videre. Hvis nye fakta kommer, åpner jeg bare berørt analyse og beholder tidligere råd, beslutning og kommunikasjon. History Go brukes til kontekst og bedre spørsmål, aldri som ansettelse, delegasjon eller evidens.",
+              "effect": 1,
+              "tags": [
+                "employer_appointment",
+                "radgivningssporbarhet",
+                "kildekritikk",
+                "rolleintegritet"
+              ],
+              "feedback": "Grepet gjør det mulig for politisk ledelse, fag, kommunikasjon, interessenter og senere kontroll å se hva som var bestilling, dokumentert premiss, rådgiverens vurdering, politisk valg og faktisk beslutning. Rådgiveren får reell innflytelse gjennom analyse, alternativer, risiko og kommunikasjon uten å overta beslutningseierens myndighet. Når et nytt premiss kommer, kan berørt del av rådet gjenåpnes uten å omskrive tidligere dokumentversjon, anbefaling eller offentlig forklaring.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk bruk history go til bedre institusjonelle spørsmål — ikke til å bevise dagens sak gjennom tidlig politisk binding",
+              "reply": "Jeg prioriterer tempo og lojalitet foran sakslogg og rollegrense. Jeg behandler beslutningseierens foreløpige ønske eller en sterk interessents påstand som tilstrekkelig grunnlag, lar kildeusikkerhet og fortrolighet være uklare og kommuniserer resultatet før beslutningen faktisk er tatt. Hvis nye fakta kommer, forsøker jeg å forsvare det tidligere budskapet og justerer historien etterpå i stedet for å gjenåpne den delen av analysen som faktisk endret seg.",
+              "effect": -1,
+              "tags": [
+                "tidlig_resultatbinding",
+                "kilde_og_fortrolighetsrisiko",
+                "myndighetsglidning"
+              ],
+              "feedback": "Løsningen kan gi kortsiktig politisk tydelighet, men gjør det uklart hva som var kilde, råd, politisk preferanse og faktisk beslutning. Når rådgiveren skjuler usikkerhet eller lover på vegne av beslutningseieren, blir senere korrigering et omdømmeproblem i stedet for avgrenset rework. Det svekker både beslutningskvalitet og rolleintegritet og kan skape forventninger hos medier eller interessenter som rådgiveren aldri hadde myndighet til å binde.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,1 +1,244 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"politikk","role_scope":"politikk_politisk_radgivning","role_id":"politikk_politisk_radgivning","badge_binding":{"badge_titles":["Politisk rådgiver"],"thresholds":[40]},"work_world":"Politisk rådgivning der raske prioriteringer må bygge på etterprøvbare fakta, tydelige alternativer og riktig rolleforståelse.","authority_boundary":{"may":["utrede alternativer og konsekvenser","foreslå prioriteringer innen oppdraget","forberede kommunikasjon og møteunderlag"],"may_not":["fatte beslutninger som tilhører statsråd eller annet formelt organ","skjule vesentlige fakta for å få ønsket råd gjennom","misbruke fortrolig informasjon","love offentlige beslutninger på vegne av andre"]},"task_families":["briefing","alternativanalyse","interessentkartlegging","risikovurdering","kommunikasjonsforberedelse"],"work_loops":["bestilling -> fakta -> alternativer -> konsekvens -> råd -> beslutningseier","hendelse -> verifisering -> politisk betydning -> responsalternativer -> anbefaling -> oppfølging"],"practice_stories":[{"id":"svakt_faktagrunnlag","setup":"En mediesak eksploderer før fakta er verifisert.","decision":"Skill hva som er kjent, ukjent og antatt før du anbefaler respons.","learning":"hastighet uten kildekritikk gir dårlig styring"},{"id":"fag_mot_politikk","setup":"Faglige råd peker én vei mens den politiske preferansen peker en annen.","decision":"Synliggjør konsekvensene og skill faglig vurdering fra politisk valg.","learning":"rådgiveren skal klargjøre valget, ikke forfalske grunnlaget"},{"id":"interessentpress","setup":"En sterk aktør krever et løfte før saken er behandlet.","decision":"Kartlegg interessen og gi råd, men lov ikke beslutninger uten mandat.","learning":"tilgang gir ikke rett til å binde staten"},{"id":"fortrolig_notat","setup":"Et internt notat kan gi taktisk fordel hvis det lekkes.","decision":"Beskytt fortroligheten og bruk materialet bare i legitim beslutningsprosess.","learning":"politisk gevinst opphever ikke informasjonsansvar"},{"id":"kort_frist","setup":"En statsråd trenger tre realistiske alternativer før et møte om en time.","decision":"Prioriter beslutningskritiske fakta, eksplisitte usikkerheter og gjennomførbare alternativer.","learning":"god rådgivning komprimerer uten å fordreie"}],"quality_axes":["analyse","beslutningsstøtte","kildekritikk","politisk_forståelse","kommunikasjon","rolleintegritet"]}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "politikk",
+  "role_scope": "politikk_politisk_radgivning",
+  "role_id": "politikk_politisk_radgivning",
+  "badge_binding": {
+    "badge_id": "politikk",
+    "badge_titles": [
+      "Politisk rådgiver"
+    ],
+    "thresholds": [
+      40
+    ]
+  },
+  "work_world": "Politisk rådgivning der employer_appointment, bestilling, fakta, alternativer, risiko, råd, beslutningseier og oppfølging holdes sammen uten at nærhet til makt blir til egen beslutningsmyndighet.",
+  "authority_boundary": {
+    "may": [
+      "utrede alternativer, konsekvenser, risiko og gjennomførbarhet innen en faktisk arbeidsbestilling",
+      "anbefale prioriteringer og utfordre beslutningseierens premisser med dokumentasjon",
+      "forberede møter, budskap, spørsmål-og-svar og interessentkontakt innen oppdraget",
+      "behandle fortrolig materiale bare når faktisk rolle, tilgang, formål og regler gir grunnlag",
+      "følge opp beslutninger og gjøre avvik, nye fakta og behov for ny vurdering eksplisitt"
+    ],
+    "may_not": [
+      "materialisere Politisk rådgiver uten dokumentert employer_appointment",
+      "fatte beslutninger som tilhører statsråd, politisk leder eller annet formelt organ",
+      "skjule vesentlige fakta, usikkerhet eller motargumenter for å få ønsket råd gjennom",
+      "misbruke, lekke eller videreformidle fortrolig informasjon uten faktisk grunnlag",
+      "love organisasjoner, medier eller andre aktører en offentlig beslutning rådgiveren ikke kan fatte",
+      "bruke Politikk-badge, XP, History Go-kunnskap, situated reputation, nettverk eller popularitet som employer_appointment, delegasjon, evidens eller beslutningsmyndighet"
+    ]
+  },
+  "task_families": [
+    "briefing",
+    "alternativanalyse",
+    "interessentkartlegging",
+    "risikovurdering",
+    "kommunikasjonsforberedelse",
+    "beslutningsoppfolging"
+  ],
+  "work_loops": [
+    "bestilling -> fakta -> alternativer -> konsekvens -> råd -> beslutningseier",
+    "hendelse -> verifisering -> politisk betydning -> responsalternativer -> anbefaling -> oppfølging"
+  ],
+  "practice_stories": [
+    {
+      "id": "svakt_faktagrunnlag",
+      "setup": "En mediesak eksploderer før fakta er verifisert.",
+      "decision": "Skill kjent, ukjent og antatt før respons anbefales.",
+      "learning": "hastighet uten kildekritikk gir dårlig styring"
+    },
+    {
+      "id": "fag_mot_politikk",
+      "setup": "Faglige råd peker én vei mens politisk preferanse peker en annen.",
+      "decision": "Synliggjør konsekvens og skill faglig vurdering fra politisk valg.",
+      "learning": "rådgiveren skal klargjøre valget, ikke forfalske grunnlaget"
+    },
+    {
+      "id": "interessentpress",
+      "setup": "En sterk aktør krever løfte før saken er behandlet.",
+      "decision": "Kartlegg interessen og gi råd, men lov ikke beslutninger uten myndighet.",
+      "learning": "tilgang gir ikke rett til å binde beslutningseieren"
+    },
+    {
+      "id": "fortrolig_notat",
+      "setup": "Et internt notat kan gi taktisk fordel hvis det lekkes.",
+      "decision": "Beskytt fortroligheten og bruk materialet bare i legitim beslutningsprosess.",
+      "learning": "politisk gevinst opphever ikke informasjonsansvar"
+    },
+    {
+      "id": "kort_frist",
+      "setup": "Beslutningseieren trenger tre realistiske alternativer om en time.",
+      "decision": "Prioriter beslutningskritiske fakta, eksplisitte usikkerheter og gjennomførbare alternativer.",
+      "learning": "god rådgivning komprimerer uten å fordreie"
+    }
+  ],
+  "quality_axes": [
+    "analyse",
+    "beslutningsstotte",
+    "kildekritikk",
+    "politisk_forstaelse",
+    "kommunikasjon",
+    "rolleintegritet",
+    "fortrolighet",
+    "sporbarhet"
+  ],
+  "pressure_axes": [
+    "medietempo_vs_verifisering",
+    "lojalitet_vs_uavhengig_risikofremstilling",
+    "sterk_tilgang_vs_representativt_kildegrunnlag",
+    "politisk_gevinst_vs_fortrolighet",
+    "beslutningspress_vs_eksplisitte_alternativer"
+  ],
+  "actor_grammar": [
+    {
+      "id": "ingrid_politisk_leder_politisk_radgivning",
+      "name": "Ingrid",
+      "role": "politisk leder og beslutningseier",
+      "workplace_ids": [
+        "bestilling_brief_og_beslutningsspor_politisk_radgivning",
+        "budskap_beslutning_og_oppfolging_politisk_radgivning"
+      ]
+    },
+    {
+      "id": "marius_fag_og_utredningskontakt_politisk_radgivning",
+      "name": "Marius",
+      "role": "fag- og utredningskontakt",
+      "workplace_ids": [
+        "fakta_kilder_og_alternativanalyse_politisk_radgivning",
+        "bestilling_brief_og_beslutningsspor_politisk_radgivning"
+      ]
+    },
+    {
+      "id": "samira_presse_og_kommunikasjon_politisk_radgivning",
+      "name": "Samira",
+      "role": "presse- og kommunikasjonsrådgiver",
+      "workplace_ids": [
+        "budskap_beslutning_og_oppfolging_politisk_radgivning",
+        "interessent_mote_og_fortrolighetsflate_politisk_radgivning"
+      ]
+    },
+    {
+      "id": "amina_interessent_og_forvaltningskontakt_politisk_radgivning",
+      "name": "Amina",
+      "role": "interessent- og forvaltningskontakt",
+      "workplace_ids": [
+        "interessent_mote_og_fortrolighetsflate_politisk_radgivning",
+        "fakta_kilder_og_alternativanalyse_politisk_radgivning"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "bestilling_brief_og_beslutningsspor_politisk_radgivning",
+      "name": "Bestillings-, brief- og beslutningssporet",
+      "function": "Her registreres hvem som bestilte arbeidet, hvilket politisk spørsmål som skal avklares, frist, beslutningseier, gjeldende dokumentversjon, hvilke fakta som er sikre eller usikre, hvilke alternativer som faktisk vurderes, rådgiverens anbefaling og hva beslutningseieren til slutt bestemmer. Flaten hindrer at en rådgivers notat, et muntlig ønske eller et politisk mål glir over i en beslutning uten eksplisitt eier, begrunnelse og spor."
+    },
+    {
+      "id": "fakta_kilder_og_alternativanalyse_politisk_radgivning",
+      "name": "Fakta-, kilde- og alternativanalysen",
+      "function": "Her skilles kilde, faktapåstand, faglig vurdering, juridisk eller økonomisk premiss, usikkerhet, gjennomføringsrisiko og politisk verdi. Hvert alternativ får synlige konsekvenser, avhengigheter og hva som kan endre vurderingen. Arbeidsflaten gjør det mulig å komprimere raskt uten å skjule det som ikke er avklart og uten å fremstille rådgiverens foretrukne løsning som den eneste faktabaserte."
+    },
+    {
+      "id": "interessent_mote_og_fortrolighetsflate_politisk_radgivning",
+      "name": "Interessent-, møte- og fortrolighetsflaten",
+      "function": "Her registreres hvem som har tilgang til rådgiveren, hvilke interesser de representerer, hva de faktisk sier, hvilke dokumenter eller erfaringer de viser til, hva som er fortrolig, og hvilke løfter som ikke kan gis. Flaten skal gjøre skjev tilgang, lobbytrykk, private relasjoner og legitim erfaringskunnskap synlige samtidig, uten å gjøre nærhet, status eller møtefrekvens til bevis eller beslutningsrett."
+    },
+    {
+      "id": "budskap_beslutning_og_oppfolging_politisk_radgivning",
+      "name": "Budskaps-, beslutnings- og oppfølgingssporet",
+      "function": "Her kobles den faktiske beslutningen til talepunkter, presseforberedelse, spørsmål-og-svar, korrigeringer, gjennomføringsansvar og senere kontroll. Flaten skiller tydelig hva rådgiveren anbefalte, hva beslutningseieren valgte, hva som kan kommuniseres offentlig, og hvilke nye fakta eller resultater som senere må føre til bounded rework. Tidligere råd og beslutninger beholdes som historikk."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging",
+    "description": "Versjonert rådgivningslogg som bevarer employer_appointment, bestilling, beslutningseier, dokumentversjoner, fakta og kilder, alternativer, konsekvenser, risiko, interessentinnspill, fortrolighet, anbefaling, faktisk beslutning, budskap, ventepunkt, handoff, oppfølging og bounded rework gjennom samme sak.",
+    "states": [
+      "employer_appointment_bekreftet",
+      "bestilling_registrert",
+      "beslutningseier_avklart",
+      "dokumentversjon_laset",
+      "fakta_og_kilder_kartlagt",
+      "usikkerhet_synlig",
+      "interessenter_registrert",
+      "fortrolighet_avklart",
+      "alternativer_formulert",
+      "konsekvenser_analysert",
+      "risiko_synlig",
+      "venter_pa_faglig_svar",
+      "venter_pa_juridisk_eller_okonomisk_avklaring",
+      "anbefaling_utkast",
+      "politisk_avklaring",
+      "beslutning_fattet",
+      "budskap_forberedt",
+      "offentlig_kommunikasjon",
+      "gjennomforing_handoff",
+      "oppfolging_og_resultat",
+      "avvik_eller_nytt_premiss",
+      "bounded_rework",
+      "lukket_med_sporbarhet"
+    ],
+    "handoff_rule": "Neste aktør mottar gjeldende rådgivningslogg med employer_appointment, bestilling, beslutningseier, dokumentversjon, kilder, usikkerhet, alternativer, risiko, fortrolighet, anbefaling, faktisk beslutning, hva som venter og hva som må bekreftes. Handoff kan aldri gjøre rådgiverens anbefaling til beslutning eller gi ny myndighet."
+  },
+  "rhythm_contract": {
+    "loop": "bestilling -> dokumentasjon -> analyse -> waiting/venting på faglig, juridisk eller økonomisk avklaring -> alternativer -> råd -> beslutningseier -> kommunikasjon -> handoff -> oppfølging -> bounded rework",
+    "waiting_states": [
+      "faglig_dokumentasjon",
+      "juridisk_avklaring",
+      "budsjett_eller_okonomiavklaring",
+      "politisk_prioritering",
+      "interessent_eller_forvaltningssvar",
+      "kommunikasjonsavklaring",
+      "oppfolging_nye_fakta_eller_resultat"
+    ],
+    "rework_rule": "Nye dokumenter, korrigert faktagrunnlag, ny juridisk eller økonomisk avklaring, endret politisk prioritering, beslutning eller gjennomføringsfunn gjenåpner bare berørte ledd. Tidligere versjon, anbefaling, beslutning og offentlig kommunikasjon beholdes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_politikk_radgivning_institusjoner_og_beslutningshistorie",
+      "badge_id": "politikk",
+      "use": "History Go kan gi historisk og institusjonell kontekst om politiske beslutninger, forvaltning, partier, interessekamp og tidligere reformer og dermed forbedre spørsmål og analogier. Det kan ikke skape employer_appointment, erstatte aktuelle saksdokumenter, gi fortrolighetstilgang eller gjøre historisk likhet til evidens for dagens beslutning."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "career_offer_policy_by_title",
+    "entry_policy_by_title": {
+      "Politisk rådgiver": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ]
+      }
+    },
+    "first_object": "radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging",
+    "first_task": "Bekreft employer_appointment før første rådgiverhandling. Registrer første bestilling med beslutningseier, dokumentversjon, kjent og ukjent faktagrunnlag, alternativer, interessenter, fortrolighet, frist, ventepunkt og hva Politikk-badge eller History Go ikke gir myndighet eller evidens til."
+  },
+  "situated_reputation_contract": {
+    "global_score_allowed": false,
+    "audiences": [
+      "politisk_ledelse_og_beslutningseier",
+      "fag_og_forvaltning",
+      "kommunikasjon_og_medier",
+      "interessenter_og_organisasjoner",
+      "interne_kolleger_og_private_relations"
+    ],
+    "rule": "Standing følger konkret pålitelighet i analyse, kildebruk, fortrolighet, rolleintegritet og korrigerbarhet hos den aktuelle gruppen. Den gir aldri employer_appointment, delegasjon, fortrolighetstilgang eller beslutningsmyndighet."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "politikk_politisk_radgivning",
+    "no_generic_fallback": true
+  }
+}

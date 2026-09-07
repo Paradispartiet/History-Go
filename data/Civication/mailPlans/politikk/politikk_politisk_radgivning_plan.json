@@ -1,0 +1,202 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "politikk_politisk_radgivning_foundation_v1",
+  "category": "politikk",
+  "role_scope": "politikk_politisk_radgivning",
+  "title": "Politisk rådgivning",
+  "description": "Seksten steg fra første bestilling og faktagrunnlag til alternativer, interessenter, råd, beslutning, kommunikasjon og oppfølging i ett versjonert rådgivningsspor.",
+  "arc": {
+    "from": "Ny Politisk rådgiver med dokumentert employer_appointment som må lære at nærhet til beslutningseier gir arbeidsoppgaver og innflytelse, men ikke egen offentlig beslutningsmyndighet.",
+    "to": "En pålitelig rådgiver som kan komprimere komplekst grunnlag, vise alternativer og risiko, beskytte fortrolighet, gi tydelige råd og bevare forskjellen mellom anbefaling og faktisk beslutning.",
+    "core_questions": [
+      "Hva er dokumentert faktum, hva er usikkert, og hva er politisk vurdering?",
+      "Hvilke realistiske alternativer og konsekvenser må beslutningseieren se før valget?",
+      "Hva kan jeg anbefale og forberede, og hva kan jeg aldri love, beslutte eller få tilgang til uten riktig rolle og fullmakt?"
+    ]
+  },
+  "outcome_rules": {
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0
+    },
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "radgivningssporbarhet_kilde_eller_rollebrudd"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom job med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom people med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "knowledge",
+      "phase": "intro",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom knowledge med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_history_go_institusjonskontekst"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom job med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom people med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "conflict",
+      "phase": "advanced",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom conflict med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_lojalitet_kilde_og_myndighet"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom job med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom people med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom event med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_hastetempo_og_nytt_premiss"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "micro",
+      "phase": "advanced",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom micro med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_rask_fakta_rolle_og_beslutningsavklaring"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom job med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 12,
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom people med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 13,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom followup med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_beslutning_gjennomforing_og_oppfolging"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mastery",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom story med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_tillit_og_korrigering"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 15,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom consequence med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_overloving_lekkasje_og_etterspill"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før radgivningslogg_bestilling_fakta_alternativer_risiko_rad_beslutning_og_oppfolging gjennom job med employer_appointment, beslutningseier, dokumentversjon, kildegrunnlag, alternativer, risiko, fortrolighet, anbefaling, ventepunkt, faktisk beslutning og bounded rework.",
+      "allowed_families": [
+        "politisk_radgivning_job"
+      ],
+      "fallback_types": []
+    }
+  ]
+}
