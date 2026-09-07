@@ -114,6 +114,8 @@ test('strong and temporal gates detect governed wording', () => {
   assert.equal(containsStrongClaim('Dette var den eldste bygningen i området.'), true);
   assert.equal(containsStrongClaim('Bygningen ble reist i 1912.'), false);
   assert.equal(containsTemporalClaim('Museet drives av kommunen i dag.'), true);
+  assert.equal(containsTemporalClaim('Museet er nå kommunalt drevet.'), true);
+  assert.equal(containsTemporalClaim('Området lå ennå utenfor bygrensen.'), false);
   assert.equal(containsTemporalClaim('Museet stengte i 1984.'), false);
 });
 
