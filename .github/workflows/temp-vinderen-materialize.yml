@@ -71,19 +71,21 @@ jobs:
                   raise SystemExit(f'Expected materializer token not found: {old}')
               source = source.replace(old, new, 1)
           marker = 'const imageCache = new Map();\nasync function fetchBuffer(url) {\n  if (imageCache.has(url)) return imageCache.get(url);'
-          replacement = '''const imageCache = new Map();
-const diskImageCache = new Map([
-  ["https://upload.wikimedia.org/wikipedia/commons/c/cd/Vinderen_Torvet,_Oslo.jpg", "/tmp/vinderen-image-cache/place.jpg"],
-  ["https://upload.wikimedia.org/wikipedia/commons/9/9b/Vinderen_stasjon_-_2010-08-07_at_17-50-16.jpg", "/tmp/vinderen-image-cache/station.jpg"],
-  ["https://upload.wikimedia.org/wikipedia/commons/8/8d/Holmenkollbanen_at_Vindern.jpg", "/tmp/vinderen-image-cache/train.jpg"],
-  ["https://upload.wikimedia.org/wikipedia/commons/5/53/Rasmus_Larsen_Windern.jpg", "/tmp/vinderen-image-cache/rasmus.jpg"],
-  ["https://upload.wikimedia.org/wikipedia/commons/5/5d/Vinderen_skole.jpg", "/tmp/vinderen-image-cache/school.jpg"],
-  ["https://dms07.dimu.org/image/02RWgryHoU?dimension=600x600", "/tmp/vinderen-image-cache/conditori.jpg"]
-]);
-async function fetchBuffer(url) {
-  const cachedPath = diskImageCache.get(url);
-  if (cachedPath) return fs.readFileSync(cachedPath);
-  if (imageCache.has(url)) return imageCache.get(url);'''
+          replacement = (
+              'const imageCache = new Map();\n'
+              'const diskImageCache = new Map([\n'
+              '  ["https://upload.wikimedia.org/wikipedia/commons/c/cd/Vinderen_Torvet,_Oslo.jpg", "/tmp/vinderen-image-cache/place.jpg"],\n'
+              '  ["https://upload.wikimedia.org/wikipedia/commons/9/9b/Vinderen_stasjon_-_2010-08-07_at_17-50-16.jpg", "/tmp/vinderen-image-cache/station.jpg"],\n'
+              '  ["https://upload.wikimedia.org/wikipedia/commons/8/8d/Holmenkollbanen_at_Vindern.jpg", "/tmp/vinderen-image-cache/train.jpg"],\n'
+              '  ["https://upload.wikimedia.org/wikipedia/commons/5/53/Rasmus_Larsen_Windern.jpg", "/tmp/vinderen-image-cache/rasmus.jpg"],\n'
+              '  ["https://upload.wikimedia.org/wikipedia/commons/5/5d/Vinderen_skole.jpg", "/tmp/vinderen-image-cache/school.jpg"],\n'
+              '  ["https://dms07.dimu.org/image/02RWgryHoU?dimension=600x600", "/tmp/vinderen-image-cache/conditori.jpg"]\n'
+              ']);\n'
+              'async function fetchBuffer(url) {\n'
+              '  const cachedPath = diskImageCache.get(url);\n'
+              '  if (cachedPath) return fs.readFileSync(cachedPath);\n'
+              '  if (imageCache.has(url)) return imageCache.get(url);'
+          )
           if marker not in source:
               raise SystemExit('Expected fetchBuffer cache marker not found')
           source = source.replace(marker, replacement, 1)
