@@ -1,1 +1,333 @@
-{"schema":"civication_role_model_v2","version":2,"source":{"badge_file":"data/badges/politikk.json","badge_id":"politikk","evidence":"data/Civication/politikkCareerLifeEvidence.json"},"category":"politikk","role_scope":"politikk_regjeringsledelse","role_id":"politikk_regjeringsledelse","title":"Regjeringsledelse","badge_titles":["Statssekretær","Statsråd (minister)","Statsminister"],"core_narrative":["Du arbeider i regjeringens politiske ledelse, der prioriteringer må omsettes til lovlig, dokumentert og koordinert styring innen konstitusjonelle rammer."],"work_life":{"daily_work":["prioriteringsmøter, departementskoordinering, beslutningsunderlag, stortingskontakt, mediehåndtering og kriseavklaringer"],"responsibilities":["lovlig styring, sporbare beslutningsgrunnlag, samordning og tydelig skille mellom parti og stat"],"work_environment":["Statsministerens kontor, departementer, regjeringskonferanser, Stortinget og offentligheten"]},"authority_boundaries":{"can":["sette politiske prioriteringer innen den konkrete utnevnelsens myndighet","be om utredning og samordning","representere regjeringens linje innen tildelt rolle"],"cannot":["omgå Grunnloven eller formelle beslutningsprosedyrer","forfalske eller skjule vesentlig beslutningsgrunnlag","bruke offentlige ressurser som partiets private eiendom","utøve myndighet som tilhører en annen formell rolle"]},"competence_axes":["konstitusjonell_forståelse","styring","samordning","beslutningskvalitet","kriseledelse","rolleintegritet"],"ideal_type_problems":["departementer gir motstridende råd","krise krever rask avgjørelse","politisk løfte mangler hjemmel eller finansiering","uenighet i regjeringskollegiet","partihensyn kolliderer med statlig rolle"]}
+{
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "source": {
+    "badge_file": "data/badges/politikk.json",
+    "badge_id": "politikk",
+    "evidence": "data/Civication/politikkCareerLifeEvidence.json"
+  },
+  "category": "politikk",
+  "role_scope": "politikk_regjeringsledelse",
+  "role_id": "politikk_regjeringsledelse",
+  "title": "Regjeringsledelse",
+  "badge_titles": [
+    "Statssekretær",
+    "Statsråd (minister)",
+    "Statsminister"
+  ],
+  "core_narrative": [
+    "Regjeringsledelse fører politiske mål gjennom faglig, rettslig og økonomisk utredning, tverrdepartemental samordning, korrekt formell beslutning, offentlig begrunnelse, iverksetting og kontroll uten å blande parti og stat eller skjule vesentlige premisser.",
+    "Statssekretær, Statsråd (minister) og Statsminister deler et canonical role_scope fordi de arbeider i samme regjeringsverden, men public_office_appointment og den konkrete tittelen bestemmer hvilken myndighet spilleren faktisk har. Felles role_scope er aldri felles fullmakt.",
+    "Arbeidet har reell rytme av bestilling, utredning, venting på juss/budsjett/fag, samordning, beslutning, handoff, offentlig kommunikasjon, gjennomføring og bounded rework når nye fakta eller resultater endrer premissene."
+  ],
+  "work_life": {
+    "daily_work": [
+      "oppdatere regjeringssak_prioritering_faggrunnlag_samordning_beslutning_iverksetting_og_oppfolging med aktiv tittel, public_office_appointment, politisk mål, bestilling, faggrunnlag, hjemmel, budsjett, alternativer, samordning, beslutning, offentlig begrunnelse, iverksetting, ventepunkt og oppfølging",
+      "lese og utfordre faglige, juridiske og økonomiske beslutningsunderlag før politisk konklusjon",
+      "samordne reelle konfliktlinjer mellom departementer og politiske prioriteringer uten å skjule uenighet",
+      "føre saken til riktig formell beslutning og skille statssekretærens, statsrådens, statsministerens og kollegiale organers myndighet",
+      "følge kommunikasjon og gjennomføring slik at nye resultater kan korrigere framtidige råd uten historieskriving"
+    ],
+    "responsibilities": [
+      "public_office_appointment_og_tittelgrense",
+      "konstitusjonell_og_rettslig_styring",
+      "fag_juss_budsjett_og_konsekvensgrunnlag",
+      "departementssamordning",
+      "formell_beslutningsprosess",
+      "parti_stat_grense",
+      "krise_og_usikkerhet",
+      "iverksetting_kontroll_og_oppfolging"
+    ],
+    "work_environment": [
+      "Statsministerens kontor, departementenes politiske ledelse, embetsverk, regjeringskonferanser, Stortinget, underliggende virksomheter og offentligheten."
+    ],
+    "status_position": [
+      "Alle tre badge-titler er appointment_required og krever public_office_appointment. Badge-terskel, valgmandat alene, employer_appointment, kunnskap, nettverk eller situated reputation kan aldri materialisere eller utvide et offentlig politisk embete."
+    ],
+    "workplaces": [
+      "regjeringssak_bestilling_og_beslutningsspor_regjeringsledelse",
+      "departement_fag_juss_budsjett_og_konsekvensgrunnlag_regjeringsledelse",
+      "regjeringskonferanse_samordning_og_kollegial_avklaring_regjeringsledelse",
+      "offentlig_budskap_iverksetting_kontroll_og_oppfolging_regjeringsledelse"
+    ]
+  },
+  "authority_boundaries": {
+    "can": [
+      "sette politiske prioriteringer innen den konkrete utnevnelsens og tittelens faktiske myndighet",
+      "be om utredning, samordning og beslutningsgrunnlag",
+      "representere regjeringens linje innen tildelt rolle og faktisk beslutning",
+      "behandle fortrolig materiale bare innen faktisk tilgang, formål og regler",
+      "følge opp vedtak, gjennomføring, kontroll og evaluering uten å omskrive tidligere beslutningsgrunnlag"
+    ],
+    "cannot": [
+      "materialisere Statssekretær, Statsråd eller Statsminister uten public_office_appointment",
+      "la et felles role_scope gjøre Statssekretær, Statsråd og Statsminister myndighetsmessig utskiftbare",
+      "omgå Grunnloven, lov, budsjettfullmakt, habilitet eller formelle beslutningsprosedyrer",
+      "forfalske, skjule eller omskrive vesentlig beslutningsgrunnlag fordi det er politisk ubeleilig",
+      "bruke offentlige ressurser som partiets private eiendom eller gjøre partistandpunkt til statlig instruks uten korrekt beslutning",
+      "bruke Politikk-badge, XP, History Go, situated reputation, popularitet, election_or_mandate eller employer_appointment som public_office_appointment, evidens eller ekstra myndighet"
+    ]
+  },
+  "competence_axes": [
+    "konstitusjonell_forstaelse",
+    "styring_og_fullmakt",
+    "samordning",
+    "beslutningskvalitet",
+    "juss_og_budsjett",
+    "kriseledelse",
+    "parti_stat_grense",
+    "rolleintegritet"
+  ],
+  "ideal_type_problems": [
+    "to departementer gir motstridende råd og ingen kan gjennomføres samtidig",
+    "en krise krever handling før situasjonsbildet er komplett",
+    "et populært løfte mangler hjemmel, budsjett eller realistisk iverksetting",
+    "Statsministerens koordinerende preferanse forveksles med automatisk myndighet over en annen formell beslutning",
+    "partiapparatet ønsker tilgang til statlige ressurser eller fortrolig materiale",
+    "et vesentlig tall svekker den foretrukne løsningen rett før beslutning"
+  ],
+  "authority_boundary": {
+    "may": [
+      "sette politiske prioriteringer innen den konkrete utnevnelsens og tittelens faktiske myndighet",
+      "be om utredning, samordning og beslutningsgrunnlag",
+      "representere regjeringens linje innen tildelt rolle og faktisk beslutning",
+      "behandle fortrolig materiale bare innen faktisk tilgang, formål og regler",
+      "følge opp vedtak, gjennomføring, kontroll og evaluering uten å omskrive tidligere beslutningsgrunnlag"
+    ],
+    "may_not": [
+      "materialisere Statssekretær, Statsråd eller Statsminister uten public_office_appointment",
+      "la et felles role_scope gjøre Statssekretær, Statsråd og Statsminister myndighetsmessig utskiftbare",
+      "omgå Grunnloven, lov, budsjettfullmakt, habilitet eller formelle beslutningsprosedyrer",
+      "forfalske, skjule eller omskrive vesentlig beslutningsgrunnlag fordi det er politisk ubeleilig",
+      "bruke offentlige ressurser som partiets private eiendom eller gjøre partistandpunkt til statlig instruks uten korrekt beslutning",
+      "bruke Politikk-badge, XP, History Go, situated reputation, popularitet, election_or_mandate eller employer_appointment som public_office_appointment, evidens eller ekstra myndighet"
+    ]
+  },
+  "title_authority_contracts": {
+    "Statssekretær": {
+      "gate": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "public_office_appointment"
+        ]
+      },
+      "may": [
+        "utføre politiske ledelsesoppgaver og samordning innen konkret tildelt ansvarsområde og faktisk delegasjon",
+        "forberede og følge opp saker for statsråden og representere politisk ledelse der rollen faktisk er gitt adgang"
+      ],
+      "may_not": [
+        "opptre som Statsråd eller Statsminister bare fordi role_scope er felles",
+        "fatte beslutninger som krever statsrådens, Kongen i statsråd, regjeringens eller annet organs formelle myndighet",
+        "utvide egen delegasjon gjennom Politikk-badge, XP, nettverk, standing eller muntlig forventning"
+      ]
+    },
+    "Statsråd (minister)": {
+      "gate": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "public_office_appointment"
+        ]
+      },
+      "may": [
+        "utøve den konkrete statsrådspostens politiske ledelse og ansvar innen lov, fullmakt og formelle beslutningsprosesser",
+        "sette politiske prioriteringer i eget ansvarsområde, kreve utredning og ta de beslutningene rollen faktisk har myndighet til"
+      ],
+      "may_not": [
+        "behandle departementets ressurser som partiets private ressurser",
+        "omgå konstitusjonelle, rettslige, budsjettmessige eller kollegiale beslutningskrav",
+        "utøve Statsministerens koordinerende rolle eller en annen statsråds sektoransvar uten faktisk grunnlag"
+      ]
+    },
+    "Statsminister": {
+      "gate": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "public_office_appointment"
+        ]
+      },
+      "may": [
+        "lede og koordinere regjeringens politiske arbeid innen den faktiske statsministerrollen",
+        "sette overordnede prioriteringer, kreve samordning og representere regjeringen innen konstitusjonelle og kollegiale rammer"
+      ],
+      "may_not": [
+        "behandle statsministerrollen som generell personlig myndighet over enhver beslutning i staten",
+        "erstatte statsrådenes sektoransvar, formelle regjeringsprosesser, Stortingets myndighet eller andre konstitusjonelle organer med egen preferanse",
+        "bruke Politikk-badge, valgresultat alene, employer_appointment, standing, popularitet eller History Go som public_office_appointment eller ekstra fullmakt"
+      ]
+    }
+  },
+  "career_path": {
+    "entry_from": [
+      "Statssekretær materialiseres bare med public_office_appointment; Politikk-badge, XP, election_or_mandate, employer_appointment, nettverk og omdømme oppfyller ikke gaten.",
+      "Statsråd (minister) materialiseres bare med public_office_appointment; Politikk-badge, XP, election_or_mandate, employer_appointment, nettverk og omdømme oppfyller ikke gaten.",
+      "Statsminister materialiseres bare med public_office_appointment; Politikk-badge, XP, election_or_mandate, employer_appointment, nettverk og omdømme oppfyller ikke gaten."
+    ],
+    "progression_to": [
+      "Videre ansvar i regjering eller parti krever egne faktiske utnevnelses-, valg- eller organisatoriske prosesser. Et høyere badge-nivå oppgraderer aldri automatisk den aktive tittelen eller fullmakten."
+    ],
+    "possible_promotions": [
+      "Statssekretær kan ikke bli Statsråd bare ved progresjon; ny public_office_appointment til riktig embete kreves.",
+      "Statsråd blir ikke Statsminister gjennom intern XP eller standing; den konkrete offentlige utnevnelsen må finnes."
+    ],
+    "possible_exits": [
+      "Når utnevnelsen opphører, beholdes ikke tittel, tilgang, delegasjon eller fortrolig myndighet som spillstatus."
+    ],
+    "career_risks": [
+      "Nærhet til statlig makt kan gjøre uformell tilgang og partihensyn til skjulte snarveier dersom parti-stat-grensen ikke er eksplisitt.",
+      "Krise og medietempo kan belønne tidlig sikkerhet før hjemmel, økonomi, samordning og gjennomføringsansvar er avklart."
+    ]
+  },
+  "required_knowledge": {
+    "education_basis": [
+      "Regjeringsledelse krever ingen automatisk utdanningsstige i spillet, men konstitusjonell forståelse, forvaltningskunnskap, juss, budsjett, kildekritikk og styringsforståelse er nødvendig for beslutningskvalitet. Ingen kunnskap erstatter public_office_appointment eller den konkrete tittelens fullmakt."
+    ],
+    "skills": [
+      "konstitusjonelle_roller",
+      "public_office_appointment_og_tittelgrenser",
+      "departementsstyring",
+      "regjeringskonferanse_og_samordning",
+      "faglig_beslutningsgrunnlag",
+      "rettslig_hjemmel_og_fullmakt",
+      "budsjett_og_okonomiske_premisser",
+      "krise_og_usikkerhetsstyring",
+      "parti_stat_skille",
+      "fortrolighet_og_tilgang",
+      "stortingskontakt_og_kontroll",
+      "offentlig_begrunnelse",
+      "iverksetting_og_handoff",
+      "evaluering_og_bounded_rework"
+    ],
+    "category_knowledge": [
+      "Konstitusjonelle rammer, regjeringens og departementenes roller, ministeransvar, politisk ledelse, samordning, forholdet til Stortinget, offentlig forvaltning, parti-stat-grensen og forskjellen mellom politisk prioritering og formell statlig myndighet."
+    ],
+    "history_go_badges": [
+      "politikk"
+    ],
+    "place_connections": [
+      "regjeringssak_bestilling_og_beslutningsspor_regjeringsledelse",
+      "departement_fag_juss_budsjett_og_konsekvensgrunnlag_regjeringsledelse",
+      "regjeringskonferanse_samordning_og_kollegial_avklaring_regjeringsledelse",
+      "offentlig_budskap_iverksetting_kontroll_og_oppfolging_regjeringsledelse"
+    ],
+    "people_connections": [
+      "elin_departementsrad_og_forvaltningskontakt_regjeringsledelse",
+      "amir_regjeringsjurist_og_budsjettanalytiker_regjeringsledelse",
+      "nora_regjeringssamordner_regjeringsledelse",
+      "samira_regjeringskommunikasjon_og_iverksetting_regjeringsledelse"
+    ],
+    "boundary": "History Go kan gi historisk og institusjonell kontekst om regjeringer, ministeransvar, departementer, kriser, reformer og maktforhold, men er ikke public_office_appointment, aktuell hjemmel, budsjettfullmakt, fortrolighetstilgang, regjeringsvedtak, delegasjon eller evidens for dagens sak."
+  },
+  "challenges": [
+    {
+      "id": "regjeringsmakt_under_tidspress_og_rollegrenser",
+      "title": "Regjeringsmakt under tidspress og rollegrenser",
+      "description": "Spilleren må føre politisk vilje gjennom korrekt faggrunnlag, samordning og beslutningsform uten å la felles role_scope, krise, partilojalitet eller popularitet viske ut hvilken tittel som faktisk har hvilken myndighet.",
+      "pressure": "politisk_tempo_og_maktnarhet_vs_konstitusjonell_sporbarhet_og_gjennomforbarhet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "politisk_vilje_behandles_som_ferdig_statlig_fullmakt",
+      "title": "Politisk vilje behandles som ferdig statlig fullmakt",
+      "setup": "En viktig sak haster, ledelsen er politisk enig, men hjemmel, budsjett, departementssamordning eller korrekt beslutningsform er fortsatt åpen.",
+      "choice_axis": "lovlig_sporbart_og_tittelbundet_styringsforlop_vs_uformell_maktbruk",
+      "consequence_axis": "legitimitet_gjennomforbarhet_og_korrigerbarhet_vs_fullmaktsglidning_partistat_og_tillitstap",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "elin_departementsrad_og_forvaltningskontakt_regjeringsledelse",
+      "name": "Elin",
+      "role": "departementsråd og forvaltningskontakt",
+      "workplace_ids": [
+        "departement_fag_juss_budsjett_og_konsekvensgrunnlag_regjeringsledelse",
+        "regjeringssak_bestilling_og_beslutningsspor_regjeringsledelse"
+      ],
+      "function": "Elin gjør embetsverkets faglige og administrative ansvar synlig i regjeringsarbeidet. Hun sørger for at bestilling, rettslig grunnlag, økonomiske premisser, gjennomføringskapasitet, usikkerhet og dokumentversjoner blir presentert slik at den politiske ledelsen kan ta reelle valg uten å omskrive faggrunnlaget. Når Statssekretær, Statsråd eller Statsminister presser på for tempo, skiller hun tydelig mellom politisk prioritering, faglig vurdering, formell beslutning og det forvaltningen faktisk kan iverksette.",
+      "authority_relation": "Elin kan organisere utredning, utfordre mangelfullt grunnlag, varsle om rettslige, økonomiske og administrative begrensninger og kreve at vesentlige premisser følger saken videre. Hun kan ikke gi public_office_appointment, overta statsrådens eller regjeringens politiske beslutningsmyndighet, gjøre embetsverkets anbefaling til politisk vedtak eller la en Statssekretær opptre som Statsråd. Heller ikke Statsministerens politiske lederskap gjør hennes faglige kontroll overflødig.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "amir_regjeringsjurist_og_budsjettanalytiker_regjeringsledelse",
+      "name": "Amir",
+      "role": "regjeringsjurist og budsjettanalytiker",
+      "workplace_ids": [
+        "departement_fag_juss_budsjett_og_konsekvensgrunnlag_regjeringsledelse",
+        "regjeringskonferanse_samordning_og_kollegial_avklaring_regjeringsledelse"
+      ],
+      "function": "Amir følger regjeringssaker gjennom hjemmel, konstitusjonelle rammer, budsjettvirkning, fullmakter, fordelingskonsekvenser og kontrollbehov. Han gjør det synlig når et politisk løfte mangler rettslig mekanisme, når finansiering ikke dekker tiltaket, når et departement legger til grunn en annen forutsetning enn et annet, eller når en krisebeslutning må avgrenses fordi informasjonsbildet er ufullstendig. Han skiller dermed politisk vilje fra det rettslige og økonomiske grunnlaget som må bære faktisk statlig handling.",
+      "authority_relation": "Amir kan avgrense hva gjeldende grunnlag tillater, vise hvilke beslutningsformer og fullmakter som kreves, beregne konsekvenser og returnere et underlag som skjuler vesentlige risikoer. Han kan ikke utnevne noen til offentlig politisk embete, bestemme regjeringens politiske mål, overta statsrådens ansvar, gjøre juridisk analyse til regjeringens vedtak eller gi Statsministeren myndighet som ligger hos andre konstitusjonelle eller kollegiale organer.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "nora_regjeringssamordner_regjeringsledelse",
+      "name": "Nora",
+      "role": "regjeringssamordner og konferansekoordinator",
+      "workplace_ids": [
+        "regjeringskonferanse_samordning_og_kollegial_avklaring_regjeringsledelse",
+        "regjeringssak_bestilling_og_beslutningsspor_regjeringsledelse"
+      ],
+      "function": "Nora holder den tverrdepartementale samordningen lesbar fra første bestilling til regjeringskonferanse, avklarte uenigheter og videre formell behandling. Hun registrerer hvilke departementer som eier hvilke premisser, hvor konfliktlinjene faktisk ligger, hva som er politisk uenighet versus faglig usikkerhet, hvilke saker som kan avgjøres i den enkelte rollen og hvilke som krever kollegial eller annen formell behandling. Dermed blir Statsministerens koordinerende rolle synlig uten å bli fremstilt som ubegrenset personlig beslutningsmyndighet.",
+      "authority_relation": "Nora kan koordinere saksflyt, møtefrister, departementsinnspill, uenighetslogg og handoff og kan stoppe en sak fra å fremstå som samordnet når vesentlige konflikter fortsatt er åpne. Hun kan ikke gi public_office_appointment, gjøre Statssekretær til statsråd, gjøre Statsministerens preferanse til et automatisk regjeringsvedtak, eller la samordningsbehov brukes til å omgå formelle beslutningsprosedyrer, ansvarslinjer eller dokumentasjonskrav.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "samira_regjeringskommunikasjon_og_iverksetting_regjeringsledelse",
+      "name": "Samira",
+      "role": "regjeringskommunikasjon og iverksettingskontakt",
+      "workplace_ids": [
+        "offentlig_budskap_iverksetting_kontroll_og_oppfolging_regjeringsledelse",
+        "regjeringssak_bestilling_og_beslutningsspor_regjeringsledelse"
+      ],
+      "function": "Samira kobler den faktiske regjeringsbeslutningen til offentlig budskap, stortingskontakt, spørsmål-og-svar, gjennomføringsansvar og senere korrigering. Hun passer på at kommunikasjon skiller partiets politiske ønske, regjeringens vedtatte linje, statsrådens sektoransvar, Statsministerens koordinerende budskap og det forvaltningen faktisk er instruert til å gjennomføre. Når en sak utvikler seg, sørger hun for at tidligere beslutning og kommunikasjon beholdes som historikk i stedet for å bli omskrevet etter nye resultater.",
+      "authority_relation": "Samira kan kreve tydelig beslutningseier før offentlig budskap, utfordre overloving, koordinere korrekt kommunikasjon og følge opp om gjennomføringen samsvarer med det som faktisk ble besluttet. Hun kan ikke gi offentlig embetsutnevnelse, utvide en Statssekretærs delegasjon, gjøre et talepunkt til formelt vedtak, bruke partiapparatets behov som statlig fullmakt eller la offentlig popularitet gi Statsråd eller Statsminister myndighet utover deres faktiske rolle og beslutningsform.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "regjeringssak_bestilling_og_beslutningsspor_regjeringsledelse",
+      "name": "Regjeringssakens bestillings- og beslutningsspor",
+      "function": "Her registreres aktiv public_office_appointment og konkret tittel, politisk mål, bestilling, beslutningseier, gjeldende dokumentversjon, hvilke fullmakter som faktisk finnes, alternativer, åpne spørsmål, anbefaling, samordningsbehov og den beslutningen som til slutt blir fattet. Flaten gjør det eksplisitt om spilleren opptrer som Statssekretær, Statsråd eller Statsminister, slik at samme role_scope aldri blir en snarvei til å blande de tre titlenes ansvar eller til å behandle et politisk ønske som ferdig statlig beslutning."
+    },
+    {
+      "id": "departement_fag_juss_budsjett_og_konsekvensgrunnlag_regjeringsledelse",
+      "name": "Departementets fag-, juss-, budsjett- og konsekvensgrunnlag",
+      "function": "Her skilles faglig vurdering, rettslig hjemmel, budsjettpremiss, økonomisk virkning, fordelingskonsekvens, gjennomføringskapasitet, usikkerhet og politisk vurdering. Hvert alternativ må kunne spores til hvilke kilder og premisser som bærer det, og vesentlige motargumenter beholdes selv når de svekker den foretrukne politiske løsningen. Flaten hindrer at utnevnt politisk ledelse forvandler nærhet til embetsverket eller et høyt Politikk-badge til evidens eller lovgrunnlag."
+    },
+    {
+      "id": "regjeringskonferanse_samordning_og_kollegial_avklaring_regjeringsledelse",
+      "name": "Regjeringskonferanse, samordning og kollegial avklaring",
+      "function": "Her synliggjøres hvilke departementer og politiske ledere som må samordnes, hvilke uenigheter som er faglige eller politiske, hvilke spørsmål som fortsatt venter på avklaring, og hvilket organ eller hvilken formell rolle som faktisk kan ta neste beslutning. Statsministerens ledelse av regjeringens arbeid kan koordinere og prioritere uten at flaten later som alle andre statsråders sektoransvar eller kollegiale beslutningsformer forsvinner. Handoff bevarer hvem som eier saken og hvilke konflikter som fortsatt er åpne."
+    },
+    {
+      "id": "offentlig_budskap_iverksetting_kontroll_og_oppfolging_regjeringsledelse",
+      "name": "Offentlig budskap, iverksetting, kontroll og oppfølging",
+      "function": "Her kobles den formelle beslutningen til Stortinget, offentlig kommunikasjon, departementets og underliggende virksomheters iverksetting, kontrollspørsmål, resultater, avvik og senere evaluering. Flaten skiller partipolitisk kommunikasjon fra statlige ressurser og regjeringens faktiske beslutninger, og gjør det mulig å gjenåpne berørte analyser når nye fakta kommer uten å omskrive tidligere vedtak, ansvarslinje eller offentlig begrunnelse. Ingen sosial standing eller politisk popularitet får fungere som ny fullmakt."
+    }
+  ]
+}
