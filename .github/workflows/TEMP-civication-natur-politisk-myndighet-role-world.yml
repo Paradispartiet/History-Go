@@ -41,9 +41,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Syntax-check materializer and focused test
+      - name: Syntax-check materializer, enrichment and focused test
         run: |
           node --check scripts/TEMP_materialize_natur_politisk_myndighet_role_world.mjs
+          node --check scripts/TEMP_enrich_natur_politisk_myndighet_role_world.mjs
           node --check tests/civication-natur-politisk-myndighet-role-world-rollout.test.js
 
       - name: Materialize Role World candidate
@@ -52,7 +53,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/TEMP_materialize_natur_politisk_myndighet_role_world.mjs 2>&1 | tee /tmp/natur-politisk-myndighet-role-world-materializer.log
+          {
+            node scripts/TEMP_materialize_natur_politisk_myndighet_role_world.mjs
+            node scripts/TEMP_enrich_natur_politisk_myndighet_role_world.mjs
+          } 2>&1 | tee /tmp/natur-politisk-myndighet-role-world-materializer.log
 
       - name: Persist materializer diagnostic fail-closed
         if: steps.materialize.outcome != 'success'
@@ -162,6 +166,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -f scripts/TEMP_materialize_natur_politisk_myndighet_role_world.mjs
+          rm -f scripts/TEMP_enrich_natur_politisk_myndighet_role_world.mjs
           rm -f .github/workflows/TEMP-civication-natur-politisk-myndighet-role-world.yml
           rm -f reports/TEMP/natur-politisk-myndighet-role-world-materializer.log
           rm -f reports/TEMP/natur-politisk-myndighet-role-world-build.log
