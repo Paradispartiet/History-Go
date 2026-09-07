@@ -38,10 +38,16 @@ jobs:
           path = Path('tools/materialize-vinderen-place-production.mjs')
           source = path.read_text()
           old = '  return match[1].replaceAll("&amp;", "&");'
-          new = '  const ogImage = match[1].replaceAll("&amp;", "&");\n  const resolved = new URL(ogImage, pageUrl);\n  const redirectTarget = resolved.pathname === "/_fbredir" ? resolved.searchParams.get("to") : null;\n  if (!redirectTarget) return resolved.toString();\n  const target = new URL(redirectTarget);\n  target.pathname = decodeURIComponent(target.pathname);\n  return target.toString();'
+          new = '  const direct = html.match(/href=["\\\'\\\"](https?:\\/\\/dms\\d+\\.dimu\\.org\\/image\\/[^"\\\'\\\"]+)/i);\n  if (direct) return direct[1].replaceAll("&amp;", "&");\n  return match[1].replaceAll("&amp;", "&");'
           if old not in source:
               raise SystemExit('Expected Oslobilder og:image return not found')
-          path.write_text(source.replace(old, new, 1))
+          source = source.replace(old, new, 1)
+          old_headers = 'headers: { "user-agent": "History-Go-Vinderen-production/1.0" }'
+          new_headers = 'headers: { "user-agent": "Mozilla/5.0 History-Go-Vinderen-production/1.0", "referer": urls.conditoriPhotoPage }'
+          if old_headers not in source:
+              raise SystemExit('Expected fetch headers not found')
+          source = source.replace(old_headers, new_headers)
+          path.write_text(source)
           PY
           node tools/materialize-vinderen-place-production.mjs
       - name: Regenerate canonical derivatives
