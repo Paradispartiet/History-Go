@@ -1,0 +1,156 @@
+name: TEMP Vålerenga selective replay
+
+on:
+  push:
+    branches:
+      - agent/vaalerenga-replay-main-20260905
+
+permissions:
+  contents: write
+
+jobs:
+  replay:
+    if: github.event.head_commit.message == 'Run fail-closed Vålerenga selective replay'
+    runs-on: ubuntu-latest
+    env:
+      LOCKED_MAIN: de937ab02a273f7a3831424a4e6252078a2f4a44
+      OLD_BASE: 5efe4996ca470cdf9e2ad04108a8d4b8688145fe
+      FINAL_VAALERENGA: 2caa1fe117b64dad573721f9a8ef6f7b25aff755
+    steps:
+      - name: Checkout exact replay branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/vaalerenga-replay-main-20260905
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Lock current main
+        run: |
+          git fetch origin main "$OLD_BASE" "$FINAL_VAALERENGA"
+          test "$(git rev-parse origin/main)" = "$LOCKED_MAIN"
+          git merge-base --is-ancestor "$LOCKED_MAIN" HEAD
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Replay non-shared proven Vålerenga delta
+        run: |
+          count="$(git diff --name-only "$OLD_BASE" "$FINAL_VAALERENGA" | wc -l | tr -d ' ')"
+          test "$count" = "50"
+          git diff --binary "$OLD_BASE" "$FINAL_VAALERENGA" -- . \
+            ':(exclude)data/Civication/scenarioPeople_index.json' \
+            ':(exclude)data/brands/brands_by_place.json' \
+            ':(exclude)data/brands/brands_master.json' \
+            ':(exclude)data/epoker/epoke-place-index.json' \
+            ':(exclude)data/fag/fag_manifest.json' \
+            ':(exclude)data/fagverk/fagverk_release.json' \
+            ':(exclude)data/leksikon/manifest.json' \
+            ':(exclude)data/lesespor/oslo/lesespor_oslo_by.json' \
+            ':(exclude)data/places/place_image_backlog_summary.json' \
+            ':(exclude)data/quiz/manifest.json' \
+            ':(exclude)data/runtime/lesespor-all.json' \
+            ':(exclude)reports/knowledge-contract-audit.json' \
+            ':(exclude)reports/knowledge-id-backfill.json' \
+            ':(exclude)tests/epoke-place-index.test.mjs' > /tmp/vaalerenga-selective.patch
+          git apply --3way --index /tmp/vaalerenga-selective.patch
+          test -f data/places/production/vaalerenga.json
+          test -f reports/place-production/vaalerenga-workcard-current.json
+          git diff --check
+
+      - name: Semantic merge shared Vålerenga registry deltas
+        run: |
+          node .tmp/vaalerenga-replay-helper.mjs merge "$OLD_BASE" "$FINAL_VAALERENGA" \
+            data/brands/brands_by_place.json \
+            data/brands/brands_master.json \
+            data/fag/fag_manifest.json \
+            data/leksikon/manifest.json \
+            data/lesespor/oslo/lesespor_oslo_by.json \
+            data/quiz/manifest.json
+          git add data/brands/brands_by_place.json data/brands/brands_master.json data/fag/fag_manifest.json data/leksikon/manifest.json data/lesespor/oslo/lesespor_oslo_by.json data/quiz/manifest.json
+          git diff --cached --check
+
+      - name: Regenerate shared canonical and runtime derivatives
+        run: |
+          npm run places:index:build
+          npm run civication:history-people:build
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+          npm run place-open:build
+          npm run epoker:places:build
+          npm run quiz:context -- --category by --target vaalerenga --output data/quiz/production_context/by/vaalerenga.json
+          npm run knowledge:canonical:write
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/vaalerenga-place-images.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'data/places/place_image_backlog_summary.json';
+          const backlog = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const audit = JSON.parse(fs.readFileSync('/tmp/vaalerenga-place-images.json', 'utf8'));
+          backlog.generatedAt = '2026-09-07';
+          backlog.generatedFromCommit = 'vaalerenga_replay_20260907';
+          backlog.totalPlaces = audit.totalPlaces;
+          backlog.summary = { validLocal: audit.summary.local, validRemote: audit.summary.remote, optionalMissing: audit.summary.optional, missing: audit.summary.missing, invalidLocalPath: audit.summary.invalid, remaining: audit.summary.missing + audit.summary.invalid };
+          for (const [category, row] of Object.entries(audit.byCategory)) backlog.byCategory[category] = { ...backlog.byCategory[category], total: row.total, valid: row.local + row.remote, optional: row.optional, missing: row.missing, invalid: row.invalid };
+          fs.writeFileSync(file, `${JSON.stringify(backlog, null, 2)}\n`);
+          NODE
+          git add -A
+          git diff --cached --check
+
+      - name: Sync exact History index assertions fail-closed
+        run: |
+          git show "$LOCKED_MAIN:data/epoker/epoke-place-index.json" > /tmp/locked-epoke-place-index.json
+          node .tmp/vaalerenga-replay-helper.mjs sync-history /tmp/locked-epoke-place-index.json
+          git add tests/epoke-place-index.test.mjs
+          git diff --cached --check
+
+      - name: Validate Vålerenga focused contracts
+        run: |
+          npm run build:tools --silent
+          node dist/tools/check_stories_integrity.mjs
+          node --test tests/vaalerenga-completion.test.mjs
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-content
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run knowledge:canonical:check
+          npm run civication:history-people:check
+          npm run places:index:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-place-images.mjs --mode=changed
+
+      - name: Validate shared runtime contracts
+        run: |
+          node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/place-popup-direct-tabs.test.mjs tests/place-popup-all-direct-tabs-visible.test.mjs
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs
+          npm run place-open:check
+          npm run test:place-open
+
+      - name: Recheck locked main
+        run: |
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$LOCKED_MAIN"
+
+      - name: Remove temporary replay machinery
+        run: |
+          rm -f .github/workflows/vaalerenga-selective-replay-temp.yml .tmp/vaalerenga-replay-helper.mjs .tmp/vaalerenga-selective-replay-trigger
+          rmdir .tmp 2>/dev/null || true
+
+      - name: Commit verified replay
+        run: |
+          git add -A
+          git diff --cached --check
+          test ! -e .github/workflows/vaalerenga-selective-replay-temp.yml
+          test ! -e .tmp/vaalerenga-replay-helper.mjs
+          test ! -e .tmp/vaalerenga-selective-replay-trigger
+          test -n "$(git diff --cached --name-only)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Replay verified Vålerenga Place production on current main'
+          git push origin HEAD:agent/vaalerenga-replay-main-20260905
