@@ -1,0 +1,90 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_regjeringsledelse",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "regjeringsledelse_fullmaktsglidning_og_etterspill",
+      "purpose": "Trene consequence i regjeringsledelse der public_office_appointment, konkret tittel, faggrunnlag, samordning, formell beslutning og parti-stat-grense forblir eksplisitte.",
+      "learning_focus": [
+        "public_office_appointment",
+        "tittel_og_fullmakt",
+        "konstitusjonell_styring",
+        "samordning",
+        "juss_og_budsjett",
+        "parti_stat"
+      ],
+      "mails": [
+        {
+          "id": "regjeringsledelse_consequence_015",
+          "mail_type": "consequence",
+          "mail_family": "regjeringsledelse_fullmaktsglidning_og_etterspill",
+          "role_scope": "politikk_regjeringsledelse",
+          "phase": "evening",
+          "priority": 144,
+          "from": "Samira",
+          "people_ref": "samira_regjeringskommunikasjon_og_iverksetting_regjeringsledelse",
+          "place_id": "offentlig_budskap_iverksetting_kontroll_og_oppfolging_regjeringsledelse",
+          "subject": "Den uformelle fullmakten kommer tilbake som kontroll- og tillitssak",
+          "summary": "Den uformelle fullmakten kommer tilbake som kontroll- og tillitssak. Spilleren står i tittelsporet Statsminister og må håndtere etterspill etter tittel- eller fullmaktsglidning med korrigering, sporbarhet og riktig ansvar fremfor å omskrive hva som faktisk skjedde. Dette steget føres i regjeringssak_prioritering_faggrunnlag_samordning_beslutning_iverksetting_og_oppfolging. Aktiv public_office_appointment og konkret tittel, bestilling, beslutningseier, dokumentversjon, faglig grunnlag, hjemmel og fullmakt, budsjett, usikkerhet, departementsposisjoner, samordning, fortrolighet, parti-stat-grense, politisk anbefaling, korrekt formell beslutning, offentlig begrunnelse, iverksetting, ventepunkt, handoff og resultat skal være separate og versjonerte felt. Regjeringsledelse deler ett role_scope, men Statssekretær, Statsråd og Statsminister er ikke myndighetsmessig utskiftbare. Politikk-badge, XP, election_or_mandate, employer_appointment, History Go-kunnskap, situated reputation, nettverk og popularitet kan aldri erstatte public_office_appointment, hjemmel, delegasjon, korrekt beslutningsform eller evidens. En god løsning viser derfor både hvilken tittel spilleren faktisk har, hva rollen kan gjøre nå, hvilket organ eller hvilken person som eier neste beslutning, hva som må vente, og hvilke nye fakta som legitimt kan gjenåpne berørte ledd uten å slette tidligere dokumentasjon.",
+          "situation": [
+            "Regjeringssaken viser gjeldende tittel, public_office_appointment, beslutningseier, dokumentversjon, fag/juss/budsjett, samordningsstatus, åpne ventepunkter og hva som må avklares for at du skal håndtere etterspill etter tittel- eller fullmaktsglidning med korrigering, sporbarhet og riktig ansvar fremfor å omskrive hva som faktisk skjedde.",
+            "Presset er reelt: regjeringens politiske mål, krise, parti, medier, departementsuenighet eller personlig standing kan gjøre det fristende å hoppe over fullmaktskontroll eller behandle en annen tittels myndighet som tilgjengelig fordi alle tre ligger i samme role_scope.",
+            "Du må velge et grep som tåler senere konstitusjonell og offentlig kontroll, bevarer faggrunnlaget og gjør handoff og bounded rework mulig uten å omskrive tidligere beslutning eller ansvarsfordeling."
+          ],
+          "task_domain": "regjeringsledelse",
+          "competency": "konstitusjonell_styring_fullmakt_samordning_juss_budsjett_og_rolleintegritet",
+          "pressure": "krise_parti_medier_departementsuenighet_tid_og_maktnaerhet",
+          "choice_axis": "tittelbundet_lovlig_og_sporbart_styringsforlop_vs_uformell_fullmaktsglidning",
+          "consequence_axis": "legitimitet_gjennomforbarhet_og_korrigerbarhet_vs_partistat_rettslig_risiko_og_tillitstap",
+          "narrative_arc": "consequence",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Før den uformelle fullmakten kommer tilbake som kontroll- og tillitssak gjennom korrekt tittel- og beslutningsspor",
+              "reply": "Jeg fører dette gjennom regjeringssak_prioritering_faggrunnlag_samordning_beslutning_iverksetting_og_oppfolging og starter med public_office_appointment, aktiv tittel og faktisk myndighet. Deretter låser jeg dokumentversjon, skiller faglig premiss fra politisk prioritering, registrerer hjemmel, budsjett, departementsuenighet, samordning, fortrolighet og parti-stat-grense og sender bare saken til den beslutningseieren eller beslutningsformen som faktisk har myndighet. Nye fakta gjenåpner bare berørte ledd; tidligere råd, beslutninger og offentlig begrunnelse beholdes. History Go brukes til historiske og institusjonelle spørsmål, aldri som fullmakt eller evidens.",
+              "effect": 1,
+              "tags": [
+                "public_office_appointment",
+                "tittelgrense",
+                "konstitusjonell_sporbarhet",
+                "parti_stat"
+              ],
+              "feedback": "Grepet gjør regjeringsmakten både handlingsdyktig og etterprøvbar. Statssekretærens arbeid forblir innen delegasjon, Statsrådens sektoransvar og beslutninger forblir synlige, og Statsministerens ledelse og koordinering forveksles ikke med generell personlig myndighet. Embetsverk, andre departementer, Stortinget, gjennomføringsledd og offentlighet kan senere se hva som var faggrunnlag, politisk prioritering, formell beslutning og faktisk resultat. Når nye premisser oppstår, kan saken korrigeres uten at tidligere dokumenter, ansvarslinjer eller budskap blir skrevet om.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk den uformelle fullmakten kommer tilbake som kontroll- og tillitssak gjennom politisk nærhet og uformell fullmakt",
+              "reply": "Jeg prioriterer tempo og politisk styrke foran eksplisitt tittel- og fullmaktskontroll. Jeg behandler ledelsens preferanse som tilstrekkelig beslutningsgrunnlag, lar faglige eller budsjettmessige motargumenter tones ned og bruker det felles role_scope som om Statssekretær, Statsråd og Statsminister kan tre inn i hverandres myndighet. Dersom saken senere møter kontroll eller gjennomføringsproblemer, justerer jeg forklaringen i stedet for å gjenåpne den konkrete analysen som sviktet.",
+              "effect": -1,
+              "tags": [
+                "fullmaktsglidning",
+                "partistat_risiko",
+                "tittelblanding"
+              ],
+              "feedback": "Løsningen kan gi kortsiktig framdrift, men bryter sporbarheten mellom politisk ønske, faggrunnlag, konkret tittel og formell beslutning. Når statssekretærens delegasjon, statsrådens sektoransvar, statsministerens koordinering og kollegiale prosesser glir sammen, blir det uklart hvem som faktisk kunne beslutte, hvilke premisser som ble skjult og om statlige ressurser eller fortrolig informasjon ble brukt korrekt. Senere kontroll blir da et kommunikasjonsproblem som skal forsvares i stedet for et dokumentert styringsforløp som kan korrigeres.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
