@@ -1,0 +1,54 @@
+name: TEMP Rådhusplassen register quiz target once
+
+on:
+  push:
+    branches:
+      - agent/radhusplassen-place-production-20260907
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    if: startsWith(github.event.head_commit.message, 'Prepare Rådhusplassen quiz target')
+    runs-on: ubuntu-latest
+    env:
+      LOCKED_MAIN: 4df9b1476d870fbe299e9f6a13d04ccae99ab2d2
+      BRANCH: agent/radhusplassen-place-production-20260907
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Lock fresh main
+        run: |
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$LOCKED_MAIN"
+
+      - name: Register canonical By quiz target
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'data/fag/fag_manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+          if (!manifest.by?.quizProduction?.targets) throw new Error('by.quizProduction.targets missing');
+          manifest.by.quizProduction.targets.radhusplassen = {
+            source_brief: '../quiz/production_briefs/by/radhusplassen.json',
+            context_artifact: '../quiz/production_context/by/radhusplassen.json',
+            quiz_file: '../quiz/by/radhusplassen_sets.json',
+            status: 'reviewed'
+          };
+          fs.writeFileSync(file, `${JSON.stringify(manifest, null, 2)}\n`);
+          NODE
+
+      - name: Publish self-cleaned target registration and trigger v2
+        run: |
+          git rm -f .github/workflows/radhusplassen-register-quiz-target-once.yml reports/place-production/radhusplassen-target-trigger.txt
+          git add data/fag/fag_manifest.json
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Execute Rådhusplassen production v2'
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$LOCKED_MAIN"
+          git push origin "HEAD:refs/heads/$BRANCH"
