@@ -26,7 +26,18 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
       - name: Materialize Vinderen canonical production
-        run: node tools/materialize-vinderen-place-production.mjs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tools/materialize-vinderen-place-production.mjs')
+          source = path.read_text()
+          old = '  return match[1].replaceAll("&amp;", "&");'
+          new = '  const ogImage = match[1].replaceAll("&amp;", "&");\n  return new URL(ogImage, pageUrl).toString();'
+          if old not in source:
+              raise SystemExit('Expected Oslobilder og:image return not found')
+          path.write_text(source.replace(old, new, 1))
+          PY
+          node tools/materialize-vinderen-place-production.mjs
       - name: Regenerate canonical derivatives
         run: |
           npm run places:index:build
