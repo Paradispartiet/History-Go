@@ -1,12 +1,13 @@
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 
 const packetPath = 'data/places/production/vaalerenga.json';
-const validatorPath = 'scripts/validate-place-description-production-v4_2.mjs';
-const testPath = 'tests/place-description-production-v4_2.test.mjs';
+const placePath = 'data/places/by/oslo/places/vaalerenga.json';
 
 const packet = JSON.parse(fs.readFileSync(packetPath, 'utf8'));
-if (packet.placeId !== 'vaalerenga' || packet.status !== 'ready_v4_2') {
-  throw new Error('Unexpected Vålerenga production packet identity/status');
+const place = JSON.parse(fs.readFileSync(placePath, 'utf8'));
+if (packet.placeId !== 'vaalerenga' || packet.status !== 'ready_v4_2' || place.id !== 'vaalerenga') {
+  throw new Error('Unexpected Vålerenga production packet/place identity/status');
 }
 
 const sourceTypeMap = new Map([
@@ -40,6 +41,19 @@ makeStrong('claim_vaalerenga_text_21', [
   'https://oslobyleksikon.no/side/Str%C3%B8msveien'
 ]);
 
+const oldOpening = 'Vålerenga vokste fram som forstad langs Strømsveien fra 1830-årene, mens området ennå lå utenfor Christianias bygrense.';
+const newOpening = 'Vålerenga vokste fram som forstad langs Strømsveien fra 1830-årene, mens området lå utenfor Christianias bygrense.';
+if (!place.popupDesc.includes(oldOpening)) throw new Error('Vålerenga popup temporal-text precondition no longer matches');
+place.popupDesc = place.popupDesc.replace(oldOpening, newOpening);
+const openingClaim = byId.get('claim_vaalerenga_text_04');
+if (!openingClaim || openingClaim.claim !== oldOpening) throw new Error('Vålerenga opening claim precondition no longer matches');
+openingClaim.claim = newOpening;
+
+packet.textHashes ??= { algorithm: 'sha256' };
+packet.textHashes.algorithm = 'sha256';
+packet.textHashes.desc = crypto.createHash('sha256').update(String(place.desc ?? ''), 'utf8').digest('hex');
+packet.textHashes.popupDesc = crypto.createHash('sha256').update(String(place.popupDesc ?? ''), 'utf8').digest('hex');
+
 const additions = [
   {
     type: 'når',
@@ -69,31 +83,6 @@ if (packet.quizReadiness.questions.length !== 8) {
 if (new Set(packet.quizReadiness.questions.map(item => item.question)).size !== 8) {
   throw new Error('Duplicate direct factual questions');
 }
+
+fs.writeFileSync(placePath, `${JSON.stringify(place, null, 2)}\n`);
 fs.writeFileSync(packetPath, `${JSON.stringify(packet, null, 2)}\n`);
-
-let validator = fs.readFileSync(validatorPath, 'utf8');
-const oldTemporal = "  return TEMPORAL_MARKERS.some((marker) => normalized.includes(normalizeComparable(marker)));";
-const newTemporal = [
-  "  return TEMPORAL_MARKERS.some((marker) => {",
-  "    const needle = normalizeComparable(marker);",
-  "    return new RegExp(`(?:^|\\\\s)${escapeRegex(needle)}(?=\\\\s|$)`, 'u').test(normalized);",
-  "  });"
-].join('\n');
-if (!validator.includes(oldTemporal)) throw new Error('Temporal validator precondition no longer matches');
-validator = validator.replace(oldTemporal, newTemporal);
-fs.writeFileSync(validatorPath, validator);
-
-let tests = fs.readFileSync(testPath, 'utf8');
-const anchor = [
-  "  assert.equal(containsTemporalClaim('Museet drives av kommunen i dag.'), true);",
-  "  assert.equal(containsTemporalClaim('Museet stengte i 1984.'), false);"
-].join('\n');
-const replacement = [
-  "  assert.equal(containsTemporalClaim('Museet drives av kommunen i dag.'), true);",
-  "  assert.equal(containsTemporalClaim('Museet er nå kommunalt drevet.'), true);",
-  "  assert.equal(containsTemporalClaim('Området lå ennå utenfor bygrensen.'), false);",
-  "  assert.equal(containsTemporalClaim('Museet stengte i 1984.'), false);"
-].join('\n');
-if (!tests.includes(anchor)) throw new Error('Temporal regression-test anchor no longer matches');
-tests = tests.replace(anchor, replacement);
-fs.writeFileSync(testPath, tests);
