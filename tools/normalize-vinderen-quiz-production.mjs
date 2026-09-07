@@ -32,6 +32,28 @@ for (const [setIndex, set] of quiz.sets.entries()) {
   }
 }
 
+const finalSet = quiz.sets.at(-1);
+if (!finalSet || finalSet.questions.length !== 7) throw new Error("Vinderen final set must contain 7 questions");
+const theoryQuestion = finalSet.questions[0];
+theoryQuestion.topic_hook_id = "urb_bil_vs_menneske";
+theoryQuestion.thinker_id = "jan_gehl";
+theoryQuestion.work = "Life Between Buildings";
+theoryQuestion.theory_ref = {
+  topic_hook_id: "urb_bil_vs_menneske",
+  thinker_id: "jan_gehl",
+  work: "Life Between Buildings",
+  why_it_helps: "Gehls menneskeskala kobler Vinderens baneforbindelse til hvordan mobilitet, kryssing og opphold faktisk organiseres rundt stasjonen."
+};
+const theoryClaim = claims.get(theoryQuestion.claim_id);
+theoryClaim.topic_hook_id = theoryQuestion.topic_hook_id;
+theoryClaim.thinker_id = theoryQuestion.thinker_id;
+theoryClaim.work = theoryQuestion.work;
+
+const methodQuestion = finalSet.questions[1];
+methodQuestion.method_id = "met_gaanalyse";
+const methodClaim = claims.get(methodQuestion.claim_id);
+methodClaim.method_id = methodQuestion.method_id;
+
 quiz.sources = Object.fromEntries(Object.entries(brief.sources).map(([id, source]) => [id, source.url]));
 const selected = brief.selected_curriculum;
 quiz.production_context = {
