@@ -36,11 +36,29 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Syntax
-        run: node --check scripts/TEMP_materialize_politikk_regjeringsledelse_prerequisites.mjs
+      - name: Repair TEMP syntax and verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/TEMP_materialize_politikk_regjeringsledelse_prerequisites.mjs')
+          s = p.read_text()
+          old1 = "skrevet om.`,effects:{stats:{quality:2,trust:2,risk:-2,energy:-1}}}"
+          new1 = "skrevet om.',effects:{stats:{quality:2,trust:2,risk:-2,energy:-1}}}"
+          old2 = "korrigeres.`,effects:{stats:{status:1,quality:-2,trust:-2,risk:3}}}"
+          new2 = "korrigeres.',effects:{stats:{status:1,quality:-2,trust:-2,risk:3}}}"
+          assert s.count(old1) == 1, f'positive replacement count={s.count(old1)}'
+          assert s.count(old2) == 1, f'negative replacement count={s.count(old2)}'
+          p.write_text(s.replace(old1,new1).replace(old2,new2))
+          PY
+          node --check scripts/TEMP_materialize_politikk_regjeringsledelse_prerequisites.mjs
 
       - name: Materialize Regjeringsledelse prerequisites
         run: node scripts/TEMP_materialize_politikk_regjeringsledelse_prerequisites.mjs
+
+      - name: Restore tracked TEMP source after materialization
+        run: git checkout -- scripts/TEMP_materialize_politikk_regjeringsledelse_prerequisites.mjs
 
       - name: Generate canonical derived surfaces
         run: |
