@@ -866,6 +866,21 @@
       "verification_required": true
     },
     {
+      "id": "amir_regjeringsjurist_og_budsjettanalytiker_regjeringsledelse",
+      "name": "amir_regjeringsjurist_og_budsjettanalytiker_regjeringsledelse",
+      "category": "politikk",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/politikk/politikk_regjeringsledelse.json"
+      ],
+      "scenario_roles": [
+        "politikk_regjeringsledelse"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "eirik_mote_og_arrangementskoordinator_politikk_organisasjonsarbeid",
       "name": "eirik_mote_og_arrangementskoordinator_politikk_organisasjonsarbeid",
       "category": "politikk",
@@ -877,6 +892,21 @@
       ],
       "scenario_roles": [
         "politikk_organisasjonsarbeid"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "elin_departementsrad_og_forvaltningskontakt_regjeringsledelse",
+      "name": "elin_departementsrad_og_forvaltningskontakt_regjeringsledelse",
+      "category": "politikk",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/politikk/politikk_regjeringsledelse.json"
+      ],
+      "scenario_roles": [
+        "politikk_regjeringsledelse"
       ],
       "verification_required": true
     },
@@ -1001,6 +1031,21 @@
       "verification_required": true
     },
     {
+      "id": "nora_regjeringssamordner_regjeringsledelse",
+      "name": "nora_regjeringssamordner_regjeringsledelse",
+      "category": "politikk",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/politikk/politikk_regjeringsledelse.json"
+      ],
+      "scenario_roles": [
+        "politikk_regjeringsledelse"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "omar_innbyggerdialog_beredskap_politikk_kommunal_ledelse",
       "name": "omar_innbyggerdialog_beredskap_politikk_kommunal_ledelse",
       "category": "politikk",
@@ -1027,6 +1072,21 @@
       ],
       "scenario_roles": [
         "politikk_politisk_radgivning"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "samira_regjeringskommunikasjon_og_iverksetting_regjeringsledelse",
+      "name": "samira_regjeringskommunikasjon_og_iverksetting_regjeringsledelse",
+      "category": "politikk",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/politikk/politikk_regjeringsledelse.json"
+      ],
+      "scenario_roles": [
+        "politikk_regjeringsledelse"
       ],
       "verification_required": true
     },
@@ -1503,6 +1563,34 @@
         "direct": 0,
         "strong": 3,
         "contextual": 111,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "politikk_regjeringsledelse",
+      "role_scope": "politikk_regjeringsledelse",
+      "title": "Regjeringsledelse",
+      "source": "data/Civication/roleModels/politikk/politikk_regjeringsledelse.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "regjeringsledelse"
+      ],
+      "resolved_counts": {
+        "total": 114,
+        "existing_place_people": 114,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 114,
         "excluded": 0
       }
     },
