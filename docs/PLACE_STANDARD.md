@@ -2,7 +2,7 @@
 
 Status: **canonical produktstandard for et History GO-sted**  
 Eier: `place_product_standard`  
-Sist kontrollert: **2026-08-27**
+Sist kontrollert: **2026-09-07**
 
 Dette dokumentet definerer **hva et History GO-sted er og hvilke roller stedssystemet har**. Det er ikke detaljoppskrift for tekst, quiz, samlinger, People eller koordinater.
 
@@ -86,7 +86,6 @@ Relevante og dokumenterte felt kan blant annet være:
   desc,
   popupDesc,
   image,
-  cardImage,
   frontImage,
   frontImageMeta,
   emne_ids,
@@ -106,7 +105,9 @@ Relevante og dokumenterte felt kan blant annet være:
 }
 ```
 
-For nye og fullproduserte ordinære Places er `frontImage` alltid en stående fil/variant med høyde større enn bredde. `frontImageMeta` eller tilsvarende canonical metadata dokumenterer kilde, lisens, original- og outputdimensjoner samt eventuelt crop. En liggende fil som bare maskeres av en stående CSS-ramme er ikke tilstrekkelig.
+`frontImage` er en egen visuell rolle. Når feltet finnes, er `frontImage` alltid en stående fil/variant med høyde større enn bredde (`height > width`). Dette gjelder også eksisterende Places når bildefeltet berøres. `frontImageMeta` eller tilsvarende canonical metadata dokumenterer kilde, lisens, original- og outputdimensjoner samt eventuelt crop. En liggende fil som bare maskeres eller beskjæres av en stående CSS-ramme er ikke tilstrekkelig. `frontImage` skal aldri genereres fra, kopiere eller automatisk falle tilbake til `image`; `image` og `frontImage` har separate roller.
+
+`cardImage` er legacy og er ikke del av den canonicale Place-bildekontrakten. Feltet skal ikke opprettes, materialiseres, videreføres eller gjeninnføres i ny eller revidert Place-data eller i genererte indekser/runtime-payloads. Når et eksisterende steds bildefelt berøres, skal eventuell legacy `cardImage` fjernes og alle avledede filer regenereres fra canonical source.
 
 `place_card_profile.collection_ids` inneholder ved ny/full produksjon **nøyaktig fire ferdige, relevante samlinger**. Ordinære fullprofiler bruker People, Objects, Brands og kategoriuttrykket; Nature og canonicale spesialprofiler følger sine faste firersett. Hver samling skal ha et lastende previewbilde av ett faktisk canonical medlem. Et tomt samlingskort, færre enn fire flater eller `related` som reserve er aldri godkjent closeout.
 

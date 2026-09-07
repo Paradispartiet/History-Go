@@ -2,7 +2,7 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-31**
+Sist kontrollert: **2026-09-07**
 
 Denne sjekklisten eier arbeidsrekkefølge, Badge-gate, produksjonsprofil, review-checkpoints og mergekadens for ordinær sted-for-sted-produksjon.
 
@@ -100,7 +100,9 @@ For `major`, `standard` og `focused` kan følgende aldri settes profil-N/A:
 - riktig Hovedbadge/category og korrekte/relevante `underbadge_ids`;
 - relevante emner og fungerende stedsspesifikk Fagverk-side;
 - bildeproveniens for publiserte bilder;
-- stående, stedstro `frontImage` når ordinær PlaceCard brukes;
+- `frontImage` er en egen PlaceCard-bildeflate og er **alltid stående** når feltet finnes: en faktisk fil/variant med `height > width`, aldri en liggende fil som bare maskeres eller beskjæres til stående av CSS;
+- `frontImage` skal aldri genereres fra, kopiere eller automatisk falle tilbake til `image`; `image` og `frontImage` har separate roller;
+- `cardImage` er legacy og er ikke del av den canonicale Place-bildekontrakten; feltet skal ikke opprettes, materialiseres, videreføres eller gjeninnføres i ny eller revidert Place-produksjon;
 - dedikert QuizCard/flip-bakside for hvert ordinært PlaceCard, med eksisterende quizkort gjenbrukt når det allerede finnes;
 - Språkleksikon med minst ett reelt stedsspesifikt navne-/begrepsspor;
 - chronology/epoke-research og materialisering av kvalifiserte eksakte ankere;
@@ -169,14 +171,15 @@ For nye og fullproduserte ordinære Places gjelder:
 - **ingen tomme PlaceCard-kort er tillatt ved closeout**;
 - de fire samlingene vises i en fast, balansert 2×2-komposisjon;
 - People/Flora/Fauna beholder sirkelform; øvrige samlinger er avrundede rektangler;
-- `frontImage` er den stående hovedflaten og skal være en faktisk stående fil/variant (`height > width`), aldri bare en liggende fil beskåret av CSS;
+- `frontImage` er den stående hovedflaten og er **alltid** en faktisk stående fil/variant (`height > width`) når feltet finnes, aldri bare en liggende fil beskåret eller maskert av CSS; dette gjelder også legacy-steder når bildefeltet berøres;
 - hvert nytt eller fullprodusert ordinært Place skal ha et dedikert QuizCard som PlaceCard-bakside og kunne flippe fra `frontImage` til quizkortet gjennom den canonicale PlaceCard-runtimeflyten;
 - før nytt QuizCard produseres skal `bilder/QuizCards/**`, runtime-mapping/resolver og tidligere stedsspesifikke quizkort auditeres, slik at eksisterende quizkort bevares og ikke dobbeltproduseres;
-- `bilder/QuizCards/**` er kun QuizCard/flip-support og skal aldri brukes som `image`, `cardImage` eller `frontImage`; quizkortet skal være en separat visuell flate;
+- `bilder/QuizCards/**` er kun QuizCard/flip-support og skal aldri brukes som `image` eller `frontImage`; quizkortet skal være en separat visuell flate, og det utgåtte `cardImage`-feltet skal aldri brukes som alias eller reserve;
 - manglende QuizCard, manglende runtime-binding eller en flip som ikke virker med faktisk input er BLOCKED for ordinær fullproduksjon;
 - hvert samlingspreview er et faktisk bilde av ett canonical medlem, aldri `frontImage` brukt som falskt samlingspreview;
 - ikon-/statusvisning er bare runtime-fallback ved lastingsfeil og kan aldri lukke produksjonsgaten;
-- gamle Places kan beholde kompatibilitetsvisningen til de faktisk fullproduseres/revideres; ny/full produksjon migrerer alltid til firefeltskontrakten.
+- gamle Places kan beholde kompatibilitetsvisningen til de faktisk fullproduseres/revideres; ny/full produksjon migrerer alltid til firefeltskontrakten;
+- ved enhver endring av Place-bilder skal source og genererte avledninger (`places_index`, `place-open` og andre relevante runtime-payloads) regenereres og kontrolleres slik at `cardImage` ikke overlever som stale generated data, og slik at `frontImage` aldri syntetiseres fra `image`.
 
 Slutt-QA skal eksplisitt vurdere at kortet ser **pent, tilsiktet, balansert og komplett for akkurat denne typen sted og dens Badges** ut på mobil og desktop.
 
