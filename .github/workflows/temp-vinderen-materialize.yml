@@ -38,7 +38,7 @@ jobs:
           path = Path('tools/materialize-vinderen-place-production.mjs')
           source = path.read_text()
           old = '  return match[1].replaceAll("&amp;", "&");'
-          new = '  const ogImage = match[1].replaceAll("&amp;", "&");\n  const resolved = new URL(ogImage, pageUrl);\n  const redirectTarget = resolved.pathname === "/_fbredir" ? resolved.searchParams.get("to") : null;\n  return redirectTarget || resolved.toString();'
+          new = '  const ogImage = match[1].replaceAll("&amp;", "&");\n  const resolved = new URL(ogImage, pageUrl);\n  const redirectTarget = resolved.pathname === "/_fbredir" ? resolved.searchParams.get("to") : null;\n  if (!redirectTarget) return resolved.toString();\n  const target = new URL(redirectTarget);\n  target.pathname = decodeURIComponent(target.pathname);\n  return target.toString();'
           if old not in source:
               raise SystemExit('Expected Oslobilder og:image return not found')
           path.write_text(source.replace(old, new, 1))
