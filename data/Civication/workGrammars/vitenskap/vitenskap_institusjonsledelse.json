@@ -1,1 +1,153 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"vitenskap","role_scope":"vitenskap_institusjonsledelse","source":{"evidence":"data/Civication/vitenskapCareerLifeEvidence.json"},"badge_binding":{"badge_id":"vitenskap","badge_titles":["Instituttleder","Dekan"]},"task_families":["strategi_og_styring","budsjett_og_ressurser","personalledelse_og_organisering","utdannings_og_forskningskvalitet","samfunnsoppdrag_og_beredskap"],"work_loops":[{"id":"styringssyklus","steps":["sett_retning","prioriter","fordel_ressurser","folg_opp","evaluer","juster"]},{"id":"institusjonell_sak","steps":["avklar_mandat","innhent_grunnlag","vurder_habilitet","beslutt_eller_eskaler","dokumenter"]}],"practice_stories":[{"id":"s1","setup":"Et fakultet må redusere kostnader uten å miste kritisk fagkapasitet.","good":"Vurder langsiktige faglige konsekvenser, bemanning og lovpålagte oppgaver før prioritering.","bad":"Kutt lik prosent i alle enheter uten konsekvensanalyse."},{"id":"s2","setup":"En stor ekstern giver forventer påvirkning på forskningsagendaen.","good":"Beskytt faglig uavhengighet og avklar transparente avtalegrenser.","bad":"Tilpass konklusjonsrommet for å sikre finansieringen."},{"id":"s3","setup":"En lederansettelse gjelder en kandidat med nære relasjoner til beslutningstakere.","good":"Avklar habilitet og bruk formell, etterprøvbar prosess.","bad":"La strategisk behov veie opp for habilitetsproblemet."},{"id":"s4","setup":"Et sterkt fagmiljø har vedvarende arbeidsmiljøvarsler.","good":"Behandle arbeidsmiljøet som selvstendig styringsrisiko og sikre korrekt oppfølging.","bad":"Utsett saken fordi resultatene er gode."},{"id":"s5","setup":"En alvorlig hendelse krever rask omdisponering av laboratorier og undervisning.","good":"Prioriter sikkerhet, kontinuitet og tydelig beslutningslogg innen mandatet.","bad":"Ta uformelle snarveier som setter rettigheter og sikkerhetskrav til side."}],"quality_axes":["strategisk_baerekraft","styringskvalitet","habilitet","arbeidsmiljo","faglig_uavhengighet","samfunnsansvar"],"authority_boundary":{"may_not":["tilsidesette_lov_eller_formelle_ansettelsesprosesser","overstyre_faglige_resultater_for_omdomme_eller_okonomi","bruke_budsjettmyndighet_til_a_omgaa_habilitetskrav","dele_taushetsbelagt_eller_beskyttet_informasjon_uten_hjemmel"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_institusjonsledelse",
+  "source": {
+    "badge_file": "data/badges/vitenskap.json",
+    "badge_id": "vitenskap",
+    "evidence": "data/Civication/vitenskapCareerLifeEvidence.json"
+  },
+  "badge_binding": {
+    "badge_id": "vitenskap",
+    "badge_titles": [
+      "Instituttleder",
+      "Dekan"
+    ]
+  },
+  "task_families": [
+    "strategi_og_styring",
+    "budsjett_og_ressurser",
+    "personalledelse_organisering_og_arbeidsmiljo",
+    "ansettelse_habilitet_og_rettigheter",
+    "utdannings_og_forskningskvalitet",
+    "samfunnsoppdrag_beredskap_og_sikkerhet"
+  ],
+  "work_loops": [
+    {
+      "id": "styringssyklus",
+      "steps": [
+        "avklar_mandat",
+        "innhent_grunnlag",
+        "vurder_habilitet_og_rettigheter",
+        "prioriter_og_beslutt_eller_eskaler",
+        "dokumenter_konsekvens",
+        "folg_opp",
+        "handoff_eller_bounded_rework"
+      ]
+    },
+    {
+      "id": "institusjonell_sak",
+      "steps": [
+        "registrer_sak_og_beslutningseier",
+        "kartlegg_budsjett_personal_kvalitet_og_risiko",
+        "avklar_formell_prosess",
+        "vent_eller_eskaler_nar_fullmakt_mangler",
+        "beslutt_innen_mandat",
+        "dokumenter_og_overlever"
+      ]
+    }
+  ],
+  "practice_stories": [
+    {
+      "id": "s1",
+      "setup": "Et fakultet må redusere kostnader uten å miste kritisk fagkapasitet.",
+      "good": "Vurder langsiktige faglige konsekvenser, bemanning, arbeidsmiljø og lovpålagte oppgaver før prioritering.",
+      "bad": "Kutt lik prosent i alle enheter uten konsekvensanalyse."
+    },
+    {
+      "id": "s2",
+      "setup": "En stor ekstern giver forventer påvirkning på forskningsagendaen.",
+      "good": "Beskytt faglig uavhengighet og avklar transparente avtalegrenser.",
+      "bad": "Tilpass konklusjonsrommet for å sikre finansieringen."
+    },
+    {
+      "id": "s3",
+      "setup": "En lederansettelse gjelder en kandidat med nære relasjoner til beslutningstakere.",
+      "good": "Avklar habilitet og bruk formell, etterprøvbar prosess.",
+      "bad": "La strategisk behov veie opp for habilitetsproblemet."
+    },
+    {
+      "id": "s4",
+      "setup": "Et sterkt fagmiljø har vedvarende arbeidsmiljøvarsler.",
+      "good": "Behandle arbeidsmiljøet som selvstendig styringsrisiko og sikre korrekt oppfølging.",
+      "bad": "Utsett saken fordi resultatene er gode."
+    },
+    {
+      "id": "s5",
+      "setup": "En alvorlig hendelse krever rask omdisponering av laboratorier og undervisning.",
+      "good": "Prioriter sikkerhet, kontinuitet og tydelig beslutningslogg innen mandatet.",
+      "bad": "Ta uformelle snarveier som setter rettigheter og sikkerhetskrav til side."
+    }
+  ],
+  "quality_axes": [
+    "strategisk_baerekraft",
+    "styringskvalitet",
+    "ressursrealisme",
+    "habilitet_og_rettigheter",
+    "arbeidsmiljo",
+    "utdannings_og_forskningskvalitet",
+    "faglig_uavhengighet",
+    "beredskap_og_samfunnsansvar"
+  ],
+  "authority_boundary": {
+    "may": [
+      "sette institusjonell retning og prioritere innen faktisk employer_appointment, delegert mandat, budsjett og gjeldende styringslinjer",
+      "fordele ressurser og organisere arbeid innen dokumenterte økonomiske, personalmessige og rettslige rammer",
+      "kreve habilitets-, arbeidsmiljø-, kvalitet-, integritets- og risikogrunnlag før kritiske beslutninger",
+      "stanse eller eskalere saker når ansettelsesprosess, habilitet, sikkerhet, rettigheter, etikk, personvern eller integritet krever uavhengig behandling",
+      "aktivere beredskap og omdisponere innen mandatet når sikkerhet, kontinuitet og lovpålagte oppgaver krever det"
+    ],
+    "may_not": [
+      "tilsidesette lov, tariff, formelle ansettelses- eller personalprosesser, habilitetskrav eller rettigheter for å nå strategiske mål raskere",
+      "overstyre faglige resultater, vurderinger eller forskningskonklusjoner for omdømme, økonomi, giverpress eller institusjonell prestisje",
+      "bruke budsjett- eller organisasjonsmyndighet til å omgå habilitet, arbeidsmiljø, integritet, sikkerhet, etikk eller personvern",
+      "dele taushetsbelagt, beskyttet eller personrelatert informasjon uten hjemmel eller korrekt tilgang",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, professortittel, nettverk, sosial standing eller intern status som erstatning for academic_qualification_and_employment, employer_appointment, dokumentert beslutningsgrunnlag eller delegert myndighet"
+    ]
+  },
+  "role_id": "vitenskap_institusjonsledelse",
+  "work_world": "Formelt utnevnt institusjonsledelse der portefølje, mennesker, kapasitet, kvalitet, integritet, finansiering, effektpåstander og handoff holdes i ett etterprøvbart lederarbeidsspor.",
+  "pressure_axes": [
+    "strategi_vs_ressursrealisme",
+    "finansiering_vs_forskningsuavhengighet",
+    "omdomme_vs_integritetsprosess",
+    "senioritet_vs_habilitet",
+    "fremdrift_vs_arbeidsmiljo",
+    "rapportering_vs_dokumentert_effekt",
+    "badge_status_vs_faktisk_appointment"
+  ],
+  "knowledge_dependencies": [
+    {
+      "badge_id": "vitenskap",
+      "purpose": "History Go-kunnskap kan gi historisk og stedlig kontekst om universitet, institutt, fakultet, finansiering, autonomi, styringsformer, profesjonshistorie og kriser. Den kan aldri erstatte academic_qualification_and_employment, employer_appointment, delegert mandat, dagens budsjett-, HR-, habilitets-, sikkerhets- eller kvalitetsgrunnlag."
+    }
+  ],
+  "persistent_work_product": {
+    "id": "institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg",
+    "required_fields": [
+      "strategi_og_styringssak",
+      "employer_appointment_mandat_og_beslutningseier",
+      "budsjett_bindinger_og_prioriteringsbehov",
+      "organisering_bemanning_og_kritisk_kapasitet",
+      "ansettelsesprosess_habilitet_og_rettigheter",
+      "arbeidsmiljo_varsel_og_personalrisiko",
+      "utdannings_og_forskningskvalitet",
+      "faglig_uavhengighet_finansiering_og_interessekonflikt",
+      "beredskap_sikkerhet_og_kontinuitet",
+      "ventestatus_og_eskalering",
+      "handoff_og_bounded_rework"
+    ]
+  },
+  "daily_rhythm": [
+    "mandat_og_saksinntak",
+    "styrings_og_ressursgrunnlag",
+    "relasjonell_avklaring",
+    "beslutning_eller_eskalering",
+    "dokumentasjon_handoff_og_etterspill"
+  ],
+  "handoff_rules": [
+    "Navngi beslutningseier, mandat, habilitet, åpne rettighets-/HR-/sikkerhetsspørsmål, budsjettbindinger, kvalitetssignaler, ventestatus og neste kontrollpunkt.",
+    "Bounded rework gjenåpner bare berørte ledd og bevarer tidligere begrunnelser."
+  ]
+}

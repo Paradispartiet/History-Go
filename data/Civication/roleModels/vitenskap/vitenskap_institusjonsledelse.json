@@ -1,1 +1,319 @@
-{"schema":"civication_role_model_v2","version":2,"category":"vitenskap","role_scope":"vitenskap_institusjonsledelse","role_id":"vitenskap_institusjonsledelse","title":"Institusjonsledelse","source":{"evidence":"data/Civication/vitenskapCareerLifeEvidence.json"},"badge_titles":["Instituttleder","Dekan"],"core_narrative":["Institusjonsledelse i Civication modellerer ansvar for faglig retning, økonomi, organisasjon, utdanning og forskningsmiljø; mandatet følger faktisk lederutnevnelse."],"competence_axes":["institusjonsstrategi","budsjett_og_prioritering","organisasjons_og_personalledelse","utdannings_og_forskningskvalitet","styring_og_habilitet","samfunnsoppdrag_og_beredskap"],"ideal_type_problems":[{"id":"budsjettbalanse","problem":"Langsiktig faglig kvalitet kolliderer med et umiddelbart budsjettkrav."},{"id":"ansettelseskonflikt","problem":"Et strategisk ønsket fagområde mangler et habilitetsmessig robust ansettelsesgrunnlag."},{"id":"faglig_uavhengighet","problem":"Ekstern finansiering kommer med forventninger som kan utfordre faglig uavhengighet."},{"id":"arbeidsmiljo","problem":"Sterke resultater skjuler et vedvarende arbeidsmiljøproblem i en enhet."},{"id":"kriseprioritering","problem":"En hendelse krever rask omdisponering uten å sette sikkerhet eller rettigheter til side."}],"authority_boundaries":{"cannot":["tilsidesette_lov_eller_formelle_ansettelsesprosesser","overstyre_faglige_resultater_for_omdomme_eller_okonomi","bruke_budsjettmyndighet_til_a_omgaa_habilitetskrav","dele_taushetsbelagt_eller_beskyttet_informasjon_uten_hjemmel"]},"notes":["Instituttleder og Dekan er dokumenterte lederstillinger; Badge-progresjon kan ikke etablere mandatet uten arbeidsgiverutnevnelse."]}
+{
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_institusjonsledelse",
+  "role_id": "vitenskap_institusjonsledelse",
+  "title": "Institusjonsledelse",
+  "source": {
+    "badge_file": "data/badges/vitenskap.json",
+    "badge_id": "vitenskap",
+    "evidence": "data/Civication/vitenskapCareerLifeEvidence.json"
+  },
+  "badge_titles": [
+    "Instituttleder",
+    "Dekan"
+  ],
+  "core_narrative": [
+    "Institusjonsledelse modellerer formelt utnevnt ansvar for faglig retning, økonomi, organisasjon, personal, utdanning, forskning, kvalitet, samfunnsoppdrag og beredskap. Arbeidet blir spillbart gjennom dokumentert mandat, styringsgrunnlag, habilitet, ressursrealisme og overtakbar beslutningslogg.",
+    "Instituttleder og Dekan forblir appointment_required med academic_qualification_and_employment og employer_appointment. Badge, XP, professortittel, publikasjoner, nettverk eller lokal standing kan aldri tildele lederstillingen eller utvide delegert myndighet."
+  ],
+  "competence_axes": [
+    "institusjonsstrategi_og_styring",
+    "budsjett_og_prioritering",
+    "organisering_og_personalledelse",
+    "formelle_ansettelsesprosesser_og_habilitet",
+    "utdanningskvalitet",
+    "forskningskvalitet_og_uavhengighet",
+    "arbeidsmiljo_og_varslingsansvar",
+    "samfunnsoppdrag_beredskap_og_sikkerhet",
+    "ekstern_finansiering_og_interessegrenser",
+    "beslutningslogg_venting_og_handoff"
+  ],
+  "ideal_type_problems": [
+    {
+      "id": "budsjettbalanse",
+      "problem": "Langsiktig faglig kvalitet og kritisk kompetanse kolliderer med et umiddelbart budsjettkrav."
+    },
+    {
+      "id": "ansettelseskonflikt",
+      "problem": "Et strategisk ønsket fagområde mangler et habilitetsmessig robust og formelt ansettelsesgrunnlag."
+    },
+    {
+      "id": "faglig_uavhengighet",
+      "problem": "Ekstern finansiering eller institusjonelt omdømme skaper forventninger som kan utfordre faglig uavhengighet."
+    },
+    {
+      "id": "arbeidsmiljo",
+      "problem": "Sterke resultater skjuler et vedvarende arbeidsmiljø- eller varslingsproblem i en enhet."
+    },
+    {
+      "id": "kriseprioritering",
+      "problem": "En alvorlig hendelse krever rask omdisponering uten at sikkerhet, rettigheter eller lovpålagte prosesser settes til side."
+    }
+  ],
+  "authority_boundaries": {
+    "can": [
+      "sette institusjonell retning og prioritere innen faktisk employer_appointment, delegert mandat, budsjett og gjeldende styringslinjer",
+      "fordele ressurser og organisere arbeid innen dokumenterte økonomiske, personalmessige og rettslige rammer",
+      "kreve habilitets-, arbeidsmiljø-, kvalitet-, integritets- og risikogrunnlag før kritiske beslutninger",
+      "stanse eller eskalere saker når ansettelsesprosess, habilitet, sikkerhet, rettigheter, etikk, personvern eller integritet krever uavhengig behandling",
+      "aktivere beredskap og omdisponere innen mandatet når sikkerhet, kontinuitet og lovpålagte oppgaver krever det"
+    ],
+    "cannot": [
+      "tilsidesette lov, tariff, formelle ansettelses- eller personalprosesser, habilitetskrav eller rettigheter for å nå strategiske mål raskere",
+      "overstyre faglige resultater, vurderinger eller forskningskonklusjoner for omdømme, økonomi, giverpress eller institusjonell prestisje",
+      "bruke budsjett- eller organisasjonsmyndighet til å omgå habilitet, arbeidsmiljø, integritet, sikkerhet, etikk eller personvern",
+      "dele taushetsbelagt, beskyttet eller personrelatert informasjon uten hjemmel eller korrekt tilgang",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, professortittel, nettverk, sosial standing eller intern status som erstatning for academic_qualification_and_employment, employer_appointment, dokumentert beslutningsgrunnlag eller delegert myndighet"
+    ]
+  },
+  "notes": [
+    "Institusjonsledelse må aldri gjøre badgeprogresjon til arbeidsgiverutnevnelse.",
+    "History Go kan gi historisk og stedlig institusjonskontekst, men aldri dagens mandat, HR-grunnlag, budsjett, habilitet, sikkerhetsbevis eller institusjonell myndighet."
+  ],
+  "authority_boundary": {
+    "may": [
+      "sette institusjonell retning og prioritere innen faktisk employer_appointment, delegert mandat, budsjett og gjeldende styringslinjer",
+      "fordele ressurser og organisere arbeid innen dokumenterte økonomiske, personalmessige og rettslige rammer",
+      "kreve habilitets-, arbeidsmiljø-, kvalitet-, integritets- og risikogrunnlag før kritiske beslutninger",
+      "stanse eller eskalere saker når ansettelsesprosess, habilitet, sikkerhet, rettigheter, etikk, personvern eller integritet krever uavhengig behandling",
+      "aktivere beredskap og omdisponere innen mandatet når sikkerhet, kontinuitet og lovpålagte oppgaver krever det"
+    ],
+    "may_not": [
+      "tilsidesette lov, tariff, formelle ansettelses- eller personalprosesser, habilitetskrav eller rettigheter for å nå strategiske mål raskere",
+      "overstyre faglige resultater, vurderinger eller forskningskonklusjoner for omdømme, økonomi, giverpress eller institusjonell prestisje",
+      "bruke budsjett- eller organisasjonsmyndighet til å omgå habilitet, arbeidsmiljø, integritet, sikkerhet, etikk eller personvern",
+      "dele taushetsbelagt, beskyttet eller personrelatert informasjon uten hjemmel eller korrekt tilgang",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, professortittel, nettverk, sosial standing eller intern status som erstatning for academic_qualification_and_employment, employer_appointment, dokumentert beslutningsgrunnlag eller delegert myndighet"
+    ]
+  },
+  "work_life": {
+    "daily_work": [
+      "føre institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg gjennom strategi, budsjett, organisering, personal, kvalitet, habilitet, beredskap, venting og handoff",
+      "gjøre employer_appointment, delegert mandat, beslutningseier og styringslinje synlig før institusjonelle vedtak",
+      "sammenholde budsjett, stillinger, arbeidsmiljø og kritisk fagkapasitet med strategiske prioriteringer",
+      "sikre formell og habil ansettelses-, varslings-, HR- og kontrollprosess",
+      "skille legitim styring fra påvirkning over faglige resultater og gjøre beredskapsvalg etterprøvbare"
+    ],
+    "responsibilities": [
+      "strategi_og_styring",
+      "budsjett_og_prioritering",
+      "organisering_og_personalledelse",
+      "ansettelsesprosess_og_habilitet",
+      "utdannings_og_forskningskvalitet",
+      "arbeidsmiljo_integritet_og_uavhengighet",
+      "samfunnsoppdrag_beredskap_og_sikkerhet",
+      "ekstern_finansiering_og_interessegrenser",
+      "handoff_venting_og_bounded_rework"
+    ],
+    "work_environment": [
+      "Universitet, fakultet, institutt eller annen kunnskapsinstitusjon der Instituttleder/Dekan har faktisk arbeidsgiverutnevnelse og avgrenset delegert myndighet."
+    ],
+    "status_position": [
+      "Instituttleder og Dekan er appointment_required. Formell posisjon krever academic_qualification_and_employment og employer_appointment; badgeprogresjon eller akademisk prestisje alene skaper ingen institusjonell myndighet."
+    ],
+    "workplaces": [
+      "institusjonsstrategi_styring_og_mandat_vitenskap_institusjonsledelse",
+      "budsjett_organisering_og_personal_vitenskap_institusjonsledelse",
+      "utdanning_forskning_kvalitet_og_uavhengighet_vitenskap_institusjonsledelse",
+      "beredskap_samfunnsoppdrag_og_handoff_vitenskap_institusjonsledelse"
+    ]
+  },
+  "career_path": {
+    "entry_from": [
+      "Instituttleder/Dekan krever canonical appointment_required med academic_qualification_and_employment og employer_appointment. Badge-threshold alene gir ikke adgang."
+    ],
+    "progression_to": [
+      "Større ledelsesansvar følger ny faktisk arbeidsgiverutnevnelse, dokumentert kompetanse og delegert mandat, ikke XP eller sosial standing."
+    ],
+    "possible_promotions": [
+      "institusjonsledelse når den rollens egne appointment_required- og employer_appointment-krav er oppfylt"
+    ],
+    "possible_exits": [
+      "tilbake til forskning, undervisning/forskning eller annen kunnskapsrolle når respektive canonical krav er oppfylt"
+    ],
+    "career_risks": [
+      "porteføljepress kan gjøre interne maktforhold til skjulte prioriteringskriterier",
+      "finansieringspress kan gjøre ønsket resultat eller effektpåstand til uformelt leveransekrav",
+      "lederstatus kan maskere habilitetskonflikt eller fristelse til å håndtere integritetsvarsler uformelt"
+    ]
+  },
+  "persistent_work_product": {
+    "id": "institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg",
+    "title": "Institusjonsstrategi-, budsjett-, personal-, kvalitets- og beredskapslogg",
+    "description": "Et vedvarende, versjonert styringsobjekt som binder strategi, employer_appointment, delegert mandat, budsjett, organisering, personal, ansettelsesprosess, habilitet, arbeidsmiljø, utdannings- og forskningskvalitet, ekstern finansiering, risiko, beredskap, venting, beslutningseier og handoff sammen.",
+    "required_fields": [
+      "strategi_og_styringssak",
+      "employer_appointment_mandat_og_beslutningseier",
+      "budsjett_bindinger_og_prioriteringsbehov",
+      "organisering_bemanning_og_kritisk_kapasitet",
+      "ansettelsesprosess_habilitet_og_rettigheter",
+      "arbeidsmiljo_varsel_og_personalrisiko",
+      "utdannings_og_forskningskvalitet",
+      "faglig_uavhengighet_finansiering_og_interessekonflikt",
+      "beredskap_sikkerhet_og_kontinuitet",
+      "ventestatus_og_eskalering",
+      "handoff_og_bounded_rework"
+    ]
+  },
+  "day_one": {
+    "outcomes": [
+      "Bekreft academic_qualification_and_employment, employer_appointment, delegert mandat og styringslinjer før badge eller akademisk prestisje får noen lederbetydning.",
+      "Opprett styringsloggen med strategi, budsjett, personal, habilitet, kvalitet, beredskap, venting og beslutningseier.",
+      "Møt de fire profesjonelle relasjonene og etabler hvem som eier økonomi-, HR-, habilitets-, kvalitet- og sikkerhetsbeslutninger.",
+      "Behandle en konkret budsjett-/kapasitetskonflikt uten å omgå formell prosess eller faglig uavhengighet."
+    ],
+    "first_week_focus": [
+      "budsjett og kritisk fagkapasitet",
+      "ansettelsesprosess og habilitet",
+      "arbeidsmiljø og varslingsansvar",
+      "ekstern finansiering og faglig uavhengighet",
+      "utdannings-/forskningskvalitet og beredskap"
+    ]
+  },
+  "challenges": [
+    {
+      "id": "portefolje_uten_nok_kapasitet",
+      "title": "Porteføljen har mer arbeid enn kapasitet",
+      "description": "Flere strategisk viktige prosjekter konkurrerer om de samme personene og midlene.",
+      "pressure": "strategi_og_lofter_vs_ressursrealisme",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    },
+    {
+      "id": "prestisjeprosjekt_med_integritetssignal",
+      "title": "Integritetssignal i prestisjeprosjekt",
+      "description": "Et varsel gjelder en sentral prosjektleder rett før en viktig leveranse.",
+      "pressure": "omdomme_og_fremdrift_vs_uavhengig_integritet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "prioritering_vs_intern_makt",
+      "title": "Transparent prioritering mot intern makt",
+      "setup": "Et prosjekt med sterk intern sponsor står svakt på de avtalte kriteriene.",
+      "choice_axis": "dokumenterte_kriterier_og_habilitet_vs_uformell_makt",
+      "consequence_axis": "langsiktig_tillit_og_ressursrealisme_vs_skjult_favorisering_og_risiko",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "ida_styring_og_strategi_vitenskap_institusjonsledelse",
+      "name": "Ida",
+      "role": "styrings- og strategikontakt",
+      "workplace_ids": [
+        "institusjonsstrategi_styring_og_mandat_vitenskap_institusjonsledelse"
+      ],
+      "function": "Ida gjør mandat, styringslinjer, habilitet og strategiske konsekvenser synlige før institusjonelle prioriteringer vedtas.",
+      "authority_relation": "Ida kan forberede styringsgrunnlag og returnere uklare beslutningslinjer. Hun kan ikke tildele Instituttleder- eller Dekanmandat, endre employer_appointment eller gjøre et råd til formell beslutning uten riktig fullmakt.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "amir_okonomi_og_organisering_vitenskap_institusjonsledelse",
+      "name": "Amir",
+      "role": "økonomi- og organisasjonskontakt",
+      "workplace_ids": [
+        "budsjett_organisering_og_personal_vitenskap_institusjonsledelse"
+      ],
+      "function": "Amir følger budsjettbindinger, kapasitet, organisering og konsekvenser for fagmiljø og ansatte. Han gjør skjult underfinansiering og urealistiske omstillingsløfter synlige.",
+      "authority_relation": "Amir kan dokumentere økonomiske og organisatoriske begrensninger, men kan ikke love stillinger, lønn, oppsigelser eller omorganisering uten korrekt arbeidsgiverfullmakt og prosess.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "ragnhild_hr_habilitet_og_arbeidsmiljo_vitenskap_institusjonsledelse",
+      "name": "Ragnhild",
+      "role": "HR-, habilitets- og arbeidsmiljøkontakt",
+      "workplace_ids": [
+        "budsjett_organisering_og_personal_vitenskap_institusjonsledelse",
+        "utdanning_forskning_kvalitet_og_uavhengighet_vitenskap_institusjonsledelse"
+      ],
+      "function": "Ragnhild gjør ansettelser, habilitet, varsling, arbeidsmiljø og personalrettigheter til harde prosessgrenser når strategisk press ellers favoriserer snarveier.",
+      "authority_relation": "Ragnhild kan kreve korrekt habilitets-, HR- og arbeidsmiljøprosess og eskalere ved brudd. Hun kan ikke la lederstatus, badge eller omdømme erstatte lov, dokumentasjon eller uavhengig behandling.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "maja_kvalitet_beredskap_og_samfunnsoppdrag_vitenskap_institusjonsledelse",
+      "name": "Maja",
+      "role": "kvalitets-, beredskaps- og samfunnsoppdragskontakt",
+      "workplace_ids": [
+        "utdanning_forskning_kvalitet_og_uavhengighet_vitenskap_institusjonsledelse",
+        "beredskap_samfunnsoppdrag_og_handoff_vitenskap_institusjonsledelse"
+      ],
+      "function": "Maja følger utdannings- og forskningskvalitet, faglig uavhengighet, beredskap, sikkerhet, samfunnsoppdrag og ekstern kommunikasjon når raske prioriteringer får langsiktige konsekvenser.",
+      "authority_relation": "Maja kan kreve kvalitet-, sikkerhets- og kontinuitetsgrunnlag og returnere for sterke påstander. Hun kan ikke overstyre faglige resultater, sikkerhetskrav eller lovpålagte prosesser.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "portefolje_prioritering_og_mandat_vitenskap_institusjonsledelse",
+      "name": "Portefølje, prioritering og mandat",
+      "function": "Arbeidsflaten binder forskningsstrategi, prosjektportefølje, prioriteringskriterier, delegert mandat, beslutningseier, habilitet og konsekvenser sammen. En leder kan prioritere innen faktisk utnevnelse og fullmakt, men ikke gjøre faglig prestisje, badge eller intern innflytelse til skjult beslutningsregel."
+    },
+    {
+      "id": "kapasitet_bemanning_og_budsjett_vitenskap_institusjonsledelse",
+      "name": "Kapasitet, bemanning og budsjett",
+      "function": "Her kobles faktisk kapasitet, kompetanse, stillingsrammer, budsjett, frister, arbeidsmiljø og avhengigheter. Ressursmangel skal gi dokumentert reprioritering eller eskalering, ikke uregistrert overarbeid eller løfter om ansettelse og finansiering uten fullmakt."
+    },
+    {
+      "id": "integritet_etikk_habilitet_og_varsel_vitenskap_institusjonsledelse",
+      "name": "Integritet, etikk, habilitet og varsel",
+      "function": "Her mottas og avgrenses signaler om mulig forskningsintegritetsbrudd, etikk, habilitet eller prosessrisiko. Lederens oppgave er å sikre dokumentasjon, uavhengighet og korrekt eskalering, ikke å etterforske alt selv eller beskytte prestisjeprosjekter mot riktig kontroll."
+    },
+    {
+      "id": "finansiering_partnerskap_og_effektrapportering_vitenskap_institusjonsledelse",
+      "name": "Finansiering, partnerskap og effektrapportering",
+      "function": "Her skilles legitime finansierings- og rapporteringskrav fra kontroll over faglige resultater. Aktivitet, foreløpige indikatorer og dokumentert effekt holdes adskilt, og partnerkrav må vurderes mot forskningsuavhengighet, rettigheter, habilitet og faktisk delegert myndighet."
+    }
+  ],
+  "workplaces": [
+    {
+      "id": "institusjonsstrategi_styring_og_mandat_vitenskap_institusjonsledelse",
+      "name": "Institusjonsstrategi, styring og mandat",
+      "function": "Binder faktisk employer_appointment, delegert myndighet, strategi, styringslinjer, habilitet, samfunnsoppdrag og beslutningseier sammen. Badge, senioritet eller akademisk prestisje kan aldri utvide mandatet."
+    },
+    {
+      "id": "budsjett_organisering_og_personal_vitenskap_institusjonsledelse",
+      "name": "Budsjett, organisering og personal",
+      "function": "Kobler økonomiske rammer, stillinger, bemanning, arbeidsmiljø, omstilling, formelle ansettelsesprosesser og rettigheter. Instituttleder/Dekan må skille reell fullmakt fra ønskede tiltak og dokumentere hvem som eier neste beslutning."
+    },
+    {
+      "id": "utdanning_forskning_kvalitet_og_uavhengighet_vitenskap_institusjonsledelse",
+      "name": "Utdanning, forskning, kvalitet og uavhengighet",
+      "function": "Samler kvalitetssignaler for utdanning og forskning, eksterne finansieringsvilkår, faglig autonomi, integritet, habilitet og risiko. Ledelsen kan sette rammer, men kan ikke produsere ønskede faglige resultater."
+    },
+    {
+      "id": "beredskap_samfunnsoppdrag_og_handoff_vitenskap_institusjonsledelse",
+      "name": "Beredskap, samfunnsoppdrag og handoff",
+      "function": "Gjør alvorlige hendelser, sikkerhet, kontinuitet, lovpålagte oppgaver, kommunikasjon, venting og overtakbar beslutningslogg spillbare uten at krisetempo brukes til å omgå rettigheter eller sikkerhetskrav."
+    }
+  ]
+}

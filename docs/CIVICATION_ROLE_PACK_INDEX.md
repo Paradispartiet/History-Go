@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 83
+- complete_reference_v2: 84
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 182
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 11
+- missing: 10
 
 ## Rolleindeks
 
@@ -317,6 +317,7 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | vitenskap | vitenskap_forskningsledelse | vitenskap_forskningsledelse | Forskningsledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | vitenskap | forskningsleder | vitenskap_forskningsleder | Forskningsleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | vitenskap | forsteamanuensis | vitenskap_forsteamanuensis | Førsteamanuensis | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| vitenskap | vitenskap_institusjonsledelse | vitenskap_institusjonsledelse | Institusjonsledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | vitenskap | instituttleder | vitenskap_instituttleder | Instituttleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | vitenskap | laboratorieassistent | vitenskap_laboratorieassistent | Laboratorieassistent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | vitenskap | postdoktor | vitenskap_postdoktor | Postdoktor | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
@@ -325,6 +326,5 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | vitenskap | stipendiat_phd | vitenskap_stipendiat_phd | Stipendiat (PhD) | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | vitenskap | studentassistent | vitenskap_studentassistent | Studentassistent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | vitenskap | vitenskap_assistent_og_laboratorium | vitenskap_assistent_og_laboratorium | Vitenskap – assistent og laboratorium | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
-| vitenskap | vitenskap_institusjonsledelse |  | vitenskap_institusjonsledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | vitenskap | vitenskap_undervisning_og_forskning |  | vitenskap_undervisning_og_forskning | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | vitenskap | vitenskapelig_assistent | vitenskap_vitenskapelig_assistent | Vitenskapelig assistent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |

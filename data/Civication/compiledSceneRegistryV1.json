@@ -718,7 +718,16 @@
     "data/Civication/mailFamilies/vitenskap/micro/vitenskap_forskningsledelse_micro.json",
     "data/Civication/mailFamilies/vitenskap/followup/vitenskap_forskningsledelse_followup.json",
     "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_forskningsledelse_knowledge.json",
-    "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_forskningsledelse_consequence.json"
+    "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_forskningsledelse_consequence.json",
+    "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+    "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+    "data/Civication/mailFamilies/vitenskap/story/vitenskap_institusjonsledelse_story.json",
+    "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_institusjonsledelse_conflict.json",
+    "data/Civication/mailFamilies/vitenskap/event/vitenskap_institusjonsledelse_event.json",
+    "data/Civication/mailFamilies/vitenskap/micro/vitenskap_institusjonsledelse_micro.json",
+    "data/Civication/mailFamilies/vitenskap/followup/vitenskap_institusjonsledelse_followup.json",
+    "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_institusjonsledelse_knowledge.json",
+    "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_institusjonsledelse_consequence.json"
   ],
   "compiler_version": 1,
   "entries": [
@@ -280371,6 +280380,2016 @@
       "source_hash": "8eaa3b4738615dcb902cbd025af2fe243e7c3d7674c0c97c902d196108bc1da5",
       "source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_forskningsledelse_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar conflict_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien conflict_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Ragnhild",
+        "id": "vitenskap_institusjonsledelse_conflict_001",
+        "mail_family": "vitenskap_institusjonsledelse_prestisje_vs_integritet",
+        "mail_type": "conflict",
+        "narrative_arc": "conflict",
+        "people_ref": "ragnhild_integritet_og_habilitet_vitenskap_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "integritet_etikk_habilitet_og_varsel_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 158,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_institusjonsledelse_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: prestisjeprosjektet skal levere mens integritetssignalet fortsatt er uavklart.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: Prestisjeprosjektet skal levere mens integritetssignalet fortsatt er uavklart",
+        "summary": "Prestisjeprosjektet skal levere mens integritetssignalet fortsatt er uavklart. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_conflict_001",
+      "mail_type": "conflict",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar conflict_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien conflict_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: prestisjeprosjektet skal levere mens integritetssignalet fortsatt er uavklart.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: Prestisjeprosjektet skal levere mens integritetssignalet fortsatt er uavklart",
+          "summary": "Prestisjeprosjektet skal levere mens integritetssignalet fortsatt er uavklart. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_conflict_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "integritet_etikk_habilitet_og_varsel_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_conflict_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_institusjonsledelse_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_conflict_001",
+        "version": 1
+      },
+      "source_hash": "ec33b95af1c2ef1a1c5d73d436231c5136053cb69e056f2310ad9f4ed70e08a9",
+      "source_path": "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_institusjonsledelse_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar consequence_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien consequence_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Ragnhild",
+        "id": "vitenskap_institusjonsledelse_consequence_001",
+        "mail_family": "vitenskap_institusjonsledelse_etterspill_prioritering_og_integritet",
+        "mail_type": "consequence",
+        "narrative_arc": "consequence",
+        "people_ref": "ragnhild_integritet_og_habilitet_vitenskap_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "integritet_etikk_habilitet_og_varsel_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 164,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_institusjonsledelse_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: teamet møter konsekvensen av hvordan integritetssignalet og porteføljepresset ble håndtert.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: Teamet møter konsekvensen av hvordan integritetssignalet og porteføljepresset ble håndtert",
+        "summary": "Teamet møter konsekvensen av hvordan integritetssignalet og porteføljepresset ble håndtert. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_consequence_001",
+      "mail_type": "consequence",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar consequence_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien consequence_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: teamet møter konsekvensen av hvordan integritetssignalet og porteføljepresset ble håndtert.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: Teamet møter konsekvensen av hvordan integritetssignalet og porteføljepresset ble håndtert",
+          "summary": "Teamet møter konsekvensen av hvordan integritetssignalet og porteføljepresset ble håndtert. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_consequence_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "integritet_etikk_habilitet_og_varsel_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_consequence_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_institusjonsledelse_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_consequence_001",
+        "version": 1
+      },
+      "source_hash": "db57bbd96f2235a6eb440e039e40c82d7f8044fdc88a3b37f5252b3837771c31",
+      "source_path": "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_institusjonsledelse_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar event_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien event_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Amir",
+        "id": "vitenskap_institusjonsledelse_event_001",
+        "mail_family": "vitenskap_institusjonsledelse_kapasitets_eller_finansieringsendring",
+        "mail_type": "event",
+        "narrative_arc": "event",
+        "people_ref": "amir_kapasitet_og_bemanning_vitenskap_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "kapasitet_bemanning_og_budsjett_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 160,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/event/vitenskap_institusjonsledelse_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: en nøkkelressurs faller bort midt i en kritisk leveranseperiode.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: En nøkkelressurs faller bort midt i en kritisk leveranseperiode",
+        "summary": "En nøkkelressurs faller bort midt i en kritisk leveranseperiode. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_event_001",
+      "mail_type": "event",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar event_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien event_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: en nøkkelressurs faller bort midt i en kritisk leveranseperiode.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: En nøkkelressurs faller bort midt i en kritisk leveranseperiode",
+          "summary": "En nøkkelressurs faller bort midt i en kritisk leveranseperiode. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_event_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kapasitet_bemanning_og_budsjett_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_event_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/event/vitenskap_institusjonsledelse_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_event_001",
+        "version": 1
+      },
+      "source_hash": "bf8b8302661b99537c2d86e7bf425c8e78fa8e277625ca0f6b0240b594ff6c58",
+      "source_path": "data/Civication/mailFamilies/vitenskap/event/vitenskap_institusjonsledelse_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar followup_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien followup_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Amir",
+        "id": "vitenskap_institusjonsledelse_followup_001",
+        "mail_family": "vitenskap_institusjonsledelse_handoff_og_bounded_rework",
+        "mail_type": "followup",
+        "narrative_arc": "followup",
+        "people_ref": "amir_kapasitet_og_bemanning_vitenskap_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "kapasitet_bemanning_og_budsjett_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 162,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/followup/vitenskap_institusjonsledelse_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: oppdater prioriteringen etter at kapasitetstallene endret seg uten å slette den gamle begrunnelsen.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: Oppdater prioriteringen etter at kapasitetstallene endret seg uten å slette den gamle begrunnelsen",
+        "summary": "Oppdater prioriteringen etter at kapasitetstallene endret seg uten å slette den gamle begrunnelsen. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_followup_001",
+      "mail_type": "followup",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar followup_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien followup_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: oppdater prioriteringen etter at kapasitetstallene endret seg uten å slette den gamle begrunnelsen.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: Oppdater prioriteringen etter at kapasitetstallene endret seg uten å slette den gamle begrunnelsen",
+          "summary": "Oppdater prioriteringen etter at kapasitetstallene endret seg uten å slette den gamle begrunnelsen. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_followup_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kapasitet_bemanning_og_budsjett_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_followup_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/followup/vitenskap_institusjonsledelse_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_followup_001",
+        "version": 1
+      },
+      "source_hash": "6512c1c4ecb3d34084e6c0882696f0b2f5eea178cea7c1caf5c48d47abdeb81b",
+      "source_path": "data/Civication/mailFamilies/vitenskap/followup/vitenskap_institusjonsledelse_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien job_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Ida",
+        "id": "vitenskap_institusjonsledelse_job_001",
+        "mail_family": "vitenskap_institusjonsledelse_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "ida_portefolje_og_strategi_vitenskap_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "portefolje_prioritering_og_mandat_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 150,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: prioriter mellom sterke prosjekter med synlige kriterier.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: Prioriter mellom sterke prosjekter med synlige kriterier",
+        "summary": "Prioriter mellom sterke prosjekter med synlige kriterier. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_job_001",
+      "mail_type": "job",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien job_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: prioriter mellom sterke prosjekter med synlige kriterier.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: Prioriter mellom sterke prosjekter med synlige kriterier",
+          "summary": "Prioriter mellom sterke prosjekter med synlige kriterier. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_job_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "portefolje_prioritering_og_mandat_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_job_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_job_001",
+        "version": 1
+      },
+      "source_hash": "848626b230c9990bc7c9e069a6415c3e2c5068d3c02f7292cec8f68b407407d9",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_2",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien job_2",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Amir",
+        "id": "vitenskap_institusjonsledelse_job_002",
+        "mail_family": "vitenskap_institusjonsledelse_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "amir_kapasitet_og_bemanning_vitenskap_institusjonsledelse",
+        "phase": "afternoon",
+        "place_id": "kapasitet_bemanning_og_budsjett_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 151,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: reparer en portefølje som overstiger faktisk kapasitet.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: Reparer en portefølje som overstiger faktisk kapasitet",
+        "summary": "Reparer en portefølje som overstiger faktisk kapasitet. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_job_002",
+      "mail_type": "job",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_2",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien job_2",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: reparer en portefølje som overstiger faktisk kapasitet.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: Reparer en portefølje som overstiger faktisk kapasitet",
+          "summary": "Reparer en portefølje som overstiger faktisk kapasitet. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_job_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kapasitet_bemanning_og_budsjett_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_job_002",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_job_002",
+        "version": 1
+      },
+      "source_hash": "6c42308357a0b9c30ff8e5d05e47410b84ebaacef6bfd5be04c96258ba85592f",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_3",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien job_3",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Ragnhild",
+        "id": "vitenskap_institusjonsledelse_job_003",
+        "mail_family": "vitenskap_institusjonsledelse_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "ragnhild_integritet_og_habilitet_vitenskap_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "integritet_etikk_habilitet_og_varsel_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 152,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: sikre uavhengig håndtering av et integritetssignal.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: Sikre uavhengig håndtering av et integritetssignal",
+        "summary": "Sikre uavhengig håndtering av et integritetssignal. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_job_003",
+      "mail_type": "job",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_3",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien job_3",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: sikre uavhengig håndtering av et integritetssignal.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: Sikre uavhengig håndtering av et integritetssignal",
+          "summary": "Sikre uavhengig håndtering av et integritetssignal. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_job_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "integritet_etikk_habilitet_og_varsel_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_job_003",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_job_003",
+        "version": 1
+      },
+      "source_hash": "7d993d5fcfaf813d5a7a14045ea726b037ff5abfe2b274c2f1b1f5e9506099c6",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_4",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien job_4",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Maja",
+        "id": "vitenskap_institusjonsledelse_job_004",
+        "mail_family": "vitenskap_institusjonsledelse_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "maja_finansiering_og_partner_vitenskap_institusjonsledelse",
+        "phase": "afternoon",
+        "place_id": "finansiering_partnerskap_og_effektrapportering_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 153,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: avgrens partnerkrav og effektpåstand mot faktisk evidens.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: Avgrens partnerkrav og effektpåstand mot faktisk evidens",
+        "summary": "Avgrens partnerkrav og effektpåstand mot faktisk evidens. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_job_004",
+      "mail_type": "job",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_4",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien job_4",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: avgrens partnerkrav og effektpåstand mot faktisk evidens.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: Avgrens partnerkrav og effektpåstand mot faktisk evidens",
+          "summary": "Avgrens partnerkrav og effektpåstand mot faktisk evidens. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_job_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "finansiering_partnerskap_og_effektrapportering_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_job_004",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_job_004",
+        "version": 1
+      },
+      "source_hash": "06737726bd27a60d291c617ddfaf3fc1e965d3929c85c5f4188317db1bc874a9",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar knowledge_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien knowledge_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Maja",
+        "id": "vitenskap_institusjonsledelse_knowledge_001",
+        "mail_family": "vitenskap_institusjonsledelse_history_go_forskningsstyring",
+        "mail_type": "knowledge",
+        "narrative_arc": "knowledge",
+        "people_ref": "maja_finansiering_og_partner_vitenskap_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "finansiering_partnerskap_og_effektrapportering_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 163,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_institusjonsledelse_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: bruk forsknings- og styringshistorie til å spørre bedre om dagens finansierings- og autonomigrense.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: Bruk forsknings- og styringshistorie til å spørre bedre om dagens finansierings- og autonomigrense",
+        "summary": "Bruk forsknings- og styringshistorie til å spørre bedre om dagens finansierings- og autonomigrense. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_knowledge_001",
+      "mail_type": "knowledge",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar knowledge_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien knowledge_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: bruk forsknings- og styringshistorie til å spørre bedre om dagens finansierings- og autonomigrense.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: Bruk forsknings- og styringshistorie til å spørre bedre om dagens finansierings- og autonomigrense",
+          "summary": "Bruk forsknings- og styringshistorie til å spørre bedre om dagens finansierings- og autonomigrense. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_knowledge_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "finansiering_partnerskap_og_effektrapportering_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_knowledge_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_institusjonsledelse_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_knowledge_001",
+        "version": 1
+      },
+      "source_hash": "f2063794b184d495ffca2bfcc5b182b44dbbe7d834ea09aafac8f19dca65ae0b",
+      "source_path": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_institusjonsledelse_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar micro_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien micro_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Ida",
+        "id": "vitenskap_institusjonsledelse_micro_001",
+        "mail_family": "vitenskap_institusjonsledelse_rask_mandat_og_habilitetsgate",
+        "mail_type": "micro",
+        "narrative_arc": "micro",
+        "people_ref": "ida_portefolje_og_strategi_vitenskap_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "portefolje_prioritering_og_mandat_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 161,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/micro/vitenskap_institusjonsledelse_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: er dette faktisk din beslutning, og er du habil til å ta den?.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: Er dette faktisk din beslutning, og er du habil til å ta den?",
+        "summary": "Er dette faktisk din beslutning, og er du habil til å ta den?. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_micro_001",
+      "mail_type": "micro",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar micro_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien micro_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: er dette faktisk din beslutning, og er du habil til å ta den?.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: Er dette faktisk din beslutning, og er du habil til å ta den?",
+          "summary": "Er dette faktisk din beslutning, og er du habil til å ta den?. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_micro_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "portefolje_prioritering_og_mandat_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_micro_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/micro/vitenskap_institusjonsledelse_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_micro_001",
+        "version": 1
+      },
+      "source_hash": "2e7a18276e53e3d7f83fb861d4d23ce51947868bcccff2c13546c0eb7290b0b8",
+      "source_path": "data/Civication/mailFamilies/vitenskap/micro/vitenskap_institusjonsledelse_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien people_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Ida",
+        "id": "vitenskap_institusjonsledelse_people_001",
+        "mail_family": "vitenskap_institusjonsledelse_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "ida_portefolje_og_strategi_vitenskap_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "portefolje_prioritering_og_mandat_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 154,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: en intern sponsor utfordrer de avtalte prioriteringskriteriene.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: En intern sponsor utfordrer de avtalte prioriteringskriteriene",
+        "summary": "En intern sponsor utfordrer de avtalte prioriteringskriteriene. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_people_001",
+      "mail_type": "people",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien people_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: en intern sponsor utfordrer de avtalte prioriteringskriteriene.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: En intern sponsor utfordrer de avtalte prioriteringskriteriene",
+          "summary": "En intern sponsor utfordrer de avtalte prioriteringskriteriene. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_people_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "portefolje_prioritering_og_mandat_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_people_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_people_001",
+        "version": 1
+      },
+      "source_hash": "e29ecd8a5107dd6a72593e8f4f6007e4ebd3a53a9541fb33c265d4cb7e85d4f9",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_2",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien people_2",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Amir",
+        "id": "vitenskap_institusjonsledelse_people_002",
+        "mail_family": "vitenskap_institusjonsledelse_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "amir_kapasitet_og_bemanning_vitenskap_institusjonsledelse",
+        "phase": "afternoon",
+        "place_id": "kapasitet_bemanning_og_budsjett_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 155,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: en prosjektleder forventer skjult merarbeid for å holde fristen.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: En prosjektleder forventer skjult merarbeid for å holde fristen",
+        "summary": "En prosjektleder forventer skjult merarbeid for å holde fristen. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_people_002",
+      "mail_type": "people",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_2",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien people_2",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: en prosjektleder forventer skjult merarbeid for å holde fristen.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: En prosjektleder forventer skjult merarbeid for å holde fristen",
+          "summary": "En prosjektleder forventer skjult merarbeid for å holde fristen. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_people_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kapasitet_bemanning_og_budsjett_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_people_002",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_people_002",
+        "version": 1
+      },
+      "source_hash": "7cf49d7e61ed33c4fc5e5bfe0165c610bc5d2826eb99f0d8b3db8323771dec22",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_3",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien people_3",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Ragnhild",
+        "id": "vitenskap_institusjonsledelse_people_003",
+        "mail_family": "vitenskap_institusjonsledelse_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "ragnhild_integritet_og_habilitet_vitenskap_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "integritet_etikk_habilitet_og_varsel_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 156,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: varslet gjelder en person som lederen selv samarbeider tett med.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: Varslet gjelder en person som lederen selv samarbeider tett med",
+        "summary": "Varslet gjelder en person som lederen selv samarbeider tett med. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_people_003",
+      "mail_type": "people",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_3",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien people_3",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: varslet gjelder en person som lederen selv samarbeider tett med.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: Varslet gjelder en person som lederen selv samarbeider tett med",
+          "summary": "Varslet gjelder en person som lederen selv samarbeider tett med. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_people_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "integritet_etikk_habilitet_og_varsel_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_people_003",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_people_003",
+        "version": 1
+      },
+      "source_hash": "44d4d33397bdafd8b453be2aa38ac2412eb0fe2c6546489ae39578f1e0ae0441",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_4",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien people_4",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Maja",
+        "id": "vitenskap_institusjonsledelse_people_004",
+        "mail_family": "vitenskap_institusjonsledelse_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "maja_finansiering_og_partner_vitenskap_institusjonsledelse",
+        "phase": "afternoon",
+        "place_id": "finansiering_partnerskap_og_effektrapportering_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 157,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: partneren ønsker forhåndskontroll av formuleringen av resultatet.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: Partneren ønsker forhåndskontroll av formuleringen av resultatet",
+        "summary": "Partneren ønsker forhåndskontroll av formuleringen av resultatet. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_people_004",
+      "mail_type": "people",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_4",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien people_4",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: partneren ønsker forhåndskontroll av formuleringen av resultatet.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: Partneren ønsker forhåndskontroll av formuleringen av resultatet",
+          "summary": "Partneren ønsker forhåndskontroll av formuleringen av resultatet. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_people_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "finansiering_partnerskap_og_effektrapportering_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_people_004",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_people_004",
+        "version": 1
+      },
+      "source_hash": "9951e8ae73ab8c2ff70d8022abd43270154cad49bc03fc031c2ecc0384d59856",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_formell_ledelse_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar story_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning.",
+            "tags": [
+              "myndighetsklarhet",
+              "forskningsintegritet",
+              "ressursrealisme"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien story_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsstrategi_portefolje_kapasitet_integritet_finansiering_effekt_og_handoff",
+        "consequence_axis": "tillit_integritet_og_ressursrealisme_vs_skjult_makt_og_risiko",
+        "from": "Ida",
+        "id": "vitenskap_institusjonsledelse_story_001",
+        "mail_family": "vitenskap_institusjonsledelse_prioritering_og_tillit",
+        "mail_type": "story",
+        "narrative_arc": "story",
+        "people_ref": "ida_portefolje_og_strategi_vitenskap_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "portefolje_prioritering_og_mandat_vitenskap_institusjonsledelse",
+        "pressure": "prestisje_finansiering_tidspress_senioritet_og_ressursmangel",
+        "priority": 159,
+        "role_scope": "vitenskap_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_institusjonsledelse_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: det nedprioriterte prosjektet ber om den faktiske begrunnelsen og konsekvensanalysen.",
+          "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+          "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+        ],
+        "subject": "Institusjonsledelse: Det nedprioriterte prosjektet ber om den faktiske begrunnelsen og konsekvensanalysen",
+        "summary": "Det nedprioriterte prosjektet ber om den faktiske begrunnelsen og konsekvensanalysen. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig.",
+        "task_domain": "vitenskap_institusjonsledelse"
+      },
+      "id": "vitenskap_institusjonsledelse_story_001",
+      "mail_type": "story",
+      "role_scope": "vitenskap_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør lederansvaret etterprøvbart: appointment, mandat, kriterier, habilitet, kapasitet, integritet, usikkerhet, venting og handoff holdes adskilt og kan kontrolleres av andre.",
+            "id": "A",
+            "label": "Dokumenter og avklar story_1",
+            "reply": "Jeg oppdaterer institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg før beslutningen går videre. Jeg bekrefter employer_appointment og faktisk delegert mandat, skiller anbefaling fra formell beslutning, viser kriterier og habilitet, og sammenholder porteføljen med reell kapasitet, budsjett og arbeidsmiljø. Integritets-, etikk- og personvernspørsmål sikres og sendes til riktig uavhengig nivå. Partnerkrav og effektpåstander skilles fra hva evidensen faktisk støtter. Venting får navngitt beslutningseier, og handoff viser åpne risikoer og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som appointment, fullmakt, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør status eller resultatpress til skjult myndighet. Når fullmakt, habilitet, kapasitet eller uavhengig kontroll blir usynlig, øker risikoen selv om beslutningen ser rask ut.",
+            "id": "B",
+            "label": "Press gjennom snarveien story_1",
+            "reply": "Jeg lar lederstatus, prestisje, tidspress eller finansieringsmulighet erstatte det formelle beslutningssporet. Jeg behandler badge og erfaring som om employer_appointment og fullmakt var selvforklarende, lover kapasitet før den finnes, håndterer et integritetssignal uformelt, velger den mest fordelaktige effektpåstanden og leverer uten synlig habilitet eller beslutningseier. Det kan se handlekraftig ut, men gjør porteføljen mindre etterprøvbar og flytter risiko til forskere og kontrollfunksjoner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lederloggen viser hva som er besluttet, anbefalt og fortsatt uavklart mens du skal: det nedprioriterte prosjektet ber om den faktiske begrunnelsen og konsekvensanalysen.",
+            "Prestisje, finansiering, senioritet eller tidsfrist gjør det fristende å hoppe over fullmakts-, habilitets-, kapasitets- eller integritetskontroll.",
+            "Velg et grep som bevarer dokumenterte kriterier, ressursrealisme, uavhengig kontroll og riktig beslutningseier."
+          ],
+          "subject": "Institusjonsledelse: Det nedprioriterte prosjektet ber om den faktiske begrunnelsen og konsekvensanalysen",
+          "summary": "Det nedprioriterte prosjektet ber om den faktiske begrunnelsen og konsekvensanalysen. Arbeidet skal løses i institusjonsstrategi_budsjett_personal_kvalitet_habilitet_beredskap_og_handoff_logg med appointment_required, academic_qualification_and_employment, employer_appointment, delegert mandat, habilitet, kapasitet, integritet, usikkerhet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_institusjonsledelse_story_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "portefolje_prioritering_og_mandat_vitenskap_institusjonsledelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_institusjonsledelse_story_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_institusjonsledelse_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_institusjonsledelse.mail.vitenskap_institusjonsledelse_story_001",
+        "version": 1
+      },
+      "source_hash": "fa3e71eb21d72435028e7430a43157f3af5543c1569eab8d8ddc13cf94675e86",
+      "source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_institusjonsledelse_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
     }
   ],
   "ignored_source_files": [
@@ -280380,7 +282399,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "4012b3f6e8b105b0381d6a2a6daebae3ca8a3bc8d75c4176521f79d66eeeafc8",
+  "registry_hash": "8c3486cd94d32b1138d209bedcba8b27c276552682c7faef3d1c380cd4bc29b8",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -282376,6 +284395,23 @@
       "vitenskap_forskningsledelse_followup_001",
       "vitenskap_forskningsledelse_knowledge_001",
       "vitenskap_forskningsledelse_consequence_001"
+    ],
+    "vitenskap/vitenskap_institusjonsledelse": [
+      "vitenskap_institusjonsledelse_job_001",
+      "vitenskap_institusjonsledelse_job_002",
+      "vitenskap_institusjonsledelse_job_003",
+      "vitenskap_institusjonsledelse_job_004",
+      "vitenskap_institusjonsledelse_people_001",
+      "vitenskap_institusjonsledelse_people_002",
+      "vitenskap_institusjonsledelse_people_003",
+      "vitenskap_institusjonsledelse_people_004",
+      "vitenskap_institusjonsledelse_story_001",
+      "vitenskap_institusjonsledelse_conflict_001",
+      "vitenskap_institusjonsledelse_event_001",
+      "vitenskap_institusjonsledelse_micro_001",
+      "vitenskap_institusjonsledelse_followup_001",
+      "vitenskap_institusjonsledelse_knowledge_001",
+      "vitenskap_institusjonsledelse_consequence_001"
     ]
   },
   "runtime_materialized_sources": [
@@ -282405,11 +284441,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 719,
+    "compiled_source_file_count": 728,
     "ignored_source_file_count": 1,
-    "input_file_count": 720,
-    "role_count": 85,
-    "scene_count": 1825,
+    "input_file_count": 729,
+    "role_count": 86,
+    "scene_count": 1840,
     "shadowed_duplicate_count": 0
   },
   "version": 1

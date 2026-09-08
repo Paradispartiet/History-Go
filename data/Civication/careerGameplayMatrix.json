@@ -11,11 +11,11 @@
     "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
-      "playable": 76,
+      "playable": 77,
       "partial": 0,
-      "architecture_only": 4
+      "architecture_only": 3
     },
-    "runtime_gate_pass": 81,
+    "runtime_gate_pass": 82,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
@@ -24,13 +24,13 @@
         "missing": 0
       },
       "day_one": {
-        "complete": 81,
+        "complete": 82,
         "partial": 0,
-        "missing": 4
+        "missing": 3
       },
       "workday_loop": {
-        "complete": 81,
-        "partial": 4,
+        "complete": 82,
+        "partial": 3,
         "missing": 0
       },
       "practice_stories": {
@@ -39,23 +39,23 @@
         "missing": 0
       },
       "people": {
-        "complete": 81,
+        "complete": 82,
         "partial": 0,
-        "missing": 4
+        "missing": 3
       },
       "places": {
-        "complete": 81,
+        "complete": 82,
         "partial": 0,
-        "missing": 4
+        "missing": 3
       },
       "mail": {
-        "complete": 81,
+        "complete": 82,
         "partial": 0,
-        "missing": 4
+        "missing": 3
       },
       "knowledge": {
-        "complete": 81,
-        "partial": 2,
+        "complete": 82,
+        "partial": 1,
         "missing": 2
       },
       "quality_axes": {
@@ -69,14 +69,14 @@
         "missing": 0
       },
       "consequences": {
-        "complete": 81,
+        "complete": 82,
         "partial": 0,
-        "missing": 4
+        "missing": 3
       },
       "performance": {
-        "complete": 78,
+        "complete": 79,
         "partial": 3,
-        "missing": 4
+        "missing": 3
       },
       "economy": {
         "complete": 85,
@@ -84,14 +84,14 @@
         "missing": 0
       },
       "progression": {
-        "complete": 78,
+        "complete": 79,
         "partial": 3,
-        "missing": 4
+        "missing": 3
       },
       "exit": {
-        "complete": 78,
+        "complete": 79,
         "partial": 3,
-        "missing": 4
+        "missing": 3
       }
     }
   },
@@ -24848,59 +24848,65 @@
       "category": "vitenskap",
       "role_scope": "vitenskap_institusjonsledelse",
       "declared_by": [
+        "mailPlan",
         "workGrammar"
       ],
       "badge_titles": [
         "Dekan",
         "Instituttleder"
       ],
-      "role_ids": [],
-      "status": "architecture_only",
+      "role_ids": [
+        "vitenskap_institusjonsledelse"
+      ],
+      "status": "playable",
       "artifacts": {
-        "role_models": [],
+        "role_models": [
+          "data/Civication/roleModels/vitenskap/vitenskap_institusjonsledelse.json"
+        ],
         "work_grammar": "data/Civication/workGrammars/vitenskap/vitenskap_institusjonsledelse.json",
         "shared_work_grammars": [],
-        "mail_plan": null,
+        "mail_plan": "data/Civication/mailPlans/vitenskap/vitenskap_institusjonsledelse_plan.json",
         "mail_families": {
           "job": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+            "count": 4
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+            "count": 4
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_institusjonsledelse_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_institusjonsledelse_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/vitenskap/event/vitenskap_institusjonsledelse_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/vitenskap/micro/vitenskap_institusjonsledelse_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/vitenskap/followup/vitenskap_institusjonsledelse_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_institusjonsledelse_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_institusjonsledelse_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
-          "tests/civication-vitenskap-career-architecture.test.js"
+          "tests/civication-vitenskap-career-architecture.test.js",
+          "tests/civication-vitenskap-institusjonsledelse-prerequisites.test.js"
         ],
         "life_story": null
       },
@@ -24916,16 +24922,24 @@
             "note": "2 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No day-one structure."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/vitenskap/vitenskap_institusjonsledelse_plan.json",
+              "tests/civication-vitenskap-career-architecture.test.js",
+              "tests/civication-vitenskap-institusjonsledelse-prerequisites.test.js"
+            ],
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/workGrammars/vitenskap/vitenskap_institusjonsledelse.json"
+              "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+              "data/Civication/mailPlans/vitenskap/vitenskap_institusjonsledelse_plan.json",
+              "data/Civication/workGrammars/vitenskap/vitenskap_institusjonsledelse.json",
+              "tests/civication-vitenskap-career-architecture.test.js",
+              "tests/civication-vitenskap-institusjonsledelse-prerequisites.test.js"
             ],
-            "note": "Work-loop content exists, but the complete repeatable runtime path is not proven."
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
             "level": "partial",
@@ -24936,31 +24950,52 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
-          },
-          "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
-          },
-          "mail": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No role mail/event generation."
-          },
-          "knowledge": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/jobKnowledgeRequirements.json",
+              "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+              "data/Civication/roleModels/vitenskap/vitenskap_institusjonsledelse.json",
               "data/Civication/workGrammars/vitenskap/vitenskap_institusjonsledelse.json"
             ],
-            "note": "Knowledge exists, but its gameplay application is incomplete."
+            "note": "Named/typed work relationships are used by people mails."
+          },
+          "places": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/vitenskap/vitenskap_institusjonsledelse.json",
+              "data/Civication/workGrammars/vitenskap/vitenskap_institusjonsledelse.json"
+            ],
+            "note": "8 place/working-surface declarations."
+          },
+          "mail": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_institusjonsledelse_conflict.json",
+              "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_institusjonsledelse_consequence.json",
+              "data/Civication/mailFamilies/vitenskap/event/vitenskap_institusjonsledelse_event.json",
+              "data/Civication/mailFamilies/vitenskap/followup/vitenskap_institusjonsledelse_followup.json",
+              "data/Civication/mailFamilies/vitenskap/job/vitenskap_institusjonsledelse_job.json",
+              "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_institusjonsledelse_knowledge.json",
+              "data/Civication/mailFamilies/vitenskap/micro/vitenskap_institusjonsledelse_micro.json",
+              "data/Civication/mailFamilies/vitenskap/people/vitenskap_institusjonsledelse_people.json",
+              "data/Civication/mailFamilies/vitenskap/story/vitenskap_institusjonsledelse_story.json",
+              "data/Civication/mailPlans/vitenskap/vitenskap_institusjonsledelse_plan.json"
+            ],
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
+          },
+          "knowledge": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/jobKnowledgeRequirements.json",
+              "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_institusjonsledelse_knowledge.json",
+              "data/Civication/roleModels/vitenskap/vitenskap_institusjonsledelse.json",
+              "data/Civication/workGrammars/vitenskap/vitenskap_institusjonsledelse.json"
+            ],
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
             "evidence": [
+              "data/Civication/roleModels/vitenskap/vitenskap_institusjonsledelse.json",
               "data/Civication/workGrammars/vitenskap/vitenskap_institusjonsledelse.json"
             ],
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
@@ -24968,19 +25003,30 @@
           "authority": {
             "level": "complete",
             "evidence": [
+              "data/Civication/roleModels/vitenskap/vitenskap_institusjonsledelse.json",
               "data/Civication/workGrammars/vitenskap/vitenskap_institusjonsledelse.json"
             ],
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_institusjonsledelse_consequence.json",
+              "data/Civication/mailFamilies/vitenskap/followup/vitenskap_institusjonsledelse_followup.json",
+              "tests/civication-vitenskap-career-architecture.test.js",
+              "tests/civication-vitenskap-institusjonsledelse-prerequisites.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/vitenskap/vitenskap_institusjonsledelse_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-vitenskap-career-architecture.test.js",
+              "tests/civication-vitenskap-institusjonsledelse-prerequisites.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -24992,32 +25038,42 @@
             "note": "Exact salary exists for all 2 linked career title(s)."
           },
           "progression": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No progression path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/vitenskap/vitenskap_institusjonsledelse_plan.json",
+              "data/Civication/roleModels/vitenskap/vitenskap_institusjonsledelse.json",
+              "data/Civication/workGrammars/vitenskap/vitenskap_institusjonsledelse.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No exit/job-change path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/vitenskap/vitenskap_institusjonsledelse_plan.json",
+              "data/Civication/roleModels/vitenskap/vitenskap_institusjonsledelse.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
+        "runtime_gate": true,
+        "missing_components": [],
+        "complete_components": [
+          "entry",
           "day_one",
+          "workday_loop",
           "people",
           "places",
           "mail",
-          "consequences",
-          "performance",
-          "progression",
-          "exit"
-        ],
-        "complete_components": [
-          "entry",
+          "knowledge",
           "quality_axes",
           "authority",
-          "economy"
+          "consequences",
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],
