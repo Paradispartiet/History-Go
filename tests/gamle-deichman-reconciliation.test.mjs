@@ -32,7 +32,7 @@ test("Gamle Deichman quiz contract", () => {
 });
 
 test("Gamle Deichman language Lesespor and chronology", () => {
-  const lang = j("data/leksikon/sprak/places/europe/norway/oslo/gamle-deichman.json");
+  const lang = j("data/leksikon/sprak/places/europe/norway/oslo/gamle_deichman.json");
   assert.equal(lang.entries.length, 6);
   const lesDoc = j("data/lesespor/oslo/lesespor_oslo_litteratur.json");
   const lesItems = Array.isArray(lesDoc) ? lesDoc : lesDoc.items;
