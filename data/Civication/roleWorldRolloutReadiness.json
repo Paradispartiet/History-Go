@@ -29,13 +29,13 @@
   "summary": {
     "canonical_career_roles": 85,
     "classifications": {
-      "rollout_ready": 78,
-      "needs_role_authored_work": 5,
+      "rollout_ready": 79,
+      "needs_role_authored_work": 4,
       "blocked": 2
     },
     "role_world_complete_or_pilot": 78,
     "rollout_queue_roles": 7,
-    "first_wave_candidate_count": 0,
+    "first_wave_candidate_count": 1,
     "role_level_blocked_count": 2,
     "structural_families_in_queue": 3
   },
@@ -51,21 +51,32 @@
     "gate_pass": true,
     "broad_rollout_allowed_now": true,
     "policy_recommendation": "controlled_rollout_open_with_role_level_gates",
-    "next_required_pr": "Select next rollout_ready role",
+    "next_required_pr": "Role World rollout: vitenskap/vitenskap_doktorlop_og_postdoktor",
     "rule": "A green readiness gate proves the program can safely begin controlled rollout. It does not make every role rollout_ready and it does not itself flip broad_rollout_allowed."
   },
-  "first_wave_candidates": [],
+  "first_wave_candidates": [
+    {
+      "rank": 1,
+      "key": "vitenskap/vitenskap_doktorlop_og_postdoktor",
+      "classification": "rollout_ready",
+      "structural_family": "research_education",
+      "priority_score": 1260,
+      "blockers": [],
+      "authored_work_required": [
+        "situated_reputation"
+      ],
+      "cross_role_need": "not_required_for_rollout"
+    }
+  ],
   "rollout_queue": [
     {
       "rank": 1,
       "key": "vitenskap/vitenskap_doktorlop_og_postdoktor",
-      "classification": "needs_role_authored_work",
+      "classification": "rollout_ready",
       "structural_family": "research_education",
-      "priority_score": 750,
+      "priority_score": 1260,
       "blockers": [],
       "authored_work_required": [
-        "career:knowledge",
-        "history_go_affordance",
         "situated_reputation"
       ],
       "cross_role_need": "not_required_for_rollout"
@@ -9115,8 +9126,8 @@
       "runtime_gate": true,
       "role_world_status": "role_world_not_started",
       "structural_family": "research_education",
-      "classification": "needs_role_authored_work",
-      "priority_score": 750,
+      "classification": "rollout_ready",
+      "priority_score": 1260,
       "dimensions": {
         "persistent_work_object": {
           "status": "foundation_ready",
@@ -9144,14 +9155,14 @@
           "rationale": "The current runtime-authored role already exposes deadline/rework/handoff signals; rollout must make the rhythm role-specific and persistent."
         },
         "history_go_affordance": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
             "data/Civication/jobKnowledgeRequirements.json",
             "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_doktorlop_og_postdoktor_knowledge.json",
             "data/Civication/roleModels/vitenskap/vitenskap_doktorlop_og_postdoktor.json",
             "data/Civication/workGrammars/vitenskap/vitenskap_doktorlop_og_postdoktor.json"
           ],
-          "rationale": "Knowledge bridge is partial; a concrete History Go affordance must be authored before this role is considered realism-ready."
+          "rationale": "Career knowledge integration is complete; the rollout PR must author a concrete better-choice affordance while keeping authority independent from knowledge."
         },
         "situated_reputation": {
           "status": "needs_role_authored_work",
@@ -9189,8 +9200,6 @@
       },
       "blockers": [],
       "authored_work_required": [
-        "career:knowledge",
-        "history_go_affordance",
         "situated_reputation"
       ],
       "source_refs": [
