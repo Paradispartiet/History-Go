@@ -524,6 +524,15 @@
     "data/Civication/mailFamilies/religion/followup/religion_fagledelse_followup.json",
     "data/Civication/mailFamilies/religion/knowledge/religion_fagledelse_knowledge.json",
     "data/Civication/mailFamilies/religion/consequence/religion_fagledelse_consequence.json",
+    "data/Civication/mailFamilies/religion/job/religion_formidling_og_kulturarv_job.json",
+    "data/Civication/mailFamilies/religion/people/religion_formidling_og_kulturarv_people.json",
+    "data/Civication/mailFamilies/religion/story/religion_formidling_og_kulturarv_story.json",
+    "data/Civication/mailFamilies/religion/conflict/religion_formidling_og_kulturarv_conflict.json",
+    "data/Civication/mailFamilies/religion/event/religion_formidling_og_kulturarv_event.json",
+    "data/Civication/mailFamilies/religion/micro/religion_formidling_og_kulturarv_micro.json",
+    "data/Civication/mailFamilies/religion/followup/religion_formidling_og_kulturarv_followup.json",
+    "data/Civication/mailFamilies/religion/knowledge/religion_formidling_og_kulturarv_knowledge.json",
+    "data/Civication/mailFamilies/religion/consequence/religion_formidling_og_kulturarv_consequence.json",
     "data/Civication/mailFamilies/religion/job/religion_forskning_job.json",
     "data/Civication/mailFamilies/religion/people/religion_forskning_people.json",
     "data/Civication/mailFamilies/religion/conflict/religion_forskning_conflict.json",
@@ -219621,6 +219630,2031 @@
       "category": "religion",
       "compatibility_projection": {
         "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før en organisasjon krever at teksten endres gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs en organisasjon krever at teksten endres gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Hassan",
+        "id": "religion_formidling_og_kulturarv_conflict_009",
+        "mail_family": "religion_formidling_og_kulturarv_proveniens_representasjon_og_press",
+        "mail_type": "conflict",
+        "narrative_arc": "conflict",
+        "people_ref": "hassan_dialog_representasjon_religion_formidling",
+        "phase": "forenoon",
+        "place_id": "dialog_representasjon_og_sensitivitetsflate_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 129,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/conflict/religion_formidling_og_kulturarv_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal teste dokumenterte feil, interesser, mandat og intern variasjon før institusjonen korrigerer eller står ved teksten.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "En organisasjon krever at teksten endres",
+        "summary": "En organisasjon krever at teksten endres. Oppgaven er å teste dokumenterte feil, interesser, mandat og intern variasjon før institusjonen korrigerer eller står ved teksten. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_conflict_009",
+      "mail_type": "conflict",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før en organisasjon krever at teksten endres gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs en organisasjon krever at teksten endres gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal teste dokumenterte feil, interesser, mandat og intern variasjon før institusjonen korrigerer eller står ved teksten.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "En organisasjon krever at teksten endres",
+          "summary": "En organisasjon krever at teksten endres. Oppgaven er å teste dokumenterte feil, interesser, mandat og intern variasjon før institusjonen korrigerer eller står ved teksten. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_conflict_009",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "dialog_representasjon_og_sensitivitetsflate_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_conflict_009",
+          "source_path": "data/Civication/mailFamilies/religion/conflict/religion_formidling_og_kulturarv_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_conflict_009",
+        "version": 1
+      },
+      "source_hash": "59cd5b8216ee9638d7c0c86ebbfad8abbab6a058b3724052bca93c7823b3d258",
+      "source_path": "data/Civication/mailFamilies/religion/conflict/religion_formidling_og_kulturarv_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før når et sterkt objekt bar en for sikker historie gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs når et sterkt objekt bar en for sikker historie gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Astrid",
+        "id": "religion_formidling_og_kulturarv_consequence_015",
+        "mail_family": "religion_formidling_og_kulturarv_etterspill_og_legitimitet",
+        "mail_type": "consequence",
+        "narrative_arc": "consequence",
+        "people_ref": "astrid_samling_proveniens_religion_formidling",
+        "phase": "forenoon",
+        "place_id": "kilde_proveniens_og_objektbord_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 135,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/consequence/religion_formidling_og_kulturarv_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal håndtere etterspill etter at svak proveniens ble kommunisert som sikker historie og reparere dokument- og tillitssporet.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Når et sterkt objekt bar en for sikker historie",
+        "summary": "Når et sterkt objekt bar en for sikker historie. Oppgaven er å håndtere etterspill etter at svak proveniens ble kommunisert som sikker historie og reparere dokument- og tillitssporet. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_consequence_015",
+      "mail_type": "consequence",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før når et sterkt objekt bar en for sikker historie gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs når et sterkt objekt bar en for sikker historie gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal håndtere etterspill etter at svak proveniens ble kommunisert som sikker historie og reparere dokument- og tillitssporet.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Når et sterkt objekt bar en for sikker historie",
+          "summary": "Når et sterkt objekt bar en for sikker historie. Oppgaven er å håndtere etterspill etter at svak proveniens ble kommunisert som sikker historie og reparere dokument- og tillitssporet. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_consequence_015",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kilde_proveniens_og_objektbord_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_consequence_015",
+          "source_path": "data/Civication/mailFamilies/religion/consequence/religion_formidling_og_kulturarv_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_consequence_015",
+        "version": 1
+      },
+      "source_hash": "2c380c2378d10a112d10079bfe2f175ebc2665942967388ad16602937338da53",
+      "source_path": "data/Civication/mailFamilies/religion/consequence/religion_formidling_og_kulturarv_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før nytt proveniensfunn før åpning gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs nytt proveniensfunn før åpning gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Astrid",
+        "id": "religion_formidling_og_kulturarv_event_011",
+        "mail_family": "religion_formidling_og_kulturarv_nytt_funn_og_visningspress",
+        "mail_type": "event",
+        "narrative_arc": "event",
+        "people_ref": "astrid_samling_proveniens_religion_formidling",
+        "phase": "forenoon",
+        "place_id": "kilde_proveniens_og_objektbord_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 131,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/event/religion_formidling_og_kulturarv_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal replanlegge utstillingen når ny dokumentasjon endrer objektets historie uten å slette gammel versjon.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Nytt proveniensfunn før åpning",
+        "summary": "Nytt proveniensfunn før åpning. Oppgaven er å replanlegge utstillingen når ny dokumentasjon endrer objektets historie uten å slette gammel versjon. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_event_011",
+      "mail_type": "event",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før nytt proveniensfunn før åpning gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs nytt proveniensfunn før åpning gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal replanlegge utstillingen når ny dokumentasjon endrer objektets historie uten å slette gammel versjon.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Nytt proveniensfunn før åpning",
+          "summary": "Nytt proveniensfunn før åpning. Oppgaven er å replanlegge utstillingen når ny dokumentasjon endrer objektets historie uten å slette gammel versjon. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_event_011",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kilde_proveniens_og_objektbord_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_event_011",
+          "source_path": "data/Civication/mailFamilies/religion/event/religion_formidling_og_kulturarv_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_event_011",
+        "version": 1
+      },
+      "source_hash": "bce7ad57d443954314072915b2e0d7d32d3347904a750634a2cce30531d9d5ec",
+      "source_path": "data/Civication/mailFamilies/religion/event/religion_formidling_og_kulturarv_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før følg hva publiseringen faktisk gjorde gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs følg hva publiseringen faktisk gjorde gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Eline",
+        "id": "religion_formidling_og_kulturarv_followup_013",
+        "mail_family": "religion_formidling_og_kulturarv_publisering_rettelse_og_rework",
+        "mail_type": "followup",
+        "narrative_arc": "followup",
+        "people_ref": "eline_redaksjon_formidling_religion_formidling",
+        "phase": "forenoon",
+        "place_id": "publisering_rettelse_og_oppfolgingspunkt_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 133,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/followup/religion_formidling_og_kulturarv_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal koble publikumsrespons, dokumenterte feil, rettelser og bounded rework til samme versjonerte spor.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Følg hva publiseringen faktisk gjorde",
+        "summary": "Følg hva publiseringen faktisk gjorde. Oppgaven er å koble publikumsrespons, dokumenterte feil, rettelser og bounded rework til samme versjonerte spor. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_followup_013",
+      "mail_type": "followup",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før følg hva publiseringen faktisk gjorde gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs følg hva publiseringen faktisk gjorde gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal koble publikumsrespons, dokumenterte feil, rettelser og bounded rework til samme versjonerte spor.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Følg hva publiseringen faktisk gjorde",
+          "summary": "Følg hva publiseringen faktisk gjorde. Oppgaven er å koble publikumsrespons, dokumenterte feil, rettelser og bounded rework til samme versjonerte spor. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_followup_013",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publisering_rettelse_og_oppfolgingspunkt_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_followup_013",
+          "source_path": "data/Civication/mailFamilies/religion/followup/religion_formidling_og_kulturarv_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_followup_013",
+        "version": 1
+      },
+      "source_hash": "5f7eb5f4d6474a30286abe1ad9e4498aee67b5e4289ca330855b38353639eaff",
+      "source_path": "data/Civication/mailFamilies/religion/followup/religion_formidling_og_kulturarv_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før bygg objektets dokumenthistorie gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs bygg objektets dokumenthistorie gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Astrid",
+        "id": "religion_formidling_og_kulturarv_job_001",
+        "mail_family": "religion_formidling_og_kulturarv_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "astrid_samling_proveniens_religion_formidling",
+        "phase": "forenoon",
+        "place_id": "kilde_proveniens_og_objektbord_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 121,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/job/religion_formidling_og_kulturarv_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal avklare hva objektet faktisk dokumenterer før det blir utstillingens hovedbærer.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Bygg objektets dokumenthistorie",
+        "summary": "Bygg objektets dokumenthistorie. Oppgaven er å avklare hva objektet faktisk dokumenterer før det blir utstillingens hovedbærer. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_job_001",
+      "mail_type": "job",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før bygg objektets dokumenthistorie gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs bygg objektets dokumenthistorie gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal avklare hva objektet faktisk dokumenterer før det blir utstillingens hovedbærer.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Bygg objektets dokumenthistorie",
+          "summary": "Bygg objektets dokumenthistorie. Oppgaven er å avklare hva objektet faktisk dokumenterer før det blir utstillingens hovedbærer. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_job_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kilde_proveniens_og_objektbord_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_job_001",
+          "source_path": "data/Civication/mailFamilies/religion/job/religion_formidling_og_kulturarv_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_job_001",
+        "version": 1
+      },
+      "source_hash": "855fc592ee34018c18ccb4b55af6c77bf5294bd41f23efc3a8ac7765014d3a0b",
+      "source_path": "data/Civication/mailFamilies/religion/job/religion_formidling_og_kulturarv_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før gjør en vanskelig religionshistorie forståelig gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs gjør en vanskelig religionshistorie forståelig gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Eline",
+        "id": "religion_formidling_og_kulturarv_job_002",
+        "mail_family": "religion_formidling_og_kulturarv_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "eline_redaksjon_formidling_religion_formidling",
+        "phase": "afternoon",
+        "place_id": "formidlings_og_utstillingsverksted_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 122,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/job/religion_formidling_og_kulturarv_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal lage et presist formidlingsutkast uten å skjule historisk endring eller intern variasjon.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Gjør en vanskelig religionshistorie forståelig",
+        "summary": "Gjør en vanskelig religionshistorie forståelig. Oppgaven er å lage et presist formidlingsutkast uten å skjule historisk endring eller intern variasjon. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_job_002",
+      "mail_type": "job",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før gjør en vanskelig religionshistorie forståelig gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs gjør en vanskelig religionshistorie forståelig gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal lage et presist formidlingsutkast uten å skjule historisk endring eller intern variasjon.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Gjør en vanskelig religionshistorie forståelig",
+          "summary": "Gjør en vanskelig religionshistorie forståelig. Oppgaven er å lage et presist formidlingsutkast uten å skjule historisk endring eller intern variasjon. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_job_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "formidlings_og_utstillingsverksted_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_job_002",
+          "source_path": "data/Civication/mailFamilies/religion/job/religion_formidling_og_kulturarv_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_job_002",
+        "version": 1
+      },
+      "source_hash": "5934a64b9ebef0c3f21e05d2140feaaf5629dd5f01f3714913088a37cae806f4",
+      "source_path": "data/Civication/mailFamilies/religion/job/religion_formidling_og_kulturarv_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før kartlegg hvem som faktisk er representert gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs kartlegg hvem som faktisk er representert gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Hassan",
+        "id": "religion_formidling_og_kulturarv_job_003",
+        "mail_family": "religion_formidling_og_kulturarv_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "hassan_dialog_representasjon_religion_formidling",
+        "phase": "forenoon",
+        "place_id": "dialog_representasjon_og_sensitivitetsflate_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 123,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/job/religion_formidling_og_kulturarv_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal attribuere stemmer og mandat uten å gjøre én organisasjon til hele tradisjonen.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Kartlegg hvem som faktisk er representert",
+        "summary": "Kartlegg hvem som faktisk er representert. Oppgaven er å attribuere stemmer og mandat uten å gjøre én organisasjon til hele tradisjonen. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_job_003",
+      "mail_type": "job",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før kartlegg hvem som faktisk er representert gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs kartlegg hvem som faktisk er representert gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal attribuere stemmer og mandat uten å gjøre én organisasjon til hele tradisjonen.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Kartlegg hvem som faktisk er representert",
+          "summary": "Kartlegg hvem som faktisk er representert. Oppgaven er å attribuere stemmer og mandat uten å gjøre én organisasjon til hele tradisjonen. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_job_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "dialog_representasjon_og_sensitivitetsflate_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_job_003",
+          "source_path": "data/Civication/mailFamilies/religion/job/religion_formidling_og_kulturarv_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_job_003",
+        "version": 1
+      },
+      "source_hash": "2095208d36d6d9acc6821d7052f78643b130369b1a78938ea92d8bd903ac5545",
+      "source_path": "data/Civication/mailFamilies/religion/job/religion_formidling_og_kulturarv_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før lås publisering med kontroll og rettelsesvei gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs lås publisering med kontroll og rettelsesvei gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Maja",
+        "id": "religion_formidling_og_kulturarv_job_004",
+        "mail_family": "religion_formidling_og_kulturarv_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "maja_etikk_bevaring_og_tilgang_religion_formidling",
+        "phase": "afternoon",
+        "place_id": "publisering_rettelse_og_oppfolgingspunkt_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 124,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/job/religion_formidling_og_kulturarv_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal avklare sensitivitet, rettigheter, bevaring, tilgjengelighet og hvordan feil senere skal kunne rettes.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Lås publisering med kontroll og rettelsesvei",
+        "summary": "Lås publisering med kontroll og rettelsesvei. Oppgaven er å avklare sensitivitet, rettigheter, bevaring, tilgjengelighet og hvordan feil senere skal kunne rettes. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_job_004",
+      "mail_type": "job",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før lås publisering med kontroll og rettelsesvei gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs lås publisering med kontroll og rettelsesvei gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal avklare sensitivitet, rettigheter, bevaring, tilgjengelighet og hvordan feil senere skal kunne rettes.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Lås publisering med kontroll og rettelsesvei",
+          "summary": "Lås publisering med kontroll og rettelsesvei. Oppgaven er å avklare sensitivitet, rettigheter, bevaring, tilgjengelighet og hvordan feil senere skal kunne rettes. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_job_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publisering_rettelse_og_oppfolgingspunkt_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_job_004",
+          "source_path": "data/Civication/mailFamilies/religion/job/religion_formidling_og_kulturarv_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_job_004",
+        "version": 1
+      },
+      "source_hash": "e4bf6788fed23b49ed5450648e34a173c6d7980bd7949f87568015eb93bfb845",
+      "source_path": "data/Civication/mailFamilies/religion/job/religion_formidling_og_kulturarv_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før bruk history go som kontekst, ikke dagens fasit gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs bruk history go som kontekst, ikke dagens fasit gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Hassan",
+        "id": "religion_formidling_og_kulturarv_knowledge_014",
+        "mail_family": "religion_formidling_og_kulturarv_history_go_kontekst",
+        "mail_type": "knowledge",
+        "narrative_arc": "knowledge",
+        "people_ref": "hassan_dialog_representasjon_religion_formidling",
+        "phase": "forenoon",
+        "place_id": "formidlings_og_utstillingsverksted_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 134,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/knowledge/religion_formidling_og_kulturarv_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal bruke historisk og stedlig religionskunnskap til bedre spørsmål uten å erstatte proveniens, attribusjon eller dagens aktørmandat.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Bruk History Go som kontekst, ikke dagens fasit",
+        "summary": "Bruk History Go som kontekst, ikke dagens fasit. Oppgaven er å bruke historisk og stedlig religionskunnskap til bedre spørsmål uten å erstatte proveniens, attribusjon eller dagens aktørmandat. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_knowledge_014",
+      "mail_type": "knowledge",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før bruk history go som kontekst, ikke dagens fasit gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs bruk history go som kontekst, ikke dagens fasit gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal bruke historisk og stedlig religionskunnskap til bedre spørsmål uten å erstatte proveniens, attribusjon eller dagens aktørmandat.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Bruk History Go som kontekst, ikke dagens fasit",
+          "summary": "Bruk History Go som kontekst, ikke dagens fasit. Oppgaven er å bruke historisk og stedlig religionskunnskap til bedre spørsmål uten å erstatte proveniens, attribusjon eller dagens aktørmandat. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_knowledge_014",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "formidlings_og_utstillingsverksted_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_knowledge_014",
+          "source_path": "data/Civication/mailFamilies/religion/knowledge/religion_formidling_og_kulturarv_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_knowledge_014",
+        "version": 1
+      },
+      "source_hash": "11a24c13afaa445ff5601d4014c66383a1c288329e87f2b4e12bc938014aa01f",
+      "source_path": "data/Civication/mailFamilies/religion/knowledge/religion_formidling_og_kulturarv_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før tre spørsmål før du viser materialet gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs tre spørsmål før du viser materialet gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Maja",
+        "id": "religion_formidling_og_kulturarv_micro_012",
+        "mail_family": "religion_formidling_og_kulturarv_rask_kilde_og_mandatavklaring",
+        "mail_type": "micro",
+        "narrative_arc": "micro",
+        "people_ref": "maja_etikk_bevaring_og_tilgang_religion_formidling",
+        "phase": "forenoon",
+        "place_id": "publisering_rettelse_og_oppfolgingspunkt_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 132,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/micro/religion_formidling_og_kulturarv_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal avklare rettighet, sensitivitet og faktisk beslutningseier før et raskt publiseringsvalg.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Tre spørsmål før du viser materialet",
+        "summary": "Tre spørsmål før du viser materialet. Oppgaven er å avklare rettighet, sensitivitet og faktisk beslutningseier før et raskt publiseringsvalg. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_micro_012",
+      "mail_type": "micro",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før tre spørsmål før du viser materialet gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs tre spørsmål før du viser materialet gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal avklare rettighet, sensitivitet og faktisk beslutningseier før et raskt publiseringsvalg.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Tre spørsmål før du viser materialet",
+          "summary": "Tre spørsmål før du viser materialet. Oppgaven er å avklare rettighet, sensitivitet og faktisk beslutningseier før et raskt publiseringsvalg. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_micro_012",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publisering_rettelse_og_oppfolgingspunkt_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_micro_012",
+          "source_path": "data/Civication/mailFamilies/religion/micro/religion_formidling_og_kulturarv_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_micro_012",
+        "version": 1
+      },
+      "source_hash": "52690adf73d5d3449037109ddbe9e388a90d436afd189dd709468a7c8548daf2",
+      "source_path": "data/Civication/mailFamilies/religion/micro/religion_formidling_og_kulturarv_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før når proveniensforskeren bremser fortellingen gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs når proveniensforskeren bremser fortellingen gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Astrid",
+        "id": "religion_formidling_og_kulturarv_people_005",
+        "mail_family": "religion_formidling_og_kulturarv_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "astrid_samling_proveniens_religion_formidling",
+        "phase": "forenoon",
+        "place_id": "kilde_proveniens_og_objektbord_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 125,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/people/religion_formidling_og_kulturarv_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal håndtere et faglig stopp uten å gjøre tidsplan eller estetisk effekt til bevis.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Når proveniensforskeren bremser fortellingen",
+        "summary": "Når proveniensforskeren bremser fortellingen. Oppgaven er å håndtere et faglig stopp uten å gjøre tidsplan eller estetisk effekt til bevis. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_people_005",
+      "mail_type": "people",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før når proveniensforskeren bremser fortellingen gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs når proveniensforskeren bremser fortellingen gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal håndtere et faglig stopp uten å gjøre tidsplan eller estetisk effekt til bevis.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Når proveniensforskeren bremser fortellingen",
+          "summary": "Når proveniensforskeren bremser fortellingen. Oppgaven er å håndtere et faglig stopp uten å gjøre tidsplan eller estetisk effekt til bevis. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_people_005",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kilde_proveniens_og_objektbord_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_people_005",
+          "source_path": "data/Civication/mailFamilies/religion/people/religion_formidling_og_kulturarv_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_people_005",
+        "version": 1
+      },
+      "source_hash": "53526b0f69bc09ad6d0a995f1a38a6c098e18d47663367133b3fbf24f981e4ad",
+      "source_path": "data/Civication/mailFamilies/religion/people/religion_formidling_og_kulturarv_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før når talspersonen vil eie fortellingen gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs når talspersonen vil eie fortellingen gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Hassan",
+        "id": "religion_formidling_og_kulturarv_people_006",
+        "mail_family": "religion_formidling_og_kulturarv_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "hassan_dialog_representasjon_religion_formidling",
+        "phase": "afternoon",
+        "place_id": "dialog_representasjon_og_sensitivitetsflate_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 126,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/people/religion_formidling_og_kulturarv_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal bevare dialog og respekt samtidig som representasjonsmandatet avgrenses.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Når talspersonen vil eie fortellingen",
+        "summary": "Når talspersonen vil eie fortellingen. Oppgaven er å bevare dialog og respekt samtidig som representasjonsmandatet avgrenses. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_people_006",
+      "mail_type": "people",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før når talspersonen vil eie fortellingen gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs når talspersonen vil eie fortellingen gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal bevare dialog og respekt samtidig som representasjonsmandatet avgrenses.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Når talspersonen vil eie fortellingen",
+          "summary": "Når talspersonen vil eie fortellingen. Oppgaven er å bevare dialog og respekt samtidig som representasjonsmandatet avgrenses. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_people_006",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "dialog_representasjon_og_sensitivitetsflate_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_people_006",
+          "source_path": "data/Civication/mailFamilies/religion/people/religion_formidling_og_kulturarv_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_people_006",
+        "version": 1
+      },
+      "source_hash": "bc9afbabe135b5964c34114de4c8b6774bbf49eef25e2208624bfb3bdf4ba355",
+      "source_path": "data/Civication/mailFamilies/religion/people/religion_formidling_og_kulturarv_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før når redaksjonen vil forenkle mer gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs når redaksjonen vil forenkle mer gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Eline",
+        "id": "religion_formidling_og_kulturarv_people_007",
+        "mail_family": "religion_formidling_og_kulturarv_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "eline_redaksjon_formidling_religion_formidling",
+        "phase": "forenoon",
+        "place_id": "formidlings_og_utstillingsverksted_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 127,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/people/religion_formidling_og_kulturarv_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal finne pedagogisk klarhet uten å gjøre analytisk usikkerhet usynlig.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Når redaksjonen vil forenkle mer",
+        "summary": "Når redaksjonen vil forenkle mer. Oppgaven er å finne pedagogisk klarhet uten å gjøre analytisk usikkerhet usynlig. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_people_007",
+      "mail_type": "people",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før når redaksjonen vil forenkle mer gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs når redaksjonen vil forenkle mer gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal finne pedagogisk klarhet uten å gjøre analytisk usikkerhet usynlig.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Når redaksjonen vil forenkle mer",
+          "summary": "Når redaksjonen vil forenkle mer. Oppgaven er å finne pedagogisk klarhet uten å gjøre analytisk usikkerhet usynlig. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_people_007",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "formidlings_og_utstillingsverksted_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_people_007",
+          "source_path": "data/Civication/mailFamilies/religion/people/religion_formidling_og_kulturarv_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_people_007",
+        "version": 1
+      },
+      "source_hash": "db7b939732ef103d4ccca6ba89e1aa50573614b495f731fbac0a0a6e6941f68b",
+      "source_path": "data/Civication/mailFamilies/religion/people/religion_formidling_og_kulturarv_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før når sensitivitet og tilgang kolliderer gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs når sensitivitet og tilgang kolliderer gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Maja",
+        "id": "religion_formidling_og_kulturarv_people_008",
+        "mail_family": "religion_formidling_og_kulturarv_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "maja_etikk_bevaring_og_tilgang_religion_formidling",
+        "phase": "afternoon",
+        "place_id": "publisering_rettelse_og_oppfolgingspunkt_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 128,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/people/religion_formidling_og_kulturarv_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal skille konkret etisk eller juridisk kontroll fra uformelt press om å skjule historien.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Når sensitivitet og tilgang kolliderer",
+        "summary": "Når sensitivitet og tilgang kolliderer. Oppgaven er å skille konkret etisk eller juridisk kontroll fra uformelt press om å skjule historien. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_people_008",
+      "mail_type": "people",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før når sensitivitet og tilgang kolliderer gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs når sensitivitet og tilgang kolliderer gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal skille konkret etisk eller juridisk kontroll fra uformelt press om å skjule historien.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Når sensitivitet og tilgang kolliderer",
+          "summary": "Når sensitivitet og tilgang kolliderer. Oppgaven er å skille konkret etisk eller juridisk kontroll fra uformelt press om å skjule historien. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_people_008",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publisering_rettelse_og_oppfolgingspunkt_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_people_008",
+          "source_path": "data/Civication/mailFamilies/religion/people/religion_formidling_og_kulturarv_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_people_008",
+        "version": 1
+      },
+      "source_hash": "e5658de1a73340009ce19af51ab93a47190f467bd9cb774cd80045c16259b813",
+      "source_path": "data/Civication/mailFamilies/religion/people/religion_formidling_og_kulturarv_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "sporbar_kildebasert_og_pluralistisk_formidling_vs_forenklet_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før rettelsen publikum kan se gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt.",
+            "tags": [
+              "kildekritikk",
+              "proveniens",
+              "representasjon",
+              "korrigerbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs rettelsen publikum kan se gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt.",
+            "tags": [
+              "svak_proveniens",
+              "representasjonsglidning",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "kilde_proveniens_representasjon_sensitivitet_formidling_og_rettelse",
+        "consequence_axis": "kvalitet_tillit_og_korrigerbarhet_vs_feilrepresentasjon_og_legitimitetstap",
+        "from": "Eline",
+        "id": "religion_formidling_og_kulturarv_story_010",
+        "mail_family": "religion_formidling_og_kulturarv_tillit_og_rettelse",
+        "mail_type": "story",
+        "narrative_arc": "story",
+        "people_ref": "eline_redaksjon_formidling_religion_formidling",
+        "phase": "forenoon",
+        "place_id": "publisering_rettelse_og_oppfolgingspunkt_religion_formidling",
+        "pressure": "publiseringstempo_objekteffekt_status_og_eksternt_press",
+        "priority": 130,
+        "role_scope": "religion_formidling_og_kulturarv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/story/religion_formidling_og_kulturarv_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal vise at åpen korrigering kan koste prestisje på kort sikt og bygge langsiktig faglig tillit.",
+          "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+          "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+        ],
+        "subject": "Rettelsen publikum kan se",
+        "summary": "Rettelsen publikum kan se. Oppgaven er å vise at åpen korrigering kan koste prestisje på kort sikt og bygge langsiktig faglig tillit. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes.",
+        "task_domain": "religion_formidling_og_kulturarv"
+      },
+      "id": "religion_formidling_og_kulturarv_story_010",
+      "mail_type": "story",
+      "role_scope": "religion_formidling_og_kulturarv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør formidlingen etterprøvbar fordi publikumseffekt ikke får slette dokumenthistorikk, uenighet eller representasjonsbegrensninger. Rollen bruker sitt reelle handlingsrom til å tolke og formidle, men lar samlings-, rettighets-, bevarings- og institusjonelle beslutninger bli hos riktig eier. Det bygger tillit også når resultatet er en mindre dramatisk tekst, en synlig usikkerhet eller et utsatt visningsgrep, fordi senere lesere kan se hvorfor valget ble tatt og korrigere bare den delen som nye fakta faktisk berører.",
+            "id": "A",
+            "label": "Før rettelsen publikum kan se gjennom det sporbare formidlingsforløpet",
+            "reply": "Jeg oppdaterer formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse før jeg binder teksten eller utstillingen. Jeg skiller dokumenterte kilder og proveniens fra aktørperspektiver og analytisk tolkning, merker hvilket mandat hver stemme faktisk har, dokumenterer intern variasjon og avklarer sensitivitet, rettigheter, bevaring og tilgjengelighet med riktig fagperson. Jeg publiserer bare den versjonen kontrollen faktisk støtter, og gjør det tydelig hva som fortsatt er usikkert. History Go og Religion-badge brukes til bedre spørsmål og historisk kontekst, aldri som dagens evidens eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan gi en raskere og mer dramatisk publisering, men den gjør nettopp de forholdene kulturarvsarbeidet må holde synlige til skjulte premisser. Publikum får vanskeligere for å skille dokumentasjon fra institusjonens fortelling, berørte aktører kan oppleve at én stemme er gjort universell, og senere rettelser blir dyrere fordi det ikke finnes et rent versjons- og ansvarsspor. Direct career-entry eller sosial standing kan ikke legitimere denne myndighetsglidningen.",
+            "id": "B",
+            "label": "Løs rettelsen publikum kan se gjennom den sterkeste fortellingen",
+            "reply": "Jeg lar tidsplan, publikumsvennlighet eller en sterk relasjon veie tyngre enn dokumentasjonen. Jeg behandler en tilgjengelig talsperson som representativ, glatter over hull i proveniens og lar uklar sensitivitet eller rettighetsstatus bli et problem for senere. Hvis noen protesterer, forsvarer jeg først den publiserte fortellingen og forsøker å omskrive begrunnelsen i stedet for å bevare versjonen som faktisk ble brukt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende formidlingsloggen viser hva som allerede er dokumentert og hva som fortsatt er uavklart mens du skal vise at åpen korrigering kan koste prestisje på kort sikt og bygge langsiktig faglig tillit.",
+            "Tid, publikumseffekt, intern prestisje eller en sterk ekstern relasjon gjør det fristende å behandle en god fortelling som sikrere eller mer representativ enn kildene tillater.",
+            "Velg et grep som bevarer proveniens, attribusjon, intern variasjon, sensitivitet, riktig beslutningseier og muligheten for synlig rettelse senere."
+          ],
+          "subject": "Rettelsen publikum kan se",
+          "summary": "Rettelsen publikum kan se. Oppgaven er å vise at åpen korrigering kan koste prestisje på kort sikt og bygge langsiktig faglig tillit. Arbeidet føres i formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse, der bestilling og målgruppe, kildegrunnlag, proveniens, objekt- og rettighetsstatus, attribuerte aktørperspektiver, deres faktiske mandat, intern variasjon, sensitivitet, etikk, tilgjengelighet, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework holdes separate og versjonerte. Religionsformidler og Kurator har begge direct career-entry, men direct betyr ikke at de kan endre katalogdata, eierskapshistorikk, rettigheter eller institusjonens beslutninger uten riktig grunnlag og fullmakt. Dialog med tros- og livssynsaktører skal styrke kontekst og presisjon, ikke gjøre én person eller organisasjon til hele tradisjonen. Religion-badge, XP, History Go, nettverk, popularitet eller sosial standing kan forbedre spørsmål og samarbeid, men er aldri evidens, representasjonsmandat eller institusjonell authority. Når nytt materiale endrer saken, åpnes bare berørte ledd igjen og tidligere versjon og begrunnelse beholdes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_formidling_og_kulturarv_story_010",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publisering_rettelse_og_oppfolgingspunkt_religion_formidling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_formidling_og_kulturarv_story_010",
+          "source_path": "data/Civication/mailFamilies/religion/story/religion_formidling_og_kulturarv_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_formidling_og_kulturarv.mail.religion_formidling_og_kulturarv_story_010",
+        "version": 1
+      },
+      "source_hash": "d52194f0cfc5e79e9e031c8d4d2fcc45a4b05612f5c1f6ad381f9bf5a4f33317",
+      "source_path": "data/Civication/mailFamilies/religion/story/religion_formidling_og_kulturarv_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
         "choice_axis": "minimere_identifisering_vs_beholde_dramatisk_detalj",
         "choices": [
           {
@@ -268206,7 +270240,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "d0ad578c84b32a8fcbe4dc20350173dbdd840a3b2269548e7f5d76c791ecbd30",
+  "registry_hash": "cfe00e51f41c198e78387d8ff96473e67c0b67db6bbeed6ca6d61e13481c47bf",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -269724,6 +271758,23 @@
       "religion_fagledelse_knowledge_014",
       "religion_fagledelse_consequence_015"
     ],
+    "religion/religion_formidling_og_kulturarv": [
+      "religion_formidling_og_kulturarv_job_001",
+      "religion_formidling_og_kulturarv_job_002",
+      "religion_formidling_og_kulturarv_job_003",
+      "religion_formidling_og_kulturarv_job_004",
+      "religion_formidling_og_kulturarv_people_005",
+      "religion_formidling_og_kulturarv_people_006",
+      "religion_formidling_og_kulturarv_people_007",
+      "religion_formidling_og_kulturarv_people_008",
+      "religion_formidling_og_kulturarv_story_010",
+      "religion_formidling_og_kulturarv_conflict_009",
+      "religion_formidling_og_kulturarv_event_011",
+      "religion_formidling_og_kulturarv_micro_012",
+      "religion_formidling_og_kulturarv_followup_013",
+      "religion_formidling_og_kulturarv_knowledge_014",
+      "religion_formidling_og_kulturarv_consequence_015"
+    ],
     "religion/religion_forskning": [
       "religion_forskning_job_problemstilling",
       "religion_forskning_people_motlesning",
@@ -270129,11 +272180,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 665,
+    "compiled_source_file_count": 674,
     "ignored_source_file_count": 1,
-    "input_file_count": 666,
-    "role_count": 79,
-    "scene_count": 1735,
+    "input_file_count": 675,
+    "role_count": 80,
+    "scene_count": 1750,
     "shadowed_duplicate_count": 0
   },
   "version": 1
