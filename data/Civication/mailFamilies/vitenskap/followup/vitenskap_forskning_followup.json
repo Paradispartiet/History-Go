@@ -1,0 +1,86 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_forskning",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "vitenskap_forskning_fagfelle_handoff_og_bounded_rework",
+      "purpose": "Trene versjonert revisjon og overlevering etter kritikk.",
+      "learning_focus": [
+        "bounded_rework",
+        "handoff",
+        "venting"
+      ],
+      "mails": [
+        {
+          "id": "vitenskap_forskning_followup_001",
+          "mail_type": "followup",
+          "mail_family": "vitenskap_forskning_fagfelle_handoff_og_bounded_rework",
+          "role_scope": "vitenskap_forskning",
+          "phase": "forenoon",
+          "priority": 142,
+          "from": "Maja",
+          "people_ref": "maja_analyse_fagfelle_og_publisering_vitenskap_forskning",
+          "place_id": "analyse_usikkerhet_og_fagfellevurdering_vitenskap_forskning",
+          "subject": "Svar på kritikken uten å slette den gamle analysen",
+          "summary": "Svar på kritikken uten å slette den gamle analysen. Arbeidet skal løses i forskningsprotokoll_sporsmal_design_data_metode_analyse_usikkerhet_reproduserbarhet_oppdragsgrense_publisering_handoff_og_rework med qualification_required, oppdragsgrense, data/proveniens, versjonert metode, analyse/usikkerhet, reproduserbarhet, etikk/rettigheter og bounded_rework synlig.",
+          "situation": [
+            "Forskningsprotokollen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal: svar på kritikken uten å slette den gamle analysen.",
+            "Tidspress, oppdragsgiverønske, publiseringsmulighet eller senioritet gjør det fristende å hoppe over et kontrollpunkt eller gjøre konklusjonen sikrere enn evidensen.",
+            "Velg et grep som bevarer uavhengighet, reproduserbarhet, usikkerhet, riktig myndighetsnivå og overtakbar handoff."
+          ],
+          "task_domain": "vitenskap_forskning",
+          "competency": "forskningsdesign_data_metode_analyse_usikkerhet_reproduserbarhet_etikk_publisering_og_handoff",
+          "pressure": "oppdragsgiver_tidspress_publisering_senioritet_og_onsket_resultat",
+          "choice_axis": "etterprovbar_uavhengig_forskning_vs_resultatdrevet_snarvei",
+          "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+          "narrative_arc": "followup",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bevar et etterprøvbart forskningsspor",
+              "reply": "Jeg oppdaterer forskningsprotokoll_sporsmal_design_data_metode_analyse_usikkerhet_reproduserbarhet_oppdragsgrense_publisering_handoff_og_rework før arbeidet går videre. Jeg skiller oppdrags- og leveransebehov fra hva dataene faktisk tillater, bevarer opprinnelig spørsmål, design, datareferanse og metodeversjon, viser alternative analyser, negative eller tvetydige funn og usikkerhet, og gjør reproduserbarhetsstatus eksplisitt. Etikk, personvern, lisens, rettigheter og sikkerhet kontrolleres mot dagens formål. Venting får en navngitt beslutningseier og handoff får åpne spørsmål og neste kontrollpunkt. History Go brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning, datatilgang eller evidens.",
+              "effect": 1,
+              "tags": [
+                "forskningsintegritet",
+                "reproduserbarhet",
+                "usikkerhet"
+              ],
+              "feedback": "Grepet bevarer forskningsuavhengighet og korrigerbarhet: plan, data, metode, analyse, usikkerhet, kontrollgrenser, venting og handoff kan etterprøves av andre. Qualification_required og ekstern myndighet forblir reelle porter.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Ta den resultatdrevne snarveien",
+              "reply": "Jeg lar tidspress, senioritet, oppdragsgiverønske eller publiseringsmulighet styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt data- eller etikkgrunnlag dekke et nytt formål, velger analysen med penest resultat, toner ned usikkerhet og leverer uten reproduserbar handoff. Det går raskere, men neste forsker kan ikke skille evidens fra ønsket resultat eller se hvem som faktisk eier åpne beslutninger.",
+              "effect": -1,
+              "tags": [
+                "etterrasjonalisering",
+                "oppdragsgiverpress",
+                "integritetsrisiko"
+              ],
+              "feedback": "Snarveien gjør ønsket resultat, status eller tidspress til skjult styring av kunnskapsproduksjonen. Når proveniens, usikkerhet, metodeendring eller kontrollgrenser forsvinner, blir resultatet mindre etterprøvbart selv om leveransen ser ryddigere ut.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,1 +1,291 @@
-{"schema":"civication_role_model_v2","version":2,"category":"vitenskap","role_scope":"vitenskap_forskning","role_id":"vitenskap_forskning","title":"Forskning","source":{"evidence":"data/Civication/vitenskapCareerLifeEvidence.json"},"badge_titles":["Forsker","Seniorforsker"],"core_narrative":["Forskning i Civication modellerer selvstendig, dokumenterbar kunnskapsproduksjon der metode, usikkerhet, publisering og samfunnsansvar veier tyngre enn status."],"competence_axes":["problemformulering","forskningsdesign","analyse_og_usikkerhet","reproduserbarhet_og_datastyring","publisering_og_formidling","samarbeid_og_forskningsetikk"],"ideal_type_problems":[{"id":"svakt_datagrunnlag","problem":"Et lovende resultat bygger på færre eller svakere observasjoner enn planlagt."},{"id":"reproduserbarhet","problem":"En sentral analyse kan ikke reproduseres fra dokumentasjonen alene."},{"id":"oppdragsgiverpress","problem":"En oppdragsgiver ønsker en mer entydig konklusjon enn dataene tillater."},{"id":"delt_data","problem":"Data bør deles for etterprøvbarhet, men inneholder rettighets- eller personvernhensyn."},{"id":"faglig_uenighet","problem":"To analysevalg gir ulike konklusjoner og usikkerheten må synliggjøres."}],"authority_boundaries":{"cannot":["presentere_usikkerhet_som_sikker_kunnskap","endre_data_eller_analyse_for_a_levere_onsket_resultat","dele_beskyttede_data_uten_hjemmel_eller_tillatelse","overstyre_uavhengig_etikk_eller_sikkerhetskontroll"]},"notes":["Shared canonical work world for Forsker og Seniorforsker på tvers av fagfelt."]}
+{
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_forskning",
+  "role_id": "vitenskap_forskning",
+  "title": "Forskning",
+  "source": {
+    "badge_file": "data/badges/vitenskap.json",
+    "badge_id": "vitenskap",
+    "evidence": "data/Civication/vitenskapCareerLifeEvidence.json"
+  },
+  "badge_titles": [
+    "Forsker",
+    "Seniorforsker"
+  ],
+  "core_narrative": [
+    "Forskning modellerer selvstendig, dokumenterbar kunnskapsproduksjon der problem, design, data, metode, analyse, usikkerhet, reproduserbarhet, fagfellekritikk og samfunnsansvar holdes i ett korrigerbart arbeidsspor.",
+    "Forsker og Seniorforsker forblir qualification_required med academic_qualification_and_employment. Mer erfaring kan gi større prosjektansvar, men badge, status, finansiering eller senioritet kan aldri kjøpe et bestemt funn eller utvide etikk-, data- eller institusjonsmyndighet."
+  ],
+  "competence_axes": [
+    "problemformulering_og_design",
+    "data_proveniens_og_tilgang",
+    "metode_og_versjonering",
+    "analyse_og_usikkerhet",
+    "reproduserbarhet",
+    "forskningsetikk_personvern_og_rettigheter",
+    "oppdragsgrense_og_uavhengighet",
+    "fagfellevurdering_og_publisering",
+    "formidling_og_samfunnsansvar",
+    "handoff_og_bounded_rework"
+  ],
+  "ideal_type_problems": [
+    {
+      "id": "svakt_datagrunnlag",
+      "problem": "Et lovende resultat bygger på færre eller svakere observasjoner enn planlagt, og konklusjonen må avgrenses."
+    },
+    {
+      "id": "reproduserbarhet",
+      "problem": "En sentral analyse kan ikke reproduseres fra dokumentasjonen eller miljøet alene."
+    },
+    {
+      "id": "oppdragsgiverpress",
+      "problem": "En oppdragsgiver eller finansieringsinteresse ønsker en mer entydig konklusjon enn dataene tillater."
+    },
+    {
+      "id": "delt_data",
+      "problem": "Et datasett bør være etterprøvbart, men personvern, sikkerhet, lisens eller rettigheter begrenser deling."
+    },
+    {
+      "id": "faglig_uenighet",
+      "problem": "To plausible analysevalg gir ulike svar og robusthet og usikkerhet må synliggjøres."
+    },
+    {
+      "id": "fagfelle_rework",
+      "problem": "Fagfellekritikk krever ny analyse eller tekst uten at tidligere resultater, valg og begrensninger forsvinner."
+    }
+  ],
+  "authority_boundaries": {
+    "can": [
+      "avgrense forskningsspørsmål, design og analyse innen faktisk ansettelse, prosjektmandat, kvalifikasjon og nødvendige godkjenninger",
+      "velge og begrunne metode, analyse og robusthetskontroller når planlagte og eksplorative valg holdes synlig adskilt",
+      "rapportere negative, tvetydige og usikre funn og begrense konklusjonen når datagrunnlaget ikke støtter en sterkere påstand",
+      "stanse databruk, deling, innsending eller ekstern leveranse når etikk, personvern, lisens, sikkerhet, proveniens eller metodeintegritet er uavklart",
+      "gjennomføre versjonert bounded_rework etter intern kontroll eller fagfellekritikk og levere arbeid videre med åpne spørsmål, ventestatus og ansvar synlig"
+    ],
+    "cannot": [
+      "endre data, utvalg, hypotese eller analyse for å levere et resultat en oppdragsgiver, finansieringskilde, leder eller publiseringskanal ønsker",
+      "presentere usikkerhet, foreløpige analyser eller korrelasjon som sikker kunnskap eller årsak uten tilstrekkelig grunnlag",
+      "dele beskyttede, lisensierte, sensitive eller personidentifiserbare data uten faktisk hjemmel, tillatelse og korrekt tilgangsnivå",
+      "overstyre uavhengig etikk-, personvern-, sikkerhets-, rettighets- eller institusjonskontroll på grunn av senioritet, tidspress eller prosjektstatus",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, sosial standing, nettverk eller tittelen Seniorforsker som erstatning for academic_qualification_and_employment, dokumentert evidens, godkjenning eller delegert myndighet"
+    ]
+  },
+  "notes": [
+    "Shared canonical work world for Forsker og Seniorforsker på tvers av fagfelt. Qualification, ansettelse og faktisk mandat forblir eksterne realitetsporter."
+  ],
+  "authority_boundary": {
+    "may": [
+      "avgrense forskningsspørsmål, design og analyse innen faktisk ansettelse, prosjektmandat, kvalifikasjon og nødvendige godkjenninger",
+      "velge og begrunne metode, analyse og robusthetskontroller når planlagte og eksplorative valg holdes synlig adskilt",
+      "rapportere negative, tvetydige og usikre funn og begrense konklusjonen når datagrunnlaget ikke støtter en sterkere påstand",
+      "stanse databruk, deling, innsending eller ekstern leveranse når etikk, personvern, lisens, sikkerhet, proveniens eller metodeintegritet er uavklart",
+      "gjennomføre versjonert bounded_rework etter intern kontroll eller fagfellekritikk og levere arbeid videre med åpne spørsmål, ventestatus og ansvar synlig"
+    ],
+    "may_not": [
+      "endre data, utvalg, hypotese eller analyse for å levere et resultat en oppdragsgiver, finansieringskilde, leder eller publiseringskanal ønsker",
+      "presentere usikkerhet, foreløpige analyser eller korrelasjon som sikker kunnskap eller årsak uten tilstrekkelig grunnlag",
+      "dele beskyttede, lisensierte, sensitive eller personidentifiserbare data uten faktisk hjemmel, tillatelse og korrekt tilgangsnivå",
+      "overstyre uavhengig etikk-, personvern-, sikkerhets-, rettighets- eller institusjonskontroll på grunn av senioritet, tidspress eller prosjektstatus",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, sosial standing, nettverk eller tittelen Seniorforsker som erstatning for academic_qualification_and_employment, dokumentert evidens, godkjenning eller delegert myndighet"
+    ]
+  },
+  "work_life": {
+    "daily_work": [
+      "føre forskningsprotokoll_sporsmal_design_data_metode_analyse_usikkerhet_reproduserbarhet_oppdragsgrense_publisering_handoff_og_rework gjennom problem, design, data, metode, analyse, usikkerhet, reproduserbarhet, publisering og versjonert rework",
+      "skille oppdragsramme og leveransebehov fra hva evidensen faktisk tillater",
+      "gjøre kode, dataflyt, metode og analyse overtakbare og reproduserbare",
+      "rapportere negative og tvetydige funn sammen med usikkerhet og alternative forklaringer",
+      "avklare etikk, personvern, rettigheter, deling og samfunnsansvar på riktig myndighetsnivå"
+    ],
+    "responsibilities": [
+      "forskningsdesign_og_avgrensning",
+      "data_proveniens_og_tilgang",
+      "metode_og_reproduserbarhet",
+      "analyse_og_usikkerhet",
+      "forskningsetikk_personvern_og_rettigheter",
+      "oppdragsuavhengighet",
+      "fagfellevurdering_og_publisering",
+      "handoff_venting_og_bounded_rework"
+    ],
+    "work_environment": [
+      "Universitet, forskningsinstitutt, offentlig eller privat forskningsorganisasjon der Forsker og Seniorforsker arbeider innen faktisk ansettelse, prosjektmandat og relevante faglige, etiske, personvernmessige, sikkerhetsmessige og institusjonelle rammer."
+    ],
+    "status_position": [
+      "Forsker og Seniorforsker er begge qualification_required med academic_qualification_and_employment. Senioritet kan gi mer ansvar innen delegert mandat, men ingen generell rett til å overstyre evidens eller kontrollnivåer."
+    ],
+    "workplaces": [
+      "prosjekt_oppdragsgrense_og_forskningsdesign_vitenskap_forskning",
+      "data_metode_og_reproduserbarhet_vitenskap_forskning",
+      "analyse_usikkerhet_og_fagfellevurdering_vitenskap_forskning",
+      "etikk_personvern_deling_og_samfunnsansvar_vitenskap_forskning"
+    ]
+  },
+  "career_path": {
+    "entry_from": [
+      "Forsker og Seniorforsker krever canonical academic_qualification_and_employment; badge-threshold alene gir ikke adgang."
+    ],
+    "progression_to": [
+      "Større forskningsansvar følger dokumentert kompetanse, faktisk ansettelse og delegert prosjektansvar, ikke XP eller sosial standing."
+    ],
+    "possible_promotions": [
+      "forskningsledelse når separat appointment_required og employer_appointment er oppfylt",
+      "undervisnings- og forskningsrolle når den rollens egne kvalifikasjonskrav er oppfylt"
+    ],
+    "possible_exits": [
+      "annen forskning, undervisning, forvaltning, analyse eller kunnskapsrolle etter respektive canonical krav"
+    ],
+    "career_risks": [
+      "oppdragsgiver- eller finansieringspress kan gjøre ønsket resultat til skjult mål",
+      "senioritet kan maskere manglende reproduserbarhet eller svak dokumentasjon",
+      "publiseringspress kan belønne for sterke konklusjoner og selektiv rapportering"
+    ]
+  },
+  "persistent_work_product": {
+    "id": "forskningsprotokoll_sporsmal_design_data_metode_analyse_usikkerhet_reproduserbarhet_oppdragsgrense_publisering_handoff_og_rework",
+    "title": "Forskningsprotokoll og evidenslogg",
+    "description": "Et vedvarende, versjonert arbeidsspor som binder problem, design, dataproveniens, tilgang, metode, analyse, usikkerhet, reproduserbarhet, oppdragsgrense, etikk, deling, fagfellekritikk, publisering, ventestatus, handoff og bounded_rework sammen.",
+    "required_fields": [
+      "forskningssporsmal_og_design",
+      "oppdrags_eller_finansieringsramme",
+      "data_proveniens_og_tilgang",
+      "metodeversjon_og_miljo",
+      "analysevalg_og_robusthet",
+      "negative_og_tvetydige_funn",
+      "usikkerhet_og_begrensninger",
+      "reproduserbarhetsstatus",
+      "etikk_personvern_rettigheter_og_deling",
+      "fagfelle_og_publiseringsstatus",
+      "ventestatus_og_beslutningseier",
+      "handoff_og_bounded_rework"
+    ]
+  },
+  "day_one": {
+    "outcomes": [
+      "Bekreft academic_qualification_and_employment, ansettelse, prosjektmandat og eventuelle oppdragsgrenser før badgeprogresjon får karrierebetydning.",
+      "Opprett forskningsprotokollen med spørsmål, design, data/proveniens, metodeversjon, analyseplan, usikkerhets- og reproduserbarhetskontroll.",
+      "Identifiser hva forskeren kan beslutte, hva som må avklares med prosjektansvarlig eller samarbeidspartner, og hva som krever etikk/personvern/sikkerhet/rettighetskontroll."
+    ]
+  },
+  "challenges": [
+    {
+      "id": "oppdragsgiver_vil_ha_klarere_svar",
+      "title": "Oppdragsgiver vil ha et klarere svar",
+      "description": "En ekstern eller intern bestiller ønsker en entydig anbefaling før usikkerheten er tilstrekkelig avklart.",
+      "pressure": "oppdragslojalitet_vs_forskningsuavhengighet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    },
+    {
+      "id": "analyse_kan_ikke_reproduseres",
+      "title": "Analysen kan ikke reproduseres",
+      "description": "Resultatet finnes, men dataflyt, kode eller miljø gjør at en kollega ikke kan gjenskape det.",
+      "pressure": "fremdrift_vs_reproduserbarhet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "onsket_resultat_vs_evidens",
+      "title": "Ønsket resultat mot evidens",
+      "setup": "Finansiering, tidsfrist eller publiseringsmulighet blir lettere hvis en tvetydig analyse presenteres som entydig.",
+      "choice_axis": "uavhengig_etterprovbar_konklusjon_vs_resultatdrevet_tilpasning",
+      "consequence_axis": "tillit_og_korrigerbarhet_vs_skjult_bias_og_risiko",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "ida_prosjekt_og_forskningsdesign_vitenskap_forskning",
+      "name": "Ida",
+      "role": "prosjekt- og forskningsdesignkontakt",
+      "workplace_ids": [
+        "prosjekt_oppdragsgrense_og_forskningsdesign_vitenskap_forskning"
+      ],
+      "function": "Ida utfordrer problemformulering, design og leveransegrense før analysen låses. Hun gjør det synlig hva forskeren faktisk kan konkludere om, hva en oppdragsgiver bare ønsker, og hvilke endringer i spørsmål eller design som må versjoneres. Selvstendighet betyr her ansvar for et etterprøvbart prosjektspor, ikke frihet til å flytte målet etter resultatet.",
+      "authority_relation": "Ida kan prioritere prosjektarbeid innen faktisk delegert mandat og kreve at endringer dokumenteres. Hun kan ikke bestemme et vitenskapelig resultat på vegne av dataene, dispensere fra kvalifikasjonskrav eller gjøre finansiering og status til evidens.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "amir_data_metode_og_reproduserbarhet_vitenskap_forskning",
+      "name": "Amir",
+      "role": "data-, metode- og reproduserbarhetskontakt",
+      "workplace_ids": [
+        "data_metode_og_reproduserbarhet_vitenskap_forskning"
+      ],
+      "function": "Amir følger dataflyt, kode, miljø, metodeversjoner og overlevering. Han trener forskeren i å gjøre en analyse reproduserbar for andre, skille planlagte og eksplorative valg og dokumentere hvorfor en metode må endres. En analyse som bare fungerer på én maskin er et arbeidsproblem, ikke et personlig særpreg.",
+      "authority_relation": "Amir kan returnere en analyse som mangler proveniens, reproduksjonsoppskrift eller versjonering og kan stanse teknisk handoff til sporbarheten er god nok. Han kan ikke gi tilgang til beskyttede data uten hjemmel eller erstatte faglig ansvar for tolkningen.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "ragnhild_etikk_personvern_og_deling_vitenskap_forskning",
+      "name": "Ragnhild",
+      "role": "forskningsetikk-, personvern- og delingskontakt",
+      "workplace_ids": [
+        "etikk_personvern_deling_og_samfunnsansvar_vitenskap_forskning"
+      ],
+      "function": "Ragnhild gjør etikk, personvern, lisens, tilgang, dataminimering, deling og mulig skade til konkrete kontrollpunkter. Når formål, mottakere eller datakoblinger endres, må tidligere avklaringer vurderes på nytt. Åpenhet skal øke etterprøvbarheten uten å late som alle data kan eller bør publiseres.",
+      "authority_relation": "Ragnhild kan kreve stans og eskalering til riktig etikk-, personvern-, sikkerhets- eller rettighetsnivå. Hun kan ikke gi generell dispensasjon, gjøre historisk kunnskap til dagens behandlingsgrunnlag eller la senioritet erstatte faktisk godkjenning.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "maja_analyse_fagfelle_og_publisering_vitenskap_forskning",
+      "name": "Maja",
+      "role": "analyse-, fagfelle- og publiseringskontakt",
+      "workplace_ids": [
+        "analyse_usikkerhet_og_fagfellevurdering_vitenskap_forskning"
+      ],
+      "function": "Maja følger koblingen mellom analyse, usikkerhet, negative og tvetydige funn, fagfellekritikk, forfatterskap og offentlig formidling. Hun trener forskeren i å tåle at et godt prosjekt kan gi et svakt eller uventet resultat, og i å gjøre bounded rework uten å omskrive tidligere valg eller overdrive konklusjonen.",
+      "authority_relation": "Maja kan kreve tydeligere begrensninger, alternative analyser og dokumentert respons på fagfellekritikk før publisering. Hun kan ikke love aksept, bruke prestisje som forfatterskapskriterium eller gjøre en kommunikasjonsvennlig påstand sterkere enn evidensen.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "prosjekt_oppdragsgrense_og_forskningsdesign_vitenskap_forskning",
+      "name": "Prosjekt, oppdragsgrense og forskningsdesign",
+      "function": "Arbeidsflaten binder problemformulering, forskningsdesign, finansiering eller oppdragsramme og eksplisitte leveransegrenser sammen. En oppdragsgiver kan bestille spørsmål, framdrift og leveranseform, men kan ikke kjøpe et bestemt funn eller gjøre en foreløpig analyse til sikker kunnskap."
+    },
+    {
+      "id": "data_metode_og_reproduserbarhet_vitenskap_forskning",
+      "name": "Data, metode og reproduserbarhet",
+      "function": "Her kobles dataproveniens, tilgang, kode, analyseversjon, miljø, eksklusjoner, alternative analyser og reproduserbarhetskontroll. Arbeidet skal kunne overtas og etterprøves uten å være avhengig av én persons maskin, minne eller uformelle snarveier."
+    },
+    {
+      "id": "analyse_usikkerhet_og_fagfellevurdering_vitenskap_forskning",
+      "name": "Analyse, usikkerhet og fagfellevurdering",
+      "function": "Her holdes effekt, usikkerhet, negative eller tvetydige funn, alternative forklaringer, fagfellekritikk og manusversjoner i samme spor. Kritikk kan gjenåpne berørte ledd, men skal ikke slette tidligere resultater eller gjøre etterrasjonalisering usynlig."
+    },
+    {
+      "id": "etikk_personvern_deling_og_samfunnsansvar_vitenskap_forskning",
+      "name": "Etikk, personvern, deling og samfunnsansvar",
+      "function": "Her kontrolleres etikk, personvern, sikkerhet, lisens, rettigheter, delingsnivå og samfunnsmessige skadevirkninger mot dagens formål. Åpen vitenskap betyr ikke automatisk full deling når rettigheter, personvern eller sikkerhet setter legitime grenser."
+    }
+  ]
+}
