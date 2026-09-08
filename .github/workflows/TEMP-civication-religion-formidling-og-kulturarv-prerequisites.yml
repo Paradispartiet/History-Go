@@ -48,11 +48,12 @@ jobs:
           s=p.read_text()
           replacements=[
               ("faktisk berører.`,effects:{stats:", "faktisk berører.',effects:{stats:"),
+              ("faktisk ble brukt.`,effect:-1,tags:", "faktisk ble brukt.',effect:-1,tags:"),
               ("myndighetsglidningen.`,effects:{stats:", "myndighetsglidningen.',effects:{stats:"),
           ]
           for old,new in replacements:
               if s.count(old) != 1:
-                  raise SystemExit(f'Expected exactly one mismatched feedback terminator for {old!r}, found {s.count(old)}')
+                  raise SystemExit(f'Expected exactly one mismatched string terminator for {old!r}, found {s.count(old)}')
               s=s.replace(old,new)
           p.write_text(s)
           PY
