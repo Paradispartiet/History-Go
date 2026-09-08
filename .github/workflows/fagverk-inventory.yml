@@ -10,12 +10,8 @@ on:
       - 'data/fagverk/subject_status.json'
       - 'reports/fagverk/subject-baseline.json'
       - 'reports/fagverk/subject-inventory-audit.json'
-      - 'reports/fagverk/fagverk-theory-integrity-audit.json'
-      - 'reports/fagverk/fagverk-expansion-19-plus-1-final-reconciliation-v1.json'
-      - 'reports/fagverk/fagverk-expanded-quality-status-reconciliation-v1.json'
       - 'scripts/audit-fagverk-subject-inventory.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
-      - 'tests/fagverk-expanded-quality-status-reconciliation.test.mjs'
       - '.github/workflows/fagverk-inventory.yml'
 
 permissions:
@@ -40,7 +36,5 @@ jobs:
         run: node --check scripts/audit-fagverk-subject-inventory.mjs
       - name: Run subject inventory regression tests
         run: node --test --test-reporter=spec tests/fagverk-subject-inventory.test.mjs
-      - name: Run expanded quality reconciliation gate
-        run: node --test --test-reporter=spec tests/fagverk-expanded-quality-status-reconciliation.test.mjs
       - name: Verify committed living baseline
         run: node scripts/audit-fagverk-subject-inventory.mjs
