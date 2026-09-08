@@ -1,0 +1,1340 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_assistent_og_laboratorium",
+  "title": "Vitenskap / Assistent og laboratorium — sporbarhet, sikkerhet og situert tillit",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Hvordan blir en assistent pålitelig nok til å få reell tillit i laboratoriet uten at dyktighet, tempo, senioritet eller sosial standing glir over i udokumentert kvalifikasjon, sikkerhetsdispensasjon eller faglig godkjenningsmyndighet?",
+    "description": "Role World-en lukker situated_reputation rundt en allerede komplett qualification_required-foundation. Dramaturgien følger prøveidentitet, protokoll, instrument og sikkerhet, rådata, metadata, avvik og handoff som sosialt arbeid der tillit kan gjøre samarbeid bedre, men aldri erstatte kvalifikasjon, tilgang, evidens eller ansvarlig faglig eier."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "invisible_work",
+    "numerical_control",
+    "loyalty_up_down",
+    "shame_reputation",
+    "status_anxiety",
+    "class_power",
+    "public_private_leakage",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "Prøvemottaket der etikett, opphav, tidspunkt og overleveringskjede må tåle at alle har dårlig tid.",
+    "Klargjøringsbenken der kvalifikasjon, protokollversjon og lokal opplæring avgjør hva spilleren faktisk kan gjøre.",
+    "Instrumentrommet der kontrollmateriale, kalibrering, adgang og forventet resultat møtes før første måling.",
+    "HMS- og biosikkerhetsflaten der verneutstyr, risiko, avfall og stoppmyndighet blir konkret under kollegialt press.",
+    "Datastasjonen der rådata, metadata, enheter, mangler og kommentarer må holdes adskilt fra senere analyse.",
+    "Kvalitetsmøtet der et avvik kan bli behandlet som læring eller sosial skyld, avhengig av hvordan historikken bevares.",
+    "Veiledergjennomgangen der assistentens dokumenterte observasjoner skal over i en faglig vurdering uten myndighetsglidning.",
+    "Handoff-flaten der neste eier må kunne forstå status uten uformell muntlig kunnskap som eneste nøkkel.",
+    "Sen arbeidsøkt der en erfaren kollegas snarvei frister fordi instrumentkø, frist og statusangst trekker samme vei.",
+    "Privatlivet der en feil eller forsinkelse følger spilleren hjem, men laboratoriedata og fortrolighet fortsatt har grenser."
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "eva_sporbarhetsvokter_world",
+      "social_function": "Gjør prøveidentitet og proveniens til sosialt synlige stoppunkter før arbeid får flyte videre.",
+      "class_position": "Prøvemottaks- og sporbarhetskontakt med prosessmakt over korrekt registrering.",
+      "status": "Høy lokal tillit når kjeden må avklares raskt.",
+      "power_over_player": "Kan returnere eller holde en prøve ved uklar identitet, men kan ikke gjøre en plausibel etikett til dokumentert proveniens.",
+      "wants": "At ingen prøve går videre uten entydig ID, opphav, tidspunkt, overleveringskjede og relevant protokoll.",
+      "conceals": "At produksjonspress kan gjøre det fristende å behandle små hull som administrative detaljer.",
+      "speech_style": "Kort, konkret og kronologisk; spør hvem, hva, når og hvilken versjon.",
+      "teaches_player": "At sporbarhet er en vitenskapelig forutsetning, ikke papirarbeid rundt den egentlige jobben."
+    },
+    {
+      "id": "malik_sikkerhetsgrense_world",
+      "social_function": "Gjør instrumentstatus, opplæring, HMS og biosikkerhet til reelle grenser når andre vil spare tid.",
+      "class_position": "Instrument- og sikkerhetskontakt med myndighet innen lokale kontroll- og adgangsregler.",
+      "status": "Høy prosessstatus når risiko eller instrumentavvik oppstår.",
+      "power_over_player": "Kan stoppe bruk og kreve avklaring, men kan ikke gi faglig hovedkonklusjon eller gjøre badge til opplæring.",
+      "wants": "At kontrollmateriale, kalibrering, verneutstyr, risiko, avfall og adgang er dokumentert før arbeid.",
+      "conceals": "At rutiner også kan bli mekaniske hvis ingen forstår hvorfor de finnes.",
+      "speech_style": "Rolig og avgrensende; spør hva kontrollen viser og hvilken opplæring som faktisk er registrert.",
+      "teaches_player": "At sikkerhet og målekvalitet krever dokumentert stoppkompetanse, ikke heroisk improvisasjon."
+    },
+    {
+      "id": "nora_radataforvalter_world",
+      "social_function": "Gjør rådata, metadata og reproduserbarhet til et relasjonelt ansvar når forventet resultat frister til etterjustering.",
+      "class_position": "Data- og metadatakontakt med høy epistemisk innflytelse, uten selvstendig eierskap til hele forskningskonklusjonen.",
+      "status": "Høy faglig standing når datasettet må kunne leses av andre senere.",
+      "power_over_player": "Kan returnere ufullstendig datasett og kreve markerte mangler, men kan ikke fylle inn ukjente verdier som fakta.",
+      "wants": "Rådata med enhet, tidspunkt, prøve-ID, instrument, operatør, avvik og versjon uten skjulte korrigeringer.",
+      "conceals": "At ryddige tabeller sosialt kan belønnes mer enn ærlig synlige hull.",
+      "speech_style": "Presis og differensierende; skiller observasjon, metadata, kommentar og analyse.",
+      "teaches_player": "At reproduserbarhet begynner med å bevare det som faktisk ble målt, også når det er upraktisk."
+    },
+    {
+      "id": "henrik_avvik_og_handoff_world",
+      "social_function": "Gjør avvik, versjoner og bounded rework til kollektiv hukommelse i stedet for skyldfordeling.",
+      "class_position": "Kvalitets- og handoffkontakt med kontrollmakt over leveransens sporbarhet.",
+      "status": "Høy organisatorisk standing når en feil må følges gjennom flere eiere.",
+      "power_over_player": "Kan kreve at berørte ledd gjenåpnes og dokumenteres, men kan ikke omskrive tidligere versjon for å beskytte omdømme.",
+      "wants": "At avvik, åpne spørsmål, kontrollresultater og ny eier er synlige gjennom hele handoff-kjeden.",
+      "conceals": "At synlige avvik kan oppleves som karriererisiko for juniorer og midlertidige assistenter.",
+      "speech_style": "Saklig og versjonsorientert; spør hvilket ledd som faktisk endret seg.",
+      "teaches_player": "At korrigerbarhet krever bevart historikk og avgrenset rework."
+    },
+    {
+      "id": "veileder_med_resultatansvar_world",
+      "social_function": "Gjør skillet mellom assistentutførelse og faglig godkjenning konkret når resultatene skal tolkes.",
+      "class_position": "Ansvarlig fagrolle med reell godkjenningsmyndighet innen sitt dokumenterte mandat.",
+      "status": "Høy formell og faglig status over leveransens hovedkonklusjon.",
+      "power_over_player": "Kan gi oppdrag, godkjenne eller returnere arbeid og eie faglige beslutninger, men kan ikke gjøre svake rådata sterke ved instruks.",
+      "wants": "Et komplett arbeidsgrunnlag der det er tydelig hva assistenten observerte, hva som er usikkert og hva som må vurderes faglig.",
+      "conceals": "At prosjektpress kan gjøre et forventet funn sosialt lettere å akseptere enn et avvik.",
+      "speech_style": "Spørrende og beslutningsorientert; ber om spor fra påstand tilbake til prøve, protokoll og data.",
+      "teaches_player": "At ansvarlig godkjenning er et eget ledd og ikke kan absorberes av en flink assistent."
+    },
+    {
+      "id": "erfaren_kollega_med_uformell_makt_world",
+      "social_function": "Gjør laboratoriets uskrevne snarveier og læringskultur synlige når erfaring lett forveksles med godkjenning.",
+      "class_position": "Erfaren kollega med stor uformell innflytelse, men bare egen dokumenterte kvalifikasjon og tilgang.",
+      "status": "Høy kollegial status som kan forme hva som oppleves normalt.",
+      "power_over_player": "Kan vise praksis og hjelpe med feilsøking, men kan ikke låne ut adgang, signatur eller sikkerhetskompetanse.",
+      "wants": "At arbeidet flyter og at nye assistenter raskt blir nyttige for teamet.",
+      "conceals": "At enkelte snarveier kan ha overlevd fordi de sjelden har gitt synlige konsekvenser.",
+      "speech_style": "Pragmatisk og erfaringsnær; sier ofte at dette har vi alltid gjort.",
+      "teaches_player": "At profesjonskultur må tåle at junioren spør etter protokoll, begrunnelse og kontroll."
+    },
+    {
+      "id": "prosjektbestiller_med_kort_frist_world",
+      "social_function": "Gjør leveransepress og ønsket resultat konkret uten å gi bestilleren eierskap til måle- eller sikkerhetsreglene.",
+      "class_position": "Prosjektaktør med prioriterings- og tidsmakt, men uten automatisk instrument-, HMS- eller fagmyndighet.",
+      "status": "Høy synlighet når forsinkelse får økonomiske eller organisatoriske følger.",
+      "power_over_player": "Kan endre prioritet og be om status, men kan ikke kreve fabrikasjon, protokollbrudd eller skjult avvik.",
+      "wants": "Et brukbart svar innen fristen og tidlig varsling om hva som kan forsinke leveransen.",
+      "conceals": "At et bestemt resultat kan være mer bekvemt for prosjektets videre plan.",
+      "speech_style": "Kort og fremdriftsorientert; spør hva som kan leveres nå.",
+      "teaches_player": "At ærlig usikkerhet og stopp kan være bedre prosjektstyring enn et raskt, usporbart svar."
+    },
+    {
+      "id": "privat_naer_relajon_world",
+      "social_function": "Gjør statusangst, slitenhet og taushetsgrenser synlige etter en dag med feil, venting eller konflikt.",
+      "class_position": "Nær privat relasjon uten laboratorie- eller forskningsmyndighet.",
+      "status": "Høy emosjonell betydning, ingen faglig fullmakt.",
+      "power_over_player": "Kan støtte, utfordre arbeidshjem-grenser og speile stress, men kan ikke bli uregistrert kilde eller tilgangsvei.",
+      "wants": "At spilleren kan være et helt menneske uten å måtte bevise verdi gjennom feilfri laboratorieprestasjon.",
+      "conceals": "At vedvarende kveldsgrubling og beredskap kan tære på forholdet.",
+      "speech_style": "Hverdagslig og direkte; spør hva som faktisk må løses i kveld.",
+      "teaches_player": "At profesjonell standing og vitenskapelig prestasjon ikke er identisk med privat egenverdi."
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "prove_sporbarhet",
+      "meaning": "Hvor konsekvent prøve-ID, proveniens og overleveringskjede bevares før resultatet blir viktigere enn opphavet.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "protokolltrohet",
+      "meaning": "Hvor tydelig godkjent protokollversjon holdes adskilt fra uformelle vaner og improvisasjon.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sikkerhetsmot",
+      "meaning": "Hvor villig spilleren er til å stoppe ved instrument-, HMS- eller biosikkerhetsavvik selv under sosialt press.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "radataintegritet",
+      "meaning": "Hvor konsekvent faktisk observasjon bevares uten fabrikasjon, cherry-picking eller skjult justering.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "metadatafullstendighet",
+      "meaning": "Hvor godt datasettet bevarer nødvendige enheter, tidspunkt, instrument, operatør, prøve-ID og mangler.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "eskaleringsdommekraft",
+      "meaning": "Hvor presist spilleren skiller eget handlingsrom fra spørsmål som krever veileder, sikkerhetsansvarlig eller faglig eier.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "handoff_tillit",
+      "meaning": "Hvor brukbart arbeidssporet er for neste kvalifiserte eier uten muntlige hull eller tapte versjoner.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "korrigerbarhet",
+      "meaning": "Hvor godt nye opplysninger gjenåpner bare berørte ledd samtidig som rådata, avvik og tidligere versjon bevares.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rollegrenser",
+      "meaning": "Hvor konsekvent qualification_required, lokal opplæring, adgang og faktisk myndighet holdes adskilt fra badge, senioritet og standing.",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "existing_work_continuity": {
+    "runtime_binding": "existing_mail_and_work_grammar",
+    "new_runtime_state": false,
+    "work_loops": [
+      "motta prøve eller oppdrag -> identitet/proveniens -> kvalifikasjon og protokoll -> instrument/HMS/biosikkerhet -> utfør/mål -> rådata/metadata -> kontroll -> handoff",
+      "avvik eller ny opplysning -> stopp/merk -> waiting/venting på veileder, instrument, sikkerhet, prøveavklaring eller faglig eier -> berørt arbeidsledd -> ny kontroll -> versjonert handoff -> bounded rework"
+    ],
+    "persistent_work_object": "laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework",
+    "waiting_states": [
+      "proveidentitet_og_proveniens",
+      "protokoll_og_veileder",
+      "instrument_og_kalibrering",
+      "hms_og_biosikkerhet",
+      "lokal_opplaring_og_tilgang",
+      "metadata_og_datakontroll",
+      "faglig_godkjenning_og_handoff"
+    ],
+    "rule": "Eksisterende mailplan, fire scenarioaktører, fire arbeidsflater og laboratoriearbeidslogg forblir canonical. Role World-en legger bare situated reputation rundt dette arbeidet."
+  },
+  "situated_reputation_model": {
+    "global_score_allowed": false,
+    "audiences": [
+      {
+        "id": "proveflyt_og_sporbarhetsansvarlige",
+        "standing_axis": "sporbarhetstillit",
+        "cares_about": [
+          "entydig_proveidentitet",
+          "bevart_proveniens"
+        ],
+        "cannot_grant": "Prøvemottak og sporbarhetsansvarlige kan gi kontekst om kjede, merking og mottak, men sosial tillit kan ikke reparere en uklar prøve-ID eller oppfinne manglende proveniens. Standing i laboratoriet kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å dobbeltsjekke en prøve eller forklare et instrument, og hvor mye tillit de har til spillerens dokumentasjon. Den kan aldri gjøre Studentassistent, Vitenskapelig assistent, Forskningsassistent eller Laboratorieassistent kvalifisert uten relevant_education_or_employer_qualification. Den kan heller ikke gi lokal instrumentopplæring, HMS- eller biosikkerhetsgodkjenning, adgang, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet. Vitenskap-badge, XP, History Go-kunnskap, senioritet og nettverk kan skjerpe spørsmål og samarbeid, men kan ikke erstatte dagens protokoll, rådata, metadata, kontrollmateriale, sikkerhetskrav eller ansvarlig faglig godkjenning."
+      },
+      {
+        "id": "instrument_hms_og_biosikkerhetsmiljo",
+        "standing_axis": "sikkerhets_og_instrumenttillit",
+        "cares_about": [
+          "kontrollstatus",
+          "stopp_og_eskalering"
+        ],
+        "cannot_grant": "Instrument-, HMS- og biosikkerhetsmiljøet kan veilede og godkjenne innen eget mandat, men god relasjon kan ikke gjøre manglende opplæring, adgang eller sikkerhetskontroll irrelevant. Standing i laboratoriet kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å dobbeltsjekke en prøve eller forklare et instrument, og hvor mye tillit de har til spillerens dokumentasjon. Den kan aldri gjøre Studentassistent, Vitenskapelig assistent, Forskningsassistent eller Laboratorieassistent kvalifisert uten relevant_education_or_employer_qualification. Den kan heller ikke gi lokal instrumentopplæring, HMS- eller biosikkerhetsgodkjenning, adgang, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet. Vitenskap-badge, XP, History Go-kunnskap, senioritet og nettverk kan skjerpe spørsmål og samarbeid, men kan ikke erstatte dagens protokoll, rådata, metadata, kontrollmateriale, sikkerhetskrav eller ansvarlig faglig godkjenning."
+      },
+      {
+        "id": "veileder_og_faglig_eier",
+        "standing_axis": "faglig_handoff_tillit",
+        "cares_about": [
+          "rollegrenser",
+          "sporbar_beslutning"
+        ],
+        "cannot_grant": "Veileder eller faglig eier kan gi faktisk oppdrag og godkjenning innen dokumentert myndighet, men popularitet hos veilederen kan ikke gjøre assistentens observasjon til selvstendig hovedkonklusjon. Standing i laboratoriet kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å dobbeltsjekke en prøve eller forklare et instrument, og hvor mye tillit de har til spillerens dokumentasjon. Den kan aldri gjøre Studentassistent, Vitenskapelig assistent, Forskningsassistent eller Laboratorieassistent kvalifisert uten relevant_education_or_employer_qualification. Den kan heller ikke gi lokal instrumentopplæring, HMS- eller biosikkerhetsgodkjenning, adgang, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet. Vitenskap-badge, XP, History Go-kunnskap, senioritet og nettverk kan skjerpe spørsmål og samarbeid, men kan ikke erstatte dagens protokoll, rådata, metadata, kontrollmateriale, sikkerhetskrav eller ansvarlig faglig godkjenning."
+      },
+      {
+        "id": "data_metadata_og_kvalitetskontroll",
+        "standing_axis": "dataintegritetstillit",
+        "cares_about": [
+          "radataintegritet",
+          "metadata_og_reproduserbarhet"
+        ],
+        "cannot_grant": "Data- og kvalitetsmiljøet kan oppdage hull og returnere arbeid, men standing kan ikke gjøre antatte metadata, skjulte korreksjoner eller selektiv rapportering etterprøvbar. Standing i laboratoriet kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å dobbeltsjekke en prøve eller forklare et instrument, og hvor mye tillit de har til spillerens dokumentasjon. Den kan aldri gjøre Studentassistent, Vitenskapelig assistent, Forskningsassistent eller Laboratorieassistent kvalifisert uten relevant_education_or_employer_qualification. Den kan heller ikke gi lokal instrumentopplæring, HMS- eller biosikkerhetsgodkjenning, adgang, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet. Vitenskap-badge, XP, History Go-kunnskap, senioritet og nettverk kan skjerpe spørsmål og samarbeid, men kan ikke erstatte dagens protokoll, rådata, metadata, kontrollmateriale, sikkerhetskrav eller ansvarlig faglig godkjenning."
+      },
+      {
+        "id": "laboratoriekolleger_og_assistentfellesskap",
+        "standing_axis": "kollegial_integritetstillit",
+        "cares_about": [
+          "hjelpsomhet",
+          "mot_til_a_stoppe"
+        ],
+        "cannot_grant": "Kollegial tillit kan gi hjelp og læring, men en erfaren kollega kan ikke låne bort egen kvalifikasjon, adgang eller godkjenningsmyndighet gjennom uformell praksis. Standing i laboratoriet kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å dobbeltsjekke en prøve eller forklare et instrument, og hvor mye tillit de har til spillerens dokumentasjon. Den kan aldri gjøre Studentassistent, Vitenskapelig assistent, Forskningsassistent eller Laboratorieassistent kvalifisert uten relevant_education_or_employer_qualification. Den kan heller ikke gi lokal instrumentopplæring, HMS- eller biosikkerhetsgodkjenning, adgang, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet. Vitenskap-badge, XP, History Go-kunnskap, senioritet og nettverk kan skjerpe spørsmål og samarbeid, men kan ikke erstatte dagens protokoll, rådata, metadata, kontrollmateriale, sikkerhetskrav eller ansvarlig faglig godkjenning."
+      },
+      {
+        "id": "prosjekt_bestiller_og_resultatmottakere",
+        "standing_axis": "leveransetillit",
+        "cares_about": [
+          "fristforstaelse",
+          "presise_forbehold"
+        ],
+        "cannot_grant": "Bestillere kan prioritere og etterspørre leveranse, men frist, prestisje eller ønsket resultat kan ikke endre protokoll, kontrollgrense, rådata eller hvem som eier den faglige konklusjonen. Standing i laboratoriet kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å dobbeltsjekke en prøve eller forklare et instrument, og hvor mye tillit de har til spillerens dokumentasjon. Den kan aldri gjøre Studentassistent, Vitenskapelig assistent, Forskningsassistent eller Laboratorieassistent kvalifisert uten relevant_education_or_employer_qualification. Den kan heller ikke gi lokal instrumentopplæring, HMS- eller biosikkerhetsgodkjenning, adgang, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet. Vitenskap-badge, XP, History Go-kunnskap, senioritet og nettverk kan skjerpe spørsmål og samarbeid, men kan ikke erstatte dagens protokoll, rådata, metadata, kontrollmateriale, sikkerhetskrav eller ansvarlig faglig godkjenning."
+      },
+      {
+        "id": "private_relations_og_rollegrenser",
+        "standing_axis": "privat_baerekraft",
+        "cares_about": [
+          "fortrolighet",
+          "arbeid_hjem_grense"
+        ],
+        "cannot_grant": "Private relasjoner kan bære skuffelse, stolthet og statusangst etter arbeidstid, men nærhet kan ikke brukes som uregistrert tilgang, datakanal, sikkerhetsdispensasjon eller faglig godkjenning. Standing i laboratoriet kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å dobbeltsjekke en prøve eller forklare et instrument, og hvor mye tillit de har til spillerens dokumentasjon. Den kan aldri gjøre Studentassistent, Vitenskapelig assistent, Forskningsassistent eller Laboratorieassistent kvalifisert uten relevant_education_or_employer_qualification. Den kan heller ikke gi lokal instrumentopplæring, HMS- eller biosikkerhetsgodkjenning, adgang, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet. Vitenskap-badge, XP, History Go-kunnskap, senioritet og nettverk kan skjerpe spørsmål og samarbeid, men kan ikke erstatte dagens protokoll, rådata, metadata, kontrollmateriale, sikkerhetskrav eller ansvarlig faglig godkjenning."
+      }
+    ],
+    "divergence_examples": [
+      "Høy kollegial standing, men null rett til å bruke et instrument uten dokumentert lokal opplæring.",
+      "Lav popularitet etter å ha stoppet en serie, men høy sikkerhetsstanding fordi kontrollsignalet faktisk var utenfor toleranse.",
+      "Høy tillit hos veileder til dokumentasjonen uten at assistenten overtar faglig hovedkonklusjon.",
+      "God standing hos bestiller selv om fristen ryker fordi avviket ble varslet tidlig og sporbarheten ble bevart.",
+      "Svak standing i et snarveivennlig kollegamiljø, men høy kvalitetsstanding fordi rådata og metadata ikke ble pyntet.",
+      "Høy sporbarhetstillit etter å ha avvist en plausibel men udokumentert prøveidentitet.",
+      "Midlertidig omdømmetap etter synlig rework, men bedre langsiktig handoff fordi tidligere versjon ble bevart.",
+      "Sterk privat støtte etter en krevende vakt uten at laboratoriedata eller tilgangsveier tas med hjem."
+    ],
+    "authority_separation": "Det finnes ingen global reputation score. Standing er publikumsspesifikk og kan sprike mellom prøveflyt, instrument/HMS, veileder, data/kvalitet, kolleger, bestiller og privatliv. Alle fire titlene er qualification_required med relevant_education_or_employer_qualification. Hverken standing, Vitenskap-badge, XP, History Go, senioritet eller nettverk kan skape kvalifikasjon, lokal opplæring, instrumentadgang, HMS/biosikkerhetsgodkjenning, prøveproveniens, evidens eller faglig hovedkonklusjonsmyndighet."
+  },
+  "history_go_affordance": {
+    "badge_id": "vitenskap",
+    "source_ref": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_assistent_og_laboratorium_knowledge.json#vitenskap_assistent_og_laboratorium_knowledge_001",
+    "better_question": "History Go kan forbedre laboratoriearbeidet ved å gjøre vitenskapelige praksiser historiske i stedet for selvfølgelige. Spilleren kan spørre når en målekonvensjon ble standardisert, hvorfor et kontrollmateriale eller sikkerhetsregime finnes, hvordan instrumenter og klassifikasjoner har endret seg, hvilke tidligere feil som førte til bedre dokumentasjon, og hvordan et sted eller en institusjon har organisert sporbarhet over tid. Slike spørsmål kan avdekke at en protokollversjon, en enhet eller en antatt normalpraksis trenger ekstra kontroll og kan gjøre handoff mer presis. Men historisk kontekst er bare et bedre spørsmål: den kan ikke identifisere dagens prøve, kalibrere dagens instrument, fylle ut manglende metadata, dokumentere lokal opplæring eller avgjøre den aktuelle forskningskonklusjonen.",
+    "authority_boundary": "History Go og Vitenskap-badge kan aldri erstatte relevant_education_or_employer_qualification, dagens prøve-ID/proveniens, godkjent protokoll, lokal instrumentopplæring, adgang, HMS/biosikkerhetskontroll, rådata, metadata, kalibrering eller ansvarlig faglig godkjenning."
+  },
+  "cross_role_link": {
+    "status": "candidate_when_shared_work_is_real",
+    "materialized": false,
+    "shared_work_object": null,
+    "rule": "Laboratoriearbeid kan senere dele reelle prøver, datasett eller handoff-objekter med forskningsroller, men denne rollout-en oppretter ingen lenke før begge canonicale roller faktisk eier samme dokumenterte work object. En framtidig delt lenke kan aldri overføre qualification, adgang, sikkerhets- eller godkjenningsmyndighet."
+  },
+  "cross_role_proof": {
+    "required_for_rollout": false,
+    "shared_work_object_found": false,
+    "status": "candidate_when_shared_work_is_real",
+    "reason": "Readiness markerer rollen som kandidat når delt arbeid er reelt. Ingen annen ferdig Role World er her bevist å eie den samme canonical laboratoriearbeidsloggen, så materialisering ville vært oppdiktet."
+  },
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 1, morning: oppdrag, qualification-gate og første prøveidentitet møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer proveidentitet og proveniens gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "proveidentitet_og_proveniens"
+        ],
+        "standing_audience": "proveflyt_og_sporbarhetsansvarlige",
+        "standing_consequence": "Standing hos proveflyt og sporbarhetsansvarlige kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 1, lunch: oppdrag, qualification-gate og første prøveidentitet møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer proveidentitet og proveniens gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "proveidentitet_og_proveniens"
+        ],
+        "standing_audience": "instrument_hms_og_biosikkerhetsmiljo",
+        "standing_consequence": "Standing hos instrument hms og biosikkerhetsmiljo kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_002"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: oppdrag, qualification-gate og første prøveidentitet møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer proveidentitet og proveniens gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "proveidentitet_og_proveniens"
+        ],
+        "standing_audience": "veileder_og_faglig_eier",
+        "standing_consequence": "Standing hos veileder og faglig eier kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_003"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: oppdrag, qualification-gate og første prøveidentitet møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer proveidentitet og proveniens gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "proveidentitet_og_proveniens"
+        ],
+        "standing_audience": "data_metadata_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos data metadata og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_004"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 2, morning: proveniens, etikett og overleveringskjede møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer proveidentitet og proveniens gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "proveidentitet_og_proveniens"
+        ],
+        "standing_audience": "laboratoriekolleger_og_assistentfellesskap",
+        "standing_consequence": "Standing hos laboratoriekolleger og assistentfellesskap kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: proveniens, etikett og overleveringskjede møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer proveidentitet og proveniens gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "proveidentitet_og_proveniens"
+        ],
+        "standing_audience": "prosjekt_bestiller_og_resultatmottakere",
+        "standing_consequence": "Standing hos prosjekt bestiller og resultatmottakere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_002"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: proveniens, etikett og overleveringskjede møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer proveidentitet og proveniens gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "proveidentitet_og_proveniens"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_003"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: proveniens, etikett og overleveringskjede møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer proveidentitet og proveniens gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "proveidentitet_og_proveniens"
+        ],
+        "standing_audience": "proveflyt_og_sporbarhetsansvarlige",
+        "standing_consequence": "Standing hos proveflyt og sporbarhetsansvarlige kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_004"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: godkjent protokollversjon og lokal opplæring møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer instrument sikkerhet og tilgang gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "instrument_sikkerhet_og_tilgang"
+        ],
+        "standing_audience": "instrument_hms_og_biosikkerhetsmiljo",
+        "standing_consequence": "Standing hos instrument hms og biosikkerhetsmiljo kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_assistent_og_laboratorium_conflict.json#vitenskap_assistent_og_laboratorium_conflict_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 3, lunch: godkjent protokollversjon og lokal opplæring møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer instrument sikkerhet og tilgang gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "instrument_sikkerhet_og_tilgang"
+        ],
+        "standing_audience": "veileder_og_faglig_eier",
+        "standing_consequence": "Standing hos veileder og faglig eier kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/story/vitenskap_assistent_og_laboratorium_story.json#vitenskap_assistent_og_laboratorium_story_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: godkjent protokollversjon og lokal opplæring møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer instrument sikkerhet og tilgang gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "instrument_sikkerhet_og_tilgang"
+        ],
+        "standing_audience": "data_metadata_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos data metadata og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/event/vitenskap_assistent_og_laboratorium_event.json#vitenskap_assistent_og_laboratorium_event_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: godkjent protokollversjon og lokal opplæring møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer instrument sikkerhet og tilgang gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "instrument_sikkerhet_og_tilgang"
+        ],
+        "standing_audience": "laboratoriekolleger_og_assistentfellesskap",
+        "standing_consequence": "Standing hos laboratoriekolleger og assistentfellesskap kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/micro/vitenskap_assistent_og_laboratorium_micro.json#vitenskap_assistent_og_laboratorium_micro_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 4, morning: instrumentstatus, kontrollmateriale og kalibrering møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer instrument sikkerhet og tilgang gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "instrument_sikkerhet_og_tilgang"
+        ],
+        "standing_audience": "prosjekt_bestiller_og_resultatmottakere",
+        "standing_consequence": "Standing hos prosjekt bestiller og resultatmottakere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/followup/vitenskap_assistent_og_laboratorium_followup.json#vitenskap_assistent_og_laboratorium_followup_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 4, lunch: instrumentstatus, kontrollmateriale og kalibrering møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer instrument sikkerhet og tilgang gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "instrument_sikkerhet_og_tilgang"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_assistent_og_laboratorium_knowledge.json#vitenskap_assistent_og_laboratorium_knowledge_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: instrumentstatus, kontrollmateriale og kalibrering møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer instrument sikkerhet og tilgang gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "instrument_sikkerhet_og_tilgang"
+        ],
+        "standing_audience": "proveflyt_og_sporbarhetsansvarlige",
+        "standing_consequence": "Standing hos proveflyt og sporbarhetsansvarlige kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_assistent_og_laboratorium_consequence.json#vitenskap_assistent_og_laboratorium_consequence_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: instrumentstatus, kontrollmateriale og kalibrering møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer instrument sikkerhet og tilgang gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "instrument_sikkerhet_og_tilgang"
+        ],
+        "standing_audience": "instrument_hms_og_biosikkerhetsmiljo",
+        "standing_consequence": "Standing hos instrument hms og biosikkerhetsmiljo kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 5, morning: HMS, biosikkerhet, verneutstyr og adgang møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer radataintegritet mot forventning gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "radataintegritet_mot_forventning"
+        ],
+        "standing_audience": "veileder_og_faglig_eier",
+        "standing_consequence": "Standing hos veileder og faglig eier kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_002"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 5, lunch: HMS, biosikkerhet, verneutstyr og adgang møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer radataintegritet mot forventning gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "radataintegritet_mot_forventning"
+        ],
+        "standing_audience": "data_metadata_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos data metadata og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_003"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: HMS, biosikkerhet, verneutstyr og adgang møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer radataintegritet mot forventning gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "radataintegritet_mot_forventning"
+        ],
+        "standing_audience": "laboratoriekolleger_og_assistentfellesskap",
+        "standing_consequence": "Standing hos laboratoriekolleger og assistentfellesskap kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_004"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: HMS, biosikkerhet, verneutstyr og adgang møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer radataintegritet mot forventning gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "radataintegritet_mot_forventning"
+        ],
+        "standing_audience": "prosjekt_bestiller_og_resultatmottakere",
+        "standing_consequence": "Standing hos prosjekt bestiller og resultatmottakere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 6, morning: første rådata og skillet mellom observasjon og tolkning møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer radataintegritet mot forventning gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "radataintegritet_mot_forventning"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_002"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 6, lunch: første rådata og skillet mellom observasjon og tolkning møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer radataintegritet mot forventning gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "radataintegritet_mot_forventning"
+        ],
+        "standing_audience": "proveflyt_og_sporbarhetsansvarlige",
+        "standing_consequence": "Standing hos proveflyt og sporbarhetsansvarlige kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_003"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: første rådata og skillet mellom observasjon og tolkning møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer radataintegritet mot forventning gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "radataintegritet_mot_forventning"
+        ],
+        "standing_audience": "instrument_hms_og_biosikkerhetsmiljo",
+        "standing_consequence": "Standing hos instrument hms og biosikkerhetsmiljo kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_004"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: første rådata og skillet mellom observasjon og tolkning møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer radataintegritet mot forventning gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "radataintegritet_mot_forventning"
+        ],
+        "standing_audience": "veileder_og_faglig_eier",
+        "standing_consequence": "Standing hos veileder og faglig eier kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_assistent_og_laboratorium_conflict.json#vitenskap_assistent_og_laboratorium_conflict_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 7, morning: metadata, enheter, tidspunkt og operatørspor møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer qualification rolle og uformell makt gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "qualification_rolle_og_uformell_makt"
+        ],
+        "standing_audience": "data_metadata_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos data metadata og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/story/vitenskap_assistent_og_laboratorium_story.json#vitenskap_assistent_og_laboratorium_story_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 7, lunch: metadata, enheter, tidspunkt og operatørspor møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer qualification rolle og uformell makt gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "qualification_rolle_og_uformell_makt"
+        ],
+        "standing_audience": "laboratoriekolleger_og_assistentfellesskap",
+        "standing_consequence": "Standing hos laboratoriekolleger og assistentfellesskap kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/event/vitenskap_assistent_og_laboratorium_event.json#vitenskap_assistent_og_laboratorium_event_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: metadata, enheter, tidspunkt og operatørspor møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer qualification rolle og uformell makt gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "qualification_rolle_og_uformell_makt"
+        ],
+        "standing_audience": "prosjekt_bestiller_og_resultatmottakere",
+        "standing_consequence": "Standing hos prosjekt bestiller og resultatmottakere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/micro/vitenskap_assistent_og_laboratorium_micro.json#vitenskap_assistent_og_laboratorium_micro_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: metadata, enheter, tidspunkt og operatørspor møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer qualification rolle og uformell makt gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "qualification_rolle_og_uformell_makt"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/followup/vitenskap_assistent_og_laboratorium_followup.json#vitenskap_assistent_og_laboratorium_followup_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 8, morning: uventet resultat og forventningspress møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer qualification rolle og uformell makt gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "qualification_rolle_og_uformell_makt"
+        ],
+        "standing_audience": "proveflyt_og_sporbarhetsansvarlige",
+        "standing_consequence": "Standing hos proveflyt og sporbarhetsansvarlige kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_assistent_og_laboratorium_knowledge.json#vitenskap_assistent_og_laboratorium_knowledge_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 8, lunch: uventet resultat og forventningspress møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer qualification rolle og uformell makt gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "qualification_rolle_og_uformell_makt"
+        ],
+        "standing_audience": "instrument_hms_og_biosikkerhetsmiljo",
+        "standing_consequence": "Standing hos instrument hms og biosikkerhetsmiljo kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_assistent_og_laboratorium_consequence.json#vitenskap_assistent_og_laboratorium_consequence_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: uventet resultat og forventningspress møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer qualification rolle og uformell makt gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "qualification_rolle_og_uformell_makt"
+        ],
+        "standing_audience": "veileder_og_faglig_eier",
+        "standing_consequence": "Standing hos veileder og faglig eier kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: uventet resultat og forventningspress møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer qualification rolle og uformell makt gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "qualification_rolle_og_uformell_makt"
+        ],
+        "standing_audience": "data_metadata_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos data metadata og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_002"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 9, morning: kollegial snarvei og uskrevet profesjonskultur møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer metadata reproduserbarhet og kvalitet gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "metadata_reproduserbarhet_og_kvalitet"
+        ],
+        "standing_audience": "laboratoriekolleger_og_assistentfellesskap",
+        "standing_consequence": "Standing hos laboratoriekolleger og assistentfellesskap kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_003"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 9, lunch: kollegial snarvei og uskrevet profesjonskultur møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer metadata reproduserbarhet og kvalitet gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "metadata_reproduserbarhet_og_kvalitet"
+        ],
+        "standing_audience": "prosjekt_bestiller_og_resultatmottakere",
+        "standing_consequence": "Standing hos prosjekt bestiller og resultatmottakere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_004"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: kollegial snarvei og uskrevet profesjonskultur møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer metadata reproduserbarhet og kvalitet gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "metadata_reproduserbarhet_og_kvalitet"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: kollegial snarvei og uskrevet profesjonskultur møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer metadata reproduserbarhet og kvalitet gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "metadata_reproduserbarhet_og_kvalitet"
+        ],
+        "standing_audience": "proveflyt_og_sporbarhetsansvarlige",
+        "standing_consequence": "Standing hos proveflyt og sporbarhetsansvarlige kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_002"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 10, morning: veilederens faglige godkjenning og assistentens rollegrense møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer metadata reproduserbarhet og kvalitet gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "metadata_reproduserbarhet_og_kvalitet"
+        ],
+        "standing_audience": "instrument_hms_og_biosikkerhetsmiljo",
+        "standing_consequence": "Standing hos instrument hms og biosikkerhetsmiljo kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_003"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: veilederens faglige godkjenning og assistentens rollegrense møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer metadata reproduserbarhet og kvalitet gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "metadata_reproduserbarhet_og_kvalitet"
+        ],
+        "standing_audience": "veileder_og_faglig_eier",
+        "standing_consequence": "Standing hos veileder og faglig eier kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_004"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: veilederens faglige godkjenning og assistentens rollegrense møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer metadata reproduserbarhet og kvalitet gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "metadata_reproduserbarhet_og_kvalitet"
+        ],
+        "standing_audience": "data_metadata_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos data metadata og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_assistent_og_laboratorium_conflict.json#vitenskap_assistent_og_laboratorium_conflict_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: veilederens faglige godkjenning og assistentens rollegrense møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer metadata reproduserbarhet og kvalitet gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "metadata_reproduserbarhet_og_kvalitet"
+        ],
+        "standing_audience": "laboratoriekolleger_og_assistentfellesskap",
+        "standing_consequence": "Standing hos laboratoriekolleger og assistentfellesskap kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/story/vitenskap_assistent_og_laboratorium_story.json#vitenskap_assistent_og_laboratorium_story_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: reproduserbarhet og kontroll av hele arbeidssporet møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer avvik handoff og bounded rework gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "avvik_handoff_og_bounded_rework"
+        ],
+        "standing_audience": "prosjekt_bestiller_og_resultatmottakere",
+        "standing_consequence": "Standing hos prosjekt bestiller og resultatmottakere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/event/vitenskap_assistent_og_laboratorium_event.json#vitenskap_assistent_og_laboratorium_event_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 11, lunch: reproduserbarhet og kontroll av hele arbeidssporet møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer avvik handoff og bounded rework gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "avvik_handoff_og_bounded_rework"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/micro/vitenskap_assistent_og_laboratorium_micro.json#vitenskap_assistent_og_laboratorium_micro_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: reproduserbarhet og kontroll av hele arbeidssporet møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer avvik handoff og bounded rework gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "avvik_handoff_og_bounded_rework"
+        ],
+        "standing_audience": "proveflyt_og_sporbarhetsansvarlige",
+        "standing_consequence": "Standing hos proveflyt og sporbarhetsansvarlige kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/followup/vitenskap_assistent_og_laboratorium_followup.json#vitenskap_assistent_og_laboratorium_followup_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: reproduserbarhet og kontroll av hele arbeidssporet møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer avvik handoff og bounded rework gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "avvik_handoff_og_bounded_rework"
+        ],
+        "standing_audience": "instrument_hms_og_biosikkerhetsmiljo",
+        "standing_consequence": "Standing hos instrument hms og biosikkerhetsmiljo kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_assistent_og_laboratorium_knowledge.json#vitenskap_assistent_og_laboratorium_knowledge_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 12, morning: avvik, venting og tydelig ansvarlig eier møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer avvik handoff og bounded rework gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "avvik_handoff_og_bounded_rework"
+        ],
+        "standing_audience": "veileder_og_faglig_eier",
+        "standing_consequence": "Standing hos veileder og faglig eier kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_assistent_og_laboratorium_consequence.json#vitenskap_assistent_og_laboratorium_consequence_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 12, lunch: avvik, venting og tydelig ansvarlig eier møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer avvik handoff og bounded rework gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "avvik_handoff_og_bounded_rework"
+        ],
+        "standing_audience": "data_metadata_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos data metadata og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: avvik, venting og tydelig ansvarlig eier møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer avvik handoff og bounded rework gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "avvik_handoff_og_bounded_rework"
+        ],
+        "standing_audience": "laboratoriekolleger_og_assistentfellesskap",
+        "standing_consequence": "Standing hos laboratoriekolleger og assistentfellesskap kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_002"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: avvik, venting og tydelig ansvarlig eier møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer avvik handoff og bounded rework gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "avvik_handoff_og_bounded_rework"
+        ],
+        "standing_audience": "prosjekt_bestiller_og_resultatmottakere",
+        "standing_consequence": "Standing hos prosjekt bestiller og resultatmottakere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_003"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 13, morning: ny opplysning, bounded rework og bevart historikk møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer statusangst profesjonskultur og privativ gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "statusangst_profesjonskultur_og_privativ"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_004"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 13, lunch: ny opplysning, bounded rework og bevart historikk møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer statusangst profesjonskultur og privativ gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "statusangst_profesjonskultur_og_privativ"
+        ],
+        "standing_audience": "proveflyt_og_sporbarhetsansvarlige",
+        "standing_consequence": "Standing hos proveflyt og sporbarhetsansvarlige kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: ny opplysning, bounded rework og bevart historikk møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer statusangst profesjonskultur og privativ gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "statusangst_profesjonskultur_og_privativ"
+        ],
+        "standing_audience": "instrument_hms_og_biosikkerhetsmiljo",
+        "standing_consequence": "Standing hos instrument hms og biosikkerhetsmiljo kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_002"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: ny opplysning, bounded rework og bevart historikk møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer statusangst profesjonskultur og privativ gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "statusangst_profesjonskultur_og_privativ"
+        ],
+        "standing_audience": "veileder_og_faglig_eier",
+        "standing_consequence": "Standing hos veileder og faglig eier kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_003"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 14, morning: slutthandoff, åpen usikkerhet og hva som faktisk kan lukkes møter arbeidsobjektet må flyttes ett konkret ledd frem med synlig prøve-ID, protokoll, kontroll og dokumentasjon. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer statusangst profesjonskultur og privativ gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "statusangst_profesjonskultur_og_privativ"
+        ],
+        "standing_audience": "data_metadata_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos data metadata og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_004"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 14, lunch: slutthandoff, åpen usikkerhet og hva som faktisk kan lukkes møter en relasjon tester om status og hjelpsomhet kan holdes adskilt fra kvalifikasjon, adgang, sikkerhetskrav og evidens. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer statusangst profesjonskultur og privativ gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "statusangst_profesjonskultur_og_privativ"
+        ],
+        "standing_audience": "laboratoriekolleger_og_assistentfellesskap",
+        "standing_consequence": "Standing hos laboratoriekolleger og assistentfellesskap kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_assistent_og_laboratorium_conflict.json#vitenskap_assistent_og_laboratorium_conflict_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: slutthandoff, åpen usikkerhet og hva som faktisk kan lukkes møter spilleren må velge mellom en sporbar stopp eller handoff og en raskere løsning som sosialt ser bedre ut. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer statusangst profesjonskultur og privativ gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "statusangst_profesjonskultur_og_privativ"
+        ],
+        "standing_audience": "prosjekt_bestiller_og_resultatmottakere",
+        "standing_consequence": "Standing hos prosjekt bestiller og resultatmottakere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/story/vitenskap_assistent_og_laboratorium_story.json#vitenskap_assistent_og_laboratorium_story_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: slutthandoff, åpen usikkerhet og hva som faktisk kan lukkes møter dagens arbeid får et privat etterspill der stolthet, skam og usikkerhet må bearbeides uten å lekke data, authority eller arbeidskanaler hjem. Arbeidet skjer i den samme versjonerte laboratoriearbeidsloggen, slik at prøve-ID, proveniens, relevant_education_or_employer_qualification, lokal opplæring, protokollversjon, instrumentkontroll, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik og handoff ikke glir sammen. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent kan bli mer betrodde gjennom god praksis, men qualification_required-gaten består og sosial standing kan aldri skape kvalifikasjon, adgang, sikkerhetsgodkjenning eller faglig hovedkonklusjonsmyndighet. Beatet materialiserer statusangst profesjonskultur og privativ gjennom en eksisterende canonical mailreferanse. History Go og Vitenskap-badge kan brukes til å spørre hvordan instrumenter, standardisering, sikkerhetsregimer eller dokumentasjonspraksis historisk har endret seg, men de kan ikke være dagens kalibrering, prøveproveniens, rådata eller evidens. Hvis ny informasjon senere endrer saken, skal bare berørte ledd gjenåpnes; rådata, tidligere versjon og avvikslogg beholdes slik at rework er etterprøvbart og ikke en omskriving.",
+        "thread_ids": [
+          "statusangst_profesjonskultur_og_privativ"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere avklaring og større eller mindre vilje til å dele kontekst. Den kan ikke gi relevant_education_or_employer_qualification, lokal instrumentopplæring, adgang, HMS- eller biosikkerhetsgodkjenning, kalibreringsstatus, prøveproveniens, evidens eller institusjonell myndighet, og kan ikke gjøre Vitenskap-badge, XP eller History Go til erstatning for dokumentert kontroll.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/vitenskap/event/vitenskap_assistent_og_laboratorium_event.json#vitenskap_assistent_og_laboratorium_event_001"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "proveidentitet_og_proveniens",
+      "relationship": "Relasjonen rundt prøveflyten begynner med små friksjoner om etiketter og mottak, men utvikler seg til et spørsmål om hvem som våger å stoppe når resten av teamet allerede har investert tid i prøven. Standing hos Eva og andre sporbarhetsansvarlige bygges når spilleren lar kjeden være viktigere enn plausibilitet og bevarer hvilken versjon som var kjent når. Når merkingen avviker fra bestillingen, et mottakstidspunkt mangler eller et tidligere ledd bare finnes i muntlig hukommelse, må spilleren kunne vise hvem som visste hva når, hvilken etikett som faktisk satt på prøven, og hvorfor prøven ble stoppet, returnert eller holdt utenfor analysen. Et godt rykte kan gjøre avklaringen raskere, men kan ikke gjøre sannsynlig identitet til dokumentert chain of custody. Tråden lar tillit sprike: en bestiller kan irritere seg over stoppet samtidig som sporbarhetsmiljøet får større tillit fordi spilleren nekter å erstatte proveniens med plausibilitet. Dermed blir også versjonshistorikk og mottakslogg sosialt viktige, ikke bare administrative vedlegg.",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "instrument_sikkerhet_og_tilgang",
+      "relationship": "Instrument- og sikkerhetssporet undersøker hvordan lokal ekspertise, adgang og uformell hjelp kan gjøre arbeidet raskere uten at de blir en erstatning for opplæring, kontroll eller HMS. Malik kan bli en sterk alliert når spilleren varsler tidlig, men relasjonen kan aldri gi spilleren en dispensasjon som systemet eller ansvarlig rolle ikke faktisk har gitt. Arbeidet skjer rundt instrumenter der lokal opplæring, registrert adgang, kontrollmateriale, kalibreringsstatus, verneutstyr og biosikkerhetsrutiner er egne porter. Fristpress og en erfaren kollegas uformelle «jeg viser deg bare» kan gjøre snarveien sosialt attraktiv, men kollegaen kan ikke låne bort qualification, adgang eller sikkerhetsgodkjenning. Når kontrollsignalet avviker, skal spilleren kunne stoppe, dokumentere og eskalere uten at ønsket resultat eller køen foran instrumentet avgjør saken. Standing hos Malik og sikkerhetsmiljøet vokser av tidlig varsling og presise observasjoner, ikke av risikovillighet, og kan aldri retroaktivt gjøre uautorisert bruk legitim.",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "radataintegritet_mot_forventning",
+      "relationship": "Datasporet gjør forventet resultat til en sosial kraft. Nora og fagmiljøet lærer spilleren at et uventet tall, en mislykket serie eller et metadatahull kan være karrieremessig ubehagelig, men at skjult opprydding er verre fordi den bryter forbindelsen mellom observasjon og senere vurdering. Et forventet funn, en mislykket serie og en nær tidsfrist gjør rådataintegritet til mer enn en teknisk regel. Spilleren må bevare målingen slik den faktisk oppstod, med enhet, tidspunkt, prøve-ID, instrument og operatør, også når resultatet er upraktisk eller ser «feil» ut. Korreksjoner skal komme som synlige nye versjoner eller markerte kommentarer, ikke som skjult opprydding i den opprinnelige observasjonen. Nora kan gi spilleren høyere datatillit når hull og avvik vises ærlig, mens andre kan bli frustrerte fordi leveransen blir mindre glatt. Tråden viser derfor hvordan vitenskapelig integritet kan koste kortsiktig status samtidig som den gjør senere analyse, kontroll og faglig godkjenning mulig.",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "qualification_rolle_og_uformell_makt",
+      "relationship": "Alle fire titlene krever relevant_education_or_employer_qualification, og tråden følger hvordan en dyktig assistent gradvis får mer tillit uten at tillit automatisk blir større myndighet. Erfarne kolleger og veiledere kan åpne læring og arbeidsflyt, men ikke låne bort signatur, adgang, sikkerhetskompetanse eller selvstendig faglig godkjenning. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er alle qualification_required med relevant_education_or_employer_qualification, og dette står fast gjennom hele relasjonen. Etter hvert som spilleren blir dyktigere kan veileder og kolleger dele mer kontekst, gi mer komplekse oppgaver og stole mer på dokumentasjonen, men standing blir aldri en ny autorisasjonskanal. Uformell senioritet kan ikke erstatte lokal instrumentopplæring, adgang, signatur eller HMS/biosikkerhetskrav, og en veileder kan ikke retroaktivt gjøre arbeid innenfor et mandat som spilleren aldri hadde. Tråden gjør dermed forskjellen mellom å være nyttig, å være kvalifisert og å ha faktisk godkjenningsmyndighet til et kontinuerlig sosialt spørsmål.",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "metadata_reproduserbarhet_og_kvalitet",
+      "relationship": "Kvalitetssporet undersøker det usynlige arbeidet som først blir verdsatt når noen andre prøver å forstå datasettet. Metadata, kontrollmateriale, enheter og mangler må være lesbare uten at spilleren står ved siden av og forklarer. Standing hos kvalitetsmiljøet vokser når dokumentasjonen tåler fravær og senere kontroll. Kvalitet blir synlig når en annen person skal forstå arbeidet uten at spilleren står ved siden av og forklarer. Prøve-ID, protokoll og versjon, instrument, operatør, tidspunkt, enheter, kontrollmateriale, manglende verdier og avvik må derfor følge datasettet på en måte som lar neste kvalifiserte eier rekonstruere hva som skjedde. Et tomt felt skal være et eksplisitt hull, ikke en invitasjon til å gjette en plausibel verdi. Standing hos data- og kvalitetsmiljøet kan øke når spilleren dokumenterer begrensninger og lar usikkerheten stå synlig, selv om det gjør leveransen mindre pen. Reproduserbarhet blir dermed et kollektivt ansvar for lesbar historikk, ikke en forestilling om at alle datasett må se komplette ut.",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "avvik_handoff_og_bounded_rework",
+      "relationship": "Henrik og handoff-miljøet gjør korreksjon til institusjonell hukommelse. Når ny informasjon kommer, skal bare berørte ledd åpnes, mens rådata, tidligere versjon, avvik og ansvarlig eier bevares. Konflikten står mellom ønsket om å se feilfri ut og behovet for å kunne forklare nøyaktig hva som faktisk endret seg. Når ny informasjon endrer en prøve, en kontroll eller en tidligere antakelse, skal bare de berørte leddene åpnes igjen. Rådata, tidligere versjon, avviksårsak, beslutning og ansvarlig eier bevares, slik at neste person kan se nøyaktig hva som ble endret og hvorfor. Henrik kan kreve rework og en tydelig handoff, men kan ikke omskrive historikken for å beskytte et individ, en gruppe eller prosjektets omdømme. Juniorer kan oppleve synlige avvik som karriererisiko, og bestillere kan foretrekke en stille rettelse, men tråden belønner korrigerbarhet fremfor feilfri fasade. Standing utvikles derfor gjennom evnen til å avgrense konsekvensen av feilen uten å skjule at den skjedde.",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "statusangst_profesjonskultur_og_privativ",
+      "relationship": "Den siste tråden følger hvordan juniorstatus, midlertidighet, ønsket om å være nyttig og frykt for å være den som forsinker arbeidet kan presse spilleren mot taushet. Kollegial og privat støtte kan gjøre det lettere å holde grensene, men ingen relasjon kan gjøre sosial aksept til vitenskapelig kvalitet eller qualification_required-adgang. Juniorstatus, midlertidighet og ønsket om å være den som får arbeidet til å flyte kan gjøre det vanskelig å si at en prøve må stoppes, at metadata mangler eller at en erfaren kollegas snarvei ikke er dokumentert. Spillerens profesjonelle standing kan derfor falle i ett miljø samtidig som sikkerhets- eller kvalitetsstanding styrkes i et annet. Etter arbeidstid følger skam, stolthet og grubling med hjem, men laboratoriedata, adgangsveier og fortrolige opplysninger gjør ikke det. En nær privat relasjon kan støtte spilleren i å holde arbeid–hjem-grenser og tåle usikkerhet, men kan ikke bli en uregistrert datakanal eller faglig bekreftelse. Tråden skiller dermed egenverdi og sosial aksept fra qualification_required, evidens og institusjonell myndighet.",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "privat_etterspill_1",
+      "description": "Etterspill 1 lar spilleren møte kostnaden ved å ha stoppet en prøve, avvist en snarvei, synliggjort et metadatahull eller sendt en avgjørelse videre til riktig faglig eier. Støtte hjemme kan dempe skam og statusangst, men kan ikke brukes som uregistrert tilgang, datakanal eller faglig bekreftelse. Arbeidets fortrolighet, qualification_required-grense og versjonerte historikk består også etter arbeidstid.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_001"
+      ]
+    },
+    {
+      "id": "privat_etterspill_2",
+      "description": "Etterspill 2 lar spilleren møte kostnaden ved å ha stoppet en prøve, avvist en snarvei, synliggjort et metadatahull eller sendt en avgjørelse videre til riktig faglig eier. Støtte hjemme kan dempe skam og statusangst, men kan ikke brukes som uregistrert tilgang, datakanal eller faglig bekreftelse. Arbeidets fortrolighet, qualification_required-grense og versjonerte historikk består også etter arbeidstid.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_002"
+      ]
+    },
+    {
+      "id": "privat_etterspill_3",
+      "description": "Etterspill 3 lar spilleren møte kostnaden ved å ha stoppet en prøve, avvist en snarvei, synliggjort et metadatahull eller sendt en avgjørelse videre til riktig faglig eier. Støtte hjemme kan dempe skam og statusangst, men kan ikke brukes som uregistrert tilgang, datakanal eller faglig bekreftelse. Arbeidets fortrolighet, qualification_required-grense og versjonerte historikk består også etter arbeidstid.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_003"
+      ]
+    },
+    {
+      "id": "privat_etterspill_4",
+      "description": "Etterspill 4 lar spilleren møte kostnaden ved å ha stoppet en prøve, avvist en snarvei, synliggjort et metadatahull eller sendt en avgjørelse videre til riktig faglig eier. Støtte hjemme kan dempe skam og statusangst, men kan ikke brukes som uregistrert tilgang, datakanal eller faglig bekreftelse. Arbeidets fortrolighet, qualification_required-grense og versjonerte historikk består også etter arbeidstid.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_004"
+      ]
+    },
+    {
+      "id": "privat_etterspill_5",
+      "description": "Etterspill 5 lar spilleren møte kostnaden ved å ha stoppet en prøve, avvist en snarvei, synliggjort et metadatahull eller sendt en avgjørelse videre til riktig faglig eier. Støtte hjemme kan dempe skam og statusangst, men kan ikke brukes som uregistrert tilgang, datakanal eller faglig bekreftelse. Arbeidets fortrolighet, qualification_required-grense og versjonerte historikk består også etter arbeidstid.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_001"
+      ]
+    },
+    {
+      "id": "privat_etterspill_6",
+      "description": "Etterspill 6 lar spilleren møte kostnaden ved å ha stoppet en prøve, avvist en snarvei, synliggjort et metadatahull eller sendt en avgjørelse videre til riktig faglig eier. Støtte hjemme kan dempe skam og statusangst, men kan ikke brukes som uregistrert tilgang, datakanal eller faglig bekreftelse. Arbeidets fortrolighet, qualification_required-grense og versjonerte historikk består også etter arbeidstid.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_002"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "forsinket_konsekvens_1",
+      "setup_ref": "1/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "job",
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_2",
+      "setup_ref": "2/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "job",
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_3",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "job",
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_4",
+      "setup_ref": "4/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "job",
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_5",
+      "setup_ref": "5/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "job",
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_6",
+      "setup_ref": "6/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "job",
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_7",
+      "setup_ref": "7/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "job",
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_8",
+      "setup_ref": "8/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "job",
+        "relationship",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "authored_dimensions": [
+      "situated_reputation"
+    ],
+    "existing_plan_preserved": true,
+    "existing_role_model_preserved": true,
+    "existing_people_foundation_preserved": true,
+    "existing_work_grammar_preserved": true,
+    "existing_persistent_work_preserved": true,
+    "existing_rhythm_preserved": true,
+    "career_title_gates_preserved": true,
+    "cross_role_link_materialized": false,
+    "source_refs": [
+      "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_001",
+      "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_002",
+      "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_003",
+      "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json#vitenskap_assistent_og_laboratorium_job_004",
+      "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_001",
+      "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_002",
+      "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_003",
+      "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json#vitenskap_assistent_og_laboratorium_people_004",
+      "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_assistent_og_laboratorium_conflict.json#vitenskap_assistent_og_laboratorium_conflict_001",
+      "data/Civication/mailFamilies/vitenskap/story/vitenskap_assistent_og_laboratorium_story.json#vitenskap_assistent_og_laboratorium_story_001",
+      "data/Civication/mailFamilies/vitenskap/event/vitenskap_assistent_og_laboratorium_event.json#vitenskap_assistent_og_laboratorium_event_001",
+      "data/Civication/mailFamilies/vitenskap/micro/vitenskap_assistent_og_laboratorium_micro.json#vitenskap_assistent_og_laboratorium_micro_001",
+      "data/Civication/mailFamilies/vitenskap/followup/vitenskap_assistent_og_laboratorium_followup.json#vitenskap_assistent_og_laboratorium_followup_001",
+      "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_assistent_og_laboratorium_knowledge.json#vitenskap_assistent_og_laboratorium_knowledge_001",
+      "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_assistent_og_laboratorium_consequence.json#vitenskap_assistent_og_laboratorium_consequence_001"
+    ]
+  }
+}

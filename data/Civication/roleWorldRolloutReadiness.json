@@ -33,9 +33,9 @@
       "needs_role_authored_work": 5,
       "blocked": 2
     },
-    "role_world_complete_or_pilot": 77,
-    "rollout_queue_roles": 8,
-    "first_wave_candidate_count": 1,
+    "role_world_complete_or_pilot": 78,
+    "rollout_queue_roles": 7,
+    "first_wave_candidate_count": 0,
     "role_level_blocked_count": 2,
     "structural_families_in_queue": 3
   },
@@ -51,38 +51,13 @@
     "gate_pass": true,
     "broad_rollout_allowed_now": true,
     "policy_recommendation": "controlled_rollout_open_with_role_level_gates",
-    "next_required_pr": "Role World rollout: vitenskap/vitenskap_assistent_og_laboratorium",
+    "next_required_pr": "Select next rollout_ready role",
     "rule": "A green readiness gate proves the program can safely begin controlled rollout. It does not make every role rollout_ready and it does not itself flip broad_rollout_allowed."
   },
-  "first_wave_candidates": [
-    {
-      "rank": 1,
-      "key": "vitenskap/vitenskap_assistent_og_laboratorium",
-      "classification": "rollout_ready",
-      "structural_family": "research_education",
-      "priority_score": 1260,
-      "blockers": [],
-      "authored_work_required": [
-        "situated_reputation"
-      ],
-      "cross_role_need": "candidate_when_shared_work_is_real"
-    }
-  ],
+  "first_wave_candidates": [],
   "rollout_queue": [
     {
       "rank": 1,
-      "key": "vitenskap/vitenskap_assistent_og_laboratorium",
-      "classification": "rollout_ready",
-      "structural_family": "research_education",
-      "priority_score": 1260,
-      "blockers": [],
-      "authored_work_required": [
-        "situated_reputation"
-      ],
-      "cross_role_need": "candidate_when_shared_work_is_real"
-    },
-    {
-      "rank": 2,
       "key": "vitenskap/vitenskap_doktorlop_og_postdoktor",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -104,7 +79,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 3,
+      "rank": 2,
       "key": "vitenskap/vitenskap_forskning",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -126,7 +101,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 4,
+      "rank": 3,
       "key": "vitenskap/vitenskap_forskningsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -148,7 +123,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 5,
+      "rank": 4,
       "key": "vitenskap/vitenskap_institusjonsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -170,7 +145,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 6,
+      "rank": 5,
       "key": "vitenskap/vitenskap_undervisning_og_forskning",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -192,7 +167,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 7,
+      "rank": 6,
       "key": "musikk/musikk_scene_og_produksjon",
       "classification": "blocked",
       "structural_family": "creative_production",
@@ -217,7 +192,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 8,
+      "rank": 7,
       "key": "musikk/musikk_utoving_og_ensemble",
       "classification": "blocked",
       "structural_family": "other",
@@ -9039,15 +9014,16 @@
       ],
       "career_status": "playable",
       "runtime_gate": true,
-      "role_world_status": "role_world_not_started",
+      "role_world_status": "role_world_complete",
       "structural_family": "research_education",
       "classification": "rollout_ready",
-      "priority_score": 1260,
+      "priority_score": 910,
       "dimensions": {
         "persistent_work_object": {
           "status": "foundation_ready",
           "evidence": [
             "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+            "data/Civication/roleWorlds/vitenskap/vitenskap_assistent_og_laboratorium.json",
             "data/Civication/workGrammars/vitenskap/vitenskap_assistent_og_laboratorium.json"
           ],
           "rationale": "Existing work content carries stable object/case/project signals and a complete workday loop; the rollout PR must bind them explicitly to the locked persistent-work contract."
@@ -9065,6 +9041,7 @@
           "evidence": [
             "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
             "data/Civication/mailPlans/vitenskap/vitenskap_assistent_og_laboratorium_plan.json",
+            "data/Civication/roleWorlds/vitenskap/vitenskap_assistent_og_laboratorium.json",
             "data/Civication/workGrammars/vitenskap/vitenskap_assistent_og_laboratorium.json"
           ],
           "rationale": "The current runtime-authored role already exposes deadline/rework/handoff signals; rollout must make the rhythm role-specific and persistent."
@@ -9075,23 +9052,26 @@
             "data/Civication/jobKnowledgeRequirements.json",
             "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_assistent_og_laboratorium_knowledge.json",
             "data/Civication/roleModels/vitenskap/vitenskap_assistent_og_laboratorium.json",
+            "data/Civication/roleWorlds/vitenskap/vitenskap_assistent_og_laboratorium.json",
             "data/Civication/workGrammars/vitenskap/vitenskap_assistent_og_laboratorium.json"
           ],
           "rationale": "Career knowledge integration is complete; the rollout PR must author a concrete better-choice affordance while keeping authority independent from knowledge."
         },
         "situated_reputation": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
             "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
-            "data/Civication/mailPlans/vitenskap/vitenskap_assistent_og_laboratorium_plan.json"
+            "data/Civication/mailPlans/vitenskap/vitenskap_assistent_og_laboratorium_plan.json",
+            "data/Civication/roleWorlds/vitenskap/vitenskap_assistent_og_laboratorium.json"
           ],
-          "rationale": "Situated reputation audiences are not yet explicit for this role; do not substitute the legacy/global reputation summary."
+          "rationale": "Role-authored sources already contain situated audience/standing signals; rollout must bind only bounded authored audience IDs."
         },
         "people_places_integrity": {
           "status": "foundation_ready",
           "evidence": [
             "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
             "data/Civication/roleModels/vitenskap/vitenskap_assistent_og_laboratorium.json",
+            "data/Civication/roleWorlds/vitenskap/vitenskap_assistent_og_laboratorium.json",
             "data/Civication/workGrammars/vitenskap/vitenskap_assistent_og_laboratorium.json"
           ],
           "rationale": "Career People and Places coverage is complete; rollout still must verify factual canonical references and keep invented workplace drama explicitly fictional."
@@ -9101,8 +9081,10 @@
           "evidence": [
             "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
             "data/Civication/mailPlans/vitenskap/vitenskap_assistent_og_laboratorium_plan.json",
+            "data/Civication/roleWorlds/vitenskap/vitenskap_assistent_og_laboratorium.json",
             "data/Civication/workGrammars/vitenskap/vitenskap_assistent_og_laboratorium.json",
             "tests/civication-vitenskap-assistent-og-laboratorium-prerequisites.test.js",
+            "tests/civication-vitenskap-assistent-og-laboratorium-role-world-rollout.test.js",
             "tests/civication-vitenskap-career-architecture.test.js"
           ],
           "rationale": "Role-specific tests and authored source paths exist; rollout must add strict scene-registry parity and source provenance for new realism scenes."
@@ -9117,17 +9099,17 @@
         "rationale": "This role has plausible same-domain handoff or leadership counterparts; a shared object is a design candidate, not a mandatory gate."
       },
       "blockers": [],
-      "authored_work_required": [
-        "situated_reputation"
-      ],
+      "authored_work_required": [],
       "source_refs": [
         "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
         "data/Civication/mailPlans/vitenskap/vitenskap_assistent_og_laboratorium_plan.json",
+        "data/Civication/roleWorlds/vitenskap/vitenskap_assistent_og_laboratorium.json",
         "data/Civication/workGrammars/vitenskap/vitenskap_assistent_og_laboratorium.json",
         "tests/civication-vitenskap-assistent-og-laboratorium-prerequisites.test.js",
+        "tests/civication-vitenskap-assistent-og-laboratorium-role-world-rollout.test.js",
         "tests/civication-vitenskap-career-architecture.test.js"
       ],
-      "already_reference_or_pilot": false
+      "already_reference_or_pilot": true
     },
     {
       "key": "vitenskap/vitenskap_doktorlop_og_postdoktor",
