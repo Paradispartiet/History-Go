@@ -224,8 +224,99 @@
     "existing_other_people": []
   },
   "cross_category_existing_references": [],
-  "missing_people_candidates": [],
+  "missing_people_candidates": [
+    {
+      "id": "eva_provemottak_og_sporbarhet_vitenskap_assistent_lab",
+      "name": "eva_provemottak_og_sporbarhet_vitenskap_assistent_lab",
+      "category": "vitenskap",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/vitenskap/vitenskap_assistent_og_laboratorium.json"
+      ],
+      "scenario_roles": [
+        "vitenskap_assistent_og_laboratorium"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "henrik_kvalitet_avvik_og_handoff_vitenskap_assistent_lab",
+      "name": "henrik_kvalitet_avvik_og_handoff_vitenskap_assistent_lab",
+      "category": "vitenskap",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/vitenskap/vitenskap_assistent_og_laboratorium.json"
+      ],
+      "scenario_roles": [
+        "vitenskap_assistent_og_laboratorium"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "malik_instrument_hms_og_biosikkerhet_vitenskap_assistent_lab",
+      "name": "malik_instrument_hms_og_biosikkerhet_vitenskap_assistent_lab",
+      "category": "vitenskap",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/vitenskap/vitenskap_assistent_og_laboratorium.json"
+      ],
+      "scenario_roles": [
+        "vitenskap_assistent_og_laboratorium"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "nora_data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+      "name": "nora_data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+      "category": "vitenskap",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/vitenskap/vitenskap_assistent_og_laboratorium.json"
+      ],
+      "scenario_roles": [
+        "vitenskap_assistent_og_laboratorium"
+      ],
+      "verification_required": true
+    }
+  ],
   "roles": [
+    {
+      "role_id": "vitenskap_assistent_og_laboratorium",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "title": "Vitenskap – assistent og laboratorium",
+      "source": "data/Civication/roleModels/vitenskap/vitenskap_assistent_og_laboratorium.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [
+          "per_tommy_fjeldheim"
+        ],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "laboratorium"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 1,
+        "contextual": 28,
+        "excluded": 0
+      }
+    },
     {
       "role_id": "vitenskap_dekan",
       "role_scope": "dekan",
