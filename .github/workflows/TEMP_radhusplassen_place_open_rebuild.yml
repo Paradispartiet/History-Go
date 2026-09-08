@@ -28,7 +28,7 @@ jobs:
           npm run place-open:build -- --id radhusplassen
           npm run quiz:context -- --category by --target radhusplassen --output data/quiz/production_context/by/radhusplassen.json
           changed="$(git diff --name-only | grep -v '^\.github/workflows/TEMP_radhusplassen_place_open_rebuild.yml$' | sort)"
-          expected="$(printf '%s\n' 'data/quiz/production_context/by/radhusplassen.json' 'data/runtime/place-open/radhusplassen.json' | sort)"
+          expected="$(printf '%s\n' 'data/quiz/production_context/by/radhusplassen.json' 'data/runtime/lesespor-all.json' 'data/runtime/place-open/radhusplassen.json' | sort)"
           printf 'Generated changes:\n%s\n' "$changed"
           test "$changed" = "$expected"
       - name: Validate focused contracts
@@ -49,7 +49,8 @@ jobs:
           git add -A
           test ! -e .github/workflows/TEMP_radhusplassen_place_open_rebuild.yml
           git diff --cached --name-only | grep -qx 'data/quiz/production_context/by/radhusplassen.json'
+          git diff --cached --name-only | grep -qx 'data/runtime/lesespor-all.json'
           git diff --cached --name-only | grep -qx 'data/runtime/place-open/radhusplassen.json'
-          test "$(git diff --cached --name-only | wc -l)" -eq 3
+          test "$(git diff --cached --name-only | wc -l)" -eq 4
           git commit -m 'Refresh Rådhusplassen derived production context'
           git push origin HEAD:refs/heads/agent/radhusplassen-materialize-20260908
