@@ -44,12 +44,12 @@ try {
       const box = element => { const rect = element.getBoundingClientRect(); return { x:rect.x, y:rect.y, width:rect.width, height:rect.height }; };
       const gridElement = document.querySelector(".pc-icons-quad");
       const style = getComputedStyle(gridElement);
-      return { people:box(document.getElementById("pcPeopleIcon")), objects:box(document.getElementById("pcObjectsIcon")), brands:box(document.getElementById("pcBrandsIcon")), related:box(document.getElementById("pcCategoryCollectionIcon")), grid:box(gridElement), columns:style.gridTemplateColumns, rows:style.gridTemplateRows };
+      return { people:box(document.getElementById("pcPeopleIcon")), objects:box(document.getElementById("pcObjectsIcon")), brands:box(document.getElementById("pcBrandsIcon")), category:box(document.getElementById("pcCategoryCollectionIcon")), grid:box(gridElement), columns:style.gridTemplateColumns, rows:style.gridTemplateRows };
     });
     assert.ok(Math.abs(geometry.people.width - geometry.people.height) < 2);
     assert.ok(geometry.objects.width > geometry.objects.height);
     assert.ok(geometry.brands.width > geometry.brands.height);
-    assert.ok(geometry.related.width > geometry.related.height);
+    assert.ok(geometry.category.width > geometry.category.height);
     assert.equal(geometry.columns.split(" ").filter(Boolean).length, 2);
     assert.equal(geometry.rows.split(" ").filter(Boolean).length, 2);
     assert.ok(geometry.grid.width >= expectedWidth);
@@ -60,8 +60,8 @@ try {
   await page.waitForFunction(() => window.__lastPopup?.kind === "objects");
   assert.equal(await page.locator("#capture [data-visual-round-item]").count(), 4);
   await page.locator("#pcCategoryCollectionIcon").click();
-  await page.waitForFunction(() => window.__lastPopup?.kind === "related");
-  assert.equal(await page.locator("#capture [data-visual-round-item]").count(), 4);
+  await page.waitForFunction(() => window.__lastPopup?.kind === "structures");
+  assert.equal(await page.locator("#capture [data-visual-round-item]").count(), 1);
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.reload({ waitUntil: "networkidle" });
