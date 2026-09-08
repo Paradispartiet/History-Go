@@ -7,6 +7,7 @@ on:
     paths:
       - scripts/TEMP_materialize_vitenskap_forskning_prerequisites.mjs
       - scripts/TEMP_register_vitenskap_forskning_role_model_manifest.mjs
+      - scripts/TEMP_uniquify_vitenskap_forskning_mail_choices.mjs
       - .github/workflows/TEMP-civication-vitenskap-forskning-prerequisites.yml
 
 permissions:
@@ -43,8 +44,11 @@ jobs:
         run: |
           node --check scripts/TEMP_materialize_vitenskap_forskning_prerequisites.mjs
           node --check scripts/TEMP_register_vitenskap_forskning_role_model_manifest.mjs
+          node --check scripts/TEMP_uniquify_vitenskap_forskning_mail_choices.mjs
       - name: Materialize
         run: node scripts/TEMP_materialize_vitenskap_forskning_prerequisites.mjs
+      - name: Uniquify mail choice labels
+        run: node scripts/TEMP_uniquify_vitenskap_forskning_mail_choices.mjs
       - name: Register role model in canonical manifest
         run: node scripts/TEMP_register_vitenskap_forskning_role_model_manifest.mjs
       - name: Generate canonical derived surfaces
@@ -144,6 +148,7 @@ jobs:
           set -euo pipefail
           rm -f scripts/TEMP_materialize_vitenskap_forskning_prerequisites.mjs
           rm -f scripts/TEMP_register_vitenskap_forskning_role_model_manifest.mjs
+          rm -f scripts/TEMP_uniquify_vitenskap_forskning_mail_choices.mjs
           rm -f .github/workflows/TEMP-civication-vitenskap-forskning-prerequisites.yml
           git diff --check
           git add -A
