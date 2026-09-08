@@ -89,6 +89,7 @@ jobs:
           for(const [k,v] of Object.entries(report.byCategory||{})) s.byCategory[k]={total:v.total,valid:v.local+v.remote,optional:v.optional,missing:v.missing,invalid:v.invalid};
           fs.writeFileSync(p,JSON.stringify(s,null,2)+'\n');
           NODE
+          node scripts/build-quiz-production-context.mjs --category by --target radhusplassen --output data/quiz/production_context/by/radhusplassen.json
       - name: Reconcile epoch contract expectations to regenerated canonical index
         run: |
           set -euxo pipefail
