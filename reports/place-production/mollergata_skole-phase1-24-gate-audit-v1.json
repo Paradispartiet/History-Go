@@ -2,7 +2,7 @@
   "schema": "history_go_phase1_24_quality_gate_v1",
   "place_id": "mollergata_skole",
   "verified_at": "2026-09-08",
-  "status": "PENDING_FINAL_QA",
+  "status": "PASS",
   "null_measurement": {
     "existing_place": true,
     "coordinate_changed": false,
@@ -23,9 +23,19 @@
     "coverage_percent": 100
   },
   "manual_image_review": {
-    "status": "PENDING",
-    "reviewed_assets": [],
-    "note": "Fylles etter visuell inspeksjon."
+    "status": "PASS",
+    "reviewed_assets": [
+      "bilder/places/mollergata_skole.webp",
+      "bilder/places/mollergata_skole_front_portrait.webp",
+      "bilder/QuizCards/Møllergata skole.webp",
+      "bilder/kort/brands/oslo_skolemuseum.webp",
+      "bilder/kort/objects/mollergata_skole_blaaskilt.webp",
+      "bilder/kort/objects/oslo_skolemuseum_skolepulter.webp",
+      "bilder/kort/historical_events/mollergata_skole_apning_1861.webp",
+      "bilder/kort/historical_events/mollergata_skole_utvidelse_1933.webp",
+      "bilder/kort/historical_events/oslo_skolemuseum_apning_2000.webp"
+    ],
+    "note": "Alle sted-, samlings-, hendelses- og quizbilder er kontrollert i faktisk utsnitt; identitet, lesbarhet og motivdekning er godkjent."
   },
   "quality_score": {
     "correctness_and_evidence": {
@@ -42,7 +52,7 @@
     },
     "technical_integrity": {
       "score": 4,
-      "note": "Avventer full lokal kontroll og browser-QA."
+      "note": "Kjerneindekser, målrettede rendertester og alle stedsauditer er grønne på rebased head."
     },
     "safety_and_responsibility": {
       "score": 5,
@@ -50,10 +60,10 @@
     },
     "maintainability_and_auditability": {
       "score": 4,
-      "note": "Kilder, media og holdbacks er sporbare; avventer endelig QA."
+      "note": "Kilder, media, genereringsverktøy og holdbacks er permanent sporbare."
     },
     "total": 28,
     "critical_findings": 0,
-    "unresolved_blockers": 1
+    "unresolved_blockers": 0
   }
 }

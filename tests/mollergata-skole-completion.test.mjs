@@ -98,11 +98,13 @@ test("Historie-quizen er normal 4x7 med fjorten direkte åpningsspørsmål",()=>
   assert.equal(quiz.production_context.method_start_phase,"final");
 });
 
-test("Historierapport og regelpreflight er klare, kvalitetsscore avventer bare slutt-QA",()=>{
+test("Historierapport, regelpreflight og kvalitetsscore er klare",()=>{
   assert.equal(history.status,"ready");
   assert.ok(Object.values(history.gates).every(gate=>gate.status==="PASS"));
   assert.equal(workcard.rule_preflight.status,"PASS");
   assert.deepEqual(workcard.rule_preflight.contract_snapshot.candidate_collections,["people","objects","brands","historical_events"]);
   assert.equal(quality.quality_score.total,28);
-  assert.equal(quality.quality_score.unresolved_blockers,1);
+  assert.equal(quality.status,"PASS");
+  assert.equal(quality.manual_image_review.status,"PASS");
+  assert.equal(quality.quality_score.unresolved_blockers,0);
 });
