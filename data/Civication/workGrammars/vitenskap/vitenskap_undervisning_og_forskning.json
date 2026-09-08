@@ -1,1 +1,163 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"vitenskap","role_scope":"vitenskap_undervisning_og_forskning","source":{"evidence":"data/Civication/vitenskapCareerLifeEvidence.json"},"badge_binding":{"badge_id":"vitenskap","badge_titles":["Førsteamanuensis","Professor"]},"task_families":["forskningsledet_undervisning","selvstendig_forskning","student_og_phd_veiledning","vurdering_og_eksamen","faglig_kvalitetsarbeid"],"work_loops":[{"id":"semester","steps":["planlegg","undervis","veiled","vurder","evaluer","forbedre"]},{"id":"akademisk_arbeid","steps":["prioriter","forsk","undervis","formidle","dokumenter","revider"]}],"practice_stories":[{"id":"s1","setup":"En student ber om forhåndsløfte om karakter.","good":"Forklar vurderingskriterier og behold uavhengig sensur.","bad":"Lov en karakter hvis studenten følger rådene dine."},{"id":"s2","setup":"En samarbeidspartner ønsker å bruke studentdata i en publikasjon.","good":"Avklar samtykke, rettigheter og kreditering før bruk.","bad":"Bruk materialet fordi det ble laget i et instituttprosjekt."},{"id":"s3","setup":"Undervisning kolliderer med en forskningsfrist.","good":"Reprioriter åpent og ivareta begge forpliktelser gjennom plan og delegasjon innen mandat.","bad":"Avlys studentoppfølging uten alternativ."},{"id":"s4","setup":"En kandidat du kjenner godt skal vurderes.","good":"Vurder habilitet og trekk deg ved reell konflikt.","bad":"Fortsett fordi du mener du kan være objektiv."},{"id":"s5","setup":"Ny forskning utfordrer etablert pensum.","good":"Oppdater undervisningen og synliggjør evidensnivå og faglig uenighet.","bad":"Behold pensum uendret for å unngå kompleksitet."}],"quality_axes":["faglig_presisjon","undervisningskvalitet","veiledningskvalitet","habilitet","forskningsintegritet","studentrettigheter"],"authority_boundary":{"may_not":["garantere_karakter_eller_opprykk_uten_formell_prosess","bruke_studentarbeid_uten_korrekt_kreditering_eller_samtykke","overstyre_habilitets_og_klageregler","presentere_personlig_faglig_preferanse_som_eneste_tillatte_konklusjon"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_undervisning_og_forskning",
+  "source": {
+    "badge_file": "data/badges/vitenskap.json",
+    "badge_id": "vitenskap",
+    "evidence": "data/Civication/vitenskapCareerLifeEvidence.json"
+  },
+  "badge_binding": {
+    "badge_id": "vitenskap",
+    "badge_titles": [
+      "Førsteamanuensis",
+      "Professor"
+    ]
+  },
+  "task_families": [
+    "forskningsledet_undervisning_og_emnedesign",
+    "selvstendig_forskning_data_metode_og_reproduserbarhet",
+    "student_og_phd_veiledning",
+    "vurdering_eksamen_habilitet_og_klage",
+    "kreditering_forfatterskap_og_publisering",
+    "handoff_venting_og_bounded_rework"
+  ],
+  "work_loops": [
+    {
+      "id": "akademisk_arbeidsdag",
+      "steps": [
+        "registrer_undervisnings_og_forskningsforpliktelser",
+        "prioriter_synlig",
+        "undervis_eller_forsk",
+        "veiled_uten_a_overta",
+        "vurder_bare_nar_oppnevnt_og_habil",
+        "dokumenter_usikkerhet_og_rettigheter",
+        "handoff_eller_bounded_rework"
+      ]
+    },
+    {
+      "id": "forskningsledet_emnesyklus",
+      "steps": [
+        "avklar_laringsmal_og_evidensniva",
+        "oppdater_pensum_og_undervisningsdesign",
+        "koble_forskning_uten_a_overdrive_funn",
+        "gjennomfor_og_samle_kvalitetssignaler",
+        "vurder_og_gi_tilbakemelding_med_habilitet",
+        "revider_emnet_sporbart"
+      ]
+    },
+    {
+      "id": "veiledning_og_vurdering",
+      "steps": [
+        "avklar_rolle_og_forventninger",
+        "beskytt_studentens_selvstendighet",
+        "avklar_habilitet_og_rettigheter",
+        "gi_sporbar_faglig_tilbakemelding",
+        "skill_veiledning_fra_sensur_og_klage",
+        "overlever_apne_sporsmal_og_avtaler"
+      ]
+    }
+  ],
+  "practice_stories": [
+    {
+      "id": "s1",
+      "setup": "Ny forskning utfordrer et sentralt punkt i pensum rett før undervisningsstart.",
+      "good": "Oppdater materialet, vis evidensstyrke og faglig uenighet og forklar hva som fortsatt er usikkert.",
+      "bad": "Behold en enklere gammel fasit fordi den er lettere å undervise."
+    },
+    {
+      "id": "s2",
+      "setup": "En student ber om et forhåndsløfte om karakter etter omfattende veiledning.",
+      "good": "Forklar kriteriene og skill veiledning fra uavhengig vurdering.",
+      "bad": "Lov at studenten vil få en bestemt karakter dersom rådene følges."
+    },
+    {
+      "id": "s3",
+      "setup": "Studentdata gir grunnlag for en attraktiv publikasjon.",
+      "good": "Avklar samtykke, rettigheter, faktisk bidrag og kreditering før materialet brukes.",
+      "bad": "Behandle materialet som forskningsgruppens fordi det ble produsert under veiledning."
+    },
+    {
+      "id": "s4",
+      "setup": "En nær samarbeidspartner skal vurderes i en formell akademisk sammenheng.",
+      "good": "Avklar habilitet og trekk deg eller eskaler når uavhengighet ikke kan forsvares.",
+      "bad": "Fortsett fordi faglig senioritet antas å nøytralisere relasjonen."
+    },
+    {
+      "id": "s5",
+      "setup": "Undervisning kolliderer med en forskningsfrist.",
+      "good": "Reprioriter synlig, beskytt avtalte studentforpliktelser og gjør venting/handoff eksplisitt.",
+      "bad": "Avlys oppfølging uten alternativ og skjul at planen ikke har kapasitet."
+    }
+  ],
+  "quality_axes": [
+    "faglig_presisjon",
+    "forskningsledet_undervisning",
+    "studentens_selvstendighet",
+    "vurderingskvalitet",
+    "habilitet_og_likebehandling",
+    "forskningsintegritet_og_reproduserbarhet",
+    "kreditering_og_rettigheter",
+    "myndighetsklarhet"
+  ],
+  "authority_boundary": {
+    "may": [
+      "planlegge og gjennomføre forskningsledet undervisning innen faktisk ansettelse, emneansvar, læringsmål og gjeldende program- og kvalitetsrammer",
+      "veilede studenter og doktorgradskandidater innen avtalt rolle samtidig som studentens selvstendighet, rettigheter, kreditering og prosjektgrenser beskyttes",
+      "utføre selvstendig forskning, velge og begrunne metode og rapportere usikkerhet innen faktisk prosjektmandat, tilgang og nødvendige etikk-, personvern-, sikkerhets- og rettighetsgodkjenninger",
+      "vurdere studentarbeid når rollen faktisk er oppnevnt og habil, med kriterier, sensurspor, konfidensialitet og klageordning bevart",
+      "oppdatere pensum og undervisning når evidens eller faglig uenighet endres, og gjøre styrken i kunnskapsgrunnlaget eksplisitt"
+    ],
+    "may_not": [
+      "garantere karakter, opptak, stilling, opprykk eller annet formelt utfall uten den prosessen og myndigheten som faktisk gjelder",
+      "bruke studentarbeid, data, tekst eller ideer i forskning eller publisering uten korrekt samtykke, rettighetsavklaring, kreditering og selvstendig bidragsvurdering",
+      "vurdere en kandidat ved reell habilitetskonflikt eller overstyre sensur-, klage-, etikk-, personvern-, sikkerhets- eller rettighetsprosesser på grunn av senioritet eller tidspress",
+      "presentere personlig faglig preferanse, etablert pensum eller professorstatus som eneste tillatte konklusjon når evidensen er usikker eller faglig uenighet er legitim",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, publikasjonsprestisje, nettverk eller tittelen Professor som erstatning for academic_qualification_and_employment, dokumentert evidens, faktisk oppnevning eller delegert myndighet"
+    ]
+  },
+  "role_id": "vitenskap_undervisning_og_forskning",
+  "work_world": "Selvstendig forskningsarbeid der spørsmål, oppdragsgrense, design, data, metode, analyse, usikkerhet, reproduserbarhet, etikk, publisering og handoff holdes i ett etterprøvbart og korrigerbart spor.",
+  "pressure_axes": [
+    "oppdragslojalitet_vs_forskningsuavhengighet",
+    "fremdrift_vs_reproduserbarhet",
+    "publisering_vs_usikkerhet",
+    "apent_data_vs_personvern_rettigheter_og_sikkerhet",
+    "senioritet_vs_etterprovbarhet",
+    "status_vs_faktisk_kvalifikasjon_og_mandat"
+  ],
+  "knowledge_dependencies": [
+    {
+      "badge_id": "vitenskap",
+      "purpose": "History Go-kunnskap kan gi historisk og stedlig kontekst om universiteter, fagtradisjoner, vitenskapshistorie, utdanningsreformer, sensurordninger og forholdet mellom forskning, undervisning og samfunn. Den kan hjelpe spilleren å stille bedre spørsmål om hvorfor dagens faglige og institusjonelle grenser finnes. Den kan aldri erstatte academic_qualification_and_employment, faktisk emne-/veilednings-/sensoroppnevning, dagens pensumvedtak, studentdata, vurderingsgrunnlag, habilitetsvurdering, klageprosess, etikk-/personvern-/sikkerhetsgrunnlag, forskningsdata, vitenskapelig evidens, samtykke, rettigheter eller formell godkjenning."
+    }
+  ],
+  "persistent_work_product": {
+    "id": "undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg",
+    "required_fields": [
+      "emne_laringsmal_pensum_og_evidensniva",
+      "undervisningsforpliktelser_og_tidsbindinger",
+      "forskningssporsmal_data_metode_og_reproduserbarhet",
+      "veiledningsavtale_studentens_selvstendighet_og_grenser",
+      "vurderingskriterier_sensurrolle_og_habilitet",
+      "studentrettigheter_konfidensialitet_og_klagevei",
+      "kreditering_forfatterskap_samtykke_og_rettigheter",
+      "etikk_personvern_sikkerhet_og_deling",
+      "faglig_uenighet_usikkerhet_og_begrensninger",
+      "ventestatus_avhengigheter_og_beslutningseier",
+      "handoff_og_bounded_rework"
+    ]
+  },
+  "daily_rhythm": [
+    "forpliktelser_og_prioritering",
+    "undervisning_eller_forskningsarbeid",
+    "veiledning_og_relajonell_avklaring",
+    "vurdering_kvalitetskontroll_eller_metodekontroll",
+    "dokumentasjon_venting_handoff_og_etterspill"
+  ],
+  "handoff_rules": [
+    "Navngi oppgaveeier, undervisnings-/forskningsforpliktelser, sensor- eller veiledningsrolle, habilitet, åpne data-/etikk-/rettighetsspørsmål, studentavtaler, usikkerhet, ventestatus og neste kontrollpunkt.",
+    "Bounded rework gjenåpner bare berørte deler av emne, analyse, veiledning eller vurderingsspor og bevarer tidligere begrunnelser og versjoner."
+  ]
+}

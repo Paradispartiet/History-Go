@@ -727,7 +727,16 @@
     "data/Civication/mailFamilies/vitenskap/micro/vitenskap_institusjonsledelse_micro.json",
     "data/Civication/mailFamilies/vitenskap/followup/vitenskap_institusjonsledelse_followup.json",
     "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_institusjonsledelse_knowledge.json",
-    "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_institusjonsledelse_consequence.json"
+    "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_institusjonsledelse_consequence.json",
+    "data/Civication/mailFamilies/vitenskap/job/vitenskap_undervisning_og_forskning_job.json",
+    "data/Civication/mailFamilies/vitenskap/people/vitenskap_undervisning_og_forskning_people.json",
+    "data/Civication/mailFamilies/vitenskap/story/vitenskap_undervisning_og_forskning_story.json",
+    "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_undervisning_og_forskning_conflict.json",
+    "data/Civication/mailFamilies/vitenskap/event/vitenskap_undervisning_og_forskning_event.json",
+    "data/Civication/mailFamilies/vitenskap/micro/vitenskap_undervisning_og_forskning_micro.json",
+    "data/Civication/mailFamilies/vitenskap/followup/vitenskap_undervisning_og_forskning_followup.json",
+    "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_undervisning_og_forskning_knowledge.json",
+    "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_undervisning_og_forskning_consequence.json"
   ],
   "compiler_version": 1,
   "entries": [
@@ -282390,6 +282399,2016 @@
       "source_hash": "fa3e71eb21d72435028e7430a43157f3af5543c1569eab8d8ddc13cf94675e86",
       "source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_institusjonsledelse_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar conflict_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (conflict_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei conflict_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (conflict_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Ida",
+        "id": "vitenskap_undervisning_og_forskning_conflict_001",
+        "mail_family": "vitenskap_undervisning_og_forskning_oppdragsgiverpress_og_uavhengighet",
+        "mail_type": "conflict",
+        "narrative_arc": "conflict",
+        "people_ref": "ida_undervisningsdesign_og_emnekvalitet_vitenskap_undervisning_og_forskning",
+        "phase": "forenoon",
+        "place_id": "emneplan_pensum_laeringsmal_og_forskningskobling_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 138,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_undervisning_og_forskning_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: publiseringspress kolliderer med undervisningsansvar og habil vurdering.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "Publiseringspress kolliderer med undervisningsansvar og habil vurdering",
+        "summary": "Publiseringspress kolliderer med undervisningsansvar og habil vurdering. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_conflict_001",
+      "mail_type": "conflict",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar conflict_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (conflict_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei conflict_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (conflict_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: publiseringspress kolliderer med undervisningsansvar og habil vurdering.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "Publiseringspress kolliderer med undervisningsansvar og habil vurdering",
+          "summary": "Publiseringspress kolliderer med undervisningsansvar og habil vurdering. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_conflict_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "emneplan_pensum_laeringsmal_og_forskningskobling_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_conflict_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_undervisning_og_forskning_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_conflict_001",
+        "version": 1
+      },
+      "source_hash": "cfd8a9f2f39fa50b02fc734b8a0ffa41d114ad244338b67de75e299d061e8765",
+      "source_path": "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_undervisning_og_forskning_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar consequence_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (consequence_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei consequence_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (consequence_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Amir",
+        "id": "vitenskap_undervisning_og_forskning_consequence_001",
+        "mail_family": "vitenskap_undervisning_og_forskning_etterspill_reproduserbarhet_og_tillit",
+        "mail_type": "consequence",
+        "narrative_arc": "consequence",
+        "people_ref": "amir_forskningsmetode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+        "phase": "forenoon",
+        "place_id": "forskning_data_metode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 144,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_undervisning_og_forskning_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: etterspill etter et valg mellom statusdrevet snarvei og etterprøvbar akademisk praksis.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "Etterspill etter et valg mellom statusdrevet snarvei og etterprøvbar akademisk praksis",
+        "summary": "Etterspill etter et valg mellom statusdrevet snarvei og etterprøvbar akademisk praksis. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_consequence_001",
+      "mail_type": "consequence",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar consequence_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (consequence_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei consequence_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (consequence_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: etterspill etter et valg mellom statusdrevet snarvei og etterprøvbar akademisk praksis.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "Etterspill etter et valg mellom statusdrevet snarvei og etterprøvbar akademisk praksis",
+          "summary": "Etterspill etter et valg mellom statusdrevet snarvei og etterprøvbar akademisk praksis. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_consequence_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskning_data_metode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_consequence_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_undervisning_og_forskning_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_consequence_001",
+        "version": 1
+      },
+      "source_hash": "5c258cb97d770b470e077f382c04bc5214d0a864253555d9ceb5aef27646ec71",
+      "source_path": "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_undervisning_og_forskning_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar event_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (event_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei event_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (event_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Ragnhild",
+        "id": "vitenskap_undervisning_og_forskning_event_001",
+        "mail_family": "vitenskap_undervisning_og_forskning_metode_data_eller_formalsendring",
+        "mail_type": "event",
+        "narrative_arc": "event",
+        "people_ref": "ragnhild_vurdering_habilitet_og_studentrettigheter_vitenskap_undervisning_og_forskning",
+        "phase": "forenoon",
+        "place_id": "vurdering_eksamen_habilitet_klage_og_studentrettigheter_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 140,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/event/vitenskap_undervisning_og_forskning_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: en plutselig kapasitetsendring treffer undervisning, sensur og forskningsleveranse samtidig.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "En plutselig kapasitetsendring treffer undervisning, sensur og forskningsleveranse samtidig",
+        "summary": "En plutselig kapasitetsendring treffer undervisning, sensur og forskningsleveranse samtidig. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_event_001",
+      "mail_type": "event",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar event_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (event_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei event_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (event_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: en plutselig kapasitetsendring treffer undervisning, sensur og forskningsleveranse samtidig.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "En plutselig kapasitetsendring treffer undervisning, sensur og forskningsleveranse samtidig",
+          "summary": "En plutselig kapasitetsendring treffer undervisning, sensur og forskningsleveranse samtidig. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_event_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vurdering_eksamen_habilitet_klage_og_studentrettigheter_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_event_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/event/vitenskap_undervisning_og_forskning_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_event_001",
+        "version": 1
+      },
+      "source_hash": "1fd6cb88aece4816ad3983aaf963db71dc7fa0c68ce8820609f7ec51dcc885ae",
+      "source_path": "data/Civication/mailFamilies/vitenskap/event/vitenskap_undervisning_og_forskning_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar followup_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (followup_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei followup_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (followup_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Maja",
+        "id": "vitenskap_undervisning_og_forskning_followup_001",
+        "mail_family": "vitenskap_undervisning_og_forskning_fagfelle_handoff_og_bounded_rework",
+        "mail_type": "followup",
+        "narrative_arc": "followup",
+        "people_ref": "maja_veiledning_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+        "phase": "forenoon",
+        "place_id": "veiledning_studentarbeid_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 142,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/followup/vitenskap_undervisning_og_forskning_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: overlever veiledning og analyse med bounded rework og åpne rettigheter synlig.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "Overlever veiledning og analyse med bounded rework og åpne rettigheter synlig",
+        "summary": "Overlever veiledning og analyse med bounded rework og åpne rettigheter synlig. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_followup_001",
+      "mail_type": "followup",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar followup_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (followup_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei followup_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (followup_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: overlever veiledning og analyse med bounded rework og åpne rettigheter synlig.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "Overlever veiledning og analyse med bounded rework og åpne rettigheter synlig",
+          "summary": "Overlever veiledning og analyse med bounded rework og åpne rettigheter synlig. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_followup_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "veiledning_studentarbeid_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_followup_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/followup/vitenskap_undervisning_og_forskning_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_followup_001",
+        "version": 1
+      },
+      "source_hash": "0a0e0d5edf8fa1bb1fa6435bc7fb5ebba2a5f263f5b639a7c273139e44d01f94",
+      "source_path": "data/Civication/mailFamilies/vitenskap/followup/vitenskap_undervisning_og_forskning_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (job_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei job_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (job_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Ida",
+        "id": "vitenskap_undervisning_og_forskning_job_001",
+        "mail_family": "vitenskap_undervisning_og_forskning_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "ida_undervisningsdesign_og_emnekvalitet_vitenskap_undervisning_og_forskning",
+        "phase": "forenoon",
+        "place_id": "emneplan_pensum_laeringsmal_og_forskningskobling_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 130,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_undervisning_og_forskning_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: prioriter undervisningsuke mot analysefrist uten skjult tap av studentoppfølging.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "Prioriter undervisningsuke mot analysefrist uten skjult tap av studentoppfølging",
+        "summary": "Prioriter undervisningsuke mot analysefrist uten skjult tap av studentoppfølging. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_job_001",
+      "mail_type": "job",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (job_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei job_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (job_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: prioriter undervisningsuke mot analysefrist uten skjult tap av studentoppfølging.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "Prioriter undervisningsuke mot analysefrist uten skjult tap av studentoppfølging",
+          "summary": "Prioriter undervisningsuke mot analysefrist uten skjult tap av studentoppfølging. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_job_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "emneplan_pensum_laeringsmal_og_forskningskobling_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_job_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_undervisning_og_forskning_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_job_001",
+        "version": 1
+      },
+      "source_hash": "e0501c7a2b29adb6abb18f018a5bde0dd6c8609e1ab57cbb079ecfb4baa9a0be",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_undervisning_og_forskning_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_2",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (job_2). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei job_2",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (job_2). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Amir",
+        "id": "vitenskap_undervisning_og_forskning_job_002",
+        "mail_family": "vitenskap_undervisning_og_forskning_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "amir_forskningsmetode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+        "phase": "afternoon",
+        "place_id": "forskning_data_metode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 131,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_undervisning_og_forskning_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: oppdater et emne når ny evidens utfordrer etablert pensum.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "Oppdater et emne når ny evidens utfordrer etablert pensum",
+        "summary": "Oppdater et emne når ny evidens utfordrer etablert pensum. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_job_002",
+      "mail_type": "job",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_2",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (job_2). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei job_2",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (job_2). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: oppdater et emne når ny evidens utfordrer etablert pensum.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "Oppdater et emne når ny evidens utfordrer etablert pensum",
+          "summary": "Oppdater et emne når ny evidens utfordrer etablert pensum. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_job_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskning_data_metode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_job_002",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_undervisning_og_forskning_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_job_002",
+        "version": 1
+      },
+      "source_hash": "c6981c2d93e3fcc1995a9dd1950d3f8cd77acb816681b5cd8e818cd4a99c5226",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_undervisning_og_forskning_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_3",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (job_3). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei job_3",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (job_3). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Maja",
+        "id": "vitenskap_undervisning_og_forskning_job_003",
+        "mail_family": "vitenskap_undervisning_og_forskning_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "maja_veiledning_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+        "phase": "forenoon",
+        "place_id": "veiledning_studentarbeid_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 132,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_undervisning_og_forskning_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: veiled et prosjekt uten å overta studentens problem eller konklusjon.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "Veiled et prosjekt uten å overta studentens problem eller konklusjon",
+        "summary": "Veiled et prosjekt uten å overta studentens problem eller konklusjon. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_job_003",
+      "mail_type": "job",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_3",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (job_3). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei job_3",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (job_3). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: veiled et prosjekt uten å overta studentens problem eller konklusjon.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "Veiled et prosjekt uten å overta studentens problem eller konklusjon",
+          "summary": "Veiled et prosjekt uten å overta studentens problem eller konklusjon. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_job_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "veiledning_studentarbeid_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_job_003",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_undervisning_og_forskning_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_job_003",
+        "version": 1
+      },
+      "source_hash": "d7f030b18a839a4bbc23648323e39ce0d079a67e804196c4c3be043ffcd59cf9",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_undervisning_og_forskning_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_4",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (job_4). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei job_4",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (job_4). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Ragnhild",
+        "id": "vitenskap_undervisning_og_forskning_job_004",
+        "mail_family": "vitenskap_undervisning_og_forskning_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "ragnhild_vurdering_habilitet_og_studentrettigheter_vitenskap_undervisning_og_forskning",
+        "phase": "afternoon",
+        "place_id": "vurdering_eksamen_habilitet_klage_og_studentrettigheter_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 133,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_undervisning_og_forskning_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: fullfør vurderings- og forskningshandoff med habilitet og usikkerhet synlig.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "Fullfør vurderings- og forskningshandoff med habilitet og usikkerhet synlig",
+        "summary": "Fullfør vurderings- og forskningshandoff med habilitet og usikkerhet synlig. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_job_004",
+      "mail_type": "job",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar job_4",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (job_4). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei job_4",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (job_4). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: fullfør vurderings- og forskningshandoff med habilitet og usikkerhet synlig.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "Fullfør vurderings- og forskningshandoff med habilitet og usikkerhet synlig",
+          "summary": "Fullfør vurderings- og forskningshandoff med habilitet og usikkerhet synlig. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_job_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vurdering_eksamen_habilitet_klage_og_studentrettigheter_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_job_004",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_undervisning_og_forskning_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_job_004",
+        "version": 1
+      },
+      "source_hash": "e37a6beea650fc9afdc5f524bae7bce48192bd8c80793b579675edc6f4e9378e",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_undervisning_og_forskning_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar knowledge_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (knowledge_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei knowledge_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (knowledge_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Ida",
+        "id": "vitenskap_undervisning_og_forskning_knowledge_001",
+        "mail_family": "vitenskap_undervisning_og_forskning_history_go_vitenskapspraksis",
+        "mail_type": "knowledge",
+        "narrative_arc": "knowledge",
+        "people_ref": "ida_undervisningsdesign_og_emnekvalitet_vitenskap_undervisning_og_forskning",
+        "phase": "forenoon",
+        "place_id": "emneplan_pensum_laeringsmal_og_forskningskobling_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 143,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_undervisning_og_forskning_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: bruk universitetshistorie til bedre spørsmål uten å gjøre historisk kontekst til dagens myndighet.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "Bruk universitetshistorie til bedre spørsmål uten å gjøre historisk kontekst til dagens myndighet",
+        "summary": "Bruk universitetshistorie til bedre spørsmål uten å gjøre historisk kontekst til dagens myndighet. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_knowledge_001",
+      "mail_type": "knowledge",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar knowledge_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (knowledge_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei knowledge_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (knowledge_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: bruk universitetshistorie til bedre spørsmål uten å gjøre historisk kontekst til dagens myndighet.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "Bruk universitetshistorie til bedre spørsmål uten å gjøre historisk kontekst til dagens myndighet",
+          "summary": "Bruk universitetshistorie til bedre spørsmål uten å gjøre historisk kontekst til dagens myndighet. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_knowledge_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "emneplan_pensum_laeringsmal_og_forskningskobling_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_knowledge_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_undervisning_og_forskning_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_knowledge_001",
+        "version": 1
+      },
+      "source_hash": "ce14f28f7703e644c9892a35492378de755000b7c1135da1f21df4b061a1c41f",
+      "source_path": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_undervisning_og_forskning_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar micro_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (micro_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei micro_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (micro_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Amir",
+        "id": "vitenskap_undervisning_og_forskning_micro_001",
+        "mail_family": "vitenskap_undervisning_og_forskning_rask_gate_og_reproduserbarhet",
+        "mail_type": "micro",
+        "narrative_arc": "micro",
+        "people_ref": "amir_forskningsmetode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+        "phase": "forenoon",
+        "place_id": "forskning_data_metode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 141,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/micro/vitenskap_undervisning_og_forskning_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: avklar habilitet og konkret sensorrolle før muntlig vurdering.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "Avklar habilitet og konkret sensorrolle før muntlig vurdering",
+        "summary": "Avklar habilitet og konkret sensorrolle før muntlig vurdering. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_micro_001",
+      "mail_type": "micro",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar micro_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (micro_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei micro_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (micro_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: avklar habilitet og konkret sensorrolle før muntlig vurdering.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "Avklar habilitet og konkret sensorrolle før muntlig vurdering",
+          "summary": "Avklar habilitet og konkret sensorrolle før muntlig vurdering. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_micro_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskning_data_metode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_micro_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/micro/vitenskap_undervisning_og_forskning_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_micro_001",
+        "version": 1
+      },
+      "source_hash": "4725ba255b7582347622c0da477644aba6c80c28e181e85aa091b0daff6a3778",
+      "source_path": "data/Civication/mailFamilies/vitenskap/micro/vitenskap_undervisning_og_forskning_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (people_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei people_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (people_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Ida",
+        "id": "vitenskap_undervisning_og_forskning_people_001",
+        "mail_family": "vitenskap_undervisning_og_forskning_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "ida_undervisningsdesign_og_emnekvalitet_vitenskap_undervisning_og_forskning",
+        "phase": "forenoon",
+        "place_id": "emneplan_pensum_laeringsmal_og_forskningskobling_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 134,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_undervisning_og_forskning_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: en student ber om et forhåndsløfte om karakter.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "En student ber om et forhåndsløfte om karakter",
+        "summary": "En student ber om et forhåndsløfte om karakter. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_people_001",
+      "mail_type": "people",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (people_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei people_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (people_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: en student ber om et forhåndsløfte om karakter.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "En student ber om et forhåndsløfte om karakter",
+          "summary": "En student ber om et forhåndsløfte om karakter. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_people_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "emneplan_pensum_laeringsmal_og_forskningskobling_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_people_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_undervisning_og_forskning_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_people_001",
+        "version": 1
+      },
+      "source_hash": "17e2755fa151f0b9caef0929fd4cbedd57b59cc42ce133164fc546c627b981d6",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_undervisning_og_forskning_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_2",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (people_2). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei people_2",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (people_2). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Amir",
+        "id": "vitenskap_undervisning_og_forskning_people_002",
+        "mail_family": "vitenskap_undervisning_og_forskning_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "amir_forskningsmetode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+        "phase": "afternoon",
+        "place_id": "forskning_data_metode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 135,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_undervisning_og_forskning_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: en medveileder vil bruke studentarbeid i en publikasjon før bidrag er avklart.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "En medveileder vil bruke studentarbeid i en publikasjon før bidrag er avklart",
+        "summary": "En medveileder vil bruke studentarbeid i en publikasjon før bidrag er avklart. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_people_002",
+      "mail_type": "people",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_2",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (people_2). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei people_2",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (people_2). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: en medveileder vil bruke studentarbeid i en publikasjon før bidrag er avklart.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "En medveileder vil bruke studentarbeid i en publikasjon før bidrag er avklart",
+          "summary": "En medveileder vil bruke studentarbeid i en publikasjon før bidrag er avklart. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_people_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskning_data_metode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_people_002",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_undervisning_og_forskning_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_people_002",
+        "version": 1
+      },
+      "source_hash": "d1b08c1bb3cc636b63f51da1e52cd6e93dce490a1309168d6180ff90c87feeae",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_undervisning_og_forskning_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_3",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (people_3). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei people_3",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (people_3). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Ragnhild",
+        "id": "vitenskap_undervisning_og_forskning_people_003",
+        "mail_family": "vitenskap_undervisning_og_forskning_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "ragnhild_vurdering_habilitet_og_studentrettigheter_vitenskap_undervisning_og_forskning",
+        "phase": "forenoon",
+        "place_id": "vurdering_eksamen_habilitet_klage_og_studentrettigheter_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 136,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_undervisning_og_forskning_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: en nær faglig samarbeidspartner dukker opp i en vurderingssituasjon.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "En nær faglig samarbeidspartner dukker opp i en vurderingssituasjon",
+        "summary": "En nær faglig samarbeidspartner dukker opp i en vurderingssituasjon. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_people_003",
+      "mail_type": "people",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_3",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (people_3). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei people_3",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (people_3). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: en nær faglig samarbeidspartner dukker opp i en vurderingssituasjon.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "En nær faglig samarbeidspartner dukker opp i en vurderingssituasjon",
+          "summary": "En nær faglig samarbeidspartner dukker opp i en vurderingssituasjon. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_people_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vurdering_eksamen_habilitet_klage_og_studentrettigheter_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_people_003",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_undervisning_og_forskning_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_people_003",
+        "version": 1
+      },
+      "source_hash": "1fcbd2e63609333482d9a05465f855ba98616cc2dafd1b12e99562f91a3bb33f",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_undervisning_og_forskning_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_4",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (people_4). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei people_4",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (people_4). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Maja",
+        "id": "vitenskap_undervisning_og_forskning_people_004",
+        "mail_family": "vitenskap_undervisning_og_forskning_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "maja_veiledning_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+        "phase": "afternoon",
+        "place_id": "veiledning_studentarbeid_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 137,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_undervisning_og_forskning_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: emneansvarlig ønsker en enklere faglig fasit enn evidensen tillater.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "Emneansvarlig ønsker en enklere faglig fasit enn evidensen tillater",
+        "summary": "Emneansvarlig ønsker en enklere faglig fasit enn evidensen tillater. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_people_004",
+      "mail_type": "people",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar people_4",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (people_4). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei people_4",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (people_4). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: emneansvarlig ønsker en enklere faglig fasit enn evidensen tillater.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "Emneansvarlig ønsker en enklere faglig fasit enn evidensen tillater",
+          "summary": "Emneansvarlig ønsker en enklere faglig fasit enn evidensen tillater. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_people_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "veiledning_studentarbeid_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_people_004",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_undervisning_og_forskning_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_people_004",
+        "version": 1
+      },
+      "source_hash": "0ec3380276eae13e04eb4b53bf849413d260b5e8423eaf1bb3620ae4b39c08f4",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_undervisning_og_forskning_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar story_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (story_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+            "tags": [
+              "studentrettigheter",
+              "faglig_integritet",
+              "myndighetsklarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei story_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (story_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+            "tags": [
+              "statusmakt",
+              "habilitetsrisiko",
+              "rettighetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+        "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+        "from": "Maja",
+        "id": "vitenskap_undervisning_og_forskning_story_001",
+        "mail_family": "vitenskap_undervisning_og_forskning_negative_funn_og_tillit",
+        "mail_type": "story",
+        "narrative_arc": "story",
+        "people_ref": "maja_veiledning_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+        "phase": "forenoon",
+        "place_id": "veiledning_studentarbeid_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+        "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+        "priority": 139,
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_undervisning_og_forskning_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: et negativt forskningsfunn forbedrer undervisningen men forsinker publikasjonen.",
+          "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+          "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+        ],
+        "subject": "Et negativt forskningsfunn forbedrer undervisningen men forsinker publikasjonen",
+        "summary": "Et negativt forskningsfunn forbedrer undervisningen men forsinker publikasjonen. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+        "task_domain": "vitenskap_undervisning_og_forskning"
+      },
+      "id": "vitenskap_undervisning_og_forskning_story_001",
+      "mail_type": "story",
+      "role_scope": "vitenskap_undervisning_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+            "id": "A",
+            "label": "Dokumenter og avklar story_1",
+            "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (story_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+            "id": "B",
+            "label": "Bruk status som snarvei story_1",
+            "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (story_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: et negativt forskningsfunn forbedrer undervisningen men forsinker publikasjonen.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "subject": "Et negativt forskningsfunn forbedrer undervisningen men forsinker publikasjonen",
+          "summary": "Et negativt forskningsfunn forbedrer undervisningen men forsinker publikasjonen. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_undervisning_og_forskning_story_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "veiledning_studentarbeid_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_undervisning_og_forskning_story_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_undervisning_og_forskning_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_undervisning_og_forskning.mail.vitenskap_undervisning_og_forskning_story_001",
+        "version": 1
+      },
+      "source_hash": "4562b93ce3f36a0791a23a4c4070da4137c9f533fba02baaae6463eed06c50a1",
+      "source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_undervisning_og_forskning_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
     }
   ],
   "ignored_source_files": [
@@ -282399,7 +284418,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "8c3486cd94d32b1138d209bedcba8b27c276552682c7faef3d1c380cd4bc29b8",
+  "registry_hash": "104ea06a1a7d278699ea9eb2c5823144ba56d83ef9f72a0d0489fbb41047bd1c",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -284412,6 +286431,23 @@
       "vitenskap_institusjonsledelse_followup_001",
       "vitenskap_institusjonsledelse_knowledge_001",
       "vitenskap_institusjonsledelse_consequence_001"
+    ],
+    "vitenskap/vitenskap_undervisning_og_forskning": [
+      "vitenskap_undervisning_og_forskning_job_001",
+      "vitenskap_undervisning_og_forskning_job_002",
+      "vitenskap_undervisning_og_forskning_job_003",
+      "vitenskap_undervisning_og_forskning_job_004",
+      "vitenskap_undervisning_og_forskning_people_001",
+      "vitenskap_undervisning_og_forskning_people_002",
+      "vitenskap_undervisning_og_forskning_people_003",
+      "vitenskap_undervisning_og_forskning_people_004",
+      "vitenskap_undervisning_og_forskning_story_001",
+      "vitenskap_undervisning_og_forskning_conflict_001",
+      "vitenskap_undervisning_og_forskning_event_001",
+      "vitenskap_undervisning_og_forskning_micro_001",
+      "vitenskap_undervisning_og_forskning_followup_001",
+      "vitenskap_undervisning_og_forskning_knowledge_001",
+      "vitenskap_undervisning_og_forskning_consequence_001"
     ]
   },
   "runtime_materialized_sources": [
@@ -284441,11 +286477,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 728,
+    "compiled_source_file_count": 737,
     "ignored_source_file_count": 1,
-    "input_file_count": 729,
-    "role_count": 86,
-    "scene_count": 1840,
+    "input_file_count": 738,
+    "role_count": 87,
+    "scene_count": 1855,
     "shadowed_duplicate_count": 0
   },
   "version": 1

@@ -1,0 +1,87 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_undervisning_og_forskning",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "vitenskap_undervisning_og_forskning_oppdragsgiverpress_og_uavhengighet",
+      "purpose": "Undervisning og forskning: Trene kapasitets- og statuspress uten å ofre studentrettigheter eller forskningsintegritet.",
+      "learning_focus": [
+        "faglig_integritet",
+        "studentrettigheter",
+        "habilitet",
+        "evidens_og_handoff"
+      ],
+      "mails": [
+        {
+          "id": "vitenskap_undervisning_og_forskning_conflict_001",
+          "mail_type": "conflict",
+          "mail_family": "vitenskap_undervisning_og_forskning_oppdragsgiverpress_og_uavhengighet",
+          "role_scope": "vitenskap_undervisning_og_forskning",
+          "phase": "forenoon",
+          "priority": 138,
+          "from": "Ida",
+          "people_ref": "ida_undervisningsdesign_og_emnekvalitet_vitenskap_undervisning_og_forskning",
+          "place_id": "emneplan_pensum_laeringsmal_og_forskningskobling_vitenskap_undervisning_og_forskning",
+          "subject": "Publiseringspress kolliderer med undervisningsansvar og habil vurdering",
+          "summary": "Publiseringspress kolliderer med undervisningsansvar og habil vurdering. Arbeidet skal løses i undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg med qualification_required, academic_qualification_and_employment, konkret rolle/oppnevning, studentens selvstendighet, vurderingshabilitet, kreditering, evidens, forskningsintegritet, venting og handoff synlig.",
+          "situation": [
+            "Den akademiske arbeidsloggen viser hvilke undervisnings-, forsknings-, veilednings- og vurderingsforpliktelser som allerede er bundet mens du skal: publiseringspress kolliderer med undervisningsansvar og habil vurdering.",
+            "Senioritet, publiseringspress, studentavhengighet eller tidsfrist gjør det fristende å la faglig status erstatte habilitet, kriterier, samtykke, kreditering, etikk eller dokumentert evidens.",
+            "Velg et grep som beskytter studentens selvstendighet og rettigheter, holder forskningspåstanden etterprøvbar og gjør venting, beslutningseier og handoff eksplisitt."
+          ],
+          "task_domain": "vitenskap_undervisning_og_forskning",
+          "competency": "forskningsledet_undervisning_veiledning_vurdering_habilitet_forskningsintegritet_og_handoff",
+          "pressure": "senioritet_publisering_tidspress_studentavhengighet_og_kapasitetskollisjon",
+          "choice_axis": "etterprovbar_akademisk_praksis_vs_statusdrevet_snarvei",
+          "consequence_axis": "studenttillit_faglig_integritet_og_korrigerbarhet_vs_favorisering_rettighetsbrudd_og_evidensrisiko",
+          "narrative_arc": "conflict",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Dokumenter og avklar conflict_1",
+              "reply": "Jeg oppdaterer undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg før neste steg (conflict_1). Jeg bekrefter academic_qualification_and_employment og den konkrete emne-, veilednings-, sensor- eller forskningsrollen; skiller veiledning fra sensur og faglig skjønn fra formell myndighet; gjør habilitet, vurderingskriterier, studentens selvstendighet, kreditering og rettigheter eksplisitte; og lar data, metode, usikkerhet og reproduserbarhet styre forskningspåstanden. Hvis kapasitet, samtykke, etikk, personvern, klagevei eller oppnevning mangler, registrerer jeg venting, navngir riktig beslutningseier og gjør en overtakbar handoff. History Go brukes kun som historisk/stedlig kontekst og kilde til bedre spørsmål, aldri som kvalifikasjon, vurderingsgrunnlag, evidens eller godkjenning.",
+              "effect": 1,
+              "tags": [
+                "studentrettigheter",
+                "faglig_integritet",
+                "myndighetsklarhet"
+              ],
+              "feedback": "Grepet holder faglig skjønn, formell vurderingsmyndighet, studentens selvstendighet, kreditering, forskningsintegritet og handoff adskilt og etterprøvbart.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruk status som snarvei conflict_1",
+              "reply": "Jeg bruker senioritet, professortittel eller tidspress som snarvei (conflict_1). Jeg lar badge og status opptre som om de beviste kvalifikasjon og konkret oppnevning, lover eller antyder et vurderingsutfall, behandler studentarbeid som tilgjengelig prosjektmateriale, hopper over habilitets- eller rettighetsavklaring og presenterer den enkleste forskningspåstanden uten full usikkerhet eller reproduksjonsspor. Det kan se effektivt ut, men gjør studentavhengighet, favorisering, krediteringsfeil og vitenskapelig risiko vanskeligere å oppdage og korrigere.",
+              "effect": -1,
+              "tags": [
+                "statusmakt",
+                "habilitetsrisiko",
+                "rettighetsrisiko"
+              ],
+              "feedback": "Snarveien gjør senioritet eller fremdrift til skjult myndighet og øker risikoen for favorisering, feil kreditering og for sterke faglige påstander.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

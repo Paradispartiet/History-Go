@@ -1,1 +1,323 @@
-{"schema":"civication_role_model_v2","version":2,"category":"vitenskap","role_scope":"vitenskap_undervisning_og_forskning","role_id":"vitenskap_undervisning_og_forskning","title":"Undervisning og forskning","source":{"evidence":"data/Civication/vitenskapCareerLifeEvidence.json"},"badge_titles":["Førsteamanuensis","Professor"],"core_narrative":["Undervisning og forskning i Civication modellerer kombinerte akademiske stillinger med selvstendig forskning, undervisning, veiledning og faglig kvalitetsansvar."],"competence_axes":["forskningsledet_undervisning","selvstendig_forskning","veiledning","faglig_vurdering","utdanningskvalitet","akademisk_integritet"],"ideal_type_problems":[{"id":"undervisning_vs_forskning","problem":"Undervisningsbehov og forskningsforpliktelser konkurrerer om samme arbeidstid."},{"id":"habilitet","problem":"En kandidat eller samarbeidspartner står nær den som skal gjøre en faglig vurdering."},{"id":"veiledningskonflikt","problem":"Studentens selvstendighet kolliderer med prosjektets leveransepress."},{"id":"pensum_og_evidens","problem":"Populært pensum bygger på svakere evidens enn nyere, vanskeligere materiale."},{"id":"faglig_uenighet","problem":"Kollegial uenighet om metode eller standard må håndteres uten å svekke uavhengig vurdering."}],"authority_boundaries":{"cannot":["garantere_karakter_eller_opprykk_uten_formell_prosess","bruke_studentarbeid_uten_korrekt_kreditering_eller_samtykke","overstyre_habilitets_og_klageregler","presentere_personlig_faglig_preferanse_som_eneste_tillatte_konklusjon"]},"notes":["Shared canonical work world for Førsteamanuensis og Professor; professorstatus krever reell kvalifikasjon og ansettelse."]}
+{
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_undervisning_og_forskning",
+  "role_id": "vitenskap_undervisning_og_forskning",
+  "title": "Undervisning og forskning",
+  "source": {
+    "badge_file": "data/badges/vitenskap.json",
+    "badge_id": "vitenskap",
+    "evidence": "data/Civication/vitenskapCareerLifeEvidence.json"
+  },
+  "badge_titles": [
+    "Førsteamanuensis",
+    "Professor"
+  ],
+  "core_narrative": [
+    "Undervisning og forskning modellerer kombinerte akademiske stillinger der forskningsledet undervisning, veiledning, vurdering og selvstendig forskning konkurrerer om tid, men må holdes sammen av sporbar evidens, habilitet, studentrettigheter, faglig uavhengighet og overtakbar dokumentasjon.",
+    "Førsteamanuensis og Professor forblir qualification_required med academic_qualification_and_employment. Badge, XP, professortittel, publikasjonsstatus eller lokal standing kan aldri etablere ansettelsen, love et vurderingsutfall eller utvide etikk-, data-, sensur- eller institusjonsmyndighet."
+  ],
+  "competence_axes": [
+    "forskningsledet_undervisning",
+    "emneplan_pensum_og_laeringsmal",
+    "selvstendig_forskning_og_reproduserbarhet",
+    "veiledning_og_studentens_selvstendighet",
+    "vurdering_sensur_og_habilitet",
+    "studentrettigheter_og_klage",
+    "forskningsetikk_personvern_og_rettigheter",
+    "kreditering_forfatterskap_og_publisering",
+    "faglig_uenighet_og_evidensniva",
+    "prioritering_venting_handoff_og_bounded_rework"
+  ],
+  "ideal_type_problems": [
+    {
+      "id": "undervisning_vs_forskning",
+      "problem": "En forskningsfrist og en kritisk undervisningsleveranse konkurrerer om samme arbeidstid, og skjult nedprioritering av studentoppfølging er den enkleste snarveien."
+    },
+    {
+      "id": "habilitet_i_vurdering",
+      "problem": "En student eller kandidat står faglig eller personlig nær den som er bedt om å vurdere arbeidet."
+    },
+    {
+      "id": "studentarbeid_i_publikasjon",
+      "problem": "Studentens data eller tekst er verdifull for en publikasjon, men bidrag, samtykke, kreditering og prosjektgrenser er ikke avklart."
+    },
+    {
+      "id": "pensum_og_ny_evidens",
+      "problem": "Ny forskning utfordrer etablert pensum og krever at faglig uenighet og evidensstyrke formidles uten falsk sikkerhet."
+    },
+    {
+      "id": "veiledningspress",
+      "problem": "Prosjektets leveransebehov frister veilederen til å styre studentens problem, analyse eller konklusjon for hardt."
+    },
+    {
+      "id": "reproduserbarhet_under_tidspress",
+      "problem": "Forskningsanalysen virker, men dokumentasjonen er ikke god nok til at en kollega kan gjenskape den før undervisningsperioden starter."
+    }
+  ],
+  "authority_boundaries": {
+    "can": [
+      "planlegge og gjennomføre forskningsledet undervisning innen faktisk ansettelse, emneansvar, læringsmål og gjeldende program- og kvalitetsrammer",
+      "veilede studenter og doktorgradskandidater innen avtalt rolle samtidig som studentens selvstendighet, rettigheter, kreditering og prosjektgrenser beskyttes",
+      "utføre selvstendig forskning, velge og begrunne metode og rapportere usikkerhet innen faktisk prosjektmandat, tilgang og nødvendige etikk-, personvern-, sikkerhets- og rettighetsgodkjenninger",
+      "vurdere studentarbeid når rollen faktisk er oppnevnt og habil, med kriterier, sensurspor, konfidensialitet og klageordning bevart",
+      "oppdatere pensum og undervisning når evidens eller faglig uenighet endres, og gjøre styrken i kunnskapsgrunnlaget eksplisitt"
+    ],
+    "cannot": [
+      "garantere karakter, opptak, stilling, opprykk eller annet formelt utfall uten den prosessen og myndigheten som faktisk gjelder",
+      "bruke studentarbeid, data, tekst eller ideer i forskning eller publisering uten korrekt samtykke, rettighetsavklaring, kreditering og selvstendig bidragsvurdering",
+      "vurdere en kandidat ved reell habilitetskonflikt eller overstyre sensur-, klage-, etikk-, personvern-, sikkerhets- eller rettighetsprosesser på grunn av senioritet eller tidspress",
+      "presentere personlig faglig preferanse, etablert pensum eller professorstatus som eneste tillatte konklusjon når evidensen er usikker eller faglig uenighet er legitim",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, publikasjonsprestisje, nettverk eller tittelen Professor som erstatning for academic_qualification_and_employment, dokumentert evidens, faktisk oppnevning eller delegert myndighet"
+    ]
+  },
+  "notes": [
+    "Undervisning og forskning er en kombinert akademisk arbeidsverden, ikke en generell professor-myndighet.",
+    "History Go kan gi historisk og stedlig kontekst om universiteter, fagtradisjoner, vitenskapshistorie, utdanningsreformer og tidligere kunnskapskonflikter, men aldri dagens kvalifikasjon, vurderingsgrunnlag, behandlingsgrunnlag, etikkgodkjenning, data, sensurmyndighet eller formell beslutning."
+  ],
+  "authority_boundary": {
+    "may": [
+      "planlegge og gjennomføre forskningsledet undervisning innen faktisk ansettelse, emneansvar, læringsmål og gjeldende program- og kvalitetsrammer",
+      "veilede studenter og doktorgradskandidater innen avtalt rolle samtidig som studentens selvstendighet, rettigheter, kreditering og prosjektgrenser beskyttes",
+      "utføre selvstendig forskning, velge og begrunne metode og rapportere usikkerhet innen faktisk prosjektmandat, tilgang og nødvendige etikk-, personvern-, sikkerhets- og rettighetsgodkjenninger",
+      "vurdere studentarbeid når rollen faktisk er oppnevnt og habil, med kriterier, sensurspor, konfidensialitet og klageordning bevart",
+      "oppdatere pensum og undervisning når evidens eller faglig uenighet endres, og gjøre styrken i kunnskapsgrunnlaget eksplisitt"
+    ],
+    "may_not": [
+      "garantere karakter, opptak, stilling, opprykk eller annet formelt utfall uten den prosessen og myndigheten som faktisk gjelder",
+      "bruke studentarbeid, data, tekst eller ideer i forskning eller publisering uten korrekt samtykke, rettighetsavklaring, kreditering og selvstendig bidragsvurdering",
+      "vurdere en kandidat ved reell habilitetskonflikt eller overstyre sensur-, klage-, etikk-, personvern-, sikkerhets- eller rettighetsprosesser på grunn av senioritet eller tidspress",
+      "presentere personlig faglig preferanse, etablert pensum eller professorstatus som eneste tillatte konklusjon når evidensen er usikker eller faglig uenighet er legitim",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, publikasjonsprestisje, nettverk eller tittelen Professor som erstatning for academic_qualification_and_employment, dokumentert evidens, faktisk oppnevning eller delegert myndighet"
+    ]
+  },
+  "work_life": {
+    "daily_work": [
+      "føre undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg gjennom emneplan, undervisning, forskning, veiledning, vurdering, habilitet, kreditering, usikkerhet, venting og handoff",
+      "prioritere undervisning og forskning uten å skjule hvilke forpliktelser som utsettes eller hvem som overtar",
+      "oppdatere pensum og undervisning når kunnskapsgrunnlaget endres og synliggjøre faglig uenighet",
+      "veilede uten å overta studentens selvstendige arbeid eller bruke avhengighetsforholdet som samtykke",
+      "gjennomføre vurdering og sensur med eksplisitt habilitet, kriterier, konfidensialitet og klagevei",
+      "holde forskning, data, metode, reproduserbarhet, etikk, kreditering og publisering etterprøvbart"
+    ],
+    "responsibilities": [
+      "forskningsledet_undervisning",
+      "emne_og_pensumkvalitet",
+      "student_og_phd_veiledning",
+      "vurdering_sensur_habilitet_og_klage",
+      "selvstendig_forskning_og_reproduserbarhet",
+      "forskningsetikk_personvern_og_rettigheter",
+      "kreditering_forfatterskap_og_publisering",
+      "handoff_venting_og_bounded_rework"
+    ],
+    "work_environment": [
+      "Universitet, høgskole eller annen akademisk kunnskapsinstitusjon der Førsteamanuensis/Professor har faktisk academic_qualification_and_employment og konkrete undervisnings-, veilednings-, vurderings- og forskningsoppgaver."
+    ],
+    "status_position": [
+      "Førsteamanuensis og Professor er qualification_required med academic_qualification_and_employment. Professorstatus gir faglig ansvar og skjønn innen konkrete oppgaver, men ingen generell rett til å love karakter, overstyre klage/habilitet eller se bort fra data-, etikk- og rettighetsgrenser."
+    ],
+    "workplaces": [
+      "emneplan_pensum_laeringsmal_og_forskningskobling_vitenskap_undervisning_og_forskning",
+      "forskning_data_metode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+      "veiledning_studentarbeid_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+      "vurdering_eksamen_habilitet_klage_og_studentrettigheter_vitenskap_undervisning_og_forskning"
+    ]
+  },
+  "career_path": {
+    "entry_from": [
+      "Førsteamanuensis og Professor krever canonical academic_qualification_and_employment; badge-threshold eller publikasjonsstatus alene gir ikke adgang."
+    ],
+    "progression_to": [
+      "Større faglig, undervisnings- eller forskningsansvar følger dokumentert kompetanse, faktisk ansettelse og konkret oppgave-/prosjektmandat, ikke XP eller sosial standing."
+    ],
+    "possible_promotions": [
+      "forskningsledelse når separat appointment_required med employer_appointment er oppfylt",
+      "institusjonsledelse når den rollens separate appointment_required- og employer_appointment-krav er oppfylt"
+    ],
+    "possible_exits": [
+      "forskning, undervisning, forvaltning, analyse eller annen kunnskapsrolle når respektive canonical krav er oppfylt"
+    ],
+    "career_risks": [
+      "undervisningspress kan gjøre studentoppfølging og vurderingskvalitet til skjulte salderingsposter",
+      "publiserings- og prosjektpress kan undergrave studentens selvstendighet eller korrekt kreditering",
+      "professorstatus kan feilaktig behandles som generell myndighet over vurdering, data eller kontrollprosesser"
+    ]
+  },
+  "persistent_work_product": {
+    "id": "undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg",
+    "title": "Undervisnings-, forsknings-, veilednings- og vurderingslogg",
+    "description": "Et vedvarende, versjonert akademisk arbeidsobjekt som binder emneplan og læringsmål, pensum og evidensnivå, undervisningsforpliktelser, forskningsspørsmål, data og metode, veiledningsavtaler, studentens selvstendighet, vurderingskriterier, habilitet, kreditering, etikk, usikkerhet, ventestatus, handoff og bounded_rework sammen.",
+    "required_fields": [
+      "emne_laringsmal_pensum_og_evidensniva",
+      "undervisningsforpliktelser_og_tidsbindinger",
+      "forskningssporsmal_data_metode_og_reproduserbarhet",
+      "veiledningsavtale_studentens_selvstendighet_og_grenser",
+      "vurderingskriterier_sensurrolle_og_habilitet",
+      "studentrettigheter_konfidensialitet_og_klagevei",
+      "kreditering_forfatterskap_samtykke_og_rettigheter",
+      "etikk_personvern_sikkerhet_og_deling",
+      "faglig_uenighet_usikkerhet_og_begrensninger",
+      "ventestatus_avhengigheter_og_beslutningseier",
+      "handoff_og_bounded_rework"
+    ]
+  },
+  "day_one": {
+    "outcomes": [
+      "Bekreft academic_qualification_and_employment og hvilke undervisnings-, veilednings-, vurderings- og forskningsoppgaver som faktisk er tildelt; badge eller professortittel alene gir ingen runtime-myndighet.",
+      "Opprett den vedvarende akademiske arbeidsloggen med emneplan, forskningsarbeid, veiledningsavtaler, vurderingsroller, habilitet, kreditering, etikk og tidsbindinger.",
+      "Møt de fire profesjonelle relasjonene og avklar hvem som eier emnekvalitet, metodekontroll, vurderings-/klageprosess og krediterings-/publiseringsavklaringer.",
+      "Løs en konkret kollisjon mellom undervisning og forskning ved å reprioritere synlig, beskytte studentforpliktelser og navngi hva som venter eller overleveres."
+    ],
+    "first_week_focus": [
+      "forskningsledet undervisning og pensum",
+      "forskningsmetode og reproduserbarhet",
+      "veiledning og studentens selvstendighet",
+      "vurdering, habilitet og klage",
+      "kreditering, publisering og bounded rework"
+    ]
+  },
+  "challenges": [
+    {
+      "id": "undervisningsuke_moter_analysefrist",
+      "title": "Undervisningsuke møter analysefrist",
+      "description": "En analysefrist kolliderer med undervisning, tilbakemelding og veiledning som allerede er lovet.",
+      "pressure": "publisering_og_fremdrift_vs_studentforpliktelser",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    },
+    {
+      "id": "studentarbeid_blir_publiseringsgrunnlag",
+      "title": "Studentarbeid blir publiseringsgrunnlag",
+      "description": "Et studentprosjekt gir et resultat forskningsgruppen ønsker å publisere raskt.",
+      "pressure": "publiseringsmulighet_vs_selvstendighet_kreditering_og_rettigheter",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "faglig_autoritet_vs_formell_grense",
+      "title": "Faglig autoritet mot formell grense",
+      "setup": "Senioritet og faglig sikkerhet gjør det fristende å love et vurderingsutfall eller styre studentens konklusjon.",
+      "choice_axis": "etterprovbar_veiledning_og_habil_vurdering_vs_statusdrevet_snarvei",
+      "consequence_axis": "studenttillit_og_faglig_integritet_vs_avhengighet_favorisering_og_risiko",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "ida_undervisningsdesign_og_emnekvalitet_vitenskap_undervisning_og_forskning",
+      "name": "Ida",
+      "role": "undervisningsdesign- og emnekvalitetskontakt",
+      "workplace_ids": [
+        "emneplan_pensum_laeringsmal_og_forskningskobling_vitenskap_undervisning_og_forskning"
+      ],
+      "function": "Ida kobler læringsmål, pensum, undervisningsformer, universell utforming, studenttilbakemeldinger og forskningsfront. Hun trener rollen i å oppdatere undervisning når evidensen endres uten å late som faglig uenighet er borte.",
+      "authority_relation": "Ida kan utfordre emnedesign og kreve sporbar kvalitetsbegrunnelse. Hun kan ikke tildele stilling, love karakter eller gjøre én pedagogisk eller faglig preferanse til formell regel uten korrekt prosess.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "amir_forskningsmetode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+      "name": "Amir",
+      "role": "forskningsmetode- og reproduserbarhetskontakt",
+      "workplace_ids": [
+        "forskning_data_metode_og_reproduserbarhet_vitenskap_undervisning_og_forskning"
+      ],
+      "function": "Amir følger data, metode, analyse, kode, usikkerhet og reproduserbarhet samtidig som forskningsarbeidet må sameksistere med undervisningsforpliktelser. Han gjør det synlig når en frist bare kan nås ved å skjule metodevalg eller dokumentasjon.",
+      "authority_relation": "Amir kan returnere en analyse som mangler proveniens eller reproduksjonsoppskrift. Han kan ikke åpne beskyttede data, gi etikkdispensasjon eller gjøre teknisk kontroll til faglig fasit.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "ragnhild_vurdering_habilitet_og_studentrettigheter_vitenskap_undervisning_og_forskning",
+      "name": "Ragnhild",
+      "role": "vurderings-, habilitets- og studentrettighetskontakt",
+      "workplace_ids": [
+        "vurdering_eksamen_habilitet_klage_og_studentrettigheter_vitenskap_undervisning_og_forskning"
+      ],
+      "function": "Ragnhild gjør vurderingskriterier, sensur, habilitet, klage, konfidensialitet og likebehandling til harde grenser. Hun skiller legitim faglig vurdering fra uformelle løfter, favorisering og press om et bestemt utfall.",
+      "authority_relation": "Ragnhild kan kreve habilitetsavklaring, ny sensor eller korrekt klagevei. Hun kan ikke forhåndsbestemme karakter, oppheve formell prosess eller gjøre professorstatus til generell vurderingsmyndighet.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "maja_veiledning_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+      "name": "Maja",
+      "role": "veilednings-, krediterings- og publiseringskontakt",
+      "workplace_ids": [
+        "veiledning_studentarbeid_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+        "forskning_data_metode_og_reproduserbarhet_vitenskap_undervisning_og_forskning"
+      ],
+      "function": "Maja følger studentens selvstendighet, veiledningsgrenser, bruk av studentarbeid, medforfatterskap, kreditering, fagfellekritikk og publisering. Hun gjør interessekonflikten synlig når prosjektleveranse frister veilederen til å overta studentens arbeid.",
+      "authority_relation": "Maja kan kreve eksplisitt bidrags- og krediteringsavklaring og stanse publisering når samtykke eller rettigheter er uklare. Hun kan ikke love publisering, kreve medforfatterskap uten reelt bidrag eller bruke studentens avhengighet som samtykke.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "emneplan_pensum_laeringsmal_og_forskningskobling_vitenskap_undervisning_og_forskning",
+      "name": "Emneplan, pensum, læringsmål og forskningskobling",
+      "function": "Binder læringsmål, emneplan, pensum, undervisningsform, faglig nivå, tilgjengelighet og nyere forskning sammen. Faglig skjønn kan oppdatere undervisningen, men kan ikke gjøre personlig preferanse til eneste tillatte konklusjon eller sette formelle program- og kvalitetskrav til side."
+    },
+    {
+      "id": "forskning_data_metode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+      "name": "Forskning, data, metode og reproduserbarhet",
+      "function": "Holder forskningsspørsmål, dataproveniens, tilgang, metode, analyse, usikkerhet, kode og reproduserbarhet i et etterprøvbart spor. Undervisningspress eller professortittel kan aldri gjøre svak evidens sterkere eller åpne data uten hjemmel."
+    },
+    {
+      "id": "veiledning_studentarbeid_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+      "name": "Veiledning, studentarbeid, kreditering og publisering",
+      "function": "Gjør studentens selvstendighet, veiledningsavtale, prosjektgrenser, forfatterskap, kreditering, samtykke og publiseringspress synlig. Studentarbeid er ikke automatisk instituttets eller veilederens materiale."
+    },
+    {
+      "id": "vurdering_eksamen_habilitet_klage_og_studentrettigheter_vitenskap_undervisning_og_forskning",
+      "name": "Vurdering, eksamen, habilitet, klage og studentrettigheter",
+      "function": "Binder vurderingskriterier, sensur, habilitet, lik behandling, klagevei, konfidensialitet og studentrettigheter sammen. Faglig autoritet gir ikke rett til å love karakter, omgå klageordning eller vurdere når habilitet mangler."
+    }
+  ],
+  "workplaces": [
+    {
+      "id": "emneplan_pensum_laeringsmal_og_forskningskobling_vitenskap_undervisning_og_forskning",
+      "name": "Emneplan, pensum, læringsmål og forskningskobling",
+      "function": "Binder læringsmål, emneplan, pensum, undervisningsform, faglig nivå, tilgjengelighet og nyere forskning sammen. Faglig skjønn kan oppdatere undervisningen, men kan ikke gjøre personlig preferanse til eneste tillatte konklusjon eller sette formelle program- og kvalitetskrav til side."
+    },
+    {
+      "id": "forskning_data_metode_og_reproduserbarhet_vitenskap_undervisning_og_forskning",
+      "name": "Forskning, data, metode og reproduserbarhet",
+      "function": "Holder forskningsspørsmål, dataproveniens, tilgang, metode, analyse, usikkerhet, kode og reproduserbarhet i et etterprøvbart spor. Undervisningspress eller professortittel kan aldri gjøre svak evidens sterkere eller åpne data uten hjemmel."
+    },
+    {
+      "id": "veiledning_studentarbeid_kreditering_og_publisering_vitenskap_undervisning_og_forskning",
+      "name": "Veiledning, studentarbeid, kreditering og publisering",
+      "function": "Gjør studentens selvstendighet, veiledningsavtale, prosjektgrenser, forfatterskap, kreditering, samtykke og publiseringspress synlig. Studentarbeid er ikke automatisk instituttets eller veilederens materiale."
+    },
+    {
+      "id": "vurdering_eksamen_habilitet_klage_og_studentrettigheter_vitenskap_undervisning_og_forskning",
+      "name": "Vurdering, eksamen, habilitet, klage og studentrettigheter",
+      "function": "Binder vurderingskriterier, sensur, habilitet, lik behandling, klagevei, konfidensialitet og studentrettigheter sammen. Faglig autoritet gir ikke rett til å love karakter, omgå klageordning eller vurdere når habilitet mangler."
+    }
+  ]
+}
