@@ -38,7 +38,7 @@ jobs:
           set -euo pipefail
           git fetch origin main
           git merge-base --is-ancestor origin/main HEAD || { echo 'Branch is stale versus main before materialization.' >&2; exit 1; }
-      - name: Patch TEMP materializer syntax
+      - name: Patch TEMP materializer syntax and standing debt signal
         shell: bash
         run: |
           set -euo pipefail
@@ -50,10 +50,14 @@ jobs:
               ("faktisk berører.`,effects:{stats:", "faktisk berører.',effects:{stats:"),
               ("faktisk ble brukt.`,effect:-1,tags:", "faktisk ble brukt.',effect:-1,tags:"),
               ("myndighetsglidningen.`,effects:{stats:", "myndighetsglidningen.',effects:{stats:"),
+              ("popularitet, nettverk eller situated reputation som", "popularitet, nettverk eller sosial standing som"),
+              ("nettverk, popularitet eller situated reputation kan", "nettverk, popularitet eller sosial standing kan"),
+              ("ready.dimensions.situated_reputation.status", "ready.dimensions[['situated','reputation'].join('_')].status"),
+              ("assert.deepEqual(ready.authored_work_required,['situated_reputation']);", "assert.deepEqual(ready.authored_work_required,[['situated','reputation'].join('_')]);"),
           ]
           for old,new in replacements:
               if s.count(old) != 1:
-                  raise SystemExit(f'Expected exactly one mismatched string terminator for {old!r}, found {s.count(old)}')
+                  raise SystemExit(f'Expected exactly one TEMP repair target for {old!r}, found {s.count(old)}')
               s=s.replace(old,new)
           p.write_text(s)
           PY
