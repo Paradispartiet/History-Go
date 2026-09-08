@@ -115,21 +115,39 @@ jobs:
           NODE
       - name: Validate focused Rådhusplassen contracts
         run: |
-          set -euxo pipefail
-          node --test tests/radhusplassen-completion.test.mjs
-          npm run places:index:check
-          npm run place-open:check
-          npm run epoker:places:check
-          node scripts/build-fagverk-release-manifest.mjs --check
-          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
-          npm run audit:quiz-manifest:v2
-          npm run audit:quiz-production-context
-          npm run audit:quiz-progression
-          npm run leksikon:ids:check
-          npm run check:stories
-          npm run audit:knowledge
-          git diff --check
-          test -z "$(git diff --name-only --diff-filter=U)"
+          set -uo pipefail
+          set +e
+          {
+            set -x
+            node --test tests/radhusplassen-completion.test.mjs &&
+            npm run places:index:check &&
+            npm run place-open:check &&
+            npm run epoker:places:check &&
+            node scripts/build-fagverk-release-manifest.mjs --check &&
+            node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json &&
+            npm run audit:quiz-manifest:v2 &&
+            npm run audit:quiz-production-context &&
+            npm run audit:quiz-progression &&
+            npm run leksikon:ids:check &&
+            npm run check:stories &&
+            npm run audit:knowledge &&
+            git diff --check &&
+            test -z "$(git diff --name-only --diff-filter=U)"
+          } > /tmp/radhusplassen-focused-validation.log 2>&1
+          status=$?
+          cat /tmp/radhusplassen-focused-validation.log
+          if [ "$status" -ne 0 ]; then
+            mkdir -p reports/place-production
+            cp /tmp/radhusplassen-focused-validation.log reports/place-production/radhusplassen-focused-validation-error.txt
+            git config user.name 'history-go-materializer'
+            git config user.email 'actions@users.noreply.github.com'
+            git add reports/place-production/radhusplassen-focused-validation-error.txt
+            git commit -m 'TEMP record Rådhusplassen focused validation failure' || true
+            git push origin HEAD:refs/heads/agent/radhusplassen-materialize-20260908
+            exit "$status"
+          fi
+          rm -f reports/place-production/radhusplassen-focused-validation-error.txt
+          set -e
       - name: Commit verified materialized output
         run: |
           set -euxo pipefail
