@@ -1,10 +1,10 @@
 + node --test tests/radhusplassen-completion.test.mjs
-✔ Rådhusplassen har standardproduksjon og fire stedsspesifikke samlinger (1.754376ms)
-✔ frontImage og QuizCard er separate lokale portrettflater (6.709056ms)
-✔ Rådhusplassen har canonical rich 5x7 med 21 fact, 7 context og 7 concept (1.165559ms)
-✔ Stories, Leksikon, språk og Lesespor er komplette (1.383175ms)
-✔ Fagverk v2 er bevart som full og kuratert (0.176198ms)
-✔ produksjonsartefakt og 30 av 30-gate er fail-closed dokumentert (0.35943ms)
+✔ Rådhusplassen har standardproduksjon og fire stedsspesifikke samlinger (1.715902ms)
+✔ frontImage og QuizCard er separate lokale portrettflater (5.687761ms)
+✔ Rådhusplassen har canonical rich 5x7 med 21 fact, 7 context og 7 concept (2.22457ms)
+✔ Stories, Leksikon, språk og Lesespor er komplette (1.446014ms)
+✔ Fagverk v2 er bevart som full og kuratert (0.20509ms)
+✔ produksjonsartefakt og 30 av 30-gate er fail-closed dokumentert (0.431522ms)
 ℹ tests 6
 ℹ suites 0
 ℹ pass 6
@@ -12,7 +12,7 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 100.801409
+ℹ duration_ms 109.631243
 + npm run places:index:check
 
 > history-go@0.0.0 places:index:check
@@ -42,15 +42,2154 @@ verified 1534 place-open payloads
 
 Epoke place index is current: data/epoker/epoke-place-index.json
 + node scripts/build-fagverk-release-manifest.mjs --check
-file:///home/runner/work/History-Go/History-Go/scripts/build-fagverk-release-manifest.mjs:413
-    if (fs.readFileSync(outputPath, "utf8") !== serialized) throw new Error(`Stale Fagverk release manifest: ${args.output}`);
-                                                                  ^
+Verified Fagverk release 67d6a277afb0b34834880430674e5544e0183ed02bc0dab596cacfe91e40a303: 20 packages, 189 chapters.
++ node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+Place image audit: 1534 steder · 101 lokale · 52 eksterne · 79 valgfrie Micro Place-bilder · 1291 mangler · 11 ugyldige
+- slottsparken [by] data/places/by/oslo/places/slottsparken.json: Lokal bildefil finnes ikke (bilder/kort/places/slottsparken.PNG)
+- botsparken [by] data/places/by/oslo/places/botsparken.json: Lokal bildefil finnes ikke (bilder/kort/places/botsparken.PNG)
+- stensparken [by] data/places/by/oslo/places/stensparken.json: Lokal bildefil finnes ikke (bilder/kort/places/stensparken.PNG)
+- nydalen [by] data/places/by/oslo/places/nydalen.json: Lokal bildefil finnes ikke (bilder/kort/places/nydalen.PNG)
+- tjuvholmen [by] data/places/by/oslo/places/tjuvholmen.json: Lokal bildefil finnes ikke (bilder/kort/places/tjuvholmen.PNG)
+- majorstuen_tbanestasjon [by] data/places/by/oslo/places/majorstuen_tbanestasjon.json: Lokal bildefil finnes ikke (bilder/kort/places/majorstuen_tbanestasjon.PNG)
+- nationaltheatret_stasjon [by] data/places/by/oslo/places/nationaltheatret_stasjon.json: Lokal bildefil finnes ikke (bilder/kort/places/nationaltheatret_stasjon.PNG)
+- bislett [by] data/places/by/oslo/places/bislett.json: Lokal bildefil finnes ikke (bilder/kort/places/bislett.PNG)
+- akerselva [by] data/places/by/oslo/places/akerselva.json: Lokal bildefil finnes ikke (bilder/kort/places/akerselva.PNG)
+- vigelandsparken [by] data/places/by/oslo/places/vigelandsparken.json: Lokal bildefil finnes ikke (bilder/kort/places/vigelandsparken.PNG)
+- carl_berner_plass [by] data/places/by/oslo/places/carl_berner_plass.json: Lokal bildefil finnes ikke (bilder/kort/places/carl_berner_plass.PNG)
+- okern [by] data/places/by/oslo/places/okern.json: Ingen popupImage, cardImage eller image
+- skoyen [by] data/places/by/oslo/places/skoyen.json: Ingen popupImage, cardImage eller image
+- torshov [by] data/places/by/oslo/places/torshov.json: Ingen popupImage, cardImage eller image
+- grorud [by] data/places/by/oslo/places/grorud.json: Ingen popupImage, cardImage eller image
+- sagene [by] data/places/by/oslo/places/sagene.json: Ingen popupImage, cardImage eller image
+- saga_kino [naeringsliv] data/places/film/oslo/places/saga_kino.json: Ingen popupImage, cardImage eller image
+- klingenberg_kino [sport] data/places/film/oslo/places/klingenberg_kino.json: Ingen popupImage, cardImage eller image
+- gimle_kino [naeringsliv] data/places/film/oslo/places/gimle_kino.json: Ingen popupImage, cardImage eller image
+- vika_kino [by] data/places/film/oslo/places/vika_kino.json: Ingen popupImage, cardImage eller image
+- gamlebyen_gravlund [historie] data/places/historie/oslo/places_historie/gamlebyen_gravlund.json: Ingen popupImage, cardImage eller image
+- hovedoya_kloster [historie] data/places/historie/oslo/places_historie/hovedoya_kloster.json: Ingen popupImage, cardImage eller image
+- villa_grande [historie] data/places/historie/oslo/places_historie/villa_grande.json: Ingen popupImage, cardImage eller image
+- bogstad_gard [historie] data/places/historie/oslo/places_historie/bogstad_gard.json: Ingen popupImage, cardImage eller image
+- sagene_skole [historie] data/places/historie/oslo/places_historie/sagene_skole.json: Ingen popupImage, cardImage eller image
+- nonneseter_kloster [historie] data/places/historie/oslo/places_historie_added_batch_01/nonneseter_kloster.json: Ingen popupImage, cardImage eller image
+- oslo_ladegard [historie] data/places/historie/oslo/places_historie_added_batch_01/oslo_ladegard.json: Ingen popupImage, cardImage eller image
+- galgeberg [historie] data/places/historie/oslo/places_historie_added_batch_01/galgeberg.json: Ingen popupImage, cardImage eller image
+- prinds_christian_augusts_minde [historie] data/places/historie/oslo/places_historie_added_batch_01/prinds_christian_augusts_minde.json: Ingen popupImage, cardImage eller image
+- peststotten_krist_kirkegard [historie] data/places/historie/oslo/places_historie_added_batch_01/peststotten_krist_kirkegard.json: Ingen popupImage, cardImage eller image
+- kjaerlighetskarusellen [historie] data/places/historie/oslo/places_historie_added_batch_01/kjaerlighetskarusellen.json: Ingen popupImage, cardImage eller image
+- villa_stenersen [historie] data/places/historie/oslo/places_historie_added_batch_01/villa_stenersen.json: Ingen popupImage, cardImage eller image
+- st_hallvard_kirke_kloster [historie] data/places/historie/oslo/places_historie_added_batch_01/st_hallvard_kirke_kloster.json: Ingen popupImage, cardImage eller image
+- nostvet_boplass [historie] data/places/historie/akershus/places_historie_akershus_batch1/nostvet_boplass.json: Ingen popupImage, cardImage eller image
+- raknehaugen [historie] data/places/historie/akershus/places_historie_akershus_batch1/raknehaugen.json: Ingen popupImage, cardImage eller image
+- nes_kirkeruiner [historie] data/places/historie/akershus/places_historie_akershus_batch1/nes_kirkeruiner.json: Ingen popupImage, cardImage eller image
+- blaker_skanse [historie] data/places/historie/akershus/places_historie_akershus_batch1/blaker_skanse.json: Ingen popupImage, cardImage eller image
+- fetsund_lenser [historie] data/places/historie/akershus/places_historie_akershus_batch1/fetsund_lenser.json: Ingen popupImage, cardImage eller image
+- oscarsborg_festning [historie] data/places/historie/akershus/places_historie_akershus_batch1/oscarsborg_festning.json: Ingen popupImage, cardImage eller image
+- trandumskogen [historie] data/places/historie/akershus/places_historie_akershus_batch1/trandumskogen.json: Ingen popupImage, cardImage eller image
+- grini_fangeleir [historie] data/places/historie/akershus/grini_fangeleir.json: Ingen popupImage, cardImage eller image
+- baerums_verk_jernverk [naeringsliv] data/places/naeringsliv/akershus/baerums_verk_jernverk/baerums_verk_jernverk.json: Ingen popupImage, cardImage eller image
+- eidsvollsbygningen [politikk] data/places/politikk/akershus/eidsvollsbygningen/eidsvollsbygningen.json: Ingen popupImage, cardImage eller image
+- eidsvoll_verk_andelva [naeringsliv] data/places/naeringsliv/akershus/eidsvoll_verk_andelva/eidsvoll_verk_andelva.json: Ingen popupImage, cardImage eller image
+- tertitten_urskog_holandsbanen [by] data/places/by/akershus/tertitten_urskog_holandsbanen/tertitten_urskog_holandsbanen.json: Ingen popupImage, cardImage eller image
+- kjeller_flyplass [by] data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json: Ingen popupImage, cardImage eller image
+- tanum_kirke [historie] data/places/historie/akershus/places_historie_akershus_batch2/tanum_kirke.json: Ingen popupImage, cardImage eller image
+- haslum_kirke [historie] data/places/historie/akershus/places_historie_akershus_batch2/haslum_kirke.json: Ingen popupImage, cardImage eller image
+- skedsmo_kirke [historie] data/places/historie/akershus/places_historie_akershus_batch2/skedsmo_kirke.json: Ingen popupImage, cardImage eller image
+- enebakk_kirke [historie] data/places/historie/akershus/places_historie_akershus_batch2/enebakk_kirke.json: Ingen popupImage, cardImage eller image
+- asker_kirke_kirkested [historie] data/places/historie/akershus/places_historie_akershus_batch2/asker_kirke_kirkested.json: Ingen popupImage, cardImage eller image
+- gamle_hvam_museum [historie] data/places/historie/akershus/places_historie_akershus_batch2/gamle_hvam_museum.json: Ingen popupImage, cardImage eller image
+- heggedal_hovedgard [historie] data/places/historie/akershus/places_historie_akershus_batch2/heggedal_hovedgard.json: Ingen popupImage, cardImage eller image
+- hvitsten_sjobodene [by] data/places/by/akershus/hvitsten_sjobodene/hvitsten_sjobodene.json: Ingen popupImage, cardImage eller image
+- vollen_maudbukta [historie] data/places/historie/akershus/places_historie_akershus_batch3/vollen_maudbukta.json: Ingen popupImage, cardImage eller image
+- roald_amundsens_hjem_uranienborg [historie] data/places/historie/akershus/places_historie_akershus_batch3/roald_amundsens_hjem_uranienborg.json: Ingen popupImage, cardImage eller image
+- stunner_boplass [historie] data/places/historie/akershus/places_historie_akershus_batch3/stunner_boplass.json: Ingen popupImage, cardImage eller image
+- ski_middelalderkirke [historie] data/places/historie/akershus/places_historie_akershus_batch3/ski_middelalderkirke.json: Ingen popupImage, cardImage eller image
+- krakstad_kirke_og_gravhaug [historie] data/places/historie/akershus/places_historie_akershus_batch3/krakstad_kirke_og_gravhaug.json: Ingen popupImage, cardImage eller image
+- son_ladested [by] data/places/by/akershus/son_ladested/son_ladested.json: Ingen popupImage, cardImage eller image
+- holen_ladested [by] data/places/by/akershus/holen_ladested/holen_ladested.json: Ingen popupImage, cardImage eller image
+- hurdal_verk_glassverk [naeringsliv] data/places/naeringsliv/akershus/hurdal_verk_glassverk/hurdal_verk_glassverk.json: Ingen popupImage, cardImage eller image
+- lunner_kirke [historie] data/places/historie/akershus/places_historie_akershus_batch4/lunner_kirke.json: Ingen popupImage, cardImage eller image
+- nesodden_kirke [historie] data/places/historie/akershus/places_historie_akershus_batch4/nesodden_kirke.json: Ingen popupImage, cardImage eller image
+- seiersten_skanse [historie] data/places/historie/akershus/places_historie_akershus_batch4/seiersten_skanse.json: Ingen popupImage, cardImage eller image
+- raelingen_bygdetun [historie] data/places/historie/akershus/places_historie_akershus_batch4/raelingen_bygdetun.json: Ingen popupImage, cardImage eller image
+- losby_gods [historie] data/places/historie/akershus/places_historie_akershus_batch4/losby_gods.json: Ingen popupImage, cardImage eller image
+- hadeland_glassverk [naeringsliv] data/places/naeringsliv/akershus/hadeland_glassverk/hadeland_glassverk.json: Ingen popupImage, cardImage eller image
+- kistefos_traesliperi [naeringsliv] data/places/naeringsliv/akershus/kistefos_traesliperi/kistefos_traesliperi.json: Ingen popupImage, cardImage eller image
+- hakadal_verk [naeringsliv] data/places/naeringsliv/akershus/hakadal_verk/hakadal_verk.json: Ingen popupImage, cardImage eller image
+- frogner_gamle_kirke [historie] data/places/historie/akershus/places_historie_akershus_batch5/frogner_gamle_kirke.json: Ingen popupImage, cardImage eller image
+- sorum_kirke [historie] data/places/historie/akershus/places_historie_akershus_batch5/sorum_kirke.json: Ingen popupImage, cardImage eller image
+- gardermoen_militaerleir_tunet [historie] data/places/historie/akershus/places_historie_akershus_batch5/gardermoen_militaerleir_tunet.json: Ingen popupImage, cardImage eller image
+- ullensaker_kirke_kirkested [historie] data/places/historie/akershus/places_historie_akershus_batch5/ullensaker_kirke_kirkested.json: Ingen popupImage, cardImage eller image
+- aurskog_holand_bygdetun [historie] data/places/historie/akershus/places_historie_akershus_batch5/aurskog_holand_bygdetun.json: Ingen popupImage, cardImage eller image
+- nannestad_bygdemuseum [historie] data/places/historie/akershus/places_historie_akershus_batch5/nannestad_bygdemuseum.json: Ingen popupImage, cardImage eller image
+- feiring_jernverk [naeringsliv] data/places/naeringsliv/akershus/feiring_jernverk/feiring_jernverk.json: Ingen popupImage, cardImage eller image
+- drobak_kirke [by] data/places/by/akershus/drobak_kirke/drobak_kirke.json: Ingen popupImage, cardImage eller image
+- fredriksten_festning [historie] data/places/historie/ostfold/places_historie_ostfold_batch1/fredriksten_festning.json: Ingen popupImage, cardImage eller image
+- fredrikstad_festning_gamlebyen [historie] data/places/historie/ostfold/places_historie_ostfold_batch1/fredrikstad_festning_gamlebyen.json: Ingen popupImage, cardImage eller image
+… og 1222 til
++ npm run audit:quiz-manifest:v2
 
-Error: Stale Fagverk release manifest: data/fagverk/fagverk_release.json
-    at main (file:///home/runner/work/History-Go/History-Go/scripts/build-fagverk-release-manifest.mjs:413:67)
-    at file:///home/runner/work/History-Go/History-Go/scripts/build-fagverk-release-manifest.mjs:422:71
-    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
-    at async node:internal/modules/esm/loader:647:26
-    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+> history-go@0.0.0 audit:quiz-manifest:v2
+> node scripts/audit-quiz-manifest-v2.mjs
 
-Node.js v24.20.0
+Wrote reports/quiz_manifest_v2_audit_report.json
+{
+  "status": "passed",
+  "failureCounts": 0,
+  "legacyQuizItemsCount": 839,
+  "setManifestEntriesCount": 306,
+  "setQuestionsChecked": 4051
+}
++ npm run audit:quiz-production-context
+
+> history-go@0.0.0 audit:quiz-production-context
+> node scripts/audit-quiz-production-context.mjs
+
+{
+  "status": "passed",
+  "categoriesWithQuizProduction": 8,
+  "quizFilesChecked": 72,
+  "checked": [
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "targetId": "deichman_bjorvika",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/torggata_sets.json",
+      "targetId": "torggata",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/birkelunden_sets.json",
+      "targetId": "birkelunden",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/christiania_torv_sets.json",
+      "targetId": "christiania_torv",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/bankplassen_sets_merged.json",
+      "targetId": "bankplassen",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/grev_wedels_plass_sets.json",
+      "targetId": "grev_wedels_plass",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/storgata_sets.json",
+      "targetId": "storgata",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/olaf_ryes_plass_sets.json",
+      "targetId": "olaf_ryes_plass",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/sofienbergparken_sets.json",
+      "targetId": "sofienbergparken",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/markveien_sets.json",
+      "targetId": "markveien",
+      "questions": 42
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/gamle_trikkestallen_sets.json",
+      "targetId": "gamle_trikkestallen",
+      "questions": 28
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/universitetsplassen_sets.json",
+      "targetId": "universitetsplassen",
+      "questions": 56
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/tullin_sets.json",
+      "targetId": "tullin",
+      "questions": 42
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/ankerbrua_sets.json",
+      "targetId": "ankerbrua",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/hammersborg_torg_sets.json",
+      "targetId": "hammersborg_torg",
+      "questions": 28
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/toyen_torg_sets.json",
+      "targetId": "toyen_torg",
+      "questions": 28
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/ullevål_hageby_sets.json",
+      "targetId": "ullevål_hageby",
+      "questions": 28
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/romsaås_sets.json",
+      "targetId": "romsaås",
+      "questions": 28
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/rodelokka_sets.json",
+      "targetId": "rodelokka",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/helsfyr_sets.json",
+      "targetId": "helsfyr",
+      "questions": 28
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/vaalerenga_sets.json",
+      "targetId": "vaalerenga",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/vinderen_sets.json",
+      "targetId": "vinderen",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/ullern_sets.json",
+      "targetId": "ullern",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/spikersuppa_sets.json",
+      "targetId": "spikersuppa",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/radhusplassen_sets.json",
+      "targetId": "radhusplassen",
+      "questions": 35
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/gamle_aker_kirke_sets.json",
+      "targetId": "gamle_aker_kirke",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/var_frelsers_gravlund_sets.json",
+      "targetId": "var_frelsers_gravlund",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "targetId": "grindheim_runestein",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "targetId": "grindheim_steinkross",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "targetId": "grindheimsveien_nord_gravfelt",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "targetId": "hoyland_gravhaug_etne",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/paulus_kirke_sets.json",
+      "targetId": "paulus_kirke",
+      "questions": 35
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/oslo_hospital_sets.json",
+      "targetId": "oslo_hospital",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/ekebergparken_museum_sets.json",
+      "targetId": "ekebergparken_museum",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/botsfengselet_sets.json",
+      "targetId": "botsfengselet",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/gamle_radhus_sets.json",
+      "targetId": "gamle_radhus",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/ekeberg_helleristninger_sets.json",
+      "targetId": "ekeberg_helleristninger",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/akershus_festning_sets.json",
+      "targetId": "akershus_festning",
+      "questions": 56
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/forsvarsmuseet_sets.json",
+      "targetId": "forsvarsmuseet",
+      "questions": 35
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/norges_hjemmefrontmuseum_sets.json",
+      "targetId": "norges_hjemmefrontmuseum",
+      "questions": 35
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/akershus_slott_sets.json",
+      "targetId": "akershus_slott",
+      "questions": 49
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/myntgatakvartalet_sets.json",
+      "targetId": "myntgatakvartalet",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/waisenhuset_kongens_gate_sets.json",
+      "targetId": "waisenhuset_kongens_gate",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/mollergata_19_sets.json",
+      "targetId": "mollergata_19",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/the_mini_bottle_gallery_sets.json",
+      "targetId": "the_mini_bottle_gallery",
+      "questions": 28
+    },
+    {
+      "categoryId": "kunst",
+      "file": "data/quiz/kunst/norske_grafikere_sets.json",
+      "targetId": "norske_grafikere",
+      "questions": 28
+    },
+    {
+      "categoryId": "kunst",
+      "file": "data/quiz/kunst/skulptursonen_ovre_slottsgate_sets.json",
+      "targetId": "skulptursonen_ovre_slottsgate",
+      "questions": 28
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "targetId": "telegrafbygningen",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "targetId": "oslo_posthus",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "targetId": "havnelageret",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/freia_fabrikken_sets.json",
+      "targetId": "freia_fabrikken",
+      "questions": 21
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/schous_bryggeri_sets_merged.json",
+      "targetId": "schous_bryggeri",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/ringnes_bryggeri_sets_merged.json",
+      "targetId": "ringnes_bryggeri",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/myrens_verksted_sets.json",
+      "targetId": "myrens_verksted",
+      "questions": 28
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/alunverket_sets.json",
+      "targetId": "alunverket",
+      "questions": 28
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/lilleborg_fabrikker_sets.json",
+      "targetId": "lilleborg_fabrikker",
+      "questions": 28
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/ovre_foss_sets.json",
+      "targetId": "ovre_foss",
+      "questions": 28
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/tinghuset_sets.json",
+      "targetId": "tinghuset",
+      "questions": 21
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/regjeringskvartalet_sets.json",
+      "targetId": "regjeringskvartalet",
+      "questions": 70
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/youngstorget_sets.json",
+      "targetId": "youngstorget",
+      "questions": 35
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/oslo_radhus_sets.json",
+      "targetId": "oslo_radhus",
+      "questions": 56
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/stortinget_sets.json",
+      "targetId": "stortinget",
+      "questions": 56
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/slottet_sets.json",
+      "targetId": "slottet",
+      "questions": 56
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/slottsplassen_sets.json",
+      "targetId": "slottsplassen",
+      "questions": 56
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/eidsvolls_plass_sets.json",
+      "targetId": "eidsvolls_plass",
+      "questions": 56
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/22_juli_senteret_sets.json",
+      "targetId": "22_juli_senteret",
+      "questions": 56
+    },
+    {
+      "categoryId": "religion",
+      "file": "data/quiz/religion/akershus_slottskirke_sets.json",
+      "targetId": "akershus_slottskirke",
+      "questions": 35
+    },
+    {
+      "categoryId": "religion",
+      "file": "data/quiz/religion/det_kongelige_mausoleum_sets.json",
+      "targetId": "det_kongelige_mausoleum",
+      "questions": 28
+    },
+    {
+      "categoryId": "religion",
+      "file": "data/quiz/religion/trefoldighetskirken_sets.json",
+      "targetId": "trefoldighetskirken",
+      "questions": 35
+    },
+    {
+      "categoryId": "religion",
+      "file": "data/quiz/religion/gronland_kirke_sets.json",
+      "targetId": "gronland_kirke",
+      "questions": 35
+    },
+    {
+      "categoryId": "sport",
+      "file": "data/quiz/sport/ekebergsletta_sets.json",
+      "targetId": "ekebergsletta",
+      "questions": 35
+    },
+    {
+      "categoryId": "subkultur",
+      "file": "data/quiz/subkultur/brugata_storgata_rusmiljo_sets.json",
+      "targetId": "brugata_storgata_rusmiljo",
+      "questions": 35
+    }
+  ],
+  "failures": []
+}
++ npm run audit:quiz-progression
+
+> history-go@0.0.0 audit:quiz-progression
+> node scripts/audit-quiz-progression.mjs
+
+{
+  "status": "passed",
+  "quizFilesChecked": 72,
+  "openingPolicy": "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
+  "checked": [
+    {
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/torggata_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/birkelunden_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 8,
+          "concept_theory": 6
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.229,
+          "concept_theory": 0.171
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/christiania_torv_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 8,
+          "concept_theory": 6
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.229,
+          "concept_theory": 0.171
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/bankplassen_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 20,
+          "context": 8,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.229,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/grev_wedels_plass_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/storgata_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 20,
+          "context": 8,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.229,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/olaf_ryes_plass_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/sofienbergparken_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/markveien_sets.json",
+      "profile": "rich_6x7",
+      "balance": {
+        "total": 42,
+        "counts": {
+          "fact": 25,
+          "context": 10,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.595,
+          "context": 0.238,
+          "concept_theory": 0.167
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/gamle_trikkestallen_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 16,
+          "context": 7,
+          "concept_theory": 5
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.25,
+          "concept_theory": 0.179
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/universitetsplassen_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 28,
+          "context": 14,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/tullin_sets.json",
+      "profile": "rich_6x7",
+      "balance": {
+        "total": 42,
+        "counts": {
+          "fact": 23,
+          "context": 12,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.548,
+          "context": 0.286,
+          "concept_theory": 0.167
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/ankerbrua_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 20,
+          "context": 8,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.229,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/hammersborg_torg_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/toyen_torg_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/ullevål_hageby_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/romsaås_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/rodelokka_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/helsfyr_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/vaalerenga_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/vinderen_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/ullern_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/spikersuppa_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/radhusplassen_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/gamle_aker_kirke_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/var_frelsers_gravlund_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/paulus_kirke_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 18,
+          "context": 10,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.514,
+          "context": 0.286,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/oslo_hospital_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/ekebergparken_museum_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/botsfengselet_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/gamle_radhus_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/ekeberg_helleristninger_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/akershus_festning_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 30,
+          "context": 12,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.536,
+          "context": 0.214,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/forsvarsmuseet_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 18,
+          "context": 10,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.514,
+          "context": 0.286,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/norges_hjemmefrontmuseum_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 18,
+          "context": 10,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.514,
+          "context": 0.286,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/akershus_slott_sets.json",
+      "profile": "rich_7x7",
+      "balance": {
+        "total": 49,
+        "counts": {
+          "fact": 25,
+          "context": 12,
+          "concept_theory": 12
+        },
+        "ratios": {
+          "fact": 0.51,
+          "context": 0.245,
+          "concept_theory": 0.245
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/myntgatakvartalet_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/waisenhuset_kongens_gate_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/mollergata_19_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/the_mini_bottle_gallery_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/kunst/norske_grafikere_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/kunst/skulptursonen_ovre_slottsgate_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/freia_fabrikken_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/schous_bryggeri_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/ringnes_bryggeri_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/myrens_verksted_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/alunverket_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/lilleborg_fabrikker_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/ovre_foss_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/tinghuset_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/regjeringskvartalet_sets.json",
+      "profile": "major_10x7",
+      "balance": {
+        "total": 70,
+        "counts": {
+          "fact": 39,
+          "context": 19,
+          "concept_theory": 12
+        },
+        "ratios": {
+          "fact": 0.557,
+          "context": 0.271,
+          "concept_theory": 0.171
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/youngstorget_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/oslo_radhus_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 28,
+          "context": 14,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/stortinget_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 28,
+          "context": 14,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/slottet_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 28,
+          "context": 14,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/slottsplassen_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 28,
+          "context": 14,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/eidsvolls_plass_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 28,
+          "context": 14,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/22_juli_senteret_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 37,
+          "context": 12,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.661,
+          "context": 0.214,
+          "concept_theory": 0.125
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/religion/akershus_slottskirke_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 18,
+          "context": 9,
+          "concept_theory": 8
+        },
+        "ratios": {
+          "fact": 0.514,
+          "context": 0.257,
+          "concept_theory": 0.229
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/religion/det_kongelige_mausoleum_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 16,
+          "context": 7,
+          "concept_theory": 5
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.25,
+          "concept_theory": 0.179
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/religion/trefoldighetskirken_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 18,
+          "context": 9,
+          "concept_theory": 8
+        },
+        "ratios": {
+          "fact": 0.514,
+          "context": 0.257,
+          "concept_theory": 0.229
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/religion/gronland_kirke_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 18,
+          "context": 9,
+          "concept_theory": 8
+        },
+        "ratios": {
+          "fact": 0.514,
+          "context": 0.257,
+          "concept_theory": 0.229
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/sport/ekebergsletta_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 14,
+          "context": 14,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.4,
+          "context": 0.4,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/subkultur/brugata_storgata_rusmiljo_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 12,
+          "context": 16,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.343,
+          "context": 0.457,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    }
+  ],
+  "failures": []
+}
++ npm run leksikon:ids:check
+
+> history-go@0.0.0 leksikon:ids:check
+> npm run build:tools && node dist/tools/check_leksikon_duplicate_ids.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+duplicate leksikon id radhusplassen_hovedartikkel
+  - data/leksikon/places/oslo/by/leksikon_radhusplassen.json#1 (radhusplassen)
+  - data/leksikon/places/oslo/media/leksikon_oslo_popkultur_sentrum_batch1.json#9 (radhusplassen)
