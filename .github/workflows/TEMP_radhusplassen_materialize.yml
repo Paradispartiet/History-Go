@@ -25,6 +25,18 @@ jobs:
           node-version: '24'
       - name: Install dependencies
         run: npm ci
+      - name: Reconcile legacy Rådhusplassen leksikon id
+        run: |
+          set -euxo pipefail
+          node - <<'NODE'
+          const fs = require('fs');
+          const p = 'data/leksikon/places/oslo/media/leksikon_oslo_popkultur_sentrum_batch1.json';
+          const rows = JSON.parse(fs.readFileSync(p, 'utf8'));
+          const matches = rows.filter(x => x?.id === 'radhusplassen_hovedartikkel' && x?.place_id === 'radhusplassen');
+          if (matches.length !== 1) throw new Error(`Forventet én legacy Rådhusplassen-hovedartikkel, fant ${matches.length}`);
+          matches[0].id = 'radhusplassen_popkultur_hovedartikkel';
+          fs.writeFileSync(p, JSON.stringify(rows, null, 2) + '\n');
+          NODE
       - name: Materialize canonical Rådhusplassen production
         run: |
           set -uo pipefail
