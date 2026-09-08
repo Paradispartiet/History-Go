@@ -682,7 +682,16 @@
     "data/Civication/mailFamilies/subkultur/micro/subkultur_program_og_koordinering_micro.json",
     "data/Civication/mailFamilies/subkultur/followup/subkultur_program_og_koordinering_followup.json",
     "data/Civication/mailFamilies/subkultur/knowledge/subkultur_program_og_koordinering_knowledge.json",
-    "data/Civication/mailFamilies/subkultur/consequence/subkultur_program_og_koordinering_consequence.json"
+    "data/Civication/mailFamilies/subkultur/consequence/subkultur_program_og_koordinering_consequence.json",
+    "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+    "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
+    "data/Civication/mailFamilies/vitenskap/story/vitenskap_assistent_og_laboratorium_story.json",
+    "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_assistent_og_laboratorium_conflict.json",
+    "data/Civication/mailFamilies/vitenskap/event/vitenskap_assistent_og_laboratorium_event.json",
+    "data/Civication/mailFamilies/vitenskap/micro/vitenskap_assistent_og_laboratorium_micro.json",
+    "data/Civication/mailFamilies/vitenskap/followup/vitenskap_assistent_og_laboratorium_followup.json",
+    "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_assistent_og_laboratorium_knowledge.json",
+    "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_assistent_og_laboratorium_consequence.json"
   ],
   "compiler_version": 1,
   "entries": [
@@ -272265,6 +272274,2031 @@
       "source_hash": "9deec1c30f4996176567bcd094d3a0d580d671ea0dc5df3afbc4c34ae43fd4c6",
       "source_path": "data/Civication/mailFamilies/subkultur/story/subkultur_program_og_koordinering_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før fristen presser teamet mot en hms- og kontrollsnarvei gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs fristen presser teamet mot en hms- og kontrollsnarvei med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Malik",
+        "id": "vitenskap_assistent_og_laboratorium_conflict_001",
+        "mail_family": "vitenskap_assistent_og_laboratorium_tidspress_og_kvalitetskonflikt",
+        "mail_type": "conflict",
+        "narrative_arc": "conflict",
+        "people_ref": "malik_instrument_hms_og_biosikkerhet_vitenskap_assistent_lab",
+        "phase": "forenoon",
+        "place_id": "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 141,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_assistent_og_laboratorium_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal fristen presser teamet mot en hms- og kontrollsnarvei.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Fristen presser teamet mot en HMS- og kontrollsnarvei",
+        "summary": "Fristen presser teamet mot en HMS- og kontrollsnarvei. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_conflict_001",
+      "mail_type": "conflict",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før fristen presser teamet mot en hms- og kontrollsnarvei gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs fristen presser teamet mot en hms- og kontrollsnarvei med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal fristen presser teamet mot en hms- og kontrollsnarvei.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Fristen presser teamet mot en HMS- og kontrollsnarvei",
+          "summary": "Fristen presser teamet mot en HMS- og kontrollsnarvei. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_conflict_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_conflict_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_assistent_og_laboratorium_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_conflict_001",
+        "version": 1
+      },
+      "source_hash": "f5d1bdb07ba05a845ad407f0d8407b6a57c00681d2aeb9796800e9ece5f8b1b8",
+      "source_path": "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_assistent_og_laboratorium_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før etterspillet viser kostnaden ved skjulte metadatahull gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs etterspillet viser kostnaden ved skjulte metadatahull med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Nora",
+        "id": "vitenskap_assistent_og_laboratorium_consequence_001",
+        "mail_family": "vitenskap_assistent_og_laboratorium_etterspill_sikkerhet_og_datakvalitet",
+        "mail_type": "consequence",
+        "narrative_arc": "consequence",
+        "people_ref": "nora_data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+        "phase": "forenoon",
+        "place_id": "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 201,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_assistent_og_laboratorium_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal etterspillet viser kostnaden ved skjulte metadatahull.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Etterspillet viser kostnaden ved skjulte metadatahull",
+        "summary": "Etterspillet viser kostnaden ved skjulte metadatahull. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_consequence_001",
+      "mail_type": "consequence",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før etterspillet viser kostnaden ved skjulte metadatahull gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs etterspillet viser kostnaden ved skjulte metadatahull med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal etterspillet viser kostnaden ved skjulte metadatahull.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Etterspillet viser kostnaden ved skjulte metadatahull",
+          "summary": "Etterspillet viser kostnaden ved skjulte metadatahull. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_consequence_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_consequence_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_assistent_og_laboratorium_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_consequence_001",
+        "version": 1
+      },
+      "source_hash": "fe9be07ea5a6bd6c87a7612cd7584e07edcb290d37c2564c22d911b44cc0090f",
+      "source_path": "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_assistent_og_laboratorium_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før ny informasjon gjør prøveidentiteten usikker midt i serien gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs ny informasjon gjør prøveidentiteten usikker midt i serien med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Eva",
+        "id": "vitenskap_assistent_og_laboratorium_event_001",
+        "mail_family": "vitenskap_assistent_og_laboratorium_instrument_eller_proveavvik",
+        "mail_type": "event",
+        "narrative_arc": "event",
+        "people_ref": "eva_provemottak_og_sporbarhet_vitenskap_assistent_lab",
+        "phase": "forenoon",
+        "place_id": "proveidentitet_protokoll_og_sporbarhet_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 161,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/event/vitenskap_assistent_og_laboratorium_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal ny informasjon gjør prøveidentiteten usikker midt i serien.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Ny informasjon gjør prøveidentiteten usikker midt i serien",
+        "summary": "Ny informasjon gjør prøveidentiteten usikker midt i serien. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_event_001",
+      "mail_type": "event",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før ny informasjon gjør prøveidentiteten usikker midt i serien gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs ny informasjon gjør prøveidentiteten usikker midt i serien med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal ny informasjon gjør prøveidentiteten usikker midt i serien.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Ny informasjon gjør prøveidentiteten usikker midt i serien",
+          "summary": "Ny informasjon gjør prøveidentiteten usikker midt i serien. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_event_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proveidentitet_protokoll_og_sporbarhet_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_event_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/event/vitenskap_assistent_og_laboratorium_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_event_001",
+        "version": 1
+      },
+      "source_hash": "6b5a5ae1cee76e84fc4435e65bbd19984a45ca8a3f97c5704dcb7fde408ed2ca",
+      "source_path": "data/Civication/mailFamilies/vitenskap/event/vitenskap_assistent_og_laboratorium_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før gjenåpne bare arbeidsleddet som faktisk sviktet gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs gjenåpne bare arbeidsleddet som faktisk sviktet med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Henrik",
+        "id": "vitenskap_assistent_og_laboratorium_followup_001",
+        "mail_family": "vitenskap_assistent_og_laboratorium_handoff_og_bounded_rework",
+        "mail_type": "followup",
+        "narrative_arc": "followup",
+        "people_ref": "henrik_kvalitet_avvik_og_handoff_vitenskap_assistent_lab",
+        "phase": "forenoon",
+        "place_id": "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 181,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/followup/vitenskap_assistent_og_laboratorium_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal gjenåpne bare arbeidsleddet som faktisk sviktet.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Gjenåpne bare arbeidsleddet som faktisk sviktet",
+        "summary": "Gjenåpne bare arbeidsleddet som faktisk sviktet. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_followup_001",
+      "mail_type": "followup",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før gjenåpne bare arbeidsleddet som faktisk sviktet gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs gjenåpne bare arbeidsleddet som faktisk sviktet med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal gjenåpne bare arbeidsleddet som faktisk sviktet.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Gjenåpne bare arbeidsleddet som faktisk sviktet",
+          "summary": "Gjenåpne bare arbeidsleddet som faktisk sviktet. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_followup_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_followup_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/followup/vitenskap_assistent_og_laboratorium_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_followup_001",
+        "version": 1
+      },
+      "source_hash": "51ed422e3172e479f82e32294e318909abe93c78eda33faef2d928c45ec81851",
+      "source_path": "data/Civication/mailFamilies/vitenskap/followup/vitenskap_assistent_og_laboratorium_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før avklar prøveidentitet og riktig protokoll gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs avklar prøveidentitet og riktig protokoll med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Eva",
+        "id": "vitenskap_assistent_og_laboratorium_job_001",
+        "mail_family": "vitenskap_assistent_og_laboratorium_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "eva_provemottak_og_sporbarhet_vitenskap_assistent_lab",
+        "phase": "forenoon",
+        "place_id": "proveidentitet_protokoll_og_sporbarhet_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 121,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal avklar prøveidentitet og riktig protokoll.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Avklar prøveidentitet og riktig protokoll",
+        "summary": "Avklar prøveidentitet og riktig protokoll. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_job_001",
+      "mail_type": "job",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før avklar prøveidentitet og riktig protokoll gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs avklar prøveidentitet og riktig protokoll med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal avklar prøveidentitet og riktig protokoll.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Avklar prøveidentitet og riktig protokoll",
+          "summary": "Avklar prøveidentitet og riktig protokoll. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_job_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proveidentitet_protokoll_og_sporbarhet_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_job_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_job_001",
+        "version": 1
+      },
+      "source_hash": "8a0fcb983e042513b64437772efe761c286a5db4ddb7e532c7bc4c71b475f9be",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før kontroller instrument, hms og biosikkerhet før kjøring gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs kontroller instrument, hms og biosikkerhet før kjøring med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Malik",
+        "id": "vitenskap_assistent_og_laboratorium_job_002",
+        "mail_family": "vitenskap_assistent_og_laboratorium_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "malik_instrument_hms_og_biosikkerhet_vitenskap_assistent_lab",
+        "phase": "afternoon",
+        "place_id": "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 122,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal kontroller instrument, hms og biosikkerhet før kjøring.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Kontroller instrument, HMS og biosikkerhet før kjøring",
+        "summary": "Kontroller instrument, HMS og biosikkerhet før kjøring. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_job_002",
+      "mail_type": "job",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før kontroller instrument, hms og biosikkerhet før kjøring gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs kontroller instrument, hms og biosikkerhet før kjøring med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal kontroller instrument, hms og biosikkerhet før kjøring.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Kontroller instrument, HMS og biosikkerhet før kjøring",
+          "summary": "Kontroller instrument, HMS og biosikkerhet før kjøring. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_job_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_job_002",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_job_002",
+        "version": 1
+      },
+      "source_hash": "d6301e5f8e697b221b0d775105a2c58e249129d50316d3a50f8bbaee4194f94e",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før registrer rådata og metadata uten antakelser gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs registrer rådata og metadata uten antakelser med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Nora",
+        "id": "vitenskap_assistent_og_laboratorium_job_003",
+        "mail_family": "vitenskap_assistent_og_laboratorium_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "nora_data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+        "phase": "forenoon",
+        "place_id": "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 123,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal registrer rådata og metadata uten antakelser.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Registrer rådata og metadata uten antakelser",
+        "summary": "Registrer rådata og metadata uten antakelser. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_job_003",
+      "mail_type": "job",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før registrer rådata og metadata uten antakelser gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs registrer rådata og metadata uten antakelser med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal registrer rådata og metadata uten antakelser.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Registrer rådata og metadata uten antakelser",
+          "summary": "Registrer rådata og metadata uten antakelser. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_job_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_job_003",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_job_003",
+        "version": 1
+      },
+      "source_hash": "050ce715746e3cf3e464ac6210d7c678ff2f55dcc4869f219a0389fbe4c10bb1",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før gjør avvik og handoff etterprøvbart gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs gjør avvik og handoff etterprøvbart med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Henrik",
+        "id": "vitenskap_assistent_og_laboratorium_job_004",
+        "mail_family": "vitenskap_assistent_og_laboratorium_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "henrik_kvalitet_avvik_og_handoff_vitenskap_assistent_lab",
+        "phase": "afternoon",
+        "place_id": "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 124,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal gjør avvik og handoff etterprøvbart.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Gjør avvik og handoff etterprøvbart",
+        "summary": "Gjør avvik og handoff etterprøvbart. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_job_004",
+      "mail_type": "job",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før gjør avvik og handoff etterprøvbart gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs gjør avvik og handoff etterprøvbart med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal gjør avvik og handoff etterprøvbart.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Gjør avvik og handoff etterprøvbart",
+          "summary": "Gjør avvik og handoff etterprøvbart. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_job_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_job_004",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_job_004",
+        "version": 1
+      },
+      "source_hash": "682a57a381bf529c0f3ef258759e840e8408299ab2fb396b8c53819976884eeb",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_assistent_og_laboratorium_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før bruk history go til å forstå hvorfor kontrollregimet finnes gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs bruk history go til å forstå hvorfor kontrollregimet finnes med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Malik",
+        "id": "vitenskap_assistent_og_laboratorium_knowledge_001",
+        "mail_family": "vitenskap_assistent_og_laboratorium_history_go_vitenskapspraksis",
+        "mail_type": "knowledge",
+        "narrative_arc": "knowledge",
+        "people_ref": "malik_instrument_hms_og_biosikkerhet_vitenskap_assistent_lab",
+        "phase": "forenoon",
+        "place_id": "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 191,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_assistent_og_laboratorium_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal bruk history go til å forstå hvorfor kontrollregimet finnes.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Bruk History Go til å forstå hvorfor kontrollregimet finnes",
+        "summary": "Bruk History Go til å forstå hvorfor kontrollregimet finnes. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_knowledge_001",
+      "mail_type": "knowledge",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før bruk history go til å forstå hvorfor kontrollregimet finnes gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs bruk history go til å forstå hvorfor kontrollregimet finnes med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal bruk history go til å forstå hvorfor kontrollregimet finnes.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Bruk History Go til å forstå hvorfor kontrollregimet finnes",
+          "summary": "Bruk History Go til å forstå hvorfor kontrollregimet finnes. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_knowledge_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_knowledge_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_assistent_og_laboratorium_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_knowledge_001",
+        "version": 1
+      },
+      "source_hash": "37d98e8b7daa5dd6cb2bbc7bdae20bcd36bfd211da5ebb7a143b25cb8c6419c9",
+      "source_path": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_assistent_og_laboratorium_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før er dette assistentutførelse eller faglig godkjenning gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs er dette assistentutførelse eller faglig godkjenning med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Henrik",
+        "id": "vitenskap_assistent_og_laboratorium_micro_001",
+        "mail_family": "vitenskap_assistent_og_laboratorium_rask_stopp_og_eskalering",
+        "mail_type": "micro",
+        "narrative_arc": "micro",
+        "people_ref": "henrik_kvalitet_avvik_og_handoff_vitenskap_assistent_lab",
+        "phase": "forenoon",
+        "place_id": "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 171,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/micro/vitenskap_assistent_og_laboratorium_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal er dette assistentutførelse eller faglig godkjenning.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Er dette assistentutførelse eller faglig godkjenning",
+        "summary": "Er dette assistentutførelse eller faglig godkjenning. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_micro_001",
+      "mail_type": "micro",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før er dette assistentutførelse eller faglig godkjenning gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs er dette assistentutførelse eller faglig godkjenning med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal er dette assistentutførelse eller faglig godkjenning.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Er dette assistentutførelse eller faglig godkjenning",
+          "summary": "Er dette assistentutførelse eller faglig godkjenning. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_micro_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_micro_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/micro/vitenskap_assistent_og_laboratorium_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_micro_001",
+        "version": 1
+      },
+      "source_hash": "d5105f425e2ac847c7fb0effd2a544e1d21557b514a417bc22102789b0fcf1d9",
+      "source_path": "data/Civication/mailFamilies/vitenskap/micro/vitenskap_assistent_og_laboratorium_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før når en kollega mener prøve-id kan gjettes gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs når en kollega mener prøve-id kan gjettes med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Eva",
+        "id": "vitenskap_assistent_og_laboratorium_people_001",
+        "mail_family": "vitenskap_assistent_og_laboratorium_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "eva_provemottak_og_sporbarhet_vitenskap_assistent_lab",
+        "phase": "forenoon",
+        "place_id": "proveidentitet_protokoll_og_sporbarhet_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 131,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal når en kollega mener prøve-id kan gjettes.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Når en kollega mener prøve-ID kan gjettes",
+        "summary": "Når en kollega mener prøve-ID kan gjettes. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_people_001",
+      "mail_type": "people",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før når en kollega mener prøve-id kan gjettes gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs når en kollega mener prøve-id kan gjettes med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal når en kollega mener prøve-id kan gjettes.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Når en kollega mener prøve-ID kan gjettes",
+          "summary": "Når en kollega mener prøve-ID kan gjettes. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_people_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proveidentitet_protokoll_og_sporbarhet_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_people_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_people_001",
+        "version": 1
+      },
+      "source_hash": "3b456db977d429527a7c19211c223dfa5068d516ad605debf7e7182dd337d570",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før når erfaring blir brukt som erstatning for opplæring gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs når erfaring blir brukt som erstatning for opplæring med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Malik",
+        "id": "vitenskap_assistent_og_laboratorium_people_002",
+        "mail_family": "vitenskap_assistent_og_laboratorium_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "malik_instrument_hms_og_biosikkerhet_vitenskap_assistent_lab",
+        "phase": "afternoon",
+        "place_id": "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 132,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal når erfaring blir brukt som erstatning for opplæring.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Når erfaring blir brukt som erstatning for opplæring",
+        "summary": "Når erfaring blir brukt som erstatning for opplæring. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_people_002",
+      "mail_type": "people",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før når erfaring blir brukt som erstatning for opplæring gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs når erfaring blir brukt som erstatning for opplæring med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal når erfaring blir brukt som erstatning for opplæring.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Når erfaring blir brukt som erstatning for opplæring",
+          "summary": "Når erfaring blir brukt som erstatning for opplæring. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_people_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_people_002",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_people_002",
+        "version": 1
+      },
+      "source_hash": "f0a5d2e120fdfbe98c94ecd43194dc8ae7b1be5a5e5a286053b71c8265829aaa",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før når manglende metadata blir sosialt upraktisk gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs når manglende metadata blir sosialt upraktisk med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Nora",
+        "id": "vitenskap_assistent_og_laboratorium_people_003",
+        "mail_family": "vitenskap_assistent_og_laboratorium_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "nora_data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+        "phase": "forenoon",
+        "place_id": "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 133,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal når manglende metadata blir sosialt upraktisk.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Når manglende metadata blir sosialt upraktisk",
+        "summary": "Når manglende metadata blir sosialt upraktisk. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_people_003",
+      "mail_type": "people",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før når manglende metadata blir sosialt upraktisk gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs når manglende metadata blir sosialt upraktisk med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal når manglende metadata blir sosialt upraktisk.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Når manglende metadata blir sosialt upraktisk",
+          "summary": "Når manglende metadata blir sosialt upraktisk. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_people_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_people_003",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_people_003",
+        "version": 1
+      },
+      "source_hash": "7daf297e420623a2baa7fdaec68efebd63d0cad99c94a4acd1308fddf69d0ca7",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før når assistenten presses til å godkjenne konklusjonen gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs når assistenten presses til å godkjenne konklusjonen med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Henrik",
+        "id": "vitenskap_assistent_og_laboratorium_people_004",
+        "mail_family": "vitenskap_assistent_og_laboratorium_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "henrik_kvalitet_avvik_og_handoff_vitenskap_assistent_lab",
+        "phase": "afternoon",
+        "place_id": "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 134,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal når assistenten presses til å godkjenne konklusjonen.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Når assistenten presses til å godkjenne konklusjonen",
+        "summary": "Når assistenten presses til å godkjenne konklusjonen. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_people_004",
+      "mail_type": "people",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før når assistenten presses til å godkjenne konklusjonen gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs når assistenten presses til å godkjenne konklusjonen med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal når assistenten presses til å godkjenne konklusjonen.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Når assistenten presses til å godkjenne konklusjonen",
+          "summary": "Når assistenten presses til å godkjenne konklusjonen. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_people_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_people_004",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_people_004",
+        "version": 1
+      },
+      "source_hash": "a8db035299ef96f17d913016eda7ccff4e4547cab76952298f106613990851f1",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_assistent_og_laboratorium_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_sikker_og_kvalifisert_utforelse_vs_uformell_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før et synlig dataavvik reddet reproduserbarheten gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet.",
+            "tags": [
+              "sporbarhet",
+              "protokoll",
+              "hms",
+              "metadata"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs et synlig dataavvik reddet reproduserbarheten med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv.",
+            "tags": [
+              "snarvei",
+              "dataavvik",
+              "hmsbrudd"
+            ]
+          }
+        ],
+        "competency": "sporbarhet_protokoll_instrument_hms_radataintegritet_metadata_og_handoff",
+        "consequence_axis": "datakvalitet_sikkerhet_og_reproduserbarhet_vs_usporbar_risiko",
+        "from": "Nora",
+        "id": "vitenskap_assistent_og_laboratorium_story_001",
+        "mail_family": "vitenskap_assistent_og_laboratorium_sporbarhet_og_tillit",
+        "mail_type": "story",
+        "narrative_arc": "story",
+        "people_ref": "nora_data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+        "phase": "forenoon",
+        "place_id": "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+        "pressure": "frist_produksjon_forventet_resultat_status_og_uformell_myndighet",
+        "priority": 151,
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_assistent_og_laboratorium_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal et synlig dataavvik reddet reproduserbarheten.",
+          "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+          "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+        ],
+        "subject": "Et synlig dataavvik reddet reproduserbarheten",
+        "summary": "Et synlig dataavvik reddet reproduserbarheten. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares.",
+        "task_domain": "vitenskap_assistent_og_laboratorium"
+      },
+      "id": "vitenskap_assistent_og_laboratorium_story_001",
+      "mail_type": "story",
+      "role_scope": "vitenskap_assistent_og_laboratorium",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer etterprøvbarhet fordi neste person kan se hvilken prøve som ble håndtert, hvilken protokoll og instrumentstatus som gjaldt, hvilke sikkerhetskrav som var oppfylt, hva som faktisk ble målt, hvilke metadata og avvik som finnes, og hvem som eier neste faglige beslutning. Qualification_required og lokal opplæring forblir reelle porter. Assistenten bruker sitt legitime handlingsrom til presis utførelse og stopp/eskalering uten å låne kvalifikasjon eller hovedkonklusjonsmyndighet. Det gjør senere feilsøking og bounded rework mulig uten å omskrive rådata eller historikk.",
+            "id": "A",
+            "label": "Før et synlig dataavvik reddet reproduserbarheten gjennom det dokumenterte laboratorieforløpet",
+            "reply": "Jeg oppdaterer laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework før arbeidet går videre. Jeg bekrefter prøve-ID/proveniens, riktig protokollversjon, dokumentert kvalifikasjon og eventuell lokal instrumentopplæring og tilgang. Instrumentkontroll, HMS og biosikkerhet må være tilfredsstillende før kjøring. Jeg registrerer rådata og metadata uten antakelser, skiller faktisk observasjon fra analyse, logger avvik og sender protokollendring eller faglig hovedkonklusjon til riktig veileder eller ansvarlig rolle. History Go og Vitenskap-badge brukes bare til kontekst og bedre spørsmål, aldri som dagens evidens, kvalifikasjon eller myndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løsningen kan se effektiv ut, men bryter evidenskjeden. Når prøveidentitet, protokoll, instrumentkontroll, HMS, metadata eller kvalifikasjon blir antatt i stedet for dokumentert, vet ingen lenger om resultatet kan knyttes til riktig materiale og prosedyre. Skjult datakorrigering og uformell godkjenning gjør senere reproduksjon og ansvar uklart, og sikkerhetsrisiko kan bli reell. Vitenskap-badge, XP eller sosial standing kan ikke legitimere snarveien; qualification_required, faktisk opplæring og ansvarlig faglig godkjenning må forbli separate.",
+            "id": "B",
+            "label": "Løs et synlig dataavvik reddet reproduserbarheten med den raskeste uformelle snarveien",
+            "reply": "Jeg lar tidsfristen, en erfaren kollegas forventning eller ønsket om en pen dataserie veie tyngre enn arbeidskontrollen. Jeg antar prøveidentitet eller metadata når noe mangler, fortsetter selv om instrumentkontrollen er uklar, behandler HMS som et praktisk hinder og lar badge, erfaring eller uformell standing fungere som om kvalifikasjon og adgang var dokumentert. Dersom tallene avviker, justerer jeg dem eller glatter over avviket, og jeg lar assistentrollen høres ut som om den kan godkjenne metode eller faglig hovedkonklusjon selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende laboratoriearbeidsloggen viser hva som er kontrollert og hva som fortsatt er uavklart mens du skal et synlig dataavvik reddet reproduserbarheten.",
+            "Tidspress, produksjonsønske, forventet resultat eller en erfaren kollegas trygghet gjør det fristende å hoppe over sporbarhet, sikkerhet, metadata eller riktig faglig godkjenning.",
+            "Velg et grep som bevarer prøveidentitet, protokoll, kvalifikasjon, instrument/HMS, rådata, metadata, avvik og riktig handoff til ansvarlig rolle."
+          ],
+          "subject": "Et synlig dataavvik reddet reproduserbarheten",
+          "summary": "Et synlig dataavvik reddet reproduserbarheten. Arbeidet føres i laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework, der oppdrag, prøve-ID og proveniens, relevant_education_or_employer_qualification, lokal opplæring og tilgang, protokollversjon, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kvalitetskontroll, avvik, handoff og bounded rework holdes separat og etterprøvbart. Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er qualification_required; Vitenskap-badge, XP, History Go, senioritet, nettverk eller sosial standing kan aldri erstatte kvalifikasjon, instrumentopplæring, sikkerhetskrav, evidens eller faglig godkjenningsmyndighet. Når kontroll eller identitet svikter, er riktig handling å stoppe, registrere avviket og eskalere til riktig ansvarlig rolle, ikke å gjette, hoppe over HMS eller justere data. Nye opplysninger gjenåpner bare berørte ledd, mens rådata, tidligere versjon og avvik bevares."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_assistent_og_laboratorium_story_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_assistent_og_laboratorium_story_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_assistent_og_laboratorium_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_assistent_og_laboratorium.mail.vitenskap_assistent_og_laboratorium_story_001",
+        "version": 1
+      },
+      "source_hash": "2aa75a7418fe5d33de9966be576e9eda5b323eb3b2af2174ad9ecbe0db31ada1",
+      "source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_assistent_og_laboratorium_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
     }
   ],
   "ignored_source_files": [
@@ -272274,7 +274308,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "619381eb46793cebfdea22897ed61487ebbff041a6846cdd4f05e3359662d98d",
+  "registry_hash": "1434be220b961a784fc8fd90d55535f466b721fd125dd514b57d3849d2669534",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -274202,6 +276236,23 @@
       "pk_follow_013",
       "pk_knowledge_003",
       "pk_consequence_015"
+    ],
+    "vitenskap/vitenskap_assistent_og_laboratorium": [
+      "vitenskap_assistent_og_laboratorium_job_001",
+      "vitenskap_assistent_og_laboratorium_job_002",
+      "vitenskap_assistent_og_laboratorium_job_003",
+      "vitenskap_assistent_og_laboratorium_job_004",
+      "vitenskap_assistent_og_laboratorium_people_001",
+      "vitenskap_assistent_og_laboratorium_people_002",
+      "vitenskap_assistent_og_laboratorium_people_003",
+      "vitenskap_assistent_og_laboratorium_people_004",
+      "vitenskap_assistent_og_laboratorium_story_001",
+      "vitenskap_assistent_og_laboratorium_conflict_001",
+      "vitenskap_assistent_og_laboratorium_event_001",
+      "vitenskap_assistent_og_laboratorium_micro_001",
+      "vitenskap_assistent_og_laboratorium_followup_001",
+      "vitenskap_assistent_og_laboratorium_knowledge_001",
+      "vitenskap_assistent_og_laboratorium_consequence_001"
     ]
   },
   "runtime_materialized_sources": [
@@ -274231,11 +276282,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 683,
+    "compiled_source_file_count": 692,
     "ignored_source_file_count": 1,
-    "input_file_count": 684,
-    "role_count": 81,
-    "scene_count": 1765,
+    "input_file_count": 693,
+    "role_count": 82,
+    "scene_count": 1780,
     "shadowed_duplicate_count": 0
   },
   "version": 1
