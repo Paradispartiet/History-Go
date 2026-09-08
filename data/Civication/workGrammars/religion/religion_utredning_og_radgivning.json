@@ -1,15 +1,230 @@
 {
-  "schema":"civication_work_grammar_v1","version":1,"category":"religion","role_scope":"religion_utredning_og_radgivning","role_id":"religion_utredning_og_radgivning",
-  "badge_binding":{"badge_id":"religion","badge_titles":["Fagkonsulent","Seniorrådgiver"],"tier_thresholds":[240,380]},
-  "work_world":"Utredning og rådgivning: gjøre religionsfaglig kunnskap, aktørperspektiver og institusjonell kontekst om til etterprøvbare beslutningsgrunnlag uten å overskride mandatet.",
-  "authority_boundary":{"can":["utrede, sammenligne og anbefale","markere usikkerhet og interessekonflikter","foreslå videre faglig eller juridisk avklaring"],"cannot":["fatte vedtak uten delegasjon","gi juridiske garantier","representere grupper uten mandat","gjøre normative preferanser om til fakta"]},
-  "work_loops":["definer bestilling og beslutningsbehov","kartlegg kilder, berørte aktører og motstridende interesser","skill beskrivelse, analyse og anbefaling","test anbefalingen mot rettigheter, konsekvenser og alternative forklaringer","dokumenter premisser, usikkerhet og hva som må avgjøres av andre"],
-  "practice_stories":[
-    {"id":"bestiller_vil_ha_ett_svar","title":"Bestiller vil ha ett svar","problem":"Saksbildet er sammensatt, men det etterspørres en enkel konklusjon.","good_practice":"Gi en beslutningsklar anbefaling uten å skjule relevante motargumenter og usikkerhet."},
-    {"id":"sterk_lobby","title":"Sterk organisasjon leverer ferdig narrativ","problem":"En ressurssterk aktør tilbyr tall og formuleringer som gagner dem selv.","good_practice":"Kontroller dokumentasjonen uavhengig og identifiser manglende perspektiver."},
-    {"id":"religion_eller_kultur","title":"Religion eller kultur?","problem":"En praksis forklares automatisk som religiøs selv om årsakene er blandede.","good_practice":"Unngå enkel årsaksmerking og dokumenter flere relevante forklaringsnivåer."},
-    {"id":"juridisk_grense","title":"Fagspørsmål blir rettsspørsmål","problem":"Bestilleren ber om en juridisk konklusjon utover rådgiverens kompetanse.","good_practice":"Avgrens det religionsfaglige bidraget og eskaler rettsspørsmålet til kompetent instans."},
-    {"id":"haster","title":"Kort frist, ufullstendig høring","problem":"Fristen utløper før alle berørte stemmer er hørt.","good_practice":"Dokumenter hullene, prioriter de mest beslutningskritiske avklaringene og unngå falsk sikkerhet."}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "religion",
+  "role_scope": "religion_utredning_og_radgivning",
+  "role_id": "religion_utredning_og_radgivning",
+  "badge_binding": {
+    "badge_id": "religion",
+    "badge_titles": [
+      "Fagkonsulent",
+      "Seniorrådgiver"
+    ],
+    "tier_thresholds": [
+      240,
+      380
+    ]
+  },
+  "work_world": "Kilde- og mandatbasert religionsfaglig utredning der bestilling, dokumentasjon, aktørperspektiver, rettigheter, analyse, alternativer, anbefaling, beslutning og oppfølging holdes i ett vedvarende og korrigerbart saksobjekt.",
+  "task_families": [
+    "bestilling_og_mandatavklaring",
+    "kilde_og_proveniensarbeid",
+    "aktor_og_interessentkartlegging",
+    "rettighets_og_jussavklaring",
+    "analyse_og_alternativutvikling",
+    "anbefaling_handoff_og_oppfolging"
   ],
-  "quality_axes":["kildegrunnlag","rolleforstaelse","interessentbredde","analytisk_skille","konsekvensvurdering","mandatklarhet"]
+  "work_loops": [
+    "bestilling -> mandat/beslutningsbehov -> kilder/proveniens -> aktører/interesser -> rettigheter/jussgrense -> analyse/alternativer -> anbefaling -> handoff -> beslutning -> oppfølging",
+    "ny opplysning eller motstemme -> kontroll -> waiting/venting på kilde, aktør, juss eller beslutningseier -> berørt analyseledd -> versjonert anbefaling -> handoff -> bounded rework"
+  ],
+  "pressure_axes": [
+    "bestilleronske_vs_analytisk_uavhengighet",
+    "fart_vs_kildebredde",
+    "aktoradgang_vs_representativitet",
+    "klar_anbefaling_vs_falsk_sikkerhet",
+    "seniorstatus_vs_faktisk_delegasjon"
+  ],
+  "practice_stories": [
+    {
+      "id": "ett_svar",
+      "setup": "Bestiller ønsker ett enkelt svar i et pluralistisk saksbilde.",
+      "decision": "Gi en beslutningsklar anbefaling, men vis alternativer, motargumenter og usikkerhet.",
+      "learning": "klarhet krever ikke at relevant uenighet skjules"
+    },
+    {
+      "id": "sterk_lobby",
+      "setup": "En ressurssterk aktør leverer et ferdig narrativ og tallgrunnlag.",
+      "decision": "Kontroller materialet uavhengig, attribuer interessen og let etter manglende perspektiver.",
+      "learning": "tilgang og relasjon er ikke evidens eller representasjonsmandat"
+    },
+    {
+      "id": "religion_eller_annet",
+      "setup": "En praksis forklares automatisk med religion selv om årsakene er blandede.",
+      "decision": "Test flere forklaringsnivåer og dokumenter hva religionsfaglig analyse faktisk kan si.",
+      "learning": "religion er ikke en universell restforklaring"
+    },
+    {
+      "id": "juridisk_grense",
+      "setup": "Bestiller ber om juridisk garanti basert på religionsfaglig utredning.",
+      "decision": "Beskriv faktum og konsekvenser, marker grensen og eskaler rettsspørsmålet.",
+      "learning": "god rådgivning vet når annen myndighet og kompetanse må overta"
+    },
+    {
+      "id": "ny_motstemme",
+      "setup": "Etter handoff kommer dokumentasjon som utfordrer et sentralt premiss.",
+      "decision": "Gjenåpne bare berørte ledd, behold tidligere versjon og forklar endringen.",
+      "learning": "korrigerbarhet styrker beslutningsgrunnlaget"
+    }
+  ],
+  "quality_axes": [
+    "kildegrunnlag",
+    "proveniens",
+    "rolleforstaelse",
+    "interessentbredde",
+    "analytisk_skille",
+    "konsekvensvurdering",
+    "mandatklarhet",
+    "korrigerbarhet"
+  ],
+  "authority_boundary": {
+    "may": [
+      "utrede, sammenligne og anbefale innen et dokumentert oppdrag og tydelig mandat",
+      "markere usikkerhet, interessekonflikter, manglende perspektiver og behov for ny dokumentasjon",
+      "beskrive religionsfaglige konsekvenser av alternativer og forklare hva kildene faktisk støtter",
+      "foreslå videre juridisk, etisk, faglig eller myndighetsmessig avklaring når saken går utenfor rollen",
+      "levere et sporbar beslutningsgrunnlag med alternativer, forbehold og anbefaling til riktig beslutningseier"
+    ],
+    "may_not": [
+      "fatte vedtak, instruere andre eller binde institusjonen uten dokumentert delegert myndighet",
+      "gi juridiske garantier eller behandle religionsfaglig analyse som bindende rettslig konklusjon uten kompetent instans",
+      "representere eller tale på vegne av tros- eller livssynsgrupper uten faktisk representasjonsmandat",
+      "skjule relevante motargumenter, usikkerhet eller interessekonflikter for å gjøre bestillers foretrukne konklusjon enklere",
+      "bruke Religion-badge, XP, History Go-kunnskap, popularitet, nettverk, senioritet eller sosial standing som faglig evidens, representasjonsmandat, juridisk kompetanse eller institusjonell myndighet"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "ingrid_bestilling_og_mandat_religion_utredning",
+      "name": "Ingrid",
+      "role": "bestillings- og mandatkontakt",
+      "workplace_ids": [
+        "bestilling_mandat_og_beslutningsbehov_religion_utredning"
+      ]
+    },
+    {
+      "id": "samir_kilder_aktorer_og_pluralisme_religion_utredning",
+      "name": "Samir",
+      "role": "kilde-, aktør- og pluralismekontakt",
+      "workplace_ids": [
+        "kilde_aktor_og_interessentkart_religion_utredning"
+      ]
+    },
+    {
+      "id": "liv_juss_rettigheter_og_forvaltning_religion_utredning",
+      "name": "Liv",
+      "role": "juss-, rettighets- og forvaltningskontakt",
+      "workplace_ids": [
+        "rettighet_juss_og_myndighetsavklaring_religion_utredning"
+      ]
+    },
+    {
+      "id": "jonas_kvalitet_anbefaling_og_handoff_religion_utredning",
+      "name": "Jonas",
+      "role": "kvalitets- og beslutningsgrunnlagsredaktør",
+      "workplace_ids": [
+        "anbefaling_handoff_og_oppfolging_religion_utredning"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "bestilling_mandat_og_beslutningsbehov_religion_utredning",
+      "name": "Bestilling, mandat og beslutningsbehov",
+      "function": "Her registreres oppdragsgiver, faktisk beslutningseier, spørsmål, leveranse, frist, avgrensning, kjente bindinger og hvilke deler som krever annen kompetanse. Flaten hindrer at en ønsket konklusjon blir til premiss og at rådgiveren glir fra analyse til vedtak."
+    },
+    {
+      "id": "kilde_aktor_og_interessentkart_religion_utredning",
+      "name": "Kilde-, aktør- og interessentkartet",
+      "function": "Her skilles forskning, dokumenter, statistikk, historiske kilder, organisasjonsposisjoner, erfaringsutsagn og manglende perspektiver. Hver stemme får ståsted og faktisk mandat, og intern religiøs og livssynsmessig variasjon beholdes synlig."
+    },
+    {
+      "id": "rettighet_juss_og_myndighetsavklaring_religion_utredning",
+      "name": "Rettighet, juss og myndighetsavklaring",
+      "function": "Her registreres rettighets-, diskriminerings-, personvern-, habilitets- og forvaltningsspørsmål, hvem som har kompetanse til å avgjøre dem, og hvilke avklaringer som fortsatt mangler. Religionsfaglig analyse kan beskrive faktum og konsekvenser, men gir ikke juridiske garantier."
+    },
+    {
+      "id": "anbefaling_handoff_og_oppfolging_religion_utredning",
+      "name": "Anbefaling, handoff og oppfølging",
+      "function": "Her versjoneres alternativer, konsekvenser, usikkerhet, anbefaling, kontroll, mottaker, faktisk beslutning, tilbakemelding og bounded rework. Tidligere premisser og versjoner beholdes slik at nytt materiale kan korrigere saken uten at historikken omskrives."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "utredningslogg_bestilling_kilder_aktorer_rettigheter_analyse_anbefaling_beslutning_og_oppfolging",
+    "description": "Versjonert saksobjekt som bevarer bestilling, beslutningsbehov, mandat, kilder og proveniens, aktørperspektiver og faktisk mandat, rettighets- og jussavklaringer, analyse, alternativer, konsekvenser, anbefaling, handoff, mottakerens beslutning, nye opplysninger og bounded rework.",
+    "states": [
+      "bestilling_registrert",
+      "beslutningseier_identifisert",
+      "mandat_avklart",
+      "kildegrunnlag_apnet",
+      "proveniens_og_kildekvalitet_vurdert",
+      "aktor_og_interessentkart_laget",
+      "intern_variasjon_og_motstemmer_vurdert",
+      "rettigheter_og_jussgrense_vurdert",
+      "analyse_skilt_fra_normativt_valg",
+      "alternativer_og_konsekvenser_utviklet",
+      "venter_pa_kilder",
+      "venter_pa_aktor_eller_motstemme",
+      "venter_pa_juridisk_eller_rettighetsavklaring",
+      "venter_pa_bestiller_eller_beslutningseier",
+      "anbefaling_versjonert",
+      "kvalitetskontrollert",
+      "handoff_med_forbehold",
+      "beslutning_registrert",
+      "ny_opplysning_registrert",
+      "bounded_rework",
+      "lukket_med_sporbarhet"
+    ],
+    "handoff_rule": "Neste eier mottar gjeldende versjon med bestilling, mandat, kilder, aktørkart, rettighets- og jussgrense, analyse, alternativer, konsekvenser, anbefaling, forbehold og åpne spørsmål. Handoff overfører ikke delegasjon eller juridisk, religiøs eller institusjonell myndighet som mottakeren eller rådgiveren ikke allerede har."
+  },
+  "rhythm_contract": {
+    "loop": "bestilling -> mandat -> dokumentasjon -> waiting/venting på kilder, aktører, juss eller beslutningseier -> analyse -> alternativer -> anbefaling -> handoff -> beslutning -> oppfølging -> bounded rework",
+    "waiting_states": [
+      "kilde_og_proveniensavklaring",
+      "aktor_og_motstemmeavklaring",
+      "rettigheter_og_juridisk_avklaring",
+      "habilitet_og_interesseavklaring",
+      "bestiller_og_beslutningseier",
+      "faglig_kvalitetskontroll",
+      "oppfolging_og_ny_dokumentasjon"
+    ],
+    "rework_rule": "Nye kilder eller korrigert proveniens, nye berørte perspektiver, dokumentert representasjonsproblem, rettighets- eller jussavklaring eller endret beslutningspremiss gjenåpner bare de berørte leddene. Tidligere kilder, versjon, anbefaling, handoff og begrunnelse beholdes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_religion_utredning_kontekst",
+      "badge_id": "religion",
+      "use": "History Go kan gi historisk og stedlig kontekst om religion, livssyn, institusjoner, praksiser, konflikter og endring og dermed forbedre spørsmål, kronologi og kildekritikk. Det kan ikke erstatte dagens saksdokumentasjon, aktørmandat, rettighets- eller juridisk avklaring, habilitetsvurdering, representasjonsmandat, delegasjon eller institusjonell beslutningsmyndighet."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "career_offer_policy_by_title",
+    "entry_policy_by_title": {
+      "Fagkonsulent": {
+        "policy": "direct",
+        "qualification_ids": []
+      },
+      "Seniorrådgiver": {
+        "policy": "direct",
+        "qualification_ids": []
+      }
+    },
+    "first_object": "utredningslogg_bestilling_kilder_aktorer_rettigheter_analyse_anbefaling_beslutning_og_oppfolging",
+    "first_task": "Åpne én konkret bestilling. Registrer spørsmål, faktisk beslutningseier, mandat, frist, kilder, berørte aktører, rettighets- og jussgrenser, mulige alternativer og hva som må avklares før første anbefaling kan sendes."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "religion_utredning_og_radgivning",
+    "no_generic_fallback": true
+  }
 }
