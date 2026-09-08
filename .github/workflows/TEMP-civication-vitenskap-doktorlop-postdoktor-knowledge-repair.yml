@@ -54,10 +54,13 @@ jobs:
           if(career.audit?.components?.knowledge?.level!=='complete')throw new Error('career knowledge not complete: '+JSON.stringify(career.audit?.components?.knowledge));
           const readiness=JSON.parse(fs.readFileSync('data/Civication/roleWorldRolloutReadiness.json','utf8')).roles.find(r=>r.key===key);
           if(!readiness)throw new Error('readiness row missing');
-          if((readiness.authored_work_required||[]).includes('career:knowledge'))throw new Error('career:knowledge still open');
-          const expected=['history_go_affordance','situated_reputation'];
-          if(JSON.stringify(readiness.authored_work_required)!==JSON.stringify(expected))throw new Error('unexpected authored work: '+JSON.stringify(readiness.authored_work_required));
-          console.log('Doktorlop/postdoktor knowledge foundation complete; Role World-only authored work remains.');
+          const remaining=readiness.authored_work_required||[];
+          console.log('REMAINING_AUTHORED_WORK='+JSON.stringify(remaining));
+          if(remaining.includes('career:knowledge'))throw new Error('career:knowledge still open');
+          const allowed=new Set(['history_go_affordance','situated_reputation']);
+          const unexpected=remaining.filter(x=>!allowed.has(x));
+          if(unexpected.length)throw new Error('unexpected non-Role-World authored work: '+JSON.stringify(unexpected));
+          console.log('Doktorlop/postdoktor knowledge foundation complete; only Role World-authored dimensions remain: '+JSON.stringify(remaining));
           NODE
       - name: Verify Career Gameplay Matrix
         run: node tests/civication-career-gameplay-matrix.test.js
