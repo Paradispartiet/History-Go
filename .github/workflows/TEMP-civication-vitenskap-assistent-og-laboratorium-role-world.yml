@@ -1,0 +1,197 @@
+name: TEMP Civication Vitenskap Assistent og laboratorium Role World
+# rebased on exact main 494574239f59ba4367804d66facca2d9b1741777
+
+on:
+  push:
+    branches:
+      - agent/civication-vitenskap-assistent-og-laboratorium-role-world-20260908
+    paths:
+      - scripts/TEMP_materialize_vitenskap_assistent_og_laboratorium_role_world.mjs
+      - .github/workflows/TEMP-civication-vitenskap-assistent-og-laboratorium-role-world.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-civication-vitenskap-assistent-og-laboratorium-role-world
+  cancel-in-progress: true
+
+jobs:
+  materialize-and-verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-vitenskap-assistent-og-laboratorium-role-world-20260908
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci --no-audit --no-fund
+
+      - name: Configure commit identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Require fresh main ancestry before materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge-base --is-ancestor origin/main HEAD || { echo "Branch is not based on current main" >&2; exit 1; }
+
+      - name: Syntax
+        run: node --check scripts/TEMP_materialize_vitenskap_assistent_og_laboratorium_role_world.mjs
+
+      - name: Materialize Vitenskap Assistent og laboratorium Role World
+        run: node scripts/TEMP_materialize_vitenskap_assistent_og_laboratorium_role_world.mjs
+
+      - name: Strengthen seven laboratory relationship threads
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs=require('node:fs');
+          const p='data/Civication/roleWorlds/vitenskap/vitenskap_assistent_og_laboratorium.json';
+          const world=JSON.parse(fs.readFileSync(p,'utf8'));
+          const expansions={
+            proveidentitet_og_proveniens:'Når merkingen avviker fra bestillingen, et mottakstidspunkt mangler eller et tidligere ledd bare finnes i muntlig hukommelse, må spilleren kunne vise hvem som visste hva når, hvilken etikett som faktisk satt på prøven, og hvorfor prøven ble stoppet, returnert eller holdt utenfor analysen. Et godt rykte kan gjøre avklaringen raskere, men kan ikke gjøre sannsynlig identitet til dokumentert chain of custody. Tråden lar tillit sprike: en bestiller kan irritere seg over stoppet samtidig som sporbarhetsmiljøet får større tillit fordi spilleren nekter å erstatte proveniens med plausibilitet. Dermed blir også versjonshistorikk og mottakslogg sosialt viktige, ikke bare administrative vedlegg.',
+            instrument_sikkerhet_og_tilgang:'Arbeidet skjer rundt instrumenter der lokal opplæring, registrert adgang, kontrollmateriale, kalibreringsstatus, verneutstyr og biosikkerhetsrutiner er egne porter. Fristpress og en erfaren kollegas uformelle «jeg viser deg bare» kan gjøre snarveien sosialt attraktiv, men kollegaen kan ikke låne bort qualification, adgang eller sikkerhetsgodkjenning. Når kontrollsignalet avviker, skal spilleren kunne stoppe, dokumentere og eskalere uten at ønsket resultat eller køen foran instrumentet avgjør saken. Standing hos Malik og sikkerhetsmiljøet vokser av tidlig varsling og presise observasjoner, ikke av risikovillighet, og kan aldri retroaktivt gjøre uautorisert bruk legitim.',
+            radataintegritet_mot_forventning:'Et forventet funn, en mislykket serie og en nær tidsfrist gjør rådataintegritet til mer enn en teknisk regel. Spilleren må bevare målingen slik den faktisk oppstod, med enhet, tidspunkt, prøve-ID, instrument og operatør, også når resultatet er upraktisk eller ser «feil» ut. Korreksjoner skal komme som synlige nye versjoner eller markerte kommentarer, ikke som skjult opprydding i den opprinnelige observasjonen. Nora kan gi spilleren høyere datatillit når hull og avvik vises ærlig, mens andre kan bli frustrerte fordi leveransen blir mindre glatt. Tråden viser derfor hvordan vitenskapelig integritet kan koste kortsiktig status samtidig som den gjør senere analyse, kontroll og faglig godkjenning mulig.',
+            qualification_rolle_og_uformell_makt:'Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent er alle qualification_required med relevant_education_or_employer_qualification, og dette står fast gjennom hele relasjonen. Etter hvert som spilleren blir dyktigere kan veileder og kolleger dele mer kontekst, gi mer komplekse oppgaver og stole mer på dokumentasjonen, men standing blir aldri en ny autorisasjonskanal. Uformell senioritet kan ikke erstatte lokal instrumentopplæring, adgang, signatur eller HMS/biosikkerhetskrav, og en veileder kan ikke retroaktivt gjøre arbeid innenfor et mandat som spilleren aldri hadde. Tråden gjør dermed forskjellen mellom å være nyttig, å være kvalifisert og å ha faktisk godkjenningsmyndighet til et kontinuerlig sosialt spørsmål.',
+            metadata_reproduserbarhet_og_kvalitet:'Kvalitet blir synlig når en annen person skal forstå arbeidet uten at spilleren står ved siden av og forklarer. Prøve-ID, protokoll og versjon, instrument, operatør, tidspunkt, enheter, kontrollmateriale, manglende verdier og avvik må derfor følge datasettet på en måte som lar neste kvalifiserte eier rekonstruere hva som skjedde. Et tomt felt skal være et eksplisitt hull, ikke en invitasjon til å gjette en plausibel verdi. Standing hos data- og kvalitetsmiljøet kan øke når spilleren dokumenterer begrensninger og lar usikkerheten stå synlig, selv om det gjør leveransen mindre pen. Reproduserbarhet blir dermed et kollektivt ansvar for lesbar historikk, ikke en forestilling om at alle datasett må se komplette ut.',
+            avvik_handoff_og_bounded_rework:'Når ny informasjon endrer en prøve, en kontroll eller en tidligere antakelse, skal bare de berørte leddene åpnes igjen. Rådata, tidligere versjon, avviksårsak, beslutning og ansvarlig eier bevares, slik at neste person kan se nøyaktig hva som ble endret og hvorfor. Henrik kan kreve rework og en tydelig handoff, men kan ikke omskrive historikken for å beskytte et individ, en gruppe eller prosjektets omdømme. Juniorer kan oppleve synlige avvik som karriererisiko, og bestillere kan foretrekke en stille rettelse, men tråden belønner korrigerbarhet fremfor feilfri fasade. Standing utvikles derfor gjennom evnen til å avgrense konsekvensen av feilen uten å skjule at den skjedde.',
+            statusangst_profesjonskultur_og_privativ:'Juniorstatus, midlertidighet og ønsket om å være den som får arbeidet til å flyte kan gjøre det vanskelig å si at en prøve må stoppes, at metadata mangler eller at en erfaren kollegas snarvei ikke er dokumentert. Spillerens profesjonelle standing kan derfor falle i ett miljø samtidig som sikkerhets- eller kvalitetsstanding styrkes i et annet. Etter arbeidstid følger skam, stolthet og grubling med hjem, men laboratoriedata, adgangsveier og fortrolige opplysninger gjør ikke det. En nær privat relasjon kan støtte spilleren i å holde arbeid–hjem-grenser og tåle usikkerhet, men kan ikke bli en uregistrert datakanal eller faglig bekreftelse. Tråden skiller dermed egenverdi og sosial aksept fra qualification_required, evidens og institusjonell myndighet.'
+          };
+          const seen=new Set();
+          for(const thread of world.primary_threads||[]){
+            const extra=expansions[thread.id];
+            if(!extra) throw new Error('Missing expansion for '+thread.id);
+            thread.relationship=thread.relationship+' '+extra;
+            if(thread.relationship.length<500) throw new Error('Thread still too short: '+thread.id+' '+thread.relationship.length);
+            seen.add(thread.id);
+          }
+          if(seen.size!==7) throw new Error('Expected seven primary threads, got '+seen.size);
+          fs.writeFileSync(p,JSON.stringify(world,null,2)+'\n');
+          NODE
+
+      - name: Restore TEMP materializer source
+        run: git checkout HEAD -- scripts/TEMP_materialize_vitenskap_assistent_og_laboratorium_role_world.mjs
+
+      - name: Bind qualification proof to canonical Badge source
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs=require('node:fs');
+          const p='tests/civication-vitenskap-assistent-og-laboratorium-role-world-rollout.test.js';
+          let test=fs.readFileSync(p,'utf8');
+          const old="const policies=Object.fromEntries(career.audit.salary.rows.map(r=>[r.title,r]));for(const title of TITLES){assert.equal(policies[title].offer_policy,'qualification_required');assert.deepEqual(policies[title].qualification_ids,[QUAL]);}";
+          const replacement="const policies=Object.fromEntries(career.audit.salary.rows.map(r=>[r.title,r]));const badge=read('data/badges/vitenskap.json');const badgeByLabel=Object.fromEntries(badge.tiers.map(t=>[t.label,t]));for(const title of TITLES){assert.equal(policies[title].offer_policy,'qualification_required');assert.deepEqual(badgeByLabel[title].career_offer,{title,policy:'qualification_required',qualification_ids:[QUAL],salary_tier:1,role_scope:ROLE});}";
+          if(!test.includes(old)) throw new Error('Expected qualification assertion block not found');
+          test=test.replace(old,replacement);
+          fs.writeFileSync(p,test);
+          NODE
+
+      - name: Generate canonical rollout surfaces
+        run: |
+          set -euo pipefail
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+
+      - name: Verify Vitenskap Assistent og laboratorium Role World
+        run: node tests/civication-vitenskap-assistent-og-laboratorium-role-world-rollout.test.js
+
+      - name: Verify global Role World contract
+        run: node tests/civication-role-world-contract.test.js
+
+      - name: Verify Career Gameplay Matrix
+        run: node tests/civication-career-gameplay-matrix.test.js
+
+      - name: Verify Role World readiness
+        run: node tests/civication-role-world-rollout-readiness.test.js
+
+      - name: Verify Scene Registry
+        run: node scripts/build-civication-scene-registry.mjs --check
+
+      - name: Verify Scenario People index
+        run: node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+
+      - name: Verify Scenario People audit
+        run: node --test tests/civication-scenario-people.test.mjs
+
+      - name: Verify full Civication suite
+        run: node tests/run-civication-tests.mjs
+
+      - name: Verify job learning profiles
+        run: npm run audit:job-learning-profiles
+
+      - name: Verify job knowledge requirements
+        run: npm run audit:job-knowledge-requirements
+
+      - name: Require fresh main ancestry before scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge-base --is-ancestor origin/main HEAD || { echo "main moved during verification" >&2; exit 1; }
+
+      - name: Verify exact permanent Role World scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t changed < <({ git diff --name-only; git ls-files --others --exclude-standard; } | sort -u)
+          printf '%s\n' "${changed[@]}"
+          if [ "${#changed[@]}" -ne 9 ]; then
+            echo "Expected exactly 9 permanent Role World paths, found ${#changed[@]}" >&2
+            exit 1
+          fi
+          for f in "${changed[@]}"; do
+            case "$f" in
+              data/Civication/careerGameplayMatrix.json|data/Civication/roleWorldAuthoringChecklist.json|data/Civication/roleWorldRolloutReadiness.json|data/Civication/roleWorldThemeBank.json|data/Civication/roleWorlds/index.json|data/Civication/roleWorlds/vitenskap/vitenskap_assistent_og_laboratorium.json|reports/CIVICATION_VITENSKAP_ASSISTENT_OG_LABORATORIUM_ROLE_WORLD_ROLLOUT_SOURCE_FIRST.md|reports/civication-role-world-rollout-readiness.md|tests/civication-vitenskap-assistent-og-laboratorium-role-world-rollout.test.js)
+                ;;
+              *)
+                echo "Unexpected generated path: $f" >&2
+                exit 1
+                ;;
+            esac
+          done
+          for required in \
+            data/Civication/careerGameplayMatrix.json \
+            data/Civication/roleWorldAuthoringChecklist.json \
+            data/Civication/roleWorldRolloutReadiness.json \
+            data/Civication/roleWorldThemeBank.json \
+            data/Civication/roleWorlds/index.json \
+            data/Civication/roleWorlds/vitenskap/vitenskap_assistent_og_laboratorium.json \
+            reports/CIVICATION_VITENSKAP_ASSISTENT_OG_LABORATORIUM_ROLE_WORLD_ROLLOUT_SOURCE_FIRST.md \
+            reports/civication-role-world-rollout-readiness.md \
+            tests/civication-vitenskap-assistent-og-laboratorium-role-world-rollout.test.js; do
+            printf '%s\n' "${changed[@]}" | grep -Fx "$required" >/dev/null || { echo "Missing required permanent path: $required" >&2; exit 1; }
+          done
+          git diff --check
+
+      - name: Require fresh main ancestry before permanent commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge-base --is-ancestor origin/main HEAD || { echo "main moved before permanent commit" >&2; exit 1; }
+
+      - name: Commit permanent verified Role World
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f scripts/TEMP_materialize_vitenskap_assistent_og_laboratorium_role_world.mjs
+          rm -f .github/workflows/TEMP-civication-vitenskap-assistent-og-laboratorium-role-world.yml
+          git diff --check
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No permanent changes to commit.' >&2
+            exit 1
+          fi
+          git diff --cached --check
+          git status --short
+          git commit -m "Complete Vitenskap Assistent og laboratorium Role World"
+          git push origin HEAD:agent/civication-vitenskap-assistent-og-laboratorium-role-world-20260908
