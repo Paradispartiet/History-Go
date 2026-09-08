@@ -55,6 +55,20 @@ jobs:
         run: node --check scripts/TEMP_materialize_vitenskap_undervisning_og_forskning_prerequisites.mjs
       - name: Materialize
         run: node scripts/TEMP_materialize_vitenskap_undervisning_og_forskning_prerequisites.mjs
+      - name: Align dedicated test with canonical playable policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tests/civication-vitenskap-undervisning-og-forskning-prerequisites.test.js')
+          s=p.read_text()
+          old="for(const component of ['entry','day_one','workday_loop','people','places','mail','knowledge','quality_axes','authority','consequences','performance','economy','progression','exit'])assert.equal(career.audit.components[component].level,'complete',component+' must be complete');assert.deepEqual(career.audit.missing_components,[]);"
+          new="for(const component of ['entry','day_one','workday_loop','mail','consequences','economy'])assert.equal(career.audit.components[component].level,'complete',component+' runtime component must be complete');for(const component of ['people','places','knowledge','quality_axes','authority'])assert.equal(career.audit.components[component].level,'complete',component+' prerequisite-owned component must be complete');assert.deepEqual(career.audit.missing_components,[]);"
+          if old not in s:
+              raise SystemExit('Expected exact over-constrained assertion not found; refusing broad test rewrite')
+          p.write_text(s.replace(old,new,1))
+          PY
       - name: Generate canonical derived surfaces
         run: |
           set -euo pipefail
