@@ -1,0 +1,36 @@
+name: TEMP Gamle Deichman scenario People sync
+
+on:
+  push:
+    branches:
+      - agent/gamle-deichman-reconciliation-20260908
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Regenerate canonical scenario People derivatives
+        run: |
+          set -euxo pipefail
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+      - name: Commit regenerated derivatives and remove TEMP workflow
+        run: |
+          set -euxo pipefail
+          rm .github/workflows/TEMP-gamle-deichman-scenario-people-sync.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Regenerate Civication scenario People for Gamle Deichman'
+          git push origin HEAD:agent/gamle-deichman-reconciliation-20260908
