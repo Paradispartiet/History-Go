@@ -1,0 +1,48 @@
+name: TEMP regenerate Fagverk release after Bankplassen
+
+on:
+  push:
+    branches:
+      - agent/fagverk-release-regenerate-bankplassen-temp-20260908
+    paths:
+      - .github/workflows/TEMP_fagverk_release_regenerate_bankplassen.yml
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact temp branch
+        uses: actions/checkout@v5
+        with:
+          ref: agent/fagverk-release-regenerate-bankplassen-temp-20260908
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Regenerate canonical Fagverk release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs
+
+      - name: Verify deterministic manifest and one-file scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-fagverk-release-manifest.mjs --check
+          changed="$(git status --porcelain | awk '{print $2}')"
+          test "$changed" = "data/fagverk/fagverk_release.json"
+
+      - name: Commit regenerated release manifest only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fagverk/fagverk_release.json
+          test "$(git diff --cached --name-only)" = "data/fagverk/fagverk_release.json"
+          git commit -m "Regenerate Fagverk release manifest"
+          git push origin HEAD:agent/fagverk-release-regenerate-bankplassen-temp-20260908
