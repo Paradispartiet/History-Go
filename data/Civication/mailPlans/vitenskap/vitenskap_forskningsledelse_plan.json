@@ -1,0 +1,202 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "vitenskap_forskningsledelse_foundation_v1",
+  "category": "vitenskap",
+  "role_scope": "vitenskap_forskningsledelse",
+  "title": "Vitenskap – forskningsledelse",
+  "description": "Seksten steg fra dokumentert utnevnelse og mandat gjennom portefølje, kapasitet, integritet, finansiering og effektpåstander til overtakbar lederhandoff.",
+  "arc": {
+    "from": "En Forskningsleder som har oppfylt appointment_required med academic_qualification_and_employment og employer_appointment, men må gjøre delegert myndighet, prioritering og kontrollgrenser spillbare og etterprøvbare.",
+    "to": "En forskningsleder som kan prioritere transparent, beskytte integritets- og habilitetsprosesser, gjøre kapasitet realistisk, avgrense partnerpress og overlevere beslutninger med mandat, usikkerhet og konsekvens synlig.",
+    "core_questions": [
+      "Er academic_qualification_and_employment, employer_appointment, delegert mandat og habilitet dokumentert for denne beslutningen?",
+      "Er portefølje, bemanning, budsjett og arbeidsmiljø realistiske samtidig, eller bygger planen på skjult overbelastning?",
+      "Er integritets-, etikk- og partnerpress håndtert på riktig uavhengig nivå uten at prestisje eller finansiering styrer resultatet?"
+    ]
+  },
+  "outcome_rules": {
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0
+    },
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "forskningsledelse_mandat_eller_integritet_brutt"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom job med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom people med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "knowledge",
+      "phase": "intro",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom knowledge med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_history_go_forskningsstyring"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom job med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom people med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "conflict",
+      "phase": "advanced",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom conflict med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_prestisje_vs_integritet"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom job med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom people med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom event med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_kapasitets_eller_finansieringsendring"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "micro",
+      "phase": "advanced",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom micro med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_rask_mandat_og_habilitetsgate"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom job med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 12,
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom people med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 13,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom followup med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_handoff_og_bounded_rework"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mastery",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom story med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_prioritering_og_tillit"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 15,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom consequence med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_etterspill_prioritering_og_integritet"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før forskningsportefolje_prioriterings_kapasitets_integritets_ressurs_og_handoff_logg gjennom job med appointment_required, employer_appointment, mandat, habilitet, kapasitet, integritet, usikkerhet, venting, beslutningseier og handoff synlig.",
+      "allowed_families": [
+        "vitenskap_forskningsledelse_job"
+      ],
+      "fallback_types": []
+    }
+  ]
+}
