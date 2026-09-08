@@ -1,8 +1,8 @@
 # Bankplassen – workcard
 
-Status: `READY FOR FINAL QA`
+Status: `MODERN PLACE CONTRACT COMPLETE`
 
-Branchgrunnlag: `agent/content-factory-pilot-03-bankplassen-complete-v1` rebased på PlaceCard-fullhetsendringen på `main`.
+Branchgrunnlag: locked `main` `4df9b1476d870fbe299e9f6a13d04ccae99ab2d2`; moderne komplettering er fail-closed og bevarer eksisterende innhold.
 
 ## 1. Eierskap
 
@@ -43,9 +43,10 @@ Branchgrunnlag: `agent/content-factory-pilot-03-bankplassen-complete-v1` rebased
 - Stories: `N/A` som ny Bankplassen-Story; eksisterende Ole Høiland-story eies av `grunnlovsbygget_bankplassen`.
 - Objects: fire fysiske og stedsspesifikke kunstverk.
 - Brands: Engebret Café er stedets dokumenterte Brands-samling.
-- Related: fire canonical nabosteder.
+- Related: fire canonical nabosteder beholdes som relasjoner, men er ikke en PlaceCard-samling.
+- Structures: granittblokkene og sittekantene materialiseres som én stedsspesifikk offentlig-rom-struktur med kilde og bildeproveniens.
 - Natur: `N/A` som egen naturprofil; trærne omtales bare som del av det dokumenterte plassrommet.
-- Språk: `N/A` – ingen stedsspesifikk dialekt eller lokalt uttrykk er dokumentert.
+- Språk: eget Språkleksikon med det dokumenterte stedsnavnet `Bankplassen`, historiske `Christiania Theater` og fagtermen `glacis`; dette er eksplisitt språk-/navnelag og ikke en dialektpåstand.
 
 ## 6. Læring og stedshandling
 
@@ -55,9 +56,9 @@ Branchgrunnlag: `agent/content-factory-pilot-03-bankplassen-complete-v1` rebased
 
 ## 7. PlaceCard
 
-- VALGTE PLACECARD-SAMLINGER: `people`, `objects`, `brands`, `related`.
-- People rendres som sirkel; Objects, Brands og Related som avrundede rektangler i fast 2×2-layout.
-- Samlingene er innholdsmessig ærlige: Johannes Brun, fire kunstobjekter, Engebret Café og fire relaterte steder. Bilder er ikke samling.
+- VALGTE PLACECARD-SAMLINGER: `people`, `objects`, `brands`, `structures`.
+- People rendres som sirkel; Objects, Brands og Structures som avrundede rektangler i fast 2×2-layout.
+- Samlingene er innholdsmessig ærlige: Johannes Brun, fire kunstobjekter, Engebret Café og granittblokkene/sittekantene. `related_place_ids` beholdes for relasjonell navigasjon, men er ikke PlaceCard-flate. Bilder er ikke samling.
 - Quiz forblir synlig primærhandling.
 
 ## 8. Sluttport
