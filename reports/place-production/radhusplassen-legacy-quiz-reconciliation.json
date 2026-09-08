@@ -1,119 +1,15 @@
 {
   "schema": "history_go_legacy_quiz_reconciliation_v1",
   "target_id": "radhusplassen",
-  "status": "normalized_6x7_to_5x7",
-  "original_set_count": 6,
-  "original_question_count": 42,
-  "canonical_set_count": 5,
-  "canonical_question_count": 35,
-  "retained_legacy_sets": [
-    {
-      "legacy_set_id": "by_radhusplassen_set_1",
-      "canonical_set_id": "by_radhusplassen_set_1",
-      "role": "fact_opening"
-    },
-    {
-      "legacy_set_id": "by_radhusplassen_set_2",
-      "canonical_set_id": "by_radhusplassen_set_2",
-      "role": "fact_opening"
-    },
-    {
-      "legacy_set_id": "by_radhusplassen_set_3",
-      "canonical_set_id": "by_radhusplassen_set_3",
-      "role": "fact_middle"
-    },
-    {
-      "legacy_set_id": "by_radhusplassen_set_5",
-      "canonical_set_id": "by_radhusplassen_set_4",
-      "role": "context_bridge"
-    },
-    {
-      "legacy_set_id": "by_radhusplassen_set_6",
-      "canonical_set_id": "by_radhusplassen_set_5",
-      "role": "concept_final"
-    }
+  "status": "already_5x7",
+  "active_set_ids": [
+    "by_radhusplassen_set_1",
+    "by_radhusplassen_set_2",
+    "by_radhusplassen_set_3",
+    "by_radhusplassen_set_4",
+    "by_radhusplassen_set_5"
   ],
-  "retired_set": {
-    "legacy_set_id": "by_radhusplassen_set_4",
-    "reason": "Legacy-banken hadde fire rene faktasett (28 fakta), mens canonical rich 5×7 krever 21 fact + 7 context + 7 concept. Set 4 er derfor den ekstra faktablokken; høyereordens set 5 og begrepsset 6 beholdes og flyttes fram.",
-    "question_count": 7,
-    "questions": [
-      {
-        "id": "radhusplassen_quiz_22",
-        "quiz_id": "by_radhusplassen_set_4_q1",
-        "question": "Hvilken statue står ytterst øst på Rådhusplassen?",
-        "answer": "Tordenskiold-statuen av Axel Ender",
-        "knowledge": "Lengst øst på Rådhusplassen står Tordenskiold-statuen, utført av Axel Ender i 1901 og flyttet hit fra Tordenskiolds plass.",
-        "source": [
-          "Oslo byleksikon – Rådhusplassen",
-          "Oslo byleksikon – Rådhuset"
-        ]
-      },
-      {
-        "id": "radhusplassen_quiz_23",
-        "quiz_id": "by_radhusplassen_set_4_q2",
-        "question": "Hvem laget hovedfontenen med bronseskulpturer midt på Rådhusplassen?",
-        "answer": "Emil Lie",
-        "knowledge": "Midt på plassen står et fonteneanlegg med bronseskulpturer av Emil Lie. Sidefontenene har kvinneskulpturer av Per Hurum.",
-        "source": [
-          "Oslo byleksikon – Rådhusplassen",
-          "Oslo byleksikon – Rådhuset"
-        ]
-      },
-      {
-        "id": "radhusplassen_quiz_24",
-        "quiz_id": "by_radhusplassen_set_4_q3",
-        "question": "Hva ble Rådhusplassen brukt til da den store gjennomgangstrafikken var fjernet og plassen ble gjenåpnet i 1990?",
-        "answer": "Festplass og arrangementsområde",
-        "knowledge": "Da trafikken forsvant, ble plassen gjenåpnet som festplass og brukt til konserter, festivaler, markeder og andre samlinger.",
-        "source": [
-          "Oslo byleksikon – Rådhusplassen",
-          "Oslo byleksikon – Rådhuset"
-        ]
-      },
-      {
-        "id": "radhusplassen_quiz_25",
-        "quiz_id": "by_radhusplassen_set_4_q4",
-        "question": "Hva slags kollektivtilbud binder i dag Rådhusplassen direkte til Bygdøy om sommeren?",
-        "answer": "Passasjerferge",
-        "knowledge": "Rådhusplassen er knyttet til Bygdøy med passasjerferge fra Rådhusbryggene i sommersesongen.",
-        "source": [
-          "Norsk Maritimt Museum – How to find us"
-        ]
-      },
-      {
-        "id": "radhusplassen_quiz_26",
-        "quiz_id": "by_radhusplassen_set_4_q5",
-        "question": "Hva skjedde på Rådhusplassen 25. juli 2011?",
-        "answer": "En stor minnemarkering etter terroren 22. juli",
-        "knowledge": "Rådhusplassen var samlingssted for en svært stor minnemarkering etter terroren 22. juli 2011, med titusener av deltakere.",
-        "source": [
-          "Oslo byleksikon – Rådhusplassen",
-          "Oslo byleksikon – Rådhuset"
-        ]
-      },
-      {
-        "id": "radhusplassen_quiz_27",
-        "quiz_id": "by_radhusplassen_set_4_q6",
-        "question": "Hva er forbindelsen mellom Rådhusplassen og 17. mai-toget i Oslo siden 1996?",
-        "answer": "Plassen er endestasjon for toget",
-        "knowledge": "Fra 1996 har Rådhusplassen vært endestasjon for 17. mai-toget i Oslo, noe som styrker plassens rolle som seremoniell festplass.",
-        "source": [
-          "Oslo byleksikon – Rådhusplassen",
-          "Oslo byleksikon – Rådhuset"
-        ]
-      },
-      {
-        "id": "radhusplassen_quiz_28",
-        "quiz_id": "by_radhusplassen_set_4_q7",
-        "question": "Hvilket stort internasjonalt arrangement knytter mange til Oslo rådhus og området rett foran, selv om selve seremonien foregår inne i bygget?",
-        "answer": "Nobels fredspris",
-        "knowledge": "Nobels fredspris deles ut i Oslo rådhus, og området foran rådhuset og plassen inngår i den offentlige iscenesettelsen av arrangementet i byen.",
-        "source": [
-          "Nobel Peace Prize / Visit Oslo – Nobel Peace Prize in Oslo"
-        ]
-      }
-    ]
-  },
-  "invariant": "Ingen spørsmål er syntetisert av normalisatoren; 35 eksisterende legacy-spørsmål beholdes, og de sju utgående faktaspørsmålene er eksplisitt auditert i denne rapporten."
+  "active_question_count": 35,
+  "retired_set": null,
+  "rationale": "Quizbanken er allerede 5×7. Ingen spørsmål er fjernet av normalisatoren."
 }
