@@ -1,0 +1,262 @@
+name: TEMP Bankplassen modern contract build8
+
+on:
+  push:
+    branches:
+      - agent/bankplassen-modern-place-contract-build8-20260908-temp
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - name: Assert locked base ancestry
+        shell: bash
+        run: |
+          set -euxo pipefail
+          test "$(git rev-parse HEAD^)" = '4df9b1476d870fbe299e9f6a13d04ccae99ab2d2'
+      - name: Materialize verified portrait asset
+        shell: bash
+        run: |
+          set -euxo pipefail
+          SRC='https://commons.wikimedia.org/wiki/Special:Redirect/file/Bankplassen%2C%20Oslo%202023.jpg'
+          mkdir -p bilder/places
+          curl --fail --location --retry 3 --user-agent 'History-Go place production/1.0 (source materialization)' "$SRC" -o /tmp/bankplassen-source.jpg
+          command -v convert >/dev/null || { sudo apt-get update; sudo apt-get install -y imagemagick; }
+          identify /tmp/bankplassen-source.jpg
+          convert /tmp/bankplassen-source.jpg -auto-orient -resize '900x1200^' -gravity center -crop 900x1200+0+0 -strip -quality 88 bilder/places/bankplassen_front_portrait.webp
+          test "$(identify -format '%wx%h' bilder/places/bankplassen_front_portrait.webp)" = '900x1200'
+      - name: Apply fail-closed Bankplassen contract delta
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          def write_json(path, value):
+              Path(path).write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
+
+          place_path = Path('data/places/by/oslo/places/bankplassen.json')
+          place = json.loads(place_path.read_text())
+          assert place['id'] == 'bankplassen'
+          assert place.get('underbadge_ids') is None
+          assert place.get('frontImage') is None
+          assert place.get('structures') is None
+          assert place['place_card_profile']['collection_ids'] == ['people','objects','brands','related']
+          assert len(place['civication_store']) == 4
+          assert len(place['related_place_ids']) == 4
+
+          front_meta = {
+            'source': 'wikimedia_commons',
+            'sourcePage': 'https://commons.wikimedia.org/wiki/File:Bankplassen,_Oslo_2023.jpg',
+            'creator': 'Øyvind Holmstad',
+            'credit': 'Øyvind Holmstad / Wikimedia Commons',
+            'license': 'CC BY-SA 4.0',
+            'licenseUrl': 'https://creativecommons.org/licenses/by-sa/4.0/',
+            'assetType': 'documentary_place_photo',
+            'date': '2023-06-11 10:31:26',
+            'originalDimensions': '5381x3587',
+            'outputDimensions': '900x1200',
+            'orientation': 'portrait',
+            'aspectRatio': '3:4',
+            'verifiedAt': '2026-09-07',
+            'transformation': 'Stående 3:4-utnitt og WebP-normalisering; ingen generativ endring.',
+            'representationScope': 'Stående dokumentarisk utsnitt av Bankplassen og plassrommet i juni 2023; bygningene rundt behandles som separate Places.'
+          }
+          place['frontImage'] = 'bilder/places/bankplassen_front_portrait.webp'
+          place['frontImageMeta'] = front_meta
+          place['production_profile'] = 'standard'
+          place['profile_status'] = 'confirmed'
+          place['production_status'] = 'complete'
+          place['production_verified_at'] = '2026-09-07'
+          place['underbadge_ids'] = ['offentlige_rom','byplanlegging','monumenter_og_landemerker']
+          place['place_card_profile']['collection_ids'] = ['people','objects','brands','structures']
+          place['place_card_profile']['reason'] = 'Johannes Bruns statue gir en direkte, kildebelagt People-kobling til plassrommet; fire stedbundne kunstverk, Engebret Café og granittblokkene/sittekantene gir fire ærlige PlaceCard-samlinger. De fire nabostedene beholdes som relasjoner, men er ikke en egen PlaceCard-flate.'
+          place['place_card_profile']['verifiedAt'] = '2026-09-07'
+          structure_meta = dict(front_meta)
+          structure_meta['assetType'] = 'documentary_structure_context_photo'
+          structure_meta['representationScope'] = 'Dokumenterer Bankplassen som offentlig plassrom i juni 2023 og brukes som kontekstbilde for granittblokkene og sittekantene; bildet er ikke en detaljregistrering av hver enkelt blokk.'
+          place['structures'] = [{
+            'id': 'bankplassen_granittblokker_og_sittekanter',
+            'title': 'Granittblokker og sittekanter',
+            'name': 'Granittblokker og sittekanter',
+            'type': 'områdesikring_og_sitteelement',
+            'kind': 'public_space_structure',
+            'desc': 'Granittblokkene ved Bankplassen inngår i områdesikringen rundt Norges Bank og fungerer samtidig som sitteelementer i det offentlige rommet.',
+            'placeSpecificReason': 'Marit Kroghs «Sittende pike med hodetelefon» er dokumentert som fysisk integrert i en av granittblokkene på Bankplassen, og eksisterende Bankplassen-kilder beskriver blokkene som del av plassens sikkerhets- og oppholdslandskap.',
+            'why_here': 'Strukturen viser hvordan et sikkerhetstiltak kan få en dobbel funksjon som kjøretøysperre, sittekant og ramme for offentlig kunst i et historisk plassrom.',
+            'image': 'bilder/places/bankplassen_front_portrait.webp',
+            'imageMeta': structure_meta,
+            'source_urls': [
+              'https://www.oppdagkvadraturen.no/stoppesteder/sittende-pike-med-hodetelefon-et-bilde-pa-var-tid-marit-krogh',
+              'https://commons.wikimedia.org/wiki/File:Bankplassen,_Oslo_2023.jpg'
+            ],
+            'verifiedAt': '2026-09-07'
+          }]
+          write_json(place_path, place)
+
+          language_path = Path('data/leksikon/sprak/places/europe/norway/oslo/bankplassen.json')
+          assert not language_path.exists()
+          language_path.parent.mkdir(parents=True, exist_ok=True)
+          language = {
+            'place_id': 'bankplassen',
+            'title': 'Språkleksikon: Bankplassen',
+            'verified_at': '2026-09-07',
+            'dialect_status': 'no_dialect_claim_place_language_only',
+            'entries': [
+              {
+                'id': 'sprak_bankplassen_bankplassen',
+                'term': 'Bankplassen',
+                'type': 'stedsnavn',
+                'layer': 'language',
+                'meaning': 'Navnet på det offentlige plassrommet som vokste fram etter at de nedre festningsverkene ble fjernet. Navnet viser til Norges Bank, som fikk sin første bygning ved plassen i 1828.',
+                'status': 'current',
+                'usage': 'Brukes om selve plassen, ikke som samlebetegnelse for bankbygningene og de andre institusjonene rundt.',
+                'context': 'Navnet hjelper med å holde canonical eiergrense tydelig mellom plassrommet og de separate Place-identitetene rundt.',
+                'linked_to': {'kind':'place','id':'bankplassen'},
+                'tags': ['stedsnavn','bankhistorie','offentlig_rom'],
+                'sources': [{'label':'Oslo byleksikon – Bankplassen','url':'https://oslobyleksikon.no/side/Bankplassen'}]
+              },
+              {
+                'id': 'sprak_bankplassen_christiania_theater',
+                'term': 'Christiania Theater',
+                'type': 'historisk_institusjonsnavn',
+                'layer': 'language',
+                'meaning': 'Historisk navn på teatret som åpnet ved Bankplassen i 1837 og sto der til 1899.',
+                'status': 'historical',
+                'usage': 'Navnet brukes når det tapte teaterlaget ved Bankplassen omtales historisk.',
+                'context': 'Institusjonsnavnet forklarer hvorfor Johannes Brun-monumentet og teaterhistorien fortsatt er lesbare i dagens plassrom uten at teatret behandles som selve Bankplassen.',
+                'linked_to': {'kind':'place','id':'bankplassen'},
+                'tags': ['historisk_navn','teaterhistorie','christiania'],
+                'sources': [{'label':'Oppdag Kvadraturen – Grev Wedels plass og Bankplassen','url':'https://www.oppdagkvadraturen.no/stoppesteder/grev-wedels-plass-bankplassen'}]
+              },
+              {
+                'id': 'sprak_bankplassen_glacis',
+                'term': 'glacis',
+                'type': 'historisk_fagterm',
+                'layer': 'language',
+                'meaning': 'Militær fagterm for det åpne terrenget foran et festningsverk. Ved Bankplassen viser ordet til forsvarslandskapet som måtte fjernes før det sivile plassrommet kunne utvikles.',
+                'status': 'historical',
+                'usage': 'Brukes i historiske beskrivelser av overgangen fra festningsterreng til offentlig plass fra 1820-årene.',
+                'context': 'Begrepet gjør den romlige transformasjonen forståelig uten å gjøre en generell festningshistorie til eget Bankplassen-innhold.',
+                'linked_to': {'kind':'place','id':'bankplassen'},
+                'tags': ['festningshistorie','byutvikling','fagterm'],
+                'sources': [{'label':'Oslo byleksikon – Bankplassen','url':'https://oslobyleksikon.no/side/Bankplassen'}]
+              }
+            ]
+          }
+          write_json(language_path, language)
+
+          manifest_path = Path('data/leksikon/sprak/manifest.json')
+          manifest = json.loads(manifest_path.read_text())
+          assert 'bankplassen' not in manifest['place_files']
+          manifest['place_files']['bankplassen'] = 'data/leksikon/sprak/places/europe/norway/oslo/bankplassen.json'
+          write_json(manifest_path, manifest)
+
+          test_path = Path('tests/bankplassen-place-completion-v1.test.mjs')
+          s = test_path.read_text()
+          s = s.replace('const runtime = fs.readFileSync("js/ui/place-rounds-visual-collections.js", "utf8");', 'const runtime = fs.readFileSync("js/ui/place-rounds-visual-collections.js", "utf8");\nconst placeOpen = readJson("data/runtime/place-open/bankplassen.json");\nconst language = readJson("data/leksikon/sprak/places/europe/norway/oslo/bankplassen.json");\nconst languageManifest = readJson("data/leksikon/sprak/manifest.json");')
+          s = s.replace('assert.deepEqual(place.place_card_profile.collection_ids, ["people", "objects", "brands", "related"]);', 'assert.deepEqual(place.place_card_profile.collection_ids, ["people", "objects", "brands", "structures"]);')
+          s = s.replace('assert.deepEqual(Array.from(window.HGPlaceCardCollections.get(place), item => item.id), ["people", "objects", "brands", "related"]);', 'assert.deepEqual(Array.from(window.HGPlaceCardCollections.get(place), item => item.id), ["people", "objects", "brands", "structures"]);')
+          s = s.replace('assert.equal(window.document.getElementById("pcCategoryCollectionList").querySelectorAll("[data-visual-round-item]").length, 4);', 'assert.equal(window.document.getElementById("pcCategoryCollectionList").querySelectorAll("[data-visual-round-item]").length, 1);')
+          anchor = 'test("Bankplassen has one direct, statue-based People owner and no residual building ownership", () => {'
+          extra = '''test("Bankplassen has modern place contract, portrait provenance and Språkleksikon", () => {\n  assert.equal(place.production_profile, "standard");\n  assert.equal(place.profile_status, "confirmed");\n  assert.equal(place.production_status, "complete");\n  assert.deepEqual(place.underbadge_ids, ["offentlige_rom", "byplanlegging", "monumenter_og_landemerker"]);\n  assert.equal(place.frontImage, "bilder/places/bankplassen_front_portrait.webp");\n  assert.equal(place.frontImageMeta.source, "wikimedia_commons");\n  assert.equal(place.frontImageMeta.creator, "Øyvind Holmstad");\n  assert.equal(place.frontImageMeta.license, "CC BY-SA 4.0");\n  assert.equal(place.frontImageMeta.outputDimensions, "900x1200");\n  assert.equal(place.frontImageMeta.orientation, "portrait");\n  assert.equal(place.structures.length, 1);\n  assert.equal(place.structures[0].id, "bankplassen_granittblokker_og_sittekanter");\n  assert.equal(language.place_id, "bankplassen");\n  assert.deepEqual(language.entries.map(entry => entry.layer), ["language", "language", "language"]);\n  assert.deepEqual(language.entries.map(entry => entry.status), ["current", "historical", "historical"]);\n  assert.equal(languageManifest.place_files.bankplassen, "data/leksikon/sprak/places/europe/norway/oslo/bankplassen.json");\n  assert.equal(placeOpen.language.place_id, "bankplassen");\n  assert.equal(placeOpen.language.entries.length, 3);\n  assert.equal(placeOpen.place.structures.length, 1);\n});\n\n'''
+          assert anchor in s
+          s = s.replace(anchor, extra + anchor)
+          test_path.write_text(s)
+
+          workcard_path = Path('reports/place-production/bankplassen-workcard-current.md')
+          w = workcard_path.read_text()
+          w = w.replace('Status: `READY FOR FINAL QA`', 'Status: `MODERN PLACE CONTRACT COMPLETE`')
+          w = w.replace('Branchgrunnlag: `agent/content-factory-pilot-03-bankplassen-complete-v1` rebased på PlaceCard-fullhetsendringen på `main`.', 'Branchgrunnlag: locked `main` `4df9b1476d870fbe299e9f6a13d04ccae99ab2d2`; moderne komplettering er fail-closed og bevarer eksisterende innhold.')
+          w = w.replace('- Related: fire canonical nabosteder.', '- Related: fire canonical nabosteder beholdes som relasjoner, men er ikke en PlaceCard-samling.\n- Structures: granittblokkene og sittekantene materialiseres som én stedsspesifikk offentlig-rom-struktur med kilde og bildeproveniens.')
+          w = w.replace('- Språk: `N/A` – ingen stedsspesifikk dialekt eller lokalt uttrykk er dokumentert.', '- Språk: eget Språkleksikon med det dokumenterte stedsnavnet `Bankplassen`, historiske `Christiania Theater` og fagtermen `glacis`; dette er eksplisitt språk-/navnelag og ikke en dialektpåstand.')
+          w = w.replace('- VALGTE PLACECARD-SAMLINGER: `people`, `objects`, `brands`, `related`.', '- VALGTE PLACECARD-SAMLINGER: `people`, `objects`, `brands`, `structures`.')
+          w = w.replace('- People rendres som sirkel; Objects, Brands og Related som avrundede rektangler i fast 2×2-layout.', '- People rendres som sirkel; Objects, Brands og Structures som avrundede rektangler i fast 2×2-layout.')
+          w = w.replace('- Samlingene er innholdsmessig ærlige: Johannes Brun, fire kunstobjekter, Engebret Café og fire relaterte steder. Bilder er ikke samling.', '- Samlingene er innholdsmessig ærlige: Johannes Brun, fire kunstobjekter, Engebret Café og granittblokkene/sittekantene. `related_place_ids` beholdes for relasjonell navigasjon, men er ikke PlaceCard-flate. Bilder er ikke samling.')
+          workcard_path.write_text(w)
+          PY
+      - name: Prove pre-existing Place content was preserved
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python3 - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          base = json.loads(subprocess.check_output(['git','show','4df9b1476d870fbe299e9f6a13d04ccae99ab2d2:data/places/by/oslo/places/bankplassen.json']))
+          now = json.loads(Path('data/places/by/oslo/places/bankplassen.json').read_text())
+          allowed = {'frontImage','frontImageMeta','production_profile','profile_status','production_status','production_verified_at','underbadge_ids','structures','place_card_profile'}
+          for key in set(base) | set(now):
+              if key not in allowed:
+                  assert base.get(key) == now.get(key), f'unexpected Bankplassen mutation: {key}'
+          old_pc = dict(base['place_card_profile'])
+          new_pc = dict(now['place_card_profile'])
+          for key in ('collection_ids','reason','verifiedAt'):
+              old_pc.pop(key, None)
+              new_pc.pop(key, None)
+          assert old_pc == new_pc
+          assert base['related_place_ids'] == now['related_place_ids']
+          assert base['civication_store'] == now['civication_store']
+          print('preservation gate: PASS')
+          PY
+      - name: Build deterministic derived data and refresh Bankplassen quiz context
+        shell: bash
+        run: |
+          set -euxo pipefail
+          npm ci
+          npm run place-open:build
+          npm run places:index:build
+          npm run quiz:context -- --category by --target bankplassen --output data/quiz/production_context/by/bankplassen.json
+      - name: Verify portrait dimensions
+        run: test "$(identify -format '%wx%h' bilder/places/bankplassen_front_portrait.webp)" = '900x1200'
+      - name: Bankplassen completion test
+        run: node --test tests/bankplassen-place-completion-v1.test.mjs
+      - name: place-open check
+        run: npm run place-open:check
+      - name: places index check
+        run: npm run places:index:check
+      - name: epoker places check
+        run: npm run epoker:places:check
+      - name: leksikon IDs check
+        run: npm run leksikon:ids:check
+      - name: stories check
+        run: npm run check:stories
+      - name: quiz manifest v2 audit
+        run: npm run audit:quiz-manifest:v2
+      - name: quiz production context audit
+        run: npm run audit:quiz-production-context
+      - name: quiz progression audit
+        run: npm run audit:quiz-progression
+      - name: fagverk place pages audit
+        run: node scripts/audit-fagverk-place-pages.mjs
+      - name: Commit permanent Bankplassen outputs only
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git status --short
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/places/by/oslo/places/bankplassen.json \
+            data/leksikon/sprak/places/europe/norway/oslo/bankplassen.json \
+            data/leksikon/sprak/manifest.json \
+            bilder/places/bankplassen_front_portrait.webp \
+            data/runtime/place-open/bankplassen.json \
+            data/places/places_index.json \
+            data/quiz/production_context/by/bankplassen.json \
+            tests/bankplassen-place-completion-v1.test.mjs \
+            reports/place-production/bankplassen-workcard-current.md
+          git diff --cached --check
+          git commit -m 'Complete Bankplassen modern place contract'
+          git push origin HEAD
