@@ -14,6 +14,9 @@ const route = readJson("data/routes/historical/routes_historical_oslo.json");
 const placesIndex = readJson("data/places/places_index.json");
 const civicationPeople = readJson("data/Civication/historyPeople_index.json");
 const runtime = fs.readFileSync("js/ui/place-rounds-visual-collections.js", "utf8");
+const placeOpen = readJson("data/runtime/place-open/bankplassen.json");
+const language = readJson("data/leksikon/sprak/places/europe/norway/oslo/bankplassen.json");
+const languageManifest = readJson("data/leksikon/sprak/manifest.json");
 const peopleManifest = readJson("data/people/manifest.json");
 const people = peopleManifest.files.flatMap(file => {
   const value = readJson(`data/people/${file.slice("people/".length)}`);
@@ -62,12 +65,12 @@ test("Bankplassen has resolved square identity, complete sources and canonical m
 });
 
 test("PlaceCard fills the fixed four-cell contract and keeps Quiz primary", async () => {
-  assert.deepEqual(place.place_card_profile.collection_ids, ["people", "objects", "brands", "related"]);
+  assert.deepEqual(place.place_card_profile.collection_ids, ["people", "objects", "brands", "structures"]);
   assert.equal(place.civication_store.length, 4);
   assert.ok(place.civication_store.every(item => item.physicalObject && item.placeSpecific));
   const window = makeRuntime();
   await window.HGPlaceCardCollections.apply(place);
-  assert.deepEqual(Array.from(window.HGPlaceCardCollections.get(place), item => item.id), ["people", "objects", "brands", "related"]);
+  assert.deepEqual(Array.from(window.HGPlaceCardCollections.get(place), item => item.id), ["people", "objects", "brands", "structures"]);
   const grid = window.document.querySelector(".pc-icons-quad");
   assert.equal(grid.dataset.collectionCount, "4");
   assert.equal(grid.dataset.collectionProfileSource, "place_card_profile_v2");
@@ -76,11 +79,33 @@ test("PlaceCard fills the fixed four-cell contract and keeps Quiz primary", asyn
   assert.equal(window.document.getElementById("pcBrandsIcon").dataset.collectionShape, "rectangle");
   assert.equal(window.document.getElementById("pcCategoryCollectionIcon").dataset.collectionShape, "rectangle");
   assert.equal(window.document.getElementById("pcObjectsList").querySelectorAll("[data-visual-round-item]").length, 4);
-  assert.equal(window.document.getElementById("pcCategoryCollectionList").querySelectorAll("[data-visual-round-item]").length, 4);
+  assert.equal(window.document.getElementById("pcCategoryCollectionList").querySelectorAll("[data-visual-round-item]").length, 1);
   assert.equal(window.document.getElementById("pcPeopleIcon").hidden, false);
   assert.equal(window.document.getElementById("pcBrandsIcon").hidden, false);
   assert.equal(window.document.getElementById("pcQuiz").hidden, false);
   assert.equal(window.document.getElementById("pcQuiz").classList.contains("pc-action-primary"), true);
+});
+
+test("Bankplassen has modern place contract, portrait provenance and Språkleksikon", () => {
+  assert.equal(place.production_profile, "standard");
+  assert.equal(place.profile_status, "confirmed");
+  assert.equal(place.production_status, "complete");
+  assert.deepEqual(place.underbadge_ids, ["offentlige_rom", "byplanlegging", "monumenter_og_landemerker"]);
+  assert.equal(place.frontImage, "bilder/places/bankplassen_front_portrait.webp");
+  assert.equal(place.frontImageMeta.source, "wikimedia_commons");
+  assert.equal(place.frontImageMeta.creator, "Øyvind Holmstad");
+  assert.equal(place.frontImageMeta.license, "CC BY-SA 4.0");
+  assert.equal(place.frontImageMeta.outputDimensions, "900x1200");
+  assert.equal(place.frontImageMeta.orientation, "portrait");
+  assert.equal(place.structures.length, 1);
+  assert.equal(place.structures[0].id, "bankplassen_granittblokker_og_sittekanter");
+  assert.equal(language.place_id, "bankplassen");
+  assert.deepEqual(language.entries.map(entry => entry.layer), ["language", "language", "language"]);
+  assert.deepEqual(language.entries.map(entry => entry.status), ["current", "historical", "historical"]);
+  assert.equal(languageManifest.place_files.bankplassen, "data/leksikon/sprak/places/europe/norway/oslo/bankplassen.json");
+  assert.equal(placeOpen.language.place_id, "bankplassen");
+  assert.equal(placeOpen.language.entries.length, 3);
+  assert.equal(placeOpen.place.structures.length, 1);
 });
 
 test("Bankplassen has one direct, statue-based People owner and no residual building ownership", () => {
