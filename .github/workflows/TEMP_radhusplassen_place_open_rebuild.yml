@@ -1,0 +1,48 @@
+name: TEMP Rådhusplassen place-open rebuild
+
+on:
+  push:
+    branches:
+      - agent/radhusplassen-materialize-20260908
+    paths:
+      - '.github/workflows/TEMP_radhusplassen_place_open_rebuild.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Install dependencies
+        run: npm ci
+      - name: Rebuild place-open deterministically
+        run: |
+          set -euxo pipefail
+          npm run place-open:build
+          changed="$(git diff --name-only | grep -v '^\.github/workflows/TEMP_radhusplassen_place_open_rebuild.yml$' | sort)"
+          expected='data/runtime/lesespor-all.json'
+          printf 'Generated changes:\n%s\n' "$changed"
+          test "$changed" = "$expected"
+      - name: Validate place-open contracts
+        run: |
+          set -euxo pipefail
+          npm run place-open:check
+          npm run test:place-open
+          git diff --check
+      - name: Commit clean permanent rebuild
+        run: |
+          set -euxo pipefail
+          git config user.name 'history-go-materializer'
+          git config user.email 'actions@users.noreply.github.com'
+          rm .github/workflows/TEMP_radhusplassen_place_open_rebuild.yml
+          git add -A
+          test ! -e .github/workflows/TEMP_radhusplassen_place_open_rebuild.yml
+          git commit -m 'Rebuild Rådhusplassen place-open after Lesespor repair'
+          git push origin HEAD:refs/heads/agent/radhusplassen-materialize-20260908
