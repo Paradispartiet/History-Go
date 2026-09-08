@@ -6,6 +6,7 @@ on:
       - agent/civication-vitenskap-forskning-role-world-20260908
     paths:
       - scripts/TEMP_materialize_vitenskap_forskning_role_world.mjs
+      - scripts/TEMP_extend_vitenskap_forskning_standing_consequences.mjs
       - .github/workflows/TEMP-civication-vitenskap-forskning-role-world.yml
 
 permissions:
@@ -39,9 +40,13 @@ jobs:
           git fetch origin main
           git merge-base --is-ancestor origin/main HEAD || { echo 'Branch is stale versus main before materialization.' >&2; exit 1; }
       - name: Syntax
-        run: node --check scripts/TEMP_materialize_vitenskap_forskning_role_world.mjs
+        run: |
+          node --check scripts/TEMP_materialize_vitenskap_forskning_role_world.mjs
+          node --check scripts/TEMP_extend_vitenskap_forskning_standing_consequences.mjs
       - name: Materialize Role World
         run: node scripts/TEMP_materialize_vitenskap_forskning_role_world.mjs
+      - name: Extend situated standing consequences
+        run: node scripts/TEMP_extend_vitenskap_forskning_standing_consequences.mjs
       - name: Regenerate career and rollout surfaces
         run: |
           set -euo pipefail
@@ -120,6 +125,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -f scripts/TEMP_materialize_vitenskap_forskning_role_world.mjs
+          rm -f scripts/TEMP_extend_vitenskap_forskning_standing_consequences.mjs
           rm -f .github/workflows/TEMP-civication-vitenskap-forskning-role-world.yml
           git diff --check
           git add -A
