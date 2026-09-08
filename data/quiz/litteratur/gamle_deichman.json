@@ -2,26 +2,30 @@
   "targetId": "gamle_deichman",
   "categoryId": "litteratur",
   "source_quiz_file": "data/quiz/quiz_litteratur.json",
-  "generator_version": "v5_1_external_priority_chat_merged_litteratur_5x6_oslo",
-  "size_class": "normal_place",
+  "generator_version": "v5_1_reconciled_litteratur_5x7_oslo_20260908",
+  "size_class": "rich_5x7",
   "generated_from": [
     "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
     "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
     "data/places/litteratur/oslo/places_litteratur.json",
     "data/quiz/quiz_litteratur.json",
-    "data/places/litteratur/oslo/places_litteratur.json",
     "https://en.wikipedia.org/wiki/Oslo_Public_Library",
     "https://de.wikipedia.org/wiki/Deichmanske_bibliotek",
     "https://en.wikipedia.org/wiki/Carl_Deichman",
     "https://snl.no/Deichman_bibliotek",
-    "https://deichman.no/om-deichman"
+    "https://deichman.no/om-deichman",
+    "https://magasin.oslo.kommune.no/byplan/et-hus-med-mange-muligheter",
+    "https://nkl.snl.no/Nils_Reiersen",
+    "https://nkl.snl.no/Axel_Revold",
+    "https://www.deich.no/no/fotohuset-deich"
   ],
   "merge_notes": {
     "existing_quiz_status": "No set-file found for gamle_deichman. Search found no gamle_deichman_quiz set-file.",
     "kept": "Kept place-file core: old main library in Kristiania/Oslo, important meeting place for literary milieu, writers, students and intellectuals, with reading rooms and collections.",
     "corrected": "Avoided generic old-building/tourist framing. Treated the target as public library heritage, reading-room culture, literary public sphere and collection/institution history.",
     "not_continued": "No current opening-hours/status questions. Did not reduce target to architecture only.",
-    "added": "Added 5 sets x 6 questions: Carl Deichman, 1785, books/manuscripts, reading rooms, writers/students/intellectuals, Hammersborg 1933, Bjørvika contrast, National Library/Litteraturhuset contrasts and methods."
+    "added": "Added 5 sets x 6 questions: Carl Deichman, 1785, books/manuscripts, reading rooms, writers/students/intellectuals, Hammersborg 1933, Bjørvika contrast, National Library/Litteraturhuset contrasts and methods.",
+    "reconciliation": "Preserved all 30 legacy question texts, corrected semantic question_type metadata for twelve legacy items, and appended five source-backed questions, one per set, for a 5×7 package."
   },
   "profile_snapshot": {
     "place_type": "litteratursted",
@@ -437,7 +441,7 @@
           "knowledge": "Hvilken lesning passer best for `gamle_deichman`? Riktig svar er: Et offentlig bibliotekrom der samlinger, lesesal, studenter, forfattere og byens litterære miljø møttes.",
           "trivia": [],
           "difficulty": 1,
-          "question_type": "fact",
+          "question_type": "context",
           "question_layer": "history_intro_story",
           "year": null,
           "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
@@ -486,6 +490,75 @@
             "data/quiz/quiz_litteratur.json"
           ],
           "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "gamle_deichman_quiz_31",
+          "quiz_id": "litteratur_gamle_deichman_set_1_q7",
+          "categoryId": "litteratur",
+          "placeId": "gamle_deichman",
+          "personId": "",
+          "natureId": "",
+          "targetId": "gamle_deichman",
+          "question_scope": "place",
+          "question": "Hvem tegnet Deichmanske bibliotek på Hammersborg?",
+          "options": [
+            "Nils Reiersen",
+            "Holger Sinding-Larsen",
+            "Arnstein Arneberg"
+          ],
+          "answer": "Nils Reiersen",
+          "answerIndex": 0,
+          "dimension": "bibliotek_arkitektur_stedshistorie",
+          "topic": "Nils Reiersen",
+          "knowledge": "Nils Reiersen vant omkonkurransen i 1921–22, og bibliotekbygningen stod ferdig i 1933.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1933,
+          "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraturfelt_institusjoner",
+          "method_id": "met_lit_diskursanalyse",
+          "related_emner": [
+            "em_lit_lesere_offentlighet_formidling",
+            "em_lit_litteraere_steder_og_bytekst"
+          ],
+          "core_concepts": [
+            "arkitekt",
+            "bibliotekbygning",
+            "Hammersborg"
+          ],
+          "concept_focus": [
+            "arkitekt",
+            "bibliotekbygning"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "Gamle Deichman",
+            "arkitekt",
+            "bibliotekbygning",
+            "Hammersborg"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "https://nkl.snl.no/Nils_Reiersen",
+            "https://magasin.oslo.kommune.no/byplan/et-hus-med-mange-muligheter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "literature_anchor_type": "old_public_library_reading_room_literary_public_sphere",
+          "external_source_ratio_target": 1,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/litteraturpensum_canonical_v4_5.json"
+          ],
+          "merge_status": "reconciled_5x7_addition"
         }
       ]
     },
@@ -662,7 +735,7 @@
           "knowledge": "Hva var en viktig idé bak Deichmans gave? Riktig svar er: Å gjøre kunnskap og bøker tilgjengelige for byens befolkning.",
           "trivia": [],
           "difficulty": 1,
-          "question_type": "fact",
+          "question_type": "context",
           "question_layer": "local_history_buildings_events",
           "year": 1785,
           "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
@@ -878,7 +951,7 @@
           "knowledge": "Hvilken bokhistorisk analyse passer best for Deichman-arven? Riktig svar er: En privat samling ble grunnlag for offentlig bibliotek, lesing og kunnskapsdeling.",
           "trivia": [],
           "difficulty": 1,
-          "question_type": "fact",
+          "question_type": "context",
           "question_layer": "local_history_buildings_events",
           "year": null,
           "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
@@ -927,6 +1000,75 @@
             "data/quiz/quiz_litteratur.json"
           ],
           "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "gamle_deichman_quiz_32",
+          "quiz_id": "litteratur_gamle_deichman_set_2_q7",
+          "categoryId": "litteratur",
+          "placeId": "gamle_deichman",
+          "personId": "",
+          "natureId": "",
+          "targetId": "gamle_deichman",
+          "question_scope": "place",
+          "question": "Hva inspirerte biblioteksystemet i Reiersens Hammersborg-anlegg?",
+          "options": [
+            "Amerikanske bibliotekforbilder",
+            "Middelalderens klosterbibliotek alene",
+            "Et jernbanestasjonsprinsipp"
+          ],
+          "answer": "Amerikanske bibliotekforbilder",
+          "answerIndex": 0,
+          "dimension": "bibliotek_arkitektur_stedshistorie",
+          "topic": "Biblioteksystem",
+          "knowledge": "Norsk kunstnerleksikon beskriver amerikanske forbilder og oppgir Indianapolis som en direkte inspirasjon.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "institution_space_context",
+          "year": 1933,
+          "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_nordisk_bibliotek_leserhistorie_formidling",
+          "method_id": "met_lit_bokhistorisk_analyse",
+          "related_emner": [
+            "em_lit_litteraturfelt_institusjoner",
+            "em_lit_lesere_offentlighet_formidling",
+            "em_lit_litteraere_steder_og_bytekst"
+          ],
+          "core_concepts": [
+            "biblioteksystem",
+            "amerikanske forbilder",
+            "romorganisering"
+          ],
+          "concept_focus": [
+            "biblioteksystem",
+            "amerikanske forbilder"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "Gamle Deichman",
+            "biblioteksystem",
+            "amerikanske forbilder",
+            "romorganisering"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "https://nkl.snl.no/Nils_Reiersen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "literature_anchor_type": "old_public_library_reading_room_literary_public_sphere",
+          "external_source_ratio_target": 1,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/litteraturpensum_canonical_v4_5.json"
+          ],
+          "merge_status": "reconciled_5x7_addition"
         }
       ]
     },
@@ -1103,7 +1245,7 @@
           "knowledge": "Hva slags byfunksjon fikk området rundt biblioteket ifølge place-filen? Riktig svar er: Krysningspunkt for samtaler, debatter og ideer.",
           "trivia": [],
           "difficulty": 2,
-          "question_type": "fact",
+          "question_type": "context",
           "question_layer": "humor_curiosities_life",
           "year": 1890,
           "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
@@ -1175,7 +1317,7 @@
           "knowledge": "Hvorfor er lesesalen mer enn et rom med bord? Riktig svar er: Den organiserer fordypning, kildebruk, felles stillhet og litterær arbeidstid.",
           "trivia": [],
           "difficulty": 2,
-          "question_type": "fact",
+          "question_type": "concept",
           "question_layer": "humor_curiosities_life",
           "year": null,
           "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
@@ -1247,7 +1389,7 @@
           "knowledge": "Hva gjør biblioteket til et litterært miljøsted? Riktig svar er: Det samler tekster, lesere, studenter, skribenter og intellektuelle samtaler.",
           "trivia": [],
           "difficulty": 2,
-          "question_type": "fact",
+          "question_type": "concept",
           "question_layer": "humor_curiosities_life",
           "year": null,
           "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
@@ -1319,7 +1461,7 @@
           "knowledge": "Hvilken miljøanalyse passer best for Gamle Deichman? Riktig svar er: Biblioteket var et sosialt og intellektuelt knutepunkt der lesing og debatt kunne bli bykultur.",
           "trivia": [],
           "difficulty": 2,
-          "question_type": "fact",
+          "question_type": "context",
           "question_layer": "humor_curiosities_life",
           "year": null,
           "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
@@ -1368,6 +1510,74 @@
             "data/quiz/quiz_litteratur.json"
           ],
           "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "gamle_deichman_quiz_33",
+          "quiz_id": "litteratur_gamle_deichman_set_3_q7",
+          "categoryId": "litteratur",
+          "placeId": "gamle_deichman",
+          "personId": "",
+          "natureId": "",
+          "targetId": "gamle_deichman",
+          "question_scope": "place",
+          "question": "Hvorfor fikk Gamle Deichman så mange monumentale trapper?",
+          "options": [
+            "Den sterkt skrånende tomten",
+            "Et krav om teaterscene",
+            "En underjordisk jernbane"
+          ],
+          "answer": "Den sterkt skrånende tomten",
+          "answerIndex": 0,
+          "dimension": "bibliotek_arkitektur_stedshistorie",
+          "topic": "Terreng og trapper",
+          "knowledge": "Norsk kunstnerleksikon knytter de mange utvendige og innvendige trappene til den sterkt skrånende tomten.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_material_context",
+          "year": 1933,
+          "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_diskursanalyse",
+          "related_emner": [
+            "em_lit_litteraturfelt_institusjoner",
+            "em_lit_lesere_offentlighet_formidling"
+          ],
+          "core_concepts": [
+            "terreng",
+            "monumentalitet",
+            "trapp"
+          ],
+          "concept_focus": [
+            "terreng",
+            "monumentalitet"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "Gamle Deichman",
+            "terreng",
+            "monumentalitet",
+            "trapp"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "https://nkl.snl.no/Nils_Reiersen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "literature_anchor_type": "old_public_library_reading_room_literary_public_sphere",
+          "external_source_ratio_target": 1,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/litteraturpensum_canonical_v4_5.json"
+          ],
+          "merge_status": "reconciled_5x7_addition"
         }
       ]
     },
@@ -1616,7 +1826,7 @@
           "knowledge": "Hvorfor er flyttingen til Bjørvika relevant som kontrast? Riktig svar er: Den viser bibliotekets lange institusjonelle vandring fra gammel bykjerne til nytt offentlig kulturbygg.",
           "trivia": [],
           "difficulty": 2,
-          "question_type": "fact",
+          "question_type": "context",
           "question_layer": "place_facts_architecture",
           "year": null,
           "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
@@ -1688,7 +1898,7 @@
           "knowledge": "Hva må en god quiz om Gamle Deichman unngå? Riktig svar er: Å gjøre stedet til generisk gammelt bygg uten litteratur- og bibliotekhistorie.",
           "trivia": [],
           "difficulty": 2,
-          "question_type": "fact",
+          "question_type": "concept",
           "question_layer": "place_facts_architecture",
           "year": null,
           "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
@@ -1809,6 +2019,75 @@
             "data/quiz/quiz_litteratur.json"
           ],
           "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "gamle_deichman_quiz_34",
+          "quiz_id": "litteratur_gamle_deichman_set_4_q7",
+          "categoryId": "litteratur",
+          "placeId": "gamle_deichman",
+          "personId": "",
+          "natureId": "",
+          "targetId": "gamle_deichman",
+          "question_scope": "place",
+          "question": "Hva viser Axel Revolds freske fra 1932 om bibliotekrommet?",
+          "options": [
+            "At billedkunst ble integrert i bibliotekets kunnskapsmiljø",
+            "At bygget opprinnelig var en sportshall",
+            "At utlånssalen manglet utsmykning"
+          ],
+          "answer": "At billedkunst ble integrert i bibliotekets kunnskapsmiljø",
+          "answerIndex": 0,
+          "dimension": "bibliotek_arkitektur_stedshistorie",
+          "topic": "Axel Revolds freske",
+          "knowledge": "Revolds freske i utlånssalen samler motiver knyttet til teknikk, vitenskap og diktning og er fysisk del av bibliotekinteriøret.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "context",
+          "question_layer": "interpretation_context",
+          "year": 1932,
+          "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_bytekst_analyse",
+          "related_emner": [
+            "em_lit_litteraturfelt_institusjoner",
+            "em_lit_lesere_offentlighet_formidling"
+          ],
+          "core_concepts": [
+            "freske",
+            "kunnskapsmiljø",
+            "utlånssal"
+          ],
+          "concept_focus": [
+            "freske",
+            "kunnskapsmiljø"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "Gamle Deichman",
+            "freske",
+            "kunnskapsmiljø",
+            "utlånssal"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "https://nkl.snl.no/Axel_Revold",
+            "https://magasin.oslo.kommune.no/byplan/et-hus-med-mange-muligheter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "literature_anchor_type": "old_public_library_reading_room_literary_public_sphere",
+          "external_source_ratio_target": 1,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/litteraturpensum_canonical_v4_5.json"
+          ],
+          "merge_status": "reconciled_5x7_addition"
         }
       ]
     },
@@ -1985,7 +2264,7 @@
           "knowledge": "Hvilken metode passer best for å analysere Gamle Deichman som institusjon? Riktig svar er: met_lit_feltanalyse.",
           "trivia": [],
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "concept",
           "question_layer": "place_concrete_advanced",
           "year": null,
           "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
@@ -2057,7 +2336,7 @@
           "knowledge": "Hvilken metode passer best for å analysere Deichmans samlinger og lesesaler? Riktig svar er: met_lit_arkiv_og_manuskriptanalyse.",
           "trivia": [],
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "concept",
           "question_layer": "place_concrete_advanced",
           "year": null,
           "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
@@ -2129,7 +2408,7 @@
           "knowledge": "Hvilken kritisk observasjon passer best? Riktig svar er: Bibliotekets samlinger gir tilgang, men samlingsvalg, språk og kataloger former også hva som blir synlig.",
           "trivia": [],
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "concept",
           "question_layer": "place_concrete_advanced",
           "year": null,
           "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
@@ -2250,8 +2529,77 @@
             "data/quiz/quiz_litteratur.json"
           ],
           "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "gamle_deichman_quiz_35",
+          "quiz_id": "litteratur_gamle_deichman_set_5_q7",
+          "categoryId": "litteratur",
+          "placeId": "gamle_deichman",
+          "personId": "",
+          "natureId": "",
+          "targetId": "gamle_deichman",
+          "question_scope": "place",
+          "question": "Hvorfor må 2028 omtales som planlagt når vi beskriver Gamle Deichman i 2026?",
+          "options": [
+            "Fordi Fotohuset Deich annonserer åpning i 2028, men åpningen har ennå ikke skjedd",
+            "Fordi biblioteket aldri flyttet ut",
+            "Fordi 1933-bygget skal rives før 2028"
+          ],
+          "answer": "Fordi Fotohuset Deich annonserer åpning i 2028, men åpningen har ennå ikke skjedd",
+          "answerIndex": 0,
+          "dimension": "bibliotek_arkitektur_stedshistorie",
+          "topic": "Kildekritikk og framtidsstatus",
+          "knowledge": "En framtidig prosjektopplysning må holdes adskilt fra dokumenterte hendelser som allerede har skjedd.",
+          "trivia": [],
+          "difficulty": 5,
+          "question_type": "concept",
+          "question_layer": "source_criticism_concept",
+          "year": 2028,
+          "epoke_id": "gamle_deichman_bibliotek_lesesal_offentlighet",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_diskursanalyse",
+          "related_emner": [
+            "em_lit_litteraturfelt_institusjoner",
+            "em_lit_lesere_offentlighet_formidling"
+          ],
+          "core_concepts": [
+            "kildekritikk",
+            "planlagt status",
+            "ombruk"
+          ],
+          "concept_focus": [
+            "kildekritikk",
+            "planlagt status"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "Gamle Deichman",
+            "kildekritikk",
+            "planlagt status",
+            "ombruk"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "https://www.deich.no/no/fotohuset-deich"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "literature_anchor_type": "old_public_library_reading_room_literary_public_sphere",
+          "external_source_ratio_target": 1,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/litteraturpensum_canonical_v4_5.json"
+          ],
+          "merge_status": "reconciled_5x7_addition"
         }
       ]
     }
-  ]
+  ],
+  "profile": "rich_5x7"
 }

@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-09-03T05:35:01.785Z
+Generert: 2026-09-08T16:42:50.251Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-09-03T05:35:01.785Z |
-| peopleFilesRead | 768 |
-| totalPeople | 1430 |
-| uniquePeopleIds | 1430 |
+| generatedAt | 2026-09-08T16:42:50.251Z |
+| peopleFilesRead | 772 |
+| totalPeople | 1427 |
+| uniquePeopleIds | 1427 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 768 |
+| geographicPeopleFiles | 772 |
 | categoriesRepresented | 17 |
 
 ## People-filer
@@ -48,7 +48,7 @@ Generert: 2026-09-03T05:35:01.785Z
 | data/people/by/oslo/people_by_oslo_politics_places_batch_02.json | by | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/people_by_oslo_politics_places_batch_03.json | by | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/people_by_oslo_politics_places_batch_04.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/by/oslo/people_by_oslo.json | by | ja | 25 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/people_by_oslo.json | by | ja | 24 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/st_hallvard_kirke_kloster/kjell_lund.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/st_hallvard_kirke_kloster/nils_slaatto.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/torggata/adelsten_jensen.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -69,6 +69,9 @@ Generert: 2026-09-03T05:35:01.785Z
 | data/people/by/oslo/torggata/thorvald_jensen.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/torggata/wulff_becker.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/tullin/claus_tullin.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/ullern/eilif_peterssen.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/vinderen/rasmus_winderen.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/vaalerenga/synnove_finden.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/wessels_plass/johan_herman_wessel.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/vestland/etne/people_by_etne_rounds_batch1.json | by | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/filantroper/oslo/people_filantroper_oslo.json | filantroper | ja | 16 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
@@ -181,6 +184,7 @@ Generert: 2026-09-03T05:35:01.785Z
 | data/people/litteratur/oslo/bla_skilt_2026/stein_mehren.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/chat_noir/vilhelm_dybwad.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/edderkoppen_scene/per_kvist.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/litteratur/oslo/gamle_deichman/nils_reiersen.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json | litteratur | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -299,7 +303,7 @@ Generert: 2026-09-03T05:35:01.785Z
 | data/people/litteratur/oslo/nationaltheatret/vilhelm_krag.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/aase_bye.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/people_litteratur_oslo_politics_places_batch_02.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | litteratur | ja | 34 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/litteratur/oslo/people_litteratur_oslo.json | litteratur | ja | 28 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/vestland/etne/ivar_aasen.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/vestland/etne/people_litteratur_etne_batch1.json | litteratur | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/media/europe/portugal/lisbon/filomena_cautela.json | media | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -795,12 +799,12 @@ Generert: 2026-09-03T05:35:01.785Z
 
 | Kategori | People | Flate filer | Geofiler | Foreslått neste steg | Begrunnelse |
 |---|---:|---:|---:|---|---|
-| by | 81 | 0 | 49 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| by | 83 | 0 | 52 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | filantroper | 16 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 24 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | historie | 238 | 0 | 75 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | kunst | 82 | 0 | 31 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| litteratur | 171 | 0 | 128 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| litteratur | 166 | 0 | 129 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 31 | 0 | 6 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | musikk | 124 | 0 | 88 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | naeringsliv | 81 | 0 | 31 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -815,7 +819,7 @@ Generert: 2026-09-03T05:35:01.785Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 768
+- Allerede geografisk strukturert: 772
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -866,7 +870,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/by/oslo/people_by_oslo_politics_places_batch_02.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=by
 - data/people/by/oslo/people_by_oslo_politics_places_batch_03.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=by
 - data/people/by/oslo/people_by_oslo_politics_places_batch_04.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
-- data/people/by/oslo/people_by_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=25/25; source_place_id=0/25; placesArray=25/25; categories=by
+- data/people/by/oslo/people_by_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=24/24; source_place_id=0/24; placesArray=24/24; categories=by
 - data/people/by/oslo/st_hallvard_kirke_kloster/kjell_lund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/st_hallvard_kirke_kloster/nils_slaatto.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/torggata/adelsten_jensen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
@@ -887,6 +891,9 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/by/oslo/torggata/thorvald_jensen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/torggata/wulff_becker.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/tullin/claus_tullin.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
+- data/people/by/oslo/ullern/eilif_peterssen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=1/1; placesArray=1/1; categories=by; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
+- data/people/by/oslo/vinderen/rasmus_winderen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=1/1; placesArray=1/1; categories=by; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
+- data/people/by/oslo/vaalerenga/synnove_finden.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=1/1; placesArray=1/1; categories=by; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
 - data/people/by/oslo/wessels_plass/johan_herman_wessel.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/vestland/etne/people_by_etne_rounds_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=by
 - data/people/filantroper/oslo/people_filantroper_oslo.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; collectionGroup=16/16; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
@@ -999,6 +1006,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/litteratur/oslo/bla_skilt_2026/stein_mehren.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/chat_noir/vilhelm_dybwad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/edderkoppen_scene/per_kvist.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
+- data/people/litteratur/oslo/gamle_deichman/nils_reiersen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
@@ -1117,7 +1125,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/litteratur/oslo/nationaltheatret/vilhelm_krag.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/aase_bye.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/people_litteratur_oslo_politics_places_batch_02.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
-- data/people/litteratur/oslo/people_litteratur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=34/34; source_place_id=0/34; placesArray=34/34; categories=litteratur
+- data/people/litteratur/oslo/people_litteratur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=28/28; source_place_id=0/28; placesArray=28/28; categories=litteratur
 - data/people/litteratur/vestland/etne/ivar_aasen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/vestland/etne/people_litteratur_etne_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=litteratur
 - data/people/media/europe/portugal/lisbon/filomena_cautela.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=media
@@ -1659,7 +1667,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 
 ## Image/cardImage audit
 
-Mangler filer for image/cardImage/media: 570
+Mangler filer for image/cardImage/media: 556
 
 | Fil | Person | Felt | Bane |
 |---|---|---|---|
@@ -1675,8 +1683,6 @@ Mangler filer for image/cardImage/media: 570
 | data/people/by/oslo/people_by_oslo.json | ove_bang / Ove Bang | cardImage | bilder/kort/people/ove_bang.PNG |
 | data/people/by/oslo/people_by_oslo.json | sverre_pedersen / Sverre Pedersen | image | bilder/kort/people/sverre_pedersen.PNG |
 | data/people/by/oslo/people_by_oslo.json | sverre_pedersen / Sverre Pedersen | cardImage | bilder/kort/people/sverre_pedersen.PNG |
-| data/people/by/oslo/people_by_oslo.json | christian_norberg_schulz / Christian Norberg-Schulz | image | bilder/kort/people/christian_norberg_schulz.PNG |
-| data/people/by/oslo/people_by_oslo.json | christian_norberg_schulz / Christian Norberg-Schulz | cardImage | bilder/kort/people/christian_norberg_schulz.PNG |
 | data/people/by/oslo/people_by_oslo.json | geir_grung / Geir Grung | image | bilder/kort/people/geir_grung.PNG |
 | data/people/by/oslo/people_by_oslo.json | geir_grung / Geir Grung | cardImage | bilder/kort/people/geir_grung.PNG |
 | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json | manoel_de_oliveira / Manoel de Oliveira | image | bilder/kort/people/manoel_de_oliveira.PNG |
@@ -1936,18 +1942,6 @@ Mangler filer for image/cardImage/media: 570
 | data/people/litteratur/oslo/people_litteratur_oslo.json | cecilie_loveid / Cecilie Løveid | cardImage | bilder/kort/people/cecilie_loveid.PNG |
 | data/people/litteratur/oslo/people_litteratur_oslo.json | oskar_braaten / Oskar Braaten | image | bilder/kort/people/oskar_braaten.PNG |
 | data/people/litteratur/oslo/people_litteratur_oslo.json | oskar_braaten / Oskar Braaten | cardImage | bilder/kort/people/oskar_braaten.PNG |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | vogt / Nils Collett Vogt | image | bilder/people/vogt.PNG |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | vogt / Nils Collett Vogt | cardImage | bilder/kort/people/vogt.PNG |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | andersen / Tryggve Andersen | image | bilder/people/andersen.PNG |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | andersen / Tryggve Andersen | cardImage | bilder/kort/people/andersen.PNG |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | krag / Vilhelm Krag | image | bilder/people/krag.PNG |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | krag / Vilhelm Krag | cardImage | bilder/kort/people/krag.PNG |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | obstfelder / Sigbjørn Obstfelder | image | bilder/people/obstfelder.PNG |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | obstfelder / Sigbjørn Obstfelder | cardImage | bilder/kort/people/obstfelder.PNG |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | hamsun / Knut Hamsun | image | bilder/people/hamsun.PNG |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | hamsun / Knut Hamsun | cardImage | bilder/kort/people/hamsun.PNG |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | garborg / Arne Garborg | image | bilder/people/garborg.PNG |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | garborg / Arne Garborg | cardImage | bilder/kort/people/garborg.PNG |
 | data/people/litteratur/oslo/people_litteratur_oslo.json | andre_bjerke / André Bjerke | cardImage | bilder/kort/people/andre_bjerke.PNG |
 | data/people/litteratur/oslo/people_litteratur_oslo.json | jon_fosse / Jon Fosse | cardImage | bilder/kort/people/jon_fosse.PNG |
 | data/people/litteratur/oslo/people_litteratur_oslo.json | alf_proysen / Alf Prøysen | image | bilder/kort/people/alf_proysen.PNG |

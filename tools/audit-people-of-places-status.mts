@@ -533,7 +533,6 @@ function renderMd(r) {
   lines.push('- Ingen people entries ble flyttet.');
   lines.push('- Ingen nye place IDs ble opprettet.');
   lines.push('- Scriptet leser data og skriver kun rapportene `reports/people-of-places-status.json` og `reports/people-of-places-status.md`.');
-  lines.push('');
   return `${lines.join('\n')}\n`;
 }
 
