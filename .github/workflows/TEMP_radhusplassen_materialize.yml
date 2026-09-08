@@ -52,15 +52,25 @@ jobs:
           phase_new = 'const phases = ["opening", "middle", "middle", "bridge", "final"];'
           family_old = 'family: q.question_type, statement: q.claim_basis'
           family_new = 'family: q.question_type === "concept" ? "concept_theory" : q.question_type, statement: q.claim_basis'
+          score_common = 'score: { narrative: 3, historical: 4, source: 4, play_value: 3, originality: 3, total: 17 }'
+          score_bilfri = 'score: { narrative: 3, historical: 2, source: 4, play_value: 3, originality: 3, total: 15 }'
+          score_trikk = 'score: { narrative: 3, historical: 2, source: 5, play_value: 3, originality: 3, total: 16 }'
           if phase_old not in s and phase_new not in s:
               raise SystemExit('Fant ikke forventet Rådhusplassen phase-plan')
           if family_old not in s and family_new not in s:
               raise SystemExit('Fant ikke forventet claim family mapping')
+          if s.count(score_common) != 2 and not (score_bilfri in s and score_trikk in s):
+              raise SystemExit('Fant ikke de to forventede Rådhusplassen Story-scoreblokkene')
           s = s.replace(phase_old, phase_new).replace(family_old, family_new)
+          if s.count(score_common) == 2:
+              s = s.replace(score_common, score_bilfri, 1)
+              s = s.replace(score_common, score_trikk, 1)
           p.write_text(s)
           PY
             grep -F 'const phases = ["opening", "middle", "middle", "bridge", "final"];' tools/materialize-radhusplassen.mjs &&
             grep -F 'family: q.question_type === "concept" ? "concept_theory" : q.question_type' tools/materialize-radhusplassen.mjs &&
+            grep -F 'score: { narrative: 3, historical: 2, source: 4, play_value: 3, originality: 3, total: 15 }' tools/materialize-radhusplassen.mjs &&
+            grep -F 'score: { narrative: 3, historical: 2, source: 5, play_value: 3, originality: 3, total: 16 }' tools/materialize-radhusplassen.mjs &&
             node --check tools/materialize-radhusplassen.mjs &&
             node tools/materialize-radhusplassen.mjs
           } > /tmp/radhusplassen-materialize.log 2>&1
