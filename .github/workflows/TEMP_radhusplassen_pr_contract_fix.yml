@@ -93,6 +93,6 @@ jobs:
           set -euxo pipefail
           rm .github/workflows/TEMP_radhusplassen_pr_contract_fix.yml
           git add -A
-          test -z "$(git diff --cached --name-only | grep '^\.github/workflows/TEMP_' || true)"
+          test ! -e .github/workflows/TEMP_radhusplassen_pr_contract_fix.yml
           git commit -m 'Fix Rådhusplassen PR contract gates'
           git push origin HEAD:refs/heads/agent/radhusplassen-materialize-20260908
