@@ -34,7 +34,7 @@ jobs:
       - name: Validate focused contracts
         run: |
           set -euxo pipefail
-          node --test tests/radhusplassen-place-completion-v1.test.mjs
+          node --test tests/radhusplassen-completion.test.mjs
           npm run place-open:check -- --id radhusplassen
           npm run audit:quiz-production-context
           npm run audit:fagverk-release-current
