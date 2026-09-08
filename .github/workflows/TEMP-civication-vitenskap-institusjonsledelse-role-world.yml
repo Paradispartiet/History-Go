@@ -40,8 +40,22 @@ jobs:
           git merge-base --is-ancestor origin/main HEAD || { echo 'Branch is stale versus main before materialization.' >&2; exit 1; }
       - name: Syntax
         run: node --check scripts/TEMP_materialize_vitenskap_institusjonsledelse_role_world.mjs
-      - name: Materialize Role World
-        run: node scripts/TEMP_materialize_vitenskap_institusjonsledelse_role_world.mjs
+      - name: Materialize Role World with exact binding repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          src = Path('scripts/TEMP_materialize_vitenskap_institusjonsledelse_role_world.mjs').read_text()
+          old = 'standing_audience:audience,standing_consequence});'
+          new = 'standing_audience:audience,standing_consequence:standingConsequence});'
+          count = src.count(old)
+          if count != 1:
+              raise SystemExit(f'Expected exactly one standing_consequence shorthand defect, found {count}')
+          Path('/tmp/TEMP_materialize_vitenskap_institusjonsledelse_role_world.mjs').write_text(src.replace(old, new))
+          PY
+          node --check /tmp/TEMP_materialize_vitenskap_institusjonsledelse_role_world.mjs
+          node /tmp/TEMP_materialize_vitenskap_institusjonsledelse_role_world.mjs
       - name: Regenerate career and rollout surfaces
         run: |
           set -euo pipefail
