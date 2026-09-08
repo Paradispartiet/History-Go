@@ -37,7 +37,7 @@ jobs:
           node --test tests/radhusplassen-completion.test.mjs
           npm run place-open:check -- --id radhusplassen
           npm run audit:quiz-production-context
-          npm run audit:fagverk-release-current
+          node scripts/build-fagverk-release-manifest.mjs --check
           npm run lesespor:test
           git diff --check
       - name: Commit clean permanent repair
