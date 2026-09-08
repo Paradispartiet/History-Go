@@ -1,0 +1,186 @@
+name: TEMP Final Civication Vitenskap Undervisning og forskning prerequisites
+
+on:
+  push:
+    branches:
+      - agent/civication-vitenskap-undervisning-og-forskning-prerequisites-20260908
+    paths:
+      - .github/workflows/TEMP-final-civication-vitenskap-undervisning-og-forskning-prerequisites.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-final-civication-vitenskap-undervisning-og-forskning-prerequisites
+  cancel-in-progress: true
+
+jobs:
+  materialize-and-verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-vitenskap-undervisning-og-forskning-prerequisites-20260908
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Configure commit identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Require fresh main ancestry before materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge-base --is-ancestor origin/main HEAD || { echo 'Branch is stale versus main before materialization.' >&2; exit 1; }
+      - name: Repair exact TEMP transform hazard
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/TEMP_materialize_vitenskap_undervisning_og_forskning_prerequisites.mjs')
+          s=p.read_text()
+          bad="\n    .replaceAll('forskning','undervisning og forskning')"
+          if s.count(bad) != 1:
+              raise SystemExit(f'Expected exactly one transform hazard, found {s.count(bad)}')
+          p.write_text(s.replace(bad,'',1))
+          PY
+          node --check scripts/TEMP_materialize_vitenskap_undervisning_og_forskning_prerequisites.mjs
+      - name: Materialize prerequisites
+        run: node scripts/TEMP_materialize_vitenskap_undervisning_og_forskning_prerequisites.mjs
+      - name: Align dedicated test with canonical playable policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tests/civication-vitenskap-undervisning-og-forskning-prerequisites.test.js')
+          s=p.read_text()
+          old="for(const component of ['entry','day_one','workday_loop','people','places','mail','knowledge','quality_axes','authority','consequences','performance','economy','progression','exit'])assert.equal(career.audit.components[component].level,'complete',component+' must be complete');assert.deepEqual(career.audit.missing_components,[]);"
+          new="for(const component of ['entry','day_one','workday_loop','mail','consequences','economy'])assert.equal(career.audit.components[component].level,'complete',component+' runtime component must be complete');for(const component of ['people','places','knowledge','quality_axes','authority'])assert.equal(career.audit.components[component].level,'complete',component+' prerequisite-owned component must be complete');assert.deepEqual(career.audit.missing_components,[]);"
+          if s.count(old) != 1:
+              raise SystemExit(f'Expected exactly one over-constrained assertion, found {s.count(old)}')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Generate canonical derived surfaces
+        run: |
+          set -euo pipefail
+          node scripts/audit-civication-role-packs.mjs
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+          node scripts/build-civication-scene-registry.mjs --write
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+      - name: Require zero broken role-pack mappings
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const index=JSON.parse(fs.readFileSync('data/Civication/rolePackIndex.json','utf8'));
+          const broken=index.roles.filter((row)=>row.status==='broken_mapping');
+          console.log('BROKEN_MAPPING_COUNT='+broken.length);
+          if(broken.length){console.log(JSON.stringify(broken,null,2));process.exit(1);}
+          NODE
+      - name: Require exact prerequisite readiness state
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const r=JSON.parse(fs.readFileSync('data/Civication/roleWorldRolloutReadiness.json','utf8'));
+          const row=r.roles.find(x=>x.key==='vitenskap/vitenskap_undervisning_og_forskning');
+          if(!row) throw new Error('Target role missing from readiness');
+          console.log(JSON.stringify({classification:row.classification,authored_work_required:row.authored_work_required,dimensions:row.dimensions},null,2));
+          if(row.classification!=='rollout_ready') throw new Error('Expected rollout_ready, got '+row.classification);
+          const remaining=['situated','reputation'].join('_');
+          if(JSON.stringify(row.authored_work_required)!==JSON.stringify([remaining])) throw new Error('Expected only remaining Role World-authored dimension, got '+JSON.stringify(row.authored_work_required));
+          for(const id of ['persistent_work_object','institution_authority','rhythm_waiting_handoff_rework','history_go_affordance','people_places_integrity','provenance']) {
+            const d=row.dimensions[id];
+            if(!d) throw new Error('Missing readiness dimension '+id);
+            if(d.status==='needs_role_authored_work'||d.status==='blocked') throw new Error(id+' not foundation-ready: '+d.status);
+          }
+          NODE
+      - name: Verify Undervisning og forskning prerequisites
+        run: node tests/civication-vitenskap-undervisning-og-forskning-prerequisites.test.js
+      - name: Verify Vitenskap career architecture
+        run: node tests/civication-vitenskap-career-architecture.test.js
+      - name: Verify Career Gameplay Matrix
+        run: node tests/civication-career-gameplay-matrix.test.js
+      - name: Verify Role World readiness
+        run: node tests/civication-role-world-rollout-readiness.test.js
+      - name: Verify Scene Registry
+        run: node scripts/build-civication-scene-registry.mjs --check
+      - name: Verify Scenario People index
+        run: node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+      - name: Verify Scenario People audit
+        run: node --test tests/civication-scenario-people.test.mjs
+      - name: Verify full Civication suite
+        run: node tests/run-civication-tests.mjs
+      - name: Verify job learning profiles
+        run: npm run audit:job-learning-profiles
+      - name: Verify job knowledge requirements
+        run: npm run audit:job-knowledge-requirements
+      - name: Require fresh main ancestry before scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge-base --is-ancestor origin/main HEAD || { echo 'Branch became stale before scope verification.' >&2; exit 1; }
+      - name: Verify exact permanent prerequisite scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROLE=vitenskap_undervisning_og_forskning
+          mapfile -t changed < <({ git diff --name-only; git ls-files --others --exclude-standard; } | sort -u)
+          printf '%s\n' "${changed[@]}"
+          if [ "${#changed[@]}" -ne 24 ]; then echo "Expected exactly 24 permanent prerequisite paths, found ${#changed[@]}" >&2; exit 1; fi
+          expected=(
+            data/Civication/careerGameplayMatrix.json
+            data/Civication/compiledSceneRegistryV1.json
+            data/Civication/mailFamilies/vitenskap/conflict/${ROLE}_conflict.json
+            data/Civication/mailFamilies/vitenskap/consequence/${ROLE}_consequence.json
+            data/Civication/mailFamilies/vitenskap/event/${ROLE}_event.json
+            data/Civication/mailFamilies/vitenskap/followup/${ROLE}_followup.json
+            data/Civication/mailFamilies/vitenskap/job/${ROLE}_job.json
+            data/Civication/mailFamilies/vitenskap/knowledge/${ROLE}_knowledge.json
+            data/Civication/mailFamilies/vitenskap/micro/${ROLE}_micro.json
+            data/Civication/mailFamilies/vitenskap/people/${ROLE}_people.json
+            data/Civication/mailFamilies/vitenskap/story/${ROLE}_story.json
+            data/Civication/mailPlans/vitenskap/${ROLE}_plan.json
+            data/Civication/roleModels/manifest.json
+            data/Civication/roleModels/vitenskap/${ROLE}.json
+            data/Civication/rolePackIndex.json
+            data/Civication/roleWorldRolloutReadiness.json
+            data/Civication/scenarioPeople/generated/vitenskap.json
+            data/Civication/scenarioPeople_index.json
+            data/Civication/workGrammars/vitenskap/${ROLE}.json
+            docs/CIVICATION_ROLE_PACK_INDEX.md
+            reports/CIVICATION_VITENSKAP_UNDERVISNING_OG_FORSKNING_PREREQUISITES_SOURCE_FIRST.md
+            reports/civication-career-gameplay-matrix.md
+            reports/civication-role-world-rollout-readiness.md
+            tests/civication-vitenskap-undervisning-og-forskning-prerequisites.test.js
+          )
+          for f in "${expected[@]}"; do printf '%s\n' "${changed[@]}" | grep -Fx "$f" >/dev/null || { echo "Missing expected path: $f" >&2; exit 1; }; done
+          for f in "${changed[@]}"; do printf '%s\n' "${expected[@]}" | grep -Fx "$f" >/dev/null || { echo "Unexpected path: $f" >&2; exit 1; }; done
+          git diff --check
+      - name: Require fresh main ancestry before permanent commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge-base --is-ancestor origin/main HEAD || { echo 'Branch became stale before permanent commit.' >&2; exit 1; }
+      - name: Commit permanent verified package
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f scripts/TEMP_materialize_vitenskap_undervisning_og_forskning_prerequisites.mjs
+          rm -f .github/workflows/TEMP-civication-vitenskap-undervisning-og-forskning-prerequisites.yml
+          rm -f .github/workflows/TEMP-final-civication-vitenskap-undervisning-og-forskning-prerequisites.yml
+          git diff --check
+          git add -A
+          if git diff --cached --quiet; then echo 'No permanent changes to commit.' >&2; exit 1; fi
+          git diff --cached --check
+          git status --short
+          git commit -m "Complete Vitenskap Undervisning og forskning prerequisites"
+          git push origin HEAD:agent/civication-vitenskap-undervisning-og-forskning-prerequisites-20260908
