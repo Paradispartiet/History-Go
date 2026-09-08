@@ -1,0 +1,70 @@
+name: TEMP Gamle Deichman read-first diagnostic
+
+on:
+  push:
+    branches:
+      - agent/gamle-deichman-reconciliation-20260908
+    paths:
+      - .github/workflows/TEMP-gamle-deichman-readfirst-diagnostic.yml
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Capture full READ-FIRST bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT=/tmp/gamle-deichman-read-first.txt
+          : > "$OUT"
+          for f in \
+            docs/PLACE_PRODUCTION_CHECKLIST.md \
+            docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md \
+            docs/PLACE_PRODUCTION_PROFILES.md \
+            data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md \
+            data/places/README_place_rounds.md \
+            data/badges/index.json \
+            data/badges/place_production_routing_v1.json \
+            docs/PLACE_OBJECTS_CANONICAL.md \
+            data/brands/brand_rules_v1_1.json \
+            data/badges/litteratur.json
+          do
+            printf '\n===== %s =====\n' "$f" >> "$OUT"
+            cat "$f" >> "$OUT"
+            printf '\n' >> "$OUT"
+          done
+          cp "$OUT" ./gamle-deichman-read-first.txt
+      - name: Capture Data-check quiz test
+        shell: bash
+        run: |
+          set +e
+          {
+            echo '===== npm run test:quiz-content-audit ====='
+            npm run test:quiz-content-audit
+            A=$?
+            echo "exit=$A"
+            echo '===== npm run test:quiz-production ====='
+            npm run test:quiz-production
+            B=$?
+            echo "exit=$B"
+            echo "combined_exit=$(( A || B ))"
+          } 2>&1 | tee gamle-deichman-quiz-diagnostic.txt
+          exit 0
+      - name: Upload diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: gamle-deichman-readfirst-diagnostic
+          path: |
+            gamle-deichman-read-first.txt
+            gamle-deichman-quiz-diagnostic.txt
+          if-no-files-found: error
