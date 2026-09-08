@@ -1,4 +1,4 @@
-name: TEMP Rådhusplassen place-open rebuild
+name: TEMP Rådhusplassen derived-context repair
 
 on:
   push:
@@ -22,21 +22,25 @@ jobs:
           node-version: '24'
       - name: Install dependencies
         run: npm ci
-      - name: Rebuild place-open deterministically
+      - name: Rebuild stale Rådhusplassen derivatives
         run: |
           set -euxo pipefail
-          npm run place-open:build
+          npm run place-open:build -- --id radhusplassen
+          npm run quiz:context -- --category by --target radhusplassen --output data/quiz/production_context/by/radhusplassen.json
           changed="$(git diff --name-only | grep -v '^\.github/workflows/TEMP_radhusplassen_place_open_rebuild.yml$' | sort)"
-          expected='data/runtime/lesespor-all.json'
+          expected="$(printf '%s\n' 'data/quiz/production_context/by/radhusplassen.json' 'data/runtime/place-open/radhusplassen.json' | sort)"
           printf 'Generated changes:\n%s\n' "$changed"
           test "$changed" = "$expected"
-      - name: Validate place-open contracts
+      - name: Validate focused contracts
         run: |
           set -euxo pipefail
-          npm run place-open:check
-          npm run test:place-open
+          node --test tests/radhusplassen-place-completion-v1.test.mjs
+          npm run place-open:check -- --id radhusplassen
+          npm run audit:quiz-production-context
+          npm run audit:fagverk-release-current
+          npm run lesespor:test
           git diff --check
-      - name: Commit clean permanent rebuild
+      - name: Commit clean permanent repair
         run: |
           set -euxo pipefail
           git config user.name 'history-go-materializer'
@@ -44,5 +48,8 @@ jobs:
           rm .github/workflows/TEMP_radhusplassen_place_open_rebuild.yml
           git add -A
           test ! -e .github/workflows/TEMP_radhusplassen_place_open_rebuild.yml
-          git commit -m 'Rebuild Rådhusplassen place-open after Lesespor repair'
+          git diff --cached --name-only | grep -qx 'data/quiz/production_context/by/radhusplassen.json'
+          git diff --cached --name-only | grep -qx 'data/runtime/place-open/radhusplassen.json'
+          test "$(git diff --cached --name-only | wc -l)" -eq 3
+          git commit -m 'Refresh Rådhusplassen derived production context'
           git push origin HEAD:refs/heads/agent/radhusplassen-materialize-20260908
