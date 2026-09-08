@@ -1,15 +1,228 @@
 {
-  "schema":"civication_work_grammar_v1","version":1,"category":"religion","role_scope":"religion_formidling_og_kulturarv","role_id":"religion_formidling_og_kulturarv",
-  "badge_binding":{"badge_id":"religion","badge_titles":["Religionsformidler","Kurator"],"tier_thresholds":[85,300]},
-  "work_world":"Formidling og kulturarv: kildebasert fortolkning av religioners historie, praksis, objekter og steder for publikum, med tydelig skille mellom dokumentasjon, aktørperspektiv og faglig tolkning.",
-  "authority_boundary":{"can":["formidle dokumenterte kilder og gjenstander","utforme tekster og utstillingsgrep innen mandat","søke dialog og korrigere feil"],"cannot":["tale for trosgrupper uten mandat","skjule usikker proveniens","gjøre én intern tolkning til hele tradisjonen","behandle Badge-status som religionsfaglig myndighet"]},
-  "work_loops":["avklar målgruppe, mandat og sensitivitet","bygg kilde- og proveniensgrunnlag","skill aktørstemmer fra analytisk ramme","test representasjon mot intern variasjon og motkilder","publiser med tydelig usikkerhet og rettelsesmulighet"],
-  "practice_stories":[
-    {"id":"hellig_objekt","title":"Hellig objekt i monter","problem":"Et sentralt objekt er omstridt og har sensitiv brukshistorie.","good_practice":"Dokumenter proveniens, innhent relevante perspektiver og forklar hvorfor og hvordan objektet vises."},
-    {"id":"en_stemme","title":"Én talsperson blir hele tradisjonen","problem":"En tilgjengelig talsperson presenteres som representativ for alle.","good_practice":"Marker posisjon og intern variasjon; søk flere relevante stemmer."},
-    {"id":"populaer_myte","title":"Publikumsvennlig myte","problem":"En kjent fortelling er enkel og minneverdig, men historisk svak.","good_practice":"Behold pedagogisk klarhet uten å ofre kildegrunnlag eller kronologi."},
-    {"id":"sensitivt_bilde","title":"Sterkt bilde, svak kontekst","problem":"Et visuelt materiale vekker oppmerksomhet men kan eksotifisere praksisen.","good_practice":"Kontekstualiser funksjon, tid, sted og aktørperspektiv før estetisk effekt."},
-    {"id":"rettelse","title":"Berørt gruppe påpeker feil","problem":"En gruppe dokumenterer at teksten overforenkler deres praksis.","good_practice":"Kontroller innspillet, rett presist og forklar hva som ble endret uten å outsource fagansvaret."}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "religion",
+  "role_scope": "religion_formidling_og_kulturarv",
+  "role_id": "religion_formidling_og_kulturarv",
+  "badge_binding": {
+    "badge_id": "religion",
+    "badge_titles": [
+      "Religionsformidler",
+      "Kurator"
+    ],
+    "tier_thresholds": [
+      85,
+      300
+    ]
+  },
+  "work_world": "Kilde- og proveniensbasert religionsformidling der objekter, steder, aktørstemmer, historisk analyse, sensitivitet og publikumsmøte føres i et vedvarende redaksjonelt spor.",
+  "task_families": [
+    "kilde_og_proveniensarbeid",
+    "objekt_og_stedskontekst",
+    "representasjonskartlegging",
+    "tekst_og_utstillingsutvikling",
+    "sensitivitets_og_rettighetskontroll",
+    "publisering_og_rettelse"
   ],
-  "quality_axes":["kildekritikk","proveniens","representasjon","kontekstualisering","pluralisme","rettelseskvalitet"]
+  "work_loops": [
+    "bestilling -> målgruppe -> kilder/proveniens -> aktørperspektiver -> formidlingsutkast -> kontroll -> publisering -> respons -> rettelse",
+    "objekt/tema -> dokumentasjon -> representasjonskart -> waiting på proveniens, rettighet eller dialog -> kuratorisk valg -> handoff -> publikumsrespons -> bounded rework"
+  ],
+  "pressure_axes": [
+    "pedagogisk_klarhet_vs_historisk_presisjon",
+    "sterk_objekteffekt_vs_proveniens",
+    "dialognaerhet_vs_representativitet",
+    "publiseringstempo_vs_sensitivitetskontroll",
+    "institusjonell_prestisje_vs_synlig_rettelse"
+  ],
+  "practice_stories": [
+    {
+      "id": "hellig_objekt",
+      "setup": "Et hellig eller sensitivt objekt er sentralt for fortellingen.",
+      "decision": "Dokumenter proveniens, konsultasjon, rettigheter, uenighet og visningsbegrunnelse før publisering.",
+      "learning": "sensitivitet og kunnskap må håndteres gjennom sporbar kontroll, ikke skjult veto eller overstyring"
+    },
+    {
+      "id": "en_talsperson",
+      "setup": "En talsperson gir en tydelig fortelling som er lett å formidle.",
+      "decision": "Attribuer posisjon og mandat, dokumenter intern variasjon og søk relevante motperspektiver.",
+      "learning": "dialog er kilde og relasjon, ikke automatisk representativitet"
+    },
+    {
+      "id": "populaer_myte",
+      "setup": "En kjent historie er pedagogisk sterk, men kildegrunnlaget er svakt.",
+      "decision": "Bevar pedagogisk klarhet og merk hva som er tradisjon, dokumentasjon og faglig tolkning.",
+      "learning": "god formidling tåler at usikkerhet er synlig"
+    },
+    {
+      "id": "rettelse",
+      "setup": "En berørt gruppe dokumenterer en feil etter publisering.",
+      "decision": "Kontroller innspillet, rett presist, behold gammel versjon og forklar endringen.",
+      "learning": "korrigerbarhet er faglig kvalitet"
+    },
+    {
+      "id": "tilbakeforingssporsmal",
+      "setup": "Publikum spør om institusjonen burde tilbakeføre et objekt.",
+      "decision": "Forklar dokumentert historikk og hvem som faktisk eier beslutningen uten å love institusjonell handling.",
+      "learning": "formidling av konflikt er ikke beslutningsmyndighet"
+    }
+  ],
+  "quality_axes": [
+    "kildekritikk",
+    "proveniens",
+    "representasjon",
+    "kontekstualisering",
+    "pluralisme",
+    "sensitivitetskontroll",
+    "tilgjengelighet",
+    "rettelseskvalitet"
+  ],
+  "authority_boundary": {
+    "may": [
+      "tolke og formidle dokumentert materiale innen oppdragets og institusjonens faktiske mandat",
+      "foreslå tekster, omvisninger, utstillings- og tilgjengelighetsgrep med sporbar kilde- og versjonsbruk",
+      "innhente og attribuere aktørperspektiver uten å gjøre dem til universell representasjon",
+      "markere usikker proveniens, faglig uenighet og representasjonsbegrensninger",
+      "rette dokumenterte feil med synlig versjon og begrunnelse"
+    ],
+    "may_not": [
+      "endre proveniens, katalogdata, eierskapshistorikk eller rettighetsstatus uten dokumentert grunnlag og riktig myndighet",
+      "erklære én religiøs eller livssynsmessig tolkning som normativ sannhet på institusjonens vegne",
+      "tale på vegne av tros- eller livssynsgrupper uten faktisk mandat eller gjøre én talsperson til hele tradisjonen",
+      "love utlån, tilbakeføring, salg, tilgang eller andre institusjonelle disposisjoner uten fullmakt",
+      "bruke Religion-badge, XP, History Go-kunnskap, popularitet, nettverk eller sosial standing som faglig evidens, representasjonsmandat eller institusjonell myndighet"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "astrid_samling_proveniens_religion_formidling",
+      "name": "Astrid",
+      "role": "samlings- og provenienskontakt",
+      "workplace_ids": [
+        "kilde_proveniens_og_objektbord_religion_formidling"
+      ]
+    },
+    {
+      "id": "hassan_dialog_representasjon_religion_formidling",
+      "name": "Hassan",
+      "role": "dialog- og representasjonskontakt",
+      "workplace_ids": [
+        "dialog_representasjon_og_sensitivitetsflate_religion_formidling"
+      ]
+    },
+    {
+      "id": "eline_redaksjon_formidling_religion_formidling",
+      "name": "Eline",
+      "role": "redaksjons- og formidlingsansvarlig",
+      "workplace_ids": [
+        "formidlings_og_utstillingsverksted_religion_formidling"
+      ]
+    },
+    {
+      "id": "maja_etikk_bevaring_og_tilgang_religion_formidling",
+      "name": "Maja",
+      "role": "etikk-, bevarings- og tilgangskontakt",
+      "workplace_ids": [
+        "publisering_rettelse_og_oppfolgingspunkt_religion_formidling"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "kilde_proveniens_og_objektbord_religion_formidling",
+      "name": "Kilde-, proveniens- og objektbordet",
+      "function": "Her samles kilder, katalogopplysninger, objektidentitet, eierskaps- og innkomsthistorikk, tidligere beskrivelser, rettigheter og dokumenterte hull. Flaten skiller det institusjonen faktisk vet fra tradisjon, antakelse, estetisk fortelling og påstander som fortsatt krever kontroll."
+    },
+    {
+      "id": "formidlings_og_utstillingsverksted_religion_formidling",
+      "name": "Formidlings- og utstillingsverkstedet",
+      "function": "Her bygges tekster, omvisninger, digitale fortellinger og utstillingsgrep med tydelig skille mellom kildebelagt historie, aktørperspektiv, religionsvitenskapelig analyse og pedagogisk forenkling. Hvert utkast beholder kilde- og versjonsspor."
+    },
+    {
+      "id": "dialog_representasjon_og_sensitivitetsflate_religion_formidling",
+      "name": "Dialog-, representasjons- og sensitivitetsflaten",
+      "function": "Her registreres hvem som er konsultert, hvilket mandat eller ståsted de faktisk har, intern variasjon, berørte perspektiver, sensitiv brukshistorie, hellige objekter, personvern, etikk og uenighet. Dialog gir innsikt, men gjør ingen enkeltaktør til hele tradisjonen."
+    },
+    {
+      "id": "publisering_rettelse_og_oppfolgingspunkt_religion_formidling",
+      "name": "Publisering, rettelse og oppfølging",
+      "function": "Her låses publisert versjon, målgruppe, tilgjengelighet, godkjenninger, åpne forbehold, publikumsrespons, dokumenterte feil, rettelser og bounded rework. Tidligere tekst og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse",
+    "description": "Versjonert redaksjonelt arbeidsobjekt som bevarer bestilling, målgruppe, kilde- og objektgrunnlag, proveniens, rettigheter, aktørperspektiver og mandat, intern variasjon, sensitivitet, etikk, utkast, kontroll, publisert versjon, respons, rettelser og bounded rework.",
+    "states": [
+      "bestilling_registrert",
+      "malgruppe_avklart",
+      "kildegrunnlag_apnet",
+      "proveniens_kartlagt",
+      "objekt_og_rettighetsstatus_avklart",
+      "aktorstemmer_attribuert",
+      "intern_variasjon_kartlagt",
+      "sensitivitet_og_etikk_vurdert",
+      "utkast_versjonert",
+      "venter_pa_proveniens",
+      "venter_pa_dialog_eller_representasjonsavklaring",
+      "venter_pa_rettighet_bevaring_eller_personvern",
+      "venter_pa_faglig_redaksjonell_kontroll",
+      "klar_for_publisering",
+      "publisert_versjon_last",
+      "respons_registrert",
+      "rettelse_verifisert",
+      "bounded_rework",
+      "lukket_med_sporbarhet"
+    ],
+    "handoff_rule": "Neste eier mottar gjeldende versjon med målgruppe, kilder, proveniens, objekt- og rettighetsstatus, attribuerte aktørstemmer, intern variasjon, sensitivitet, åpne spørsmål, hva som er kontrollert, hva som er publisert og hva som fortsatt venter. Handoff sletter aldri tidligere usikkerhet, uenighet eller publisert versjon og overfører ikke myndighet som mottakeren ikke allerede har."
+  },
+  "rhythm_contract": {
+    "loop": "bestilling -> målgruppe -> dokumentasjon -> waiting/venting på proveniens, dialog, rettighet, bevaring eller faglig kontroll -> formidlingsvalg -> publisering/handoff -> respons -> rettelse -> bounded rework",
+    "waiting_states": [
+      "proveniens_og_kildeavklaring",
+      "dialog_og_representasjonsavklaring",
+      "rettigheter_personvern_og_samtykke",
+      "bevaring_og_sikkerhet",
+      "faglig_redaksjonell_kvalitet",
+      "tilgjengelighetsavklaring",
+      "respons_og_rettelsesverifisering"
+    ],
+    "rework_rule": "Nye kilder, korrigert proveniens, nytt representasjonsperspektiv, rettighets- eller bevaringsfunn, dokumentert publikumsfeil eller endret sensitivitet gjenåpner bare berørte ledd. Tidligere versjon, kildegrunnlag, attribusjon, publisering og begrunnelse beholdes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_religion_formidling_kulturarv_og_steder",
+      "badge_id": "religion",
+      "use": "History Go kan gi historisk og stedlig kontekst om religion, livssyn, praksiser, institusjoner, objekter og konflikter og dermed forbedre spørsmål, kronologi og kildekritikk. Det kan ikke erstatte dagens proveniens, katalogdata, rettighetsstatus, representasjonsmandat, sensitivitetssjekk eller institusjonell beslutningsmyndighet."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "career_offer_policy_by_title",
+    "entry_policy_by_title": {
+      "Religionsformidler": {
+        "policy": "direct",
+        "qualification_ids": []
+      },
+      "Kurator": {
+        "policy": "direct",
+        "qualification_ids": []
+      }
+    },
+    "first_object": "formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse",
+    "first_task": "Åpne én konkret formidlingsbestilling. Registrer målgruppe, dokumenterte kilder, objekt-/stedgrunnlag, proveniens, aktørperspektiver og deres faktiske mandat, intern variasjon, sensitivitet, rettigheter, kontrollpunkter og neste eier før første tekst eller utstillingsgrep publiseres."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "religion_formidling_og_kulturarv",
+    "no_generic_fallback": true
+  }
 }
