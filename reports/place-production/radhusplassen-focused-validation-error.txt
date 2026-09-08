@@ -1,10 +1,10 @@
 + node --test tests/radhusplassen-completion.test.mjs
-✔ Rådhusplassen har standardproduksjon og fire stedsspesifikke samlinger (1.715902ms)
-✔ frontImage og QuizCard er separate lokale portrettflater (5.687761ms)
-✔ Rådhusplassen har canonical rich 5x7 med 21 fact, 7 context og 7 concept (2.22457ms)
-✔ Stories, Leksikon, språk og Lesespor er komplette (1.446014ms)
-✔ Fagverk v2 er bevart som full og kuratert (0.20509ms)
-✔ produksjonsartefakt og 30 av 30-gate er fail-closed dokumentert (0.431522ms)
+✔ Rådhusplassen har standardproduksjon og fire stedsspesifikke samlinger (1.654406ms)
+✔ frontImage og QuizCard er separate lokale portrettflater (5.892675ms)
+✔ Rådhusplassen har canonical rich 5x7 med 21 fact, 7 context og 7 concept (1.138991ms)
+✔ Stories, Leksikon, språk og Lesespor er komplette (1.472011ms)
+✔ Fagverk v2 er bevart som full og kuratert (0.16647ms)
+✔ produksjonsartefakt og 30 av 30-gate er fail-closed dokumentert (0.385549ms)
 ℹ tests 6
 ℹ suites 0
 ℹ pass 6
@@ -12,7 +12,7 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 109.631243
+ℹ duration_ms 101.753036
 + npm run places:index:check
 
 > history-go@0.0.0 places:index:check
@@ -2190,6 +2190,29 @@ Wrote reports/quiz_manifest_v2_audit_report.json
 > history-go@0.0.0 build:tools
 > tsc -p tsconfig.tools.build.json
 
-duplicate leksikon id radhusplassen_hovedartikkel
-  - data/leksikon/places/oslo/by/leksikon_radhusplassen.json#1 (radhusplassen)
-  - data/leksikon/places/oslo/media/leksikon_oslo_popkultur_sentrum_batch1.json#9 (radhusplassen)
+OK: no duplicate leksikon article IDs.
++ npm run check:stories
+
+> history-go@0.0.0 check:stories
+> npm run build:tools && node dist/tools/check_stories_integrity.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Stories integrity summary
+- Story-filer: 204
+- Stories: 340
+- Place-koblede stories: 340
+- Person-koblede stories: 113
+- Next scenes: 320
+- Episode-v1-filer: 60
+- Episode-v1-stories: 113
+- Place-sourcefiler lest: 1547
+
+Stories integrity FAILED
+- Scoreavvik: story=st_radhusplassen_bilfri_1994 field=score.historical expected=2 actual=4 file=data/stories/stories_radhusplassen.json
+- Scoreavvik: story=st_radhusplassen_bilfri_1994 field=score.total expected=15 actual=17 file=data/stories/stories_radhusplassen.json
+- Scoreavvik: story=st_radhusplassen_vikatrikken_1995 field=score.historical expected=2 actual=4 file=data/stories/stories_radhusplassen.json
+- Scoreavvik: story=st_radhusplassen_vikatrikken_1995 field=score.source expected=5 actual=4 file=data/stories/stories_radhusplassen.json
+- Scoreavvik: story=st_radhusplassen_vikatrikken_1995 field=score.total expected=16 actual=17 file=data/stories/stories_radhusplassen.json
