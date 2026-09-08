@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/TEMP_radhusplassen_materialize.yml'
       - 'tools/materialize-radhusplassen.mjs'
+      - 'tools/normalize-radhusplassen-legacy-quiz.mjs'
       - 'tests/radhusplassen-completion.test.mjs'
 
 permissions:
@@ -29,6 +30,8 @@ jobs:
           set -uo pipefail
           set +e
           {
+            node --check tools/normalize-radhusplassen-legacy-quiz.mjs &&
+            node tools/normalize-radhusplassen-legacy-quiz.mjs &&
             node --check tools/materialize-radhusplassen.mjs &&
             node tools/materialize-radhusplassen.mjs
           } > /tmp/radhusplassen-materialize.log 2>&1
