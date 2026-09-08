@@ -1,0 +1,40 @@
+name: TEMP Bankplassen build6 baseline diagnostics
+
+on:
+  push:
+    branches:
+      - agent/bankplassen-modern-place-contract-build6-20260908-temp
+
+jobs:
+  baseline-gates:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - name: Assert locked base parent
+        run: test "$(git rev-parse HEAD^)" = '4df9b1476d870fbe299e9f6a13d04ccae99ab2d2'
+      - name: Install dependencies
+        run: npm ci
+      - name: place-open check
+        run: npm run place-open:check
+      - name: places index check
+        run: npm run places:index:check
+      - name: epoker places check
+        run: npm run epoker:places:check
+      - name: leksikon ids check
+        run: npm run leksikon:ids:check
+      - name: stories check
+        run: npm run check:stories
+      - name: quiz manifest v2 audit
+        run: npm run audit:quiz-manifest:v2
+      - name: quiz production context audit
+        run: npm run audit:quiz-production-context
+      - name: quiz progression audit
+        run: npm run audit:quiz-progression
+      - name: fagverk place pages audit
+        run: node scripts/audit-fagverk-place-pages.mjs
