@@ -255,7 +255,7 @@ const stories = [
     episode: { actors: ["Oslo bystyre", "Plan- og bygningsetaten", "trafikksystemet rundt Festningstunnelen"], date: "1994", action: "Gjennomgående biltrafikk ble fjernet fra Rådhusplassen.", consequence: "Plassen kunne fungere som sammenhengende offentlig byrom mellom rådhuset og fjorden." },
     sources: [{ title: "Oslo kommune – Rådhusplassen", url: urls.kommune }, { title: "Oslo Byarkiv – TOBIAS", url: urls.tobias }],
     tags: ["1994", "bilfri", "E18", "byrom"], related_people: [], related_places: ["oslo_radhus", "akershus_kaier"],
-    score: { narrative: 3, historical: 4, source: 4, play_value: 3, originality: 3, total: 17 },
+    score: { narrative: 3, historical: 2, source: 4, play_value: 3, originality: 3, total: 15 },
     arc: { start: "Biltrafikken skilte rådhuset fra fjorden.", middle: "Vedtak og tunnelomlegging flyttet gjennomgangstrafikken.", end: "I 1994 ble overflaten et bilfritt offentlig plassrom." }
   },
   {
@@ -265,7 +265,7 @@ const stories = [
     episode: { actors: ["Oslo Sporveier", "Arkitektskap", "Oslo kommune"], date: "1995", action: "Vikatrikken åpnet over Rådhusplassen.", consequence: "Trikken ble integrert i det bilfrie plassrommet og gjorde kollektivtransport til et synlig, permanent lag i byrommet." },
     sources: [{ title: "Sporveien – historien vår", url: urls.sporveienHistory }, { title: "Arkitektskap – Rådhusplassen", url: urls.arkitektskap }, { title: "Oslo Byarkiv – TOBIAS", url: urls.tobias }],
     tags: ["1995", "Vikatrikken", "trikk", "byrom"], related_people: ["arnstein_arneberg", "magnus_poulsson"], related_places: ["oslo_radhus"],
-    score: { narrative: 3, historical: 4, source: 4, play_value: 3, originality: 3, total: 17 },
+    score: { narrative: 3, historical: 2, source: 5, play_value: 3, originality: 3, total: 16 },
     arc: { start: "Plassen var blitt bilfri året før.", middle: "En ny trikkelinje ble lagt gjennom det åpne byrommet.", end: "Rådhusplassen fikk et nytt transporthierarki i stedet for å bli transportfri." }
   }
 ];
@@ -299,7 +299,7 @@ const quiz = read(quizFile);
 if (!Array.isArray(quiz.sets) || quiz.sets.length !== 5 || quiz.sets.some(set => !Array.isArray(set.questions) || set.questions.length !== 7)) {
   throw new Error("Rådhusplassen legacy quiz er ikke 5×7; materialisering stoppes fail-closed");
 }
-const phases = ["opening", "opening", "middle", "bridge", "final"];
+const phases = ["opening", "middle", "middle", "bridge", "final"];
 const chooseSources = question => {
   const text = `${question.question || ""} ${question.knowledge || ""}`.toLowerCase();
   if (/trikk|vika|1995|spor/.test(text)) return ["sporveien_history", "oslo_byarkiv_tobias"];
@@ -366,7 +366,7 @@ write(briefFile, {
   review_note: "Eksisterende 5×7-bank er bevart, men alle spørsmål er bundet til reviewed eksterne kilder og dagens relative progresjon.",
   scope: { place: "Rådhusplassen", production_profile: "rich", set_count: 5, questions_per_set: 7, total_questions: 35, normal_opening_questions: 21 },
   sources: sourceRegistry, selected_curriculum: curriculum, existing_quiz_audit: existingQuizAudit, profile_decision: profileDecision, held_back_candidates: heldBackCandidates,
-  claims: quiz.sets.flatMap(set => set.questions).map((q, index) => ({ claim_id: q.claim_id, order: index + 1, planned_phase: quiz.sets[Math.floor(index / 7)].phase, family: q.question_type, statement: q.claim_basis, source_ids: q.source, source_origin: "external", emne_id: q.emne_id }))
+  claims: quiz.sets.flatMap(set => set.questions).map((q, index) => ({ claim_id: q.claim_id, order: index + 1, planned_phase: quiz.sets[Math.floor(index / 7)].phase, family: q.question_type === "concept" ? "concept_theory" : q.question_type, statement: q.claim_basis, source_ids: q.source, source_origin: "external", emne_id: q.emne_id }))
 });
 quiz.size_class = "rich";
 quiz.generator_version = "v6_radhusplassen_normalized_5x7";
