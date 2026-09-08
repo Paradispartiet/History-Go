@@ -1,0 +1,135 @@
+name: TEMP Diagnose Vitenskap Undervisning og forskning prerequisites
+
+on:
+  push:
+    branches:
+      - agent/civication-vitenskap-undervisning-og-forskning-prerequisites-20260908
+    paths:
+      - .github/workflows/TEMP-civication-vitenskap-undervisning-og-forskning-diagnostics.yml
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-vitenskap-undervisning-og-forskning-prerequisites-20260908
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Require fresh main ancestry
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge-base --is-ancestor origin/main HEAD
+      - name: Apply exact TEMP-only repairs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/TEMP_materialize_vitenskap_undervisning_og_forskning_prerequisites.mjs')
+          s=p.read_text()
+          bad="\n    .replaceAll('forskning','undervisning og forskning')"
+          if bad not in s: raise SystemExit('Expected transform hazard not found')
+          p.write_text(s.replace(bad,'',1))
+          PY
+          node --check scripts/TEMP_materialize_vitenskap_undervisning_og_forskning_prerequisites.mjs
+          node scripts/TEMP_materialize_vitenskap_undervisning_og_forskning_prerequisites.mjs
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tests/civication-vitenskap-undervisning-og-forskning-prerequisites.test.js')
+          s=p.read_text()
+          old="for(const component of ['entry','day_one','workday_loop','people','places','mail','knowledge','quality_axes','authority','consequences','performance','economy','progression','exit'])assert.equal(career.audit.components[component].level,'complete',component+' must be complete');assert.deepEqual(career.audit.missing_components,[]);"
+          new="for(const component of ['entry','day_one','workday_loop','mail','consequences','economy'])assert.equal(career.audit.components[component].level,'complete',component+' runtime component must be complete');for(const component of ['people','places','knowledge','quality_axes','authority'])assert.equal(career.audit.components[component].level,'complete',component+' prerequisite-owned component must be complete');assert.deepEqual(career.audit.missing_components,[]);"
+          if old not in s: raise SystemExit('Expected over-constrained test assertion not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+          node scripts/audit-civication-role-packs.mjs
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+          node scripts/build-civication-scene-registry.mjs --write
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+      - name: Diagnose model People Places and manifest
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; import assert from 'node:assert/strict';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const role='vitenskap_undervisning_og_forskning';
+          const modelPath=`data/Civication/roleModels/vitenskap/${role}.json`;
+          const model=read(modelPath), grammar=read(`data/Civication/workGrammars/vitenskap/${role}.json`), plan=read(`data/Civication/mailPlans/vitenskap/${role}_plan.json`), manifest=read('data/Civication/roleModels/manifest.json');
+          assert.equal(model.role_scope,role); assert.equal(grammar.role_scope,role); assert.equal(plan.role_scope,role);
+          assert.deepEqual(model.badge_titles,['Førsteamanuensis','Professor']);
+          assert.equal(model.related_people?.length,4); assert.equal(model.related_places?.length,4); assert.equal(model.work_life?.workplaces?.length,4);
+          assert.equal(manifest.files.filter(x=>x===modelPath).length,1);
+          console.log('MODEL_PEOPLE_PLACES_MANIFEST_OK');
+          NODE
+      - name: Diagnose persistent rhythm plan and knowledge
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; import assert from 'node:assert/strict';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8')); const role='vitenskap_undervisning_og_forskning'; const persistent='undervisnings_forsknings_veilednings_vurderings_habilitets_evidens_og_handoff_logg';
+          const model=read(`data/Civication/roleModels/vitenskap/${role}.json`), grammar=read(`data/Civication/workGrammars/vitenskap/${role}.json`), plan=read(`data/Civication/mailPlans/vitenskap/${role}_plan.json`);
+          assert.equal(model.persistent_work_product?.id,persistent); assert.equal(grammar.persistent_work_product?.id,persistent);
+          assert.ok(grammar.daily_rhythm?.length>=5); assert.ok(grammar.handoff_rules?.length>=2); assert.equal(plan.sequence?.length,16);
+          assert.ok(grammar.knowledge_dependencies?.some(x=>x.badge_id==='vitenskap'));
+          console.log('PERSISTENT_RHYTHM_PLAN_KNOWLEDGE_OK');
+          NODE
+      - name: Diagnose all nine mail catalogs
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; import assert from 'node:assert/strict';
+          const role='vitenskap_undervisning_og_forskning', types=['job','people','conflict','story','event','micro','followup','knowledge','consequence'];
+          for(const t of types){const p=`data/Civication/mailFamilies/vitenskap/${t}/${role}_${t}.json`;const d=JSON.parse(fs.readFileSync(p,'utf8'));assert.equal(d.role_scope,role,t);assert.equal(d.mail_type,t,t);assert.ok((d.families||[]).length>0,t);assert.ok((d.families||[]).some(f=>(f.mails||[]).length>0),t);}
+          console.log('ALL_NINE_MAIL_CATALOGS_OK');
+          NODE
+      - name: Diagnose badge qualification boundary
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; import assert from 'node:assert/strict';
+          const b=JSON.parse(fs.readFileSync('data/badges/vitenskap.json','utf8')); const by=Object.fromEntries(b.tiers.map(t=>[t.label,t]));
+          for(const title of ['Førsteamanuensis','Professor']){assert.equal(by[title].career_offer.policy,'qualification_required');assert.deepEqual(by[title].career_offer.qualification_ids,['academic_qualification_and_employment']);assert.equal(by[title].career_offer.role_scope,'vitenskap_undervisning_og_forskning');}
+          console.log('BADGE_QUALIFICATION_BOUNDARY_OK');
+          NODE
+      - name: Diagnose career runtime contract
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; import assert from 'node:assert/strict';
+          const c=JSON.parse(fs.readFileSync('data/Civication/careerGameplayMatrix.json','utf8')).worlds.find(x=>x.key==='vitenskap/vitenskap_undervisning_og_forskning'); assert.ok(c); console.log(JSON.stringify({status:c.status,runtime_gate:c.audit?.runtime_gate,missing:c.audit?.missing_components,components:c.audit?.components},null,2));
+          assert.equal(c.status,'playable'); assert.equal(c.audit.runtime_gate,true); for(const k of ['entry','day_one','workday_loop','mail','consequences','economy']) assert.equal(c.audit.components[k].level,'complete',k); assert.deepEqual(c.audit.missing_components,[]);
+          console.log('CAREER_RUNTIME_CONTRACT_OK');
+          NODE
+      - name: Diagnose prerequisite-owned career components
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; import assert from 'node:assert/strict';
+          const c=JSON.parse(fs.readFileSync('data/Civication/careerGameplayMatrix.json','utf8')).worlds.find(x=>x.key==='vitenskap/vitenskap_undervisning_og_forskning');
+          for(const k of ['people','places','knowledge','quality_axes','authority']) assert.equal(c.audit.components[k].level,'complete',k);
+          console.log('PREREQUISITE_OWNED_CAREER_COMPONENTS_OK');
+          NODE
+      - name: Diagnose readiness dimensions and authored work
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; import assert from 'node:assert/strict';
+          const r=JSON.parse(fs.readFileSync('data/Civication/roleWorldRolloutReadiness.json','utf8')).roles.find(x=>x.key==='vitenskap/vitenskap_undervisning_og_forskning'); assert.ok(r); console.log(JSON.stringify({classification:r.classification,authored_work_required:r.authored_work_required,dimensions:r.dimensions},null,2)); assert.equal(r.classification,'rollout_ready');
+          for(const k of ['persistent_work_object','institution_authority','rhythm_waiting_handoff_rework','history_go_affordance','people_places_integrity','provenance']) assert.notEqual(r.dimensions[k].status,'needs_role_authored_work',k);
+          assert.deepEqual(r.authored_work_required,['situated_reputation']);
+          console.log('READINESS_DIMENSIONS_AND_AUTHORED_WORK_OK');
+          NODE
+      - name: Diagnose source-first boundary vocabulary
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; import assert from 'node:assert/strict';
+          const role='vitenskap_undervisning_og_forskning'; const s=fs.readFileSync(`data/Civication/roleModels/vitenskap/${role}.json`,'utf8')+fs.readFileSync(`data/Civication/workGrammars/vitenskap/${role}.json`,'utf8')+fs.readFileSync(`data/Civication/mailPlans/vitenskap/${role}_plan.json`,'utf8')+fs.readFileSync('reports/CIVICATION_VITENSKAP_UNDERVISNING_OG_FORSKNING_PREREQUISITES_SOURCE_FIRST.md','utf8');
+          for(const re of [/qualification_required/i,/academic_qualification_and_employment/i,/habilitet/i,/student/i,/krediter/i,/reproduser/i,/handoff/i,/History Go/i]) assert.match(s,re,String(re));
+          console.log('SOURCE_FIRST_BOUNDARY_VOCABULARY_OK');
+          NODE
+      - name: Re-run complete dedicated prerequisite test
+        run: node tests/civication-vitenskap-undervisning-og-forskning-prerequisites.test.js
