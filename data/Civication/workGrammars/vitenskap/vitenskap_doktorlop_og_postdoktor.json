@@ -1,1 +1,137 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"vitenskap","role_scope":"vitenskap_doktorlop_og_postdoktor","source":{"evidence":"data/Civication/vitenskapCareerLifeEvidence.json"},"badge_binding":{"badge_id":"vitenskap","badge_titles":["Stipendiat (PhD)","Postdoktor"]},"task_families":["forskningsdesign","datainnsamling_og_analyse","manus_og_publisering","veiledning_og_karriereplan","forskningsetikk_og_dokumentasjon"],"work_loops":[{"id":"forskningssyklus","steps":["avgrens_sporsmal","design","innhent_data","analyser","tolk","publiser"]},{"id":"milepael","steps":["planlegg","dokumenter_fremdrift","fa_tilbakemelding","revider","forankre_neste_steg"]}],"practice_stories":[{"id":"s1","setup":"Resultatet er negativt etter måneder med arbeid.","good":"Rapporter funnet og vurder hypotesen på nytt uten å omskrive historikken.","bad":"Velg bare analysen som gir signifikans."},{"id":"s2","setup":"En metode må endres etter pilotfasen.","good":"Dokumenter endringen, begrunnelsen og konsekvensen for sammenlignbarhet.","bad":"Oppdater metodedelen uten å nevne at planen ble endret."},{"id":"s3","setup":"Veileder og kandidat er uenige om forfatterskap.","good":"Avklar bidrag etter eksplisitte kriterier før innsending.","bad":"Bruk hierarkiet som avgjørende argument."},{"id":"s4","setup":"Karriereplanen blir skjøvet til side av leveransepress.","good":"Synliggjør opplæringsbehovet og replanlegg innenfor ansettelsesrammen.","bad":"Fjern all kompetansebygging til prosjektet er ferdig."},{"id":"s5","setup":"Data inneholder indirekte identifiserbare personer.","good":"Vurder tilgang, minimering og hjemmel før deling eller publisering.","bad":"Del datasettet fordi direkte navn er fjernet."}],"quality_axes":["metodekvalitet","forskningsintegritet","fremdrift","reproduserbarhet","veiledningskvalitet","karriereutvikling"],"authority_boundary":{"may_not":["skjule_metodeavvik_eller_negative_resultater","garantere_forskningsfunn_for_a_tilfredsstille_finansieringskilde","tildele_egen_grad_eller_godkjenne_eget_opptak","omgaa_forskningsetiske_eller_personvernmessige_krav"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_doktorlop_og_postdoktor",
+  "source": {
+    "badge_file": "data/badges/vitenskap.json",
+    "badge_id": "vitenskap",
+    "evidence": "data/Civication/vitenskapCareerLifeEvidence.json"
+  },
+  "badge_binding": {
+    "badge_id": "vitenskap",
+    "badge_titles": [
+      "Stipendiat (PhD)",
+      "Postdoktor"
+    ],
+    "tier_thresholds": [
+      40,
+      60
+    ]
+  },
+  "task_families": [
+    "forskningssporsmal_og_design",
+    "metode_og_endringskontroll",
+    "forskningsetikk_personvern_og_data",
+    "analyse_reproduserbarhet_og_usikkerhet",
+    "veiledning_og_milepaeler",
+    "manus_publisering_og_forfatterskap",
+    "karriere_handoff_og_bounded_rework"
+  ],
+  "work_loops": [
+    {
+      "id": "forskningssyklus",
+      "steps": [
+        "avgrens_sporsmal",
+        "design_og_metode",
+        "avklar_etikk_data_og_tilgang",
+        "innhent_eller_motta_data",
+        "analyser_med_versjonering",
+        "tolk_med_usikkerhet",
+        "veiled_og_kontroller_milepael",
+        "skriv_og_publiser"
+      ]
+    },
+    {
+      "id": "metode_eller_dataendring",
+      "steps": [
+        "stopp_og_merk_endringen",
+        "bevar_tidligere_plan_og_analyse",
+        "avklar_etikk_personvern_og_mandat",
+        "dokumenter_begrunnelse_og_tidspunkt",
+        "gjenapne_berorte_ledd",
+        "ny_analyse_og_kontroll",
+        "versjonert_handoff"
+      ]
+    },
+    {
+      "id": "fagfelle_og_rework",
+      "steps": [
+        "registrer_kommentar",
+        "skill_kritikk_fra_krav",
+        "gjenapne_berorte_ledd",
+        "revider_med_spor",
+        "kontroller_begrensninger_og_forfatterskap",
+        "lever_ny_versjon_uten_a_slette_historikk"
+      ]
+    }
+  ],
+  "practice_stories": [
+    {
+      "id": "s1",
+      "setup": "Resultatet er negativt etter måneder med arbeid.",
+      "good": "Rapporter funnet og vurder hypotesen på nytt uten å omskrive historikken.",
+      "bad": "Velg bare analysen som gir signifikans."
+    },
+    {
+      "id": "s2",
+      "setup": "En metode må endres etter pilotfasen.",
+      "good": "Dokumenter endringen, begrunnelsen og konsekvensen for sammenlignbarhet.",
+      "bad": "Oppdater metodedelen uten å nevne at planen ble endret."
+    },
+    {
+      "id": "s3",
+      "setup": "Veileder og kandidat er uenige om forfatterskap.",
+      "good": "Avklar bidrag etter eksplisitte kriterier før innsending.",
+      "bad": "Bruk hierarkiet som avgjørende argument."
+    },
+    {
+      "id": "s4",
+      "setup": "Karriereplanen blir skjøvet til side av leveransepress.",
+      "good": "Synliggjør opplæringsbehovet og replanlegg innenfor ansettelsesrammen.",
+      "bad": "Fjern all kompetansebygging til prosjektet er ferdig."
+    },
+    {
+      "id": "s5",
+      "setup": "Data inneholder indirekte identifiserbare personer.",
+      "good": "Vurder tilgang, minimering og hjemmel før deling eller publisering.",
+      "bad": "Del datasettet fordi direkte navn er fjernet."
+    }
+  ],
+  "quality_axes": [
+    "metodekvalitet",
+    "forskningsintegritet",
+    "fremdrift",
+    "reproduserbarhet",
+    "etikk_og_personvern",
+    "veiledningskvalitet",
+    "publiseringskvalitet",
+    "karriereutvikling"
+  ],
+  "authority_boundary": {
+    "may": [
+      "avgrense forskningsspørsmål og gjennomføre dokumentert forskningsarbeid innen stillingens faktiske kvalifikasjon, ansettelsesramme, prosjektmandat og nødvendige godkjenninger",
+      "foreslå metodeendringer, alternative analyser og prosjektjusteringer når begrunnelse, tidspunkt og konsekvens dokumenteres før de behandles som del av evidensgrunnlaget",
+      "registrere og rapportere negative, usikre eller ikke-signifikante funn uten å gjøre dem om til et karrieremessig nederlag eller skjule dem fra arbeidssporet",
+      "stanse databruk, deling, analyse eller innsending når etikk, personvern, tilgang, forfatterskap eller metodeintegritet ikke er tilstrekkelig avklart",
+      "revidere manus og analyse etter veiledning eller fagfellekommentarer med versjonert bounded rework som bevarer tidligere beslutninger, funn og avvik"
+    ],
+    "may_not": [
+      "skjule metodeavvik, negative resultater, eksklusjoner eller alternative analyser for å få prosjektet til å fremstå renere eller mer publiserbart",
+      "endre hypotese, utfall, metode eller analytisk strategi retroaktivt uten å dokumentere hva som var planlagt, hva som ble endret, når endringen skjedde og hvorfor",
+      "omgå forskningsetiske, personvernmessige, datastyringsmessige eller institusjonelle krav fordi fristen er kort eller datasettet virker ufarlig",
+      "bruke veilederhierarki, prosjektstatus eller karrierepress som eneste grunnlag for forfatterskap, faglig konklusjon eller tilgang til data",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, sosial standing eller nettverk som erstatning for academic_qualification_and_employment, formelt opptak eller ansettelse, nødvendig godkjenning, dokumentert evidens eller institusjonell myndighet"
+    ]
+  },
+  "role_id": "vitenskap_doktorlop_og_postdoktor",
+  "work_world": "Kvalifiserende forskningsarbeid der spørsmål, design, metode, etikk, data, analyse, veiledning, milepæler, publisering og rework holdes i ett etterprøvbart og versjonert arbeidsspor.",
+  "pressure_axes": [
+    "publisering_vs_forskningsintegritet",
+    "fremdrift_vs_metodekvalitet",
+    "fleksibilitet_vs_etterprovbarhet",
+    "hierarki_vs_eksplisitte_forfatterskapskriterier",
+    "datatilgang_vs_personvern_og_etikk",
+    "badge_status_vs_faktisk_kvalifikasjon_og_mandat"
+  ]
+}

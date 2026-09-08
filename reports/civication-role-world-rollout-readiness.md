@@ -35,7 +35,7 @@ The first wave is a recommendation, not a batch PR: every role still gets its ow
 
 | Rank | Role | Class | Structural family | Cross-role | Main authored debt |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | `vitenskap/vitenskap_doktorlop_og_postdoktor` | needs_role_authored_work | research_education | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 1 | `vitenskap/vitenskap_doktorlop_og_postdoktor` | needs_role_authored_work | research_education | not_required_for_rollout | career:knowledge, history_go_affordance, situated_reputation |
 | 2 | `vitenskap/vitenskap_forskning` | needs_role_authored_work | research_education | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
 | 3 | `vitenskap/vitenskap_forskningsledelse` | needs_role_authored_work | research_education | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
 | 4 | `vitenskap/vitenskap_institusjonsledelse` | needs_role_authored_work | research_education | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |

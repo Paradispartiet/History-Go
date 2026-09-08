@@ -1,1 +1,291 @@
-{"schema":"civication_role_model_v2","version":2,"category":"vitenskap","role_scope":"vitenskap_doktorlop_og_postdoktor","role_id":"vitenskap_doktorlop_og_postdoktor","title":"Doktorløp og postdoktor","source":{"evidence":"data/Civication/vitenskapCareerLifeEvidence.json"},"badge_titles":["Stipendiat (PhD)","Postdoktor"],"core_narrative":["Doktorløp og postdoktor i Civication modellerer kvalifiserende forskningsansettelser med prosjektframdrift, metodekrav, veiledning og karriereutvikling – aldri bare en poengbasert akademisk status."],"competence_axes":["forskningssporsmal_og_design","metode_og_analyse","forskningsetikk","vitenskapelig_skriving","publisering_og_fagfellevurdering","veiledning_og_karriereplan"],"ideal_type_problems":[{"id":"prosjektglidning","problem":"Prosjektet vokser utover tids- og datagrunnlaget i ansettelsesperioden."},{"id":"negativt_resultat","problem":"Hypotesen støttes ikke og fristelsen til etterrasjonalisering må håndteres."},{"id":"forfatterskap","problem":"Bidrag og forfatterskap må avklares før manus sendes inn."},{"id":"metodeendring","problem":"En metode må endres etter datainnsamling og konsekvensen for tolkningen må dokumenteres."},{"id":"karrierepress","problem":"Publiseringspress kolliderer med kvalitet, åpenhet eller nødvendig opplæring."}],"authority_boundaries":{"cannot":["skjule_metodeavvik_eller_negative_resultater","garantere_forskningsfunn_for_a_tilfredsstille_finansieringskilde","tildele_egen_grad_eller_godkjenne_eget_opptak","omgaa_forskningsetiske_eller_personvernmessige_krav"]},"notes":["Stipendiat og postdoktor er formelle ansettelses-/rekrutteringsstillinger med kvalifikasjonskrav i norsk regelverk."]}
+{
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_doktorlop_og_postdoktor",
+  "role_id": "vitenskap_doktorlop_og_postdoktor",
+  "title": "Doktorløp og postdoktor",
+  "source": {
+    "badge_file": "data/badges/vitenskap.json",
+    "badge_id": "vitenskap",
+    "evidence": "data/Civication/vitenskapCareerLifeEvidence.json"
+  },
+  "badge_titles": [
+    "Stipendiat (PhD)",
+    "Postdoktor"
+  ],
+  "core_narrative": [
+    "Doktorløp og postdoktor modellerer kvalifiserende forskningsansettelser der prosjektframdrift, metode, etikk, data, analyse, veiledning, publisering og karriereutvikling må kunne spores som et sammenhengende forskningsarbeid.",
+    "Stipendiat (PhD) og Postdoktor forblir qualification_required med academic_qualification_and_employment. Badgeprogresjon kan gi spillkontekst, men åpner aldri stillingen alene og utvider ikke grad-, data-, etikk- eller institusjonsmyndighet."
+  ],
+  "competence_axes": [
+    "forskningssporsmal_og_design",
+    "metode_og_endringslogg",
+    "forskningsetikk_og_personvern",
+    "dataforvaltning",
+    "analyse_og_usikkerhet",
+    "reproduserbarhet",
+    "vitenskapelig_skriving",
+    "publisering_og_fagfellevurdering",
+    "forfatterskap",
+    "veiledning_og_karriereplan"
+  ],
+  "ideal_type_problems": [
+    {
+      "id": "prosjektglidning",
+      "problem": "Prosjektet vokser utover tids-, metode- eller datagrunnlaget, og endringen må avgrenses og dokumenteres."
+    },
+    {
+      "id": "negativt_resultat",
+      "problem": "Hypotesen støttes ikke, og kandidaten må rapportere funnet uten selektiv analyse eller etterrasjonalisering."
+    },
+    {
+      "id": "metodeendring",
+      "problem": "Metode eller analyse må endres etter at data finnes, og endringens tidspunkt og betydning må være synlig."
+    },
+    {
+      "id": "etikk_og_dataendring",
+      "problem": "Datasett eller formål endres slik at tidligere etikk-, personvern- eller tilgangsavklaring må kontrolleres på nytt."
+    },
+    {
+      "id": "forfatterskap",
+      "problem": "Bidrag og forfatterskap må avklares med eksplisitte kriterier før innsending."
+    },
+    {
+      "id": "karrierepress",
+      "problem": "Publiserings- eller tidsfristpress kolliderer med kvalitet, åpenhet, opplæring eller nødvendig bounded rework."
+    }
+  ],
+  "authority_boundaries": {
+    "can": [
+      "avgrense forskningsspørsmål og gjennomføre dokumentert forskningsarbeid innen stillingens faktiske kvalifikasjon, ansettelsesramme, prosjektmandat og nødvendige godkjenninger",
+      "foreslå metodeendringer, alternative analyser og prosjektjusteringer når begrunnelse, tidspunkt og konsekvens dokumenteres før de behandles som del av evidensgrunnlaget",
+      "registrere og rapportere negative, usikre eller ikke-signifikante funn uten å gjøre dem om til et karrieremessig nederlag eller skjule dem fra arbeidssporet",
+      "stanse databruk, deling, analyse eller innsending når etikk, personvern, tilgang, forfatterskap eller metodeintegritet ikke er tilstrekkelig avklart",
+      "revidere manus og analyse etter veiledning eller fagfellekommentarer med versjonert bounded rework som bevarer tidligere beslutninger, funn og avvik"
+    ],
+    "cannot": [
+      "skjule metodeavvik, negative resultater, eksklusjoner eller alternative analyser for å få prosjektet til å fremstå renere eller mer publiserbart",
+      "endre hypotese, utfall, metode eller analytisk strategi retroaktivt uten å dokumentere hva som var planlagt, hva som ble endret, når endringen skjedde og hvorfor",
+      "omgå forskningsetiske, personvernmessige, datastyringsmessige eller institusjonelle krav fordi fristen er kort eller datasettet virker ufarlig",
+      "bruke veilederhierarki, prosjektstatus eller karrierepress som eneste grunnlag for forfatterskap, faglig konklusjon eller tilgang til data",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, sosial standing eller nettverk som erstatning for academic_qualification_and_employment, formelt opptak eller ansettelse, nødvendig godkjenning, dokumentert evidens eller institusjonell myndighet"
+    ]
+  },
+  "notes": [
+    "Stipendiat og postdoktor er formelle ansettelses-/rekrutteringsstillinger med kvalifikasjonskrav i norsk regelverk."
+  ],
+  "work_life": {
+    "daily_work": [
+      "føre forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework fra forskningsspørsmål og design gjennom etikk/data, analyse, veiledning, milepæler, publisering og bounded rework",
+      "avgrense spørsmål og metode før data brukes til konklusjon",
+      "dokumentere endringer i metode, analyse og prosjektomfang med tidspunkt og konsekvens",
+      "bevare negative funn, usikkerhet, rådata og analyseversjoner",
+      "avklare veiledning, etikk/personvern, forfatterskap og godkjenninger på riktig ansvarsnivå"
+    ],
+    "responsibilities": [
+      "forskningsdesign_og_avgrensning",
+      "metode_og_endringslogg",
+      "forskningsetikk_og_personvern",
+      "dataintegritet_og_reproduserbarhet",
+      "analyse_og_usikkerhet",
+      "veiledning_og_milepaeler",
+      "publisering_og_forfatterskap",
+      "bounded_rework_og_handoff"
+    ],
+    "work_environment": [
+      "Universitet, forskningsinstitutt eller annen forskningsorganisasjon der stipendiat- og postdoktorarbeid skjer innen formell ansettelse/opptak, prosjektmandat, veiledning og gjeldende etiske, personvernmessige og institusjonelle rammer."
+    ],
+    "status_position": [
+      "Begge canonical titler er qualification_required med academic_qualification_and_employment. Badge-tier, XP, publiseringspress eller sosial standing kan ikke erstatte faktisk kvalifikasjon, opptak/ansettelse, godkjenning eller mandat."
+    ],
+    "workplaces": [
+      "forskningssporsmal_design_og_milepaeler_vitenskap_doktorlop",
+      "forskningsetikk_personvern_og_dataforvaltning_vitenskap_doktorlop",
+      "analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+      "publisering_forfatterskap_karriere_og_rework_vitenskap_doktorlop"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "avgrense forskningsspørsmål og gjennomføre dokumentert forskningsarbeid innen stillingens faktiske kvalifikasjon, ansettelsesramme, prosjektmandat og nødvendige godkjenninger",
+      "foreslå metodeendringer, alternative analyser og prosjektjusteringer når begrunnelse, tidspunkt og konsekvens dokumenteres før de behandles som del av evidensgrunnlaget",
+      "registrere og rapportere negative, usikre eller ikke-signifikante funn uten å gjøre dem om til et karrieremessig nederlag eller skjule dem fra arbeidssporet",
+      "stanse databruk, deling, analyse eller innsending når etikk, personvern, tilgang, forfatterskap eller metodeintegritet ikke er tilstrekkelig avklart",
+      "revidere manus og analyse etter veiledning eller fagfellekommentarer med versjonert bounded rework som bevarer tidligere beslutninger, funn og avvik"
+    ],
+    "may_not": [
+      "skjule metodeavvik, negative resultater, eksklusjoner eller alternative analyser for å få prosjektet til å fremstå renere eller mer publiserbart",
+      "endre hypotese, utfall, metode eller analytisk strategi retroaktivt uten å dokumentere hva som var planlagt, hva som ble endret, når endringen skjedde og hvorfor",
+      "omgå forskningsetiske, personvernmessige, datastyringsmessige eller institusjonelle krav fordi fristen er kort eller datasettet virker ufarlig",
+      "bruke veilederhierarki, prosjektstatus eller karrierepress som eneste grunnlag for forfatterskap, faglig konklusjon eller tilgang til data",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, sosial standing eller nettverk som erstatning for academic_qualification_and_employment, formelt opptak eller ansettelse, nødvendig godkjenning, dokumentert evidens eller institusjonell myndighet"
+    ]
+  },
+  "career_path": {
+    "entry_from": [
+      "Stipendiat (PhD) og Postdoktor krever canonical academic_qualification_and_employment; badge-threshold alene gir ikke adgang."
+    ],
+    "progression_to": [
+      "Større forskningsselvstendighet følger dokumentert kompetanse, stillingsramme og faktisk delegert ansvar, ikke XP eller sosial standing."
+    ],
+    "possible_promotions": [
+      "videre forskerstilling når den rollens egne qualification- og employment-gates er oppfylt",
+      "undervisnings- eller lederrolle når separat kompetanse og appointment/qualification-krav er oppfylt"
+    ],
+    "possible_exits": [
+      "forskning, undervisning, forvaltning eller annen kunnskapsrolle etter respektive canonical krav"
+    ],
+    "career_risks": [
+      "publiseringspress kan normalisere selektiv rapportering",
+      "prosjektglidning kan skjule at design og konklusjon ikke lenger svarer på samme spørsmål",
+      "hierarki kan forstyrre forfatterskap, veiledning og åpen kritikk"
+    ]
+  },
+  "persistent_work_product": {
+    "id": "forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework",
+    "title": "Forskningsarbeidslogg",
+    "description": "Et vedvarende, versjonert spor som binder spørsmål, design, metode, etikk, data, analyse, veiledning, milepæler, publisering, avvik og bounded rework sammen.",
+    "required_fields": [
+      "forskningssporsmal",
+      "design_og_hypotese_eller_eksplorativt_maal",
+      "metodeversjon",
+      "etikk_personvern_og_tilgang",
+      "data_og_proveniens",
+      "analysevalg_og_versjon",
+      "negative_funn_og_usikkerhet",
+      "veiledningsbeslutninger",
+      "milepaeler",
+      "forfatterskap_og_bidrag",
+      "publiseringsstatus",
+      "avvik_og_bounded_rework"
+    ]
+  },
+  "day_one": {
+    "outcomes": [
+      "Avklar at academic_qualification_and_employment, opptak/ansettelse og prosjektmandat faktisk er dokumentert før badgeprogresjon får noen karrierebetydning.",
+      "Opprett forskningsarbeidsloggen med eksplisitt spørsmål, design, metodeversjon, etikk/data-status og neste milepæl.",
+      "Identifiser hva kandidaten kan beslutte selv, hva som krever veileder eller prosjektansvarlig, og hva som må til etikk/personvern/institusjonell kontroll."
+    ]
+  },
+  "challenges": [
+    {
+      "id": "negativt_funn_under_publiseringspress",
+      "title": "Negativt funn under publiseringspress",
+      "description": "Hovedhypotesen støttes ikke samtidig som manusfristen nærmer seg.",
+      "pressure": "publisering_vs_forskningsintegritet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    },
+    {
+      "id": "metodeendring_etter_data",
+      "title": "Metodeendring etter at data finnes",
+      "description": "En ny analyse virker bedre etter at resultatmønsteret er kjent.",
+      "pressure": "fleksibilitet_vs_etterprovbarhet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "karrierepress_vs_integritet",
+      "title": "Karrierepress mot forskningsintegritet",
+      "setup": "Et raskere og penere resultat kan oppnås hvis avvik, negative funn eller metodeendringer tones ned.",
+      "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_etterrasjonalisering",
+      "consequence_axis": "tillit_og_reproduserbarhet_vs_skjult_bias_og_risiko",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "ingrid_veiledning_og_forskningsdesign_vitenskap_doktorlop",
+      "name": "Ingrid",
+      "role": "veilednings- og forskningsdesignkontakt",
+      "workplace_ids": [
+        "forskningssporsmal_design_og_milepaeler_vitenskap_doktorlop"
+      ],
+      "function": "Ingrid hjelper kandidaten å holde forskningsspørsmål, design, avgrensning og milepæler i samme etterprøvbare spor. Hun gjør eksplisitt hva som var planlagt, hva som faktisk ble gjort og hvilke endringer som må begrunnes og versjoneres når prosjektet utvikler seg. Veiledning er her en faglig kontrollflate for refleksjon og avklaring, ikke en snarvei til å skjule prosjektglidning eller flytte mål etter at resultatene er kjent.",
+      "authority_relation": "Ingrid kan gi veiledning, kreve at metode- og prosjektendringer dokumenteres og eskalere forhold som krever formell godkjenning. Hun kan ikke tildele graden, godkjenne sitt eget opptak, la badge eller sosial standing erstatte academic_qualification_and_employment, eller gjøre en uregistrert metodeendring legitim bare fordi veileder og kandidat er enige.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "samira_forskningsetikk_personvern_og_data_vitenskap_doktorlop",
+      "name": "Samira",
+      "role": "forskningsetikk-, personvern- og dataforvaltningskontakt",
+      "workplace_ids": [
+        "forskningsetikk_personvern_og_dataforvaltning_vitenskap_doktorlop"
+      ],
+      "function": "Samira gjør etikk, personvern, tilgang, samtykke eller annet behandlingsgrunnlag, dataminimering og delingsgrenser til konkrete deler av forskningsarbeidet. Når datasettet eller formålet endrer seg, trener hun kandidaten i å stoppe og kontrollere om tidligere avklaringer fortsatt dekker den nye situasjonen i stedet for å anta at en gammel godkjenning automatisk følger prosjektet.",
+      "authority_relation": "Samira kan kreve at databruk og deling stanses til nødvendig etisk, personvernmessig eller institusjonell avklaring foreligger og kan sende saken til riktig kontroll- eller beslutningsnivå. Hun kan ikke dispensere fra regelverk, gi kandidaten generell myndighet til å dele data eller gjøre History Go-kunnskap til dokumentasjon på dagens behandlingsgrunnlag.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "jonas_analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+      "name": "Jonas",
+      "role": "analyse-, reproduserbarhets- og usikkerhetskontakt",
+      "workplace_ids": [
+        "analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop"
+      ],
+      "function": "Jonas følger koblingen mellom rådata, analysevalg, kode eller beregninger, eksklusjoner, sensitivitetsanalyser, negative funn og tolkning. Han lærer kandidaten å bevare tidligere analyser og synliggjøre hva som er eksplorativt, hva som var planlagt, og hvor usikkerheten faktisk ligger. Et resultat blir ikke sterkere av at alternative analyser eller negative funn forsvinner fra arbeidssporet.",
+      "authority_relation": "Jonas kan returnere en analyse som mangler sporbarhet, versjonering eller nødvendig usikkerhetsbeskrivelse og kreve at alternative forklaringer behandles eksplisitt. Han kan ikke garantere et ønsket funn, velge analyse kun for å oppnå signifikans eller godkjenne et vitenskapelig hovedkrav uten det faglige og institusjonelle ansvaret som faktisk gjelder.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "lea_publisering_forfatterskap_og_handoff_vitenskap_doktorlop",
+      "name": "Lea",
+      "role": "publiserings-, forfatterskaps- og handoffkontakt",
+      "workplace_ids": [
+        "publisering_forfatterskap_karriere_og_rework_vitenskap_doktorlop"
+      ],
+      "function": "Lea gjør manus, bidragsroller, forfatterskap, begrensninger, fagfellekommentarer, datatilgjengelighet og videre karriere-/prosjekthandoff eksplisitte før innsending. Hun trener kandidaten i å skille reell revisjon fra omskriving av forskningshistorikken: nye analyser og kommentarer kan gjenåpne berørte ledd, men tidligere metodevalg, resultater og avvik skal fortsatt kunne spores.",
+      "authority_relation": "Lea kan kreve avklaring av bidrag og forfatterskap før innsending, returnere et manus med uavklarte begrensninger og sørge for bounded rework etter fagfellekommentarer. Hun kan ikke bruke hierarki som forfatterskapskriterium, skjule negative resultater eller gjøre publiseringspress til grunn for å tilsidesette etikk, personvern, metodeintegritet eller kvalifikasjonskrav.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "forskningssporsmal_design_og_milepaeler_vitenskap_doktorlop",
+      "name": "Forskningsspørsmål, design og milepæler",
+      "function": "Arbeidsflaten binder problemstilling, avgrensning, design, hypoteser eller eksplorative mål, milepæler og versjonerte metodeendringer sammen slik at prosjektglidning blir synlig og kan vurderes før den omskriver den opprinnelige planen."
+    },
+    {
+      "id": "forskningsetikk_personvern_og_dataforvaltning_vitenskap_doktorlop",
+      "name": "Forskningsetikk, personvern og dataforvaltning",
+      "function": "Her dokumenteres etiske avklaringer, behandlingsgrunnlag, samtykke der det er relevant, tilgang, dataminimering, lagring og delingsgrenser. Endret datasett eller formål er et kontrollpunkt, ikke en automatisk videreføring av tidligere godkjenning."
+    },
+    {
+      "id": "analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+      "name": "Analyse, reproduserbarhet og usikkerhet",
+      "function": "Her knyttes rådata, kode eller beregning, analysevalg, eksklusjoner, alternative analyser, negative funn, usikkerhet og tolkning sammen uten å skjule tidligere versjoner eller etterrasjonalisere resultatet."
+    },
+    {
+      "id": "publisering_forfatterskap_karriere_og_rework_vitenskap_doktorlop",
+      "name": "Publisering, forfatterskap, karriere og rework",
+      "function": "Her avklares manusstatus, bidrag, forfatterskap, begrensninger, fagfellekommentarer, karriere-/prosjekthandoff og bounded rework. Revisjon gjenåpner bare berørte ledd og bevarer den tidligere forskningshistorikken."
+    }
+  ]
+}
