@@ -1,1 +1,251 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"vitenskap","role_scope":"vitenskap_assistent_og_laboratorium","source":{"evidence":"data/Civication/vitenskapCareerLifeEvidence.json"},"badge_binding":{"badge_id":"vitenskap","badge_titles":["Studentassistent","Vitenskapelig assistent","Forskningsassistent","Laboratorieassistent"]},"task_families":["provetaking_og_klargjoring","instrument_og_utstyrsarbeid","datainnsamling_og_metadata","kvalitetskontroll","dokumentasjon_og_overlevering"],"work_loops":[{"id":"proveflyt","steps":["motta","identifiser","klargjor","mal","registrer","verifiser"]},{"id":"assistentoppdrag","steps":["avklar_mandat","utfor","logg","kontroller","overlever"]}],"practice_stories":[{"id":"s1","setup":"En prøve mangler entydig ID.","good":"Stans behandlingen og avklar sporbarhet før videre arbeid.","bad":"Gjett hvilken prøve det er ut fra rekkefølgen."},{"id":"s2","setup":"Instrumentkontrollen er utenfor toleranse.","good":"Merk avviket, stopp serien og eskaler kalibrering eller feilsøk.","bad":"Kjør videre og korriger tallene manuelt etterpå."},{"id":"s3","setup":"En veileder ber om rask registrering uten alle metadata.","good":"Registrer bare det som er verifisert og marker manglene eksplisitt.","bad":"Fyll inn antatte verdier for å gjøre datasettet komplett."},{"id":"s4","setup":"En kollega foreslår å hoppe over verneutstyr fordi forsøket er kort.","good":"Følg sikkerhetsprosedyren uansett tidsbruk.","bad":"Aksepter snarveien fordi risikoen virker liten."},{"id":"s5","setup":"En assistent blir bedt om å godkjenne en konklusjon.","good":"Avgrens bidraget til dokumentert støttearbeid og send faglig godkjenning til ansvarlig rolle.","bad":"Signér for å holde prosjektet i gang."}],"quality_axes":["sporbarhet","presisjon","sikkerhet","reproduserbarhet","dokumentasjon","rollebevissthet"],"authority_boundary":{"may_not":["godkjenne_faglige_hovedkonklusjoner_uten_mandat","omgaa_hms_eller_biosikkerhetsprosedyrer","endre_protokoll_uten_godkjenning","fabrikkere_eller_justere_data_for_a_passe_resultat"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_assistent_og_laboratorium",
+  "role_id": "vitenskap_assistent_og_laboratorium",
+  "badge_binding": {
+    "badge_id": "vitenskap",
+    "badge_titles": [
+      "Studentassistent",
+      "Vitenskapelig assistent",
+      "Forskningsassistent",
+      "Laboratorieassistent"
+    ],
+    "tier_thresholds": [
+      5,
+      10,
+      15,
+      25
+    ]
+  },
+  "work_world": "Veiledet assistent- og laboratoriearbeid der prøveidentitet, protokoll, instrument/HMS, rådata, metadata, kvalitetskontroll, avvik og handoff holdes i ett vedvarende etterprøvbart arbeidsspor.",
+  "task_families": [
+    "proveidentitet_og_klargjoring",
+    "protokoll_og_instrumentarbeid",
+    "hms_og_biosikkerhet",
+    "radatainnsamling_og_metadata",
+    "kvalitetskontroll_og_avvik",
+    "handoff_og_bounded_rework"
+  ],
+  "work_loops": [
+    "motta prøve eller oppdrag -> identitet/proveniens -> kvalifikasjon og protokoll -> instrument/HMS/biosikkerhet -> utfør/mål -> rådata/metadata -> kontroll -> handoff",
+    "avvik eller ny opplysning -> stopp/merk -> waiting/venting på veileder, instrument, sikkerhet, prøveavklaring eller faglig eier -> berørt arbeidsledd -> ny kontroll -> versjonert handoff -> bounded rework"
+  ],
+  "pressure_axes": [
+    "frist_vs_protokoll",
+    "produksjon_vs_sporbarhet",
+    "forventet_resultat_vs_radataintegritet",
+    "kollegialt_press_vs_hms",
+    "assistentstatus_vs_faktisk_kvalifikasjon_og_mandat"
+  ],
+  "practice_stories": [
+    {
+      "id": "uklar_prove",
+      "setup": "En prøve mangler entydig ID.",
+      "decision": "Stans behandlingen og avklar sporbarheten før videre arbeid.",
+      "learning": "en plausibel identitet er ikke dokumentert proveniens"
+    },
+    {
+      "id": "instrument_utenfor_toleranse",
+      "setup": "Instrumentkontrollen er utenfor toleranse.",
+      "decision": "Stopp serien, logg avviket og eskaler kalibrering eller feilsøking.",
+      "learning": "data fra ukontrollert utstyr kan ikke reddes av tidsnød"
+    },
+    {
+      "id": "metadata_hull",
+      "setup": "Veileder ønsker rask registrering uten alle metadata.",
+      "decision": "Registrer bare det som er verifisert og marker manglene eksplisitt.",
+      "learning": "antatte metadata ødelegger sporbarhet og reproduserbarhet"
+    },
+    {
+      "id": "hms_snarvei",
+      "setup": "En kollega foreslår å hoppe over verneutstyr fordi forsøket er kort.",
+      "decision": "Følg sikkerhetsprosedyren og stans om nødvendig.",
+      "learning": "HMS og biosikkerhet er ikke valgfrie produksjonskostnader"
+    },
+    {
+      "id": "hovedkonklusjon",
+      "setup": "Assistenten blir bedt om å signere en faglig hovedkonklusjon.",
+      "decision": "Avgrens bidraget til dokumentert støttearbeid og send godkjenningen til ansvarlig rolle.",
+      "learning": "qualification_required adgang er ikke selvstendig faglig godkjenningsmyndighet"
+    }
+  ],
+  "quality_axes": [
+    "sporbarhet",
+    "protokolltrohet",
+    "instrumentkvalitet",
+    "hms_og_biosikkerhet",
+    "radataintegritet",
+    "metadata",
+    "reproduserbarhet",
+    "rollebevissthet"
+  ],
+  "authority_boundary": {
+    "may": [
+      "utføre avtalte prøve-, instrument-, data- og dokumentasjonsoppgaver innen godkjent protokoll, dokumentert kvalifikasjon, lokal opplæring og tildelt tilgang",
+      "stanse arbeidsflyt og registrere avvik når prøveidentitet, instrumentkontroll, HMS, biosikkerhet, metadata eller annen nødvendig kontroll ikke er tilfredsstillende",
+      "registrere rådata, metadata, kontrollresultater og faktiske observasjoner uten å gjøre dem om til en selvstendig faglig hovedkonklusjon",
+      "eskalere protokollendring, sikkerhetsproblem, instrumentfeil, tilgangsspørsmål eller faglig godkjenning til veileder eller annen ansvarlig rolle",
+      "overlevere et komplett og versjonert arbeidsspor med avvik, åpne spørsmål og hvilke ledd som krever kvalifisert vurdering"
+    ],
+    "may_not": [
+      "godkjenne faglige hovedkonklusjoner, forskningsresultater eller metodeendringer uten dokumentert mandat fra ansvarlig fagrolle",
+      "endre godkjent protokoll, toleransegrense eller analyseprosedyre på egen hånd for å holde tempo eller få et ønsket resultat",
+      "omgå HMS, biosikkerhet, verneutstyr, opplæringskrav, instrumentadgang eller lokal sikkerhetsprosedyre selv når oppgaven virker liten eller fristen er kort",
+      "fabrikkere, fylle inn antatte verdier, skjule avvik eller justere rådata for at serien skal passe forventning, hypotese eller presentasjon",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, sosial standing, senioritet eller nettverk som erstatning for relevant_education_or_employer_qualification, dokumentert opplæring, tilgang, evidens eller institusjonell myndighet"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "eva_provemottak_og_sporbarhet_vitenskap_assistent_lab",
+      "name": "Eva",
+      "role": "prøvemottaks- og sporbarhetskontakt",
+      "workplace_ids": [
+        "proveidentitet_protokoll_og_sporbarhet_vitenskap_assistent_lab"
+      ]
+    },
+    {
+      "id": "malik_instrument_hms_og_biosikkerhet_vitenskap_assistent_lab",
+      "name": "Malik",
+      "role": "instrument-, HMS- og biosikkerhetskontakt",
+      "workplace_ids": [
+        "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab"
+      ]
+    },
+    {
+      "id": "nora_data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+      "name": "Nora",
+      "role": "data-, metadata- og reproduserbarhetskontakt",
+      "workplace_ids": [
+        "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab"
+      ]
+    },
+    {
+      "id": "henrik_kvalitet_avvik_og_handoff_vitenskap_assistent_lab",
+      "name": "Henrik",
+      "role": "kvalitets-, avviks- og handoffkontakt",
+      "workplace_ids": [
+        "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "proveidentitet_protokoll_og_sporbarhet_vitenskap_assistent_lab",
+      "name": "Prøveidentitet, protokoll og sporbarhet",
+      "function": "Arbeidsflaten binder prøve-ID, opphav, tidspunkt, mottak, overleveringskjede og godkjent protokollversjon sammen. Uklar identitet eller proveniens blir et eksplisitt stoppunkt i stedet for et hull som kan fylles med antakelser."
+    },
+    {
+      "id": "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab",
+      "name": "Instrumentkontroll, HMS og biosikkerhet",
+      "function": "Her registreres instrumentstatus, kontrollmateriale, kalibrering, nødvendig opplæring og tilgang, verneutstyr, risiko, avfall og avvik. Et kontrollsignal utenfor toleranse eller en sikkerhetsmangel stopper arbeidet til riktig ansvarlig person har avklart neste steg."
+    },
+    {
+      "id": "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+      "name": "Data, metadata og reproduserbarhet",
+      "function": "Her lagres rådata og nødvendige metadata med prøve-ID, enhet, tidspunkt, instrument, operatør, mangler, avvik og versjon. Antatte verdier og skjulte manuelle korrigeringer er forbudt; analyse og kommentar holdes adskilt fra råregistreringen."
+    },
+    {
+      "id": "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab",
+      "name": "Kvalitetskontroll, avvik, handoff og rework",
+      "function": "Her samles kontrollpunkter, åpne avvik, ansvarlig mottaker, overleveringsgrunnlag og bounded rework. Tidligere versjoner beholdes slik at senere feilsøking kan vise nøyaktig hvilket ledd som endret seg uten å omskrive historikken."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework",
+    "description": "Versjonert laboratorie- og assistentlogg som bevarer oppdrag, prøve-ID og proveniens, kvalifikasjon og protokoll, instrumentstatus, HMS/biosikkerhet, rådata, metadata, kontrollresultater, avvik, ansvarlig handoff og bounded rework uten å omskrive tidligere versjoner.",
+    "states": [
+      "oppdrag_registrert",
+      "prove_eller_objekt_identifisert",
+      "proveniens_og_overleveringskjede_kontrollert",
+      "kvalifikasjon_bekreftet",
+      "lokal_opplaring_og_tilgang_bekreftet",
+      "protokollversjon_bekreftet",
+      "instrumentstatus_kontrollert",
+      "hms_og_biosikkerhet_kontrollert",
+      "klargjoring_fullfort",
+      "maling_eller_utforelse_pagar",
+      "radatainnsamling_fullfort",
+      "metadata_registrert",
+      "venter_pa_proveavklaring",
+      "venter_pa_instrument_eller_kalibrering",
+      "venter_pa_hms_eller_biosikkerhetsavklaring",
+      "venter_pa_veileder_eller_faglig_eier",
+      "kvalitetskontrollert",
+      "avvik_registrert",
+      "handoff_med_apne_punkter",
+      "ny_opplysning_registrert",
+      "bounded_rework",
+      "lukket_med_sporbarhet"
+    ],
+    "handoff_rule": "Neste kvalifiserte eller ansvarlige eier mottar gjeldende versjon med prøve-ID/proveniens, protokoll, instrument- og sikkerhetsstatus, rådata, metadata, kontrollresultater, avvik og åpne spørsmål. Handoff overfører ikke kvalifikasjon, instrumentadgang eller faglig godkjenningsmyndighet som mottakeren eller assistenten ikke allerede har."
+  },
+  "rhythm_contract": {
+    "loop": "oppdrag -> prøve/proveniens -> kvalifikasjon/protokoll -> instrument/HMS -> utførelse -> rådata/metadata -> kontroll -> waiting/venting på avklaring ved avvik -> handoff -> bounded rework",
+    "waiting_states": [
+      "proveidentitet_og_proveniens",
+      "protokoll_og_veileder",
+      "instrument_og_kalibrering",
+      "hms_og_biosikkerhet",
+      "lokal_opplaring_og_tilgang",
+      "metadata_og_datakontroll",
+      "faglig_godkjenning_og_handoff"
+    ],
+    "rework_rule": "Korrigert prøveidentitet eller proveniens, godkjent protokollendring, instrument- eller kalibreringsavklaring, HMS/biosikkerhetsavklaring, manglende metadata, dokumentert dataavvik eller faglig tilbakemelding gjenåpner bare de berørte leddene. Rådata, tidligere versjon, avvik og handoff beholdes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_vitenskap_assistent_lab_kontekst",
+      "badge_id": "vitenskap",
+      "use": "History Go kan gi historisk og stedlig kontekst om laboratorier, instrumenter, forskningspraksis, standardisering, sikkerhetsregimer og hvordan måle- og dokumentasjonsformer har endret seg. Det kan forbedre spørsmål om hvorfor en protokoll eller kontroll finnes, men kan ikke erstatte dagens prøve-ID, protokoll, kvalifikasjon, opplæring, instrumentkontroll, HMS/biosikkerhet, rådata, metadata eller faglige godkjenning."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "career_offer_policy_by_title",
+    "entry_policy_by_title": {
+      "Studentassistent": {
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ]
+      },
+      "Vitenskapelig assistent": {
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ]
+      },
+      "Forskningsassistent": {
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ]
+      },
+      "Laboratorieassistent": {
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ]
+      }
+    },
+    "first_object": "laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework",
+    "first_task": "Motta ett konkret assistent- eller laboratorieoppdrag. Bekreft relevant_education_or_employer_qualification, lokal opplæring og tilgang der det kreves, registrer prøve-ID/proveniens og protokoll, kontroller instrument/HMS, og dokumenter hva som må være avklart før første måling eller behandling."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "vitenskap_assistent_og_laboratorium",
+    "no_generic_fallback": true
+  }
+}

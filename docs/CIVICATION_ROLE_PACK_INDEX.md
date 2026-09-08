@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 79
+- complete_reference_v2: 80
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 182
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 15
+- missing: 14
 
 ## Rolleindeks
 
@@ -321,7 +321,7 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | vitenskap | seniorforsker | vitenskap_seniorforsker | Seniorforsker | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | vitenskap | stipendiat_phd | vitenskap_stipendiat_phd | Stipendiat (PhD) | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | vitenskap | studentassistent | vitenskap_studentassistent | Studentassistent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| vitenskap | vitenskap_assistent_og_laboratorium |  | vitenskap_assistent_og_laboratorium | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
+| vitenskap | vitenskap_assistent_og_laboratorium | vitenskap_assistent_og_laboratorium | Vitenskap – assistent og laboratorium | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | vitenskap | vitenskap_doktorlop_og_postdoktor |  | vitenskap_doktorlop_og_postdoktor | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | vitenskap | vitenskap_forskning |  | vitenskap_forskning | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | vitenskap | vitenskap_forskningsledelse |  | vitenskap_forskningsledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |

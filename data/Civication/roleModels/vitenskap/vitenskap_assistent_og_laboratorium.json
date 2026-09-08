@@ -1,1 +1,281 @@
-{"schema":"civication_role_model_v2","version":2,"category":"vitenskap","role_scope":"vitenskap_assistent_og_laboratorium","role_id":"vitenskap_assistent_og_laboratorium","title":"Assistent- og laboratoriearbeid","source":{"evidence":"data/Civication/vitenskapCareerLifeEvidence.json"},"badge_titles":["Studentassistent","Vitenskapelig assistent","Forskningsassistent","Laboratorieassistent"],"core_narrative":["Assistent- og laboratoriearbeid i Civication handler om etterprøvbar utførelse under veiledning, med tydelig skille mellom støtteoppgaver og selvstendig faglig myndighet."],"competence_axes":["protokollforstaelse","provetaking_og_datakvalitet","laboratoriesikkerhet","instrument_og_utstyrsbruk","forskningsdokumentasjon","veiledet_faglig_samarbeid"],"ideal_type_problems":[{"id":"protokollavvik","problem":"En prøve er tatt utenfor godkjent protokoll og kan ikke behandles som om datakvaliteten er uendret."},{"id":"ukjent_instrumentfeil","problem":"Utstyr gir et avvikende signal som må verifiseres før flere prøver kjøres."},{"id":"manglende_metadata","problem":"Datasettet mangler metadata som er nødvendig for reproduksjon."},{"id":"tidspress_vs_sikkerhet","problem":"Tidsfristen presser teamet mot å hoppe over kontroll- eller sikkerhetssteg."},{"id":"rollegrense","problem":"En assistent blir bedt om å godkjenne en faglig konklusjon uten mandat."}],"authority_boundaries":{"cannot":["godkjenne_faglige_hovedkonklusjoner_uten_mandat","omgaa_hms_eller_biosikkerhetsprosedyrer","endre_protokoll_uten_godkjenning","fabrikkere_eller_justere_data_for_a_passe_resultat"]},"notes":["Shared canonical work world; eldre individuelle Vitenskap-roleModels beholdes for bakoverkompatibilitet."]}
+{
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "source": {
+    "badge_file": "data/badges/vitenskap.json",
+    "badge_id": "vitenskap",
+    "evidence": "data/Civication/vitenskapCareerLifeEvidence.json"
+  },
+  "category": "vitenskap",
+  "role_scope": "vitenskap_assistent_og_laboratorium",
+  "role_id": "vitenskap_assistent_og_laboratorium",
+  "title": "Vitenskap – assistent og laboratorium",
+  "badge_titles": [
+    "Studentassistent",
+    "Vitenskapelig assistent",
+    "Forskningsassistent",
+    "Laboratorieassistent"
+  ],
+  "core_narrative": [
+    "Assistent- og laboratoriearbeid gjør vitenskapelig kvalitet konkret gjennom prøvesporbarhet, protokolltro utførelse, instrument- og sikkerhetskontroll, rådata, metadata, avviksføring og etterprøvbar handoff under veiledning.",
+    "Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent forblir qualification_required. Badgeprogresjon åpner ikke jobben alene og utvider aldri selvstendig faglig, sikkerhetsmessig eller institusjonell myndighet."
+  ],
+  "work_life": {
+    "daily_work": [
+      "føre laboratoriearbeidslogg_prove_id_protokoll_instrument_hms_metadata_kvalitet_avvik_handoff_og_rework fra mottatt prøve eller oppdrag gjennom protokoll, instrument/HMS, rådata, metadata, kontroll, avvik og handoff",
+      "kontrollere prøveidentitet og protokollversjon før behandling",
+      "verifisere instrumentstatus, opplæring, adgang og sikkerhetskrav før kjøring",
+      "registrere rådata og metadata uten antakelser eller skjulte korrigeringer",
+      "eskalere avvik og faglige eller metodiske beslutninger til riktig kvalifisert eller ansvarlig rolle"
+    ],
+    "responsibilities": [
+      "provesporbarhet",
+      "protokolltro_utforelse",
+      "instrumentkontroll",
+      "hms_og_biosikkerhet",
+      "datakvalitet_og_metadata",
+      "avviksdokumentasjon",
+      "reproduserbar_handoff"
+    ],
+    "work_environment": [
+      "Laboratorium, felt-/prøvemottak, instrumentrom, forskningsstøtte eller annen vitenskapelig arbeidsflate der assistentoppgaver utføres under dokumentert kvalifikasjon, lokal opplæring og ansvarlig faglig ramme."
+    ],
+    "status_position": [
+      "Alle fire canonical titler er qualification_required med relevant_education_or_employer_qualification. Tittel, badge-tier og sosial standing kan ikke erstatte kvalifikasjonen, instrumentopplæring, HMS-krav eller faktisk delegert ansvar."
+    ],
+    "workplaces": [
+      "proveidentitet_protokoll_og_sporbarhet_vitenskap_assistent_lab",
+      "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab",
+      "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+      "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab"
+    ]
+  },
+  "authority_boundaries": {
+    "can": [
+      "utføre avtalte prøve-, instrument-, data- og dokumentasjonsoppgaver innen godkjent protokoll, dokumentert kvalifikasjon, lokal opplæring og tildelt tilgang",
+      "stanse arbeidsflyt og registrere avvik når prøveidentitet, instrumentkontroll, HMS, biosikkerhet, metadata eller annen nødvendig kontroll ikke er tilfredsstillende",
+      "registrere rådata, metadata, kontrollresultater og faktiske observasjoner uten å gjøre dem om til en selvstendig faglig hovedkonklusjon",
+      "eskalere protokollendring, sikkerhetsproblem, instrumentfeil, tilgangsspørsmål eller faglig godkjenning til veileder eller annen ansvarlig rolle",
+      "overlevere et komplett og versjonert arbeidsspor med avvik, åpne spørsmål og hvilke ledd som krever kvalifisert vurdering"
+    ],
+    "cannot": [
+      "godkjenne faglige hovedkonklusjoner, forskningsresultater eller metodeendringer uten dokumentert mandat fra ansvarlig fagrolle",
+      "endre godkjent protokoll, toleransegrense eller analyseprosedyre på egen hånd for å holde tempo eller få et ønsket resultat",
+      "omgå HMS, biosikkerhet, verneutstyr, opplæringskrav, instrumentadgang eller lokal sikkerhetsprosedyre selv når oppgaven virker liten eller fristen er kort",
+      "fabrikkere, fylle inn antatte verdier, skjule avvik eller justere rådata for at serien skal passe forventning, hypotese eller presentasjon",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, sosial standing, senioritet eller nettverk som erstatning for relevant_education_or_employer_qualification, dokumentert opplæring, tilgang, evidens eller institusjonell myndighet"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "utføre avtalte prøve-, instrument-, data- og dokumentasjonsoppgaver innen godkjent protokoll, dokumentert kvalifikasjon, lokal opplæring og tildelt tilgang",
+      "stanse arbeidsflyt og registrere avvik når prøveidentitet, instrumentkontroll, HMS, biosikkerhet, metadata eller annen nødvendig kontroll ikke er tilfredsstillende",
+      "registrere rådata, metadata, kontrollresultater og faktiske observasjoner uten å gjøre dem om til en selvstendig faglig hovedkonklusjon",
+      "eskalere protokollendring, sikkerhetsproblem, instrumentfeil, tilgangsspørsmål eller faglig godkjenning til veileder eller annen ansvarlig rolle",
+      "overlevere et komplett og versjonert arbeidsspor med avvik, åpne spørsmål og hvilke ledd som krever kvalifisert vurdering"
+    ],
+    "may_not": [
+      "godkjenne faglige hovedkonklusjoner, forskningsresultater eller metodeendringer uten dokumentert mandat fra ansvarlig fagrolle",
+      "endre godkjent protokoll, toleransegrense eller analyseprosedyre på egen hånd for å holde tempo eller få et ønsket resultat",
+      "omgå HMS, biosikkerhet, verneutstyr, opplæringskrav, instrumentadgang eller lokal sikkerhetsprosedyre selv når oppgaven virker liten eller fristen er kort",
+      "fabrikkere, fylle inn antatte verdier, skjule avvik eller justere rådata for at serien skal passe forventning, hypotese eller presentasjon",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, sosial standing, senioritet eller nettverk som erstatning for relevant_education_or_employer_qualification, dokumentert opplæring, tilgang, evidens eller institusjonell myndighet"
+    ]
+  },
+  "competence_axes": [
+    "protokollforstaelse",
+    "provesporbarhet",
+    "instrumentkontroll",
+    "laboratoriesikkerhet",
+    "biosikkerhet",
+    "radataintegritet",
+    "metadata",
+    "avviksbehandling",
+    "reproduserbar_handoff",
+    "rolleforstaelse"
+  ],
+  "ideal_type_problems": [
+    "prøveidentitet eller proveniens er uklar",
+    "instrumentkontroll ligger utenfor toleranse",
+    "metadata mangler etter kjøring",
+    "tidsfrist presser teamet mot HMS- eller kontrollsnarvei",
+    "assistent blir bedt om å godkjenne hovedkonklusjon uten mandat",
+    "forventet resultat skaper press for å korrigere data manuelt"
+  ],
+  "career_path": {
+    "entry_from": [
+      "Studentassistent, Vitenskapelig assistent, Forskningsassistent og Laboratorieassistent krever canonical relevant_education_or_employer_qualification; badge-threshold alene gir ikke adgang."
+    ],
+    "progression_to": [
+      "Større selvstendighet kan bare følge dokumentert kvalifikasjon, opplæring og faktisk tildelt ansvar; den må ikke infereres fra XP eller sosial standing."
+    ],
+    "possible_promotions": [
+      "mer komplekse assistentoppgaver når kvalifikasjon og lokal opplæring dokumenteres",
+      "separat forsker-, doktorgrads- eller lederrolle når den rollens egne qualification- eller appointment-gates er oppfylt"
+    ],
+    "possible_exits": [
+      "forskning, doktorløp, undervisning eller teknisk spesialisering etter respektive canonical krav"
+    ],
+    "career_risks": [
+      "tidspress kan normalisere sikkerhetssnarveier",
+      "uformell senioritet kan skape skjult godkjenningsmyndighet",
+      "forventede resultater kan presse dataintegritet",
+      "manglende metadata kan gjøre korrekt arbeid ubrukelig og irreproduserbart"
+    ]
+  },
+  "required_knowledge": {
+    "education_basis": [
+      "Relevant utdanning eller arbeidsgiververifisert kvalifikasjon er en faktisk canonical entry-gate. Oppgaven kan i tillegg kreve lokal instrumentopplæring, HMS/biosikkerhet eller annen tilgang før arbeid utføres."
+    ],
+    "skills": [
+      "prøvehåndtering",
+      "protokollforståelse",
+      "instrumentbruk",
+      "HMS",
+      "biosikkerhet",
+      "rådataregistrering",
+      "metadata",
+      "kvalitetskontroll",
+      "avviksføring",
+      "handoff"
+    ],
+    "category_knowledge": [
+      "Vitenskapelig etterprøvbarhet, måleusikkerhet, sporbarhet, kontrollmateriale, reproduserbarhet, data- og metadata-integritet og skillet mellom assistentutførelse og faglig hovedkonklusjon."
+    ],
+    "history_go_badges": [
+      "vitenskap"
+    ],
+    "place_connections": [
+      "proveidentitet_protokoll_og_sporbarhet_vitenskap_assistent_lab",
+      "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab",
+      "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+      "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab"
+    ],
+    "people_connections": [
+      "eva_provemottak_og_sporbarhet_vitenskap_assistent_lab",
+      "malik_instrument_hms_og_biosikkerhet_vitenskap_assistent_lab",
+      "nora_data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+      "henrik_kvalitet_avvik_og_handoff_vitenskap_assistent_lab"
+    ]
+  },
+  "challenges": [
+    {
+      "id": "instrument_avvik_under_tidspress",
+      "title": "Instrumentavvik under tidspress",
+      "description": "Kontrollsignalet ligger utenfor toleranse mens en prøvebatch har kort frist.",
+      "pressure": "fart_vs_malekvalitet_og_sikkerhet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    },
+    {
+      "id": "manglende_proveidentitet",
+      "title": "Manglende prøveidentitet",
+      "description": "En prøve ser riktig ut, men ID- og overleveringssporet er ikke entydig.",
+      "pressure": "produksjon_vs_sporbarhet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "frist_vs_hms_og_kontroll",
+      "title": "Frist mot HMS og kontroll",
+      "setup": "Teamet vil spare tid ved å hoppe over et kontroll- eller sikkerhetssteg.",
+      "choice_axis": "etterprovbar_sikker_utforelse_vs_uformell_snarvei",
+      "consequence_axis": "kvalitet_og_sikkerhet_vs_usporbar_risiko",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "eva_provemottak_og_sporbarhet_vitenskap_assistent_lab",
+      "name": "Eva",
+      "role": "prøvemottaks- og sporbarhetskontakt",
+      "workplace_ids": [
+        "proveidentitet_protokoll_og_sporbarhet_vitenskap_assistent_lab"
+      ],
+      "function": "Eva gjør prøveflyten etterprøvbar fra første mottak. Hun kontrollerer prøve-ID, etikett, tidspunkt, mottaksforhold, prøvetakingskontekst, kjede av overleveringer og hvilken godkjent protokoll som faktisk gjelder før materialet behandles videre. Når identitet eller proveniens er uklar, trener hun spilleren i å stanse og avklare i stedet for å gjette, fordi en pen dataserie ikke kan reparere en prøve som ikke lenger kan knyttes sikkert til riktig opphav og prosedyre.",
+      "authority_relation": "Eva kan avvise uidentifiserte eller utilstrekkelig dokumenterte prøver fra videre flyt, kreve korrigert merking og eskalere uklar protokoll til ansvarlig veileder eller fagrolle. Hun kan ikke gjøre Studentassistent, Vitenskapelig assistent, Forskningsassistent eller Laboratorieassistent kvalifisert gjennom Vitenskap-badge, XP eller sosial standing, kan ikke endre protokoll på egen hånd og kan ikke godkjenne faglige hovedkonklusjoner. Sporbarhet gir kontroll over arbeidsflyt, ikke selvstendig faglig myndighet.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "malik_instrument_hms_og_biosikkerhet_vitenskap_assistent_lab",
+      "name": "Malik",
+      "role": "instrument-, HMS- og biosikkerhetskontakt",
+      "workplace_ids": [
+        "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab"
+      ],
+      "function": "Malik følger opp at instrumentstatus, kalibrering, kontrollmateriale, verneutstyr, kjemikalie- eller biologisk risiko, avfallsrutiner og lokal tilgang er avklart før kjøring. Han behandler avvikende kontrollsignal som et stoppunkt som må undersøkes, ikke som et irritasjonsmoment som kan glattes over. Arbeidet hans gjør sikkerhet og instrumentkvalitet til en del av selve evidenskjeden, fordi data fra ukontrollert utstyr eller uforsvarlig prosedyre ikke blir mer pålitelige av at tidsfristen er kort.",
+      "authority_relation": "Malik kan stoppe bruk av utstyr eller arbeidsflyt når kontroll, opplæring, tilgang eller HMS/biosikkerhet ikke er dokumentert og kan sende feilsøking eller risikovurdering til riktig ansvarlig rolle. Han kan ikke låne ut sin kvalifikasjon til spilleren, kan ikke la en høy badge-tier erstatte instrumentopplæring eller adgang, og kan ikke godkjenne protokollendringer eller faglige hovedkonklusjoner uten det mandatet. Sikkerhetsstopp er en plikt innen arbeidsflyten, ikke en ny forskningsmyndighet.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "nora_data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+      "name": "Nora",
+      "role": "data-, metadata- og reproduserbarhetskontakt",
+      "workplace_ids": [
+        "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab"
+      ],
+      "function": "Nora kontrollerer at rådata, enheter, tidspunkt, instrumentversjon, prøve-ID, operatør, avvik, manglende verdier og nødvendige metadata registreres uten å fylle hull med antakelser. Hun lærer spilleren å skille observert verdi fra korrigering, kommentar og senere analyse, og å bevare råmateriale og versjoner slik at en annen person kan forstå hva som faktisk skjedde. Dermed blir dokumentasjon en produksjonsdel av vitenskapelig kvalitet, ikke et pyntelag som legges på når forsøket er ferdig.",
+      "authority_relation": "Nora kan returnere ufullstendige registreringer, kreve at manglende metadata markeres eksplisitt og hindre at manuelle endringer blandes inn i rådata uten spor. Hun kan ikke fabrikkere eller justere data for å passe forventet resultat, kan ikke erklære en analyse faglig godkjent, og kan ikke gjøre History Go, Vitenskap-badge, senioritet eller god relasjon til en erstatning for faktisk måling, dokumentasjon eller kvalifisert vurdering. Hun beskytter datasporet, mens hovedkonklusjonen forblir hos ansvarlig fagrolle.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "henrik_kvalitet_avvik_og_handoff_vitenskap_assistent_lab",
+      "name": "Henrik",
+      "role": "kvalitets-, avviks- og handoffkontakt",
+      "workplace_ids": [
+        "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab"
+      ],
+      "function": "Henrik samler kontrollpunktene før arbeid leveres videre: prøveidentitet, protokollversjon, instrumentstatus, HMS, rådata, metadata, avvik og hvilke oppgaver som fortsatt venter på ansvarlig veileder eller fagperson. Han trener spilleren i å overlevere en versjon som viser hva assistenten faktisk har gjort, hva som ikke er gjort, og hvilke usikkerheter eller avvik som må vurderes før materialet kan brukes videre. Nye opplysninger skal gjenåpne bare berørte ledd og aldri slette den tidligere arbeidsloggen.",
+      "authority_relation": "Henrik kan returnere arbeid som mangler kontroll eller dokumentasjon, kreve versjonert avviksbehandling og sørge for handoff til riktig kvalifisert eller ansvarlig rolle. Han kan ikke oppgradere en assistent til beslutningstaker, signere bort kvalifikasjonskrav, godkjenne en faglig hovedkonklusjon på vegne av ansvarlig forsker eller la tidsnød legitimere skjult rework. Handoff overfører dokumentert arbeid og åpne spørsmål; den overfører ikke kvalifikasjon, tilgang eller myndighet som mottakeren ikke har.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "proveidentitet_protokoll_og_sporbarhet_vitenskap_assistent_lab",
+      "name": "Prøveidentitet, protokoll og sporbarhet",
+      "function": "Arbeidsflaten binder prøve-ID, opphav, tidspunkt, mottak, overleveringskjede og godkjent protokollversjon sammen. Uklar identitet eller proveniens blir et eksplisitt stoppunkt i stedet for et hull som kan fylles med antakelser."
+    },
+    {
+      "id": "instrumentkontroll_hms_og_biosikkerhet_vitenskap_assistent_lab",
+      "name": "Instrumentkontroll, HMS og biosikkerhet",
+      "function": "Her registreres instrumentstatus, kontrollmateriale, kalibrering, nødvendig opplæring og tilgang, verneutstyr, risiko, avfall og avvik. Et kontrollsignal utenfor toleranse eller en sikkerhetsmangel stopper arbeidet til riktig ansvarlig person har avklart neste steg."
+    },
+    {
+      "id": "data_metadata_og_reproduserbarhet_vitenskap_assistent_lab",
+      "name": "Data, metadata og reproduserbarhet",
+      "function": "Her lagres rådata og nødvendige metadata med prøve-ID, enhet, tidspunkt, instrument, operatør, mangler, avvik og versjon. Antatte verdier og skjulte manuelle korrigeringer er forbudt; analyse og kommentar holdes adskilt fra råregistreringen."
+    },
+    {
+      "id": "kvalitetskontroll_avvik_handoff_og_rework_vitenskap_assistent_lab",
+      "name": "Kvalitetskontroll, avvik, handoff og rework",
+      "function": "Her samles kontrollpunkter, åpne avvik, ansvarlig mottaker, overleveringsgrunnlag og bounded rework. Tidligere versjoner beholdes slik at senere feilsøking kan vise nøyaktig hvilket ledd som endret seg uten å omskrive historikken."
+    }
+  ]
+}
