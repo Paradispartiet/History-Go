@@ -1,15 +1,278 @@
 {
-  "schema":"civication_role_model_v1","version":2,
-  "source":{"badge_file":"data/badges/religion.json","badge_id":"religion","evidence":"data/Civication/religionCareerLifeEvidence.json"},
-  "category":"religion","role_scope":"religion_utredning_og_radgivning","role_id":"religion_utredning_og_radgivning","title":"Religion – utredning og rådgivning",
-  "core_narrative":["Religionsfaglig utredning og rådgivning oversetter kilder, regelverk, praksiser og aktørperspektiver til etterprøvbare beslutningsgrunnlag uten å late som rådgiveren har religiøs eller juridisk myndighet."],
-  "work_life":{"daily_work":["samle dokumentasjon og aktørperspektiver","skrive notater, høringsgrunnlag eller råd","kartlegge konsekvenser og interessekonflikter","følge opp spørsmål fra institusjoner og samarbeidspartnere"],"responsibilities":["dokumentere premisser og kilder","skille faglig analyse fra normative standpunkter","synliggjøre berørte grupper og relevante motforestillinger","løfte juridiske eller myndighetsmessige spørsmål til riktig kompetanse"],"work_environment":["forvaltning, organisasjon, institusjon eller prosjektmiljø"],"status_position":["rådgivning gir anbefalinger innen mandat; den skaper ikke selv vedtak eller trosautoritet"]},
-  "career_path":{"entry_from":["relevant konsulent-, analyse- eller prosjektarbeid"],"progression_to":["seniorrådgivning eller separat utnevnt fagansvar"],"possible_promotions":["større saksansvar eller koordineringsansvar"],"possible_exits":["forskning, formidling, offentlig forvaltning eller ledelse"],"career_risks":["skjult normativitet, svak kildebruk, interessefangst eller uklar rolleforståelse"]},
-  "required_knowledge":{"education_basis":["religionsvitenskap, samfunnsanalyse, kildekritikk og institusjonsforståelse"],"skills":["utredning","kildekritikk","interessentkartlegging","presis skriving","rådgivning"],"category_knowledge":["religionsfrihet, livssynsmangfold, organisasjonsformer og skillet mellom beskrivelse, råd og beslutning"],"history_go_badges":["religion"],"place_connections":[],"people_connections":[]},
-  "authority_boundaries":{"can":["utrede og anbefale innen oppdraget","synliggjøre konsekvenser og usikkerhet","be om flere kilder eller faglige vurderinger"],"cannot":["fatte vedtak uten delegert myndighet","gi juridiske garantier uten kompetent instans","representere tros- eller livssynsgrupper uten mandat","behandle Badge-status som rett til å instruere andre"]},
-  "challenges":[{"id":"bestillerpress","title":"Bestiller ønsker ett enkelt svar","description":"Saksbildet er pluralistisk, men bestilleren ønsker en entydig konklusjon.","pressure":"enkelhet_vs_redelighet","affects":["trust","quality","risk"]}],
-  "dilemmas":[{"id":"interessekonflikt","title":"Sterk aktør, svakt kildegrunnlag","setup":"En ressurssterk aktør ønsker sin beskrivelse lagt til grunn før motperspektiver er undersøkt.","choice_axis":"fart_vs_bredde","consequence_axis":"leveranse_vs_legitimitet","mail_hooks":["job","conflict","people"]}],
-  "competence_axes":[{"id":"utredningskvalitet","label":"Utredningskvalitet"},{"id":"kildekritikk","label":"Kildekritikk"},{"id":"rolleforstaelse","label":"Rolleforståelse"},{"id":"pluralisme","label":"Pluralisme"}],
-  "ideal_type_problems":[{"id":"normativt_rad_som_fakta","label":"Normativt råd presenteres som fakta"},{"id":"manglende_motstemme","label":"Berørt motstemme mangler"}],
-  "notes":["Deler arbeidsverden mellom Fagkonsulent og Seniorrådgiver."]
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "source": {
+    "badge_file": "data/badges/religion.json",
+    "badge_id": "religion",
+    "evidence": "data/Civication/religionCareerLifeEvidence.json"
+  },
+  "category": "religion",
+  "role_scope": "religion_utredning_og_radgivning",
+  "role_id": "religion_utredning_og_radgivning",
+  "title": "Religion – utredning og rådgivning",
+  "badge_titles": [
+    "Fagkonsulent",
+    "Seniorrådgiver"
+  ],
+  "core_narrative": [
+    "Religionsfaglig utredning og rådgivning oversetter dokumenterte kilder, forskning, aktørperspektiver, rettighetsrammer og institusjonell kontekst til etterprøvbare beslutningsgrunnlag uten å gjøre rådgiveren til beslutningstaker, jurist eller religiøs representant.",
+    "Fagkonsulent og Seniorrådgiver har begge direct career-entry i canonical Religion-policy. Senior-tittel og badgeprogresjon kan uttrykke erfaring, men gir aldri automatisk vedtaks-, personal-, budsjett-, juridisk eller representasjonsmyndighet."
+  ],
+  "work_life": {
+    "daily_work": [
+      "føre utredningslogg_bestilling_kilder_aktorer_rettigheter_analyse_anbefaling_beslutning_og_oppfolging med bestilling, mandat, kilder, aktører, rettigheter, analyse, alternativer, anbefaling, beslutning og oppfølging",
+      "kontrollere kildegrunnlag og attribuere aktørperspektiver med faktisk mandat og intern variasjon",
+      "skille beskrivelse, analyse, normative valg og anbefaling før teksten blir beslutningsgrunnlag",
+      "eskalere juridiske, habilitets- eller myndighetsmessige spørsmål til kompetent instans",
+      "følge rådet gjennom handoff, mottakerens beslutning, nye opplysninger og bounded rework"
+    ],
+    "responsibilities": [
+      "utredningskvalitet",
+      "kildekritikk_og_proveniens",
+      "pluralisme_og_interessentbredde",
+      "rolle_og_mandatforstaelse",
+      "rettighets_og_jussgrense",
+      "konsekvensvurdering",
+      "sporbar_anbefaling_og_rettelse"
+    ],
+    "work_environment": [
+      "Forvaltning, organisasjon, institusjon eller prosjektmiljø der religions- og livssynsspørsmål inngår i beslutninger, tjenester, politikk, kultur eller samarbeid."
+    ],
+    "status_position": [
+      "Fagkonsulent og Seniorrådgiver er direct career-offers. Direct adgang og senioritet gir rett til å arbeide i rollen, ikke automatisk vedtaks-, juridisk eller representasjonsmyndighet."
+    ],
+    "workplaces": [
+      "bestilling_mandat_og_beslutningsbehov_religion_utredning",
+      "kilde_aktor_og_interessentkart_religion_utredning",
+      "rettighet_juss_og_myndighetsavklaring_religion_utredning",
+      "anbefaling_handoff_og_oppfolging_religion_utredning"
+    ]
+  },
+  "authority_boundaries": {
+    "can": [
+      "utrede, sammenligne og anbefale innen et dokumentert oppdrag og tydelig mandat",
+      "markere usikkerhet, interessekonflikter, manglende perspektiver og behov for ny dokumentasjon",
+      "beskrive religionsfaglige konsekvenser av alternativer og forklare hva kildene faktisk støtter",
+      "foreslå videre juridisk, etisk, faglig eller myndighetsmessig avklaring når saken går utenfor rollen",
+      "levere et sporbar beslutningsgrunnlag med alternativer, forbehold og anbefaling til riktig beslutningseier"
+    ],
+    "cannot": [
+      "fatte vedtak, instruere andre eller binde institusjonen uten dokumentert delegert myndighet",
+      "gi juridiske garantier eller behandle religionsfaglig analyse som bindende rettslig konklusjon uten kompetent instans",
+      "representere eller tale på vegne av tros- eller livssynsgrupper uten faktisk representasjonsmandat",
+      "skjule relevante motargumenter, usikkerhet eller interessekonflikter for å gjøre bestillers foretrukne konklusjon enklere",
+      "bruke Religion-badge, XP, History Go-kunnskap, popularitet, nettverk, senioritet eller sosial standing som faglig evidens, representasjonsmandat, juridisk kompetanse eller institusjonell myndighet"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "utrede, sammenligne og anbefale innen et dokumentert oppdrag og tydelig mandat",
+      "markere usikkerhet, interessekonflikter, manglende perspektiver og behov for ny dokumentasjon",
+      "beskrive religionsfaglige konsekvenser av alternativer og forklare hva kildene faktisk støtter",
+      "foreslå videre juridisk, etisk, faglig eller myndighetsmessig avklaring når saken går utenfor rollen",
+      "levere et sporbar beslutningsgrunnlag med alternativer, forbehold og anbefaling til riktig beslutningseier"
+    ],
+    "may_not": [
+      "fatte vedtak, instruere andre eller binde institusjonen uten dokumentert delegert myndighet",
+      "gi juridiske garantier eller behandle religionsfaglig analyse som bindende rettslig konklusjon uten kompetent instans",
+      "representere eller tale på vegne av tros- eller livssynsgrupper uten faktisk representasjonsmandat",
+      "skjule relevante motargumenter, usikkerhet eller interessekonflikter for å gjøre bestillers foretrukne konklusjon enklere",
+      "bruke Religion-badge, XP, History Go-kunnskap, popularitet, nettverk, senioritet eller sosial standing som faglig evidens, representasjonsmandat, juridisk kompetanse eller institusjonell myndighet"
+    ]
+  },
+  "competence_axes": [
+    "utredningskvalitet",
+    "kildekritikk",
+    "proveniens",
+    "interessentkartlegging",
+    "religionsfaglig_analyse",
+    "rettighetsforstaelse",
+    "rolleforstaelse",
+    "konsekvensvurdering",
+    "beslutningsklar_skriving"
+  ],
+  "ideal_type_problems": [
+    "bestiller ønsker ett svar før materialet støtter det",
+    "ressurssterk aktør leverer et ferdig narrativ",
+    "religion brukes som enkel forklaring på et sammensatt fenomen",
+    "religionsfaglig spørsmål glir over i juridisk garanti",
+    "kort frist gjør berørte perspektiver ufullstendige",
+    "senioritet eller standing blir feilaktig behandlet som myndighet"
+  ],
+  "career_path": {
+    "entry_from": [
+      "Fagkonsulent og Seniorrådgiver er direct etter canonical Religion career-policy; prerequisites skal ikke oppfinne kvalifikasjonskrav."
+    ],
+    "progression_to": [
+      "Større saks-, koordinerings- eller lederansvar krever faktisk tildelt ansvar og eventuell delegasjon; badge-tier alene er ikke fullmakt."
+    ],
+    "possible_promotions": [
+      "større saks- eller koordineringsansvar når arbeidsgiver faktisk tildeler det",
+      "separat fag- eller lederrolle dersom dens egne appointment- eller qualification-gates er oppfylt"
+    ],
+    "possible_exits": [
+      "forskning, formidling, forvaltning eller ledelse etter den nye rollens egne krav"
+    ],
+    "career_risks": [
+      "bestillerpress kan skjule usikkerhet",
+      "aktørnærhet kan bli interessefangst",
+      "tempo kan presse analyse over i ubegrunnet sikkerhet",
+      "seniorstatus kan skape uformell myndighetsglidning"
+    ]
+  },
+  "required_knowledge": {
+    "education_basis": [
+      "Religionsvitenskap, samfunnsanalyse, kildekritikk, utredningsmetode, institusjonsforståelse og rettighetsforståelse forbedrer arbeidet, men canonical career-entry for begge titler forblir direct."
+    ],
+    "skills": [
+      "utredning",
+      "kildekritikk",
+      "proveniens",
+      "interessentkartlegging",
+      "konsekvensanalyse",
+      "presis_skriving",
+      "rådgivning",
+      "mandatavklaring",
+      "rettighetsforstaelse",
+      "versjons_og_handoffpraksis"
+    ],
+    "category_knowledge": [
+      "Religionsfrihet, livssynsmangfold, intern variasjon, organisasjonsformer, historisk kontekst og skillet mellom aktørstemme, faglig evidens, normativt valg, juridisk vurdering, råd og beslutning."
+    ],
+    "history_go_badges": [
+      "religion"
+    ],
+    "place_connections": [
+      "bestilling_mandat_og_beslutningsbehov_religion_utredning",
+      "kilde_aktor_og_interessentkart_religion_utredning",
+      "rettighet_juss_og_myndighetsavklaring_religion_utredning",
+      "anbefaling_handoff_og_oppfolging_religion_utredning"
+    ],
+    "people_connections": [
+      "ingrid_bestilling_og_mandat_religion_utredning",
+      "samir_kilder_aktorer_og_pluralisme_religion_utredning",
+      "liv_juss_rettigheter_og_forvaltning_religion_utredning",
+      "jonas_kvalitet_anbefaling_og_handoff_religion_utredning"
+    ]
+  },
+  "challenges": [
+    {
+      "id": "bestiller_vil_ha_ett_svar",
+      "title": "Bestiller vil ha ett svar",
+      "description": "Saksbildet er sammensatt, men bestilleren ønsker en entydig konklusjon før alle premisser er avklart.",
+      "pressure": "enkelhet_vs_redelighet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    },
+    {
+      "id": "sterk_aktor_svak_kontroll",
+      "title": "Sterk aktør, svakt kontrollert grunnlag",
+      "description": "En ressurssterk organisasjon tilbyr tall og formuleringer som gagner egen posisjon.",
+      "pressure": "tilgang_vs_uavhengighet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "kort_frist_ufullstendig_horing",
+      "title": "Kort frist, ufullstendig aktørbilde",
+      "setup": "Fristen utløper før alle berørte perspektiver er kontrollert, samtidig som beslutningstaker trenger et råd.",
+      "choice_axis": "fart_vs_sporbar_bredde",
+      "consequence_axis": "beslutningsnytte_og_legitimitet_vs_falsk_sikkerhet",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "ingrid_bestilling_og_mandat_religion_utredning",
+      "name": "Ingrid",
+      "role": "bestillings- og mandatkontakt",
+      "workplace_ids": [
+        "bestilling_mandat_og_beslutningsbehov_religion_utredning"
+      ],
+      "function": "Ingrid gjør bestillingen operativ ved å skille hvilket spørsmål som faktisk skal besvares, hvem som eier beslutningen, hvilke frister og leveranseformer som gjelder, og hvilke deler som er religionsfaglig analyse fremfor juss, politikk eller institusjonell beslutning. Hun presser spilleren til å registrere premisser, alternativer og usikkerhet før arbeidet blir formulert som en anbefaling, slik at et tydelig råd ikke forveksles med et skjult vedtak.",
+      "authority_relation": "Ingrid kan avklare oppdrag, prioritet, mottaker og beslutningsbehov og kan returnere en leveranse som svarer på feil spørsmål. Hun kan ikke gjøre Fagkonsulent eller Seniorrådgiver til vedtaksmyndighet, kan ikke utvide mandatet fordi spilleren har høy Religion-badge eller sosial standing, og kan ikke behandle bestillers ønskede konklusjon som dokumentasjon. Når mandatet er uklart må riktig beslutningseier eller kompetent instans avklare det.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "samir_kilder_aktorer_og_pluralisme_religion_utredning",
+      "name": "Samir",
+      "role": "kilde-, aktør- og pluralismekontakt",
+      "workplace_ids": [
+        "kilde_aktor_og_interessentkart_religion_utredning"
+      ],
+      "function": "Samir kartlegger dokumenter, forskning, aktørutsagn og berørte interesser og hjelper spilleren å skille erfaringskunnskap, organisasjonsposisjon, teologisk standpunkt, historisk materiale og analytisk evidens. Han leter systematisk etter manglende motstemmer, intern variasjon og asymmetri i hvem som har tid og ressurser til å svare, slik at en sterk eller tilgjengelig aktør ikke blir behandlet som hele tros- eller livssynsfeltet.",
+      "authority_relation": "Samir kan kreve tydelig attribusjon, kildekritikk og bredere aktørkartlegging og kan markere at et råd bygger på ufullstendig høring. Han kan ikke utpeke den autentiske representanten for en religion eller et livssyn, kan ikke gi en organisasjon mandat den ikke har, og kan ikke la nettverk eller god relasjon telle som evidens. Aktørkontakt forbedrer forståelse og kontroll, men skaper verken representasjonsmandat eller beslutningsmyndighet.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "liv_juss_rettigheter_og_forvaltning_religion_utredning",
+      "name": "Liv",
+      "role": "juss-, rettighets- og forvaltningskontakt",
+      "workplace_ids": [
+        "rettighet_juss_og_myndighetsavklaring_religion_utredning"
+      ],
+      "function": "Liv identifiserer når et religionsfaglig spørsmål går over i rettighets-, diskriminerings-, personvern-, habilitets- eller forvaltningsrettslige vurderinger. Hun hjelper med å beskrive faktum og religionsfaglige konsekvenser presist, men holder den juridiske konklusjonen hos kompetent instans. Hun gjør også sporbar hvem som har delegert myndighet, hvilke rettigheter som kan berøres og hvilke avklaringer som må foreligge før rådet kan brukes som beslutningsgrunnlag.",
+      "authority_relation": "Liv kan kreve juridisk eller myndighetsmessig avklaring, stoppe bastante garantier og markere rettighetsrisiko i utredningsloggen. Hun kan ikke låne ut juridisk kompetanse til spilleren, kan ikke gjøre et faglig råd til rettslig bindende konklusjon og kan ikke la tidsnød eller arbeidsgiverpress oppheve krav til habilitet, rettigheter eller riktig beslutningseier. Eskalering er en profesjonell grense, ikke et nederlag.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "jonas_kvalitet_anbefaling_og_handoff_religion_utredning",
+      "name": "Jonas",
+      "role": "kvalitets- og beslutningsgrunnlagsredaktør",
+      "workplace_ids": [
+        "anbefaling_handoff_og_oppfolging_religion_utredning"
+      ],
+      "function": "Jonas tester om sluttproduktet faktisk lar en beslutningstaker se forskjellen mellom fakta, kilder, aktørperspektiver, analyse, alternativer, usikkerhet og anbefaling. Han kontrollerer at argumentasjonen kan spores bakover, at relevante motargumenter ikke er gjemt i vedlegg, og at senere nye opplysninger kan gjenåpne bare de delene som er berørt. Målet er et beslutningsklart, men korrigerbart grunnlag, ikke en tekst som virker sikrere enn materialet tillater.",
+      "authority_relation": "Jonas kan returnere uklare anbefalinger, kreve versjonering, be om synlige forbehold og sørge for handoff til riktig beslutningseier. Han kan ikke godkjenne vedtak på mottakerens vegne, kan ikke gjøre senioritet eller status til bevis for kvalitet og kan ikke omskrive tidligere premisser etter at et råd møter motstand. Handoff overfører dokumentasjon og ansvar for neste steg, ikke skjult myndighet.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "bestilling_mandat_og_beslutningsbehov_religion_utredning",
+      "name": "Bestilling, mandat og beslutningsbehov",
+      "function": "Her registreres oppdragsgiver, faktisk beslutningseier, spørsmål, leveranse, frist, avgrensning, kjente bindinger og hvilke deler som krever annen kompetanse. Flaten hindrer at en ønsket konklusjon blir til premiss og at rådgiveren glir fra analyse til vedtak."
+    },
+    {
+      "id": "kilde_aktor_og_interessentkart_religion_utredning",
+      "name": "Kilde-, aktør- og interessentkartet",
+      "function": "Her skilles forskning, dokumenter, statistikk, historiske kilder, organisasjonsposisjoner, erfaringsutsagn og manglende perspektiver. Hver stemme får ståsted og faktisk mandat, og intern religiøs og livssynsmessig variasjon beholdes synlig."
+    },
+    {
+      "id": "rettighet_juss_og_myndighetsavklaring_religion_utredning",
+      "name": "Rettighet, juss og myndighetsavklaring",
+      "function": "Her registreres rettighets-, diskriminerings-, personvern-, habilitets- og forvaltningsspørsmål, hvem som har kompetanse til å avgjøre dem, og hvilke avklaringer som fortsatt mangler. Religionsfaglig analyse kan beskrive faktum og konsekvenser, men gir ikke juridiske garantier."
+    },
+    {
+      "id": "anbefaling_handoff_og_oppfolging_religion_utredning",
+      "name": "Anbefaling, handoff og oppfølging",
+      "function": "Her versjoneres alternativer, konsekvenser, usikkerhet, anbefaling, kontroll, mottaker, faktisk beslutning, tilbakemelding og bounded rework. Tidligere premisser og versjoner beholdes slik at nytt materiale kan korrigere saken uten at historikken omskrives."
+    }
+  ]
 }
