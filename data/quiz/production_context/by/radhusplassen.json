@@ -1,0 +1,952 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "by",
+  "targetId": "radhusplassen",
+  "profile": "rich_5x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1170,
+    "selection_sha256": "d3a8fd9fc4af3b6097219ec6e6ae0a30a8e28c18a729c52a299c9cee94aec6ea",
+    "category_id": "by",
+    "target_id": "radhusplassen"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/by/pensum_by.json",
+      "bytes": 16713,
+      "sha256": "8de40f1af13426445083f0f3339cb4892f4833921c3614747c29656d165a0b2b",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/by/emner_by.json",
+      "bytes": 594396,
+      "sha256": "7019313fc4b9efa3aa5393a0dd3180b12abba00b0672cb65b44efd0e5c27e8c6",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/by/fagkart_by.json",
+      "bytes": 374396,
+      "sha256": "88d4d9a5e23f60e88da6542d55d84cae5ae4516fb2130163e6de013f88c50127",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/by/methods_by.json",
+      "bytes": 44201,
+      "sha256": "14f3c0fd567a4a43c4d151867bb3d01bdb73da8c95ce6f3e3128fee0964dfd76",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/by/supersetQUIZMAL_by.json",
+      "bytes": 6860,
+      "sha256": "a42443c293a254519c489a705662c46ae8593f348b329c34c3f4f3eda129945a",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/by/radhusplassen.json",
+      "bytes": 22735,
+      "sha256": "f8569604e3901acee6ac6c0e3a159209d2aa1c5f2e2ace7c736f6ba39735a34f"
+    },
+    "target": {
+      "path": "data/places/by/oslo/places/radhusplassen.json",
+      "bytes": 24157,
+      "sha256": "4835111e75d4467277a6672f49eba32d07c9668f12bb8726172897ac33f92901"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1233,
+      "selection_sha256": "fa57fd7ba3b3d4688ae42c1955fd542f2a8b7936ba874c41df6bbac8a3b0c53a"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_radhusplassen.json",
+        "matches": 2,
+        "selection_bytes": 3695,
+        "selection_sha256": "cb475887e595fbd39d5d525340a4f27539f7f0e6c04fba1f53d5d2152c73cc96"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/by/radhusplassen_sets.json",
+  "source_registry": {
+    "oslo_kommune_radhusplassen": {
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/radhusplassen/",
+      "source_type": "primary_institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for areal, bilfriomlegging, trikk og dagens plassfunksjoner."
+    },
+    "oslo_kommune_radhuset": {
+      "url": "https://www.oslo.kommune.no/radhuset/",
+      "source_type": "primary_institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Rådhusets representative rolle og institusjonskontekst."
+    },
+    "oslo_byarkiv_tobias": {
+      "url": "https://www.oslo.kommune.no/OBA/tobias/pdf_arkiv/Tob1998-1.pdf",
+      "source_type": "municipal_archive",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for planhistorie, 1989-vedtak, 1994-omlegging og Vikatrikken i 1995."
+    },
+    "oslo_byleksikon_radhusplassen": {
+      "url": "https://oslobyleksikon.no/side/R%C3%A5dhusplassen",
+      "source_type": "edited_local_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for stedshistorie, Rådhusbryggene, trafikklag og offentlige markeringer."
+    },
+    "sporveien_history": {
+      "url": "https://www.sporveien.no/om-sporveien/historien-var/",
+      "source_type": "primary_institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Vikatrikken og Sporveiens historiske kobling til Rådhusplassen."
+    },
+    "sporveien_tracks": {
+      "url": "https://www.sporveien.no/nyheter-og-media/alle-nyheter-og-pressemeldinger/sporveien-ruster-opp-trikketraseen-over-radhusplassen/",
+      "source_type": "primary_institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Sporveiens direkte infrastrukturelle arbeid over Rådhusplassen."
+    },
+    "arkitektskap_radhusplassen": {
+      "url": "https://arkitektskap.no/prosjekter/radhusplassen/",
+      "source_type": "professional_project_record",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for spesialdesignede trikkemaster og plassprosjektet 1993–1999."
+    },
+    "commons_place": {
+      "url": "https://commons.wikimedia.org/wiki/File:R%C3%A5dhusplassen_Oslo_2022-08-17_01.jpg",
+      "source_type": "open_media_catalog",
+      "review_status": "reviewed",
+      "review_note": "CC0-dokumentasjonsfoto av Rådhusplassen fra 2022."
+    },
+    "commons_tram": {
+      "url": "https://commons.wikimedia.org/wiki/File:Tram_tracks_at_R%C3%A5dhusplassen.jpg",
+      "source_type": "open_media_catalog",
+      "review_status": "reviewed",
+      "review_note": "Åpent dokumentasjonsfoto av trikkesporet på Rådhusplassen."
+    },
+    "commons_bryggene": {
+      "url": "https://commons.wikimedia.org/wiki/File:Oslo_R%C3%A5dhus_med_R%C3%A5dhusplassen_og_r%C3%A5dhusbryggene.jpg",
+      "source_type": "open_media_catalog",
+      "review_status": "reviewed",
+      "review_note": "Åpent dokumentasjonsfoto som eksplisitt viser Rådhusbryggene og plassen."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/radhusplassen_sets.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/by/radhusplassen_sets.json",
+      "set_count": 5,
+      "question_count": 35,
+      "finding": "Legacy 5×7-banken var innholdsrik, men typologien og production_context fulgte ikke dagens 21/7/7-kontrakt."
+    },
+    "decisions": [
+      "Bevar de 35 eksisterende spørsmålene som innholdsbank.",
+      "Normaliser progresjonen til 21 fact + 7 context + 7 concept.",
+      "Hold de første 28 spørsmålene fri for eksplisitt metode og teori.",
+      "Bind bare finalsettet til canonical By-metoder og teoretiske linser."
+    ],
+    "knowledge_migration": "Eksisterende Knowledge-ID-er beholdes og suppleres bare der et spørsmål mangler stabil primær-ID."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Rådhusplassen har fem selvstendige læringsjobber: geografi og institusjon, trafikkhistorie, bilfri transformasjon, arrangements-/offentlighetsanalyse og sluttfase med metode/teori. Eksisterende 35 spørsmål bærer profilen uten filler."
+  },
+  "held_back_candidates": [
+    "Publikumsopplevelse eller sosial inkludering uten brukerdata.",
+    "Eksakte årsakspåstander om observerte bevegelser.",
+    "Oslo rådhus som Structure-kort for Rådhusplassen; rådhuset er et eget canonicalt sted.",
+    "Stein Kolstø som ferdig People-kort uten verifisert canonical person- og mediepakke."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 7,
+      "emner": 82,
+      "topic_hooks": 81,
+      "methods": 14
+    },
+    "candidate_emner": [
+      {
+        "id": "em_by_torg_plasser_som_scene",
+        "title": "Torg og plasser som scene",
+        "score": 125
+      },
+      {
+        "id": "em_by_midlertidige_installasjoner",
+        "title": "Midlertidige installasjoner",
+        "score": 100
+      },
+      {
+        "id": "em_by_symbolsk_makt_og_representasjon",
+        "title": "Symbolsk makt og representasjon",
+        "score": 100
+      },
+      {
+        "id": "em_by_demonstrasjoner_markeringer",
+        "title": "Demonstrasjoner og markeringer",
+        "score": 25
+      },
+      {
+        "id": "em_by_festivaler_arrangementer",
+        "title": "Festivaler og arrangementer",
+        "score": 25
+      },
+      {
+        "id": "em_by_gangstrommer_snarveier",
+        "title": "Gangstrømmer og snarveier",
+        "score": 25
+      },
+      {
+        "id": "em_by_hendelsesbasert_byliv_hoytider",
+        "title": "Hendelsesbasert byliv (17. mai, Pride osv.)",
+        "score": 25
+      },
+      {
+        "id": "em_by_lek_trening_uformell_aktivitet",
+        "title": "Lek, trening og uformell aktivitet",
+        "score": 25
+      },
+      {
+        "id": "em_by_offentlige_rom_motesteder",
+        "title": "Offentlige rom og møtesteder",
+        "score": 25
+      },
+      {
+        "id": "em_by_opphold_vs_gjennomgang",
+        "title": "Opphold vs gjennomgang",
+        "score": 25
+      },
+      {
+        "id": "em_by_parker_som_sosial_infrastruktur",
+        "title": "Parker som sosial infrastruktur",
+        "score": 25
+      },
+      {
+        "id": "em_by_publikum_deltakelse_tilskuere",
+        "title": "Publikum, deltakelse og tilskuere",
+        "score": 25
+      },
+      {
+        "id": "em_by_romlig_orden",
+        "title": "Romlig orden og byplanlegging",
+        "score": 5
+      },
+      {
+        "id": "em_by_skala_hoyde_volum",
+        "title": "Skala, høyde og volum",
+        "score": 5
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "byliv_aapne_rom",
+        "title": "Bruk av åpne rom",
+        "category_id": "byliv",
+        "score": 33
+      },
+      {
+        "id": "byliv_arrangement",
+        "title": "Festivaler og arrangement",
+        "category_id": "byliv",
+        "score": 23
+      },
+      {
+        "id": "byliv_opphold_vs_gjennomgang",
+        "title": "Opphold vs gjennomgang",
+        "category_id": "byliv",
+        "score": 23
+      },
+      {
+        "id": "makt_protest",
+        "title": "Protest og demonstrasjon",
+        "category_id": "makt_og_konflikt",
+        "score": 23
+      },
+      {
+        "id": "plan_offentlig_vs_privat",
+        "title": "Offentlig vs privat styring",
+        "category_id": "administrasjon_og_plan",
+        "score": 23
+      },
+      {
+        "id": "urb_offentlig_rom_ide",
+        "title": "Offentlig rom som idé",
+        "category_id": "urbanisme",
+        "score": 23
+      },
+      {
+        "id": "arb_turisme",
+        "title": "Turisme",
+        "category_id": "arbeid_og_naering",
+        "score": 10
+      },
+      {
+        "id": "ark_makt",
+        "title": "Arkitektur og makt",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "ark_symbolbygg",
+        "title": "Symbolbygg",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "bolig_identitet",
+        "title": "Lokal identitet",
+        "category_id": "bolig_og_nabolag",
+        "score": 10
+      },
+      {
+        "id": "byliv_midlertidighet",
+        "title": "Midlertidighet og sesongbruk",
+        "category_id": "byliv",
+        "score": 10
+      },
+      {
+        "id": "his_navn_symboler",
+        "title": "Navn og symboler",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "makt_politisk_symbolikk",
+        "title": "Politisk symbolikk",
+        "category_id": "makt_og_konflikt",
+        "score": 10
+      },
+      {
+        "id": "plan_midlertidige_tiltak",
+        "title": "Midlertidige tiltak",
+        "category_id": "administrasjon_og_plan",
+        "score": 10
+      },
+      {
+        "id": "plan_skilting_regulering",
+        "title": "Skilting og regulering",
+        "category_id": "administrasjon_og_plan",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_03_infrastruktur_og_bevegelse"
+    ],
+    "emne_ids": [
+      "em_by_midlertidige_installasjoner",
+      "em_by_symbolsk_makt_og_representasjon",
+      "em_by_torg_plasser_som_scene"
+    ],
+    "topic_hook_ids": [
+      "byliv_aapne_rom"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_gaanalyse"
+    ],
+    "thinker_ids": [
+      "william_h_whyte"
+    ],
+    "works": [
+      "The Social Life of Small Urban Spaces"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_radhusplassen_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rådhusplassen ligger mellom Oslo rådhus og Oslofjorden og fungerer som den åpne frontplassen foran rådhusbygget.",
+      "source_ids": [
+        "oslo_kommune_radhusplassen",
+        "oslo_byleksikon_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Plassen vender mot fjorden og knytter rådhusområdet til havnefronten og bryggene.",
+      "source_ids": [
+        "oslo_kommune_radhusplassen",
+        "oslo_byleksikon_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rådhusplassen er en stor offentlig plass brukt til opphold, arrangementer, markeringer og gjennomgang.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ytterst på plassen ligger Rådhusbryggene, som knytter plassen til sjøtransport og fjorden.",
+      "source_ids": [
+        "sporveien_history",
+        "oslo_byarkiv_tobias"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rådhusplassen har navn etter Oslo rådhus, som åpnet i 1950 og danner plassens arkitektoniske bakvegg.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rådhusplassen oppleves som et stort åpent rom der byen åpner seg mot vannet, i kontrast til tettere gater lenger inne i sentrum.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rådhusplassen ligger i Vika-området i sentrum, mellom rådhuset, vestbaneterminalen og fjorden.",
+      "source_ids": [
+        "sporveien_history",
+        "oslo_byarkiv_tobias"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo rådhus ble innviet i 1950. Det ga Rådhusplassen sin varige rolle som representativ plass foran byens styrebygg.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Havnebanen mellom Vestbanen og Østbanen gikk over Rådhusplassen fra 1907 til 1980 og gjorde plassen til et tungt trafikkrom.",
+      "source_ids": [
+        "oslo_kommune_radhusplassen",
+        "oslo_byarkiv_tobias"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_midlertidige_installasjoner"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Festningstunnelen tok bort den store øst–vest-trafikken fra overflaten og gjorde det mulig å bruke plassen mer som oppholds- og arrangementsrom.",
+      "source_ids": [
+        "oslo_kommune_radhusplassen",
+        "oslo_byarkiv_tobias"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_midlertidige_installasjoner"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Det underjordiske Vestbanekrysset gjorde at den siste overflatetrafikken kunne fjernes, og plassen ble reelt bilfri på 1990-tallet.",
+      "source_ids": [
+        "oslo_kommune_radhusplassen",
+        "oslo_byarkiv_tobias"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_midlertidige_installasjoner"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Rådhusplassen har i dag trikkestopp på linje 12, etter at ny sporvognsrute ble anlagt på 1990-tallet.",
+      "source_ids": [
+        "sporveien_history",
+        "oslo_byarkiv_tobias"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Mela-festivalen ble arrangert første gang i Oslo i 2001 og holdes på Rådhusplassen som en stor, gratis og flerkulturell møteplass.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bygdøyfergen går fra Rådhusbrygge 3 ved Rådhusplassen i sommersesongen og knytter plassen til museumsområdet på Bygdøy.",
+      "source_ids": [
+        "oslo_kommune_radhusplassen",
+        "oslo_byleksikon_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Rådhusplassen er et godt case for midlertidige installasjoner fordi arrangementer og sesongbruk ofte legger et nytt lag av scener, møblering og strukturer over det faste byrommet.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_midlertidige_installasjoner"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Midlertidige installasjoner prøver ut nye bruksmåter eller stemninger i et byrom uten å endre plassen permanent.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_midlertidige_installasjoner"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Rådhusplassen er en klassisk offentlig scene: et stort rom der publikum samles og hendelser gjøres synlige i byen.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Urban eksperimentering handler om å teste nye former for bruk, opphold eller arrangement i byrommet før eller uten permanent endring.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_midlertidige_installasjoner"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Store, åpne plasser med tydelige kanter og god tilgjengelighet fungerer godt som scener for samlinger og arrangementer.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Midlertidige installasjoner viser hvordan selv ikke-varige grep kan styre bevegelse, oppmerksomhet og opphold i et byrom.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_midlertidige_installasjoner"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Store arrangementer viser hvordan et byrom kan transformeres midlertidig uten å bygges om permanent. Bruk, rytme og orientering endres mens arrangementet varer.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_midlertidige_installasjoner"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Rådhusplassen ligger foran byens viktigste kommunale symbolbygg og brukes til seremonier, markeringer og internasjonal iscenesettelse. Derfor er den et tydelig sted for symbolsk makt og representasjon.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Branding handler her om hvordan et sted brukes til å formidle en ønsket identitet. Rådhusplassen gir Oslo et representativt ansikt mot både innbyggere og besøkende.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "På Rådhusplassen er mye av makten symbolsk: seremonier, taler, bygningens autoritet og byens selvpresentasjon gjør makten synlig uten at plassen er lukket som en festning.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Stedsidentitet handler om hvilke betydninger som samler seg om et sted. For Rådhusplassen gjelder det særlig rådhuset, fjorden, seremonier og offentlige arrangementer.",
+      "source_ids": [
+        "oslo_kommune_radhusplassen",
+        "oslo_byleksikon_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Estetisk politikk handler om hvordan form, kunst, seremonier og iscenesettelse påvirker hvordan mennesker opplever fellesskap og makt. Rådhusplassen er et tydelig eksempel på dette.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Rådhusplassen blir et symbolsk byrom fordi den samler politikk, seremoni, internasjonale bilder og byens offentlige selvfremstilling i ett rom.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Når Rådhusplassen brukes til store markeringer, fungerer den som scene for både fellesskap og representasjon. Stedet gjør byen synlig for seg selv og for andre.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En offentlig scene er et byrom der hendelser, samlinger og uttrykk gjøres synlige for mange. Rådhusplassen er et slikt sted.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Midlertidige installasjoner er fysiske elementer som scener, telt, paviljonger eller møblering som for en periode forandrer et byrom.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_midlertidige_installasjoner"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Branding handler om hvordan et sted brukes til å bygge og formidle et bestemt bilde eller rykte, for eksempel av Oslo som åpen og representativ hovedstad.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedsidentitet er summen av betydninger og assosiasjoner som gjør et sted gjenkjennelig og meningsfullt for brukere og publikum.",
+      "source_ids": [
+        "oslo_byleksikon_radhusplassen",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Urban eksperimentering betyr at byen tester løsninger, bruksmønstre eller design i mindre og ofte midlertidig form før de eventuelt blir varige.",
+      "source_ids": [
+        "oslo_byleksikon_radhusplassen",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_midlertidige_installasjoner"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Symbolsk makt virker gjennom tegn, arkitektur, ritualer og representasjon snarere enn fysisk tvang. Rådhusplassen og rådhuset er et tydelig eksempel.",
+      "source_ids": [
+        "oslo_kommune_radhuset",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_radhusplassen_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et pilotprosjekt er et avgrenset forsøk som brukes til å teste en idé i praksis før man bestemmer om den skal videreføres eller bygges ut permanent.",
+      "source_ids": [
+        "oslo_byleksikon_radhusplassen",
+        "oslo_kommune_radhusplassen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_midlertidige_installasjoner"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_radhusplassen_bilfri_1994",
+      "source_file": "data/stories/stories_radhusplassen.json",
+      "summary": "Sommeren 1994 ble Rådhusplassen bilfri etter flere tiår der E18 og annen biltrafikk hadde dominert arealet foran rådhuset."
+    },
+    {
+      "type": "story",
+      "id": "st_radhusplassen_vikatrikken_1995",
+      "source_file": "data/stories/stories_radhusplassen.json",
+      "summary": "I 1995 åpnet Vikatrikken over den nylig bilfrie Rådhusplassen. Plassen ble ikke transportfri; transporthierarkiet ble endret."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "by_radhusplassen_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_radhusplassen_quiz_01",
+        "claim_radhusplassen_quiz_02",
+        "claim_radhusplassen_quiz_03",
+        "claim_radhusplassen_quiz_04",
+        "claim_radhusplassen_quiz_05",
+        "claim_radhusplassen_quiz_06",
+        "claim_radhusplassen_quiz_07"
+      ]
+    },
+    {
+      "set_id": "by_radhusplassen_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_radhusplassen_quiz_08",
+        "claim_radhusplassen_quiz_09",
+        "claim_radhusplassen_quiz_10",
+        "claim_radhusplassen_quiz_11",
+        "claim_radhusplassen_quiz_12",
+        "claim_radhusplassen_quiz_13",
+        "claim_radhusplassen_quiz_14"
+      ]
+    },
+    {
+      "set_id": "by_radhusplassen_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_radhusplassen_quiz_15",
+        "claim_radhusplassen_quiz_16",
+        "claim_radhusplassen_quiz_17",
+        "claim_radhusplassen_quiz_18",
+        "claim_radhusplassen_quiz_19",
+        "claim_radhusplassen_quiz_20",
+        "claim_radhusplassen_quiz_21"
+      ]
+    },
+    {
+      "set_id": "by_radhusplassen_set_4",
+      "order": 4,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_radhusplassen_quiz_22",
+        "claim_radhusplassen_quiz_23",
+        "claim_radhusplassen_quiz_24",
+        "claim_radhusplassen_quiz_25",
+        "claim_radhusplassen_quiz_26",
+        "claim_radhusplassen_quiz_27",
+        "claim_radhusplassen_quiz_28"
+      ]
+    },
+    {
+      "set_id": "by_radhusplassen_set_5",
+      "order": 5,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_radhusplassen_quiz_29",
+        "claim_radhusplassen_quiz_30",
+        "claim_radhusplassen_quiz_31",
+        "claim_radhusplassen_quiz_32",
+        "claim_radhusplassen_quiz_33",
+        "claim_radhusplassen_quiz_34",
+        "claim_radhusplassen_quiz_35"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 35,
+    "counts": {
+      "fact": 21,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.6,
+      "context": 0.2,
+      "concept_theory": 0.2
+    }
+  }
+}
