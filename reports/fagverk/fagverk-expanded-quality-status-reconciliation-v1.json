@@ -1,0 +1,64 @@
+{
+  "schema": "history_go_fagverk_expanded_quality_status_reconciliation_v1",
+  "version": "1.0.0",
+  "status": "expanded_quality_reconciled_no_content_gaps",
+  "reconciled_from_main_sha": "ec0bd8b0318ce180e75ec8c836f926cdbf16cdc1",
+  "reconciled_at": "2026-09-08",
+  "standard": "expanded_and_audited",
+  "scope": {
+    "top_level_subjects": 19,
+    "nested_specializations": 1,
+    "total_strictly_proven_units": 20
+  },
+  "evidence": {
+    "subject_status": "data/fagverk/subject_status.json",
+    "strict_integrity": "reports/fagverk/fagverk-theory-integrity-audit.json",
+    "final_19_plus_1_reconciliation": "reports/fagverk/fagverk-expansion-19-plus-1-final-reconciliation-v1.json",
+    "quality_contract": "data/fag/fagverk_theory_quality_contract_v1.json"
+  },
+  "classification_rules": {
+    "editorial_lifecycle_is_separate_from_quality_status": true,
+    "terminal_complete_can_coexist_with_expanded_quality": true,
+    "missing_proof_is_not_content_gap": true,
+    "content_production_requires_substantive_gap": true,
+    "strict_integrity_requires_per_major_field_proof": true
+  },
+  "summary": {
+    "top_level_expanded_quality": 19,
+    "top_level_unreconciled": 0,
+    "strictly_proven_units": 20,
+    "substantive_content_gaps": 0,
+    "proof_reconciliation_queue": 0,
+    "expansion_production_queue": 0,
+    "content_repair_queue": 0
+  },
+  "subjects": [
+    {"id":"by","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"historie","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"kunst","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"litteratur","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"media","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"musikk","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"naeringsliv","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"natur","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"politikk","quality_status":"expanded_and_audited","action":"already_expanded_editorial_and_quality"},
+    {"id":"psykologi","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"helse","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"utdanning","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"religion","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"scenekunst","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"sport","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"subkultur","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"vitenskap","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"filosofi","quality_status":"expanded_and_audited","action":"status_reconciled_only"},
+    {"id":"film_tv","quality_status":"expanded_and_audited","action":"status_reconciled_only"}
+  ],
+  "nested_specializations": [
+    {"id":"teknologi","parent_subject":"vitenskap","strict_integrity_status":"strictly_proven","new_content_required":false}
+  ],
+  "production_decision": {
+    "new_content_required": false,
+    "reason": "Canonical strict-integrity and final 19+1 reconciliation both report zero substantive content gaps and empty repair/expansion queues."
+  },
+  "next_work_class": "maintenance_source_refresh_and_place_case_expansion"
+}
