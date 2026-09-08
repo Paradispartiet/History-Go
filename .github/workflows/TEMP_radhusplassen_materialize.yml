@@ -27,7 +27,23 @@ jobs:
           git config user.email 'actions@users.noreply.github.com'
           git fetch origin main
           echo "Fresh main: $(git rev-parse origin/main)"
+          set +e
           git merge --no-edit origin/main
+          merge_status=$?
+          set -e
+          if [ "$merge_status" -ne 0 ]; then
+            conflicts="$(git diff --name-only --diff-filter=U | sort)"
+            expected="$(printf '%s\n' 'data/fagverk/fagverk_release.json' 'data/leksikon/sprak/manifest.json' | sort)"
+            printf 'Fresh-main conflicts:\n%s\n' "$conflicts"
+            if [ "$conflicts" != "$expected" ]; then
+              echo 'Unexpected fresh-main conflict set; failing closed.' >&2
+              exit "$merge_status"
+            fi
+            git checkout --theirs -- data/fagverk/fagverk_release.json data/leksikon/sprak/manifest.json
+            git add data/fagverk/fagverk_release.json data/leksikon/sprak/manifest.json
+            test -z "$(git diff --name-only --diff-filter=U)"
+            git commit --no-edit
+          fi
       - uses: actions/setup-node@v5
         with:
           node-version: '24'
