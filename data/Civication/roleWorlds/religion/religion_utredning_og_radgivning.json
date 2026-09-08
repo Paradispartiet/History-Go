@@ -1,0 +1,1331 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_utredning_og_radgivning",
+  "title": "Religion / Utredning og rådgivning — beslutningsgrunnlag, pluralisme og situert standing",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Hvordan kan en rådgiver være nyttig nok til å påvirke en beslutning uten at kildekunnskap, seniorstatus eller sosial standing glir over i skjult beslutnings-, juridisk eller representasjonsmyndighet?",
+    "description": "Role World-en lukker situated_reputation rundt en allerede komplett career-foundation. Fagkonsulent og Seniorrådgiver deler direct entry og samme vedvarende utredningslogg. Dramaturgien følger hvordan kilder, aktørstemmer, rettighetsgrenser, bestillerpress og beslutningsbehov skaper relasjonell standing som påvirker samarbeid, men aldri evidens eller authority."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "bureaucratic_power",
+    "loyalty_up_down",
+    "shame_reputation",
+    "public_attention",
+    "status_anxiety",
+    "public_private_leakage",
+    "class_power",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "bestillingsrom_der_sporsmal_mandat_og_beslutningseier_ma_lases_for_forste_kilde_samles",
+    "kilde_og_interessentbord_der_ressurssterke_aktorer_konkurrerer_med_mindre_synlige_motstemmer",
+    "analyseverksted_der_beskrivelse_forklaring_normativt_valg_og_anbefaling_ma_holdes_adskilt",
+    "juss_rettighet_og_habilitetsrom_der_radgiveren_ma_vite_nar_saken_skal_eskaleres",
+    "ledermote_der_et_beslutningsklart_rad_ma_vaere_kort_uten_a_skjule_usikkerhet",
+    "tverrfaglig_handoff_der_versjoner_og_ansvar_ma_overleve_nye_eiere",
+    "offentlig_kritikkrom_der_omdomme_og_synlighet_tester_sporbarheten_i_tidligere_valg",
+    "privat_hverdagsrom_der_seniorstatus_lojalitet_og_frykt_for_feil_lekkes_ut_av_arbeidsdagen",
+    "etterkontroll_der_nye_kilder_eller_korrigerte_premisser_krever_bounded_rework_uten_historieomskriving"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "bestiller_med_kort_frist_world",
+      "social_function": "Gjør bestillerpress og beslutningsbehov konkret når organisasjonen vil ha ett svar før kildebildet er ferdig kontrollert.",
+      "class_position": "Formell oppdragsgiver med reell prioriteringsmakt over leveransen, men ikke makt til å omskrive fakta eller gi rådgiveren mer myndighet enn mandatet tillater.",
+      "status": "Høy organisatorisk status kan påvirke tempo og karriere, men teller ikke som evidens.",
+      "power_over_player": "Kan sette frist, avgrense spørsmål og returnere en leveranse som ikke svarer på bestillingen; kan ikke bestemme hva kildene faktisk viser.",
+      "wants": "Et beslutningsklart råd som kan brukes innen fristen uten å drukne mottakeren i metode.",
+      "conceals": "At intern politikk eller prestisje kan gjøre enkelte konklusjoner mer ønskelige enn andre.",
+      "speech_style": "Kort, målrettet og opptatt av hva beslutningseier faktisk trenger å vite.",
+      "teaches_player": "At beslutningsnytte krever presise forbehold, ikke falsk sikkerhet."
+    },
+    {
+      "id": "metode_og_kildekritiker_world",
+      "social_function": "Gjør kildegrunnlag, utvalg og alternative forklaringer til en sosial motkraft mot bekvemme konklusjoner.",
+      "class_position": "Faglig spesialist med høy metodeautoritet, men uten vedtaks- eller representasjonsmyndighet.",
+      "status": "Standing bygges gjennom etterprøvbar kritikk og synlige premisser.",
+      "power_over_player": "Kan returnere svak analyse og kreve nye kilder; kan ikke gjøre egen metodepreferanse til institusjonelt vedtak.",
+      "wants": "At alle sentrale påstander kan spores til kilder, avgrensninger og reelle alternative forklaringer.",
+      "conceals": "At også metodevalg kan prioritere noen typer kunnskap og gjøre andre perspektiver mindre synlige.",
+      "speech_style": "Spørrende, presis og systematisk om hva som faktisk følger av materialet.",
+      "teaches_player": "At et godt råd skiller dokumentasjon, analyse, normativt valg og beslutning."
+    },
+    {
+      "id": "organisasjonsrepresentant_med_avgrenset_mandat_world",
+      "social_function": "Gjør aktørkunnskap og representasjonsmakt synlig når en organisert tros- eller livssynsaktør leverer sterke påstander.",
+      "class_position": "Ressurssterk ekstern aktør med offentlig stemme og tilgang, men mandat bare for egen sammenheng.",
+      "status": "Kan ha høy offentlig standing uten å være representativ for alle.",
+      "power_over_player": "Kan dokumentere feil og forklare egen posisjon; kan ikke gi rådgiveren mandat til å tale for gruppen eller gjøre egen linje universell.",
+      "wants": "At egen organisasjon og medlemmer blir forstått presist og ikke stereotypisert.",
+      "conceals": "At organisasjonens offisielle linje kan være omstridt internt.",
+      "speech_style": "Mandatbevisst og tydelig om hva organisasjonen mener og hva den ikke kan svare for.",
+      "teaches_player": "At aktørkontakt må attribueres og trianguleres, ikke forveksles med universell representasjon."
+    },
+    {
+      "id": "intern_motstemme_world",
+      "social_function": "Synliggjør erfaringer som faller utenfor store organisasjoners språk og institusjonens lettest tilgjengelige kontaktflater.",
+      "class_position": "Berørt person eller liten aktør med svakere institusjonell tilgang, men relevant erfarings- og dokumentasjonskunnskap.",
+      "status": "Lav formell status kan sameksistere med høy relevans for sakens faktiske konsekvenser.",
+      "power_over_player": "Kan avdekke utelatte virkninger og kategorier; kan ikke alene bli ny universell representant.",
+      "wants": "At intern variasjon og maktforskjeller blir synlige i beslutningsgrunnlaget.",
+      "conceals": "At også motstemmens erfaring er situert og ikke automatisk generaliserbar.",
+      "speech_style": "Erfaringsnær og konkret om hva institusjonens kategorier ikke fanger.",
+      "teaches_player": "At bredde handler om relevans og maktasymmetri, ikke bare antall inviterte."
+    },
+    {
+      "id": "juridisk_og_forvaltningsfaglig_kontroll_world",
+      "social_function": "Markerer punktet der religionsfaglig rådgivning må stoppe og juridisk eller forvaltningsfaglig kompetanse må overta.",
+      "class_position": "Kontroll- og spesialistrolle med myndighet innen eget fagfelt, men ikke eierskap til religionsfaglige fakta.",
+      "status": "Høy prosessmakt når rettigheter, habilitet eller delegasjon er uklare.",
+      "power_over_player": "Kan kreve eskalering, stoppe uholdbare formuleringer og avklare rettslige rammer; kan ikke retroaktivt gjøre rådgiveren til jurist.",
+      "wants": "At beslutningsgrunnlaget skiller faglige vurderinger fra bindende rettslige konklusjoner.",
+      "conceals": "At juridisk språk kan virke mer sikkert enn den faktiske tolknings- eller faktasituasjonen.",
+      "speech_style": "Avgrensende, kilde- og hjemmelsorientert.",
+      "teaches_player": "At profesjonell kvalitet også er å vite hvilket spørsmål man ikke eier."
+    },
+    {
+      "id": "senior_kollega_med_uformell_status_world",
+      "social_function": "Gjør senioritet og kollegial kultur til et presspunkt når erfaring lett forveksles med skjult myndighet.",
+      "class_position": "Erfaren rådgiver med stor uformell innflytelse, men bare den myndigheten som faktisk er delegert.",
+      "status": "Høy intern standing kan åpne dører og forme normer, men er ikke fullmakt.",
+      "power_over_player": "Kan påvirke tone, prioriteringer og hva som oppleves som karriereklokt; kan ikke instruere uten rollegrunnlag.",
+      "wants": "At teamet leverer tydelig og unngår offentlig nederlag.",
+      "conceals": "At ønsket om å beskytte fagmiljøets omdømme kan gjøre synlig usikkerhet sosialt kostbar.",
+      "speech_style": "Pragmatisk, erfaren og ofte indirekte om organisasjonens uskrevne forventninger.",
+      "teaches_player": "At Seniorrådgiver-tittel ikke må bli en uformell omvei rundt authority-grensen."
+    },
+    {
+      "id": "beslutningseier_world",
+      "social_function": "Gjør skillet mellom anbefaling og beslutning konkret når et godt råd faktisk skal omsettes til institusjonell handling.",
+      "class_position": "Leder eller organ med dokumentert beslutningsmyndighet innen saken.",
+      "status": "Formell myndighet er reell, men kan ikke skape fakta eller representasjonsmandat.",
+      "power_over_player": "Kan velge mellom alternativer, avvise anbefalingen og be om mer arbeid; kan ikke kreve at rådgiveren skjuler relevante forbehold.",
+      "wants": "Et kort, sporbar og beslutningsklart grunnlag med tydelige konsekvenser.",
+      "conceals": "At beslutningen også kan være politisk, økonomisk eller organisatorisk og ikke bare faglig.",
+      "speech_style": "Konsekvens- og ansvarsfokusert; spør hva som må besluttes nå og hva som fortsatt er usikkert.",
+      "teaches_player": "At rådgivning lykkes når beslutningseier kan se både anbefaling og begrensninger."
+    },
+    {
+      "id": "offentlig_kritiker_eller_journalist_world",
+      "social_function": "Gjør etterprøvbarhet og omdømme konkret når beslutningsgrunnlaget senere leses utenfor arbeidsrommet.",
+      "class_position": "Ekstern offentlig aktør uten intern myndighet, men med evne til å sette dagsorden og avdekke inkonsistens.",
+      "status": "Høy offentlig synlighet kan øke presset uten å øke evidenskvaliteten.",
+      "power_over_player": "Kan be om begrunnelser, sammenligne versjoner og synliggjøre svakheter; kan ikke gjøre popularitet til faglig sannhet.",
+      "wants": "At institusjonen kan forklare hvem som visste hva, hvilke kilder som ble brukt og hvem som besluttet.",
+      "conceals": "At medielogikk kan belønne konflikt og entydighet fremfor sakens faktiske kompleksitet.",
+      "speech_style": "Kort, kontrasterende og opptatt av ansvar, dokumentasjon og endringer over tid.",
+      "teaches_player": "At sporbarhet beskytter både offentligheten og rådgiveren når saken blir omstridt."
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "kildeintegritet",
+      "meaning": "Hvor konsekvent spilleren skiller dokumenterte kilder fra aktørpåstander, antakelser og egen analyse.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "mandatklarhet",
+      "meaning": "Hvor tydelig oppdrag, beslutningseier og rådgiverens faktiske handlingsrom holdes adskilt.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "pluralisme",
+      "meaning": "Hvor systematisk intern variasjon, berørte grupper og relevante motstemmer blir undersøkt og attribuert.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rettighetsbevissthet",
+      "meaning": "Hvor tidlig juridiske, habilitets- og rettighetsspørsmål oppdages og sendes til kompetent instans.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "analytisk_uavhengighet",
+      "meaning": "Hvor godt bestillerpress, nettverk og status holdes adskilt fra konklusjonen.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "beslutningsklarhet",
+      "meaning": "Hvor presist alternativer, konsekvenser, anbefaling og forbehold kan brukes av faktisk beslutningseier.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "handoff_tillit",
+      "meaning": "Hvor godt versjoner, kilder, åpne spørsmål og ansvar overlever skifte av eier.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "korrigerbarhet",
+      "meaning": "Hvor lett nye opplysninger kan endre berørte ledd uten å omskrive tidligere begrunnelse.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rollegrenser",
+      "meaning": "Hvor konsekvent direct entry, senioritet og standing holdes adskilt fra vedtak, juss og representasjonsmandat.",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "situated_reputation_model": {
+    "global_score_allowed": false,
+    "audiences": [
+      {
+        "id": "bestiller_og_beslutningseiere",
+        "standing_axis": "tillit_til_beslutningsgrunnlaget",
+        "cares_about": [
+          "mandatklarhet",
+          "beslutningsnytte"
+        ],
+        "cannot_grant": "Bestillere kan gi tydeligere oppdrag, prioritering og tilbakemelding, men kan ikke gjøre sin ønskede konklusjon til evidens eller gi rådgiveren skjult vedtaksmyndighet. Standing i denne relasjonen kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å samarbeide og hvor nøye de leser en anbefaling. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til beslutningstaker, jurist eller religiøs representant. Direct career-entry betyr adgang til jobbsporet, ikke delegert vedtaksmyndighet. History Go og Religion-badge kan skjerpe historiske spørsmål og kildekritikk, men kan ikke være dagens evidens, juridisk kompetanse, representasjonsmandat, tilgangsrett eller institusjonell fullmakt. En sterk relasjon kan heller ikke gjøre en ressurssterk aktørs påstand til representativ sannhet, skjule relevant usikkerhet eller overføre beslutningsansvar fra den faktiske beslutningseieren."
+      },
+      {
+        "id": "faglige_kolleger_og_kvalitetskontroll",
+        "standing_axis": "faglig_etterprovbarhet",
+        "cares_about": [
+          "kildeintegritet",
+          "analytisk_redelighet"
+        ],
+        "cannot_grant": "Kollegial tillit kan gi bedre sparring og tidligere varsling om svakheter, men kan ikke erstatte kildekontroll, dokumenterte premisser eller riktig faglig kompetanse. Standing i denne relasjonen kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å samarbeide og hvor nøye de leser en anbefaling. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til beslutningstaker, jurist eller religiøs representant. Direct career-entry betyr adgang til jobbsporet, ikke delegert vedtaksmyndighet. History Go og Religion-badge kan skjerpe historiske spørsmål og kildekritikk, men kan ikke være dagens evidens, juridisk kompetanse, representasjonsmandat, tilgangsrett eller institusjonell fullmakt. En sterk relasjon kan heller ikke gjøre en ressurssterk aktørs påstand til representativ sannhet, skjule relevant usikkerhet eller overføre beslutningsansvar fra den faktiske beslutningseieren."
+      },
+      {
+        "id": "tros_livssynsaktorer_og_berorte",
+        "standing_axis": "dialog_og_representasjonsnoyaktighet",
+        "cares_about": [
+          "attribusjon",
+          "intern_variasjon"
+        ],
+        "cannot_grant": "God dialog kan åpne erfaringer og motperspektiver, men kan ikke gi rådgiveren eller én organisasjon mandat til å representere en hel tro, et livssyn eller alle berørte. Standing i denne relasjonen kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å samarbeide og hvor nøye de leser en anbefaling. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til beslutningstaker, jurist eller religiøs representant. Direct career-entry betyr adgang til jobbsporet, ikke delegert vedtaksmyndighet. History Go og Religion-badge kan skjerpe historiske spørsmål og kildekritikk, men kan ikke være dagens evidens, juridisk kompetanse, representasjonsmandat, tilgangsrett eller institusjonell fullmakt. En sterk relasjon kan heller ikke gjøre en ressurssterk aktørs påstand til representativ sannhet, skjule relevant usikkerhet eller overføre beslutningsansvar fra den faktiske beslutningseieren."
+      },
+      {
+        "id": "juridisk_forvaltningsfaglig_og_rettighetskontroll",
+        "standing_axis": "grenseklarhet_og_eskalering",
+        "cares_about": [
+          "rettighetsbevissthet",
+          "juridisk_rolleforstaelse"
+        ],
+        "cannot_grant": "Kontrollmiljøet kan avklare rettslige og forvaltningsfaglige spørsmål, men standing hos dem kan ikke gjøre religionsfaglig analyse til bindende juridisk konklusjon. Standing i denne relasjonen kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å samarbeide og hvor nøye de leser en anbefaling. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til beslutningstaker, jurist eller religiøs representant. Direct career-entry betyr adgang til jobbsporet, ikke delegert vedtaksmyndighet. History Go og Religion-badge kan skjerpe historiske spørsmål og kildekritikk, men kan ikke være dagens evidens, juridisk kompetanse, representasjonsmandat, tilgangsrett eller institusjonell fullmakt. En sterk relasjon kan heller ikke gjøre en ressurssterk aktørs påstand til representativ sannhet, skjule relevant usikkerhet eller overføre beslutningsansvar fra den faktiske beslutningseieren."
+      },
+      {
+        "id": "ledelse_og_tverrfaglige_samarbeid",
+        "standing_axis": "handoff_og_samordning",
+        "cares_about": [
+          "sporbarhet",
+          "ansvarsdeling"
+        ],
+        "cannot_grant": "Ledelses- og samarbeidsstanding kan gjøre handoff smidigere, men kan ikke overføre personal-, budsjett- eller beslutningsmyndighet som rollen ikke allerede har fått dokumentert. Standing i denne relasjonen kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å samarbeide og hvor nøye de leser en anbefaling. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til beslutningstaker, jurist eller religiøs representant. Direct career-entry betyr adgang til jobbsporet, ikke delegert vedtaksmyndighet. History Go og Religion-badge kan skjerpe historiske spørsmål og kildekritikk, men kan ikke være dagens evidens, juridisk kompetanse, representasjonsmandat, tilgangsrett eller institusjonell fullmakt. En sterk relasjon kan heller ikke gjøre en ressurssterk aktørs påstand til representativ sannhet, skjule relevant usikkerhet eller overføre beslutningsansvar fra den faktiske beslutningseieren."
+      },
+      {
+        "id": "offentlighet_og_mottakere_av_beslutningsgrunnlag",
+        "standing_axis": "offentlig_tillit_og_forklarbarhet",
+        "cares_about": [
+          "forbehold",
+          "korrigerbarhet"
+        ],
+        "cannot_grant": "Offentlig tillit kan påvirke hvordan et råd blir mottatt, men popularitet, medietrykk eller omdømme kan ikke gjøre et svakt kildegrunnlag sterkere eller skape representasjonsmandat. Standing i denne relasjonen kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å samarbeide og hvor nøye de leser en anbefaling. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til beslutningstaker, jurist eller religiøs representant. Direct career-entry betyr adgang til jobbsporet, ikke delegert vedtaksmyndighet. History Go og Religion-badge kan skjerpe historiske spørsmål og kildekritikk, men kan ikke være dagens evidens, juridisk kompetanse, representasjonsmandat, tilgangsrett eller institusjonell fullmakt. En sterk relasjon kan heller ikke gjøre en ressurssterk aktørs påstand til representativ sannhet, skjule relevant usikkerhet eller overføre beslutningsansvar fra den faktiske beslutningseieren."
+      },
+      {
+        "id": "private_relations_og_rollegrenser",
+        "standing_axis": "privat_tillit_uten_myndighetsglidning",
+        "cares_about": [
+          "fortrolighet",
+          "rolleavgrensning"
+        ],
+        "cannot_grant": "Private relasjoner kan bære stress, skam og stolthet etter arbeidstid, men nærhet til spilleren kan ikke brukes som tilgangsvei, evidens, påvirkningskanal eller uformell beslutningsfullmakt. Standing i denne relasjonen kan påvirke hvor raskt andre svarer, hvor mye kontekst de deler, hvor villige de er til å samarbeide og hvor nøye de leser en anbefaling. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til beslutningstaker, jurist eller religiøs representant. Direct career-entry betyr adgang til jobbsporet, ikke delegert vedtaksmyndighet. History Go og Religion-badge kan skjerpe historiske spørsmål og kildekritikk, men kan ikke være dagens evidens, juridisk kompetanse, representasjonsmandat, tilgangsrett eller institusjonell fullmakt. En sterk relasjon kan heller ikke gjøre en ressurssterk aktørs påstand til representativ sannhet, skjule relevant usikkerhet eller overføre beslutningsansvar fra den faktiske beslutningseieren."
+      }
+    ],
+    "divergence_examples": [
+      "Høy tillit hos bestiller og lav tillit hos metodekolleger etter et for enkelt råd.",
+      "Sterk relasjon til en trosaktør og samtidig lav representasjonslegitimitet fordi intern variasjon mangler.",
+      "Lav offentlig standing etter en upopulær konklusjon, men høy faglig standing fordi kildene og forbeholdene er sporbare.",
+      "Høy seniorstatus internt uten delegert myndighet til å beslutte saken.",
+      "God juridisk kontrollstanding fordi rådgiveren eskalerte i tide, selv om leveransen ble forsinket.",
+      "Høy tillit hos beslutningseier etter et råd som tydelig skilte fakta, alternativer og normative valg.",
+      "Midlertidig omdømmetap etter synlig rettelse, men økt langsiktig tillit fordi tidligere versjon ble bevart.",
+      "Sterk privat støtte etter en vanskelig uke uten at vennskap brukes som tilgang, evidens eller påvirkningskanal."
+    ],
+    "authority_separation": "Det finnes ingen global reputation score. Standing er publikumsspesifikk og kan sprike mellom bestiller, kolleger, tros- og livssynsaktører, juridisk kontroll, ledelse, offentlighet og private relasjoner. Fagkonsulent og Seniorrådgiver har direct career-entry, men hverken tittel, senioritet, standing, History Go eller Religion-badge kan gi vedtaksmyndighet, juridisk kompetanse, representasjonsmandat, tilgang eller faglig evidens. Kilder, aktørmandat, delegasjon og faktisk beslutningseier må dokumenteres separat."
+  },
+  "history_go_affordance": {
+    "badge_id": "religion",
+    "source_ref": "data/Civication/mailFamilies/religion/knowledge/religion_utredning_og_radgivning_knowledge.json#religion_utredning_og_radgivning_knowledge_001",
+    "better_question": "History Go kan gjøre rådgiveren bedre ved å gi historisk og stedlig kontekst som utfordrer samtidens selvfølgelige kategorier. Når en bestiller omtaler en praksis som tidløs religion, kan spilleren bruke kronologi, institusjonshistorie og tidligere konflikter til å spørre om praksisen har endret form, om organisasjonsstrukturen er ny, om dagens juridiske begreper passer på eldre materiale, og hvilke aktører som historisk har vært usynlige. Dette kan føre til bedre kildeutvalg, tydeligere alternative forklaringer og mer presise spørsmål til berørte aktører. Verdien ligger i å forbedre undersøkelsen og gjøre premisser etterprøvbare, ikke i å levere dagens fasit. History Go kan derfor utløse et bedre spørsmål eller en kontrollhandling i utredningsloggen, men hver aktuell påstand må fortsatt støttes av relevant dokumentasjon, og hvert aktørperspektiv må attribueres til sitt faktiske ståsted og mandat.",
+    "authority_boundary": "History Go kan ikke gjøre Fagkonsulent eller Seniorrådgiver til beslutningstaker, jurist eller representant. Religion-badge og historisk kunnskap er ikke dagens evidens, kan ikke skape delegasjon, institusjonell myndighet, juridisk kompetanse, tilgang eller representasjonsmandat, og kan ikke gjøre en populær historisk analogi til beslutning. Den faktiske beslutningseieren, kildene, rettighetene og aktørmandatet forblir separate."
+  },
+  "existing_work_continuity": {
+    "new_runtime_state": false,
+    "work_loops": [
+      "bestilling -> mandat/beslutningsbehov -> kilder/proveniens -> aktører/interesser -> rettigheter/jussgrense -> analyse/alternativer -> anbefaling -> handoff -> beslutning -> oppfølging",
+      "ny opplysning eller motstemme -> kontroll -> waiting/venting på kilde, aktør, juss eller beslutningseier -> berørt analyseledd -> versjonert anbefaling -> handoff -> bounded rework"
+    ],
+    "persistent_work_object": "utredningslogg_bestilling_kilder_aktorer_rettigheter_analyse_anbefaling_beslutning_og_oppfolging",
+    "waiting_states": [
+      "kilde_og_proveniensavklaring",
+      "aktor_og_motstemmeavklaring",
+      "rettigheter_og_juridisk_avklaring",
+      "habilitet_og_interesseavklaring",
+      "bestiller_og_beslutningseier",
+      "faglig_kvalitetskontroll",
+      "oppfolging_og_ny_dokumentasjon"
+    ]
+  },
+  "cross_role_proof": {
+    "required_for_rollout": false,
+    "shared_work_object_found": false,
+    "status": "not_required_for_rollout",
+    "reason": "Temaet overlapper forvaltning, forskning og formidling, men ingen genuint delt canonical work object er nødvendig for denne rollout-en. Utredningsloggen forblir rolle-eid."
+  },
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 1, morning: bestilling og mandat møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer mandat og bestillerpress gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos bestiller og beslutningseiere påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "mandat_og_bestillerpress"
+        ],
+        "standing_audience": "bestiller_og_beslutningseiere",
+        "standing_consequence": "Standing hos bestiller og beslutningseiere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 1, lunch: bestilling og mandat møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer mandat og bestillerpress gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos faglige kolleger og kvalitetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "mandat_og_bestillerpress"
+        ],
+        "standing_audience": "faglige_kolleger_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos faglige kolleger og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_002"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: bestilling og mandat møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer mandat og bestillerpress gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos tros livssynsaktorer og berorte påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "mandat_og_bestillerpress"
+        ],
+        "standing_audience": "tros_livssynsaktorer_og_berorte",
+        "standing_consequence": "Standing hos tros livssynsaktorer og berorte kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_003"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: bestilling og mandat møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer mandat og bestillerpress gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos juridisk forvaltningsfaglig og rettighetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "mandat_og_bestillerpress"
+        ],
+        "standing_audience": "juridisk_forvaltningsfaglig_og_rettighetskontroll",
+        "standing_consequence": "Standing hos juridisk forvaltningsfaglig og rettighetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_004"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 2, morning: kildeutvalg og proveniens møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer mandat og bestillerpress gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos ledelse og tverrfaglige samarbeid påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "mandat_og_bestillerpress"
+        ],
+        "standing_audience": "ledelse_og_tverrfaglige_samarbeid",
+        "standing_consequence": "Standing hos ledelse og tverrfaglige samarbeid kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: kildeutvalg og proveniens møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer mandat og bestillerpress gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos offentlighet og mottakere av beslutningsgrunnlag påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "mandat_og_bestillerpress"
+        ],
+        "standing_audience": "offentlighet_og_mottakere_av_beslutningsgrunnlag",
+        "standing_consequence": "Standing hos offentlighet og mottakere av beslutningsgrunnlag kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_002"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: kildeutvalg og proveniens møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer mandat og bestillerpress gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos private relations og rollegrenser påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "mandat_og_bestillerpress"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_003"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: kildeutvalg og proveniens møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer mandat og bestillerpress gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos bestiller og beslutningseiere påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "mandat_og_bestillerpress"
+        ],
+        "standing_audience": "bestiller_og_beslutningseiere",
+        "standing_consequence": "Standing hos bestiller og beslutningseiere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_004"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: aktørkart og intern variasjon møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer kilder og pluralisme gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos faglige kolleger og kvalitetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "kilder_og_pluralisme"
+        ],
+        "standing_audience": "faglige_kolleger_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos faglige kolleger og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/conflict/religion_utredning_og_radgivning_conflict.json#religion_utredning_og_radgivning_conflict_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 3, lunch: aktørkart og intern variasjon møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer kilder og pluralisme gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos tros livssynsaktorer og berorte påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "kilder_og_pluralisme"
+        ],
+        "standing_audience": "tros_livssynsaktorer_og_berorte",
+        "standing_consequence": "Standing hos tros livssynsaktorer og berorte kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/story/religion_utredning_og_radgivning_story.json#religion_utredning_og_radgivning_story_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: aktørkart og intern variasjon møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer kilder og pluralisme gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos juridisk forvaltningsfaglig og rettighetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "kilder_og_pluralisme"
+        ],
+        "standing_audience": "juridisk_forvaltningsfaglig_og_rettighetskontroll",
+        "standing_consequence": "Standing hos juridisk forvaltningsfaglig og rettighetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/event/religion_utredning_og_radgivning_event.json#religion_utredning_og_radgivning_event_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: aktørkart og intern variasjon møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer kilder og pluralisme gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos ledelse og tverrfaglige samarbeid påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "kilder_og_pluralisme"
+        ],
+        "standing_audience": "ledelse_og_tverrfaglige_samarbeid",
+        "standing_consequence": "Standing hos ledelse og tverrfaglige samarbeid kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/micro/religion_utredning_og_radgivning_micro.json#religion_utredning_og_radgivning_micro_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 4, morning: alternative forklaringer møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer kilder og pluralisme gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos offentlighet og mottakere av beslutningsgrunnlag påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "kilder_og_pluralisme"
+        ],
+        "standing_audience": "offentlighet_og_mottakere_av_beslutningsgrunnlag",
+        "standing_consequence": "Standing hos offentlighet og mottakere av beslutningsgrunnlag kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/followup/religion_utredning_og_radgivning_followup.json#religion_utredning_og_radgivning_followup_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 4, lunch: alternative forklaringer møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer kilder og pluralisme gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos private relations og rollegrenser påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "kilder_og_pluralisme"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/knowledge/religion_utredning_og_radgivning_knowledge.json#religion_utredning_og_radgivning_knowledge_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: alternative forklaringer møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer kilder og pluralisme gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos bestiller og beslutningseiere påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "kilder_og_pluralisme"
+        ],
+        "standing_audience": "bestiller_og_beslutningseiere",
+        "standing_consequence": "Standing hos bestiller og beslutningseiere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/consequence/religion_utredning_og_radgivning_consequence.json#religion_utredning_og_radgivning_consequence_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: alternative forklaringer møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer kilder og pluralisme gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos faglige kolleger og kvalitetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "kilder_og_pluralisme"
+        ],
+        "standing_audience": "faglige_kolleger_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos faglige kolleger og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 5, morning: rettigheter og juridisk grense møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer juss og rettighetsgrense gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos tros livssynsaktorer og berorte påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "juss_og_rettighetsgrense"
+        ],
+        "standing_audience": "tros_livssynsaktorer_og_berorte",
+        "standing_consequence": "Standing hos tros livssynsaktorer og berorte kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_002"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 5, lunch: rettigheter og juridisk grense møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer juss og rettighetsgrense gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos juridisk forvaltningsfaglig og rettighetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "juss_og_rettighetsgrense"
+        ],
+        "standing_audience": "juridisk_forvaltningsfaglig_og_rettighetskontroll",
+        "standing_consequence": "Standing hos juridisk forvaltningsfaglig og rettighetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_003"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: rettigheter og juridisk grense møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer juss og rettighetsgrense gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos ledelse og tverrfaglige samarbeid påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "juss_og_rettighetsgrense"
+        ],
+        "standing_audience": "ledelse_og_tverrfaglige_samarbeid",
+        "standing_consequence": "Standing hos ledelse og tverrfaglige samarbeid kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_004"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: rettigheter og juridisk grense møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer juss og rettighetsgrense gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos offentlighet og mottakere av beslutningsgrunnlag påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "juss_og_rettighetsgrense"
+        ],
+        "standing_audience": "offentlighet_og_mottakere_av_beslutningsgrunnlag",
+        "standing_consequence": "Standing hos offentlighet og mottakere av beslutningsgrunnlag kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 6, morning: kort frist og ufullstendig høring møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer juss og rettighetsgrense gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos private relations og rollegrenser påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "juss_og_rettighetsgrense"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_002"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 6, lunch: kort frist og ufullstendig høring møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer juss og rettighetsgrense gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos bestiller og beslutningseiere påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "juss_og_rettighetsgrense"
+        ],
+        "standing_audience": "bestiller_og_beslutningseiere",
+        "standing_consequence": "Standing hos bestiller og beslutningseiere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_003"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: kort frist og ufullstendig høring møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer juss og rettighetsgrense gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos faglige kolleger og kvalitetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "juss_og_rettighetsgrense"
+        ],
+        "standing_audience": "faglige_kolleger_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos faglige kolleger og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_004"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: kort frist og ufullstendig høring møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer juss og rettighetsgrense gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos tros livssynsaktorer og berorte påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "juss_og_rettighetsgrense"
+        ],
+        "standing_audience": "tros_livssynsaktorer_og_berorte",
+        "standing_consequence": "Standing hos tros livssynsaktorer og berorte kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/conflict/religion_utredning_og_radgivning_conflict.json#religion_utredning_og_radgivning_conflict_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 7, morning: første anbefalingsutkast møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer senioritet og uformell makt gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos juridisk forvaltningsfaglig og rettighetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "senioritet_og_uformell_makt"
+        ],
+        "standing_audience": "juridisk_forvaltningsfaglig_og_rettighetskontroll",
+        "standing_consequence": "Standing hos juridisk forvaltningsfaglig og rettighetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/story/religion_utredning_og_radgivning_story.json#religion_utredning_og_radgivning_story_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 7, lunch: første anbefalingsutkast møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer senioritet og uformell makt gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos ledelse og tverrfaglige samarbeid påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "senioritet_og_uformell_makt"
+        ],
+        "standing_audience": "ledelse_og_tverrfaglige_samarbeid",
+        "standing_consequence": "Standing hos ledelse og tverrfaglige samarbeid kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/event/religion_utredning_og_radgivning_event.json#religion_utredning_og_radgivning_event_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: første anbefalingsutkast møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer senioritet og uformell makt gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos offentlighet og mottakere av beslutningsgrunnlag påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "senioritet_og_uformell_makt"
+        ],
+        "standing_audience": "offentlighet_og_mottakere_av_beslutningsgrunnlag",
+        "standing_consequence": "Standing hos offentlighet og mottakere av beslutningsgrunnlag kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/micro/religion_utredning_og_radgivning_micro.json#religion_utredning_og_radgivning_micro_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: første anbefalingsutkast møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer senioritet og uformell makt gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos private relations og rollegrenser påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "senioritet_og_uformell_makt"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/followup/religion_utredning_og_radgivning_followup.json#religion_utredning_og_radgivning_followup_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 8, morning: seniorstatus og uformelt press møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer senioritet og uformell makt gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos bestiller og beslutningseiere påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "senioritet_og_uformell_makt"
+        ],
+        "standing_audience": "bestiller_og_beslutningseiere",
+        "standing_consequence": "Standing hos bestiller og beslutningseiere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/knowledge/religion_utredning_og_radgivning_knowledge.json#religion_utredning_og_radgivning_knowledge_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 8, lunch: seniorstatus og uformelt press møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer senioritet og uformell makt gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos faglige kolleger og kvalitetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "senioritet_og_uformell_makt"
+        ],
+        "standing_audience": "faglige_kolleger_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos faglige kolleger og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/consequence/religion_utredning_og_radgivning_consequence.json#religion_utredning_og_radgivning_consequence_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: seniorstatus og uformelt press møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer senioritet og uformell makt gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos tros livssynsaktorer og berorte påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "senioritet_og_uformell_makt"
+        ],
+        "standing_audience": "tros_livssynsaktorer_og_berorte",
+        "standing_consequence": "Standing hos tros livssynsaktorer og berorte kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: seniorstatus og uformelt press møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer senioritet og uformell makt gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos juridisk forvaltningsfaglig og rettighetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "senioritet_og_uformell_makt"
+        ],
+        "standing_audience": "juridisk_forvaltningsfaglig_og_rettighetskontroll",
+        "standing_consequence": "Standing hos juridisk forvaltningsfaglig og rettighetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_002"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 9, morning: tverrfaglig kontroll møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer beslutning handoff og ansvar gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos ledelse og tverrfaglige samarbeid påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "beslutning_handoff_og_ansvar"
+        ],
+        "standing_audience": "ledelse_og_tverrfaglige_samarbeid",
+        "standing_consequence": "Standing hos ledelse og tverrfaglige samarbeid kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_003"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 9, lunch: tverrfaglig kontroll møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer beslutning handoff og ansvar gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos offentlighet og mottakere av beslutningsgrunnlag påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "beslutning_handoff_og_ansvar"
+        ],
+        "standing_audience": "offentlighet_og_mottakere_av_beslutningsgrunnlag",
+        "standing_consequence": "Standing hos offentlighet og mottakere av beslutningsgrunnlag kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_004"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: tverrfaglig kontroll møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer beslutning handoff og ansvar gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos private relations og rollegrenser påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "beslutning_handoff_og_ansvar"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: tverrfaglig kontroll møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer beslutning handoff og ansvar gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos bestiller og beslutningseiere påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "beslutning_handoff_og_ansvar"
+        ],
+        "standing_audience": "bestiller_og_beslutningseiere",
+        "standing_consequence": "Standing hos bestiller og beslutningseiere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_002"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 10, morning: beslutningseiers spørsmål møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer beslutning handoff og ansvar gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos faglige kolleger og kvalitetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "beslutning_handoff_og_ansvar"
+        ],
+        "standing_audience": "faglige_kolleger_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos faglige kolleger og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_003"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: beslutningseiers spørsmål møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer beslutning handoff og ansvar gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos tros livssynsaktorer og berorte påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "beslutning_handoff_og_ansvar"
+        ],
+        "standing_audience": "tros_livssynsaktorer_og_berorte",
+        "standing_consequence": "Standing hos tros livssynsaktorer og berorte kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_004"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: beslutningseiers spørsmål møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer beslutning handoff og ansvar gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos juridisk forvaltningsfaglig og rettighetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "beslutning_handoff_og_ansvar"
+        ],
+        "standing_audience": "juridisk_forvaltningsfaglig_og_rettighetskontroll",
+        "standing_consequence": "Standing hos juridisk forvaltningsfaglig og rettighetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/conflict/religion_utredning_og_radgivning_conflict.json#religion_utredning_og_radgivning_conflict_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: beslutningseiers spørsmål møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer beslutning handoff og ansvar gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos ledelse og tverrfaglige samarbeid påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "beslutning_handoff_og_ansvar"
+        ],
+        "standing_audience": "ledelse_og_tverrfaglige_samarbeid",
+        "standing_consequence": "Standing hos ledelse og tverrfaglige samarbeid kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/story/religion_utredning_og_radgivning_story.json#religion_utredning_og_radgivning_story_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: offentlig kritikk møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer offentlighet omdomme og korrigering gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos offentlighet og mottakere av beslutningsgrunnlag påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "offentlighet_omdomme_og_korrigering"
+        ],
+        "standing_audience": "offentlighet_og_mottakere_av_beslutningsgrunnlag",
+        "standing_consequence": "Standing hos offentlighet og mottakere av beslutningsgrunnlag kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/event/religion_utredning_og_radgivning_event.json#religion_utredning_og_radgivning_event_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 11, lunch: offentlig kritikk møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer offentlighet omdomme og korrigering gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos private relations og rollegrenser påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "offentlighet_omdomme_og_korrigering"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/micro/religion_utredning_og_radgivning_micro.json#religion_utredning_og_radgivning_micro_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: offentlig kritikk møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer offentlighet omdomme og korrigering gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos bestiller og beslutningseiere påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "offentlighet_omdomme_og_korrigering"
+        ],
+        "standing_audience": "bestiller_og_beslutningseiere",
+        "standing_consequence": "Standing hos bestiller og beslutningseiere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/followup/religion_utredning_og_radgivning_followup.json#religion_utredning_og_radgivning_followup_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: offentlig kritikk møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer offentlighet omdomme og korrigering gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos faglige kolleger og kvalitetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "offentlighet_omdomme_og_korrigering"
+        ],
+        "standing_audience": "faglige_kolleger_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos faglige kolleger og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/knowledge/religion_utredning_og_radgivning_knowledge.json#religion_utredning_og_radgivning_knowledge_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 12, morning: nye opplysninger etter handoff møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer offentlighet omdomme og korrigering gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos tros livssynsaktorer og berorte påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "offentlighet_omdomme_og_korrigering"
+        ],
+        "standing_audience": "tros_livssynsaktorer_og_berorte",
+        "standing_consequence": "Standing hos tros livssynsaktorer og berorte kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/consequence/religion_utredning_og_radgivning_consequence.json#religion_utredning_og_radgivning_consequence_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 12, lunch: nye opplysninger etter handoff møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer offentlighet omdomme og korrigering gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos juridisk forvaltningsfaglig og rettighetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "offentlighet_omdomme_og_korrigering"
+        ],
+        "standing_audience": "juridisk_forvaltningsfaglig_og_rettighetskontroll",
+        "standing_consequence": "Standing hos juridisk forvaltningsfaglig og rettighetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: nye opplysninger etter handoff møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer offentlighet omdomme og korrigering gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos ledelse og tverrfaglige samarbeid påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "offentlighet_omdomme_og_korrigering"
+        ],
+        "standing_audience": "ledelse_og_tverrfaglige_samarbeid",
+        "standing_consequence": "Standing hos ledelse og tverrfaglige samarbeid kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_002"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: nye opplysninger etter handoff møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer offentlighet omdomme og korrigering gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos offentlighet og mottakere av beslutningsgrunnlag påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "offentlighet_omdomme_og_korrigering"
+        ],
+        "standing_audience": "offentlighet_og_mottakere_av_beslutningsgrunnlag",
+        "standing_consequence": "Standing hos offentlighet og mottakere av beslutningsgrunnlag kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_003"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 13, morning: bounded rework og synlig korreksjon møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer privat liv og rollegrenser gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos private relations og rollegrenser påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "privat_liv_og_rollegrenser"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_004"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 13, lunch: bounded rework og synlig korreksjon møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer privat liv og rollegrenser gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos bestiller og beslutningseiere påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "privat_liv_og_rollegrenser"
+        ],
+        "standing_audience": "bestiller_og_beslutningseiere",
+        "standing_consequence": "Standing hos bestiller og beslutningseiere kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: bounded rework og synlig korreksjon møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer privat liv og rollegrenser gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos faglige kolleger og kvalitetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "privat_liv_og_rollegrenser"
+        ],
+        "standing_audience": "faglige_kolleger_og_kvalitetskontroll",
+        "standing_consequence": "Standing hos faglige kolleger og kvalitetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_002"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: bounded rework og synlig korreksjon møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer privat liv og rollegrenser gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos tros livssynsaktorer og berorte påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "privat_liv_og_rollegrenser"
+        ],
+        "standing_audience": "tros_livssynsaktorer_og_berorte",
+        "standing_consequence": "Standing hos tros livssynsaktorer og berorte kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_003"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 14, morning: sluttleveranse og ansvarsoverføring møter arbeidsobjektet, kildegrunnlaget og den konkrete analysen. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer privat liv og rollegrenser gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos juridisk forvaltningsfaglig og rettighetskontroll påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "privat_liv_og_rollegrenser"
+        ],
+        "standing_audience": "juridisk_forvaltningsfaglig_og_rettighetskontroll",
+        "standing_consequence": "Standing hos juridisk forvaltningsfaglig og rettighetskontroll kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_004"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 14, lunch: sluttleveranse og ansvarsoverføring møter relasjonen, statusforskjellen og hva den andre parten faktisk kan eller ikke kan gi. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer privat liv og rollegrenser gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos ledelse og tverrfaglige samarbeid påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "privat_liv_og_rollegrenser"
+        ],
+        "standing_audience": "ledelse_og_tverrfaglige_samarbeid",
+        "standing_consequence": "Standing hos ledelse og tverrfaglige samarbeid kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/conflict/religion_utredning_og_radgivning_conflict.json#religion_utredning_og_radgivning_conflict_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: sluttleveranse og ansvarsoverføring møter valget mellom et sporbar råd og en enklere men svakere konklusjon. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer privat liv og rollegrenser gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos offentlighet og mottakere av beslutningsgrunnlag påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "privat_liv_og_rollegrenser"
+        ],
+        "standing_audience": "offentlighet_og_mottakere_av_beslutningsgrunnlag",
+        "standing_consequence": "Standing hos offentlighet og mottakere av beslutningsgrunnlag kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/story/religion_utredning_og_radgivning_story.json#religion_utredning_og_radgivning_story_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: sluttleveranse og ansvarsoverføring møter det private etterspillet, tvilen, omdømmet og kostnaden ved å holde profesjonelle grenser. Fagkonsulent og Seniorrådgiver har begge direct career-entry, men akkurat her må spilleren bevise at adgang til rollen og sosial standing ikke er det samme som vedtaksmyndighet, juridisk kompetanse eller representasjonsmandat. Utredningsloggen må vise bestilling, mandat, kilder, hvem som er berørt, hvilket mandat aktørstemmer faktisk har, hvilke alternative forklaringer som er testet, hvilke rettighets- eller habilitetsspørsmål som må eskaleres, og hva som bare er rådgiverens anbefaling. History Go og Religion-badge kan brukes til å stille et bedre historisk eller institusjonelt spørsmål og oppdage et hull i kronologi eller begrepsbruk, men kan ikke fylle et manglende dokument, gjøre en relasjon representativ eller gi fullmakt. Beatet materialiserer privat liv og rollegrenser gjennom en konkret kilde fra den eksisterende 15-mails foundationen og lar standing hos private relations og rollegrenser påvirke tillit, tone og samarbeid uten global reputation score. Dersom ny dokumentasjon senere endrer saken, skal bare berørte ledd gjenåpnes; tidligere versjon, beslutningseier og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken.",
+        "thread_ids": [
+          "privat_liv_og_rollegrenser"
+        ],
+        "standing_audience": "private_relations_og_rollegrenser",
+        "standing_consequence": "Standing hos private relations og rollegrenser kan etter dette beatet gi mer eller mindre samarbeid, raskere eller tregere svar og større eller mindre vilje til å dele kontekst. Den kan ikke gjøre Fagkonsulent eller Seniorrådgiver til jurist, beslutningstaker eller representant, kan ikke gjøre History Go eller Religion-badge til evidens og kan ikke overføre delegasjon, tilgang eller institusjonell authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/religion/event/religion_utredning_og_radgivning_event.json#religion_utredning_og_radgivning_event_001"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "mandat_og_bestillerpress",
+      "relationship": "Forholdet til bestilleren utvikler seg fra høflig uklarhet til en eksplisitt forhandling om hva Fagkonsulent eller Seniorrådgiver faktisk kan svare på. Tillit bygges når spilleren leverer beslutningsnytte uten å la direct-entry, seniorstatus eller bestillers organisatoriske makt bli en skjult vedtaksfullmakt. Konflikten blir mest interessant når bestilleren oppriktig trenger et enkelt svar, men materialet bare støtter en betinget anbefaling.",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "kilder_og_pluralisme",
+      "relationship": "Kildesporet undersøker hvem som får definere saken når forskning, dokumenter, organisasjoner og berørte personer peker i ulike retninger. Relasjonen til metode- og aktørmiljøet blir sterkere når spilleren viser attribusjon og intern variasjon, og svakere når tilgjengelighet, nettverk eller status blir behandlet som representativitet. Når en ressurssterk organisasjon leverer ferdige formuleringer, mens mindre synlige berørte mangler tid eller institusjonell tilgang, må rådgiveren vise hvorfor kildevekt ikke kan følge sosial styrke. Relasjonen tåler uenighet bedre når provenance, utvalgskriterier og manglende stemmer står synlig i samme utredningslogg som anbefalingen.",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "juss_og_rettighetsgrense",
+      "relationship": "Dette sporet gjør profesjonell ydmykhet til en ferdighet: religionsfaglig analyse kan være avgjørende uten å være juridisk avgjørelse. Spilleren lærer å markere hva analysen støtter, hva som er et rettsspørsmål, hvem som har kompetent myndighet, og hvorfor en god eskalering er bedre enn en selvsikker garanti rollen ikke kan gi. Relasjonen til juridisk og forvaltningsfaglig kontroll blir derfor et spørsmål om timing og rolleforståelse: tidlig eskalering kan forsinke leveransen, men beskytter både rettigheter og beslutningseier mot at et religionsfaglig premiss får falsk rettslig autoritet. Standing hos kontrollmiljøet kan gi bedre dialog, aldri gjøre rådgiveren til jurist eller vedtaksmyndighet.",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "senioritet_og_uformell_makt",
+      "relationship": "Seniorrådgiver-tittel, kollegial prestisje og tilgang til ledelsen skaper en langsom fristelse til å behandle uformell innflytelse som legitim myndighet. Tråden undersøker hvordan profesjonskultur kan belønne raske svar og lojalitet, samtidig som den gode rådgiveren må bevare dokumenterte grenser og tåle at et korrekt forbehold kan koste status. Den sosiale prøven kommer når yngre kolleger, bestillere eller ledere begynner å lese Seniorrådgiverens sikkerhet som en ordre. Da må spilleren aktivt gjøre beslutningseier, kildegrunnlag og delegasjon synlig, også når det svekker egen prestisje. God standing betyr at andre stoler på grensearbeidet; den kan ikke bli en uformell snarvei til myndighet.",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "beslutning_handoff_og_ansvar",
+      "relationship": "Et råd blir først institusjonelt virkelig når det går til en beslutningseier. Tråden følger hvordan alternativer, konsekvenser, forbehold, kilder og åpne spørsmål overlever handoff, og hvordan rådgiveren må tåle at en legitim beslutning kan avvike fra anbefalingen uten at tidligere arbeid omskrives for å se mer treffsikkert ut. Forholdet til beslutningseieren blir sterkere når det fortsatt er mulig å se hva rådgiveren anbefalte, hvilke premisser som var usikre, og hva beslutningseieren selv valgte av politiske, økonomiske eller organisatoriske grunner. Senere kritikk skal derfor kunne rettes mot riktig ledd i kjeden uten at rådgivning og vedtak smeltes sammen.",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "offentlighet_omdomme_og_korrigering",
+      "relationship": "Når saken blir offentlig, møter sporbar analyse medielogikk, kritikk og organisasjonens behov for å beskytte omdømme. Spilleren må skille reell faktakorreksjon fra defensiv historieskriving og vise at History Go-kunnskap eller Religion-badge kan skjerpe spørsmål, men aldri erstatte dokumentasjonen som den konkrete beslutningen bygget på. Relasjonen til offentlighet og mottakere blir særlig krevende når en synlig rettelse kan skade kortsiktig standing, mens taus omskriving ville beskytte ansikt. Spilleren må bevare tidligere versjon, forklare hvilket nytt faktum som endret vurderingen og holde fast ved at popularitet eller medietrykk ikke kan oppgradere svak evidens eller skape representasjonsmandat.",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "privat_liv_og_rollegrenser",
+      "relationship": "Arbeidet lekker inn i privatlivet gjennom tvil, statusangst, fortrolighet og redsel for å ha oversett noen. Tråden viser at profesjonell integritet ikke bare er en regel i arbeidstiden: også private nettverk, vennskap og behov for anerkjennelse må holdes ute av evidens, representasjonsmandat og beslutningskanaler. Den private relasjonen blir dermed en egen integritetsprøve: støtte kan hjelpe spilleren å tåle usikkerhet og sosial kostnad, men en venn, partner eller tidligere kollega kan ikke brukes som uregistrert kilde, uformell tilgang eller påvirkningskanal. Når arbeidet diskuteres hjemme må fortrolighet, aktørmandat og beslutningseierskap fortsatt respekteres.",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "privat_etterspill_1",
+      "description": "Etterspill 1 lar spilleren møte den personlige kostnaden ved å ha stått imot bestillerpress, seniorstatus, offentlig kritikk eller en fristende relasjon. Fagkonsulent og Seniorrådgiver må kunne være stolte av et beslutningsklart råd uten å bruke private bekreftelser som faglig evidens. Dersom tvil eller skam oppstår, skal den bearbeides uten at man ringer en venn for uformell tilgang, lover en aktør representasjon eller omskriver tidligere versjon. History Go kan gi språk for historisk kontekst, men ikke løse den aktuelle authority-grensen.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_001"
+      ]
+    },
+    {
+      "id": "privat_etterspill_2",
+      "description": "Etterspill 2 lar spilleren møte den personlige kostnaden ved å ha stått imot bestillerpress, seniorstatus, offentlig kritikk eller en fristende relasjon. Fagkonsulent og Seniorrådgiver må kunne være stolte av et beslutningsklart råd uten å bruke private bekreftelser som faglig evidens. Dersom tvil eller skam oppstår, skal den bearbeides uten at man ringer en venn for uformell tilgang, lover en aktør representasjon eller omskriver tidligere versjon. History Go kan gi språk for historisk kontekst, men ikke løse den aktuelle authority-grensen.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_002"
+      ]
+    },
+    {
+      "id": "privat_etterspill_3",
+      "description": "Etterspill 3 lar spilleren møte den personlige kostnaden ved å ha stått imot bestillerpress, seniorstatus, offentlig kritikk eller en fristende relasjon. Fagkonsulent og Seniorrådgiver må kunne være stolte av et beslutningsklart råd uten å bruke private bekreftelser som faglig evidens. Dersom tvil eller skam oppstår, skal den bearbeides uten at man ringer en venn for uformell tilgang, lover en aktør representasjon eller omskriver tidligere versjon. History Go kan gi språk for historisk kontekst, men ikke løse den aktuelle authority-grensen.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_003"
+      ]
+    },
+    {
+      "id": "privat_etterspill_4",
+      "description": "Etterspill 4 lar spilleren møte den personlige kostnaden ved å ha stått imot bestillerpress, seniorstatus, offentlig kritikk eller en fristende relasjon. Fagkonsulent og Seniorrådgiver må kunne være stolte av et beslutningsklart råd uten å bruke private bekreftelser som faglig evidens. Dersom tvil eller skam oppstår, skal den bearbeides uten at man ringer en venn for uformell tilgang, lover en aktør representasjon eller omskriver tidligere versjon. History Go kan gi språk for historisk kontekst, men ikke løse den aktuelle authority-grensen.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_004"
+      ]
+    },
+    {
+      "id": "privat_etterspill_5",
+      "description": "Etterspill 5 lar spilleren møte den personlige kostnaden ved å ha stått imot bestillerpress, seniorstatus, offentlig kritikk eller en fristende relasjon. Fagkonsulent og Seniorrådgiver må kunne være stolte av et beslutningsklart råd uten å bruke private bekreftelser som faglig evidens. Dersom tvil eller skam oppstår, skal den bearbeides uten at man ringer en venn for uformell tilgang, lover en aktør representasjon eller omskriver tidligere versjon. History Go kan gi språk for historisk kontekst, men ikke løse den aktuelle authority-grensen.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_001"
+      ]
+    },
+    {
+      "id": "privat_etterspill_6",
+      "description": "Etterspill 6 lar spilleren møte den personlige kostnaden ved å ha stått imot bestillerpress, seniorstatus, offentlig kritikk eller en fristende relasjon. Fagkonsulent og Seniorrådgiver må kunne være stolte av et beslutningsklart råd uten å bruke private bekreftelser som faglig evidens. Dersom tvil eller skam oppstår, skal den bearbeides uten at man ringer en venn for uformell tilgang, lover en aktør representasjon eller omskriver tidligere versjon. History Go kan gi språk for historisk kontekst, men ikke løse den aktuelle authority-grensen.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_002"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "forsinket_konsekvens_1",
+      "setup_ref": "1/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "job",
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_2",
+      "setup_ref": "2/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "job",
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_3",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "job",
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_4",
+      "setup_ref": "4/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "job",
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_5",
+      "setup_ref": "5/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "job",
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_6",
+      "setup_ref": "6/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "job",
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_7",
+      "setup_ref": "7/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "job",
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "forsinket_konsekvens_8",
+      "setup_ref": "8/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "job",
+        "relationship",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "authored_dimensions": [
+      "situated_reputation"
+    ],
+    "existing_plan_preserved": true,
+    "existing_role_model_preserved": true,
+    "existing_people_foundation_preserved": true,
+    "existing_work_grammar_preserved": true,
+    "existing_persistent_work_preserved": true,
+    "existing_rhythm_preserved": true,
+    "career_title_gates_preserved": true,
+    "cross_role_link_materialized": false,
+    "source_refs": [
+      "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_001",
+      "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_002",
+      "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_003",
+      "data/Civication/mailFamilies/religion/job/religion_utredning_og_radgivning_job.json#religion_utredning_og_radgivning_job_004",
+      "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_001",
+      "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_002",
+      "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_003",
+      "data/Civication/mailFamilies/religion/people/religion_utredning_og_radgivning_people.json#religion_utredning_og_radgivning_people_004",
+      "data/Civication/mailFamilies/religion/conflict/religion_utredning_og_radgivning_conflict.json#religion_utredning_og_radgivning_conflict_001",
+      "data/Civication/mailFamilies/religion/story/religion_utredning_og_radgivning_story.json#religion_utredning_og_radgivning_story_001",
+      "data/Civication/mailFamilies/religion/event/religion_utredning_og_radgivning_event.json#religion_utredning_og_radgivning_event_001",
+      "data/Civication/mailFamilies/religion/micro/religion_utredning_og_radgivning_micro.json#religion_utredning_og_radgivning_micro_001",
+      "data/Civication/mailFamilies/religion/followup/religion_utredning_og_radgivning_followup.json#religion_utredning_og_radgivning_followup_001",
+      "data/Civication/mailFamilies/religion/knowledge/religion_utredning_og_radgivning_knowledge.json#religion_utredning_og_radgivning_knowledge_001",
+      "data/Civication/mailFamilies/religion/consequence/religion_utredning_og_radgivning_consequence.json#religion_utredning_og_radgivning_consequence_001"
+    ]
+  }
+}
