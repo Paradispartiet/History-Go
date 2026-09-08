@@ -36,13 +36,19 @@ jobs:
           from pathlib import Path
           p = Path('tools/materialize-radhusplassen.mjs')
           s = p.read_text()
-          old = 'const phases = ["opening", "opening", "middle", "bridge", "final"];'
-          new = 'const phases = ["opening", "middle", "middle", "bridge", "final"];'
-          if old not in s and new not in s:
+          phase_old = 'const phases = ["opening", "opening", "middle", "bridge", "final"];'
+          phase_new = 'const phases = ["opening", "middle", "middle", "bridge", "final"];'
+          family_old = 'family: q.question_type, statement: q.claim_basis'
+          family_new = 'family: q.question_type === "concept" ? "concept_theory" : q.question_type, statement: q.claim_basis'
+          if phase_old not in s and phase_new not in s:
               raise SystemExit('Fant ikke forventet Rådhusplassen phase-plan')
-          p.write_text(s.replace(old, new))
+          if family_old not in s and family_new not in s:
+              raise SystemExit('Fant ikke forventet claim family mapping')
+          s = s.replace(phase_old, phase_new).replace(family_old, family_new)
+          p.write_text(s)
           PY
             grep -F 'const phases = ["opening", "middle", "middle", "bridge", "final"];' tools/materialize-radhusplassen.mjs &&
+            grep -F 'family: q.question_type === "concept" ? "concept_theory" : q.question_type' tools/materialize-radhusplassen.mjs &&
             node --check tools/materialize-radhusplassen.mjs &&
             node tools/materialize-radhusplassen.mjs
           } > /tmp/radhusplassen-materialize.log 2>&1
