@@ -22,3 +22,4 @@ for(const required of [/academic_qualification_and_employment/i,/grad/i,/rådata
 }
 fs.writeFileSync(p,JSON.stringify(world,null,2)+'\n');
 console.log('Explicit degree boundary added to History Go authority separation.');
+// Trigger attempt 2 only after the workflow already exists on the branch.
