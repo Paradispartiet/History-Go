@@ -121,6 +121,12 @@ jobs:
         run: npm run audit:job-learning-profiles
       - name: Verify job knowledge requirements
         run: npm run audit:job-knowledge-requirements
+      - name: Restore TEMP materializer before permanent scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git restore -- scripts/TEMP_materialize_vitenskap_undervisning_og_forskning_prerequisites.mjs
+          test -z "$(git status --short -- scripts/TEMP_materialize_vitenskap_undervisning_og_forskning_prerequisites.mjs)"
       - name: Require fresh main ancestry before scope
         shell: bash
         run: |
