@@ -1,24 +1,278 @@
 {
-  "schema": "civication_role_model_v1",
+  "schema": "civication_role_model_v2",
   "version": 2,
-  "source": {"badge_file":"data/badges/religion.json","badge_id":"religion","evidence":"data/Civication/religionCareerLifeEvidence.json"},
+  "source": {
+    "badge_file": "data/badges/religion.json",
+    "badge_id": "religion",
+    "evidence": "data/Civication/religionCareerLifeEvidence.json"
+  },
   "category": "religion",
   "role_scope": "religion_formidling_og_kulturarv",
   "role_id": "religion_formidling_og_kulturarv",
   "title": "Religion – formidling og kulturarv",
-  "core_narrative": ["Formidling og kuratering gjør religionshistorie, praksis, gjenstander og steder forståelige uten å gjøre én tradisjons selvforståelse til universell fasit."],
+  "badge_titles": [
+    "Religionsformidler",
+    "Kurator"
+  ],
+  "core_narrative": [
+    "Religionsformidling og kulturarv gjør kilder, steder, objekter, praksiser og aktørstemmer forståelige uten å gjøre én tradisjons selvforståelse eller institusjonens pedagogiske behov til universell fasit.",
+    "Religionsformidler og Kurator har begge direct career-entry i canonical badge-policy, men direct entry gir bare adgang til jobbsporet; konkret fag-, samlings-, rettighets-, bevarings- og beslutningsmyndighet følger fortsatt institusjonens mandat og dokumenterte ansvar."
+  ],
   "work_life": {
-    "daily_work": ["undersøke kilder og samlingsmateriale", "planlegge formidling eller utstillinger", "skrive forklarende tekster", "samarbeide med fagmiljøer og berørte grupper"],
-    "responsibilities": ["skille dokumentasjon fra tolkning", "vise intern variasjon i tradisjoner", "behandle hellige eller sensitive objekter med dokumentert kontekst", "rette feil og synliggjøre usikkerhet"],
-    "work_environment": ["museum, kulturinstitusjon, undervisnings- eller formidlingsmiljø"],
-    "status_position": ["faglig troverdighet følger kildearbeid og redelig representasjon, ikke Badge-status"]
+    "daily_work": [
+      "oppdatere formidlingslogg_kilde_proveniens_representasjon_sensitivitet_publisering_og_rettelse med bestilling, målgruppe, kilder, proveniens, objektstatus, aktørperspektiver, representasjonsbegrensninger, sensitivitet, utkast, kontroll, publisering, respons og rettelser",
+      "bygge formidling fra dokumentert materiale og tydelig attribuerte aktørperspektiver",
+      "teste intern variasjon og manglende stemmer før én aktør eller tekst blir presentert som representativ",
+      "avklare bevaring, rettigheter, personvern og sensitivitet før visning eller publisering",
+      "følge publisert materiale gjennom respons, faktakontroll, synlig rettelse og bounded rework"
+    ],
+    "responsibilities": [
+      "kildekritikk_og_proveniens",
+      "redelig_representasjon",
+      "formidlingskvalitet",
+      "sensitivitet_og_etikk",
+      "rettigheter_og_bevaring",
+      "tilgjengelighet",
+      "sporbar_rettelse"
+    ],
+    "work_environment": [
+      "Museum, kulturarvinstitusjon, utstilling, undervisnings- eller digitalt formidlingsmiljø som arbeider med religion, livssyn, historie, gjenstander, steder og publikum."
+    ],
+    "status_position": [
+      "Religionsformidler og Kurator er direct career-offers. Direct entry gir ikke automatisk samlingsmyndighet, rettighetsmyndighet, representasjonsrett eller mandat til å endre institusjonens katalog- eller fagstandpunkt."
+    ],
+    "workplaces": [
+      "kilde_proveniens_og_objektbord_religion_formidling",
+      "formidlings_og_utstillingsverksted_religion_formidling",
+      "dialog_representasjon_og_sensitivitetsflate_religion_formidling",
+      "publisering_rettelse_og_oppfolgingspunkt_religion_formidling"
+    ]
   },
-  "career_path": {"entry_from":["formidlingsoppdrag eller relevant institusjonsarbeid"],"progression_to":["større kuratorisk eller faglig ansvar etter faktisk ansettelse"],"possible_promotions":["prosjektansvar, samlingsansvar eller fagansvar"],"possible_exits":["rådgivning, forskning, undervisning eller annen kulturarv"],"career_risks":["forenkling, eksotifisering, svak proveniens eller å tale på vegne av grupper uten mandat"]},
-  "required_knowledge": {"education_basis":["religionshistorie, religionsvitenskap, kulturarv, kildekritikk og formidlingsetikk"],"skills":["kildekritikk","kontekstualisering","utstillings- og tekstformidling","proveniensarbeid","dialog"],"category_knowledge":["religioners interne mangfold, historisk endring og forholdet mellom innenfra- og utenfraperspektiv"],"history_go_badges":["religion"],"place_connections":[],"people_connections":[]},
-  "authority_boundaries": {"can":["tolke og formidle dokumentert materiale innen mandatet","foreslå utstillings- og formidlingsgrep","markere uenighet og usikkerhet"],"cannot":["erklære én tradisjon som normativt sann på institusjonens vegne","tale på vegne av tros- eller livssynsgrupper uten mandat","fjerne omstridt proveniens eller usikkerhet for å gjøre historien enklere","behandle Badge-status som faglig eller religiøs autoritet"]},
-  "challenges": [{"id":"innside_utsiden","title":"Innenfra og utenfra","description":"Formidlingen må beskrive både aktørers egen forståelse og analytisk kontekst uten å blande nivåene.","pressure":"representasjon_vs_forenkling","affects":["trust","quality"]}],
-  "dilemmas": [{"id":"hellig_objekt","title":"Hellig objekt i utstilling","setup":"Et objekt er viktig for historien, men oppleves sensitivt av en berørt gruppe.","choice_axis":"tilgang_vs_hensyn","consequence_axis":"innsikt_vs_tillit","mail_hooks":["job","story","conflict"]}],
-  "competence_axes": [{"id":"kildekritikk","label":"Kildekritikk"},{"id":"representasjon","label":"Redelig representasjon"},{"id":"kontekstualisering","label":"Kontekstualisering"},{"id":"proveniens","label":"Proveniens"}],
-  "ideal_type_problems": [{"id":"en_tradisjon_en_stemme","label":"En tradisjon fremstilles som én stemme"},{"id":"objekt_uten_proveniens","label":"Sterkt objekt med svak proveniens"}],
-  "notes": ["Deler arbeidsverden mellom Religionsformidler og Kurator."]
+  "authority_boundaries": {
+    "can": [
+      "tolke og formidle dokumentert materiale innen oppdragets og institusjonens faktiske mandat",
+      "foreslå tekster, omvisninger, utstillings- og tilgjengelighetsgrep med sporbar kilde- og versjonsbruk",
+      "innhente og attribuere aktørperspektiver uten å gjøre dem til universell representasjon",
+      "markere usikker proveniens, faglig uenighet og representasjonsbegrensninger",
+      "rette dokumenterte feil med synlig versjon og begrunnelse"
+    ],
+    "cannot": [
+      "endre proveniens, katalogdata, eierskapshistorikk eller rettighetsstatus uten dokumentert grunnlag og riktig myndighet",
+      "erklære én religiøs eller livssynsmessig tolkning som normativ sannhet på institusjonens vegne",
+      "tale på vegne av tros- eller livssynsgrupper uten faktisk mandat eller gjøre én talsperson til hele tradisjonen",
+      "love utlån, tilbakeføring, salg, tilgang eller andre institusjonelle disposisjoner uten fullmakt",
+      "bruke Religion-badge, XP, History Go-kunnskap, popularitet, nettverk eller sosial standing som faglig evidens, representasjonsmandat eller institusjonell myndighet"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "tolke og formidle dokumentert materiale innen oppdragets og institusjonens faktiske mandat",
+      "foreslå tekster, omvisninger, utstillings- og tilgjengelighetsgrep med sporbar kilde- og versjonsbruk",
+      "innhente og attribuere aktørperspektiver uten å gjøre dem til universell representasjon",
+      "markere usikker proveniens, faglig uenighet og representasjonsbegrensninger",
+      "rette dokumenterte feil med synlig versjon og begrunnelse"
+    ],
+    "may_not": [
+      "endre proveniens, katalogdata, eierskapshistorikk eller rettighetsstatus uten dokumentert grunnlag og riktig myndighet",
+      "erklære én religiøs eller livssynsmessig tolkning som normativ sannhet på institusjonens vegne",
+      "tale på vegne av tros- eller livssynsgrupper uten faktisk mandat eller gjøre én talsperson til hele tradisjonen",
+      "love utlån, tilbakeføring, salg, tilgang eller andre institusjonelle disposisjoner uten fullmakt",
+      "bruke Religion-badge, XP, History Go-kunnskap, popularitet, nettverk eller sosial standing som faglig evidens, representasjonsmandat eller institusjonell myndighet"
+    ]
+  },
+  "competence_axes": [
+    "kildekritikk",
+    "proveniens",
+    "religionshistorisk_kontekst",
+    "representasjon",
+    "kontekstualisering",
+    "formidlingsdramaturgi",
+    "sensitivitet_og_etikk",
+    "tilgjengelighet",
+    "rettelsespraksis"
+  ],
+  "ideal_type_problems": [
+    "sterkt objekt med svak proveniens",
+    "én talsperson blir fremstilt som hele tradisjonen",
+    "hellig eller sensitivt materiale møter publikumsinteresse",
+    "pedagogisk forenkling skjuler historisk endring",
+    "publisert tekst må korrigeres uten å skjule tidligere versjon",
+    "popularitet blir feilaktig behandlet som faglig legitimitet"
+  ],
+  "career_path": {
+    "entry_from": [
+      "Religionsformidler og Kurator er direct etter canonical Religion career-policy; ingen ekstra kvalifikasjonsgate skal oppfinnes av Role World eller prerequisites."
+    ],
+    "progression_to": [
+      "Større kuratorisk, redaksjonelt, samlings- eller prosjektansvar krever faktisk tildelt ansvar og relevant institusjonell fullmakt selv om career-entry er direct."
+    ],
+    "possible_promotions": [
+      "prosjekt- eller utstillingsansvar med dokumentert mandat",
+      "samlings-, fag- eller formidlingsansvar når arbeidsgiver faktisk tildeler dette"
+    ],
+    "possible_exits": [
+      "forskning, undervisning eller rådgivning etter den nye rollens egne krav",
+      "annen kulturarv-, museums- eller kommunikasjonsrolle uten å ta med skjult samlings- eller representasjonsmyndighet"
+    ],
+    "career_risks": [
+      "publikumsvennlighet kan belønne forenkling og eksotifisering",
+      "nærhet til én aktør kan bli feiltolket som representativitet",
+      "estetisk sterke objekter kan overskygge svak proveniens",
+      "institusjonell prestisje kan gjøre åpne rettelser sosialt kostbare"
+    ]
+  },
+  "required_knowledge": {
+    "education_basis": [
+      "Religionshistorie, religionsvitenskap, kulturarv, kildekritikk, proveniens, formidlingsetikk og institusjonelle rutiner forbedrer arbeidet, men canonical career-entry for begge titler forblir direct."
+    ],
+    "skills": [
+      "kildekritikk",
+      "proveniensarbeid",
+      "kontekstualisering",
+      "utstillings_og_tekstformidling",
+      "dialog",
+      "representasjonsanalyse",
+      "rettigheter_og_personvern",
+      "bevaringsforstaelse",
+      "tilgjengelighet",
+      "versjons_og_rettelsespraksis"
+    ],
+    "category_knowledge": [
+      "Religioners og livssyns interne mangfold, historisk endring, forholdet mellom innenfra- og utenfraperspektiv, organisasjonsmandat, materiell religion, kulturarvskonflikter og forskjellen mellom aktørstemme og faglig evidens."
+    ],
+    "history_go_badges": [
+      "religion"
+    ],
+    "place_connections": [
+      "kilde_proveniens_og_objektbord_religion_formidling",
+      "formidlings_og_utstillingsverksted_religion_formidling",
+      "dialog_representasjon_og_sensitivitetsflate_religion_formidling",
+      "publisering_rettelse_og_oppfolgingspunkt_religion_formidling"
+    ],
+    "people_connections": [
+      "astrid_samling_proveniens_religion_formidling",
+      "hassan_dialog_representasjon_religion_formidling",
+      "eline_redaksjon_formidling_religion_formidling",
+      "maja_etikk_bevaring_og_tilgang_religion_formidling"
+    ]
+  },
+  "challenges": [
+    {
+      "id": "objekt_uten_sikker_historie",
+      "title": "Sterkt objekt, svak proveniens",
+      "description": "Et visuelt sentralt objekt kan gjøre utstillingen bedre, men dokumenthistorikken har reelle hull.",
+      "pressure": "publikumseffekt_vs_proveniens",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    },
+    {
+      "id": "en_stemme_blir_tradisjonen",
+      "title": "Én stemme blir hele tradisjonen",
+      "description": "En tilgjengelig aktør gir gode sitater, men har ikke mandat til å representere alle.",
+      "pressure": "enkel_fortelling_vs_pluralisme",
+      "affects": [
+        "quality",
+        "trust"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "hellig_objekt_i_utstilling",
+      "title": "Hellig objekt i utstilling",
+      "setup": "Et objekt er viktig for historien, men visning er sensitiv og aktører er uenige om hva som er respektfullt.",
+      "choice_axis": "innsikt_vs_sensitivitet_med_mandat",
+      "consequence_axis": "kunnskap_tillit_og_korrigerbarhet_vs_forenkling_eller_overstyring",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "astrid_samling_proveniens_religion_formidling",
+      "name": "Astrid",
+      "role": "samlings- og provenienskontakt",
+      "workplace_ids": [
+        "kilde_proveniens_og_objektbord_religion_formidling"
+      ],
+      "function": "Astrid gjør objektenes dokumenthistorie til en praktisk sperre mot forførende, men udokumenterte fortellinger. Hun kontrollerer katalogdata, innkomsthistorikk, eierskap, tidligere attribusjoner, rettigheter og hull i proveniens, og krever at usikkerhet følger objektet inn i teksten eller utstillingen. Hun skiller mellom hva en gjenstand kan illustrere pedagogisk og hva materialet faktisk dokumenterer historisk.",
+      "authority_relation": "Astrid kan returnere et svakt objektgrunnlag, kreve ny kildekontroll, merke omstridt proveniens og eskalere spørsmål om eierskap, bevaring eller rettigheter. Hun kan ikke gi Religionsformidler eller Kurator rett til å endre kataloghistorikk uten dokumentasjon, gjøre et estetisk sterkt objekt til sikkert historisk bevis eller gi en ekstern aktør representasjonsmonopol.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "hassan_dialog_representasjon_religion_formidling",
+      "name": "Hassan",
+      "role": "dialog- og representasjonskontakt",
+      "workplace_ids": [
+        "dialog_representasjon_og_sensitivitetsflate_religion_formidling"
+      ],
+      "function": "Hassan kartlegger hvem som blir omtalt og berørt, hvilke organisasjoner og personer som faktisk har hvilket mandat, og hvor intern religiøs eller livssynsmessig uenighet må synliggjøres. Han hjelper spilleren å skille erfaringskunnskap, teologisk posisjon, organisasjonsinteresse, minoritetsperspektiv og faglig dokumentasjon, særlig når en tilgjengelig talsperson frister til å bli presentert som hele tradisjonen.",
+      "authority_relation": "Hassan kan kreve tydelig attribusjon, bredere dialog og synliggjøring av manglende stemmer, men kan ikke utpeke hvem som er den autentiske representanten for en tro eller et livssyn. Dialogadgang er ikke evidens, et organisasjonsmandat gjelder ikke automatisk alle troende, og standing eller nettverk kan aldri gi spilleren rett til å tale på vegne av en gruppe.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "eline_redaksjon_formidling_religion_formidling",
+      "name": "Eline",
+      "role": "redaksjons- og formidlingsansvarlig",
+      "workplace_ids": [
+        "formidlings_og_utstillingsverksted_religion_formidling"
+      ],
+      "function": "Eline gjør målgruppe, språk, dramaturgi, tilgjengelighet og faglig presisjon til samme redaksjonelle problem. Hun presser spilleren til å forklare vanskelige begreper uten å gjøre historisk endring, intern variasjon eller analytisk usikkerhet usynlig, og til å skille sitert aktørstemme fra institusjonens egen forklaring. Hun følger versjoner fra utkast til publisert tekst og omvisning.",
+      "authority_relation": "Eline kan redigere, be om dokumentasjon og stoppe publisering som ikke tilfredsstiller avtalte fag- og tilgjengelighetskrav innen sitt mandat. Hun kan ikke gjøre publikumsvennlighet til grunn for å omskrive proveniens, erklære én religiøs posisjon som normativ sannhet eller love institusjonelle beslutninger om utlån, tilbakeføring eller tilgang som eies av andre.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "maja_etikk_bevaring_og_tilgang_religion_formidling",
+      "name": "Maja",
+      "role": "etikk-, bevarings- og tilgangskontakt",
+      "workplace_ids": [
+        "publisering_rettelse_og_oppfolgingspunkt_religion_formidling"
+      ],
+      "function": "Maja håndterer grensene som oppstår når et objekt, bilde, opptak eller personlig materiale er sensitivt, hellig, sårbart eller juridisk begrenset. Hun knytter bevaring, personvern, rettigheter, sikkerhet, tilgjengelighet og institusjonens etiske ramme til konkrete visnings- og publiseringsvalg, og skiller mellom noe som er faglig interessant og noe rollen faktisk kan vise eller dele.",
+      "authority_relation": "Maja kan kreve kontroll, begrense et konkret visningsgrep innen dokumentert mandat og eskalere rettighets-, personvern-, sikkerhets- eller tilbakeføringsspørsmål. Hun kan ikke bruke sensitivitet som grunn til å slette dokumentert historie, og spilleren kan ikke overstyre hennes kontroll gjennom Badge-status, History Go-kunnskap, publikumspress eller en sterk relasjon til en berørt aktør.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "kilde_proveniens_og_objektbord_religion_formidling",
+      "name": "Kilde-, proveniens- og objektbordet",
+      "function": "Her samles kilder, katalogopplysninger, objektidentitet, eierskaps- og innkomsthistorikk, tidligere beskrivelser, rettigheter og dokumenterte hull. Flaten skiller det institusjonen faktisk vet fra tradisjon, antakelse, estetisk fortelling og påstander som fortsatt krever kontroll."
+    },
+    {
+      "id": "formidlings_og_utstillingsverksted_religion_formidling",
+      "name": "Formidlings- og utstillingsverkstedet",
+      "function": "Her bygges tekster, omvisninger, digitale fortellinger og utstillingsgrep med tydelig skille mellom kildebelagt historie, aktørperspektiv, religionsvitenskapelig analyse og pedagogisk forenkling. Hvert utkast beholder kilde- og versjonsspor."
+    },
+    {
+      "id": "dialog_representasjon_og_sensitivitetsflate_religion_formidling",
+      "name": "Dialog-, representasjons- og sensitivitetsflaten",
+      "function": "Her registreres hvem som er konsultert, hvilket mandat eller ståsted de faktisk har, intern variasjon, berørte perspektiver, sensitiv brukshistorie, hellige objekter, personvern, etikk og uenighet. Dialog gir innsikt, men gjør ingen enkeltaktør til hele tradisjonen."
+    },
+    {
+      "id": "publisering_rettelse_og_oppfolgingspunkt_religion_formidling",
+      "name": "Publisering, rettelse og oppfølging",
+      "function": "Her låses publisert versjon, målgruppe, tilgjengelighet, godkjenninger, åpne forbehold, publikumsrespons, dokumenterte feil, rettelser og bounded rework. Tidligere tekst og begrunnelse beholdes slik at korrigering ikke blir omskriving av historikken."
+    }
+  ]
 }
