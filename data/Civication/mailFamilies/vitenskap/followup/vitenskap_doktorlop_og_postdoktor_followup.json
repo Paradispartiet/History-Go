@@ -1,0 +1,90 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_doktorlop_og_postdoktor",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "vitenskap_doktorlop_og_postdoktor_fagfelle_handoff_og_bounded_rework",
+      "purpose": "Følge veiledning og fagfellekritikk gjennom versjonert bounded rework.",
+      "learning_focus": [
+        "forskningsdesign",
+        "metodeintegritet",
+        "forskningsetikk",
+        "dataforvaltning",
+        "reproduserbarhet",
+        "publisering_og_forfatterskap"
+      ],
+      "mails": [
+        {
+          "id": "vitenskap_doktorlop_og_postdoktor_followup_001",
+          "mail_type": "followup",
+          "mail_family": "vitenskap_doktorlop_og_postdoktor_fagfelle_handoff_og_bounded_rework",
+          "role_scope": "vitenskap_doktorlop_og_postdoktor",
+          "phase": "forenoon",
+          "priority": 181,
+          "from": "Lea",
+          "people_ref": "lea_publisering_forfatterskap_og_handoff_vitenskap_doktorlop",
+          "place_id": "publisering_forfatterskap_karriere_og_rework_vitenskap_doktorlop",
+          "subject": "Gjenåpne bare leddene fagfellekommentaren faktisk berører",
+          "summary": "Gjenåpne bare leddene fagfellekommentaren faktisk berører. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal gjenåpne bare leddene fagfellekommentaren faktisk berører.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "task_domain": "vitenskap_doktorlop_og_postdoktor",
+          "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+          "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+          "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+          "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+          "narrative_arc": "followup",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Før gjenåpne bare leddene fagfellekommentaren faktisk berører gjennom det dokumenterte forskningsforløpet",
+              "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+              "effect": 1,
+              "tags": [
+                "forskningsintegritet",
+                "metode",
+                "etikk",
+                "reproduserbarhet"
+              ],
+              "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Løs gjenåpne bare leddene fagfellekommentaren faktisk berører med den raskeste resultatdrevne snarveien",
+              "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+              "effect": -1,
+              "tags": [
+                "etterrasjonalisering",
+                "metodeavvik",
+                "integritetsrisiko"
+              ],
+              "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

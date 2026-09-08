@@ -691,7 +691,16 @@
     "data/Civication/mailFamilies/vitenskap/micro/vitenskap_assistent_og_laboratorium_micro.json",
     "data/Civication/mailFamilies/vitenskap/followup/vitenskap_assistent_og_laboratorium_followup.json",
     "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_assistent_og_laboratorium_knowledge.json",
-    "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_assistent_og_laboratorium_consequence.json"
+    "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_assistent_og_laboratorium_consequence.json",
+    "data/Civication/mailFamilies/vitenskap/job/vitenskap_doktorlop_og_postdoktor_job.json",
+    "data/Civication/mailFamilies/vitenskap/people/vitenskap_doktorlop_og_postdoktor_people.json",
+    "data/Civication/mailFamilies/vitenskap/story/vitenskap_doktorlop_og_postdoktor_story.json",
+    "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_doktorlop_og_postdoktor_conflict.json",
+    "data/Civication/mailFamilies/vitenskap/event/vitenskap_doktorlop_og_postdoktor_event.json",
+    "data/Civication/mailFamilies/vitenskap/micro/vitenskap_doktorlop_og_postdoktor_micro.json",
+    "data/Civication/mailFamilies/vitenskap/followup/vitenskap_doktorlop_og_postdoktor_followup.json",
+    "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_doktorlop_og_postdoktor_knowledge.json",
+    "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_doktorlop_og_postdoktor_consequence.json"
   ],
   "compiler_version": 1,
   "entries": [
@@ -274299,6 +274308,2031 @@
       "source_hash": "2aa75a7418fe5d33de9966be576e9eda5b323eb3b2af2174ad9ecbe0db31ada1",
       "source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_assistent_og_laboratorium_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før publiseringsfristen presser teamet mot selektiv analyse og rapportering gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs publiseringsfristen presser teamet mot selektiv analyse og rapportering med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Jonas",
+        "id": "vitenskap_doktorlop_og_postdoktor_conflict_001",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_publiseringspress_og_integritetskonflikt",
+        "mail_type": "conflict",
+        "narrative_arc": "conflict",
+        "people_ref": "jonas_analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+        "phase": "forenoon",
+        "place_id": "analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 141,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_doktorlop_og_postdoktor_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal publiseringsfristen presser teamet mot selektiv analyse og rapportering.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Publiseringsfristen presser teamet mot selektiv analyse og rapportering",
+        "summary": "Publiseringsfristen presser teamet mot selektiv analyse og rapportering. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_conflict_001",
+      "mail_type": "conflict",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før publiseringsfristen presser teamet mot selektiv analyse og rapportering gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs publiseringsfristen presser teamet mot selektiv analyse og rapportering med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal publiseringsfristen presser teamet mot selektiv analyse og rapportering.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Publiseringsfristen presser teamet mot selektiv analyse og rapportering",
+          "summary": "Publiseringsfristen presser teamet mot selektiv analyse og rapportering. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_conflict_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_conflict_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_doktorlop_og_postdoktor_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_conflict_001",
+        "version": 1
+      },
+      "source_hash": "1eb451d4a4953e0136b6a5bc904e3980784f266decbdb401767358b248dcec03",
+      "source_path": "data/Civication/mailFamilies/vitenskap/conflict/vitenskap_doktorlop_og_postdoktor_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før etterspillet viser kostnaden ved skjulte metodeendringer og uklart forfatterskap gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs etterspillet viser kostnaden ved skjulte metodeendringer og uklart forfatterskap med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Lea",
+        "id": "vitenskap_doktorlop_og_postdoktor_consequence_001",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_etterspill_reproduserbarhet_og_tillit",
+        "mail_type": "consequence",
+        "narrative_arc": "consequence",
+        "people_ref": "lea_publisering_forfatterskap_og_handoff_vitenskap_doktorlop",
+        "phase": "forenoon",
+        "place_id": "publisering_forfatterskap_karriere_og_rework_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 201,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_doktorlop_og_postdoktor_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal etterspillet viser kostnaden ved skjulte metodeendringer og uklart forfatterskap.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Etterspillet viser kostnaden ved skjulte metodeendringer og uklart forfatterskap",
+        "summary": "Etterspillet viser kostnaden ved skjulte metodeendringer og uklart forfatterskap. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_consequence_001",
+      "mail_type": "consequence",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før etterspillet viser kostnaden ved skjulte metodeendringer og uklart forfatterskap gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs etterspillet viser kostnaden ved skjulte metodeendringer og uklart forfatterskap med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal etterspillet viser kostnaden ved skjulte metodeendringer og uklart forfatterskap.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Etterspillet viser kostnaden ved skjulte metodeendringer og uklart forfatterskap",
+          "summary": "Etterspillet viser kostnaden ved skjulte metodeendringer og uklart forfatterskap. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_consequence_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publisering_forfatterskap_karriere_og_rework_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_consequence_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_doktorlop_og_postdoktor_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_consequence_001",
+        "version": 1
+      },
+      "source_hash": "d2da0966cc9d5a47b1a912755b1534d3a8cb37e259d4e90e7872aa1f8a7fd0af",
+      "source_path": "data/Civication/mailFamilies/vitenskap/consequence/vitenskap_doktorlop_og_postdoktor_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før nytt datasett endrer etikk-, personvern- og metodeforutsetningene gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs nytt datasett endrer etikk-, personvern- og metodeforutsetningene med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Samira",
+        "id": "vitenskap_doktorlop_og_postdoktor_event_001",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_metode_eller_dataendring",
+        "mail_type": "event",
+        "narrative_arc": "event",
+        "people_ref": "samira_forskningsetikk_personvern_og_data_vitenskap_doktorlop",
+        "phase": "forenoon",
+        "place_id": "forskningsetikk_personvern_og_dataforvaltning_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 161,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/event/vitenskap_doktorlop_og_postdoktor_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal nytt datasett endrer etikk-, personvern- og metodeforutsetningene.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Nytt datasett endrer etikk-, personvern- og metodeforutsetningene",
+        "summary": "Nytt datasett endrer etikk-, personvern- og metodeforutsetningene. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_event_001",
+      "mail_type": "event",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før nytt datasett endrer etikk-, personvern- og metodeforutsetningene gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs nytt datasett endrer etikk-, personvern- og metodeforutsetningene med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal nytt datasett endrer etikk-, personvern- og metodeforutsetningene.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Nytt datasett endrer etikk-, personvern- og metodeforutsetningene",
+          "summary": "Nytt datasett endrer etikk-, personvern- og metodeforutsetningene. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_event_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskningsetikk_personvern_og_dataforvaltning_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_event_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/event/vitenskap_doktorlop_og_postdoktor_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_event_001",
+        "version": 1
+      },
+      "source_hash": "cac639368ce389e193dc7bf71393f29860fae05a3ac52a9d4e4fbaa5ed07e04e",
+      "source_path": "data/Civication/mailFamilies/vitenskap/event/vitenskap_doktorlop_og_postdoktor_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før gjenåpne bare leddene fagfellekommentaren faktisk berører gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs gjenåpne bare leddene fagfellekommentaren faktisk berører med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Lea",
+        "id": "vitenskap_doktorlop_og_postdoktor_followup_001",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_fagfelle_handoff_og_bounded_rework",
+        "mail_type": "followup",
+        "narrative_arc": "followup",
+        "people_ref": "lea_publisering_forfatterskap_og_handoff_vitenskap_doktorlop",
+        "phase": "forenoon",
+        "place_id": "publisering_forfatterskap_karriere_og_rework_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 181,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/followup/vitenskap_doktorlop_og_postdoktor_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal gjenåpne bare leddene fagfellekommentaren faktisk berører.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Gjenåpne bare leddene fagfellekommentaren faktisk berører",
+        "summary": "Gjenåpne bare leddene fagfellekommentaren faktisk berører. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_followup_001",
+      "mail_type": "followup",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før gjenåpne bare leddene fagfellekommentaren faktisk berører gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs gjenåpne bare leddene fagfellekommentaren faktisk berører med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal gjenåpne bare leddene fagfellekommentaren faktisk berører.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Gjenåpne bare leddene fagfellekommentaren faktisk berører",
+          "summary": "Gjenåpne bare leddene fagfellekommentaren faktisk berører. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_followup_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publisering_forfatterskap_karriere_og_rework_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_followup_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/followup/vitenskap_doktorlop_og_postdoktor_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_followup_001",
+        "version": 1
+      },
+      "source_hash": "f34093720f34db50d34966801ad305cf236d733416455b33770b2e3f669c8d5b",
+      "source_path": "data/Civication/mailFamilies/vitenskap/followup/vitenskap_doktorlop_og_postdoktor_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før avgrens forskningsspørsmål, design og neste milepæl gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs avgrens forskningsspørsmål, design og neste milepæl med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Ingrid",
+        "id": "vitenskap_doktorlop_og_postdoktor_job_001",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "ingrid_veiledning_og_forskningsdesign_vitenskap_doktorlop",
+        "phase": "forenoon",
+        "place_id": "forskningssporsmal_design_og_milepaeler_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 121,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_doktorlop_og_postdoktor_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal avgrens forskningsspørsmål, design og neste milepæl.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Avgrens forskningsspørsmål, design og neste milepæl",
+        "summary": "Avgrens forskningsspørsmål, design og neste milepæl. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_job_001",
+      "mail_type": "job",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før avgrens forskningsspørsmål, design og neste milepæl gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs avgrens forskningsspørsmål, design og neste milepæl med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal avgrens forskningsspørsmål, design og neste milepæl.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Avgrens forskningsspørsmål, design og neste milepæl",
+          "summary": "Avgrens forskningsspørsmål, design og neste milepæl. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_job_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskningssporsmal_design_og_milepaeler_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_job_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_doktorlop_og_postdoktor_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_job_001",
+        "version": 1
+      },
+      "source_hash": "48c6f7e88f78caa6cc956193f487087cf1b9d7e4c73180e85869d4ddf68a879e",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_doktorlop_og_postdoktor_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før avklar etikk, personvern, tilgang og data før videre bruk gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs avklar etikk, personvern, tilgang og data før videre bruk med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Samira",
+        "id": "vitenskap_doktorlop_og_postdoktor_job_002",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "samira_forskningsetikk_personvern_og_data_vitenskap_doktorlop",
+        "phase": "afternoon",
+        "place_id": "forskningsetikk_personvern_og_dataforvaltning_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 122,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_doktorlop_og_postdoktor_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal avklar etikk, personvern, tilgang og data før videre bruk.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Avklar etikk, personvern, tilgang og data før videre bruk",
+        "summary": "Avklar etikk, personvern, tilgang og data før videre bruk. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_job_002",
+      "mail_type": "job",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før avklar etikk, personvern, tilgang og data før videre bruk gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs avklar etikk, personvern, tilgang og data før videre bruk med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal avklar etikk, personvern, tilgang og data før videre bruk.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Avklar etikk, personvern, tilgang og data før videre bruk",
+          "summary": "Avklar etikk, personvern, tilgang og data før videre bruk. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_job_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskningsetikk_personvern_og_dataforvaltning_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_job_002",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_doktorlop_og_postdoktor_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_job_002",
+        "version": 1
+      },
+      "source_hash": "12496e33b0d5c0abaffe0f3694f92945714030cb384b1a34854b268400bcb046",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_doktorlop_og_postdoktor_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før gjør analysevalg, negative funn og usikkerhet etterprøvbare gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs gjør analysevalg, negative funn og usikkerhet etterprøvbare med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Jonas",
+        "id": "vitenskap_doktorlop_og_postdoktor_job_003",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "jonas_analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+        "phase": "forenoon",
+        "place_id": "analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 123,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_doktorlop_og_postdoktor_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal gjør analysevalg, negative funn og usikkerhet etterprøvbare.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Gjør analysevalg, negative funn og usikkerhet etterprøvbare",
+        "summary": "Gjør analysevalg, negative funn og usikkerhet etterprøvbare. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_job_003",
+      "mail_type": "job",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før gjør analysevalg, negative funn og usikkerhet etterprøvbare gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs gjør analysevalg, negative funn og usikkerhet etterprøvbare med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal gjør analysevalg, negative funn og usikkerhet etterprøvbare.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Gjør analysevalg, negative funn og usikkerhet etterprøvbare",
+          "summary": "Gjør analysevalg, negative funn og usikkerhet etterprøvbare. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_job_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_job_003",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_doktorlop_og_postdoktor_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_job_003",
+        "version": 1
+      },
+      "source_hash": "b892a98e7b607cbed86dc6f751642cee2ba73e3fa026ea8abc948a117a5564fc",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_doktorlop_og_postdoktor_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før avklar manus, forfatterskap og versjonert handoff gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs avklar manus, forfatterskap og versjonert handoff med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Lea",
+        "id": "vitenskap_doktorlop_og_postdoktor_job_004",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "lea_publisering_forfatterskap_og_handoff_vitenskap_doktorlop",
+        "phase": "afternoon",
+        "place_id": "publisering_forfatterskap_karriere_og_rework_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 124,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_doktorlop_og_postdoktor_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal avklar manus, forfatterskap og versjonert handoff.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Avklar manus, forfatterskap og versjonert handoff",
+        "summary": "Avklar manus, forfatterskap og versjonert handoff. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_job_004",
+      "mail_type": "job",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før avklar manus, forfatterskap og versjonert handoff gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs avklar manus, forfatterskap og versjonert handoff med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal avklar manus, forfatterskap og versjonert handoff.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Avklar manus, forfatterskap og versjonert handoff",
+          "summary": "Avklar manus, forfatterskap og versjonert handoff. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_job_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publisering_forfatterskap_karriere_og_rework_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_job_004",
+          "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_doktorlop_og_postdoktor_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_job_004",
+        "version": 1
+      },
+      "source_hash": "8a58a6eb0c3b97a6530c27a10c2bc70ca200cb3ae19db2dac1b11ad79fe889c1",
+      "source_path": "data/Civication/mailFamilies/vitenskap/job/vitenskap_doktorlop_og_postdoktor_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før bruk history go til å forstå forskningspraksis uten å gjøre historisk kontekst til dagens evidens gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs bruk history go til å forstå forskningspraksis uten å gjøre historisk kontekst til dagens evidens med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Jonas",
+        "id": "vitenskap_doktorlop_og_postdoktor_knowledge_001",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_history_go_vitenskapspraksis",
+        "mail_type": "knowledge",
+        "narrative_arc": "knowledge",
+        "people_ref": "jonas_analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+        "phase": "forenoon",
+        "place_id": "analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 191,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_doktorlop_og_postdoktor_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal bruk history go til å forstå forskningspraksis uten å gjøre historisk kontekst til dagens evidens.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Bruk History Go til å forstå forskningspraksis uten å gjøre historisk kontekst til dagens evidens",
+        "summary": "Bruk History Go til å forstå forskningspraksis uten å gjøre historisk kontekst til dagens evidens. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_knowledge_001",
+      "mail_type": "knowledge",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før bruk history go til å forstå forskningspraksis uten å gjøre historisk kontekst til dagens evidens gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs bruk history go til å forstå forskningspraksis uten å gjøre historisk kontekst til dagens evidens med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal bruk history go til å forstå forskningspraksis uten å gjøre historisk kontekst til dagens evidens.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Bruk History Go til å forstå forskningspraksis uten å gjøre historisk kontekst til dagens evidens",
+          "summary": "Bruk History Go til å forstå forskningspraksis uten å gjøre historisk kontekst til dagens evidens. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_knowledge_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_knowledge_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_doktorlop_og_postdoktor_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_knowledge_001",
+        "version": 1
+      },
+      "source_hash": "60a7720ebb796cc0a93c0ff006f7adde4bd52c732f3a3784021ae273f01043b4",
+      "source_path": "data/Civication/mailFamilies/vitenskap/knowledge/vitenskap_doktorlop_og_postdoktor_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før skille badgeprogresjon fra faktisk opptak, ansettelse og forskningsmandat gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs skille badgeprogresjon fra faktisk opptak, ansettelse og forskningsmandat med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Ingrid",
+        "id": "vitenskap_doktorlop_og_postdoktor_micro_001",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_rask_gate_og_mandatavklaring",
+        "mail_type": "micro",
+        "narrative_arc": "micro",
+        "people_ref": "ingrid_veiledning_og_forskningsdesign_vitenskap_doktorlop",
+        "phase": "forenoon",
+        "place_id": "forskningssporsmal_design_og_milepaeler_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 171,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/micro/vitenskap_doktorlop_og_postdoktor_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal skille badgeprogresjon fra faktisk opptak, ansettelse og forskningsmandat.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Skille badgeprogresjon fra faktisk opptak, ansettelse og forskningsmandat",
+        "summary": "Skille badgeprogresjon fra faktisk opptak, ansettelse og forskningsmandat. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_micro_001",
+      "mail_type": "micro",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før skille badgeprogresjon fra faktisk opptak, ansettelse og forskningsmandat gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs skille badgeprogresjon fra faktisk opptak, ansettelse og forskningsmandat med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal skille badgeprogresjon fra faktisk opptak, ansettelse og forskningsmandat.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Skille badgeprogresjon fra faktisk opptak, ansettelse og forskningsmandat",
+          "summary": "Skille badgeprogresjon fra faktisk opptak, ansettelse og forskningsmandat. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_micro_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskningssporsmal_design_og_milepaeler_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_micro_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/micro/vitenskap_doktorlop_og_postdoktor_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_micro_001",
+        "version": 1
+      },
+      "source_hash": "4038eee4b426474f6e5d7081767d30e7f2b9427492dbe63237b347a9b261230c",
+      "source_path": "data/Civication/mailFamilies/vitenskap/micro/vitenskap_doktorlop_og_postdoktor_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før når veilederpress frister til skjult prosjektglidning gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs når veilederpress frister til skjult prosjektglidning med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Ingrid",
+        "id": "vitenskap_doktorlop_og_postdoktor_people_001",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "ingrid_veiledning_og_forskningsdesign_vitenskap_doktorlop",
+        "phase": "forenoon",
+        "place_id": "forskningssporsmal_design_og_milepaeler_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 131,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_doktorlop_og_postdoktor_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal når veilederpress frister til skjult prosjektglidning.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Når veilederpress frister til skjult prosjektglidning",
+        "summary": "Når veilederpress frister til skjult prosjektglidning. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_people_001",
+      "mail_type": "people",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før når veilederpress frister til skjult prosjektglidning gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs når veilederpress frister til skjult prosjektglidning med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal når veilederpress frister til skjult prosjektglidning.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Når veilederpress frister til skjult prosjektglidning",
+          "summary": "Når veilederpress frister til skjult prosjektglidning. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_people_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskningssporsmal_design_og_milepaeler_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_people_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_doktorlop_og_postdoktor_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_people_001",
+        "version": 1
+      },
+      "source_hash": "9ef908a4e84341272aba9f49bfda5676bc6c775f1eb7de8abfa5db07f10cb219",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_doktorlop_og_postdoktor_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før når et eldre samtykke eller godkjenning antas å dekke et nytt formål gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs når et eldre samtykke eller godkjenning antas å dekke et nytt formål med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Samira",
+        "id": "vitenskap_doktorlop_og_postdoktor_people_002",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "samira_forskningsetikk_personvern_og_data_vitenskap_doktorlop",
+        "phase": "afternoon",
+        "place_id": "forskningsetikk_personvern_og_dataforvaltning_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 132,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_doktorlop_og_postdoktor_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal når et eldre samtykke eller godkjenning antas å dekke et nytt formål.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Når et eldre samtykke eller godkjenning antas å dekke et nytt formål",
+        "summary": "Når et eldre samtykke eller godkjenning antas å dekke et nytt formål. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_people_002",
+      "mail_type": "people",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før når et eldre samtykke eller godkjenning antas å dekke et nytt formål gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs når et eldre samtykke eller godkjenning antas å dekke et nytt formål med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal når et eldre samtykke eller godkjenning antas å dekke et nytt formål.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Når et eldre samtykke eller godkjenning antas å dekke et nytt formål",
+          "summary": "Når et eldre samtykke eller godkjenning antas å dekke et nytt formål. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_people_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskningsetikk_personvern_og_dataforvaltning_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_people_002",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_doktorlop_og_postdoktor_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_people_002",
+        "version": 1
+      },
+      "source_hash": "b8ea2af7c0e4e479f63b02cde8dcd5dfe6a5f1d9e203dd12ec677db2d611d223",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_doktorlop_og_postdoktor_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før når en kollega vil velge analysen som gir penest resultat gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs når en kollega vil velge analysen som gir penest resultat med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Jonas",
+        "id": "vitenskap_doktorlop_og_postdoktor_people_003",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "jonas_analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+        "phase": "forenoon",
+        "place_id": "analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 133,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_doktorlop_og_postdoktor_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal når en kollega vil velge analysen som gir penest resultat.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Når en kollega vil velge analysen som gir penest resultat",
+        "summary": "Når en kollega vil velge analysen som gir penest resultat. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_people_003",
+      "mail_type": "people",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før når en kollega vil velge analysen som gir penest resultat gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs når en kollega vil velge analysen som gir penest resultat med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal når en kollega vil velge analysen som gir penest resultat.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Når en kollega vil velge analysen som gir penest resultat",
+          "summary": "Når en kollega vil velge analysen som gir penest resultat. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_people_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "analyse_reproduserbarhet_og_usikkerhet_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_people_003",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_doktorlop_og_postdoktor_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_people_003",
+        "version": 1
+      },
+      "source_hash": "2244ae24d4374fd8b6bb5be372ba8f4cf9856db423bb0dcb604b20d02292db03",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_doktorlop_og_postdoktor_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før når hierarki blir brukt som forfatterskapskriterium gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs når hierarki blir brukt som forfatterskapskriterium med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Lea",
+        "id": "vitenskap_doktorlop_og_postdoktor_people_004",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "lea_publisering_forfatterskap_og_handoff_vitenskap_doktorlop",
+        "phase": "afternoon",
+        "place_id": "publisering_forfatterskap_karriere_og_rework_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 134,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_doktorlop_og_postdoktor_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal når hierarki blir brukt som forfatterskapskriterium.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Når hierarki blir brukt som forfatterskapskriterium",
+        "summary": "Når hierarki blir brukt som forfatterskapskriterium. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_people_004",
+      "mail_type": "people",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før når hierarki blir brukt som forfatterskapskriterium gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs når hierarki blir brukt som forfatterskapskriterium med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal når hierarki blir brukt som forfatterskapskriterium.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Når hierarki blir brukt som forfatterskapskriterium",
+          "summary": "Når hierarki blir brukt som forfatterskapskriterium. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_people_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publisering_forfatterskap_karriere_og_rework_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_people_004",
+          "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_doktorlop_og_postdoktor_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_people_004",
+        "version": 1
+      },
+      "source_hash": "10ccbf50cd3d62bc56fb4c166d06014d537e59c28d34b871410a9f9136703b2a",
+      "source_path": "data/Civication/mailFamilies/vitenskap/people/vitenskap_doktorlop_og_postdoktor_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "vitenskap",
+      "compatibility_projection": {
+        "category": "vitenskap",
+        "choice_axis": "etterprovbar_forskningsintegritet_vs_resultatdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før et negativt funn gjorde prosjektets konklusjon mer presis gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens.",
+            "tags": [
+              "forskningsintegritet",
+              "metode",
+              "etikk",
+              "reproduserbarhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs et negativt funn gjorde prosjektets konklusjon mer presis med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve.",
+            "tags": [
+              "etterrasjonalisering",
+              "metodeavvik",
+              "integritetsrisiko"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign_metode_etikk_data_analyse_reproduserbarhet_publisering_og_handoff",
+        "consequence_axis": "reproduserbarhet_tillit_og_kvalitet_vs_skjult_bias_og_risiko",
+        "from": "Ingrid",
+        "id": "vitenskap_doktorlop_og_postdoktor_story_001",
+        "mail_family": "vitenskap_doktorlop_og_postdoktor_synlige_negative_funn_og_tillit",
+        "mail_type": "story",
+        "narrative_arc": "story",
+        "people_ref": "ingrid_veiledning_og_forskningsdesign_vitenskap_doktorlop",
+        "phase": "forenoon",
+        "place_id": "forskningssporsmal_design_og_milepaeler_vitenskap_doktorlop",
+        "pressure": "publiseringspress_karrierepress_hierarki_onsket_resultat_og_uformell_myndighet",
+        "priority": 151,
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_doktorlop_og_postdoktor_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal et negativt funn gjorde prosjektets konklusjon mer presis.",
+          "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+          "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+        ],
+        "subject": "Et negativt funn gjorde prosjektets konklusjon mer presis",
+        "summary": "Et negativt funn gjorde prosjektets konklusjon mer presis. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig.",
+        "task_domain": "vitenskap_doktorlop_og_postdoktor"
+      },
+      "id": "vitenskap_doktorlop_og_postdoktor_story_001",
+      "mail_type": "story",
+      "role_scope": "vitenskap_doktorlop_og_postdoktor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet bevarer forskningsintegriteten fordi neste person kan se hvilket spørsmål som ble stilt, hvilket design og hvilken metode som gjaldt, hvilke etikk- og datarammer som var avklart, hva analysen faktisk viste, hvilke negative funn og usikkerheter som finnes, og når prosjektet ble endret. Qualification_required forblir en reell port. Veiledning, etikk/personvern, forfatterskap og institusjonell myndighet holdes på riktig nivå, mens bounded rework kan forbedre arbeidet uten å omskrive historikken.",
+            "id": "A",
+            "label": "Før et negativt funn gjorde prosjektets konklusjon mer presis gjennom det dokumenterte forskningsforløpet",
+            "reply": "Jeg oppdaterer forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework før arbeidet går videre. Jeg bekrefter academic_qualification_and_employment, faktisk opptak eller ansettelse og prosjektmandat der det kreves. Forskningsspørsmål, design og metodeversjon holdes adskilt fra senere endringer; etikk, personvern, tilgang og datagrunnlag kontrolleres mot dagens formål. Jeg bevarer rådata, tidligere analyser, negative funn og usikkerhet, dokumenterer når og hvorfor en metode eller analyse endres, og sender grad-, etikk-, data- eller institusjonelle beslutninger til riktig ansvarlig nivå. Forfatterskap følger dokumenterte bidrag. History Go og Vitenskap-badge brukes til kontekst og bedre spørsmål, aldri som kvalifikasjon, godkjenning eller evidens."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Snarveien bryter koblingen mellom plan, data, analyse og konklusjon. Når metodeendringer, negative funn, tilgang eller forfatterskap skjules eller etterrasjonaliseres, kan leseren ikke skille opprinnelig design fra resultatdrevet tilpasning. Publiseringspress, badge, XP eller sosial standing kan ikke legitimere dette; academic_qualification_and_employment, nødvendige godkjenninger, dokumenterte bidrag og synlig usikkerhet må forbli separate kontrollpunkter.",
+            "id": "B",
+            "label": "Løs et negativt funn gjorde prosjektets konklusjon mer presis med den raskeste resultatdrevne snarveien",
+            "reply": "Jeg lar publiseringsfrist, karrierepress, veilederhierarki eller ønsket om et tydelig resultat styre mer enn arbeidssporet. Jeg behandler badge og erfaring som om kvalifikasjon og mandat var dokumentert, lar et gammelt etikk- eller datagrunnlag dekke et nytt formål uten kontroll, velger analyse etter resultatet, toner ned negative funn og oppdaterer metodebeskrivelsen uten å vise at planen ble endret. Hvis forfatterskap er uklart, lar jeg status avgjøre. Slik ser prosjektet raskere og renere ut, men tidligere beslutninger og ansvar blir vanskelige å etterprøve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den gjeldende forskningsarbeidsloggen viser hva som var planlagt, hva som er dokumentert og hva som fortsatt er uavklart mens du skal et negativt funn gjorde prosjektets konklusjon mer presis.",
+            "Publiseringsfrist, karrierepress, ønsket resultat eller hierarki gjør det fristende å glatte over metodeendring, negativt funn, data-/etikkgrense eller riktig myndighetsnivå.",
+            "Velg et grep som bevarer qualification_required, design- og metodehistorikk, etikk/data, analyse, usikkerhet, veiledning, forfatterskap og versjonert handoff."
+          ],
+          "subject": "Et negativt funn gjorde prosjektets konklusjon mer presis",
+          "summary": "Et negativt funn gjorde prosjektets konklusjon mer presis. Oppgaven skal løses i forskningsarbeidslogg_sporsmal_design_metode_etikk_data_analyse_veiledning_milepaeler_publisering_og_rework med qualification_required, versjonert metode, etikk/data, analyseintegritet, veiledning, forfatterskap og bounded rework synlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "vitenskap_doktorlop_og_postdoktor_story_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskningssporsmal_design_og_milepaeler_vitenskap_doktorlop",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "vitenskap_doktorlop_og_postdoktor_story_001",
+          "source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_doktorlop_og_postdoktor_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "vitenskap_doktorlop_og_postdoktor.mail.vitenskap_doktorlop_og_postdoktor_story_001",
+        "version": 1
+      },
+      "source_hash": "abae5b91805d317f021bb209f7c54cd22db1ddde603a161ca55ef0ddf58ab2a9",
+      "source_path": "data/Civication/mailFamilies/vitenskap/story/vitenskap_doktorlop_og_postdoktor_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
     }
   ],
   "ignored_source_files": [
@@ -274308,7 +276342,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "1434be220b961a784fc8fd90d55535f466b721fd125dd514b57d3849d2669534",
+  "registry_hash": "be2f37bcea7112798de984c393ecfc4b3786eee8083ed24fb89ffa1194057c9b",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -276253,6 +278287,23 @@
       "vitenskap_assistent_og_laboratorium_followup_001",
       "vitenskap_assistent_og_laboratorium_knowledge_001",
       "vitenskap_assistent_og_laboratorium_consequence_001"
+    ],
+    "vitenskap/vitenskap_doktorlop_og_postdoktor": [
+      "vitenskap_doktorlop_og_postdoktor_job_001",
+      "vitenskap_doktorlop_og_postdoktor_job_002",
+      "vitenskap_doktorlop_og_postdoktor_job_003",
+      "vitenskap_doktorlop_og_postdoktor_job_004",
+      "vitenskap_doktorlop_og_postdoktor_people_001",
+      "vitenskap_doktorlop_og_postdoktor_people_002",
+      "vitenskap_doktorlop_og_postdoktor_people_003",
+      "vitenskap_doktorlop_og_postdoktor_people_004",
+      "vitenskap_doktorlop_og_postdoktor_story_001",
+      "vitenskap_doktorlop_og_postdoktor_conflict_001",
+      "vitenskap_doktorlop_og_postdoktor_event_001",
+      "vitenskap_doktorlop_og_postdoktor_micro_001",
+      "vitenskap_doktorlop_og_postdoktor_followup_001",
+      "vitenskap_doktorlop_og_postdoktor_knowledge_001",
+      "vitenskap_doktorlop_og_postdoktor_consequence_001"
     ]
   },
   "runtime_materialized_sources": [
@@ -276282,11 +278333,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 692,
+    "compiled_source_file_count": 701,
     "ignored_source_file_count": 1,
-    "input_file_count": 693,
-    "role_count": 82,
-    "scene_count": 1780,
+    "input_file_count": 702,
+    "role_count": 83,
+    "scene_count": 1795,
     "shadowed_duplicate_count": 0
   },
   "version": 1
