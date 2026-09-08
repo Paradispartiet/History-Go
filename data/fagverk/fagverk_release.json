@@ -10,8 +10,8 @@
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.15.0",
-    "updated_at": "2026-09-07",
-    "content_sha256": "8194bb4af4182262efe6c33e6b38514ee4bde87e4b21c1bc4ae2a1ef37459a8b"
+    "updated_at": "2026-09-08",
+    "content_sha256": "902c59f7a063c5f4e745afb3dc0090f1e9b84c12b61c625cc4e87067e647c664"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -33,12 +33,12 @@
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
-    "chapter_subject_count": 17,
-    "chapter_count": 189,
+    "chapter_subject_count": 18,
+    "chapter_count": 190,
     "module_file_count": 497,
     "package_file_count": 411,
-    "chapter_referenced_file_count": 933,
-    "referenced_file_count": 1273,
+    "chapter_referenced_file_count": 934,
+    "referenced_file_count": 1274,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -3747,13 +3747,13 @@
       ]
     },
     "litteratur": {
-      "title": "litteratur",
+      "title": "Litteratur",
       "kind": "subject",
       "parent_subject_id": null,
       "schema_family": "standard_canonical",
       "pilot": false,
       "package_status": "complete",
-      "chapter_status": "not_materialized",
+      "chapter_status": "materialized",
       "required_manifest_fields": [
         "pensum",
         "emner",
@@ -3949,20 +3949,29 @@
         }
       ],
       "package_content_sha256": "036a2492f58a56b8df9cc00c6d11a4e124a258e16cd5320d4f22795f050b5fa7",
-      "chapter_count": 0,
+      "chapter_count": 1,
       "module_file_count": 0,
       "brief_file_count": 0,
       "claims_file_count": 0,
-      "chapter_referenced_file_count": 0,
-      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 13,
+      "chapter_referenced_file_count": 1,
+      "chapter_content_sha256": "b07aa9c9f2974f2851eb04d8c81d25ceb6eeb27cbcf27530b0731cc7e535ebf2",
+      "referenced_file_count": 14,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "99926d393ec27754b0768624e119da7190a0d3f2dbcb11c252eff0cbc27cc442",
-      "content_sha256": "036a2492f58a56b8df9cc00c6d11a4e124a258e16cd5320d4f22795f050b5fa7",
-      "chapters": []
+      "structure_sha256": "ec24aaf3be5c1dc7c7d48c397759450338513624c105a3e1779c53c545d445e7",
+      "content_sha256": "a0a8be74ca6298c114763664842c10f25c2eab4c6e265762ee91941d1ef7d0e2",
+      "chapters": [
+        {
+          "chapter_id": "lesekultur_bokdeling_offentlighet",
+          "title": "Lesekultur, bokdeling og offentlighet",
+          "file": "data/fagverk/litteratur/lesekultur_bokdeling_offentlighet.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "b07aa9c9f2974f2851eb04d8c81d25ceb6eeb27cbcf27530b0731cc7e535ebf2"
+        }
+      ]
     },
     "media": {
       "title": "Media",
@@ -7636,5 +7645,5 @@
       ]
     }
   },
-  "release_sha256": "3e71d19c13c929f69f2dd2938b025f7e0b0fd934d4756ab43f555c44ae98709c"
+  "release_sha256": "715daec319ee3e3f9c2f805f5e5b60fafc00ae1cda07dd481104f8e35b9a4354"
 }
