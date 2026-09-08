@@ -32,6 +32,17 @@ jobs:
           {
             node --check tools/normalize-radhusplassen-legacy-quiz.mjs &&
             node tools/normalize-radhusplassen-legacy-quiz.mjs &&
+            python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/materialize-radhusplassen.mjs')
+          s = p.read_text()
+          old = 'const phases = ["opening", "opening", "middle", "bridge", "final"];'
+          new = 'const phases = ["opening", "middle", "middle", "bridge", "final"];'
+          if old not in s and new not in s:
+              raise SystemExit('Fant ikke forventet Rådhusplassen phase-plan')
+          p.write_text(s.replace(old, new))
+          PY
+            grep -F 'const phases = ["opening", "middle", "middle", "bridge", "final"];' tools/materialize-radhusplassen.mjs &&
             node --check tools/materialize-radhusplassen.mjs &&
             node tools/materialize-radhusplassen.mjs
           } > /tmp/radhusplassen-materialize.log 2>&1
