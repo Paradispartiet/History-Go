@@ -25,7 +25,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          OUT=/tmp/gamle-deichman-read-first.txt
+          OUT=gamle-deichman-read-first.txt
           : > "$OUT"
           for f in \
             docs/PLACE_PRODUCTION_CHECKLIST.md \
@@ -43,7 +43,6 @@ jobs:
             cat "$f" >> "$OUT"
             printf '\n' >> "$OUT"
           done
-          cp "$OUT" ./gamle-deichman-read-first.txt
       - name: Capture Data-check quiz test
         shell: bash
         run: |
@@ -60,11 +59,44 @@ jobs:
             echo "combined_exit=$(( A || B ))"
           } 2>&1 | tee gamle-deichman-quiz-diagnostic.txt
           exit 0
+      - name: Snapshot repair-relevant repository files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p repair-snapshot
+          files=(
+            data/fag/fag_manifest.json
+            data/fag/litteratur/emner_litteratur_canonical_v4_5.json
+            data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json
+            data/fagverk/fagverk_registry.json
+            data/fagverk/subject_inventory.json
+            data/places/litteratur/oslo/places_litteratur/gamle_deichman.json
+            data/places/production/gamle_deichman.json
+            data/quiz/litteratur/gamle_deichman.json
+            data/lesespor/oslo/lesespor_oslo_litteratur.json
+            reports/place-production/gamle-deichman-workcard-current.json
+            scripts/audit-fagverk-place-pages.mjs
+            scripts/validate-place-description-production-v4_2.mjs
+            data/places/regler/place_description_production_v4_2.schema.json
+            data/places/regler/PLACE_DESCRIPTION_CANONICAL.md
+            reports/place-description-revision-protocol-v4_2.md
+            data/places/production/bogstadveien.json
+            package.json
+          )
+          for f in "${files[@]}"; do
+            if [[ -f "$f" ]]; then
+              mkdir -p "repair-snapshot/$(dirname "$f")"
+              cp "$f" "repair-snapshot/$f"
+            fi
+          done
+          npm run audit:fagverk:places > repair-snapshot/fagverk-audit.txt 2>&1 || true
+          node scripts/validate-place-description-production-v4_2.mjs > repair-snapshot/description-audit.txt 2>&1 || true
       - name: Upload diagnostics
         uses: actions/upload-artifact@v4
         with:
-          name: gamle-deichman-readfirst-diagnostic
+          name: gamle-deichman-repair-diagnostic
           path: |
             gamle-deichman-read-first.txt
             gamle-deichman-quiz-diagnostic.txt
+            repair-snapshot
           if-no-files-found: error
