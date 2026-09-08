@@ -6,6 +6,7 @@ on:
       - agent/civication-vitenskap-doktorlop-og-postdoktor-role-world-20260908
     paths:
       - scripts/TEMP_materialize_vitenskap_doktorlop_og_postdoktor_role_world.mjs
+      - scripts/TEMP_patch_vitenskap_doktorlop_og_postdoktor_role_world_grad.mjs
       - .github/workflows/TEMP-civication-vitenskap-doktorlop-og-postdoktor-role-world.yml
 
 permissions:
@@ -44,10 +45,15 @@ jobs:
           git merge-base --is-ancestor origin/main HEAD || { echo "Branch is not based on current main" >&2; exit 1; }
 
       - name: Syntax
-        run: node --check scripts/TEMP_materialize_vitenskap_doktorlop_og_postdoktor_role_world.mjs
+        run: |
+          node --check scripts/TEMP_materialize_vitenskap_doktorlop_og_postdoktor_role_world.mjs
+          node --check scripts/TEMP_patch_vitenskap_doktorlop_og_postdoktor_role_world_grad.mjs
 
       - name: Materialize Vitenskap Doktorlop og postdoktor Role World
         run: node scripts/TEMP_materialize_vitenskap_doktorlop_og_postdoktor_role_world.mjs
+
+      - name: Add explicit degree boundary
+        run: node scripts/TEMP_patch_vitenskap_doktorlop_og_postdoktor_role_world_grad.mjs
 
       - name: Bind qualification proof to canonical Badge source
         shell: bash
@@ -149,7 +155,9 @@ jobs:
         run: |
           set -euo pipefail
           rm -f scripts/TEMP_materialize_vitenskap_doktorlop_og_postdoktor_role_world.mjs
+          rm -f scripts/TEMP_patch_vitenskap_doktorlop_og_postdoktor_role_world_grad.mjs
           rm -f .github/workflows/TEMP-civication-vitenskap-doktorlop-og-postdoktor-role-world.yml
+          rm -f .github/workflows/TEMP-civication-vitenskap-doktorlop-og-postdoktor-role-world-attempt2.yml
           git diff --check
           git add -A
           if git diff --cached --quiet; then
