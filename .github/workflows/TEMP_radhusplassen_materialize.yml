@@ -73,7 +73,6 @@ jobs:
           node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
           npm run place-open:build
           npm run epoker:places:build
-          node scripts/build-fagverk-release-manifest.mjs
           node scripts/audit-quiz-manifest-v2.mjs
           node scripts/audit-place-images.mjs --mode=all --report=/tmp/place-image-audit.json
           node - <<'NODE'
@@ -90,6 +89,7 @@ jobs:
           fs.writeFileSync(p,JSON.stringify(s,null,2)+'\n');
           NODE
           node scripts/build-quiz-production-context.mjs --category by --target radhusplassen --output data/quiz/production_context/by/radhusplassen.json
+          node scripts/build-fagverk-release-manifest.mjs
       - name: Reconcile epoch contract expectations to regenerated canonical index
         run: |
           set -euxo pipefail
