@@ -40,7 +40,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/place-production-rule-preflight.mjs check --workcard reports/place-production/gamle-deichman-workcard-current.json --place-id gamle_deichman --category litteratur
+          git fetch origin main:refs/remotes/origin/main
+          node scripts/place-production-rule-preflight.mjs check --base origin/main
           node scripts/audit-fagverk-place-pages.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
           npm run places:index:check
