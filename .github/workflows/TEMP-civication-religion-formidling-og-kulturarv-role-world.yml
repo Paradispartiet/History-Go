@@ -43,7 +43,7 @@ jobs:
           git fetch origin main
           git merge-base --is-ancestor origin/main HEAD || { echo "Branch is not based on current main" >&2; exit 1; }
 
-      - name: Patch explicit representation boundary
+      - name: Patch explicit representation and proveniens boundaries
         shell: bash
         run: |
           set -euo pipefail
@@ -55,7 +55,12 @@ jobs:
           new = 'kan ikke gi representasjonsmandat eller mandat til å representere eller tale på vegne av en tros- eller livssynsgruppe'
           if s.count(old) != 2:
               raise SystemExit(f'Expected exactly two representation-boundary targets, found {s.count(old)}')
-          p.write_text(s.replace(old, new))
+          s = s.replace(old, new)
+          report_old = '- A strong object, a compelling story or a prestigious opening cannot make weak provenance stronger.'
+          report_new = '- A strong object, a compelling story or a prestigious opening cannot make weak proveniens stronger.'
+          if s.count(report_old) != 1:
+              raise SystemExit(f'Expected exactly one source-first proveniens target, found {s.count(report_old)}')
+          p.write_text(s.replace(report_old, report_new))
           PY
 
       - name: Syntax
