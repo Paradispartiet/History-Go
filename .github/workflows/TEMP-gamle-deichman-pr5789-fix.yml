@@ -68,6 +68,22 @@ jobs:
         run: npm run audit:quiz-theory-binding
       - name: Validate visual collections
         run: node --test tests/place-rounds-visual-collections.test.mjs
+      - name: Diagnose reconciliation place metadata
+        run: node --test --test-name-pattern="Gamle Deichman place metadata" tests/gamle-deichman-reconciliation.test.mjs
+      - name: Diagnose reconciliation PlaceCard and Fagverk
+        run: node --test --test-name-pattern="Gamle Deichman PlaceCard and Fagverk" tests/gamle-deichman-reconciliation.test.mjs
+      - name: Diagnose reconciliation quiz
+        run: node --test --test-name-pattern="Gamle Deichman quiz contract" tests/gamle-deichman-reconciliation.test.mjs
+      - name: Diagnose reconciliation language Lesespor chronology
+        run: node --test --test-name-pattern="Gamle Deichman language Lesespor and chronology" tests/gamle-deichman-reconciliation.test.mjs
+      - name: Diagnose reconciliation quality report
+        run: node --test --test-name-pattern="Gamle Deichman quality report" tests/gamle-deichman-reconciliation.test.mjs
+      - name: Diagnose reconciliation runtime hydration
+        run: node --test --test-name-pattern="Gamle Deichman runtime hydration" tests/gamle-deichman-reconciliation.test.mjs
+      - name: Diagnose reconciliation runtime People
+        run: node --test --test-name-pattern="Gamle Deichman runtime People" tests/gamle-deichman-reconciliation.test.mjs
+      - name: Diagnose reconciliation image assets
+        run: node --test --test-name-pattern="Gamle Deichman image assets" tests/gamle-deichman-reconciliation.test.mjs
       - name: Validate Gamle Deichman reconciliation
         run: node --test tests/gamle-deichman-reconciliation.test.mjs
       - name: Validate scoped Gamle Deichman contracts
