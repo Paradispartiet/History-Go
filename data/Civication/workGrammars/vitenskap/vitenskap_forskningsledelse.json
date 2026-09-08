@@ -1,1 +1,152 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"vitenskap","role_scope":"vitenskap_forskningsledelse","source":{"evidence":"data/Civication/vitenskapCareerLifeEvidence.json"},"badge_binding":{"badge_id":"vitenskap","badge_titles":["Forskningsleder"]},"task_families":["portefolje_og_prioritering","bemanning_og_kapasitet","kvalitet_og_integritet","finansiering_og_partnerskap","arbeidsmiljo_og_risiko"],"work_loops":[{"id":"portefolje","steps":["kartlegg","prioriter","ressurssett","folg_opp","korriger","rapporter"]},{"id":"integritetsledelse","steps":["motta_signal","sikre_uavhengighet","avgrens_fakta","eskaler_riktig","folg_opp"]}],"practice_stories":[{"id":"s1","setup":"Budsjettet dekker ikke alle planlagte prosjekter.","good":"Bruk transparente kriterier og dokumenter konsekvensene av prioriteringen.","bad":"Kutt prosjektet med minst intern innflytelse uten faglig vurdering."},{"id":"s2","setup":"Det varsles om mulig datamanipulasjon i et prestisjeprosjekt.","good":"Sikre uavhengig håndtering og bevar dokumentasjon.","bad":"Løs saken internt og uformelt for å beskytte omdømmet."},{"id":"s3","setup":"En finansieringspartner ønsker forhåndsgodkjenning av konklusjoner.","good":"Avvis kontroll over faglige resultater og avklar akseptable rapporteringsrammer.","bad":"Godta vilkåret fordi prosjektet ellers faller bort."},{"id":"s4","setup":"En nøkkelperson er overbooket i tre prosjekter.","good":"Reprioriter leveranser og kapasitet før kvalitetsbrudd oppstår.","bad":"La alle frister stå og håp teamet jobber mer."},{"id":"s5","setup":"Ledelsen ber om effektmål før evalueringen er moden.","good":"Skill aktivitet, foreløpige indikatorer og dokumentert effekt.","bad":"Rapporter den mest optimistiske indikatoren som effekt."}],"quality_axes":["strategisk_klarhet","forskningsintegritet","ressursrealisme","arbeidsmiljo","transparens","uavhengighet"],"authority_boundary":{"may_not":["instruere_forskere_til_a_endre_resultater","stanse_integritetsvarsling_for_a_beskytte_omdomme","love_finansiering_eller_ansettelse_uten_fullmakt","overstyre_uavhengige_etikk_eller_habilitetsprosesser"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_forskningsledelse",
+  "source": {
+    "badge_file": "data/badges/vitenskap.json",
+    "badge_id": "vitenskap",
+    "evidence": "data/Civication/vitenskapCareerLifeEvidence.json"
+  },
+  "badge_binding": {
+    "badge_id": "vitenskap",
+    "badge_titles": [
+      "Forskningsleder"
+    ],
+    "tier_thresholds": [
+      240
+    ]
+  },
+  "task_families": [
+    "portefolje_prioritering_og_habilitet",
+    "kapasitet_bemanning_budsjett_og_arbeidsmiljo",
+    "kvalitet_integritet_etikk_og_uavhengighet",
+    "finansiering_partnerskap_og_interessekonflikt",
+    "effekt_usikkerhet_og_rapportering",
+    "handoff_venting_og_bounded_rework"
+  ],
+  "work_loops": [
+    {
+      "id": "portefoljeprioritering",
+      "steps": [
+        "kartlegg_behov_og_avhengigheter",
+        "bekreft_mandat_og_habilitet",
+        "bruk_dokumenterte_kriterier",
+        "sammenhold_med_kapasitet_og_budsjett",
+        "registrer_konsekvenser_og_beslutningseier",
+        "beslutt_eller_eskaler",
+        "folg_opp_og_korriger"
+      ]
+    },
+    {
+      "id": "integritetsledelse",
+      "steps": [
+        "motta_signal",
+        "sikre_dokumentasjon",
+        "avklar_habilitet",
+        "skill_ledelsesansvar_fra_uavhengig_saksbehandling",
+        "stans_eller_sikre_berort_arbeid_ved_behov",
+        "eskaler_riktig",
+        "folg_opp_uten_a_styre_resultatet"
+      ]
+    },
+    {
+      "id": "kapasitetsrealisme",
+      "steps": [
+        "frys_aktuelle_forpliktelser",
+        "kartlegg_faktisk_kapasitet",
+        "identifiser_dobbeltbooking_og_arbeidsmiljorisiko",
+        "reprioriter_eller_eskaler",
+        "oppdater_frister_og_handoff",
+        "dokumenter_hva_som_ikke_lenger_er_lovet"
+      ]
+    },
+    {
+      "id": "partner_og_effektrapportering",
+      "steps": [
+        "avklar_partnerkrav_og_fullmakt",
+        "skill_aktivitet_indikator_og_effekt",
+        "registrer_usikkerhet_og_interessekonflikt",
+        "avvis_kontroll_over_faglig_resultat",
+        "eskaler_rettighets_eller_habilitetssporsmal",
+        "lever_med_begrensninger_synlig"
+      ]
+    }
+  ],
+  "practice_stories": [
+    {
+      "id": "s1",
+      "setup": "Budsjettet dekker ikke alle planlagte prosjekter.",
+      "good": "Bruk transparente kriterier, habilitetskontroll og dokumenter konsekvensene av prioriteringen.",
+      "bad": "Kutt prosjektet med minst intern innflytelse uten sporbar faglig vurdering."
+    },
+    {
+      "id": "s2",
+      "setup": "Det varsles om mulig datamanipulasjon i et prestisjeprosjekt.",
+      "good": "Sikre dokumentasjon, habilitet og uavhengig håndtering før videre ledelsesoppfølging.",
+      "bad": "Løs saken internt og uformelt for å beskytte omdømmet."
+    },
+    {
+      "id": "s3",
+      "setup": "En finansieringspartner ønsker forhåndsgodkjenning av konklusjoner.",
+      "good": "Avvis kontroll over faglige resultater og avklar legitime rapporteringsrammer.",
+      "bad": "Godta vilkåret fordi prosjektet ellers faller bort."
+    },
+    {
+      "id": "s4",
+      "setup": "En nøkkelperson er overbooket i tre prosjekter.",
+      "good": "Reprioriter leveranser og kapasitet før kvalitets- og arbeidsmiljøbrudd oppstår.",
+      "bad": "La alle frister stå og baser planen på skjult merarbeid."
+    },
+    {
+      "id": "s5",
+      "setup": "Ledelsen ber om effektmål før evalueringen er moden.",
+      "good": "Skill aktivitet, foreløpig indikator og dokumentert effekt med usikkerhet synlig.",
+      "bad": "Rapporter den mest optimistiske indikatoren som dokumentert effekt."
+    }
+  ],
+  "quality_axes": [
+    "strategisk_klarhet",
+    "forskningsintegritet",
+    "ressursrealisme",
+    "arbeidsmiljo",
+    "transparens",
+    "uavhengighet",
+    "habilitet",
+    "myndighetsklarhet"
+  ],
+  "authority_boundary": {
+    "may": [
+      "prioritere prosjektportefølje og ressurser innen faktisk employer_appointment, delegert mandat, budsjett og dokumenterte kriterier",
+      "kreve kapasitets-, kvalitets-, integritets- og risikogrunnlag før kritiske prioriteringer eller leveranser godkjennes",
+      "stanse eller eskalere arbeid når mulig integritetsbrudd, habilitetsproblem, etikk-, personvern-, sikkerhets- eller rettighetsrisiko krever uavhengig behandling",
+      "forhandle rapporterings-, partner- og finansieringsrammer uten å gi eksterne aktører kontroll over forskningsresultater",
+      "reprioritere frister og leveranser når faktisk kapasitet ikke støtter planen, og gjøre venting, beslutningseier og handoff eksplisitt"
+    ],
+    "may_not": [
+      "instruere forskere til å endre data, analyse eller konklusjon for å beskytte finansiering, omdømme, strategi eller lederens egen posisjon",
+      "stanse, skjule eller løse et integritetsvarsel uformelt for å beskytte en prestisjefull prosjektleder eller institusjon",
+      "love ansettelse, finansiering, lønn, prosjektmidler eller varig ressurs uten faktisk arbeidsgiver- og budsjettfullmakt",
+      "overstyre uavhengige etikk-, personvern-, habilitets-, sikkerhets-, rettighets- eller integritetsprosesser på grunn av senioritet eller tidspress",
+      "bruke Vitenskap-badge, XP, History Go-kunnskap, publikasjoner, nettverk, sosial standing eller tittelen Forskningsleder som erstatning for academic_qualification_and_employment, employer_appointment, dokumentert evidens eller delegert myndighet"
+    ]
+  },
+  "role_id": "vitenskap_forskningsledelse",
+  "work_world": "Formelt utnevnt forskningsledelse der portefølje, mennesker, kapasitet, kvalitet, integritet, finansiering, effektpåstander og handoff holdes i ett etterprøvbart lederarbeidsspor.",
+  "pressure_axes": [
+    "strategi_vs_ressursrealisme",
+    "finansiering_vs_forskningsuavhengighet",
+    "omdomme_vs_integritetsprosess",
+    "senioritet_vs_habilitet",
+    "fremdrift_vs_arbeidsmiljo",
+    "rapportering_vs_dokumentert_effekt",
+    "badge_status_vs_faktisk_appointment"
+  ],
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_vitenskap_forskningsledelse_kontekst",
+      "badge_id": "vitenskap",
+      "use": "History Go kan gi historisk og stedlig kontekst om hvordan forskningsinstitusjoner, finansieringssystemer, faglig autonomi, målstyring, forskningsetikk, integritetsregimer, arbeidsorganisering og forholdet mellom vitenskap, stat, næringsliv og offentlighet har utviklet seg. Slik kontekst kan gi bedre spørsmål om hvorfor dagens styringsgrenser finnes, hvilke interesser som kan forme en portefølje og hvilke historiske feil som oppstår når omdømme, finansiering eller måltall overstyrer uavhengig kontroll. Den kan aldri erstatte academic_qualification_and_employment, employer_appointment, faktisk delegert mandat, dagens budsjett- eller personalgrunnlag, gjeldende arbeidsrettslig prosess, habilitetsvurdering, etikk- eller personverngrunnlag, integritetsbevis, rådata, faglig evidens, finansieringsvedtak eller institusjonell godkjenning."
+    }
+  ]
+}
