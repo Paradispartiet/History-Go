@@ -50,7 +50,7 @@
       "sourceLocation": "=Oslo/Erlik, «Parken mot purken»; miljønære minner, motkultur, politiinngrep og forflytning fra Nisseberget",
       "sourceType": "community_primary",
       "perspective": "participant",
-      "verifiedAt": "2026-08-04",
+      "verifiedAt": "2026-09-08",
       "temporalCoverage": "current",
       "provenance": "Miljøets eller driftsorganisasjonens egen publiserte beskrivelse og programinformasjon.",
       "limitations": "Egenpresentasjonen dokumenterer praksis og selvforståelse, men kan framheve positive sider og kommersielle mål."
@@ -61,7 +61,7 @@
       "sourceLocation": "Dagsavisen, «Slaget om Nisseberget»; historisk kontroll av det åpne miljøet og konflikten i Slottsparken",
       "sourceType": "reputable_secondary",
       "perspective": "secondary",
-      "verifiedAt": "2026-08-04",
+      "verifiedAt": "2026-09-08",
       "temporalCoverage": "historical",
       "provenance": "Uavhengig redaksjonell, katalog- eller reiselivsomtale kontrollert mot miljøkilden.",
       "limitations": "Dagsavisen gir historisk kontroll og arkivkilder, men dekker ikke alle deltakere eller interne erfaringer."
@@ -205,20 +205,32 @@
     "status": "historical",
     "statement": "Det historiske miljøet finnes ikke lenger som stedbundet scene i Slottsparken; dagens park er offentlig grøntrom med annen bruk.",
     "historicalRelationship": "Nåværende eller siste dokumenterte drift viderefører deler av miljøfunksjonen, men organisering og adgang kan ha endret seg.",
-    "checkedAt": "2026-08-04",
+    "checkedAt": "2026-09-08",
     "sourceIds": [
       "source_slottsparken_milieu"
     ]
   },
   "quizOpening": {
-    "status": "N/A",
-    "rationale": "Ingen stedquiz produseres eller revideres i denne rapporten."
+    "status": "PASS",
+    "quizTargetId": "slottsparken",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/by/slottsparken.json",
+    "productionContext": "data/quiz/production_context/by/slottsparken.json",
+    "requiredInputs": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ]
   },
   "chronologyStories": {
-    "status": "N/A",
+    "status": "PASS",
     "chronologyReviewed": true,
     "storiesReviewed": true,
-    "rationale": "Materialet krever ingen ny chronology-post eller selvstendig Story i denne endringen."
+    "rationale": "14-posters kronologi og to episode_v1-Stories dekker parkens hovedlag og Nisseberget-konflikten uten å gjøre subkultur til hele identiteten."
   },
   "gates": {
     "A": {
@@ -263,17 +275,25 @@
       ]
     },
     "G": {
-      "status": "N/A",
-      "rationale": "Ingen stedquiz produseres eller revideres i denne rapporten."
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening",
+        "data/quiz/by/slottsparken_sets.json",
+        "data/quiz/production_context/by/slottsparken.json"
+      ]
     },
     "H": {
-      "status": "N/A",
-      "rationale": "Ingen chronology eller Story produseres eller revideres."
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories",
+        "data/leksikon/places/oslo/by/leksikon_slottsparken.json",
+        "data/stories/stories_slottsparken.json"
+      ]
     }
   },
   "review": {
-    "reviewer": "Subkultur-fagverkredaksjon",
-    "reviewedAt": "2026-08-04",
-    "notes": "Definisjon, stemmebalanse, rommakt, representasjon, slutningsgrense og nåstatus er kontrollert."
+    "reviewer": "Steds- og subkulturredaksjon",
+    "reviewedAt": "2026-09-08",
+    "notes": "Definisjon, stemmebalanse, rommakt, slutningsgrense, nåstatus, quizprogresjon, kronologi og Stories er kontrollert samlet."
   }
 }
