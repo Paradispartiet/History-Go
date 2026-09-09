@@ -107,3 +107,34 @@ body.hg-app.hg-phone #placeCard .pc-icons-quad{
   width:100%;
   max-width:100%;
 }
+
+/* Phase 1 Place Sheet owns the editorial collection geometry. These rules are
+   colocated here because this file loads after place-sheet.css and the legacy
+   count templates above use !important. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-icons-quad[data-collection-count="1"]{
+  grid-template-rows:minmax(176px, auto) !important;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-icons-quad[data-collection-count="2"]{
+  grid-template-rows:minmax(190px, auto) !important;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-icons-quad[data-collection-count="3"],
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-icons-quad[data-collection-count="4"]{
+  grid-template-rows:repeat(2, minmax(190px, auto)) !important;
+}
+
+@media (max-width:720px){
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-icons-quad[data-collection-count="1"]{
+    grid-template-rows:minmax(154px, auto) !important;
+  }
+
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-icons-quad[data-collection-count="2"]{
+    grid-template-rows:minmax(166px, auto) !important;
+  }
+
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-icons-quad[data-collection-count="3"],
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-icons-quad[data-collection-count="4"]{
+    grid-template-rows:repeat(2, minmax(166px, auto)) !important;
+  }
+}

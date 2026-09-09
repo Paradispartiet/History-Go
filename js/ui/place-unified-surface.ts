@@ -1,3 +1,5 @@
+import { attachCanonicalAboutToPlaceSheet, mountPlaceSheetPhase1, placeSheetSectionTarget, restoreLegacyPlaceCardStructure } from "./place-sheet/place-sheet-shell";
+
 // js/ui/place-unified-surface.ts
 // Unified Place Surface: embeds the canonical place-popup knowledge renderer
 // inside PlaceCard, preserving existing data owners and public entry points.
@@ -22,6 +24,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
 
   const INSTALL_FLAG = "__HG_PLACE_UNIFIED_SURFACE_INSTALLED__";
   const STYLE_FLAG = "data-hg-place-unified-style";
+  const SHEET_STYLE_FLAG = "data-hg-place-sheet-style";
   const HOST_ID = "pcUnifiedKnowledgeHost";
   const EMBEDDED_CLASS = "hg-unified-renderer-embedded";
   const CARD_CLASS = "is-unified-place";
@@ -84,12 +87,18 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
   }
 
   function ensureStylesheet(): void {
-    if (document.querySelector(`link[${STYLE_FLAG}="1"]`)) return;
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "css/place-unified-surface.css";
-    link.setAttribute(STYLE_FLAG, "1");
-    document.head.appendChild(link);
+    const styles = [
+      [STYLE_FLAG, "css/place-unified-surface.css"],
+      [SHEET_STYLE_FLAG, "css/place-sheet.css"]
+    ] as const;
+    for (const [flag, href] of styles) {
+      if (document.querySelector(`link[${flag}="1"]`)) continue;
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = href;
+      link.setAttribute(flag, "1");
+      document.head.appendChild(link);
+    }
   }
 
   function ensureHost(place: any): HTMLElement | null {
@@ -119,6 +128,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
   }
 
   function clearUnifiedState(): void {
+    restoreLegacyPlaceCardStructure();
     const root = card();
     root?.classList.remove(CARD_CLASS);
     if (root) {
@@ -160,6 +170,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
   }
 
   function sectionLabel(id: string): string {
+    if (id === "about" && placeSheetSectionTarget("about")) return "Mer om stedet";
     return SECTION_ORDER.find(([key]) => key === id)?.[1] || id;
   }
 
@@ -321,6 +332,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
 
     const root = card();
     if (!(root instanceof HTMLElement)) return null;
+    mountPlaceSheetPhase1(place);
     ensureHost(place);
 
     const currentEmbedded = document.querySelector(`.hg-popup.place-popup-v2.${EMBEDDED_CLASS}`);
@@ -357,6 +369,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
       if (!(article instanceof HTMLElement)) return null;
       if (String(root.dataset[GENERATION_ATTR] || "") !== String(myGeneration)) return null;
 
+      attachCanonicalAboutToPlaceSheet(popup, place);
       const embedded = prepareEmbeddedPopup(popup, article, place);
       if (!(embedded instanceof HTMLElement)) return null;
       await ensureLearningSection(place, article);
@@ -378,10 +391,13 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     const root = card();
     if (!(root instanceof HTMLElement)) return false;
 
-    let section: Element | null = null;
-    if (id === "learning") section = root.querySelector('[data-hg-unified-section="learning"]');
-    else section = [...root.querySelectorAll("[data-place-panel]")]
-      .find(panel => text(panel.getAttribute("data-place-panel")) === id) || null;
+    let section: Element | null = id === "about" ? placeSheetSectionTarget("about") : null;
+    if (!(section instanceof HTMLElement) && id === "learning") {
+      section = root.querySelector('[data-hg-unified-section="learning"]');
+    } else if (!(section instanceof HTMLElement)) {
+      section = [...root.querySelectorAll("[data-place-panel]")]
+        .find(panel => text(panel.getAttribute("data-place-panel")) === id) || null;
+    }
     if (!(section instanceof HTMLElement)) return false;
 
     try { section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" }); }
