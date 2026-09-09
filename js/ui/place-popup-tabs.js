@@ -262,6 +262,13 @@
   }
 
   function renderNews(oldNews, newNews) {
+    const shared = global.HGPlaceSheetSections?.news?.renderContentHtml;
+    if (typeof shared === "function") {
+      try {
+        const html = String(shared(oldNews, newNews) || "");
+        if (html) return html;
+      } catch {}
+    }
     return (list(oldNews).length ? section("Gamle nyheter", newsCards(oldNews)) : "")
       + (list(newNews).length ? section("Nyere notiser", newsCards(newNews)) : "")
       || `<div class="hg-place-tab-empty">Ingen nyheter eller notiser knyttet til stedet ennå.</div>`;
@@ -462,7 +469,20 @@
     if (!tabs.panels.stories.children.length) append(tabs.panels.stories, renderStories(stories, legacyStories), "stories-empty");
 
     append(tabs.panels["before-after"], renderBeforeAfter(place), "before-after");
-    append(tabs.panels.news, renderNews(buckets.historical_news, buckets.news_notes), "news");
+    const unifiedNewsTarget = popup.closest("#pcUnifiedKnowledgeHost")
+      ? document.querySelector('#placeCard [data-hg-place-sheet-section="news"]')
+      : null;
+    let ownsNews = false;
+    if (unifiedNewsTarget instanceof HTMLElement && typeof global.HGPlaceSheetSections?.news?.mount === "function") {
+      try { ownsNews = Boolean(global.HGPlaceSheetSections.news.mount(unifiedNewsTarget, buckets.historical_news, buckets.news_notes)); } catch {}
+    }
+    if (ownsNews) {
+      tabs.panels.news.hidden = true;
+      tabs.panels.news.setAttribute("aria-hidden", "true");
+      tabs.panels.news.dataset.hgUnifiedSection = "news";
+    } else {
+      append(tabs.panels.news, renderNews(buckets.historical_news, buckets.news_notes), "news");
+    }
     append(tabs.panels.reading, renderLesespor(lesespor, placeId), "reading");
     const hasExistingSourceProfile = Boolean(tabs.panels.sources.querySelector(".hg-place-sources-section"));
     append(tabs.panels.sources, renderSources(place, visibleArticles, !hasExistingSourceProfile), "sources");

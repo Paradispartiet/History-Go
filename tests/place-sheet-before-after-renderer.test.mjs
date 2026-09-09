@@ -91,8 +91,8 @@ test("Unified Place Sheet owns before-after while standalone popup tabs keep the
   assert.match(tabsSource, /HGPlaceSheetSections\?\.beforeAfter\?\.renderContentHtml/);
   assert.match(tabsSource, /renderBeforeAfter\(place\)/);
   assert.match(unifiedSource, /placeSheetSectionTarget\("before-after"\)/);
-  assert.match(unifiedSource, /id === "before-after" && placeSheetSectionTarget\("before-after"\)/);
-  assert.match(unifiedSource, /\["about", "history", "stories", "before-after"\]/);
+  assert.match(unifiedSource, /\(\(id === "before-after" \|\| id === "news"\) && placeSheetSectionTarget\(id\)\)/);
+  assert.match(unifiedSource, /\["about", "history", "stories", "before-after", "news"\]/);
 });
 
 test("direct Place Sheet before-after keeps paired-media and attribution styling", () => {
