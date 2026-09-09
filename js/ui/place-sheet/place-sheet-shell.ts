@@ -7,6 +7,7 @@ import "./sections/reading";
 import "./sections/language";
 import "./sections/learning";
 import { cancelAutomaticPlaceSheetRender, startAutomaticPlaceSheetRender } from "./place-sheet-render-queue";
+import "./place-sheet-direct-routing";
 
 type PlaceSheetPlace = Record<string, any> & {
   id?: string;
