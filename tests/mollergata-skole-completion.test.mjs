@@ -13,6 +13,7 @@ const place=read(placeFile);
 const packet=read(`data/places/production/${id}.json`);
 const history=read(`data/places/historie-production/${id}.json`);
 const quiz=read(`data/quiz/historie/${id}_sets.json`);
+const quizManifest=read("data/quiz/manifest.json");
 const stories=read(`data/stories/stories_${id}.json`);
 const language=read(`data/leksikon/sprak/places/europe/norway/oslo/${id}.json`);
 const leksikon=read(`data/leksikon/places/oslo/historie/leksikon_${id}.json`);
@@ -96,6 +97,7 @@ test("Historie-quizen er normal 4x7 med fjorten direkte åpningsspørsmål",()=>
   assert.ok(questions.slice(21).some(question=>question.method_id==="met_institusjonshistorisk_analyse"));
   assert.equal(quiz.production_context.theory_start_phase,"final");
   assert.equal(quiz.production_context.method_start_phase,"final");
+  assert.deepEqual(quizManifest.sets.filter(entry=>entry.targetId===id),[{targetId:id,file:`data/quiz/historie/${id}_sets.json`}]);
 });
 
 test("Historierapport, regelpreflight og kvalitetsscore er klare",()=>{
