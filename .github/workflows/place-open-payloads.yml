@@ -39,6 +39,8 @@ on:
       - 'tests/place-popup-v2-unified-target.test.mjs'
       - 'tests/place-popup-root-scoped-decorators.test.mjs'
       - 'tests/place-sheet-phase1.test.mjs'
+      - 'tests/place-sheet-about-renderer.test.mjs'
+      - 'tests/place-sheet-history-renderer.test.mjs'
       - 'tests/place-unified-surface.test.mjs'
       - 'package.json'
       - 'package-lock.json'
@@ -84,4 +86,6 @@ jobs:
           node --check tests/place-popup-v2-unified-target.test.mjs
           node --check tests/place-popup-root-scoped-decorators.test.mjs
           node --check tests/place-sheet-phase1.test.mjs
-          node --test tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs tests/place-popup-root-scoped-decorators.test.mjs tests/place-sheet-phase1.test.mjs
+          node --check tests/place-sheet-about-renderer.test.mjs
+          node --check tests/place-sheet-history-renderer.test.mjs
+          node --test tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs tests/place-popup-root-scoped-decorators.test.mjs tests/place-sheet-phase1.test.mjs tests/place-sheet-about-renderer.test.mjs tests/place-sheet-history-renderer.test.mjs

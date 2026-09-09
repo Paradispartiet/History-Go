@@ -353,7 +353,8 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     document.querySelectorAll(`.hg-popup.place-popup-v2:not(.${EMBEDDED_CLASS})`).forEach(node => node.remove());
 
     try {
-      const result = legacyShowPlacePopup(place, { unifiedHost: host instanceof HTMLElement ? host : null, suppressPlaceAbout: true });
+      const ownsHistory = placeSheetSectionTarget("history") instanceof HTMLElement;
+      const result = legacyShowPlacePopup(place, { unifiedHost: host instanceof HTMLElement ? host : null, suppressPlaceAbout: true, suppressPlaceHistory: ownsHistory });
       if (result && typeof result.then === "function") await result;
       const popup = await waitForPopup(myGeneration, place);
       if (!(popup instanceof HTMLElement)) return null;
@@ -369,10 +370,10 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
       if (!(article instanceof HTMLElement)) return null;
       if (String(root.dataset[GENERATION_ATTR] || "") !== String(myGeneration)) return null;
 
-      // Phase 2: About is already rendered directly by Place Sheet.
-      // Remove only a compatibility duplicate if an older/custom popup renderer
-      // ignored suppressPlaceAbout; never move that DOM into the shell again.
+      // Phase 2: About and canonical history_layers are already rendered directly by Place Sheet.
+      // Remove only compatibility duplicates if an older/custom popup renderer ignored suppression.
       if (placeSheetSectionTarget("about")) popup.querySelector(".hg-place-about-section")?.remove();
+      if (placeSheetSectionTarget("history")) popup.querySelector(".hg-place-history-section")?.remove();
       const embedded = prepareEmbeddedPopup(popup, article, place);
       if (!(embedded instanceof HTMLElement)) return null;
       await ensureLearningSection(place, article);
@@ -394,7 +395,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     const root = card();
     if (!(root instanceof HTMLElement)) return false;
 
-    let section: Element | null = id === "about" ? placeSheetSectionTarget("about") : null;
+    let section: Element | null = (id === "about" || id === "history") ? placeSheetSectionTarget(id) : null;
     if (!(section instanceof HTMLElement) && id === "learning") {
       section = root.querySelector('[data-hg-unified-section="learning"]');
     } else if (!(section instanceof HTMLElement)) {
