@@ -2,6 +2,7 @@ import { mountCanonicalAbout } from "./sections/about";
 import { mountCanonicalHistory } from "./sections/history";
 import { mountCanonicalStories } from "./sections/stories";
 import { mountCanonicalBeforeAfter } from "./sections/before-after";
+import "./sections/news";
 
 type PlaceSheetPlace = Record<string, any> & {
   id?: string;
@@ -56,6 +57,7 @@ function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
       <section class="pc-sheet-before-after" data-hg-place-sheet-before-after hidden></section>
+      <section class="pc-sheet-news" data-hg-place-sheet-news data-hg-place-sheet-section="news" hidden></section>
     `;
     rootBody.prepend(shell);
   }

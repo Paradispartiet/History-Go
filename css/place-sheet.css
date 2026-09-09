@@ -670,3 +670,48 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonica
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Phase 2 canonical News */
+body.hg-app #placeCard .pc-sheet-news:not([hidden]){
+  display:block;
+  margin-top:18px;
+}
+body.hg-app #placeCard .pc-sheet-canonical-news{
+  display:grid;
+  gap:14px;
+}
+body.hg-app #placeCard .pc-sheet-canonical-news > h3{
+  margin:0;
+  font-size:clamp(1.2rem,2.2vw,1.55rem);
+}
+body.hg-app #placeCard .pc-sheet-canonical-news .pc-sheet-news-list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+body.hg-app #placeCard .pc-sheet-canonical-news .pc-sheet-news-card{
+  display:grid;
+  gap:7px;
+  padding:14px;
+  border:1px solid rgba(255,255,255,.11);
+  border-radius:16px;
+  background:rgba(255,255,255,.035);
+}
+body.hg-app #placeCard .pc-sheet-canonical-news .pc-sheet-news-card > span{
+  opacity:.72;
+  font-size:.85rem;
+}
+body.hg-app #placeCard .pc-sheet-canonical-news .pc-sheet-news-card > p{
+  margin:0;
+  line-height:1.5;
+}
+body.hg-app #placeCard .pc-sheet-canonical-news .hg-place-news-source{
+  width:max-content;
+  max-width:100%;
+}
+@media (max-width:720px){
+  body.hg-app #placeCard .pc-sheet-canonical-news .pc-sheet-news-list{
+    grid-template-columns:1fr;
+  }
+}

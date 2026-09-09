@@ -181,7 +181,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     [...panelWrap.querySelectorAll("[data-place-panel]")].forEach(panel => {
       if (!(panel instanceof HTMLElement)) return;
       const id = text(panel.dataset.placePanel);
-      if (id === "more" || (id === "before-after" && placeSheetSectionTarget("before-after"))) {
+      if (id === "more" || ((id === "before-after" || id === "news") && placeSheetSectionTarget(id))) {
         panel.hidden = true;
         panel.setAttribute("aria-hidden", "true");
         panel.dataset.hgUnifiedSection = id;
@@ -383,6 +383,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
       if (placeSheetSectionTarget("history")) popup.querySelector(".hg-place-history-section")?.remove();
       if (placeSheetSectionTarget("stories")) popup.querySelector(".hg-section-stories")?.remove();
       if (placeSheetSectionTarget("before-after")) popup.querySelector('[data-generated="before-after"]')?.remove();
+      if (placeSheetSectionTarget("news")) popup.querySelector('[data-generated="news"]')?.remove();
       const embedded = prepareEmbeddedPopup(popup, article, place);
       if (!(embedded instanceof HTMLElement)) return null;
       await ensureLearningSection(place, article);
@@ -404,7 +405,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     const root = card();
     if (!(root instanceof HTMLElement)) return false;
 
-    let section: Element | null = (["about", "history", "stories", "before-after"].includes(id)) ? placeSheetSectionTarget(id) : null;
+    let section: Element | null = (["about", "history", "stories", "before-after", "news"].includes(id)) ? placeSheetSectionTarget(id) : null;
     if (!(section instanceof HTMLElement) && id === "learning") {
       section = root.querySelector('[data-hg-unified-section="learning"]');
     } else if (!(section instanceof HTMLElement)) {
