@@ -1,3 +1,5 @@
+import "./sources";
+
 type PlaceSheetLearningRuntime = Window & typeof globalThis & {
   HGPlaceSheetSections?: Record<string, unknown> & { learning?: PlaceSheetLearningApi };
 };
