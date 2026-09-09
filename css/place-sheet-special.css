@@ -1,0 +1,36 @@
+/* Place Sheet Phase 5 — owner-backed profile-specific sections */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-special:not([hidden]){
+  display:grid;
+  gap:18px;
+  margin-top:28px;
+  padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.10);
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-special > .hg-place-section{
+  margin:0;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
+  background:rgba(5,8,14,.46);
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-special > .hg-place-section > h3{
+  margin:0 0 16px;
+  color:#f6c800;
+  font-size:11px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-special .hg-place-nature-grid,
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-special .hg-place-sport-training-list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+@media (max-width:720px){
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-special .hg-place-nature-grid,
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-special .hg-place-sport-training-list{
+    grid-template-columns:1fr;
+  }
+}
