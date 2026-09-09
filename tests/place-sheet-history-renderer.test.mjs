@@ -8,10 +8,11 @@ const shellSource = fs.readFileSync("js/ui/place-sheet/place-sheet-shell.ts", "u
 const popupSource = fs.readFileSync("js/ui/place-popup-v2.js", "utf8");
 const unifiedSource = fs.readFileSync("js/ui/place-unified-surface.ts", "utf8");
 const runtime = fs.readFileSync("dist/web/place-unified-surface.js", "utf8");
+const css = fs.readFileSync("css/place-sheet.css", "utf8");
 
 test("History renderer owns canonical history_layers without swallowing other History surfaces", () => {
   assert.match(historySource, /canonicalHistoryLayers/);
-  assert.match(historySource, /place\.history_layers/);
+  assert.match(historySource, /place\?\.history_layers/);
   assert.match(historySource, /sort_order\s*\?\?\s*item\?\.sortOrder/);
   assert.match(historySource, /data-hg-place-sheet-owner="history"/);
   assert.match(historySource, /escapeHtml/);
@@ -49,9 +50,16 @@ test("Unified path owns history_layers in Place Sheet while standalone popup kee
   assert.match(shellSource, /mountCanonicalHistory/);
   assert.match(shellSource, /data-hg-place-sheet-section[^\n]*history|SHELL_SECTION_ATTR[^\n]*history/);
   assert.match(shellSource, /pc-sheet-canonical-history/);
-  assert.match(unifiedSource, /suppressPlaceHistory:\s*true/);
+  assert.match(unifiedSource, /suppressPlaceHistory:\s*ownsHistory/);
   assert.match(unifiedSource, /placeSheetSectionTarget\("history"\)/);
   assert.match(unifiedSource, /hg-place-history-section/);
   assert.match(popupSource, /HGPlaceSheetSections\?\.history/);
   assert.match(popupSource, /suppressPlaceHistory/);
+});
+
+test("direct Place Sheet History keeps popup-quality timeline styling", () => {
+  assert.match(css, /pc-sheet-canonical-history/);
+  assert.match(css, /pc-sheet-canonical-history[^\{]*\.hg-place-timeline/);
+  assert.match(css, /pc-sheet-canonical-history[^\{]*\.hg-place-timeline-marker/);
+  assert.match(css, /linear-gradient\(180deg,#f6c800,rgba\(246,200,0,\.08\)\)/);
 });
