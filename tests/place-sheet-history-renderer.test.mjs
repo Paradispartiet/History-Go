@@ -12,7 +12,7 @@ const css = fs.readFileSync("css/place-sheet.css", "utf8");
 
 test("History renderer owns canonical history_layers without swallowing other History surfaces", () => {
   assert.match(historySource, /canonicalHistoryLayers/);
-  assert.match(historySource, /place\?\.history_layers/);
+  assert.match(historySource, /Array\.isArray\(place(?:\?\.|\.)history_layers\)/);
   assert.match(historySource, /sort_order\s*\?\?\s*item\?\.sortOrder/);
   assert.match(historySource, /data-hg-place-sheet-owner="history"/);
   assert.match(historySource, /escapeHtml/);
