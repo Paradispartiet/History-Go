@@ -1,0 +1,130 @@
+name: TEMP Place Sheet Phase 2 History materialization
+
+on:
+  push:
+    branches:
+      - agent/place-sheet-phase2-history-20260909
+    paths:
+      - '.github/workflows/TEMP-place-sheet-phase2-history.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-place-sheet-phase2-history
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/place-sheet-phase2-history-20260909
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Wire shared History renderer
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new):
+              p = Path(path)
+              source = p.read_text()
+              count = source.count(old)
+              if count != 1:
+                  raise SystemExit(f"{path}: expected exactly one match, found {count}: {old[:160]!r}")
+              p.write_text(source.replace(old, new, 1))
+
+          shell = "js/ui/place-sheet/place-sheet-shell.ts"
+          replace_once(
+              shell,
+              'import { mountCanonicalAbout } from "./sections/about";',
+              'import { mountCanonicalAbout } from "./sections/about";\nimport { mountCanonicalHistory } from "./sections/history";'
+          )
+          replace_once(
+              shell,
+              '      <section class="pc-sheet-onsite" data-hg-place-sheet-onsite></section>',
+              '      <section class="pc-sheet-onsite" data-hg-place-sheet-onsite></section>\n      <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>'
+          )
+          replace_once(
+              shell,
+              '''  return aboutSlot;\n}\n\nexport function mountPlaceSheetPhase1''',
+              '''  return aboutSlot;\n}\n\nfunction ensureHistorySlot(shell: HTMLElement): HTMLElement | null {\n  let historySlot = shell.querySelector<HTMLElement>("[data-hg-place-sheet-history]");\n  if (!(historySlot instanceof HTMLElement)) {\n    historySlot = document.createElement("section");\n    historySlot.className = "pc-sheet-history";\n    historySlot.setAttribute("data-hg-place-sheet-history", "1");\n    shell.appendChild(historySlot);\n  }\n  historySlot.setAttribute(SHELL_SECTION_ATTR, "history");\n  return historySlot;\n}\n\nexport function mountPlaceSheetPhase1'''
+          )
+          replace_once(
+              shell,
+              '''  if (aboutSlot) {\n    const about = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true });\n    about?.classList.add("pc-sheet-canonical-about");\n  }\n  return shell;''',
+              '''  if (aboutSlot) {\n    const about = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true });\n    about?.classList.add("pc-sheet-canonical-about");\n  }\n  const historySlot = ensureHistorySlot(shell);\n  if (historySlot) {\n    const history = mountCanonicalHistory(historySlot, place);\n    history?.classList.add("pc-sheet-canonical-history");\n  }\n  return shell;'''
+          )
+
+          popup = "js/ui/place-popup-v2.js"
+          old_history = '''  function timelineOrder(item, index) {\n    const explicit = Number(item?.sort_order ?? item?.sortOrder);\n    return Number.isFinite(explicit) ? explicit : index + 1;\n  }\n\n  function renderHistoryTimeline(place) {\n    const layers = list(place?.history_layers)\n      .map((item, index) => ({ item, index }))\n      .filter(({ item }) => item && typeof item === "object")\n      .sort((a, b) => timelineOrder(a.item, a.index) - timelineOrder(b.item, b.index));\n    if (!layers.length) return "";\n\n    return `\n      <section class="hg-section hg-place-section hg-place-history-section">\n        <h3>Historiske lag</h3>\n        <div class="hg-place-timeline">\n          ${layers.map(({ item }) => {\n            const period = firstText(item?.period, item?.year, item?.date);\n            const title = firstText(item?.title, item?.name, item?.id);\n            const summary = firstText(item?.summary, item?.desc, item?.description);\n            return `\n              <article class="hg-place-timeline-item">\n                <span class="hg-place-timeline-marker" aria-hidden="true"></span>\n                <div class="hg-place-timeline-copy">\n                  ${period ? `<span class="hg-place-timeline-period">${escapeHtml(period)}</span>` : ""}\n                  <strong>${escapeHtml(title)}</strong>\n                  ${summary ? `<p>${escapeHtml(summary)}</p>` : ""}\n                </div>\n              </article>\n            `;\n          }).join("")}\n        </div>\n      </section>\n    `;\n  }'''
+          new_history = '''  function timelineOrder(item, index) {\n    const explicit = Number(item?.sort_order ?? item?.sortOrder);\n    return Number.isFinite(explicit) ? explicit : index + 1;\n  }\n\n  function renderHistoryTimeline(place) {\n    const shared = global.HGPlaceSheetSections?.history?.renderHtml;\n    if (typeof shared === "function") {\n      try {\n        const html = String(shared(place) || "");\n        if (html) return html;\n      } catch {}\n    }\n\n    const layers = list(place?.history_layers)\n      .map((item, index) => ({ item, index }))\n      .filter(({ item }) => item && typeof item === "object")\n      .sort((a, b) => timelineOrder(a.item, a.index) - timelineOrder(b.item, b.index));\n    if (!layers.length) return "";\n\n    return `\n      <section class="hg-section hg-place-section hg-place-history-section">\n        <h3>Historiske lag</h3>\n        <div class="hg-place-timeline">\n          ${layers.map(({ item }) => {\n            const period = firstText(item?.period, item?.year, item?.date);\n            const title = firstText(item?.title, item?.name, item?.id);\n            const summary = firstText(item?.summary, item?.desc, item?.description);\n            return `\n              <article class="hg-place-timeline-item">\n                <span class="hg-place-timeline-marker" aria-hidden="true"></span>\n                <div class="hg-place-timeline-copy">\n                  ${period ? `<span class="hg-place-timeline-period">${escapeHtml(period)}</span>` : ""}\n                  <strong>${escapeHtml(title)}</strong>\n                  ${summary ? `<p>${escapeHtml(summary)}</p>` : ""}\n                </div>\n              </article>\n            `;\n          }).join("")}\n        </div>\n      </section>\n    `;\n  }\n\n  function renderStandardHistorySection(place, options) {\n    if (options && typeof options === "object" && options.suppressPlaceHistory === true) return "";\n    return renderHistoryTimeline(place);\n  }'''
+          replace_once(popup, old_history, new_history)
+          replace_once(popup, '${renderHistoryTimeline(place)}', '${renderStandardHistorySection(place, options)}')
+
+          unified = "js/ui/place-unified-surface.ts"
+          replace_once(
+              unified,
+              '      const result = legacyShowPlacePopup(place, { unifiedHost: host instanceof HTMLElement ? host : null, suppressPlaceAbout: true });',
+              '      const ownsHistory = placeSheetSectionTarget("history") instanceof HTMLElement;\n      const result = legacyShowPlacePopup(place, { unifiedHost: host instanceof HTMLElement ? host : null, suppressPlaceAbout: true, suppressPlaceHistory: ownsHistory });'
+          )
+          replace_once(
+              unified,
+              '''      // Phase 2: About is already rendered directly by Place Sheet.\n      // Remove only a compatibility duplicate if an older/custom popup renderer\n      // ignored suppressPlaceAbout; never move that DOM into the shell again.\n      if (placeSheetSectionTarget("about")) popup.querySelector(".hg-place-about-section")?.remove();''',
+              '''      // Phase 2: About and canonical history_layers are already rendered directly by Place Sheet.\n      // Remove only compatibility duplicates if an older/custom popup renderer ignored suppression.\n      if (placeSheetSectionTarget("about")) popup.querySelector(".hg-place-about-section")?.remove();\n      if (placeSheetSectionTarget("history")) popup.querySelector(".hg-place-history-section")?.remove();'''
+          )
+          replace_once(
+              unified,
+              '    let section: Element | null = id === "about" ? placeSheetSectionTarget("about") : null;',
+              '    let section: Element | null = (id === "about" || id === "history") ? placeSheetSectionTarget(id) : null;'
+          )
+
+          css = Path("css/place-sheet.css")
+          css_source = css.read_text()
+          marker = "PLACE SHEET — PHASE 2 CANONICAL HISTORY"
+          if marker not in css_source:
+              css.write_text(css_source + '''\n\n/* ============================================================\n   PLACE SHEET — PHASE 2 CANONICAL HISTORY\n   ============================================================ */\n\nbody.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-history:not([hidden]){\n  margin-top: 28px;\n  padding-top: 22px;\n  border-top: 1px solid rgba(255,255,255,.10);\n}\n\nbody.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-history{\n  margin: 0;\n  padding: 18px;\n  border: 1px solid rgba(255,255,255,.08);\n  border-radius: 22px;\n  background: rgba(5,8,14,.46);\n}\n\nbody.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-history > h3{\n  margin: 0 0 16px;\n  color: #f6c800;\n  font-size: 11px;\n  line-height: 1;\n  font-weight: 900;\n  letter-spacing: .11em;\n  text-transform: uppercase;\n}\n\nbody.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-history .hg-place-timeline{\n  position: relative;\n  display: grid;\n  gap: 0;\n}\n\nbody.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-history .hg-place-timeline::before{\n  content: "";\n  position: absolute;\n  top: 8px;\n  bottom: 8px;\n  left: 7px;\n  width: 1px;\n  background: linear-gradient(180deg,#f6c800,rgba(246,200,0,.08));\n}\n\nbody.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-history .hg-place-timeline-item{\n  position: relative;\n  display: grid;\n  grid-template-columns: 16px minmax(0,1fr);\n  gap: 13px;\n  padding: 0 0 17px;\n}\n\nbody.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-history .hg-place-timeline-item:last-child{padding-bottom:0;}\n\nbody.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-history .hg-place-timeline-marker{\n  position: relative;\n  z-index: 1;\n  width: 15px;\n  height: 15px;\n  margin-top: 4px;\n  border: 3px solid rgba(5,8,14,.98);\n  border-radius: 50%;\n  background: #f6c800;\n  box-shadow: 0 0 0 1px rgba(246,200,0,.35),0 0 15px rgba(246,200,0,.26);\n}\n\nbody.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-history .hg-place-timeline-period{\n  display: block;\n  margin-bottom: 4px;\n  color: #ffe168;\n  font-size: 10px;\n  line-height: 1.2;\n  font-weight: 850;\n  letter-spacing: .05em;\n  text-transform: uppercase;\n}\n\nbody.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-history .hg-place-timeline-copy > strong{\n  display: block;\n  color: #fff;\n  font-size: 15px;\n  line-height: 1.3;\n}\n\nbody.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-history .hg-place-timeline-copy > p{\n  margin: 5px 0 0;\n  color: rgba(255,255,255,.68);\n  font-size: 13px;\n  line-height: 1.5;\n}\n''')
+          PY
+
+      - name: Validate source and generated browser runtime
+        run: |
+          node --check js/ui/place-popup-v2.js
+          npm run typecheck:web
+          npm run build:web
+          node --check dist/web/place-unified-surface.js
+
+      - name: Verify History ownership and legacy regressions
+        run: |
+          node --test tests/place-sheet-history-renderer.test.mjs tests/place-sheet-about-renderer.test.mjs tests/place-sheet-phase1.test.mjs tests/place-unified-surface.test.mjs tests/place-popup-root-scoped-decorators.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs
+          node tests/birkelunden-phase7b-history.test.mjs
+          node tests/youngstorget-phase7b-history.test.mjs
+
+      - name: Commit permanent History extraction
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            js/ui/place-sheet/place-sheet-shell.ts \
+            js/ui/place-popup-v2.js \
+            js/ui/place-unified-surface.ts \
+            css/place-sheet.css \
+            dist/web/place-unified-surface.js \
+            dist/web/place-unified-surface.js.map
+          git diff --cached --check
+          git commit -m "Extract shared canonical Place Sheet History renderer"
+          git push origin HEAD:agent/place-sheet-phase2-history-20260909
