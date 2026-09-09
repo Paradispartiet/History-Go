@@ -1,0 +1,38 @@
+name: TEMP Place Sheet Phase 3 build
+
+on:
+  push:
+    branches:
+      - agent/place-sheet-phase3-render-queue-20260909
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/place-sheet-phase3-render-queue-20260909
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run typecheck:web
+      - run: npm run build:web
+      - run: node --test tests/place-sheet-render-queue.test.mjs tests/place-sheet-sources-renderer.test.mjs tests/place-sheet-learning-renderer.test.mjs tests/place-sheet-language-renderer.test.mjs tests/place-sheet-reading-renderer.test.mjs tests/place-sheet-news-renderer.test.mjs tests/place-sheet-before-after-renderer.test.mjs tests/place-unified-surface.test.mjs
+      - name: Commit generated web bundle
+        run: |
+          git config user.name Paradispartiet
+          git config user.email paradispartiet@gmail.com
+          git add dist/web/place-unified-surface.js dist/web/place-unified-surface.js.map
+          if git diff --cached --quiet; then
+            echo "Generated bundle already in sync"
+          else
+            git commit -m "Build Phase 3 Place Sheet runtime"
+            git push origin HEAD:agent/place-sheet-phase3-render-queue-20260909
+          fi
