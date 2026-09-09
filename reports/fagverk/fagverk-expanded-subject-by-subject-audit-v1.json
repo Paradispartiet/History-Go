@@ -1,0 +1,366 @@
+{
+  "schema": "history_go_fagverk_expanded_subject_by_subject_audit_v1",
+  "version": "1.0.0",
+  "status": "read_only_fail_closed_audit_complete",
+  "audited_main_sha": "a56d04674ebd06bb90577e73a36f39fc4cbc555a",
+  "audited_at": "2026-09-08",
+  "scope": {
+    "top_level_subjects": 19,
+    "nested_specializations_reviewed": 1,
+    "nested_specialization": "teknologi",
+    "parent_subject": "vitenskap"
+  },
+  "standard": {
+    "canonical_rule": "Expanded_and_audited requires an explicit quality expansion with its own permanent gates in addition to complete coverage.",
+    "strict_theory_integrity_alone_is_insufficient": true,
+    "foundation_materialized_alone_is_insufficient": true,
+    "aggregate_counts_alone_are_insufficient": true,
+    "whole_subject_evidence_required_for_whole_subject_expanded_verdict": true,
+    "missing_expansion_proof_is_not_automatically_a_content_gap": true,
+    "status_mutation_performed": false
+  },
+  "summary": {
+    "canonical_editorial_status_expanded_and_audited": 1,
+    "proven_whole_subject_expansion": 13,
+    "mixed_or_partial_expansion_proof": 1,
+    "high_quality_complete_without_separate_whole_subject_expansion_proof": 5,
+    "top_level_content_gaps_proven": 0,
+    "blanket_expanded_classification_allowed": false
+  },
+  "subjects": [
+    {
+      "id": "by",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "HIGH_QUALITY_COMPLETE_NO_SEPARATE_WHOLE_SUBJECT_EXPANSION_PROOF",
+      "whole_subject_expansion_proven": false,
+      "content_gap_proven": false,
+      "evidence_summary": "The complete corpus is broad and deeply traced: 12 major fields, 82 topics, 17 chapters, 459 claim-traced paragraphs, 306 verified claims, 219 source registrations, 14 methods and 20 place cases. A later maintenance round added fresh sources and place cases, but it explicitly preserved editorialStatus complete and did not constitute a separate whole-subject expanded audit.",
+      "evidence_refs": [
+        "data/fagverk/subject_status.json",
+        "reports/fagverk/by-complete-audit.json",
+        "PR #5688"
+      ],
+      "next_action": "If canonical expanded status is desired, run a bounded whole-subject expansion audit over all 12 fields; do not create content unless that audit proves a substantive gap."
+    },
+    {
+      "id": "historie",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "PROVEN_WHOLE_SUBJECT_EXPANSION",
+      "whole_subject_expansion_proven": true,
+      "content_gap_proven": false,
+      "evidence_summary": "Historie has an explicit editorial expansion layer: 18 generator-owned chapters received hand-edited narrative profiles, chronology, causal chains, interpretive disagreement, place cases and topic-specific editorial lenses. The later scientific completion closes 23/23 fields and 230/230 topics with historiography, source authority, semantic identity, theory alignment and paragraph-to-claim gates.",
+      "evidence_refs": [
+        "data/fag/historie/editorial_profiles_historie_v1.json",
+        "tools/audit-historie-completion.mjs",
+        "tools/validate-historie-editorial-quality.mjs",
+        "data/fagverk/subject_status.json"
+      ],
+      "next_action": "No content production. Preserve the expanded evidence and treat current complete as a terminal lifecycle label until status semantics are intentionally reconciled."
+    },
+    {
+      "id": "kunst",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "HIGH_QUALITY_COMPLETE_NO_SEPARATE_WHOLE_SUBJECT_EXPANSION_PROOF",
+      "whole_subject_expansion_proven": false,
+      "content_gap_proven": false,
+      "evidence_summary": "Kunst is a strong complete corpus with 6 fields, 21 topics, 6 chapters, 162 claim-traced paragraphs, 140 verified claims, 100 source registrations and 21 methods. The later strict theory reconciliation proves all 6 fields but is explicitly read-only and does not itself constitute a new content expansion.",
+      "evidence_refs": [
+        "reports/fagverk/kunst-complete-audit.json",
+        "tools/audit-kunst-theory-integrity.mjs",
+        "PR #5142"
+      ],
+      "next_action": "Run a whole-subject expansion audit before any promotion; produce content only if a real qualitative gap is found."
+    },
+    {
+      "id": "litteratur",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "MIXED_PARTIAL_EXPANSION_PROOF",
+      "whole_subject_expansion_proven": false,
+      "content_gap_proven": false,
+      "evidence_summary": "Litteratur is extensive and strict-proven across 28/28 fields, but the permanent strict reconciliation describes 18 expanded full-field areas plus 10 chapter/overview areas. That is strong evidence of substantial expansion, but not yet uniform proof that all 28 areas satisfy the same explicit full-field expanded contract.",
+      "evidence_refs": [
+        "data/fagverk/subject_status.json",
+        "PR #5144",
+        "PR #4724"
+      ],
+      "next_action": "Audit the 10 chapter/overview areas against the expanded full-field contract first. Repair only specific demonstrated gaps."
+    },
+    {
+      "id": "media",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "HIGH_QUALITY_COMPLETE_NO_SEPARATE_WHOLE_SUBJECT_EXPANSION_PROOF",
+      "whole_subject_expansion_proven": false,
+      "content_gap_proven": false,
+      "evidence_summary": "Media is complete at 6 major fields and 120 main topics, with fulltext claim-traced chapters and a complete nested Populærkultur field. Its later 6/6 strict theory proof adds a proof bridge over existing content and explicitly records content_rewrite_required false; this is not a separate whole-subject content expansion.",
+      "evidence_refs": [
+        "data/fagverk/subject_status.json",
+        "scripts/audit-fagverk-media-complete.mjs",
+        "tools/audit-media-theory-integrity.mjs",
+        "PR #4791",
+        "PR #5146"
+      ],
+      "next_action": "Run a bounded whole-subject expanded audit; do not rewrite the corpus without a demonstrated gap."
+    },
+    {
+      "id": "musikk",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "HIGH_QUALITY_COMPLETE_NO_SEPARATE_WHOLE_SUBJECT_EXPANSION_PROOF",
+      "whole_subject_expansion_proven": false,
+      "content_gap_proven": false,
+      "evidence_summary": "Musikk currently has 8 fields, 48 topics, 18 methods, 8 full chapters, 216 paragraphs and resolved fulltext/direct-object/rights gates. The later strict theory proof covers all 8 fields through 16 proof objects but explicitly leaves the existing corpus unchanged. No separate whole-subject expanded phase is proven by the audited history.",
+      "evidence_refs": [
+        "data/fagverk/subject_status.json",
+        "scripts/audit-fagverk-musikk.mjs",
+        "tools/audit-musikk-theory-integrity.mjs",
+        "PR #5148"
+      ],
+      "next_action": "Run a whole-subject expansion audit against current 48-topic content before any status promotion."
+    },
+    {
+      "id": "naeringsliv",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "PROVEN_WHOLE_SUBJECT_EXPANSION",
+      "whole_subject_expansion_proven": true,
+      "content_gap_proven": false,
+      "evidence_summary": "Næringsliv has an explicit university and business-school extension layered over the canonical core: university framework/tracks/mapping/quality plus six specialization chapters in addition to six core chapters. The quality audit covers 61 learning units, 324 paragraphs, 422 claims and 185 sources and explicitly passes both universityFrameworkComplete and businessSchoolExtensionComplete.",
+      "evidence_refs": [
+        "reports/fagverk/naeringsliv-quality-audit.json",
+        "data/fag/naeringsliv/universitetskvalitet_okonomi_og_naeringsliv_v2.json",
+        "tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs",
+        "tools/audit-naeringsliv-theory-integrity.mjs"
+      ],
+      "next_action": "No content production; preserve the expansion and maintenance gates."
+    },
+    {
+      "id": "natur",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "PROVEN_WHOLE_SUBJECT_EXPANSION",
+      "whole_subject_expansion_proven": true,
+      "content_gap_proven": false,
+      "evidence_summary": "Natur underwent an explicit quality lift that replaced generator-like definitions, questions, conflicts, methods and hooks with subject-specific material and permanent quality gates. It was then substantively expanded from the earlier six-field completion model to 12/12 fields and 77 topics, including evolution, physiology, microbiology and inner geology before final completion.",
+      "evidence_refs": [
+        "reports/fagverk/natur-quality-audit.json",
+        "data/fagverk/subject_status.json",
+        "PR #4485",
+        "PR #4509",
+        "PR #4513",
+        "PR #4613"
+      ],
+      "next_action": "No content production; maintenance and source refresh only unless a later audit proves a new gap."
+    },
+    {
+      "id": "politikk",
+      "canonical_editorial_status": "expanded_and_audited",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "PROVEN_WHOLE_SUBJECT_EXPANSION",
+      "whole_subject_expansion_proven": true,
+      "content_gap_proven": false,
+      "evidence_summary": "Politikk is the one top-level subject whose current canonical editorial status is explicitly expanded_and_audited. Its curriculum architecture also embeds that status and the permanent validator requires it. The corpus contains 13 fields, 123 topics, 71 methods, 962 concept entries and 13 full chapters, with an explicit university-near expanded curriculum layer.",
+      "evidence_refs": [
+        "data/fagverk/subject_status.json",
+        "data/fag/politikk/curriculum_architecture_politikk_v1.json",
+        "tools/validate-politikk-curriculum-architecture.mjs",
+        "PR #4710"
+      ],
+      "next_action": "No content production; source refresh and case expansion are maintenance work."
+    },
+    {
+      "id": "psykologi",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "PROVEN_WHOLE_SUBJECT_EXPANSION",
+      "whole_subject_expansion_proven": true,
+      "content_gap_proven": false,
+      "evidence_summary": "Psykologi first reached six-domain completion and was then subjected to an explicit university-readiness and quality expansion: 58/58 standalone sourced articles, 136/136 hand-edited claim-traced concepts, seven university-core branches, six audited applied fields and a dedicated six-dimension quality gate.",
+      "evidence_refs": [
+        "tests/fagverk-psykologi-university-readiness.test.mjs",
+        "data/fagverk/subject_status.json",
+        "PR #4819",
+        "PR #4837",
+        "PR #4867"
+      ],
+      "next_action": "No content production; keep clinical/safety and source-provenance gates green."
+    },
+    {
+      "id": "helse",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "PROVEN_WHOLE_SUBJECT_EXPANSION",
+      "whole_subject_expansion_proven": true,
+      "content_gap_proven": false,
+      "evidence_summary": "Helse was a real production gap in the 19+1 expansion programme and was built through a source-first 12-domain fulltext sequence rather than status reconciliation. The final gate proves 12/12 domains, 24 domain-specific models/frameworks, 24 scholarly sources, 72 exact claim-traced prose bindings and 384 verified claims, with a blocking non-individualizing clinical safety contract.",
+      "evidence_refs": [
+        "data/fagverk/subject_status.json",
+        "PR #5169",
+        "PR #5300",
+        "reports/fagverk/fagverk-expansion-19-plus-1-reconciliation-v1.json"
+      ],
+      "next_action": "No content production; current evidence supports substantive whole-subject expansion."
+    },
+    {
+      "id": "utdanning",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "PROVEN_WHOLE_SUBJECT_EXPANSION",
+      "whole_subject_expansion_proven": true,
+      "content_gap_proven": false,
+      "evidence_summary": "Utdanning was the final real production gap in the 19+1 programme and was materialized incrementally from 0/14 through source-first fulltext gates. Final completion proves 14/14 domains, 448 claims, 28 theory/model objects, 28 inspectable sources and 84 exact mechanism/limitation/alternative prose bindings.",
+      "evidence_refs": [
+        "data/fagverk/subject_status.json",
+        "PR #5310",
+        "PR #5340",
+        "PR #5376",
+        "PR #5415",
+        "reports/fagverk/fagverk-expansion-19-plus-1-final-reconciliation-v1.json"
+      ],
+      "next_action": "No content production; current evidence supports substantive whole-subject expansion."
+    },
+    {
+      "id": "religion",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "PROVEN_WHOLE_SUBJECT_EXPANSION",
+      "whole_subject_expansion_proven": true,
+      "content_gap_proven": false,
+      "evidence_summary": "Religion explicitly expanded from a 4-area/8-topic/8-method foundation into a university-benchmarked 12-area programme requiring 72 independent articles and 18 methods, with representation protection and source/claim requirements. The completed corpus now has 72/72 sourced articles, 432 claims, 235 source registrations and a 29/30 six-dimension quality gate.",
+      "evidence_refs": [
+        "data/fagverk/subject_status.json",
+        "PR #4888",
+        "PR #5129"
+      ],
+      "next_action": "No content production; maintenance/source refresh only."
+    },
+    {
+      "id": "scenekunst",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "PROVEN_WHOLE_SUBJECT_EXPANSION",
+      "whole_subject_expansion_proven": true,
+      "content_gap_proven": false,
+      "evidence_summary": "Scenekunst has a dedicated university-breadth and holistic completion programme: 4/4 fields, 20/20 topics, 14/14 methods, four fulltext chapters, 60 paragraph-to-claim traces and a 29/30 holistic quality review. Permanent gates cover university breadth, holistic completion, neighboring-field boundaries, ethics, representation and accessibility.",
+      "evidence_refs": [
+        "data/fagverk/subject_status.json",
+        "PR #5089"
+      ],
+      "next_action": "No content production; maintenance/source refresh only."
+    },
+    {
+      "id": "sport",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "HIGH_QUALITY_COMPLETE_NO_SEPARATE_WHOLE_SUBJECT_EXPANSION_PROOF",
+      "whole_subject_expansion_proven": false,
+      "content_gap_proven": false,
+      "evidence_summary": "Sport is a broad complete corpus with 6/6 areas, 116/116 topics, 109 methods, 6 chapters, 54 sections and 162 claim-traced paragraphs/claims with inspectable provenance. Later maintenance repaired a legacy concept gap, but the audited history does not yet prove a separate whole-subject expansion programme after completion.",
+      "evidence_refs": [
+        "data/fagverk/subject_status.json",
+        "PR #4923",
+        "PR #5509"
+      ],
+      "next_action": "Run a bounded whole-subject expansion audit before promotion; only produce content if it identifies a substantive gap."
+    },
+    {
+      "id": "subkultur",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "PROVEN_WHOLE_SUBJECT_EXPANSION",
+      "whole_subject_expansion_proven": true,
+      "content_gap_proven": false,
+      "evidence_summary": "Subkultur has a documented weak baseline and a substantive multi-stage expansion: the baseline had 6 fields, 72 topics, 69 mappings, 71 methods with only 21 unique descriptions and 0 chapters; the programme then built 80 evidence-ready theory objects, case evidence, 8 pathways, 40 sourced assessment questions and finally 8 fields/chapters, 80 topics, 42 cases and permanent deterministic gates.",
+      "evidence_refs": [
+        "data/fagverk/subject_status.json",
+        "PR #4686",
+        "PR #4690",
+        "PR #4693",
+        "PR #4700",
+        "PR #4701"
+      ],
+      "next_action": "No content production; current evidence supports substantive whole-subject expansion."
+    },
+    {
+      "id": "vitenskap",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "PROVEN_WHOLE_SUBJECT_EXPANSION",
+      "whole_subject_expansion_proven": true,
+      "content_gap_proven": false,
+      "evidence_summary": "Vitenskap has an explicit university-breadth expansion and blocker-closing sequence. The final corpus has 117/117 canonical topics fulltext-owned exactly once, 84 methods, 117 mappings, 64 hooks, 178 verified claims and 103 source registrations; the holistic audit has 0 blockers and the six-dimension quality review is 28/30. Nested Teknologi remains separately strict-proven under Vitenskap.",
+      "evidence_refs": [
+        "data/fagverk/subject_status.json",
+        "scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs",
+        "PR #5070",
+        "PR #5076",
+        "PR #5083"
+      ],
+      "next_action": "No content production; preserve university-breadth, quality and nested-Technology gates."
+    },
+    {
+      "id": "filosofi",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "PROVEN_WHOLE_SUBJECT_EXPANSION",
+      "whole_subject_expansion_proven": true,
+      "content_gap_proven": false,
+      "evidence_summary": "Filosofi was explicitly reopened after an overstatement, expanded to a 20-major-field university benchmark and 68 independent articles, and then reconciled through individual university-depth reviews and a final quality repair. The current corpus records all 68 articles as university_depth_reviewed and explicitly materializes previously missing major areas.",
+      "evidence_refs": [
+        "data/fagverk/subject_status.json",
+        "scripts/audit-fagverk-filosofi-phase3.mjs",
+        "PR #4947",
+        "PR #4964",
+        "PR #5002",
+        "PR #5004",
+        "PR #5016"
+      ],
+      "next_action": "No content production; current evidence supports substantive whole-subject expansion."
+    },
+    {
+      "id": "film_tv",
+      "canonical_editorial_status": "complete",
+      "strict_theory_integrity": "strictly_proven",
+      "expanded_verdict": "PROVEN_WHOLE_SUBJECT_EXPANSION",
+      "whole_subject_expansion_proven": true,
+      "content_gap_proven": false,
+      "evidence_summary": "Film & TV is closed through a reconciled 192-topic holistic audit and 17-chapter ownership model with paragraph-to-claim, method/domain and source-evidence gates. It then received an explicit post-completion theory-quality repair adding 20 domain-bound theory objects with mechanisms, evidence, limitations, rivals/alternatives and scholarly provenance without reopening the 192-topic completion.",
+      "evidence_refs": [
+        "scripts/audit-film-tv-holistic-completion-v1.mjs",
+        "data/fagverk/fagverk_registry.json",
+        "PR #5098"
+      ],
+      "next_action": "No content production; current evidence supports substantive whole-subject expansion."
+    }
+  ],
+  "nested_specializations": [
+    {
+      "id": "teknologi",
+      "parent_subject": "vitenskap",
+      "strict_theory_integrity": "strictly_proven",
+      "whole_subject_top_level_verdict": "NOT_APPLICABLE_NESTED_SPECIALIZATION",
+      "content_gap_proven": false,
+      "note": "Technology remains a nested specialization and is not counted as a twentieth top-level subject. Strict proof does not by itself create a separate expanded top-level lifecycle."
+    }
+  ],
+  "recommended_reconciliation_queue": [
+    "litteratur",
+    "by",
+    "kunst",
+    "media",
+    "musikk",
+    "sport"
+  ],
+  "production_decision": {
+    "new_content_authorized_now": false,
+    "reason": "This audit proves no current top-level substantive content gap. The six queued subjects require expansion-proof reconciliation first; content may be produced only where that later audit demonstrates a concrete qualitative gap."
+  },
+  "status_decision": {
+    "subject_status_changes_authorized_now": false,
+    "reason": "The audit is deliberately read-only. Canonical status must not be promoted from inferred quality level or strict theory proof alone."
+  }
+}
