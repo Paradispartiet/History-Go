@@ -6,6 +6,7 @@ const readJson = file => JSON.parse(read(file));
 
 const place = readJson('data/places/by/oslo/places/birkelunden.json');
 const popupRuntime = read('js/ui/place-popup-v2.js');
+const historyRuntime = read('js/ui/place-sheet/sections/history.ts');
 const tabsRuntime = read('js/ui/place-popup-tabs.js');
 const manifest = readJson('data/leksikon/manifest.json');
 const canonicalLeksikonPath = 'data/leksikon/places/oslo/by/leksikon_oslo_by_birkelunden.json';
@@ -60,11 +61,12 @@ assert.equal(
   'legacy chronology skal ikke være synlig ved siden av canonical history_layers'
 );
 
-assert.match(popupRuntime, /function renderHistoryTimeline\(place\)/, 'popup-v2 må ha canonical history renderer');
-assert.match(popupRuntime, /const layers = list\(place\?\.history_layers\)/, 'history renderer må lese canonical history_layers');
-assert.match(popupRuntime, /hg-place-history-section/, 'history renderer må merke seksjonen for tabs-runtime');
-assert.match(popupRuntime, /\$\{renderHistoryTimeline\(place\)\}/, 'history renderer må være koblet til popup-body');
-assert.match(tabsRuntime, /node\.classList\.contains\("hg-place-history-section"\).*tabs\.panels\.history\.appendChild\(node\)/s, 'tabs-runtime må flytte history-seksjonen til Historie-fanen');
+assert.match(historyRuntime, /export function canonicalHistoryLayers\(/, 'Place Sheet må ha canonical history renderer');
+assert.match(historyRuntime, /place\.history_layers/, 'shared history renderer må lese canonical history_layers');
+assert.match(historyRuntime, /hg-place-history-section/, 'shared history renderer må bevare Historie-seksjonskontrakten');
+assert.match(popupRuntime, /HGPlaceSheetSections\?\.history/, 'standalone popup må bruke shared History-renderer når den er tilgjengelig');
+assert.match(popupRuntime, /suppressPlaceHistory/, 'Unified må kunne undertrykke popupens duplicate history_layers');
+assert.match(tabsRuntime, /node\.classList\.contains\("hg-place-history-section"\).*tabs\.panels\.history\.appendChild\(node\)/s, 'tabs-runtime må fortsatt støtte standalone history-seksjonen i Historie-fanen');
 assert.match(tabsRuntime, /visibleArticlesForPopup\(articles, main\)/, 'legacy-suppression skal brukes før Historie-ekstraartikler bygges');
 assert.doesNotMatch(popupRuntime, /function renderTemporalSection\(/, '7B skal ikke introdusere parallell temporal renderer');
 
