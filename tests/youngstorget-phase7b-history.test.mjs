@@ -6,6 +6,7 @@ const readJson = file => JSON.parse(read(file));
 
 const place = readJson('data/places/politikk/oslo/places_politikk/youngstorget.json');
 const popupRuntime = read('js/ui/place-popup-v2.js');
+const historyRuntime = read('js/ui/place-sheet/sections/history.ts');
 const tabsRuntime = read('js/ui/place-popup-tabs.js');
 const manifest = readJson('data/leksikon/manifest.json');
 
@@ -30,11 +31,12 @@ for (const year of [1846, 1852, 1890, 1951, 1958, 1996]) {
 }
 assert.deepEqual(Object.values(place.temporal_profile || {}), [1846, 1852, 1890, 1951, 1958, 1996]);
 
-assert.match(popupRuntime, /function renderHistoryTimeline\(place\)/, 'popup-v2 må ha canonical history renderer');
-assert.match(popupRuntime, /const layers = list\(place\?\.history_layers\)/, 'history renderer må lese canonical history_layers');
-assert.match(popupRuntime, /hg-place-history-section/, 'history renderer må merke seksjonen for tabs-runtime');
-assert.match(popupRuntime, /\$\{renderHistoryTimeline\(place\)\}/, 'history renderer må være koblet til popup-body');
-assert.match(tabsRuntime, /node\.classList\.contains\("hg-place-history-section"\).*tabs\.panels\.history\.appendChild\(node\)/s, 'tabs-runtime må flytte history-seksjonen til Historie-fanen');
+assert.match(historyRuntime, /export function canonicalHistoryLayers\(/, 'Place Sheet må ha canonical history renderer');
+assert.match(historyRuntime, /place\.history_layers/, 'shared history renderer må lese canonical history_layers');
+assert.match(historyRuntime, /hg-place-history-section/, 'shared history renderer må bevare Historie-seksjonskontrakten');
+assert.match(popupRuntime, /HGPlaceSheetSections\?\.history/, 'standalone popup må bruke shared History-renderer når den er tilgjengelig');
+assert.match(popupRuntime, /suppressPlaceHistory/, 'Unified må kunne undertrykke popupens duplicate history_layers');
+assert.match(tabsRuntime, /node\.classList\.contains\("hg-place-history-section"\).*tabs\.panels\.history\.appendChild\(node\)/s, 'tabs-runtime må fortsatt støtte standalone history-seksjonen i Historie-fanen');
 assert.match(tabsRuntime, /const timeline = renderTimeline\(\[\.\.\.list\(main\?\.chronology\), \.\.\.extras\.flatMap\(article => list\(article\?\.chronology\)\)\]\)/, 'Leksikon chronology skal fortsatt ha egen eksplisitt eiervei');
 assert.doesNotMatch(popupRuntime, /function renderTemporalSection\(/, '7B skal ikke introdusere parallell temporal renderer');
 
