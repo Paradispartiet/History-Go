@@ -11,11 +11,11 @@
     "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
-      "playable": 78,
+      "playable": 79,
       "partial": 0,
-      "architecture_only": 2
+      "architecture_only": 1
     },
-    "runtime_gate_pass": 83,
+    "runtime_gate_pass": 84,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
@@ -24,13 +24,13 @@
         "missing": 0
       },
       "day_one": {
-        "complete": 83,
+        "complete": 84,
         "partial": 0,
-        "missing": 2
+        "missing": 1
       },
       "workday_loop": {
-        "complete": 83,
-        "partial": 2,
+        "complete": 84,
+        "partial": 1,
         "missing": 0
       },
       "practice_stories": {
@@ -39,24 +39,24 @@
         "missing": 0
       },
       "people": {
-        "complete": 83,
+        "complete": 84,
         "partial": 0,
-        "missing": 2
+        "missing": 1
       },
       "places": {
-        "complete": 83,
+        "complete": 84,
         "partial": 0,
-        "missing": 2
+        "missing": 1
       },
       "mail": {
-        "complete": 83,
+        "complete": 84,
         "partial": 0,
-        "missing": 2
+        "missing": 1
       },
       "knowledge": {
-        "complete": 83,
+        "complete": 84,
         "partial": 0,
-        "missing": 2
+        "missing": 1
       },
       "quality_axes": {
         "complete": 85,
@@ -64,19 +64,19 @@
         "missing": 0
       },
       "authority": {
-        "complete": 83,
-        "partial": 2,
+        "complete": 84,
+        "partial": 1,
         "missing": 0
       },
       "consequences": {
-        "complete": 83,
+        "complete": 84,
         "partial": 0,
-        "missing": 2
+        "missing": 1
       },
       "performance": {
-        "complete": 80,
+        "complete": 81,
         "partial": 3,
-        "missing": 2
+        "missing": 1
       },
       "economy": {
         "complete": 85,
@@ -84,14 +84,14 @@
         "missing": 0
       },
       "progression": {
-        "complete": 80,
+        "complete": 81,
         "partial": 3,
-        "missing": 2
+        "missing": 1
       },
       "exit": {
-        "complete": 80,
+        "complete": 81,
         "partial": 3,
-        "missing": 2
+        "missing": 1
       }
     }
   },
@@ -2228,6 +2228,7 @@
           "tests/civication-kunst-life-career-split.test.js",
           "tests/civication-life-position-career-split.test.js",
           "tests/civication-music-life-career-split.test.js",
+          "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js",
           "tests/civication-scenekunst-life-career-split.test.js",
           "tests/civication-subkultur-arrangementsdrift-playability.test.js",
           "tests/civication-subkultur-career-architecture.test.js"
@@ -2256,6 +2257,7 @@
               "tests/civication-kunst-life-career-split.test.js",
               "tests/civication-life-position-career-split.test.js",
               "tests/civication-music-life-career-split.test.js",
+              "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js",
               "tests/civication-scenekunst-life-career-split.test.js",
               "tests/civication-subkultur-arrangementsdrift-playability.test.js",
               "tests/civication-subkultur-career-architecture.test.js"
@@ -2275,6 +2277,7 @@
               "tests/civication-kunst-life-career-split.test.js",
               "tests/civication-life-position-career-split.test.js",
               "tests/civication-music-life-career-split.test.js",
+              "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js",
               "tests/civication-scenekunst-life-career-split.test.js",
               "tests/civication-subkultur-arrangementsdrift-playability.test.js",
               "tests/civication-subkultur-career-architecture.test.js"
@@ -2357,6 +2360,7 @@
               "tests/civication-kunst-life-career-split.test.js",
               "tests/civication-life-position-career-split.test.js",
               "tests/civication-music-life-career-split.test.js",
+              "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js",
               "tests/civication-scenekunst-life-career-split.test.js",
               "tests/civication-subkultur-arrangementsdrift-playability.test.js",
               "tests/civication-subkultur-career-architecture.test.js"
@@ -2375,6 +2379,7 @@
               "tests/civication-kunst-life-career-split.test.js",
               "tests/civication-life-position-career-split.test.js",
               "tests/civication-music-life-career-split.test.js",
+              "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js",
               "tests/civication-scenekunst-life-career-split.test.js",
               "tests/civication-subkultur-arrangementsdrift-playability.test.js",
               "tests/civication-subkultur-career-architecture.test.js"
@@ -8240,6 +8245,7 @@
       "category": "musikk",
       "role_scope": "musikk_scene_og_produksjon",
       "declared_by": [
+        "mailPlan",
         "workGrammar"
       ],
       "badge_titles": [
@@ -8255,9 +8261,10 @@
         "musikk_sceneassistent",
         "musikk_tekniker_lys_lyd"
       ],
-      "status": "architecture_only",
+      "status": "playable",
       "artifacts": {
         "role_models": [
+          "data/Civication/roleModels/musikk/musikk_scene_og_produksjon.json",
           "data/Civication/roleModels/musikk/produksjonsassistent.json",
           "data/Civication/roleModels/musikk/produksjonskoordinator.json",
           "data/Civication/roleModels/musikk/sceneassistent.json",
@@ -8265,47 +8272,48 @@
         ],
         "work_grammar": "data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json",
         "shared_work_grammars": [],
-        "mail_plan": null,
+        "mail_plan": "data/Civication/mailPlans/musikk/musikk_scene_og_produksjon_plan.json",
         "mail_families": {
           "job": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/musikk/job/musikk_scene_og_produksjon_job.json",
+            "count": 4
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/musikk/people/musikk_scene_og_produksjon_people.json",
+            "count": 4
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/musikk/conflict/musikk_scene_og_produksjon_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/musikk/story/musikk_scene_og_produksjon_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/musikk/event/musikk_scene_og_produksjon_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/musikk/micro/musikk_scene_og_produksjon_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/musikk/followup/musikk_scene_og_produksjon_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/musikk/knowledge/musikk_scene_og_produksjon_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/musikk/consequence/musikk_scene_og_produksjon_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
-          "tests/civication-music-life-career-split.test.js"
+          "tests/civication-music-life-career-split.test.js",
+          "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js"
         ],
         "life_story": null
       },
@@ -8321,16 +8329,24 @@
             "note": "4 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No day-one structure."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/musikk/musikk_scene_og_produksjon_plan.json",
+              "tests/civication-music-life-career-split.test.js",
+              "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js"
+            ],
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json"
+              "data/Civication/mailFamilies/musikk/job/musikk_scene_og_produksjon_job.json",
+              "data/Civication/mailPlans/musikk/musikk_scene_og_produksjon_plan.json",
+              "data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json",
+              "tests/civication-music-life-career-split.test.js",
+              "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js"
             ],
-            "note": "Work-loop content exists, but the complete repeatable runtime path is not proven."
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
             "level": "partial",
@@ -8341,28 +8357,63 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/musikk/people/musikk_scene_og_produksjon_people.json",
+              "data/Civication/roleModels/musikk/musikk_scene_og_produksjon.json",
+              "data/Civication/roleModels/musikk/produksjonsassistent.json",
+              "data/Civication/roleModels/musikk/produksjonskoordinator.json",
+              "data/Civication/roleModels/musikk/sceneassistent.json",
+              "data/Civication/roleModels/musikk/tekniker_lys_lyd.json",
+              "data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/musikk/musikk_scene_og_produksjon.json",
+              "data/Civication/roleModels/musikk/produksjonsassistent.json",
+              "data/Civication/roleModels/musikk/produksjonskoordinator.json",
+              "data/Civication/roleModels/musikk/sceneassistent.json",
+              "data/Civication/roleModels/musikk/tekniker_lys_lyd.json",
+              "data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json"
+            ],
+            "note": "12 place/working-surface declarations."
           },
           "mail": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No role mail/event generation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/musikk/conflict/musikk_scene_og_produksjon_conflict.json",
+              "data/Civication/mailFamilies/musikk/consequence/musikk_scene_og_produksjon_consequence.json",
+              "data/Civication/mailFamilies/musikk/event/musikk_scene_og_produksjon_event.json",
+              "data/Civication/mailFamilies/musikk/followup/musikk_scene_og_produksjon_followup.json",
+              "data/Civication/mailFamilies/musikk/job/musikk_scene_og_produksjon_job.json",
+              "data/Civication/mailFamilies/musikk/knowledge/musikk_scene_og_produksjon_knowledge.json",
+              "data/Civication/mailFamilies/musikk/micro/musikk_scene_og_produksjon_micro.json",
+              "data/Civication/mailFamilies/musikk/people/musikk_scene_og_produksjon_people.json",
+              "data/Civication/mailFamilies/musikk/story/musikk_scene_og_produksjon_story.json",
+              "data/Civication/mailPlans/musikk/musikk_scene_og_produksjon_plan.json"
+            ],
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No functional knowledge layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/musikk/knowledge/musikk_scene_og_produksjon_knowledge.json",
+              "data/Civication/roleModels/musikk/musikk_scene_og_produksjon.json",
+              "data/Civication/roleModels/musikk/produksjonsassistent.json",
+              "data/Civication/roleModels/musikk/produksjonskoordinator.json",
+              "data/Civication/roleModels/musikk/sceneassistent.json",
+              "data/Civication/roleModels/musikk/tekniker_lys_lyd.json",
+              "data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json"
+            ],
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
             "evidence": [
+              "data/Civication/roleModels/musikk/musikk_scene_og_produksjon.json",
               "data/Civication/roleModels/musikk/produksjonsassistent.json",
               "data/Civication/roleModels/musikk/produksjonskoordinator.json",
               "data/Civication/roleModels/musikk/sceneassistent.json",
@@ -8372,25 +8423,36 @@
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
           },
           "authority": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/roleModels/musikk/musikk_scene_og_produksjon.json",
               "data/Civication/roleModels/musikk/produksjonsassistent.json",
               "data/Civication/roleModels/musikk/produksjonskoordinator.json",
               "data/Civication/roleModels/musikk/sceneassistent.json",
               "data/Civication/roleModels/musikk/tekniker_lys_lyd.json",
               "data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json"
             ],
-            "note": "Role content exists, but authority is not an explicit machine-auditable boundary."
+            "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/musikk/consequence/musikk_scene_og_produksjon_consequence.json",
+              "data/Civication/mailFamilies/musikk/followup/musikk_scene_og_produksjon_followup.json",
+              "tests/civication-music-life-career-split.test.js",
+              "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/musikk/musikk_scene_og_produksjon_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-music-life-career-split.test.js",
+              "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -8402,32 +8464,50 @@
             "note": "Exact salary exists for all 4 linked career title(s)."
           },
           "progression": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No progression path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/musikk/musikk_scene_og_produksjon_plan.json",
+              "data/Civication/roleModels/musikk/musikk_scene_og_produksjon.json",
+              "data/Civication/roleModels/musikk/produksjonsassistent.json",
+              "data/Civication/roleModels/musikk/produksjonskoordinator.json",
+              "data/Civication/roleModels/musikk/sceneassistent.json",
+              "data/Civication/roleModels/musikk/tekniker_lys_lyd.json",
+              "data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No exit/job-change path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/musikk/musikk_scene_og_produksjon_plan.json",
+              "data/Civication/roleModels/musikk/musikk_scene_og_produksjon.json",
+              "data/Civication/roleModels/musikk/produksjonsassistent.json",
+              "data/Civication/roleModels/musikk/produksjonskoordinator.json",
+              "data/Civication/roleModels/musikk/sceneassistent.json",
+              "data/Civication/roleModels/musikk/tekniker_lys_lyd.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
+        "runtime_gate": true,
+        "missing_components": [],
+        "complete_components": [
+          "entry",
           "day_one",
+          "workday_loop",
           "people",
           "places",
           "mail",
           "knowledge",
+          "quality_axes",
+          "authority",
           "consequences",
           "performance",
+          "economy",
           "progression",
           "exit"
-        ],
-        "complete_components": [
-          "entry",
-          "quality_axes",
-          "economy"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],

@@ -1,16 +1,276 @@
 {
-  "schema":"civication_work_grammar_v1","version":1,
-  "category":"musikk","role_scope":"musikk_scene_og_produksjon","role_id":"musikk_scene_og_produksjon",
-  "badge_binding":{"badge_titles":["Sceneassistent","Produksjonsassistent","Tekniker (lys/lyd)","Produksjonskoordinator"],"thresholds":[10,15,25,40]},
-  "work_world":"Konserter og musikkproduksjoner der scene, teknikk, crew og plan må fungere samtidig.",
-  "authority_boundary":"Spilleren kan handle innen tildelt produksjonsmandat og eskalere sikkerhetskritiske avvik, men kan ikke overstyre fagmyndighet, økonomisk fullmakt eller kunstnerisk ledelse.",
-  "work_loops":["brief -> plan -> rigg -> avvik -> gjennomføring -> nedrigg -> læring","behov -> kapasitetssjekk -> prioritering -> kommunikasjon -> dokumentasjon"],
-  "practice_stories":[
-    {"id":"rigg_forsinket","setup":"Rigg ligger etter plan før dørene åpner.","decision":"Prioriter kritisk sti uten å kutte HMS.","learning":"tempo må styres av risiko og avhengigheter"},
-    {"id":"signalfeil","setup":"Lydsignal faller ut under linecheck.","decision":"Feilsøk systematisk og informer produksjon.","learning":"teknisk presisjon krever ro og tydelig eskalering"},
-    {"id":"artistendring","setup":"Artist ønsker en sen sceneendring.","decision":"Vurder kapasitet, sikkerhet og tidskonsekvens før løfte.","learning":"service er ikke det samme som ubegrenset ja"},
-    {"id":"crew_mangel","setup":"En nøkkelperson i crewet uteblir.","decision":"Fordel oppgaver på nytt innen kompetansegrensene.","learning":"rollegrenser gjelder også under press"},
-    {"id":"utstyr_forsinket","setup":"Viktig utstyr kommer sent.","decision":"Lag fallback og oppdater alle avhengige aktører.","learning":"produksjonskvalitet handler om koordinert adaptasjon"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "musikk",
+  "role_scope": "musikk_scene_og_produksjon",
+  "role_id": "musikk_scene_og_produksjon",
+  "badge_binding": {
+    "badge_id": "musikk",
+    "badge_titles": [
+      "Sceneassistent",
+      "Produksjonsassistent",
+      "Tekniker (lys/lyd)",
+      "Produksjonskoordinator"
+    ],
+    "tier_thresholds": [
+      10,
+      15,
+      25,
+      40
+    ]
+  },
+  "work_world": "Konserter og musikkproduksjoner der scene, teknikk, crew, logistikk og artistbehov må fungere samtidig uten at tempo eller badge-status overskriver sikkerhet, kompetanse eller ansvarslinje.",
+  "authority_boundary": {
+    "may": [
+      "utføre og koordinere tildelte scene- og produksjonsoppgaver innen faktisk oppgavefordeling, dokumentert kompetanse, lokal instruks og gjeldende sikkerhetsprosedyrer",
+      "stanse eget arbeid og varsle eller eskalere når rigg, strøm, løft, høydearbeid, publikumssikkerhet, signalfeil eller annen risiko ikke er forsvarlig avklart",
+      "operere og feilsøke tildelt lyd-, lys- og signalutstyr innen dokumentert opplæring og rolle, og overlevere målinger, feilstatus og fallback til riktig teknisk ansvarlig",
+      "koordinere call sheet, crew, logistikk, leveranser, sceneskift og tidsavhengigheter innen produksjonsmandatet uten å overta kunstnerisk, teknisk, økonomisk eller sikkerhetsmessig beslutningsmyndighet",
+      "dokumentere avvik, venting, beslutningseier, endringer og handoff slik at neste crew eller fagfunksjon kan overta uten å gjette"
+    ],
+    "may_not": [
+      "behandle direct career policy, Musikk-badge, XP eller stillingstittel som generell autorisasjon, sertifisering, sikkerhetsgodkjenning eller fullmakt utover faktisk oppgave og kompetanse",
+      "utføre regulert elektrisk arbeid, sikkerhetskritisk rigg, løft eller annet arbeid som krever særskilt kompetanse eller autorisasjon når dette ikke er dokumentert og tildelt",
+      "overstyre teknisk ansvarlig, HMS- eller sikkerhetsansvarlig, produksjonsleder eller kunstnerisk beslutningseier uten eksplisitt mandat",
+      "inngå avtaler, påføre produksjonen kostnader eller love artist, arrangør eller leverandør endringer uten relevant økonomisk eller kontraktsmessig fullmakt",
+      "skjule eller normalisere sikkerhetsavvik, manglende kompetanse, utilstrekkelig hvile eller urealistisk tidsplan for å holde showstart",
+      "bruke History Go som erstatning for dagens venue-instruks, teknisk dokumentasjon, risikovurdering, kompetansebevis, autorisasjon, kontrakt, fullmakt eller faktisk måling"
+    ]
+  },
+  "work_loops": [
+    {
+      "id": "produksjonsflyt",
+      "steps": [
+        "les_call_sheet_og_avhengigheter",
+        "bekreft_oppgave_kompetanse_og_ansvar",
+        "klargjor_scene_og_teknikk",
+        "test_kritiske_avhengigheter",
+        "handter_avvik_eller_stopp",
+        "gjennomfor_og_kommuniser_endring",
+        "overlever_og_dokumenter_laring"
+      ]
+    },
+    {
+      "id": "sikkerhetsavvik",
+      "steps": [
+        "oppdag_risiko",
+        "stans_eget_berort_arbeid",
+        "sikre_omradet_ved_behov",
+        "registrer_observasjon_og_usikkerhet",
+        "varsle_riktig_ansvarlig",
+        "vent_pa_avklaring_eller_tillatelse",
+        "gjenoppta_bare_nar_grunnlaget_er_tilstrekkelig"
+      ]
+    },
+    {
+      "id": "teknisk_feilsoking",
+      "steps": [
+        "frys_symptom_og_endringer",
+        "spor_signal_eller_systemledd",
+        "mal_eller_test_en_hypotese_av_gangen",
+        "skill_operatortiltak_fra_autorisasjonskrevende_inngrep",
+        "etabler_fallback",
+        "kommuniser_status_og_konsekvens",
+        "handoff_med_malinger_og_apne_spor"
+      ]
+    },
+    {
+      "id": "sen_endring",
+      "steps": [
+        "registrer_onske",
+        "kartlegg_tid_teknikk_sikkerhet_kost_og_crewkonsekvens",
+        "finn_beslutningseiere",
+        "innhent_nodvendige_godkjenninger",
+        "oppdater_call_sheet_og_berorte_funksjoner",
+        "gjennomfor_eller_avvis_med_begrunnelse"
+      ]
+    }
   ],
-  "quality_axes":["sikkerhet","produksjonsflyt","teknisk_presisjon","kommunikasjon","rolleforståelse","dokumentasjon"]
+  "practice_stories": [
+    {
+      "id": "s1",
+      "setup": "Rigg ligger etter plan før dørene åpner.",
+      "good": "Frys kritisk sti, behold sikkerhetskontroll og eskaler hva som faktisk må prioriteres.",
+      "bad": "Hent inn tid ved å hoppe over kontroll eller gi en uerfaren person sikkerhetskritisk oppgave."
+    },
+    {
+      "id": "s2",
+      "setup": "Lydsignal faller ut under linecheck.",
+      "good": "Feilsøk systematisk, dokumenter målinger og eskaler inngrep utenfor eget kompetanse- eller autorisasjonsområde.",
+      "bad": "Bytt tilfeldig på flere ledd samtidig eller åpne systemer du ikke har ansvar for."
+    },
+    {
+      "id": "s3",
+      "setup": "Artist ønsker en sen sceneendring.",
+      "good": "Kartlegg teknikk, tid, sikkerhet, kostnad og beslutningseier før noen lover gjennomføring.",
+      "bad": "Si ja for å være serviceorientert og la resten av crewet absorbere konsekvensene."
+    },
+    {
+      "id": "s4",
+      "setup": "En nøkkelperson i crewet uteblir.",
+      "good": "Fordel arbeid på nytt innen kompetansegrenser og reprioriter leveransen.",
+      "bad": "Fyll gapet ved å tildele en kritisk oppgave til første ledige person."
+    },
+    {
+      "id": "s5",
+      "setup": "Et viktig utstyrselement kommer sent.",
+      "good": "Aktiver dokumentert fallback og oppdater alle avhengige funksjoner og call sheet.",
+      "bad": "La planen stå uendret og håp at forsinkelsen hentes inn uten konsekvens."
+    }
+  ],
+  "quality_axes": [
+    "sikkerhet",
+    "produksjonsflyt",
+    "teknisk_presisjon",
+    "kompetansegrense",
+    "myndighetsklarhet",
+    "kommunikasjon",
+    "dokumentasjon",
+    "handoff"
+  ],
+  "source": {
+    "badge_file": "data/badges/musikk.json",
+    "badge_id": "musikk",
+    "evidence": "data/Civication/musikkCareerLifeEvidence.json"
+  },
+  "task_families": [
+    "produksjonsplan_call_sheet_og_kritisk_sti",
+    "scene_rigg_hms_og_sikkerhet",
+    "lyd_lys_signal_linecheck_og_fallback",
+    "artist_crew_logistikk_og_sceneskift",
+    "avvik_venting_eskalering_og_handoff",
+    "bounded_rework_og_produksjonslaring"
+  ],
+  "pressure_axes": [
+    "showstart_vs_sikkerhet",
+    "service_vs_fullmakt",
+    "tempo_vs_teknisk_presisjon",
+    "crew_mangel_vs_kompetansegrense",
+    "artistonske_vs_kapasitet",
+    "direkte_karriereinngang_vs_faktisk_operativ_myndighet"
+  ],
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_musikk_scene_og_produksjon_kontekst",
+      "badge_id": "musikk",
+      "use": "History Go kan gi historisk og stedlig kontekst om konsertsteder, scenepraksis, lydteknologi, elektrifisering, festival- og turnékultur, arbeidsdeling og hvordan produksjonsformer har utviklet seg. Slik kontekst kan gi bedre spørsmål om hvorfor moderne signal-, sikkerhets- og ansvarsgrenser finnes. Den kan aldri erstatte dagens venue-instruks, call sheet, tekniske måling, risikovurdering, kompetansebevis, autorisasjon, arbeidstillatelse, kontrakt, økonomisk fullmakt, teknisk ansvar eller sikkerhetsgodkjenning."
+    }
+  ],
+  "persistent_work_product": {
+    "id": "produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg",
+    "title": "Produksjons-, sikkerhets- og handoff-logg",
+    "description": "Et vedvarende, versjonert arbeidsobjekt som binder call sheet, oppgavefordeling, kompetansegrense, scene- og riggstatus, signal-/teknikkstatus, artist- og crewlogistikk, avvik, stoppkriterier, venting, beslutningseier, endringer, fallback og handoff sammen.",
+    "required_fields": [
+      "call_sheet_og_kritisk_sti",
+      "oppgave_kompetanse_og_ansvarlig_funksjon",
+      "scene_rigg_og_sikkerhetsstatus",
+      "lyd_lys_signal_og_malinger",
+      "artist_crew_og_leveranseavhengigheter",
+      "avvik_risiko_og_stoppkriterier",
+      "endringer_og_godkjenningseier",
+      "ventestatus_og_eskalering",
+      "fallback_og_bounded_rework",
+      "handoff_og_neste_kontrollpunkt"
+    ]
+  },
+  "day_one_contract": {
+    "entry": "direct",
+    "checks": [
+      "aktiv canonical tittel og badge-tier",
+      "tildelt oppgave og ansvarlig funksjon",
+      "dokumentert kompetanse/opplæring der oppgaven krever det",
+      "lokale sikkerhets- og venueprosedyrer",
+      "stopp- og eskaleringsvei"
+    ],
+    "boundary": "Direct career policy gir ikke generell autorisasjon eller fullmakt."
+  },
+  "daily_rhythm": [
+    "les call sheet og endringer",
+    "brief med ansvarslinjer og kritisk sti",
+    "rigg/klargjoring innen kompetanse",
+    "linecheck eller annen systemtest",
+    "gjennomforing med avvikskommunikasjon",
+    "nedrigg, kontroll og handoff"
+  ],
+  "handoff_rules": [
+    "Overlever alltid faktisk status, målinger, avvik, åpne risikoer, beslutningseier og neste kontrollpunkt.",
+    "Ikke slett tidligere begrunnelse ved bounded rework; marker hva som endret seg og hvorfor.",
+    "Sikkerhetskritisk eller autorisasjonskrevende arbeid kan ikke håndoffes som om en muntlig beskjed skaper kompetanse eller fullmakt."
+  ],
+  "actor_grammar": [
+    {
+      "id": "ida_produksjonsleder_musikk_scene_og_produksjon",
+      "role": "produksjonsleder og mandatkontakt",
+      "workplace_ids": [
+        "produksjonsplan_call_sheet_og_mandat_musikk_scene_og_produksjon"
+      ],
+      "fictional": true
+    },
+    {
+      "id": "amir_teknisk_ansvarlig_musikk_scene_og_produksjon",
+      "role": "teknisk ansvarlig for lyd, lys og signal",
+      "workplace_ids": [
+        "lyd_lys_signal_og_linecheck_musikk_scene_og_produksjon"
+      ],
+      "fictional": true
+    },
+    {
+      "id": "nora_scene_hms_og_rigg_musikk_scene_og_produksjon",
+      "role": "scene-, rigg- og HMS-kontakt",
+      "workplace_ids": [
+        "scene_rigg_hms_og_sikkerhet_musikk_scene_og_produksjon"
+      ],
+      "fictional": true
+    },
+    {
+      "id": "maja_artist_crew_og_logistikk_musikk_scene_og_produksjon",
+      "role": "artist-, crew- og logistikkontakt",
+      "workplace_ids": [
+        "artist_crew_logistikk_og_handoff_musikk_scene_og_produksjon"
+      ],
+      "fictional": true
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "produksjonsplan_call_sheet_og_mandat_musikk_scene_og_produksjon",
+      "name": "Produksjonsplan, call sheet og mandat",
+      "function": "Arbeidsflaten binder produksjonsplan, call sheet, sceneplan, ansvarslinjer, tidsvinduer, leveranser og faktisk oppgavefordeling sammen. Den gjør det mulig å skille hvem som koordinerer fra hvem som har teknisk, økonomisk, kunstnerisk eller sikkerhetsmessig beslutningsmyndighet, og den gjør avhengigheter synlige før tempo blir en skjult sikkerhetsrisiko."
+    },
+    {
+      "id": "scene_rigg_hms_og_sikkerhet_musikk_scene_og_produksjon",
+      "name": "Scene, rigg, HMS og sikkerhet",
+      "function": "Her håndteres sceneflyt, riggstatus, sperringer, løft, strøm, høydearbeid, publikumssoner og stoppkriterier. Spilleren skal kunne stanse eget arbeid og varsle risiko, men aldri behandle badge, tittel eller tidspress som autorisasjon til regulert eller sikkerhetskritisk arbeid uten riktig kompetanse, instrukser og ansvarlig funksjon."
+    },
+    {
+      "id": "lyd_lys_signal_og_linecheck_musikk_scene_og_produksjon",
+      "name": "Lyd, lys, signal og linecheck",
+      "function": "Her kobles signalvei, patch, mikrofoner, monitor, lyscue, nettverk, strømforutsetninger, testing og feilstatus. Teknikerrollen kan operere og feilsøke innen dokumentert kompetanse og tildelt ansvar, mens arbeid som krever særskilt autorisasjon eller sikkerhetsansvar må ligge hos riktig fag- eller anleggsansvarlig."
+    },
+    {
+      "id": "artist_crew_logistikk_og_handoff_musikk_scene_og_produksjon",
+      "name": "Artist, crew, logistikk og handoff",
+      "function": "Her holdes artistbehov, crew, transport, utstyr, sceneskift, pauser, leveranser og overlevering samlet. Koordinering skal gjøre konsekvenser og beslutningseier tydelig; en koordinator eller assistent kan ikke love kunstneriske endringer, økonomiske disposisjoner eller tekniske løsninger på vegne av andre funksjoner."
+    }
+  ],
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "no_generic_fallback": true,
+    "required_axes": [
+      "authority_boundary",
+      "safety",
+      "competence",
+      "handoff"
+    ]
+  }
 }

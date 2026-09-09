@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const ROLE='musikk_scene_og_produksjon';
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+const model=read('data/Civication/roleModels/musikk/'+ROLE+'.json');
+const grammar=read('data/Civication/workGrammars/musikk/'+ROLE+'.json');
+const plan=read('data/Civication/mailPlans/musikk/'+ROLE+'_plan.json');
+const badge=read('data/badges/musikk.json');
+const manifest=read('data/Civication/roleModels/manifest.json');
+assert.equal(model.role_scope,ROLE);
+assert.deepEqual(model.badge_titles,["Sceneassistent","Produksjonsassistent","Tekniker (lys/lyd)","Produksjonskoordinator"]);
+assert.equal(model.related_people.length,4);
+assert.equal(model.related_places.length,4);
+assert.ok(manifest.files.includes('data/Civication/roleModels/musikk/'+ROLE+'.json'));
+assert.ok(Array.isArray(model.authority_boundary.may)&&model.authority_boundary.may.length>=5);
+assert.ok(Array.isArray(model.authority_boundary.may_not)&&model.authority_boundary.may_not.length>=5);
+assert.deepEqual(grammar.authority_boundary,model.authority_boundary);
+const grammarText=JSON.stringify(grammar); for(const token of ['direct','kompetanse','sikkerhet','handoff','bounded_rework','History Go']) assert.ok(grammarText.toLowerCase().includes(token.toLowerCase()),token);
+assert.equal(plan.sequence.length,16);
+const types=['job','people','conflict','story','event','micro','followup','knowledge','consequence']; let mails=0; const people=new Set(model.related_people.map(p=>p.id)); const places=new Set(model.related_places.map(p=>p.id));
+for(const type of types){const f=read('data/Civication/mailFamilies/musikk/'+type+'/'+ROLE+'_'+type+'.json'); assert.equal(f.role_scope,ROLE); assert.equal(f.mail_type,type); assert.equal(f.families.length,1); const sig=new Set(); for(const m of f.families[0].mails){mails++; assert.ok(people.has(m.people_ref),m.people_ref); assert.ok(places.has(m.place_id),m.place_id); assert.equal(m.choices.length,2); const s=m.choices.map(c=>c.label.toLowerCase()).sort().join('||'); assert.ok(!sig.has(s),type+'/'+m.id); sig.add(s);}} assert.equal(mails,15);
+const knowledge=read('data/Civication/mailFamilies/musikk/knowledge/'+ROLE+'_knowledge.json'); assert.match(JSON.stringify(knowledge),/History Go/i); assert.match(JSON.stringify(knowledge),/autorisasjon|fullmakt/i);
+for(const title of ["Sceneassistent","Produksjonsassistent","Tekniker (lys/lyd)","Produksjonskoordinator"]){const tier=badge.tiers.find(t=>t.label===title); const offer=tier.career_offer||tier.career_unlock; assert.ok(offer,title); assert.equal(offer.policy,'direct',title); assert.equal(offer.role_scope,ROLE,title);}
+const all=JSON.stringify({model,grammar,plan}).toLowerCase(); for(const banned of ['badge gir sertifisering','badge gir autorisasjon','direct gir generell fullmakt']) assert.ok(!all.includes(banned));
+console.log('Musikk Scene og produksjon prerequisites OK');

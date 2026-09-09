@@ -1,0 +1,202 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "musikk_scene_og_produksjon_foundation_v1",
+  "category": "musikk",
+  "role_scope": "musikk_scene_og_produksjon",
+  "title": "Musikk – scene og produksjon",
+  "description": "Seksten steg fra direct career entry og tydelig oppgavefordeling gjennom call sheet, rigg, teknikk, artist/crew-logistikk og avvik til sikker, overtakbar handoff.",
+  "arc": {
+    "from": "En spiller som har fått et canonical direct karrieretilbud som Sceneassistent, Produksjonsassistent, Tekniker (lys/lyd) eller Produksjonskoordinator, men som fortsatt må skille badge-status fra faktisk kompetanse, fullmakt og sikkerhetsansvar.",
+    "to": "En scene- og produksjonsarbeider som kan holde kritisk sti, sikkerhet, tekniske målinger, crew- og artistavhengigheter, beslutningseier og handoff etterprøvbart samtidig.",
+    "core_questions": [
+      "Er oppgaven faktisk tildelt spilleren, og ligger den innen dokumentert kompetanse og lokal instruks?",
+      "Er showstart og artistbehov forenlige med sikkerhet, teknisk status, kapasitet og riktig beslutningseier?",
+      "Vet neste crew hva som er testet, endret, avvist, fortsatt usikkert og hvem som eier neste kontroll?"
+    ]
+  },
+  "outcome_rules": {
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0
+    },
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "scene_produksjon_sikkerhet_eller_fullmakt_brutt"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom job med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom people med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "knowledge",
+      "phase": "intro",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom knowledge med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_history_go_scene_og_produksjon"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom job med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom people med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "conflict",
+      "phase": "advanced",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom conflict med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_showstart_vs_sikkerhet"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom job med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom people med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom event med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_crew_eller_utstyrsbrudd"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "micro",
+      "phase": "advanced",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom micro med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_rask_kompetanse_og_fullmaktsgate"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom job med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 12,
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom people med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 13,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom followup med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_handoff_og_bounded_rework"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mastery",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom story med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_rolig_feilsoking_og_tillit"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 15,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom consequence med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_etterspill_sikkerhet_og_handoff"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom job med direct policy, oppgave, kompetanse, sikkerhet, teknisk status, beslutningseier, venting, fallback og handoff synlig.",
+      "allowed_families": [
+        "musikk_scene_og_produksjon_job"
+      ],
+      "fallback_types": []
+    }
+  ]
+}

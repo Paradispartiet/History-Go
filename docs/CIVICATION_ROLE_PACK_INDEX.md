@@ -15,11 +15,11 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 85
+- complete_reference_v2: 90
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
-- role_model_only: 182
+- role_model_only: 178
 - generated_stub: 0
 - broken_mapping: 0
 - missing: 9
@@ -158,13 +158,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | musikk | headliner | musikk_headliner | Headliner | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | musikk | plateartist | musikk_plateartist | Plateartist | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | musikk | popstjerne | musikk_popstjerne | Popstjerne | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| musikk | musikk_scene_og_produksjon | musikk_produksjonsassistent | Produksjonsassistent | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| musikk | musikk_scene_og_produksjon | musikk_produksjonskoordinator | Produksjonskoordinator | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| musikk | musikk_scene_og_produksjon | musikk_produksjonsassistent | Produksjonsassistent | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
+| musikk | musikk_scene_og_produksjon | musikk_produksjonskoordinator | Produksjonskoordinator | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | musikk | publikum_deltaker | musikk_publikum_deltaker | Publikum / deltaker | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| musikk | musikk_scene_og_produksjon | musikk_sceneassistent | Sceneassistent | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| musikk | musikk_scene_og_produksjon | musikk_scene_og_produksjon | Scene og produksjon | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
+| musikk | musikk_scene_og_produksjon | musikk_sceneassistent | Sceneassistent | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | musikk | solist | musikk_solist | Solist | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | musikk | stjerneartist | musikk_stjerneartist | Stjerneartist | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| musikk | musikk_scene_og_produksjon | musikk_tekniker_lys_lyd | Tekniker (lys/lyd) | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| musikk | musikk_scene_og_produksjon | musikk_tekniker_lys_lyd | Tekniker (lys/lyd) | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | musikk | musikk_utoving_og_ensemble | musikk_utovende_musiker | Utøvende musiker | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | naeringsliv | avdelingsleder | naer_avdelingsleder | Avdelingsleder | ja | nei | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | playable_v1 |
 | naeringsliv | bedriftseier | naeringsliv_bedriftseier | Bedriftseier | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |

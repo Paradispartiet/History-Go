@@ -2,7 +2,7 @@
 
 **Status:** GREEN — controlled role-by-role rollout open
 **Canonical career roles audited:** 85
-**Classification:** 83 rollout_ready / 0 needs_role_authored_work / 2 blocked
+**Classification:** 84 rollout_ready / 0 needs_role_authored_work / 1 blocked
 **Current broad_rollout_allowed:** true (controlled rollout open)
 
 ## Gate decision
@@ -27,7 +27,7 @@ A PASS with policy open means controlled role-by-role rollout may proceed. It do
 
 ## First structurally varied wave candidates
 
-_No safe first-wave set is available yet._
+- **musikk/musikk_scene_og_produksjon** — creative_production; rollout_ready; queue #1
 
 The first wave is a recommendation, not a batch PR: every role still gets its own PR. Cross-role linkage is optional and only used when the work object is genuinely shared.
 
@@ -35,14 +35,10 @@ The first wave is a recommendation, not a batch PR: every role still gets its ow
 
 | Rank | Role | Class | Structural family | Cross-role | Main authored debt |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | `musikk/musikk_scene_og_produksjon` | blocked | creative_production | not_required_for_rollout | career:authority, career:day_one, career:knowledge, career:mail |
+| 1 | `musikk/musikk_scene_og_produksjon` | rollout_ready | creative_production | not_required_for_rollout | situated_reputation |
 | 2 | `musikk/musikk_utoving_og_ensemble` | blocked | other | not_required_for_rollout | career:authority, career:day_one, career:knowledge, career:mail |
 
 ## Blocked roles
-
-### musikk/musikk_scene_og_produksjon
-
-- **institution_authority:** Career authority component is partial; broad rollout must not weaken or infer formal authority.
 
 ### musikk/musikk_utoving_og_ensemble
 
