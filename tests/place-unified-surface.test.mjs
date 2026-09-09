@@ -11,6 +11,7 @@ const source = read("js/ui/place-unified-surface.ts");
 const runtime = read("dist/web/place-unified-surface.js");
 const css = read("css/place-unified-surface.css");
 const config = read("js/config.js");
+const statusSurface = read("js/ui/place-card-status-surface.js");
 const plan = read("docs/PLACE_UNIFIED_SURFACE_PLAN.md");
 
 test("unified Place surface keeps public entry points and canonical section set", () => {
@@ -24,11 +25,16 @@ test("unified Place surface keeps public entry points and canonical section set"
   assert.doesNotMatch(source, /fetch\(["']data\/places\//);
 });
 
-test("unified renderer is loaded after popup direct-tabs from the TypeScript bundle", () => {
+test("unified renderer is part of the critical Place runtime and keeps post-ready fallback order", () => {
+  assert.match(
+    statusSurface,
+    /ensureScript\("dist\/web\/place-unified-surface\.js"\)/,
+    "Unified Place Surface must load with the primary PlaceCard/popup runtime"
+  );
   const directIndex = config.indexOf('"js/ui/place-popup-direct-tabs.js"');
   const unifiedIndex = config.indexOf('"dist/web/place-unified-surface.js"');
   assert.ok(directIndex >= 0, "direct-tabs runtime must remain loaded");
-  assert.ok(unifiedIndex > directIndex, "unified runtime must load after canonical popup routing");
+  assert.ok(unifiedIndex > directIndex, "post-ready fallback must keep unified after canonical popup routing");
   assert.ok(runtime.length > 500, "committed TypeScript bundle must exist");
   assert.match(css, /hg-unified-renderer-embedded/);
   assert.match(css, /\.pc-unified-section-nav/);
