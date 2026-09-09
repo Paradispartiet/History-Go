@@ -28,10 +28,11 @@ test("Phase 1 styling keeps portrait hero and four editorial collection cards", 
   assert.match(collectionsSource, /collectionItemCount/);
 });
 
-test("Unified runtime mounts Phase 1, moves canonical About into hero and restores Micro", async () => {
+test("Unified runtime mounts Phase 1, owns canonical About directly and restores Micro", async () => {
   assert.match(unifiedSource, /place-sheet\/place-sheet-shell/);
   assert.match(unifiedSource, /mountPlaceSheetPhase1/);
-  assert.match(unifiedSource, /attachCanonicalAboutToPlaceSheet/);
+  assert.doesNotMatch(unifiedSource, /attachCanonicalAboutToPlaceSheet/);
+  assert.match(unifiedSource, /suppressPlaceAbout:\s*true/);
   assert.match(unifiedSource, /restoreLegacyPlaceCardStructure/);
 
   const dom = new JSDOM(`<!doctype html><html><head></head><body class="hg-app">
