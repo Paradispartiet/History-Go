@@ -1,0 +1,110 @@
+name: TEMP Place Sheet root scope
+
+on:
+  push:
+    branches:
+      - agent/place-sheet-root-scoped-decorators-20260909
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-place-sheet-root-scope
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/place-sheet-root-scoped-decorators-20260909
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Apply root-scoped decorator contract
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new):
+              p = Path(path)
+              text = p.read_text()
+              if old not in text:
+                  raise SystemExit(f"missing expected block in {path}")
+              p.write_text(text.replace(old, new, 1))
+
+          replace_once(
+              "js/ui/place-popup-tabs.js",
+              '''  function decorate(place) {\n    const popup = document.querySelector(".hg-popup.place-popup-v2");\n    const article = popup?.querySelector(".hg-place-popup-v2");\n''',
+              '''  function resolvePopupRoot(root = null) {\n    if (root instanceof HTMLElement) {\n      if (root.matches(".hg-popup.place-popup-v2")) return root;\n      const nested = root.querySelector(".hg-popup.place-popup-v2");\n      if (nested instanceof HTMLElement) return nested;\n      const owner = root.closest?.(".hg-popup.place-popup-v2");\n      if (owner instanceof HTMLElement) return owner;\n    }\n    return document.querySelector(".hg-popup.place-popup-v2");\n  }\n\n  function decorate(place, root = null) {\n    const popup = resolvePopupRoot(root);\n    const article = popup?.querySelector(".hg-place-popup-v2");\n'''
+          )
+
+          replace_once(
+              "js/ui/place-popup-direct-tabs.js",
+              '''  function decoratePopup(place = null) {\n    const article = document.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');\n''',
+              '''  function resolveTabsArticle(root = null) {\n    if (root instanceof HTMLElement) {\n      if (root.matches('.hg-place-popup-v2[data-hg-place-tabs="1"]')) return root;\n      const nested = root.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');\n      if (nested instanceof HTMLElement) return nested;\n    }\n    return document.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');\n  }\n\n  function decoratePopup(place = null, root = null) {\n    const article = resolveTabsArticle(root);\n'''
+          )
+
+          replace_once(
+              "js/ui/place-popup-direct-tabs.js",
+              '''    const wrappedDecorate = function decoratePopupWithOwnedSurfaces(place) {\n      const result = currentDecorate.apply(this, arguments);\n      try { decoratePopup(place); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }\n      return result;\n    };\n''',
+              '''    const wrappedDecorate = function decoratePopupWithOwnedSurfaces(place) {\n      const result = currentDecorate.apply(this, arguments);\n      try { decoratePopup(place, arguments[1] || null); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }\n      return result;\n    };\n'''
+          )
+
+          replace_once(
+              "js/ui/place-language-layer.js",
+              '''  async function decorateLanguage(place) {\n    const placeId = text(place?.id);\n''',
+              '''  function resolvePopupRoot(root = null) {\n    if (root instanceof HTMLElement) {\n      if (root.matches(".hg-popup.place-popup-v2")) return root;\n      const nested = root.querySelector(".hg-popup.place-popup-v2");\n      if (nested instanceof HTMLElement) return nested;\n      const owner = root.closest?.(".hg-popup.place-popup-v2");\n      if (owner instanceof HTMLElement) return owner;\n    }\n    return document.querySelector(".hg-popup.place-popup-v2");\n  }\n\n  async function decorateLanguage(place, root = null) {\n    const placeId = text(place?.id);\n'''
+          )
+
+          replace_once(
+              "js/ui/place-language-layer.js",
+              '''    const popup = document.querySelector(".hg-popup.place-popup-v2");\n    const tabsArticle = popup?.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');\n''',
+              '''    const popup = resolvePopupRoot(root);\n    const tabsArticle = popup?.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');\n'''
+          )
+
+          replace_once(
+              "js/ui/place-unified-surface.ts",
+              '''      try { global.HGPlacePopupTabs?.decoratePopup?.(place); } catch {}\n      try { global.HGPlacePopupDirectTabs?.decoratePopup?.(place); } catch {}\n      try {\n        const languageResult = global.HGLanguageLayer?.decoratePopup?.(place);\n''',
+              '''      try { global.HGPlacePopupTabs?.decoratePopup?.(place, popup); } catch {}\n      try { global.HGPlacePopupDirectTabs?.decoratePopup?.(place, popup); } catch {}\n      try {\n        const languageResult = global.HGLanguageLayer?.decoratePopup?.(place, popup);\n'''
+          )
+          PY
+
+      - name: Typecheck and build browser runtime
+        run: |
+          npm run typecheck:web
+          npm run build:web
+
+      - name: Verify root-scoped contracts
+        run: |
+          node --check js/ui/place-popup-tabs.js
+          node --check js/ui/place-popup-direct-tabs.js
+          node --check js/ui/place-language-layer.js
+          node --check dist/web/place-unified-surface.js
+          node --test tests/place-popup-root-scoped-decorators.test.mjs tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs
+
+      - name: Commit source and generated runtime
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/ui/place-popup-tabs.js js/ui/place-popup-direct-tabs.js js/ui/place-language-layer.js js/ui/place-unified-surface.ts dist/web/place-unified-surface.js dist/web/place-unified-surface.js.map
+          if git diff --cached --quiet; then
+            echo "No materialized changes"
+            exit 0
+          fi
+          git diff --cached --check
+          git commit -m "Scope Place Sheet decorators to explicit root"
+          git push origin HEAD:agent/place-sheet-root-scoped-decorators-20260909
