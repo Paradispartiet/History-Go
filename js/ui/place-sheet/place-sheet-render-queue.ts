@@ -4,6 +4,7 @@ import {
   PLACE_SHEET_SECTION_IDS,
   hasRenderedPlaceSheetSection,
   nudgePlaceSheetSection,
+  placeSheetSectionApplies,
   type PlaceSheetSectionId
 } from "./place-section-registry";
 import {
@@ -158,17 +159,27 @@ async function settleCompatibilityBatch(
 ): Promise<void> {
   const unsettled = ids.filter(id => !isTerminalStatus(sectionStatus(generation, placeId, id)));
   if (!unsettled.length) return;
+
+  const applicable: PlaceSheetSectionId[] = [];
   unsettled.forEach(id => {
+    if (!placeSheetSectionApplies(id, placeId)) {
+      markPlaceSheetSection(generation, placeId, id, "omitted");
+      return;
+    }
+    applicable.push(id);
     markPlaceSheetSection(generation, placeId, id, "loading");
     nudgePlaceSheetSection(id, placeId);
   });
+  if (!applicable.length) return;
+
   await yieldToBrowser(signal);
   if (signal.aborted) return;
-  const results = await Promise.all(unsettled.map(id => waitForRenderedSection(generation, placeId, id, signal)));
+  const results = await Promise.all(applicable.map(id => waitForRenderedSection(generation, placeId, id, signal)));
   if (signal.aborted) return;
-  unsettled.forEach((id, index) => {
+  applicable.forEach((id, index) => {
     const rendered = results[index] === true;
-    const status = rendered ? "rendered" : (id === "sources" ? "failed" : "omitted");
+    const requiredWhenApplicable = id === "sources" || id === "special";
+    const status = rendered ? "rendered" : (requiredWhenApplicable ? "failed" : "omitted");
     markPlaceSheetSection(generation, placeId, id, status);
   });
 }
