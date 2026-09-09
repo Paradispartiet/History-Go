@@ -10,7 +10,7 @@ window.DataHub = { loadEmner: async () => [{ emne_id: "em_by_e2e", title: "E2E-e
 window.HGCourses = { compute: async () => null };
 window.HGLearningLog = { getQuizHistory: () => [] };
 </script>
-<script src="/dist/web/knowledgeV2.js"></script><script src="/js/quizzes.js"></script><script src="/js/knowledgePage.js"></script>
+<script src="/dist/web/knowledgeV2.js"></script><script src="/js/quiz/answer-shuffle.js"></script><script src="/js/quizzes.js"></script><script src="/js/knowledgePage.js"></script>
 <script>
 window.QuizEngine.init({ getPlaceById: (id) => window.PLACES.find((place) => place.id === id), getPersonById: () => null, getVisited: () => ({}), isTestMode: () => true, showToast: (message) => { window.__lastToast = message; }, dispatchProfileUpdate: () => {}, quizFeedbackMs: 0 });
 document.getElementById("startQuiz").addEventListener("click", () => window.QuizEngine.start("e2e_place"));

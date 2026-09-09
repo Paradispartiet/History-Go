@@ -26,9 +26,9 @@ await page.route("**/data/quiz/manifest.json", (route) => route.fulfill({ conten
 await page.route("**/tests/fixtures/e2e-set.json", (route) => route.fulfill({ contentType: "application/json", body: JSON.stringify(setData) }));
 await page.goto(base + "/tests/fixtures/knowledge-e2e.html");
 await page.click("#startQuiz");
-await page.click('#quizChoices button[data-idx="0"]');
+await page.getByRole("button", { name: "2020", exact: true }).click();
 await page.waitForFunction(() => document.querySelector("#quizQuestion")?.textContent?.includes("Hvem tegnet"));
-await page.click('#quizChoices button[data-idx="1"]');
+await page.getByRole("button", { name: "Arkitekt B", exact: true }).click();
 await page.waitForSelector("#quizSummaryKnowledge");
 const stored = await page.evaluate(() => ({ memory: JSON.parse(localStorage.getItem("hg_knowledge_memory_v1")), entries: JSON.parse(localStorage.getItem("hg_knowledge_entries_v2")) }));
 const bundle = stored.memory.bundles["e2e_place::set_1"];
@@ -44,7 +44,7 @@ await page.waitForSelector("#quizKnowledgeMemoryReview");
 await page.click("#quizKnowledgeMemoryReview");
 await page.waitForFunction(() => document.querySelector("#quizQuestion")?.textContent?.includes("Hvem tegnet"));
 assert.match(await page.textContent("#quizProgress"), /1\/1/);
-await page.click('#quizChoices button[data-idx="0"]');
+await page.getByRole("button", { name: "Arkitekt A", exact: true }).click();
 await page.waitForSelector("#quizSummaryModal");
 await page.waitForFunction(() => {
   const memory = JSON.parse(localStorage.getItem("hg_knowledge_memory_v1"));
