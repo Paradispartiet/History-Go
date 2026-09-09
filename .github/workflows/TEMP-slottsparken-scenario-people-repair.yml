@@ -1,0 +1,81 @@
+name: TEMP Slottsparken scenario People repair
+
+on:
+  push:
+    branches:
+      - agent/slottsparken-place-production-20260908
+    paths:
+      - '.github/workflows/TEMP-slottsparken-scenario-people-repair.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-slottsparken-scenario-people-repair
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/slottsparken-place-production-20260908
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Lock fresh main
+        shell: bash
+        run: |
+          set -euxo pipefail
+          OLD_HEAD="$(git rev-parse HEAD)"
+          echo "$OLD_HEAD" > /tmp/old_head
+          git fetch origin main
+          TARGET_MAIN="$(git rev-parse origin/main)"
+          echo "$TARGET_MAIN" > /tmp/target_main
+          test "$(git merge-base HEAD origin/main)" = "$TARGET_MAIN"
+
+      - name: Rebuild canonical scenario People derivatives
+        shell: bash
+        run: |
+          set -euxo pipefail
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+          test -f data/Civication/scenarioPeople/generated/by.json
+          test -f data/Civication/scenarioPeople_index.json
+          git diff --name-only
+          git diff --name-only | grep -Fx 'data/Civication/scenarioPeople/generated/by.json'
+          git diff --name-only | grep -Fx 'data/Civication/scenarioPeople_index.json'
+          unexpected="$(git diff --name-only | grep -Ev '^(data/Civication/scenarioPeople/generated/by\.json|data/Civication/scenarioPeople_index\.json)$' || true)"
+          test -z "$unexpected"
+
+      - name: Refuse stale main before commit
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$(cat /tmp/target_main)"
+
+      - name: Commit permanent scenario People repair
+        shell: bash
+        run: |
+          set -euxo pipefail
+          rm .github/workflows/TEMP-slottsparken-scenario-people-repair.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git diff --cached --name-only
+          git commit -m 'Regenerate Slottsparken scenario People derivatives'
+
+      - name: Push exact repaired head
+        shell: bash
+        run: |
+          set -euxo pipefail
+          OLD_HEAD="$(cat /tmp/old_head)"
+          git push --force-with-lease=refs/heads/agent/slottsparken-place-production-20260908:"$OLD_HEAD" origin HEAD:agent/slottsparken-place-production-20260908
