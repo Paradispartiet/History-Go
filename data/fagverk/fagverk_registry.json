@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_registry_v1",
   "version": "3.15.0",
-  "updatedAt": "2026-09-07",
+  "updatedAt": "2026-09-08",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
     "genericForAllCanonicalPlaces": true,
@@ -4611,6 +4611,31 @@
           "assessmentFile": "data/fagverk/utdanning/teknologi-medier-laering-design-deltakelse-og-ansvar/assessment.json"
         }
       ]
+    },
+    "litteratur": {
+      "title": "Litteratur",
+      "description": "Et tekst-, verk-, sted- og institusjonsbasert fagverk om litterære former, historie, språk, sirkulasjon, lesere, offentlighet og litteraturfelt.",
+      "canonicalModel": {
+        "manifest": "data/fag/fag_manifest.json",
+        "schemaFamily": "standard_canonical",
+        "sourceOfTruth": true,
+        "note": "Canonical Litteratur-data eies av fag_manifest, emne-, fagkart- og metodefilene. Det eksisterende fulltekstkapittelet om lesekultur, bokdeling og offentlighet er registrert her som operativt kapittel for stedlig litteratur- og bibliotekkobling."
+      },
+      "chapters": [
+        {
+          "id": "lesekultur_bokdeling_offentlighet",
+          "title": "Lesekultur, bokdeling og offentlighet",
+          "subtitle": "Tilgang, sirkulasjon, bibliotek og litterære møteplasser",
+          "file": "data/fagverk/litteratur/lesekultur_bokdeling_offentlighet.json",
+          "primary_domain_id": "sted_leser_offentlighet",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_lit_litteraturfelt_institusjoner",
+            "em_lit_lesere_offentlighet_formidling",
+            "em_lit_litteraere_steder_og_bytekst"
+          ]
+        }
+      ]
     }
   },
   "placeLinks": {
@@ -5197,6 +5222,13 @@
     },
     "mollergata_skole": {
       "sourceFile": "places/historie/oslo/places_historie/mollergata_skole.json",
+      "field": "fagverk",
+      "schema": "history_go_place_fagverk_v2",
+      "level": "standard",
+      "status": "curated"
+    },
+    "gamle_deichman": {
+      "sourceFile": "places/litteratur/oslo/places_litteratur/gamle_deichman.json",
       "field": "fagverk",
       "schema": "history_go_place_fagverk_v2",
       "level": "standard",
