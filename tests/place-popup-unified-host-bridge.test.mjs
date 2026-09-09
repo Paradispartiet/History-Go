@@ -4,6 +4,7 @@ import fs from "node:fs";
 import { JSDOM } from "jsdom";
 
 const source = fs.readFileSync("js/ui/place-popup-unified-host-bridge.js", "utf8");
+const loaderSource = fs.readFileSync("js/ui/place-card-status-surface.js", "utf8");
 
 function setup() {
   const dom = new JSDOM(`<!doctype html><html><body class="hg-app">
@@ -25,6 +26,14 @@ function setup() {
   window.eval(source);
   return { dom, window, calls, get closes() { return closes; } };
 }
+
+test("critical Place loader installs the direct-host bridge before Unified runtime", () => {
+  const bridgeIndex = loaderSource.indexOf('ensureScript("js/ui/place-popup-unified-host-bridge.js")');
+  const unifiedIndex = loaderSource.indexOf('ensureScript("dist/web/place-unified-surface.js")');
+  assert.ok(bridgeIndex >= 0, "critical Place loader must request the direct-host bridge");
+  assert.ok(unifiedIndex > bridgeIndex, "direct-host bridge must be requested before Unified runtime");
+  assert.match(loaderSource, /script\.async\s*=\s*false/, "dynamic Place scripts must execute in insertion order");
+});
 
 test("bridge leaves ordinary and Micro popup creation unchanged", () => {
   const env = setup();
