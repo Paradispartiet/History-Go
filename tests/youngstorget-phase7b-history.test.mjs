@@ -49,7 +49,15 @@ for (const file of manifest.files || []) {
     if (String(row?.place_id || row?.placeId || '') === 'youngstorget') ownedArticles.push({ file, row });
   }
 }
-assert.equal(ownedArticles.length, 0, 'Youngstorget skal ikke få en filler-Leksikonartikkel/chronology i fase 7B');
+const canonicalYoungstorgetOwners = new Set([
+  'data/leksikon/places/oslo/politikk/leksikon_youngstorget.json',
+  'data/leksikon/places/oslo/politikk/leksikon_youngstorget_news.json'
+]);
+assert.ok(ownedArticles.length >= 1, 'Youngstorget skal ha eksplisitt canonical Leksikon-eierskap når senere produksjon har materialisert dette');
+for (const article of ownedArticles) {
+  assert.ok(canonicalYoungstorgetOwners.has(article.file), `Youngstorget skal ikke eies av filler-/uautoriserte Leksikonfiler: ${article.file}`);
+}
+assert.ok(ownedArticles.some(({ file, row }) => file.endsWith('/leksikon_youngstorget.json') && row?.type === 'main' && Array.isArray(row?.chronology) && row.chronology.length >= 1), 'Youngstorgets canonical hovedartikkel skal eie eksplisitt chronology');
 
 const sources = place.source_summary?.safe_sources || [];
 assert.ok(sources.some(source => source.includes('Oslo kommune')));
