@@ -617,6 +617,7 @@ const PLACE_CARD_QUIZ_CARD_BY_ID = Object.freeze({
   rodelokka: "bilder/QuizCards/Rodelokka.PNG",
   vaalerenga: "bilder/QuizCards/Vaalerenga.PNG",
   spikersuppa: "bilder/QuizCards/Spikersuppa.webp",
+  slottsparken: "bilder/QuizCards/Slottsparken.webp",
   radhusplassen: "bilder/QuizCards/Rådhusplassen.webp",
   vinderen: "bilder/QuizCards/Vinderen.PNG",
   damstredet_telthusbakken: "bilder/QuizCards/DamstredetTelthusbakken.PNG",

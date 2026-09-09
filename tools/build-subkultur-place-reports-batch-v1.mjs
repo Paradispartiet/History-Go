@@ -1015,7 +1015,7 @@ const CASES = [
   },
   {
     placeId: 'slottsparken',
-    verifiedAt: '2026-08-04',
+    verifiedAt: '2026-09-08',
     placeFile: 'data/places/by/oslo/places/slottsparken.json',
     anchorType: 'social_territory',
     start: '1966',
@@ -1042,7 +1042,34 @@ const CASES = [
     current: 'Det historiske miljøet finnes ikke lenger som stedbundet scene i Slottsparken; dagens park er offentlig grøntrom med annen bruk.',
     presentStatus: 'historical',
     outsideTemporal: 'historical',
-    outsideLimit: 'Dagsavisen gir historisk kontroll og arkivkilder, men dekker ikke alle deltakere eller interne erfaringer.'
+    outsideLimit: 'Dagsavisen gir historisk kontroll og arkivkilder, men dekker ikke alle deltakere eller interne erfaringer.',
+    quizOpening: {
+      status: 'PASS',
+      quizTargetId: 'slottsparken',
+      firstTwoSetsQuestionCount: 14,
+      sourceBrief: 'data/quiz/production_briefs/by/slottsparken.json',
+      productionContext: 'data/quiz/production_context/by/slottsparken.json',
+      requiredInputs: ['pensum', 'emner', 'fagkart', 'methods', 'supersetQuizMal', 'quizStandard', 'quizQuestionSchema']
+    },
+    quizEvidenceRefs: [
+      'data/quiz/by/slottsparken_sets.json',
+      'data/quiz/production_context/by/slottsparken.json'
+    ],
+    chronologyStories: {
+      status: 'PASS',
+      chronologyReviewed: true,
+      storiesReviewed: true,
+      rationale: '14-posters kronologi og to episode_v1-Stories dekker parkens hovedlag og Nisseberget-konflikten uten å gjøre subkultur til hele identiteten.'
+    },
+    chronologyEvidenceRefs: [
+      'data/leksikon/places/oslo/by/leksikon_slottsparken.json',
+      'data/stories/stories_slottsparken.json'
+    ],
+    review: {
+      reviewer: 'Steds- og subkulturredaksjon',
+      reviewedAt: '2026-09-08',
+      notes: 'Definisjon, stemmebalanse, rommakt, slutningsgrense, nåstatus, quizprogresjon, kronologi og Stories er kontrollert samlet.'
+    }
   },
   {
     placeId: 'rock_in_oslo',
@@ -1333,10 +1360,10 @@ function report(config) {
       E: { status: 'PASS', evidenceRefs: [`${caseId}.representationAndEthics`, 'sources'] },
       F: { status: 'PASS', evidenceRefs: [`${caseId}.methodAndInference`, `${caseId}.changeOverTime`, 'presentFunction'] },
       G: quizOpening.status === 'PASS'
-        ? { status: 'PASS', evidenceRefs: ['quizOpening', `data/quiz/subkultur/${config.placeId}_sets.json`] }
+        ? { status: 'PASS', evidenceRefs: ['quizOpening', ...(config.quizEvidenceRefs ?? [`data/quiz/subkultur/${config.placeId}_sets.json`])] }
         : { status: 'N/A', rationale: 'Ingen stedquiz produseres eller revideres i denne rapporten.' },
       H: chronologyStories.status === 'PASS'
-        ? { status: 'PASS', evidenceRefs: ['chronologyStories', `data/stories/stories_${config.placeId}.json`] }
+        ? { status: 'PASS', evidenceRefs: ['chronologyStories', ...(config.chronologyEvidenceRefs ?? [`data/stories/stories_${config.placeId}.json`])] }
         : { status: 'N/A', rationale: 'Ingen chronology eller Story produseres eller revideres.' }
     },
     review: config.review ?? { reviewer: 'Subkultur-fagverkredaksjon', reviewedAt: config.verifiedAt ?? '2026-08-03', notes: 'Definisjon, stemmebalanse, rommakt, representasjon, slutningsgrense og nåstatus er kontrollert.' }
