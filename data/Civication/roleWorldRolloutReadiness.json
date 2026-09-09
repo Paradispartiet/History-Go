@@ -33,11 +33,11 @@
       "needs_role_authored_work": 0,
       "blocked": 1
     },
-    "role_world_complete_or_pilot": 83,
-    "rollout_queue_roles": 2,
-    "first_wave_candidate_count": 1,
+    "role_world_complete_or_pilot": 84,
+    "rollout_queue_roles": 1,
+    "first_wave_candidate_count": 0,
     "role_level_blocked_count": 1,
-    "structural_families_in_queue": 2
+    "structural_families_in_queue": 1
   },
   "gate": {
     "locked_matrix_dimensions_reference_proven": true,
@@ -51,38 +51,13 @@
     "gate_pass": true,
     "broad_rollout_allowed_now": true,
     "policy_recommendation": "controlled_rollout_open_with_role_level_gates",
-    "next_required_pr": "Role World rollout: musikk/musikk_scene_og_produksjon",
+    "next_required_pr": "Select next rollout_ready role",
     "rule": "A green readiness gate proves the program can safely begin controlled rollout. It does not make every role rollout_ready and it does not itself flip broad_rollout_allowed."
   },
-  "first_wave_candidates": [
-    {
-      "rank": 1,
-      "key": "musikk/musikk_scene_og_produksjon",
-      "classification": "rollout_ready",
-      "structural_family": "creative_production",
-      "priority_score": 1285,
-      "blockers": [],
-      "authored_work_required": [
-        "situated_reputation"
-      ],
-      "cross_role_need": "not_required_for_rollout"
-    }
-  ],
+  "first_wave_candidates": [],
   "rollout_queue": [
     {
       "rank": 1,
-      "key": "musikk/musikk_scene_og_produksjon",
-      "classification": "rollout_ready",
-      "structural_family": "creative_production",
-      "priority_score": 1285,
-      "blockers": [],
-      "authored_work_required": [
-        "situated_reputation"
-      ],
-      "cross_role_need": "not_required_for_rollout"
-    },
-    {
-      "rank": 2,
       "key": "musikk/musikk_utoving_og_ensemble",
       "classification": "blocked",
       "structural_family": "other",
@@ -1014,6 +989,7 @@
         "tests/civication-life-position-career-split.test.js",
         "tests/civication-music-life-career-split.test.js",
         "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js",
+        "tests/civication-musikk-scene-og-produksjon-role-world-rollout.test.js",
         "tests/civication-scenekunst-life-career-split.test.js",
         "tests/civication-subkultur-arrangementsdrift-playability.test.js",
         "tests/civication-subkultur-career-architecture.test.js"
@@ -3300,15 +3276,16 @@
       ],
       "career_status": "playable",
       "runtime_gate": true,
-      "role_world_status": "role_world_not_started",
+      "role_world_status": "role_world_complete",
       "structural_family": "creative_production",
       "classification": "rollout_ready",
-      "priority_score": 1285,
+      "priority_score": 935,
       "dimensions": {
         "persistent_work_object": {
           "status": "foundation_ready",
           "evidence": [
             "data/Civication/mailFamilies/musikk/job/musikk_scene_og_produksjon_job.json",
+            "data/Civication/roleWorlds/musikk/musikk_scene_og_produksjon.json",
             "data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json"
           ],
           "rationale": "Existing work content carries stable object/case/project signals and a complete workday loop; the rollout PR must bind them explicitly to the locked persistent-work contract."
@@ -3330,6 +3307,7 @@
           "evidence": [
             "data/Civication/mailFamilies/musikk/job/musikk_scene_og_produksjon_job.json",
             "data/Civication/mailPlans/musikk/musikk_scene_og_produksjon_plan.json",
+            "data/Civication/roleWorlds/musikk/musikk_scene_og_produksjon.json",
             "data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json"
           ],
           "rationale": "The current runtime-authored role already exposes deadline/rework/handoff signals; rollout must make the rhythm role-specific and persistent."
@@ -3342,17 +3320,19 @@
             "data/Civication/roleModels/musikk/produksjonsassistent.json",
             "data/Civication/roleModels/musikk/produksjonskoordinator.json",
             "data/Civication/roleModels/musikk/sceneassistent.json",
-            "data/Civication/roleModels/musikk/tekniker_lys_lyd.json"
+            "data/Civication/roleModels/musikk/tekniker_lys_lyd.json",
+            "data/Civication/roleWorlds/musikk/musikk_scene_og_produksjon.json"
           ],
           "rationale": "Career knowledge integration is complete; the rollout PR must author a concrete better-choice affordance while keeping authority independent from knowledge."
         },
         "situated_reputation": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
             "data/Civication/mailFamilies/musikk/job/musikk_scene_og_produksjon_job.json",
-            "data/Civication/mailPlans/musikk/musikk_scene_og_produksjon_plan.json"
+            "data/Civication/mailPlans/musikk/musikk_scene_og_produksjon_plan.json",
+            "data/Civication/roleWorlds/musikk/musikk_scene_og_produksjon.json"
           ],
-          "rationale": "Situated reputation audiences are not yet explicit for this role; do not substitute the legacy/global reputation summary."
+          "rationale": "Role-authored sources already contain situated audience/standing signals; rollout must bind only bounded authored audience IDs."
         },
         "people_places_integrity": {
           "status": "foundation_ready",
@@ -3363,6 +3343,7 @@
             "data/Civication/roleModels/musikk/produksjonskoordinator.json",
             "data/Civication/roleModels/musikk/sceneassistent.json",
             "data/Civication/roleModels/musikk/tekniker_lys_lyd.json",
+            "data/Civication/roleWorlds/musikk/musikk_scene_og_produksjon.json",
             "data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json"
           ],
           "rationale": "Career People and Places coverage is complete; rollout still must verify factual canonical references and keep invented workplace drama explicitly fictional."
@@ -3372,9 +3353,11 @@
           "evidence": [
             "data/Civication/mailFamilies/musikk/job/musikk_scene_og_produksjon_job.json",
             "data/Civication/mailPlans/musikk/musikk_scene_og_produksjon_plan.json",
+            "data/Civication/roleWorlds/musikk/musikk_scene_og_produksjon.json",
             "data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json",
             "tests/civication-music-life-career-split.test.js",
-            "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js"
+            "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js",
+            "tests/civication-musikk-scene-og-produksjon-role-world-rollout.test.js"
           ],
           "rationale": "Role-specific tests and authored source paths exist; rollout must add strict scene-registry parity and source provenance for new realism scenes."
         }
@@ -3385,17 +3368,17 @@
         "rationale": "No credible same-domain shared-work counterpart was found; do not force a cross-role link."
       },
       "blockers": [],
-      "authored_work_required": [
-        "situated_reputation"
-      ],
+      "authored_work_required": [],
       "source_refs": [
         "data/Civication/mailFamilies/musikk/job/musikk_scene_og_produksjon_job.json",
         "data/Civication/mailPlans/musikk/musikk_scene_og_produksjon_plan.json",
+        "data/Civication/roleWorlds/musikk/musikk_scene_og_produksjon.json",
         "data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json",
         "tests/civication-music-life-career-split.test.js",
-        "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js"
+        "tests/civication-musikk-scene-og-produksjon-prerequisites.test.js",
+        "tests/civication-musikk-scene-og-produksjon-role-world-rollout.test.js"
       ],
-      "already_reference_or_pilot": false
+      "already_reference_or_pilot": true
     },
     {
       "key": "musikk/musikk_utoving_og_ensemble",
