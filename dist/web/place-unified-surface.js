@@ -450,10 +450,172 @@
     news: newsApi
   };
 
+  // js/ui/place-sheet/sections/reading.ts
+  var runtime6 = window;
+  var PAYWALL_TERMS = [
+    "paywall",
+    "subscription",
+    "subscriber",
+    "abonnement",
+    "betalingsmur",
+    "krever abonnement"
+  ];
+  function text6(value) {
+    return String(value == null ? "" : value).trim();
+  }
+  function list(value) {
+    return Array.isArray(value) ? value : [];
+  }
+  function escapeHtml6(value) {
+    return String(value == null ? "" : value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+  }
+  function safeHttpsUrl3(value) {
+    var _a;
+    const raw = text6(value);
+    if (!raw) return "";
+    try {
+      const parsed = new URL(raw, ((_a = runtime6.location) == null ? void 0 : _a.origin) || void 0);
+      return parsed.protocol === "https:" ? parsed.href : "";
+    } catch {
+      return "";
+    }
+  }
+  function uniqueBy(items) {
+    const seen = /* @__PURE__ */ new Set();
+    return items.filter((item) => {
+      const key = text6(item == null ? void 0 : item.id) || [item == null ? void 0 : item.title, item == null ? void 0 : item.author, item == null ? void 0 : item.publication, (item == null ? void 0 : item.year) || (item == null ? void 0 : item.date)].map(text6).join("|");
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+  function sortYear(item) {
+    return Number((item == null ? void 0 : item.year) || String((item == null ? void 0 : item.date) || "").slice(0, 4)) || 0;
+  }
+  function isOpenReading(item) {
+    const access = [item == null ? void 0 : item.access, item == null ? void 0 : item.access_note, item == null ? void 0 : item.note].map((value) => text6(value).toLowerCase()).join(" ");
+    return !PAYWALL_TERMS.some((term) => access.includes(term));
+  }
+  function filterReadingForPlace(items, placeId) {
+    const id = text6(placeId);
+    if (!id) return [];
+    return uniqueBy(list(items).filter((item) => list(item == null ? void 0 : item.place_ids).map(text6).includes(id) && isOpenReading(item))).sort((a, b) => sortYear(b) - sortYear(a));
+  }
+  function readingCards(rows2) {
+    return `<div class="hg-place-reading-list pc-sheet-reading-list">${rows2.map((item) => {
+      const url = safeHttpsUrl3(item == null ? void 0 : item.url);
+      const meta = [item == null ? void 0 : item.author, item == null ? void 0 : item.publication, (item == null ? void 0 : item.year) || (item == null ? void 0 : item.date), item == null ? void 0 : item.type].map(text6).filter(Boolean).join(" \xB7 ");
+      const relevance = text6(item == null ? void 0 : item.relevance);
+      return `<article class="hg-place-reading-card pc-sheet-reading-card"><strong>${escapeHtml6((item == null ? void 0 : item.title) || "Uten tittel")}</strong>${meta ? `<span>${escapeHtml6(meta)}</span>` : ""}${relevance ? `<p>${escapeHtml6(relevance)}</p>` : ""}${url ? `<a href="${escapeHtml6(url)}" target="_blank" rel="noopener noreferrer">Les teksten \u2197</a>` : ""}</article>`;
+    }).join("")}</div>`;
+  }
+  function renderReadingContentHtml(items, placeId) {
+    const rows2 = filterReadingForPlace(items, placeId);
+    return rows2.length ? readingCards(rows2) : "";
+  }
+  function renderCanonicalReadingHtml(items, placeId) {
+    const content = renderReadingContentHtml(items, placeId);
+    if (!content) return "";
+    return `
+    <section class="hg-section hg-place-reading-section pc-sheet-canonical-reading" data-hg-place-sheet-owner="reading">
+      <h3>Lesespor</h3>
+      ${content}
+    </section>
+  `;
+  }
+  function mountCanonicalReading(container, items, placeId) {
+    const html = renderCanonicalReadingHtml(items, placeId);
+    container.replaceChildren();
+    if (!html) {
+      container.hidden = true;
+      return null;
+    }
+    container.hidden = false;
+    container.insertAdjacentHTML("beforeend", html);
+    return container.querySelector('[data-hg-place-sheet-owner="reading"]');
+  }
+  function canonicalReading(placeId) {
+    var _a, _b, _c;
+    return list((_c = (_b = (_a = runtime6.HGPlaceOpen) == null ? void 0 : _a.get) == null ? void 0 : _b.call(_a, placeId)) == null ? void 0 : _c.lesespor);
+  }
+  async function resolveReading(placeId) {
+    var _a, _b;
+    const id = text6(placeId);
+    if (!id) return [];
+    const canonical = canonicalReading(id);
+    if (canonical.length) return canonical;
+    try {
+      const value = await ((_b = (_a = runtime6.DataHub) == null ? void 0 : _a.loadLesespor) == null ? void 0 : _b.call(_a, { cache: "default" }));
+      const aggregate = Array.isArray(value == null ? void 0 : value.items) ? value.items : list(value);
+      return uniqueBy([...aggregate, ...canonicalReading(id)]);
+    } catch {
+      return canonicalReading(id);
+    }
+  }
+  function ensureStylesheet() {
+    if (document.querySelector('link[data-hg-place-sheet-reading-style="1"]')) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "css/place-sheet-reading.css";
+    link.setAttribute("data-hg-place-sheet-reading-style", "1");
+    document.head.appendChild(link);
+  }
+  function ensureReadingSlot() {
+    const shell = document.querySelector('#placeCard [data-hg-place-sheet-shell="1"]');
+    if (!(shell instanceof HTMLElement)) return null;
+    let slot = shell.querySelector("[data-hg-place-sheet-reading]");
+    if (!(slot instanceof HTMLElement)) {
+      slot = document.createElement("section");
+      slot.className = "pc-sheet-reading";
+      slot.setAttribute("data-hg-place-sheet-reading", "1");
+      slot.setAttribute("data-hg-place-sheet-section", "reading");
+      slot.setAttribute("data-place-panel", "reading");
+      slot.hidden = true;
+      const news = shell.querySelector("[data-hg-place-sheet-news]");
+      if (news == null ? void 0 : news.nextSibling) shell.insertBefore(slot, news.nextSibling);
+      else shell.appendChild(slot);
+    }
+    return slot;
+  }
+  function retireEmbeddedFallback() {
+    const panel = document.querySelector('#pcUnifiedKnowledgeHost [data-place-panel="reading"]');
+    panel == null ? void 0 : panel.remove();
+  }
+  var hydrationGeneration = 0;
+  async function hydrateUnifiedReading(placeId) {
+    const id = text6(placeId);
+    if (!id) return;
+    const generation = ++hydrationGeneration;
+    const slot = ensureReadingSlot();
+    if (!(slot instanceof HTMLElement)) return;
+    const items = await resolveReading(id);
+    if (generation !== hydrationGeneration || !slot.isConnected) return;
+    const mounted = mountCanonicalReading(slot, items, id);
+    if (mounted) retireEmbeddedFallback();
+  }
+  function onUnifiedReady(event) {
+    var _a;
+    const id = text6((_a = event.detail) == null ? void 0 : _a.placeId);
+    if (id) void hydrateUnifiedReading(id);
+  }
+  ensureStylesheet();
+  runtime6.addEventListener("hg:place-unified-ready", onUnifiedReady);
+  var readingApi = {
+    filterForPlace: filterReadingForPlace,
+    renderContentHtml: renderReadingContentHtml,
+    renderHtml: renderCanonicalReadingHtml,
+    mount: mountCanonicalReading,
+    resolve: resolveReading
+  };
+  runtime6.HGPlaceSheetSections = {
+    ...runtime6.HGPlaceSheetSections || {},
+    reading: readingApi
+  };
+
   // js/ui/place-sheet/place-sheet-shell.ts
   var SHELL_ATTR = "data-hg-place-sheet-shell";
   var SHELL_SECTION_ATTR = "data-hg-place-sheet-section";
-  function text6(value) {
+  function text7(value) {
     return String(value == null ? "" : value).trim();
   }
   function card() {
@@ -464,7 +626,7 @@
     return ((_a = card()) == null ? void 0 : _a.querySelector(":scope > .pc-body")) || null;
   }
   function isMicro(place) {
-    return text6(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
+    return text7(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
   }
   function ensureShell(place) {
     if (isMicro(place)) return null;
@@ -496,7 +658,7 @@
     `;
       rootBody.prepend(shell);
     }
-    shell.dataset.placeId = text6(place.id);
+    shell.dataset.placeId = text7(place.id);
     root.dataset.hgPlaceSheetPhase = "1";
     root.classList.add("is-place-sheet-phase1");
     return shell;
@@ -621,7 +783,7 @@
   }
   function placeSheetSectionTarget(id) {
     var _a;
-    const normalized2 = text6(id);
+    const normalized2 = text7(id);
     if (!normalized2) return null;
     const target = ((_a = card()) == null ? void 0 : _a.querySelector(`[${SHELL_SECTION_ATTR}="${normalized2}"]`)) || null;
     return target instanceof HTMLElement && !target.hidden ? target : null;
@@ -679,32 +841,32 @@
       sources: "sources",
       kilder: "sources"
     });
-    const text7 = (value) => String(value == null ? "" : value).trim();
+    const text8 = (value) => String(value == null ? "" : value).trim();
     const wait = (ms) => new Promise((resolve) => global.setTimeout(resolve, ms));
     let legacyOpenPlaceCard = null;
     let legacyShowPlacePopup = null;
     let generation = 0;
     let activeMount = Promise.resolve(null);
     function isMicro2(place) {
-      return text7(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
+      return text8(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
     }
     function placeId(place) {
-      return text7(place == null ? void 0 : place.id);
+      return text8(place == null ? void 0 : place.id);
     }
     function card2() {
       return document.getElementById("placeCard");
     }
     function currentPlace() {
       var _a, _b;
-      const id = text7((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId);
+      const id = text8((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId);
       if (!id) return null;
       return (Array.isArray(global.PLACES) ? global.PLACES : []).find((place) => placeId(place) === id) || null;
     }
     function canonicalSection(value) {
-      const key = text7(value).toLowerCase().replace(/\s+/g, "-");
+      const key = text8(value).toLowerCase().replace(/\s+/g, "-");
       return SECTION_ALIASES[key] || (SECTION_ORDER.some(([id]) => id === key) ? key : "about");
     }
-    function ensureStylesheet() {
+    function ensureStylesheet2() {
       const styles = [
         [STYLE_FLAG, "css/place-unified-surface.css"],
         [SHEET_STYLE_FLAG, "css/place-sheet.css"]
@@ -756,13 +918,13 @@
     async function waitForPopup(expectedGeneration, place, timeoutMs = 1800) {
       var _a, _b;
       const started = Date.now();
-      const expectedName = text7((place == null ? void 0 : place.name) || (place == null ? void 0 : place.title));
+      const expectedName = text8((place == null ? void 0 : place.name) || (place == null ? void 0 : place.title));
       while (Date.now() - started < timeoutMs) {
         if (String(((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b[GENERATION_ATTR]) || "") !== String(expectedGeneration)) return null;
         const candidates = [...document.querySelectorAll(".hg-popup.place-popup-v2")].filter((node) => !node.classList.contains(EMBEDDED_CLASS));
         const popup = expectedName ? candidates.find((node) => {
           var _a2;
-          return text7((_a2 = node.querySelector(".hg-modal-title")) == null ? void 0 : _a2.textContent) === expectedName;
+          return text8((_a2 = node.querySelector(".hg-modal-title")) == null ? void 0 : _a2.textContent) === expectedName;
         }) : candidates[0];
         if (popup instanceof HTMLElement) return popup;
         await wait(20);
@@ -791,7 +953,7 @@
       if (!(panelWrap instanceof HTMLElement)) return;
       [...panelWrap.querySelectorAll("[data-place-panel]")].forEach((panel) => {
         if (!(panel instanceof HTMLElement)) return;
-        const id = text7(panel.dataset.placePanel);
+        const id = text8(panel.dataset.placePanel);
         if (id === "more" || (id === "before-after" || id === "news") && placeSheetSectionTarget(id)) {
           panel.hidden = true;
           panel.setAttribute("aria-hidden", "true");
@@ -821,7 +983,7 @@
       [...tablist.querySelectorAll("[data-place-tab]")].forEach((button) => {
         if (!(button instanceof HTMLElement)) return;
         const id = canonicalSection(button.dataset.placeTab);
-        if (id === "about" && text7(button.dataset.placeTab) === "more") {
+        if (id === "about" && text8(button.dataset.placeTab) === "more") {
           button.remove();
           return;
         }
@@ -873,7 +1035,7 @@
         if (existingLearning instanceof HTMLElement) {
           wrapper.appendChild(existingLearning);
         } else {
-          const rendered = text7(api.renderLearningSection(registry, place));
+          const rendered = text8(api.renderLearningSection(registry, place));
           if (!rendered) return null;
           wrapper.insertAdjacentHTML("beforeend", rendered);
         }
@@ -916,7 +1078,7 @@
       (_a = host.querySelector("[data-hg-unified-loading]")) == null ? void 0 : _a.remove();
       popup.classList.add(EMBEDDED_CLASS);
       popup.dataset.hgUnifiedPlaceId = placeId(place);
-      popup.setAttribute("aria-label", `Kunnskap om ${text7((place == null ? void 0 : place.name) || "stedet")}`);
+      popup.setAttribute("aria-label", `Kunnskap om ${text8((place == null ? void 0 : place.name) || "stedet")}`);
       (_b = popup.querySelector(".hg-popup-close")) == null ? void 0 : _b.setAttribute("hidden", "");
       if (popup.parentElement !== host) host.replaceChildren(popup);
       bindUnifiedNavigation(popup, article);
@@ -1005,7 +1167,7 @@
       if (!(section instanceof HTMLElement) && id === "learning") {
         section = root.querySelector('[data-hg-unified-section="learning"]');
       } else if (!(section instanceof HTMLElement)) {
-        section = [...root.querySelectorAll("[data-place-panel]")].find((panel) => text7(panel.getAttribute("data-place-panel")) === id) || null;
+        section = [...root.querySelectorAll("[data-place-panel]")].find((panel) => text8(panel.getAttribute("data-place-panel")) === id) || null;
       }
       if (!(section instanceof HTMLElement)) return false;
       try {
@@ -1025,14 +1187,14 @@
     }
     async function openSection(place, target = "about") {
       var _a;
-      const resolvedPlace = typeof place === "string" ? (Array.isArray(global.PLACES) ? global.PLACES : []).find((row) => placeId(row) === text7(place)) : place;
+      const resolvedPlace = typeof place === "string" ? (Array.isArray(global.PLACES) ? global.PLACES : []).find((row) => placeId(row) === text8(place)) : place;
       if (!resolvedPlace) return false;
       if (isMicro2(resolvedPlace)) {
         if (typeof legacyShowPlacePopup === "function") legacyShowPlacePopup(resolvedPlace);
         return true;
       }
       const root = card2();
-      const samePlace = text7((_a = root == null ? void 0 : root.dataset) == null ? void 0 : _a.currentPlaceId) === placeId(resolvedPlace);
+      const samePlace = text8((_a = root == null ? void 0 : root.dataset) == null ? void 0 : _a.currentPlaceId) === placeId(resolvedPlace);
       if (!samePlace && typeof global.openPlaceCard === "function") await global.openPlaceCard(resolvedPlace);
       else await materialize(resolvedPlace, { refresh: false });
       const id = canonicalSection(target);
@@ -1096,7 +1258,7 @@
       return true;
     }
     function install() {
-      ensureStylesheet();
+      ensureStylesheet2();
       if (global[INSTALL_FLAG]) {
         installPopupTabBridge();
         return true;
