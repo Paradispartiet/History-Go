@@ -280,7 +280,7 @@
       popup.dataset.hgUnifiedPlaceId = placeId(place);
       popup.setAttribute("aria-label", `Kunnskap om ${text((place == null ? void 0 : place.name) || "stedet")}`);
       (_b = popup.querySelector(".hg-popup-close")) == null ? void 0 : _b.setAttribute("hidden", "");
-      host.replaceChildren(popup);
+      if (popup.parentElement !== host) host.replaceChildren(popup);
       bindUnifiedNavigation(popup, article);
       normalizePanels(article);
       return popup;
@@ -310,7 +310,7 @@
       (_a = document.body) == null ? void 0 : _a.classList.add(STAGING_CLASS);
       document.querySelectorAll(`.hg-popup.place-popup-v2:not(.${EMBEDDED_CLASS})`).forEach((node) => node.remove());
       try {
-        const result = legacyShowPlacePopup(place);
+        const result = legacyShowPlacePopup(place, { unifiedHost: host instanceof HTMLElement ? host : null });
         if (result && typeof result.then === "function") await result;
         const popup = await waitForPopup(myGeneration, place);
         if (!(popup instanceof HTMLElement)) return null;
