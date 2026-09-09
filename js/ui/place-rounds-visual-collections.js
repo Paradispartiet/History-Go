@@ -448,6 +448,7 @@
   }
 
   function renderCollectionPreview(icon, preview, def, count) {
+    icon.dataset.collectionItemCount = String(Number(count) || 0);
     const fallback = fallbackCollectionHtml(def, count);
     const visualPreviewSignature = preview?.image
       ? `member-image|${s(preview.id)}|${s(preview.image)}|${s(preview.title)}`
@@ -486,6 +487,7 @@
       const preview = await Promise.resolve(global.HGNatureDetailedMap?.getPreview?.(place)).catch(() => "");
       icon.innerHTML = preview ? `<img src="${esc(preview)}" class="pc-person-img" alt="Turkart">` : `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span></div>`;
       icon.dataset.previewStatus = preview ? "member-image" : "missing";
+      icon.dataset.collectionItemCount = preview ? "1" : "0";
       list.innerHTML = '<div class="pc-empty">Tur- og naturkart åpnes fra Kart-samlingen.</div>';
       return;
     }

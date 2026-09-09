@@ -22,10 +22,13 @@ on:
       - 'js/ui/place-language-layer.js'
       - 'js/ui/place-learning-surface.js'
       - 'js/ui/place-card-status-surface.js'
+      - 'js/ui/place-rounds-visual-collections.js'
       - 'js/ui/place-unified-surface.ts'
+      - 'js/ui/place-sheet/**'
       - 'dist/web/place-unified-surface.js'
       - 'dist/web/place-unified-surface.js.map'
       - 'css/place-unified-surface.css'
+      - 'css/place-sheet.css'
       - 'js/config.js'
       - 'build/build-web.mjs'
       - 'docs/PLACE_UNIFIED_SURFACE_PLAN.md'
@@ -34,6 +37,7 @@ on:
       - 'tests/place-popup-lesespor-place-open-race.test.mjs'
       - 'tests/place-popup-unified-host-bridge.test.mjs'
       - 'tests/place-popup-v2-unified-target.test.mjs'
+      - 'tests/place-sheet-phase1.test.mjs'
       - 'tests/place-unified-surface.test.mjs'
       - 'package.json'
       - 'package-lock.json'
@@ -77,4 +81,5 @@ jobs:
           node --check tests/place-unified-surface.test.mjs
           node --check tests/place-popup-unified-host-bridge.test.mjs
           node --check tests/place-popup-v2-unified-target.test.mjs
-          node --test tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs
+          node --check tests/place-sheet-phase1.test.mjs
+          node --test tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs tests/place-sheet-phase1.test.mjs
