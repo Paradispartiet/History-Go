@@ -41,6 +41,10 @@
     ensureStylesheet("css/place-popup-tabs.css");
     ensureScript("js/ui/place-popup-tabs.js");
     ensureScript("js/ui/place-popup-direct-tabs.js");
+    // Unified Place Surface is a primary PlaceCard presentation layer, not a
+    // low-priority post-ready extra. Its own installer waits fail-closed for
+    // popup/direct-tab dependencies before patching the public entry points.
+    ensureScript("dist/web/place-unified-surface.js");
     ensureScript("js/ui/nature-detailed-map.js");
     ensureScript("js/ui/place-rounds-visual-collections.js");
     ensureScript("js/ui/micro-place-card.js");
