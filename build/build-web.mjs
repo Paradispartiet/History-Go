@@ -38,7 +38,8 @@ const SOURCE_MAPPED_ENTRIES = [
   { in: "js/knowledgeV2.ts", out: "knowledgeV2" },
   { in: "js/trivia.ts", out: "trivia" },
   { in: "js/courses.ts", out: "courses" },
-  { in: "js/emneDekning.ts", out: "emneDekning" }
+  { in: "js/emneDekning.ts", out: "emneDekning" },
+  { in: "js/ui/place-unified-surface.ts", out: "place-unified-surface" }
 ];
 
 // Browser-runtimes that are still loaded from legacy script paths. They are
