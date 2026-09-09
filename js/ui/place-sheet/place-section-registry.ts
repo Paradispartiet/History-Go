@@ -7,7 +7,8 @@ export const PLACE_SHEET_SECTION_IDS = [
   "reading",
   "language",
   "learning",
-  "sources"
+  "sources",
+  "special"
 ] as const;
 
 export type PlaceSheetSectionId = typeof PLACE_SHEET_SECTION_IDS[number];
@@ -22,10 +23,12 @@ export const PLACE_SHEET_IMMEDIATE_SECTION_IDS: readonly PlaceSheetSectionId[] =
 export const PLACE_SHEET_COMPAT_SECTION_BATCHES: readonly (readonly PlaceSheetSectionId[])[] = [
   ["news", "reading"],
   ["language", "learning"],
-  ["sources"]
+  ["sources"],
+  ["special"]
 ];
 
 type SectionApi = {
+  applies?: (placeId: string) => boolean;
   adopt?: (placeId: string) => HTMLElement | null;
 };
 
@@ -52,8 +55,14 @@ export function hasRenderedPlaceSheetSection(id: PlaceSheetSectionId): boolean {
   const node = placeSheetSectionNode(id);
   if (!(node instanceof HTMLElement) || node.hidden) return false;
   if (text(node.dataset.placeId)) return true;
-  if (node.querySelector("[data-hg-place-sheet-owner], .hg-place-learning-section, [data-language-place], .hg-place-tab-generated")) return true;
+  if (node.querySelector("[data-hg-place-sheet-owner], [data-hg-place-sheet-special-owner], .hg-place-learning-section, [data-language-place], .hg-place-tab-generated")) return true;
   return text(node.textContent).length > 0;
+}
+
+export function placeSheetSectionApplies(id: PlaceSheetSectionId, placeId: string): boolean {
+  const api = runtime.HGPlaceSheetSections?.[id];
+  if (!api || typeof api.applies !== "function") return true;
+  try { return api.applies(placeId) === true; } catch { return false; }
 }
 
 export function nudgePlaceSheetSection(id: PlaceSheetSectionId, placeId: string): void {
