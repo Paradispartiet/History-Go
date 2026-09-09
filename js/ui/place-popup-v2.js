@@ -446,6 +446,14 @@
   }
 
   function renderHistoryTimeline(place) {
+    const shared = global.HGPlaceSheetSections?.history?.renderHtml;
+    if (typeof shared === "function") {
+      try {
+        const html = String(shared(place) || "");
+        if (html) return html;
+      } catch {}
+    }
+
     const layers = list(place?.history_layers)
       .map((item, index) => ({ item, index }))
       .filter(({ item }) => item && typeof item === "object")
@@ -474,6 +482,11 @@
         </div>
       </section>
     `;
+  }
+
+  function renderStandardHistorySection(place, options) {
+    if (options && typeof options === "object" && options.suppressPlaceHistory === true) return "";
+    return renderHistoryTimeline(place);
   }
 
   function renderChips(values, maxItems = 18) {
@@ -785,7 +798,7 @@
 
           ${renderSpatialSection(place, routeLength)}
           ${renderSubplacesSection(place)}
-          ${renderHistoryTimeline(place)}
+          ${renderStandardHistorySection(place, options)}
           ${renderNatureLandscape(place)}
 
           <div class="hg-place-context-grid">
