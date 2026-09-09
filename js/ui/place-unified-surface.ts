@@ -1,4 +1,4 @@
-import { attachCanonicalAboutToPlaceSheet, mountPlaceSheetPhase1, placeSheetSectionTarget, restoreLegacyPlaceCardStructure } from "./place-sheet/place-sheet-shell";
+import { mountPlaceSheetPhase1, placeSheetSectionTarget, restoreLegacyPlaceCardStructure } from "./place-sheet/place-sheet-shell";
 
 // js/ui/place-unified-surface.ts
 // Unified Place Surface: embeds the canonical place-popup knowledge renderer
@@ -353,7 +353,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     document.querySelectorAll(`.hg-popup.place-popup-v2:not(.${EMBEDDED_CLASS})`).forEach(node => node.remove());
 
     try {
-      const result = legacyShowPlacePopup(place, { unifiedHost: host instanceof HTMLElement ? host : null });
+      const result = legacyShowPlacePopup(place, { unifiedHost: host instanceof HTMLElement ? host : null, suppressPlaceAbout: true });
       if (result && typeof result.then === "function") await result;
       const popup = await waitForPopup(myGeneration, place);
       if (!(popup instanceof HTMLElement)) return null;
@@ -369,7 +369,10 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
       if (!(article instanceof HTMLElement)) return null;
       if (String(root.dataset[GENERATION_ATTR] || "") !== String(myGeneration)) return null;
 
-      attachCanonicalAboutToPlaceSheet(popup, place);
+      // Phase 2: About is already rendered directly by Place Sheet.
+      // Remove only a compatibility duplicate if an older/custom popup renderer
+      // ignored suppressPlaceAbout; never move that DOM into the shell again.
+      if (placeSheetSectionTarget("about")) popup.querySelector(".hg-place-about-section")?.remove();
       const embedded = prepareEmbeddedPopup(popup, article, place);
       if (!(embedded instanceof HTMLElement)) return null;
       await ensureLearningSection(place, article);

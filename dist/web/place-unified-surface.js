@@ -1,8 +1,71 @@
 (() => {
+  // js/ui/place-sheet/sections/about.ts
+  var runtime = window;
+  function text(value) {
+    return String(value == null ? "" : value).trim();
+  }
+  function localize(place) {
+    var _a, _b;
+    try {
+      return ((_b = (_a = runtime.HG_I18N) == null ? void 0 : _a.localizePlace) == null ? void 0 : _b.call(_a, place)) || place;
+    } catch {
+      return place;
+    }
+  }
+  function escapeHtml(value) {
+    return String(value == null ? "" : value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+  }
+  function normalized(value) {
+    return text(value).replace(/\s+/g, " ");
+  }
+  function canonicalAboutText(inputPlace) {
+    const place = localize(inputPlace || {});
+    for (const value of [place.popupDesc, place.popupdesc, place.description, place.desc]) {
+      const candidate = text(value);
+      if (candidate) return candidate;
+    }
+    return "";
+  }
+  function renderParagraphs(value) {
+    return text(value).split(/\n\s*\n+/).map((paragraph) => text(paragraph)).filter(Boolean).map((paragraph) => `<p>${escapeHtml(paragraph).replace(/\n/g, "<br>")}</p>`).join("");
+  }
+  function renderCanonicalAboutHtml(inputPlace, options = {}) {
+    const place = localize(inputPlace || {});
+    const fullText = canonicalAboutText(place);
+    if (!fullText) return "";
+    if (options.suppressIfSameAsDesc && normalized(fullText) === normalized(place.desc)) return "";
+    return `
+    <section class="hg-section hg-place-section hg-place-about-section" data-hg-place-sheet-owner="about">
+      <h3>Om stedet</h3>
+      <div class="hg-place-longread">${renderParagraphs(fullText)}</div>
+    </section>
+  `;
+  }
+  function mountCanonicalAbout(container, place, options = {}) {
+    const html = renderCanonicalAboutHtml(place, options);
+    container.replaceChildren();
+    if (!html) {
+      container.hidden = true;
+      return null;
+    }
+    container.hidden = false;
+    container.insertAdjacentHTML("beforeend", html);
+    return container.querySelector('[data-hg-place-sheet-owner="about"]');
+  }
+  var aboutApi = {
+    text: canonicalAboutText,
+    renderHtml: renderCanonicalAboutHtml,
+    mount: mountCanonicalAbout
+  };
+  runtime.HGPlaceSheetSections = {
+    ...runtime.HGPlaceSheetSections || {},
+    about: aboutApi
+  };
+
   // js/ui/place-sheet/place-sheet-shell.ts
   var SHELL_ATTR = "data-hg-place-sheet-shell";
   var SHELL_SECTION_ATTR = "data-hg-place-sheet-section";
-  function text(value) {
+  function text2(value) {
     return String(value == null ? "" : value).trim();
   }
   function card() {
@@ -13,7 +76,7 @@
     return ((_a = card()) == null ? void 0 : _a.querySelector(":scope > .pc-body")) || null;
   }
   function isMicro(place) {
-    return text(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
+    return text2(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
   }
   function ensureShell(place) {
     if (isMicro(place)) return null;
@@ -41,7 +104,7 @@
     `;
       rootBody.prepend(shell);
     }
-    shell.dataset.placeId = text(place.id);
+    shell.dataset.placeId = text2(place.id);
     root.dataset.hgPlaceSheetPhase = "1";
     root.classList.add("is-place-sheet-phase1");
     return shell;
@@ -64,22 +127,8 @@
     const legacyGrid = root.querySelector(".pc-grid");
     if (legacyGrid && !legacyGrid.children.length) legacyGrid.hidden = true;
   }
-  function mountPlaceSheetPhase1(place) {
-    var _a;
-    if (!place || isMicro(place)) return null;
-    const shell = ensureShell(place);
-    if (!(shell instanceof HTMLElement)) return null;
-    (_a = shell.querySelector(".pc-sheet-canonical-about")) == null ? void 0 : _a.remove();
-    const aboutSlot = shell.querySelector("[data-hg-place-sheet-about]");
-    if (aboutSlot) aboutSlot.remove();
-    movePrimaryNodes(shell);
-    return shell;
-  }
-  function attachCanonicalAboutToPlaceSheet(popup, place) {
-    var _a;
-    if (isMicro(place)) return null;
-    const shell = (_a = card()) == null ? void 0 : _a.querySelector(`[${SHELL_ATTR}="1"]`);
-    const copy = shell == null ? void 0 : shell.querySelector("[data-hg-place-sheet-copy]");
+  function ensureAboutSlot(shell) {
+    const copy = shell.querySelector("[data-hg-place-sheet-copy]");
     if (!(copy instanceof HTMLElement)) return null;
     let aboutSlot = copy.querySelector("[data-hg-place-sheet-about]");
     if (!(aboutSlot instanceof HTMLElement)) {
@@ -89,17 +138,19 @@
       aboutSlot.setAttribute(SHELL_SECTION_ATTR, "about");
       copy.appendChild(aboutSlot);
     }
-    aboutSlot.replaceChildren();
-    const canonicalAbout = popup.querySelector(".hg-place-about-section");
-    if (!(canonicalAbout instanceof HTMLElement)) {
-      aboutSlot.hidden = true;
-      return null;
-    }
-    canonicalAbout.classList.add("pc-sheet-canonical-about");
-    canonicalAbout.removeAttribute("data-hg-unified-section");
-    aboutSlot.hidden = false;
-    aboutSlot.appendChild(canonicalAbout);
     return aboutSlot;
+  }
+  function mountPlaceSheetPhase1(place) {
+    if (!place || isMicro(place)) return null;
+    const shell = ensureShell(place);
+    if (!(shell instanceof HTMLElement)) return null;
+    movePrimaryNodes(shell);
+    const aboutSlot = ensureAboutSlot(shell);
+    if (aboutSlot) {
+      const about = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true });
+      about == null ? void 0 : about.classList.add("pc-sheet-canonical-about");
+    }
+    return shell;
   }
   function restoreLegacyPlaceCardStructure() {
     const root = card();
@@ -130,9 +181,10 @@
   }
   function placeSheetSectionTarget(id) {
     var _a;
-    const normalized = text(id);
-    if (!normalized) return null;
-    return ((_a = card()) == null ? void 0 : _a.querySelector(`[${SHELL_SECTION_ATTR}="${normalized}"]`)) || null;
+    const normalized2 = text2(id);
+    if (!normalized2) return null;
+    const target = ((_a = card()) == null ? void 0 : _a.querySelector(`[${SHELL_SECTION_ATTR}="${normalized2}"]`)) || null;
+    return target instanceof HTMLElement && !target.hidden ? target : null;
   }
 
   // js/ui/place-unified-surface.ts
@@ -187,29 +239,29 @@
       sources: "sources",
       kilder: "sources"
     });
-    const text2 = (value) => String(value == null ? "" : value).trim();
+    const text3 = (value) => String(value == null ? "" : value).trim();
     const wait = (ms) => new Promise((resolve) => global.setTimeout(resolve, ms));
     let legacyOpenPlaceCard = null;
     let legacyShowPlacePopup = null;
     let generation = 0;
     let activeMount = Promise.resolve(null);
     function isMicro2(place) {
-      return text2(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
+      return text3(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
     }
     function placeId(place) {
-      return text2(place == null ? void 0 : place.id);
+      return text3(place == null ? void 0 : place.id);
     }
     function card2() {
       return document.getElementById("placeCard");
     }
     function currentPlace() {
       var _a, _b;
-      const id = text2((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId);
+      const id = text3((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId);
       if (!id) return null;
       return (Array.isArray(global.PLACES) ? global.PLACES : []).find((place) => placeId(place) === id) || null;
     }
     function canonicalSection(value) {
-      const key = text2(value).toLowerCase().replace(/\s+/g, "-");
+      const key = text3(value).toLowerCase().replace(/\s+/g, "-");
       return SECTION_ALIASES[key] || (SECTION_ORDER.some(([id]) => id === key) ? key : "about");
     }
     function ensureStylesheet() {
@@ -264,13 +316,13 @@
     async function waitForPopup(expectedGeneration, place, timeoutMs = 1800) {
       var _a, _b;
       const started = Date.now();
-      const expectedName = text2((place == null ? void 0 : place.name) || (place == null ? void 0 : place.title));
+      const expectedName = text3((place == null ? void 0 : place.name) || (place == null ? void 0 : place.title));
       while (Date.now() - started < timeoutMs) {
         if (String(((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b[GENERATION_ATTR]) || "") !== String(expectedGeneration)) return null;
         const candidates = [...document.querySelectorAll(".hg-popup.place-popup-v2")].filter((node) => !node.classList.contains(EMBEDDED_CLASS));
         const popup = expectedName ? candidates.find((node) => {
           var _a2;
-          return text2((_a2 = node.querySelector(".hg-modal-title")) == null ? void 0 : _a2.textContent) === expectedName;
+          return text3((_a2 = node.querySelector(".hg-modal-title")) == null ? void 0 : _a2.textContent) === expectedName;
         }) : candidates[0];
         if (popup instanceof HTMLElement) return popup;
         await wait(20);
@@ -299,7 +351,7 @@
       if (!(panelWrap instanceof HTMLElement)) return;
       [...panelWrap.querySelectorAll("[data-place-panel]")].forEach((panel) => {
         if (!(panel instanceof HTMLElement)) return;
-        const id = text2(panel.dataset.placePanel);
+        const id = text3(panel.dataset.placePanel);
         if (id === "more") {
           panel.hidden = true;
           panel.setAttribute("aria-hidden", "true");
@@ -328,7 +380,7 @@
       [...tablist.querySelectorAll("[data-place-tab]")].forEach((button) => {
         if (!(button instanceof HTMLElement)) return;
         const id = canonicalSection(button.dataset.placeTab);
-        if (id === "about" && text2(button.dataset.placeTab) === "more") {
+        if (id === "about" && text3(button.dataset.placeTab) === "more") {
           button.remove();
           return;
         }
@@ -380,7 +432,7 @@
         if (existingLearning instanceof HTMLElement) {
           wrapper.appendChild(existingLearning);
         } else {
-          const rendered = text2(api.renderLearningSection(registry, place));
+          const rendered = text3(api.renderLearningSection(registry, place));
           if (!rendered) return null;
           wrapper.insertAdjacentHTML("beforeend", rendered);
         }
@@ -423,7 +475,7 @@
       (_a = host.querySelector("[data-hg-unified-loading]")) == null ? void 0 : _a.remove();
       popup.classList.add(EMBEDDED_CLASS);
       popup.dataset.hgUnifiedPlaceId = placeId(place);
-      popup.setAttribute("aria-label", `Kunnskap om ${text2((place == null ? void 0 : place.name) || "stedet")}`);
+      popup.setAttribute("aria-label", `Kunnskap om ${text3((place == null ? void 0 : place.name) || "stedet")}`);
       (_b = popup.querySelector(".hg-popup-close")) == null ? void 0 : _b.setAttribute("hidden", "");
       if (popup.parentElement !== host) host.replaceChildren(popup);
       bindUnifiedNavigation(popup, article);
@@ -431,7 +483,7 @@
       return popup;
     }
     async function materialize(place, options = {}) {
-      var _a, _b, _c, _d, _e, _f, _g, _h, _i;
+      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j;
       const id = placeId(place);
       if (!id || isMicro2(place)) {
         clearUnifiedState();
@@ -456,7 +508,7 @@
       (_a = document.body) == null ? void 0 : _a.classList.add(STAGING_CLASS);
       document.querySelectorAll(`.hg-popup.place-popup-v2:not(.${EMBEDDED_CLASS})`).forEach((node) => node.remove());
       try {
-        const result = legacyShowPlacePopup(place, { unifiedHost: host instanceof HTMLElement ? host : null });
+        const result = legacyShowPlacePopup(place, { unifiedHost: host instanceof HTMLElement ? host : null, suppressPlaceAbout: true });
         if (result && typeof result.then === "function") await result;
         const popup = await waitForPopup(myGeneration, place);
         if (!(popup instanceof HTMLElement)) return null;
@@ -476,19 +528,19 @@
         const article = await waitForTabs(popup, myGeneration);
         if (!(article instanceof HTMLElement)) return null;
         if (String(root.dataset[GENERATION_ATTR] || "") !== String(myGeneration)) return null;
-        attachCanonicalAboutToPlaceSheet(popup, place);
+        if (placeSheetSectionTarget("about")) (_h = popup.querySelector(".hg-place-about-section")) == null ? void 0 : _h.remove();
         const embedded = prepareEmbeddedPopup(popup, article, place);
         if (!(embedded instanceof HTMLElement)) return null;
         await ensureLearningSection(place, article);
         normalizePanels(article);
-        (_h = global.dispatchEvent) == null ? void 0 : _h.call(global, new CustomEvent("hg:place-unified-ready", { detail: { placeId: id } }));
+        (_i = global.dispatchEvent) == null ? void 0 : _i.call(global, new CustomEvent("hg:place-unified-ready", { detail: { placeId: id } }));
         return embedded;
       } catch (error) {
         if (global.DEBUG) console.warn("[place-unified-surface]", error);
         return null;
       } finally {
         if (String(root.dataset[GENERATION_ATTR] || "") === String(myGeneration)) {
-          (_i = document.body) == null ? void 0 : _i.classList.remove(STAGING_CLASS);
+          (_j = document.body) == null ? void 0 : _j.classList.remove(STAGING_CLASS);
         }
       }
     }
@@ -501,7 +553,7 @@
       if (!(section instanceof HTMLElement) && id === "learning") {
         section = root.querySelector('[data-hg-unified-section="learning"]');
       } else if (!(section instanceof HTMLElement)) {
-        section = [...root.querySelectorAll("[data-place-panel]")].find((panel) => text2(panel.getAttribute("data-place-panel")) === id) || null;
+        section = [...root.querySelectorAll("[data-place-panel]")].find((panel) => text3(panel.getAttribute("data-place-panel")) === id) || null;
       }
       if (!(section instanceof HTMLElement)) return false;
       try {
@@ -521,14 +573,14 @@
     }
     async function openSection(place, target = "about") {
       var _a;
-      const resolvedPlace = typeof place === "string" ? (Array.isArray(global.PLACES) ? global.PLACES : []).find((row) => placeId(row) === text2(place)) : place;
+      const resolvedPlace = typeof place === "string" ? (Array.isArray(global.PLACES) ? global.PLACES : []).find((row) => placeId(row) === text3(place)) : place;
       if (!resolvedPlace) return false;
       if (isMicro2(resolvedPlace)) {
         if (typeof legacyShowPlacePopup === "function") legacyShowPlacePopup(resolvedPlace);
         return true;
       }
       const root = card2();
-      const samePlace = text2((_a = root == null ? void 0 : root.dataset) == null ? void 0 : _a.currentPlaceId) === placeId(resolvedPlace);
+      const samePlace = text3((_a = root == null ? void 0 : root.dataset) == null ? void 0 : _a.currentPlaceId) === placeId(resolvedPlace);
       if (!samePlace && typeof global.openPlaceCard === "function") await global.openPlaceCard(resolvedPlace);
       else await materialize(resolvedPlace, { refresh: false });
       const id = canonicalSection(target);

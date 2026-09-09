@@ -1,4 +1,6 @@
-type PlaceSheetPlace = {
+import { mountCanonicalAbout } from "./sections/about";
+
+type PlaceSheetPlace = Record<string, any> & {
   id?: string;
   name?: string;
   title?: string;
@@ -81,23 +83,8 @@ function movePrimaryNodes(shell: HTMLElement): void {
   if (legacyGrid && !legacyGrid.children.length) legacyGrid.hidden = true;
 }
 
-export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | null {
-  if (!place || isMicro(place)) return null;
-  const shell = ensureShell(place);
-  if (!(shell instanceof HTMLElement)) return null;
-
-  shell.querySelector(".pc-sheet-canonical-about")?.remove();
-  const aboutSlot = shell.querySelector<HTMLElement>("[data-hg-place-sheet-about]");
-  if (aboutSlot) aboutSlot.remove();
-
-  movePrimaryNodes(shell);
-  return shell;
-}
-
-export function attachCanonicalAboutToPlaceSheet(popup: HTMLElement, place: PlaceSheetPlace): HTMLElement | null {
-  if (isMicro(place)) return null;
-  const shell = card()?.querySelector<HTMLElement>(`[${SHELL_ATTR}="1"]`);
-  const copy = shell?.querySelector<HTMLElement>("[data-hg-place-sheet-copy]");
+function ensureAboutSlot(shell: HTMLElement): HTMLElement | null {
+  const copy = shell.querySelector<HTMLElement>("[data-hg-place-sheet-copy]");
   if (!(copy instanceof HTMLElement)) return null;
 
   let aboutSlot = copy.querySelector<HTMLElement>("[data-hg-place-sheet-about]");
@@ -108,19 +95,21 @@ export function attachCanonicalAboutToPlaceSheet(popup: HTMLElement, place: Plac
     aboutSlot.setAttribute(SHELL_SECTION_ATTR, "about");
     copy.appendChild(aboutSlot);
   }
-
-  aboutSlot.replaceChildren();
-  const canonicalAbout = popup.querySelector<HTMLElement>(".hg-place-about-section");
-  if (!(canonicalAbout instanceof HTMLElement)) {
-    aboutSlot.hidden = true;
-    return null;
-  }
-
-  canonicalAbout.classList.add("pc-sheet-canonical-about");
-  canonicalAbout.removeAttribute("data-hg-unified-section");
-  aboutSlot.hidden = false;
-  aboutSlot.appendChild(canonicalAbout);
   return aboutSlot;
+}
+
+export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | null {
+  if (!place || isMicro(place)) return null;
+  const shell = ensureShell(place);
+  if (!(shell instanceof HTMLElement)) return null;
+
+  movePrimaryNodes(shell);
+  const aboutSlot = ensureAboutSlot(shell);
+  if (aboutSlot) {
+    const about = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true });
+    about?.classList.add("pc-sheet-canonical-about");
+  }
+  return shell;
 }
 
 export function restoreLegacyPlaceCardStructure(): void {
@@ -158,5 +147,6 @@ export function restoreLegacyPlaceCardStructure(): void {
 export function placeSheetSectionTarget(id: string): HTMLElement | null {
   const normalized = text(id);
   if (!normalized) return null;
-  return card()?.querySelector<HTMLElement>(`[${SHELL_SECTION_ATTR}="${normalized}"]`) || null;
+  const target = card()?.querySelector<HTMLElement>(`[${SHELL_SECTION_ATTR}="${normalized}"]`) || null;
+  return target instanceof HTMLElement && !target.hidden ? target : null;
 }

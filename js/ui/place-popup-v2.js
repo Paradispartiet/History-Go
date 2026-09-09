@@ -152,6 +152,13 @@
   }
 
   function popupText(place) {
+    const shared = global.HGPlaceSheetSections?.about?.text;
+    if (typeof shared === "function") {
+      try {
+        const value = text(shared(place));
+        if (value) return value;
+      } catch {}
+    }
     return firstText(
       place?.popupDesc,
       place?.popupdesc,
@@ -170,6 +177,24 @@
       .filter(Boolean)
       .map(paragraph => `<p>${escapeHtml(paragraph).replaceAll("\n", "<br>")}</p>`)
       .join("");
+  }
+
+  function renderStandardAboutSection(place, options) {
+    if (options && typeof options === "object" && options.suppressPlaceAbout === true) return "";
+    const shared = global.HGPlaceSheetSections?.about?.renderHtml;
+    if (typeof shared === "function") {
+      try {
+        const html = String(shared(place) || "");
+        if (html) return html;
+      } catch {}
+    }
+    const fullText = popupText(place);
+    return fullText ? `
+      <section class="hg-section hg-place-section hg-place-about-section">
+        <h3>Om stedet</h3>
+        <div class="hg-place-longread">${renderParagraphs(fullText)}</div>
+      </section>
+    ` : "";
   }
 
   function uniqueStrings(values) {
@@ -756,12 +781,7 @@
             </div>
           </section>
 
-          ${fullText ? `
-            <section class="hg-section hg-place-section hg-place-about-section">
-              <h3>Om stedet</h3>
-              <div class="hg-place-longread">${renderParagraphs(fullText)}</div>
-            </section>
-          ` : ""}
+          ${renderStandardAboutSection(place, options)}
 
           ${renderSpatialSection(place, routeLength)}
           ${renderSubplacesSection(place)}
