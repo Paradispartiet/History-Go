@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "musikk",
+  "role_scope": "musikk_utoving_og_ensemble",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "musikk_utoving_og_ensemble_provestatus",
+      "purpose": "Role-authored musikkutøver- og ensemblepraksis med vedvarende repertoar-/arrangementstatus, tydelig appointment gate, avgrenset myndighet, venting, handoff og bounded rework.",
+      "learning_focus": [
+        "repertoar_og_arrangement",
+        "stemme_og_ensemblelytting",
+        "prøvestatus_og_versjon",
+        "mandat_kontrakt_og_rettighet",
+        "horing_belastning_og_handoff"
+      ],
+      "mails": [
+        {
+          "id": "musikk_utover_provestatus_012",
+          "mail_type": "micro",
+          "mail_family": "musikk_utoving_og_ensemble_provestatus",
+          "role_scope": "musikk_utoving_og_ensemble",
+          "phase": "late_workday",
+          "day_phase": "afternoon",
+          "priority": 169,
+          "from": "Jonas",
+          "people_ref": "jonas_vikar_og_depmusiker",
+          "person_id": "jonas_vikar_og_depmusiker",
+          "place_id": "stemmeprove_og_samspillsrom",
+          "subject": "«Jeg kan den» skjuler fem ulike prøvenivåer",
+          "summary": "Egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklart brukes som om de var samme status. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+          "situation": [
+            "Egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklart brukes som om de var samme status.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "task_domain": "musikk_utoving_og_ensemble",
+          "competency": "provestatus_og_sannhet",
+          "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+          "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+          "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+          "narrative_arc": "musikk_utover_provestatus_012",
+          "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Verifiser provestatus og sannhet musikk_utover_provestatus_012",
+              "reply": "Merk hvert berørt ledd med konkret prøvenivå, versjon, tidspunkt og neste verifikasjon. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "ensemble",
+                "mandat"
+              ],
+              "feedback": "Merk hvert berørt ledd med konkret prøvenivå, versjon, tidspunkt og neste verifikasjon. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Press gjennom provestatus og sannhet musikk_utover_provestatus_012",
+              "reply": "Bruk «klar» som felles språk og forklar eventuelle unntak muntlig ved behov. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+              "effect": -1,
+              "tags": [
+                "statuspress",
+                "versjonsgjeld",
+                "risiko"
+              ],
+              "feedback": "Bruk «klar» som felles språk og forklar eventuelle unntak muntlig ved behov. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

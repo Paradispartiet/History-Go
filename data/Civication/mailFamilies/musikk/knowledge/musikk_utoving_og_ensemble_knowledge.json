@@ -1,0 +1,114 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "musikk",
+  "role_scope": "musikk_utoving_og_ensemble",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "musikk_utoving_og_ensemble_history_go",
+      "purpose": "Role-authored musikkutøver- og ensemblepraksis med vedvarende repertoar-/arrangementstatus, tydelig appointment gate, avgrenset myndighet, venting, handoff og bounded rework.",
+      "learning_focus": [
+        "repertoar_og_arrangement",
+        "stemme_og_ensemblelytting",
+        "prøvestatus_og_versjon",
+        "mandat_kontrakt_og_rettighet",
+        "horing_belastning_og_handoff"
+      ],
+      "mails": [
+        {
+          "id": "musikk_utover_bugge_014",
+          "mail_type": "knowledge",
+          "mail_family": "musikk_utoving_og_ensemble_history_go",
+          "role_scope": "musikk_utoving_og_ensemble",
+          "phase": "late_workday",
+          "day_phase": "afternoon",
+          "priority": 167,
+          "from": "Nora",
+          "people_ref": "nora_musikalsk_leder_og_dirigent",
+          "person_id": "nora_musikalsk_leder_og_dirigent",
+          "place_id": "blaa",
+          "subject": "Bugge Wesseltoft og Blå: hva kan historien spørre om improvisasjon og ensemble?",
+          "summary": "History Go har en verifisert person-/stedskobling som kan åpne spørsmål om improvisasjon, lytting, scene og musikalske miljøer uten å være norm for dagens arbeid. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+          "situation": [
+            "History Go har en verifisert person-/stedskobling som kan åpne spørsmål om improvisasjon, lytting, scene og musikalske miljøer uten å være norm for dagens arbeid.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "task_domain": "musikk_utoving_og_ensemble",
+          "competency": "history_go_ensembleblikk",
+          "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+          "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+          "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+          "narrative_arc": "musikk_utover_bugge_014",
+          "situated_audience_id": "historisk_musikkontekst",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Verifiser history go ensembleblikk musikk_utover_bugge_014",
+              "reply": "Les koblingen og formuler et historisk spørsmål om hvordan sted, teknologi, sjanger og ensemblepraksis påvirket handlingsrommet. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "ensemble",
+                "mandat"
+              ],
+              "feedback": "Les koblingen og formuler et historisk spørsmål om hvordan sted, teknologi, sjanger og ensemblepraksis påvirket handlingsrommet. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Press gjennom history go ensembleblikk musikk_utover_bugge_014",
+              "reply": "Bruk den historiske forbindelsen som bevis for at dagens ensemble bør prioritere spontanitet framfor avtalt versjon. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+              "effect": -1,
+              "tags": [
+                "statuspress",
+                "versjonsgjeld",
+                "risiko"
+              ],
+              "feedback": "Bruk den historiske forbindelsen som bevis for at dagens ensemble bør prioritere spontanitet framfor avtalt versjon. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ],
+          "interaction_mode": "task",
+          "task_contract": {
+            "task_id": "musikk_utoving_og_ensemble_history_go_bugge_wesseltoft_blaa",
+            "completion_rule": "history_go_payload_completed",
+            "failure_rule": "remain_open",
+            "evidence_refs": [
+              "data/people/musikk/oslo/people_musikk_oslo.json",
+              "data/places/musikk/oslo/places_musikk/blaa.json"
+            ]
+          },
+          "task_payload": {
+            "task_kind": "history_go_person",
+            "target_type": "person",
+            "person_id": "bugge_wesseltoft",
+            "completion_mode": "read_profile",
+            "title": "Les Bugge Wesseltoft og Blå som historisk ensemblekontekst",
+            "description": "Formuler ett spørsmål om hvordan scene, teknologi, improvisasjon, sjanger og ensemblepraksis påvirket hverandre uten å gjøre historien til fasit for dagens arrangement, kontrakt, rettighet, teknikk eller HMS.",
+            "return_context": {
+              "source": "civication",
+              "mail_id": "musikk_utover_bugge_014",
+              "role_scope": "musikk_utoving_og_ensemble"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

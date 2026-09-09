@@ -1,10 +1,315 @@
 {
-  "schema":"civication_role_model_v2","version":2,
-  "source":{"badge_file":"data/badges/musikk.json","badge_id":"musikk","evidence":"data/Civication/musikkCareerLifeEvidence.json"},
-  "category":"musikk","role_scope":"musikk_utoving_og_ensemble","role_id":"musikk_utoving_og_ensemble","title":"Utøving og ensemble",
-  "core_narrative":["Du leverer profesjonelt musikalsk arbeid i samspill med andre; Badge-identitet og arbeidskontrakt holdes eksplisitt adskilt."],
-  "work_life":{"daily_work":["øving, prøver, konserter, studio, turné og repertoararbeid"],"responsibilities":["musikalsk kvalitet, forberedelse, samspill og profesjonell gjennomføring"],"work_environment":["band, orkester, ensemble, scene og studio"]},
-  "authority_boundaries":{"can":["ta kunstneriske valg innen egen rolle","melde kunstneriske og praktiske behov"],"cannot":["behandle berømmelse som ansettelse","endre andres kontraktsvilkår","overstyre musikalsk eller produksjonsmessig ledelse uten mandat"]},
-  "competence_axes":["musikalsk_ferdighet","samspill","repertoar","forberedelse","scene_og_studioarbeid","profesjonell_samhandling"],
-  "ideal_type_problems":["kort prøvetid","repertoarendring","kunstnerisk konflikt","turnépress","ustabil besetning"]
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "musikk",
+  "role_scope": "musikk_utoving_og_ensemble",
+  "role_id": "musikk_utoving_og_ensemble",
+  "title": "Utøving og ensemble",
+  "source": {
+    "badge_file": "data/badges/musikk.json",
+    "badge_id": "musikk",
+    "evidence": "data/Civication/musikkCareerLifeEvidence.json"
+  },
+  "badge_titles": [
+    "Utøvende musiker",
+    "Fast musiker (band/ensemble)"
+  ],
+  "core_narrative": [
+    "Utøving og ensemble gjør musikalsk materiale repeterbart gjennom egenøving, stemmeprøve, felles prøve, arrangementversjon, framføring og evaluering. Badge-identitet, yrkespraksis og faktisk arbeidsavtale holdes eksplisitt adskilt.",
+    "Begge canonical karrieretitler beholder appointment_required med employer_appointment. Et konkret engasjement åpner en jobb i spillet, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+    "Arbeidet følger samme repertoarlogg gjennom forberedelse, waiting/venting, avklaring, prøve, handoff, framføring, effektkontroll, restitusjon og bounded rework."
+  ],
+  "competence_axes": [
+    "instrument_eller_stemmebeherskelse",
+    "repertoar_og_arrangementforstaelse",
+    "intonasjon_rytme_frasering_og_balanse",
+    "ensemblelytting_og_timing",
+    "proveforberedelse_og_versjonsdisiplin",
+    "scene_studio_og_monitorforstaelse",
+    "horing_belastning_og_baerekraft",
+    "kontrakt_rettighet_og_mandatforstaelse"
+  ],
+  "ideal_type_problems": [
+    {
+      "id": "sen_arrangementendring",
+      "problem": "En sen arrangementendring forbedrer helheten, men stemmer, innsatser og rettighetsstatus peker på ulike versjoner."
+    },
+    {
+      "id": "kort_vikarprove",
+      "problem": "En vikar har lært stemmen, men kritiske overganger og improvisasjonsrammer er ikke ensembleprøvd."
+    },
+    {
+      "id": "kunstnerisk_uenighet",
+      "problem": "To sterke musikalske forslag konkurrerer, og status truer med å erstatte en hørbar felles test."
+    },
+    {
+      "id": "monitor_og_horing",
+      "problem": "Monitor eller lydnivå gjør presis framføring vanskelig og skaper press om å spille gjennom uavklart risiko."
+    },
+    {
+      "id": "opptak_og_rettighet",
+      "problem": "En framføring ønskes tatt opp eller streamet før avtale, kreditering og rettigheter er tydelig avklart."
+    }
+  ],
+  "authority_boundaries": {
+    "can": [
+      "tolke og framføre egen stemme innen avtalt arrangement, ensembleversjon og faktisk kunstnerisk mandat",
+      "foreslå frasering, balanse, artikulasjon, groove, improvisasjonsramme eller praktisk tilpasning og be om at forslaget prøves før det låses",
+      "melde feil, usikkerhet, hørselspress, fysisk belastning, instrumentproblem eller uforsvarlig premiss og stanse egen berørte medvirkning mens riktig ansvarlig avklarer",
+      "be om tydelighet i oppdrag, arbeidstid, honorar, opptak, streaming, kreditering, arrangement- og framføringsrettigheter uten å late som rollen selv avgjør spørsmålet",
+      "føre versjon, prøvestatus, beslutningseier, venting, avvik og handoff slik at neste musiker eller produksjonsledd kan overta uten å gjette"
+    ],
+    "cannot": [
+      "behandle Musikk-badge, applaus, berømmelse, medlemskap eller appointment_required karriereinngang som ansettelse, kontrakt eller myndighet over andre",
+      "ansette, si opp, endre lønn, honorar, arbeidstid eller andre kontraktsvilkår uten faktisk arbeidsgiver- eller fullmaktsgrunnlag",
+      "overstyre dirigent, musikalsk leder, stemmeleder, produksjonsansvarlig, teknisk ansvarlig eller HMS-funksjon uten eksplisitt mandat",
+      "endre eller lisensiere rettighetsbelagt verk eller arrangement, eller godkjenne opptak, streaming, kreditering eller distribusjon uten rettighetsgrunnlag og fullmakt",
+      "avgjøre hørsel, fysisk belastning, medisinsk skikkethet eller sikkerhet for andre, eller gjøre smerte og overbelastning til et lojalitetskrav",
+      "bruke History Go som fasit for dagens arrangement, prøvemetode, kontrakt, rettighet, tekniske instruks, risikovurdering, hørselsvern eller beslutningslinje"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "tolke og framføre egen stemme innen avtalt arrangement, ensembleversjon og faktisk kunstnerisk mandat",
+      "foreslå frasering, balanse, artikulasjon, groove, improvisasjonsramme eller praktisk tilpasning og be om at forslaget prøves før det låses",
+      "melde feil, usikkerhet, hørselspress, fysisk belastning, instrumentproblem eller uforsvarlig premiss og stanse egen berørte medvirkning mens riktig ansvarlig avklarer",
+      "be om tydelighet i oppdrag, arbeidstid, honorar, opptak, streaming, kreditering, arrangement- og framføringsrettigheter uten å late som rollen selv avgjør spørsmålet",
+      "føre versjon, prøvestatus, beslutningseier, venting, avvik og handoff slik at neste musiker eller produksjonsledd kan overta uten å gjette"
+    ],
+    "may_not": [
+      "behandle Musikk-badge, applaus, berømmelse, medlemskap eller appointment_required karriereinngang som ansettelse, kontrakt eller myndighet over andre",
+      "ansette, si opp, endre lønn, honorar, arbeidstid eller andre kontraktsvilkår uten faktisk arbeidsgiver- eller fullmaktsgrunnlag",
+      "overstyre dirigent, musikalsk leder, stemmeleder, produksjonsansvarlig, teknisk ansvarlig eller HMS-funksjon uten eksplisitt mandat",
+      "endre eller lisensiere rettighetsbelagt verk eller arrangement, eller godkjenne opptak, streaming, kreditering eller distribusjon uten rettighetsgrunnlag og fullmakt",
+      "avgjøre hørsel, fysisk belastning, medisinsk skikkethet eller sikkerhet for andre, eller gjøre smerte og overbelastning til et lojalitetskrav",
+      "bruke History Go som fasit for dagens arrangement, prøvemetode, kontrakt, rettighet, tekniske instruks, risikovurdering, hørselsvern eller beslutningslinje"
+    ]
+  },
+  "work_life": {
+    "daily_work": [
+      "føre repertoarlogg_arrangement_stemme_prove_og_handoff gjennom arrangement, stemme, prøve, framføring, avvik og handoff",
+      "forberede egen stemme og merke hva som er egenøvd, stemmeprøvd, ensembleprøvd, betinget eller framføringsklart",
+      "lytte, justere og gi faglig motstemme uten å gjøre musikalsk status til personalmyndighet",
+      "bekrefte scene-, monitor-, opptaks- og rettighetspremisser med riktig eier",
+      "overlevere vikar-, repertoar-, belastnings- og versjonsstatus uten å skjule usikkerhet"
+    ],
+    "responsibilities": [
+      "egen_stemme_og_forberedelse",
+      "samspill_og_arrangementversjon",
+      "prove_og_framforingspresisjon",
+      "belastning_horing_og_varslingsansvar",
+      "avtale_rettighet_og_mandatgrenser",
+      "vikar_og_handoff"
+    ],
+    "work_environment": [
+      "Band, orkester, kor, mindre ensembler, scene, studio og turné der kunstnerisk retning, kollegial lytting, tekniske premisser, arbeidsavtale og rettigheter må holdes tydelig adskilt."
+    ],
+    "status_position": [
+      "Utøvende musiker er også en employment-independent life/practice identity, mens karrieresporet og Fast musiker (band/ensemble) krever employer_appointment. Ingen av delene gir automatisk myndighet over ensemblet."
+    ],
+    "workplaces": [
+      "partitur_arrangement_og_versjonsflate",
+      "stemmeprove_og_samspillsrom",
+      "scene_monitor_og_fremforingsflate",
+      "proveskjema_turne_og_handoffflate"
+    ]
+  },
+  "career_path": {
+    "entry_from": [
+      "Canonical Musikk-tier nådd og et konkret employer_appointment dokumentert for karrieresporet; badge eller profesjonell praksis alene materialiserer ikke fast jobb eller lønn."
+    ],
+    "progression_to": [
+      "Mer komplekst repertoar, større leveranseansvar eller eksplisitt delegert stemme-/ensembleansvar uten at progresjon alene skaper kunstnerisk ledelse eller personalmyndighet."
+    ],
+    "possible_promotions": [
+      "Stemmeleder eller ensemblebærende funksjon når kunstnerisk mandat og arbeidsavtale faktisk tildeler ansvaret.",
+      "Fast eller utvidet engasjement når arbeidsgiverprosessen dokumenterer stilling, vilkår og ansvar."
+    ],
+    "possible_exits": [
+      "Frilans-, solist-, studio-, undervisnings- eller annen musikkpraksis etter deres egne kontrakter og career/life-regler.",
+      "Produksjon, koordinering eller teknisk arbeid når den separate rollen og faktisk kompetanse/ansettelse foreligger."
+    ],
+    "career_risks": [
+      "Kunstnerisk prestisje kan forveksles med personal-, kontrakts- eller rettighetsmyndighet.",
+      "Kort prøvetid og publikumspress kan skjule versjonsgjeld, overbelastning og uavklarte tekniske premisser."
+    ]
+  },
+  "persistent_work_product": {
+    "id": "repertoarlogg_arrangement_stemme_prove_og_handoff",
+    "title": "Repertoar-, arrangement-, stemme-, prøve- og handofflogg",
+    "description": "Et vedvarende, versjonert arbeidsobjekt for verk/sett, arrangement og rettighetsstatus, stemme, prøvenivå, kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak, avvik, venting, handoff og bounded rework.",
+    "required_fields": [
+      "verk_sett_og_arrangementversjon",
+      "stemme_toneart_form_og_innsatser",
+      "status_egenovd_stemmeprovd_ensembleprovd_betinget_framforingsklar",
+      "kunstnerisk_mandat_og_beslutningseier",
+      "scene_monitor_og_tekniske_premisser",
+      "fravaer_vikar_og_minimumsversjon",
+      "horing_belastning_og_varslingsstatus",
+      "opptak_streaming_kreditering_og_rettighet",
+      "venting_avvik_og_bounded_rework",
+      "handoff_og_neste_felles_test"
+    ]
+  },
+  "day_one": {
+    "outcomes": [
+      "Bekreft aktiv canonical tittel, konkret employer_appointment og hva engasjementet faktisk gir av oppgaver og mandat.",
+      "Opprett repertoarloggen med gjeldende arrangement, egen stemme, prøvestatus, beslutningseiere, tekniske og rettighetsmessige premisser.",
+      "Skill det spilleren kan tolke og foreslå fra det dirigent/musikalsk leder, arbeidsgiver, produksjon, teknikk, HMS eller rettighetshaver må avgjøre."
+    ]
+  },
+  "challenges": [
+    {
+      "id": "sen_versjon",
+      "title": "Sen arrangementversjon",
+      "description": "En ny versjon kommer etter at flere allerede har øvd og sceneprøven nærmer seg.",
+      "pressure": "kunstnerisk_gevinst_vs_versjons_og_provegjeld",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    },
+    {
+      "id": "vikar_uten_fellesprove",
+      "title": "Vikar uten full fellesprøve",
+      "description": "En musiker må inn, men ikke alle overganger er prøvd med ensemble og teknikk.",
+      "pressure": "framforing_vs_realistisk_minimumsversjon",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "status_vs_felles_test",
+      "title": "Status mot felles test",
+      "setup": "En profilert utøver vil låse et forslag før resten av ensemblet har testet konsekvensene.",
+      "choice_axis": "horbar_felles_test_vs_statusdrevet_lasing",
+      "consequence_axis": "repeterbar_helhet_vs_skjult_samspillsgjeld",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    },
+    {
+      "id": "framforing_vs_grense",
+      "title": "Framføring mot grense",
+      "setup": "Tidspresset belønner å spille gjennom uavklart monitor-, belastnings- eller rettighetspremiss.",
+      "choice_axis": "varsling_og_riktig_eier_vs_lojalitetsdrevet_snarvei",
+      "consequence_axis": "baerekraftig_tillit_vs_skjult_risiko",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "nora_musikalsk_leder_og_dirigent",
+      "name": "Nora",
+      "role": "musikalsk leder og dirigent",
+      "workplace_ids": [
+        "partitur_arrangement_og_versjonsflate"
+      ],
+      "function": "Nora holder form, tempo, dynamikk, innsatser, balanse og ensembleversjon samlet når individuelle forslag trekker i ulike retninger. Hun ber om hørbare begrunnelser, tydeliggjør hva som er en prøvevariant og hva som er avtalt, og returnerer materiale som ikke kan bæres uten at resten av ensemblet gjetter eller tar skjult ekstraarbeid.",
+      "authority_relation": "Nora kan beslutte musikalsk retning innen sitt faktiske dirigent- eller ledermandat og kreve ny ensembleprøve før en versjon låses. Hun kan ikke bruke kunstnerisk mandat til å ansette, si opp, endre lønn eller kontrakt, overstyre HMS/teknisk ansvar, erklære noen medisinsk skikket eller gi rettigheter til opptak, arrangement eller distribusjon hun ikke forvalter.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "amir_stemmeleder_og_ensemblekollega",
+      "name": "Amir",
+      "role": "stemmeleder og ensemblekollega",
+      "workplace_ids": [
+        "stemmeprove_og_samspillsrom"
+      ],
+      "function": "Amir gjør vanskelige innsatser, strøk, artikulasjon, pust, groove og balanse prøvbare i en mindre gruppe før de møter hele ensemblet. Han skiller faglig veiledning fra personalmyndighet og dokumenterer hvilke løsninger som faktisk er testet, hvilke som fortsatt er individuelle forslag, og hva andre stemmer trenger før en endring kan overleveres.",
+      "authority_relation": "Amir kan veilede egen stemme eller seksjon innen delegert musikalsk ansvar, foreslå øvestrategi og melde at en felles versjon ikke er klar. Han kan ikke behandle stemmelederstatus som generell myndighet over kollegers kontrakt, kropp, helse, instrument, improvisasjon eller private opplysninger, og kan ikke overstyre dirigent eller musikalsk leder uten eksplisitt mandat.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "lea_ensemble_og_produksjonskoordinator",
+      "name": "Lea",
+      "role": "ensemble- og produksjonskoordinator",
+      "workplace_ids": [
+        "proveskjema_turne_og_handoffflate"
+      ],
+      "function": "Lea holder prøveskjema, fravær, vikarer, reise, instrumentlogistikk, avtaleavhengigheter og handoff lesbar for både utøvere og produksjon. Hun gjør konsekvensen av en sen repertoar- eller besetningsendring konkret uten å love at kunstneriske, økonomiske, tekniske eller kontraktsmessige problemer kan absorberes av ensemblet.",
+      "authority_relation": "Lea kan koordinere informasjon, innhente avklaringer og oppdatere plan når riktige beslutningseiere har svart. Hun kan ikke ansette eller avbestille musikere, endre honorar, godkjenne overtid, lisensiere materiale, fordele kunstnerisk myndighet eller love produksjonsendringer uten faktisk arbeidsgiver-, økonomi-, rettighets- eller produksjonsmandat.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "jonas_vikar_og_depmusiker",
+      "name": "Jonas",
+      "role": "vikar og depmusiker",
+      "workplace_ids": [
+        "scene_monitor_og_fremforingsflate"
+      ],
+      "function": "Jonas kommer inn med kort prøvetid og trenger en presis minimumsversjon av arrangement, stemme, innsatser, improvisasjonsramme, sceneplassering og tekniske premisser. Han gjør det synlig hvilke deler som er egenøvd, hva som er bekreftet med stemmen, og hvilke overganger som fortsatt krever felles prøve før ensemblet kan stole på dem i framføring.",
+      "authority_relation": "Jonas kan be om forenkling, markere usikkerhet og kreve at kritiske overganger eller tekniske premisser bekreftes før framføring. Han kan ikke skjule kompetanse- eller prøvegap, endre arrangementet alene, bruke tidligere erfaring som rettighets- eller sikkerhetsgodkjenning, eller kreve at kolleger absorberer risiko fordi innhoppet er tidskritisk.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "partitur_arrangement_og_versjonsflate",
+      "name": "Partitur-, arrangement- og versjonsflaten",
+      "function": "Her holdes partitur, arrangement, settliste, toneart, form, kutt, stemmeversjoner og godkjente endringer samlet. Flaten skiller et musikalsk forslag fra en avtalt ensembleversjon, viser hvem som eier neste kunstneriske eller rettighetsmessige avklaring, og lar en sen endring gjenåpne bare de berørte leddene."
+    },
+    {
+      "id": "stemmeprove_og_samspillsrom",
+      "name": "Stemmeprøven og samspillsrommet",
+      "function": "Her prøves intonasjon, rytme, frasering, balanse, artikulasjon, improvisasjonsrammer og lytting mot resten av ensemblet. Statusen skiller egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklart slik at selvtillit eller rang aldri erstatter felles verifikasjon."
+    },
+    {
+      "id": "scene_monitor_og_fremforingsflate",
+      "name": "Scenen, monitoren og framføringsflaten",
+      "function": "Her kobles plassering, akustikk, monitor, innsatser, count-in, dirigenttegn, overgang og publikumssituasjon. Utøveren kan melde hva som ikke fungerer og stoppe egen uforsvarlig medvirkning, men teknisk, sikkerhetsmessig og produksjonsmessig myndighet forblir hos de faktiske ansvarlige funksjonene."
+    },
+    {
+      "id": "proveskjema_turne_og_handoffflate",
+      "name": "Prøveskjema-, turné- og handoffflaten",
+      "function": "Her samles call, reise, fravær, vikar/deputy, instrumentbehov, belastning, opptak, overlevering og neste kontrollpunkt. Flaten gjør det mulig å bygge en robust minimumsversjon uten å skjule manglende prøvetid, uklare kontraktsvilkår, rettigheter eller hensyn til hørsel og fysisk bærekraft."
+    }
+  ],
+  "required_knowledge": {
+    "history_go_badges": [
+      "musikk"
+    ],
+    "job_specific": [
+      "repertoar_og_arrangementlesing",
+      "ensembleprove_og_versjonsstatus",
+      "scene_studio_og_monitorpremisser",
+      "arbeidsavtale_og_rettighetsgrenser",
+      "horing_belastning_og_handoff"
+    ],
+    "boundary": "History Go kan gi historisk og stedlig kontekst om musikere, ensembler, sjangre, improvisasjon, konsertsteder, innspilling og institusjoner. Det kan aldri avgjøre dagens arrangement, dirigentmandat, kontrakt, rettigheter, tekniske instruks, risikovurdering, hørselsvern eller medisinske spørsmål."
+  },
+  "notes": [
+    "Canonical shared work world for Utøvende musiker and Fast musiker (band/ensemble). Both career entries remain appointment_required with employer_appointment; the employment-independent life position for Utøvende musiker is preserved."
+  ]
 }

@@ -1,16 +1,268 @@
 {
-  "schema":"civication_work_grammar_v1","version":1,
-  "category":"musikk","role_scope":"musikk_utoving_og_ensemble","role_id":"musikk_utoving_og_ensemble",
-  "badge_binding":{"badge_titles":["Utøvende musiker","Fast musiker (band/ensemble)"],"thresholds":[60,115]},
-  "work_world":"Profesjonell musikkutøving i band, orkester, ensemble, studio og scene.",
-  "authority_boundary":"Spilleren eier egen utøverpraksis og avtalte kunstneriske valg, men kan ikke gjøre Badge-status, berømmelse eller medlemskap om til arbeidskontrakt eller myndighet over andre.",
-  "work_loops":["repertoar -> øving -> prøve -> framføring -> evaluering -> justering","oppdrag -> forberedelse -> samspill -> produksjon -> levering -> relasjonsarbeid"],
-  "practice_stories":[
-    {"id":"kort_provetid","setup":"En produksjon får langt kortere prøvetid enn planlagt.","decision":"Prioriter kritiske musikalske overganger og avklar forventninger.","learning":"forberedelse og tydelig prioritering beskytter kvalitet"},
-    {"id":"repertoarendring","setup":"Repertoaret endres sent.","decision":"Vurder hva som kan leveres forsvarlig og kommuniser behov for ekstra arbeid.","learning":"profesjonalitet er realistiske løfter"},
-    {"id":"kunstnerisk_uenighet","setup":"To utøvere er uenige om uttrykket.","decision":"Skill smak fra rollemandat og søk en avklaring som tjener helheten.","learning":"samspill krever både faglig stemme og kollektiv disiplin"},
-    {"id":"turnepress","setup":"Reise og tett program påvirker prestasjon.","decision":"Ta opp belastning tidlig og planlegg restitusjon der mulig.","learning":"bærekraftig utøving er en kvalitetsforutsetning"},
-    {"id":"arbeidsstatus","setup":"En høyt rangert Badge-posisjon mangler faktisk arbeidsavtale.","decision":"Behold livsposisjonen, men ikke materialiser fast jobb eller lønn.","learning":"profesjonell identitet og formell ansettelse er separate systemer"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "musikk",
+  "role_scope": "musikk_utoving_og_ensemble",
+  "role_id": "musikk_utoving_og_ensemble",
+  "badge_binding": {
+    "badge_id": "musikk",
+    "badge_titles": [
+      "Utøvende musiker",
+      "Fast musiker (band/ensemble)"
+    ],
+    "tier_thresholds": [
+      60,
+      115
+    ]
+  },
+  "work_world": "Profesjonell musikkutøving der samme repertoarlogg binder arrangement, stemme, prøve, ensemblebeslutning, scene/monitor, fravær, rettigheter, belastning, framføring og handoff uten å blande kunstnerisk initiativ med arbeidsgiver-, personal-, teknisk-, HMS- eller rettighetsmyndighet.",
+  "authority_boundary": {
+    "may": [
+      "tolke og framføre egen stemme innen avtalt arrangement, ensembleversjon og faktisk kunstnerisk mandat",
+      "foreslå frasering, balanse, artikulasjon, groove, improvisasjonsramme eller praktisk tilpasning og be om at forslaget prøves før det låses",
+      "melde feil, usikkerhet, hørselspress, fysisk belastning, instrumentproblem eller uforsvarlig premiss og stanse egen berørte medvirkning mens riktig ansvarlig avklarer",
+      "be om tydelighet i oppdrag, arbeidstid, honorar, opptak, streaming, kreditering, arrangement- og framføringsrettigheter uten å late som rollen selv avgjør spørsmålet",
+      "føre versjon, prøvestatus, beslutningseier, venting, avvik og handoff slik at neste musiker eller produksjonsledd kan overta uten å gjette"
+    ],
+    "may_not": [
+      "behandle Musikk-badge, applaus, berømmelse, medlemskap eller appointment_required karriereinngang som ansettelse, kontrakt eller myndighet over andre",
+      "ansette, si opp, endre lønn, honorar, arbeidstid eller andre kontraktsvilkår uten faktisk arbeidsgiver- eller fullmaktsgrunnlag",
+      "overstyre dirigent, musikalsk leder, stemmeleder, produksjonsansvarlig, teknisk ansvarlig eller HMS-funksjon uten eksplisitt mandat",
+      "endre eller lisensiere rettighetsbelagt verk eller arrangement, eller godkjenne opptak, streaming, kreditering eller distribusjon uten rettighetsgrunnlag og fullmakt",
+      "avgjøre hørsel, fysisk belastning, medisinsk skikkethet eller sikkerhet for andre, eller gjøre smerte og overbelastning til et lojalitetskrav",
+      "bruke History Go som fasit for dagens arrangement, prøvemetode, kontrakt, rettighet, tekniske instruks, risikovurdering, hørselsvern eller beslutningslinje"
+    ]
+  },
+  "work_loops": [
+    {
+      "id": "repertoar_til_framforing",
+      "steps": [
+        "les_verk_sett_og_arrangement",
+        "forbered_egen_stemme",
+        "marker_egenovd_status",
+        "stemmeprove_og_lytt",
+        "vent_pa_kunstnerisk_eller_teknisk_avklaring",
+        "ensembleprove_og_bekreft_versjon",
+        "framfor_og_registrer_avvik",
+        "evaluer_og_handoff"
+      ]
+    },
+    {
+      "id": "sen_arrangementendring",
+      "steps": [
+        "registrer_forslag_og_kilde",
+        "kartlegg_berorte_stemmer_overganger_teknikk_og_rettighet",
+        "finn_beslutningseier",
+        "hold_endringen_betinget",
+        "retest_berorte_ledd",
+        "oppdater_felles_versjon_og_handoff"
+      ]
+    },
+    {
+      "id": "vikar_eller_fravaer",
+      "steps": [
+        "registrer_fravaer_uten_unodvendig_privatinformasjon",
+        "finn_faktisk_vikarbeslutningseier",
+        "bygg_minimumsversjon",
+        "overlever_stemme_form_innsatser_og_scenepremiss",
+        "prove_kritiske_overganger",
+        "marker_resterende_usikkerhet"
+      ]
+    },
+    {
+      "id": "belastning_eller_teknisk_avvik",
+      "steps": [
+        "meld_observert_problem",
+        "stans_egen_berorte_medvirkning_ved_behov",
+        "skill_kunstnerisk_onske_fra_hms_teknikk_og_medisin",
+        "eskaler_til_riktig_eier",
+        "vent_pa_avklaring",
+        "gjenoppta_med_oppdatert_premiss_og_logg"
+      ]
+    }
   ],
-  "quality_axes":["musikalsk_kvalitet","forberedelse","samspill","rolleforståelse","profesjonell_palitelighet","bærekraftig_arbeidspraksis"]
+  "practice_stories": [
+    {
+      "id": "sen_toneartsendring",
+      "setup": "Tonearten endres sent for å passe helheten bedre.",
+      "good": "Kartlegg stemmer, instrumenter, overganger og rettigheter, hold versjonen betinget og retest det som faktisk påvirkes.",
+      "bad": "Send ny toneart og forvent at profesjonelle musikere ordner restene individuelt."
+    },
+    {
+      "id": "uklar_dirigentbeskjed",
+      "setup": "To musikalske instrukser peker i ulik retning.",
+      "good": "Be om én hørbar prioritering og marker hvem som eier beslutningen før ny versjon låses.",
+      "bad": "Følg den mest profilerte stemmen i rommet."
+    },
+    {
+      "id": "vikar_samme_dag",
+      "setup": "En musiker faller ut samme dag.",
+      "good": "Bygg en eksplisitt minimumsversjon og prøv kritiske overganger og scene/monitorpremisser.",
+      "bad": "Gi vikaren full mappe og la ensemblet kompensere under framføring."
+    },
+    {
+      "id": "monitorpress",
+      "setup": "En musiker hører ikke egen stemme forsvarlig.",
+      "good": "Meld observert problem og la teknisk/HMS-ansvarlig eie løsning og godkjenning.",
+      "bad": "Spill sterkere og vurder konsekvensen etter konserten."
+    },
+    {
+      "id": "streaming_foresporsel",
+      "setup": "Produksjonen vil strømme en framføring.",
+      "good": "Avklar kontrakt, rettigheter, kreditering og faktisk fullmakt før opptak eller publisering.",
+      "bad": "Godta fordi synlighet antas å gagne alle."
+    }
+  ],
+  "quality_axes": [
+    "musikalsk_kvalitet",
+    "ensemblelytting",
+    "versjonsklarhet",
+    "forberedelse",
+    "baerekraft",
+    "mandat_og_rettighet",
+    "dokumentasjon",
+    "handoff"
+  ],
+  "task_families": [
+    "repertoar_arrangement_og_versjon",
+    "stemmeprove_samspill_og_balanse",
+    "scene_monitor_framforing_og_avvik",
+    "fravaer_vikar_turne_og_handoff",
+    "opptak_rettighet_og_kreditering",
+    "belastning_horing_og_bounded_rework"
+  ],
+  "pressure_axes": [
+    "individuell_status_vs_ensembletest",
+    "kort_provetid_vs_repeterbarhet",
+    "kunstnerisk_onske_vs_rettighet_og_mandat",
+    "framforing_vs_horing_og_belastning",
+    "vikarpress_vs_sann_kompetanse_og_provestatus"
+  ],
+  "actor_grammar": [
+    {
+      "id": "nora_musikalsk_leder_og_dirigent",
+      "name": "Nora",
+      "role": "musikalsk leder og dirigent",
+      "workplace_ids": [
+        "partitur_arrangement_og_versjonsflate"
+      ]
+    },
+    {
+      "id": "amir_stemmeleder_og_ensemblekollega",
+      "name": "Amir",
+      "role": "stemmeleder og ensemblekollega",
+      "workplace_ids": [
+        "stemmeprove_og_samspillsrom"
+      ]
+    },
+    {
+      "id": "lea_ensemble_og_produksjonskoordinator",
+      "name": "Lea",
+      "role": "ensemble- og produksjonskoordinator",
+      "workplace_ids": [
+        "proveskjema_turne_og_handoffflate"
+      ]
+    },
+    {
+      "id": "jonas_vikar_og_depmusiker",
+      "name": "Jonas",
+      "role": "vikar og depmusiker",
+      "workplace_ids": [
+        "scene_monitor_og_fremforingsflate"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "partitur_arrangement_og_versjonsflate",
+      "name": "Partitur-, arrangement- og versjonsflaten",
+      "function": "Her holdes partitur, arrangement, settliste, toneart, form, kutt, stemmeversjoner og godkjente endringer samlet. Flaten skiller et musikalsk forslag fra en avtalt ensembleversjon, viser hvem som eier neste kunstneriske eller rettighetsmessige avklaring, og lar en sen endring gjenåpne bare de berørte leddene."
+    },
+    {
+      "id": "stemmeprove_og_samspillsrom",
+      "name": "Stemmeprøven og samspillsrommet",
+      "function": "Her prøves intonasjon, rytme, frasering, balanse, artikulasjon, improvisasjonsrammer og lytting mot resten av ensemblet. Statusen skiller egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklart slik at selvtillit eller rang aldri erstatter felles verifikasjon."
+    },
+    {
+      "id": "scene_monitor_og_fremforingsflate",
+      "name": "Scenen, monitoren og framføringsflaten",
+      "function": "Her kobles plassering, akustikk, monitor, innsatser, count-in, dirigenttegn, overgang og publikumssituasjon. Utøveren kan melde hva som ikke fungerer og stoppe egen uforsvarlig medvirkning, men teknisk, sikkerhetsmessig og produksjonsmessig myndighet forblir hos de faktiske ansvarlige funksjonene."
+    },
+    {
+      "id": "proveskjema_turne_og_handoffflate",
+      "name": "Prøveskjema-, turné- og handoffflaten",
+      "function": "Her samles call, reise, fravær, vikar/deputy, instrumentbehov, belastning, opptak, overlevering og neste kontrollpunkt. Flaten gjør det mulig å bygge en robust minimumsversjon uten å skjule manglende prøvetid, uklare kontraktsvilkår, rettigheter eller hensyn til hørsel og fysisk bærekraft."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "repertoarlogg_arrangement_stemme_prove_og_handoff",
+    "title": "Repertoar-, arrangement-, stemme-, prøve- og handofflogg",
+    "description": "Et vedvarende, versjonert arbeidsobjekt for verk/sett, arrangement og rettighetsstatus, stemme, prøvenivå, kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak, avvik, venting, handoff og bounded rework.",
+    "required_fields": [
+      "verk_sett_og_arrangementversjon",
+      "stemme_toneart_form_og_innsatser",
+      "status_egenovd_stemmeprovd_ensembleprovd_betinget_framforingsklar",
+      "kunstnerisk_mandat_og_beslutningseier",
+      "scene_monitor_og_tekniske_premisser",
+      "fravaer_vikar_og_minimumsversjon",
+      "horing_belastning_og_varslingsstatus",
+      "opptak_streaming_kreditering_og_rettighet",
+      "venting_avvik_og_bounded_rework",
+      "handoff_og_neste_felles_test"
+    ]
+  },
+  "rhythm_contract": {
+    "loop": "forbered -> egenov -> stemmeprove -> waiting/venting -> kunstnerisk/teknisk/rettslig avklaring -> ensembleprove -> handoff -> framforing -> effektkontroll -> restitusjon -> bounded rework",
+    "waiting_states": [
+      "dirigent_eller_musikalsk_lederbeslutning",
+      "arbeidsgiver_kontrakt_eller_vikaravklaring",
+      "teknisk_hms_eller_monitoravklaring",
+      "opptak_streaming_eller_rettighetsavklaring"
+    ],
+    "rework_rule": "Ny arrangementversjon, besetning, toneart, instrumentering, scene/monitorpremiss, belastning eller rettighetsstatus gjenåpner bare berørte stemme-, samspill-, teknikk-, avtale- og handoffledd. Tidligere observasjon, prøveversjon og eier beholdes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_musikk_bugge_wesseltoft_blaa_ensembleblikk",
+      "badge_id": "musikk",
+      "use": "Verifisert History Go-kontekst om Bugge Wesseltoft og Blå brukes til spørsmål om improvisasjon, lytting, scene og ensemblepraksis. Historien er aldri fasit for dagens arrangement, dirigentmandat, arbeidsavtale, opptak, rettigheter, tekniske instruks eller hørsel/HMS."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "appointment_required",
+    "qualification_ids": [
+      "employer_appointment"
+    ],
+    "first_object": "repertoarlogg_arrangement_stemme_prove_og_handoff",
+    "first_task": "Bekreft konkret engasjement, gjeldende repertoar og arrangement, egen stemme, prøvestatus, kunstnerisk beslutningseier, scene/monitorpremiss, belastnings- og rettighetsavklaringer samt neste felles test."
+  },
+  "handoff_rules": [
+    "Overlever gjeldende arrangement, egen stemme, prøvestatus, innsatser, improvisasjonsramme, scene/monitorpremiss, avvik og neste felles test.",
+    "Ikke slett eldre versjon ved bounded rework; marker hva som endret seg, hvem som avgjorde det og hvilke ledd som må prøves på nytt.",
+    "Et appointment_required engasjement kan ikke håndoffes som om det gir kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt."
+  ],
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "musikk_utoving_og_ensemble",
+    "no_generic_fallback": true,
+    "required_axes": [
+      "appointment_required",
+      "authority_boundary",
+      "persistent_work_object",
+      "waiting",
+      "handoff",
+      "bounded_rework",
+      "History Go"
+    ]
+  }
 }

@@ -63,7 +63,11 @@ assert.ok(barnehageSupport, 'Barnehageassistent remains discoverable as legacy s
 assert.equal(barnehageSupport.career_status, 'not_applicable');
 assert.equal(barnehageSupport.content_only_life_story, true);
 assert.equal(matrix.summary.statuses.reference_complete, 5);
-assert.ok(matrix.summary.statuses.partial > 0 || matrix.summary.statuses.architecture_only > 0,
-  'systematic rollout must still have real remaining work; closure must not fake global completion');
+assert.equal(matrix.summary.statuses.playable, 80,
+  'all non-reference canonical career foundations are now playable');
+assert.equal(matrix.summary.statuses.partial || 0, 0,
+  'no partial career foundation may remain after final prerequisite closure');
+assert.equal(matrix.summary.statuses.architecture_only || 0, 0,
+  'no architecture-only career foundation may remain after final prerequisite closure');
 
 console.log('civication-pilot-wave-closure.test.js: PASS');
