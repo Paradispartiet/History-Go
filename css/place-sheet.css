@@ -573,3 +573,100 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonica
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-stories .pc-story-source:hover{text-decoration:underline;}
+
+
+/* ============================================================
+   PLACE SHEET — PHASE 2 CANONICAL BEFORE/AFTER
+   ============================================================ */
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-before-after:not([hidden]){
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,.10);
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-before-after{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-before-after > h3{
+  margin: 0 0 16px;
+  color: #f6c800;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-before-after .hg-place-before-after-media{
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-before-after figure{
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 20px;
+  background: rgba(255,255,255,.045);
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-before-after figure img{
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-before-after figcaption{
+  display: grid;
+  gap: 4px;
+  padding: 11px 12px 12px;
+  color: rgba(255,255,255,.68);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-before-after figcaption strong{
+  color: #fff;
+  font-size: 12px;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-before-after figcaption a{
+  color: #f6c800;
+  text-decoration: none;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-before-after .hg-place-tab-section{
+  margin: 10px 0 0;
+  padding: 14px 15px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 18px;
+  background: rgba(255,255,255,.035);
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-before-after .hg-place-tab-section h3{
+  margin: 0 0 7px;
+  color: #ffe16a;
+  font-size: 12px;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-before-after .hg-place-tab-section p,
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-before-after .hg-place-tab-section ul{
+  margin: 0;
+  color: rgba(255,255,255,.86);
+  font-size: 14px;
+  line-height: 1.58;
+}
+
+@media (max-width: 720px){
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-canonical-before-after .hg-place-before-after-media{
+    grid-template-columns: 1fr;
+  }
+}
