@@ -6,6 +6,7 @@ import "./sections/news";
 import "./sections/reading";
 import "./sections/language";
 import "./sections/learning";
+import { cancelAutomaticPlaceSheetRender, startAutomaticPlaceSheetRender } from "./place-sheet-render-queue";
 
 type PlaceSheetPlace = Record<string, any> & {
   id?: string;
@@ -171,10 +172,16 @@ export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | nul
     const beforeAfter = mountCanonicalBeforeAfter(beforeAfterSlot, place);
     beforeAfter?.classList.add("pc-sheet-canonical-before-after");
   }
+
+  // Phase 3 starts the full section generation automatically in the same open
+  // flow. The queue only yields to the browser; it never waits for viewport,
+  // scroll, tab activation or a user-triggered "load more" action.
+  startAutomaticPlaceSheetRender(text(place.id));
   return shell;
 }
 
 export function restoreLegacyPlaceCardStructure(): void {
+  cancelAutomaticPlaceSheetRender();
   const root = card();
   const rootBody = body();
   if (!(root instanceof HTMLElement) || !(rootBody instanceof HTMLElement)) return;
