@@ -469,8 +469,19 @@
     }
   }
 
-  function decorate(place) {
-    const popup = document.querySelector(".hg-popup.place-popup-v2");
+  function resolvePopupRoot(root = null) {
+    if (root instanceof HTMLElement) {
+      if (root.matches(".hg-popup.place-popup-v2")) return root;
+      const nested = root.querySelector(".hg-popup.place-popup-v2");
+      if (nested instanceof HTMLElement) return nested;
+      const owner = root.closest?.(".hg-popup.place-popup-v2");
+      if (owner instanceof HTMLElement) return owner;
+    }
+    return document.querySelector(".hg-popup.place-popup-v2");
+  }
+
+  function decorate(place, root = null) {
+    const popup = resolvePopupRoot(root);
     const article = popup?.querySelector(".hg-place-popup-v2");
     const body = article?.querySelector(":scope > .hg-place-popup-body");
     if (!popup || !article || !body || article.hasAttribute(DECORATED_ATTR)) return;
