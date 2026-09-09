@@ -358,10 +358,10 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
       const popup = await waitForPopup(myGeneration, place);
       if (!(popup instanceof HTMLElement)) return null;
 
-      try { global.HGPlacePopupTabs?.decoratePopup?.(place); } catch {}
-      try { global.HGPlacePopupDirectTabs?.decoratePopup?.(place); } catch {}
+      try { global.HGPlacePopupTabs?.decoratePopup?.(place, popup); } catch {}
+      try { global.HGPlacePopupDirectTabs?.decoratePopup?.(place, popup); } catch {}
       try {
-        const languageResult = global.HGLanguageLayer?.decoratePopup?.(place);
+        const languageResult = global.HGLanguageLayer?.decoratePopup?.(place, popup);
         if (languageResult && typeof languageResult.then === "function") await languageResult;
       } catch {}
 
