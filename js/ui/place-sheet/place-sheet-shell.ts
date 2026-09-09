@@ -1,6 +1,7 @@
 import { mountCanonicalAbout } from "./sections/about";
 import { mountCanonicalHistory } from "./sections/history";
 import { mountCanonicalStories } from "./sections/stories";
+import { mountCanonicalBeforeAfter } from "./sections/before-after";
 
 type PlaceSheetPlace = Record<string, any> & {
   id?: string;
@@ -54,6 +55,7 @@ function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
       <section class="pc-sheet-onsite" data-hg-place-sheet-onsite></section>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
+      <section class="pc-sheet-before-after" data-hg-place-sheet-before-after hidden></section>
     `;
     rootBody.prepend(shell);
   }
@@ -126,6 +128,18 @@ function ensureStoriesSlot(shell: HTMLElement): HTMLElement | null {
   return storiesSlot;
 }
 
+function ensureBeforeAfterSlot(shell: HTMLElement): HTMLElement | null {
+  let slot = shell.querySelector<HTMLElement>("[data-hg-place-sheet-before-after]");
+  if (!(slot instanceof HTMLElement)) {
+    slot = document.createElement("section");
+    slot.className = "pc-sheet-before-after";
+    slot.setAttribute("data-hg-place-sheet-before-after", "1");
+    shell.appendChild(slot);
+  }
+  slot.setAttribute(SHELL_SECTION_ATTR, "before-after");
+  return slot;
+}
+
 export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | null {
   if (!place || isMicro(place)) return null;
   const shell = ensureShell(place);
@@ -146,6 +160,11 @@ export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | nul
   if (storiesSlot) {
     const stories = mountCanonicalStories(storiesSlot, place);
     stories?.classList.add("pc-sheet-canonical-stories");
+  }
+  const beforeAfterSlot = ensureBeforeAfterSlot(shell);
+  if (beforeAfterSlot) {
+    const beforeAfter = mountCanonicalBeforeAfter(beforeAfterSlot, place);
+    beforeAfter?.classList.add("pc-sheet-canonical-before-after");
   }
   return shell;
 }

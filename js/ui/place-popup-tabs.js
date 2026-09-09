@@ -209,6 +209,13 @@
   }
 
   function renderBeforeAfter(place) {
+    const shared = global.HGPlaceSheetSections?.beforeAfter?.renderContentHtml;
+    if (typeof shared === "function") {
+      try {
+        const html = String(shared(place) || "");
+        if (html) return html;
+      } catch {}
+    }
     const data = place?.for_na && typeof place.for_na === "object" ? place.for_na : null;
     if (!data) return `<div class="hg-place-tab-empty">Ingen før/etter-innhold for dette stedet ennå.</div>`;
     const images = [
