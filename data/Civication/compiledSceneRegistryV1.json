@@ -268,6 +268,15 @@
     "data/Civication/mailFamilies/musikk/followup/musikk_scene_og_produksjon_followup.json",
     "data/Civication/mailFamilies/musikk/knowledge/musikk_scene_og_produksjon_knowledge.json",
     "data/Civication/mailFamilies/musikk/consequence/musikk_scene_og_produksjon_consequence.json",
+    "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+    "data/Civication/mailFamilies/musikk/people/musikk_utoving_og_ensemble_people.json",
+    "data/Civication/mailFamilies/musikk/story/musikk_utoving_og_ensemble_story.json",
+    "data/Civication/mailFamilies/musikk/conflict/musikk_utoving_og_ensemble_conflict.json",
+    "data/Civication/mailFamilies/musikk/event/musikk_utoving_og_ensemble_event.json",
+    "data/Civication/mailFamilies/musikk/micro/musikk_utoving_og_ensemble_micro.json",
+    "data/Civication/mailFamilies/musikk/followup/musikk_utoving_og_ensemble_followup.json",
+    "data/Civication/mailFamilies/musikk/knowledge/musikk_utoving_og_ensemble_knowledge.json",
+    "data/Civication/mailFamilies/musikk/consequence/musikk_utoving_og_ensemble_consequence.json",
     "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json",
     "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json",
     "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json",
@@ -81156,6 +81165,2093 @@
       },
       "source_hash": "bcdf1f3ac4b35f75bf3b4890f1e8f7f4d2c9149817a9555a6c0284c7d2c9fe7d",
       "source_path": "data/Civication/mailFamilies/musikk/story/musikk_scene_og_produksjon_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Skill forslag, mandat og verifikasjon; prøv berørte ledd og la riktig beslutningseier låse versjonen. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser status vs felles verifikasjon musikk_utover_status_009",
+            "reply": "Skill forslag, mandat og verifikasjon; prøv berørte ledd og la riktig beslutningseier låse versjonen. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Godta forslaget fordi profilens navn styrker produksjonen og detaljene kan justeres senere. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom status vs felles verifikasjon musikk_utover_status_009",
+            "reply": "Godta forslaget fordi profilens navn styrker produksjonen og detaljene kan justeres senere. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "status_vs_felles_verifikasjon",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "afternoon",
+        "from": "Amir",
+        "id": "musikk_utover_status_009",
+        "mail_family": "musikk_utoving_og_ensemble_status_og_mandat",
+        "mail_type": "conflict",
+        "narrative_arc": "musikk_utover_status_009",
+        "people_ref": "amir_stemmeleder_og_ensemblekollega",
+        "person_id": "amir_stemmeleder_og_ensemblekollega",
+        "phase": "workday",
+        "place_id": "stemmeprove_og_samspillsrom",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 172,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/conflict/musikk_utoving_og_ensemble_conflict.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Et kunstnerisk forslag har høy prestisje, men påvirker andres stemmer, belastning og rettighetsgrunnlag uten felles test.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "Profilstatus presser ensemblet til å låse en uprøvd versjon",
+        "summary": "Et kunstnerisk forslag har høy prestisje, men påvirker andres stemmer, belastning og rettighetsgrunnlag uten felles test. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_status_009",
+      "mail_type": "conflict",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Skill forslag, mandat og verifikasjon; prøv berørte ledd og la riktig beslutningseier låse versjonen. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser status vs felles verifikasjon musikk_utover_status_009",
+            "reply": "Skill forslag, mandat og verifikasjon; prøv berørte ledd og la riktig beslutningseier låse versjonen. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Godta forslaget fordi profilens navn styrker produksjonen og detaljene kan justeres senere. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom status vs felles verifikasjon musikk_utover_status_009",
+            "reply": "Godta forslaget fordi profilens navn styrker produksjonen og detaljene kan justeres senere. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Et kunstnerisk forslag har høy prestisje, men påvirker andres stemmer, belastning og rettighetsgrunnlag uten felles test.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "Profilstatus presser ensemblet til å låse en uprøvd versjon",
+          "summary": "Et kunstnerisk forslag har høy prestisje, men påvirker andres stemmer, belastning og rettighetsgrunnlag uten felles test. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_status_009",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "stemmeprove_og_samspillsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_status_009",
+          "source_path": "data/Civication/mailFamilies/musikk/conflict/musikk_utoving_og_ensemble_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_status_009",
+        "version": 1
+      },
+      "source_hash": "7435ea98efb58db155166da9ff48c7cb91e96e4c2ca76e84be21c82081b40885",
+      "source_path": "data/Civication/mailFamilies/musikk/conflict/musikk_utoving_og_ensemble_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Frys publisering, bevar fil og beslutningsspor og gjenåpne bare kontrakt-, krediterings-, arrangement- og distribusjonsleddene. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser sen konsekvens og rettighet musikk_utover_opptak_015",
+            "reply": "Frys publisering, bevar fil og beslutningsspor og gjenåpne bare kontrakt-, krediterings-, arrangement- og distribusjonsleddene. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Publiser et kort utdrag for å holde momentum og formaliser rettighetene før full utgivelse. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom sen konsekvens og rettighet musikk_utover_opptak_015",
+            "reply": "Publiser et kort utdrag for å holde momentum og formaliser rettighetene før full utgivelse. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sen_konsekvens_og_rettighet",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "afternoon",
+        "from": "Lea",
+        "id": "musikk_utover_opptak_015",
+        "mail_family": "musikk_utoving_og_ensemble_sen_versjon_og_gjeld",
+        "mail_type": "consequence",
+        "narrative_arc": "musikk_utover_opptak_015",
+        "people_ref": "lea_ensemble_og_produksjonskoordinator",
+        "person_id": "lea_ensemble_og_produksjonskoordinator",
+        "phase": "late_workday",
+        "place_id": "proveskjema_turne_og_handoffflate",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 166,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/consequence/musikk_utoving_og_ensemble_consequence.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Opptaket er kunstnerisk sterkt, men avtale, arrangementklarering, medvirkersamtykke og distribusjonsfullmakt beskriver ikke samme bruk.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "Et vellykket konsertopptak avdekker uavklart kreditering og rettighet",
+        "summary": "Opptaket er kunstnerisk sterkt, men avtale, arrangementklarering, medvirkersamtykke og distribusjonsfullmakt beskriver ikke samme bruk. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_opptak_015",
+      "mail_type": "consequence",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Frys publisering, bevar fil og beslutningsspor og gjenåpne bare kontrakt-, krediterings-, arrangement- og distribusjonsleddene. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser sen konsekvens og rettighet musikk_utover_opptak_015",
+            "reply": "Frys publisering, bevar fil og beslutningsspor og gjenåpne bare kontrakt-, krediterings-, arrangement- og distribusjonsleddene. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Publiser et kort utdrag for å holde momentum og formaliser rettighetene før full utgivelse. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom sen konsekvens og rettighet musikk_utover_opptak_015",
+            "reply": "Publiser et kort utdrag for å holde momentum og formaliser rettighetene før full utgivelse. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Opptaket er kunstnerisk sterkt, men avtale, arrangementklarering, medvirkersamtykke og distribusjonsfullmakt beskriver ikke samme bruk.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "Et vellykket konsertopptak avdekker uavklart kreditering og rettighet",
+          "summary": "Opptaket er kunstnerisk sterkt, men avtale, arrangementklarering, medvirkersamtykke og distribusjonsfullmakt beskriver ikke samme bruk. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_opptak_015",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proveskjema_turne_og_handoffflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_opptak_015",
+          "source_path": "data/Civication/mailFamilies/musikk/consequence/musikk_utoving_og_ensemble_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_opptak_015",
+        "version": 1
+      },
+      "source_hash": "291eb076c7698f2ba983e1529427aabf46422747e2a868a804d559d389e9b1d3",
+      "source_path": "data/Civication/mailFamilies/musikk/consequence/musikk_utoving_og_ensemble_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Finn faktisk vikarbeslutningseier, bygg minimumsversjon og avklar arrangement/rettighet før kritiske overganger prøves. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser fravaer vikar og replan musikk_utover_fravaer_011",
+            "reply": "Finn faktisk vikarbeslutningseier, bygg minimumsversjon og avklar arrangement/rettighet før kritiske overganger prøves. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fordel stemmen på resten av ensemblet og avklar rettighet og arbeidsbelastning etter konserten. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom fravaer vikar og replan musikk_utover_fravaer_011",
+            "reply": "Fordel stemmen på resten av ensemblet og avklar rettighet og arbeidsbelastning etter konserten. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "fravaer_vikar_og_replan",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "afternoon",
+        "from": "Lea",
+        "id": "musikk_utover_fravaer_011",
+        "mail_family": "musikk_utoving_og_ensemble_fravaer_og_vikar",
+        "mail_type": "event",
+        "narrative_arc": "musikk_utover_fravaer_011",
+        "people_ref": "lea_ensemble_og_produksjonskoordinator",
+        "person_id": "lea_ensemble_og_produksjonskoordinator",
+        "phase": "late_workday",
+        "place_id": "proveskjema_turne_og_handoffflate",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 170,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/event/musikk_utoving_og_ensemble_event.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Fraværet påvirker instrumentering, stemmefordeling, sceneplass og én lisensiert arrangementdetalj.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "En musiker faller ut samme dag som konsert",
+        "summary": "Fraværet påvirker instrumentering, stemmefordeling, sceneplass og én lisensiert arrangementdetalj. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_fravaer_011",
+      "mail_type": "event",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Finn faktisk vikarbeslutningseier, bygg minimumsversjon og avklar arrangement/rettighet før kritiske overganger prøves. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser fravaer vikar og replan musikk_utover_fravaer_011",
+            "reply": "Finn faktisk vikarbeslutningseier, bygg minimumsversjon og avklar arrangement/rettighet før kritiske overganger prøves. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fordel stemmen på resten av ensemblet og avklar rettighet og arbeidsbelastning etter konserten. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom fravaer vikar og replan musikk_utover_fravaer_011",
+            "reply": "Fordel stemmen på resten av ensemblet og avklar rettighet og arbeidsbelastning etter konserten. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Fraværet påvirker instrumentering, stemmefordeling, sceneplass og én lisensiert arrangementdetalj.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "En musiker faller ut samme dag som konsert",
+          "summary": "Fraværet påvirker instrumentering, stemmefordeling, sceneplass og én lisensiert arrangementdetalj. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_fravaer_011",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proveskjema_turne_og_handoffflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_fravaer_011",
+          "source_path": "data/Civication/mailFamilies/musikk/event/musikk_utoving_og_ensemble_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_fravaer_011",
+        "version": 1
+      },
+      "source_hash": "ff1a8ce3fed0e9df7d6ab2513dd34e1b9771b101f7d97ff6a127d0a8aa6a3348",
+      "source_path": "data/Civication/mailFamilies/musikk/event/musikk_utoving_og_ensemble_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Registrer effekt, varsle riktig HMS/helsegrense og gjenåpne bare dynamikk-, plassering-, monitor- og fordelingsleddene. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser belastning horing og bounded rework musikk_utover_belastning_013",
+            "reply": "Registrer effekt, varsle riktig HMS/helsegrense og gjenåpne bare dynamikk-, plassering-, monitor- og fordelingsleddene. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Behold uttrykket og forvent at hver musiker justerer egen innsats og restitusjon privat. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom belastning horing og bounded rework musikk_utover_belastning_013",
+            "reply": "Behold uttrykket og forvent at hver musiker justerer egen innsats og restitusjon privat. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "belastning_horing_og_bounded_rework",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "afternoon",
+        "from": "Amir",
+        "id": "musikk_utover_belastning_013",
+        "mail_family": "musikk_utoving_og_ensemble_belastning_og_rework",
+        "mail_type": "followup",
+        "narrative_arc": "musikk_utover_belastning_013",
+        "people_ref": "amir_stemmeleder_og_ensemblekollega",
+        "person_id": "amir_stemmeleder_og_ensemblekollega",
+        "phase": "late_workday",
+        "place_id": "stemmeprove_og_samspillsrom",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 168,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/followup/musikk_utoving_og_ensemble_followup.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "To konserter viser at løsningen fungerer musikalsk, men faktisk effekt på hørsel, embouchure og restitusjon er dårligere enn prøven antydet.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "Et fungerende uttrykk gir økende hørselspress og fysisk belastning",
+        "summary": "To konserter viser at løsningen fungerer musikalsk, men faktisk effekt på hørsel, embouchure og restitusjon er dårligere enn prøven antydet. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_belastning_013",
+      "mail_type": "followup",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Registrer effekt, varsle riktig HMS/helsegrense og gjenåpne bare dynamikk-, plassering-, monitor- og fordelingsleddene. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser belastning horing og bounded rework musikk_utover_belastning_013",
+            "reply": "Registrer effekt, varsle riktig HMS/helsegrense og gjenåpne bare dynamikk-, plassering-, monitor- og fordelingsleddene. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Behold uttrykket og forvent at hver musiker justerer egen innsats og restitusjon privat. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom belastning horing og bounded rework musikk_utover_belastning_013",
+            "reply": "Behold uttrykket og forvent at hver musiker justerer egen innsats og restitusjon privat. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "To konserter viser at løsningen fungerer musikalsk, men faktisk effekt på hørsel, embouchure og restitusjon er dårligere enn prøven antydet.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "Et fungerende uttrykk gir økende hørselspress og fysisk belastning",
+          "summary": "To konserter viser at løsningen fungerer musikalsk, men faktisk effekt på hørsel, embouchure og restitusjon er dårligere enn prøven antydet. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_belastning_013",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "stemmeprove_og_samspillsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_belastning_013",
+          "source_path": "data/Civication/mailFamilies/musikk/followup/musikk_utoving_og_ensemble_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_belastning_013",
+        "version": 1
+      },
+      "source_hash": "3f0033c23213f95cfc79d3132cf59d947710ab487a11073a955a327a0a26d96c",
+      "source_path": "data/Civication/mailFamilies/musikk/followup/musikk_utoving_og_ensemble_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Hold forslaget betinget, merk berørte ledd og få én kunstnerisk beslutning før ny fellesprøve. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser arrangement og versjon musikk_utover_arrangement_001",
+            "reply": "Hold forslaget betinget, merk berørte ledd og få én kunstnerisk beslutning før ny fellesprøve. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Send den nye formen til alle og la hver musiker tilpasse sin stemme før sceneprøven. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom arrangement og versjon musikk_utover_arrangement_001",
+            "reply": "Send den nye formen til alle og la hver musiker tilpasse sin stemme før sceneprøven. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "arrangement_og_versjon",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "morning",
+        "from": "Nora",
+        "id": "musikk_utover_arrangement_001",
+        "mail_family": "musikk_utoving_og_ensemble_repertoar_og_framforing",
+        "mail_type": "job",
+        "narrative_arc": "musikk_utover_arrangement_001",
+        "people_ref": "nora_musikalsk_leder_og_dirigent",
+        "person_id": "nora_musikalsk_leder_og_dirigent",
+        "phase": "forenoon",
+        "place_id": "partitur_arrangement_og_versjonsflate",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 180,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "En ny form løser helheten, men kutt, overganger og stemmefiler peker fortsatt på to versjoner.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "Ny arrangementversjon når tre stemmer allerede har øvd",
+        "summary": "En ny form løser helheten, men kutt, overganger og stemmefiler peker fortsatt på to versjoner. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_arrangement_001",
+      "mail_type": "job",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Hold forslaget betinget, merk berørte ledd og få én kunstnerisk beslutning før ny fellesprøve. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser arrangement og versjon musikk_utover_arrangement_001",
+            "reply": "Hold forslaget betinget, merk berørte ledd og få én kunstnerisk beslutning før ny fellesprøve. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Send den nye formen til alle og la hver musiker tilpasse sin stemme før sceneprøven. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom arrangement og versjon musikk_utover_arrangement_001",
+            "reply": "Send den nye formen til alle og la hver musiker tilpasse sin stemme før sceneprøven. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En ny form løser helheten, men kutt, overganger og stemmefiler peker fortsatt på to versjoner.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "Ny arrangementversjon når tre stemmer allerede har øvd",
+          "summary": "En ny form løser helheten, men kutt, overganger og stemmefiler peker fortsatt på to versjoner. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_arrangement_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "partitur_arrangement_og_versjonsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_arrangement_001",
+          "source_path": "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_arrangement_001",
+        "version": 1
+      },
+      "source_hash": "5856a728fa1dc96972753cea1f3ac27104a33cbcd948bac5ce4f73545c53658f",
+      "source_path": "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Meld konkret hva som mangler, stans egen berørte medvirkning ved behov og la teknisk/HMS-ansvarlig eie løsningen. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser scene monitor og varsel musikk_utover_monitor_003",
+            "reply": "Meld konkret hva som mangler, stans egen berørte medvirkning ved behov og la teknisk/HMS-ansvarlig eie løsningen. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Spill sterkere gjennom første nummer og be om monitorjustering etter at publikum har kommet inn. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom scene monitor og varsel musikk_utover_monitor_003",
+            "reply": "Spill sterkere gjennom første nummer og be om monitorjustering etter at publikum har kommet inn. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "scene_monitor_og_varsel",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "morning",
+        "from": "Lea",
+        "id": "musikk_utover_monitor_003",
+        "mail_family": "musikk_utoving_og_ensemble_repertoar_og_framforing",
+        "mail_type": "job",
+        "narrative_arc": "musikk_utover_monitor_003",
+        "people_ref": "lea_ensemble_og_produksjonskoordinator",
+        "person_id": "lea_ensemble_og_produksjonskoordinator",
+        "phase": "forenoon",
+        "place_id": "scene_monitor_og_fremforingsflate",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 178,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Spilleren hører ikke en kritisk referanse og sterkere egenlyd kan øke belastning og forstyrre helheten.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "Monitoren gjør innsats og balanse usikker før framføring",
+        "summary": "Spilleren hører ikke en kritisk referanse og sterkere egenlyd kan øke belastning og forstyrre helheten. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_monitor_003",
+      "mail_type": "job",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Meld konkret hva som mangler, stans egen berørte medvirkning ved behov og la teknisk/HMS-ansvarlig eie løsningen. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser scene monitor og varsel musikk_utover_monitor_003",
+            "reply": "Meld konkret hva som mangler, stans egen berørte medvirkning ved behov og la teknisk/HMS-ansvarlig eie løsningen. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Spill sterkere gjennom første nummer og be om monitorjustering etter at publikum har kommet inn. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom scene monitor og varsel musikk_utover_monitor_003",
+            "reply": "Spill sterkere gjennom første nummer og be om monitorjustering etter at publikum har kommet inn. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Spilleren hører ikke en kritisk referanse og sterkere egenlyd kan øke belastning og forstyrre helheten.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "Monitoren gjør innsats og balanse usikker før framføring",
+          "summary": "Spilleren hører ikke en kritisk referanse og sterkere egenlyd kan øke belastning og forstyrre helheten. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_monitor_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "scene_monitor_og_fremforingsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_monitor_003",
+          "source_path": "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_monitor_003",
+        "version": 1
+      },
+      "source_hash": "b79515f21f635de940503b462ec1f9644f06c2ba7d070bacee1c3bd579b0d57c",
+      "source_path": "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Marker forskjellen mellom egenøvd og ensembleprøvd og test én hørbar hypotese med berørte stemmer. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser stemmeprove og lytting musikk_utover_stemmeprove_002",
+            "reply": "Marker forskjellen mellom egenøvd og ensembleprøvd og test én hørbar hypotese med berørte stemmer. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Lås egen løsning fordi den er teknisk riktig og be resten av ensemblet justere balansen. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom stemmeprove og lytting musikk_utover_stemmeprove_002",
+            "reply": "Lås egen løsning fordi den er teknisk riktig og be resten av ensemblet justere balansen. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "stemmeprove_og_lytting",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "morning",
+        "from": "Amir",
+        "id": "musikk_utover_stemmeprove_002",
+        "mail_family": "musikk_utoving_og_ensemble_repertoar_og_framforing",
+        "mail_type": "job",
+        "narrative_arc": "musikk_utover_stemmeprove_002",
+        "people_ref": "amir_stemmeleder_og_ensemblekollega",
+        "person_id": "amir_stemmeleder_og_ensemblekollega",
+        "phase": "forenoon",
+        "place_id": "stemmeprove_og_samspillsrom",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 179,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Egenøving og stemmeprøve gir ulike svar fordi balanse, register og artikulasjon endrer hva som fungerer i helheten.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "Intonasjonen sitter alene, men ikke mot resten av ensemblet",
+        "summary": "Egenøving og stemmeprøve gir ulike svar fordi balanse, register og artikulasjon endrer hva som fungerer i helheten. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_stemmeprove_002",
+      "mail_type": "job",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Marker forskjellen mellom egenøvd og ensembleprøvd og test én hørbar hypotese med berørte stemmer. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser stemmeprove og lytting musikk_utover_stemmeprove_002",
+            "reply": "Marker forskjellen mellom egenøvd og ensembleprøvd og test én hørbar hypotese med berørte stemmer. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Lås egen løsning fordi den er teknisk riktig og be resten av ensemblet justere balansen. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom stemmeprove og lytting musikk_utover_stemmeprove_002",
+            "reply": "Lås egen løsning fordi den er teknisk riktig og be resten av ensemblet justere balansen. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Egenøving og stemmeprøve gir ulike svar fordi balanse, register og artikulasjon endrer hva som fungerer i helheten.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "Intonasjonen sitter alene, men ikke mot resten av ensemblet",
+          "summary": "Egenøving og stemmeprøve gir ulike svar fordi balanse, register og artikulasjon endrer hva som fungerer i helheten. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_stemmeprove_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "stemmeprove_og_samspillsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_stemmeprove_002",
+          "source_path": "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_stemmeprove_002",
+        "version": 1
+      },
+      "source_hash": "abb6e36c2b10544f5fd5b77f54b2da9f61e160fe16801e0888f330ef7cb6b13e",
+      "source_path": "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Bygg en eksplisitt minimumsversjon, prioriter de kritiske overgangene og marker resten som betinget. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser vikar og minimumsversjon musikk_utover_vikar_004",
+            "reply": "Bygg en eksplisitt minimumsversjon, prioriter de kritiske overgangene og marker resten som betinget. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Gi vikaren full versjon og la erfarne kolleger signalisere overganger under konserten. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom vikar og minimumsversjon musikk_utover_vikar_004",
+            "reply": "Gi vikaren full versjon og la erfarne kolleger signalisere overganger under konserten. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "vikar_og_minimumsversjon",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "morning",
+        "from": "Jonas",
+        "id": "musikk_utover_vikar_004",
+        "mail_family": "musikk_utoving_og_ensemble_repertoar_og_framforing",
+        "mail_type": "job",
+        "narrative_arc": "musikk_utover_vikar_004",
+        "people_ref": "jonas_vikar_og_depmusiker",
+        "person_id": "jonas_vikar_og_depmusiker",
+        "phase": "forenoon",
+        "place_id": "proveskjema_turne_og_handoffflate",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 177,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Innhoppet er tidskritisk; noter og lydfiler er lest, men count-in, improvisasjonsramme og scenisk overgang er ikke prøvd sammen.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "Vikaren har stemmen, men mangler to kritiske fellesoverganger",
+        "summary": "Innhoppet er tidskritisk; noter og lydfiler er lest, men count-in, improvisasjonsramme og scenisk overgang er ikke prøvd sammen. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_vikar_004",
+      "mail_type": "job",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bygg en eksplisitt minimumsversjon, prioriter de kritiske overgangene og marker resten som betinget. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser vikar og minimumsversjon musikk_utover_vikar_004",
+            "reply": "Bygg en eksplisitt minimumsversjon, prioriter de kritiske overgangene og marker resten som betinget. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Gi vikaren full versjon og la erfarne kolleger signalisere overganger under konserten. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom vikar og minimumsversjon musikk_utover_vikar_004",
+            "reply": "Gi vikaren full versjon og la erfarne kolleger signalisere overganger under konserten. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Innhoppet er tidskritisk; noter og lydfiler er lest, men count-in, improvisasjonsramme og scenisk overgang er ikke prøvd sammen.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "Vikaren har stemmen, men mangler to kritiske fellesoverganger",
+          "summary": "Innhoppet er tidskritisk; noter og lydfiler er lest, men count-in, improvisasjonsramme og scenisk overgang er ikke prøvd sammen. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_vikar_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proveskjema_turne_og_handoffflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_vikar_004",
+          "source_path": "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_vikar_004",
+        "version": 1
+      },
+      "source_hash": "16e55689324a3802bd9586a8a2f40461af8e3f74ca9565770c3b20884fb31fd2",
+      "source_path": "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Les koblingen og formuler et historisk spørsmål om hvordan sted, teknologi, sjanger og ensemblepraksis påvirket handlingsrommet. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser history go ensembleblikk musikk_utover_bugge_014",
+            "reply": "Les koblingen og formuler et historisk spørsmål om hvordan sted, teknologi, sjanger og ensemblepraksis påvirket handlingsrommet. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Bruk den historiske forbindelsen som bevis for at dagens ensemble bør prioritere spontanitet framfor avtalt versjon. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom history go ensembleblikk musikk_utover_bugge_014",
+            "reply": "Bruk den historiske forbindelsen som bevis for at dagens ensemble bør prioritere spontanitet framfor avtalt versjon. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "history_go_ensembleblikk",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "afternoon",
+        "from": "Nora",
+        "id": "musikk_utover_bugge_014",
+        "interaction_mode": "task",
+        "mail_family": "musikk_utoving_og_ensemble_history_go",
+        "mail_type": "knowledge",
+        "narrative_arc": "musikk_utover_bugge_014",
+        "people_ref": "nora_musikalsk_leder_og_dirigent",
+        "person_id": "nora_musikalsk_leder_og_dirigent",
+        "phase": "late_workday",
+        "place_id": "blaa",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 167,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/knowledge/musikk_utoving_og_ensemble_knowledge.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "historisk_musikkontekst",
+        "situation": [
+          "History Go har en verifisert person-/stedskobling som kan åpne spørsmål om improvisasjon, lytting, scene og musikalske miljøer uten å være norm for dagens arbeid.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "Bugge Wesseltoft og Blå: hva kan historien spørre om improvisasjon og ensemble?",
+        "summary": "History Go har en verifisert person-/stedskobling som kan åpne spørsmål om improvisasjon, lytting, scene og musikalske miljøer uten å være norm for dagens arbeid. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/musikk/oslo/people_musikk_oslo.json",
+            "data/places/musikk/oslo/places_musikk/blaa.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "musikk_utoving_og_ensemble_history_go_bugge_wesseltoft_blaa"
+        },
+        "task_domain": "musikk_utoving_og_ensemble",
+        "task_payload": {
+          "completion_mode": "read_profile",
+          "description": "Formuler ett spørsmål om hvordan scene, teknologi, improvisasjon, sjanger og ensemblepraksis påvirket hverandre uten å gjøre historien til fasit for dagens arrangement, kontrakt, rettighet, teknikk eller HMS.",
+          "person_id": "bugge_wesseltoft",
+          "return_context": {
+            "mail_id": "musikk_utover_bugge_014",
+            "role_scope": "musikk_utoving_og_ensemble",
+            "source": "civication"
+          },
+          "target_type": "person",
+          "task_kind": "history_go_person",
+          "title": "Les Bugge Wesseltoft og Blå som historisk ensemblekontekst"
+        }
+      },
+      "id": "musikk_utover_bugge_014",
+      "mail_type": "knowledge",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Les koblingen og formuler et historisk spørsmål om hvordan sted, teknologi, sjanger og ensemblepraksis påvirket handlingsrommet. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser history go ensembleblikk musikk_utover_bugge_014",
+            "reply": "Les koblingen og formuler et historisk spørsmål om hvordan sted, teknologi, sjanger og ensemblepraksis påvirket handlingsrommet. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Bruk den historiske forbindelsen som bevis for at dagens ensemble bør prioritere spontanitet framfor avtalt versjon. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom history go ensembleblikk musikk_utover_bugge_014",
+            "reply": "Bruk den historiske forbindelsen som bevis for at dagens ensemble bør prioritere spontanitet framfor avtalt versjon. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "History Go har en verifisert person-/stedskobling som kan åpne spørsmål om improvisasjon, lytting, scene og musikalske miljøer uten å være norm for dagens arbeid.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "Bugge Wesseltoft og Blå: hva kan historien spørre om improvisasjon og ensemble?",
+          "summary": "History Go har en verifisert person-/stedskobling som kan åpne spørsmål om improvisasjon, lytting, scene og musikalske miljøer uten å være norm for dagens arbeid. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_bugge_014",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "blaa",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_bugge_014",
+          "source_path": "data/Civication/mailFamilies/musikk/knowledge/musikk_utoving_og_ensemble_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/musikk/oslo/people_musikk_oslo.json",
+            "data/places/musikk/oslo/places_musikk/blaa.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "musikk_utoving_og_ensemble_history_go_bugge_wesseltoft_blaa"
+        },
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_bugge_014",
+        "version": 1
+      },
+      "source_hash": "13b881304ebd9728c33470c8246eb8c40d2fb45ba7092ce87b90ef6a2a78af69",
+      "source_path": "data/Civication/mailFamilies/musikk/knowledge/musikk_utoving_og_ensemble_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Merk hvert berørt ledd med konkret prøvenivå, versjon, tidspunkt og neste verifikasjon. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser provestatus og sannhet musikk_utover_provestatus_012",
+            "reply": "Merk hvert berørt ledd med konkret prøvenivå, versjon, tidspunkt og neste verifikasjon. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Bruk «klar» som felles språk og forklar eventuelle unntak muntlig ved behov. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom provestatus og sannhet musikk_utover_provestatus_012",
+            "reply": "Bruk «klar» som felles språk og forklar eventuelle unntak muntlig ved behov. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "provestatus_og_sannhet",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "afternoon",
+        "from": "Jonas",
+        "id": "musikk_utover_provestatus_012",
+        "mail_family": "musikk_utoving_og_ensemble_provestatus",
+        "mail_type": "micro",
+        "narrative_arc": "musikk_utover_provestatus_012",
+        "people_ref": "jonas_vikar_og_depmusiker",
+        "person_id": "jonas_vikar_og_depmusiker",
+        "phase": "late_workday",
+        "place_id": "stemmeprove_og_samspillsrom",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 169,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/micro/musikk_utoving_og_ensemble_micro.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklart brukes som om de var samme status.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "«Jeg kan den» skjuler fem ulike prøvenivåer",
+        "summary": "Egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklart brukes som om de var samme status. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_provestatus_012",
+      "mail_type": "micro",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Merk hvert berørt ledd med konkret prøvenivå, versjon, tidspunkt og neste verifikasjon. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser provestatus og sannhet musikk_utover_provestatus_012",
+            "reply": "Merk hvert berørt ledd med konkret prøvenivå, versjon, tidspunkt og neste verifikasjon. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Bruk «klar» som felles språk og forklar eventuelle unntak muntlig ved behov. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom provestatus og sannhet musikk_utover_provestatus_012",
+            "reply": "Bruk «klar» som felles språk og forklar eventuelle unntak muntlig ved behov. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklart brukes som om de var samme status.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "«Jeg kan den» skjuler fem ulike prøvenivåer",
+          "summary": "Egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklart brukes som om de var samme status. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_provestatus_012",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "stemmeprove_og_samspillsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_provestatus_012",
+          "source_path": "data/Civication/mailFamilies/musikk/micro/musikk_utoving_og_ensemble_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_provestatus_012",
+        "version": 1
+      },
+      "source_hash": "e3224bb16a1b486e910bfde50d1ecd3562227682c0c92ae7358c465e3df5ad4b",
+      "source_path": "data/Civication/mailFamilies/musikk/micro/musikk_utoving_og_ensemble_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Skill musikalsk veiledning, prøvetid og arbeidsgivermyndighet og løft den praktiske konsekvensen til riktig eier. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser delegert fagansvar musikk_utover_amir_006",
+            "reply": "Skill musikalsk veiledning, prøvetid og arbeidsgivermyndighet og løft den praktiske konsekvensen til riktig eier. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Be kollegaen prioritere laget og ta kontraktsdiskusjonen etter konserten. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom delegert fagansvar musikk_utover_amir_006",
+            "reply": "Be kollegaen prioritere laget og ta kontraktsdiskusjonen etter konserten. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "delegert_fagansvar",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "afternoon",
+        "from": "Amir",
+        "id": "musikk_utover_amir_006",
+        "mail_family": "musikk_utoving_og_ensemble_ensemble_relations",
+        "mail_type": "people",
+        "narrative_arc": "musikk_utover_amir_006",
+        "people_ref": "amir_stemmeleder_og_ensemblekollega",
+        "person_id": "amir_stemmeleder_og_ensemblekollega",
+        "phase": "workday",
+        "place_id": "stemmeprove_og_samspillsrom",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 175,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/people/musikk_utoving_og_ensemble_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Amir foreslår en felles artikulasjon, men en kollega oppfatter forslaget som krav om ekstra arbeid utenfor avtalt prøve.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "Stemmelederens råd blir lest som personalordre",
+        "summary": "Amir foreslår en felles artikulasjon, men en kollega oppfatter forslaget som krav om ekstra arbeid utenfor avtalt prøve. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_amir_006",
+      "mail_type": "people",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Skill musikalsk veiledning, prøvetid og arbeidsgivermyndighet og løft den praktiske konsekvensen til riktig eier. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser delegert fagansvar musikk_utover_amir_006",
+            "reply": "Skill musikalsk veiledning, prøvetid og arbeidsgivermyndighet og løft den praktiske konsekvensen til riktig eier. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Be kollegaen prioritere laget og ta kontraktsdiskusjonen etter konserten. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom delegert fagansvar musikk_utover_amir_006",
+            "reply": "Be kollegaen prioritere laget og ta kontraktsdiskusjonen etter konserten. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Amir foreslår en felles artikulasjon, men en kollega oppfatter forslaget som krav om ekstra arbeid utenfor avtalt prøve.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "Stemmelederens råd blir lest som personalordre",
+          "summary": "Amir foreslår en felles artikulasjon, men en kollega oppfatter forslaget som krav om ekstra arbeid utenfor avtalt prøve. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_amir_006",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "stemmeprove_og_samspillsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_amir_006",
+          "source_path": "data/Civication/mailFamilies/musikk/people/musikk_utoving_og_ensemble_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_amir_006",
+        "version": 1
+      },
+      "source_hash": "fae8f4b37068a233272e3f29781f5e5ebacd7db6f8243065b65291957edf82f7",
+      "source_path": "data/Civication/mailFamilies/musikk/people/musikk_utoving_og_ensemble_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Gjør prøvegapet konkret, foreslå minimumsversjon og be om felles test eller eksplisitt beslutning om alternativ. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser statuspress og sann provestatus musikk_utover_jonas_008",
+            "reply": "Gjør prøvegapet konkret, foreslå minimumsversjon og be om felles test eller eksplisitt beslutning om alternativ. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Si at materialet er klart og bruk blikkontakt med sidemusikeren for å løse avvik live. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom statuspress og sann provestatus musikk_utover_jonas_008",
+            "reply": "Si at materialet er klart og bruk blikkontakt med sidemusikeren for å løse avvik live. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "statuspress_og_sann_provestatus",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "afternoon",
+        "from": "Jonas",
+        "id": "musikk_utover_jonas_008",
+        "mail_family": "musikk_utoving_og_ensemble_ensemble_relations",
+        "mail_type": "people",
+        "narrative_arc": "musikk_utover_jonas_008",
+        "people_ref": "jonas_vikar_og_depmusiker",
+        "person_id": "jonas_vikar_og_depmusiker",
+        "phase": "workday",
+        "place_id": "scene_monitor_og_fremforingsflate",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 173,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/people/musikk_utoving_og_ensemble_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Vikaren frykter at ærlig usikkerhet blir tolket som svak profesjonalitet selv om to overganger aldri er prøvd med ensemblet.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "Jonas skjuler et prøvegap for ikke å miste innhoppet",
+        "summary": "Vikaren frykter at ærlig usikkerhet blir tolket som svak profesjonalitet selv om to overganger aldri er prøvd med ensemblet. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_jonas_008",
+      "mail_type": "people",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Gjør prøvegapet konkret, foreslå minimumsversjon og be om felles test eller eksplisitt beslutning om alternativ. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser statuspress og sann provestatus musikk_utover_jonas_008",
+            "reply": "Gjør prøvegapet konkret, foreslå minimumsversjon og be om felles test eller eksplisitt beslutning om alternativ. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Si at materialet er klart og bruk blikkontakt med sidemusikeren for å løse avvik live. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom statuspress og sann provestatus musikk_utover_jonas_008",
+            "reply": "Si at materialet er klart og bruk blikkontakt med sidemusikeren for å løse avvik live. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Vikaren frykter at ærlig usikkerhet blir tolket som svak profesjonalitet selv om to overganger aldri er prøvd med ensemblet.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "Jonas skjuler et prøvegap for ikke å miste innhoppet",
+          "summary": "Vikaren frykter at ærlig usikkerhet blir tolket som svak profesjonalitet selv om to overganger aldri er prøvd med ensemblet. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_jonas_008",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "scene_monitor_og_fremforingsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_jonas_008",
+          "source_path": "data/Civication/mailFamilies/musikk/people/musikk_utoving_og_ensemble_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_jonas_008",
+        "version": 1
+      },
+      "source_hash": "d1b3f0330b424dc33d898eeeca82219f61e8a448569095f16de6de78e255b8e8",
+      "source_path": "data/Civication/mailFamilies/musikk/people/musikk_utoving_og_ensemble_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Kartlegg avhengighetene og hent separate kunstneriske, arbeidsgiver-, økonomi- og rettighetsbeslutninger før planen endres. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser koordinering vs fullmakt musikk_utover_lea_007",
+            "reply": "Kartlegg avhengighetene og hent separate kunstneriske, arbeidsgiver-, økonomi- og rettighetsbeslutninger før planen endres. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Gi et foreløpig ja og la hver ansvarlig protestere dersom deres grense er overskredet. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom koordinering vs fullmakt musikk_utover_lea_007",
+            "reply": "Gi et foreløpig ja og la hver ansvarlig protestere dersom deres grense er overskredet. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "koordinering_vs_fullmakt",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "afternoon",
+        "from": "Lea",
+        "id": "musikk_utover_lea_007",
+        "mail_family": "musikk_utoving_og_ensemble_ensemble_relations",
+        "mail_type": "people",
+        "narrative_arc": "musikk_utover_lea_007",
+        "people_ref": "lea_ensemble_og_produksjonskoordinator",
+        "person_id": "lea_ensemble_og_produksjonskoordinator",
+        "phase": "workday",
+        "place_id": "proveskjema_turne_og_handoffflate",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 174,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/people/musikk_utoving_og_ensemble_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "En sen endring krever mer prøve, ny depmusiker og mulig strømming, men beslutningseierne er ikke samlet.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "Koordinatoren presses til å love vikar, overtid og opptak",
+        "summary": "En sen endring krever mer prøve, ny depmusiker og mulig strømming, men beslutningseierne er ikke samlet. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_lea_007",
+      "mail_type": "people",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Kartlegg avhengighetene og hent separate kunstneriske, arbeidsgiver-, økonomi- og rettighetsbeslutninger før planen endres. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser koordinering vs fullmakt musikk_utover_lea_007",
+            "reply": "Kartlegg avhengighetene og hent separate kunstneriske, arbeidsgiver-, økonomi- og rettighetsbeslutninger før planen endres. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Gi et foreløpig ja og la hver ansvarlig protestere dersom deres grense er overskredet. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom koordinering vs fullmakt musikk_utover_lea_007",
+            "reply": "Gi et foreløpig ja og la hver ansvarlig protestere dersom deres grense er overskredet. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En sen endring krever mer prøve, ny depmusiker og mulig strømming, men beslutningseierne er ikke samlet.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "Koordinatoren presses til å love vikar, overtid og opptak",
+          "summary": "En sen endring krever mer prøve, ny depmusiker og mulig strømming, men beslutningseierne er ikke samlet. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_lea_007",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proveskjema_turne_og_handoffflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_lea_007",
+          "source_path": "data/Civication/mailFamilies/musikk/people/musikk_utoving_og_ensemble_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_lea_007",
+        "version": 1
+      },
+      "source_hash": "dae2ef2be5df8790cc150596a1bec6899a0879dfcd093cc3c82724955ff6ab13",
+      "source_path": "data/Civication/mailFamilies/musikk/people/musikk_utoving_og_ensemble_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Be om en avgrenset A/B-prøve og la faktisk musikalsk leder beslutte versjonen etter hørbar effekt. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser kunstnerisk motstemme og mandat musikk_utover_nora_005",
+            "reply": "Be om en avgrenset A/B-prøve og la faktisk musikalsk leder beslutte versjonen etter hørbar effekt. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Følg musikeren med størst sceneerfaring for å unngå å bruke mer prøvetid. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom kunstnerisk motstemme og mandat musikk_utover_nora_005",
+            "reply": "Følg musikeren med størst sceneerfaring for å unngå å bruke mer prøvetid. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "kunstnerisk_motstemme_og_mandat",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "morning",
+        "from": "Nora",
+        "id": "musikk_utover_nora_005",
+        "mail_family": "musikk_utoving_og_ensemble_ensemble_relations",
+        "mail_type": "people",
+        "narrative_arc": "musikk_utover_nora_005",
+        "people_ref": "nora_musikalsk_leder_og_dirigent",
+        "person_id": "nora_musikalsk_leder_og_dirigent",
+        "phase": "forenoon",
+        "place_id": "partitur_arrangement_og_versjonsflate",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 176,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/people/musikk_utoving_og_ensemble_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "To profilerte utøvere vil låse ulike uttrykk, mens ensemblet ennå ikke har hørt forslagene under samme premiss.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "Nora må velge mellom to sterke musikalske forslag",
+        "summary": "To profilerte utøvere vil låse ulike uttrykk, mens ensemblet ennå ikke har hørt forslagene under samme premiss. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_nora_005",
+      "mail_type": "people",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Be om en avgrenset A/B-prøve og la faktisk musikalsk leder beslutte versjonen etter hørbar effekt. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser kunstnerisk motstemme og mandat musikk_utover_nora_005",
+            "reply": "Be om en avgrenset A/B-prøve og la faktisk musikalsk leder beslutte versjonen etter hørbar effekt. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Følg musikeren med størst sceneerfaring for å unngå å bruke mer prøvetid. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom kunstnerisk motstemme og mandat musikk_utover_nora_005",
+            "reply": "Følg musikeren med størst sceneerfaring for å unngå å bruke mer prøvetid. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "To profilerte utøvere vil låse ulike uttrykk, mens ensemblet ennå ikke har hørt forslagene under samme premiss.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "Nora må velge mellom to sterke musikalske forslag",
+          "summary": "To profilerte utøvere vil låse ulike uttrykk, mens ensemblet ennå ikke har hørt forslagene under samme premiss. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_nora_005",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "partitur_arrangement_og_versjonsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_nora_005",
+          "source_path": "data/Civication/mailFamilies/musikk/people/musikk_utoving_og_ensemble_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_nora_005",
+        "version": 1
+      },
+      "source_hash": "89c5e3f92cc83f98b353bb4d53d4dcd9844197504500072ab290f8cc6b3bc27c",
+      "source_path": "data/Civication/mailFamilies/musikk/people/musikk_utoving_og_ensemble_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "musikk",
+      "compatibility_projection": {
+        "category": "musikk",
+        "choice_axis": "horbar_etterprovbar_ensemblepraksis_vs_statusdrevet_snarvei",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Responder innen felles ramme, lytt aktivt og logg avvik og effekt for senere evaluering og bounded rework. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser fremforing og repeterbarhet musikk_utover_konsert_010",
+            "reply": "Responder innen felles ramme, lytt aktivt og logg avvik og effekt for senere evaluering og bounded rework. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "La hver erfaren utøver følge rommet fritt og samle bare de tydeligste problemene etter applaus. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom fremforing og repeterbarhet musikk_utover_konsert_010",
+            "reply": "La hver erfaren utøver følge rommet fritt og samle bare de tydeligste problemene etter applaus. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "fremforing_og_repeterbarhet",
+        "consequence_axis": "repeterbar_baerekraftig_framforing_vs_skjult_prove_kontrakt_og_rettighetsgjeld",
+        "day_phase": "afternoon",
+        "from": "Nora",
+        "id": "musikk_utover_konsert_010",
+        "mail_family": "musikk_utoving_og_ensemble_fremforing_i_drift",
+        "mail_type": "story",
+        "narrative_arc": "musikk_utover_konsert_010",
+        "people_ref": "nora_musikalsk_leder_og_dirigent",
+        "person_id": "nora_musikalsk_leder_og_dirigent",
+        "phase": "workday",
+        "place_id": "scene_monitor_og_fremforingsflate",
+        "pressure": "kunstnerisk_og_framforingstempo_vs_sann_versjon_mandat_og_handoff",
+        "priority": 171,
+        "role_scope": "musikk_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/musikk/story/musikk_utoving_og_ensemble_story.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Publikumsenergi og akustikk inviterer til større tempo- og dynamikkendringer enn ensemblet har avtalt.",
+          "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+          "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+        ],
+        "subject": "Framføringen må være levende uten at felles versjon oppløses",
+        "summary": "Publikumsenergi og akustikk inviterer til større tempo- og dynamikkendringer enn ensemblet har avtalt. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff.",
+        "task_domain": "musikk_utoving_og_ensemble"
+      },
+      "id": "musikk_utover_konsert_010",
+      "mail_type": "story",
+      "role_scope": "musikk_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Responder innen felles ramme, lytt aktivt og logg avvik og effekt for senere evaluering og bounded rework. Grepet gjør den musikalske forskjellen hørbar og den institusjonelle grensen lesbar. Arrangement, stemme, prøvestatus og handoff kan overtas, mens arbeidsgiver, dirigent/musikalsk leder, teknikk/HMS og rettighetshaver beholder hver sin faktiske beslutningsmyndighet.",
+            "id": "A",
+            "label": "Verifiser fremforing og repeterbarhet musikk_utover_konsert_010",
+            "reply": "Responder innen felles ramme, lytt aktivt og logg avvik og effekt for senere evaluering og bounded rework. Jeg oppdaterer repertoarlogg_arrangement_stemme_prove_og_handoff med faktisk versjon, prøvestatus, berørte stemmer, beslutningseier, teknisk/HMS- eller rettighetspremiss, venting og neste felles test. Appointment_required og Musikk-badge behandles som karrieregate, ikke som kunstnerisk ledelse, personalmyndighet eller fullmakt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "La hver erfaren utøver følge rommet fritt og samle bare de tydeligste problemene etter applaus. Snarveien gjør kunstnerisk status, tidsnød eller kollegial lojalitet til uformell fullmakt. Da flyttes skjult prøve-, belastnings-, kontrakts- eller rettighetsgjeld til andre, selv om framføringen midlertidig kan lykkes. Neste kontrollpunkt blir samtidig uklart.",
+            "id": "B",
+            "label": "Press gjennom fremforing og repeterbarhet musikk_utover_konsert_010",
+            "reply": "La hver erfaren utøver følge rommet fritt og samle bare de tydeligste problemene etter applaus. Jeg lar tempo, profilstatus eller engasjement fungere som skjult myndighet, utsetter dokumentasjonen og forventer at ensemble, produksjon eller rettighetshaver oppdager grensene senere. Det gjør versjon, prøvestatus og ansvar mindre etterprøvbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsenergi og akustikk inviterer til større tempo- og dynamikkendringer enn ensemblet har avtalt.",
+            "Et konkret employer_appointment åpner karriererollen, men gir ikke automatisk kunstnerisk ledelse, personalmyndighet, teknisk/HMS-ansvar eller rettighetsfullmakt.",
+            "Velg et grep som gjør musikalsk effekt, prøvestatus, beslutningseier, venting, avvik og neste handoff eksplisitt."
+          ],
+          "subject": "Framføringen må være levende uten at felles versjon oppløses",
+          "summary": "Publikumsenergi og akustikk inviterer til større tempo- og dynamikkendringer enn ensemblet har avtalt. repertoarlogg_arrangement_stemme_prove_og_handoff skiller arrangementforslag fra avtalt versjon og egenøvd, stemmeprøvd, ensembleprøvd, betinget og framføringsklar status. Den beholder kunstnerisk beslutningseier, scene/monitorpremiss, fravær/vikar, belastning, opptak/rettighet, venting, avvik og neste felles test, slik at senere informasjon åpner bounded rework uten å slette tidligere observasjon eller handoff."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "musikk_utover_konsert_010",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "scene_monitor_og_fremforingsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "musikk_utover_konsert_010",
+          "source_path": "data/Civication/mailFamilies/musikk/story/musikk_utoving_og_ensemble_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "musikk_utoving_og_ensemble.mail.musikk_utover_konsert_010",
+        "version": 1
+      },
+      "source_hash": "1eb1b2a94b9ae1de099d6c34da48306db4da22d5ebf6b29afba3ca4716bf15f9",
+      "source_path": "data/Civication/mailFamilies/musikk/story/musikk_utoving_og_ensemble_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -286437,7 +288533,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "5c71bbc2ed0425a25d7cf12c2a6700b33d7bae8cf65069b668fac766011261b0",
+  "registry_hash": "8e28fdcc2171463ed107947b632da6ce9c354abfce9e709678d84149ea80f07d",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -287007,6 +289103,23 @@
       "musikk_scene_og_produksjon_followup_001",
       "musikk_scene_og_produksjon_knowledge_001",
       "musikk_scene_og_produksjon_consequence_001"
+    ],
+    "musikk/musikk_utoving_og_ensemble": [
+      "musikk_utover_arrangement_001",
+      "musikk_utover_stemmeprove_002",
+      "musikk_utover_monitor_003",
+      "musikk_utover_vikar_004",
+      "musikk_utover_nora_005",
+      "musikk_utover_amir_006",
+      "musikk_utover_lea_007",
+      "musikk_utover_jonas_008",
+      "musikk_utover_konsert_010",
+      "musikk_utover_status_009",
+      "musikk_utover_fravaer_011",
+      "musikk_utover_provestatus_012",
+      "musikk_utover_belastning_013",
+      "musikk_utover_bugge_014",
+      "musikk_utover_opptak_015"
     ],
     "naeringsliv/administrasjonsmedarbeider": [
       "job_administrasjonsmedarbeider_week1_voucher_without_owner",
@@ -288513,11 +290626,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 746,
+    "compiled_source_file_count": 755,
     "ignored_source_file_count": 1,
-    "input_file_count": 747,
-    "role_count": 88,
-    "scene_count": 1870,
+    "input_file_count": 756,
+    "role_count": 89,
+    "scene_count": 1885,
     "shadowed_duplicate_count": 0
   },
   "version": 1

@@ -2,7 +2,7 @@
 
 **Status:** GREEN — controlled role-by-role rollout open
 **Canonical career roles audited:** 85
-**Classification:** 84 rollout_ready / 0 needs_role_authored_work / 1 blocked
+**Classification:** 85 rollout_ready / 0 needs_role_authored_work / 0 blocked
 **Current broad_rollout_allowed:** true (controlled rollout open)
 
 ## Gate decision
@@ -27,7 +27,7 @@ A PASS with policy open means controlled role-by-role rollout may proceed. It do
 
 ## First structurally varied wave candidates
 
-_No safe first-wave set is available yet._
+- **musikk/musikk_utoving_og_ensemble** — other; rollout_ready; queue #1
 
 The first wave is a recommendation, not a batch PR: every role still gets its own PR. Cross-role linkage is optional and only used when the work object is genuinely shared.
 
@@ -35,14 +35,11 @@ The first wave is a recommendation, not a batch PR: every role still gets its ow
 
 | Rank | Role | Class | Structural family | Cross-role | Main authored debt |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | `musikk/musikk_utoving_og_ensemble` | blocked | other | not_required_for_rollout | career:authority, career:day_one, career:knowledge, career:mail |
+| 1 | `musikk/musikk_utoving_og_ensemble` | rollout_ready | other | not_required_for_rollout | — |
 
 ## Blocked roles
 
-### musikk/musikk_utoving_og_ensemble
-
-- **institution_authority:** Career authority component is partial; broad rollout must not weaken or infer formal authority.
-
+_No role-level hard blockers. Roles with authored debt remain gated individually by their classification._
 ## Locked rollout boundaries
 
 - Existing Civication Scene Pipeline remains canonical; no parallel engine or scene format is introduced.

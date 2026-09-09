@@ -50,7 +50,8 @@ assert.equal(readiness.gate.gate_pass, true);
 assert.equal(readiness.gate.policy_state_consistent, true);
 assert.equal(readiness.gate.broad_rollout_allowed_now, true);
 assert.equal(readiness.gate.policy_recommendation, 'controlled_rollout_open_with_role_level_gates');
-assert.ok(readiness.blocked_roles.length > 0, 'Policy opening must not erase role-level blockers');
+assert.equal(readiness.blocked_roles.length, readiness.summary.role_level_blocked_count,
+  'Role-level blocker summary and quarantine list must remain in sync, including the valid zero-blocker end state');
 const blocked = new Set(readiness.blocked_roles.map((row) => row.key));
 assert.ok(readiness.first_wave_candidates.every((row) => !blocked.has(row.key)), 'Blocked roles cannot enter the first controlled wave');
 assert.ok(readiness.first_wave_candidates.every((row) => row.classification === 'rollout_ready'));
