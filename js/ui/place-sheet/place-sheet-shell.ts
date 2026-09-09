@@ -5,6 +5,7 @@ import { mountCanonicalBeforeAfter } from "./sections/before-after";
 import "./sections/news";
 import "./sections/reading";
 import "./sections/language";
+import "./sections/learning";
 
 type PlaceSheetPlace = Record<string, any> & {
   id?: string;
