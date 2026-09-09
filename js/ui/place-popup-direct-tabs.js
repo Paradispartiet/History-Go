@@ -175,8 +175,17 @@
     }
   }
 
-  function decoratePopup(place = null) {
-    const article = document.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');
+  function resolveTabsArticle(root = null) {
+    if (root instanceof HTMLElement) {
+      if (root.matches('.hg-place-popup-v2[data-hg-place-tabs="1"]')) return root;
+      const nested = root.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');
+      if (nested instanceof HTMLElement) return nested;
+    }
+    return document.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');
+  }
+
+  function decoratePopup(place = null, root = null) {
+    const article = resolveTabsArticle(root);
     const tablist = article?.querySelector(".hg-place-tabs");
     const panelWrap = article?.querySelector(".hg-place-tab-panels");
     if (!(article instanceof HTMLElement) || !(tablist instanceof HTMLElement) || !(panelWrap instanceof HTMLElement)) return false;
@@ -212,7 +221,7 @@
 
     const wrappedDecorate = function decoratePopupWithOwnedSurfaces(place) {
       const result = currentDecorate.apply(this, arguments);
-      try { decoratePopup(place); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
+      try { decoratePopup(place, arguments[1] || null); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
       return result;
     };
     bridgedDecorators.add(wrappedDecorate);

@@ -37,6 +37,7 @@ on:
       - 'tests/place-popup-lesespor-place-open-race.test.mjs'
       - 'tests/place-popup-unified-host-bridge.test.mjs'
       - 'tests/place-popup-v2-unified-target.test.mjs'
+      - 'tests/place-popup-root-scoped-decorators.test.mjs'
       - 'tests/place-sheet-phase1.test.mjs'
       - 'tests/place-unified-surface.test.mjs'
       - 'package.json'
@@ -81,5 +82,6 @@ jobs:
           node --check tests/place-unified-surface.test.mjs
           node --check tests/place-popup-unified-host-bridge.test.mjs
           node --check tests/place-popup-v2-unified-target.test.mjs
+          node --check tests/place-popup-root-scoped-decorators.test.mjs
           node --check tests/place-sheet-phase1.test.mjs
-          node --test tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs tests/place-sheet-phase1.test.mjs
+          node --test tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs tests/place-popup-root-scoped-decorators.test.mjs tests/place-sheet-phase1.test.mjs

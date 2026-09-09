@@ -867,7 +867,18 @@ for (const place of list(global.PLACES)) {
     });
   }
 
-  async function decorateLanguage(place) {
+  function resolvePopupRoot(root = null) {
+    if (root instanceof HTMLElement) {
+      if (root.matches(".hg-popup.place-popup-v2")) return root;
+      const nested = root.querySelector(".hg-popup.place-popup-v2");
+      if (nested instanceof HTMLElement) return nested;
+      const owner = root.closest?.(".hg-popup.place-popup-v2");
+      if (owner instanceof HTMLElement) return owner;
+    }
+    return document.querySelector(".hg-popup.place-popup-v2");
+  }
+
+  async function decorateLanguage(place, root = null) {
     const placeId = text(place?.id);
     if (!placeId) return;
     const loaded = await loadForPlace(placeId);
@@ -877,7 +888,7 @@ for (const place of list(global.PLACES)) {
     const atlasTarget = atlasNavigationTarget(loaded.article, atlas);
     if (!entries.length && !atlasTarget) return;
 
-    const popup = document.querySelector(".hg-popup.place-popup-v2");
+    const popup = resolvePopupRoot(root);
     const tabsArticle = popup?.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');
     const tablist = /** @type {HTMLElement | null} */ (tabsArticle?.querySelector(".hg-place-tabs") || null);
     const panelWrap = /** @type {HTMLElement | null} */ (tabsArticle?.querySelector(".hg-place-tab-panels") || null);
