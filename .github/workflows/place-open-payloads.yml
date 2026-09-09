@@ -15,10 +15,12 @@ on:
       - 'data/brands/**'
       - 'data/runtime/**'
       - 'js/data/place-open-loader.js'
+      - 'js/ui/place-open-popup-v2.js'
       - 'js/ui/place-popup-v2.js'
       - 'js/ui/place-popup-tabs.js'
       - 'js/ui/place-popup-direct-tabs.js'
       - 'js/ui/place-popup-unified-host-bridge.js'
+      - 'js/ui/place-popup-sport-training.js'
       - 'js/ui/place-language-layer.js'
       - 'js/ui/place-learning-surface.js'
       - 'js/ui/place-card-status-surface.js'
@@ -33,6 +35,7 @@ on:
       - 'css/place-sheet-language.css'
       - 'css/place-sheet-learning.css'
       - 'css/place-sheet-sources.css'
+      - 'css/place-sheet-special.css'
       - 'js/config.js'
       - 'build/build-web.mjs'
       - 'docs/PLACE_UNIFIED_SURFACE_PLAN.md'
@@ -54,6 +57,7 @@ on:
       - 'tests/place-sheet-sources-renderer.test.mjs'
       - 'tests/place-sheet-render-queue.test.mjs'
       - 'tests/place-sheet-direct-routing.test.mjs'
+      - 'tests/place-sheet-special-profiles.test.mjs'
       - 'tests/place-unified-surface.test.mjs'
       - 'package.json'
       - 'package-lock.json'
@@ -110,4 +114,5 @@ jobs:
           node --check tests/place-sheet-sources-renderer.test.mjs
           node --check tests/place-sheet-render-queue.test.mjs
           node --check tests/place-sheet-direct-routing.test.mjs
-          node --test tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs tests/place-popup-root-scoped-decorators.test.mjs tests/place-sheet-phase1.test.mjs tests/place-sheet-about-renderer.test.mjs tests/place-sheet-history-renderer.test.mjs tests/place-sheet-stories-renderer.test.mjs tests/place-sheet-before-after-renderer.test.mjs tests/place-sheet-news-renderer.test.mjs tests/place-sheet-reading-renderer.test.mjs tests/place-sheet-language-renderer.test.mjs tests/place-sheet-learning-renderer.test.mjs tests/place-sheet-sources-renderer.test.mjs tests/place-sheet-render-queue.test.mjs tests/place-sheet-direct-routing.test.mjs
+          node --check tests/place-sheet-special-profiles.test.mjs
+          node --test tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs tests/place-popup-root-scoped-decorators.test.mjs tests/place-sheet-phase1.test.mjs tests/place-sheet-about-renderer.test.mjs tests/place-sheet-history-renderer.test.mjs tests/place-sheet-stories-renderer.test.mjs tests/place-sheet-before-after-renderer.test.mjs tests/place-sheet-news-renderer.test.mjs tests/place-sheet-reading-renderer.test.mjs tests/place-sheet-language-renderer.test.mjs tests/place-sheet-learning-renderer.test.mjs tests/place-sheet-sources-renderer.test.mjs tests/place-sheet-render-queue.test.mjs tests/place-sheet-direct-routing.test.mjs tests/place-sheet-special-profiles.test.mjs
