@@ -561,9 +561,9 @@
     document.head.appendChild(link);
   }
   function ensureReadingSlot() {
-    const shell3 = document.querySelector('#placeCard [data-hg-place-sheet-shell="1"]');
-    if (!(shell3 instanceof HTMLElement)) return null;
-    let slot = shell3.querySelector("[data-hg-place-sheet-reading]");
+    const shell4 = document.querySelector('#placeCard [data-hg-place-sheet-shell="1"]');
+    if (!(shell4 instanceof HTMLElement)) return null;
+    let slot = shell4.querySelector("[data-hg-place-sheet-reading]");
     if (!(slot instanceof HTMLElement)) {
       slot = document.createElement("section");
       slot.className = "pc-sheet-reading";
@@ -571,9 +571,9 @@
       slot.setAttribute("data-hg-place-sheet-section", "reading");
       slot.setAttribute("data-place-panel", "reading");
       slot.hidden = true;
-      const news = shell3.querySelector("[data-hg-place-sheet-news]");
-      if (news == null ? void 0 : news.nextSibling) shell3.insertBefore(slot, news.nextSibling);
-      else shell3.appendChild(slot);
+      const news = shell4.querySelector("[data-hg-place-sheet-news]");
+      if (news == null ? void 0 : news.nextSibling) shell4.insertBefore(slot, news.nextSibling);
+      else shell4.appendChild(slot);
     }
     return slot;
   }
@@ -632,9 +632,9 @@
     return document.querySelector('#pcUnifiedKnowledgeHost .hg-place-language-panel[data-place-panel="language"]');
   }
   function ensureLanguageSlot() {
-    const shell3 = placeSheetShell();
-    if (!(shell3 instanceof HTMLElement)) return null;
-    let slot = shell3.querySelector('[data-hg-place-sheet-language="1"]');
+    const shell4 = placeSheetShell();
+    if (!(shell4 instanceof HTMLElement)) return null;
+    let slot = shell4.querySelector('[data-hg-place-sheet-language="1"]');
     if (!(slot instanceof HTMLElement)) {
       slot = document.createElement("section");
       slot.className = "pc-sheet-language";
@@ -642,11 +642,11 @@
       slot.setAttribute("data-hg-place-sheet-section", "language");
       slot.setAttribute("data-place-panel", "language");
       slot.hidden = true;
-      const reading = shell3.querySelector('[data-hg-place-sheet-section="reading"]');
-      const news = shell3.querySelector('[data-hg-place-sheet-section="news"]');
+      const reading = shell4.querySelector('[data-hg-place-sheet-section="reading"]');
+      const news = shell4.querySelector('[data-hg-place-sheet-section="news"]');
       const anchor = reading || news;
-      if (anchor == null ? void 0 : anchor.nextSibling) shell3.insertBefore(slot, anchor.nextSibling);
-      else shell3.appendChild(slot);
+      if (anchor == null ? void 0 : anchor.nextSibling) shell4.insertBefore(slot, anchor.nextSibling);
+      else shell4.appendChild(slot);
     }
     return slot;
   }
@@ -836,6 +836,166 @@
     learning: { adopt: adoptCanonicalLearning }
   };
 
+  // js/ui/place-sheet/sections/special-sections.ts
+  var runtime10 = window;
+  var SPECIAL_SELECTOR = '.hg-place-nature-section, [data-hg-sport-training="1"]';
+  var observer = null;
+  var observerTimer = 0;
+  var observedPlaceId = "";
+  function text10(value) {
+    return String(value == null ? "" : value).trim();
+  }
+  function list2(value) {
+    return Array.isArray(value) ? value : [];
+  }
+  function shell3() {
+    return document.querySelector('#placeCard [data-hg-place-sheet-shell="1"]');
+  }
+  function embeddedHost() {
+    return document.getElementById("pcUnifiedKnowledgeHost");
+  }
+  function placeFor(placeId2) {
+    var _a, _b;
+    const id = text10(placeId2);
+    if (!id) return null;
+    try {
+      const resolved = (_b = (_a = runtime10.HGPlaceOpen) == null ? void 0 : _a.getPlace) == null ? void 0 : _b.call(_a, id);
+      if (resolved && typeof resolved === "object") return resolved;
+    } catch {
+    }
+    return list2(runtime10.PLACES).find((place) => text10(place == null ? void 0 : place.id) === id) || null;
+  }
+  function hasTrainingContent(place) {
+    var _a;
+    if (!place) return false;
+    const profile = place == null ? void 0 : place.training_profile;
+    if (!profile || typeof profile !== "object" || Array.isArray(profile)) return false;
+    const summary = text10(profile.summary);
+    const safety = text10(profile.safety);
+    const exercises = list2(profile.exercises).filter(Boolean);
+    if (!summary && !safety && !exercises.length) return false;
+    try {
+      if (typeof ((_a = runtime10.HGPlacePopupSportTraining) == null ? void 0 : _a.isSportsPlace) === "function") {
+        return runtime10.HGPlacePopupSportTraining.isSportsPlace(place) === true;
+      }
+    } catch {
+    }
+    const category = text10((place == null ? void 0 : place.category) || (place == null ? void 0 : place.categoryId)).toLowerCase();
+    const sportProfile = place == null ? void 0 : place.sport_profile;
+    return category === "sport" || Boolean(sportProfile && typeof sportProfile === "object" && Object.keys(sportProfile).length);
+  }
+  function currentSpecialNodes() {
+    const host = embeddedHost();
+    if (!(host instanceof HTMLElement)) return [];
+    return [...host.querySelectorAll(SPECIAL_SELECTOR)];
+  }
+  function existingSpecialNodes(placeId2) {
+    const id = text10(placeId2);
+    const root2 = shell3();
+    if (!(root2 instanceof HTMLElement)) return [];
+    const slot = root2.querySelector('[data-hg-place-sheet-special="1"]');
+    if (!(slot instanceof HTMLElement) || text10(slot.dataset.placeId) !== id) return [];
+    return [...slot.querySelectorAll(SPECIAL_SELECTOR)];
+  }
+  function ensureStylesheet5() {
+    if (document.querySelector('link[data-hg-place-sheet-special-style="1"]')) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "css/place-sheet-special.css";
+    link.setAttribute("data-hg-place-sheet-special-style", "1");
+    document.head.appendChild(link);
+  }
+  function ensureSlot3(placeId2) {
+    const root2 = shell3();
+    if (!(root2 instanceof HTMLElement)) return null;
+    let slot = root2.querySelector('[data-hg-place-sheet-special="1"]');
+    if (!(slot instanceof HTMLElement)) {
+      slot = document.createElement("section");
+      slot.className = "pc-sheet-special";
+      slot.setAttribute("data-hg-place-sheet-special", "1");
+      slot.setAttribute("data-hg-place-sheet-section", "special");
+      slot.hidden = true;
+      const sources = root2.querySelector('[data-hg-place-sheet-section="sources"]');
+      if (sources == null ? void 0 : sources.nextSibling) root2.insertBefore(slot, sources.nextSibling);
+      else root2.appendChild(slot);
+    }
+    slot.dataset.placeId = text10(placeId2);
+    return slot;
+  }
+  function stopObserver() {
+    observer == null ? void 0 : observer.disconnect();
+    observer = null;
+    if (observerTimer) runtime10.clearTimeout(observerTimer);
+    observerTimer = 0;
+    observedPlaceId = "";
+  }
+  function moveOwnedNodes(placeId2) {
+    const id = text10(placeId2);
+    if (!id) return null;
+    const nodes = currentSpecialNodes();
+    const slot = ensureSlot3(id);
+    if (!(slot instanceof HTMLElement)) return null;
+    nodes.forEach((node) => {
+      node.hidden = false;
+      node.removeAttribute("aria-hidden");
+      node.setAttribute("role", "region");
+      node.style.scrollMarginTop = "76px";
+      node.dataset.hgPlaceSheetSpecialOwner = node.matches('[data-hg-sport-training="1"]') ? "sport-training" : "nature-landscape";
+      slot.appendChild(node);
+    });
+    const hasContent = Boolean(slot.querySelector(SPECIAL_SELECTOR));
+    slot.hidden = !hasContent;
+    return hasContent ? slot : null;
+  }
+  function watchForLateTraining(placeId2) {
+    const id = text10(placeId2);
+    if (!id || !hasTrainingContent(placeFor(id))) return;
+    if (existingSpecialNodes(id).some((node) => node.matches('[data-hg-sport-training="1"]'))) return;
+    const host = embeddedHost();
+    if (!(host instanceof HTMLElement)) return;
+    if (observer && observedPlaceId === id) return;
+    stopObserver();
+    observedPlaceId = id;
+    observer = new MutationObserver(() => {
+      var _a;
+      if (text10((_a = shell3()) == null ? void 0 : _a.dataset.placeId) !== id) {
+        stopObserver();
+        return;
+      }
+      moveOwnedNodes(id);
+      if (existingSpecialNodes(id).some((node) => node.matches('[data-hg-sport-training="1"]'))) stopObserver();
+    });
+    observer.observe(host, { childList: true, subtree: true });
+    observerTimer = runtime10.setTimeout(stopObserver, 2600);
+  }
+  function specialSectionsApply(placeId2) {
+    const id = text10(placeId2);
+    if (!id) return false;
+    if (existingSpecialNodes(id).length || currentSpecialNodes().length) return true;
+    return hasTrainingContent(placeFor(id));
+  }
+  function adoptCanonicalSpecialSections(placeId2) {
+    const id = text10(placeId2);
+    if (!id) return null;
+    const slot = moveOwnedNodes(id);
+    watchForLateTraining(id);
+    return slot;
+  }
+  function onUnifiedReady5(event) {
+    var _a;
+    const id = text10((_a = event.detail) == null ? void 0 : _a.placeId);
+    if (id && specialSectionsApply(id)) adoptCanonicalSpecialSections(id);
+  }
+  ensureStylesheet5();
+  runtime10.addEventListener("hg:place-unified-ready", onUnifiedReady5);
+  runtime10.HGPlaceSheetSections = {
+    ...runtime10.HGPlaceSheetSections || {},
+    special: {
+      applies: specialSectionsApply,
+      adopt: adoptCanonicalSpecialSections
+    }
+  };
+
   // js/ui/place-sheet/place-section-registry.ts
   var PLACE_SHEET_SECTION_IDS = [
     "about",
@@ -846,7 +1006,8 @@
     "reading",
     "language",
     "learning",
-    "sources"
+    "sources",
+    "special"
   ];
   var PLACE_SHEET_IMMEDIATE_SECTION_IDS = [
     "about",
@@ -857,10 +1018,11 @@
   var PLACE_SHEET_COMPAT_SECTION_BATCHES = [
     ["news", "reading"],
     ["language", "learning"],
-    ["sources"]
+    ["sources"],
+    ["special"]
   ];
-  var runtime10 = window;
-  function text10(value) {
+  var runtime11 = window;
+  function text11(value) {
     return String(value == null ? "" : value).trim();
   }
   function placeSheetSectionNode(id) {
@@ -874,13 +1036,23 @@
   function hasRenderedPlaceSheetSection(id) {
     const node = placeSheetSectionNode(id);
     if (!(node instanceof HTMLElement) || node.hidden) return false;
-    if (text10(node.dataset.placeId)) return true;
-    if (node.querySelector("[data-hg-place-sheet-owner], .hg-place-learning-section, [data-language-place], .hg-place-tab-generated")) return true;
-    return text10(node.textContent).length > 0;
+    if (text11(node.dataset.placeId)) return true;
+    if (node.querySelector("[data-hg-place-sheet-owner], [data-hg-place-sheet-special-owner], .hg-place-learning-section, [data-language-place], .hg-place-tab-generated")) return true;
+    return text11(node.textContent).length > 0;
+  }
+  function placeSheetSectionApplies(id, placeId2) {
+    var _a;
+    const api = (_a = runtime11.HGPlaceSheetSections) == null ? void 0 : _a[id];
+    if (!api || typeof api.applies !== "function") return true;
+    try {
+      return api.applies(placeId2) === true;
+    } catch {
+      return false;
+    }
   }
   function nudgePlaceSheetSection(id, placeId2) {
     var _a;
-    const api = (_a = runtime10.HGPlaceSheetSections) == null ? void 0 : _a[id];
+    const api = (_a = runtime11.HGPlaceSheetSections) == null ? void 0 : _a[id];
     if (!api || typeof api.adopt !== "function") return;
     try {
       api.adopt(placeId2);
@@ -889,7 +1061,7 @@
   }
 
   // js/ui/place-sheet/place-sheet-state.ts
-  var runtime11 = window;
+  var runtime12 = window;
   var generationCounter = 0;
   var active = null;
   function cloneSnapshot(value) {
@@ -905,7 +1077,7 @@
   }
   function emit(name, value) {
     try {
-      runtime11.dispatchEvent(new CustomEvent(name, { detail: cloneSnapshot(value) }));
+      runtime12.dispatchEvent(new CustomEvent(name, { detail: cloneSnapshot(value) }));
     } catch {
     }
   }
@@ -965,24 +1137,24 @@
       delete card2.dataset.hgPlaceSheetRenderState;
     }
   }
-  runtime11.HGPlaceSheetState = {
+  runtime12.HGPlaceSheetState = {
     snapshot: currentPlaceSheetSnapshot,
     cancel: cancelPlaceSheetGeneration
   };
 
   // js/ui/place-sheet/place-sheet-render-queue.ts
-  var runtime12 = window;
+  var runtime13 = window;
   var compatibilityReady = /* @__PURE__ */ new Set();
   var compatibilityWaiters = /* @__PURE__ */ new Map();
   var promotedSections = /* @__PURE__ */ new Map();
   var pendingPromotions = /* @__PURE__ */ new Map();
   var COMPATIBILITY_SECTION_IDS = new Set(PLACE_SHEET_COMPAT_SECTION_BATCHES.flat());
   var activeHandle = null;
-  function text11(value) {
+  function text12(value) {
     return String(value == null ? "" : value).trim();
   }
   function canonicalSectionId(value) {
-    const id = text11(value);
+    const id = text12(value);
     return PLACE_SHEET_SECTION_IDS.includes(id) ? id : null;
   }
   function isTerminalStatus(value) {
@@ -995,7 +1167,7 @@
   }
   async function yieldToBrowser(signal) {
     if (signal.aborted) return;
-    const scheduler = runtime12.scheduler;
+    const scheduler = runtime13.scheduler;
     if (scheduler && typeof scheduler.postTask === "function") {
       try {
         await scheduler.postTask(() => void 0, { priority: "background", signal });
@@ -1005,20 +1177,20 @@
       }
     }
     await new Promise((resolve) => {
-      const finish = () => runtime12.setTimeout(resolve, 0);
-      if (typeof runtime12.requestAnimationFrame === "function") runtime12.requestAnimationFrame(finish);
+      const finish = () => runtime13.setTimeout(resolve, 0);
+      if (typeof runtime13.requestAnimationFrame === "function") runtime13.requestAnimationFrame(finish);
       else finish();
     });
   }
   function onCompatibilityReady(event) {
     var _a, _b;
-    const placeId2 = text11((_a = event.detail) == null ? void 0 : _a.placeId);
+    const placeId2 = text12((_a = event.detail) == null ? void 0 : _a.placeId);
     const snapshot = currentPlaceSheetSnapshot();
     if (!snapshot || snapshot.placeId !== placeId2) return;
     compatibilityReady.add(snapshot.generation);
     (_b = compatibilityWaiters.get(snapshot.generation)) == null ? void 0 : _b();
   }
-  runtime12.addEventListener("hg:place-unified-ready", onCompatibilityReady);
+  runtime13.addEventListener("hg:place-unified-ready", onCompatibilityReady);
   function waitForCompatibility(generation, placeId2, signal, timeoutMs = 2600) {
     if (compatibilityReady.has(generation)) return Promise.resolve(true);
     return new Promise((resolve) => {
@@ -1026,13 +1198,13 @@
       const finish = (value) => {
         if (settled) return;
         settled = true;
-        runtime12.clearTimeout(timer);
+        runtime13.clearTimeout(timer);
         compatibilityWaiters.delete(generation);
         signal.removeEventListener("abort", onAbort);
         resolve(value);
       };
       const onAbort = () => finish(false);
-      const timer = runtime12.setTimeout(() => finish(false), timeoutMs);
+      const timer = runtime13.setTimeout(() => finish(false), timeoutMs);
       compatibilityWaiters.set(generation, () => {
         if (!isActivePlaceSheetGeneration(generation, placeId2)) finish(false);
         else finish(true);
@@ -1045,7 +1217,7 @@
     while (!signal.aborted && isActivePlaceSheetGeneration(generation, placeId2)) {
       if (hasRenderedPlaceSheetSection(id)) return true;
       if (Date.now() - started >= timeoutMs) return false;
-      await new Promise((resolve) => runtime12.setTimeout(resolve, 30));
+      await new Promise((resolve) => runtime13.setTimeout(resolve, 30));
     }
     return false;
   }
@@ -1067,17 +1239,25 @@
   async function settleCompatibilityBatch(generation, placeId2, ids, signal) {
     const unsettled = ids.filter((id) => !isTerminalStatus(sectionStatus(generation, placeId2, id)));
     if (!unsettled.length) return;
+    const applicable = [];
     unsettled.forEach((id) => {
+      if (!placeSheetSectionApplies(id, placeId2)) {
+        markPlaceSheetSection(generation, placeId2, id, "omitted");
+        return;
+      }
+      applicable.push(id);
       markPlaceSheetSection(generation, placeId2, id, "loading");
       nudgePlaceSheetSection(id, placeId2);
     });
+    if (!applicable.length) return;
     await yieldToBrowser(signal);
     if (signal.aborted) return;
-    const results = await Promise.all(unsettled.map((id) => waitForRenderedSection(generation, placeId2, id, signal)));
+    const results = await Promise.all(applicable.map((id) => waitForRenderedSection(generation, placeId2, id, signal)));
     if (signal.aborted) return;
-    unsettled.forEach((id, index) => {
+    applicable.forEach((id, index) => {
       const rendered = results[index] === true;
-      const status = rendered ? "rendered" : id === "sources" ? "failed" : "omitted";
+      const requiredWhenApplicable = id === "sources" || id === "special";
+      const status = rendered ? "rendered" : requiredWhenApplicable ? "failed" : "omitted";
       markPlaceSheetSection(generation, placeId2, id, status);
     });
   }
@@ -1133,7 +1313,7 @@
     }
   }
   function startAutomaticPlaceSheetRender(placeIdValue) {
-    const placeId2 = text11(placeIdValue);
+    const placeId2 = text12(placeIdValue);
     if (!placeId2) return null;
     if (activeHandle && !activeHandle.signal.aborted && activeHandle.placeId === placeId2) return activeHandle;
     if (activeHandle) promotedSections.delete(activeHandle.generation);
@@ -1158,7 +1338,7 @@
   }
   async function promoteAutomaticPlaceSheetSection(placeIdValue, sectionIdValue) {
     var _a;
-    const placeId2 = text11(placeIdValue);
+    const placeId2 = text12(placeIdValue);
     const id = canonicalSectionId(sectionIdValue);
     if (!placeId2 || !id) return false;
     const initial = currentPlaceSheetSnapshot();
@@ -1184,7 +1364,7 @@
         registerPromotion(snapshot.generation, id);
         if (compatibilityReady.has(snapshot.generation)) nudgePlaceSheetSection(id, placeId2);
       }
-      await new Promise((resolve) => runtime12.setTimeout(resolve, 20));
+      await new Promise((resolve) => runtime13.setTimeout(resolve, 20));
     }
     (_a = pendingPromotions.get(placeId2)) == null ? void 0 : _a.delete(id);
     return hasRenderedPlaceSheetSection(id);
@@ -1199,7 +1379,7 @@
     pendingPromotions.clear();
     activeHandle = null;
   }
-  runtime12.HGPlaceSheetRenderQueue = {
+  runtime13.HGPlaceSheetRenderQueue = {
     start: startAutomaticPlaceSheetRender,
     promote: promoteAutomaticPlaceSheetSection,
     cancel: cancelAutomaticPlaceSheetRender,
@@ -1207,29 +1387,29 @@
   };
 
   // js/ui/place-sheet/place-sheet-direct-routing.ts
-  var runtime13 = window;
+  var runtime14 = window;
   var INSTALL_FLAG = "__HG_PLACE_SHEET_DIRECT_ROUTING_INSTALLED__";
   var WRAPPED_FLAG = "__hgPlaceSheetDirectRouting";
-  function text12(value) {
+  function text13(value) {
     return String(value == null ? "" : value).trim();
   }
   function resolvedPlace(place) {
     if (place && typeof place === "object") return place;
-    const id = text12(place);
-    return (Array.isArray(runtime13.PLACES) ? runtime13.PLACES : []).find((row) => text12(row == null ? void 0 : row.id) === id) || place;
+    const id = text13(place);
+    return (Array.isArray(runtime14.PLACES) ? runtime14.PLACES : []).find((row) => text13(row == null ? void 0 : row.id) === id) || place;
   }
   function placeId(place) {
     const value = resolvedPlace(place);
-    return text12((value == null ? void 0 : value.id) || (typeof value === "string" ? value : ""));
+    return text13((value == null ? void 0 : value.id) || (typeof value === "string" ? value : ""));
   }
   function isMicro(place) {
     const value = resolvedPlace(place);
-    return text12(value == null ? void 0 : value.placeTier).toLowerCase() === "micro";
+    return text13(value == null ? void 0 : value.placeTier).toLowerCase() === "micro";
   }
   function canonicalSection(target) {
     var _a;
-    const canonical = (_a = runtime13.HGPlaceUnifiedSurface) == null ? void 0 : _a.canonicalSection;
-    return typeof canonical === "function" ? canonical(target || "about") : text12(target || "about");
+    const canonical = (_a = runtime14.HGPlaceUnifiedSurface) == null ? void 0 : _a.canonicalSection;
+    return typeof canonical === "function" ? canonical(target || "about") : text13(target || "about");
   }
   async function finishPromotedRoute(value, promotion, sectionId) {
     var _a, _b;
@@ -1238,13 +1418,13 @@
     } catch {
     }
     try {
-      (_b = (_a = runtime13.HGPlaceUnifiedSurface) == null ? void 0 : _a.scrollToSection) == null ? void 0 : _b.call(_a, sectionId);
+      (_b = (_a = runtime14.HGPlaceUnifiedSurface) == null ? void 0 : _a.scrollToSection) == null ? void 0 : _b.call(_a, sectionId);
     } catch {
     }
     return value;
   }
   function wrapShowPlacePopup() {
-    const current = runtime13.showPlacePopup;
+    const current = runtime14.showPlacePopup;
     if (typeof current !== "function" || current[WRAPPED_FLAG] === true) return false;
     if (current.__hgUnifiedPlaceSurface !== true) return false;
     const wrapped = function showPromotedPlaceSheetSection(place, target) {
@@ -1262,11 +1442,11 @@
     });
     wrapped[WRAPPED_FLAG] = true;
     wrapped.__previous = current;
-    runtime13.showPlacePopup = wrapped;
+    runtime14.showPlacePopup = wrapped;
     return true;
   }
   function wrapPopupTabBridge() {
-    const tabs = runtime13.HGPlacePopupTabs;
+    const tabs = runtime14.HGPlacePopupTabs;
     const current = tabs == null ? void 0 : tabs.openTab;
     if (!tabs || typeof current !== "function" || current[WRAPPED_FLAG] === true) return false;
     const wrapped = function openPromotedPlaceSheetSection(place, tabId) {
@@ -1282,27 +1462,27 @@
     return true;
   }
   function install() {
-    if (runtime13[INSTALL_FLAG]) return true;
-    if (runtime13.__HG_PLACE_UNIFIED_SURFACE_INSTALLED__ !== true) return false;
-    if (!runtime13.HGPlaceUnifiedSurface || typeof runtime13.showPlacePopup !== "function") return false;
-    if (runtime13.showPlacePopup.__hgUnifiedPlaceSurface !== true) return false;
+    if (runtime14[INSTALL_FLAG]) return true;
+    if (runtime14.__HG_PLACE_UNIFIED_SURFACE_INSTALLED__ !== true) return false;
+    if (!runtime14.HGPlaceUnifiedSurface || typeof runtime14.showPlacePopup !== "function") return false;
+    if (runtime14.showPlacePopup.__hgUnifiedPlaceSurface !== true) return false;
     wrapShowPlacePopup();
     wrapPopupTabBridge();
-    runtime13[INSTALL_FLAG] = true;
+    runtime14[INSTALL_FLAG] = true;
     return true;
   }
   if (!install()) {
     let attempts = 0;
-    const timer = runtime13.setInterval(() => {
+    const timer = runtime14.setInterval(() => {
       attempts += 1;
-      if (install() || attempts > 400) runtime13.clearInterval(timer);
+      if (install() || attempts > 400) runtime14.clearInterval(timer);
     }, 25);
   }
 
   // js/ui/place-sheet/place-sheet-shell.ts
   var SHELL_ATTR = "data-hg-place-sheet-shell";
   var SHELL_SECTION_ATTR = "data-hg-place-sheet-section";
-  function text13(value) {
+  function text14(value) {
     return String(value == null ? "" : value).trim();
   }
   function card() {
@@ -1313,19 +1493,19 @@
     return ((_a = card()) == null ? void 0 : _a.querySelector(":scope > .pc-body")) || null;
   }
   function isMicro2(place) {
-    return text13(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
+    return text14(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
   }
   function ensureShell(place) {
     if (isMicro2(place)) return null;
     const root2 = card();
     const rootBody = body();
     if (!(root2 instanceof HTMLElement) || !(rootBody instanceof HTMLElement)) return null;
-    let shell3 = rootBody.querySelector(`[${SHELL_ATTR}="1"]`);
-    if (!(shell3 instanceof HTMLElement)) {
-      shell3 = document.createElement("section");
-      shell3.className = "pc-sheet-shell";
-      shell3.setAttribute(SHELL_ATTR, "1");
-      shell3.innerHTML = `
+    let shell4 = rootBody.querySelector(`[${SHELL_ATTR}="1"]`);
+    if (!(shell4 instanceof HTMLElement)) {
+      shell4 = document.createElement("section");
+      shell4.className = "pc-sheet-shell";
+      shell4.setAttribute(SHELL_ATTR, "1");
+      shell4.innerHTML = `
       <div class="pc-sheet-hero" data-hg-place-sheet-hero>
         <div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
@@ -1343,20 +1523,20 @@
       <section class="pc-sheet-before-after" data-hg-place-sheet-before-after hidden></section>
       <section class="pc-sheet-news" data-hg-place-sheet-news data-hg-place-sheet-section="news" hidden></section>
     `;
-      rootBody.prepend(shell3);
+      rootBody.prepend(shell4);
     }
-    shell3.dataset.placeId = text13(place.id);
+    shell4.dataset.placeId = text14(place.id);
     root2.dataset.hgPlaceSheetPhase = "1";
     root2.classList.add("is-place-sheet-phase1");
-    return shell3;
+    return shell4;
   }
-  function movePrimaryNodes(shell3) {
+  function movePrimaryNodes(shell4) {
     const root2 = card();
     if (!(root2 instanceof HTMLElement)) return;
-    const media = shell3.querySelector("[data-hg-place-sheet-media]");
-    const copy = shell3.querySelector("[data-hg-place-sheet-copy]");
-    const collections = shell3.querySelector("[data-hg-place-sheet-collections]");
-    const onsite = shell3.querySelector("[data-hg-place-sheet-onsite]");
+    const media = shell4.querySelector("[data-hg-place-sheet-media]");
+    const copy = shell4.querySelector("[data-hg-place-sheet-copy]");
+    const collections = shell4.querySelector("[data-hg-place-sheet-collections]");
+    const onsite = shell4.querySelector("[data-hg-place-sheet-onsite]");
     const front = root2.querySelector(".pc-frontcard");
     const textBlock = root2.querySelector(".pc-text");
     const sideStack = root2.querySelector(".pc-side-stack");
@@ -1368,8 +1548,8 @@
     const legacyGrid = root2.querySelector(".pc-grid");
     if (legacyGrid && !legacyGrid.children.length) legacyGrid.hidden = true;
   }
-  function ensureAboutSlot(shell3) {
-    const copy = shell3.querySelector("[data-hg-place-sheet-copy]");
+  function ensureAboutSlot(shell4) {
+    const copy = shell4.querySelector("[data-hg-place-sheet-copy]");
     if (!(copy instanceof HTMLElement)) return null;
     let aboutSlot = copy.querySelector("[data-hg-place-sheet-about]");
     if (!(aboutSlot instanceof HTMLElement)) {
@@ -1381,77 +1561,77 @@
     }
     return aboutSlot;
   }
-  function ensureHistorySlot(shell3) {
-    let historySlot = shell3.querySelector("[data-hg-place-sheet-history]");
+  function ensureHistorySlot(shell4) {
+    let historySlot = shell4.querySelector("[data-hg-place-sheet-history]");
     if (!(historySlot instanceof HTMLElement)) {
       historySlot = document.createElement("section");
       historySlot.className = "pc-sheet-history";
       historySlot.setAttribute("data-hg-place-sheet-history", "1");
-      shell3.appendChild(historySlot);
+      shell4.appendChild(historySlot);
     }
     historySlot.setAttribute(SHELL_SECTION_ATTR, "history");
     return historySlot;
   }
-  function ensureStoriesSlot(shell3) {
-    let storiesSlot = shell3.querySelector("[data-hg-place-sheet-stories]");
+  function ensureStoriesSlot(shell4) {
+    let storiesSlot = shell4.querySelector("[data-hg-place-sheet-stories]");
     if (!(storiesSlot instanceof HTMLElement)) {
       storiesSlot = document.createElement("section");
       storiesSlot.className = "pc-sheet-stories";
       storiesSlot.setAttribute("data-hg-place-sheet-stories", "1");
-      shell3.appendChild(storiesSlot);
+      shell4.appendChild(storiesSlot);
     }
     storiesSlot.setAttribute(SHELL_SECTION_ATTR, "stories");
     return storiesSlot;
   }
-  function ensureBeforeAfterSlot(shell3) {
-    let slot = shell3.querySelector("[data-hg-place-sheet-before-after]");
+  function ensureBeforeAfterSlot(shell4) {
+    let slot = shell4.querySelector("[data-hg-place-sheet-before-after]");
     if (!(slot instanceof HTMLElement)) {
       slot = document.createElement("section");
       slot.className = "pc-sheet-before-after";
       slot.setAttribute("data-hg-place-sheet-before-after", "1");
-      shell3.appendChild(slot);
+      shell4.appendChild(slot);
     }
     slot.setAttribute(SHELL_SECTION_ATTR, "before-after");
     return slot;
   }
   function mountPlaceSheetPhase1(place) {
     if (!place || isMicro2(place)) return null;
-    const shell3 = ensureShell(place);
-    if (!(shell3 instanceof HTMLElement)) return null;
-    movePrimaryNodes(shell3);
-    const aboutSlot = ensureAboutSlot(shell3);
+    const shell4 = ensureShell(place);
+    if (!(shell4 instanceof HTMLElement)) return null;
+    movePrimaryNodes(shell4);
+    const aboutSlot = ensureAboutSlot(shell4);
     if (aboutSlot) {
       const about = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true });
       about == null ? void 0 : about.classList.add("pc-sheet-canonical-about");
     }
-    const historySlot = ensureHistorySlot(shell3);
+    const historySlot = ensureHistorySlot(shell4);
     if (historySlot) {
       const history = mountCanonicalHistory(historySlot, place);
       history == null ? void 0 : history.classList.add("pc-sheet-canonical-history");
     }
-    const storiesSlot = ensureStoriesSlot(shell3);
+    const storiesSlot = ensureStoriesSlot(shell4);
     if (storiesSlot) {
       const stories = mountCanonicalStories(storiesSlot, place);
       stories == null ? void 0 : stories.classList.add("pc-sheet-canonical-stories");
     }
-    const beforeAfterSlot = ensureBeforeAfterSlot(shell3);
+    const beforeAfterSlot = ensureBeforeAfterSlot(shell4);
     if (beforeAfterSlot) {
       const beforeAfter = mountCanonicalBeforeAfter(beforeAfterSlot, place);
       beforeAfter == null ? void 0 : beforeAfter.classList.add("pc-sheet-canonical-before-after");
     }
-    startAutomaticPlaceSheetRender(text13(place.id));
-    return shell3;
+    startAutomaticPlaceSheetRender(text14(place.id));
+    return shell4;
   }
   function restoreLegacyPlaceCardStructure() {
     cancelAutomaticPlaceSheetRender();
     const root2 = card();
     const rootBody = body();
     if (!(root2 instanceof HTMLElement) || !(rootBody instanceof HTMLElement)) return;
-    const shell3 = rootBody.querySelector(`[${SHELL_ATTR}="1"]`);
-    const textBlock = (shell3 == null ? void 0 : shell3.querySelector(".pc-text")) || root2.querySelector(".pc-text");
-    const front = (shell3 == null ? void 0 : shell3.querySelector(".pc-frontcard")) || root2.querySelector(".pc-frontcard");
-    const sideStack = (shell3 == null ? void 0 : shell3.querySelector(".pc-side-stack")) || root2.querySelector(".pc-side-stack");
-    const events = (shell3 == null ? void 0 : shell3.querySelector("#pcEventsBox")) || document.getElementById("pcEventsBox");
+    const shell4 = rootBody.querySelector(`[${SHELL_ATTR}="1"]`);
+    const textBlock = (shell4 == null ? void 0 : shell4.querySelector(".pc-text")) || root2.querySelector(".pc-text");
+    const front = (shell4 == null ? void 0 : shell4.querySelector(".pc-frontcard")) || root2.querySelector(".pc-frontcard");
+    const sideStack = (shell4 == null ? void 0 : shell4.querySelector(".pc-side-stack")) || root2.querySelector(".pc-side-stack");
+    const events = (shell4 == null ? void 0 : shell4.querySelector("#pcEventsBox")) || document.getElementById("pcEventsBox");
     let legacyGrid = rootBody.querySelector(":scope > .pc-grid");
     if (!(legacyGrid instanceof HTMLElement)) {
       legacyGrid = document.createElement("div");
@@ -1466,13 +1646,13 @@
     if (front instanceof HTMLElement) legacyGrid.appendChild(front);
     if (sideStack instanceof HTMLElement) legacyGrid.appendChild(sideStack);
     if (events instanceof HTMLElement) legacyGrid.appendChild(events);
-    shell3 == null ? void 0 : shell3.remove();
+    shell4 == null ? void 0 : shell4.remove();
     root2.classList.remove("is-place-sheet-phase1");
     delete root2.dataset.hgPlaceSheetPhase;
   }
   function placeSheetSectionTarget(id) {
     var _a;
-    const normalized2 = text13(id);
+    const normalized2 = text14(id);
     if (!normalized2) return null;
     const target = ((_a = card()) == null ? void 0 : _a.querySelector(`[${SHELL_SECTION_ATTR}="${normalized2}"]`)) || null;
     return target instanceof HTMLElement && !target.hidden ? target : null;
@@ -1530,32 +1710,32 @@
       sources: "sources",
       kilder: "sources"
     });
-    const text14 = (value) => String(value == null ? "" : value).trim();
+    const text15 = (value) => String(value == null ? "" : value).trim();
     const wait = (ms) => new Promise((resolve) => global.setTimeout(resolve, ms));
     let legacyOpenPlaceCard = null;
     let legacyShowPlacePopup = null;
     let generation = 0;
     let activeMount = Promise.resolve(null);
     function isMicro3(place) {
-      return text14(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
+      return text15(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
     }
     function placeId2(place) {
-      return text14(place == null ? void 0 : place.id);
+      return text15(place == null ? void 0 : place.id);
     }
     function card2() {
       return document.getElementById("placeCard");
     }
     function currentPlace() {
       var _a, _b;
-      const id = text14((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId);
+      const id = text15((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId);
       if (!id) return null;
       return (Array.isArray(global.PLACES) ? global.PLACES : []).find((place) => placeId2(place) === id) || null;
     }
     function canonicalSection2(value) {
-      const key = text14(value).toLowerCase().replace(/\s+/g, "-");
+      const key = text15(value).toLowerCase().replace(/\s+/g, "-");
       return SECTION_ALIASES[key] || (SECTION_ORDER.some(([id]) => id === key) ? key : "about");
     }
-    function ensureStylesheet5() {
+    function ensureStylesheet6() {
       const styles = [
         [STYLE_FLAG, "css/place-unified-surface.css"],
         [SHEET_STYLE_FLAG, "css/place-sheet.css"]
@@ -1607,13 +1787,13 @@
     async function waitForPopup(expectedGeneration, place, timeoutMs = 1800) {
       var _a, _b;
       const started = Date.now();
-      const expectedName = text14((place == null ? void 0 : place.name) || (place == null ? void 0 : place.title));
+      const expectedName = text15((place == null ? void 0 : place.name) || (place == null ? void 0 : place.title));
       while (Date.now() - started < timeoutMs) {
         if (String(((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b[GENERATION_ATTR]) || "") !== String(expectedGeneration)) return null;
         const candidates = [...document.querySelectorAll(".hg-popup.place-popup-v2")].filter((node) => !node.classList.contains(EMBEDDED_CLASS));
         const popup = expectedName ? candidates.find((node) => {
           var _a2;
-          return text14((_a2 = node.querySelector(".hg-modal-title")) == null ? void 0 : _a2.textContent) === expectedName;
+          return text15((_a2 = node.querySelector(".hg-modal-title")) == null ? void 0 : _a2.textContent) === expectedName;
         }) : candidates[0];
         if (popup instanceof HTMLElement) return popup;
         await wait(20);
@@ -1642,7 +1822,7 @@
       if (!(panelWrap instanceof HTMLElement)) return;
       [...panelWrap.querySelectorAll("[data-place-panel]")].forEach((panel) => {
         if (!(panel instanceof HTMLElement)) return;
-        const id = text14(panel.dataset.placePanel);
+        const id = text15(panel.dataset.placePanel);
         if (id === "more" || (id === "before-after" || id === "news") && placeSheetSectionTarget(id)) {
           panel.hidden = true;
           panel.setAttribute("aria-hidden", "true");
@@ -1672,7 +1852,7 @@
       [...tablist.querySelectorAll("[data-place-tab]")].forEach((button) => {
         if (!(button instanceof HTMLElement)) return;
         const id = canonicalSection2(button.dataset.placeTab);
-        if (id === "about" && text14(button.dataset.placeTab) === "more") {
+        if (id === "about" && text15(button.dataset.placeTab) === "more") {
           button.remove();
           return;
         }
@@ -1697,9 +1877,9 @@
       popup.addEventListener("click", intercept, true);
       popup.addEventListener("keydown", intercept, true);
       normalizePanels(article);
-      const observer = new MutationObserver(() => normalizePanels(article));
-      observer.observe(panelWrap, { childList: true, subtree: false, attributes: true, attributeFilter: ["hidden", "aria-hidden"] });
-      popup.__hgUnifiedPanelObserver = observer;
+      const observer2 = new MutationObserver(() => normalizePanels(article));
+      observer2.observe(panelWrap, { childList: true, subtree: false, attributes: true, attributeFilter: ["hidden", "aria-hidden"] });
+      popup.__hgUnifiedPanelObserver = observer2;
     }
     async function ensureLearningSection(place, article) {
       const api = global.HGPlaceLearningSurface;
@@ -1724,7 +1904,7 @@
         if (existingLearning instanceof HTMLElement) {
           wrapper.appendChild(existingLearning);
         } else {
-          const rendered = text14(api.renderLearningSection(registry, place));
+          const rendered = text15(api.renderLearningSection(registry, place));
           if (!rendered) return null;
           wrapper.insertAdjacentHTML("beforeend", rendered);
         }
@@ -1743,10 +1923,10 @@
       };
       reconcileLearning();
       if (!stableWrapper.__hgUnifiedLearningObserver) {
-        const observer = new MutationObserver(reconcileLearning);
-        observer.observe(body2, { childList: true, subtree: true });
-        stableWrapper.__hgUnifiedLearningObserver = observer;
-        global.setTimeout(() => observer.disconnect(), 1e4);
+        const observer2 = new MutationObserver(reconcileLearning);
+        observer2.observe(body2, { childList: true, subtree: true });
+        stableWrapper.__hgUnifiedLearningObserver = observer2;
+        global.setTimeout(() => observer2.disconnect(), 1e4);
       }
       const nav = article.querySelector(".pc-unified-section-nav");
       if (nav instanceof HTMLElement && !nav.querySelector('[data-hg-unified-jump="learning"]')) {
@@ -1767,7 +1947,7 @@
       (_a = host.querySelector("[data-hg-unified-loading]")) == null ? void 0 : _a.remove();
       popup.classList.add(EMBEDDED_CLASS);
       popup.dataset.hgUnifiedPlaceId = placeId2(place);
-      popup.setAttribute("aria-label", `Kunnskap om ${text14((place == null ? void 0 : place.name) || "stedet")}`);
+      popup.setAttribute("aria-label", `Kunnskap om ${text15((place == null ? void 0 : place.name) || "stedet")}`);
       (_b = popup.querySelector(".hg-popup-close")) == null ? void 0 : _b.setAttribute("hidden", "");
       if (popup.parentElement !== host) host.replaceChildren(popup);
       bindUnifiedNavigation(popup, article);
@@ -1856,7 +2036,7 @@
       if (!(section instanceof HTMLElement) && id === "learning") {
         section = root2.querySelector('[data-hg-unified-section="learning"]');
       } else if (!(section instanceof HTMLElement)) {
-        section = [...root2.querySelectorAll("[data-place-panel]")].find((panel) => text14(panel.getAttribute("data-place-panel")) === id) || null;
+        section = [...root2.querySelectorAll("[data-place-panel]")].find((panel) => text15(panel.getAttribute("data-place-panel")) === id) || null;
       }
       if (!(section instanceof HTMLElement)) return false;
       try {
@@ -1876,14 +2056,14 @@
     }
     async function openSection(place, target = "about") {
       var _a;
-      const resolvedPlace2 = typeof place === "string" ? (Array.isArray(global.PLACES) ? global.PLACES : []).find((row) => placeId2(row) === text14(place)) : place;
+      const resolvedPlace2 = typeof place === "string" ? (Array.isArray(global.PLACES) ? global.PLACES : []).find((row) => placeId2(row) === text15(place)) : place;
       if (!resolvedPlace2) return false;
       if (isMicro3(resolvedPlace2)) {
         if (typeof legacyShowPlacePopup === "function") legacyShowPlacePopup(resolvedPlace2);
         return true;
       }
       const root2 = card2();
-      const samePlace = text14((_a = root2 == null ? void 0 : root2.dataset) == null ? void 0 : _a.currentPlaceId) === placeId2(resolvedPlace2);
+      const samePlace = text15((_a = root2 == null ? void 0 : root2.dataset) == null ? void 0 : _a.currentPlaceId) === placeId2(resolvedPlace2);
       if (!samePlace && typeof global.openPlaceCard === "function") await global.openPlaceCard(resolvedPlace2);
       else await materialize(resolvedPlace2, { refresh: false });
       const id = canonicalSection2(target);
@@ -1947,7 +2127,7 @@
       return true;
     }
     function install2() {
-      ensureStylesheet5();
+      ensureStylesheet6();
       if (global[INSTALL_FLAG2]) {
         installPopupTabBridge();
         return true;
