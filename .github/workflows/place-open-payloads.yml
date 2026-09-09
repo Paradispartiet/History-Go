@@ -15,9 +15,17 @@ on:
       - 'data/brands/**'
       - 'data/runtime/**'
       - 'js/data/place-open-loader.js'
+      - 'js/ui/place-unified-surface.ts'
+      - 'dist/web/place-unified-surface.js'
+      - 'dist/web/place-unified-surface.js.map'
+      - 'css/place-unified-surface.css'
+      - 'js/config.js'
+      - 'build/build-web.mjs'
+      - 'docs/PLACE_UNIFIED_SURFACE_PLAN.md'
       - 'scripts/build-place-open-payloads.mjs'
       - 'tests/place-open-hyperfast.test.mjs'
       - 'tests/place-popup-lesespor-place-open-race.test.mjs'
+      - 'tests/place-unified-surface.test.mjs'
       - 'package.json'
       - 'package-lock.json'
       - '.github/workflows/place-open-payloads.yml'
@@ -42,6 +50,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
 
       - name: Verify payload sync and runtime contract
         run: npm run place-open:check && npm run test:place-open
+
+      - name: Verify unified Place surface build and parity contract
+        run: |
+          npm run typecheck:web
+          npm run build:web:check
+          node --check dist/web/place-unified-surface.js
+          node --check tests/place-unified-surface.test.mjs
+          node --test tests/place-unified-surface.test.mjs
