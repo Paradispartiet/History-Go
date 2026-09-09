@@ -9,8 +9,8 @@ const config = fs.readFileSync(path.join(__dirname, "..", "js", "config.js"), "u
 const appEntry = html.indexOf('<script type="module" src="./js/app.js?v=20260824-area-square-dom3"></script>');
 assert.ok(appEntry >= 0, "index must contain the cache-busted app entry");
 assert.ok(
-  html.includes('<script src="js/config.js?v=20260825-app-boot-hotfix"></script>'),
-  "index must cache-bust the config that owns critical boot placeholders"
+  html.includes('<script src="js/config.js?v=20260909-unified-place-surface"></script>'),
+  "index must cache-bust the config that owns the Unified Place Surface boot chain"
 );
 
 for (const src of [
