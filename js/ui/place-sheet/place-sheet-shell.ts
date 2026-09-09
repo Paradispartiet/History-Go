@@ -3,6 +3,7 @@ import { mountCanonicalHistory } from "./sections/history";
 import { mountCanonicalStories } from "./sections/stories";
 import { mountCanonicalBeforeAfter } from "./sections/before-after";
 import "./sections/news";
+import "./sections/reading";
 
 type PlaceSheetPlace = Record<string, any> & {
   id?: string;
