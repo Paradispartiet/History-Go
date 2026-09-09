@@ -6,6 +6,7 @@ import "./sections/news";
 import "./sections/reading";
 import "./sections/language";
 import "./sections/learning";
+import "./sections/special-sections";
 import { cancelAutomaticPlaceSheetRender, startAutomaticPlaceSheetRender } from "./place-sheet-render-queue";
 import "./place-sheet-direct-routing";
 
