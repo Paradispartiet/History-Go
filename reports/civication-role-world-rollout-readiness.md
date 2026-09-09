@@ -27,7 +27,7 @@ A PASS with policy open means controlled role-by-role rollout may proceed. It do
 
 ## First structurally varied wave candidates
 
-- **vitenskap/vitenskap_undervisning_og_forskning** — research_education; rollout_ready; queue #1
+_No safe first-wave set is available yet._
 
 The first wave is a recommendation, not a batch PR: every role still gets its own PR. Cross-role linkage is optional and only used when the work object is genuinely shared.
 
@@ -35,9 +35,8 @@ The first wave is a recommendation, not a batch PR: every role still gets its ow
 
 | Rank | Role | Class | Structural family | Cross-role | Main authored debt |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | `vitenskap/vitenskap_undervisning_og_forskning` | rollout_ready | research_education | not_required_for_rollout | situated_reputation |
-| 2 | `musikk/musikk_scene_og_produksjon` | blocked | creative_production | not_required_for_rollout | career:authority, career:day_one, career:knowledge, career:mail |
-| 3 | `musikk/musikk_utoving_og_ensemble` | blocked | other | not_required_for_rollout | career:authority, career:day_one, career:knowledge, career:mail |
+| 1 | `musikk/musikk_scene_og_produksjon` | blocked | creative_production | not_required_for_rollout | career:authority, career:day_one, career:knowledge, career:mail |
+| 2 | `musikk/musikk_utoving_og_ensemble` | blocked | other | not_required_for_rollout | career:authority, career:day_one, career:knowledge, career:mail |
 
 ## Blocked roles
 
