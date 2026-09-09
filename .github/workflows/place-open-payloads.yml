@@ -15,6 +15,13 @@ on:
       - 'data/brands/**'
       - 'data/runtime/**'
       - 'js/data/place-open-loader.js'
+      - 'js/ui/place-popup-v2.js'
+      - 'js/ui/place-popup-tabs.js'
+      - 'js/ui/place-popup-direct-tabs.js'
+      - 'js/ui/place-popup-unified-host-bridge.js'
+      - 'js/ui/place-language-layer.js'
+      - 'js/ui/place-learning-surface.js'
+      - 'js/ui/place-card-status-surface.js'
       - 'js/ui/place-unified-surface.ts'
       - 'dist/web/place-unified-surface.js'
       - 'dist/web/place-unified-surface.js.map'
@@ -25,6 +32,7 @@ on:
       - 'scripts/build-place-open-payloads.mjs'
       - 'tests/place-open-hyperfast.test.mjs'
       - 'tests/place-popup-lesespor-place-open-race.test.mjs'
+      - 'tests/place-popup-unified-host-bridge.test.mjs'
       - 'tests/place-unified-surface.test.mjs'
       - 'package.json'
       - 'package-lock.json'
@@ -64,5 +72,7 @@ jobs:
           npm run typecheck:web
           npm run build:web:check
           node --check dist/web/place-unified-surface.js
+          node --check js/ui/place-popup-unified-host-bridge.js
           node --check tests/place-unified-surface.test.mjs
-          node --test tests/place-unified-surface.test.mjs
+          node --check tests/place-popup-unified-host-bridge.test.mjs
+          node --test tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs

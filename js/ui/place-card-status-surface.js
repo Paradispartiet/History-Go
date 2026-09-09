@@ -26,12 +26,17 @@
 
   function ensureScript(src) {
     const existing = document.querySelector(`script[src="${src}"]`);
-    if (existing && existing.type !== "application/x-history-go-deferred") return;
+    if (existing && existing.type !== "application/x-history-go-deferred") return existing;
     existing?.remove();
     const script = document.createElement("script");
     script.src = src;
+    // Dynamically inserted classic scripts are async by default. The Place
+    // presentation chain has explicit decorator/adapter dependencies, so keep
+    // execution in insertion order instead of relying on network timing.
+    script.async = false;
     script.defer = true;
     document.body.appendChild(script);
+    return script;
   }
 
   function loadPlacePopupV2() {
@@ -41,6 +46,10 @@
     ensureStylesheet("css/place-popup-tabs.css");
     ensureScript("js/ui/place-popup-tabs.js");
     ensureScript("js/ui/place-popup-direct-tabs.js");
+    // During the migration away from modal staging, canonical place-popup HTML
+    // is written directly into PlaceCard's Unified host. Load this compatibility
+    // seam before the TypeScript adapter so no standard Place needs a body modal.
+    ensureScript("js/ui/place-popup-unified-host-bridge.js");
     // Unified Place Surface is a primary PlaceCard presentation layer, not a
     // low-priority post-ready extra. Its own installer waits fail-closed for
     // popup/direct-tab dependencies before patching the public entry points.
