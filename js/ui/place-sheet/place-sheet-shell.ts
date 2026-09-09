@@ -4,6 +4,7 @@ import { mountCanonicalStories } from "./sections/stories";
 import { mountCanonicalBeforeAfter } from "./sections/before-after";
 import "./sections/news";
 import "./sections/reading";
+import "./sections/language";
 
 type PlaceSheetPlace = Record<string, any> & {
   id?: string;
