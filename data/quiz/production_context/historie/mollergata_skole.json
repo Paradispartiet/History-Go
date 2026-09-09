@@ -1,0 +1,682 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "mollergata_skole",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1789,
+    "selection_sha256": "3973f33099fbec07d8a55844b847527432acd1a13bb9154d58b70da776249fc8",
+    "category_id": "historie",
+    "target_id": "mollergata_skole"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/mollergata_skole.json",
+      "bytes": 13254,
+      "sha256": "a18e4250daad7dcf88598a25c6a6c6e9e4833309fbbc805fee9a15759c6a658e"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie/mollergata_skole.json",
+      "bytes": 24081,
+      "sha256": "0b073343eccb54752214621a7d9bd4e0f93d12ff04dfcf848ea2b141cbee7bb5"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1271,
+      "selection_sha256": "ec31c9910dc44f2e52f86a09a72077582e92921ac188a57b22f0f0ab402fcda5"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_mollergata_skole.json",
+        "matches": 1,
+        "selection_bytes": 2131,
+        "selection_sha256": "13e52daec8c2aaa6f05f9f00614376866709b384432299f3d507b78672038762"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/mollergata_skole_sets.json",
+  "source_registry": {
+    "school": {
+      "url": "https://mollergata.osloskolen.no/om-skolen/om-oss/skolens-historie/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for åpning, arkitekt, Mølla-navn og skolekorps."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/M%C3%B8llergata_skole",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for navn, byggfaser, okkupasjonsbruk, korps og blåskilt."
+    },
+    "farre": {
+      "url": "https://nbl.snl.no/William_Farre",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for korpsstiftelsen og første opptreden."
+    },
+    "museum": {
+      "url": "https://skolemuseum.osloskolen.no/test/test/museets-historie/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for museumsforløper, 1970-brudd, restaurering og åpning."
+    },
+    "exhibits": {
+      "url": "https://skolemuseum.osloskolen.no/hva-skjer/vare-utstillinger/hva-skjer/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for de kuraterte klasseromsmiljøene."
+    },
+    "collection": {
+      "url": "https://skolemuseum.osloskolen.no/test/test/var-samling/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for samlingstyper og proveniensavgrensning."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/mollergata_skole_sets.json",
+      "data/quiz/manifest.json",
+      "data/knowledge/knowledge_units.json"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Ingen eksisterende canonical quiz eller arkivquiz for targetId ble funnet.",
+      "Ny normal 4x7 produseres fra den gjennomgåtte påstandsbanken."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "retained_rule": "Ingen eldre kunnskapsenheter eies av dette quizmålet."
+    }
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire sett dekker åpning og bygg, krigsbrudd, museumshistorie og kildekritisk syntese uten å splitte samme påstand kunstig."
+  },
+  "held_back_candidates": [
+    "Rangpåstanden Norges første moderne folkeskole",
+    "Kontrollert før–nå-par uten samme rom og standpunkt",
+    "Påstand om at museumspultene er opprinnelige i rommet",
+    "Aktuell åpningstid som historisk stabil fakta"
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_kulturminner_bevaring",
+        "title": "Kulturminner, utvelgelse og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_samtid_ettertid_fortelling",
+        "title": "Samtid, ettertid og historisk fortelling",
+        "score": 100
+      },
+      {
+        "id": "em_his_skole_folkedannelse",
+        "title": "Skole, folkedannelse og medborgerskap",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_helse_epidemi_profesjonalisering",
+        "title": "Helse, epidemi og profesjonalisering",
+        "category_id": "his_velferd_rett_hverdagsliv",
+        "score": 10
+      },
+      {
+        "id": "his_kulturminneutvelgelse_verdi",
+        "title": "Kulturminneutvelgelse og verdi",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_samtid_ettertid_fortelling",
+        "title": "Samtid, ettertid og historisk fortelling",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      },
+      {
+        "id": "his_skole_folkedannelse_medborgerskap",
+        "title": "Skole, folkedannelse og medborgerskap",
+        "category_id": "his_velferd_rett_hverdagsliv",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Materielle spor og sted som kilde",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor",
+      "his_velferd_rett_hverdagsliv",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_skole_folkedannelse",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring",
+      "em_his_samtid_ettertid_fortelling"
+    ],
+    "topic_hook_ids": [
+      "his_skole_folkedannelse_medborgerskap"
+    ],
+    "method_ids": [
+      "met_institusjonshistorisk_analyse",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "gro_hagemann"
+    ],
+    "works": [
+      "Skolefolk"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_mollergata_skole_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Skolen åpnet under navnet Nordre Skole.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_skole_folkedannelse"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Nordan tegnet de eldste bygningene.",
+      "source_ids": [
+        "school"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Åpningen skjedde i januar 1861.",
+      "source_ids": [
+        "school"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Nordan tegnet også utvidelsen fra 1891–93.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Byleksikonet nevner svømmebassenget uttrykkelig.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_skole_folkedannelse"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det kanoniske skolekomplekset ligger i Møllergata 49.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Skiltet markerer historien i ettertid.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Farre etablerte korpset sammen med skolens ledelse.",
+      "source_ids": [
+        "farre"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Første opptreden fant sted 17. mai 1902.",
+      "source_ids": [
+        "farre"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_skole_folkedannelse"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Korpset gikk inn i 1917 og ble reetablert i 1921.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Rekvisisjonen skjedde dagen etter invasjonen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Elevene og undervisningen måtte flyttes.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bassenget ble brukt når fanger ble ført gjennom anlegget.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_skole_folkedannelse"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Skolen ble igjen tatt i bruk i 1946.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Norsk Skolemuseum bestod av bibliotek og gjenstandssamling.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Museets historikk beskriver et stort dokumentert tap.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Noen få billass ble reddet av frivillige.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_skole_folkedannelse"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Lokalene ble pusset opp i 1998 og 1999.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Museet åpnet 23. mai 2000.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Miljøene er satt sammen for tre dokumenterte perioder.",
+      "source_ids": [
+        "exhibits"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Samlingen består av flere typer skolehistorisk materiale.",
+      "source_ids": [
+        "collection"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_skole_folkedannelse"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildekritikk skiller gjenstandens historie fra dagens plassering.",
+      "source_ids": [
+        "collection"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Tapet begrenser hvilke materielle kilder som finnes i dag.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kuratering former hvordan perioden presenteres.",
+      "source_ids": [
+        "exhibits"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Institusjonene har endret seg selv om anlegget består.",
+      "source_ids": [
+        "school"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_skole_folkedannelse"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Own-place-grensen hindrer sammenblanding av to adresser.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Materielle spor må kombineres med kilder til bruk og erfaring.",
+      "source_ids": [
+        "school"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_mollergata_skole_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Redningen viser at kulturarv skapes gjennom konkrete prioriteringer.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_skole_folkedannelse"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_mollergata_skole_samlingen_som_matte_bygges_opp_igjen",
+      "source_file": "data/stories/stories_mollergata_skole.json",
+      "summary": "Da store deler av skolemuseets gjenstandssamling ble kjørt bort i 1970, reddet frivillige noe; senere innsamlings- og restaureringsarbeid gjorde en ny museumsåpning mulig i 2000."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_mollergata_skole_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_mollergata_skole_quiz_01",
+        "claim_mollergata_skole_quiz_02",
+        "claim_mollergata_skole_quiz_03",
+        "claim_mollergata_skole_quiz_04",
+        "claim_mollergata_skole_quiz_05",
+        "claim_mollergata_skole_quiz_06",
+        "claim_mollergata_skole_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_mollergata_skole_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_mollergata_skole_quiz_08",
+        "claim_mollergata_skole_quiz_09",
+        "claim_mollergata_skole_quiz_10",
+        "claim_mollergata_skole_quiz_11",
+        "claim_mollergata_skole_quiz_12",
+        "claim_mollergata_skole_quiz_13",
+        "claim_mollergata_skole_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_mollergata_skole_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_mollergata_skole_quiz_15",
+        "claim_mollergata_skole_quiz_16",
+        "claim_mollergata_skole_quiz_17",
+        "claim_mollergata_skole_quiz_18",
+        "claim_mollergata_skole_quiz_19",
+        "claim_mollergata_skole_quiz_20",
+        "claim_mollergata_skole_quiz_21"
+      ]
+    },
+    {
+      "set_id": "historie_mollergata_skole_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_mollergata_skole_quiz_22",
+        "claim_mollergata_skole_quiz_23",
+        "claim_mollergata_skole_quiz_24",
+        "claim_mollergata_skole_quiz_25",
+        "claim_mollergata_skole_quiz_26",
+        "claim_mollergata_skole_quiz_27",
+        "claim_mollergata_skole_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}
