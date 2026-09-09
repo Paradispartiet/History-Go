@@ -1,0 +1,86 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "musikk",
+  "role_scope": "musikk_scene_og_produksjon",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "musikk_scene_og_produksjon_crew_eller_utstyrsbrudd",
+      "purpose": "Trene ny kontroll når crew, utstyr eller tidsvindu endres.",
+      "learning_focus": [
+        "endringskontroll",
+        "fallback",
+        "kapasitet"
+      ],
+      "mails": [
+        {
+          "id": "musikk_scene_og_produksjon_event_001",
+          "mail_type": "event",
+          "mail_family": "musikk_scene_og_produksjon_crew_eller_utstyrsbrudd",
+          "role_scope": "musikk_scene_og_produksjon",
+          "phase": "forenoon",
+          "priority": 160,
+          "from": "Ida",
+          "people_ref": "ida_produksjonsleder_musikk_scene_og_produksjon",
+          "place_id": "produksjonsplan_call_sheet_og_mandat_musikk_scene_og_produksjon",
+          "subject": "En nøkkelperson og et kritisk utstyrselement faller ut samtidig",
+          "summary": "En nøkkelperson og et kritisk utstyrselement faller ut samtidig. Arbeidet skal løses i produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg med direct career policy, konkret oppgavefordeling, kompetansegrense, sikkerhet, teknisk evidens, beslutningseier, venting, fallback og handoff synlig. Badge og tittel må aldri forveksles med regulert autorisasjon eller generell fullmakt.",
+          "situation": [
+            "Produksjonsloggen viser hva som er planlagt, testet, godkjent og fortsatt uavklart mens du skal: en nøkkelperson og et kritisk utstyrselement faller ut samtidig.",
+            "Showstart, artistservice, crew-mangel eller teknisk tidspress gjør det fristende å hoppe over kompetanse-, sikkerhets-, evidens- eller fullmaktskontroll.",
+            "Velg et grep som bevarer stopprett, dokumentert teknisk status, realistisk produksjonsflyt og riktig beslutningseier."
+          ],
+          "task_domain": "musikk_scene_og_produksjon",
+          "competency": "produksjonsplan_rigg_signal_sikkerhet_logistikk_myndighet_og_handoff",
+          "pressure": "showstart_servicepress_crew_mangel_teknisk_tidspress_og_status",
+          "choice_axis": "etterprovbar_sikker_produksjon_vs_tidspresset_snarvei",
+          "consequence_axis": "sikkerhet_tillit_og_produksjonsflyt_vs_skjult_risiko_og_uavklart_ansvar",
+          "narrative_arc": "event",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Dokumenter og avklar event_1",
+              "reply": "Jeg oppdaterer produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg før vi går videre. Jeg bekrefter aktiv tittel, tildelt oppgave, faktisk kompetanse, lokal instruks og hvem som eier teknisk, sikkerhetsmessig, kunstnerisk, produksjonsmessig eller økonomisk beslutning. Kritisk sti, rigg- og signalstatus, artist-/crewavhengigheter og avvik blir synlige. Hvis arbeid krever særskilt autorisasjon eller ansvar, stopper jeg eget berørte arbeid og eskalerer i stedet for å late som direct badge-policy gir kompetansen. Venting får en navngitt beslutningseier, fallback og handoff viser hva som er målt, endret og fortsatt uavklart. History Go brukes bare til historisk kontekst og bedre spørsmål, aldri som venue-instruks, teknisk bevis, autorisasjon eller fullmakt.",
+              "effect": 1,
+              "tags": [
+                "sikkerhet",
+                "myndighetsklarhet",
+                "teknisk_presisjon"
+              ],
+              "feedback": "Grepet bevarer den riktige authority-kjeden: direct career offer holdes adskilt fra faktisk kompetanse og fullmakt, sikkerhetsrisiko får stopprett og riktig eskalering, tekniske påstander bygger på test eller måling, og call sheet/handoff viser hvem som eier neste beslutning.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Press gjennom snarveien event_1",
+              "reply": "Jeg lar showstart, servicepress, tittel eller Musikk-badge fungere som om det ga generell myndighet. Jeg lover en endring før teknikk, sikkerhet, tid og kostnad er avklart, flytter en kritisk oppgave til noen uten dokumentert kompetanse, skjuler et avvik for å hente inn tid og beskriver antatt teknisk årsak som om den var målt. Jeg hopper over navngitt beslutningseier og lar neste crew overta uten tydelig handoff. Det kan se effektivt ut i øyeblikket, men gjør produksjonen mindre sikker, mindre etterprøvbar og mer sårbar for feil som ingen eier.",
+              "effect": -1,
+              "tags": [
+                "tidspress",
+                "kompetanserisiko",
+                "uavklart_fullmakt"
+              ],
+              "feedback": "Snarveien gjør tempo, service eller badge-status til skjult myndighet. Når kompetanse, teknisk evidens, sikkerhetsansvar og beslutningseier blir uklare, øker risikoen selv om produksjonen midlertidig ser raskere ut.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

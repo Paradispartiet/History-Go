@@ -1,10 +1,319 @@
 {
-  "schema":"civication_role_model_v2","version":2,
-  "source":{"badge_file":"data/badges/musikk.json","badge_id":"musikk","evidence":"data/Civication/musikkCareerLifeEvidence.json"},
-  "category":"musikk","role_scope":"musikk_scene_og_produksjon","role_id":"musikk_scene_og_produksjon","title":"Scene og produksjon",
-  "core_narrative":["Du får konserter og musikkproduksjoner til å fungere gjennom logistikk, teknikk, koordinering og tydelige ansvarslinjer."],
-  "work_life":{"daily_work":["rigg, plan, teknikk, crewkoordinering og avvikshåndtering"],"responsibilities":["sikker gjennomføring, presis kommunikasjon og realistisk produksjonsflyt"],"work_environment":["scener, kulturhus, festivaler, studio og turné"]},
-  "authority_boundaries":{"can":["handle innen tildelt produksjonsmandat","stoppe eller eskalere sikkerhetskritiske avvik"],"cannot":["overstyre fagmyndighet uten mandat","inngå avtaler uten fullmakt","prioritere tempo foran nødvendig sikkerhet"]},
-  "competence_axes":["produksjonsflyt","teknisk_forståelse","HMS","kommunikasjon","koordinering","risikohåndtering"],
-  "ideal_type_problems":["forsinket rigg","teknisk svikt","kolliderende planer","uklare ansvarslinjer","artistbehov mot kapasitet"]
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "source": {
+    "badge_file": "data/badges/musikk.json",
+    "badge_id": "musikk",
+    "evidence": "data/Civication/musikkCareerLifeEvidence.json"
+  },
+  "category": "musikk",
+  "role_scope": "musikk_scene_og_produksjon",
+  "role_id": "musikk_scene_og_produksjon",
+  "title": "Scene og produksjon",
+  "core_narrative": [
+    "Scene og produksjon er et delt work world for Sceneassistent, Produksjonsassistent, Tekniker (lys/lyd) og Produksjonskoordinator. Rollene får konserter og musikkproduksjoner til å fungere gjennom plan, logistikk, rigg, teknisk gjennomføring, avvikshåndtering og overtakbar handoff.",
+    "Alle fire canonical titler beholder badge-kontrakten policy direct. Direct betyr at spillets karrieretilbud kan utløses uten en separat qualification gate; det betyr ikke at spilleren automatisk får sertifisering, regulert fagkompetanse, økonomisk fullmakt, kunstnerisk beslutningsmyndighet eller rett til å overstyre teknisk og sikkerhetsmessig ansvar."
+  ],
+  "work_life": {
+    "daily_work": [
+      "føre produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg gjennom plan, rigg, teknikk, logistikk, avvik, venting, beslutning og handoff",
+      "bekrefte oppgave, kompetansegrense og ansvarlig funksjon før tidskritisk arbeid starter",
+      "teste tekniske avhengigheter systematisk og registrere faktisk feilstatus fremfor antatt årsak",
+      "koordinere artist-, crew- og leveransebehov mot call sheet, sikkerhet og realistisk kapasitet",
+      "overlevere åpne avvik, målinger, endringer og stopppunkter til neste ansvarlige funksjon"
+    ],
+    "responsibilities": [
+      "produksjonsplan_og_call_sheet",
+      "scene_og_riggflyt",
+      "hms_og_sikkerhetseskalering",
+      "lyd_lys_og_signalstatus",
+      "artist_crew_og_logistikk",
+      "fullmakts_og_kompetansegrenser",
+      "avvik_venting_og_handoff"
+    ],
+    "work_environment": [
+      "Scener, kulturhus, festivaler, studio, turné og andre musikkproduksjoner med tidskritiske skift mellom artist, crew, teknikk, logistikk og publikum."
+    ],
+    "status_position": [
+      "Sceneassistent, Produksjonsassistent, Tekniker (lys/lyd) og Produksjonskoordinator er canonical direct career offers. Tittel og badge gir rolleidentitet i spillet, men sikkerhetskritisk eller regulert arbeid krever fortsatt faktisk kompetanse, lokal instruks og ansvarslinje."
+    ],
+    "workplaces": [
+      "produksjonsplan_call_sheet_og_mandat_musikk_scene_og_produksjon",
+      "scene_rigg_hms_og_sikkerhet_musikk_scene_og_produksjon",
+      "lyd_lys_signal_og_linecheck_musikk_scene_og_produksjon",
+      "artist_crew_logistikk_og_handoff_musikk_scene_og_produksjon"
+    ]
+  },
+  "authority_boundaries": {
+    "can": [
+      "utføre og koordinere tildelte scene- og produksjonsoppgaver innen faktisk oppgavefordeling, dokumentert kompetanse, lokal instruks og gjeldende sikkerhetsprosedyrer",
+      "stanse eget arbeid og varsle eller eskalere når rigg, strøm, løft, høydearbeid, publikumssikkerhet, signalfeil eller annen risiko ikke er forsvarlig avklart",
+      "operere og feilsøke tildelt lyd-, lys- og signalutstyr innen dokumentert opplæring og rolle, og overlevere målinger, feilstatus og fallback til riktig teknisk ansvarlig",
+      "koordinere call sheet, crew, logistikk, leveranser, sceneskift og tidsavhengigheter innen produksjonsmandatet uten å overta kunstnerisk, teknisk, økonomisk eller sikkerhetsmessig beslutningsmyndighet",
+      "dokumentere avvik, venting, beslutningseier, endringer og handoff slik at neste crew eller fagfunksjon kan overta uten å gjette"
+    ],
+    "cannot": [
+      "behandle direct career policy, Musikk-badge, XP eller stillingstittel som generell autorisasjon, sertifisering, sikkerhetsgodkjenning eller fullmakt utover faktisk oppgave og kompetanse",
+      "utføre regulert elektrisk arbeid, sikkerhetskritisk rigg, løft eller annet arbeid som krever særskilt kompetanse eller autorisasjon når dette ikke er dokumentert og tildelt",
+      "overstyre teknisk ansvarlig, HMS- eller sikkerhetsansvarlig, produksjonsleder eller kunstnerisk beslutningseier uten eksplisitt mandat",
+      "inngå avtaler, påføre produksjonen kostnader eller love artist, arrangør eller leverandør endringer uten relevant økonomisk eller kontraktsmessig fullmakt",
+      "skjule eller normalisere sikkerhetsavvik, manglende kompetanse, utilstrekkelig hvile eller urealistisk tidsplan for å holde showstart",
+      "bruke History Go som erstatning for dagens venue-instruks, teknisk dokumentasjon, risikovurdering, kompetansebevis, autorisasjon, kontrakt, fullmakt eller faktisk måling"
+    ]
+  },
+  "competence_axes": [
+    "produksjonsplan_og_call_sheet",
+    "scenelogistikk_og_rigg",
+    "hms_og_stopprett",
+    "lyd_lys_signal_og_linecheck",
+    "teknisk_feilsoking_og_fallback",
+    "artist_crew_og_leveranselogistikk",
+    "myndighets_og_fullmaktsklarhet",
+    "avviksdokumentasjon",
+    "venting_eskalering_og_handoff",
+    "bounded_rework_og_laring"
+  ],
+  "ideal_type_problems": [
+    {
+      "id": "forsinket_rigg",
+      "problem": "Rigg ligger etter plan før dørene åpner, og tidsinnhenting frister crewet til å hoppe over sikkerhets- eller kompetansekontroll."
+    },
+    {
+      "id": "signalfeil_under_linecheck",
+      "problem": "En ustabil signalvei oppstår under linecheck, og det er uklart om feilen ligger i patch, strøm, nettverk, utstyr eller bruk."
+    },
+    {
+      "id": "sen_artistendring",
+      "problem": "Artist ønsker en sen scene- eller teknisk endring som påvirker kapasitet, sikkerhet, tid og kostnad."
+    },
+    {
+      "id": "crew_mangel",
+      "problem": "En nøkkelperson uteblir, og produksjonen må omfordele arbeid uten å tildele sikkerhetskritiske oppgaver til feil kompetanse."
+    },
+    {
+      "id": "uavklart_fullmakt",
+      "problem": "En assistent eller koordinator blir presset til å love en løsning på vegne av teknisk, kunstnerisk eller økonomisk ansvarlig."
+    }
+  ],
+  "badge_titles": [
+    "Sceneassistent",
+    "Produksjonsassistent",
+    "Tekniker (lys/lyd)",
+    "Produksjonskoordinator"
+  ],
+  "authority_boundary": {
+    "may": [
+      "utføre og koordinere tildelte scene- og produksjonsoppgaver innen faktisk oppgavefordeling, dokumentert kompetanse, lokal instruks og gjeldende sikkerhetsprosedyrer",
+      "stanse eget arbeid og varsle eller eskalere når rigg, strøm, løft, høydearbeid, publikumssikkerhet, signalfeil eller annen risiko ikke er forsvarlig avklart",
+      "operere og feilsøke tildelt lyd-, lys- og signalutstyr innen dokumentert opplæring og rolle, og overlevere målinger, feilstatus og fallback til riktig teknisk ansvarlig",
+      "koordinere call sheet, crew, logistikk, leveranser, sceneskift og tidsavhengigheter innen produksjonsmandatet uten å overta kunstnerisk, teknisk, økonomisk eller sikkerhetsmessig beslutningsmyndighet",
+      "dokumentere avvik, venting, beslutningseier, endringer og handoff slik at neste crew eller fagfunksjon kan overta uten å gjette"
+    ],
+    "may_not": [
+      "behandle direct career policy, Musikk-badge, XP eller stillingstittel som generell autorisasjon, sertifisering, sikkerhetsgodkjenning eller fullmakt utover faktisk oppgave og kompetanse",
+      "utføre regulert elektrisk arbeid, sikkerhetskritisk rigg, løft eller annet arbeid som krever særskilt kompetanse eller autorisasjon når dette ikke er dokumentert og tildelt",
+      "overstyre teknisk ansvarlig, HMS- eller sikkerhetsansvarlig, produksjonsleder eller kunstnerisk beslutningseier uten eksplisitt mandat",
+      "inngå avtaler, påføre produksjonen kostnader eller love artist, arrangør eller leverandør endringer uten relevant økonomisk eller kontraktsmessig fullmakt",
+      "skjule eller normalisere sikkerhetsavvik, manglende kompetanse, utilstrekkelig hvile eller urealistisk tidsplan for å holde showstart",
+      "bruke History Go som erstatning for dagens venue-instruks, teknisk dokumentasjon, risikovurdering, kompetansebevis, autorisasjon, kontrakt, fullmakt eller faktisk måling"
+    ]
+  },
+  "career_path": {
+    "entry_from": [
+      "Canonical direct offer følger Musikk-badgets terskler for de fire titlene. Ingen separat qualification_id kreves av badge-kontrakten, men faktisk arbeidsoppgave må fortsatt ligge innen dokumentert kompetanse, lokal instruks og tildelt ansvar."
+    ],
+    "progression_to": [
+      "Høyere tier i samme role_scope kan gi mer komplekse oppgaver og koordinasjonsansvar, men utvider ikke automatisk teknisk autorisasjon, økonomisk fullmakt eller sikkerhetsansvar."
+    ],
+    "possible_promotions": [
+      "Produksjonsassistent eller Tekniker (lys/lyd) når respektive canonical badge-tier og faktisk oppgavekompetanse er avklart",
+      "Produksjonskoordinator når canonical badge-tier er nådd og produksjonen faktisk tildeler koordineringsansvaret"
+    ],
+    "possible_exits": [
+      "andre musikkroller når deres egne canonical career- eller life-position-kontrakter er oppfylt",
+      "andre produksjons- eller tekniske jobber utenfor dette role_scope når arbeidsgiverens faktiske krav er oppfylt"
+    ],
+    "career_risks": [
+      "tempo og servicepress kan gjøre uavklarte sikkerhetsgrenser usynlige",
+      "koordinasjonsstatus kan feiltolkes som økonomisk, kunstnerisk eller teknisk fullmakt",
+      "teknisk selvtillit kan skjule at et inngrep krever særskilt autorisasjon eller fagansvar"
+    ]
+  },
+  "persistent_work_product": {
+    "id": "produksjonsplan_rigg_signal_sikkerhets_avviks_og_handoff_logg",
+    "title": "Produksjons-, sikkerhets- og handoff-logg",
+    "description": "Et vedvarende, versjonert arbeidsobjekt som binder call sheet, oppgavefordeling, kompetansegrense, scene- og riggstatus, signal-/teknikkstatus, artist- og crewlogistikk, avvik, stoppkriterier, venting, beslutningseier, endringer, fallback og handoff sammen.",
+    "required_fields": [
+      "call_sheet_og_kritisk_sti",
+      "oppgave_kompetanse_og_ansvarlig_funksjon",
+      "scene_rigg_og_sikkerhetsstatus",
+      "lyd_lys_signal_og_malinger",
+      "artist_crew_og_leveranseavhengigheter",
+      "avvik_risiko_og_stoppkriterier",
+      "endringer_og_godkjenningseier",
+      "ventestatus_og_eskalering",
+      "fallback_og_bounded_rework",
+      "handoff_og_neste_kontrollpunkt"
+    ]
+  },
+  "day_one": {
+    "outcomes": [
+      "Bekreft hvilken av de fire canonical titlene som er aktiv og hva direct offer faktisk gir adgang til i spillet uten å late som badge erstatter reell kompetanse eller sikkerhetsansvar.",
+      "Opprett produksjonsloggen med call sheet, ansvarslinjer, scene/riggstatus, tekniske avhengigheter, artist/crewbehov og eksplisitte stoppkriterier.",
+      "Kartlegg hva spilleren kan utføre selv, hva som krever teknisk eller sikkerhetsansvarlig, og hva som krever økonomisk, kunstnerisk eller produksjonsmessig beslutning."
+    ]
+  },
+  "challenges": [
+    {
+      "id": "rigg_mot_dorer",
+      "title": "Rigg mot døråpning",
+      "description": "Tidsplanen ligger etter, men et kritisk riggpunkt er ikke ferdig kontrollert.",
+      "pressure": "showstart_vs_sikkerhet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    },
+    {
+      "id": "sen_endring_uten_eier",
+      "title": "Sen endring uten beslutningseier",
+      "description": "Et artistønske påvirker teknikk, tid og kostnad, men ingen har samlet godkjenning.",
+      "pressure": "service_vs_fullmakt_og_kapasitet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "tempo_vs_stopprett",
+      "title": "Tempo mot stopprett",
+      "setup": "Crewet kan hente inn tid bare ved å gjøre et sikkerhetskritisk steg før riktig kontroll er på plass.",
+      "choice_axis": "sikker_stopp_og_eskalering_vs_tidspresset_snarvei",
+      "consequence_axis": "forutsigbar_gjennomforing_vs_skjult_risiko",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    },
+    {
+      "id": "koordinering_vs_fullmakt",
+      "title": "Koordinering mot fullmakt",
+      "setup": "En ekstern aktør vil ha et ja nå, men beslutningen eies av en annen fag- eller fullmaktsfunksjon.",
+      "choice_axis": "tydelig_beslutningseier_vs_uformelt_lofte",
+      "consequence_axis": "tillit_og_sporbarhet_vs_forpliktelse_uten_mandat",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "ida_produksjonsleder_musikk_scene_og_produksjon",
+      "name": "Ida",
+      "role": "produksjonsleder og mandatkontakt",
+      "workplace_ids": [
+        "produksjonsplan_call_sheet_og_mandat_musikk_scene_og_produksjon"
+      ],
+      "function": "Ida holder call sheet, avhengigheter, crew og beslutningsspor samlet når mange fagfunksjoner må levere samtidig. Hun gjør forskjellen mellom koordinering, beslutning og utførelse eksplisitt og returnerer planer som bare går opp hvis noen skjuler overtid, usikkerhet eller uavklarte ansvar.",
+      "authority_relation": "Ida kan tildele og prioritere produksjonsoppgaver innen sitt faktiske mandat, men kan ikke gjøre en direkte badge-basert karriereinngang til generell fullmakt. Hun kan heller ikke overstyre teknisk eller sikkerhetsansvar, signere uten økonomisk fullmakt eller delegere regulert arbeid til en person uten nødvendig kompetanse.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "amir_teknisk_ansvarlig_musikk_scene_og_produksjon",
+      "name": "Amir",
+      "role": "teknisk ansvarlig for lyd, lys og signal",
+      "workplace_ids": [
+        "lyd_lys_signal_og_linecheck_musikk_scene_og_produksjon"
+      ],
+      "function": "Amir gjør signalvei, testrekkefølge, feilstatus, fallback og tekniske stoppkriterier konkrete. Han trener spilleren i å feilsøke rolig, beskrive hva som faktisk er målt og skille utstyrsbetjening innen opplæring fra inngrep som krever særskilt autorisasjon, fagansvar eller anleggsansvar.",
+      "authority_relation": "Amir kan godkjenne tekniske arbeidsmåter innen sitt tildelte fagansvar og kreve at usikker eller uautorisert praksis stanses. Han kan ikke bruke sin rolle til å overstyre produksjonsbudsjett, artistens kunstneriske valg eller andre formelle ansvarslinjer.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "nora_scene_hms_og_rigg_musikk_scene_og_produksjon",
+      "name": "Nora",
+      "role": "scene-, rigg- og HMS-kontakt",
+      "workplace_ids": [
+        "scene_rigg_hms_og_sikkerhet_musikk_scene_og_produksjon"
+      ],
+      "function": "Nora følger sceneskift, riggsoner, publikumsskille, arbeidsrekkefølge, vernegrenser og sikkerhetskritiske avvik. Hun gjør det legitimt å stoppe arbeid som ikke er forsvarlig, også når dørene snart åpner og sosialt press belønner tempo fremfor kontroll.",
+      "authority_relation": "Nora kan kreve stopp, sperring og eskalering etter gjeldende sikkerhetsprosedyrer. Hun kan ikke gi spilleren sertifisering, autorisasjon eller kompetanse gjennom en sceneinstruks, og hun kan ikke gjøre tidspress til grunnlag for å omgå ansvarlig teknisk eller sikkerhetsmessig beslutning.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "maja_artist_crew_og_logistikk_musikk_scene_og_produksjon",
+      "name": "Maja",
+      "role": "artist-, crew- og logistikkontakt",
+      "workplace_ids": [
+        "artist_crew_logistikk_og_handoff_musikk_scene_og_produksjon"
+      ],
+      "function": "Maja samler rider, artistbehov, transport, pauser, crewskift, leveranser og siste endringer før show. Hun gjør servicepresset synlig: et sent ønske må oversettes til konsekvenser for tid, teknikk, sikkerhet og kostnad før noen lover at det kan gjennomføres.",
+      "authority_relation": "Maja kan koordinere informasjon, avtale praktiske avklaringer innen mandat og returnere urealistiske løfter til riktig beslutningseier. Hun kan ikke love kunstneriske, tekniske eller økonomiske endringer uten at ansvarlig funksjon faktisk har godkjent dem.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "produksjonsplan_call_sheet_og_mandat_musikk_scene_og_produksjon",
+      "name": "Produksjonsplan, call sheet og mandat",
+      "function": "Arbeidsflaten binder produksjonsplan, call sheet, sceneplan, ansvarslinjer, tidsvinduer, leveranser og faktisk oppgavefordeling sammen. Den gjør det mulig å skille hvem som koordinerer fra hvem som har teknisk, økonomisk, kunstnerisk eller sikkerhetsmessig beslutningsmyndighet, og den gjør avhengigheter synlige før tempo blir en skjult sikkerhetsrisiko."
+    },
+    {
+      "id": "scene_rigg_hms_og_sikkerhet_musikk_scene_og_produksjon",
+      "name": "Scene, rigg, HMS og sikkerhet",
+      "function": "Her håndteres sceneflyt, riggstatus, sperringer, løft, strøm, høydearbeid, publikumssoner og stoppkriterier. Spilleren skal kunne stanse eget arbeid og varsle risiko, men aldri behandle badge, tittel eller tidspress som autorisasjon til regulert eller sikkerhetskritisk arbeid uten riktig kompetanse, instrukser og ansvarlig funksjon."
+    },
+    {
+      "id": "lyd_lys_signal_og_linecheck_musikk_scene_og_produksjon",
+      "name": "Lyd, lys, signal og linecheck",
+      "function": "Her kobles signalvei, patch, mikrofoner, monitor, lyscue, nettverk, strømforutsetninger, testing og feilstatus. Teknikerrollen kan operere og feilsøke innen dokumentert kompetanse og tildelt ansvar, mens arbeid som krever særskilt autorisasjon eller sikkerhetsansvar må ligge hos riktig fag- eller anleggsansvarlig."
+    },
+    {
+      "id": "artist_crew_logistikk_og_handoff_musikk_scene_og_produksjon",
+      "name": "Artist, crew, logistikk og handoff",
+      "function": "Her holdes artistbehov, crew, transport, utstyr, sceneskift, pauser, leveranser og overlevering samlet. Koordinering skal gjøre konsekvenser og beslutningseier tydelig; en koordinator eller assistent kan ikke love kunstneriske endringer, økonomiske disposisjoner eller tekniske løsninger på vegne av andre funksjoner."
+    }
+  ],
+  "required_knowledge": {
+    "history_go_badges": [
+      "musikk"
+    ],
+    "job_specific": [
+      "produksjonsplanlegging",
+      "scene_og_riggsikkerhet",
+      "grunnleggende_signalforstaelse",
+      "lokale_prosedyrer_og_ansvarslinjer"
+    ],
+    "boundary": "History Go kan gi musikk-, konsertsted-, teknologi- og produksjonshistorie som bedre spørsmålsgrunnlag, men aldri dagens venue-instruks, tekniske måling, kompetansebevis, autorisasjon, risikovurdering, kontrakt eller fullmakt."
+  },
+  "notes": [
+    "Canonical shared work world for Sceneassistent, Produksjonsassistent, Tekniker (lys/lyd) og Produksjonskoordinator. Direct badge policy preserved exactly; operational authority remains task-, competence- and responsibility-bound."
+  ]
 }
