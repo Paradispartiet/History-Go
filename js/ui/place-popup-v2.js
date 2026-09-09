@@ -489,6 +489,19 @@
     return renderHistoryTimeline(place);
   }
 
+  function renderStandardStoriesSection(stories, options) {
+    if (options && typeof options === "object" && options.suppressPlaceStories === true) return "";
+    const shared = global.HGPlaceSheetSections?.stories?.renderHtml;
+    if (typeof shared === "function") {
+      try {
+        const html = String(shared(stories) || "");
+        if (html) return html;
+      } catch {}
+    }
+    const legacy = helper("renderStoriesSection");
+    return legacy ? legacy(stories) : "";
+  }
+
   function renderChips(values, maxItems = 18) {
     const items = uniqueStrings(list(values)).slice(0, maxItems);
     if (!items.length) return "";
@@ -759,7 +772,6 @@
 
     const headerMeta = uniqueStrings([category, year, placeType]).join(" · ");
     const renderEvents = helper("renderEventsSection");
-    const renderStories = helper("renderStoriesSection");
 
     const html = `
       <article class="hg-modal hg-place-popup-v2">
@@ -812,7 +824,7 @@
           ${renderWonderkammer(place)}
           ${renderKnowledgeSection(place)}
           ${renderEvents ? renderEvents(events) : ""}
-          ${renderStories ? renderStories(stories) : ""}
+          ${renderStandardStoriesSection(stories, options)}
           ${renderSourceSummary(place)}
           ${renderObservationsSection(observations)}
         </div>

@@ -1,5 +1,6 @@
 import { mountCanonicalAbout } from "./sections/about";
 import { mountCanonicalHistory } from "./sections/history";
+import { mountCanonicalStories } from "./sections/stories";
 
 type PlaceSheetPlace = Record<string, any> & {
   id?: string;
@@ -52,6 +53,7 @@ function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
       </section>
       <section class="pc-sheet-onsite" data-hg-place-sheet-onsite></section>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
+      <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
     `;
     rootBody.prepend(shell);
   }
@@ -112,6 +114,18 @@ function ensureHistorySlot(shell: HTMLElement): HTMLElement | null {
   return historySlot;
 }
 
+function ensureStoriesSlot(shell: HTMLElement): HTMLElement | null {
+  let storiesSlot = shell.querySelector<HTMLElement>("[data-hg-place-sheet-stories]");
+  if (!(storiesSlot instanceof HTMLElement)) {
+    storiesSlot = document.createElement("section");
+    storiesSlot.className = "pc-sheet-stories";
+    storiesSlot.setAttribute("data-hg-place-sheet-stories", "1");
+    shell.appendChild(storiesSlot);
+  }
+  storiesSlot.setAttribute(SHELL_SECTION_ATTR, "stories");
+  return storiesSlot;
+}
+
 export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | null {
   if (!place || isMicro(place)) return null;
   const shell = ensureShell(place);
@@ -127,6 +141,11 @@ export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | nul
   if (historySlot) {
     const history = mountCanonicalHistory(historySlot, place);
     history?.classList.add("pc-sheet-canonical-history");
+  }
+  const storiesSlot = ensureStoriesSlot(shell);
+  if (storiesSlot) {
+    const stories = mountCanonicalStories(storiesSlot, place);
+    stories?.classList.add("pc-sheet-canonical-stories");
   }
   return shell;
 }

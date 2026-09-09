@@ -354,7 +354,13 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
 
     try {
       const ownsHistory = placeSheetSectionTarget("history") instanceof HTMLElement;
-      const result = legacyShowPlacePopup(place, { unifiedHost: host instanceof HTMLElement ? host : null, suppressPlaceAbout: true, suppressPlaceHistory: ownsHistory });
+      const ownsStories = placeSheetSectionTarget("stories") instanceof HTMLElement;
+      const result = legacyShowPlacePopup(place, {
+        unifiedHost: host instanceof HTMLElement ? host : null,
+        suppressPlaceAbout: true,
+        suppressPlaceHistory: ownsHistory,
+        suppressPlaceStories: ownsStories
+      });
       if (result && typeof result.then === "function") await result;
       const popup = await waitForPopup(myGeneration, place);
       if (!(popup instanceof HTMLElement)) return null;
@@ -374,6 +380,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
       // Remove only compatibility duplicates if an older/custom popup renderer ignored suppression.
       if (placeSheetSectionTarget("about")) popup.querySelector(".hg-place-about-section")?.remove();
       if (placeSheetSectionTarget("history")) popup.querySelector(".hg-place-history-section")?.remove();
+      if (placeSheetSectionTarget("stories")) popup.querySelector(".hg-section-stories")?.remove();
       const embedded = prepareEmbeddedPopup(popup, article, place);
       if (!(embedded instanceof HTMLElement)) return null;
       await ensureLearningSection(place, article);
@@ -395,7 +402,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     const root = card();
     if (!(root instanceof HTMLElement)) return false;
 
-    let section: Element | null = (id === "about" || id === "history") ? placeSheetSectionTarget(id) : null;
+    let section: Element | null = (["about", "history", "stories"].includes(id)) ? placeSheetSectionTarget(id) : null;
     if (!(section instanceof HTMLElement) && id === "learning") {
       section = root.querySelector('[data-hg-unified-section="learning"]');
     } else if (!(section instanceof HTMLElement)) {
