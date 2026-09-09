@@ -30,6 +30,7 @@ on:
       - 'css/place-unified-surface.css'
       - 'css/place-sheet.css'
       - 'css/place-sheet-reading.css'
+      - 'css/place-sheet-language.css'
       - 'js/config.js'
       - 'build/build-web.mjs'
       - 'docs/PLACE_UNIFIED_SURFACE_PLAN.md'
@@ -46,6 +47,7 @@ on:
       - 'tests/place-sheet-before-after-renderer.test.mjs'
       - 'tests/place-sheet-news-renderer.test.mjs'
       - 'tests/place-sheet-reading-renderer.test.mjs'
+      - 'tests/place-sheet-language-renderer.test.mjs'
       - 'tests/place-unified-surface.test.mjs'
       - 'package.json'
       - 'package-lock.json'
@@ -97,4 +99,5 @@ jobs:
           node --check tests/place-sheet-before-after-renderer.test.mjs
           node --check tests/place-sheet-news-renderer.test.mjs
           node --check tests/place-sheet-reading-renderer.test.mjs
-          node --test tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs tests/place-popup-root-scoped-decorators.test.mjs tests/place-sheet-phase1.test.mjs tests/place-sheet-about-renderer.test.mjs tests/place-sheet-history-renderer.test.mjs tests/place-sheet-stories-renderer.test.mjs tests/place-sheet-before-after-renderer.test.mjs tests/place-sheet-news-renderer.test.mjs tests/place-sheet-reading-renderer.test.mjs
+          node --check tests/place-sheet-language-renderer.test.mjs
+          node --test tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs tests/place-popup-root-scoped-decorators.test.mjs tests/place-sheet-phase1.test.mjs tests/place-sheet-about-renderer.test.mjs tests/place-sheet-history-renderer.test.mjs tests/place-sheet-stories-renderer.test.mjs tests/place-sheet-before-after-renderer.test.mjs tests/place-sheet-news-renderer.test.mjs tests/place-sheet-reading-renderer.test.mjs tests/place-sheet-language-renderer.test.mjs

@@ -612,10 +612,92 @@
     reading: readingApi
   };
 
+  // js/ui/place-sheet/sections/language.ts
+  var runtime7 = window;
+  function text7(value) {
+    return String(value == null ? "" : value).trim();
+  }
+  function ensureStylesheet2() {
+    if (document.querySelector('link[data-hg-place-sheet-language-style="1"]')) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "css/place-sheet-language.css";
+    link.setAttribute("data-hg-place-sheet-language-style", "1");
+    document.head.appendChild(link);
+  }
+  function placeSheetShell() {
+    return document.querySelector('#placeCard [data-hg-place-sheet-shell="1"]');
+  }
+  function embeddedLanguagePanel() {
+    return document.querySelector('#pcUnifiedKnowledgeHost .hg-place-language-panel[data-place-panel="language"]');
+  }
+  function ensureLanguageSlot() {
+    const shell = placeSheetShell();
+    if (!(shell instanceof HTMLElement)) return null;
+    let slot = shell.querySelector('[data-hg-place-sheet-language="1"]');
+    if (!(slot instanceof HTMLElement)) {
+      slot = document.createElement("section");
+      slot.className = "pc-sheet-language";
+      slot.setAttribute("data-hg-place-sheet-language", "1");
+      slot.setAttribute("data-hg-place-sheet-section", "language");
+      slot.setAttribute("data-place-panel", "language");
+      slot.hidden = true;
+      const reading = shell.querySelector('[data-hg-place-sheet-section="reading"]');
+      const news = shell.querySelector('[data-hg-place-sheet-section="news"]');
+      const anchor = reading || news;
+      if (anchor == null ? void 0 : anchor.nextSibling) shell.insertBefore(slot, anchor.nextSibling);
+      else shell.appendChild(slot);
+    }
+    return slot;
+  }
+  function removeEmbeddedLanguageTeaser() {
+    document.querySelectorAll("#pcUnifiedKnowledgeHost [data-language-teaser]").forEach((node) => node.remove());
+  }
+  function adoptCanonicalLanguage(placeId) {
+    const id = text7(placeId);
+    if (!id) return null;
+    const panel = embeddedLanguagePanel();
+    if (!(panel instanceof HTMLElement)) return null;
+    const languageRoot = panel.querySelector("[data-language-place]");
+    const renderedPlaceId = text7(languageRoot == null ? void 0 : languageRoot.getAttribute("data-language-place"));
+    if (renderedPlaceId && renderedPlaceId !== id) return null;
+    const slot = ensureLanguageSlot();
+    if (!(slot instanceof HTMLElement)) return null;
+    let compat = slot.querySelector('[data-hg-place-sheet-language-compat="1"]');
+    if (!(compat instanceof HTMLElement)) {
+      compat = document.createElement("div");
+      compat.className = "pc-sheet-language-compat hg-place-popup-v2";
+      compat.setAttribute("data-hg-place-sheet-language-compat", "1");
+      compat.setAttribute("data-hg-language-layer", "1");
+    }
+    panel.hidden = false;
+    panel.removeAttribute("aria-hidden");
+    panel.removeAttribute("aria-labelledby");
+    panel.setAttribute("role", "region");
+    panel.style.scrollMarginTop = "76px";
+    compat.replaceChildren(panel);
+    slot.replaceChildren(compat);
+    slot.hidden = false;
+    slot.dataset.placeId = id;
+    removeEmbeddedLanguageTeaser();
+    return slot;
+  }
+  function onUnifiedReady2(event) {
+    var _a;
+    const id = text7((_a = event.detail) == null ? void 0 : _a.placeId);
+    if (id) adoptCanonicalLanguage(id);
+  }
+  ensureStylesheet2();
+  runtime7.addEventListener("hg:place-unified-ready", onUnifiedReady2);
+  runtime7.HGPlaceSheetSections = {
+    ...runtime7.HGPlaceSheetSections || {},
+    language: { adopt: adoptCanonicalLanguage }
+  };
+
   // js/ui/place-sheet/place-sheet-shell.ts
   var SHELL_ATTR = "data-hg-place-sheet-shell";
   var SHELL_SECTION_ATTR = "data-hg-place-sheet-section";
-  function text7(value) {
+  function text8(value) {
     return String(value == null ? "" : value).trim();
   }
   function card() {
@@ -626,7 +708,7 @@
     return ((_a = card()) == null ? void 0 : _a.querySelector(":scope > .pc-body")) || null;
   }
   function isMicro(place) {
-    return text7(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
+    return text8(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
   }
   function ensureShell(place) {
     if (isMicro(place)) return null;
@@ -658,7 +740,7 @@
     `;
       rootBody.prepend(shell);
     }
-    shell.dataset.placeId = text7(place.id);
+    shell.dataset.placeId = text8(place.id);
     root.dataset.hgPlaceSheetPhase = "1";
     root.classList.add("is-place-sheet-phase1");
     return shell;
@@ -783,7 +865,7 @@
   }
   function placeSheetSectionTarget(id) {
     var _a;
-    const normalized2 = text7(id);
+    const normalized2 = text8(id);
     if (!normalized2) return null;
     const target = ((_a = card()) == null ? void 0 : _a.querySelector(`[${SHELL_SECTION_ATTR}="${normalized2}"]`)) || null;
     return target instanceof HTMLElement && !target.hidden ? target : null;
@@ -841,32 +923,32 @@
       sources: "sources",
       kilder: "sources"
     });
-    const text8 = (value) => String(value == null ? "" : value).trim();
+    const text9 = (value) => String(value == null ? "" : value).trim();
     const wait = (ms) => new Promise((resolve) => global.setTimeout(resolve, ms));
     let legacyOpenPlaceCard = null;
     let legacyShowPlacePopup = null;
     let generation = 0;
     let activeMount = Promise.resolve(null);
     function isMicro2(place) {
-      return text8(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
+      return text9(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
     }
     function placeId(place) {
-      return text8(place == null ? void 0 : place.id);
+      return text9(place == null ? void 0 : place.id);
     }
     function card2() {
       return document.getElementById("placeCard");
     }
     function currentPlace() {
       var _a, _b;
-      const id = text8((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId);
+      const id = text9((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId);
       if (!id) return null;
       return (Array.isArray(global.PLACES) ? global.PLACES : []).find((place) => placeId(place) === id) || null;
     }
     function canonicalSection(value) {
-      const key = text8(value).toLowerCase().replace(/\s+/g, "-");
+      const key = text9(value).toLowerCase().replace(/\s+/g, "-");
       return SECTION_ALIASES[key] || (SECTION_ORDER.some(([id]) => id === key) ? key : "about");
     }
-    function ensureStylesheet2() {
+    function ensureStylesheet3() {
       const styles = [
         [STYLE_FLAG, "css/place-unified-surface.css"],
         [SHEET_STYLE_FLAG, "css/place-sheet.css"]
@@ -918,13 +1000,13 @@
     async function waitForPopup(expectedGeneration, place, timeoutMs = 1800) {
       var _a, _b;
       const started = Date.now();
-      const expectedName = text8((place == null ? void 0 : place.name) || (place == null ? void 0 : place.title));
+      const expectedName = text9((place == null ? void 0 : place.name) || (place == null ? void 0 : place.title));
       while (Date.now() - started < timeoutMs) {
         if (String(((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b[GENERATION_ATTR]) || "") !== String(expectedGeneration)) return null;
         const candidates = [...document.querySelectorAll(".hg-popup.place-popup-v2")].filter((node) => !node.classList.contains(EMBEDDED_CLASS));
         const popup = expectedName ? candidates.find((node) => {
           var _a2;
-          return text8((_a2 = node.querySelector(".hg-modal-title")) == null ? void 0 : _a2.textContent) === expectedName;
+          return text9((_a2 = node.querySelector(".hg-modal-title")) == null ? void 0 : _a2.textContent) === expectedName;
         }) : candidates[0];
         if (popup instanceof HTMLElement) return popup;
         await wait(20);
@@ -953,7 +1035,7 @@
       if (!(panelWrap instanceof HTMLElement)) return;
       [...panelWrap.querySelectorAll("[data-place-panel]")].forEach((panel) => {
         if (!(panel instanceof HTMLElement)) return;
-        const id = text8(panel.dataset.placePanel);
+        const id = text9(panel.dataset.placePanel);
         if (id === "more" || (id === "before-after" || id === "news") && placeSheetSectionTarget(id)) {
           panel.hidden = true;
           panel.setAttribute("aria-hidden", "true");
@@ -983,7 +1065,7 @@
       [...tablist.querySelectorAll("[data-place-tab]")].forEach((button) => {
         if (!(button instanceof HTMLElement)) return;
         const id = canonicalSection(button.dataset.placeTab);
-        if (id === "about" && text8(button.dataset.placeTab) === "more") {
+        if (id === "about" && text9(button.dataset.placeTab) === "more") {
           button.remove();
           return;
         }
@@ -1035,7 +1117,7 @@
         if (existingLearning instanceof HTMLElement) {
           wrapper.appendChild(existingLearning);
         } else {
-          const rendered = text8(api.renderLearningSection(registry, place));
+          const rendered = text9(api.renderLearningSection(registry, place));
           if (!rendered) return null;
           wrapper.insertAdjacentHTML("beforeend", rendered);
         }
@@ -1078,7 +1160,7 @@
       (_a = host.querySelector("[data-hg-unified-loading]")) == null ? void 0 : _a.remove();
       popup.classList.add(EMBEDDED_CLASS);
       popup.dataset.hgUnifiedPlaceId = placeId(place);
-      popup.setAttribute("aria-label", `Kunnskap om ${text8((place == null ? void 0 : place.name) || "stedet")}`);
+      popup.setAttribute("aria-label", `Kunnskap om ${text9((place == null ? void 0 : place.name) || "stedet")}`);
       (_b = popup.querySelector(".hg-popup-close")) == null ? void 0 : _b.setAttribute("hidden", "");
       if (popup.parentElement !== host) host.replaceChildren(popup);
       bindUnifiedNavigation(popup, article);
@@ -1167,7 +1249,7 @@
       if (!(section instanceof HTMLElement) && id === "learning") {
         section = root.querySelector('[data-hg-unified-section="learning"]');
       } else if (!(section instanceof HTMLElement)) {
-        section = [...root.querySelectorAll("[data-place-panel]")].find((panel) => text8(panel.getAttribute("data-place-panel")) === id) || null;
+        section = [...root.querySelectorAll("[data-place-panel]")].find((panel) => text9(panel.getAttribute("data-place-panel")) === id) || null;
       }
       if (!(section instanceof HTMLElement)) return false;
       try {
@@ -1187,14 +1269,14 @@
     }
     async function openSection(place, target = "about") {
       var _a;
-      const resolvedPlace = typeof place === "string" ? (Array.isArray(global.PLACES) ? global.PLACES : []).find((row) => placeId(row) === text8(place)) : place;
+      const resolvedPlace = typeof place === "string" ? (Array.isArray(global.PLACES) ? global.PLACES : []).find((row) => placeId(row) === text9(place)) : place;
       if (!resolvedPlace) return false;
       if (isMicro2(resolvedPlace)) {
         if (typeof legacyShowPlacePopup === "function") legacyShowPlacePopup(resolvedPlace);
         return true;
       }
       const root = card2();
-      const samePlace = text8((_a = root == null ? void 0 : root.dataset) == null ? void 0 : _a.currentPlaceId) === placeId(resolvedPlace);
+      const samePlace = text9((_a = root == null ? void 0 : root.dataset) == null ? void 0 : _a.currentPlaceId) === placeId(resolvedPlace);
       if (!samePlace && typeof global.openPlaceCard === "function") await global.openPlaceCard(resolvedPlace);
       else await materialize(resolvedPlace, { refresh: false });
       const id = canonicalSection(target);
@@ -1258,7 +1340,7 @@
       return true;
     }
     function install() {
-      ensureStylesheet2();
+      ensureStylesheet3();
       if (global[INSTALL_FLAG]) {
         installPopupTabBridge();
         return true;
