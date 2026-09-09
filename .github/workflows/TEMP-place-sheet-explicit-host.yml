@@ -69,18 +69,6 @@ jobs:
               "      const result = legacyShowPlacePopup(place);",
               "      const result = legacyShowPlacePopup(place, { unifiedHost: host instanceof HTMLElement ? host : null });"
           )
-
-          replace_once(
-              ".github/workflows/place-open-payloads.yml",
-              "      - 'tests/place-popup-unified-host-bridge.test.mjs'\n      - 'tests/place-unified-surface.test.mjs'",
-              "      - 'tests/place-popup-unified-host-bridge.test.mjs'\n      - 'tests/place-popup-v2-unified-target.test.mjs'\n      - 'tests/place-unified-surface.test.mjs'"
-          )
-
-          replace_once(
-              ".github/workflows/place-open-payloads.yml",
-              "          node --check tests/place-popup-unified-host-bridge.test.mjs\n          node --test tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs",
-              "          node --check tests/place-popup-unified-host-bridge.test.mjs\n          node --check tests/place-popup-v2-unified-target.test.mjs\n          node --test tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs"
-          )
           PY
 
       - name: Validate source contract before build
@@ -102,8 +90,7 @@ jobs:
             js/ui/place-popup-v2.js \
             js/ui/place-unified-surface.ts \
             dist/web/place-unified-surface.js \
-            dist/web/place-unified-surface.js.map \
-            .github/workflows/place-open-payloads.yml
+            dist/web/place-unified-surface.js.map
           git diff --cached --check
           git commit -m "Add explicit Unified Place renderer target"
           git push origin HEAD:agent/place-sheet-explicit-host-20260909
