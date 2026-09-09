@@ -305,7 +305,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     popup.dataset.hgUnifiedPlaceId = placeId(place);
     popup.setAttribute("aria-label", `Kunnskap om ${text(place?.name || "stedet")}`);
     popup.querySelector(".hg-popup-close")?.setAttribute("hidden", "");
-    host.replaceChildren(popup);
+    if (popup.parentElement !== host) host.replaceChildren(popup);
 
     bindUnifiedNavigation(popup, article);
     normalizePanels(article);
@@ -341,7 +341,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     document.querySelectorAll(`.hg-popup.place-popup-v2:not(.${EMBEDDED_CLASS})`).forEach(node => node.remove());
 
     try {
-      const result = legacyShowPlacePopup(place);
+      const result = legacyShowPlacePopup(place, { unifiedHost: host instanceof HTMLElement ? host : null });
       if (result && typeof result.then === "function") await result;
       const popup = await waitForPopup(myGeneration, place);
       if (!(popup instanceof HTMLElement)) return null;
