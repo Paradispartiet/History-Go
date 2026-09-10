@@ -1,0 +1,41 @@
+name: Schous profile materialize once
+
+on:
+  push:
+    branches:
+      - agent/schous-bryggeri-direct-profile-closure-20260910
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/schous-bryggeri-direct-profile-closure-20260910
+          fetch-depth: 1
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Materialize place-open runtime
+        run: |
+          npm run place-open:build
+          npm run place-open:check
+      - name: Commit generated runtime and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/_schous-profile-materialize-once.yml
+          git add data/runtime
+          echo "Generated files:"
+          git diff --cached --name-only
+          git commit -m "Regenerate runtime for Schous direct profile closure"
+          git push origin HEAD:agent/schous-bryggeri-direct-profile-closure-20260910
