@@ -50,8 +50,9 @@ const matrix = {
   standardBy: choose("standard By", payload => standardCompleteWithFour(payload) && category(payload) === "by", richness),
   historie: choose("Historie", payload => standardCompleteWithFour(payload) && ["historie", "historisk"].includes(category(payload)), richness),
   natur: choose("Natur", payload => standardCompleteWithFour(payload) && (category(payload) === "natur" || hasObject(payload?.place?.nature_profile)), richness),
-  sport: choose("Sport with training", payload => standardCompleteWithFour(payload)
+  sport: choose("Sport with training", payload => !isMicro(payload)
     && ["sport", "trening"].includes(category(payload))
+    && hasObject(payload?.place?.sport_profile)
     && hasObject(payload?.place?.training_profile), richness),
   richKnowledge: choose("rich knowledge", payload => standardCompleteWithFour(payload)
     && rows(payload.leksikon).length > 0
@@ -68,9 +69,9 @@ console.log("Place Sheet final representative matrix:", Object.fromEntries(
   Object.entries(matrix).map(([key, payload]) => [key, payload.place.id])
 ));
 
-test("representative standard profiles retain exactly four canonical collections", () => {
-  for (const [label, payload] of Object.entries(matrix)) {
-    if (["productionGap", "micro"].includes(label)) continue;
+test("fully produced standard representatives retain exactly four canonical collections", () => {
+  for (const label of ["standardBy", "historie", "natur", "richKnowledge", "beforeAfter"]) {
+    const payload = matrix[label];
     const ids = collections(payload);
     assert.equal(payload.place.production_status, "complete", `${label} is canonically complete`);
     assert.equal(ids.length, 4, `${label} keeps exactly four collections`);
@@ -96,6 +97,7 @@ test("rich knowledge representative carries the owner data required by the full 
 test("special profile representatives expose canonical Nature and Sport owner inputs", () => {
   assert.ok(category(matrix.natur) === "natur" || hasObject(matrix.natur.place.nature_profile));
   assert.ok(["sport", "trening"].includes(category(matrix.sport)));
+  assert.ok(hasObject(matrix.sport.place.sport_profile), "Sport representative has canonical sport profile");
   const training = object(matrix.sport.place.training_profile);
   assert.ok(text(training.summary) || text(training.safety) || rows(training.exercises).length > 0, "Sport representative has real training content");
 });
@@ -114,11 +116,12 @@ test("production gaps and Micro remain honest exceptions rather than synthetic f
   assert.ok(hasObject(matrix.micro.place.micro_place_profile) || text(matrix.micro.place.placeTier).toLowerCase() === "micro");
 });
 
-test("final source contract keeps automatic rendering, cancellation and Phase 7 direct routing", () => {
+test("final source contract keeps automatic rendering, cancellation, lazy section media and Phase 7 direct routing", () => {
   const queue = read("js/ui/place-sheet/place-sheet-render-queue.ts");
   const state = read("js/ui/place-sheet/place-sheet-state.ts");
   const unified = read("js/ui/place-unified-surface.ts");
   const shell = read("js/ui/place-sheet/place-sheet-shell.ts");
+  const beforeAfter = read("js/ui/place-sheet/sections/before-after.ts");
 
   assert.match(shell, /startAutomaticPlaceSheetRender\(text\(place\.id\)\)/);
   assert.match(state, /AbortController/);
@@ -126,6 +129,7 @@ test("final source contract keeps automatic rendering, cancellation and Phase 7 
   assert.doesNotMatch(queue, /IntersectionObserver/);
   assert.doesNotMatch(queue, /addEventListener\(["']scroll/);
   assert.doesNotMatch(queue, /data-place-tab/);
+  assert.match(beforeAfter, /loading="lazy"/);
   assert.match(unified, /phase:\s*7/);
   assert.match(unified, /directStandardPlaces:\s*true/);
   assert.match(unified, /if \(isMicro\(canonical\)\) return current\.apply/);
