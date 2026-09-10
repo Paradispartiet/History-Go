@@ -141,11 +141,11 @@ const CASES = [
   },
   {
     placeId: 'hausmania',
-    verifiedAt: '2026-08-04',
+    verifiedAt: '2026-09-10',
     placeFile: 'data/places/subkultur/oslo/places_subkultur/hausmania.json',
     anchorType: 'autonomous_space',
     start: '2000',
-    emneIds: ['em_sub_autonomi_motstand', 'em_sub_diy_praksis'],
+    emneIds: ['em_sub_autonomi_motstand', 'em_sub_diy_praksis', 'em_sub_sted_scene', 'em_sub_rett_til_byen'],
     methodId: 'met_sub_institusjonsanalyse',
     milieuUrl: 'https://www.hausmania.org/',
     milieuLocation: 'Hausmania; atelier- og studioutlysninger, krav om tilstedeværelse, engasjement og dugnad',
@@ -163,7 +163,34 @@ const CASES = [
     institutionalization: 'Et selvorganisert prosjekt har fått varige atelierer, studioer og tydeligere formelle ordninger uten at kollektiv deltakelse er fjernet.',
     stigmaRisk: 'Merket «undergrunn» kan romantisere huset og usynliggjøre arbeid, seleksjon, driftsansvar og forskjeller mellom beboelse, produksjon og publikumstilbud.',
     current: 'Hausmania lyser fortsatt ut arbeidsrom med krav om tilstedeværelse, engasjement og dugnad.',
-    outsideLimit: 'Visit Norway bekrefter uavhengig kulturhus- og arbeidsromsfunksjonen, men gir begrenset innsyn i intern styring og konflikter.'
+    outsideLimit: 'Visit Norway bekrefter uavhengig kulturhus- og arbeidsromsfunksjonen, men gir begrenset innsyn i intern styring og konflikter.',
+    quizOpening: {
+      status: 'PASS',
+      quizTargetId: 'hausmania',
+      firstTwoSetsQuestionCount: 14,
+      sourceBrief: 'data/quiz/production_briefs/subkultur/hausmania.json',
+      productionContext: 'data/quiz/production_context/subkultur/hausmania.json',
+      requiredInputs: ['pensum', 'emner', 'fagkart', 'methods', 'supersetQuizMal', 'quizStandard', 'quizQuestionSchema']
+    },
+    quizEvidenceRefs: [
+      'data/quiz/subkultur/hausmania_sets.json',
+      'data/quiz/production_context/subkultur/hausmania.json'
+    ],
+    chronologyStories: {
+      status: 'PASS',
+      chronologyReviewed: true,
+      storiesReviewed: true,
+      rationale: 'Hausmania-kronologien og episode_v1-fortellingen er kontrollert mot stedets kilder og holder organisasjoner og miljøer analytisk atskilt.'
+    },
+    chronologyEvidenceRefs: [
+      'data/places/subkultur/oslo/places_subkultur/hausmania.json',
+      'data/stories/stories_hausmania.json'
+    ],
+    review: {
+      reviewer: 'Subkultur-fagverkredaksjon',
+      reviewedAt: '2026-09-10',
+      notes: 'Full Place-produksjon, fire canonicale emner, quiz, kronologi, Story, språk, Lesespor og kildegrenser er kontrollert samlet.'
+    }
   },
   {
     placeId: 'xray_ungdomskulturhus',
