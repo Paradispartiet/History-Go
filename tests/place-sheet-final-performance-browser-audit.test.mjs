@@ -5,9 +5,10 @@ import path from "node:path";
 import { chromium } from "playwright";
 
 const root = process.cwd();
-const payload = JSON.parse(fs.readFileSync(path.join(root, "data/runtime/place-open/forsvarsmuseet.json"), "utf8"));
+const payload = JSON.parse(fs.readFileSync(path.join(root, "data/runtime/place-open/torggata.json"), "utf8"));
 assert.equal(payload.schema, "history-go-place-open-v1");
-assert.equal(payload.place.id, "forsvarsmuseet");
+assert.equal(payload.place.id, "torggata");
+assert.ok(Array.isArray(payload.place.history_layers) && payload.place.history_layers.length, "benchmark Place must carry History owner data");
 assert.ok(payload.place.fagverk && typeof payload.place.fagverk === "object", "benchmark Place must carry Fagverk");
 assert.ok(payload.place.for_na && typeof payload.place.for_na === "object", "benchmark Place must carry Before/after");
 assert.ok(Array.isArray(payload.stories) && payload.stories.length, "benchmark Place must carry Stories");
@@ -19,7 +20,7 @@ const safePayload = JSON.stringify(payload).replace(/</g, "\\u003c");
 const fixture = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="/css/placeCard.css"><link rel="stylesheet" href="/css/place-popup-v2.css"><link rel="stylesheet" href="/css/place-popup-shortcuts.css">
 </head><body class="hg-app">
-<div id="placeCard" class="is-open"><div class="pc-body"><div class="pc-text"><div class="pc-title-row"><h2 id="pcTitle">Forsvarsmuseet</h2></div><p id="pcDesc"></p></div><div class="pc-grid"><div class="pc-frontcard"><img id="pcFrontImage" alt=""></div><div class="pc-side-stack"><div class="pc-icons-quad"><button class="pc-round">1</button><button class="pc-round">2</button><button class="pc-round">3</button><button class="pc-round">4</button></div></div><div id="pcEventsBox" class="pc-events-quad"></div></div></div></div>
+<div id="placeCard" class="is-open"><div class="pc-body"><div class="pc-text"><div class="pc-title-row"><h2 id="pcTitle">Torggata</h2></div><p id="pcDesc"></p></div><div class="pc-grid"><div class="pc-frontcard"><img id="pcFrontImage" alt=""></div><div class="pc-side-stack"><div class="pc-icons-quad"><button class="pc-round">1</button><button class="pc-round">2</button><button class="pc-round">3</button><button class="pc-round">4</button></div></div><div id="pcEventsBox" class="pc-events-quad"></div></div></div></div>
 <footer class="app-actions"><button id="pcInfo">Mer info</button><button id="pcQuiz">Ta quiz</button><button id="pcVisit">Registrer besøk</button><button id="pcRoute">Rute</button><button id="pcObserve">Observer</button><button id="pcNote">Notat</button></footer>
 <script>
 window.__acceptance = { leksikonInit:0, readingFallback:0, languageOwnerLoads:0, learningOwnerLoads:0, legacyPopupCalls:0, actions:0, longTasks:[] };
@@ -131,7 +132,7 @@ try {
   });
 
   const canonicalOrder = ["about","history","stories","before-after","news","reading","language","learning","sources"];
-  assert.equal(metrics.state.placeId, "forsvarsmuseet");
+  assert.equal(metrics.state.placeId, "torggata");
   assert.equal(metrics.state.phase, "full-ready");
   assert.equal(Object.values(metrics.state.sections).every(value => ["rendered","omitted"].includes(value)), true, "no applicable section may finish failed");
   assert.equal(metrics.state.sections.sources, "rendered");
