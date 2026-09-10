@@ -5,7 +5,7 @@ import crypto from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { runBuildQuizProductionContext } from "../scripts/build-quiz-production-context.mjs";
 
-// Exact-head CI is intentionally retriggered after fail-closed materialization.
+// Hausmania finalization is deterministic and exact-head CI is required before merge.
 const root = process.cwd();
 const placeId = "hausmania";
 const categoryId = "subkultur";
