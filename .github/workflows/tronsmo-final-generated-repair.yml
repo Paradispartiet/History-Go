@@ -1,0 +1,66 @@
+name: Tronsmo final generated-data repair
+
+on:
+  push:
+    branches:
+      - agent/tronsmo-bokhandel-completion-20260910
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: ${{ contains(github.event.head_commit.message, '[tronsmo-final-repair]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Materialize canonical Knowledge and place-open runtime
+        run: |
+          npm run knowledge:canonical:write
+          npm run place-open:build
+      - name: Verify canonical Knowledge contract
+        run: |
+          npm run knowledge:canonical:check
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const report=JSON.parse(fs.readFileSync('reports/knowledge-contract-audit.json','utf8'));
+          const errors=Array.isArray(report.errors) ? report.errors : [];
+          const tronsmoErrors=errors.filter(row=>JSON.stringify(row).includes('tronsmo_bokhandel'));
+          if (tronsmoErrors.length) {
+            console.error(JSON.stringify(tronsmoErrors,null,2));
+            process.exit(1);
+          }
+          console.log('Tronsmo Knowledge contract errors: 0');
+          NODE
+      - name: Verify place-open and Tronsmo regression
+        run: |
+          npm run place-open:check
+          node --test tests/tronsmo-bokhandel-completion.test.mjs
+      - name: Commit canonical generated state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/quiz/litteratur/tronsmo_bokhandel.json \
+            data/knowledge/knowledge_units.generated.json \
+            data/knowledge/concepts.generated.json \
+            data/knowledge/terms.generated.json \
+            data/knowledge/stories.generated.json \
+            data/knowledge/knowledge_emne_review_queue.generated.json \
+            reports/knowledge-id-backfill.json \
+            data/runtime
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'No canonical generated changes to commit'
+          else
+            git commit -m "Materialize Tronsmo Knowledge and place-open runtime [tronsmo-final-materialized]"
+            git push
+          fi
