@@ -26,8 +26,14 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Materialize canonical closure reports
         run: node tools/finalize-oslo-posthus-ci-closure.mjs
-      - name: Regenerate people index
-        run: node scripts/build-people-index.mjs
+      - name: Record mandatory rule preflight
+        run: |
+          node scripts/place-production-rule-preflight.mjs record \
+            --workcard reports/place-production/oslo-posthus-workcard-current.json \
+            --place-id oslo_posthus \
+            --category naeringsliv
+      - name: Regenerate Civication history people index
+        run: npm run civication:history-people:build
       - name: Regenerate epoch place index
         run: npm run epoker:places:build
       - name: Regenerate Oslo Posthus quiz production context
@@ -72,6 +78,7 @@ jobs:
           npm run epoker:places:check
           npm run places:index:check
           npm run place-open:check
+          node scripts/place-production-rule-preflight.mjs check --base origin/main
           node --test tests/oslo-posthus-production-closure.test.mjs
       - name: Remove one-shot workflow and transient report
         run: |
