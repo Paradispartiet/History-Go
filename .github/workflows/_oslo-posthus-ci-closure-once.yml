@@ -24,6 +24,18 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
+      - name: Normalize popup phrasing for v4.2
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json';
+          const place=JSON.parse(fs.readFileSync(file,'utf8'));
+          place.popupDesc=place.popupDesc
+            .replace('første verdenskrig','verdenskrigen 1914–1918')
+            .replace('Hovedpostkontoret gjør derfor infrastrukturen','Hovedpostkontoret gjør infrastrukturen')
+            .replace('Dermed rommer Hovedpostkontoret også','Hovedpostkontoret rommer også');
+          fs.writeFileSync(file,JSON.stringify(place,null,2)+'\n');
+          NODE
       - name: Materialize canonical closure reports
         run: node tools/finalize-oslo-posthus-ci-closure.mjs
       - name: Record mandatory rule preflight
