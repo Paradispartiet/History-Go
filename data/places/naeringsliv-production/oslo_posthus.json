@@ -1,0 +1,316 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "oslo_posthus",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Oslo Hovedpostkontor var en stedbundet logistikk- og tjenesteinfrastruktur for Postverket og er senere ombrukt som del av et blandet bykvartal.",
+    "anchorType": "logistics_hub",
+    "placeObjectDistinction": "Rapporten analyserer bygningen og dens stedbundne postfunksjoner, ikke Postverket som landsdekkende foretak eller post som abstrakt tjeneste.",
+    "temporalScope": {
+      "start": "1924",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Perioden følger hovedpostkontorets bruk fra åpningen i 1924 gjennom terminalavvikling og dokumentert senere ombruk."
+    },
+    "sourceIds": [
+      "source_oslo_byleksikon",
+      "source_linstow",
+      "source_oppdag_kvadraturen"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_teknologi_infrastruktur",
+      "siteSpecificRationale": "Bygningen samordnet postbehandling, publikumstjenester og transport som fysisk kommunikasjonsinfrastruktur i sentrum.",
+      "caseIds": [
+        "case_oslo_posthus_logistics_reuse"
+      ]
+    },
+    {
+      "emneId": "em_naering_arbeid_verdiskaping",
+      "siteSpecificRationale": "Et stort hovedpostkontor gjorde sortering, ekspedisjon, administrasjon og logistikk til samordnet stedbundet arbeid.",
+      "caseIds": [
+        "case_oslo_posthus_logistics_reuse"
+      ]
+    },
+    {
+      "emneId": "em_naering_logistikk_verdikjeder",
+      "siteSpecificRationale": "Hovedpostkontoret var et knutepunkt mellom innsamling, sortering, transport og utlevering av postsendinger.",
+      "caseIds": [
+        "case_oslo_posthus_logistics_reuse"
+      ]
+    },
+    {
+      "emneId": "em_naering_omstilling_kriser_skift",
+      "siteSpecificRationale": "Terminalfunksjonen opphørte i 1975, og senere ombruk viser skiftet fra postal infrastruktur til blandet bybruk.",
+      "caseIds": [
+        "case_oslo_posthus_logistics_reuse"
+      ]
+    },
+    {
+      "emneId": "em_naering_kapital_finans",
+      "siteSpecificRationale": "Linstows kjøp av Posthuskvartalet i 1999 og senere ombygging viser kapitalbinding og investering i ombruk av sentral eiendom.",
+      "caseIds": [
+        "case_oslo_posthus_logistics_reuse"
+      ]
+    },
+    {
+      "emneId": "em_naering_forbruk_marked",
+      "siteSpecificRationale": "Publikumstjenestene koblet husholdninger og virksomheter til et landsdekkende marked for post- og kommunikasjonstjenester.",
+      "caseIds": [
+        "case_oslo_posthus_logistics_reuse"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_oslo_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Hovedpostkontoret",
+      "sourceLocation": "Hovedpostkontoret – historikk, bygging og funksjoner",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-09-10",
+      "temporalCoverage": "mixed",
+      "provenance": "Oslo byleksikons redaksjonelle stedspost om Hovedpostkontoret.",
+      "limitations": "Oppslaget beskriver funksjoner og tidslinje, men gir ikke regnskaps- eller produktivitetsserier."
+    },
+    {
+      "id": "source_linstow",
+      "url": "https://www.linstow.no/prosjekter/quadraturen",
+      "sourceLocation": "Quadraturen – Posthuskvartalet og Dronningens gate 15",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-09-10",
+      "temporalCoverage": "current",
+      "provenance": "Gårdeiers egen prosjektpresentasjon av kjøp, ombygging, arealer og bevarte elementer.",
+      "limitations": "Egenpresentasjonen dokumenterer prosjekt og nåværende eiendomsbruk, men er ikke en uavhengig lønnsomhetsanalyse."
+    },
+    {
+      "id": "source_oppdag_kvadraturen",
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/dronningens-gate-15-hovedpostkontoret",
+      "sourceLocation": "Dronningens gate 15 – Hovedpostkontoret",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-09-10",
+      "temporalCoverage": "mixed",
+      "provenance": "Kvadraturens stedspresentasjon sammenfatter posthistorie og bygningsbruk.",
+      "limitations": "Siden er en formidlingskilde og brukes ikke alene til kvantitative økonomiske slutninger."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_oslo_posthus_logistics_reuse",
+      "claim": "Hovedpostkontoret samlet arbeidskraft og fysisk infrastruktur i en postal verdikjede, mens senere ombruk flyttet verdiskapingen fra postterminal til bolig- og næringseiendom.",
+      "unitOfAnalysis": {
+        "unit": "Hovedpostkontoret i Dronningens gate 15",
+        "boundary": "Analysen gjelder den stedbundne bygningen og dokumenterte funksjoner i Posthuskvartalet, ikke hele Postverket eller andre postterminaler.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1924",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Tidsrommet dekker postdrift, terminalendring og dokumentert ombruk av samme fysiske anlegg."
+        },
+        "sourceIds": [
+          "source_oslo_byleksikon",
+          "source_linstow",
+          "source_oppdag_kvadraturen"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Postverket og postansatte",
+          "roleOrInterest": "Drev sortering, ekspedisjon, administrasjon og transporttilknytning.",
+          "economicPosition": "Kontrollerte og utførte den stedbundne posttjenesten mens bygningen var hovedpostkontor.",
+          "sourceIds": [
+            "source_oslo_byleksikon",
+            "source_oppdag_kvadraturen"
+          ]
+        },
+        {
+          "name": "Linstow og senere brukere",
+          "roleOrInterest": "Investerte i, ombygde og brukte den tidligere posteiendommen til nye formål.",
+          "economicPosition": "Forvalter kapital og arealer i den ombrukte eiendommen, mens bevaringshensyn avgrenser endringer.",
+          "sourceIds": [
+            "source_linstow"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Bygning, arbeidskraft, transportforbindelser, sorteringskapasitet og administrasjon var innsatsfaktorer i postdriften.",
+            "sourceIds": [
+              "source_oslo_byleksikon",
+              "source_oppdag_kvadraturen"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Hovedpostkontoret samlet postbehandling og publikumstjenester i en sentral logistikkfunksjon.",
+          "sourceIds": [
+            "source_oslo_byleksikon"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Anlegget muliggjorde behandling og formidling av postsendinger og publikumstjenester i Oslo postdistrikt.",
+            "sourceIds": [
+              "source_oslo_byleksikon"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene dokumenterer funksjonskjeden og ombruket, men gir ikke en sammenhengende serie for kostnader, volum eller produktivitet.",
+          "sourceIds": [
+            "source_oslo_byleksikon",
+            "source_linstow",
+            "source_oppdag_kvadraturen"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_infrastrukturanalyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Byggeperioder, terminalfunksjon, funksjonsskift, eierskifte og ombruksarealer brukes som stedbundne indikatorer.",
+        "unit": "dokumenterte funksjons- og arealendringer",
+        "period": "1924–2026",
+        "comparability": "Kildene kan sammenholdes om funksjoner og tidsfestede skift, men ikke som en homogen økonomisk tidsserie.",
+        "dataLimitations": "Det mangler konsistente tall for postvolum, bemanning, kostnader og avkastning gjennom hele perioden.",
+        "sourceIds": [
+          "source_oslo_byleksikon",
+          "source_linstow",
+          "source_oppdag_kvadraturen"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Postverket kontrollerte den opprinnelige tjenesteinfrastrukturen; senere eiere kontrollerer ombruk og kommersielle arealer innenfor vernehensyn.",
+        "laborPosition": "Postansatte utførte den operative verdiskapingen, men de tilgjengelige kildene gir ikke grunnlag for detaljert analyse av lønn eller forhandlingsmakt.",
+        "beneficiaries": [
+          "Postkunder fikk tilgang til sentraliserte posttjenester.",
+          "Senere beboere og næringsbrukere får verdi fra ombrukt sentrumsareal."
+        ],
+        "costRiskBearers": [
+          "Postverket bar drifts- og infrastrukturrisiko i postperioden.",
+          "Senere eiere bærer investerings- og markedsrisiko ved ombygging og utleie."
+        ],
+        "sourceIds": [
+          "source_oslo_byleksikon",
+          "source_linstow",
+          "source_oppdag_kvadraturen"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Funksjonen var avhengig av transportnett, arbeidsorganisering og tilpasning til teknologiske og organisatoriske skift i postsektoren.",
+          "sourceIds": [
+            "source_oslo_byleksikon",
+            "source_oppdag_kvadraturen"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene dokumenterer ombruk og bevaring, men gir ikke et robust grunnlag for å tallfeste stedets eksterne virkninger."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Oslo byleksikon beskriver postfunksjonen og tidslinjen, mens Linstow beskriver eierskifte, bevaring og den senere eiendomsomformingen.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Kildene viser et funksjonsskift fra postterminal til blandet eiendomsbruk, men isolerer ikke én enkelt årsak til omstillingen.",
+        "alternativeExplanations": [
+          "Endringer i postlogistikk, teknologi, arealbehov og sentrumsøkonomi kan alle ha bidratt til funksjonsskiftet."
+        ],
+        "uncertainty": "Materialet dokumenterer rekkefølge og funksjon, men ikke kontrafaktisk årsaksvirkning.",
+        "sourceIds": [
+          "source_oslo_byleksikon",
+          "source_linstow",
+          "source_oppdag_kvadraturen"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "former",
+    "statement": "Den opprinnelige hovedpostterminalen er ikke lenger i drift her; Dronningens gate 15 inngår i et ombrukt kvartal med bolig- og næringsfunksjoner.",
+    "originalEconomicRoleRelationship": "Dagens eiendomsbruk erstatter den tidligere postterminalens operative rolle, samtidig som fasader, posthall og trapper er bevart som deler av anlegget.",
+    "checkedAt": "2026-09-10",
+    "sourceIds": [
+      "source_linstow"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "oslo_posthus",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/naeringsliv/oslo_posthus.json",
+    "productionContext": "data/quiz/production_context/naeringsliv/oslo_posthus.json",
+    "requiredInputs": [
+      "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Leksikonets daterte milepæler og episode_v1-storyen er kontrollert som separate, kildebårne lag for samme sted."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json",
+        "data/places/production/oslo_posthus.json"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/leksikon/places/oslo/naeringsliv/leksikon_oslo_posthus.json"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/production_briefs/naeringsliv/oslo_posthus.json",
+        "data/quiz/production_context/naeringsliv/oslo_posthus.json"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/people/naeringsliv/oslo/oslo_posthus/rudolf_emanuel_jacobsen.json"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/stories/stories_oslo_posthus.json"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "https://oslobyleksikon.no/side/Hovedpostkontoret",
+        "https://www.linstow.no/prosjekter/quadraturen"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/leksikon/sprak/places/europe/norway/oslo/oslo_posthus.json"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "tests/oslo-posthus-production-closure.test.mjs"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History Go production closure",
+    "reviewedAt": "2026-09-10",
+    "notes": "Fail-closed Næringsliv-rapport for dokumentert postal logistikk, funksjonsskift og dagens ombruk; ingen udokumentert lønnsomhet eller kausalitet hevdes."
+  }
+}
