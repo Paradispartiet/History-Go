@@ -55,10 +55,13 @@ test('Tronsmo Bokhandel full production contract',()=>{
   assert.equal(report.quality_score.total,30);
 });
 
-test('Tronsmo runtime exposes all four visible collections after build',()=>{
+test('Tronsmo runtime resolves the visible People collection through roundHoldbacks',()=>{
   const r=j('data/runtime/place-open/tronsmo_bokhandel.json');
-  assert.ok(r.people.some(x=>x.id==='per_petterson'));
-  assert.ok(!r.people.some(x=>x.id!=='per_petterson'));
+  const visiblePeople=r.people.filter(person=>!(person.roundHoldbacks||[]).includes('tronsmo_bokhandel'));
+  assert.deepEqual(visiblePeople.map(person=>person.id),['per_petterson']);
+  for(const person of r.people.filter(person=>person.id!=='per_petterson')) {
+    assert.ok(person.roundHoldbacks?.includes('tronsmo_bokhandel'),person.id);
+  }
   assert.ok(r.brands.some(x=>x.id==='tronsmo_bokhandel'));
   assert.ok(r.language);
   assert.ok(r.leksikon.length>=1);
