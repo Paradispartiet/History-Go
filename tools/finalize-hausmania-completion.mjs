@@ -633,6 +633,10 @@ const knowledgeAuditSnapshot = fs.readFileSync(path.join(root, knowledgeAuditFil
 execFileSync("npm", ["run", "knowledge:canonical:write"], { cwd: root, stdio: "inherit" });
 fs.writeFileSync(path.join(root, knowledgeAuditFile), knowledgeAuditSnapshot);
 execFileSync("node", ["tools/build-subkultur-data-audit-v1.mjs", "--write"], { cwd: root, stdio: "inherit" });
+execFileSync("node", ["tools/build-subkultur-place-reports-batch-v1.mjs", "--write"], { cwd: root, stdio: "inherit" });
+execFileSync("node", ["tools/build-subkultur-case-evidence-v1.mjs", "--write"], { cwd: root, stdio: "inherit" });
+execFileSync("node", ["tools/build-subkultur-quiz-knowledge-v1.mjs", "--write"], { cwd: root, stdio: "inherit" });
+execFileSync("node", ["tools/materialize-subkultur-runtime-v1.mjs", "--write"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "place-open:build"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "epoker:places:build"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "civication:history-people:build"], { cwd: root, stdio: "inherit" });
