@@ -10,6 +10,18 @@ const shellSource = fs.readFileSync("js/ui/place-sheet/place-sheet-shell.ts", "u
 const runtimeSource = fs.readFileSync("dist/web/place-unified-surface.js", "utf8");
 const css = fs.readFileSync("css/place-sheet-special.css", "utf8");
 
+function waitFor(predicate, timeoutMs = 1000) {
+  const started = Date.now();
+  return new Promise((resolve, reject) => {
+    const tick = () => {
+      if (predicate()) return resolve();
+      if (Date.now() - started >= timeoutMs) return reject(new Error("Timed out waiting for special Place Sheet state"));
+      setTimeout(tick, 10);
+    };
+    tick();
+  });
+}
+
 function makeDom(place) {
   const dom = new JSDOM(`<!doctype html><html><head></head><body class="hg-app">
     <div id="placeCard" class="is-unified-place is-place-sheet-phase1">
@@ -25,7 +37,6 @@ function makeDom(place) {
           <section data-hg-place-sheet-section="learning"><div class="hg-place-learning-section">Fagverk</div></section>
           <section data-hg-place-sheet-section="sources">Kilder</section>
         </section>
-        <section id="pcUnifiedKnowledgeHost"><div class="hg-popup place-popup-v2"><article class="hg-place-popup-v2"><div class="hg-place-popup-body"></div></article></div></section>
       </div>
     </div>
   </body></html>`, {
@@ -35,28 +46,25 @@ function makeDom(place) {
   });
   const { window } = dom;
   window.PLACES = [place];
-  window.openPlaceCard = async value => value;
-  window.showPlacePopup = () => null;
-  window.showPlacePopup.__hgPlacePopupV2 = true;
-  window.showPlacePopup.__hgPlacePopupTabs = true;
-  window.showPlacePopup.__hgPlacePopupDirectTabs = true;
-  window.__HG_PLACE_POPUP_DIRECT_TABS_INSTALLED__ = true;
-  window.HGPlacePopupTabs = {};
-  window.HGPlacePopupDirectTabs = {};
-  window.HGPlacePopupSportTraining = { isSportsPlace: value => String(value?.category || "").toLowerCase() === "sport" };
+  window.HGPlacePopupSportTraining = {
+    isSportsPlace: value => String(value?.category || "").toLowerCase() === "sport",
+    render: value => value?.training_profile
+      ? '<section class="hg-section hg-place-section hg-place-sport-training-section" data-hg-sport-training="1"><h3>Trening</h3><p>Canonical trening</p></section>'
+      : ''
+  };
   return dom;
 }
 
-function wait(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-test("Phase 5 keeps canonical owners and adds no synthetic task data owner", () => {
-  assert.match(specialSource, /\.hg-place-nature-section/);
-  assert.match(specialSource, /data-hg-sport-training/);
+test("special profiles stay owner-backed without popup embedding or synthetic task data", () => {
+  assert.match(specialSource, /nature_profile/);
+  assert.match(specialSource, /HGPlacePopupSportTraining/);
+  assert.match(specialSource, /data-hg-place-sheet-special-owner/);
   assert.doesNotMatch(specialSource, /fetch\(/);
   assert.doesNotMatch(specialSource, /task_profile/);
+  assert.doesNotMatch(specialSource, /pcUnifiedKnowledgeHost/);
+  assert.doesNotMatch(specialSource, /MutationObserver/);
   assert.match(registrySource, /"special"/);
+  assert.match(registrySource, /\["special"\][\s\S]*\["news", "reading"\]/);
   assert.match(registrySource, /placeSheetSectionApplies/);
   assert.match(queueSource, /placeSheetSectionApplies\(id, placeId\)/);
   assert.match(queueSource, /id === "sources" \|\| id === "special"/);
@@ -65,33 +73,42 @@ test("Phase 5 keeps canonical owners and adds no synthetic task data owner", () 
   assert.match(shellSource, /pcEventsBox/);
 });
 
-test("Natur keeps exact DOM identity when adopted into the Place Sheet", async () => {
-  const place = { id: "natur_place", name: "Natur", category: "Natur", placeTier: "standard" };
+test("Nature renders directly from the canonical nature profile before full-ready", async () => {
+  const place = {
+    id: "natur_place",
+    name: "Natur",
+    category: "Natur",
+    placeTier: "standard",
+    nature_profile: {
+      summary: "Canonical natur",
+      terrain: ["skog"],
+      habitats: ["våtmark"],
+      birding: { notable_species: ["hegre"], seasonal_focus: ["vår"] }
+    }
+  };
   const dom = makeDom(place);
   const { window } = dom;
-  const body = window.document.querySelector("#pcUnifiedKnowledgeHost .hg-place-popup-body");
-  const nature = window.document.createElement("section");
-  nature.className = "hg-section hg-place-section hg-place-nature-section";
-  nature.innerHTML = "<h3>Natur og landskap</h3><p>Canonical natur</p>";
-  body.appendChild(nature);
-
   window.eval(runtimeSource);
+
   const queue = window.HGPlaceSheetRenderQueue.start(place.id);
   assert.ok(queue);
-  window.dispatchEvent(new window.CustomEvent("hg:place-unified-ready", { detail: { placeId: place.id } }));
+  window.dispatchEvent(new window.CustomEvent("hg:place-unified-ready", { detail: { placeId: place.id, direct: true, phase: 6 } }));
   await queue.done;
 
   const slot = window.document.querySelector('[data-hg-place-sheet-section="special"]');
   assert.ok(slot);
   assert.equal(slot.hidden, false);
-  assert.equal(slot.querySelector(".hg-place-nature-section"), nature, "canonical Nature node must be moved, not cloned");
-  assert.equal(window.document.querySelectorAll(".hg-place-nature-section").length, 1);
+  assert.match(slot.textContent, /Canonical natur/);
+  assert.match(slot.textContent, /Skog/);
+  assert.match(slot.textContent, /Hegre/);
+  assert.ok(slot.querySelector('[data-hg-place-sheet-special-owner="nature-landscape"]'));
+  assert.equal(window.document.querySelector("#pcUnifiedKnowledgeHost"), null);
   assert.equal(window.HGPlaceSheetRenderQueue.current().sections.special, "rendered");
   assert.equal(window.HGPlaceSheetRenderQueue.current().phase, "full-ready");
   dom.window.close();
 });
 
-test("late canonical Sport/Trening injection is adopted before full-ready", async () => {
+test("Sport/Trening renders through the canonical owner API without late popup injection", async () => {
   const place = {
     id: "sport_place",
     name: "Sport",
@@ -106,26 +123,22 @@ test("late canonical Sport/Trening injection is adopted before full-ready", asyn
 
   const queue = window.HGPlaceSheetRenderQueue.start(place.id);
   assert.ok(queue);
-  window.dispatchEvent(new window.CustomEvent("hg:place-unified-ready", { detail: { placeId: place.id } }));
-
-  await wait(40);
-  const body = window.document.querySelector("#pcUnifiedKnowledgeHost .hg-place-popup-body");
-  const training = window.document.createElement("section");
-  training.className = "hg-section hg-place-section hg-place-sport-training-section";
-  training.setAttribute("data-hg-sport-training", "1");
-  training.innerHTML = "<h3>Trening</h3><p>Canonical trening</p>";
-  body.appendChild(training);
-
+  window.dispatchEvent(new window.CustomEvent("hg:place-unified-ready", { detail: { placeId: place.id, direct: true, phase: 6 } }));
   await queue.done;
+
   const slot = window.document.querySelector('[data-hg-place-sheet-section="special"]');
   assert.ok(slot);
-  assert.equal(slot.querySelector('[data-hg-sport-training="1"]'), training, "late owner node must remain the same node");
+  const training = slot.querySelector('[data-hg-sport-training="1"]');
+  assert.ok(training);
+  assert.equal(training.getAttribute("data-hg-place-sheet-special-owner"), "sport-training");
+  assert.match(training.textContent, /Canonical trening/);
+  assert.equal(window.document.querySelector("#pcUnifiedKnowledgeHost"), null);
   assert.equal(window.HGPlaceSheetRenderQueue.current().sections.special, "rendered");
   assert.equal(window.HGPlaceSheetRenderQueue.current().phase, "full-ready");
   dom.window.close();
 });
 
-test("ordinary places omit special immediately instead of waiting for a special timeout", async () => {
+test("ordinary places omit special immediately instead of waiting for unrelated compatibility batches", async () => {
   const place = { id: "ordinary_place", name: "Ordinary", category: "By", placeTier: "standard" };
   const dom = makeDom(place);
   const { window } = dom;
@@ -133,14 +146,14 @@ test("ordinary places omit special immediately instead of waiting for a special 
 
   const queue = window.HGPlaceSheetRenderQueue.start(place.id);
   assert.ok(queue);
-  window.dispatchEvent(new window.CustomEvent("hg:place-unified-ready", { detail: { placeId: place.id } }));
   const started = Date.now();
-  await queue.done;
+  window.dispatchEvent(new window.CustomEvent("hg:place-unified-ready", { detail: { placeId: place.id, direct: true, phase: 6 } }));
+  await waitFor(() => window.HGPlaceSheetRenderQueue.current()?.sections?.special === "omitted", 1000);
   const elapsed = Date.now() - started;
 
   assert.equal(window.HGPlaceSheetRenderQueue.current().sections.special, "omitted");
-  assert.equal(window.HGPlaceSheetRenderQueue.current().phase, "full-ready");
-  assert.ok(elapsed < 1000, `ordinary special resolution should not wait for the 1800ms compatibility timeout; got ${elapsed}ms`);
+  assert.ok(elapsed < 1000, `ordinary special resolution should not wait for later compatibility batches; got ${elapsed}ms`);
+  window.HGPlaceSheetRenderQueue.cancel();
   dom.window.close();
 });
 

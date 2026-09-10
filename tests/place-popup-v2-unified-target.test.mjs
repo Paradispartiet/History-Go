@@ -6,16 +6,18 @@ import { JSDOM } from "jsdom";
 const popupSource = fs.readFileSync("js/ui/place-popup-v2.js", "utf8");
 const unifiedSource = fs.readFileSync("js/ui/place-unified-surface.ts", "utf8");
 
-test("Unified adapter passes an explicit host to the canonical Place renderer", () => {
-  assert.match(
+test("Phase 6 standard Places bypass the legacy popup renderer and mount Place Sheet directly", () => {
+  assert.match(unifiedSource, /mountPlaceSheetPhase1\(place\)/);
+  assert.match(unifiedSource, /dispatchDirectReady\(place, generation\)/);
+  assert.doesNotMatch(
     unifiedSource,
     /legacyShowPlacePopup\(place,\s*\{\s*unifiedHost:/,
-    "Unified materialization must pass its PlaceCard host explicitly"
+    "standard Unified materialization must not route through the popup renderer"
   );
   assert.match(
     unifiedSource,
-    /popup\.parentElement\s*!==\s*host/,
-    "already-hosted popup shells must not be removed and reinserted"
+    /if \(isMicro\(canonical\)\) return current\.apply\(this, \[canonical, target\]\)/,
+    "Micro Places must retain the legacy popup path"
   );
 });
 

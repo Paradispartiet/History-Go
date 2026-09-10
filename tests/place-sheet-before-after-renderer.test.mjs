@@ -84,15 +84,15 @@ test("generated runtime preserves before/now imagery, attribution, prose and obs
   dom.window.close();
 });
 
-test("Unified Place Sheet owns before-after while standalone popup tabs keep the shared fallback", () => {
+test("Phase 6 Place Sheet owns before-after while standalone popup tabs keep the shared fallback", () => {
   assert.match(shellSource, /mountCanonicalBeforeAfter/);
   assert.match(shellSource, /pc-sheet-before-after/);
   assert.match(shellSource, /setAttribute\(SHELL_SECTION_ATTR, "before-after"\)/);
   assert.match(tabsSource, /HGPlaceSheetSections\?\.beforeAfter\?\.renderContentHtml/);
   assert.match(tabsSource, /renderBeforeAfter\(place\)/);
-  assert.match(unifiedSource, /placeSheetSectionTarget\("before-after"\)/);
-  assert.match(unifiedSource, /\(\(id === "before-after" \|\| id === "news"\) && placeSheetSectionTarget\(id\)\)/);
-  assert.match(unifiedSource, /\["about", "history", "stories", "before-after", "news"\]/);
+  assert.match(unifiedSource, /\["before-after", "Før\/etter"\]/);
+  assert.match(unifiedSource, /placeSheetSectionTarget\(id\)/);
+  assert.doesNotMatch(unifiedSource, /legacyShowPlacePopup\(place,\s*\{\s*unifiedHost:/);
 });
 
 test("direct Place Sheet before-after keeps paired-media and attribution styling", () => {

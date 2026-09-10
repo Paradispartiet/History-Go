@@ -38,10 +38,11 @@ test("generated runtime exposes the shared About renderer", () => {
   dom.window.close();
 });
 
-test("Unified path suppresses popup-owned About while legacy popup keeps shared fallback", () => {
-  assert.match(unifiedSource, /suppressPlaceAbout:\s*true/);
-  assert.doesNotMatch(unifiedSource, /attachCanonicalAboutToPlaceSheet/);
-  assert.match(unifiedSource, /hg-place-about-section/);
+test("Phase 6 standard path owns About directly while standalone popup keeps the shared fallback", () => {
+  assert.match(unifiedSource, /mountPlaceSheetPhase1\(place\)/);
+  assert.match(unifiedSource, /dispatchDirectReady\(place, generation\)/);
+  assert.doesNotMatch(unifiedSource, /suppressPlaceAbout/);
+  assert.doesNotMatch(unifiedSource, /legacyShowPlacePopup\(place,\s*\{\s*unifiedHost:/);
   assert.match(popupSource, /HGPlaceSheetSections\?\.about/);
   assert.match(popupSource, /suppressPlaceAbout/);
 });

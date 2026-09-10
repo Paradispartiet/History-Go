@@ -1,0 +1,44 @@
+/* Place Sheet Phase 6 — direct standard-Place shell, no popup embedding */
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav{
+  position:sticky;
+  top:0;
+  z-index:8;
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  margin:20px 0 8px;
+  padding:10px 2px;
+  background:rgba(6,9,15,.92);
+  backdrop-filter:blur(14px);
+  scrollbar-width:none;
+}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav::-webkit-scrollbar{display:none;}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav button{
+  flex:0 0 auto;
+  min-height:38px;
+  padding:0 13px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  background:rgba(255,255,255,.045);
+  color:rgba(255,255,255,.84);
+  font:inherit;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav button:hover,
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav button:focus-visible{
+  border-color:rgba(246,200,0,.54);
+  color:#f6c800;
+  outline:none;
+}
+body.hg-app #placeCard.is-place-sheet-direct [data-hg-place-sheet-section]{scroll-margin-top:76px;}
+/* Language still uses the canonical language owner's popup-scoped CSS internally,
+   but the full popup scaffold is discarded immediately after the owner panel mounts. */
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-language-compat > .hg-place-language-panel{
+  display:block;
+  width:100%;
+}
+@media (prefers-reduced-motion:reduce){
+  body.hg-app #placeCard.is-place-sheet-direct *{scroll-behavior:auto!important;}
+}

@@ -21,10 +21,10 @@ export const PLACE_SHEET_IMMEDIATE_SECTION_IDS: readonly PlaceSheetSectionId[] =
 ];
 
 export const PLACE_SHEET_COMPAT_SECTION_BATCHES: readonly (readonly PlaceSheetSectionId[])[] = [
+  ["special"],
   ["news", "reading"],
   ["language", "learning"],
-  ["sources"],
-  ["special"]
+  ["sources"]
 ];
 
 type SectionApi = {
