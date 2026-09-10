@@ -29,27 +29,7 @@ function createPopup(window, place) {
       <button class="hg-popup-close" type="button">×</button>
       <article class="hg-place-popup-v2" data-hg-place-tabs="1">
         <header class="hg-place-popup-header"><h1 class="hg-modal-title">${place.name}</h1></header>
-        <div class="hg-place-popup-body">
-          <nav class="hg-place-tabs" role="tablist">
-            <button type="button" class="hg-place-tab" data-place-tab="about">Om</button>
-            <button type="button" class="hg-place-tab" data-place-tab="history">Historie</button>
-            <button type="button" class="hg-place-tab" data-place-tab="stories">Fortellinger</button>
-            <button type="button" class="hg-place-tab" data-place-tab="before-after">Før/etter</button>
-            <button type="button" class="hg-place-tab" data-place-tab="news">Nyheter</button>
-            <button type="button" class="hg-place-tab" data-place-tab="reading">Lesespor</button>
-            <button type="button" class="hg-place-tab" data-place-tab="sources">Kilder</button>
-          </nav>
-          <div class="hg-place-tab-panels">
-            <section class="hg-place-tab-panel" data-place-panel="about">Om</section>
-            <section class="hg-place-tab-panel" data-place-panel="history">Historie</section>
-            <section class="hg-place-tab-panel" data-place-panel="stories">Fortellinger</section>
-            <section class="hg-place-tab-panel" data-place-panel="before-after">Før/etter</section>
-            <section class="hg-place-tab-panel" data-place-panel="news">Nyheter fallback</section>
-            <section class="hg-place-tab-panel" data-place-panel="reading">Lesespor fallback</section>
-            <section class="hg-place-tab-panel" data-place-panel="sources"><div class="hg-place-tab-generated">Kilde</div></section>
-            <section class="hg-place-tab-panel" data-place-panel="more">Staging</section>
-          </div>
-        </div>
+        <div class="hg-place-popup-body">Micro compatibility</div>
       </article>
     </div>`;
   window.document.body.appendChild(popup);
@@ -69,6 +49,12 @@ function createDom() {
 
 function installFixture(window, place) {
   window.PLACES = [place];
+  window.LEKSIKON_BY_PLACE = {
+    [place.id]: [
+      { id: "main", title: place.name },
+      { id: "news-direct", type: "news_note", title: "Nyheter" }
+    ]
+  };
   window.openPlaceCard = async value => {
     const card = window.document.getElementById("placeCard");
     card.dataset.currentPlaceId = value.id;
@@ -80,22 +66,11 @@ function installFixture(window, place) {
   window.showPlacePopup.__hgPlacePopupDirectTabs = true;
   window.__HG_PLACE_POPUP_DIRECT_TABS_INSTALLED__ = true;
 
-  window.HGPlacePopupTabs = {
-    decoratePopup: () => {
-      const news = window.document.querySelector('[data-hg-place-sheet-section="news"]');
-      if (news) {
-        news.hidden = false;
-        news.innerHTML = '<section data-hg-place-sheet-owner="news">Nyheter</section>';
-      }
-      return true;
-    }
-  };
-  window.HGPlacePopupDirectTabs = { decoratePopup: () => true };
+  window.HGPlacePopupTabs = {};
+  window.HGPlacePopupDirectTabs = {};
   window.HGLanguageLayer = {
-    decoratePopup: async value => {
-      const article = [...window.document.querySelectorAll('.hg-popup.place-popup-v2 .hg-place-popup-v2')]
-        .find(node => node.querySelector('.hg-modal-title')?.textContent === value.name);
-      const panels = article?.querySelector('.hg-place-tab-panels');
+    decoratePopup: async (value, root) => {
+      const panels = root?.querySelector('.hg-place-tab-panels');
       if (!panels || panels.querySelector('[data-place-panel="language"]')) return;
       const panel = window.document.createElement('section');
       panel.className = 'hg-place-tab-panel hg-place-language-panel';
@@ -119,7 +94,7 @@ function installFixture(window, place) {
   };
 }
 
-test("Phase 4 keeps promotion separate from the full automatic queue", () => {
+test("Phase 4 promotion remains separate from the full automatic queue after Phase 6 cutover", () => {
   assert.match(directSource, /promoteAutomaticPlaceSheetSection/);
   assert.match(directSource, /showPromotedPlaceSheetSection/);
   assert.match(directSource, /openPromotedPlaceSheetSection/);
@@ -144,6 +119,8 @@ test("direct Kilder request is promoted before the normal late batch and full-re
   await waitFor(() => window.showPlacePopup?.__hgPlaceSheetDirectRouting === true);
   await window.showPlacePopup(place, "sources");
 
+  assert.equal(window.document.querySelector("body > .hg-popup.place-popup-v2"), null, "standard direct route must not open legacy popup");
+  assert.equal(window.document.querySelector("#pcUnifiedKnowledgeHost"), null);
   const promotedBeforeNews = states.some(state => (
     state.placeId === place.id
     && state.sections?.sources === "rendered"

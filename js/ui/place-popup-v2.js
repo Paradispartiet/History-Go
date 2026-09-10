@@ -831,33 +831,8 @@
       </article>
     `;
 
-    const unifiedHost = options && typeof options === "object" ? options.unifiedHost : null;
-    let popup = null;
-    if (unifiedHost && typeof unifiedHost.replaceChildren === "function") {
-      // Explicit Place Sheet target: keep the canonical renderer, but do not
-      // instantiate a standalone modal first. The compatibility shell remains
-      // until the Unified adapter no longer needs the legacy popup CSS contract.
-      try { helper("closePopup")?.(); } catch {}
-      const shell = document.createElement("div");
-      shell.className = "hg-popup place-popup place-popup-v2";
-      shell.dataset.hgUnifiedDirectHost = "1";
-      shell.innerHTML = `
-        <div class="hg-popup-inner hg-modal-card">
-          <button class="hg-popup-close hg-modal-close" data-close-popup hidden aria-hidden="true" tabindex="-1">✕</button>
-          ${html}
-        </div>
-      `;
-      unifiedHost.replaceChildren(shell);
-      popup = shell;
-      try {
-        global.dispatchEvent?.(new CustomEvent("hg:place-unified-host-rendered", {
-          detail: { placeId: String(place?.id || "") }
-        }));
-      } catch {}
-    } else {
-      makePopup(html, "place-popup place-popup-v2");
-      popup = document.querySelector(".hg-popup.place-popup-v2");
-    }
+    makePopup(html, "place-popup place-popup-v2");
+    const popup = document.querySelector(".hg-popup.place-popup-v2");
     attachHeroImage(popup, candidates);
 
     const quizButton = popup?.querySelector?.(`[data-quiz="${global.CSS?.escape ? global.CSS.escape(String(place?.id || "")) : String(place?.id || "")}"]`)

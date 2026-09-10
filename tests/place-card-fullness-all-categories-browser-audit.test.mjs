@@ -49,20 +49,8 @@ try {
     cells.forEach((cell, index) => expectedShapes[index] === "circle"
       ? assert.ok(Math.abs(cell.w - cell.h) < 2, `${category} circle ${index}`)
       : assert.ok(cell.w > cell.h, `${category} rectangle ${index}`));
-    const shortcuts = await page.locator(".pc-place-popup-shortcut").evaluateAll(nodes => nodes.map(node => { const r=node.getBoundingClientRect(); return { x:r.x, y:r.y, w:r.width, h:r.height }; }));
-    assert.equal(shortcuts.length, 6, `${category} shortcuts`);
-    assert.equal(new Set(shortcuts.map(cell => Math.round(cell.y))).size, 1, `${category} shortcut row`);
-    const collectionBottom = Math.max(...cells.map(cell => cell.y + cell.h));
-    assert.ok(shortcuts.every(cell => cell.y >= collectionBottom), `${category} shortcuts below collections`);
-    const [shortcutRow, frontCard, sideStack] = await Promise.all([
-      page.locator(".pc-place-popup-shortcuts").boundingBox(),
-      page.locator(".pc-frontcard").boundingBox(),
-      page.locator(".pc-side-stack").boundingBox()
-    ]);
-    assert.ok(shortcutRow && frontCard && sideStack, `${category} full-width shortcut geometry`);
-    assert.ok(Math.abs(shortcutRow.x - frontCard.x) < 2, `${category} shortcuts begin under front image`);
-    assert.ok(Math.abs(shortcutRow.x + shortcutRow.width - (sideStack.x + sideStack.width)) < 2, `${category} shortcuts end under collections`);
-    assert.ok(shortcutRow.y >= Math.max(frontCard.y + frontCard.height, sideStack.y + sideStack.height), `${category} shortcuts below both media columns`);
+    assert.equal(await page.locator(".pc-place-popup-shortcut").count(), 0, `${category} legacy shortcut buttons retired`);
+    assert.equal(await page.locator(".pc-place-popup-shortcuts").count(), 0, `${category} legacy shortcut row retired`);
     const metadata = await page.locator("#pcMeta > *").evaluateAll(nodes => nodes.map(node => { const r=node.getBoundingClientRect(); return { y:r.y, h:r.height, scrollHeight:node.scrollHeight, whiteSpace:getComputedStyle(node).whiteSpace }; }));
     assert.equal(metadata.length, 3, `${category} metadata items`);
     assert.equal(new Set(metadata.map(cell => Math.round(cell.y))).size, 2, `${category} metadata uses two rows`);

@@ -94,7 +94,7 @@ test("Micro Place footer policy targets actions outside the PlaceCard container"
   const css = read("css/micro-place-card.css");
   assert.match(css, /body\.is-micro-place-quizless #pcQuiz/);
   assert.match(css, /body\.is-micro-place-open #pcObserve/);
-  assert.match(css, /#placeCard\.is-micro-place \.pc-place-popup-shortcuts/);
+  assert.doesNotMatch(css, /pc-place-popup-shortcuts/);
   assert.match(css, /max-width:520px/);
   assert.doesNotMatch(css, /#placeCard\.is-micro-place\[data-micro-quiz="none"\] #pcQuiz/);
 });

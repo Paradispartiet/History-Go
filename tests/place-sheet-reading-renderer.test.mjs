@@ -9,6 +9,17 @@ const popupSource = fs.readFileSync("js/ui/place-popup-tabs.js", "utf8");
 const runtimeSource = fs.readFileSync("dist/web/place-unified-surface.js", "utf8");
 const css = fs.readFileSync("css/place-sheet-reading.css", "utf8");
 
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+async function waitFor(predicate, timeoutMs = 1500) {
+  const started = Date.now();
+  while (Date.now() - started < timeoutMs) {
+    if (predicate()) return;
+    await delay(10);
+  }
+  throw new Error("Timed out waiting for direct Lesespor owner");
+}
+
 test("Lesespor keeps canonical loading owners while Place Sheet owns filtering/rendering", () => {
   assert.match(rendererSource, /HGPlaceOpen\?\.get/);
   assert.match(rendererSource, /DataHub\?\.loadLesespor/);
@@ -16,6 +27,8 @@ test("Lesespor keeps canonical loading owners while Place Sheet owns filtering/r
   assert.doesNotMatch(rendererSource, /data\/lesespor/);
   assert.match(rendererSource, /filterReadingForPlace/);
   assert.match(rendererSource, /data-hg-place-sheet-owner="reading"/);
+  assert.match(rendererSource, /adoptCanonicalReading/);
+  assert.doesNotMatch(rendererSource, /pcUnifiedKnowledgeHost/);
   assert.match(shellSource, /sections\/reading/);
   assert.match(popupSource, /async function loadLesespor/);
   assert.match(popupSource, /function renderLesespor/);
@@ -34,6 +47,7 @@ test("generated runtime filters by place, rejects paywalls, deduplicates and esc
   assert.equal(typeof api?.renderHtml, "function");
   assert.equal(typeof api?.mount, "function");
   assert.equal(typeof api?.resolve, "function");
+  assert.equal(typeof api?.adopt, "function");
 
   const items = [
     { id: "a", title: "Ny <tekst>", place_ids: ["sted"], year: 2026, access: "open", publication: "Arkiv & avis", relevance: "Viktig > nå", url: "https://example.com/a" },
@@ -56,15 +70,12 @@ test("generated runtime filters by place, rejects paywalls, deduplicates and esc
   dom.window.close();
 });
 
-test("unified Place Sheet mounts Lesespor and retires only the embedded fallback panel", async () => {
+test("direct Place Sheet mounts Lesespor without any popup compatibility host", async () => {
   const dom = new JSDOM(`<!doctype html><html><head></head><body>
     <div id="placeCard" class="is-unified-place is-place-sheet-phase1">
       <div class="pc-body">
-        <section class="pc-sheet-shell" data-hg-place-sheet-shell="1">
+        <section class="pc-sheet-shell" data-hg-place-sheet-shell="1" data-place-id="sted">
           <section data-hg-place-sheet-news></section>
-        </section>
-        <section id="pcUnifiedKnowledgeHost">
-          <section data-place-panel="reading">legacy reading</section>
         </section>
       </div>
     </div>
@@ -74,16 +85,35 @@ test("unified Place Sheet mounts Lesespor and retires only the embedded fallback
     get: id => id === "sted" ? { lesespor: [{ id: "open", title: "Åpen tekst", place_ids: ["sted"], access: "open", url: "https://example.com/open" }] } : null
   };
   window.eval(runtimeSource);
-  window.dispatchEvent(new window.CustomEvent("hg:place-unified-ready", { detail: { placeId: "sted" } }));
-  await new Promise(resolve => window.setTimeout(resolve, 0));
+  window.dispatchEvent(new window.CustomEvent("hg:place-unified-ready", { detail: { placeId: "sted", direct: true, phase: 6 } }));
+  await waitFor(() => Boolean(window.document.querySelector('[data-hg-place-sheet-section="reading"] [data-hg-place-sheet-owner="reading"]')));
 
   const slot = window.document.querySelector('[data-hg-place-sheet-section="reading"]');
   assert.ok(slot);
   assert.equal(slot.hidden, false);
+  assert.equal(slot.dataset.placeId, "sted");
   assert.match(slot.textContent, /Lesespor/);
   assert.match(slot.textContent, /Åpen tekst/);
-  assert.equal(window.document.querySelector('#pcUnifiedKnowledgeHost [data-place-panel="reading"]'), null);
+  assert.equal(window.document.querySelector('#pcUnifiedKnowledgeHost'), null);
   assert.equal(slot.getAttribute("data-place-panel"), "reading");
+  dom.window.close();
+});
+
+test("stale Lesespor is hidden synchronously while the next place resolves", async () => {
+  const dom = new JSDOM(`<!doctype html><html><head></head><body>
+    <div id="placeCard"><div class="pc-body"><section class="pc-sheet-shell" data-hg-place-sheet-shell="1" data-place-id="b">
+      <section data-hg-place-sheet-news></section>
+      <section data-hg-place-sheet-reading="1" data-hg-place-sheet-section="reading" data-place-panel="reading" data-place-id="a"><section data-hg-place-sheet-owner="reading">Sted A</section></section>
+    </section></div></div>
+  </body></html>`, { url: "https://history-go.test/", runScripts: "outside-only" });
+  const { window } = dom;
+  window.DataHub = { loadLesespor: async () => { await delay(60); return { items: [] }; } };
+  window.eval(runtimeSource);
+  assert.equal(window.HGPlaceSheetSections.reading.adopt("b"), null);
+  const slot = window.document.querySelector('[data-hg-place-sheet-section="reading"]');
+  assert.equal(slot.hidden, true);
+  assert.equal(slot.dataset.placeId, undefined);
+  assert.equal(slot.textContent, "");
   dom.window.close();
 });
 
