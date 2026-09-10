@@ -1,0 +1,73 @@
+name: Place Sheet final acceptance
+
+on:
+  pull_request:
+    paths:
+      - "js/ui/place-unified-surface.ts"
+      - "js/ui/place-sheet/**"
+      - "js/ui/place-popup-v2.js"
+      - "js/ui/place-popup-sport-training.js"
+      - "js/ui/place-language-layer.js"
+      - "js/ui/place-learning-surface.js"
+      - "js/ui/place-card-status-surface.js"
+      - "js/ui/place-popup-shortcuts.js"
+      - "dist/web/place-unified-surface.js"
+      - "dist/web/place-unified-surface.js.map"
+      - "css/place-unified-surface.css"
+      - "css/place-sheet*.css"
+      - "css/place-popup-shortcuts.css"
+      - "tests/place-sheet-*.test.mjs"
+      - "tests/place-unified-surface.test.mjs"
+      - "tests/place-card-fullness-all-categories-browser-audit.test.mjs"
+      - ".github/workflows/place-sheet-final-acceptance.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  final-acceptance:
+    name: Final parity and performance gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify canonical generated inputs
+        run: npm run place-open:check
+
+      - name: Verify migrated browser runtime
+        run: |
+          npm run typecheck:web
+          npm run build:web:check
+
+      - name: Verify final parity matrix and automatic queue
+        run: |
+          node --test \
+            tests/place-sheet-final-acceptance.test.mjs \
+            tests/place-sheet-render-queue.test.mjs \
+            tests/place-sheet-special-profiles.test.mjs \
+            tests/place-unified-surface.test.mjs
+
+      - name: Verify responsive PlaceCard collection contract
+        run: node tests/place-card-fullness-all-categories-browser-audit.test.mjs
+
+      - name: Verify final Place Sheet browser performance
+        run: node tests/place-sheet-final-performance-browser-audit.test.mjs
