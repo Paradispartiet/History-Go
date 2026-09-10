@@ -1,0 +1,124 @@
+name: Hausmania materialize once
+
+on:
+  push:
+    branches:
+      - agent/hausmania-completion-20260910
+    paths:
+      - .github/workflows/hausmania-materialize-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/hausmania-completion-20260910
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Repair finalizer source inputs
+        run: node tools/TEMP-repair-hausmania-finalizer.mjs
+
+      - name: Syntax check finalizer
+        run: node --check tools/finalize-hausmania-completion.mjs
+
+      - name: Materialize Hausmania
+        run: node tools/finalize-hausmania-completion.mjs
+
+      - name: Verify Hausmania canonical package
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const assert = (v, m) => { if (!v) throw new Error(m); };
+          const place = read('data/places/subkultur/oslo/places_subkultur/hausmania.json');
+          assert(place.production_status === 'complete', 'place not complete');
+          assert(JSON.stringify(place.place_card_profile?.collection_ids) === JSON.stringify(['people','objects','brands','productions']), 'wrong collections');
+          assert(place.frontImage && place.quizCardImage && place.frontImage !== place.quizCardImage, 'front/quiz card contract');
+          assert(fs.existsSync(place.frontImage) && fs.existsSync(place.quizCardImage), 'missing front or quiz card');
+          assert(place.fagverk?.schema === 'history_go_place_fagverk_v2' && place.fagverk?.status === 'curated', 'fagverk not curated');
+          assert(place.fagverk.lenses?.length === 5, 'fagverk lenses != 5');
+          assert(place.fagverk.guiding_questions?.length >= 4 && place.fagverk.guiding_questions.length <= 6, 'fagverk questions');
+          assert(place.fagverk.concepts?.length >= 10 && place.fagverk.concepts.length <= 12, 'fagverk concepts');
+          assert(place.fagverk.observable_traces?.length >= 3, 'fagverk traces');
+
+          const quiz = read('data/quiz/subkultur/hausmania_sets.json');
+          assert(quiz.sets?.length === 4 && quiz.sets.every(s => s.questions?.length === 7), 'quiz is not 4x7');
+          const questions = quiz.sets.flatMap(s => s.questions);
+          assert(questions.length === 28, 'quiz total != 28');
+          assert(questions.every(q => Array.isArray(q.source) && q.source.length > 0 && q.claim_id), 'quiz source/claim gap');
+          const lefebvre = questions.find(q => q.thinker_id === 'henri_lefebvre');
+          assert(lefebvre && lefebvre.work === 'The Right to the City', 'Lefebvre binding missing');
+
+          const language = read('data/leksikon/sprak/places/europe/norway/oslo/hausmania.json');
+          assert(language.entries?.length === 6, 'language count != 6');
+          const languageManifest = read('data/leksikon/sprak/manifest.json');
+          assert(languageManifest.place_files?.hausmania === 'data/leksikon/sprak/places/europe/norway/oslo/hausmania.json', 'language manifest registration');
+
+          const readings = read('data/lesespor/oslo/lesespor_oslo_subkultur.json').items.filter(x => x.place_ids?.includes('hausmania'));
+          assert(readings.length === 4, `readings count ${readings.length}`);
+          const stories = read('data/stories/stories_hausmania.json');
+          assert(stories.some(s => s.quality_profile === 'episode_v1'), 'episode_v1 story missing');
+          const lex = read('data/leksikon/places/oslo/subkultur/leksikon_hausmania.json');
+          assert(lex.chronology?.length === 5, 'chronology count != 5');
+
+          const brands = read('data/brands/brands_master.json');
+          assert(brands.some(b => b.id === 'podium_oslo' && b.place_ids?.includes('hausmania')), 'Podium brand missing');
+          const byPlace = read('data/brands/brands_by_place.json');
+          assert(byPlace.hausmania?.includes('podium_oslo'), 'Podium by-place mapping missing');
+
+          const runtime = read('data/runtime/place-open/hausmania.json');
+          assert(runtime.language, 'runtime language missing');
+          assert(runtime.leksikon?.length > 0, 'runtime leksikon missing');
+          assert(runtime.lesespor?.length >= 4, 'runtime lesespor missing');
+
+          const production = read('data/places/production/hausmania.json');
+          assert(production.qualityAssessment?.total >= 27 && production.qualityAssessment?.unresolved_blockers === 0, 'quality gate failed');
+          const workcard = read('reports/place-production/hausmania-workcard-current.json');
+          assert(workcard.quality_gate === '30/30', 'workcard quality gate');
+          console.log('Hausmania canonical package verified: 4 collections, 28 quiz, 5 chronology, 6 language, 4 readings, episode_v1, curated Fagverk, Podium brand.');
+          NODE
+
+      - name: Validate Fagverk release
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+
+      - name: Validate epoch indexes
+        run: |
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs
+
+      - name: Validate generated diff
+        run: git diff --check
+
+      - name: Commit materialized package and remove temporary runner
+        shell: bash
+        run: |
+          rm -f tools/TEMP-repair-hausmania-finalizer.mjs
+          rm -f .github/workflows/hausmania-materialize-once.yml
+          git add -A
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'No materialized changes to commit.'
+            exit 1
+          fi
+          git config user.name 'Paradispartiet'
+          git config user.email 'paradispartiet@gmail.com'
+          git commit -m 'Complete Hausmania production'
+          git pull --rebase origin agent/hausmania-completion-20260910
+          git push origin HEAD:agent/hausmania-completion-20260910
