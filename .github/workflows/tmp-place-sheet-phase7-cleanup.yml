@@ -36,7 +36,9 @@ jobs:
           node --check js/ui/place-popup-v2.js
           node --check js/ui/place-popup-shortcuts.js
       - name: Run Phase 7 unit regressions
+        shell: bash
         run: |
+          set +e
           node --test \
             tests/place-unified-surface.test.mjs \
             tests/place-popup-v2-unified-target.test.mjs \
@@ -56,14 +58,36 @@ jobs:
             tests/place-sheet-special-profiles.test.mjs \
             tests/place-sheet-phase7-legacy-cleanup.test.mjs \
             tests/micro-place-contract.test.mjs \
-            tests/place-rounds-grid-exclusivity.test.mjs
+            tests/place-rounds-grid-exclusivity.test.mjs 2>&1 | tee /tmp/phase7-regressions.log
+          status=${PIPESTATUS[0]}
+          set -e
+          if [ "$status" -ne 0 ]; then
+            {
+              echo "Phase 7 regression failure summary"
+              echo "head=$(git rev-parse HEAD)"
+              echo
+              grep -n -E 'not ok|AssertionError|ERR_ASSERTION|expected:|actual:|failureType|error:|stack:' /tmp/phase7-regressions.log || true
+              echo
+              echo "--- tail ---"
+              tail -n 220 /tmp/phase7-regressions.log
+            } > .tmp-phase7-regression-summary.txt
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add .tmp-phase7-regression-summary.txt
+            if ! git diff --cached --quiet; then
+              git commit -m "TEMP capture Phase 7 regression summary"
+              git push origin HEAD:agent/place-sheet-phase7-legacy-cleanup-20260910
+            fi
+            exit "$status"
+          fi
+          rm -f .tmp-phase7-regression-summary.txt
       - name: Commit green Phase 7 cleanup
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git reset .github/workflows/tmp-place-sheet-phase7-cleanup.yml scripts/tmp-place-sheet-phase7-cleanup.py
+          git reset .github/workflows/tmp-place-sheet-phase7-cleanup.yml scripts/tmp-place-sheet-phase7-cleanup.py .tmp-phase7-regression-summary.txt 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "Phase 7 cleanup already committed"
             exit 0
