@@ -123,6 +123,7 @@ Object.assign(place, {
   ].join("\n\n"),
   image: "bilder/places/hausmania.webp",
   frontImage: "bilder/places/hausmania_front_portrait.webp",
+  quizCardImage: "bilder/QuizCards/Hausmania.webp",
   imageMeta: { ...media.current, transformation: "Beskåret til 1400x900 og konvertert til WebP.", outputDimensions: "1400x900", assetType: "documentary_place_photo" },
   frontImageMeta: { ...media.current, transformation: "Egen stående 900x1280-variant fra samme dokumentarfoto; separat fil fra hovedbildet.", outputDimensions: "900x1280", assetType: "documentary_place_portrait" },
   underbadge_ids: ["diy_og_selvorganisering", "okkupasjon_og_autonome_rom", "motkulturhistorie"],
