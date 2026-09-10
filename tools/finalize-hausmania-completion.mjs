@@ -5,7 +5,7 @@ import crypto from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { runBuildQuizProductionContext } from "../scripts/build-quiz-production-context.mjs";
 
-// Hausmania finalization is deterministic; final PR head must pass exact-head CI before merge.
+// Hausmania finalization is deterministic; fresh-main final PR head must pass exact-head CI before merge.
 const root = process.cwd();
 const placeId = "hausmania";
 const categoryId = "subkultur";
