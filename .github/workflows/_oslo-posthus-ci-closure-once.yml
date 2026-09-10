@@ -33,6 +33,8 @@ jobs:
           place.popupDesc=place.popupDesc
             .replace('første verdenskrig','verdenskrigen 1914–1918')
             .replace('Hovedpostkontoret gjør derfor infrastrukturen','Hovedpostkontoret gjør infrastrukturen')
+            .replace('som viktige deler av transformasjonen','som deler av transformasjonen')
+            .replace('en sentral offentlig institusjon','en offentlig institusjon')
             .replace('Dermed rommer Hovedpostkontoret også','Hovedpostkontoret rommer også');
           fs.writeFileSync(file,JSON.stringify(place,null,2)+'\n');
           NODE
