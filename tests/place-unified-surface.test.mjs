@@ -34,7 +34,8 @@ test("unified Place surface keeps public entry points and canonical section set"
   assert.match(source, /\["language",\s*"Språk"\]/);
   assert.match(source, /\["learning",\s*"Fagverk"\]/);
   assert.match(source, /isMicro\(place/);
-  assert.match(source, /No legacy showPlacePopup call for standard Places/);
+  assert.match(source, /if \(isMicro\(canonical\)\) return current\.apply\(this, \[canonical, target\]\)/);
+  assert.match(source, /return openSection\(canonical, target \|\| "about"\)/);
   assert.doesNotMatch(source, /fetch\(["']data\/places\//);
 });
 
