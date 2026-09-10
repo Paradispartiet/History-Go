@@ -1,0 +1,140 @@
+===== npx tsx tools/validate_lesespor.mts =====
+npm warn exec The following package was not found and will be installed: tsx@4.23.13
+WARN data/lesespor/oslo/lesespor_oslo_by.json: item lesespor_toyen_torg_oslo_kommune uses source_quality alias "primary"; canonical value is "institutional"
+WARN data/lesespor/oslo/lesespor_oslo_by.json: item lesespor_toyen_torg_grindaker uses source_quality alias "primary"; canonical value is "institutional"
+WARN data/lesespor/oslo/lesespor_oslo_by.json: item lesespor_toyen_torg_bratseth uses source_quality alias "academic"; canonical value is "scholarly"
+WARN data/lesespor/oslo/lesespor_oslo_by.json: item lesespor_ullevål_hageby_havebyselskap uses source_quality alias "primary"; canonical value is "institutional"
+WARN data/lesespor/oslo/lesespor_oslo_by.json: item lesespor_vaalerenga_004 uses source_quality alias "primary"; canonical value is "institutional"
+WARN data/lesespor/oslo/lesespor_oslo_by.json: item lesespor_spikersuppa_kommune uses source_quality alias "primary"; canonical value is "institutional"
+WARN item id lesespor_deichman_001 appears in multiple active files: data/lesespor/oslo/lesespor_oslo_kunst.json, data/lesespor/oslo/lesespor_oslo_by.json, data/lesespor/oslo/lesespor_oslo_litteratur.json
+WARN item id lesespor_nasjonalmuseet_001 appears in multiple active files: data/lesespor/oslo/lesespor_oslo_kunst.json, data/lesespor/oslo/lesespor_oslo_by.json
+WARN item id lesespor_nasjonalmuseet_002 appears in multiple active files: data/lesespor/oslo/lesespor_oslo_kunst.json, data/lesespor/oslo/lesespor_oslo_by.json
+WARN item id lesespor_ekebergparken_001 appears in multiple active files: data/lesespor/oslo/lesespor_oslo_kunst.json, data/lesespor/oslo/lesespor_oslo_by.json, data/lesespor/oslo/lesespor_oslo_politikk.json
+WARN item id lesespor_astrup_fearnley_001 appears in multiple active files: data/lesespor/oslo/lesespor_oslo_kunst.json, data/lesespor/oslo/lesespor_oslo_by.json
+WARN item id lesespor_astrup_fearnley_002 appears in multiple active files: data/lesespor/oslo/lesespor_oslo_kunst.json, data/lesespor/oslo/lesespor_oslo_by.json, data/lesespor/oslo/lesespor_oslo_politikk.json
+WARN item id lesespor_gronland_003 appears in multiple active files: data/lesespor/oslo/lesespor_oslo_by.json, data/lesespor/oslo/lesespor_oslo_politikk.json
+Lesespor validation passed for 26 active file(s) across 2 scope(s), 1534 known place id(s) and 316 unique item id(s).
+Completed with 13 warning(s).
+exit=0
+===== node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/tronsmo-bokhandel-workcard-current.json =====
+Place READ-FIRST preflight PASS: reports/place-production/tronsmo-bokhandel-workcard-current.json
+exit=0
+===== node scripts/audit-fagverk-place-pages.mjs =====
+Fagverk-sted v2: 88 curated, 0 in production, 521 linked unfinished, 925 category-only unfinished.
+exit=0
+===== node scripts/validate-place-description-production-v4_2_policy.mjs --all =====
+Place description v4.2.1: 165 pakker, 154 ready, 24 blokkerende feil
+- 115 ordtallsfunn ble behandlet som redaksjonell veiledning.
+- 228 quizvolum-funn ble tillatt for Micro Places med quizMode=none.
+- invalid_source_type: claim_tronsmo_foundation har ugyldig sourceType.
+- invalid_source_type: claim_tronsmo_address har ugyldig sourceType.
+- timeline_year_requires_historical_status: claim_tronsmo_address kan bare ha timelineYear når temporalStatus er historical.
+- invalid_source_type: claim_tronsmo_petterson har ugyldig sourceType.
+- temporal_claim_without_status: popupDesc setning 5 inneholder nåtids- eller planopplysning uten temporalStatus.
+- strong_claim_without_explicit_evidence: popupDesc setning 9 inneholder en sterk påstand uten eksplisitt strong-claim.
+- strong_claim_without_explicit_evidence: popupDesc setning 18 inneholder en sterk påstand uten eksplisitt strong-claim.
+- temporal_claim_without_status: popupDesc setning 24 inneholder nåtids- eller planopplysning uten temporalStatus.
+- temporal_claim_without_status: popupDesc setning 28 inneholder nåtids- eller planopplysning uten temporalStatus.
+- forbidden_user_meta_text: Brukerteksten treffer forbudt metatekst: /\bhistory go\b/iu.
+- forbidden_user_meta_text: Brukerteksten treffer forbudt metatekst: /\bse hvordan\b/iu.
+- forbidden_user_meta_text: Brukerteksten treffer forbudt metatekst: /\bkartpunkt(?:et)?\b/iu.
+- factual_review_not_passed: ready_v4_2 krever bestått faktareview.
+- editorial_review_not_passed: ready_v4_2 krever bestått redaksjonell review.
+- editorial_review_added_facts: Redaksjonell review må eksplisitt angi introducedNewFacts: false.
+- too_few_quiz_questions: ready_v4_2 krever minst 8 direkte faktaspørsmål; fant 0.
+- too_few_normal_quiz_questions: ready_v4_2 krever minst 5 normale kunnskapsspørsmål; fant 0.
+- too_few_quiz_types: ready_v4_2 krever minst 4 spørsmålstyper; fant 0.
+- wrong_completed_under: ready_v4_2 krever completedUnder 4.2.
+- wrong_current_status: ready_v4_2 krever currentStatus current.
+- invalid_source_verified_at: completion.sourceVerifiedAt må være en dato.
+- completion_reviews_not_passed: completion må registrere begge reviews som passed.
+- completion_validator_mismatch: completion.validatorVersion må samsvare med packet.validatorVersion.
+- claims_verified_count_mismatch: completion.claimsVerified samsvarer ikke med claim-registeret.
+exit=1
+===== npm run test:quiz-content-audit =====
+
+> history-go@0.0.0 test:quiz-content-audit
+> node --test tests/quiz-content-quality-audit.test.mjs
+
+TAP version 13
+# Subtest: flags emne-first wording and a quiz outside the canonical balance
+ok 1 - flags emne-first wording and a quiz outside the canonical balance
+  ---
+  duration_ms: 14.499621
+  ...
+# Subtest: accepts a 60/20/20 content mix
+ok 2 - accepts a 60/20/20 content mix
+  ---
+  duration_ms: 3.647137
+  ...
+# Subtest: flags a correct answer that is much longer than the distractors
+ok 3 - flags a correct answer that is much longer than the distractors
+  ---
+  duration_ms: 2.601052
+  ...
+# Subtest: keeps repaired Deichman and Ullevaal quizzes within the canonical balance
+ok 4 - keeps repaired Deichman and Ullevaal quizzes within the canonical balance
+  ---
+  duration_ms: 9.442118
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 87.180326
+exit=0
+===== npm run test:quiz-production =====
+
+> history-go@0.0.0 test:quiz-production
+> node --test tests/quiz-production-pipeline.test.mjs
+
+TAP version 13
+# Subtest: builds the full by production context through the manifest
+ok 1 - builds the full by production context through the manifest
+  ---
+  duration_ms: 223.912863
+  ...
+# Subtest: builds the full history production context through domain-based curriculum
+ok 2 - builds the full history production context through domain-based curriculum
+  ---
+  duration_ms: 300.284686
+  ...
+# Subtest: isolates each history target in the manifest proof
+ok 3 - isolates each history target in the manifest proof
+  ---
+  duration_ms: 279.404058
+  ...
+# Subtest: builds the Grindheimsvegen grave-field context before quiz writing
+ok 4 - builds the Grindheimsvegen grave-field context before quiz writing
+  ---
+  duration_ms: 275.001917
+  ...
+# Subtest: builds the Høyland grave-mound context before quiz writing
+ok 5 - builds the Høyland grave-mound context before quiz writing
+  ---
+  duration_ms: 292.981749
+  ...
+# Subtest: builds the Oslo tinghus Politikk context with a narrow ordinary opening
+ok 6 - builds the Oslo tinghus Politikk context with a narrow ordinary opening
+  ---
+  duration_ms: 259.54019
+  ...
+# Subtest: passes production-context, progression and theory-binding audits
+ok 7 - passes production-context, progression and theory-binding audits
+  ---
+  duration_ms: 15481.73666
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17192.771112
+exit=0

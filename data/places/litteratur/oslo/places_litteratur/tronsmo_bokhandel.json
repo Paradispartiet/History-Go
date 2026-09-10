@@ -12,8 +12,6 @@
   "emne_ids": [
     "em_lit_litteraturfelt_institusjoner",
     "em_lit_lesere_offentlighet_formidling",
-    "em_lit_litteratur_og_offentlig_debatt",
-    "em_lit_bokhistorie_trykk_forlag",
     "em_lit_litteraere_steder_og_bytekst"
   ],
   "quiz_profile": {
@@ -196,12 +194,11 @@
     "schema": "history_go_place_fagverk_v2",
     "level": "standard",
     "status": "curated",
-    "intro": "Bruk Tronsmo til å undersøke hvordan litteratur blir valgt ut, distribuert og gjort synlig mellom forlag, bokhandel og lesere.",
+    "verified_at": "2026-09-10",
+    "intro": "Tronsmo gjør det mulig å undersøke hvordan en uavhengig bokhandel velger, synliggjør og formidler litteratur i byen, og hvordan disse valgene kobler marked, litterær offentlighet og konkrete leserpraksiser.",
     "article": [
-      "En bokhandel er ikke bare et lager av utgitte bøker. Den velger, sorterer, plasserer og anbefaler. Tronsmo gjør denne mellomrollen tydelig fordi bokhandelen selv framhever kuratering og et utvalg som ikke styres bare av bestselgerlister eller salgstall. I litteraturfeltet betyr slike valg at enkelte forfattere, forlag og sjangre får mer synlighet enn andre.",
-      "Tronsmos historie fra 1973 viser også hvordan en kommersiell institusjon kan få en kulturell profil. SNL beskriver det tidlige stedet som en radikal bokhandel, mens dagens profil er bredere. Kontinuitet må derfor skilles fra forandring: uavhengighet og kritisk utvalg kan være en linje gjennom historien uten at politisk orientering, sortiment eller organisasjon er identisk i hver periode.",
-      "Tegneserieavdelingen utfordrer en snever forestilling om litteratur som bare verbal tekst. Når Tronsmo presenterer tegneserier som kunst, politikk, reportasje og grafiske romaner, blir bokhandelen et sted der sjangergrenser og mediegrenser blir praktiske valg i hyller og avdelinger. Dette er et konkret utgangspunkt for å studere resepsjon og kanondannelse.",
-      "Jubileumsboksen fra 2013 viser en annen side av litteraturens kretsløp: bokhandelen opptrer selv som utgiver. Produktet samler et stort antall bidragsytere og flere medieformer. Det gjør jubileumsutgivelsen til en kilde til hvordan Tronsmo ønsket å presentere miljøet rundt bokhandelen, men ikke til en nøytral eller fullstendig historie om alle som har vært knyttet til stedet."
+      "Som bokhandel er Tronsmo både kommersiell virksomhet og litterær mellommann. Utvalget er ikke identisk med litteraturen som finnes, men et resultat av valg om hvilke bøker, tegneserier og uttrykk som får fysisk plass og synlighet. Dermed kan hyller, bord og avdelingsnavn studeres som spor etter institusjonell seleksjon, samtidig som observasjonen må skilles fra påstander om salg, lesing eller historisk betydning.",
+      "Stedets historie fra 1973, flyttingen til Universitetsgata i 2015 og jubileumsutgivelsen fra 2013 gir ulike tidslag. Per Pettersons dokumenterte arbeid på Tronsmo viser dessuten hvordan en bokhandel kan være arbeidssted i et litterært felt. Disse kildene gjør det mulig å analysere formidling og offentlighet uten å anta at enhver forfatter i sortimentet har en direkte relasjon til stedet."
     ],
     "subject_ids": [
       "litteratur"
@@ -209,86 +206,83 @@
     "emne_ids": [
       "em_lit_litteraturfelt_institusjoner",
       "em_lit_lesere_offentlighet_formidling",
-      "em_lit_litteratur_og_offentlig_debatt",
-      "em_lit_bokhistorie_trykk_forlag",
       "em_lit_litteraere_steder_og_bytekst"
     ],
     "chapter_ids": [
-      "litteraturfelt_institusjoner",
-      "lesere_offentlighet_formidling",
-      "bokhistorie_trykk_forlag"
+      "lesekultur_bokdeling_offentlighet"
     ],
     "lenses": [
       {
         "id": "tronsmo-lens-1",
-        "title": "Kuratering som feltmakt",
-        "prompt": "Hvordan kan plassering, utvalg og anbefalinger påvirke hvilke bøker lesere oppdager?",
+        "title": "Kuratering og utvalg",
+        "prompt": "Hvordan viser butikkens fysiske utvalg hvilke litterære uttrykk som prioriteres akkurat nå?",
         "subject_id": "litteratur",
         "emne_id": "em_lit_litteraturfelt_institusjoner",
-        "evidence": "Sammenlign bokhandelens egen beskrivelse av utvalgspraksis med synlige prioriteringer i dagens butikk."
+        "evidence": "Tronsmo beskriver selv utvalget som kuratert, mens butikkrommet gjør prioriteringene observerbare."
       },
       {
         "id": "tronsmo-lens-2",
-        "title": "Litterær offentlighet",
-        "prompt": "På hvilke måter kan en kommersiell bokhandel også fungere som offentlig møtepunkt?",
+        "title": "Lesere og offentlighet",
+        "prompt": "Hvordan legger rommet til rette for oppdagelse, orientering og møter mellom lesere og verk?",
         "subject_id": "litteratur",
         "emne_id": "em_lit_lesere_offentlighet_formidling",
-        "evidence": "Se på signeringer, utstillinger, anbefalinger og andre situasjoner der tekster formidles mellom aktører."
+        "evidence": "Avdelinger, bord, arrangementer og synlige anbefalinger kan undersøkes som konkrete formidlingsgrep."
       },
       {
         "id": "tronsmo-lens-3",
-        "title": "Tegneserien som litterært medium",
-        "prompt": "Hva skjer med litteraturbegrepet når tekst og bilde analyseres sammen?",
+        "title": "Sted og litteratur",
+        "prompt": "Hvordan endrer forståelsen av Tronsmo seg når dagens butikk sammenholdes med stedets historiske adresser?",
         "subject_id": "litteratur",
-        "emne_id": "em_lit_litteratur_og_offentlig_debatt",
-        "evidence": "Bruk tegneserieavdelingens sjangerbredde som observasjon, ikke som bevis for én bestemt litteraturdefinisjon."
-      },
-      {
-        "id": "tronsmo-lens-4",
-        "title": "Bokhandel som utgiver",
-        "prompt": "Hva kan jubileumsboksen fra 2013 fortelle om Tronsmos selvforståelse?",
-        "subject_id": "litteratur",
-        "emne_id": "em_lit_bokhistorie_trykk_forlag",
-        "evidence": "Skill mellom produktets dokumenterte innhold og tolkningen av hvorfor nettopp disse bidragsyterne og formatene ble valgt."
+        "emne_id": "em_lit_litteraere_steder_og_bytekst",
+        "evidence": "Kildene skiller perioden i Kristian Augusts gate fra dagens butikk i Universitetsgata."
       }
     ],
     "guiding_questions": [
-      "Hva skiller et kuratert sortiment fra et utvalg styrt primært av salgstall?",
-      "Hvordan kan en bokhandel påvirke litteraturens synlighet uten å være et forlag?",
-      "Hvordan endrer tegneserier forholdet mellom tekst, bilde og litteraturbegrep?",
-      "Hva er forskjellen mellom en bokhandel, et bibliotek og et litteraturhus som offentlighetsarena?",
-      "Hva kan en jubileumsutgivelse dokumentere, og hva kan den ikke dokumentere nøytralt?",
-      "Hvordan kan dagens butikkrom brukes som kilde uten å projisere dagens profil bakover til 1973?"
+      "Hvilke typer litteratur får mest synlig plass når du undersøker butikken i dag?",
+      "Hvordan skiller kuratering i en bokhandel seg fra bevaring i et nasjonalbibliotek?",
+      "Hva kan butikkens inndeling fortelle om hvilke lesergrupper og sjangre den henvender seg til?",
+      "Hvilke deler av Tronsmos historie kan observeres på stedet, og hvilke krever eksterne kilder?"
     ],
     "concepts": [
-      "litteraturfelt",
+      "litterært felt",
       "kuratering",
-      "distribusjon",
-      "resepsjon",
+      "formidling",
       "litterær offentlighet",
-      "uavhengig bokhandel",
-      "tegneserie",
-      "grafisk roman",
-      "sjanger",
-      "kanon",
-      "bokhistorie",
-      "selvframstilling"
+      "distribusjon",
+      "leserpraksis"
     ],
     "observable_traces": [
-      "Butikkens avdelingsnavn og bordplasseringer kan observeres som dagens kurateringsspor.",
-      "Fasade, skilt og vinduer viser hvordan bokhandelidentiteten kommuniseres i byrommet.",
-      "Tegneserieavdelingens plassering og bredde kan observeres uten at dagens utvalg brukes som bevis for tidligere perioder."
+      {
+        "title": "Hyller og avdelinger",
+        "observation": "Avdelingsnavn og plassering gjør butikkens nåværende prioritering av sjangre og uttrykk fysisk synlig.",
+        "interpretation_boundary": "Et øyeblikksbilde av hyllene beviser ikke historisk kontinuitet, salgstall eller faktisk leseradferd.",
+        "source_urls": [
+          "https://www.tronsmo.no/om-tronsmo/"
+        ]
+      },
+      {
+        "title": "Tegneserier i butikkrommet",
+        "observation": "Den tydelige tegneserieprofilen kan sammenholdes med Tronsmos egen beskrivelse av avdelingens rolle.",
+        "interpretation_boundary": "Synlighet i rommet viser formidling og prioritering, men ikke at alle kunder bruker avdelingen likt.",
+        "source_urls": [
+          "https://www.tronsmo.no/om-tronsmo/"
+        ]
+      },
+      {
+        "title": "Fasaden fra 2017",
+        "observation": "Dokumentarfotoet viser konkrete vindusdekorasjoner av Lars Fiske og Bendik Kaltenborn ved Tronsmo i 2017.",
+        "interpretation_boundary": "Fotografiet dokumenterer ett tidspunkt og kan ikke brukes som bevis for fasadens utforming i dag.",
+        "source_urls": [
+          "https://commons.wikimedia.org/wiki/File:Tronsmo_Bokhandel_comic_book_store_in_Universitetsgata,_Oslo,_Norway._Window_decorations_by_Lars_Fiske_and_Bendik_Kaltenborn,_2017-12-14.jpg"
+        ]
+      }
     ],
-    "sources": [
+    "source_urls": [
       "https://www.tronsmo.no/om-tronsmo/",
       "https://snl.no/Tronsmo_Bokhandel",
       "https://snl.no/Per_Petterson",
-      "https://oslobyleksikon.no/side/Universitetsgata",
-      "https://oslobyleksikon.no/side/Kristian_Augusts_gate",
-      "https://www.tronsmo.no/produkt/tronsmo-40-ar-jubileumsboks/",
       "https://commons.wikimedia.org/wiki/File:Tronsmo_Bokhandel_comic_book_store_in_Universitetsgata,_Oslo,_Norway._Window_decorations_by_Lars_Fiske_and_Bendik_Kaltenborn,_2017-12-14.jpg"
-    ],
-    "verifiedAt": "2026-09-10"
+    ]
   },
   "externalLinks": [
     {
