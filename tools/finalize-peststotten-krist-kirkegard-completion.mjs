@@ -184,7 +184,7 @@ write('data/brands/brands_by_place.json', brandsByPlace);
 const storyId = `st_${id}_fra_pestgrav_til_minnepark`;
 const storyFile = `data/stories/stories_${id}.json`;
 write(storyFile, [{
-  id: storyId, quality_profile: 'episode_v1', type: 'site_transformation', title: 'Fra pestgrav til minnepark', year: 1654, place_id: id,
+  id: storyId, quality_profile: 'episode_v1', type: 'turning_point', title: 'Fra pestgrav til minnepark', year: 1654, place_id: id,
   summary: 'Gravstedet ble utvidet under pesten, stengt i 1924 og bevart som minnepark.',
   story: 'I 1654 ble gravplassen utvidet og Peststøtten reist. Senere fikk stedet nye gravminner. Etter stengingen i 1924 ble området minnepark og gjenåpnet omkring 1999–2000.',
   episode: { actors: ['gravplassmyndigheter', 'Oslo kommune'], date: '1654–2000', action: 'Stedet ble brukt, stengt og omformet.', consequence: 'Flere minnelag ble bevart.' },
