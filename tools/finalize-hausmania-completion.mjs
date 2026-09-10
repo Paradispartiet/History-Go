@@ -5,7 +5,7 @@ import crypto from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { runBuildQuizProductionContext } from "../scripts/build-quiz-production-context.mjs";
 
-const root = process.cwd();
+// Exact-head CI is intentionally retriggered after fail-closed materialization.\nconst root = process.cwd();
 const placeId = "hausmania";
 const categoryId = "subkultur";
 const verifiedAt = "2026-09-10";
