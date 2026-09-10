@@ -33,11 +33,11 @@
       "needs_role_authored_work": 0,
       "blocked": 0
     },
-    "role_world_complete_or_pilot": 84,
-    "rollout_queue_roles": 1,
-    "first_wave_candidate_count": 1,
+    "role_world_complete_or_pilot": 85,
+    "rollout_queue_roles": 0,
+    "first_wave_candidate_count": 0,
     "role_level_blocked_count": 0,
-    "structural_families_in_queue": 1
+    "structural_families_in_queue": 0
   },
   "gate": {
     "locked_matrix_dimensions_reference_proven": true,
@@ -51,33 +51,11 @@
     "gate_pass": true,
     "broad_rollout_allowed_now": true,
     "policy_recommendation": "controlled_rollout_open_with_role_level_gates",
-    "next_required_pr": "Role World rollout: musikk/musikk_utoving_og_ensemble",
+    "next_required_pr": "Select next rollout_ready role",
     "rule": "A green readiness gate proves the program can safely begin controlled rollout. It does not make every role rollout_ready and it does not itself flip broad_rollout_allowed."
   },
-  "first_wave_candidates": [
-    {
-      "rank": 1,
-      "key": "musikk/musikk_utoving_og_ensemble",
-      "classification": "rollout_ready",
-      "structural_family": "other",
-      "priority_score": 1260,
-      "blockers": [],
-      "authored_work_required": [],
-      "cross_role_need": "not_required_for_rollout"
-    }
-  ],
-  "rollout_queue": [
-    {
-      "rank": 1,
-      "key": "musikk/musikk_utoving_og_ensemble",
-      "classification": "rollout_ready",
-      "structural_family": "other",
-      "priority_score": 1260,
-      "blockers": [],
-      "authored_work_required": [],
-      "cross_role_need": "not_required_for_rollout"
-    }
-  ],
+  "first_wave_candidates": [],
+  "rollout_queue": [],
   "blocked_roles": [],
   "roles": [
     {
@@ -3371,15 +3349,16 @@
       ],
       "career_status": "playable",
       "runtime_gate": true,
-      "role_world_status": "role_world_not_started",
+      "role_world_status": "role_world_complete",
       "structural_family": "other",
       "classification": "rollout_ready",
-      "priority_score": 1260,
+      "priority_score": 910,
       "dimensions": {
         "persistent_work_object": {
           "status": "foundation_ready",
           "evidence": [
             "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
+            "data/Civication/roleWorlds/musikk/musikk_utoving_og_ensemble.json",
             "data/Civication/workGrammars/musikk/musikk_utoving_og_ensemble.json"
           ],
           "rationale": "Existing work content carries stable object/case/project signals and a complete workday loop; the rollout PR must bind them explicitly to the locked persistent-work contract."
@@ -3399,6 +3378,7 @@
           "evidence": [
             "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
             "data/Civication/mailPlans/musikk/musikk_utoving_og_ensemble_plan.json",
+            "data/Civication/roleWorlds/musikk/musikk_utoving_og_ensemble.json",
             "data/Civication/workGrammars/musikk/musikk_utoving_og_ensemble.json"
           ],
           "rationale": "The current runtime-authored role already exposes deadline/rework/handoff signals; rollout must make the rhythm role-specific and persistent."
@@ -3410,6 +3390,7 @@
             "data/Civication/roleModels/musikk/fast_musiker_band_ensemble.json",
             "data/Civication/roleModels/musikk/musikk_utoving_og_ensemble.json",
             "data/Civication/roleModels/musikk/utovende_musiker.json",
+            "data/Civication/roleWorlds/musikk/musikk_utoving_og_ensemble.json",
             "data/Civication/workGrammars/musikk/musikk_utoving_og_ensemble.json"
           ],
           "rationale": "Career knowledge integration is complete; the rollout PR must author a concrete better-choice affordance while keeping authority independent from knowledge."
@@ -3418,7 +3399,8 @@
           "status": "foundation_ready",
           "evidence": [
             "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
-            "data/Civication/mailPlans/musikk/musikk_utoving_og_ensemble_plan.json"
+            "data/Civication/mailPlans/musikk/musikk_utoving_og_ensemble_plan.json",
+            "data/Civication/roleWorlds/musikk/musikk_utoving_og_ensemble.json"
           ],
           "rationale": "Role-authored sources already contain situated audience/standing signals; rollout must bind only bounded authored audience IDs."
         },
@@ -3429,6 +3411,7 @@
             "data/Civication/roleModels/musikk/fast_musiker_band_ensemble.json",
             "data/Civication/roleModels/musikk/musikk_utoving_og_ensemble.json",
             "data/Civication/roleModels/musikk/utovende_musiker.json",
+            "data/Civication/roleWorlds/musikk/musikk_utoving_og_ensemble.json",
             "data/Civication/workGrammars/musikk/musikk_utoving_og_ensemble.json"
           ],
           "rationale": "Career People and Places coverage is complete; rollout still must verify factual canonical references and keep invented workplace drama explicitly fictional."
@@ -3438,9 +3421,11 @@
           "evidence": [
             "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
             "data/Civication/mailPlans/musikk/musikk_utoving_og_ensemble_plan.json",
+            "data/Civication/roleWorlds/musikk/musikk_utoving_og_ensemble.json",
             "data/Civication/workGrammars/musikk/musikk_utoving_og_ensemble.json",
             "tests/civication-music-life-career-split.test.js",
-            "tests/civication-musikk-utoving-og-ensemble-prerequisites.test.js"
+            "tests/civication-musikk-utoving-og-ensemble-prerequisites.test.js",
+            "tests/civication-musikk-utoving-og-ensemble-role-world-rollout.test.js"
           ],
           "rationale": "Role-specific tests and authored source paths exist; rollout must add strict scene-registry parity and source provenance for new realism scenes."
         }
@@ -3455,11 +3440,13 @@
       "source_refs": [
         "data/Civication/mailFamilies/musikk/job/musikk_utoving_og_ensemble_job.json",
         "data/Civication/mailPlans/musikk/musikk_utoving_og_ensemble_plan.json",
+        "data/Civication/roleWorlds/musikk/musikk_utoving_og_ensemble.json",
         "data/Civication/workGrammars/musikk/musikk_utoving_og_ensemble.json",
         "tests/civication-music-life-career-split.test.js",
-        "tests/civication-musikk-utoving-og-ensemble-prerequisites.test.js"
+        "tests/civication-musikk-utoving-og-ensemble-prerequisites.test.js",
+        "tests/civication-musikk-utoving-og-ensemble-role-world-rollout.test.js"
       ],
-      "already_reference_or_pilot": false
+      "already_reference_or_pilot": true
     },
     {
       "key": "naeringsliv/administrasjonsmedarbeider",
