@@ -24,10 +24,36 @@ jobs:
         run: |
           git config user.name 'Paradispartiet'
           git config user.email 'paradispartiet@gmail.com'
-      - name: Replay on fresh main
+      - name: Replay on fresh main with generated-file reconciliation
+        shell: bash
         run: |
           git fetch origin main
+          set +e
           git merge --no-edit origin/main
+          rc=$?
+          set -e
+          if [ "$rc" -ne 0 ]; then
+            git diff --name-only --diff-filter=U | sort > /tmp/conflicts.txt
+            cat > /tmp/expected.txt <<'EOF'
+          data/epoker/epoke-place-index.json
+          data/fagverk/fagverk_release.json
+          data/leksikon/manifest.json
+          data/leksikon/sprak/manifest.json
+          data/runtime/leksikon-all/part-008.json
+          tests/epoke-place-index.test.mjs
+          EOF
+            sort -o /tmp/expected.txt /tmp/expected.txt
+            echo "Merge conflicts:"
+            cat /tmp/conflicts.txt
+            diff -u /tmp/expected.txt /tmp/conflicts.txt
+            while IFS= read -r file; do
+              git checkout --theirs -- "$file"
+              git add "$file"
+            done < /tmp/conflicts.txt
+            git diff --name-only --diff-filter=U | grep . && { echo "Unresolved conflicts remain"; exit 1; } || true
+            git commit -m 'Merge fresh main into Hausmania production'
+          fi
+          git merge-base --is-ancestor origin/main HEAD
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -74,9 +100,7 @@ jobs:
           rm -f .github/workflows/hausmania-fresh-main-finalize.yml
           git add -A
           git diff --cached --check
-          if git diff --cached --quiet; then
-            echo 'No materialized changes; keeping fresh-main merge commit.'
-          else
+          if ! git diff --cached --quiet; then
             git commit -m 'Replay Hausmania on fresh main'
           fi
           git push origin HEAD:agent/hausmania-completion-20260910
