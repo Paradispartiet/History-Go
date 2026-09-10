@@ -1,0 +1,92 @@
+name: Oslo Posthus CI closure once
+
+on:
+  push:
+    branches:
+      - agent/oslo-posthus-production-closure-20260910
+    paths:
+      - '.github/workflows/_oslo-posthus-ci-closure-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-posthus-production-closure-20260910
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Materialize canonical closure reports
+        run: node tools/finalize-oslo-posthus-ci-closure.mjs
+      - name: Regenerate people index
+        run: node scripts/build-people-index.mjs
+      - name: Regenerate epoch place index
+        run: npm run epoker:places:build
+      - name: Regenerate Oslo Posthus quiz production context
+        run: node scripts/build-quiz-production-context.mjs --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
+      - name: Regenerate places index
+        run: npm run places:index:build
+      - name: Regenerate place-open runtime
+        run: npm run place-open:build
+      - name: Regenerate place image backlog summary
+        run: |
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const report=JSON.parse(fs.readFileSync('reports/place-image-audit.json','utf8'));
+          const file='data/places/place_image_backlog_summary.json';
+          const saved=JSON.parse(fs.readFileSync(file,'utf8'));
+          saved.generatedAt='2026-09-10';
+          saved.generatedFromCommit='oslo_posthus_production_closure_20260910';
+          saved.totalPlaces=report.totalPlaces;
+          saved.summary={
+            validLocal:report.summary.local,
+            validRemote:report.summary.remote,
+            optionalMissing:report.summary.optional,
+            missing:report.summary.missing,
+            invalidLocalPath:report.summary.invalid,
+            remaining:report.summary.missing+report.summary.invalid
+          };
+          saved.byCategory=Object.fromEntries(Object.entries(report.byCategory).map(([key,row])=>[key,{
+            total:row.total,
+            valid:row.local+row.remote,
+            optional:row.optional,
+            missing:row.missing,
+            invalid:row.invalid
+          }]));
+          fs.writeFileSync(file,JSON.stringify(saved,null,2)+'\n');
+          NODE
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Verify focused contracts
+        run: |
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all
+          node scripts/audit-naeringsliv-place-production.mjs --all
+          npm run epoker:places:check
+          npm run places:index:check
+          npm run place-open:check
+          node --test tests/oslo-posthus-production-closure.test.mjs
+      - name: Remove one-shot workflow and transient report
+        run: |
+          rm -f .github/workflows/_oslo-posthus-ci-closure-once.yml
+          git checkout -- reports/place-image-audit.json 2>/dev/null || rm -f reports/place-image-audit.json
+          git checkout -- reports/place-description-validation-v4_2.json 2>/dev/null || rm -f reports/place-description-validation-v4_2.json
+      - name: Commit permanent closure output
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git status --short
+          if git diff --cached --quiet; then
+            echo 'No materialized changes to commit.'
+            exit 1
+          fi
+          git commit -m 'Materialize Oslo Posthus CI closure'
+          git push origin HEAD:agent/oslo-posthus-production-closure-20260910
