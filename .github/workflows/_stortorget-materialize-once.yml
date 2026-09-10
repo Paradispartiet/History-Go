@@ -26,6 +26,8 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Materialize canonical Stortorget production
         run: node tools/finalize-stortorget-completion.mjs
+      - name: Materialize canonical Stortorget quiz production
+        run: node tools/finalize-stortorget-quiz.mjs
       - name: Normalize image backlog summary
         run: |
           node scripts/audit-place-images.mjs --mode=all --report=/tmp/stortorget-image-audit.json
