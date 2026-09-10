@@ -100,7 +100,7 @@ must(
 
 must(
   /place\.sources = \[[\s\S]*?\];\nwrite\(placeFile, place\);/,
-  \`place.sources = [
+  `place.sources = [
   { type: "source", label: "Hausmania – offisiell side", url: urls.official, verifiedAt },
   { type: "source", label: "Hausmania – Flerbrukshallen og lokaler", url: urls.rooms, verifiedAt },
   { type: "source", label: "Open House Oslo – Hausmania", url: urls.openHouse, verifiedAt },
@@ -128,7 +128,7 @@ fagverkRegistry.placeLinks[placeId] = {
   level: place.fagverk.level,
   status: place.fagverk.status
 };
-write("data/fagverk/fagverk_registry.json", fagverkRegistry);\`,
+write("data/fagverk/fagverk_registry.json", fagverkRegistry);`,
   'Fagverk operational links and registry index'
 );
 
