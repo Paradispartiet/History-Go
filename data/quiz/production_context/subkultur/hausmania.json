@@ -1,0 +1,664 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "subkultur",
+  "targetId": "hausmania",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1281,
+    "selection_sha256": "5ebbdef477c62dac0e78e3f0aad3fbd24f54b993727c6c29c30a9e27fafa07ee",
+    "category_id": "subkultur",
+    "target_id": "hausmania"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/subkultur/subkulturpensum_canonical_v4_5.json",
+      "bytes": 17511,
+      "sha256": "f2c6e23415089be869843158c1ad3a07d717b26b4f6762145be4092df49c1f1c",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/subkultur/emner_subkultur_canonical_v4_5.json",
+      "bytes": 314683,
+      "sha256": "878484dbf75d4be60c5a89bbd07c90328778f0cae5d5217286791897bcc3e0b5",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/subkultur/fagkart_subkultur_canonical_v4_5.json",
+      "bytes": 118098,
+      "sha256": "3552c2598919d77882306d8fb37f5eab0434bafd26b4a0c0e475d47706902319",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/subkultur/methods_subkultur_canonical_v4_5.json",
+      "bytes": 112793,
+      "sha256": "22673da0de3a0913ce3ce5c2afd16ba9c213a81947cbb9c2d8e3c2eeee3d9594",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/subkultur/supersetQUIZMAL_subkultur.json",
+      "bytes": 7431,
+      "sha256": "f6f4f1012800cbc44d68105d22c03e6433e6b55b3405e892d97c5a7b07d5904c",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/subkultur/hausmania.json",
+      "bytes": 12731,
+      "sha256": "01b7f68c4889e9e7ae144250fcace8cece20b4475899aaa3ba4304a5857ef64a"
+    },
+    "target": {
+      "path": "data/places/subkultur/oslo/places_subkultur/hausmania.json",
+      "bytes": 25780,
+      "sha256": "d3c839bc7e129911f8fbac96bba2062cda3d692d75155c823cc8213735589509"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1309,
+      "selection_sha256": "3b81bdf0ef2f1eb4f3512ef46ec24c310a842a4bbdf0531b6efe602bf80d395d"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_hausmania.json",
+        "matches": 1,
+        "selection_bytes": 2264,
+        "selection_sha256": "e5529f04e9db51989539006619efff6eaaafe41b867dd8ac899ed397e7f4186e"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/subkultur/hausmania_sets.json",
+  "source_registry": {
+    "hausmania": {
+      "url": "https://www.hausmania.org/",
+      "source_type": "community_primary",
+      "review_status": "reviewed",
+      "review_note": "Dagens kulturhusfunksjon, arbeidsrom, dugnad og Flerbrukshallen."
+    },
+    "openhouse": {
+      "url": "https://openhouseoslo.no/hausmania/",
+      "source_type": "institutional_secondary",
+      "review_status": "reviewed",
+      "review_note": "Bygningshistorie og formalisering rundt 2000."
+    },
+    "podium": {
+      "url": "https://www.podium.enterprises/about",
+      "source_type": "community_primary",
+      "review_status": "reviewed",
+      "review_note": "Podiums historie, organisering og program."
+    },
+    "sceneweb": {
+      "url": "https://sceneweb.no/nb/organisation/9942/Podium_-%20Pr%C3%B8vescene%20for%20livekunst",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Uavhengig kontroll av Podiums etablering og Hausmania-tilknytning."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/subkultur/hausmania_sets.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Ingen manifestlastet Hausmania-stedquiz fantes; produser normal 4×7."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "retained_rule": "Ingen eldre manifestlastet quiz å migrere."
+    }
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire kildebårne sett dekker identitet/drift, historisk institusjonalisering, scene-/kulturproduksjon og sluttlig metode/teori."
+  },
+  "held_back_candidates": [
+    "Ubekreftede interne konflikter.",
+    "Påstander om enkeltpersoners miljøtilhørighet.",
+    "Falsk optisk likhet mellom 2007- og 2017-fotografiene."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 8,
+      "emner": 80,
+      "topic_hooks": 80,
+      "methods": 43
+    },
+    "candidate_emner": [
+      {
+        "id": "em_sub_autonomi_motstand",
+        "title": "Autonomi og motstand",
+        "score": 100
+      },
+      {
+        "id": "em_sub_diy_praksis",
+        "title": "DIY-praksis",
+        "score": 100
+      },
+      {
+        "id": "em_sub_rett_til_byen",
+        "title": "Rett til byen",
+        "score": 100
+      },
+      {
+        "id": "em_sub_sted_scene",
+        "title": "Sted og scene",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "autonomi_motstand",
+        "title": "Autonomi og motstand",
+        "category_id": "motstand_avvik_kontroll",
+        "score": 10
+      },
+      {
+        "id": "diy_praksis",
+        "title": "DIY-praksis",
+        "category_id": "medier_objekter_praksiser",
+        "score": 10
+      },
+      {
+        "id": "rett_til_byen",
+        "title": "Rett til byen",
+        "category_id": "motstand_avvik_kontroll",
+        "score": 10
+      },
+      {
+        "id": "sted_scene",
+        "title": "Sted og scene",
+        "category_id": "steder_territorier_okkupering",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "steder_territorier_okkupering",
+      "motstand_avvik_kontroll",
+      "medier_objekter_praksiser"
+    ],
+    "emne_ids": [
+      "em_sub_autonomi_motstand",
+      "em_sub_diy_praksis",
+      "em_sub_sted_scene",
+      "em_sub_rett_til_byen"
+    ],
+    "topic_hook_ids": [
+      "rett_til_byen"
+    ],
+    "method_ids": [
+      "met_sub_romlig_maktanalyse"
+    ],
+    "thinker_ids": [
+      "henri_lefebvre"
+    ],
+    "works": [
+      "The Right to the City"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_hausmania_quiz_1",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hausmania oppgir Hausmanns gate 34 som adresse.",
+      "source_ids": [
+        "hausmania"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_2",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hausmania presenterer seg som et kunstnerdrevet kulturhus.",
+      "source_ids": [
+        "hausmania"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_autonomi_motstand"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_3",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den offisielle siden beskriver atelier- og studiotilbud.",
+      "source_ids": [
+        "hausmania"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_diy_praksis"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_4",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Arbeidsrommene er knyttet til konkret deltakelse i husfellesskapet.",
+      "source_ids": [
+        "hausmania"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_diy_praksis"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_5",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hausmania tilbyr Flerbrukshallen til konserter og arrangementer.",
+      "source_ids": [
+        "hausmania"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_6",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Podium oppgir Hausmanns gate 34 og beskriver seg som kunstnerdrevet arena.",
+      "source_ids": [
+        "podium"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_7",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Tilgang til arbeidsrom er en del av kulturinfrastrukturen.",
+      "source_ids": [
+        "hausmania"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_diy_praksis"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_8",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Open House Oslo beskriver en fase der bruken fikk mer formelle rammer.",
+      "source_ids": [
+        "openhouse"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_autonomi_motstand"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_9",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Stedet kan ikke reduseres til enten helt autonomt eller helt institusjonalisert.",
+      "source_ids": [
+        "openhouse"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_autonomi_motstand"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Podium oppgir en historie fra 2003.",
+      "source_ids": [
+        "podium"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Podium beskriver seg som en kunstnerdrevet arena.",
+      "source_ids": [
+        "podium"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sceneweb knytter Podiums galleri i Hausmania til 2006.",
+      "source_ids": [
+        "sceneweb"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Podium beskriver et generasjonsskifte fra 2021.",
+      "source_ids": [
+        "podium"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Podium beskriver et årlig program på omtrent seks til åtte utstillinger, i tillegg til offentlige hendelser.",
+      "source_ids": [
+        "podium"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Samlokalisering betyr ikke organisatorisk identitet.",
+      "source_ids": [
+        "podium"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Place-modellen skiller romfunksjon og organisasjon.",
+      "source_ids": [
+        "hausmania"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Dugnad er dokumentert som del av vilkårene for arbeidsrom.",
+      "source_ids": [
+        "hausmania"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_diy_praksis"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Observerbare spor må skilles fra sosiale slutninger.",
+      "source_ids": [
+        "hausmania"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Historiske bilder dokumenterer opptaksøyeblikket, ikke automatisk dagens tilstand.",
+      "source_ids": [
+        "openhouse"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_diy_praksis"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Sammenligningen er områdekontekst og skal ikke late som identisk viewpoint.",
+      "source_ids": [
+        "openhouse"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kildene dokumenterer organisering bedre enn individuelle identiteter.",
+      "source_ids": [
+        "hausmania"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_autonomi_motstand"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Autonomi analyseres relativt til formelle og materielle rammer.",
+      "source_ids": [
+        "openhouse"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_autonomi_motstand"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Atelierer, studioer og scener fungerer som produksjonsressurser.",
+      "source_ids": [
+        "hausmania"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Formalisering kan endre rammer uten å gjøre den selvorganiserte praksisen irrelevant.",
+      "source_ids": [
+        "openhouse"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_autonomi_motstand"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildene har ulike perspektiver og begrensninger.",
+      "source_ids": [
+        "openhouse"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_autonomi_motstand"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedsanalyse må markere hva observasjon og kilder faktisk kan bære.",
+      "source_ids": [
+        "hausmania"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_sted_scene"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Romlig maktanalyse undersøker tilgang og styring fremfor identitetsgjetting.",
+      "source_ids": [
+        "openhouse"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_rett_til_byen",
+      "method_id": "met_sub_romlig_maktanalyse"
+    },
+    {
+      "claim_id": "claim_hausmania_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Lefebvres perspektiv retter oppmerksomheten mot bruksverdi, deltakelse og kollektiv romproduksjon uten å være en juridisk eiendomsregel.",
+      "source_ids": [
+        "openhouse"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_rett_til_byen",
+      "method_id": "met_sub_romlig_maktanalyse",
+      "topic_hook_id": "rett_til_byen",
+      "thinker_id": "henri_lefebvre",
+      "work": "The Right to the City"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_hausmania_fristed_bykonflikt_1999",
+      "source_file": "data/stories/stories_hausmania.json",
+      "summary": "Hausmania vokste fram rundt 1999–2000 som selvorganisert kulturhus i Hausmanns gate 34 og utviklet mer varige rammer uten at kollektiv deltakelse forsvant."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "subkultur_hausmania_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_hausmania_quiz_1",
+        "claim_hausmania_quiz_2",
+        "claim_hausmania_quiz_3",
+        "claim_hausmania_quiz_4",
+        "claim_hausmania_quiz_5",
+        "claim_hausmania_quiz_6",
+        "claim_hausmania_quiz_7"
+      ]
+    },
+    {
+      "set_id": "subkultur_hausmania_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_hausmania_quiz_8",
+        "claim_hausmania_quiz_9",
+        "claim_hausmania_quiz_10",
+        "claim_hausmania_quiz_11",
+        "claim_hausmania_quiz_12",
+        "claim_hausmania_quiz_13",
+        "claim_hausmania_quiz_14"
+      ]
+    },
+    {
+      "set_id": "subkultur_hausmania_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_hausmania_quiz_15",
+        "claim_hausmania_quiz_16",
+        "claim_hausmania_quiz_17",
+        "claim_hausmania_quiz_18",
+        "claim_hausmania_quiz_19",
+        "claim_hausmania_quiz_20",
+        "claim_hausmania_quiz_21"
+      ]
+    },
+    {
+      "set_id": "subkultur_hausmania_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_hausmania_quiz_22",
+        "claim_hausmania_quiz_23",
+        "claim_hausmania_quiz_24",
+        "claim_hausmania_quiz_25",
+        "claim_hausmania_quiz_26",
+        "claim_hausmania_quiz_27",
+        "claim_hausmania_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 12,
+      "context": 9,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.429,
+      "context": 0.321,
+      "concept_theory": 0.25
+    }
+  }
+}

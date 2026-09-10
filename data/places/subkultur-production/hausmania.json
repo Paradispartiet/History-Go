@@ -34,6 +34,20 @@
       "caseIds": [
         "case_hausmania_environment"
       ]
+    },
+    {
+      "emneId": "em_sub_sted_scene",
+      "siteSpecificRationale": "Emnet er knyttet til dokumenterte praksiser, organisering og rombruk ved hausmania, ikke til arenaetiketten alene.",
+      "caseIds": [
+        "case_hausmania_environment"
+      ]
+    },
+    {
+      "emneId": "em_sub_rett_til_byen",
+      "siteSpecificRationale": "Emnet er knyttet til dokumenterte praksiser, organisering og rombruk ved hausmania, ikke til arenaetiketten alene.",
+      "caseIds": [
+        "case_hausmania_environment"
+      ]
     }
   ],
   "sources": [
@@ -43,7 +57,7 @@
       "sourceLocation": "Hausmania; atelier- og studioutlysninger, krav om tilstedeværelse, engasjement og dugnad",
       "sourceType": "community_primary",
       "perspective": "milieu",
-      "verifiedAt": "2026-08-04",
+      "verifiedAt": "2026-09-10",
       "temporalCoverage": "current",
       "provenance": "Miljøets eller driftsorganisasjonens egen publiserte beskrivelse og programinformasjon.",
       "limitations": "Egenpresentasjonen dokumenterer praksis og selvforståelse, men kan framheve positive sider og kommersielle mål."
@@ -54,7 +68,7 @@
       "sourceLocation": "Visit Norway, Hausmania Culture House; uavhengig omtale av rimelige arbeidsrom utenfor kommersielle interesser",
       "sourceType": "reputable_secondary",
       "perspective": "secondary",
-      "verifiedAt": "2026-08-04",
+      "verifiedAt": "2026-09-10",
       "temporalCoverage": "current",
       "provenance": "Uavhengig redaksjonell, katalog- eller reiselivsomtale kontrollert mot miljøkilden.",
       "limitations": "Visit Norway bekrefter uavhengig kulturhus- og arbeidsromsfunksjonen, men gir begrenset innsyn i intern styring og konflikter."
@@ -198,20 +212,32 @@
     "status": "active",
     "statement": "Hausmania lyser fortsatt ut arbeidsrom med krav om tilstedeværelse, engasjement og dugnad.",
     "historicalRelationship": "Nåværende eller siste dokumenterte drift viderefører deler av miljøfunksjonen, men organisering og adgang kan ha endret seg.",
-    "checkedAt": "2026-08-04",
+    "checkedAt": "2026-09-10",
     "sourceIds": [
       "source_hausmania_milieu"
     ]
   },
   "quizOpening": {
-    "status": "N/A",
-    "rationale": "Ingen stedquiz produseres eller revideres i denne rapporten."
+    "status": "PASS",
+    "quizTargetId": "hausmania",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/subkultur/hausmania.json",
+    "productionContext": "data/quiz/production_context/subkultur/hausmania.json",
+    "requiredInputs": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ]
   },
   "chronologyStories": {
-    "status": "N/A",
+    "status": "PASS",
     "chronologyReviewed": true,
     "storiesReviewed": true,
-    "rationale": "Materialet krever ingen ny chronology-post eller selvstendig Story i denne endringen."
+    "rationale": "Hausmania-kronologien og episode_v1-fortellingen er kontrollert mot stedets kilder og holder organisasjoner og miljøer analytisk atskilt."
   },
   "gates": {
     "A": {
@@ -256,17 +282,25 @@
       ]
     },
     "G": {
-      "status": "N/A",
-      "rationale": "Ingen stedquiz produseres eller revideres i denne rapporten."
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening",
+        "data/quiz/subkultur/hausmania_sets.json",
+        "data/quiz/production_context/subkultur/hausmania.json"
+      ]
     },
     "H": {
-      "status": "N/A",
-      "rationale": "Ingen chronology eller Story produseres eller revideres."
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories",
+        "data/places/subkultur/oslo/places_subkultur/hausmania.json",
+        "data/stories/stories_hausmania.json"
+      ]
     }
   },
   "review": {
     "reviewer": "Subkultur-fagverkredaksjon",
-    "reviewedAt": "2026-08-04",
-    "notes": "Definisjon, stemmebalanse, rommakt, representasjon, slutningsgrense og nåstatus er kontrollert."
+    "reviewedAt": "2026-09-10",
+    "notes": "Full Place-produksjon, fire canonicale emner, quiz, kronologi, Story, språk, Lesespor og kildegrenser er kontrollert samlet."
   }
 }
