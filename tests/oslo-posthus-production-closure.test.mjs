@@ -82,4 +82,5 @@ test("Oslo Posthus materialization leaves no temporary workflow behind", () => {
   assert.equal(fs.existsSync(path.join(root, ".github/workflows/_oslo-posthus-ci-closure-once.yml")), false);
   assert.equal(fs.existsSync(path.join(root, ".github/workflows/_oslo-posthus-scenario-people-regen-once.yml")), false);
   assert.equal(fs.existsSync(path.join(root, ".github/workflows/_oslo-posthus-epoke-baseline-once.yml")), false);
+  assert.equal(fs.existsSync(path.join(root, ".github/workflows/_oslo-posthus-postmerge-fagverk-release-once.yml")), false);
 });
