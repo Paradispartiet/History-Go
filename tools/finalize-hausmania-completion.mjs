@@ -452,10 +452,15 @@ const phases = ["opening", "middle", "bridge", "final"];
 const questions = specs.map(([family, question, options, answer, knowledge, sourceId, emneId], index) => {
   const i = index + 1;
   const phase = phases[Math.floor(index / 7)];
+  const desiredAnswerIndex = index % options.length;
+  const currentAnswerIndex = options.indexOf(answer);
+  if (currentAnswerIndex < 0) throw new Error(`Quiz answer missing from options for Hausmania question ${i}`);
+  const distributedOptions = [...options];
+  [distributedOptions[currentAnswerIndex], distributedOptions[desiredAnswerIndex]] = [distributedOptions[desiredAnswerIndex], distributedOptions[currentAnswerIndex]];
   const value = {
     id: `hausmania_quiz_${i}`, quiz_id: `subkultur_hausmania_set_${Math.floor(index / 7) + 1}_q${(index % 7) + 1}`,
     categoryId, placeId, personId: "", natureId: "", targetId: placeId, question_scope: "place",
-    question, options, answer, answerIndex: options.indexOf(answer), dimension: phase, topic: `hausmania_${i}`,
+    question, options: distributedOptions, answer, answerIndex: desiredAnswerIndex, dimension: phase, topic: `hausmania_${i}`,
     knowledge, trivia: [], difficulty: Math.min(4, Math.floor(index / 7) + 1), question_type: family,
     year: null, epoke_id: null, epoke_domain: "subkultur", emne_id: emneId, related_emner: [],
     core_concepts: [], concept_focus: [], learning_paths: [], tags: [placeId, "subkultur"], required_tags: [],
