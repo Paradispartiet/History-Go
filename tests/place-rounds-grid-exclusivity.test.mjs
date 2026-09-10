@@ -34,7 +34,7 @@ test("legacy nodes cannot leak beyond the fixed four PlaceCard collections", asy
   dom.window.close();
 });
 
-test("PlaceCard uses six full-width SVG shortcuts and opens Om from title or info text", () => {
+test("PlaceCard retires shortcut geometry while preserving direct section routing", () => {
   const dom = new JSDOM('<!doctype html><body><div id="placeCard" data-current-place-id="p"><div class="pc-title-row"><h2 id="pcTitle">Stedet</h2></div><p id="pcDesc">Infotekst</p><div class="pc-grid"><div class="pc-frontcard"></div><div class="pc-side-stack"><div class="pc-icons-quad"></div></div><div class="pc-events-quad"></div></div></div></body>', { url: "https://history-go.test/", runScripts: "outside-only" });
   const w = dom.window;
   const calls = [];
@@ -43,38 +43,24 @@ test("PlaceCard uses six full-width SVG shortcuts and opens Om from title or inf
   w.eval(shortcutsSource);
   w.document.dispatchEvent(new w.Event("DOMContentLoaded", { bubbles: true }));
 
-  const buttons = [...w.document.querySelectorAll("[data-place-popup-tab]")];
-  assert.equal(buttons.length, 6);
-  assert.ok(buttons.every(button => button.querySelector("svg")));
-  assert.equal(w.document.querySelector('[data-place-popup-tab="about"]'), null);
-  assert.deepEqual(buttons.map(button => button.dataset.placePopupTab), ["history", "stories", "before-after", "news", "reading", "sources"]);
-  assert.equal(w.document.querySelector(".pc-place-popup-shortcuts").parentElement.classList.contains("pc-grid"), true);
-  assert.match(shortcutsCss, /grid-template-columns:repeat\(6,minmax\(0,1fr\)\)/);
-  assert.match(shortcutsCss, /grid-column:1 \/ 3;[\s\S]*?grid-row:2;/);
-  assert.match(shortcutsCss, /#placeCard \.pc-events-quad\{[\s\S]*?grid-row:3/);
+  assert.equal(w.document.querySelectorAll("[data-place-popup-tab]").length, 0);
+  assert.equal(w.document.querySelector(".pc-place-popup-shortcuts"), null);
+  assert.doesNotMatch(shortcutsSource, /data-place-popup-tab/);
+  assert.doesNotMatch(shortcutsSource, /<svg/);
+  assert.doesNotMatch(shortcutsCss, /pc-place-popup-shortcut/);
+  assert.doesNotMatch(shortcutsCss, /repeat\(6,minmax\(0,1fr\)\)/);
+  assert.match(shortcutsCss, /#placeCard \.pc-events-quad\{[\s\S]*?grid-row:2/);
   assert.match(shortcutsCss, /#placeCard \.pc-icons-quad\{[\s\S]*?gap:5px/);
-  assert.doesNotMatch(shortcutsCss, /grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
-  assert.match(shortcutsCss, /width:21px/);
   assert.match(shortcutsCss, /#placeCard #pcMeta\{[\s\S]*?grid-template-columns:minmax\(0,\.9fr\) minmax\(0,1\.35fr\)/);
   assert.match(shortcutsCss, /pc-progress-status-line\{[\s\S]*?grid-column:1 \/ -1;[\s\S]*?grid-row:2/);
-  assert.match(shortcutsCss, /#placeCard \.pc-title-row\{[\s\S]*?order:0;[\s\S]*?margin:4px 0 8px/);
-  assert.match(shortcutsCss, /#placeCard #pcMeta > \*\{[\s\S]*?white-space:nowrap !important;[\s\S]*?text-overflow:ellipsis/);
-  assert.match(shortcutsCss, /#placeCard #pcMeta > button\{[\s\S]*?cursor:pointer/);
   assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?--hg-place-card-footer-gap:\s*12px;[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*auto;[\s\S]*?height:\s*auto/);
-  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?max-height:\s*calc\([\s\S]*?100vh[\s\S]*?var\(--hg-bottom-nav-height\)[\s\S]*?var\(--hg-place-card-footer-gap\)[\s\S]*?\);/);
-  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?max-height:\s*calc\([\s\S]*?100dvh[\s\S]*?var\(--hg-bottom-nav-height\)[\s\S]*?var\(--hg-place-card-footer-gap\)[\s\S]*?\);/);
-  assert.doesNotMatch(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?bottom:\s*var\(--hg-bottom-nav-height\)/);
-  assert.doesNotMatch(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?top:auto/);
   assert.match(placeCardCss, /#placeCard \.pc-body\{[\s\S]*?overflow-y:\s*auto/);
-  assert.match(placeCardCss, /#placeCard #pcDesc\{[\s\S]*?-webkit-line-clamp:\s*5/);
-  assert.match(placeCardCss, /body\.hg-app\.hg-phone #placeCard #pcDesc\{[\s\S]*?-webkit-line-clamp:\s*4/);
   assert.match(placeCardSource, /if \(!samePlace\)[\s\S]*?scrollBody\.scrollTop = 0/);
-  assert.match(placeCardSource, /className = "pc-category-meta"[\s\S]*?badgesIcon\?\.click\(\)/);
-  assert.match(placeCardSource, /HGPlaceCardEpoke\?\.render\?\.\(place\)[\s\S]*?HGPlaceCardStatusSurface\?\.render\?\.\(place\)/);
 
+  w.HGPlacePopupShortcuts.open("history");
   w.document.getElementById("pcTitle").click();
   w.document.getElementById("pcDesc").dispatchEvent(new w.KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
-  assert.deepEqual(calls, [["p", "about"], ["p", "about"]]);
+  assert.deepEqual(calls, [["p", "history"], ["p", "about"], ["p", "about"]]);
   assert.equal(w.document.getElementById("pcTitle").getAttribute("role"), "button");
   assert.equal(w.document.getElementById("pcDesc").getAttribute("tabindex"), "0");
   dom.window.close();

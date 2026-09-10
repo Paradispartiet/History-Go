@@ -46,10 +46,6 @@
     ensureStylesheet("css/place-popup-tabs.css");
     ensureScript("js/ui/place-popup-tabs.js");
     ensureScript("js/ui/place-popup-direct-tabs.js");
-    // During the migration away from modal staging, canonical place-popup HTML
-    // is written directly into PlaceCard's Unified host. Load this compatibility
-    // seam before the TypeScript adapter so no standard Place needs a body modal.
-    ensureScript("js/ui/place-popup-unified-host-bridge.js");
     // Unified Place Surface is a primary PlaceCard presentation layer, not a
     // low-priority post-ready extra. Its own installer waits fail-closed for
     // popup/direct-tab dependencies before patching the public entry points.

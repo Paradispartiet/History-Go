@@ -2039,6 +2039,7 @@
     let legacyShowPlacePopup = null;
     let readyGeneration = 0;
     let activeMount = Promise.resolve(null);
+    let compatibilityTimer = null;
     function isMicro3(place) {
       return text16(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
     }
@@ -2084,15 +2085,7 @@
         document.head.appendChild(link);
       }
     }
-    function removeStandardPopupCompatibility() {
-      var _a;
-      (_a = document.getElementById("pcUnifiedKnowledgeHost")) == null ? void 0 : _a.remove();
-      document.querySelectorAll(
-        '.hg-popup.place-popup-v2.hg-unified-renderer-embedded, .hg-popup.place-popup-v2[data-hg-unified-direct-host="1"]'
-      ).forEach((node) => node.remove());
-    }
     function clearUnifiedState() {
-      var _a;
       ++readyGeneration;
       restoreLegacyPlaceCardStructure();
       const root2 = card2();
@@ -2101,8 +2094,6 @@
         delete root2.dataset.hgUnifiedPlaceId;
         delete root2.dataset.hgUnifiedGeneration;
       }
-      removeStandardPopupCompatibility();
-      (_a = document.body) == null ? void 0 : _a.classList.remove("hg-unified-place-staging");
     }
     function dispatchDirectReady(place, generation) {
       global.setTimeout(() => {
@@ -2111,12 +2102,11 @@
         const root2 = card2();
         if (!(root2 instanceof HTMLElement) || text16(root2.dataset.hgUnifiedPlaceId) !== placeId2(place)) return;
         (_a = global.dispatchEvent) == null ? void 0 : _a.call(global, new CustomEvent("hg:place-unified-ready", {
-          detail: { placeId: placeId2(place), direct: true, phase: 6 }
+          detail: { placeId: placeId2(place), direct: true, phase: 7 }
         }));
       }, 0);
     }
     async function materialize(placeInput, _options = {}) {
-      var _a;
       const place = resolvedPlace2(placeInput) || placeInput;
       const id = placeId2(place);
       if (!id || isMicro3(place)) {
@@ -2125,26 +2115,19 @@
       }
       const root2 = card2();
       if (!(root2 instanceof HTMLElement)) return null;
-      removeStandardPopupCompatibility();
       const shell4 = mountPlaceSheetPhase1(place);
       if (!(shell4 instanceof HTMLElement)) return null;
       root2.classList.add(CARD_CLASS, "is-place-sheet-direct");
       root2.dataset.hgUnifiedPlaceId = id;
       const generation = ++readyGeneration;
       root2.dataset.hgUnifiedGeneration = String(generation);
-      (_a = document.body) == null ? void 0 : _a.classList.remove("hg-unified-place-staging");
       dispatchDirectReady(place, generation);
       return shell4;
     }
     function scrollToSection(target, options = {}) {
       var _a, _b;
       const id = canonicalSection2(target);
-      const root2 = card2();
-      if (!(root2 instanceof HTMLElement)) return false;
-      let section = placeSheetSectionTarget(id);
-      if (!(section instanceof HTMLElement)) {
-        section = [...root2.querySelectorAll("[data-place-panel], [data-hg-unified-section]")].find((node) => text16(node.getAttribute("data-place-panel") || node.getAttribute("data-hg-unified-section")) === id) || null;
-      }
+      const section = placeSheetSectionTarget(id);
       if (!(section instanceof HTMLElement)) return false;
       try {
         section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" });
@@ -2239,17 +2222,36 @@
       };
       return true;
     }
+    function compatibilityReady2() {
+      const popupReady = typeof global.showPlacePopup === "function" && global.showPlacePopup.__hgUnifiedPlaceSurface === true;
+      const tabsReady = !!global.HGPlacePopupTabs && typeof global.HGPlacePopupTabs.openTab === "function";
+      return popupReady && tabsReady;
+    }
+    function installCompatibilityRoutes() {
+      patchShowPlacePopup();
+      installPopupTabBridge();
+      return compatibilityReady2();
+    }
+    function armCompatibilityRetry() {
+      if (compatibilityReady2() || compatibilityTimer != null) return;
+      let attempts = 0;
+      compatibilityTimer = global.setInterval(() => {
+        attempts += 1;
+        if (installCompatibilityRoutes() || attempts > 400) {
+          if (compatibilityTimer != null) global.clearInterval(compatibilityTimer);
+          compatibilityTimer = null;
+        }
+      }, 50);
+    }
     function install2() {
       ensureStylesheet6();
       if (global[INSTALL_FLAG2]) {
-        installPopupTabBridge();
+        installCompatibilityRoutes();
+        armCompatibilityRetry();
         return true;
       }
-      if (typeof global.openPlaceCard !== "function" || typeof global.showPlacePopup !== "function") return false;
-      if (global.showPlacePopup.__hgPlacePopupV2 !== true) return false;
-      if (global.__HG_PLACE_POPUP_DIRECT_TABS_INSTALLED__ !== true) return false;
+      if (typeof global.openPlaceCard !== "function") return false;
       patchOpenPlaceCard();
-      patchShowPlacePopup();
       global[INSTALL_FLAG2] = true;
       global.HGPlaceUnifiedSurface = {
         ensure: (place2, options = {}) => materialize(place2, options),
@@ -2259,7 +2261,7 @@
         currentPlace,
         canonicalSection: canonicalSection2,
         sectionIds: SECTION_ORDER.map(([id]) => id),
-        phase: 6,
+        phase: 7,
         directStandardPlaces: true,
         get legacyOpenPlaceCard() {
           return legacyOpenPlaceCard;
@@ -2268,7 +2270,8 @@
           return legacyShowPlacePopup;
         }
       };
-      installPopupTabBridge();
+      installCompatibilityRoutes();
+      armCompatibilityRetry();
       const place = currentPlace();
       if (place && !isMicro3(place)) void materialize(place, { refresh: true });
       return true;
