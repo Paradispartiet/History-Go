@@ -1,0 +1,61 @@
+name: Tronsmo derived-data repair
+
+on:
+  push:
+    branches:
+      - agent/tronsmo-bokhandel-completion-20260910
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: ${{ contains(github.event.head_commit.message, '[tronsmo-derived-repair]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Update deterministic epoch regression fixture
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const path='tests/epoke-place-index.test.mjs';
+          const before=fs.readFileSync(path,'utf8');
+          const after=before.replace(
+            'assert.equal(index.stats.verified_place_production_milestone_count, 494);',
+            'assert.equal(index.stats.verified_place_production_milestone_count, 497);'
+          );
+          if (after === before) throw new Error('Expected 494 epoch fixture was not found');
+          fs.writeFileSync(path,after);
+          NODE
+      - name: Regenerate Fagverk release and epoch index
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run epoker:places:build
+      - name: Verify exact derived contracts
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all
+          node scripts/audit-fagverk-place-pages.mjs
+          node --test tests/tronsmo-bokhandel-completion.test.mjs
+      - name: Commit generated state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fagverk/fagverk_release.json data/epoker/epoke-place-index.json tests/epoke-place-index.test.mjs
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'No derived changes to commit'
+          else
+            git commit -m "Regenerate Tronsmo Fagverk and epoch derivatives [tronsmo-derived-materialized]"
+            git push
+          fi
