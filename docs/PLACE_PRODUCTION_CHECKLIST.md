@@ -606,6 +606,8 @@ Ingenting omtales som publisert før faktisk merge/live-status.
 
 Kjør relevante gates for alle eide flater som endres. Final PR-head skal være grønn før merge.
 
+Når en brukeroppgave allerede eksplisitt autoriserer fullføring, push og merge, er grønn exact-head CI og fravær av reelle blockere tilstrekkelig til å utføre merge. Det skal ikke innføres et nytt manuelt godkjenningsspørsmål mellom grønn CI og merge. Ny godkjenning er bare nødvendig dersom brukeren eksplisitt har bedt om hold/review, eller arbeidet avdekker en ny materiell risiko eller omfangsendring utenfor den autoriserte oppgaven.
+
 Ved chronology/epoke-endring er minimum:
 
 ```bash

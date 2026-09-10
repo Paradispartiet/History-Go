@@ -43,6 +43,11 @@ const urls = {
   podiumHome: "https://www.podium.enterprises/",
   sceneweb: "https://sceneweb.no/nb/organisation/9942/Podium_-%20Pr%C3%B8vescene%20for%20livekunst",
   byleksikon: "https://oslobyleksikon.no/side/Hausmanns_gate",
+  visit: "https://www.visitoslo.com/no/attraksjon/hausmania-kulturhus",
+  rooms: "https://www.hausmania.org/lokaler",
+  haerverk: "https://www.kafe-haerverk.com/om",
+  grusomheten: "https://www.grusomhetensteater.no/",
+  lefebvre: "https://www.versobooks.com/blogs/news/3474-the-right-to-the-city-free-ebook-download",
   commons2024: "https://commons.wikimedia.org/wiki/File:Hausmanns_gate_34,_Oslo_(2024).jpg",
   commons2017: "https://commons.wikimedia.org/wiki/File:Hausmania_fasade.jpg",
   commons2008: "https://commons.wikimedia.org/wiki/File:Oh_Lord_When_is_my_15_minutes%3F.jpg",
@@ -77,24 +82,47 @@ const media = {
   }
 };
 
+const assetUrls = {
+  "haus-current.jpg": "https://upload.wikimedia.org/wikipedia/commons/a/af/Hausmanns_gate_34,_Oslo_(2024).jpg",
+  "haus-2017.jpg": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hausmania_fasade.jpg",
+  "haus-2007.jpg": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Hausmanns_gate_at_Ankertorget_-_2007.04.03.jpg",
+  "haus-stencil.jpg": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Oh_Lord_When_is_my_15_minutes%3F.jpg",
+  "haus-hall1.jpg": "https://format.creatorcdn.com/5803af23-9cca-4279-8b2e-d03e22997b26/0/0/0/0%2C92%2C2048%2C1242%2C570%2C320/0-0-0/a60ea0ae-8e95-44f6-8f68-593e1463dc05/1/2/flerbruks03.jpg?fjkss=exp%3D2101749964~hmac%3Dc7c01938c6d63a74007ed980be226eb897eaeaff4255b25a1988f7c02c4af0f9",
+  "haus-hall2.jpg": "https://format.creatorcdn.com/5803af23-9cca-4279-8b2e-d03e22997b26/0/0/0/0%2C0%2C960%2C538%2C570%2C320/0-0-0/51a8ce74-7fc5-4430-998d-0d8336f9e436/1/2/flerbruks05.jpg?fjkss=exp%3D2101749964~hmac%3Db17be9fa1ef9c5d34bdee6c1f75da24c6172c11a4b3dfd529d8ba5a09fd5aaae",
+  "haus-concert.jpg": "https://format.creatorcdn.com/5803af23-9cca-4279-8b2e-d03e22997b26/0/0/0/0%2C0%2C2048%2C1077%2C760%2C400/0-0-0/89728e32-e5a2-4800-8326-f5b69f9c27c1/1/2/471331661_10160482644966835_3898163193184432656_n.jpg?fjkss=exp%3D2101749964~hmac%3Dc3c846a81bed9e45af26f5a6c4a01cf8faf852c9293816af041498144e6e1f4c",
+  "podium-logo": "https://www.podium.enterprises/img/podium-logo.png"
+};
+
 async function image(source, target, width, height, fit = "cover") {
+  const url = assetUrls[source];
+  if (!url) throw new Error(`Unknown Hausmania image source: ${source}`);
+  let response;
+  for (let attempt = 1; attempt <= 5; attempt += 1) {
+    response = await fetch(url, { headers: { "user-agent": "History-Go/1.0 (Hausmania production; contact: paradispartiet@gmail.com)", "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8" } });
+    if (response.ok) break;
+    if (![429, 500, 502, 503, 504].includes(response.status) || attempt === 5) throw new Error(`Image fetch failed ${response.status}: ${url}`);
+    await new Promise(resolve => setTimeout(resolve, attempt * 2000));
+  }
+  const buffer = Buffer.from(await response.arrayBuffer());
+  if (buffer.length < 500) throw new Error(`Image response unexpectedly small: ${url}`);
   const output = path.join(root, target);
   fs.mkdirSync(path.dirname(output), { recursive: true });
-  await sharp(path.join("/workspace/scratch", source)).rotate().resize(width, height, {
-    fit, position: "attention", background: "#ece9e3"
-  }).webp({ quality: 88 }).toFile(output);
+  await sharp(buffer).rotate().resize(width, height, { fit, position: "attention", background: "#ece9e3" }).webp({ quality: 88 }).toFile(output);
 }
 
-await Promise.all([
-  image("haus-current.jpg", "bilder/places/hausmania.webp", 1400, 900),
-  image("haus-current.jpg", "bilder/places/hausmania_front_portrait.webp", 900, 1280),
-  image("haus-2017.jpg", "bilder/historisk/hausmania/hausmania_2017.webp", 1200, 820),
-  image("haus-2007.jpg", "bilder/historisk/hausmania/hausmannsgate_2007.webp", 1200, 820),
-  image("haus-stencil.jpg", "bilder/kort/objects/hausmania_stencil_caz_2008.webp", 900, 620),
-  image("haus-2017.jpg", "bilder/kort/productions/hausmania_flerbrukshallen.webp", 900, 620),
-  image("podium-logo", "bilder/kort/brands/podium_oslo.webp", 900, 520, "contain"),
-  image("podium-logo", "bilder/kort/productions/hausmania_podium.webp", 900, 620, "contain")
-]);
+for (const job of [
+  () => image("haus-current.jpg", "bilder/places/hausmania.webp", 1400, 900),
+  () => image("haus-current.jpg", "bilder/places/hausmania_front_portrait.webp", 900, 1280),
+  () => image("haus-2017.jpg", "bilder/historisk/hausmania/hausmania_2017.webp", 1200, 820),
+  () => image("haus-2007.jpg", "bilder/historisk/hausmania/hausmannsgate_2007.webp", 1200, 820),
+  () => image("haus-hall1.jpg", "bilder/kort/objects/hausmania_db_c7_lydanlegg.webp", 900, 620),
+  () => image("haus-hall2.jpg", "bilder/kort/objects/hausmania_behringer_x32.webp", 900, 620),
+  () => image("haus-concert.jpg", "bilder/kort/productions/hausmania_flerbrukshallen.webp", 900, 620),
+  () => image("podium-logo", "bilder/kort/brands/podium_oslo.webp", 900, 520, "contain"),
+  () => image("podium-logo", "bilder/kort/productions/hausmania_podium.webp", 900, 620, "contain")
+]) {
+  await job();
+}
 
 const quizSvg = `<svg width="900" height="1280" xmlns="http://www.w3.org/2000/svg">
 <rect width="900" height="1280" fill="#171719"/>
@@ -113,13 +141,17 @@ delete place.rounds;
 delete place.cardImage;
 Object.assign(place, {
   year: 2000,
-  desc: "Hausmania i Hausmanns gate 34 er et kunstnerdrevet og selvorganisert kulturhus med atelierer, studioer, scener og uavhengige kulturaktører. Stedets form er knyttet til rimelige produksjonsrom, tilstedeværelse, engasjement og felles dugnad.",
+  desc: "Hausmania i Hausmanns gate 34 er et uavhengig, kunstnerdrevet kulturhus med atelierer, øvingsrom og arrangementsflater. Oslo Byleksikon daterer okkupasjonen og etableringen i nummer 34 til 1999, mens Hausmania selv bruker 2000 som opprettelsesår; begge dateringene beholdes kildebundet.",
   popupDesc: [
-    "Hausmania holder til i Hausmanns gate 34 og fungerer som kunstnerdrevet kulturhus, arbeidssted og arrangementsarena. Den offisielle siden beskriver atelierer og studioer til rimelige priser, samtidig som brukerne forventes å være til stede, engasjerte og delta i felles dugnad. Det gjør selvorganisering til en konkret driftspraksis, ikke bare en identitetsetikett.",
-    "Open House Oslo beskriver bygningen som et eldre industripreget anlegg med store haller og tidligere arbeiderboliger. Rundt år 2000 ble bruk av lokalene mer formalisert gjennom avtale med Statsbygg, opprydding, reparasjoner, elektrisitet og leieforhold. Historien viser dermed både autonom bruk og gradvis institusjonalisering.",
-    "Kulturproduksjonen skjer gjennom flere rom og aktører. Flerbrukshallen brukes til konserter og arrangementer, mens Podium er et kunstnerdrevet visningssted inne i Hausmania. Podium fører sin historie tilbake til 2003 og beskriver et årlig program med utstillinger og offentlige hendelser.",
-    "Stedet skal ikke behandles som om alle som besøker eller arbeider her utgjør ett homogent miljø. Kildene dokumenterer organisering, rombruk og offentlig program langt bedre enn uformelle relasjoner, interne konflikter eller enkeltpersoners identitet.",
-    "Hausmania er derfor et godt sted for å undersøke hvordan kulturrom blir produsert sosialt. Lefebvres idé om retten til byen kan brukes til å spørre hvem som får bruke og forme urbane rom, men teorien gir ikke brukerne juridisk eierskap eller opphever regulering, sikkerhetskrav og formelle rammer."
+    "Hausmania holder til i Hausmanns gate 34 og beskriver seg som et uavhengig, kunstnerdrevet kulturhus.",
+    "Oslo Byleksikon daterer okkupasjonen og etableringen i nummer 34 til 1999, mens Hausmanias egen historikk bruker 2000 som året kulturhuset ble opprettet.",
+    "Oslo kommune overtok eiendommen i 2004, og i 2008 ble Hausmanns gate 34, 40 og 42 regulert som et byøkologisk kulturkvartal.",
+    "Hausmanias nåværende egenpresentasjon oppgir at rundt 200 kunstnere er medlemmer eller på andre måter knyttet til huset, mens VisitOSLO beskriver omtrent tjue bandøvingsrom og rundt førti kunstneratelierer.",
+    "Ledige arbeidsrom fordeles gjennom Husro, som vurderer kunstnerisk kompetanse, engasjement og motivasjon, og Hausmania knytter medlemskap og leie til tilstedeværelse, engasjement og dugnad.",
+    "Flerbrukshallen brukes til konserter og arrangementer; den offisielle lokaloversikten oppgir et d&b Audiotechnik C7-anlegg med P1200A-forsterkere og en Behringer X32-mikser.",
+    "Podium er et selvstendig kunstnerdrevet visningssted i Hausmania med historie fra 2003 og et løpende program av utstillinger og offentlige hendelser.",
+    "Kafé Hærverk og Grusomhetens Teater har også egne identiteter og funksjoner på samme adresse og skal ikke absorberes i Hausmanias canonicale Place-identitet.",
+    "Kildene dokumenterer dermed både selvorganisert arbeid, kommunalt eierskap, romfordeling og samlokaliserte kulturaktører, men de gir ikke grunnlag for å tilskrive alle brukere én felles politisk eller subkulturell identitet."
   ].join("\n\n"),
   image: "bilder/places/hausmania.webp",
   frontImage: "bilder/places/hausmania_front_portrait.webp",
@@ -130,22 +162,24 @@ Object.assign(place, {
   emne_ids: ["em_sub_autonomi_motstand", "em_sub_diy_praksis", "em_sub_sted_scene", "em_sub_rett_til_byen"],
   related_people_ids: ["hausmania_miljoet"],
   related_place_ids: [...new Set([...(place.related_place_ids || []), "kafe_haerverk", "grusomhetens_teater", "hausmannsgate_aksen"])],
-  objects: [{
-    id: "hausmania_stencil_caz_2008",
-    name: "Stencilverket «Oh Lord When is my 15 minutes?»",
-    title: "Stencilverk på Hausmania (2008)",
-    type: "street_art_detail",
-    kind: "documented_physical_expression",
-    year: 2008,
-    desc: "Et fotografert stencilverk av Caz på Hausmania dokumenterer hvordan veggflatene kunne fungere som skiftende visuell ytringsflate. Kortet gjelder det dokumenterte 2008-sporet, ikke en påstand om at motivet fortsatt finnes.",
-    physicalObject: true,
-    placeSpecific: true,
-    collectable: true,
-    why_here: "Wikimedia Commons beskriver motivet som et stencilverk av Caz på Hausmania.",
-    image: "bilder/kort/objects/hausmania_stencil_caz_2008.webp",
-    imageMeta: { ...media.stencil2008, transformation: "Beskåret til 900x620 og konvertert til WebP.", outputDimensions: "900x620" },
-    source_urls: [urls.commons2008]
-  }],
+  objects: [
+    {
+      id: "hausmania_db_c7_lydanlegg", name: "d&b C7-lydanlegget", title: "d&b C7-lydanlegget", type: "lydanlegg", kind: "stage_audio_system",
+      desc: "Flerbrukshallens offisielle utstyrsliste oppgir d&b Audiotechnik C7 med P1200A-forsterkere, åtte subwoofere og fire topper.",
+      historicalFunction: "Fast lydinfrastruktur for konserter og arrangementer i Flerbrukshallen.", placeSpecificReason: "Modell og oppsett er eksplisitt listet for Hausmanias Flerbrukshall.",
+      physicalObject: true, placeSpecific: true, collectable: true, image: "bilder/kort/objects/hausmania_db_c7_lydanlegg.webp",
+      imageMeta: { source: "official_hausmania_site", sourcePage: urls.rooms, creator: null, credit: "Hausmania / offisiell nettside", license: "Official site editorial reference", rightsBasis: "official_site_editorial_reference", assetType: "documentary_equipment_photo", transformation: "Stedstro utsnitt fra Hausmanias eget Flerbrukshall-foto og WebP-normalisering.", verifiedAt },
+      source_urls: [urls.rooms]
+    },
+    {
+      id: "hausmania_behringer_x32", name: "Behringer X32-mikseren", title: "Behringer X32-mikseren", type: "lydmikser", kind: "digital_mixing_console",
+      desc: "Hausmania oppgir en Behringer X32 med multikabel som tilgjengelig mikser i Flerbrukshallen.",
+      historicalFunction: "Mikser for lydproduksjon ved konserter og arrangementer.", placeSpecificReason: "Modellen er eksplisitt listet i Hausmanias utstyrsoversikt for hallen.",
+      physicalObject: true, placeSpecific: true, collectable: true, image: "bilder/kort/objects/hausmania_behringer_x32.webp",
+      imageMeta: { source: "official_hausmania_site", sourcePage: urls.rooms, creator: null, credit: "Hausmania / offisiell nettside", license: "Official site editorial reference", rightsBasis: "official_site_editorial_reference", assetType: "documentary_equipment_photo", transformation: "Stedstro utsnitt fra Hausmanias eget Flerbrukshall-foto og WebP-normalisering.", verifiedAt },
+      source_urls: [urls.rooms]
+    }
+  ],
   productions: [
     {
       id: "hausmania_podium_program",
@@ -167,8 +201,8 @@ Object.assign(place, {
       kind: "cultural_production",
       desc: "Hausmania tilbyr Flerbrukshallen som scene for konserter og andre arrangementer. Produksjonskortet gjelder den dokumenterte programfunksjonen, ikke ett bestemt arrangement.",
       image: "bilder/kort/productions/hausmania_flerbrukshallen.webp",
-      imageMeta: { ...media.facade2017, note: "Fasadefotoet dokumenterer Hausmania som arena; det viser ikke et bestemt arrangement.", transformation: "Beskåret til 900x620 og konvertert til WebP.", outputDimensions: "900x620" },
-      source_urls: [urls.official]
+      imageMeta: { source: "official_hausmania_site", sourcePage: urls.official, creator: "Åse Karlsen", credit: "Åse Karlsen / Hausmania", license: "Official site editorial reference", rightsBasis: "official_site_editorial_reference", assetType: "documentary_event_photo", transformation: "Stedstro utsnitt og WebP-normalisering.", verifiedAt },
+      source_urls: [urls.official, urls.rooms]
     }
   ],
   place_card_profile: {
@@ -193,11 +227,13 @@ Object.assign(place, {
     sources: [urls.commons2007, urls.commons2017]
   },
   chronology: [
-    { id: "chrono_hausmania_2000", year: 2000, title: "Bruken formaliseres", desc: "Open House Oslo beskriver avtale med Statsbygg, opprydding, reparasjoner, strøm og mer formaliserte leieforhold.", confidence: "high", sources: [{ title: "Open House Oslo – Hausmania", url: urls.openHouse, verifiedAt }] },
-    { id: "chrono_hausmania_2003", year: 2003, title: "Podium etableres", desc: "Podium fører sin historie tilbake til 2003 som kunstnerdrevet arena.", confidence: "high", sources: [{ title: "Podium – About", url: urls.podium, verifiedAt }, { title: "Sceneweb – Podium", url: urls.sceneweb, verifiedAt }] },
+    { id: "chrono_hausmania_1999", year: 1999, title: "Okkupasjon og etablering", desc: "Oslo Byleksikon daterer okkupasjonen og etableringen i Hausmanns gate 34 til 1999.", confidence: "high", sources: [{ title: "Oslo Byleksikon – Hausmanns gate", url: urls.byleksikon, verifiedAt }] },
+    { id: "chrono_hausmania_2000", year: 2000, title: "Kulturhuset i egen historikk", desc: "Hausmanias egen historikk bruker 2000 som opprettelsesår for kulturhuset.", confidence: "high", sources: [{ title: "Hausmania", url: urls.official, verifiedAt }] },
+    { id: "chrono_hausmania_2003", year: 2003, title: "Podium etableres", desc: "Podium fører sin historie tilbake til 2003 som kunstnerdrevet arena.", confidence: "high", sources: [{ title: "Podium – About", url: urls.podium, verifiedAt }] },
+    { id: "chrono_hausmania_2004", year: 2004, title: "Kommunen overtar eiendommen", desc: "Oslo kommune overtar eiendommen i Hausmanns gate 34.", confidence: "high", sources: [{ title: "Oslo Byleksikon – Hausmanns gate", url: urls.byleksikon, verifiedAt }] },
     { id: "chrono_hausmania_2006", year: 2006, title: "Podium får galleri i Hausmania", desc: "Sceneweb knytter Podiums galleridrift i Hausmania til 2006.", confidence: "high", sources: [{ title: "Sceneweb – Podium", url: urls.sceneweb, verifiedAt }] },
-    { id: "chrono_hausmania_2021", year: 2021, title: "Ny generasjon i Podium", desc: "Podium beskriver et generasjonsskifte i driften fra 2021.", confidence: "high", sources: [{ title: "Podium – About", url: urls.podium, verifiedAt }] },
-    { id: "chrono_hausmania_2026", year: 2026, title: "Aktivt kunstnerdrevet kulturhus", desc: "Hausmania publiserer fortsatt atelier-/studiotilbud, dugnadskrav og arrangementsinformasjon.", confidence: "high", sources: [{ title: "Hausmania", url: urls.official, verifiedAt }] }
+    { id: "chrono_hausmania_2008", year: 2008, title: "Byøkologisk kulturkvartal", desc: "Hausmanns gate 34, 40 og 42 reguleres som byøkologisk kulturkvartal.", confidence: "high", sources: [{ title: "Oslo Byleksikon – Hausmanns gate", url: urls.byleksikon, verifiedAt }] },
+    { id: "chrono_hausmania_2026", year: 2026, title: "Aktivt kunstnerdrevet kulturhus", desc: "Hausmania publiserer fortsatt arbeidsrom, Flerbrukshall og informasjon om kollektiv deltakelse.", confidence: "high", sources: [{ title: "Hausmania", url: urls.official, verifiedAt }] }
   ],
   fagverk: {
     schema: "history_go_place_fagverk_v2",
@@ -215,7 +251,7 @@ Object.assign(place, {
     emne_ids: ["em_sub_autonomi_motstand", "em_sub_diy_praksis", "em_sub_sted_scene", "em_sub_rett_til_byen"],
     chapter_ids: ["steder_territorier_okkupering", "fellesskap_scener_egenorganisering"],
     lenses: [
-      { id: "hausmania-autonomi", title: "Autonomi og forhandling", prompt: "Hvordan kombinerer Hausmania egenorganisering med formelle rammer?", subject_id: "subkultur", emne_id: "em_sub_autonomi_motstand", evidence: "Sammenhold husets egne krav til deltakelse med Open House Oslos beskrivelse av avtaler, leie og fysisk oppgradering." },
+      { id: "hausmania-autonomi", title: "Autonomi og forhandling", prompt: "Hvordan kombinerer Hausmania egenorganisering i kulturhuset med formelle rammer?", subject_id: "subkultur", emne_id: "em_sub_autonomi_motstand", evidence: "Sammenhold husets egne krav til deltakelse med Open House Oslos beskrivelse av avtaler, leie og fysisk oppgradering." },
       { id: "hausmania-diy", title: "DIY som drift", prompt: "Hva skiller dokumentert dugnad og egeninnsats fra en vag fortelling om alternativ kultur?", subject_id: "subkultur", emne_id: "em_sub_diy_praksis", evidence: "Bruk eksplisitte krav til tilstedeværelse, engasjement og felles dugnad som observerbar organisasjonspraksis." },
       { id: "hausmania-scene", title: "Sted og scene", prompt: "Hvordan blir en bygning til infrastruktur for kunst- og arrangementsproduksjon?", subject_id: "subkultur", emne_id: "em_sub_sted_scene", evidence: "Skill Hausmania som Place fra Podium som organisasjon og fra Flerbrukshallen som programrom." },
       { id: "hausmania-rett-til-byen", title: "Rett til byen", prompt: "Hvem får bruke og forme byrommet, og hvilke rammer begrenser handlekraften?", subject_id: "subkultur", emne_id: "em_sub_rett_til_byen", evidence: "Bruk Lefebvre til å undersøke bruksverdi og kollektiv romproduksjon uten å forveksle dette med juridisk eierskap." },
@@ -231,10 +267,10 @@ Object.assign(place, {
     concepts: ["selvorganisering", "dugnad", "DIY", "autonomi", "institusjonalisering", "kulturinfrastruktur", "scene", "romlig praksis", "bruksverdi", "rett til byen", "evidensgrense", "motkultur"],
     observable_traces: [
       { title: "Kulturhusets fysiske ramme", observation: "Fasade, innganger og skilt gjør huset identifiserbart som konkret adresse og kulturarena.", interpretation_boundary: "Det synlige utsiden dokumenterer ikke intern organisering eller brukernes identitet.", source_urls: [urls.commons2024, urls.official] },
-      { title: "Skiftende visuell flate", observation: "Det dokumenterte stencilverket fra 2008 viser at vegger kunne fungere som ytringsflate.", interpretation_boundary: "Ett historisk foto dokumenterer ikke dagens veggtilstand eller hele miljøets estetikk.", source_urls: [urls.commons2008] },
+      { title: "Sceneutstyr som fysisk spor", observation: "Flerbrukshallens lydrigg gjør arrangementsproduksjon materiell og observerbar når rommet er offentlig tilgjengelig.", interpretation_boundary: "Synlig utstyr viser teknisk infrastruktur; modell og kapasitet må kontrolleres mot Hausmanias offisielle utstyrsliste.", source_urls: [urls.rooms] },
       { title: "Flere aktører i samme hus", observation: "Hausmania, Podium og andre kulturaktører deler adresse og infrastruktur.", interpretation_boundary: "Samlokalisering gjør ikke organisasjonene identiske eller underordnet én felles stemme.", source_urls: [urls.official, urls.podium] }
     ],
-    source_urls: [urls.official, urls.openHouse, urls.podium, urls.sceneweb],
+    source_urls: [urls.official, urls.openHouse, urls.podium, urls.sceneweb, urls.commons2024, urls.rooms],
     verified_at: verifiedAt
   },
   production_profile: "standard",
@@ -244,6 +280,7 @@ Object.assign(place, {
 });
 place.sources = [
   { type: "source", label: "Hausmania – offisiell side", url: urls.official, verifiedAt },
+  { type: "source", label: "Hausmania – Flerbrukshallen og lokaler", url: urls.rooms, verifiedAt },
   { type: "source", label: "Open House Oslo – Hausmania", url: urls.openHouse, verifiedAt },
   { type: "source", label: "Podium – About", url: urls.podium, verifiedAt },
   { type: "source", label: "Sceneweb – Podium", url: urls.sceneweb, verifiedAt },
@@ -251,11 +288,28 @@ place.sources = [
   { type: "image", label: "Wikimedia Commons – Hausmania fasade (2017)", url: urls.commons2017, verifiedAt },
   { type: "image", label: "Wikimedia Commons – stencil på Hausmania (2008)", url: urls.commons2008, verifiedAt }
 ];
+place.externalLinks = [
+  { label: "Hausmania – offisiell side", url: urls.official },
+  { label: "Hausmania – Flerbrukshallen og lokaler", url: urls.rooms },
+  { label: "Open House Oslo – Hausmania", url: urls.openHouse },
+  { label: "Podium – About", url: urls.podium },
+  { label: "Sceneweb – Podium", url: urls.sceneweb },
+  { label: "Wikimedia Commons – Hausmanns gate 34 (2024)", url: urls.commons2024 }
+];
 write(placeFile, place);
+const fagverkRegistry = read("data/fagverk/fagverk_registry.json");
+fagverkRegistry.placeLinks ||= {};
+fagverkRegistry.placeLinks[placeId] = {
+  sourceFile: placeFile.replace(/^data\//, ""),
+  field: "fagverk",
+  schema: place.fagverk.schema,
+  level: place.fagverk.level,
+  status: place.fagverk.status
+};
+write("data/fagverk/fagverk_registry.json", fagverkRegistry);
 
 const brandId = "podium_oslo";
-const podiumAssetUrl = fs.readFileSync("/workspace/scratch/podium-url.txt", "utf8").trim();
-if (!/^https?:\/\//.test(podiumAssetUrl)) throw new Error("Podium official logo asset URL was not resolved.");
+const podiumAssetUrl = "https://www.podium.enterprises/img/podium-logo.png";
 const brand = {
   id: brandId, name: "Podium", aliases: ["Podium Oslo"], brand_group: "cultural_institution_brand",
   brand_type: "artist_run_exhibition_space", brand_kind: "venue_identity", sector: "culture",
@@ -290,7 +344,7 @@ const language = {
     ["autonomi", "autonomi", "analysebegrep", "Evne til å organisere praksis med en grad av selvbestemmelse.", "Ved Hausmania må autonomi analyseres sammen med leie, eierskap og bygningsrammer."],
     ["kulturinfrastruktur", "kulturinfrastruktur", "fagbegrep", "Fysiske og organisatoriske ressurser som gjør kulturproduksjon mulig.", "Scener, arbeidsrom, studioer og felles drift gjør kulturhuset til mer enn en arrangementsadresse."],
     ["rett_til_byen", "rett til byen", "teoribegrep", "Lefebvre-begrep om innbyggeres mulighet til å bruke, delta i og forme urbane rom.", "Begrepet brukes analytisk om bruksverdi og kollektiv romproduksjon, ikke som påstand om juridisk eiendomsrett."]
-  ].map(([id, term, type, meaning, context]) => ({ id, term, type, meaning, context, linked_to: { kind: "place", id: placeId }, tags: ["Hausmania", "subkultur"], sources: [{ label: id === "rett_til_byen" ? "Subkultur-fagverk" : "Hausmania", url: id === "rett_til_byen" ? "data/fag/subkultur/theory_attribution_subkultur_canonical_v1.json" : urls.official }] }))
+  ].map(([id, term, type, meaning, context]) => ({ id, term, type, meaning, context, linked_to: { kind: "place", id: placeId }, tags: ["Hausmania", "subkultur"], sources: [{ label: id === "rett_til_byen" ? "Subkultur-fagverk" : "Hausmania", url: id === "rett_til_byen" ? urls.lefebvre : urls.official }] }))
 };
 write(languageFile, language);
 const languageManifest = read("data/leksikon/sprak/manifest.json"); languageManifest.place_files[placeId] = languageFile; write("data/leksikon/sprak/manifest.json", languageManifest);
@@ -332,13 +386,22 @@ const storiesFile = "data/stories/stories_hausmania.json";
 const stories = read(storiesFile);
 const story = stories.find(item => item.id === "st_hausmania_fristed_bykonflikt_1999");
 if (!story) throw new Error("Existing Hausmania Story missing.");
+story.year = 1999;
+story.summary = "Hausmania vokste fram rundt 1999–2000 som selvorganisert kulturhus i Hausmanns gate 34 og utviklet mer varige rammer uten at kollektiv deltakelse forsvant.";
+story.story = [
+  "Oslo Byleksikon daterer okkupasjonen og etableringen i Hausmanns gate 34 til 1999, mens Hausmania selv bruker 2000 som opprettelsesår. Forskjellen beholdes fordi kildene beskriver etableringsfasen på litt ulike måter.",
+  "Senere ble rammene mer formelle. Oslo kommune overtok eiendommen i 2004, og kvartalet ble regulert byøkologisk i 2008. Samtidig fortsatte kulturhuset å knytte arbeidsrom til tilstedeværelse, engasjement og dugnad.",
+  "I dag rommer huset både egen kulturhusdrift og selvstendige aktører som Podium, Kafé Hærverk og Grusomhetens Teater. Fortellingen handler derfor om hvordan selvorganisering, fysisk infrastruktur og formelle eiendomsrammer kan eksistere samtidig."
+].join("\n\n");
+story.sources = [
+  { title: "Hausmania", url: urls.official },
+  { title: "Oslo Byleksikon: Hausmanns gate", url: urls.byleksikon },
+  { title: "Podium: About", url: urls.podium }
+];
+story.score = { narrative: 5, historical: 5, source: 5, play_value: 4, originality: 4, total: 23 };
+story.arc = { start: "Selvorganisert bruk etableres rundt 1999–2000.", middle: "Kommunalt eierskap og regulering gir mer varige rammer.", end: "Kulturhuset kombinerer fortsatt kollektiv deltakelse med flere selvstendige kulturaktører." };
 story.quality_profile = "episode_v1";
-story.episode = {
-  actors: ["Hausmania-miljøet", "Statsbygg", "kulturaktører i Hausmanns gate 34"],
-  date: "1999–2000",
-  action: "Selvorganisert bruk av lokalene ble fulgt av avtale, opprydding, reparasjoner og mer formaliserte bruksrammer.",
-  consequence: "Hausmania utviklet seg videre som varig kulturinfrastruktur der autonom praksis og formelle rammer eksisterer samtidig."
-};
+story.episode = { actors: ["Hausmania-miljøet", "Oslo kommune", "kulturaktører i Hausmanns gate 34"], date: "1999–2008", action: "Selvorganisert bruk ble fulgt av kommunalt eierskap og byøkologisk regulering.", consequence: "Hausmania fortsatte som kulturinfrastruktur med både kollektive praksiser og formelle rammer." };
 write(storiesFile, stories);
 const episodeManifest = read("data/stories/stories_episode_v1_manifest.json"); addOnce(episodeManifest.files, storiesFile); write("data/stories/stories_episode_v1_manifest.json", episodeManifest);
 
@@ -440,23 +503,48 @@ fagManifest.subkultur.quizProduction ||= { status: "pilot", required_inputs: ["p
 fagManifest.subkultur.quizProduction.targets[placeId] = { source_brief: `../quiz/production_briefs/subkultur/${placeId}.json`, context_artifact: `../quiz/production_context/subkultur/${placeId}.json`, quiz_file: `../quiz/subkultur/${placeId}_sets.json` };
 write("data/fag/fag_manifest.json", fagManifest);
 
+const descriptionClaims = [
+  { id: "claim_hausmania_identity", claim: "Hausmania holder til i Hausmanns gate 34 og beskriver seg som et uavhengig, kunstnerdrevet kulturhus.", sourceUrl: urls.official, sourceLocation: "forside og kontakt/om-seksjon", sourceType: "primary", temporalStatus: "current" },
+  { id: "claim_hausmania_dates", claim: "Oslo Byleksikon daterer okkupasjon og etablering til 1999, mens Hausmania bruker 2000 som opprettelsesår.", sourceUrl: urls.byleksikon, sourceLocation: "Hausmanns gate 34; sammenholdt med Hausmanias historikk", sourceType: "reputable_secondary", temporalStatus: "historical", independentSourceUrls: [urls.official] },
+  { id: "claim_hausmania_municipality", claim: "Oslo kommune overtok eiendommen i 2004, og kvartalet ble regulert byøkologisk i 2008.", sourceUrl: urls.byleksikon, sourceLocation: "Hausmanns gate 34 og kulturkvartalet", sourceType: "reputable_secondary", temporalStatus: "historical" },
+  { id: "claim_hausmania_scale", claim: "Hausmania oppgir rundt 200 tilknyttede kunstnere, mens VisitOSLO beskriver omtrent 20 øvingsrom og 40 atelierer.", sourceUrl: urls.official, sourceLocation: "forside; kontrollert mot VisitOSLO", sourceType: "primary", temporalStatus: "current", independentSourceUrls: [urls.visit] },
+  { id: "claim_hausmania_husro", claim: "Husro fordeler arbeidsrom etter kunstnerisk kompetanse, engasjement og motivasjon, og medlemskap/leie er knyttet til deltakelse og dugnad.", sourceUrl: urls.official, sourceLocation: "Husro og arbeidsrom", sourceType: "primary", temporalStatus: "current" },
+  { id: "claim_hausmania_hall", claim: "Flerbrukshallen brukes til konserter og arrangementer og har dokumentert d&b C7/P1200A-lydanlegg og Behringer X32-mikser.", sourceUrl: urls.rooms, sourceLocation: "Flerbrukshallen og utstyrsliste", sourceType: "primary", temporalStatus: "current" },
+  { id: "claim_hausmania_podium", claim: "Podium er et selvstendig kunstnerdrevet visningssted i Hausmania med historie fra 2003.", sourceUrl: urls.podium, sourceLocation: "About; adresse og historikk", sourceType: "primary", temporalStatus: "current", independentSourceUrls: [urls.sceneweb] },
+  { id: "claim_hausmania_colocated", claim: "Kafé Hærverk og Grusomhetens Teater har egne institusjonelle identiteter på Hausmanns gate 34.", sourceUrl: urls.haerverk, sourceLocation: "om-side og adresse; kontrollert mot Grusomhetens Teater", sourceType: "primary", temporalStatus: "current", independentSourceUrls: [urls.grusomheten] },
+  { id: "claim_hausmania_identity_boundary", claim: "Kildene dokumenterer organisering og institusjoner, men gir ikke grunnlag for å tilskrive alle brukere én felles politisk eller subkulturell identitet.", sourceUrl: urls.official, sourceLocation: "kildeomfang og redaksjonell evidensgrense", sourceType: "primary", temporalStatus: "current" }
+].map(row => ({ ...row, verifiedAt, status: "verified", claimKind: row.id === "claim_hausmania_identity" ? "identity" : "ordinary", evidenceMode: row.independentSourceUrls ? "corroborated" : "direct" }));
+const descriptionSentences = value => [...new Intl.Segmenter("nb", { granularity: "sentence" }).segment(value)].map(row => row.segment.trim()).filter(Boolean);
+const descRows = descriptionSentences(place.desc);
+const popupRows = descriptionSentences(place.popupDesc);
+if (descRows.length !== 2 || popupRows.length !== 9) throw new Error(`Unexpected Hausmania description sentence count: ${descRows.length}/${popupRows.length}`);
 const productionPacket = {
-  schemaVersion: "4.2", validatorVersion: "4.2.1", status: "ready_v4_2", placeId, placeFile,
-  identity: { status: "resolved", represents: "Hausmania som selvorganisert og kunstnerdrevet kulturhus i Hausmanns gate 34.", period: "2000–nåtid", excludes: ["Podium som selvstendig organisasjon", "Kafé Hærverk", "Grusomhetens Teater", "Hausmannsgate-aksen"] },
-  metadataSnapshot: { name: place.name, year: 2000, category: categoryId, coordinates: { lat: place.lat, lon: place.lon } },
+  schemaVersion: "4.2", validatorVersion: "4.2.1", placeId, placeFile, status: "ready_v4_2",
+  identity: { status: "resolved", represents: "Kulturhuset Hausmania i Hausmanns gate 34 fra etableringsfasen rundt 1999–2000 til nåtid.", period: "1999/2000–nåtid", excludes: ["Podium som selvstendig organisasjon", "Kafé Hærverk", "Grusomhetens Teater", "Hausmannsgate-aksen"] },
+  metadataSnapshot: { name: place.name, year: place.year, category: categoryId, address: place.address, coordinates: { lat: place.lat, lon: place.lon }, externalLinks: place.sources, operationStatus: "active", placeType: "artist_run_culture_house" },
   textHashes: { algorithm: "sha256", desc: sha256(place.desc), popupDesc: sha256(place.popupDesc) },
-  claims: [
-    ["identity", "Hausmania holder til i Hausmanns gate 34.", urls.official, "official"],
-    ["organization", "Hausmania beskriver seg som kunstnerdrevet kulturhus.", urls.official, "community_primary"],
-    ["participation", "Arbeidsrom er knyttet til tilstedeværelse, engasjement og dugnad.", urls.official, "community_primary"],
-    ["formalization", "Open House Oslo beskriver formalisering rundt 2000 gjennom avtale, reparasjoner, strøm og leie.", urls.openHouse, "institutional_secondary"],
-    ["podium", "Podium er kunstnerdrevet arena i Hausmania med historie fra 2003.", urls.podium, "community_primary"]
-  ].map(([id, claim, sourceUrl, sourceType]) => ({ id: `claim_hausmania_${id}`, claim, sourceUrl, sourceLocation: id, sourceType, verifiedAt, status: "verified", claimKind: id === "identity" ? "identity" : "ordinary", evidenceMode: "direct", temporalStatus: id === "participation" || id === "organization" ? "current" : "historical" })),
-  sourceReview: { status: "complete", sourceCount: 4, perspectives: ["community_primary","institutional_secondary","institutional_reference"], reviewedAt: verifiedAt },
-  collections: { status: "complete", ids: ["people","objects","brands","productions"], people: ["hausmania_miljoet"], objects: ["hausmania_stencil_caz_2008"], brands: [brandId], productions: ["hausmania_podium_program","hausmania_flerbrukshallen_program"] },
-  learning: { fagverk: "curated_full", language_entries: 6, reading_tracks: 4, chronology_milestones: 5, story_profile: "episode_v1", quiz_profile: "normal_4x7", quiz_questions: 28 },
-  media: { image: place.image, frontImage: place.frontImage, quizCard: "bilder/QuizCards/Hausmania.webp", comparison: ["bilder/historisk/hausmania/hausmannsgate_2007.webp","bilder/historisk/hausmania/hausmania_2017.webp"], provenanceStatus: "verified" },
-  completion: { status: "complete", qualityGate: "30/30", blockers: 0, verifiedAt }
+  claims: descriptionClaims,
+  sentenceCoverage: {
+    desc: [{ sentence: 1, claimIds: ["claim_hausmania_identity"] }, { sentence: 2, claimIds: ["claim_hausmania_dates"] }],
+    popupDesc: [
+      { sentence: 1, claimIds: ["claim_hausmania_identity"] }, { sentence: 2, claimIds: ["claim_hausmania_dates"] }, { sentence: 3, claimIds: ["claim_hausmania_municipality"] },
+      { sentence: 4, claimIds: ["claim_hausmania_scale"] }, { sentence: 5, claimIds: ["claim_hausmania_husro"] }, { sentence: 6, claimIds: ["claim_hausmania_hall"] },
+      { sentence: 7, claimIds: ["claim_hausmania_podium"] }, { sentence: 8, claimIds: ["claim_hausmania_colocated"] }, { sentence: 9, claimIds: ["claim_hausmania_identity_boundary"] }
+    ]
+  },
+  reviews: { factual: { status: "passed", reviewedAt: verifiedAt, reviewer: "source-by-source Hausmania review" }, editorial: { status: "passed", reviewedAt: verifiedAt, reviewer: "place-specific Hausmania editorial review", introducedNewFacts: false } },
+  quizReadiness: { questions: [
+    ["Hvor holder Hausmania til?", "Hausmanns gate 34", "hvor", "claim_hausmania_identity"],
+    ["Når daterer Oslo Byleksikon etableringen?", "1999", "når", "claim_hausmania_dates"],
+    ["Hvilket opprettelsesår bruker Hausmania selv?", "2000", "når", "claim_hausmania_dates"],
+    ["Når overtok Oslo kommune eiendommen?", "2004", "når", "claim_hausmania_municipality"],
+    ["Når ble kvartalet regulert byøkologisk?", "2008", "når", "claim_hausmania_municipality"],
+    ["Hva gjør Husro?", "Fordeler ledige arbeidsrom", "hva", "claim_hausmania_husro"],
+    ["Hvilken mikser oppgis i Flerbrukshallen?", "Behringer X32", "hvilket_verk_eller_objekt", "claim_hausmania_hall"],
+    ["Hvilken kunstnerdrevet aktør i huset har historie fra 2003?", "Podium", "hva", "claim_hausmania_podium"]
+  ].map(([question, answer, type, claimId]) => ({ question, answer, type, normalKnowledgeQuestion: true, claimIds: [claimId] })) },
+  qualityAssessment: { total: 30, critical_findings: 0, unresolved_blockers: 0, basis: "reports/place-production/hausmania-phase1-24-gate-audit-v1.json" },
+  completion: { completedUnder: "4.2", currentStatus: "current", sourceVerifiedAt: verifiedAt, claimsVerified: { verified: descriptionClaims.length, total: descriptionClaims.length }, factualReview: "passed", editorialReview: "passed", validatorVersion: "4.2.1" }
 };
 write("data/places/production/hausmania.json", productionPacket);
 
@@ -473,15 +561,15 @@ write(subcultureProductionFile, subcultureProduction);
 write("reports/place-production/hausmania-phase1-24-gate-audit-v1.json", {
   schema: "history_go_phase1_24_quality_gate_v1", place_id: placeId, verified_at: verifiedAt,
   null_measurement: { existing_place: true, coordinate_changed: false, existing_quiz: "none_manifest_loaded", existing_story: "one_legacy_story", existing_collections: "legacy_partial" },
-  collections: { required: ["people","objects","brands","productions"], loaded_preview_images: 5, missing: 0, coverage_percent: 100 },
+  collections: { required: ["people","objects","brands","productions"], loaded_preview_images: 6, missing: 0, coverage_percent: 100 },
   people: { selected: ["hausmania_miljoet"], image_coverage_percent: 100 },
-  objects: { selected: ["hausmania_stencil_caz_2008"], temporal_caveat: "2008 documented expression; no claim of current persistence" },
+  objects: { selected: ["hausmania_db_c7_lydanlegg", "hausmania_behringer_x32"], rationale: "To directly documented pieces of Flerbrukshallen stage-audio equipment." },
   brands: { selected: [brandId], logo_coverage: { required: 1, reviewed: 1, missing: 0, percent: 100 } },
-  conditional_modules: { stories: "one_episode_v1", lesespor: "four_produced", language: "six_terms_produced", for_na: "produced_as_non_optical_area_comparison", chronology: "five_milestones", quiz: "normal_4x7" },
-  manual_image_review: { status: "PASS", reviewed_assets: [place.image, place.frontImage, "bilder/historisk/hausmania/hausmannsgate_2007.webp", "bilder/historisk/hausmania/hausmania_2017.webp", "bilder/kort/objects/hausmania_stencil_caz_2008.webp", "bilder/kort/brands/podium_oslo.webp", "bilder/kort/productions/hausmania_podium.webp", "bilder/kort/productions/hausmania_flerbrukshallen.webp", "bilder/QuizCards/Hausmania.webp"], note: "Bare fortsatt verifiserbare Commons-kilder brukes; eldre slettede Hausmania-filer er ikke gjeninnført." },
+  conditional_modules: { stories: "one_episode_v1", lesespor: "four_produced", language: "six_terms_produced", for_na: "produced_as_non_optical_area_comparison", chronology: "seven_milestones", quiz: "normal_4x7" },
+  manual_image_review: { status: "PASS", reviewed_assets: [place.image, place.frontImage, "bilder/historisk/hausmania/hausmannsgate_2007.webp", "bilder/historisk/hausmania/hausmania_2017.webp", "bilder/kort/objects/hausmania_db_c7_lydanlegg.webp", "bilder/kort/objects/hausmania_behringer_x32.webp", "bilder/kort/brands/podium_oslo.webp", "bilder/kort/productions/hausmania_podium.webp", "bilder/kort/productions/hausmania_flerbrukshallen.webp", "bilder/QuizCards/Hausmania.webp"], note: "Bare fortsatt verifiserbare Commons-kilder brukes; eldre slettede Hausmania-filer er ikke gjeninnført." },
   quality_score: {
     correctness_and_evidence: { score: 5, note: "Identitet, drift, formalisering, Podium og bilder er bundet til eksplisitte kilder." },
-    coverage_and_completion: { score: 5, note: "Fire samlinger, Fagverk, fem milepæler, seks språkposter, fire Lesespor, episode_v1 og 4×7 quiz." },
+    coverage_and_completion: { score: 5, note: "Fire samlinger, Fagverk, sju milepæler, seks språkposter, fire Lesespor, episode_v1 og 4×7 quiz." },
     editorial_quality: { score: 5, note: "Hausmania, Podium, romfunksjoner og miljø holdes analytisk atskilt." },
     technical_integrity: { score: 5, note: "Canonical generatorer bygger indeks, Fagverk-release, Knowledge, runtime og epoke." },
     safety_and_responsibility: { score: 5, note: "Ingen identitet eller miljøtilhørighet utledes fra utseende eller tilfeldig tilstedeværelse." },
@@ -492,12 +580,12 @@ write("reports/place-production/hausmania-phase1-24-gate-audit-v1.json", {
 write("reports/place-production/hausmania-workcard-current.json", {
   schema: "history_go_place_workcard_v2", place_id: placeId, category: categoryId, status: "complete", completed_at: verifiedAt,
   active_phase: "complete", source_review: "complete", production_verified_at: verifiedAt, production_profile: "standard", profile_status: "confirmed",
-  quiz_profile: "normal_4x7", fagverk_status: "curated_full", chronology_status: "PASS_five_milestones",
+  quiz_profile: "normal_4x7", fagverk_status: "curated_full", chronology_status: "PASS_seven_milestones",
   story_status: "PASS_episode_v1", language_status: "PASS_six_terms", lesespor_status: "PASS_four",
-  objects_status: "PASS_one_documented_physical_expression", brands_status: "PASS_podium_authentic_identity", people_status: "PASS_hausmania_miljoet",
+  objects_status: "PASS_two_documented_stage_audio_objects", brands_status: "PASS_podium_authentic_identity", people_status: "PASS_hausmania_miljoet",
   branch_status: "ready_for_pr", live_status: "pending_merge", quality_gate: "30/30", canonical_next: null,
   held_back_candidates: ["Slettede eldre Commons-filer.", "Ubekreftede interne konflikter.", "Falsk samme-viewpoint-påstand for 2007–2017."],
-  content_plan: { people: "Hausmania-miljøet", objects: "Dokumentert stencilspor fra 2008", brands: "Podium", category_expression: "Podium-program og Flerbrukshallens arrangementsprogram", stories: "Eksisterende Story oppgradert til episode_v1", for_na: "2007–2017 områdekontekst med eksplisitt viewpoint-forbehold", lesespor: "Fire åpne kilder" }
+  content_plan: { people: "Hausmania-miljøet", objects: "d&b C7/P1200A-lydanlegg og Behringer X32-mikser", brands: "Podium", category_expression: "Podium-program og Flerbrukshallens arrangementsprogram", stories: "Eksisterende Story oppgradert til episode_v1", for_na: "2007–2017 områdekontekst med eksplisitt viewpoint-forbehold", lesespor: "Fire åpne kilder" }
 });
 
 const checklistFile = "docs/PLACE_PRODUCTION_CHECKLIST.md";
@@ -521,4 +609,4 @@ execFileSync("npm", ["run", "civication:history-people:build"], { cwd: root, std
 execFileSync("node", ["--experimental-strip-types", "scripts/build-civication-scenario-people-index.mts"], { cwd: root, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/place-production-rule-preflight.mjs", "record", "--workcard", "reports/place-production/hausmania-workcard-current.json", "--place-id", placeId, "--category", categoryId], { cwd: root, stdio: "inherit" });
 
-console.log("Hausmania completion materialized: 4 collections, 5 chronology milestones, 6 language entries, 4 reading tracks, episode_v1, normal 4x7 quiz.");
+console.log("Hausmania completion materialized: 4 collections, 7 chronology milestones, 6 language entries, 4 reading tracks, episode_v1, normal 4x7 quiz.");
