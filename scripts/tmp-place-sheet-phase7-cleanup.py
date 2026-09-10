@@ -1,0 +1,398 @@
+from pathlib import Path
+import re
+
+root = Path('.')
+marker = root / 'tests/place-sheet-phase7-legacy-cleanup.test.mjs'
+bridge = root / 'js/ui/place-popup-unified-host-bridge.js'
+if marker.exists() and not bridge.exists():
+    print('Phase 7 cleanup already materialized')
+    raise SystemExit(0)
+
+def read(path):
+    return (root / path).read_text()
+
+def write(path, value):
+    (root / path).write_text(value)
+
+def must_replace(value, old, new, label):
+    if old not in value:
+        raise SystemExit(f'missing expected Phase 7 source: {label}')
+    return value.replace(old, new)
+
+def must_sub(value, pattern, replacement, label, flags=0):
+    out, count = re.subn(pattern, replacement, value, flags=flags)
+    if count != 1:
+        raise SystemExit(f'{label}: expected 1 replacement, got {count}')
+    return out
+
+# Retire the no-longer-used explicit PlaceCard popup host branch.
+popup_path = 'js/ui/place-popup-v2.js'
+popup = read(popup_path)
+popup = must_sub(
+    popup,
+    r'\n    const unifiedHost = options && typeof options === "object" \? options\.unifiedHost : null;\n    let popup = null;\n    if \(unifiedHost && typeof unifiedHost\.replaceChildren === "function"\) \{.*?\n    \} else \{\n      makePopup\(html, "place-popup place-popup-v2"\);\n      popup = document\.querySelector\("\.hg-popup\.place-popup-v2"\);\n    \}\n    attachHeroImage\(popup, candidates\);',
+    '\n    makePopup(html, "place-popup place-popup-v2");\n    const popup = document.querySelector(".hg-popup.place-popup-v2");\n    attachHeroImage(popup, candidates);',
+    'remove place-popup unifiedHost branch',
+    flags=re.S,
+)
+write(popup_path, popup)
+
+loader_path = 'js/ui/place-card-status-surface.js'
+loader = read(loader_path)
+loader = loader.replace('    ensureScript("js/ui/place-popup-unified-host-bridge.js");\n', '')
+loader = re.sub(
+    r'    // During the migration away from modal staging, canonical place-popup HTML\n    // is written directly into PlaceCard\'s Unified host\. Load this compatibility\n    // seam before the TypeScript adapter so no standard Place needs a body modal\.\n',
+    '',
+    loader,
+)
+if 'place-popup-unified-host-bridge.js' in loader:
+    raise SystemExit('bridge loader reference survived')
+write(loader_path, loader)
+
+# Keep routing APIs and title/description affordance, but retire the hidden six-button rail.
+shortcuts_path = 'js/ui/place-popup-shortcuts.js'
+write(shortcuts_path, '''// @ts-nocheck
+// js/ui/place-popup-shortcuts.js
+// Phase 7 compatibility routing. The former six-button popup rail is retired;
+// title/description and programmatic callers still route to canonical sections.
+(function installPlacePopupShortcuts(global) {
+  "use strict";
+
+  const WRAP_ATTR = "data-hg-place-popup-shortcuts";
+  const BOUND_FLAG = "__HG_PLACE_POPUP_SHORTCUTS_BOUND__";
+  const INFO_TARGET_SELECTOR = "#pcTitle, #pcDesc";
+  const SHORTCUTS = Object.freeze([
+    { id: "history", label: "Historie" },
+    { id: "stories", label: "Fortellinger" },
+    { id: "before-after", label: "Før/etter" },
+    { id: "news", label: "Nyheter" },
+    { id: "reading", label: "Lesespor" },
+    { id: "sources", label: "Kilder" }
+  ]);
+
+  const text = value => String(value == null ? "" : value).trim();
+
+  function currentPlace() {
+    const id = text(document.getElementById("placeCard")?.dataset?.currentPlaceId);
+    return id ? (Array.isArray(global.PLACES) ? global.PLACES : []).find(place => text(place?.id) === id) || null : null;
+  }
+
+  function prepareInfoTargets(card = document.getElementById("placeCard")) {
+    if (!card) return;
+    card.querySelectorAll(INFO_TARGET_SELECTOR).forEach(target => {
+      target.classList.add("pc-place-popup-info-trigger");
+      target.setAttribute("role", "button");
+      target.setAttribute("tabindex", "0");
+      target.setAttribute("aria-label", "Åpne mer om stedet");
+      target.setAttribute("title", "Åpne mer om stedet");
+    });
+  }
+
+  function retireLegacyGeometry() {
+    const card = document.getElementById("placeCard");
+    if (!card) return null;
+    card.querySelectorAll(`[${WRAP_ATTR}]`).forEach(node => node.remove());
+    prepareInfoTargets(card);
+    return null;
+  }
+
+  function openShortcut(tabId) {
+    const place = currentPlace();
+    if (!place) return;
+    if (typeof global.HGPlacePopupTabs?.openTab === "function") {
+      return global.HGPlacePopupTabs.openTab(place, tabId);
+    }
+    if (typeof global.showPlacePopup !== "function") return;
+    return global.showPlacePopup(place, tabId);
+  }
+
+  function bind() {
+    if (global[BOUND_FLAG]) return;
+    global[BOUND_FLAG] = true;
+    document.addEventListener("click", event => {
+      const infoTarget = event.target instanceof Element ? event.target.closest(INFO_TARGET_SELECTOR) : null;
+      if (!(infoTarget instanceof HTMLElement) || !infoTarget.closest("#placeCard")) return;
+      event.preventDefault();
+      event.stopPropagation();
+      openShortcut("about");
+    }, true);
+
+    document.addEventListener("keydown", event => {
+      if (!["Enter", " "].includes(event.key)) return;
+      const infoTarget = event.target instanceof Element ? event.target.closest(INFO_TARGET_SELECTOR) : null;
+      if (!(infoTarget instanceof HTMLElement) || !infoTarget.closest("#placeCard")) return;
+      event.preventDefault();
+      event.stopPropagation();
+      openShortcut("about");
+    }, true);
+  }
+
+  function init() {
+    retireLegacyGeometry();
+    bind();
+  }
+
+  global.HGPlacePopupShortcuts = {
+    ensureDom: retireLegacyGeometry,
+    open: openShortcut,
+    openAbout: () => openShortcut("about"),
+    shortcuts: SHORTCUTS.map(item => ({ ...item }))
+  };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
+  else init();
+  ["hg:appReady", "hg:place-selected", "hg:placesUpdated"].forEach(name => global.addEventListener?.(name, retireLegacyGeometry));
+})(window);
+''')
+
+shortcuts_css_path = 'css/place-popup-shortcuts.css'
+shortcuts_css = read(shortcuts_css_path)
+shortcuts_css = shortcuts_css.replace(
+    '/* PlaceCard: badge ved tittelen, fire samlingsflater og seks popup-SVG-er i en fullbredderad under mediene. */',
+    '/* PlaceCard: metadata, badge and four collection surfaces after the Phase 7 shortcut-rail retirement. */'
+)
+shortcuts_css = must_sub(
+    shortcuts_css,
+    r'\n#placeCard \.pc-place-popup-shortcuts\{.*?\n\}\n\n(?=#placeCard \.pc-events-quad)',
+    '\n',
+    'remove shortcut rail layout',
+    flags=re.S,
+)
+shortcuts_css = shortcuts_css.replace('#placeCard .pc-events-quad{\n  grid-column:1 / 3;\n  grid-row:3;\n}', '#placeCard .pc-events-quad{\n  grid-column:1 / 3;\n  grid-row:2;\n}')
+shortcuts_css = must_sub(
+    shortcuts_css,
+    r'\n#placeCard \.pc-place-popup-shortcut\{.*?\n(?=@media \(max-width:700px\)\{)',
+    '\n',
+    'remove shortcut button/icon styling',
+    flags=re.S,
+)
+shortcuts_css = re.sub(r'\n  #placeCard \.pc-place-popup-shortcuts\{.*?\n  \}', '', shortcuts_css, flags=re.S)
+shortcuts_css = re.sub(r'\n  #placeCard \.pc-place-popup-shortcut\{[^\n]*\}', '', shortcuts_css)
+shortcuts_css = re.sub(r'\n  #placeCard \.pc-place-popup-shortcut-icon\{.*?\n  \}', '', shortcuts_css, flags=re.S)
+if 'pc-place-popup-shortcut' in shortcuts_css or 'repeat(6' in shortcuts_css:
+    raise SystemExit('legacy shortcut geometry survived CSS cleanup')
+write(shortcuts_css_path, shortcuts_css)
+
+unified_css_path = 'css/place-unified-surface.css'
+unified_css = read(unified_css_path)
+unified_css = unified_css.replace(
+    '   One scrollable Place surface: PlaceCard shell + canonical popup knowledge.',
+    '   One scrollable Place Sheet surface for standard Places.'
+)
+unified_css = re.sub(r'\nbody\.hg-app\.hg-unified-place-staging > \.hg-popup\.place-popup-v2:not\(\.hg-unified-renderer-embedded\)\{.*?\n\}\n', '\n', unified_css, flags=re.S)
+unified_css = re.sub(r'\n/\* The old popup shortcut rail is redundant once all knowledge lives below\. \*/\nbody\.hg-app #placeCard\.is-unified-place \.pc-place-popup-shortcuts\{.*?\n\}\n', '\n', unified_css, flags=re.S)
+unified_css = re.sub(r'\nbody\.hg-app #placeCard\.is-unified-place \.pc-place-popup-info-trigger\{.*?\n\}\n', '\n', unified_css, flags=re.S)
+unified_css = must_sub(
+    unified_css,
+    r'\n\.pc-unified-knowledge-host\{.*?\n(?=@media \(max-width: 720px\)\{)',
+    '\n',
+    'remove embedded popup compatibility CSS',
+    flags=re.S,
+)
+unified_css = re.sub(r'\n  \.pc-unified-knowledge-host\{.*?\n  \}', '', unified_css, flags=re.S)
+unified_css = re.sub(r'\n  body\.hg-app \.hg-popup\.place-popup-v2\.hg-unified-renderer-embedded \.pc-unified-section-nav\{.*?\n  \}', '', unified_css, flags=re.S)
+for token in ('hg-unified-renderer-embedded', 'pc-unified-knowledge-host', 'pc-unified-loading', 'hg-unified-place-staging'):
+    if token in unified_css:
+        raise SystemExit(f'obsolete unified CSS token survived: {token}')
+write(unified_css_path, unified_css)
+
+# Replace old direct-host regression with the Phase 7 compatibility contract.
+write('tests/place-popup-v2-unified-target.test.mjs', '''import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import { JSDOM } from "jsdom";
+
+const popupSource = fs.readFileSync("js/ui/place-popup-v2.js", "utf8");
+const unifiedSource = fs.readFileSync("js/ui/place-unified-surface.ts", "utf8");
+
+test("Phase 7 removes the explicit popup-to-PlaceCard host presentation path", () => {
+  assert.doesNotMatch(popupSource, /unifiedHost/);
+  assert.doesNotMatch(popupSource, /hgUnifiedDirectHost/);
+  assert.doesNotMatch(popupSource, /hg:place-unified-host-rendered/);
+  assert.doesNotMatch(unifiedSource, /pcUnifiedKnowledgeHost/);
+  assert.doesNotMatch(unifiedSource, /hg-unified-renderer-embedded/);
+  assert.match(unifiedSource, /mountPlaceSheetPhase1\(place\)/);
+  assert.match(unifiedSource, /phase:\s*7/);
+});
+
+test("standalone place-popup-v2 remains available as a compatibility fallback", async () => {
+  const dom = new JSDOM('<!doctype html><html><body></body></html>', {
+    url: "https://history-go.test/",
+    runScripts: "outside-only"
+  });
+  const { window } = dom;
+  const calls = [];
+  window.showPlacePopup = () => undefined;
+  window.makePopup = (html, extraClass) => { calls.push({ html, extraClass }); };
+  window.eval(popupSource);
+
+  await window.showPlacePopup({ id: "legacy_place", name: "Legacy Place", category: "historie", desc: "Beskrivelse" });
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].extraClass, "place-popup place-popup-v2");
+  assert.match(calls[0].html, /Legacy Place/);
+  dom.window.close();
+});
+
+test("Micro keeps the dedicated mini-popup contract", async () => {
+  const dom = new JSDOM('<!doctype html><html><body></body></html>', {
+    url: "https://history-go.test/",
+    runScripts: "outside-only"
+  });
+  const { window } = dom;
+  const calls = [];
+  window.showPlacePopup = () => undefined;
+  window.makePopup = (html, extraClass) => { calls.push({ html, extraClass }); };
+  window.eval(popupSource);
+
+  await window.showPlacePopup({
+    id: "micro_place",
+    name: "Micro Place",
+    category: "litteratur",
+    placeTier: "micro",
+    desc: "Kort beskrivelse",
+    micro_place_profile: {
+      schema: "history_go_micro_place_profile_v1",
+      kind: "lesekiosk",
+      currentStatus: "active",
+      sourceUrl: "https://example.test/source",
+      quizMode: "none"
+    }
+  });
+  assert.equal(calls.length, 1);
+  assert.match(calls[0].extraClass, /micro-place-popup-shell/);
+  assert.match(calls[0].html, /data-place-tier="micro"/);
+  dom.window.close();
+});
+''')
+
+rounds_test_path = 'tests/place-rounds-grid-exclusivity.test.mjs'
+rounds_test = read(rounds_test_path)
+marker_text = 'test("PlaceCard uses six full-width SVG shortcuts and opens Om from title or info text", () => {'
+if marker_text not in rounds_test:
+    raise SystemExit('missing legacy shortcut test marker')
+rounds_test = rounds_test.split(marker_text, 1)[0] + '''test("PlaceCard retires shortcut geometry while preserving direct section routing", () => {
+  const dom = new JSDOM('<!doctype html><body><div id="placeCard" data-current-place-id="p"><div class="pc-title-row"><h2 id="pcTitle">Stedet</h2></div><p id="pcDesc">Infotekst</p><div class="pc-grid"><div class="pc-frontcard"></div><div class="pc-side-stack"><div class="pc-icons-quad"></div></div><div class="pc-events-quad"></div></div></div></body>', { url: "https://history-go.test/", runScripts: "outside-only" });
+  const w = dom.window;
+  const calls = [];
+  w.PLACES = [{ id: "p", name: "Stedet" }];
+  w.HGPlacePopupTabs = { openTab: (place, tabId) => calls.push([place.id, tabId]) };
+  w.eval(shortcutsSource);
+  w.document.dispatchEvent(new w.Event("DOMContentLoaded", { bubbles: true }));
+
+  assert.equal(w.document.querySelectorAll("[data-place-popup-tab]").length, 0);
+  assert.equal(w.document.querySelector(".pc-place-popup-shortcuts"), null);
+  assert.doesNotMatch(shortcutsSource, /data-place-popup-tab/);
+  assert.doesNotMatch(shortcutsSource, /<svg/);
+  assert.doesNotMatch(shortcutsCss, /pc-place-popup-shortcut/);
+  assert.doesNotMatch(shortcutsCss, /repeat\(6,minmax\(0,1fr\)\)/);
+  assert.match(shortcutsCss, /#placeCard \.pc-events-quad\{[\s\S]*?grid-row:2/);
+  assert.match(shortcutsCss, /#placeCard \.pc-icons-quad\{[\s\S]*?gap:5px/);
+  assert.match(shortcutsCss, /#placeCard #pcMeta\{[\s\S]*?grid-template-columns:minmax\(0,\.9fr\) minmax\(0,1\.35fr\)/);
+  assert.match(shortcutsCss, /pc-progress-status-line\{[\s\S]*?grid-column:1 \/ -1;[\s\S]*?grid-row:2/);
+  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?--hg-place-card-footer-gap:\s*12px;[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*auto;[\s\S]*?height:\s*auto/);
+  assert.match(placeCardCss, /#placeCard \.pc-body\{[\s\S]*?overflow-y:\s*auto/);
+  assert.match(placeCardSource, /if \(!samePlace\)[\s\S]*?scrollBody\.scrollTop = 0/);
+
+  w.HGPlacePopupShortcuts.open("history");
+  w.document.getElementById("pcTitle").click();
+  w.document.getElementById("pcDesc").dispatchEvent(new w.KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+  assert.deepEqual(calls, [["p", "history"], ["p", "about"], ["p", "about"]]);
+  assert.equal(w.document.getElementById("pcTitle").getAttribute("role"), "button");
+  assert.equal(w.document.getElementById("pcDesc").getAttribute("tabindex"), "0");
+  dom.window.close();
+});
+'''
+write(rounds_test_path, rounds_test)
+
+browser_path = 'tests/place-card-fullness-all-categories-browser-audit.test.mjs'
+browser = read(browser_path)
+browser = must_sub(
+    browser,
+    r'    const shortcuts = await page\.locator\("\.pc-place-popup-shortcut"\).*?    assert\.ok\(shortcutRow\.y >= Math\.max\(frontCard\.y \+ frontCard\.height, sideStack\.y \+ sideStack\.height\), `\$\{category\} shortcuts below both media columns`\);\n',
+    '    assert.equal(await page.locator(".pc-place-popup-shortcut").count(), 0, `${category} legacy shortcut buttons retired`);\n    assert.equal(await page.locator(".pc-place-popup-shortcuts").count(), 0, `${category} legacy shortcut row retired`);\n',
+    'replace browser shortcut geometry assertions',
+    flags=re.S,
+)
+write(browser_path, browser)
+
+micro_path = 'tests/micro-place-contract.test.mjs'
+micro = read(micro_path)
+micro = must_replace(
+    micro,
+    '  assert.match(css, /#placeCard\\.is-micro-place \\.pc-place-popup-shortcuts/);',
+    '  assert.doesNotMatch(css, /pc-place-popup-shortcuts/);',
+    'retire Micro shortcut CSS expectation',
+)
+write(micro_path, micro)
+
+place_open_path = '.github/workflows/place-open-payloads.yml'
+place_open = read(place_open_path)
+place_open = place_open.replace("      - 'js/ui/place-popup-unified-host-bridge.js'\n", '')
+place_open = place_open.replace("      - 'tests/place-popup-unified-host-bridge.test.mjs'\n", '')
+if "      - 'js/ui/place-popup-shortcuts.js'\n" not in place_open:
+    place_open = place_open.replace("      - 'js/ui/place-card-status-surface.js'\n", "      - 'js/ui/place-card-status-surface.js'\n      - 'js/ui/place-popup-shortcuts.js'\n")
+if "      - 'css/place-popup-shortcuts.css'\n" not in place_open:
+    place_open = place_open.replace("      - 'css/place-unified-surface.css'\n", "      - 'css/place-unified-surface.css'\n      - 'css/place-popup-shortcuts.css'\n")
+if "      - 'tests/place-sheet-phase7-legacy-cleanup.test.mjs'\n" not in place_open:
+    place_open = place_open.replace("      - 'tests/place-sheet-special-profiles.test.mjs'\n", "      - 'tests/place-sheet-special-profiles.test.mjs'\n      - 'tests/place-sheet-phase7-legacy-cleanup.test.mjs'\n")
+place_open = place_open.replace('          node --check js/ui/place-popup-unified-host-bridge.js\n', '')
+place_open = place_open.replace('          node --check tests/place-popup-unified-host-bridge.test.mjs\n', '')
+place_open = place_open.replace('          node --check tests/place-sheet-special-profiles.test.mjs\n', '          node --check tests/place-sheet-special-profiles.test.mjs\n          node --check tests/place-sheet-phase7-legacy-cleanup.test.mjs\n')
+place_open = place_open.replace('tests/place-unified-surface.test.mjs tests/place-popup-unified-host-bridge.test.mjs tests/place-popup-v2-unified-target.test.mjs', 'tests/place-unified-surface.test.mjs tests/place-popup-v2-unified-target.test.mjs')
+place_open = place_open.replace('tests/place-sheet-direct-routing.test.mjs tests/place-sheet-special-profiles.test.mjs', 'tests/place-sheet-direct-routing.test.mjs tests/place-sheet-special-profiles.test.mjs tests/place-sheet-phase7-legacy-cleanup.test.mjs')
+if 'place-popup-unified-host-bridge' in place_open:
+    raise SystemExit('obsolete bridge survived place-open workflow')
+write(place_open_path, place_open)
+
+rounds_workflow_path = '.github/workflows/place-rounds-governance.yml'
+rounds_workflow = read(rounds_workflow_path)
+if '      - "js/ui/place-popup-shortcuts.js"\n' not in rounds_workflow:
+    rounds_workflow = rounds_workflow.replace('      - "js/ui/place-card-status-surface.js"\n', '      - "js/ui/place-card-status-surface.js"\n      - "js/ui/place-popup-shortcuts.js"\n      - "css/place-popup-shortcuts.css"\n')
+write(rounds_workflow_path, rounds_workflow)
+
+write('tests/place-sheet-phase7-legacy-cleanup.test.mjs', '''import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+
+const read = path => fs.readFileSync(path, "utf8");
+const unified = read("js/ui/place-unified-surface.ts");
+const popup = read("js/ui/place-popup-v2.js");
+const loader = read("js/ui/place-card-status-surface.js");
+const shortcuts = read("js/ui/place-popup-shortcuts.js");
+const shortcutsCss = read("css/place-popup-shortcuts.css");
+const unifiedCss = read("css/place-unified-surface.css");
+
+test("Phase 7 retires the standard popup host bridge and embedded shell CSS", () => {
+  assert.equal(fs.existsSync("js/ui/place-popup-unified-host-bridge.js"), false);
+  assert.equal(fs.existsSync("tests/place-popup-unified-host-bridge.test.mjs"), false);
+  assert.doesNotMatch(loader, /place-popup-unified-host-bridge/);
+  assert.doesNotMatch(popup, /unifiedHost|hgUnifiedDirectHost|place-unified-host-rendered/);
+  assert.doesNotMatch(unified, /pcUnifiedKnowledgeHost|hg-unified-renderer-embedded|hg-unified-place-staging/);
+  assert.doesNotMatch(unifiedCss, /pc-unified-knowledge-host|hg-unified-renderer-embedded|hg-unified-place-staging/);
+});
+
+test("Phase 7 removes shortcut geometry but preserves compatibility routing", () => {
+  assert.doesNotMatch(shortcuts, /data-place-popup-tab|<svg/);
+  assert.match(shortcuts, /HGPlacePopupShortcuts/);
+  assert.match(shortcuts, /HGPlacePopupTabs\?\.openTab/);
+  assert.match(shortcuts, /showPlacePopup\(place, tabId\)/);
+  assert.doesNotMatch(shortcutsCss, /pc-place-popup-shortcut|repeat\(6/);
+  assert.match(shortcutsCss, /#placeCard \.pc-events-quad\{[\s\S]*grid-row:2/);
+});
+
+test("standard Places stay direct while Micro retains legacy popup routing", () => {
+  assert.match(unified, /mountPlaceSheetPhase1\(place\)/);
+  assert.match(unified, /detail: \{ placeId: placeId\(place\), direct: true, phase: 7 \}/);
+  assert.match(unified, /if \(isMicro\(canonical\)\) return current\.apply\(this, \[canonical, target\]\)/);
+  assert.match(unified, /return openSection\(canonical, target \|\| "about"\)/);
+  assert.match(unified, /phase:\s*7/);
+  assert.match(popup, /renderMicroPlacePopup/);
+  assert.match(popup, /micro-place-popup-shell/);
+});
+''')
+
+for obsolete in (
+    root / 'js/ui/place-popup-unified-host-bridge.js',
+    root / 'tests/place-popup-unified-host-bridge.test.mjs',
+):
+    if obsolete.exists():
+        obsolete.unlink()
