@@ -1,8 +1,8 @@
 import { mountPlaceSheetPhase1, placeSheetSectionTarget, restoreLegacyPlaceCardStructure } from "./place-sheet/place-sheet-shell";
 import { promoteAutomaticPlaceSheetSection } from "./place-sheet/place-sheet-render-queue";
 
-// Phase 6 compatibility router: standard Places render directly in Place Sheet.
-// The legacy popup chain remains reachable only for Micro Places.
+// Phase 7 compatibility router: standard Places are owned by Place Sheet.
+// Legacy popup runtimes remain compatibility-only for Micro and old callers.
 type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
   DEBUG?: boolean;
   PLACES?: Array<Record<string, any>>;
@@ -11,7 +11,6 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
   HGPlaceOpen?: { getPlace?: (place: unknown) => any };
   HGPlacePopupTabs?: Record<string, any>;
   HGPlaceUnifiedSurface?: Record<string, any>;
-  __HG_PLACE_POPUP_DIRECT_TABS_INSTALLED__?: boolean;
   __HG_PLACE_UNIFIED_SURFACE_INSTALLED__?: boolean;
 };
 
@@ -53,6 +52,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
   let legacyShowPlacePopup: ((...args: any[]) => any) | null = null;
   let readyGeneration = 0;
   let activeMount: Promise<HTMLElement | null> = Promise.resolve(null);
+  let compatibilityTimer: number | null = null;
 
   function isMicro(place: any): boolean {
     return text(place?.placeTier).toLowerCase() === "micro";
@@ -103,13 +103,6 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     }
   }
 
-  function removeStandardPopupCompatibility(): void {
-    document.getElementById("pcUnifiedKnowledgeHost")?.remove();
-    document.querySelectorAll(
-      '.hg-popup.place-popup-v2.hg-unified-renderer-embedded, .hg-popup.place-popup-v2[data-hg-unified-direct-host="1"]'
-    ).forEach(node => node.remove());
-  }
-
   function clearUnifiedState(): void {
     ++readyGeneration;
     restoreLegacyPlaceCardStructure();
@@ -119,8 +112,6 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
       delete root.dataset.hgUnifiedPlaceId;
       delete root.dataset.hgUnifiedGeneration;
     }
-    removeStandardPopupCompatibility();
-    document.body?.classList.remove("hg-unified-place-staging");
   }
 
   function dispatchDirectReady(place: any, generation: number): void {
@@ -129,7 +120,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
       const root = card();
       if (!(root instanceof HTMLElement) || text(root.dataset.hgUnifiedPlaceId) !== placeId(place)) return;
       global.dispatchEvent?.(new CustomEvent("hg:place-unified-ready", {
-        detail: { placeId: placeId(place), direct: true, phase: 6 }
+        detail: { placeId: placeId(place), direct: true, phase: 7 }
       }));
     }, 0);
   }
@@ -144,7 +135,6 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
 
     const root = card();
     if (!(root instanceof HTMLElement)) return null;
-    removeStandardPopupCompatibility();
     const shell = mountPlaceSheetPhase1(place);
     if (!(shell instanceof HTMLElement)) return null;
 
@@ -152,24 +142,14 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     root.dataset.hgUnifiedPlaceId = id;
     const generation = ++readyGeneration;
     root.dataset.hgUnifiedGeneration = String(generation);
-    document.body?.classList.remove("hg-unified-place-staging");
 
-    // No legacy showPlacePopup call for standard Places. Owner-backed Place
-    // Sheet sections start from the automatic queue and this readiness event.
     dispatchDirectReady(place, generation);
     return shell;
   }
 
   function scrollToSection(target: unknown, options: { instant?: boolean; focus?: boolean } = {}): boolean {
     const id = canonicalSection(target);
-    const root = card();
-    if (!(root instanceof HTMLElement)) return false;
-
-    let section: Element | null = placeSheetSectionTarget(id);
-    if (!(section instanceof HTMLElement)) {
-      section = [...root.querySelectorAll("[data-place-panel], [data-hg-unified-section]")]
-        .find(node => text(node.getAttribute("data-place-panel") || node.getAttribute("data-hg-unified-section")) === id) || null;
-    }
+    const section = placeSheetSectionTarget(id);
     if (!(section instanceof HTMLElement)) return false;
 
     try { section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" }); }
@@ -253,18 +233,41 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     return true;
   }
 
+  function compatibilityReady(): boolean {
+    const popupReady = typeof global.showPlacePopup === "function"
+      && (global.showPlacePopup as any).__hgUnifiedPlaceSurface === true;
+    const tabsReady = !!global.HGPlacePopupTabs && typeof global.HGPlacePopupTabs.openTab === "function";
+    return popupReady && tabsReady;
+  }
+
+  function installCompatibilityRoutes(): boolean {
+    patchShowPlacePopup();
+    installPopupTabBridge();
+    return compatibilityReady();
+  }
+
+  function armCompatibilityRetry(): void {
+    if (compatibilityReady() || compatibilityTimer != null) return;
+    let attempts = 0;
+    compatibilityTimer = global.setInterval(() => {
+      attempts += 1;
+      if (installCompatibilityRoutes() || attempts > 400) {
+        if (compatibilityTimer != null) global.clearInterval(compatibilityTimer);
+        compatibilityTimer = null;
+      }
+    }, 50);
+  }
+
   function install(): boolean {
     ensureStylesheet();
     if (global[INSTALL_FLAG]) {
-      installPopupTabBridge();
+      installCompatibilityRoutes();
+      armCompatibilityRetry();
       return true;
     }
-    if (typeof global.openPlaceCard !== "function" || typeof global.showPlacePopup !== "function") return false;
-    if ((global.showPlacePopup as any).__hgPlacePopupV2 !== true) return false;
-    if (global.__HG_PLACE_POPUP_DIRECT_TABS_INSTALLED__ !== true) return false;
+    if (typeof global.openPlaceCard !== "function") return false;
 
     patchOpenPlaceCard();
-    patchShowPlacePopup();
     global[INSTALL_FLAG] = true;
     global.HGPlaceUnifiedSurface = {
       ensure: (place: any, options: { refresh?: boolean } = {}) => materialize(place, options),
@@ -274,12 +277,13 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
       currentPlace,
       canonicalSection,
       sectionIds: SECTION_ORDER.map(([id]) => id),
-      phase: 6,
+      phase: 7,
       directStandardPlaces: true,
       get legacyOpenPlaceCard() { return legacyOpenPlaceCard; },
       get legacyShowPlacePopup() { return legacyShowPlacePopup; }
     };
-    installPopupTabBridge();
+    installCompatibilityRoutes();
+    armCompatibilityRetry();
 
     const place = currentPlace();
     if (place && !isMicro(place)) void materialize(place, { refresh: true });
