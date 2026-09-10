@@ -26,7 +26,10 @@ test('Tronsmo Bokhandel full production contract',()=>{
   const q=j('data/quiz/litteratur/tronsmo_bokhandel.json');
   assert.equal(q.sets.length,4);
   assert.deepEqual(q.sets.map(s=>s.questions.length),[7,7,7,7]);
-  assert.equal(q.sets.flatMap(s=>s.questions).length,28);
+  const questions=q.sets.flatMap(s=>s.questions);
+  assert.equal(questions.length,28);
+  assert.ok(questions.every(item=>item.options[item.answerIndex]===item.answer));
+  assert.deepEqual([0,1,2].map(position=>questions.filter(item=>item.answerIndex===position).length),[10,9,9]);
   assert.ok(!exists('data/quiz/litteratur/tronsmo_bokhandel_sets.json'));
   assert.ok(!exists('data/quiz/litteratur/tronsmo_bokhandel_sets_merged.json'));
   const qm=j('data/quiz/manifest.json');
