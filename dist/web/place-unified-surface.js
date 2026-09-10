@@ -1844,16 +1844,17 @@
       shell4.setAttribute(SHELL_ATTR, "1");
       shell4.innerHTML = `
       <div class="pc-sheet-hero" data-hg-place-sheet-hero>
-        <div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
+        <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
+          <section class="pc-sheet-explore" aria-label="Utforsk stedet">
+            <div class="pc-sheet-section-head">
+              <span class="pc-sheet-section-eyebrow">Utforsk</span>
+              <h2>Fire samlinger</h2>
+            </div>
+            <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
+          </section>
+        </div>
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
       </div>
-      <section class="pc-sheet-explore" aria-label="Utforsk stedet">
-        <div class="pc-sheet-section-head">
-          <span class="pc-sheet-section-eyebrow">Utforsk</span>
-          <h2>Fire samlinger</h2>
-        </div>
-        <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
-      </section>
       <section class="pc-sheet-onsite" data-hg-place-sheet-onsite></section>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
@@ -1879,7 +1880,7 @@
     const textBlock = root2.querySelector(".pc-text");
     const sideStack = root2.querySelector(".pc-side-stack");
     const events = document.getElementById("pcEventsBox");
-    if (front && media && front.parentElement !== media) media.appendChild(front);
+    if (front && media && front.parentElement !== media) media.prepend(front);
     if (textBlock && copy && textBlock.parentElement !== copy) copy.prepend(textBlock);
     if (sideStack && collections && sideStack.parentElement !== collections) collections.appendChild(sideStack);
     if (events instanceof HTMLElement && onsite && events.parentElement !== onsite) onsite.appendChild(events);

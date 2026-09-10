@@ -50,6 +50,19 @@ Connector-only skriving er ikke en nødprosedyre som krever særskilt godkjennin
 - Bruk tilsvarende connectoroperasjoner for PR-, CI- og mergeflyt når connectoren er arbeidskanalen og operasjonene er tilgjengelige.
 - Oppgi konkret branch, commit, PR, head-SHA og kontroller i sluttrapporten når disse finnes.
 
+### Mergeautorisasjon — ikke opprett et nytt godkjenningsstopp
+
+Når brukeren allerede har instruert agenten om å gjennomføre et GitHub-arbeidsløp med push/PR/merge, gjelder denne autorisasjonen gjennom hele det samme arbeidsløpet.
+
+- Agenten skal **ikke spørre brukeren om ny godkjenning før merge** bare fordi PR-en, reviewen eller CI-en senere blir klar.
+- Når final PR-head er grønn, forventet head-SHA fortsatt stemmer, kvalitetsporten består og det ikke finnes en reell teknisk, faglig, sikkerhetsmessig eller repository-policy-blocker, skal agenten gå direkte til merge.
+- Review-kommentarer skal løses eller avvises saklig ut fra evidens. De skal ikke omgjøres til et nytt bruker-godkjenningspunkt når brukeren allerede har autorisert merge.
+- Hvis `main` flytter seg og repoets kontrakt krever fresh-main replay/rebase, skal agenten utføre dette og fortsette mot merge uten å be om ny autorisasjon.
+- En reell blocker skal håndteres fail-closed og repareres innenfor avtalt scope. «Vil du at jeg skal merge?» er ikke en gyldig blocker.
+- Etter merge skal post-merge integrity verifiseres når repoet har en slik gate. Separat Vercel-/produksjonsdeploy følger sin egen eksplisitte autorisasjon og skal ikke utledes av mergeautorisasjonen.
+
+Denne regelen gjelder både lokal `gh`-flyt og connector-flyt.
+
 ## Place production: obligatorisk READ-FIRST-gate
 
 Disse reglene gjelder hver gang en agent, assistent eller automasjon oppretter, fullfører eller vesentlig reviderer et canonical Place.
