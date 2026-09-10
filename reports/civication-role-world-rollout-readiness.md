@@ -27,7 +27,7 @@ A PASS with policy open means controlled role-by-role rollout may proceed. It do
 
 ## First structurally varied wave candidates
 
-- **musikk/musikk_utoving_og_ensemble** — other; rollout_ready; queue #1
+_No safe first-wave set is available yet._
 
 The first wave is a recommendation, not a batch PR: every role still gets its own PR. Cross-role linkage is optional and only used when the work object is genuinely shared.
 
@@ -35,7 +35,6 @@ The first wave is a recommendation, not a batch PR: every role still gets its ow
 
 | Rank | Role | Class | Structural family | Cross-role | Main authored debt |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | `musikk/musikk_utoving_og_ensemble` | rollout_ready | other | not_required_for_rollout | — |
 
 ## Blocked roles
 
