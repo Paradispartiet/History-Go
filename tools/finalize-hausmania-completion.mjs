@@ -638,6 +638,7 @@ execFileSync("node", ["tools/build-subkultur-place-reports-batch-v1.mjs", "--wri
 execFileSync("node", ["tools/build-subkultur-case-evidence-v1.mjs", "--write"], { cwd: root, stdio: "inherit" });
 execFileSync("node", ["tools/build-subkultur-quiz-knowledge-v1.mjs", "--write"], { cwd: root, stdio: "inherit" });
 execFileSync("node", ["tools/materialize-subkultur-runtime-v1.mjs", "--write"], { cwd: root, stdio: "inherit" });
+execFileSync("node", ["scripts/audit-subkultur-runtime-final-v1.mjs", "--write-report"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "place-open:build"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "epoker:places:build"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "civication:history-people:build"], { cwd: root, stdio: "inherit" });
