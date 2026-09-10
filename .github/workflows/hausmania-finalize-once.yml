@@ -1,0 +1,68 @@
+name: Hausmania finalize once
+
+on:
+  push:
+    branches:
+      - agent/hausmania-completion-20260910
+    paths:
+      - .github/workflows/hausmania-finalize-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/hausmania-completion-20260910
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Configure git
+        run: |
+          git config user.name 'Paradispartiet'
+          git config user.email 'paradispartiet@gmail.com'
+      - name: Replay on fresh main
+        run: |
+          git fetch origin main
+          if ! git merge-base --is-ancestor origin/main HEAD; then
+            git merge --no-edit origin/main
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Materialize Hausmania and Subkultur derivatives
+        run: node tools/finalize-hausmania-completion.mjs
+      - name: Verify focused contracts
+        run: |
+          npm run check:stories
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all --report /tmp/hausmania-place-description.json
+          node --test tests/place-language-layer.test.mjs
+          node tools/build-subkultur-data-audit-v1.mjs
+          node scripts/audit-subkultur-data-v1.mjs
+          node tools/build-subkultur-case-evidence-v1.mjs --check
+          node tools/build-subkultur-place-reports-batch-v1.mjs
+          node scripts/audit-subkultur-place-production.mjs --all
+          node scripts/audit-subkultur-case-evidence-v1.mjs
+          node tools/build-subkultur-quiz-knowledge-v1.mjs --check
+          node scripts/audit-subkultur-quiz-knowledge-v1.mjs
+          node tools/materialize-subkultur-runtime-v1.mjs --check
+          node scripts/audit-subkultur-runtime-final-v1.mjs
+          npm run audit:quiz-production-context
+          node scripts/audit-repository-hygiene-v1.mjs
+          git diff --check
+      - name: Commit materialized package
+        run: |
+          rm -f .github/workflows/hausmania-finalize-once.yml
+          git add -A
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'No materialized changes to commit.'
+            exit 1
+          fi
+          git commit -m 'Refresh Hausmania Subkultur canonical derivatives'
+          git push origin HEAD:agent/hausmania-completion-20260910
