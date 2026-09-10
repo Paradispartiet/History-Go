@@ -1,0 +1,114 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "niels_treschow",
+  "profile_file": "data/people/historie/oslo/peststotten_krist_kirkegard/people_peststotten_krist_kirkegard.json",
+  "identity": {
+    "canonical_identity": "Niels Treschow",
+    "name_variants": [
+      "Niels Treschow"
+    ],
+    "not": [
+      "andre med samme etternavn"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Niels Treschow levde fra 1751 til 1833.",
+      "source_url": "https://snl.no/Niels_Treschow",
+      "source_type": "institutional",
+      "status": "verified",
+      "source_location": "oppslag",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-10",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "place",
+      "claim": "Niels Treschow er gravlagt på Krist kirkegård.",
+      "source_url": "https://oslobyleksikon.no/side/Krist_kirkeg%C3%A5rd",
+      "source_type": "institutional",
+      "status": "verified",
+      "source_location": "oppslag",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-10",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image_identity",
+      "claim": "Medieposten identifiserer Niels Treschow.",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NielsTreschow.png",
+      "source_type": "catalogue",
+      "status": "verified",
+      "source_location": "oppslag",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-10",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "kindLabel": [
+      "identity"
+    ],
+    "year": [
+      "identity"
+    ],
+    "placeId": [
+      "place"
+    ],
+    "places[peststotten_krist_kirkegard]": [
+      "place"
+    ],
+    "image": [
+      "image_identity"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "place"
+        ],
+        "evidence_mode": "explicit"
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity"
+        ],
+        "evidence_mode": "explicit"
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "identity"
+        ],
+        "evidence_mode": "explicit"
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "place"
+        ],
+        "evidence_mode": "explicit"
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-10",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
