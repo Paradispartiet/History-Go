@@ -17,5 +17,5 @@ test("Place Sheet keeps Explore directly beneath frontImage in the left hero col
 test("Place Sheet preserves two-column text layout and mobile image/explore/copy stacking", () => {
   assert.match(css, /\.pc-sheet-hero\{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*minmax\(230px,\s*\.78fr\)\s+minmax\(0,\s*1\.42fr\)/);
   assert.match(css, /@media \(max-width:\s*520px\)[\s\S]*?\.pc-sheet-hero\{[\s\S]*?grid-template-columns:\s*1fr/);
-  assert.match(css, /\.pc-sheet-explore-grid \.pc-icons-quad\{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(css, /\.pc-sheet-explore-grid \.pc-icons-quad\{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\)/);\n  assert.doesNotMatch(css, /\.pc-sheet-explore-grid \.pc-icons-quad\{[\s\S]*?grid-template-columns:\s*repeat\(2,/);
 });
