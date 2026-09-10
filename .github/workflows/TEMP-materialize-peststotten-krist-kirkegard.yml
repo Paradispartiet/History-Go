@@ -46,6 +46,36 @@ jobs:
           npm run epoker:places:check
           node scripts/run-place-regressions-v1.mjs
 
+      - name: Diagnose People claim profile targets
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const root = process.cwd();
+          const claimsRoot = path.join(root, 'data/people/claims');
+          const walk = dir => fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
+            const absolute = path.join(dir, entry.name);
+            return entry.isDirectory() ? walk(absolute) : entry.isFile() && entry.name.endsWith('.json') ? [absolute] : [];
+          });
+          let bad = 0;
+          for (const claimsFile of walk(claimsRoot).sort()) {
+            const document = JSON.parse(fs.readFileSync(claimsFile, 'utf8'));
+            if (!document.profile_file) continue;
+            const target = path.join(root, String(document.profile_file));
+            let kind = 'missing';
+            try {
+              const stat = fs.statSync(target);
+              kind = stat.isFile() ? 'file' : stat.isDirectory() ? 'directory' : 'other';
+            } catch {}
+            if (kind !== 'file') {
+              bad += 1;
+              console.error(`BAD_PROFILE_TARGET claims=${path.relative(root, claimsFile)} profile_file=${document.profile_file} kind=${kind}`);
+            }
+          }
+          if (bad) process.exit(1);
+          console.log('People claim profile targets: PASS');
+          NODE
+
       - name: Repository checks
         run: |
           npm run tools:check
