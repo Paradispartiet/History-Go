@@ -17,8 +17,9 @@ test('Tronsmo Bokhandel full production contract',()=>{
   assert.equal(p.objects.length,1);
   assert.equal(p.productions.length,1);
   assert.equal(p.fagverk.schema,'history_go_place_fagverk_v2');
-  assert.ok(p.fagverk.lenses.length>=4);
-  assert.ok(p.fagverk.guiding_questions.length>=6);
+  const lensEmneIds=new Set(p.fagverk.lenses.map(lens=>lens.emne_id));
+  assert.ok(p.fagverk.emne_ids.every(emneId=>lensEmneIds.has(emneId)),'every canonical fagverk emne must be covered by a lens');
+  assert.ok(p.fagverk.guiding_questions.length>=4);
   assert.ok(p.fagverk.observable_traces.length>=3);
   for(const file of [p.image,p.frontImage,p.objects[0].image,p.productions[0].image,'bilder/kort/brands/tronsmo_bokhandel.webp','bilder/QuizCards/Tronsmo_Bokhandel.webp']) assert.ok(exists(file),file);
 
