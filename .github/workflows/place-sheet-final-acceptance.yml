@@ -20,16 +20,6 @@ on:
       - "tests/place-unified-surface.test.mjs"
       - "tests/place-card-fullness-all-categories-browser-audit.test.mjs"
       - ".github/workflows/place-sheet-final-acceptance.yml"
-  push:
-    branches:
-      - main
-    paths:
-      - "js/ui/place-unified-surface.ts"
-      - "js/ui/place-sheet/**"
-      - "dist/web/place-unified-surface.js"
-      - "dist/web/place-unified-surface.js.map"
-      - "tests/place-sheet-*.test.mjs"
-      - ".github/workflows/place-sheet-final-acceptance.yml"
   workflow_dispatch:
 
 permissions:
