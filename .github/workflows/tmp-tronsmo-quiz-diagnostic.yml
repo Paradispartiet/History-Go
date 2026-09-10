@@ -22,6 +22,29 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
+      - name: Balance Tronsmo stored correct-answer positions
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const p='data/quiz/litteratur/tronsmo_bokhandel.json';
+          const quiz=JSON.parse(fs.readFileSync(p,'utf8'));
+          const questions=(quiz.sets||[]).flatMap(set=>set.questions||[]);
+          if (questions.length !== 28) throw new Error(`Expected 28 Tronsmo questions, got ${questions.length}`);
+          questions.forEach((q,i)=>{
+            if (!Array.isArray(q.options) || q.options.length !== 3) throw new Error(`${q.id}: expected exactly 3 options`);
+            const current=q.options.indexOf(q.answer);
+            if (current < 0) throw new Error(`${q.id}: correct answer text not found in options`);
+            const target=i % 3;
+            if (current !== target) [q.options[current],q.options[target]]=[q.options[target],q.options[current]];
+            q.answerIndex=target;
+            if (q.options[q.answerIndex] !== q.answer) throw new Error(`${q.id}: answer/index mismatch after balancing`);
+          });
+          const counts=[0,0,0];
+          for (const q of questions) counts[q.answerIndex]++;
+          if (counts.join(',') !== '10,9,9') throw new Error(`Unexpected answer-position distribution: ${counts.join(',')}`);
+          fs.writeFileSync(p,`${JSON.stringify(quiz,null,2)}\n`);
+          console.log(`Tronsmo answer positions: ${counts.join('/')}`);
+          NODE
       - name: Merge fresh main with generated conflicts based on main
         shell: bash
         run: |
