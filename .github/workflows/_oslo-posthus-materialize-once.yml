@@ -28,6 +28,48 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Harden Commons media endpoints and source text
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path("tools/build-oslo-posthus-completion.mjs")
+          s = p.read_text()
+          replacements = {
+              "https://upload.wikimedia.org/wikipedia/commons/6/66/Hovedpostkontoret_dronningensgt_15_rk_162995_IMG_8199.JPG": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Hovedpostkontoret_dronningensgt_15_rk_162995_IMG_8199.JPG/1600px-Hovedpostkontoret_dronningensgt_15_rk_162995_IMG_8199.JPG",
+              "https://upload.wikimedia.org/wikipedia/commons/9/90/Hovedpostkontoret_Oslo.jpg": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hovedpostkontoret_Oslo.jpg/900px-Hovedpostkontoret_Oslo.jpg",
+              "https://upload.wikimedia.org/wikipedia/commons/5/56/Hovedpostkontoret_OB.Y2561.jpg": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Hovedpostkontoret_OB.Y2561.jpg/595px-Hovedpostkontoret_OB.Y2561.jpg",
+              "https://upload.wikimedia.org/wikipedia/commons/3/33/Rudolf_Emanuel_Jacobsen.jpg": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Rudolf_Emanuel_Jacobsen.jpg/529px-Rudolf_Emanuel_Jacobsen.jpg",
+              "https://www.oppdagkvadraturen.no/steder/hovedpostkontoret": "https://www.oppdagkvadraturen.no/stoppesteder/dronningens-gate-15-hovedpostkontoret",
+              "offentlig infrastrukturb bygning": "offentlig infrastrukturbygning",
+          }
+          for old, new in replacements.items():
+              if old not in s:
+                  raise SystemExit(f"Expected builder text missing: {old}")
+              s = s.replace(old, new)
+
+          marker = 'const addOnce = (items, value) => { if (!items.includes(value)) items.push(value); };\n\nconst urls = {'
+          replacement = 'const addOnce = (items, value) => { if (!items.includes(value)) items.push(value); };\nconst mediaCache = new Map();\n\nconst urls = {'
+          if marker not in s:
+              raise SystemExit("Could not insert media cache")
+          s = s.replace(marker, replacement, 1)
+
+          marker = 'async function fetchBuffer(url) {\n  let lastError;'
+          replacement = 'async function fetchBuffer(url) {\n  if (mediaCache.has(url)) return mediaCache.get(url);\n  let lastError;'
+          if marker not in s:
+              raise SystemExit("Could not add media cache lookup")
+          s = s.replace(marker, replacement, 1)
+
+          marker = '      return Buffer.from(await response.arrayBuffer());'
+          replacement = '      const buffer = Buffer.from(await response.arrayBuffer());\n      mediaCache.set(url, buffer);\n      return buffer;'
+          if marker not in s:
+              raise SystemExit("Could not add media cache write")
+          s = s.replace(marker, replacement, 1)
+
+          p.write_text(s)
+          PY
+
       - name: Materialize canonical Oslo Posthus production
         run: node tools/build-oslo-posthus-completion.mjs
 
@@ -49,7 +91,7 @@ jobs:
           rm .github/workflows/_oslo-posthus-materialize-once.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data bilder .github/workflows/_oslo-posthus-materialize-once.yml
+          git add tools/build-oslo-posthus-completion.mjs data bilder .github/workflows/_oslo-posthus-materialize-once.yml
           if git diff --cached --quiet; then
             echo "No materialized changes to commit"
             exit 1
