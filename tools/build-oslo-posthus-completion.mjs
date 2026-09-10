@@ -24,6 +24,7 @@ const write = (file, value) => {
   fs.writeFileSync(target, `${JSON.stringify(value, null, 2)}\n`);
 };
 const addOnce = (items, value) => { if (!items.includes(value)) items.push(value); };
+const mediaCache = new Map();
 
 const urls = {
   bylex: "https://oslobyleksikon.no/side/Hovedpostkontoret",
@@ -31,18 +32,19 @@ const urls = {
   nklArchitect: "https://nkl.snl.no/Rudolf_Emil_Jacobsen",
   nblArchitect: "https://nbl.snl.no/Rudolf_Emanuel_Jacobsen",
   linstow: "https://www.linstow.no/prosjekter/quadraturen",
-  oppdag: "https://www.oppdagkvadraturen.no/steder/hovedpostkontoret",
+  oppdag: "https://www.oppdagkvadraturen.no/stoppesteder/dronningens-gate-15-hovedpostkontoret",
   currentPage: "https://commons.wikimedia.org/wiki/File:Hovedpostkontoret_dronningensgt_15_rk_162995_IMG_8199.JPG",
-  currentAsset: "https://upload.wikimedia.org/wikipedia/commons/6/66/Hovedpostkontoret_dronningensgt_15_rk_162995_IMG_8199.JPG",
+  currentAsset: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Hovedpostkontoret_dronningensgt_15_rk_162995_IMG_8199.JPG/1280px-Hovedpostkontoret_dronningensgt_15_rk_162995_IMG_8199.JPG",
   frontPage: "https://commons.wikimedia.org/wiki/File:Hovedpostkontoret_Oslo.jpg",
-  frontAsset: "https://upload.wikimedia.org/wikipedia/commons/9/90/Hovedpostkontoret_Oslo.jpg",
+  frontAsset: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hovedpostkontoret_Oslo.jpg/960px-Hovedpostkontoret_Oslo.jpg",
   historicPage: "https://commons.wikimedia.org/wiki/File:Hovedpostkontoret_OB.Y2561.jpg",
-  historicAsset: "https://upload.wikimedia.org/wikipedia/commons/5/56/Hovedpostkontoret_OB.Y2561.jpg",
+  historicAsset: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Hovedpostkontoret_OB.Y2561.jpg/500px-Hovedpostkontoret_OB.Y2561.jpg",
   portraitPage: "https://commons.wikimedia.org/wiki/File:Rudolf_Emanuel_Jacobsen.jpg",
-  portraitAsset: "https://upload.wikimedia.org/wikipedia/commons/3/33/Rudolf_Emanuel_Jacobsen.jpg"
+  portraitAsset: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Rudolf_Emanuel_Jacobsen.jpg/500px-Rudolf_Emanuel_Jacobsen.jpg"
 };
 
 async function fetchBuffer(url) {
+  if (mediaCache.has(url)) return mediaCache.get(url);
   let lastError;
   for (let attempt = 1; attempt <= 4; attempt += 1) {
     try {
@@ -52,7 +54,9 @@ async function fetchBuffer(url) {
         signal: AbortSignal.timeout(60000)
       });
       if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-      return Buffer.from(await response.arrayBuffer());
+      const buffer = Buffer.from(await response.arrayBuffer());
+      mediaCache.set(url, buffer);
+      return buffer;
     } catch (error) {
       lastError = error;
       if (attempt < 4) await new Promise(resolve => setTimeout(resolve, 1500 * attempt));
@@ -77,7 +81,7 @@ Object.assign(place, {
   aliases: ["Hovedpostkontoret", "Oslo hovedpostkontor"],
   year: 1924,
   desc: "Oslo Hovedpostkontor i Dronningens gate 15 ble oppført i etapper 1914–18 og 1921–24 etter Rudolf E. Jacobsens konkurranseutkast. Bygningen var hovedterminal for Oslo postdistrikt til 1975 og samlet postflyt, publikumstjenester og administrasjon før kvartalet senere ble ombrukt til boliger og næring.",
-  popupDesc: "Hovedpostkontoret i Dronningens gate 15 ble tegnet av Rudolf Emanuel Jacobsen etter en arkitektkonkurranse i 1912. Bygningen ble oppført i etapper 1914–18 og 1921–24 og tatt i bruk som hovedpostkontor i 1924. Oslo byleksikon beskriver den som en av de siste store murbygningene fra tiden omkring første verdenskrig, med nasjonal nybarokk, mansardtak, tårnhjelmer og granittdekor inspirert av norsk treskurd.\n\nBygningen var hovedterminal for Oslo postdistrikt fram til 1975. Her møttes post som skulle sorteres, ekspederes og sendes videre, samtidig som bygget huset publikumsfunksjoner og sentral administrasjon. Etter at hovedterminalen flyttet, fortsatte Sentrum postkontor, Postdirektoratet og Postmuseet i bygningen fram til 2004.\n\nLinstow kjøpte Posthuskvartalet i 1999 og omformet det tidligere postanlegget til et kvartal med boliger og næring. I ombyggingen ble blant annet fasadene, den tidligere posthallen og sentrale trappeløp bevart. Det gjør stedet til et tydelig eksempel på hvordan en stor offentlig infrastrukturb bygning kan skifte funksjon uten at hele det historiske anlegget forsvinner.\n\nPå Tollbugata-siden er en kanonkule fra den svenske beleiringen i 1716 murt inn i veggen. Kulen satt i et eldre hus på tomten og ble bevart da dette ble revet i 1914. Dermed rommer Hovedpostkontoret også et eldre byhistorisk lag som ikke har med postdriften å gjøre.",
+  popupDesc: "Hovedpostkontoret i Dronningens gate 15 ble tegnet av Rudolf Emanuel Jacobsen etter en arkitektkonkurranse i 1912. Bygningen ble oppført i etapper 1914–18 og 1921–24 og tatt i bruk som hovedpostkontor i 1924. Oslo byleksikon beskriver den som en av de siste store murbygningene fra tiden omkring første verdenskrig, med nasjonal nybarokk, mansardtak, tårnhjelmer og granittdekor inspirert av norsk treskurd.\n\nBygningen var hovedterminal for Oslo postdistrikt fram til 1975. Her møttes post som skulle sorteres, ekspederes og sendes videre, samtidig som bygget huset publikumsfunksjoner og sentral administrasjon. Etter at hovedterminalen flyttet, fortsatte Sentrum postkontor, Postdirektoratet og Postmuseet i bygningen fram til 2004.\n\nLinstow kjøpte Posthuskvartalet i 1999 og omformet det tidligere postanlegget til et kvartal med boliger og næring. I ombyggingen ble blant annet fasadene, den tidligere posthallen og sentrale trappeløp bevart. Det gjør stedet til et tydelig eksempel på hvordan en stor offentlig infrastrukturbygning kan skifte funksjon uten at hele det historiske anlegget forsvinner.\n\nPå Tollbugata-siden er en kanonkule fra den svenske beleiringen i 1716 murt inn i veggen. Kulen satt i et eldre hus på tomten og ble bevart da dette ble revet i 1914. Dermed rommer Hovedpostkontoret også et eldre byhistorisk lag som ikke har med postdriften å gjøre.",
   image: "bilder/places/oslo_posthus.webp",
   cardImage: "bilder/kort/places/oslo_posthus.webp",
   frontImage: "bilder/places/oslo_posthus_front_portrait.webp",
