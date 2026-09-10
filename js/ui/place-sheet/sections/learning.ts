@@ -1,6 +1,14 @@
 import "./sources";
 
+type PlaceLike = Record<string, any>;
+
 type PlaceSheetLearningRuntime = Window & typeof globalThis & {
+  PLACES?: PlaceLike[];
+  HGPlaceOpen?: { getPlace?: (place: unknown) => PlaceLike | null };
+  HGPlaceLearningSurface?: {
+    loadRegistry?: () => Promise<any> | any;
+    renderLearningSection?: (registry: any, place: PlaceLike) => string;
+  };
   HGPlaceSheetSections?: Record<string, unknown> & { learning?: PlaceSheetLearningApi };
 };
 
@@ -9,6 +17,7 @@ type PlaceSheetLearningApi = {
 };
 
 const runtime = window as PlaceSheetLearningRuntime;
+let hydrationGeneration = 0;
 
 function text(value: unknown): string {
   return String(value == null ? "" : value).trim();
@@ -27,21 +36,13 @@ function shell(): HTMLElement | null {
   return document.querySelector<HTMLElement>('#placeCard [data-hg-place-sheet-shell="1"]');
 }
 
-function embeddedLearning(): HTMLElement | null {
-  return document.querySelector<HTMLElement>('#pcUnifiedKnowledgeHost [data-hg-unified-section="learning"]');
-}
-
 function ensureSlot(): HTMLElement | null {
   const root = shell();
   if (!(root instanceof HTMLElement)) return null;
-  let slot = root.querySelector<HTMLElement>('[data-hg-place-sheet-learning="1"]');
+  let slot = root.querySelector<HTMLElement>('[data-hg-place-sheet-learning="1"], [data-hg-place-sheet-section="learning"]');
   if (!(slot instanceof HTMLElement)) {
     slot = document.createElement("section");
-    slot.className = "pc-sheet-learning";
-    slot.setAttribute("data-hg-place-sheet-learning", "1");
-    slot.setAttribute("data-hg-place-sheet-section", "learning");
     slot.hidden = true;
-
     const language = root.querySelector<HTMLElement>('[data-hg-place-sheet-section="language"]');
     const reading = root.querySelector<HTMLElement>('[data-hg-place-sheet-section="reading"]');
     const news = root.querySelector<HTMLElement>('[data-hg-place-sheet-section="news"]');
@@ -49,35 +50,64 @@ function ensureSlot(): HTMLElement | null {
     if (anchor?.nextSibling) root.insertBefore(slot, anchor.nextSibling);
     else root.appendChild(slot);
   }
+  slot.classList.add("pc-sheet-learning");
+  slot.setAttribute("data-hg-place-sheet-learning", "1");
+  slot.setAttribute("data-hg-place-sheet-section", "learning");
   return slot;
+}
+
+function placeFor(placeId: string): PlaceLike | null {
+  const id = text(placeId);
+  if (!id) return null;
+  try {
+    const resolved = runtime.HGPlaceOpen?.getPlace?.(id);
+    if (resolved && typeof resolved === "object") return resolved;
+  } catch {}
+  return (Array.isArray(runtime.PLACES) ? runtime.PLACES : []).find(place => text(place?.id) === id) || null;
+}
+
+function invalidate(slot: HTMLElement): void {
+  slot.replaceChildren();
+  slot.hidden = true;
+  delete slot.dataset.placeId;
+}
+
+async function hydrate(placeId: string): Promise<void> {
+  const id = text(placeId);
+  const place = placeFor(id);
+  const slot = ensureSlot();
+  const api = runtime.HGPlaceLearningSurface;
+  if (!id || !place || !(slot instanceof HTMLElement) || typeof api?.loadRegistry !== "function" || typeof api?.renderLearningSection !== "function") return;
+
+  const generation = ++hydrationGeneration;
+  invalidate(slot);
+  let registry: any = null;
+  try { registry = await api.loadRegistry(); } catch {}
+  if (generation !== hydrationGeneration || !slot.isConnected || !registry) return;
+  const shellId = text(slot.closest<HTMLElement>('[data-hg-place-sheet-shell="1"]')?.dataset.placeId);
+  if (shellId && shellId !== id) return;
+
+  let rendered = "";
+  try { rendered = text(api.renderLearningSection(registry, place)); } catch {}
+  if (!rendered) return;
+
+  const compat = document.createElement("div");
+  compat.className = "pc-sheet-learning-compat hg-place-popup-v2";
+  compat.setAttribute("data-hg-place-sheet-learning-compat", "1");
+  compat.innerHTML = `<section data-hg-place-sheet-owner="learning" data-place-id="${id.replace(/"/g, "&quot;")}">${rendered}</section>`;
+  slot.replaceChildren(compat);
+  slot.dataset.placeId = id;
+  slot.hidden = false;
 }
 
 export function adoptCanonicalLearning(placeId: string): HTMLElement | null {
   const id = text(placeId);
-  if (!id) return null;
-  const learning = embeddedLearning();
-  if (!(learning instanceof HTMLElement)) return null;
-  if (!learning.querySelector('.hg-place-learning-section')) return null;
-
   const slot = ensureSlot();
-  if (!(slot instanceof HTMLElement)) return null;
-
-  let compat = slot.querySelector<HTMLElement>('[data-hg-place-sheet-learning-compat="1"]');
-  if (!(compat instanceof HTMLElement)) {
-    compat = document.createElement("div");
-    compat.className = "pc-sheet-learning-compat hg-place-popup-v2";
-    compat.setAttribute("data-hg-place-sheet-learning-compat", "1");
-  }
-
-  learning.hidden = false;
-  learning.removeAttribute("aria-hidden");
-  learning.setAttribute("role", "region");
-  learning.style.scrollMarginTop = "76px";
-  compat.replaceChildren(learning);
-  slot.replaceChildren(compat);
-  slot.hidden = false;
-  slot.dataset.placeId = id;
-  return slot;
+  if (!id || !(slot instanceof HTMLElement)) return null;
+  const owner = slot.querySelector<HTMLElement>('[data-hg-place-sheet-owner="learning"]');
+  if (!slot.hidden && text(slot.dataset.placeId) === id && owner instanceof HTMLElement) return slot;
+  void hydrate(id);
+  return null;
 }
 
 function onUnifiedReady(event: Event): void {

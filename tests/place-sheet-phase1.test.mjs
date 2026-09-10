@@ -28,11 +28,13 @@ test("Phase 1 styling keeps portrait hero and four editorial collection cards", 
   assert.match(collectionsSource, /collectionItemCount/);
 });
 
-test("Unified runtime mounts Phase 1, owns canonical About directly and restores Micro", async () => {
+test("Unified runtime mounts Phase 1 directly, owns canonical About and restores Micro", async () => {
   assert.match(unifiedSource, /place-sheet\/place-sheet-shell/);
   assert.match(unifiedSource, /mountPlaceSheetPhase1/);
   assert.doesNotMatch(unifiedSource, /attachCanonicalAboutToPlaceSheet/);
-  assert.match(unifiedSource, /suppressPlaceAbout:\s*true/);
+  assert.doesNotMatch(unifiedSource, /suppressPlaceAbout/);
+  assert.doesNotMatch(unifiedSource, /legacyShowPlacePopup\(place,\s*\{\s*unifiedHost:/);
+  assert.match(unifiedSource, /dispatchDirectReady\(place, generation\)/);
   assert.match(unifiedSource, /restoreLegacyPlaceCardStructure/);
 
   const dom = new JSDOM(`<!doctype html><html><head></head><body class="hg-app">
@@ -62,7 +64,9 @@ test("Unified runtime mounts Phase 1, owns canonical About directly and restores
     window.document.getElementById("pcDesc").textContent = place.id === standard.id ? "Kort ingress." : "Micro ingress.";
     return place;
   };
+  let popupCalls = 0;
   window.showPlacePopup = place => {
+    popupCalls += 1;
     const host = window.document.getElementById("pcUnifiedKnowledgeHost") || window.document.body;
     const popup = window.document.createElement("div");
     popup.className = "hg-popup place-popup-v2";
@@ -95,6 +99,7 @@ test("Unified runtime mounts Phase 1, owns canonical About directly and restores
   assert.ok(shell.querySelector(".pc-sheet-explore-grid .pc-side-stack"));
   assert.ok(shell.querySelector(".pc-sheet-onsite #pcEventsBox"));
   assert.match(shell.querySelector(".pc-sheet-canonical-about")?.textContent || "", /Lang canonical omtekst/);
+  assert.equal(popupCalls, 0, "standard Place must not invoke the legacy popup renderer");
   assert.equal(card.querySelector('.hg-popup .hg-place-about-section'), null, "canonical popupDesc node must have one visual owner");
 
   await window.openPlaceCard(micro);

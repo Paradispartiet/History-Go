@@ -17,8 +17,27 @@ type PlaceSheetPlace = Record<string, any> & {
   placeTier?: string;
 };
 
+type PlaceSheetShellRuntime = Window & typeof globalThis & {
+  HGPlaceUnifiedSurface?: {
+    open?: (place: unknown, target?: unknown) => Promise<boolean> | boolean;
+    scrollToSection?: (target: unknown, options?: { instant?: boolean; focus?: boolean }) => boolean;
+  };
+};
+
+const runtime = window as PlaceSheetShellRuntime;
 const SHELL_ATTR = "data-hg-place-sheet-shell";
 const SHELL_SECTION_ATTR = "data-hg-place-sheet-section";
+const NAV_ITEMS = [
+  ["about", "Om"],
+  ["history", "Historie"],
+  ["stories", "Fortellinger"],
+  ["before-after", "Før/etter"],
+  ["news", "Nyheter"],
+  ["reading", "Lesespor"],
+  ["language", "Språk"],
+  ["learning", "Fagverk"],
+  ["sources", "Kilder"]
+] as const;
 
 function text(value: unknown): string {
   return String(value == null ? "" : value).trim();
@@ -34,6 +53,37 @@ function body(): HTMLElement | null {
 
 function isMicro(place: PlaceSheetPlace | null | undefined): boolean {
   return text(place?.placeTier).toLowerCase() === "micro";
+}
+
+function ensureSectionNav(shell: HTMLElement, place: PlaceSheetPlace): HTMLElement {
+  let nav = shell.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
+  if (!(nav instanceof HTMLElement)) {
+    nav = document.createElement("nav");
+    nav.className = "pc-sheet-section-nav";
+    nav.setAttribute("data-hg-place-sheet-nav", "1");
+    nav.setAttribute("aria-label", "Hopp til del av stedet");
+    nav.innerHTML = NAV_ITEMS.map(([id, label]) => `<button type="button" data-hg-place-sheet-jump="${id}">${label}</button>`).join("");
+    const onsite = shell.querySelector<HTMLElement>("[data-hg-place-sheet-onsite]");
+    if (onsite?.nextSibling) shell.insertBefore(nav, onsite.nextSibling);
+    else shell.appendChild(nav);
+
+    nav.addEventListener("click", event => {
+      const button = event.target instanceof Element ? event.target.closest<HTMLElement>("[data-hg-place-sheet-jump]") : null;
+      if (!(button instanceof HTMLElement) || !nav?.contains(button)) return;
+      const target = text(button.dataset.hgPlaceSheetJump);
+      const placeId = text(shell.dataset.placeId);
+      if (!target || !placeId) return;
+      event.preventDefault();
+      const open = runtime.HGPlaceUnifiedSurface?.open;
+      if (typeof open === "function") {
+        void Promise.resolve(open(placeId, target));
+      } else {
+        runtime.HGPlaceUnifiedSurface?.scrollToSection?.(target);
+      }
+    });
+  }
+  nav.dataset.placeId = text(place.id);
+  return nav;
 }
 
 function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
@@ -69,8 +119,9 @@ function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
   }
 
   shell.dataset.placeId = text(place.id);
-  root.dataset.hgPlaceSheetPhase = "1";
-  root.classList.add("is-place-sheet-phase1");
+  ensureSectionNav(shell, place);
+  root.dataset.hgPlaceSheetPhase = "6";
+  root.classList.add("is-place-sheet-phase1", "is-place-sheet-direct");
   return shell;
 }
 
@@ -100,7 +151,6 @@ function movePrimaryNodes(shell: HTMLElement): void {
 function ensureAboutSlot(shell: HTMLElement): HTMLElement | null {
   const copy = shell.querySelector<HTMLElement>("[data-hg-place-sheet-copy]");
   if (!(copy instanceof HTMLElement)) return null;
-
   let aboutSlot = copy.querySelector<HTMLElement>("[data-hg-place-sheet-about]");
   if (!(aboutSlot instanceof HTMLElement)) {
     aboutSlot = document.createElement("div");
@@ -155,29 +205,14 @@ export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | nul
 
   movePrimaryNodes(shell);
   const aboutSlot = ensureAboutSlot(shell);
-  if (aboutSlot) {
-    const about = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true });
-    about?.classList.add("pc-sheet-canonical-about");
-  }
+  if (aboutSlot) mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true })?.classList.add("pc-sheet-canonical-about");
   const historySlot = ensureHistorySlot(shell);
-  if (historySlot) {
-    const history = mountCanonicalHistory(historySlot, place);
-    history?.classList.add("pc-sheet-canonical-history");
-  }
+  if (historySlot) mountCanonicalHistory(historySlot, place)?.classList.add("pc-sheet-canonical-history");
   const storiesSlot = ensureStoriesSlot(shell);
-  if (storiesSlot) {
-    const stories = mountCanonicalStories(storiesSlot, place);
-    stories?.classList.add("pc-sheet-canonical-stories");
-  }
+  if (storiesSlot) mountCanonicalStories(storiesSlot, place)?.classList.add("pc-sheet-canonical-stories");
   const beforeAfterSlot = ensureBeforeAfterSlot(shell);
-  if (beforeAfterSlot) {
-    const beforeAfter = mountCanonicalBeforeAfter(beforeAfterSlot, place);
-    beforeAfter?.classList.add("pc-sheet-canonical-before-after");
-  }
+  if (beforeAfterSlot) mountCanonicalBeforeAfter(beforeAfterSlot, place)?.classList.add("pc-sheet-canonical-before-after");
 
-  // Phase 3 starts the full section generation automatically in the same open
-  // flow. The queue only yields to the browser; it never waits for viewport,
-  // scroll, tab activation or a user-triggered "load more" action.
   startAutomaticPlaceSheetRender(text(place.id));
   return shell;
 }
@@ -211,7 +246,7 @@ export function restoreLegacyPlaceCardStructure(): void {
   if (events instanceof HTMLElement) legacyGrid.appendChild(events);
 
   shell?.remove();
-  root.classList.remove("is-place-sheet-phase1");
+  root.classList.remove("is-place-sheet-phase1", "is-place-sheet-direct");
   delete root.dataset.hgPlaceSheetPhase;
 }
 

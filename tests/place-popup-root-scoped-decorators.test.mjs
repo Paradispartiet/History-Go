@@ -79,10 +79,12 @@ test("direct-tabs routing respects the explicit popup root", async () => {
   dom.window.close();
 });
 
-test("language and Unified runtime expose and use explicit root scoping", () => {
+test("legacy language keeps explicit root scoping while Phase 6 standard Places bypass popup decorators", () => {
   assert.match(languageSource, /async function decorateLanguage\(place, root = null\)/);
   assert.match(languageSource, /resolvePopupRoot\(root\)/);
-  assert.match(unifiedSource, /HGPlacePopupTabs\?\.decoratePopup\?\.\(place, popup\)/);
-  assert.match(unifiedSource, /HGPlacePopupDirectTabs\?\.decoratePopup\?\.\(place, popup\)/);
-  assert.match(unifiedSource, /HGLanguageLayer\?\.decoratePopup\?\.\(place, popup\)/);
+  assert.doesNotMatch(unifiedSource, /HGPlacePopupTabs\?\.decoratePopup\?\.\(place, popup\)/);
+  assert.doesNotMatch(unifiedSource, /HGPlacePopupDirectTabs\?\.decoratePopup\?\.\(place, popup\)/);
+  assert.doesNotMatch(unifiedSource, /HGLanguageLayer\?\.decoratePopup\?\.\(place, popup\)/);
+  assert.match(unifiedSource, /mountPlaceSheetPhase1\(place\)/);
+  assert.match(unifiedSource, /dispatchDirectReady\(place, generation\)/);
 });

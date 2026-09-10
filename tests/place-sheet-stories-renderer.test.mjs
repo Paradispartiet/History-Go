@@ -85,13 +85,14 @@ test("generated runtime preserves full Story prose, metadata, links and direct r
   dom.window.close();
 });
 
-test("Unified Place Sheet owns Stories while standalone Place popup keeps shared fallback", () => {
+test("Phase 6 standard path owns Stories while standalone Place popup keeps shared fallback", () => {
   assert.match(shellSource, /mountCanonicalStories/);
   assert.match(shellSource, /pc-sheet-stories/);
   assert.match(shellSource, /SHELL_SECTION_ATTR[^\n]*stories|setAttribute\(SHELL_SECTION_ATTR, "stories"\)/);
-  assert.match(unifiedSource, /suppressPlaceStories:\s*ownsStories/);
-  assert.match(unifiedSource, /placeSheetSectionTarget\("stories"\)/);
-  assert.match(unifiedSource, /hg-section-stories/);
+  assert.match(unifiedSource, /\["stories", "Fortellinger"\]/);
+  assert.match(unifiedSource, /mountPlaceSheetPhase1\(place\)/);
+  assert.doesNotMatch(unifiedSource, /suppressPlaceStories/);
+  assert.doesNotMatch(unifiedSource, /legacyShowPlacePopup\(place,\s*\{\s*unifiedHost:/);
   assert.match(popupSource, /HGPlaceSheetSections\?\.stories\?\.renderHtml/);
   assert.match(popupSource, /suppressPlaceStories/);
 });

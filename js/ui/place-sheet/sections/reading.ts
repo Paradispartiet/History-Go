@@ -6,6 +6,7 @@ type PlaceSheetReadingApi = {
   renderHtml: (items: ReadingLike[], placeId: string) => string;
   mount: (container: HTMLElement, items: ReadingLike[], placeId: string) => HTMLElement | null;
   resolve: (placeId: string) => Promise<ReadingLike[]>;
+  adopt: (placeId: string) => HTMLElement | null;
 };
 
 type PlaceSheetReadingRuntime = Window & typeof globalThis & {
@@ -115,6 +116,7 @@ export function renderCanonicalReadingHtml(items: ReadingLike[], placeId: string
 export function mountCanonicalReading(container: HTMLElement, items: ReadingLike[], placeId: string): HTMLElement | null {
   const html = renderCanonicalReadingHtml(items, placeId);
   container.replaceChildren();
+  delete container.dataset.placeId;
   if (!html) {
     container.hidden = true;
     return null;
@@ -164,9 +166,6 @@ function ensureReadingSlot(): HTMLElement | null {
     slot.className = "pc-sheet-reading";
     slot.setAttribute("data-hg-place-sheet-reading", "1");
     slot.setAttribute("data-hg-place-sheet-section", "reading");
-    // Unified navigation already falls back to data-place-panel for sections not
-    // yet promoted into its direct section list. Marking the canonical slot keeps
-    // Lesespor navigation correct without moving loading/data ownership.
     slot.setAttribute("data-place-panel", "reading");
     slot.hidden = true;
     const news = shell.querySelector<HTMLElement>("[data-hg-place-sheet-news]");
@@ -176,12 +175,13 @@ function ensureReadingSlot(): HTMLElement | null {
   return slot;
 }
 
-function retireEmbeddedFallback(): void {
-  const panel = document.querySelector<HTMLElement>('#pcUnifiedKnowledgeHost [data-place-panel="reading"]');
-  panel?.remove();
-}
-
 let hydrationGeneration = 0;
+
+function invalidate(slot: HTMLElement): void {
+  slot.replaceChildren();
+  slot.hidden = true;
+  delete slot.dataset.placeId;
+}
 
 async function hydrateUnifiedReading(placeId: string): Promise<void> {
   const id = text(placeId);
@@ -189,16 +189,29 @@ async function hydrateUnifiedReading(placeId: string): Promise<void> {
   const generation = ++hydrationGeneration;
   const slot = ensureReadingSlot();
   if (!(slot instanceof HTMLElement)) return;
+  invalidate(slot);
 
   const items = await resolveReading(id);
   if (generation !== hydrationGeneration || !slot.isConnected) return;
+  const shellId = text(slot.closest<HTMLElement>('[data-hg-place-sheet-shell="1"]')?.dataset.placeId);
+  if (shellId && shellId !== id) return;
   const mounted = mountCanonicalReading(slot, items, id);
-  if (mounted) retireEmbeddedFallback();
+  if (mounted) slot.dataset.placeId = id;
+}
+
+export function adoptCanonicalReading(placeId: string): HTMLElement | null {
+  const id = text(placeId);
+  const slot = ensureReadingSlot();
+  if (!id || !(slot instanceof HTMLElement)) return null;
+  const owner = slot.querySelector<HTMLElement>('[data-hg-place-sheet-owner="reading"]');
+  if (!slot.hidden && text(slot.dataset.placeId) === id && owner instanceof HTMLElement) return slot;
+  void hydrateUnifiedReading(id);
+  return null;
 }
 
 function onUnifiedReady(event: Event): void {
   const id = text((event as CustomEvent<{ placeId?: string }>).detail?.placeId);
-  if (id) void hydrateUnifiedReading(id);
+  if (id) adoptCanonicalReading(id);
 }
 
 ensureStylesheet();
@@ -209,7 +222,8 @@ const readingApi: PlaceSheetReadingApi = {
   renderContentHtml: renderReadingContentHtml,
   renderHtml: renderCanonicalReadingHtml,
   mount: mountCanonicalReading,
-  resolve: resolveReading
+  resolve: resolveReading,
+  adopt: adoptCanonicalReading
 };
 
 runtime.HGPlaceSheetSections = {

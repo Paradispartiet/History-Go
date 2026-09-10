@@ -46,13 +46,14 @@ test("generated runtime exposes sorted and escaped shared History renderer", () 
   dom.window.close();
 });
 
-test("Unified path owns history_layers in Place Sheet while standalone popup keeps shared fallback", () => {
+test("Phase 6 standard path owns history_layers in Place Sheet while standalone popup keeps shared fallback", () => {
   assert.match(shellSource, /mountCanonicalHistory/);
   assert.match(shellSource, /data-hg-place-sheet-section[^\n]*history|SHELL_SECTION_ATTR[^\n]*history/);
   assert.match(shellSource, /pc-sheet-canonical-history/);
-  assert.match(unifiedSource, /suppressPlaceHistory:\s*ownsHistory/);
-  assert.match(unifiedSource, /placeSheetSectionTarget\("history"\)/);
-  assert.match(unifiedSource, /hg-place-history-section/);
+  assert.match(unifiedSource, /\["history", "Historie"\]/);
+  assert.match(unifiedSource, /mountPlaceSheetPhase1\(place\)/);
+  assert.doesNotMatch(unifiedSource, /suppressPlaceHistory/);
+  assert.doesNotMatch(unifiedSource, /legacyShowPlacePopup\(place,\s*\{\s*unifiedHost:/);
   assert.match(popupSource, /HGPlaceSheetSections\?\.history/);
   assert.match(popupSource, /suppressPlaceHistory/);
 });

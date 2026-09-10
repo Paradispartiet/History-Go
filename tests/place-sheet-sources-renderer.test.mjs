@@ -4,84 +4,102 @@ import fs from "node:fs";
 import { JSDOM } from "jsdom";
 
 const adapterSource = fs.readFileSync("js/ui/place-sheet/sections/sources.ts", "utf8");
+const contextSource = fs.readFileSync("js/ui/place-sheet/place-section-context.ts", "utf8");
 const learningSource = fs.readFileSync("js/ui/place-sheet/sections/learning.ts", "utf8");
-const popupSource = fs.readFileSync("js/ui/place-popup-tabs.js", "utf8");
-const popupV2Source = fs.readFileSync("js/ui/place-popup-v2.js", "utf8");
 const runtimeSource = fs.readFileSync("dist/web/place-unified-surface.js", "utf8");
 const css = fs.readFileSync("css/place-sheet-sources.css", "utf8");
 
-test("Place Sheet Kilder adapter preserves canonical source owners", () => {
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+async function waitFor(predicate, timeoutMs = 1500) {
+  const started = Date.now();
+  while (Date.now() - started < timeoutMs) {
+    if (predicate()) return;
+    await delay(10);
+  }
+  throw new Error("Timed out waiting for direct Sources owner");
+}
+
+test("Place Sheet Kilder renders from canonical Place/Leksikon context without popup DOM", () => {
   assert.doesNotMatch(adapterSource, /fetch\(/);
   assert.doesNotMatch(adapterSource, /DataHub/);
-  assert.doesNotMatch(adapterSource, /HGPlaceOpen/);
-  assert.doesNotMatch(adapterSource, /source_summary|sourceSummary|externalLinks|for_na/);
-  assert.match(popupV2Source, /function renderSourceSummary\(place\)/);
-  assert.match(popupV2Source, /hg-place-sources-section/);
-  assert.match(popupSource, /function renderSources\(place, articles, includeProfileLabels = true\)/);
-  assert.match(popupSource, /append\(tabs\.panels\.sources, renderSources/);
+  assert.match(adapterSource, /resolvePlaceKnowledgeContext/);
+  assert.match(adapterSource, /source_summary|sourceSummary/);
+  assert.match(adapterSource, /externalLinks/);
+  assert.match(adapterSource, /for_na/);
+  assert.match(adapterSource, /data-hg-place-sheet-owner="sources"/);
+  assert.doesNotMatch(adapterSource, /pcUnifiedKnowledgeHost/);
+  assert.match(contextSource, /LEKSIKON_BY_PLACE/);
+  assert.match(contextSource, /HGLeksikon/);
+  assert.match(contextSource, /visibleArticlesForPlace/);
   assert.match(learningSource, /import "\.\/sources"/);
 });
 
-test("generated runtime moves the exact Sources panel after Fagverk and keeps later hydration alive", () => {
+test("generated runtime renders direct Kilder after Fagverk with canonical links and escaping", async () => {
   const dom = new JSDOM(`<!doctype html><html><head></head><body>
     <div id="placeCard" class="is-unified-place is-place-sheet-phase1">
       <div class="pc-body">
-        <section class="pc-sheet-shell" data-hg-place-sheet-shell="1">
+        <section class="pc-sheet-shell" data-hg-place-sheet-shell="1" data-place-id="sted">
           <section data-hg-place-sheet-section="news"></section>
           <section data-hg-place-sheet-section="reading"></section>
           <section data-hg-place-sheet-section="language"></section>
-        </section>
-        <section id="pcUnifiedKnowledgeHost">
-          <article class="hg-place-popup-v2">
-            <div class="hg-place-tab-panels">
-              <section class="hg-place-tab-panel" data-place-panel="sources">
-                <h2 class="pc-unified-section-title">Kilder</h2>
-                <section class="hg-place-sources-section"><ul><li>Canonical source profile</li></ul></section>
-              </section>
-            </div>
-            <section class="hg-place-tab-panel pc-unified-learning-panel" data-hg-unified-section="learning">
-              <section class="hg-place-learning-section">Fagverkinnhold</section>
-            </section>
-          </article>
+          <section data-hg-place-sheet-section="learning"></section>
         </section>
       </div>
     </div>
   </body></html>`, { url: "https://history-go.test/", runScripts: "outside-only" });
   const { window } = dom;
-  const sourcePanelBefore = window.document.querySelector('[data-place-panel="sources"]');
+  const place = {
+    id: "sted",
+    name: "Sted",
+    placeTier: "standard",
+    source_summary: { safe_sources: ["Byarkiv & katalog"] },
+    externalLinks: [{ type: "official", label: "Offisiell <side>", url: "https://example.com/place" }],
+    for_na: { sources: ["https://example.com/compare"] }
+  };
+  window.PLACES = [place];
+  window.LEKSIKON_BY_PLACE = {
+    sted: [{ id: "main", title: "Sted", externalLinks: [{ type: "archive", label: "Arkiv & avis", url: "https://example.com/article" }] }]
+  };
 
   window.eval(runtimeSource);
-  window.dispatchEvent(new window.CustomEvent("hg:place-unified-ready", { detail: { placeId: "sted" } }));
+  window.dispatchEvent(new window.CustomEvent("hg:place-unified-ready", { detail: { placeId: "sted", direct: true, phase: 6 } }));
+  await waitFor(() => Boolean(window.document.querySelector('[data-hg-place-sheet-section="sources"] [data-hg-place-sheet-owner="sources"]')));
 
   const sourceSlot = window.document.querySelector('[data-hg-place-sheet-section="sources"]');
   const learningSlot = window.document.querySelector('[data-hg-place-sheet-section="learning"]');
   assert.ok(sourceSlot);
-  assert.ok(learningSlot);
   assert.equal(sourceSlot.hidden, false);
   assert.equal(sourceSlot.dataset.placeId, "sted");
-  assert.equal(sourceSlot.querySelector('[data-place-panel="sources"]'), sourcePanelBefore, "canonical Sources panel must move, not clone");
-  assert.equal(window.document.querySelector('#pcUnifiedKnowledgeHost [data-place-panel="sources"]'), null);
+  assert.match(sourceSlot.textContent, /Byarkiv & katalog/);
+  assert.match(sourceSlot.textContent, /Offisiell <side>/);
+  assert.match(sourceSlot.textContent, /Arkiv & avis/);
+  assert.equal(sourceSlot.querySelector('a[href="https://example.com/place"]')?.getAttribute("target"), "_blank");
+  assert.ok(sourceSlot.querySelector('a[href="https://example.com/article"]'));
+  assert.ok(sourceSlot.querySelector('a[href="https://example.com/compare"]'));
+  assert.equal(window.document.querySelector('#pcUnifiedKnowledgeHost'), null);
   assert.equal(learningSlot.nextElementSibling, sourceSlot, "Kilder must follow Fagverk in the canonical stream");
-
-  sourcePanelBefore.insertAdjacentHTML("beforeend", '<div data-generated="sources"><a href="https://example.com/source">Sen kildehydrering</a></div>');
-  assert.match(sourceSlot.textContent, /Sen kildehydrering/, "async popup hydration must continue on the moved panel");
   dom.window.close();
 });
 
-test("Kilder adapter fails closed outside the unified canonical Sources panel", () => {
+test("Kilder has a direct owner even when no user-facing sources are registered", async () => {
   const dom = new JSDOM(`<!doctype html><html><head></head><body>
-    <div id="placeCard"><div class="pc-body"><section data-hg-place-sheet-shell="1"></section></div></div>
-    <section class="hg-popup place-popup-v2"><section data-place-panel="sources">Standalone Sources</section></section>
+    <div id="placeCard"><div class="pc-body"><section data-hg-place-sheet-shell="1" data-place-id="sted"></section></div></div>
   </body></html>`, { url: "https://history-go.test/", runScripts: "outside-only" });
   const { window } = dom;
+  window.PLACES = [{ id: "sted", name: "Sted", placeTier: "standard" }];
+  window.LEKSIKON_BY_PLACE = { sted: [] };
   window.eval(runtimeSource);
   assert.equal(window.HGPlaceSheetSections?.sources?.adopt("sted"), null);
-  assert.equal(window.document.querySelector('[data-hg-place-sheet-section="sources"]'), null);
-  assert.match(window.document.querySelector('.place-popup-v2 [data-place-panel="sources"]').textContent, /Standalone Sources/);
+  await waitFor(() => Boolean(window.document.querySelector('[data-hg-place-sheet-section="sources"] [data-hg-place-sheet-owner="sources"]')));
+  const slot = window.document.querySelector('[data-hg-place-sheet-section="sources"]');
+  assert.equal(slot.hidden, false);
+  assert.equal(slot.dataset.placeId, "sted");
+  assert.match(slot.textContent, /Ingen brukerrettede kilder/);
   dom.window.close();
 });
 
-test("adopted Kilder panel has direct responsive Place Sheet compatibility styling", () => {
+test("direct Kilder panel has responsive Place Sheet compatibility styling", () => {
   assert.match(css, /canonical Kilder compatibility surface/);
   assert.match(css, /pc-sheet-canonical-sources/);
   assert.match(css, /position:static !important/);

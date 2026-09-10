@@ -1,19 +1,15 @@
 import { mountPlaceSheetPhase1, placeSheetSectionTarget, restoreLegacyPlaceCardStructure } from "./place-sheet/place-sheet-shell";
+import { promoteAutomaticPlaceSheetSection } from "./place-sheet/place-sheet-render-queue";
 
-// js/ui/place-unified-surface.ts
-// Unified Place Surface: embeds the canonical place-popup knowledge renderer
-// inside PlaceCard, preserving existing data owners and public entry points.
-
+// Phase 6 compatibility router: standard Places render directly in Place Sheet.
+// The legacy popup chain remains reachable only for Micro Places.
 type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
   DEBUG?: boolean;
-  PLACES?: Array<Record<string, unknown>>;
+  PLACES?: Array<Record<string, any>>;
   openPlaceCard?: (...args: any[]) => any;
   showPlacePopup?: (...args: any[]) => any;
   HGPlaceOpen?: { getPlace?: (place: unknown) => any };
   HGPlacePopupTabs?: Record<string, any>;
-  HGPlacePopupDirectTabs?: Record<string, any>;
-  HGLanguageLayer?: Record<string, any>;
-  HGPlaceLearningSurface?: Record<string, any>;
   HGPlaceUnifiedSurface?: Record<string, any>;
   __HG_PLACE_POPUP_DIRECT_TABS_INSTALLED__?: boolean;
   __HG_PLACE_UNIFIED_SURFACE_INSTALLED__?: boolean;
@@ -25,11 +21,8 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
   const INSTALL_FLAG = "__HG_PLACE_UNIFIED_SURFACE_INSTALLED__";
   const STYLE_FLAG = "data-hg-place-unified-style";
   const SHEET_STYLE_FLAG = "data-hg-place-sheet-style";
-  const HOST_ID = "pcUnifiedKnowledgeHost";
-  const EMBEDDED_CLASS = "hg-unified-renderer-embedded";
+  const PHASE6_STYLE_FLAG = "data-hg-place-sheet-phase6-style";
   const CARD_CLASS = "is-unified-place";
-  const STAGING_CLASS = "hg-unified-place-staging";
-  const GENERATION_ATTR = "hgUnifiedGeneration";
 
   const SECTION_ORDER = Object.freeze([
     ["about", "Om"],
@@ -56,11 +49,9 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
   });
 
   const text = (value: unknown): string => String(value == null ? "" : value).trim();
-  const wait = (ms: number): Promise<void> => new Promise(resolve => global.setTimeout(resolve, ms));
-
   let legacyOpenPlaceCard: ((...args: any[]) => any) | null = null;
   let legacyShowPlacePopup: ((...args: any[]) => any) | null = null;
-  let generation = 0;
+  let readyGeneration = 0;
   let activeMount: Promise<HTMLElement | null> = Promise.resolve(null);
 
   function isMicro(place: any): boolean {
@@ -75,10 +66,20 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     return document.getElementById("placeCard");
   }
 
-  function currentPlace(): any | null {
-    const id = text(card()?.dataset?.currentPlaceId);
+  function resolvedPlace(place: any): any | null {
+    if (place && typeof place === "object") return global.HGPlaceOpen?.getPlace?.(place) || place;
+    const id = text(place);
     if (!id) return null;
-    return (Array.isArray(global.PLACES) ? global.PLACES : []).find(place => placeId(place) === id) || null;
+    try {
+      const enriched = global.HGPlaceOpen?.getPlace?.(id);
+      if (enriched) return enriched;
+    } catch {}
+    return (Array.isArray(global.PLACES) ? global.PLACES : []).find(row => placeId(row) === id) || null;
+  }
+
+  function currentPlace(): any | null {
+    const id = text(card()?.dataset?.currentPlaceId || card()?.dataset?.hgUnifiedPlaceId);
+    return resolvedPlace(id);
   }
 
   function canonicalSection(value: unknown): string {
@@ -89,7 +90,8 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
   function ensureStylesheet(): void {
     const styles = [
       [STYLE_FLAG, "css/place-unified-surface.css"],
-      [SHEET_STYLE_FLAG, "css/place-sheet.css"]
+      [SHEET_STYLE_FLAG, "css/place-sheet.css"],
+      [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css"]
     ] as const;
     for (const [flag, href] of styles) {
       if (document.querySelector(`link[${flag}="1"]`)) continue;
@@ -101,230 +103,39 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     }
   }
 
-  function ensureHost(place: any): HTMLElement | null {
-    const root = card();
-    const body = root?.querySelector(".pc-body");
-    if (!(root instanceof HTMLElement) || !(body instanceof HTMLElement)) return null;
-
-    let host = document.getElementById(HOST_ID);
-    if (!(host instanceof HTMLElement)) {
-      host = document.createElement("section");
-      host.id = HOST_ID;
-      host.className = "pc-unified-knowledge-host";
-      host.setAttribute("aria-label", "Stedets kunnskap");
-      host.innerHTML = '<div class="pc-unified-loading" data-hg-unified-loading aria-live="polite">Laster stedets innhold …</div>';
-      body.appendChild(host);
-    } else if (host.parentElement !== body) {
-      body.appendChild(host);
-    }
-
-    root.classList.add(CARD_CLASS);
-    root.dataset.hgUnifiedPlaceId = placeId(place);
-    return host;
-  }
-
-  function removeEmbeddedRenderer(): void {
-    document.querySelectorAll(`.hg-popup.place-popup-v2.${EMBEDDED_CLASS}`).forEach(node => node.remove());
+  function removeStandardPopupCompatibility(): void {
+    document.getElementById("pcUnifiedKnowledgeHost")?.remove();
+    document.querySelectorAll(
+      '.hg-popup.place-popup-v2.hg-unified-renderer-embedded, .hg-popup.place-popup-v2[data-hg-unified-direct-host="1"]'
+    ).forEach(node => node.remove());
   }
 
   function clearUnifiedState(): void {
+    ++readyGeneration;
     restoreLegacyPlaceCardStructure();
     const root = card();
-    root?.classList.remove(CARD_CLASS);
+    root?.classList.remove(CARD_CLASS, "is-place-sheet-direct");
     if (root) {
       delete root.dataset.hgUnifiedPlaceId;
-      delete root.dataset[GENERATION_ATTR];
+      delete root.dataset.hgUnifiedGeneration;
     }
-    removeEmbeddedRenderer();
-    document.getElementById(HOST_ID)?.remove();
-    document.body?.classList.remove(STAGING_CLASS);
+    removeStandardPopupCompatibility();
+    document.body?.classList.remove("hg-unified-place-staging");
   }
 
-  async function waitForPopup(expectedGeneration: number, place: any, timeoutMs = 1800): Promise<HTMLElement | null> {
-    const started = Date.now();
-    const expectedName = text(place?.name || place?.title);
-    while (Date.now() - started < timeoutMs) {
-      if (String(card()?.dataset?.[GENERATION_ATTR] || "") !== String(expectedGeneration)) return null;
-      const candidates = [...document.querySelectorAll(".hg-popup.place-popup-v2")]
-        .filter(node => !node.classList.contains(EMBEDDED_CLASS));
-      const popup = expectedName
-        ? candidates.find(node => text(node.querySelector(".hg-modal-title")?.textContent) === expectedName)
-        : candidates[0];
-      if (popup instanceof HTMLElement) return popup;
-      await wait(20);
-    }
-    return null;
+  function dispatchDirectReady(place: any, generation: number): void {
+    global.setTimeout(() => {
+      if (generation !== readyGeneration) return;
+      const root = card();
+      if (!(root instanceof HTMLElement) || text(root.dataset.hgUnifiedPlaceId) !== placeId(place)) return;
+      global.dispatchEvent?.(new CustomEvent("hg:place-unified-ready", {
+        detail: { placeId: placeId(place), direct: true, phase: 6 }
+      }));
+    }, 0);
   }
 
-  async function waitForTabs(popup: HTMLElement, expectedGeneration: number, timeoutMs = 1800): Promise<HTMLElement | null> {
-    const started = Date.now();
-    while (Date.now() - started < timeoutMs) {
-      if (String(card()?.dataset?.[GENERATION_ATTR] || "") !== String(expectedGeneration)) return null;
-      const article = popup?.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]')
-        || popup?.querySelector(".hg-place-popup-v2");
-      const panels = article?.querySelector(".hg-place-tab-panels");
-      if (article instanceof HTMLElement && panels instanceof HTMLElement) return article;
-      await wait(20);
-    }
-    return null;
-  }
-
-  function sectionLabel(id: string): string {
-    if (id === "about" && placeSheetSectionTarget("about")) return "Mer om stedet";
-    return SECTION_ORDER.find(([key]) => key === id)?.[1] || id;
-  }
-
-  function normalizePanels(article: HTMLElement): void {
-    const panelWrap = article.querySelector(".hg-place-tab-panels");
-    if (!(panelWrap instanceof HTMLElement)) return;
-
-    [...panelWrap.querySelectorAll("[data-place-panel]")].forEach(panel => {
-      if (!(panel instanceof HTMLElement)) return;
-      const id = text(panel.dataset.placePanel);
-      if (id === "more" || ((id === "before-after" || id === "news") && placeSheetSectionTarget(id))) {
-        panel.hidden = true;
-        panel.setAttribute("aria-hidden", "true");
-        panel.dataset.hgUnifiedSection = id;
-        return;
-      }
-      panel.hidden = false;
-      panel.removeAttribute("aria-hidden");
-      panel.setAttribute("role", "region");
-      panel.dataset.hgUnifiedSection = id;
-      panel.style.scrollMarginTop = "76px";
-      if (!panel.querySelector(":scope > .pc-unified-section-title")) {
-        const heading = document.createElement("h2");
-        heading.className = "pc-unified-section-title";
-        heading.textContent = sectionLabel(id);
-        panel.prepend(heading);
-      }
-    });
-  }
-
-  function bindUnifiedNavigation(popup: HTMLElement, article: HTMLElement): void {
-    const tablist = article.querySelector(".hg-place-tabs");
-    const panelWrap = article.querySelector(".hg-place-tab-panels");
-    if (!(tablist instanceof HTMLElement) || !(panelWrap instanceof HTMLElement)) return;
-
-    tablist.classList.add("pc-unified-section-nav");
-    tablist.setAttribute("aria-label", "Hopp til del av stedet");
-    tablist.removeAttribute("role");
-
-    [...tablist.querySelectorAll("[data-place-tab]")].forEach(button => {
-      if (!(button instanceof HTMLElement)) return;
-      const id = canonicalSection(button.dataset.placeTab);
-      if (id === "about" && text(button.dataset.placeTab) === "more") {
-        button.remove();
-        return;
-      }
-      button.removeAttribute("role");
-      button.removeAttribute("aria-selected");
-      button.removeAttribute("aria-controls");
-      button.tabIndex = 0;
-      button.dataset.hgUnifiedJump = id;
-    });
-
-    const intercept = (event: Event): void => {
-      const target = event.target instanceof Element ? event.target.closest("[data-hg-unified-jump]") : null;
-      if (!(target instanceof HTMLElement) || !popup.contains(target)) return;
-      if (event.type === "keydown") {
-        const keyboardEvent = event as KeyboardEvent;
-        if (!["Enter", " "].includes(keyboardEvent.key)) return;
-      }
-      event.preventDefault();
-      event.stopPropagation();
-      event.stopImmediatePropagation();
-      scrollToSection(target.dataset.hgUnifiedJump, { focus: event.type === "keydown" });
-    };
-    popup.addEventListener("click", intercept, true);
-    popup.addEventListener("keydown", intercept, true);
-
-    normalizePanels(article);
-    const observer = new MutationObserver(() => normalizePanels(article));
-    observer.observe(panelWrap, { childList: true, subtree: false, attributes: true, attributeFilter: ["hidden", "aria-hidden"] });
-    (popup as any).__hgUnifiedPanelObserver = observer;
-  }
-
-  async function ensureLearningSection(place: any, article: HTMLElement): Promise<HTMLElement | null> {
-    const api = global.HGPlaceLearningSurface;
-    if (!api || typeof api.loadRegistry !== "function" || typeof api.renderLearningSection !== "function") return null;
-    let registry: any = null;
-    try { registry = await api.loadRegistry(); } catch {}
-    if (!registry || !article?.isConnected) return null;
-
-    const body = article.querySelector(".hg-place-popup-body");
-    if (!(body instanceof HTMLElement)) return null;
-    let wrapper: HTMLElement | null = body.querySelector<HTMLElement>('[data-hg-unified-section="learning"]');
-    const existingLearning = body.querySelector(".hg-place-learning-section");
-
-    if (!(wrapper instanceof HTMLElement)) {
-      wrapper = document.createElement("section");
-      wrapper.className = "hg-place-tab-panel pc-unified-learning-panel";
-      wrapper.dataset.hgUnifiedSection = "learning";
-      wrapper.setAttribute("role", "region");
-      wrapper.style.scrollMarginTop = "76px";
-      wrapper.innerHTML = '<h2 class="pc-unified-section-title">Fagverk</h2>';
-
-      if (existingLearning instanceof HTMLElement) {
-        wrapper.appendChild(existingLearning);
-      } else {
-        const rendered = text(api.renderLearningSection(registry, place));
-        if (!rendered) return null;
-        wrapper.insertAdjacentHTML("beforeend", rendered);
-      }
-
-      const panels = body.querySelector(".hg-place-tab-panels");
-      panels?.insertAdjacentElement("afterend", wrapper);
-    }
-
-    const stableWrapper = wrapper as HTMLElement;
-    const reconcileLearning = (): void => {
-      if (!stableWrapper.isConnected) return;
-      const owned = stableWrapper.querySelector(".hg-place-learning-section");
-      [...body.querySelectorAll(".hg-place-learning-section")].forEach(section => {
-        if (!(section instanceof HTMLElement) || stableWrapper.contains(section)) return;
-        if (owned) section.remove();
-        else stableWrapper.appendChild(section);
-      });
-    };
-    reconcileLearning();
-    if (!(stableWrapper as any).__hgUnifiedLearningObserver) {
-      const observer = new MutationObserver(reconcileLearning);
-      observer.observe(body, { childList: true, subtree: true });
-      (stableWrapper as any).__hgUnifiedLearningObserver = observer;
-      global.setTimeout(() => observer.disconnect(), 10000);
-    }
-
-    const nav = article.querySelector(".pc-unified-section-nav");
-    if (nav instanceof HTMLElement && !nav.querySelector('[data-hg-unified-jump="learning"]')) {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "hg-place-tab pc-unified-learning-jump";
-      button.dataset.hgUnifiedJump = "learning";
-      button.textContent = "Fagverk";
-      const sourcesButton = nav.querySelector('[data-hg-unified-jump="sources"]');
-      nav.insertBefore(button, sourcesButton || null);
-    }
-    return stableWrapper;
-  }
-
-  function prepareEmbeddedPopup(popup: HTMLElement, article: HTMLElement, place: any): HTMLElement | null {
-    const host = ensureHost(place);
-    if (!(host instanceof HTMLElement)) return null;
-
-    host.querySelector("[data-hg-unified-loading]")?.remove();
-    popup.classList.add(EMBEDDED_CLASS);
-    popup.dataset.hgUnifiedPlaceId = placeId(place);
-    popup.setAttribute("aria-label", `Kunnskap om ${text(place?.name || "stedet")}`);
-    popup.querySelector(".hg-popup-close")?.setAttribute("hidden", "");
-    if (popup.parentElement !== host) host.replaceChildren(popup);
-
-    bindUnifiedNavigation(popup, article);
-    normalizePanels(article);
-    return popup;
-  }
-
-  async function materialize(place: any, options: { refresh?: boolean } = {}): Promise<HTMLElement | null> {
+  async function materialize(placeInput: any, _options: { refresh?: boolean } = {}): Promise<HTMLElement | null> {
+    const place = resolvedPlace(placeInput) || placeInput;
     const id = placeId(place);
     if (!id || isMicro(place)) {
       clearUnifiedState();
@@ -333,71 +144,20 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
 
     const root = card();
     if (!(root instanceof HTMLElement)) return null;
-    mountPlaceSheetPhase1(place);
-    ensureHost(place);
+    removeStandardPopupCompatibility();
+    const shell = mountPlaceSheetPhase1(place);
+    if (!(shell instanceof HTMLElement)) return null;
 
-    const currentEmbedded = document.querySelector(`.hg-popup.place-popup-v2.${EMBEDDED_CLASS}`);
-    if (!options.refresh && currentEmbedded instanceof HTMLElement && currentEmbedded.dataset.hgUnifiedPlaceId === id) {
-      return currentEmbedded;
-    }
+    root.classList.add(CARD_CLASS, "is-place-sheet-direct");
+    root.dataset.hgUnifiedPlaceId = id;
+    const generation = ++readyGeneration;
+    root.dataset.hgUnifiedGeneration = String(generation);
+    document.body?.classList.remove("hg-unified-place-staging");
 
-    const myGeneration = ++generation;
-    root.dataset[GENERATION_ATTR] = String(myGeneration);
-    removeEmbeddedRenderer();
-    const host = ensureHost(place);
-    if (host instanceof HTMLElement) {
-      host.innerHTML = '<div class="pc-unified-loading" data-hg-unified-loading aria-live="polite">Laster stedets innhold …</div>';
-    }
-
-    if (typeof legacyShowPlacePopup !== "function") return null;
-    document.body?.classList.add(STAGING_CLASS);
-    document.querySelectorAll(`.hg-popup.place-popup-v2:not(.${EMBEDDED_CLASS})`).forEach(node => node.remove());
-
-    try {
-      const ownsHistory = placeSheetSectionTarget("history") instanceof HTMLElement;
-      const ownsStories = placeSheetSectionTarget("stories") instanceof HTMLElement;
-      const result = legacyShowPlacePopup(place, {
-        unifiedHost: host instanceof HTMLElement ? host : null,
-        suppressPlaceAbout: true,
-        suppressPlaceHistory: ownsHistory,
-        suppressPlaceStories: ownsStories
-      });
-      if (result && typeof result.then === "function") await result;
-      const popup = await waitForPopup(myGeneration, place);
-      if (!(popup instanceof HTMLElement)) return null;
-
-      try { global.HGPlacePopupTabs?.decoratePopup?.(place, popup); } catch {}
-      try { global.HGPlacePopupDirectTabs?.decoratePopup?.(place, popup); } catch {}
-      try {
-        const languageResult = global.HGLanguageLayer?.decoratePopup?.(place, popup);
-        if (languageResult && typeof languageResult.then === "function") await languageResult;
-      } catch {}
-
-      const article = await waitForTabs(popup, myGeneration);
-      if (!(article instanceof HTMLElement)) return null;
-      if (String(root.dataset[GENERATION_ATTR] || "") !== String(myGeneration)) return null;
-
-      // Phase 2: About and canonical history_layers are already rendered directly by Place Sheet.
-      // Remove only compatibility duplicates if an older/custom popup renderer ignored suppression.
-      if (placeSheetSectionTarget("about")) popup.querySelector(".hg-place-about-section")?.remove();
-      if (placeSheetSectionTarget("history")) popup.querySelector(".hg-place-history-section")?.remove();
-      if (placeSheetSectionTarget("stories")) popup.querySelector(".hg-section-stories")?.remove();
-      if (placeSheetSectionTarget("before-after")) popup.querySelector('[data-generated="before-after"]')?.remove();
-      if (placeSheetSectionTarget("news")) popup.querySelector('[data-generated="news"]')?.remove();
-      const embedded = prepareEmbeddedPopup(popup, article, place);
-      if (!(embedded instanceof HTMLElement)) return null;
-      await ensureLearningSection(place, article);
-      normalizePanels(article);
-      global.dispatchEvent?.(new CustomEvent("hg:place-unified-ready", { detail: { placeId: id } }));
-      return embedded;
-    } catch (error) {
-      if (global.DEBUG) console.warn("[place-unified-surface]", error);
-      return null;
-    } finally {
-      if (String(root.dataset[GENERATION_ATTR] || "") === String(myGeneration)) {
-        document.body?.classList.remove(STAGING_CLASS);
-      }
-    }
+    // No legacy showPlacePopup call for standard Places. Owner-backed Place
+    // Sheet sections start from the automatic queue and this readiness event.
+    dispatchDirectReady(place, generation);
+    return shell;
   }
 
   function scrollToSection(target: unknown, options: { instant?: boolean; focus?: boolean } = {}): boolean {
@@ -405,12 +165,10 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     const root = card();
     if (!(root instanceof HTMLElement)) return false;
 
-    let section: Element | null = (["about", "history", "stories", "before-after", "news"].includes(id)) ? placeSheetSectionTarget(id) : null;
-    if (!(section instanceof HTMLElement) && id === "learning") {
-      section = root.querySelector('[data-hg-unified-section="learning"]');
-    } else if (!(section instanceof HTMLElement)) {
-      section = [...root.querySelectorAll("[data-place-panel]")]
-        .find(panel => text(panel.getAttribute("data-place-panel")) === id) || null;
+    let section: Element | null = placeSheetSectionTarget(id);
+    if (!(section instanceof HTMLElement)) {
+      section = [...root.querySelectorAll("[data-place-panel], [data-hg-unified-section]")]
+        .find(node => text(node.getAttribute("data-place-panel") || node.getAttribute("data-hg-unified-section")) === id) || null;
     }
     if (!(section instanceof HTMLElement)) return false;
 
@@ -423,24 +181,24 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     return true;
   }
 
-  async function openSection(place: any, target: unknown = "about"): Promise<boolean> {
-    const resolvedPlace = typeof place === "string"
-      ? (Array.isArray(global.PLACES) ? global.PLACES : []).find(row => placeId(row) === text(place))
-      : place;
-    if (!resolvedPlace) return false;
-    if (isMicro(resolvedPlace)) {
-      if (typeof legacyShowPlacePopup === "function") legacyShowPlacePopup(resolvedPlace);
+  async function openSection(placeInput: any, target: unknown = "about"): Promise<boolean> {
+    const place = resolvedPlace(placeInput);
+    if (!place) return false;
+    if (isMicro(place)) {
+      if (typeof legacyShowPlacePopup === "function") legacyShowPlacePopup(place, target);
       return true;
     }
 
-    const root = card();
-    const samePlace = text(root?.dataset?.currentPlaceId) === placeId(resolvedPlace);
-    if (!samePlace && typeof global.openPlaceCard === "function") await global.openPlaceCard(resolvedPlace);
-    else await materialize(resolvedPlace, { refresh: false });
-
     const id = canonicalSection(target);
+    const promotion = promoteAutomaticPlaceSheetSection(placeId(place), id);
+    const root = card();
+    const samePlace = text(root?.dataset?.currentPlaceId || root?.dataset?.hgUnifiedPlaceId) === placeId(place);
+    if (!samePlace && typeof global.openPlaceCard === "function") await global.openPlaceCard(place);
+    else await materialize(place, { refresh: false });
+
+    try { await promotion; } catch {}
     if (scrollToSection(id)) return true;
-    await wait(30);
+    await new Promise<void>(resolve => global.setTimeout(resolve, 20));
     return scrollToSection(id);
   }
 
@@ -452,9 +210,10 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     const wrapped: any = async function openUnifiedPlaceCard(this: unknown, place: any, ...args: any[]) {
       const result = current.call(this, place, ...args);
       const resolved = result && typeof result.then === "function" ? await result : result;
-      if (isMicro(place)) clearUnifiedState();
+      const canonical = resolvedPlace(place) || place;
+      if (isMicro(canonical)) clearUnifiedState();
       else {
-        activeMount = materialize(global.HGPlaceOpen?.getPlace?.(place) || place, { refresh: true });
+        activeMount = materialize(canonical, { refresh: true });
         await activeMount;
       }
       return resolved;
@@ -472,8 +231,9 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     legacyShowPlacePopup = current;
 
     const wrapped: any = function showUnifiedPlaceSurface(this: unknown, place: any, target?: unknown) {
-      if (isMicro(place)) return current.apply(this, [place, target]);
-      return openSection(place, target || "about");
+      const canonical = resolvedPlace(place) || place;
+      if (isMicro(canonical)) return current.apply(this, [canonical, target]);
+      return openSection(canonical, target || "about");
     };
     Object.keys(current as any).forEach(key => { try { wrapped[key] = (current as any)[key]; } catch {} });
     wrapped.__hgUnifiedPlaceSurface = true;
@@ -505,9 +265,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
 
     patchOpenPlaceCard();
     patchShowPlacePopup();
-    installPopupTabBridge();
     global[INSTALL_FLAG] = true;
-
     global.HGPlaceUnifiedSurface = {
       ensure: (place: any, options: { refresh?: boolean } = {}) => materialize(place, options),
       open: openSection,
@@ -516,9 +274,12 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
       currentPlace,
       canonicalSection,
       sectionIds: SECTION_ORDER.map(([id]) => id),
+      phase: 6,
+      directStandardPlaces: true,
       get legacyOpenPlaceCard() { return legacyOpenPlaceCard; },
       get legacyShowPlacePopup() { return legacyShowPlacePopup; }
     };
+    installPopupTabBridge();
 
     const place = currentPlace();
     if (place && !isMicro(place)) void materialize(place, { refresh: true });

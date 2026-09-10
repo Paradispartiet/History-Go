@@ -9,31 +9,100 @@ type PlaceSheetSpecialRuntime = Window & typeof globalThis & {
   PLACES?: SpecialPlace[];
   HGPlaceOpen?: { getPlace?: (place: unknown) => SpecialPlace | null };
   HGPlacePopupSportTraining?: {
+    render?: (place: SpecialPlace) => string;
     isSportsPlace?: (place: SpecialPlace) => boolean;
   };
   HGPlaceSheetSections?: Record<string, unknown> & { special?: PlaceSheetSpecialApi };
 };
 
 const runtime = window as PlaceSheetSpecialRuntime;
-const SPECIAL_SELECTOR = ".hg-place-nature-section, [data-hg-sport-training=\"1\"]";
-let observer: MutationObserver | null = null;
-let observerTimer = 0;
-let observedPlaceId = "";
 
 function text(value: unknown): string {
   return String(value == null ? "" : value).trim();
 }
 
-function list<T = SpecialPlace>(value: unknown): T[] {
+function list<T = unknown>(value: unknown): T[] {
   return Array.isArray(value) ? value as T[] : [];
+}
+
+function object(value: unknown): Record<string, any> {
+  return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, any> : {};
+}
+
+function escapeHtml(value: unknown): string {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function humanize(value: unknown): string {
+  const raw = text(value).replace(/_/g, " ").replace(/\s+/g, " ");
+  return raw ? raw.charAt(0).toUpperCase() + raw.slice(1) : "";
+}
+
+function unique(values: unknown[]): string[] {
+  return [...new Set(values.map(text).filter(Boolean))];
+}
+
+function chips(values: unknown, maxItems = 18): string {
+  const items = unique(list(values)).slice(0, maxItems);
+  if (!items.length) return "";
+  return `<div class="hg-place-chip-list">${items.map(item => `<span class="hg-place-chip">${escapeHtml(humanize(item))}</span>`).join("")}</div>`;
+}
+
+function renderNature(place: SpecialPlace): string {
+  const profile = object(place?.nature_profile || place?.natureProfile);
+  if (!Object.keys(profile).length) return "";
+  const birding = object(profile.birding);
+  const terrain = list(profile.terrain);
+  const habitats = list(profile.habitats || profile.habitat_types || profile.nature_types);
+  const species = list(birding.notable_species || profile.notable_species || profile.species);
+  const seasons = list(birding.seasonal_focus || profile.seasonal_focus);
+  const summary = text(profile.summary || profile.description);
+  if (!terrain.length && !habitats.length && !species.length && !seasons.length && !summary) return "";
+
+  return `
+    <section class="hg-section hg-place-section hg-place-nature-section" data-hg-place-sheet-special-owner="nature-landscape">
+      <h3>Natur og landskap</h3>
+      ${summary ? `<p class="hg-place-nature-summary">${escapeHtml(summary)}</p>` : ""}
+      <div class="hg-place-nature-grid">
+        ${terrain.length || habitats.length ? `<div class="hg-place-nature-block"><h4>Terreng og naturtyper</h4>${chips([...terrain, ...habitats])}</div>` : ""}
+        ${species.length ? `<div class="hg-place-nature-block"><h4>Artsliv <span>${species.length}</span></h4>${chips(species)}</div>` : ""}
+        ${seasons.length ? `<div class="hg-place-nature-block"><h4>Beste observasjonstid</h4>${chips(seasons, 8)}</div>` : ""}
+      </div>
+    </section>
+  `;
+}
+
+function hasTrainingContent(place: SpecialPlace | null): boolean {
+  if (!place) return false;
+  const profile = object(place?.training_profile);
+  if (!Object.keys(profile).length) return false;
+  const hasContent = Boolean(text(profile.summary) || text(profile.safety) || list(profile.exercises).filter(Boolean).length);
+  if (!hasContent) return false;
+  try {
+    if (typeof runtime.HGPlacePopupSportTraining?.isSportsPlace === "function") {
+      return runtime.HGPlacePopupSportTraining.isSportsPlace(place) === true;
+    }
+  } catch {}
+  const category = text(place?.category || place?.categoryId).toLowerCase();
+  return category === "sport" || Boolean(Object.keys(object(place?.sport_profile)).length);
+}
+
+function renderTraining(place: SpecialPlace): string {
+  if (!hasTrainingContent(place)) return "";
+  try {
+    const html = text(runtime.HGPlacePopupSportTraining?.render?.(place));
+    if (html) return html.replace("data-hg-sport-training=\"1\"", 'data-hg-sport-training="1" data-hg-place-sheet-special-owner="sport-training"');
+  } catch {}
+  return "";
 }
 
 function shell(): HTMLElement | null {
   return document.querySelector<HTMLElement>('#placeCard [data-hg-place-sheet-shell="1"]');
-}
-
-function embeddedHost(): HTMLElement | null {
-  return document.getElementById("pcUnifiedKnowledgeHost");
 }
 
 function placeFor(placeId: string): SpecialPlace | null {
@@ -44,40 +113,6 @@ function placeFor(placeId: string): SpecialPlace | null {
     if (resolved && typeof resolved === "object") return resolved;
   } catch {}
   return list<SpecialPlace>(runtime.PLACES).find(place => text(place?.id) === id) || null;
-}
-
-function hasTrainingContent(place: SpecialPlace | null): boolean {
-  if (!place) return false;
-  const profile = place?.training_profile;
-  if (!profile || typeof profile !== "object" || Array.isArray(profile)) return false;
-  const summary = text(profile.summary);
-  const safety = text(profile.safety);
-  const exercises = list(profile.exercises).filter(Boolean);
-  if (!summary && !safety && !exercises.length) return false;
-
-  try {
-    if (typeof runtime.HGPlacePopupSportTraining?.isSportsPlace === "function") {
-      return runtime.HGPlacePopupSportTraining.isSportsPlace(place) === true;
-    }
-  } catch {}
-  const category = text(place?.category || place?.categoryId).toLowerCase();
-  const sportProfile = place?.sport_profile;
-  return category === "sport" || Boolean(sportProfile && typeof sportProfile === "object" && Object.keys(sportProfile).length);
-}
-
-function currentSpecialNodes(): HTMLElement[] {
-  const host = embeddedHost();
-  if (!(host instanceof HTMLElement)) return [];
-  return [...host.querySelectorAll<HTMLElement>(SPECIAL_SELECTOR)];
-}
-
-function existingSpecialNodes(placeId: string): HTMLElement[] {
-  const id = text(placeId);
-  const root = shell();
-  if (!(root instanceof HTMLElement)) return [];
-  const slot = root.querySelector<HTMLElement>('[data-hg-place-sheet-special="1"]');
-  if (!(slot instanceof HTMLElement) || text(slot.dataset.placeId) !== id) return [];
-  return [...slot.querySelectorAll<HTMLElement>(SPECIAL_SELECTOR)];
 }
 
 function ensureStylesheet(): void {
@@ -107,70 +142,21 @@ function ensureSlot(placeId: string): HTMLElement | null {
   return slot;
 }
 
-function stopObserver(): void {
-  observer?.disconnect();
-  observer = null;
-  if (observerTimer) runtime.clearTimeout(observerTimer);
-  observerTimer = 0;
-  observedPlaceId = "";
-}
-
-function moveOwnedNodes(placeId: string): HTMLElement | null {
-  const id = text(placeId);
-  if (!id) return null;
-  const nodes = currentSpecialNodes();
-  const slot = ensureSlot(id);
-  if (!(slot instanceof HTMLElement)) return null;
-
-  nodes.forEach(node => {
-    node.hidden = false;
-    node.removeAttribute("aria-hidden");
-    node.setAttribute("role", "region");
-    node.style.scrollMarginTop = "76px";
-    node.dataset.hgPlaceSheetSpecialOwner = node.matches('[data-hg-sport-training="1"]') ? "sport-training" : "nature-landscape";
-    slot.appendChild(node);
-  });
-
-  const hasContent = Boolean(slot.querySelector(SPECIAL_SELECTOR));
-  slot.hidden = !hasContent;
-  return hasContent ? slot : null;
-}
-
-function watchForLateTraining(placeId: string): void {
-  const id = text(placeId);
-  if (!id || !hasTrainingContent(placeFor(id))) return;
-  if (existingSpecialNodes(id).some(node => node.matches('[data-hg-sport-training="1"]'))) return;
-  const host = embeddedHost();
-  if (!(host instanceof HTMLElement)) return;
-  if (observer && observedPlaceId === id) return;
-
-  stopObserver();
-  observedPlaceId = id;
-  observer = new MutationObserver(() => {
-    if (text(shell()?.dataset.placeId) !== id) {
-      stopObserver();
-      return;
-    }
-    moveOwnedNodes(id);
-    if (existingSpecialNodes(id).some(node => node.matches('[data-hg-sport-training="1"]'))) stopObserver();
-  });
-  observer.observe(host, { childList: true, subtree: true });
-  observerTimer = runtime.setTimeout(stopObserver, 2600);
-}
-
 export function specialSectionsApply(placeId: string): boolean {
-  const id = text(placeId);
-  if (!id) return false;
-  if (existingSpecialNodes(id).length || currentSpecialNodes().length) return true;
-  return hasTrainingContent(placeFor(id));
+  const place = placeFor(placeId);
+  if (!place) return false;
+  return Boolean(renderNature(place) || hasTrainingContent(place));
 }
 
 export function adoptCanonicalSpecialSections(placeId: string): HTMLElement | null {
   const id = text(placeId);
-  if (!id) return null;
-  const slot = moveOwnedNodes(id);
-  watchForLateTraining(id);
-  return slot;
+  const place = placeFor(id);
+  const slot = ensureSlot(id);
+  if (!id || !place || !(slot instanceof HTMLElement)) return null;
+  const html = [renderNature(place), renderTraining(place)].filter(Boolean).join("");
+  slot.innerHTML = html;
+  slot.hidden = !html;
+  return html ? slot : null;
 }
 
 function onUnifiedReady(event: Event): void {
