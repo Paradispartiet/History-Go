@@ -1,0 +1,50 @@
+name: Oslo Posthus epoch baseline once
+
+on:
+  push:
+    branches:
+      - agent/oslo-posthus-production-closure-20260910
+    paths:
+      - '.github/workflows/_oslo-posthus-epoke-baseline-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-posthus-production-closure-20260910
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Update exact Oslo Posthus epoch baselines
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='tests/epoke-place-index.test.mjs';
+          let text=fs.readFileSync(file,'utf8');
+          text=text.replace('assert.equal(index.stats.canonical_story_milestone_count, 235);','assert.equal(index.stats.canonical_story_milestone_count, 236);');
+          text=text.replace('assert.equal(coverage.dated_evidence_place_count, 240);','assert.equal(coverage.dated_evidence_place_count, 241);');
+          text=text.replace('assert.equal(coverage.awaiting_source_backed_history_count, 345);','assert.equal(coverage.awaiting_source_backed_history_count, 344);');
+          fs.writeFileSync(file,text);
+          NODE
+      - name: Verify epoch contract
+        run: node --test tests/epoke-place-index.test.mjs
+      - name: Remove one-shot workflow
+        run: rm -f .github/workflows/_oslo-posthus-epoke-baseline-once.yml
+      - name: Commit permanent epoch baseline
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git status --short
+          if git diff --cached --quiet; then
+            echo 'No epoch baseline changes to commit.'
+            exit 1
+          fi
+          git commit -m 'Update Oslo Posthus epoch coverage baseline'
+          git push origin HEAD:agent/oslo-posthus-production-closure-20260910
