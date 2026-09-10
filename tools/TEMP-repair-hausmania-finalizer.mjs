@@ -86,5 +86,51 @@ s = s.replace('conditional_modules: { stories: "one_episode_v1", lesespor: "four
 s = s.replace('"Fire samlinger, Fagverk, fem milepæler, seks språkposter, fire Lesespor, episode_v1 og 4×7 quiz."', '"Fire samlinger, Fagverk, sju milepæler, seks språkposter, fire Lesespor, episode_v1 og 4×7 quiz."');
 s = s.replace('"Hausmania completion materialized: 4 collections, 5 chronology milestones, 6 language entries, 4 reading tracks, episode_v1, normal 4x7 quiz."', '"Hausmania completion materialized: 4 collections, 7 chronology milestones, 6 language entries, 4 reading tracks, episode_v1, normal 4x7 quiz."');
 
+must(
+  /prompt: "Hvordan kombinerer Hausmania egenorganisering med formelle rammer\?"/,
+  'prompt: "Hvordan kombinerer Hausmania egenorganisering i kulturhuset med formelle rammer?"',
+  'Fagverk autonomy lens strength'
+);
+
+must(
+  /source_urls: \[urls\.official, urls\.openHouse, urls\.podium, urls\.sceneweb\],/,
+  'source_urls: [urls.official, urls.openHouse, urls.podium, urls.sceneweb, urls.commons2024, urls.rooms],',
+  'Fagverk top-level source coverage'
+);
+
+must(
+  /place\.sources = \[[\s\S]*?\];\nwrite\(placeFile, place\);/,
+  \`place.sources = [
+  { type: "source", label: "Hausmania – offisiell side", url: urls.official, verifiedAt },
+  { type: "source", label: "Hausmania – Flerbrukshallen og lokaler", url: urls.rooms, verifiedAt },
+  { type: "source", label: "Open House Oslo – Hausmania", url: urls.openHouse, verifiedAt },
+  { type: "source", label: "Podium – About", url: urls.podium, verifiedAt },
+  { type: "source", label: "Sceneweb – Podium", url: urls.sceneweb, verifiedAt },
+  { type: "image", label: "Wikimedia Commons – Hausmanns gate 34 (2024)", url: urls.commons2024, verifiedAt },
+  { type: "image", label: "Wikimedia Commons – Hausmania fasade (2017)", url: urls.commons2017, verifiedAt },
+  { type: "image", label: "Wikimedia Commons – stencil på Hausmania (2008)", url: urls.commons2008, verifiedAt }
+];
+place.externalLinks = [
+  { label: "Hausmania – offisiell side", url: urls.official },
+  { label: "Hausmania – Flerbrukshallen og lokaler", url: urls.rooms },
+  { label: "Open House Oslo – Hausmania", url: urls.openHouse },
+  { label: "Podium – About", url: urls.podium },
+  { label: "Sceneweb – Podium", url: urls.sceneweb },
+  { label: "Wikimedia Commons – Hausmanns gate 34 (2024)", url: urls.commons2024 }
+];
+write(placeFile, place);
+const fagverkRegistry = read("data/fagverk/fagverk_registry.json");
+fagverkRegistry.placeLinks ||= {};
+fagverkRegistry.placeLinks[placeId] = {
+  sourceFile: placeFile.replace(/^data\\//, ""),
+  field: "fagverk",
+  schema: place.fagverk.schema,
+  level: place.fagverk.level,
+  status: place.fagverk.status
+};
+write("data/fagverk/fagverk_registry.json", fagverkRegistry);\`,
+  'Fagverk operational links and registry index'
+);
+
 fs.writeFileSync(file, s);
 console.log('Hausmania finalizer repaired: no scratch dependency, source-first descriptions, two Objects, valid v4.2 packet.');
