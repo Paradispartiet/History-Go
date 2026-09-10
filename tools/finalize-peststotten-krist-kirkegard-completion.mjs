@@ -82,13 +82,34 @@ const chronology = chronologyRows.map(([year, title], index) => ({ id: `chrono_$
 const emneIds = ['em_his_sosialhistorie_hverdagsliv', 'em_his_minnesteder_historiebruk', 'em_his_spor_materialitet', 'em_his_historiske_lag_i_byrom'];
 const fagverk = {
   schema: 'history_go_place_fagverk_v2', level: 'standard', status: 'curated',
-  intro: 'Stedet viser epidemi, gravlegging og minnekultur gjennom flere materielle lag.',
-  article: ['Peststøtten er en samtidig materiell kilde fra 1654.', 'Gravplassutvidelsen viser byens behov for gravareal, ikke hele sykdomsforløpet.', 'Korset og innskriften gir katastrofen en kristen minneform.', 'Krebsmonumentet fra 1879 er et senere nasjonalt minnelag.', 'Treschows grav knytter stedet til tidlig norsk stats- og universitetshistorie.', 'Stengingen i 1924 og minneparken fra 1960 viser senere forvaltning.', 'Dagens fotografier viser bevarte spor, ikke fortidige hendelser.', 'Kildekritikk krever at usikkerhet ikke fylles med dramatisering.'],
+  intro: 'Les Peststøtten og Krist kirkegård som et historisk arkiv der samtidige spor, senere monumenter og moderne forvaltning må skilles fra hverandre.',
+  article: [
+    'Peststøtten ble reist i 1654 og er et samtidig fysisk spor etter at Krist kirkegård ble utvidet under pestutbruddet. Kalksteinen, korset og innskriften kan dokumentere monumentets form og minnefunksjon, men de gir ikke alene et fullstendig bilde av epidemien eller menneskene som ble gravlagt her.',
+    'Gravplassen rommer også senere historiske lag. Gravene til Andreas Samuel Krebs og Niels Treschow knytter stedet til militær-, stats- og universitetshistorie, mens Krebsmonumentet fra 1879 viser hvordan en eldre gravplass kunne få en ny nasjonal minnepolitisk betydning.',
+    'Da ordinær gravlegging stanset i 1924 og området senere ble minnepark, endret stedet funksjon uten at alle eldre spor forsvant. Dagens landskap må derfor leses som en sammensatt kilde: enkelte monumenter er samtidige med personene eller hendelsene de minnes, mens parkformen er et resultat av nyere vern og omforming.',
+    'Kildekritisk arbeid på stedet betyr å sammenholde innskrifter, materialer og dateringer med oppslagsverk og kommunal dokumentasjon. Fotografier kan bekrefte at et objekt finnes og hvordan det ser ut i dag, men kan ikke alene bevise eldre hendelsesforløp, motivene bak beslutninger eller de gravlagtes erfaringer.'
+  ],
   subject_ids: ['historie'], emne_ids: emneIds,
   chapter_ids: ['velferd_rett_hverdagsliv', 'minne_kulturarv_historiebruk', 'kilder_arkiv_spor', 'historisk_tid_periodisering'],
-  lenses: ['Materialitet', 'Epidemi og gravplass', 'Flere minnelag', 'Gravplass til minnepark'].map((title, index) => ({ id: `pest-lens-${index + 1}`, title, prompt: 'Hva dokumenterer dette laget?', subject_id: 'historie', emne_id: [emneIds[2], emneIds[0], emneIds[1], emneIds[3]][index], evidence: 'Bruk daterte og observerbare spor.' })),
-  guiding_questions: ['Hva kan støtten dokumentere?', 'Hva viser gravplassutvidelsen?', 'Hvordan skiller minnelagene seg?', 'Hva endres etter 1924?', 'Hva kan bilder ikke bevise?'],
+  lenses: [
+    { id: 'pest-lens-1', title: 'Materialitet som kilde', prompt: 'Hvilke opplysninger kan kalkstein, kors og innskrift dokumentere direkte?', subject_id: 'historie', emne_id: emneIds[2], evidence: 'Sammenhold monumentets synlige trekk med daterte tekstkilder.' },
+    { id: 'pest-lens-2', title: 'Epidemi og gravplass', prompt: 'Hvordan knytter utvidelsen i 1654 epidemien til byens gravbehov?', subject_id: 'historie', emne_id: emneIds[0], evidence: 'Bruk gravplasskronologien og støttens dokumenterte reiseår sammen.' },
+    { id: 'pest-lens-3', title: 'Skiftende minnelag', prompt: 'Hvordan skiller Peststøtten seg fra Krebsmonumentets senere minnepolitikk?', subject_id: 'historie', emne_id: emneIds[1], evidence: 'Sammenlign datering, personbinding og monumentenes ulike historiske funksjoner.' },
+    { id: 'pest-lens-4', title: 'Funksjon gjennom tid', prompt: 'Hva endret seg da gravplassen ble stengt og omformet til minnepark?', subject_id: 'historie', emne_id: emneIds[3], evidence: 'Følg bruddene i 1924 og 1960 mot bevarte kontinuiteter.' }
+  ],
+  guiding_questions: [
+    'Hvilke deler av epidemihistorien kan Peststøtten dokumentere direkte?',
+    'Hvordan viser gravplassutvidelsen byens behov under pesten i 1654?',
+    'Hvordan kan samtidige og senere minnelag skilles fra hverandre?',
+    'Hva ble endret da gravplassen stengte etter 1924?',
+    'Hvorfor kan dagens fotografier ikke alene bevise eldre hendelser?'
+  ],
   concepts: ['materiell kilde', 'epidemi', 'gravskikk', 'minnekultur', 'kildekritikk'],
+  observable_traces: [
+    { title: 'Kalksteinsstøtte med kors', observation: 'Besøkende kan observere støttens materiale, korsform og daterte innskrift på gravplassen.', interpretation_boundary: 'De synlige trekkene dokumenterer monumentet, men ikke et samlet dødstall eller individuelle erfaringer.', source_urls: [urls.pest, urls.cemetery] },
+    { title: 'Krebsmonumentets senere lag', observation: 'Krebsmonumentets navn og datering viser et minnelag som ble til lenge etter peståret.', interpretation_boundary: 'Monumentet belyser senere minnekultur og må ikke behandles som et samtidig pestspor.', source_urls: [urls.cemetery, urls.krebs] },
+    { title: 'Gravplass som minnepark', observation: 'Gjerde, ganglinjer og parkpreg viser at det historiske gravområdet har fått en nyere offentlig form.', interpretation_boundary: 'Dagens utforming dokumenterer forvaltning og bevaring, ikke hele den tidligere bruken av området.', source_urls: [urls.local, urls.current] }
+  ],
   source_urls: [urls.pest, urls.cemetery, urls.local, urls.current, urls.krebs, urls.treschow], verified_at: date
 };
 
@@ -96,7 +117,14 @@ const place = read(placeFile);
 Object.assign(place, {
   name: 'Peststøtten – Krist kirkegård', year: 1654, desc, popupDesc,
   image: `bilder/places/${id}.webp`, imageCard: `bilder/kort/places/${id}.webp`, frontImage: `bilder/places/${id}_front_portrait.webp`, quizCardImage: 'bilder/QuizCards/Peststøtten – Krist kirkegård.webp',
-  imageMeta: media.monument, frontImageMeta: media.monument, externalLinks: [urls.pest, urls.cemetery, urls.local, urls.current],
+  imageMeta: media.monument, frontImageMeta: media.monument, externalLinks: [
+    { type: 'source', label: 'Oslo Byleksikon – Peststøtten', url: urls.pest, verifiedAt: date },
+    { type: 'source', label: 'Oslo Byleksikon – Krist kirkegård', url: urls.cemetery, verifiedAt: date },
+    { type: 'source', label: 'Lokalhistoriewiki – Krist kirkegård', url: urls.local, verifiedAt: date },
+    { type: 'official', label: 'Oslo kommune – Krist kirkegård', url: urls.current, verifiedAt: date },
+    { type: 'source', label: 'Store norske leksikon – Andreas Samuel Krebs', url: urls.krebs, verifiedAt: date },
+    { type: 'source', label: 'Store norske leksikon – Niels Treschow', url: urls.treschow, verifiedAt: date }
+  ],
   production_profile: 'focused', profile_status: 'confirmed', profile_reason: 'Fire reelle samlinger uten filler.',
   underbadge_ids: ['sosialhistorie', 'kulturminner_og_bevaring'], secondaryBadgeIds: ['sosialhistorie', 'kulturminner_og_bevaring'], emne_ids: emneIds,
   related_people_ids: peopleIds,
@@ -113,6 +141,9 @@ Object.assign(place, {
 });
 delete place.cardImage;
 write(placeFile, place);
+const fagverkRegistry = read('data/fagverk/fagverk_registry.json');
+fagverkRegistry.placeLinks[id] = { sourceFile: placeFile.replace(/^data\//u, ''), field: 'fagverk', schema: fagverk.schema, level: fagverk.level, status: fagverk.status };
+write('data/fagverk/fagverk_registry.json', fagverkRegistry);
 
 const peopleFile = `data/people/historie/oslo/${id}/people_${id}.json`;
 const people = [
@@ -157,8 +188,8 @@ write(storyFile, [{
   summary: 'Gravstedet ble utvidet under pesten, stengt i 1924 og bevart som minnepark.',
   story: 'I 1654 ble gravplassen utvidet og Peststøtten reist. Senere fikk stedet nye gravminner. Etter stengingen i 1924 ble området minnepark og gjenåpnet omkring 1999–2000.',
   episode: { actors: ['gravplassmyndigheter', 'Oslo kommune'], date: '1654–2000', action: 'Stedet ble brukt, stengt og omformet.', consequence: 'Flere minnelag ble bevart.' },
-  sources: [{ title: 'Oslo Byleksikon', url: urls.cemetery }], tags: ['pest', 'minnekultur'], related_people: peopleIds, related_places: [], next_scenes: [],
-  score: { narrative: 3, historical: 4, source: 4, play_value: 3, originality: 3, total: 17 }, arc: { start: 'Pestgrav.', middle: 'Nye minnelag.', end: 'Minnepark.' }
+  sources: [{ title: 'Oslo Byleksikon', url: urls.cemetery }, { title: 'Lokalhistoriewiki', url: urls.local }], tags: ['pest', 'minnekultur'], related_people: peopleIds, related_places: [], next_scenes: [],
+  score: { narrative: 3, historical: 2, source: 4, play_value: 3, originality: 3, total: 15 }, arc: { start: 'Pestgrav.', middle: 'Nye minnelag.', end: 'Minnepark.' }
 }]);
 const storiesManifest = read('data/stories/stories_manifest.json');
 storiesManifest.files = storiesManifest.files.filter((entry) => entry.entity_id !== id);

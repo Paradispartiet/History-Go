@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.15.0",
     "updated_at": "2026-09-08",
-    "content_sha256": "cc3e48c1698e4a0f3e09c842e7983749e814d30b2c77a912466b5a181e951ead"
+    "content_sha256": "a3291998c69e022ad9683c72ac3a3fa12631ef977f6ad3df953f9f8d3d8e6c31"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "c19881d3ba495df6dbef3374a1c2f57b61fced3c1983fdcb008cb965b847a609"
+    "content_sha256": "b901626e2fae04bd811657976d14055ec23997bc099dc97efb02618799caabd4"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 190,
     "module_file_count": 497,
-    "package_file_count": 417,
+    "package_file_count": 420,
     "chapter_referenced_file_count": 934,
-    "referenced_file_count": 1280,
+    "referenced_file_count": 1283,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2452,9 +2452,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 80,
+      "package_file_count": 83,
       "required_package_file_count": 4,
-      "optional_package_file_count": 76,
+      "optional_package_file_count": 79,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -2829,6 +2829,18 @@
           "content_sha256": "b664d05acec84d146b9a771cf0832ea999fec3d6e785131d64eb286326d3be18"
         },
         {
+          "path": "data/quiz/historie/peststotten_krist_kirkegard_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.peststotten_krist_kirkegard.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "6bdf6c873383038e72411283530ee0b7c5e314f2154f5bd724f9b844c9a82f60"
+        },
+        {
           "path": "data/quiz/historie/the_mini_bottle_gallery_sets.json",
           "required": false,
           "fields": [
@@ -3079,6 +3091,18 @@
           ],
           "exists": true,
           "content_sha256": "afc441af7400f1e700cf93a046dc1584f3d3054ee4e0d6f66a40135e966738de"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/peststotten_krist_kirkegard.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.peststotten_krist_kirkegard.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "7282684c51f769e9565eb00dc14141c9d5c81373a03f0cc0402f0e78a521746d"
         },
         {
           "path": "data/quiz/production_briefs/historie/the_mini_bottle_gallery.json",
@@ -3333,6 +3357,18 @@
           "content_sha256": "17d9e88a93fceedd31d26c9c8d625c42adb4e6eed7c42477925e57bb962c2360"
         },
         {
+          "path": "data/quiz/production_context/historie/peststotten_krist_kirkegard.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.peststotten_krist_kirkegard.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "0bf3ed8ea50693f935dc000dfe181d6b51ec2f0ed0b14544c45c20ff813e5f7b"
+        },
+        {
           "path": "data/quiz/production_context/historie/the_mini_bottle_gallery.json",
           "required": false,
           "fields": [
@@ -3417,20 +3453,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "8349e99af2410fc4a476da65edd5858270a15e43d5145f7972bc63eb057678f5",
+      "package_content_sha256": "e00eb967766c09770b86e9ddcf78eac7c57cd4a818201df9a4a3b18cfcd58db9",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 172,
+      "referenced_file_count": 175,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "9c75e998530e8ae263083e7bc7fc655c9cfdf82a2350e888d64103a3d5f5619a",
-      "content_sha256": "c19c54dad6e6899db689a0c3e01648f755244a90853f5766613ca31acaffeb79",
+      "structure_sha256": "c9a4d8cc95dc383da70dbb498ee8a4eaa55be8fc2bc81e646a8cccff914bd841",
+      "content_sha256": "f8e2371fd8b94ea3bb58adbcc26e9b4a51e620ee404f609d3710772d094383f3",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -7717,5 +7753,5 @@
       ]
     }
   },
-  "release_sha256": "6d61a10c8edea728ef3c299ad2d06bd2ef10832df1e77376a1dc4835d30dc094"
+  "release_sha256": "8af4e3afd7959e28c20fee8aeed220f74c856903357d2fe13d99239a3b1f22a5"
 }

@@ -91,10 +91,42 @@
     "verifiedAt": "2026-09-10"
   },
   "externalLinks": [
-    "https://oslobyleksikon.no/side/Pestst%C3%B8tten",
-    "https://oslobyleksikon.no/side/Krist_kirkeg%C3%A5rd",
-    "https://lokalhistoriewiki.no/wiki/Krist_kirkeg%C3%A5rd",
-    "https://www.oslo.kommune.no/natur-kultur-og-fritid/gravplasser-og-kremasjoner/vare-gravplasser/krist-kirkegard/"
+    {
+      "type": "source",
+      "label": "Oslo Byleksikon – Peststøtten",
+      "url": "https://oslobyleksikon.no/side/Pestst%C3%B8tten",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "type": "source",
+      "label": "Oslo Byleksikon – Krist kirkegård",
+      "url": "https://oslobyleksikon.no/side/Krist_kirkeg%C3%A5rd",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "type": "source",
+      "label": "Lokalhistoriewiki – Krist kirkegård",
+      "url": "https://lokalhistoriewiki.no/wiki/Krist_kirkeg%C3%A5rd",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "type": "official",
+      "label": "Oslo kommune – Krist kirkegård",
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/gravplasser-og-kremasjoner/vare-gravplasser/krist-kirkegard/",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "type": "source",
+      "label": "Store norske leksikon – Andreas Samuel Krebs",
+      "url": "https://snl.no/Andreas_Samuel_Krebs",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "type": "source",
+      "label": "Store norske leksikon – Niels Treschow",
+      "url": "https://snl.no/Niels_Treschow",
+      "verifiedAt": "2026-09-10"
+    }
   ],
   "production_profile": "focused",
   "profile_status": "confirmed",
@@ -379,16 +411,12 @@
     "schema": "history_go_place_fagverk_v2",
     "level": "standard",
     "status": "curated",
-    "intro": "Stedet viser epidemi, gravlegging og minnekultur gjennom flere materielle lag.",
+    "intro": "Les Peststøtten og Krist kirkegård som et historisk arkiv der samtidige spor, senere monumenter og moderne forvaltning må skilles fra hverandre.",
     "article": [
-      "Peststøtten er en samtidig materiell kilde fra 1654.",
-      "Gravplassutvidelsen viser byens behov for gravareal, ikke hele sykdomsforløpet.",
-      "Korset og innskriften gir katastrofen en kristen minneform.",
-      "Krebsmonumentet fra 1879 er et senere nasjonalt minnelag.",
-      "Treschows grav knytter stedet til tidlig norsk stats- og universitetshistorie.",
-      "Stengingen i 1924 og minneparken fra 1960 viser senere forvaltning.",
-      "Dagens fotografier viser bevarte spor, ikke fortidige hendelser.",
-      "Kildekritikk krever at usikkerhet ikke fylles med dramatisering."
+      "Peststøtten ble reist i 1654 og er et samtidig fysisk spor etter at Krist kirkegård ble utvidet under pestutbruddet. Kalksteinen, korset og innskriften kan dokumentere monumentets form og minnefunksjon, men de gir ikke alene et fullstendig bilde av epidemien eller menneskene som ble gravlagt her.",
+      "Gravplassen rommer også senere historiske lag. Gravene til Andreas Samuel Krebs og Niels Treschow knytter stedet til militær-, stats- og universitetshistorie, mens Krebsmonumentet fra 1879 viser hvordan en eldre gravplass kunne få en ny nasjonal minnepolitisk betydning.",
+      "Da ordinær gravlegging stanset i 1924 og området senere ble minnepark, endret stedet funksjon uten at alle eldre spor forsvant. Dagens landskap må derfor leses som en sammensatt kilde: enkelte monumenter er samtidige med personene eller hendelsene de minnes, mens parkformen er et resultat av nyere vern og omforming.",
+      "Kildekritisk arbeid på stedet betyr å sammenholde innskrifter, materialer og dateringer med oppslagsverk og kommunal dokumentasjon. Fotografier kan bekrefte at et objekt finnes og hvordan det ser ut i dag, men kan ikke alene bevise eldre hendelsesforløp, motivene bak beslutninger eller de gravlagtes erfaringer."
     ],
     "subject_ids": [
       "historie"
@@ -408,43 +436,43 @@
     "lenses": [
       {
         "id": "pest-lens-1",
-        "title": "Materialitet",
-        "prompt": "Hva dokumenterer dette laget?",
+        "title": "Materialitet som kilde",
+        "prompt": "Hvilke opplysninger kan kalkstein, kors og innskrift dokumentere direkte?",
         "subject_id": "historie",
         "emne_id": "em_his_spor_materialitet",
-        "evidence": "Bruk daterte og observerbare spor."
+        "evidence": "Sammenhold monumentets synlige trekk med daterte tekstkilder."
       },
       {
         "id": "pest-lens-2",
         "title": "Epidemi og gravplass",
-        "prompt": "Hva dokumenterer dette laget?",
+        "prompt": "Hvordan knytter utvidelsen i 1654 epidemien til byens gravbehov?",
         "subject_id": "historie",
         "emne_id": "em_his_sosialhistorie_hverdagsliv",
-        "evidence": "Bruk daterte og observerbare spor."
+        "evidence": "Bruk gravplasskronologien og støttens dokumenterte reiseår sammen."
       },
       {
         "id": "pest-lens-3",
-        "title": "Flere minnelag",
-        "prompt": "Hva dokumenterer dette laget?",
+        "title": "Skiftende minnelag",
+        "prompt": "Hvordan skiller Peststøtten seg fra Krebsmonumentets senere minnepolitikk?",
         "subject_id": "historie",
         "emne_id": "em_his_minnesteder_historiebruk",
-        "evidence": "Bruk daterte og observerbare spor."
+        "evidence": "Sammenlign datering, personbinding og monumentenes ulike historiske funksjoner."
       },
       {
         "id": "pest-lens-4",
-        "title": "Gravplass til minnepark",
-        "prompt": "Hva dokumenterer dette laget?",
+        "title": "Funksjon gjennom tid",
+        "prompt": "Hva endret seg da gravplassen ble stengt og omformet til minnepark?",
         "subject_id": "historie",
         "emne_id": "em_his_historiske_lag_i_byrom",
-        "evidence": "Bruk daterte og observerbare spor."
+        "evidence": "Følg bruddene i 1924 og 1960 mot bevarte kontinuiteter."
       }
     ],
     "guiding_questions": [
-      "Hva kan støtten dokumentere?",
-      "Hva viser gravplassutvidelsen?",
-      "Hvordan skiller minnelagene seg?",
-      "Hva endres etter 1924?",
-      "Hva kan bilder ikke bevise?"
+      "Hvilke deler av epidemihistorien kan Peststøtten dokumentere direkte?",
+      "Hvordan viser gravplassutvidelsen byens behov under pesten i 1654?",
+      "Hvordan kan samtidige og senere minnelag skilles fra hverandre?",
+      "Hva ble endret da gravplassen stengte etter 1924?",
+      "Hvorfor kan dagens fotografier ikke alene bevise eldre hendelser?"
     ],
     "concepts": [
       "materiell kilde",
@@ -452,6 +480,35 @@
       "gravskikk",
       "minnekultur",
       "kildekritikk"
+    ],
+    "observable_traces": [
+      {
+        "title": "Kalksteinsstøtte med kors",
+        "observation": "Besøkende kan observere støttens materiale, korsform og daterte innskrift på gravplassen.",
+        "interpretation_boundary": "De synlige trekkene dokumenterer monumentet, men ikke et samlet dødstall eller individuelle erfaringer.",
+        "source_urls": [
+          "https://oslobyleksikon.no/side/Pestst%C3%B8tten",
+          "https://oslobyleksikon.no/side/Krist_kirkeg%C3%A5rd"
+        ]
+      },
+      {
+        "title": "Krebsmonumentets senere lag",
+        "observation": "Krebsmonumentets navn og datering viser et minnelag som ble til lenge etter peståret.",
+        "interpretation_boundary": "Monumentet belyser senere minnekultur og må ikke behandles som et samtidig pestspor.",
+        "source_urls": [
+          "https://oslobyleksikon.no/side/Krist_kirkeg%C3%A5rd",
+          "https://snl.no/Andreas_Samuel_Krebs"
+        ]
+      },
+      {
+        "title": "Gravplass som minnepark",
+        "observation": "Gjerde, ganglinjer og parkpreg viser at det historiske gravområdet har fått en nyere offentlig form.",
+        "interpretation_boundary": "Dagens utforming dokumenterer forvaltning og bevaring, ikke hele den tidligere bruken av området.",
+        "source_urls": [
+          "https://lokalhistoriewiki.no/wiki/Krist_kirkeg%C3%A5rd",
+          "https://www.oslo.kommune.no/natur-kultur-og-fritid/gravplasser-og-kremasjoner/vare-gravplasser/krist-kirkegard/"
+        ]
+      }
     ],
     "source_urls": [
       "https://oslobyleksikon.no/side/Pestst%C3%B8tten",
