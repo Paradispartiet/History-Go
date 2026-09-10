@@ -35,6 +35,7 @@ jobs:
             .replace('Hovedpostkontoret gjør derfor infrastrukturen','Hovedpostkontoret gjør infrastrukturen')
             .replace('som viktige deler av transformasjonen','som deler av transformasjonen')
             .replace('en sentral offentlig institusjon','en offentlig institusjon')
+            .replace('Det tidligere hovedpostkontoret fikk dermed en ny økonomisk rolle samtidig som viktige historiske spor ble bevart.','Det tidligere hovedpostkontoret fikk en ny økonomisk rolle, mens deler av den historiske bygningsmassen ble bevart.')
             .replace('Dermed rommer Hovedpostkontoret også','Hovedpostkontoret rommer også');
           fs.writeFileSync(file,JSON.stringify(place,null,2)+'\n');
           NODE
