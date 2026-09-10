@@ -76,6 +76,7 @@ write(registryFile, registry);
 
 execFileSync("node", ["scripts/build-fagverk-release-manifest.mjs"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "place-open:build"], { cwd: root, stdio: "inherit" });
+execFileSync("npm", ["run", "epoker:places:build"], { cwd: root, stdio: "inherit" });
 
 console.log(JSON.stringify({
   place: id,
