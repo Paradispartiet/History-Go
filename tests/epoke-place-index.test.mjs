@@ -17,7 +17,7 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   assert.equal(index.stats.canonical_story_milestone_count, 235);
-  assert.equal(index.stats.verified_place_production_milestone_count, 494);
+  assert.equal(index.stats.verified_place_production_milestone_count, 497);
 });
 
 test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
@@ -252,6 +252,7 @@ test("verified production claims fail closed for uncertainty, current-only state
 
 test("production year extraction rejects commercial names and Oslo postal codes", () => {
   assert.deepEqual(exactProductionClaimYears("Den står ved Rema 1000 Frysja."), []);
+  assert.deepEqual(exactProductionClaimYears("Produktsiden oppgir 110 bidragsytere og 1500 nummererte eksemplarer."), []);
   assert.deepEqual(exactProductionClaimYears("Stedet ligger i Sørliveien 1, 1279 Oslo."), []);
   assert.deepEqual(exactProductionClaimYears("Tandbergs Radiofabrikk startet her i 1933."), [1933]);
 });
