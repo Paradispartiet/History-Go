@@ -76,7 +76,7 @@ jobs:
           const stories = read('data/stories/stories_hausmania.json');
           assert(stories.some(s => s.quality_profile === 'episode_v1'), 'episode_v1 story missing');
           const lex = read('data/leksikon/places/oslo/subkultur/leksikon_hausmania.json');
-          assert(lex.chronology?.length === 5, 'chronology count != 5');
+          assert(lex.chronology?.length === 7, 'chronology count != 7');
 
           const brands = read('data/brands/brands_master.json');
           assert(brands.some(b => b.id === 'podium_oslo' && b.place_ids?.includes('hausmania')), 'Podium brand missing');
@@ -92,7 +92,7 @@ jobs:
           assert(production.qualityAssessment?.total >= 27 && production.qualityAssessment?.unresolved_blockers === 0, 'quality gate failed');
           const workcard = read('reports/place-production/hausmania-workcard-current.json');
           assert(workcard.quality_gate === '30/30', 'workcard quality gate');
-          console.log('Hausmania canonical package verified: 4 collections, 28 quiz, 5 chronology, 6 language, 4 readings, episode_v1, curated Fagverk, Podium brand.');
+          console.log('Hausmania canonical package verified: 4 collections, 28 quiz, 7 chronology, 6 language, 4 readings, episode_v1, curated Fagverk, Podium brand.');
           NODE
 
       - name: Validate Fagverk release
