@@ -79,4 +79,5 @@ test("Oslo Posthus learning surfaces and place-open runtime are materialized", (
 
 test("Oslo Posthus materialization leaves no temporary workflow behind", () => {
   assert.equal(fs.existsSync(path.join(root, ".github/workflows/_oslo-posthus-materialize-once.yml")), false);
+  assert.equal(fs.existsSync(path.join(root, ".github/workflows/_oslo-posthus-ci-closure-once.yml")), false);
 });
