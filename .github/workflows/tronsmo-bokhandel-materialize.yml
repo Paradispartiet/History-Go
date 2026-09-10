@@ -21,6 +21,21 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Repair scoped source-brief loop
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/finalize-tronsmo-bokhandel-completion.mjs')
+          s = p.read_text()
+          old1 = "claims:sets.flatMap(s=>s.questions).map((q,i)=>({claim_id:"
+          new1 = "claims:sets.flatMap(s=>s.questions.map(q=>({q,phase:s.phase||'middle'}))).map(({q,phase},i)=>({claim_id:"
+          old2 = "planned_phase:s.phase||'middle'"
+          new2 = "planned_phase:phase"
+          assert s.count(old1) == 1, s.count(old1)
+          assert s.count(old2) == 1, s.count(old2)
+          p.write_text(s.replace(old1, new1).replace(old2, new2))
+          PY
+          node --check tools/finalize-tronsmo-bokhandel-completion.mjs
       - name: Fetch reviewed source assets
         run: |
           curl -L --fail --retry 3 'https://upload.wikimedia.org/wikipedia/commons/4/4d/Tronsmo_Bokhandel_comic_book_store_in_Universitetsgata%2C_Oslo%2C_Norway._Window_decorations_by_Lars_Fiske_and_Bendik_Kaltenborn%2C_2017-12-14.jpg' -o /tmp/tronsmo-source.jpg
