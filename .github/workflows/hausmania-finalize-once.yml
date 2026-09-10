@@ -1,0 +1,99 @@
+name: Hausmania finalize once
+
+on:
+  push:
+    branches:
+      - agent/hausmania-completion-20260910
+    paths:
+      - .github/workflows/hausmania-finalize-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/hausmania-completion-20260910
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Configure git
+        run: |
+          git config user.name 'Paradispartiet'
+          git config user.email 'paradispartiet@gmail.com'
+
+      - name: Replay on fresh main
+        run: |
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Syntax check finalizer
+        run: node --check tools/finalize-hausmania-completion.mjs
+
+      - name: Materialize Hausmania
+        run: node tools/finalize-hausmania-completion.mjs
+
+      - name: Verify repaired contracts
+        shell: bash
+        run: |
+          npm run check:stories
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all --report /tmp/hausmania-place-description.json
+          node --test tests/place-language-layer.test.mjs
+          node tools/build-subkultur-data-audit-v1.mjs
+          node --test tests/subkultur-place-production.test.mjs
+          node scripts/audit-subkultur-place-production.mjs --all
+          npm run audit:quiz-production-context
+          node scripts/audit-repository-hygiene-v1.mjs
+          git diff --check
+
+      - name: Verify Hausmania package
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const assert = (v, m) => { if (!v) throw new Error(m); };
+          const place = read('data/places/subkultur/oslo/places_subkultur/hausmania.json');
+          assert(place.production_status === 'complete', 'place not complete');
+          assert(JSON.stringify(place.place_card_profile?.collection_ids) === JSON.stringify(['people','objects','brands','productions']), 'wrong collections');
+          const quiz = read('data/quiz/subkultur/hausmania_sets.json');
+          assert(quiz.sets?.length === 4 && quiz.sets.every(s => s.questions?.length === 7), 'quiz is not 4x7');
+          assert(quiz.production_context?.profile === 'normal_4x7', 'quiz production_context missing');
+          const sub = read('data/places/subkultur-production/hausmania.json');
+          assert(sub.subcultureTopics?.length === 4, 'subculture topics != 4');
+          assert(sub.quizOpening?.firstTwoSetsQuestionCount === 14, 'quiz opening != 14');
+          const language = read('data/leksikon/sprak/places/europe/norway/oslo/hausmania.json');
+          assert(language.entries?.length === 6 && language.entries.every(x => x.id.startsWith('hausmania_')), 'language ids not globally scoped');
+          const story = read('data/stories/stories_hausmania.json')[0];
+          assert(story.type === 'cultural' && story.score?.total === 16, 'story contract stale');
+          const prod = read('data/places/production/hausmania.json');
+          assert(JSON.stringify(prod.metadataSnapshot.externalLinks) === JSON.stringify(place.externalLinks), 'metadata snapshot drift');
+          console.log('Hausmania repaired contracts verified.');
+          NODE
+
+      - name: Commit materialized package
+        shell: bash
+        run: |
+          rm -f .github/workflows/hausmania-finalize-once.yml
+          git add -A
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'No materialized changes to commit.'
+            exit 1
+          fi
+          git commit -m 'Finalize Hausmania production contracts'
+          git push origin HEAD:agent/hausmania-completion-20260910
