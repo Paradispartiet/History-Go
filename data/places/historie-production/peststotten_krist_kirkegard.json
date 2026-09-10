@@ -1,0 +1,271 @@
+{
+  "schemaVersion": "historie_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "peststotten_krist_kirkegard",
+  "placeFile": "data/places/historie/oslo/places_historie_added_batch_01/peststotten_krist_kirkegard.json",
+  "status": "ready",
+  "historicalIdentity": {
+    "statement": "Peststøtten og Krist kirkegård er et bevart epidemiminne med flere senere grav- og forvaltningslag.",
+    "placeRelationType": "historical_landscape",
+    "placeRelationStatement": "Monumentet, gravminnene og minneparken tilhører samme avgrensede historiske gravplass.",
+    "temporalScope": {
+      "start": "1639",
+      "end": "2000",
+      "precision": "period",
+      "rationale": "Kildene daterer tidlig bruk, pestutvidelsen, stengingen og minneparken."
+    },
+    "sourceIds": [
+      "source_peststotten_byleksikon",
+      "source_krist_byleksikon",
+      "source_krist_localwiki",
+      "source_krist_current"
+    ]
+  },
+  "sources": [
+    {
+      "id": "source_peststotten_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Pestst%C3%B8tten",
+      "sourceLocation": "monument, materiale, datering og første gravlagte",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-09-10",
+      "temporalCoverage": "retrospective",
+      "provenance": "Oslo Byleksikons stedsoppslag om Peststøtten.",
+      "limitations": "Kortfattet oppslagsverk uten full epidemihistorie."
+    },
+    {
+      "id": "source_krist_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Krist_kirkeg%C3%A5rd",
+      "sourceLocation": "gravplassens utvidelser, gravminner, stenging og minnepark",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-09-10",
+      "temporalCoverage": "retrospective",
+      "provenance": "Oslo Byleksikons oppslag om Krist kirkegård.",
+      "limitations": "Oppslaget sammenfatter institusjonshistorie og få individuelle erfaringer."
+    },
+    {
+      "id": "source_krist_localwiki",
+      "url": "https://lokalhistoriewiki.no/wiki/Krist_kirkeg%C3%A5rd",
+      "sourceLocation": "rehabilitering, gjenåpning og lokalhistorisk kronologi",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-09-10",
+      "temporalCoverage": "retrospective",
+      "provenance": "Lokalhistoriewikis stedsartikkel med referert lokalhistorie.",
+      "limitations": "Sekundær sammenstilling som må leses mot andre kilder."
+    },
+    {
+      "id": "source_krist_current",
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/gravplasser-og-kremasjoner/vare-gravplasser/krist-kirkegard/",
+      "sourceLocation": "dagens gravplass og kommunale forvaltning",
+      "sourceType": "official",
+      "verifiedAt": "2026-09-10",
+      "temporalCoverage": "current",
+      "provenance": "Oslo kommunes offisielle side for Krist kirkegård.",
+      "limitations": "Dokumenterer dagens forvaltning, ikke hele den eldre historien."
+    }
+  ],
+  "caseRealizations": [
+    {
+      "id": "case_peststotten_krist_kirkegard_pestgrav_til_minnepark",
+      "claim": "Samme gravplass viser kontinuitet i materielle minner og brudd i funksjon fra pestgrav til kommunalt forvaltet minnepark.",
+      "temporalSequence": {
+        "scope": {
+          "start": "1654",
+          "end": "2000",
+          "precision": "period",
+          "rationale": "Kildene daterer monumentet, stengingen, minneparken og gjenåpningen."
+        },
+        "startPoint": "Peststøtten ble reist da gravplassen ble utvidet i 1654.",
+        "endPoint": "Den rehabiliterte minneparken ble gjenåpnet omkring 1999–2000.",
+        "breaks": [
+          "Ordinær gravlegging stanset i 1924.",
+          "Området fikk ny funksjon som minnepark i 1960."
+        ],
+        "continuities": [
+          "Peststøtten og senere gravminner ble bevart på samme gravplass."
+        ],
+        "sourceIds": [
+          "source_peststotten_byleksikon",
+          "source_krist_byleksikon",
+          "source_krist_localwiki",
+          "source_krist_current"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Byens gravplassmyndigheter",
+          "roleOrInterest": "Utvidet, stengte og forvaltet gravplassen.",
+          "powerPosition": "Bestemte gravplassens formelle bruk og senere parkfunksjon.",
+          "sourceIds": [
+            "source_krist_byleksikon",
+            "source_krist_current"
+          ]
+        },
+        {
+          "name": "Gravlagte og etterkommere",
+          "roleOrInterest": "Knyttet individuelle minner til gravplassen.",
+          "powerPosition": "Minnene er synlige i monumentene, men stemmene er ujevnt bevart.",
+          "sourceIds": [
+            "source_peststotten_byleksikon",
+            "source_krist_byleksikon"
+          ]
+        }
+      ],
+      "conflictOrNegotiation": {
+        "statement": "Behovet for gravplass, senere stenging og vern som minnepark representerer skiftende brukshensyn.",
+        "sourceIds": [
+          "source_krist_byleksikon",
+          "source_krist_localwiki",
+          "source_krist_current"
+        ]
+      },
+      "sourceComparison": {
+        "sourceIds": [
+          "source_peststotten_byleksikon",
+          "source_krist_byleksikon",
+          "source_krist_current"
+        ],
+        "comparison": "Byleksikonet dokumenterer monument- og gravplasskronologi, mens kommunen dokumenterer dagens forvaltningsstatus.",
+        "contradictionsOrSilences": "Kildene gir få direkte stemmer fra pestofre eller andre gravlagte.",
+        "conclusionLimits": "Caset kan dokumentere daterte spor og funksjonsendring, men ikke alle individuelle erfaringer eller et sikkert dødstall."
+      },
+      "comparativeScale": {
+        "localFinding": "Ett avgrenset sted viser hvordan epidemiminne, gravlegging og parkvern kan ligge oppå hverandre.",
+        "widerContext": "Caset belyser urban epidemihistorie og offentlig minnekultur i Norge.",
+        "scale": "national",
+        "sourceIds": [
+          "source_peststotten_byleksikon",
+          "source_krist_byleksikon"
+        ]
+      },
+      "causationAndUncertainty": {
+        "causalAssessment": "Pestutbruddet forklarer utvidelsen i 1654, mens senere kommunale valg forklarer stenging og minnepark.",
+        "alternativeExplanations": [
+          "Behov for gravareal og endrede byfunksjoner kan ha virket sammen i senere omforminger."
+        ],
+        "uncertainty": "Kildene dekker beslutninger og individuelle erfaringer ujevnt.",
+        "sourceIds": [
+          "source_peststotten_byleksikon",
+          "source_krist_byleksikon",
+          "source_krist_localwiki",
+          "source_krist_current"
+        ]
+      }
+    }
+  ],
+  "historyTopics": [
+    {
+      "emneId": "em_his_sosialhistorie_hverdagsliv",
+      "siteSpecificRationale": "em_his_sosialhistorie_hverdagsliv realiseres gjennom daterte monumenter, gravplassbruk og funksjonsendring ved Krist kirkegård.",
+      "caseIds": [
+        "case_peststotten_krist_kirkegard_pestgrav_til_minnepark"
+      ]
+    },
+    {
+      "emneId": "em_his_minnesteder_historiebruk",
+      "siteSpecificRationale": "em_his_minnesteder_historiebruk realiseres gjennom daterte monumenter, gravplassbruk og funksjonsendring ved Krist kirkegård.",
+      "caseIds": [
+        "case_peststotten_krist_kirkegard_pestgrav_til_minnepark"
+      ]
+    },
+    {
+      "emneId": "em_his_spor_materialitet",
+      "siteSpecificRationale": "em_his_spor_materialitet realiseres gjennom daterte monumenter, gravplassbruk og funksjonsendring ved Krist kirkegård.",
+      "caseIds": [
+        "case_peststotten_krist_kirkegard_pestgrav_til_minnepark"
+      ]
+    },
+    {
+      "emneId": "em_his_historiske_lag_i_byrom",
+      "siteSpecificRationale": "em_his_historiske_lag_i_byrom realiseres gjennom daterte monumenter, gravplassbruk og funksjonsendring ved Krist kirkegård.",
+      "caseIds": [
+        "case_peststotten_krist_kirkegard_pestgrav_til_minnepark"
+      ]
+    }
+  ],
+  "presentTrace": {
+    "objectStatus": "altered",
+    "statement": "Peststøtten og gravminnene står i et område som i dag forvaltes som gravplass og minnepark.",
+    "originalSiteRelationship": "Monumentet står ved den historiske gravplassen, mens landskap og offentlig bruk er endret.",
+    "sourceIds": [
+      "source_krist_byleksikon",
+      "source_krist_current"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "peststotten_krist_kirkegard",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/historie/peststotten_krist_kirkegard.json",
+    "productionContext": "data/quiz/production_context/historie/peststotten_krist_kirkegard.json",
+    "requiredInputs": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Åtte daterte kronologiankere og én episode-Story bærer forløpet fra gravplass til minnepark."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historyTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0]"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0]"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0]"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0]"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "Peststøtten completion review",
+    "reviewedAt": "2026-09-10",
+    "notes": "Identitet, kronologi, kildegrenser, samlinger og dagens spor er kontrollert."
+  }
+}
