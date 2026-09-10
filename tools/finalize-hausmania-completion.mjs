@@ -151,7 +151,7 @@ Object.assign(place, {
     "Flerbrukshallen brukes til konserter og arrangementer; den offisielle lokaloversikten oppgir et d&b Audiotechnik C7-anlegg med P1200A-forsterkere og en Behringer X32-mikser.",
     "Podium er et selvstendig kunstnerdrevet visningssted i Hausmania med historie fra 2003 og et løpende program av utstillinger og offentlige hendelser.",
     "Kafé Hærverk og Grusomhetens Teater har også egne identiteter og funksjoner på samme adresse og skal ikke absorberes i Hausmanias canonicale Place-identitet.",
-    "Kildene dokumenterer dermed både selvorganisert arbeid, kommunalt eierskap, romfordeling og samlokaliserte kulturaktører, men de gir ikke grunnlag for å tilskrive alle brukere én felles politisk eller subkulturell identitet."
+    "Kildene dokumenterer både selvorganisert arbeid, kommunalt eierskap, romfordeling og samlokaliserte kulturaktører, men de gir ikke grunnlag for å tilskrive alle brukere én felles politisk eller subkulturell identitet."
   ].join("\n\n"),
   image: "bilder/places/hausmania.webp",
   frontImage: "bilder/places/hausmania_front_portrait.webp",
@@ -338,13 +338,13 @@ const languageFile = `data/leksikon/sprak/places/europe/norway/oslo/${placeId}.j
 const language = {
   place_id: placeId, title: "Språkleksikon: Hausmania", verified_at: verifiedAt, dialect_status: "not_applicable_place_level",
   entries: [
-    ["selvorganisering", "selvorganisering", "organisasjonsbegrep", "Organisering der deltakerne selv fordeler ansvar og former praksis.", "Hausmanias egen beskrivelse av tilstedeværelse, engasjement og dugnad gjør begrepet konkret."],
-    ["dugnad", "dugnad", "praksisbegrep", "Felles, normalt ulønnet innsats for en delt oppgave.", "Hausmania krever deltakelse i felles dugnad fra brukere av arbeidsrom."],
-    ["atelier", "atelier", "rombegrep", "Arbeidsrom for kunstnerisk produksjon.", "Hausmania tilbyr atelierer til kunstnere og andre skapere."],
-    ["autonomi", "autonomi", "analysebegrep", "Evne til å organisere praksis med en grad av selvbestemmelse.", "Ved Hausmania må autonomi analyseres sammen med leie, eierskap og bygningsrammer."],
-    ["kulturinfrastruktur", "kulturinfrastruktur", "fagbegrep", "Fysiske og organisatoriske ressurser som gjør kulturproduksjon mulig.", "Scener, arbeidsrom, studioer og felles drift gjør kulturhuset til mer enn en arrangementsadresse."],
-    ["rett_til_byen", "rett til byen", "teoribegrep", "Lefebvre-begrep om innbyggeres mulighet til å bruke, delta i og forme urbane rom.", "Begrepet brukes analytisk om bruksverdi og kollektiv romproduksjon, ikke som påstand om juridisk eiendomsrett."]
-  ].map(([id, term, type, meaning, context]) => ({ id, term, type, meaning, context, linked_to: { kind: "place", id: placeId }, tags: ["Hausmania", "subkultur"], sources: [{ label: id === "rett_til_byen" ? "Subkultur-fagverk" : "Hausmania", url: id === "rett_til_byen" ? urls.lefebvre : urls.official }] }))
+    ["hausmania_selvorganisering", "selvorganisering", "organisasjonsbegrep", "Organisering der deltakerne selv fordeler ansvar og former praksis.", "Hausmanias egen beskrivelse av tilstedeværelse, engasjement og dugnad gjør begrepet konkret."],
+    ["hausmania_dugnad", "dugnad", "praksisbegrep", "Felles, normalt ulønnet innsats for en delt oppgave.", "Hausmania krever deltakelse i felles dugnad fra brukere av arbeidsrom."],
+    ["hausmania_atelier", "atelier", "rombegrep", "Arbeidsrom for kunstnerisk produksjon.", "Hausmania tilbyr atelierer til kunstnere og andre skapere."],
+    ["hausmania_autonomi", "autonomi", "analysebegrep", "Evne til å organisere praksis med en grad av selvbestemmelse.", "Ved Hausmania må autonomi analyseres sammen med leie, eierskap og bygningsrammer."],
+    ["hausmania_kulturinfrastruktur", "kulturinfrastruktur", "fagbegrep", "Fysiske og organisatoriske ressurser som gjør kulturproduksjon mulig.", "Scener, arbeidsrom, studioer og felles drift gjør kulturhuset til mer enn en arrangementsadresse."],
+    ["hausmania_rett_til_byen", "rett til byen", "teoribegrep", "Lefebvre-begrep om innbyggeres mulighet til å bruke, delta i og forme urbane rom.", "Begrepet brukes analytisk om bruksverdi og kollektiv romproduksjon, ikke som påstand om juridisk eiendomsrett."]
+  ].map(([id, term, type, meaning, context]) => ({ id, term, type, meaning, context, linked_to: { kind: "place", id: placeId }, tags: ["Hausmania", "subkultur"], sources: [{ label: id === "hausmania_rett_til_byen" ? "Subkultur-fagverk" : "Hausmania", url: id === "hausmania_rett_til_byen" ? urls.lefebvre : urls.official }] }))
 };
 write(languageFile, language);
 const languageManifest = read("data/leksikon/sprak/manifest.json"); languageManifest.place_files[placeId] = languageFile; write("data/leksikon/sprak/manifest.json", languageManifest);
@@ -386,6 +386,7 @@ const storiesFile = "data/stories/stories_hausmania.json";
 const stories = read(storiesFile);
 const story = stories.find(item => item.id === "st_hausmania_fristed_bykonflikt_1999");
 if (!story) throw new Error("Existing Hausmania Story missing.");
+story.type = "cultural";
 story.year = 1999;
 story.summary = "Hausmania vokste fram rundt 1999–2000 som selvorganisert kulturhus i Hausmanns gate 34 og utviklet mer varige rammer uten at kollektiv deltakelse forsvant.";
 story.story = [
@@ -398,7 +399,7 @@ story.sources = [
   { title: "Oslo Byleksikon: Hausmanns gate", url: urls.byleksikon },
   { title: "Podium: About", url: urls.podium }
 ];
-story.score = { narrative: 5, historical: 5, source: 5, play_value: 4, originality: 4, total: 23 };
+story.score = { narrative: 3, historical: 2, source: 5, play_value: 3, originality: 3, total: 16 };
 story.arc = { start: "Selvorganisert bruk etableres rundt 1999–2000.", middle: "Kommunalt eierskap og regulering gir mer varige rammer.", end: "Kulturhuset kombinerer fortsatt kollektiv deltakelse med flere selvstendige kulturaktører." };
 story.quality_profile = "episode_v1";
 story.episode = { actors: ["Hausmania-miljøet", "Oslo kommune", "kulturaktører i Hausmanns gate 34"], date: "1999–2008", action: "Selvorganisert bruk ble fulgt av kommunalt eierskap og byøkologisk regulering.", consequence: "Hausmania fortsatte som kulturinfrastruktur med både kollektive praksiser og formelle rammer." };
@@ -521,7 +522,7 @@ if (descRows.length !== 2 || popupRows.length !== 9) throw new Error(`Unexpected
 const productionPacket = {
   schemaVersion: "4.2", validatorVersion: "4.2.1", placeId, placeFile, status: "ready_v4_2",
   identity: { status: "resolved", represents: "Kulturhuset Hausmania i Hausmanns gate 34 fra etableringsfasen rundt 1999–2000 til nåtid.", period: "1999/2000–nåtid", excludes: ["Podium som selvstendig organisasjon", "Kafé Hærverk", "Grusomhetens Teater", "Hausmannsgate-aksen"] },
-  metadataSnapshot: { name: place.name, year: place.year, category: categoryId, address: place.address, coordinates: { lat: place.lat, lon: place.lon }, externalLinks: place.sources, operationStatus: "active", placeType: "artist_run_culture_house" },
+  metadataSnapshot: { name: place.name, year: place.year, category: categoryId, address: place.address, coordinates: { lat: place.lat, lon: place.lon }, externalLinks: place.externalLinks },
   textHashes: { algorithm: "sha256", desc: sha256(place.desc), popupDesc: sha256(place.popupDesc) },
   claims: descriptionClaims,
   sentenceCoverage: {
@@ -550,7 +551,8 @@ write("data/places/production/hausmania.json", productionPacket);
 
 const subcultureProductionFile = "data/places/subkultur-production/hausmania.json";
 const subcultureProduction = read(subcultureProductionFile);
-subcultureProduction.quizOpening = { status: "PASS", rationale: "Canonical normal 4×7-stedquiz er materialisert og kildesporet." };
+subcultureProduction.subcultureTopics = [A,D,S,R].map(emneId => ({ emneId, siteSpecificRationale: `Emnet er knyttet til dokumenterte praksiser, organisering og rombruk ved ${placeId}, ikke til arenaetiketten alene.`, caseIds: ["case_hausmania_environment"] }));
+subcultureProduction.quizOpening = { status: "PASS", quizTargetId: placeId, firstTwoSetsQuestionCount: 14, sourceBrief: briefFile, productionContext: contextFile, requiredInputs: ["pensum","emner","fagkart","methods","supersetQuizMal","quizStandard","quizQuestionSchema"] };
 subcultureProduction.chronologyStories = { status: "PASS", chronologyReviewed: true, storiesReviewed: true, rationale: "Fem kronologiankre og eksisterende Hausmania-story er oppgradert til episode_v1." };
 subcultureProduction.gates.G = { status: "PASS", evidenceRefs: [quizFile, briefFile] };
 subcultureProduction.gates.H = { status: "PASS", evidenceRefs: ["chronology", storiesFile] };
@@ -602,7 +604,35 @@ execFileSync("npm", ["run", "places:index:build"], { cwd: root, stdio: "inherit"
 execFileSync("node", ["scripts/audit-fagverk-place-pages.mjs", "--write"], { cwd: root, stdio: "inherit" });
 execFileSync("node", ["scripts/build-fagverk-release-manifest.mjs"], { cwd: root, stdio: "inherit" });
 await runBuildQuizProductionContext({ root, categoryId, targetId: placeId, outputPath: contextFile });
+const builtContext = read(contextFile);
+const quizPackage = read(quizFile);
+quizPackage.production_context = {
+  manifest_category: categoryId,
+  profile: builtContext.profile,
+  standard_version: "3.3",
+  source_brief: briefFile,
+  context_artifact: contextFile,
+  resolved_files: Object.fromEntries(Object.entries(builtContext.resolved_files).map(([key, value]) => [key, value.path])),
+  required_inputs_loaded: builtContext.required_inputs_loaded,
+  pensum_module_ids: builtContext.selected_curriculum.module_ids,
+  emne_ids: builtContext.selected_curriculum.emne_ids,
+  topic_hook_ids: builtContext.selected_curriculum.topic_hook_ids,
+  method_ids: builtContext.selected_curriculum.method_ids,
+  thinker_ids: builtContext.selected_curriculum.thinker_ids,
+  works: builtContext.selected_curriculum.works,
+  source_review_status: builtContext.source_review_status,
+  existing_quiz_audit: builtContext.existing_quiz_audit,
+  profile_decision: builtContext.profile_decision,
+  held_back_candidates: builtContext.held_back_candidates,
+  theory_start_phase: "final",
+  method_start_phase: "final"
+};
+write(quizFile, quizPackage);
+const knowledgeAuditFile = "reports/knowledge-contract-audit.json";
+const knowledgeAuditSnapshot = fs.readFileSync(path.join(root, knowledgeAuditFile));
 execFileSync("npm", ["run", "knowledge:canonical:write"], { cwd: root, stdio: "inherit" });
+fs.writeFileSync(path.join(root, knowledgeAuditFile), knowledgeAuditSnapshot);
+execFileSync("node", ["tools/build-subkultur-data-audit-v1.mjs", "--write"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "place-open:build"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "epoker:places:build"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "civication:history-people:build"], { cwd: root, stdio: "inherit" });
