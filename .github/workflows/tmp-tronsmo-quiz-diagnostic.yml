@@ -1,0 +1,60 @@
+name: TEMP Tronsmo quiz diagnostic
+
+on:
+  push:
+    branches:
+      - agent/tronsmo-bokhandel-completion-20260910
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Capture exact quiz diagnostics
+        shell: bash
+        run: |
+          set +e
+          mkdir -p reports
+          REPORT=reports/tmp-tronsmo-quiz-diagnostic.txt
+          : > "$REPORT"
+          {
+            echo "HEAD=$(git rev-parse HEAD)"
+            echo "=== git grep signatures ==="
+            git grep -n -i -E 'tronsmo_q16|tronsmo_bokhandel_motstrom_tegneserier|Q/A substring leakage|anmeld' -- data/quiz tests scripts package.json .github 2>&1 || true
+          } >> "$REPORT"
+
+          run_check() {
+            label="$1"; shift
+            tmp="$(mktemp)"
+            "$@" >"$tmp" 2>&1
+            code=$?
+            {
+              echo
+              echo "=== $label (exit=$code) ==="
+              grep -n -i -E 'tronsmo|substring|leak|anmeld|fail|error|not ok|assert' "$tmp" | tail -n 250 || true
+              echo "--- tail ---"
+              tail -n 120 "$tmp"
+            } >> "$REPORT"
+          }
+
+          run_check "test:quiz-content-audit" npm run test:quiz-content-audit
+          run_check "test:quiz-production" npm run test:quiz-production
+          run_check "answer shuffle/position" node --test tests/quiz-answer-shuffle-runtime.test.mjs tests/quiz-answer-position-governance.test.mjs
+          run_check "audit:quiz-answer-position-bias" npm run audit:quiz-answer-position-bias
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add "$REPORT"
+          git commit -m "chore: record Tronsmo quiz diagnostic" || exit 0
+          git push
