@@ -60,8 +60,8 @@ assert.deepEqual(opportunity.direct_costs, { fixed: 0 });
 const ready = audit.positions.find((row) => row.key === 'litteratur/skrivebordspoet');
 assert.ok(ready);
 assert.equal(ready.classification, 'ready');
-assert.equal(ready.role_world_status, 'role_world_not_started');
-assert.equal(ready.role_world_path, null);
+assert.equal(ready.role_world_status, 'role_world_complete');
+assert.equal(ready.role_world_path, 'data/Civication/roleWorlds/litteratur/litteratur_skrivebordspoet.json');
 assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['skrivebordspoet_introtekst']);
@@ -70,13 +70,13 @@ assert.deepEqual(audit.summary.classifications, {
   needs_authored_depth: 153,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 6);
-assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.completed_life_position_role_worlds, 7);
+assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 7);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 7);
-assert.equal(audit.first_ready?.key, 'litteratur/skrivebordspoet');
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'litteratur/skrivebordspoet');
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'litteratur/skrivebordspoet');
+assert.equal(audit.first_ready, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
 
 const paidAnchor = stream.storylets.find((row) => row.id === 'honorar_for_introtekst');
 assert.ok(paidAnchor);

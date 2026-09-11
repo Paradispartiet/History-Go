@@ -96,7 +96,7 @@ Dette tallet er **ikke** `roleModels`-tallet.
 
 RoleModel-manifestet har **293 filer**. Scenario People-resolveren reduserer dette til **287 canonical roleModels** etter seks shadow-relasjoner. Disse filene brukes til authored rolle-/personresolusjon og kan representere work scopes, Badge-tiers, statusnivåer eller alias. De skal ikke telles som 287 spillerroller.
 
-Career Role World-grunnlaget har fortsatt **85 ferdige karriererolleverdener**. **Supporter**, **Nabolagskjenner**, **Filmklubbmenneske**, **Sofafilosof**, **Historievandrer** og **Gallerivanker** er nå fullførte life-position Role Worlds. Den samlede Role World-indeksen har dermed **91 verdener = 85 career + 6 life_position**.
+Career Role World-grunnlaget har fortsatt **85 ferdige karriererolleverdener**. **Supporter**, **Nabolagskjenner**, **Filmklubbmenneske**, **Sofafilosof**, **Historievandrer**, **Gallerivanker** og **Skrivebordspoet** er nå fullførte life-position Role Worlds. Den samlede Role World-indeksen har dermed **92 verdener = 85 career + 7 life_position**.
 
 ## 4. Hvorfor 118 life_position-deskriptorer, men 117 not_job-tiers?
 
