@@ -81,6 +81,13 @@ test("Stortorget user-facing description contains no internal product instructio
   assert.ok(place.popupDesc.trim().split(/\s+/u).length >= 300);
 });
 
+test("Stortorget canonical rebuild entrypoint preserves all production stages", () => {
+  const runner = fs.readFileSync(path.join(root, "tools/build-stortorget-completion.mjs"), "utf8");
+  assert.match(runner, /finalize-stortorget-completion\.mjs/u);
+  assert.match(runner, /finalize-stortorget-quiz\.mjs/u);
+  assert.match(runner, /finalize-stortorget-v42\.mjs/u);
+});
+
 test("Stortorget closure leaves no temporary materialization workflow", () => {
   assert.equal(fs.existsSync(path.join(root, ".github/workflows/_stortorget-materialize-once.yml")), false);
 });
