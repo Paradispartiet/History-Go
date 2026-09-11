@@ -283,7 +283,7 @@ const packageContext = {
   source_review_status: context.source_review_status,
   existing_quiz_audit: existingAudit,
   profile_decision: profileDecision,
-  held_back_candidates: ["Identisk kamerapunkt mellom 1843 og 2019.", "Udokumenterte salgs- eller besøkstall.", "Falske Brands for torgflaten."],
+  held_back_candidates: context.held_back_candidates,
   normal_opening_questions: 14,
   theory_start_phase: "final",
   method_start_phase: "bridge"
