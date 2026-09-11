@@ -57,7 +57,22 @@ jobs:
         run: |
           set -euo pipefail
           git show dc3c5c7bc2a0c1beeaea05c4d177fe72a46e24d3:tools/build-tollpakkhuset-completion.mjs > tools/build-tollpakkhuset-completion.mjs
-          node tools/build-tollpakkhuset-completion.mjs
+          set +e
+          node --trace-uncaught tools/build-tollpakkhuset-completion.mjs > /tmp/tollpakkhuset-materializer.log 2>&1
+          status=$?
+          set -e
+          cat /tmp/tollpakkhuset-materializer.log
+          cp /tmp/tollpakkhuset-materializer.log tollpakkhuset-materializer-diagnostic.log
+          exit "$status"
+
+      - name: Upload materializer diagnostic on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tollpakkhuset-materializer-diagnostic
+          path: tollpakkhuset-materializer-diagnostic.log
+          if-no-files-found: error
+          retention-days: 1
 
       - name: Restore verified post-materialization Tollpakkhuset source repairs
         shell: bash
@@ -143,6 +158,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -f tools/build-tollpakkhuset-completion.mjs
+          rm -f tollpakkhuset-materializer-diagnostic.log
           rm .github/workflows/tollpakkhuset-rebase-repair-temp.yml
           git add -A
           if git diff --cached --quiet; then
