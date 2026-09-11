@@ -1,0 +1,766 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "prinds_christian_augusts_minde",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1845,
+    "selection_sha256": "fceba056a0d806b8abebb16f7d1b3bf74ea6ccbc75e9d9aa8ae1bb40e6056bce",
+    "category_id": "historie",
+    "target_id": "prinds_christian_augusts_minde"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/prinds_christian_augusts_minde.json",
+      "bytes": 14129,
+      "sha256": "e312519832b30ad06f836cc28098af035eb459ddd3a92f701951059fcbe45486"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie_added_batch_01/prinds_christian_augusts_minde.json",
+      "bytes": 25761,
+      "sha256": "be7209fa4b357413cd8ab87b0e971daf6ab24724876ba8f1149c2ce1e8ceecb4"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1560,
+      "selection_sha256": "63925afbee34383f93526a4e3a1c21d23a07c3add2d0f0d6b8e2ca982e610b57"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_prinds_christian_augusts_minde.json",
+        "matches": 1,
+        "selection_bytes": 2236,
+        "selection_sha256": "c686e29f00843f662d5c5435150971f4c7227fa54088051d4455d069ab719d0d"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/prinds_christian_augusts_minde_sets.json",
+  "source_registry": {
+    "prindsen": {
+      "url": "https://prindsen.no/om-prindsen.html",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Stiftelse, bygninger, arbeid, dollhus, asyl, fredning og dagens bruk."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Prinds_Christian_Augusts_Minde",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Byhistorisk identitet og institusjonskronologi."
+    },
+    "snl": {
+      "url": "https://snl.no/Prinds_Christian_Augusts_Minde",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Fagredigert kontroll av hovedhistorien."
+    },
+    "oslo_service": {
+      "url": "https://www.oslo.kommune.no/helse-og-omsorg/rustjenester/alle-rusinstitusjoner/prindsen-mottakssenter/",
+      "source_type": "official_current",
+      "review_status": "reviewed",
+      "review_note": "Målgruppe, samfunnsoppdrag, tjenester og besøksadresse."
+    },
+    "oslo_center": {
+      "url": "https://www.oslo.kommune.no/helse-og-omsorg/rustjenester/sentrumsarbeid/",
+      "source_type": "official_current",
+      "review_status": "reviewed",
+      "review_note": "Velferdsetatens ansvar for kommunens rusfaglige arbeid."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/prinds_christian_augusts_minde_sets.json"
+    ],
+    "active_before": {
+      "categoryId": "historie",
+      "set_count": 1,
+      "question_count": 3
+    },
+    "decisions": [
+      "Legacy 1x3 var utilstrekkelig og erstattes av source-led 4x7.",
+      "Kjernepåstandene om sosialhistorie er bevart i omskrevet form, ikke som ukontrollert kopiering."
+    ],
+    "knowledge_migration": {
+      "status": "completed",
+      "retained_rule": "Bare kildebårne kunnskapsenheter videreføres."
+    }
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire sett dekker stiftelse, arbeid og helse, vern og dagens tjeneste samt kildekritisk syntese uten filler."
+  },
+  "held_back_candidates": [
+    "Individuelle beboererfaringer uten førstepersonskilder",
+    "Likestilling av dagens mottakssenter med 1800-tallets institusjoner",
+    "Ett enkelt byggeår for hele anlegget"
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_historiske_lag_i_byrom",
+        "title": "Historiske lag i byrom",
+        "score": 100
+      },
+      {
+        "id": "em_his_kulturminner_bevaring",
+        "title": "Kulturminner, utvelgelse og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_sosialhistorie_hverdagsliv",
+        "title": "Sosialhistorie og hverdagsliv",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      },
+      {
+        "id": "em_his_stat_institusjoner",
+        "title": "Stat og institusjoner",
+        "score": 100
+      },
+      {
+        "id": "em_his_tilhorighet_ekskludering",
+        "title": "Tilhørighet, identitet og ekskludering",
+        "score": 100
+      },
+      {
+        "id": "em_his_velferd_hverdagsliv",
+        "title": "Velferdsrett, vilkår og tilgang",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_skole_folkedannelse_medborgerskap",
+        "title": "Skole, folkedannelse og medborgerskap",
+        "category_id": "his_velferd_rett_hverdagsliv",
+        "score": 33
+      },
+      {
+        "id": "his_barndom_familie_livslop",
+        "title": "Barndom, familie og livsløp",
+        "category_id": "his_velferd_rett_hverdagsliv",
+        "score": 23
+      },
+      {
+        "id": "his_boligpolitikk_materiell_velferd",
+        "title": "Boligpolitikk og materiell velferd",
+        "category_id": "his_velferd_rett_hverdagsliv",
+        "score": 23
+      },
+      {
+        "id": "his_fattigvesen_veldedighet_sosial_kontroll",
+        "title": "Fattigvesen, veldedighet og sosial kontroll",
+        "category_id": "his_velferd_rett_hverdagsliv",
+        "score": 23
+      },
+      {
+        "id": "his_sosialforsikring_pensjon_universalisme",
+        "title": "Sosialforsikring, pensjon og universalisme",
+        "category_id": "his_velferd_rett_hverdagsliv",
+        "score": 23
+      },
+      {
+        "id": "his_arbeid_nettverk_naring",
+        "title": "Arbeid, nettverk og næringsliv",
+        "category_id": "his_migrasjon_minoritet_tilhorighet",
+        "score": 10
+      },
+      {
+        "id": "his_arbeiderbolig_hushold_livsvilkar",
+        "title": "Arbeiderbolig, hushold og livsvilkår",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_arbeidstid_lonn_ferdighet",
+        "title": "Arbeidstid, lønn og ferdighet",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_diskriminering_rasisme_ekskludering",
+        "title": "Diskriminering, rasisme og ekskludering",
+        "category_id": "his_migrasjon_minoritet_tilhorighet",
+        "score": 10
+      },
+      {
+        "id": "his_institusjonsbygging_funksjon",
+        "title": "Institusjonsbygging, mandat og funksjon",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 10
+      },
+      {
+        "id": "his_kjonn_arbeidsdeling_lonn",
+        "title": "Kjønn, arbeidsdeling og lønn",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_kulturminneutvelgelse_verdi",
+        "title": "Kulturminneutvelgelse og verdi",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_rettighet_vilkar_tilgang",
+        "title": "Velferdsrett, vilkår og tilgang",
+        "category_id": "his_velferd_rett_hverdagsliv",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Materielle spor og sted som kilde",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_sprak_religion_institusjoner",
+        "title": "Språk, religion og minoritetsinstitusjoner",
+        "category_id": "his_migrasjon_minoritet_tilhorighet",
+        "score": 10
+      },
+      {
+        "id": "his_tidslag_samtidighet",
+        "title": "Tidslag og samtidighet i sted",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      },
+      {
+        "id": "his_tilhorighet_identitet_minne",
+        "title": "Tilhørighet, identitet og minne",
+        "category_id": "his_migrasjon_minoritet_tilhorighet",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor",
+      "his_makt_stat_institusjoner",
+      "his_industri_arbeid_sosialhistorie",
+      "his_velferd_rett_hverdagsliv",
+      "his_migrasjon_minoritet_tilhorighet",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_velferd_hverdagsliv",
+      "em_his_tilhorighet_ekskludering",
+      "em_his_stat_institusjoner",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "fernand_braudel"
+    ],
+    "works": [
+      "The Mediterranean and the Mediterranean World"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Prindsen er et sosialhistorisk anlegg der fattigomsorg, arbeid, helse og kontroll har vært samlet.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Prindsen-dokumentasjonen oppgir Storgata 36 som adresse for anlegget.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Stiftelsen ble opprettet i 1809.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_tilhorighet_ekskludering"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Navnet var en æresbevisning til stattholder Christian August.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Stiftelsen skulle hjelpe fattige og arbeidsløse.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Mangelsgården ble kjøpt i 1812.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Fattigvesenets spinnerier ble flyttet til Mangelsgården.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den faste anstalten ble etablert som arbeidshus i 1819.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Arbeidet skulle i prinsippet være frivillig, men tvangsplassering forekom fra starten.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Prindsen-dokumentasjonen nevner steinhogging, spinning, veving og drevplukking.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_tilhorighet_ekskludering"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Et eget dollhus med ni plasser ble etablert i 1829.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Dollhuset lå i nordfløyen av Mangelsgården.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fabrikkbygningen ble tatt i bruk i 1833.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Byens fattigsykehus ble oppført inne på området i 1840.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Utbedringer gjorde at asylet kunne godkjennes i 1850.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kvinneavdelingen flyttet til Dikemark i 1908; mannlige pasienter var flyttet i 1905.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Mangelsgården ble fredet i 1927.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_tilhorighet_ekskludering"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Riksantikvaren fredet hele anlegget i 2009.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Betegnelsen framhever rundt to hundre år med virksomheter knyttet til fattige og utstøtte.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kulturminneverdien omfatter også et lukket preg knyttet til hvordan fattige og syke ble holdt utenfor det vanlige bylivet.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oslo kommune beskriver mottakssenteret som et helse- og sosialfaglig lavterskeltilbud.",
+      "source_ids": [
+        "oslo_service"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oslo kommune oppgir Hausmannsgate 11 som besøksadresse.",
+      "source_ids": [
+        "oslo_service"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oslo kommune oppgir at Velferdsetaten har ansvar for kommunens rusfaglige arbeid.",
+      "source_ids": [
+        "oslo_center"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Mottakssenteret tilbyr blant annet brukerrom, feltpleie, akuttovernatting og smittevern.",
+      "source_ids": [
+        "oslo_service"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_tilhorighet_ekskludering"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et skilt er et fysisk ettertidsspor og må sammenholdes med historiske og institusjonelle kilder.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Den kommunale siden er en nåtidskilde til dagens tjeneste, ikke en primærkilde til 1800-tallet.",
+      "source_ids": [
+        "oslo_service"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Arbeidshuset skulle gi hjelp, men tvangsplassering viser at omsorg og kontroll kunne virke samtidig.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Prindsen rommer skiftende institusjoner og bruk; langvarige strukturer og kortere hendelser må skilles kildekritisk.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_prindsen_arbeid_tvang_asyl_1809",
+      "source_file": "data/stories/stories_prinds_christian_augusts_minde.json",
+      "summary": "I Mangelsgården i Storgata 36 ble en veldedig arbeidsanstalt gradvis et anlegg der fattigomsorg, tvangsarbeid, sykdom og asylfunksjoner lå i samme gårdsrom."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_prinds_christian_augusts_minde_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_prinds_christian_augusts_minde_quiz_01",
+        "claim_prinds_christian_augusts_minde_quiz_02",
+        "claim_prinds_christian_augusts_minde_quiz_03",
+        "claim_prinds_christian_augusts_minde_quiz_04",
+        "claim_prinds_christian_augusts_minde_quiz_05",
+        "claim_prinds_christian_augusts_minde_quiz_06",
+        "claim_prinds_christian_augusts_minde_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_prinds_christian_augusts_minde_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_prinds_christian_augusts_minde_quiz_08",
+        "claim_prinds_christian_augusts_minde_quiz_09",
+        "claim_prinds_christian_augusts_minde_quiz_10",
+        "claim_prinds_christian_augusts_minde_quiz_11",
+        "claim_prinds_christian_augusts_minde_quiz_12",
+        "claim_prinds_christian_augusts_minde_quiz_13",
+        "claim_prinds_christian_augusts_minde_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_prinds_christian_augusts_minde_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_prinds_christian_augusts_minde_quiz_15",
+        "claim_prinds_christian_augusts_minde_quiz_16",
+        "claim_prinds_christian_augusts_minde_quiz_17",
+        "claim_prinds_christian_augusts_minde_quiz_18",
+        "claim_prinds_christian_augusts_minde_quiz_19",
+        "claim_prinds_christian_augusts_minde_quiz_20",
+        "claim_prinds_christian_augusts_minde_quiz_21"
+      ]
+    },
+    {
+      "set_id": "historie_prinds_christian_augusts_minde_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_prinds_christian_augusts_minde_quiz_22",
+        "claim_prinds_christian_augusts_minde_quiz_23",
+        "claim_prinds_christian_augusts_minde_quiz_24",
+        "claim_prinds_christian_augusts_minde_quiz_25",
+        "claim_prinds_christian_augusts_minde_quiz_26",
+        "claim_prinds_christian_augusts_minde_quiz_27",
+        "claim_prinds_christian_augusts_minde_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}
