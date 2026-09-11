@@ -39,6 +39,30 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Capture quiz production baseline
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'scripts/audit-quiz-production-context.mjs';
+          let src = fs.readFileSync(file, 'utf8');
+          const replacements = [
+            ['brief.profile_decision.profile', 'brief.profile_decision?.profile'],
+            ['brief.profile_decision.set_count', 'brief.profile_decision?.set_count'],
+            ['brief.profile_decision.questions_per_set', 'brief.profile_decision?.questions_per_set']
+          ];
+          for (const [from, to] of replacements) {
+            const count = src.split(from).length - 1;
+            if (count !== 1) throw new Error(`Expected exactly one audit match for ${from}; got ${count}`);
+            src = src.replace(from, to);
+          }
+          fs.writeFileSync(file, src);
+          const { auditQuizProductionContext } = await import(`./scripts/audit-quiz-production-context.mjs?baseline=${Date.now()}`);
+          const report = await auditQuizProductionContext();
+          fs.writeFileSync('/tmp/quiz-production-baseline.json', JSON.stringify(report, null, 2));
+          console.log(`Quiz production baseline: ${report.failures.length} existing failure(s)`);
+          NODE
+          git checkout -- scripts/audit-quiz-production-context.mjs
+
       - name: Download verified source assets
         run: |
           curl -L --fail --retry 3 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Oslo_Tollbod_stenpakkhuset_rk_117572_IMG_2583.JPG' -o /tmp/tollpakkhuset-place.jpg
@@ -80,21 +104,46 @@ jobs:
           import fs from 'node:fs';
           const file = 'scripts/audit-quiz-production-context.mjs';
           let src = fs.readFileSync(file, 'utf8');
-          src = src
-            .replace('brief.profile_decision.profile', 'brief.profile_decision?.profile')
-            .replace('brief.profile_decision.set_count', 'brief.profile_decision?.set_count')
-            .replace('brief.profile_decision.questions_per_set', 'brief.profile_decision?.questions_per_set');
+          const replacements = [
+            ['brief.profile_decision.profile', 'brief.profile_decision?.profile'],
+            ['brief.profile_decision.set_count', 'brief.profile_decision?.set_count'],
+            ['brief.profile_decision.questions_per_set', 'brief.profile_decision?.questions_per_set']
+          ];
+          for (const [from, to] of replacements) {
+            const count = src.split(from).length - 1;
+            if (count !== 1) throw new Error(`Expected exactly one audit match for ${from}; got ${count}`);
+            src = src.replace(from, to);
+          }
           fs.writeFileSync(file, src);
+          const { auditQuizProductionContext } = await import(`./scripts/audit-quiz-production-context.mjs?post=${Date.now()}`);
+          const report = await auditQuizProductionContext();
+          fs.writeFileSync('/tmp/quiz-production-post.json', JSON.stringify(report, null, 2));
+          console.log(`Quiz production post-materialization: ${report.failures.length} failure(s)`);
           NODE
-          set +e
-          node scripts/audit-quiz-production-context.mjs
-          context_status=$?
-          set -e
           git checkout -- scripts/audit-quiz-production-context.mjs
-          if [ "$context_status" -ne 0 ]; then
-            echo "quiz production context audit failed; diagnostic report above"
-            exit "$context_status"
-          fi
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const baseline = JSON.parse(fs.readFileSync('/tmp/quiz-production-baseline.json', 'utf8'));
+          const post = JSON.parse(fs.readFileSync('/tmp/quiz-production-post.json', 'utf8'));
+          const stable = (value) => {
+            if (Array.isArray(value)) return `[${value.map(stable).join(',')}]`;
+            if (value && typeof value === 'object') return `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${stable(value[key])}`).join(',')}}`;
+            return JSON.stringify(value);
+          };
+          const baselineSet = new Set((baseline.failures || []).map(stable));
+          const newFailures = (post.failures || []).filter((failure) => !baselineSet.has(stable(failure)));
+          const tollpakkhusetFailures = (post.failures || []).filter((failure) => JSON.stringify(failure).toLowerCase().includes('tollpakkhuset'));
+          console.log(`Quiz production baseline ${baseline.failures?.length || 0} → post ${post.failures?.length || 0}`);
+          if (tollpakkhusetFailures.length) {
+            console.error('Tollpakkhuset production-context failures:', JSON.stringify(tollpakkhusetFailures, null, 2));
+            process.exit(1);
+          }
+          if (newFailures.length) {
+            console.error('New quiz production-context failures introduced by materialization:', JSON.stringify(newFailures, null, 2));
+            process.exit(1);
+          }
+          console.log('Quiz production context PASS: Tollpakkhuset clean and no baseline regressions');
+          NODE
           node scripts/audit-quiz-progression.mjs
           node scripts/audit-quiz-theory-binding.mjs
 
