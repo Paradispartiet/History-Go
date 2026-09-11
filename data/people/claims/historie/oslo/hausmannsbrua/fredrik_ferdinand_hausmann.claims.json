@@ -1,0 +1,129 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "fredrik_ferdinand_hausmann",
+  "profile_file": "data/people/historie/oslo/akerselva/fredrik_ferdinand_hausmann.json",
+  "identity": {
+    "canonical_identity": "Fredrik Ferdinand Hausmann (1693–1757), dansk-norsk offiser, generalløytnant og legatstifter.",
+    "name_variants": [
+      "Fredrik Ferdinand Hausmann",
+      "Frederik Ferdinand Hausmann"
+    ],
+    "not": [
+      "ingeniøren P. Schaaning",
+      "brobygger av Hausmannsbrua"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_lifespan",
+      "claim": "Fredrik Ferdinand Hausmann levde 1693–1757.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Hausmanns_gate",
+      "source_location": "navneopprinnelsen",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "hausmanns_gate_name",
+      "claim": "Hausmanns gate er oppkalt etter Fredrik Ferdinand Hausmann.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Hausmanns_gate",
+      "source_location": "innledning og navnehistorie",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "hausmannsbrua_name_relation",
+      "claim": "Hausmannsbrua har navn etter Hausmanns gate, slik at Hausmann er indirekte navneopphav til broen.",
+      "status": "verified",
+      "source_url": "https://snl.no/Hausmanns_bru",
+      "source_location": "avsnittet om navn",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "not_bridge_builder",
+      "claim": "Hausmann døde i 1757 og kan derfor ikke være brobyggeren av konstruksjonen som stod ferdig i 1892.",
+      "status": "verified",
+      "source_url": "https://snl.no/Hausmanns_bru",
+      "source_location": "navn og byggeår sammenholdt",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-11",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_lifespan"
+    ],
+    "kindLabel": [
+      "identity_lifespan"
+    ],
+    "birth_date": [
+      "identity_lifespan"
+    ],
+    "death_date": [
+      "identity_lifespan"
+    ],
+    "places[hausmannsbrua]": [
+      "hausmannsbrua_name_relation"
+    ],
+    "image": [
+      "identity_lifespan"
+    ],
+    "cardImage": [
+      "identity_lifespan"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_lifespan",
+          "hausmannsbrua_name_relation"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_lifespan",
+          "hausmanns_gate_name"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "hausmanns_gate_name",
+          "hausmannsbrua_name_relation"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "not_bridge_builder"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "4/4",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
