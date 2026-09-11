@@ -227,6 +227,8 @@ const stories=read(storyFile);
 const ownStory=stories.find(s=>s.id==="st_vaterlandsparken_waterland_til_park");
 if(!ownStory) throw new Error("Missing existing Vaterlandsparken Story");
 ownStory.quality_profile="episode_v1";
+ownStory.type="historical_event";
+ownStory.score={narrative:3,historical:2,source:5,play_value:3,originality:3,total:16};
 ownStory.episode={actors:["Oslo kommune","13.3 Landskapsarkitekter","A. Haukeland landskapsarkitekter"],date:"1993–1994",action:"Et sanert og lenge ubygd areal ble opparbeidet som offentlig elvepark.",consequence:"Vaterland fikk et parkrom der eldre landskapslag, offentlig kunst og sosialhistorie kan leses sammen."};
 ownStory.arc={start:"Vann, sump og tømmerhistorie preget området før den tette byen.",middle:"Sanering og en urealiserbar plan lot tomta stå åpen før parkprosjektet.",end:"I 1993–94 ble området offentlig park, senere supplert med Ólafia-bysten som sosialhistorisk minne."};
 ownStory.sources=[
