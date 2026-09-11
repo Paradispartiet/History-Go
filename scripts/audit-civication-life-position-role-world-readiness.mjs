@@ -266,13 +266,13 @@ function classify(position, evidence) {
 
 const completedLifeWorlds = new Map((roleWorldIndex.roles || [])
   .filter((entry) => entry?.subject_type === 'life_position' && entry?.life_position_ref?.badge_id && entry?.life_position_ref?.id)
-  .map((entry) => [`${entry.life_position_ref.badge_id}::${entry.life_position_ref.id}`, entry]));
+  .map((entry) => [entry.life_position_key || `${entry.life_position_ref.badge_id}/${entry.life_position_ref.id}`, entry]));
 
 const rows = positions.map((position) => {
   const evidence = sourceEvidence(position);
   const classification = classify(position, evidence);
   const completedWorld = position.id
-    ? completedLifeWorlds.get(`${position.badge_id}::${position.id}`) || null
+    ? completedLifeWorlds.get(positionKey(position)) || null
     : null;
   const mode = semanticMode(position.kind);
   let priority = classification === 'role_world_complete' ? 0
@@ -354,8 +354,7 @@ const output = {
     livelihood_templates:'data/Civication/livelihoodOpportunityTemplates.json',
     role_world_index:'data/Civication/roleWorlds/index.json',
     role_world_standard:'docs/CIVICATION_ROLE_WORLD_STANDARD.md',
-    scene_pipeline:'data/Civication/SCENE_PIPELINE_V1.md',
-    role_world_index:'data/Civication/roleWorlds/index.json'
+    scene_pipeline:'data/Civication/SCENE_PIPELINE_V1.md'
   },
   semantics:{
     audit_only_no_new_runtime:true,
