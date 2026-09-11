@@ -1,49 +1,49 @@
 {
   "targetId": "tronsmo_bokhandel",
   "categoryId": "litteratur",
-  "source_quiz_file": "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
-  "generator_version": "v5_1_external_priority_chat_merged_litteratur_5x6_oslo",
-  "size_class": "normal_place",
+  "source_quiz_file": "data/quiz/litteratur/tronsmo_bokhandel_sets_merged.json",
+  "generator_version": "v5_1_reconciled_litteratur_4x7_tronsmo_20260910",
+  "size_class": "normal_4x7",
   "generated_from": [
     "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
     "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
-    "data/places/litteratur/oslo/places_litteratur.json",
-    "data/quiz/quiz_litteratur.json",
-    "data/places/litteratur/oslo/places_litteratur.json",
-    "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
+    "data/places/litteratur/oslo/places_litteratur/tronsmo_bokhandel.json",
     "https://www.tronsmo.no/om-tronsmo/",
-    "https://www.tronsmo.no/tegneserier/",
-    "https://snl.no/Tronsmo_Bokhandel"
+    "https://snl.no/Tronsmo_Bokhandel",
+    "https://snl.no/Per_Petterson",
+    "https://oslobyleksikon.no/side/Universitetsgata",
+    "https://oslobyleksikon.no/side/Kristian_Augusts_gate",
+    "https://www.tronsmo.no/produkt/tronsmo-40-ar-jubileumsboks/",
+    "https://commons.wikimedia.org/wiki/File:Tronsmo_Bokhandel_comic_book_store_in_Universitetsgata,_Oslo,_Norway._Window_decorations_by_Lars_Fiske_and_Bendik_Kaltenborn,_2017-12-14.jpg"
   ],
   "merge_notes": {
-    "existing_quiz_status": "Existing data/quiz/litteratur/tronsmo_bokhandel_sets.json found; no *_sets_merged.json existed.",
-    "kept": "Kept old-seed points: established in 1973 and known for radical literature, poetry and comics.",
-    "corrected": "Avoided generic shop/tourist framing. Treated Tronsmo as independent bookstore, curated literary public sphere, political literature node and comics institution.",
-    "not_continued": "No opening-hours/current-stock questions because they can change.",
-    "added": "Added 5 sets x 6 questions: 1973, radical bookstore, Universitetsgata 12, curated selection, sales-count critique, comics basement, comics as art/politics/reportage, genre breadth, contrasts and methods."
+    "existing_quiz_status": "Reconciled the two unregistered 5x6 legacy set files into one modern package.",
+    "kept": "Retained the first four legacy thematic sets after external-source cleanup.",
+    "corrected": "Removed self-references to legacy quiz files and the aggregate place file; direct external sources now carry the claims.",
+    "not_continued": "Dropped the fifth legacy set to match the canonical normal 4x7 profile and removed duplicate legacy files.",
+    "added": "Added one reviewed source-backed question per set for exact 4×7 coverage, including current address, Per Petterson, the 2015 move and the 2013 anniversary publication."
   },
   "profile_snapshot": {
     "place_type": "litteratursted",
     "subtype": "uavhengig_bokhandel_og_litteraer_offentlighet",
     "signature_features": [
-      "founded in 1973",
-      "independent alternative to traditional bookstores",
-      "known for political literature, poetry and comics",
-      "located in Universitetsgata 12",
-      "curated selection and legendary comics department"
+      "grunnlagt 1973",
+      "uavhengig kuratert bokhandel",
+      "sterk tegneserieavdeling",
+      "Universitetsgata 12 siden 2015"
     ],
     "primary_angles": [
-      "uavhengig_bokhandel",
-      "politisk_litteratur",
-      "poesi",
+      "litteraturfelt",
+      "kuratering",
       "tegneserier",
-      "kuratering"
+      "offentlighet",
+      "bokhistorie"
     ],
     "must_include": [
       "1973",
       "Universitetsgata 12",
-      "political literature, poetry and comics",
-      "avoid generic tourist shop"
+      "uavhengig bokhandel",
+      "tegneserieavdeling"
     ]
   },
   "sets": [
@@ -105,14 +105,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Når ble Tronsmo Bokhandel grunnlagt? Riktig svar er: 1973.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -123,7 +121,19 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_1973_2530590486",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_1973_2530590486"
+          ],
+          "concept_ids": [
+            "co_litteratur_1973_f800fb514f",
+            "co_litteratur_grunnlagt_253895cf15",
+            "co_litteratur_tronsmo_39a08f23b5"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "id": "tronsmo_bokhandel_quiz_2",
@@ -136,12 +146,12 @@
           "question_scope": "place",
           "question": "Hva var Tronsmo opprinnelig kjent som ifølge SNL?",
           "options": [
-            "En radikal bokhandel for den politiske venstresiden",
             "Et nasjonalteater for dramatikk",
+            "En radikal bokhandel for den politiske venstresiden",
             "En statlig pliktavleveringsinstitusjon"
           ],
           "answer": "En radikal bokhandel for den politiske venstresiden",
-          "answerIndex": 0,
+          "answerIndex": 1,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "radikal bokhandel",
           "knowledge": "Hva var Tronsmo opprinnelig kjent som ifølge SNL? Riktig svar er: En radikal bokhandel for den politiske venstresiden.",
@@ -176,14 +186,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hva var Tronsmo opprinnelig kjent som ifølge SNL? Riktig svar er: En radikal bokhandel for den politiske venstresiden.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -194,7 +202,19 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_en_radika_317c76e3b8",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_en_radika_317c76e3b8"
+          ],
+          "concept_ids": [
+            "co_litteratur_radikal_bokhandel_c9891e8545",
+            "co_litteratur_politisk_venstreside_7ca086fa29",
+            "co_litteratur_snl_84c20a4c89"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "id": "tronsmo_bokhandel_quiz_3",
@@ -207,12 +227,12 @@
           "question_scope": "place",
           "question": "Hva er Tronsmo i litteraturkategorien?",
           "options": [
-            "En uavhengig bokhandel og litterært offentlighetssted",
+            "En forfatterbolig ved Slottsparken",
             "Et lukket arkiv uten publikum",
-            "En forfatterbolig ved Slottsparken"
+            "En uavhengig bokhandel og litterært offentlighetssted"
           ],
           "answer": "En uavhengig bokhandel og litterært offentlighetssted",
-          "answerIndex": 0,
+          "answerIndex": 2,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "uavhengig bokhandel",
           "knowledge": "Hva er Tronsmo i litteraturkategorien? Riktig svar er: En uavhengig bokhandel og litterært offentlighetssted.",
@@ -247,14 +267,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hva er Tronsmo i litteraturkategorien? Riktig svar er: En uavhengig bokhandel og litterært offentlighetssted.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -265,7 +283,19 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_en_uavhen_ddea723bcc",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_en_uavhen_ddea723bcc"
+          ],
+          "concept_ids": [
+            "co_litteratur_uavhengig_bokhandel_d52eeabb0f",
+            "co_litteratur_offentlighet_4f3607f613",
+            "co_litteratur_litteraturfelt_f93f39492e"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "id": "tronsmo_bokhandel_quiz_4",
@@ -318,14 +348,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hvor ligger Tronsmo ifølge Tronsmos egne sider? Riktig svar er: Universitetsgata 12.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -336,7 +364,19 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_universit_fdb94b7319",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_universit_fdb94b7319"
+          ],
+          "concept_ids": [
+            "co_litteratur_universitetsgata_12_0e69411ed3",
+            "co_litteratur_oslo_0bfd7ac0af",
+            "co_litteratur_bokhandel_8b7c5ab1b8"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "id": "tronsmo_bokhandel_quiz_5",
@@ -349,12 +389,12 @@
           "question_scope": "place",
           "question": "Hva har Tronsmo særlig vært kjent for i place-filen?",
           "options": [
-            "Politisk litteratur, poesi og tegneserier",
             "Bare skolebøker",
+            "Politisk litteratur, poesi og tegneserier",
             "Bare kommunale saksdokumenter"
           ],
           "answer": "Politisk litteratur, poesi og tegneserier",
-          "answerIndex": 0,
+          "answerIndex": 1,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "politisk litteratur",
           "knowledge": "Hva har Tronsmo særlig vært kjent for i place-filen? Riktig svar er: Politisk litteratur, poesi og tegneserier.",
@@ -389,14 +429,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hva har Tronsmo særlig vært kjent for i place-filen? Riktig svar er: Politisk litteratur, poesi og tegneserier.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -407,7 +445,19 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_politisk__85a470dd8a",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_politisk__85a470dd8a"
+          ],
+          "concept_ids": [
+            "co_litteratur_politisk_litteratur_d766e2346f",
+            "co_litteratur_poesi_2f4e6cca5b",
+            "co_litteratur_tegneserier_4a14090775"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "id": "tronsmo_bokhandel_quiz_6",
@@ -420,12 +470,12 @@
           "question_scope": "place",
           "question": "Hvilken lesning passer best for `tronsmo_bokhandel`?",
           "options": [
-            "Et uavhengig bokhandelsrom der kuratering, politisk litteratur, poesi, tegneserier og motkultur møtes",
+            "Et rent lager uten lesere",
             "Et generisk butikklokale uten litterær funksjon",
-            "Et rent lager uten lesere"
+            "Et uavhengig bokhandelsrom der kuratering, politisk litteratur, poesi, tegneserier og motkultur møtes"
           ],
           "answer": "Et uavhengig bokhandelsrom der kuratering, politisk litteratur, poesi, tegneserier og motkultur møtes",
-          "answerIndex": 0,
+          "answerIndex": 2,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "uavhengighet",
           "knowledge": "Hvilken lesning passer best for `tronsmo_bokhandel`? Riktig svar er: Et uavhengig bokhandelsrom der kuratering, politisk litteratur, poesi, tegneserier og motkultur møtes.",
@@ -460,14 +510,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hvilken lesning passer best for `tronsmo_bokhandel`? Riktig svar er: Et uavhengig bokhandelsrom der kuratering, politisk litteratur, poesi, tegneserier og motkultur møtes.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -478,9 +526,95 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_et_uavhen_3621b61f6b",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_et_uavhen_3621b61f6b"
+          ],
+          "concept_ids": [
+            "co_litteratur_uavhengighet_5da9931ffb",
+            "co_litteratur_kuratering_47653e366f",
+            "co_litteratur_motkultur_df9b16d869"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tronsmo_bokhandel_quiz_7",
+          "quiz_id": "litteratur_tronsmo_bokhandel_set_1_q7",
+          "categoryId": "litteratur",
+          "placeId": "tronsmo_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "tronsmo_bokhandel",
+          "question_scope": "place",
+          "question": "Hvilken adresse har Tronsmo Bokhandel i dag?",
+          "options": [
+            "Universitetsgata 12",
+            "Kristian Augusts gate 19",
+            "Arne Garborgs plass 4"
+          ],
+          "answer": "Universitetsgata 12",
+          "answerIndex": 0,
+          "dimension": "bokhandel_litteraturfelt_og_offentlighet",
+          "topic": "tronsmo_bokhandel",
+          "knowledge": "Oslo byleksikon dokumenterer at Tronsmo har holdt til i Universitetsgata 12 siden 2015.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "year": 2015,
+          "epoke_id": "tronsmo_uavhengig_bokhandel_1973",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_feltanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Tronsmo",
+            "bokhandel",
+            "litteraturfelt"
+          ],
+          "concept_focus": [
+            "Tronsmo"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "Tronsmo",
+            "bokhandel",
+            "litteratur"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Universitetsgata",
+            "https://www.tronsmo.no/om-tronsmo/",
+            "https://snl.no/Tronsmo_Bokhandel"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo byleksikon dokumenterer at Tronsmo har holdt til i Universitetsgata 12 siden 2015.",
+          "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "merge_status": "reviewed_completion_2026_09_10",
+          "primary_knowledge_unit_id": "ku_litteratur_oslo_byleksikon_dokument_a93c3f0c75",
+          "knowledge_unit_ids": [
+            "ku_litteratur_oslo_byleksikon_dokument_a93c3f0c75"
+          ],
+          "concept_ids": [
+            "co_litteratur_tronsmo_39a08f23b5",
+            "co_litteratur_bokhandel_8b7c5ab1b8",
+            "co_litteratur_litteraturfelt_f93f39492e"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         }
-      ]
+      ],
+      "phase": "opening"
     },
     {
       "set_id": "litteratur_tronsmo_bokhandel_set_2",
@@ -490,7 +624,7 @@
       "mode": "local_history_buildings_events",
       "questions": [
         {
-          "id": "tronsmo_bokhandel_quiz_7",
+          "id": "tronsmo_bokhandel_quiz_8",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_2_q1",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -500,12 +634,12 @@
           "question_scope": "place",
           "question": "Hva sier Tronsmo selv at bokhandelen har vært siden starten i 1973?",
           "options": [
-            "Et alternativ til de tradisjonelle bokhandlene",
             "En ren kjedebokhandel",
+            "Et alternativ til de tradisjonelle bokhandlene",
             "Et lukket forskningsmagasin"
           ],
           "answer": "Et alternativ til de tradisjonelle bokhandlene",
-          "answerIndex": 0,
+          "answerIndex": 1,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "alternativ bokhandel",
           "knowledge": "Hva sier Tronsmo selv at bokhandelen har vært siden starten i 1973? Riktig svar er: Et alternativ til de tradisjonelle bokhandlene.",
@@ -540,14 +674,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hva sier Tronsmo selv at bokhandelen har vært siden starten i 1973? Riktig svar er: Et alternativ til de tradisjonelle bokhandlene.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -558,10 +690,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_et_altern_70b0216b97",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_et_altern_70b0216b97"
+          ],
+          "concept_ids": [
+            "co_litteratur_alternativ_bokhandel_7fefb806ab",
+            "co_litteratur_tradisjonelle_bokhandler_55fe175f64",
+            "co_litteratur_1973_f800fb514f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_8",
+          "id": "tronsmo_bokhandel_quiz_9",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_2_q2",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -571,12 +715,12 @@
           "question_scope": "place",
           "question": "Hva sier Tronsmo at ikke bestemmer hvilke bøker som skal stå i hyllene?",
           "options": [
-            "Forlagenes salgstall",
+            "Byggets fasadefarge",
             "Lesernes alfabetiske rekkefølge",
-            "Byggets fasadefarge"
+            "Forlagenes salgstall"
           ],
           "answer": "Forlagenes salgstall",
-          "answerIndex": 0,
+          "answerIndex": 2,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "salgstall",
           "knowledge": "Hva sier Tronsmo at ikke bestemmer hvilke bøker som skal stå i hyllene? Riktig svar er: Forlagenes salgstall.",
@@ -611,14 +755,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hva sier Tronsmo at ikke bestemmer hvilke bøker som skal stå i hyllene? Riktig svar er: Forlagenes salgstall.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -629,10 +771,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_forlagene_18b5ee7820",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_forlagene_18b5ee7820"
+          ],
+          "concept_ids": [
+            "co_litteratur_salgstall_f786c0e9b7",
+            "co_litteratur_utvalg_00f499f207",
+            "co_litteratur_kuratering_47653e366f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_9",
+          "id": "tronsmo_bokhandel_quiz_10",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_2_q3",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -682,14 +836,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hva er den viktigste bokhandelsfaglige forskjellen mellom Tronsmo og en kjedebutikk? Riktig svar er: Tronsmo vektlegger kuratert utvalg framfor volum- og bestselgerlogikk.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -700,10 +852,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_tronsmo_v_b662423d2b",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_tronsmo_v_b662423d2b"
+          ],
+          "concept_ids": [
+            "co_litteratur_kuratert_utvalg_d4227ec901",
+            "co_litteratur_bestselgerlogikk_e99bd03b87",
+            "co_litteratur_bokmarked_7a1dd4b79e"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_10",
+          "id": "tronsmo_bokhandel_quiz_11",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_2_q4",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -713,12 +877,12 @@
           "question_scope": "place",
           "question": "Hvilket markedstrekk kritiserer Tronsmo selv?",
           "options": [
-            "Kjeder, snever volumfiksering og ensretting",
             "For mange små forlag i bybildet",
+            "Kjeder, snever volumfiksering og ensretting",
             "For mange lesesaler i Oslo"
           ],
           "answer": "Kjeder, snever volumfiksering og ensretting",
-          "answerIndex": 0,
+          "answerIndex": 1,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "kjeder",
           "knowledge": "Hvilket markedstrekk kritiserer Tronsmo selv? Riktig svar er: Kjeder, snever volumfiksering og ensretting.",
@@ -753,14 +917,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hvilket markedstrekk kritiserer Tronsmo selv? Riktig svar er: Kjeder, snever volumfiksering og ensretting.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -771,10 +933,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_kjeder_sn_8b329e4259",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_kjeder_sn_8b329e4259"
+          ],
+          "concept_ids": [
+            "co_litteratur_kjeder_c21c8b7198",
+            "co_litteratur_volumfiksering_fbc41407da",
+            "co_litteratur_ensretting_25eaa80e70"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_11",
+          "id": "tronsmo_bokhandel_quiz_12",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_2_q5",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -784,12 +958,12 @@
           "question_scope": "place",
           "question": "Hvorfor er butikkens utvalg litteraturfaglig viktig?",
           "options": [
-            "Utvalget former hvilke bøker, sjangre og stemmer lesere faktisk møter",
+            "Bokhandel handler bare om inventar",
             "Utvalg har ingen betydning for lesing",
-            "Bokhandel handler bare om inventar"
+            "Utvalget former hvilke bøker, sjangre og stemmer lesere faktisk møter"
           ],
           "answer": "Utvalget former hvilke bøker, sjangre og stemmer lesere faktisk møter",
-          "answerIndex": 0,
+          "answerIndex": 2,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "utvalg",
           "knowledge": "Hvorfor er butikkens utvalg litteraturfaglig viktig? Riktig svar er: Utvalget former hvilke bøker, sjangre og stemmer lesere faktisk møter.",
@@ -824,14 +998,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hvorfor er butikkens utvalg litteraturfaglig viktig? Riktig svar er: Utvalget former hvilke bøker, sjangre og stemmer lesere faktisk møter.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -842,10 +1014,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_utvalget__671aa96a46",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_utvalget__671aa96a46"
+          ],
+          "concept_ids": [
+            "co_litteratur_utvalg_00f499f207",
+            "co_litteratur_lesere_1b644ff75d",
+            "co_litteratur_kanon_eb9114d935"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_12",
+          "id": "tronsmo_bokhandel_quiz_13",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_2_q6",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -895,14 +1079,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hvilken bokmarkedsanalyse passer best for Tronsmo? Riktig svar er: Tronsmo viser hvordan uavhengig kuratering kan fungere som motvekt til kommersiell ensretting.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -913,9 +1095,95 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_tronsmo_v_3090cf9045",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_tronsmo_v_3090cf9045"
+          ],
+          "concept_ids": [
+            "co_litteratur_uavhengig_kuratering_bea01418df",
+            "co_litteratur_kommersiell_ensretting_e0ccd3ac1e",
+            "co_litteratur_motvekt_7cea76c066"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tronsmo_bokhandel_quiz_14",
+          "quiz_id": "litteratur_tronsmo_bokhandel_set_2_q7",
+          "categoryId": "litteratur",
+          "placeId": "tronsmo_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "tronsmo_bokhandel",
+          "question_scope": "place",
+          "question": "Hvilken forfatter er direkte dokumentert som mangeårig ansatt på Tronsmo?",
+          "options": [
+            "Knut Hamsun",
+            "Per Petterson",
+            "Henrik Ibsen"
+          ],
+          "answer": "Per Petterson",
+          "answerIndex": 1,
+          "dimension": "bokhandel_litteraturfelt_og_offentlighet",
+          "topic": "tronsmo_bokhandel",
+          "knowledge": "Store norske leksikon oppgir at Per Petterson arbeidet mange år på Tronsmo.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "year": null,
+          "epoke_id": "tronsmo_uavhengig_bokhandel_1973",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraturfelt_institusjoner",
+          "method_id": "met_lit_feltanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Tronsmo",
+            "bokhandel",
+            "litteraturfelt"
+          ],
+          "concept_focus": [
+            "Tronsmo"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "Tronsmo",
+            "bokhandel",
+            "litteratur"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "https://snl.no/Per_Petterson",
+            "https://www.tronsmo.no/om-tronsmo/",
+            "https://snl.no/Tronsmo_Bokhandel"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Store norske leksikon oppgir at Per Petterson arbeidet mange år på Tronsmo.",
+          "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "merge_status": "reviewed_completion_2026_09_10",
+          "primary_knowledge_unit_id": "ku_litteratur_store_norske_leksikon_op_33f3c6676d",
+          "knowledge_unit_ids": [
+            "ku_litteratur_store_norske_leksikon_op_33f3c6676d"
+          ],
+          "concept_ids": [
+            "co_litteratur_tronsmo_39a08f23b5",
+            "co_litteratur_bokhandel_8b7c5ab1b8",
+            "co_litteratur_litteraturfelt_f93f39492e"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         }
-      ]
+      ],
+      "phase": "opening"
     },
     {
       "set_id": "litteratur_tronsmo_bokhandel_set_3",
@@ -925,7 +1193,7 @@
       "mode": "humor_curiosities_life",
       "questions": [
         {
-          "id": "tronsmo_bokhandel_quiz_13",
+          "id": "tronsmo_bokhandel_quiz_15",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_3_q1",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -935,12 +1203,12 @@
           "question_scope": "place",
           "question": "Hvilken egen avdeling framhever Tronsmo som legendarisk?",
           "options": [
-            "Tegneserieavdelingen i underetasjen",
+            "Nationaltheatrets hovedscene",
             "Nasjonalbibliotekets lesesal",
-            "Nationaltheatrets hovedscene"
+            "Tegneserieavdelingen i underetasjen"
           ],
           "answer": "Tegneserieavdelingen i underetasjen",
-          "answerIndex": 0,
+          "answerIndex": 2,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "tegneserieavdeling",
           "knowledge": "Hvilken egen avdeling framhever Tronsmo som legendarisk? Riktig svar er: Tegneserieavdelingen i underetasjen.",
@@ -975,14 +1243,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hvilken egen avdeling framhever Tronsmo som legendarisk? Riktig svar er: Tegneserieavdelingen i underetasjen.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -993,10 +1259,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_tegneseri_46c7799b8d",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_tegneseri_46c7799b8d"
+          ],
+          "concept_ids": [
+            "co_litteratur_tegneserieavdeling_ab3c634867",
+            "co_litteratur_underetasjen_f3c77fef3b",
+            "co_litteratur_tronsmo_39a08f23b5"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_14",
+          "id": "tronsmo_bokhandel_quiz_16",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_3_q2",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -1046,14 +1324,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hva sier Tronsmo selv at tegneserier også kan være? Riktig svar er: Kunst, politikk og reportasje.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -1064,10 +1340,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_kunst_pol_e4833e1fa4",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_kunst_pol_e4833e1fa4"
+          ],
+          "concept_ids": [
+            "co_litteratur_tegneserier_4a14090775",
+            "co_litteratur_kunst_171ccd7341",
+            "co_litteratur_politikk_4a2af35c08"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_15",
+          "id": "tronsmo_bokhandel_quiz_17",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_3_q3",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -1077,12 +1365,12 @@
           "question_scope": "place",
           "question": "Hvilken sjangerbredde nevner Tronsmos tegneserieside?",
           "options": [
-            "Japansk, norske, historiske, krim, selvbiografiske, politiske og underground-serier",
             "Bare lærebøker i matematikk",
+            "Japansk, norske, historiske, krim, selvbiografiske, politiske og underground-serier",
             "Bare romaner fra 1800-tallet"
           ],
           "answer": "Japansk, norske, historiske, krim, selvbiografiske, politiske og underground-serier",
-          "answerIndex": 0,
+          "answerIndex": 1,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "tegneserier",
           "knowledge": "Hvilken sjangerbredde nevner Tronsmos tegneserieside? Riktig svar er: Japansk, norske, historiske, krim, selvbiografiske, politiske og underground-serier.",
@@ -1117,14 +1405,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hvilken sjangerbredde nevner Tronsmos tegneserieside? Riktig svar er: Japansk, norske, historiske, krim, selvbiografiske, politiske og underground-serier.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -1135,10 +1421,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_japansk_n_1339b331a8",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_japansk_n_1339b331a8"
+          ],
+          "concept_ids": [
+            "co_litteratur_tegneserier_4a14090775",
+            "co_litteratur_sjangerbredde_7a68ab7472",
+            "co_litteratur_underground_b8264d2b7b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_16",
+          "id": "tronsmo_bokhandel_quiz_18",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_3_q4",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -1148,12 +1446,12 @@
           "question_scope": "place",
           "question": "Hvorfor hører tegneserier hjemme i en litteraturquiz om Tronsmo?",
           "options": [
-            "Fordi Tronsmo behandler tegneserier som kunstnerisk, politisk og fortellende litteraturfelt",
+            "Fordi tegneserier bare er butikkpynt",
             "Fordi tegneserier ikke har tekst",
-            "Fordi tegneserier bare er butikkpynt"
+            "Fordi Tronsmo behandler tegneserier som kunstnerisk, politisk og fortellende litteraturfelt"
           ],
           "answer": "Fordi Tronsmo behandler tegneserier som kunstnerisk, politisk og fortellende litteraturfelt",
-          "answerIndex": 0,
+          "answerIndex": 2,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "tegneserier",
           "knowledge": "Hvorfor hører tegneserier hjemme i en litteraturquiz om Tronsmo? Riktig svar er: Fordi Tronsmo behandler tegneserier som kunstnerisk, politisk og fortellende litteraturfelt.",
@@ -1188,14 +1486,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hvorfor hører tegneserier hjemme i en litteraturquiz om Tronsmo? Riktig svar er: Fordi Tronsmo behandler tegneserier som kunstnerisk, politisk og fortellende litteraturfelt.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -1206,10 +1502,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_fordi_tro_f71c047f05",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_fordi_tro_f71c047f05"
+          ],
+          "concept_ids": [
+            "co_litteratur_tegneserier_4a14090775",
+            "co_litteratur_litteraturfelt_f93f39492e",
+            "co_litteratur_fortelling_985fd23578"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_17",
+          "id": "tronsmo_bokhandel_quiz_19",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_3_q5",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -1259,14 +1567,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hva gjør en stor tegneserieavdeling til mer enn varesortiment? Riktig svar er: Den gir et eget felt synlighet, lesere og kanonisering.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -1277,10 +1583,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_den_gir_e_58a86eae3b",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_den_gir_e_58a86eae3b"
+          ],
+          "concept_ids": [
+            "co_litteratur_tegneseriefelt_17251e955e",
+            "co_litteratur_synlighet_270dbc4552",
+            "co_litteratur_kanonisering_034c52deeb"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_18",
+          "id": "tronsmo_bokhandel_quiz_20",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_3_q6",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -1290,12 +1608,12 @@
           "question_scope": "place",
           "question": "Hvilken sjangeranalyse passer best for Tronsmo?",
           "options": [
-            "Bokhandelen utvider litteraturbegrepet gjennom poesi, politisk sakprosa, verdenslitteratur og tegneserier",
             "Bokhandelen snevrer litteratur inn til én bestselgerliste",
+            "Bokhandelen utvider litteraturbegrepet gjennom poesi, politisk sakprosa, verdenslitteratur og tegneserier",
             "Bokhandelen handler bare om kontorrekvisita"
           ],
           "answer": "Bokhandelen utvider litteraturbegrepet gjennom poesi, politisk sakprosa, verdenslitteratur og tegneserier",
-          "answerIndex": 0,
+          "answerIndex": 1,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "litteraturbegrep",
           "knowledge": "Hvilken sjangeranalyse passer best for Tronsmo? Riktig svar er: Bokhandelen utvider litteraturbegrepet gjennom poesi, politisk sakprosa, verdenslitteratur og tegneserier.",
@@ -1330,14 +1648,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hvilken sjangeranalyse passer best for Tronsmo? Riktig svar er: Bokhandelen utvider litteraturbegrepet gjennom poesi, politisk sakprosa, verdenslitteratur og tegneserier.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -1348,9 +1664,96 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_bokhandel_45cad7a6e1",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_bokhandel_45cad7a6e1"
+          ],
+          "concept_ids": [
+            "co_litteratur_litteraturbegrep_556850ee86",
+            "co_litteratur_poesi_2f4e6cca5b",
+            "co_litteratur_tegneserier_4a14090775"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tronsmo_bokhandel_quiz_21",
+          "quiz_id": "litteratur_tronsmo_bokhandel_set_3_q7",
+          "categoryId": "litteratur",
+          "placeId": "tronsmo_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "tronsmo_bokhandel",
+          "question_scope": "place",
+          "question": "Hva skjedde med Tronsmos fysiske plassering i 2015?",
+          "options": [
+            "Bokhandelen flyttet til Bjørvika",
+            "Bokhandelen ble nasjonalbibliotek",
+            "Bokhandelen flyttet fra Tullingården til Universitetsgata 12"
+          ],
+          "answer": "Bokhandelen flyttet fra Tullingården til Universitetsgata 12",
+          "answerIndex": 2,
+          "dimension": "bokhandel_litteraturfelt_og_offentlighet",
+          "topic": "tronsmo_bokhandel",
+          "knowledge": "Oslo byleksikon dokumenterer både perioden i Tullingården og dagens adresse fra 2015.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "year": 2015,
+          "epoke_id": "tronsmo_uavhengig_bokhandel_1973",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_feltanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Tronsmo",
+            "bokhandel",
+            "litteraturfelt"
+          ],
+          "concept_focus": [
+            "Tronsmo"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "Tronsmo",
+            "bokhandel",
+            "litteratur"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Kristian_Augusts_gate",
+            "https://oslobyleksikon.no/side/Universitetsgata",
+            "https://www.tronsmo.no/om-tronsmo/",
+            "https://snl.no/Tronsmo_Bokhandel"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo byleksikon dokumenterer både perioden i Tullingården og dagens adresse fra 2015.",
+          "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "merge_status": "reviewed_completion_2026_09_10",
+          "primary_knowledge_unit_id": "ku_litteratur_oslo_byleksikon_dokument_e9697e8575",
+          "knowledge_unit_ids": [
+            "ku_litteratur_oslo_byleksikon_dokument_e9697e8575"
+          ],
+          "concept_ids": [
+            "co_litteratur_tronsmo_39a08f23b5",
+            "co_litteratur_bokhandel_8b7c5ab1b8",
+            "co_litteratur_litteraturfelt_f93f39492e"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         }
-      ]
+      ],
+      "phase": "bridge"
     },
     {
       "set_id": "litteratur_tronsmo_bokhandel_set_4",
@@ -1360,7 +1763,7 @@
       "mode": "place_facts_architecture",
       "questions": [
         {
-          "id": "tronsmo_bokhandel_quiz_19",
+          "id": "tronsmo_bokhandel_quiz_22",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_4_q1",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -1410,14 +1813,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hvilket emne-id passer best for Tronsmo som bokhandel? Riktig svar er: em_lit_litteraturfelt_institusjoner.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -1428,10 +1829,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_em_lit_li_8d08fc810e",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_em_lit_li_8d08fc810e"
+          ],
+          "concept_ids": [
+            "co_litteratur_emne_id_fbac229467",
+            "co_litteratur_litteraturfelt_f93f39492e",
+            "co_litteratur_institusjon_eed912bf54"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_20",
+          "id": "tronsmo_bokhandel_quiz_23",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_4_q2",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -1441,12 +1854,12 @@
           "question_scope": "place",
           "question": "Hvilket annet emne-id passer for Tronsmo som formidlingssted?",
           "options": [
-            "em_lit_lesere_offentlighet_formidling",
             "em_lit_arkiv_manuskript_og_digital_tekst",
+            "em_lit_lesere_offentlighet_formidling",
             "em_musikk_folkemusikk_tradisjon"
           ],
           "answer": "em_lit_lesere_offentlighet_formidling",
-          "answerIndex": 0,
+          "answerIndex": 1,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "emne_id",
           "knowledge": "Hvilket annet emne-id passer for Tronsmo som formidlingssted? Riktig svar er: em_lit_lesere_offentlighet_formidling.",
@@ -1481,14 +1894,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hvilket annet emne-id passer for Tronsmo som formidlingssted? Riktig svar er: em_lit_lesere_offentlighet_formidling.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -1499,10 +1910,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_em_lit_le_7e1f6625d2",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_em_lit_le_7e1f6625d2"
+          ],
+          "concept_ids": [
+            "co_litteratur_emne_id_fbac229467",
+            "co_litteratur_lesere_1b644ff75d",
+            "co_litteratur_formidling_19805b0747"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_21",
+          "id": "tronsmo_bokhandel_quiz_24",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_4_q3",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -1512,12 +1935,12 @@
           "question_scope": "place",
           "question": "Hva må en god quiz om Tronsmo unngå?",
           "options": [
-            "Generisk turiststed-vinkel",
+            "Spørsmål om litterær profil",
             "Kobling mellom bokhandel, lesere og offentlighet",
-            "Spørsmål om litterær profil"
+            "Generisk turiststed-vinkel"
           ],
           "answer": "Generisk turiststed-vinkel",
-          "answerIndex": 0,
+          "answerIndex": 2,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "avoid angle",
           "knowledge": "Hva må en god quiz om Tronsmo unngå? Riktig svar er: Generisk turiststed-vinkel.",
@@ -1552,14 +1975,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hva må en god quiz om Tronsmo unngå? Riktig svar er: Generisk turiststed-vinkel.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -1570,10 +1991,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_generisk__5ace1824ba",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_generisk__5ace1824ba"
+          ],
+          "concept_ids": [
+            "co_litteratur_avoid_angle_238154b6e4",
+            "co_litteratur_turiststed_1f992d70ea",
+            "co_litteratur_qc_3d7f0e780c"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_22",
+          "id": "tronsmo_bokhandel_quiz_25",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_4_q4",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -1623,14 +2056,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hvorfor er Tronsmo ikke bare en butikk? Riktig svar er: Fordi utvalg, ansatte, lesere, småforlag, tegneserier og politisk litteratur skaper en litterær offentlighet.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -1641,10 +2072,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_fordi_utv_d9471791ad",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_fordi_utv_d9471791ad"
+          ],
+          "concept_ids": [
+            "co_litteratur_litter_r_offentlighet_75f6b4b04f",
+            "co_litteratur_smaforlag_704335e1e3",
+            "co_litteratur_politisk_litteratur_d766e2346f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_23",
+          "id": "tronsmo_bokhandel_quiz_26",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_4_q5",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -1654,12 +2097,12 @@
           "question_scope": "place",
           "question": "Hva viser Tronsmo om forholdet mellom bokhandel og kanon?",
           "options": [
-            "Bokhandelens hyller kan løfte fram marginale, radikale og oversette tekster",
             "Kanon bestemmes bare av fasaden",
+            "Bokhandelens hyller kan løfte fram marginale, radikale og oversette tekster",
             "Bokhandler påvirker aldri hva folk leser"
           ],
           "answer": "Bokhandelens hyller kan løfte fram marginale, radikale og oversette tekster",
-          "answerIndex": 0,
+          "answerIndex": 1,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "kanon",
           "knowledge": "Hva viser Tronsmo om forholdet mellom bokhandel og kanon? Riktig svar er: Bokhandelens hyller kan løfte fram marginale, radikale og oversette tekster.",
@@ -1694,14 +2137,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hva viser Tronsmo om forholdet mellom bokhandel og kanon? Riktig svar er: Bokhandelens hyller kan løfte fram marginale, radikale og oversette tekster.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -1712,10 +2153,22 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_bokhandel_bedc8c7570",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_bokhandel_bedc8c7570"
+          ],
+          "concept_ids": [
+            "co_litteratur_kanon_eb9114d935",
+            "co_litteratur_marginale_tekster_7145bf5f12",
+            "co_litteratur_hyller_7eff503321"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "tronsmo_bokhandel_quiz_24",
+          "id": "tronsmo_bokhandel_quiz_27",
           "quiz_id": "litteratur_tronsmo_bokhandel_set_4_q6",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
@@ -1725,12 +2178,12 @@
           "question_scope": "place",
           "question": "Hvilken offentlighetsanalyse passer best?",
           "options": [
-            "Tronsmo gjør litteratur offentlig gjennom kuratert salg, anbefalinger, tegneserier, politisk sakprosa og leserfellesskap",
+            "Tronsmo fjerner bøker fra offentligheten",
             "Tronsmo gjør lesing privat og usynlig",
-            "Tronsmo fjerner bøker fra offentligheten"
+            "Tronsmo gjør litteratur offentlig gjennom kuratert salg, anbefalinger, tegneserier, politisk sakprosa og leserfellesskap"
           ],
           "answer": "Tronsmo gjør litteratur offentlig gjennom kuratert salg, anbefalinger, tegneserier, politisk sakprosa og leserfellesskap",
-          "answerIndex": 0,
+          "answerIndex": 2,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
           "topic": "kuratert salg",
           "knowledge": "Hvilken offentlighetsanalyse passer best? Riktig svar er: Tronsmo gjør litteratur offentlig gjennom kuratert salg, anbefalinger, tegneserier, politisk sakprosa og leserfellesskap.",
@@ -1765,14 +2218,12 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
             "https://www.tronsmo.no/om-tronsmo/",
             "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
           "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "claim_basis": "Hvilken offentlighetsanalyse passer best? Riktig svar er: Tronsmo gjør litteratur offentlig gjennom kuratert salg, anbefalinger, tegneserier, politisk sakprosa og leserfellesskap.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
           "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
@@ -1783,274 +2234,63 @@
             "data/places/litteratur/oslo/places_litteratur.json",
             "data/quiz/quiz_litteratur.json"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
-        }
-      ]
-    },
-    {
-      "set_id": "litteratur_tronsmo_bokhandel_set_5",
-      "level": 5,
-      "order": 5,
-      "xp": 90,
-      "mode": "place_concrete_advanced",
-      "questions": [
-        {
-          "id": "tronsmo_bokhandel_quiz_25",
-          "quiz_id": "litteratur_tronsmo_bokhandel_set_5_q1",
-          "categoryId": "litteratur",
-          "placeId": "tronsmo_bokhandel",
-          "personId": "",
-          "natureId": "",
-          "targetId": "tronsmo_bokhandel",
-          "question_scope": "place",
-          "question": "Hva skiller Tronsmo fra Nasjonalbiblioteket?",
-          "options": [
-            "Tronsmo er uavhengig bokhandel; Nasjonalbiblioteket er arkiv- og samlingsinstitusjon",
-            "Begge er samme pliktavleveringsarkiv",
-            "Tronsmo er en lesesal uten salg"
+          "merge_status": "merged_and_rebuilt_from_existing_seed",
+          "primary_knowledge_unit_id": "ku_litteratur_riktig_svar_er_tronsmo_g_c63856ec17",
+          "knowledge_unit_ids": [
+            "ku_litteratur_riktig_svar_er_tronsmo_g_c63856ec17"
           ],
-          "answer": "Tronsmo er uavhengig bokhandel; Nasjonalbiblioteket er arkiv- og samlingsinstitusjon",
-          "answerIndex": 0,
-          "dimension": "bokhandel_litteraturfelt_og_offentlighet",
-          "topic": "Tronsmo",
-          "knowledge": "Hva skiller Tronsmo fra Nasjonalbiblioteket? Riktig svar er: Tronsmo er uavhengig bokhandel; Nasjonalbiblioteket er arkiv- og samlingsinstitusjon.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "fact",
-          "question_layer": "place_concrete_advanced",
-          "year": null,
-          "epoke_id": "tronsmo_1973_radikal_uavhengig_bokhandel",
-          "epoke_domain": "litteratur",
-          "emne_id": "em_lit_litteraturfelt_institusjoner",
-          "method_id": "met_lit_feltanalyse",
-          "related_emner": [],
-          "core_concepts": [
-            "Tronsmo",
-            "Nasjonalbiblioteket",
-            "kontrast"
+          "concept_ids": [
+            "co_litteratur_kuratert_salg_4baede8d48",
+            "co_litteratur_anbefalinger_8ee850b685",
+            "co_litteratur_leserfellesskap_a4151ebd76"
           ],
-          "concept_focus": [
-            "Tronsmo",
-            "Nasjonalbiblioteket"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "Tronsmo",
-            "Nasjonalbiblioteket",
-            "kontrast"
-          ],
-          "required_tags": [
-            "external_source",
-            "literature_anchor",
-            "em_lit"
-          ],
-          "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
-            "https://www.tronsmo.no/om-tronsmo/",
-            "https://www.tronsmo.no/tegneserier/",
-            "https://snl.no/Tronsmo_Bokhandel"
-          ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
-          "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
-          "external_source_ratio_target": 0.85,
-          "requires_literature_anchor": true,
-          "requires_external_claim_basis": true,
-          "guidance_basis": [
-            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
-            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/quiz_litteratur.json"
-          ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
-        },
-        {
-          "id": "tronsmo_bokhandel_quiz_26",
-          "quiz_id": "litteratur_tronsmo_bokhandel_set_5_q2",
-          "categoryId": "litteratur",
-          "placeId": "tronsmo_bokhandel",
-          "personId": "",
-          "natureId": "",
-          "targetId": "tronsmo_bokhandel",
-          "question_scope": "place",
-          "question": "Hva skiller Tronsmo fra Litteraturhuset?",
-          "options": [
-            "Tronsmo formidler gjennom bokutvalg og salg; Litteraturhuset gjennom arrangementer og debatt",
-            "Begge er samme scene",
-            "Litteraturhuset er en tegneserieavdeling"
-          ],
-          "answer": "Tronsmo formidler gjennom bokutvalg og salg; Litteraturhuset gjennom arrangementer og debatt",
-          "answerIndex": 0,
-          "dimension": "bokhandel_litteraturfelt_og_offentlighet",
-          "topic": "Tronsmo",
-          "knowledge": "Hva skiller Tronsmo fra Litteraturhuset? Riktig svar er: Tronsmo formidler gjennom bokutvalg og salg; Litteraturhuset gjennom arrangementer og debatt.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "fact",
-          "question_layer": "place_concrete_advanced",
-          "year": null,
-          "epoke_id": "tronsmo_1973_radikal_uavhengig_bokhandel",
-          "epoke_domain": "litteratur",
-          "emne_id": "em_lit_lesere_offentlighet_formidling",
-          "method_id": "met_lit_feltanalyse",
-          "related_emner": [],
-          "core_concepts": [
-            "Tronsmo",
-            "Litteraturhuset",
-            "kontrast"
-          ],
-          "concept_focus": [
-            "Tronsmo",
-            "Litteraturhuset"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "Tronsmo",
-            "Litteraturhuset",
-            "kontrast"
-          ],
-          "required_tags": [
-            "external_source",
-            "literature_anchor",
-            "em_lit"
-          ],
-          "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
-            "https://www.tronsmo.no/om-tronsmo/",
-            "https://www.tronsmo.no/tegneserier/",
-            "https://snl.no/Tronsmo_Bokhandel"
-          ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
-          "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
-          "external_source_ratio_target": 0.85,
-          "requires_literature_anchor": true,
-          "requires_external_claim_basis": true,
-          "guidance_basis": [
-            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
-            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/quiz_litteratur.json"
-          ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
-        },
-        {
-          "id": "tronsmo_bokhandel_quiz_27",
-          "quiz_id": "litteratur_tronsmo_bokhandel_set_5_q3",
-          "categoryId": "litteratur",
-          "placeId": "tronsmo_bokhandel",
-          "personId": "",
-          "natureId": "",
-          "targetId": "tronsmo_bokhandel",
-          "question_scope": "place",
-          "question": "Hvilken metode passer best for å analysere Tronsmo som institusjon?",
-          "options": [
-            "met_lit_feltanalyse",
-            "met_musikk_lytteanalyse",
-            "met_naering_verdiskapingsanalyse"
-          ],
-          "answer": "met_lit_feltanalyse",
-          "answerIndex": 0,
-          "dimension": "bokhandel_litteraturfelt_og_offentlighet",
-          "topic": "met_lit_feltanalyse",
-          "knowledge": "Hvilken metode passer best for å analysere Tronsmo som institusjon? Riktig svar er: met_lit_feltanalyse.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "fact",
-          "question_layer": "place_concrete_advanced",
-          "year": null,
-          "epoke_id": "tronsmo_1973_radikal_uavhengig_bokhandel",
-          "epoke_domain": "litteratur",
-          "emne_id": "em_lit_litteraturfelt_institusjoner",
-          "method_id": "met_lit_feltanalyse",
-          "related_emner": [],
-          "core_concepts": [
-            "met_lit_feltanalyse",
-            "bokhandel",
-            "institusjon"
-          ],
-          "concept_focus": [
-            "met_lit_feltanalyse",
-            "bokhandel"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "met_lit_feltanalyse",
-            "bokhandel",
-            "institusjon"
-          ],
-          "required_tags": [
-            "external_source",
-            "literature_anchor",
-            "em_lit"
-          ],
-          "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
-            "https://www.tronsmo.no/om-tronsmo/",
-            "https://www.tronsmo.no/tegneserier/",
-            "https://snl.no/Tronsmo_Bokhandel"
-          ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
-          "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
-          "external_source_ratio_target": 0.85,
-          "requires_literature_anchor": true,
-          "requires_external_claim_basis": true,
-          "guidance_basis": [
-            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
-            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/quiz_litteratur.json"
-          ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "id": "tronsmo_bokhandel_quiz_28",
-          "quiz_id": "litteratur_tronsmo_bokhandel_set_5_q4",
+          "quiz_id": "litteratur_tronsmo_bokhandel_set_4_q7",
           "categoryId": "litteratur",
           "placeId": "tronsmo_bokhandel",
           "personId": "",
           "natureId": "",
           "targetId": "tronsmo_bokhandel",
           "question_scope": "place",
-          "question": "Hvilken metode passer best for å analysere Tronsmos politiske litteraturprofil?",
+          "question": "Hvorfor er jubileumsboksen fra 2013 en interessant kilde til Tronsmo?",
           "options": [
-            "met_lit_diskursanalyse",
-            "met_lit_metrisk_analyse",
-            "met_musikk_form_og_strukturanalyse"
+            "Den viser hvordan bokhandelen selv valgte å presentere sitt litterære og visuelle miljø",
+            "Den beviser at alle Oslo-lesere foretrakk de samme bøkene",
+            "Den dokumenterer hele bokmarkedet nøytralt"
           ],
-          "answer": "met_lit_diskursanalyse",
+          "answer": "Den viser hvordan bokhandelen selv valgte å presentere sitt litterære og visuelle miljø",
           "answerIndex": 0,
           "dimension": "bokhandel_litteraturfelt_og_offentlighet",
-          "topic": "met_lit_diskursanalyse",
-          "knowledge": "Hvilken metode passer best for å analysere Tronsmos politiske litteraturprofil? Riktig svar er: met_lit_diskursanalyse.",
+          "topic": "tronsmo_bokhandel",
+          "knowledge": "Jubileumsboksen er en stedsegen produksjon og samtidig en kilde til bokhandelens egen selvframstilling.",
           "trivia": [],
           "difficulty": 3,
-          "question_type": "fact",
-          "question_layer": "place_concrete_advanced",
-          "year": null,
-          "epoke_id": "tronsmo_1973_radikal_uavhengig_bokhandel",
+          "question_type": "concept",
+          "question_layer": "synthesis",
+          "year": 2013,
+          "epoke_id": "tronsmo_uavhengig_bokhandel_1973",
           "epoke_domain": "litteratur",
-          "emne_id": "em_lit_litteratur_og_offentlig_debatt",
+          "emne_id": "em_lit_bokhistorie_trykk_forlag",
           "method_id": "met_lit_diskursanalyse",
           "related_emner": [],
           "core_concepts": [
-            "met_lit_diskursanalyse",
-            "politisk litteratur",
-            "offentlighet"
+            "Tronsmo",
+            "bokhandel",
+            "litteraturfelt"
           ],
           "concept_focus": [
-            "met_lit_diskursanalyse",
-            "politisk litteratur"
+            "Tronsmo"
           ],
           "learning_paths": [],
           "tags": [
-            "met_lit_diskursanalyse",
-            "politisk litteratur",
-            "offentlighet"
+            "Tronsmo",
+            "bokhandel",
+            "litteratur"
           ],
           "required_tags": [
             "external_source",
@@ -2058,169 +2298,31 @@
             "em_lit"
           ],
           "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
+            "https://www.tronsmo.no/produkt/tronsmo-40-ar-jubileumsboks/",
             "https://www.tronsmo.no/om-tronsmo/",
-            "https://www.tronsmo.no/tegneserier/",
             "https://snl.no/Tronsmo_Bokhandel"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "Jubileumsboksen er en stedsegen produksjon og samtidig en kilde til bokhandelens egen selvframstilling.",
           "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
-          "external_source_ratio_target": 0.85,
           "requires_literature_anchor": true,
           "requires_external_claim_basis": true,
-          "guidance_basis": [
-            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
-            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/quiz_litteratur.json"
+          "merge_status": "reviewed_completion_2026_09_10",
+          "primary_knowledge_unit_id": "ku_litteratur_jubileumsboksen_er_en_st_62696634b5",
+          "knowledge_unit_ids": [
+            "ku_litteratur_jubileumsboksen_er_en_st_62696634b5"
           ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
-        },
-        {
-          "id": "tronsmo_bokhandel_quiz_29",
-          "quiz_id": "litteratur_tronsmo_bokhandel_set_5_q5",
-          "categoryId": "litteratur",
-          "placeId": "tronsmo_bokhandel",
-          "personId": "",
-          "natureId": "",
-          "targetId": "tronsmo_bokhandel",
-          "question_scope": "place",
-          "question": "Hvilken kritisk observasjon passer best?",
-          "options": [
-            "En uavhengig bokhandel kan utfordre bestselgerlogikk, men den kuraterer også aktivt hva som blir synlig",
-            "Alle bøker blir automatisk like synlige",
-            "Bokhandler har ingen utvalgslogikk"
+          "concept_ids": [
+            "co_litteratur_tronsmo_39a08f23b5",
+            "co_litteratur_bokhandel_8b7c5ab1b8",
+            "co_litteratur_litteraturfelt_f93f39492e"
           ],
-          "answer": "En uavhengig bokhandel kan utfordre bestselgerlogikk, men den kuraterer også aktivt hva som blir synlig",
-          "answerIndex": 0,
-          "dimension": "bokhandel_litteraturfelt_og_offentlighet",
-          "topic": "bestselgerlogikk",
-          "knowledge": "Hvilken kritisk observasjon passer best? Riktig svar er: En uavhengig bokhandel kan utfordre bestselgerlogikk, men den kuraterer også aktivt hva som blir synlig.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "fact",
-          "question_layer": "place_concrete_advanced",
-          "year": null,
-          "epoke_id": "tronsmo_1973_radikal_uavhengig_bokhandel",
-          "epoke_domain": "litteratur",
-          "emne_id": "em_lit_kanon_kritikk_symbolsk_makt",
-          "method_id": "met_lit_diskursanalyse",
-          "related_emner": [],
-          "core_concepts": [
-            "bestselgerlogikk",
-            "kuratert synlighet",
-            "kritikk"
-          ],
-          "concept_focus": [
-            "bestselgerlogikk",
-            "kuratert synlighet"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "bestselgerlogikk",
-            "kuratert synlighet",
-            "kritikk"
-          ],
-          "required_tags": [
-            "external_source",
-            "literature_anchor",
-            "em_lit"
-          ],
-          "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
-            "https://www.tronsmo.no/om-tronsmo/",
-            "https://www.tronsmo.no/tegneserier/",
-            "https://snl.no/Tronsmo_Bokhandel"
-          ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
-          "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
-          "external_source_ratio_target": 0.85,
-          "requires_literature_anchor": true,
-          "requires_external_claim_basis": true,
-          "guidance_basis": [
-            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
-            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/quiz_litteratur.json"
-          ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
-        },
-        {
-          "id": "tronsmo_bokhandel_quiz_30",
-          "quiz_id": "litteratur_tronsmo_bokhandel_set_5_q6",
-          "categoryId": "litteratur",
-          "placeId": "tronsmo_bokhandel",
-          "personId": "",
-          "natureId": "",
-          "targetId": "tronsmo_bokhandel",
-          "question_scope": "place",
-          "question": "Hvilken samlet analyse passer best for `tronsmo_bokhandel`?",
-          "options": [
-            "Et uavhengig litterært knutepunkt der 1973-historie, politisk litteratur, poesi, tegneserier, kuratering, Universitetsgata og leserfellesskap må leses sammen",
-            "Et generisk butikklokale uten litterær funksjon",
-            "Et lukket arkiv for upubliserte manuskripter"
-          ],
-          "answer": "Et uavhengig litterært knutepunkt der 1973-historie, politisk litteratur, poesi, tegneserier, kuratering, Universitetsgata og leserfellesskap må leses sammen",
-          "answerIndex": 0,
-          "dimension": "bokhandel_litteraturfelt_og_offentlighet",
-          "topic": "1973",
-          "knowledge": "Hvilken samlet analyse passer best for `tronsmo_bokhandel`? Riktig svar er: Et uavhengig litterært knutepunkt der 1973-historie, politisk litteratur, poesi, tegneserier, kuratering, Universitetsgata og leserfellesskap må leses sammen.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "fact",
-          "question_layer": "place_concrete_advanced",
-          "year": null,
-          "epoke_id": "tronsmo_1973_radikal_uavhengig_bokhandel",
-          "epoke_domain": "litteratur",
-          "emne_id": "em_lit_kanon_kritikk_symbolsk_makt",
-          "method_id": "met_lit_diskursanalyse",
-          "related_emner": [],
-          "core_concepts": [
-            "1973",
-            "politisk litteratur",
-            "tegneserier"
-          ],
-          "concept_focus": [
-            "1973",
-            "politisk litteratur"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "1973",
-            "politisk litteratur",
-            "tegneserier"
-          ],
-          "required_tags": [
-            "external_source",
-            "literature_anchor",
-            "em_lit"
-          ],
-          "source": [
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/litteratur/tronsmo_bokhandel_sets.json",
-            "https://www.tronsmo.no/om-tronsmo/",
-            "https://www.tronsmo.no/tegneserier/",
-            "https://snl.no/Tronsmo_Bokhandel"
-          ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
-          "literature_anchor_type": "independent_bookstore_literary_public_sphere_comics_political_literature",
-          "external_source_ratio_target": 0.85,
-          "requires_literature_anchor": true,
-          "requires_external_claim_basis": true,
-          "guidance_basis": [
-            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
-            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
-            "data/places/litteratur/oslo/places_litteratur.json",
-            "data/quiz/quiz_litteratur.json"
-          ],
-          "merge_status": "merged_and_rebuilt_from_existing_seed"
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         }
-      ]
+      ],
+      "phase": "synthesis"
     }
   ]
 }

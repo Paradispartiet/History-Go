@@ -1,0 +1,128 @@
+{
+  "schema": "history_go_place_workcard_v2",
+  "placeId": "tronsmo_bokhandel",
+  "name": "Tronsmo Bokhandel",
+  "canonicalSource": "data/places/litteratur/oslo/places_litteratur/tronsmo_bokhandel.json",
+  "primaryCategory": "litteratur",
+  "productionProfile": "standard",
+  "coordinateStatus": "PASS — eksisterende Geonorge-punkt beholdt uten endring",
+  "fagverkStatus": "PASS — embedded history_go_place_fagverk_v2",
+  "placeCardCollections": [
+    "people",
+    "objects",
+    "brands",
+    "productions"
+  ],
+  "peopleDecision": {
+    "kept": [
+      "per_petterson"
+    ],
+    "heldBack": "Alle ikke-kildebeviste legacy Tronsmo-personreferanser"
+  },
+  "quizStatus": "PASS — 4×7 modernisert fra legacy 5×6",
+  "storyStatus": "PASS — eksisterende canonical Story beholdt",
+  "chronologyStatus": "PASS — 1973, 2013, 2015, 2020 kildebundet",
+  "languageStatus": "PASS — seks stedsspesifikke termer; dialekt N/A for enkeltsted",
+  "imageStatus": "PASS — CC BY-SA 4.0 documentary place/object/wordmark source; official publisher product image has explicit referential rights note",
+  "beforeAfter": "BEGRUNNET N/A — ingen dokumentert lisensiert eksakt kameravinkel-par",
+  "news": "BEGRUNNET N/A — ikke nødvendig for permanent standardprofil",
+  "rejected": [
+    "Ubekreftede ansatte/forfattere fra placeholder-relasjoner",
+    "Generert Tronsmo-logo",
+    "Påstander om uendret sortiment siden 1973"
+  ],
+  "sources": [
+    "https://www.tronsmo.no/om-tronsmo/",
+    "https://www.tronsmo.no/produkt/tronsmo-40-ar-jubileumsboks/",
+    "https://snl.no/Tronsmo_Bokhandel",
+    "https://snl.no/Per_Petterson",
+    "https://oslobyleksikon.no/side/Universitetsgata",
+    "https://oslobyleksikon.no/side/Kristian_Augusts_gate",
+    "https://commons.wikimedia.org/wiki/File:Tronsmo_Bokhandel_comic_book_store_in_Universitetsgata,_Oslo,_Norway._Window_decorations_by_Lars_Fiske_and_Bendik_Kaltenborn,_2017-12-14.jpg",
+    "https://www.tronsmo.no/wp-content/uploads/2024/03/image-1491.png"
+  ],
+  "quality_score": {
+    "factuality": 5,
+    "pedagogy": 5,
+    "collections": 5,
+    "images": 5,
+    "runtime": 5,
+    "editorial": 5,
+    "total": 30
+  },
+  "phase": "SLUTTFØRT",
+  "verifiedAt": "2026-09-10",
+  "place_id": "tronsmo_bokhandel",
+  "category": "litteratur",
+  "status": "preflight",
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "PASS",
+    "place_id": "tronsmo_bokhandel",
+    "category": "litteratur",
+    "recorded_at": "2026-09-11T01:51:55.936Z",
+    "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
+    "files": [
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
+        "sha256": "0ae766b2808115bbdff45fcf18056cc96e0058cae1f37c6ed9ce3d8ae1679091"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+        "sha256": "526abb31a897f9a1d93ed2daf12d9ebf1183c82c0e544e5bb9ceb6a54764eb8e"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_PROFILES.md",
+        "sha256": "0cfdc52b458645d8c22396c6d4adacb1a0661d9eab1f0d2baaab27b9cfa21490"
+      },
+      {
+        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+      },
+      {
+        "path": "data/places/README_place_rounds.md",
+        "sha256": "0d61d07992306ca5a694a5cd7b010bd1466430c937787d0e2fcb61ff168f765b"
+      },
+      {
+        "path": "data/badges/index.json",
+        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+      },
+      {
+        "path": "data/badges/place_production_routing_v1.json",
+        "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
+      },
+      {
+        "path": "docs/PLACE_OBJECTS_CANONICAL.md",
+        "sha256": "ccc3f438c8c235d9b60c9d0280a215c1862220b1988a4f6a7bca7060b53c1799"
+      },
+      {
+        "path": "data/brands/brand_rules_v1_1.json",
+        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+      },
+      {
+        "path": "data/badges/litteratur.json",
+        "sha256": "229d6eb3246eb0178f9c61dfdcd417131f5937618763a24dcf15ebee423e26ea"
+      }
+    ],
+    "contract_snapshot": {
+      "full_place_collection_count": 4,
+      "candidate_collections": [
+        "people",
+        "objects",
+        "brands",
+        "productions"
+      ],
+      "category_expression": "productions",
+      "related_is_placecard_collection": false,
+      "no_filler": true,
+      "routing_order": [
+        "universal_canonical_core",
+        "primary_badge_family",
+        "active_underbadge_ids",
+        "place_specific_source_review",
+        "confirmed_production_profile",
+        "final_content_plan"
+      ]
+    }
+  }
+}
