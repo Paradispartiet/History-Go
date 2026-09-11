@@ -167,23 +167,59 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/audit-naeringsliv-place-production.mjs --all
-          node scripts/audit-quiz-manifest-v2.mjs
-          node scripts/audit-quiz-progression.mjs
-          node scripts/audit-quiz-theory-binding.mjs
-          npm run knowledge:canonical:check
-          npm run civication:history-people:check
-          node scripts/build-place-open-payloads.mjs --check
-          node scripts/audit-fagverk-place-pages.mjs
-          node scripts/build-fagverk-release-manifest.mjs --check
-          node --test tests/epoke-place-index.test.mjs
+          log='tollpakkhuset-validation-diagnostic.log'
+          : > "$log"
+          run_check() {
+            printf '\n>>> %q' "$1" | tee -a "$log"
+            shift
+            for arg in "$@"; do printf ' %q' "$arg" | tee -a "$log"; done
+            printf '\n' | tee -a "$log"
+            set +e
+            "$@" 2>&1 | tee -a "$log"
+            status=${PIPESTATUS[0]}
+            set -e
+            printf '<<< exit %s\n' "$status" | tee -a "$log"
+            return "$status"
+          }
+
+          run_cmd() {
+            printf '\n>>> ' | tee -a "$log"
+            printf '%q ' "$@" | tee -a "$log"
+            printf '\n' | tee -a "$log"
+            set +e
+            "$@" 2>&1 | tee -a "$log"
+            status=${PIPESTATUS[0]}
+            set -e
+            printf '<<< exit %s\n' "$status" | tee -a "$log"
+            return "$status"
+          }
+
+          run_cmd node scripts/audit-naeringsliv-place-production.mjs --all
+          run_cmd node scripts/audit-quiz-manifest-v2.mjs
+          run_cmd node scripts/audit-quiz-progression.mjs
+          run_cmd node scripts/audit-quiz-theory-binding.mjs
+          run_cmd npm run knowledge:canonical:check
+          run_cmd npm run civication:history-people:check
+          run_cmd node scripts/build-place-open-payloads.mjs --check
+          run_cmd node scripts/audit-fagverk-place-pages.mjs
+          run_cmd node scripts/build-fagverk-release-manifest.mjs --check
+          run_cmd node --test tests/epoke-place-index.test.mjs
+
+      - name: Upload validation diagnostic on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tollpakkhuset-validation-diagnostic
+          path: tollpakkhuset-validation-diagnostic.log
+          if-no-files-found: ignore
+          retention-days: 1
 
       - name: Remove temporary workflow and push fresh-main candidate
         shell: bash
         run: |
           set -euo pipefail
           rm -f tools/build-tollpakkhuset-completion.mjs
-          rm -f tollpakkhuset-materializer-diagnostic.log
+          rm -f tollpakkhuset-materializer-diagnostic.log tollpakkhuset-validation-diagnostic.log
           rm .github/workflows/tollpakkhuset-rebase-repair-temp.yml
           git add -A
           if git diff --cached --quiet; then
