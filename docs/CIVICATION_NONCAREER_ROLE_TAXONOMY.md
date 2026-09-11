@@ -193,7 +193,7 @@ Tilsvarende er «nær venn» en relasjonsstatus mellom to personer, ikke en livs
 
 Neste non-career Role World-arbeid skal være **readiness først, rolle-for-rolle**. Den maskinlesbare køen ligger i `data/Civication/lifePositionRoleWorldReadiness.json` og genereres av `scripts/audit-civication-life-position-role-world-readiness.mjs`.
 
-`sport/supporter` var den første source-backed kandidaten og `by/nabolagskjenner` den andre; begge er nå ferdigstilt som Role Worlds. Readiness-auditen bruker tre separate klasser — `ready`, `needs_authored_depth` og `not_a_standalone_world` — mens faktisk produksjonsstatus ligger separat i `role_world_status`. På dagens `main` er begge de to `ready`-posisjonene samtidig `role_world_complete`, så ingen uferdig posisjon er klar for produksjon. De øvrige **158** standalone-kapable posisjonene trenger authored dybde først, mens **40** status-/utfallsposisjoner er `not_a_standalone_world`.
+`sport/supporter` var den første source-backed kandidaten og `by/nabolagskjenner` den andre; begge er ferdigstilt som Role Worlds. `film_tv/filmklubbmenneske` er nå den tredje source-backed posisjonen og den eneste uferdige `ready`-kandidaten. Readiness-auditen bruker tre separate klasser — `ready`, `needs_authored_depth` og `not_a_standalone_world` — mens faktisk produksjonsstatus ligger separat i `role_world_status`. Fasit er nå **3 ready = 2 role_world_complete + 1 pending**, **157 needs_authored_depth** og **40 not_a_standalone_world**.
 
 
 ```text
