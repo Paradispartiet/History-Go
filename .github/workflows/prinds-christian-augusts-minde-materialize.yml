@@ -1,0 +1,81 @@
+name: Materialize Prinds Christian Augusts Minde
+
+on:
+  push:
+    branches:
+      - agent/prinds-christian-augusts-minde-completion-20260911
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/prinds-christian-augusts-minde-completion-20260911
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Restore finalizer
+        run: |
+          cat tools/.tmp-prinds-finalizer-part01.b64 tools/.tmp-prinds-finalizer-part02.b64 tools/.tmp-prinds-finalizer-part03.b64 \
+            | base64 --decode | gzip --decompress > tools/finalize-prinds-christian-augusts-minde-completion.mjs
+          node --check tools/finalize-prinds-christian-augusts-minde-completion.mjs
+
+      - name: Materialize Prinds Christian Augusts Minde
+        run: node tools/finalize-prinds-christian-augusts-minde-completion.mjs
+
+      - name: Regenerate place indexes
+        run: npm run places:index:build
+
+      - name: Regenerate place-open runtime
+        run: npm run place-open:build
+
+      - name: Verify Prinds completion contract
+        run: node --test tests/prinds-christian-augusts-minde-completion.test.mjs
+
+      - name: Verify split manifest sync
+        run: npm run audit:places-split-manifest-sync
+
+      - name: Verify emne bindings
+        run: npm run places:emner:check
+
+      - name: Verify Stories
+        run: npm run check:stories
+
+      - name: Verify quiz manifest
+        run: npm run audit:quiz-manifest:v2
+
+      - name: Verify quiz production context
+        run: npm run audit:quiz-production-context
+
+      - name: Verify History place production
+        run: node scripts/audit-historie-place-production.mjs --all
+
+      - name: Commit canonical materialization
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f \
+            .github/workflows/prinds-christian-augusts-minde-materialize.yml \
+            tools/.tmp-prinds-finalizer-part01.b64 \
+            tools/.tmp-prinds-finalizer-part02.b64 \
+            tools/.tmp-prinds-finalizer-part03.b64
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No materialized changes to commit"
+            exit 0
+          fi
+          git commit -m "feat: complete Prinds Christian Augusts Minde"
+          git push origin HEAD:agent/prinds-christian-augusts-minde-completion-20260911
