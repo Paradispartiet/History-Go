@@ -33,19 +33,15 @@ test('onsite-profilen har bare handlinger som faktisk passer Regjeringskvartalet
   const onsite = read('js/ui/place-onsite-surface.js');
 
   assert.deepEqual(contract.categoryPolicy.politikk, {
-    events: 'always',
-    'social-meet': 'always',
-    'knowledge-meet': 'always',
     play: 'never'
   });
+  assert.equal(contract.movedSurfaces.events, 'Utforsk → Events');
+  assert.match(contract.movedSurfaces['social-meet'], /Utforsk → Møtes/);
+  assert.match(contract.movedSurfaces['knowledge-meet'], /Utforsk → Møtes/);
   for (const field of ['tasks_profile', 'training_profile', 'play_profile']) {
     assert.equal(Object.hasOwn(place, field), false, field);
   }
-  for (const label of ['Events', 'Avtal å møtes', 'Kunnskapsmøte']) {
-    assert.match(onsite, new RegExp(label));
-  }
-  assert.match(onsite, /Ingen aktuelle events/);
-  assert.match(onsite, /contextType:"place", contextId:placeId/);
+  assert.doesNotMatch(onsite, /HGEvents|HG_SocialMeetUI|HG_SpotmeetingUI|Avtal å møtes|Kunnskapsmøte/);
   assert.match(report, /\| Tasks \| N\/A \|/);
   assert.match(report, /\| Training \| N\/A \|/);
   assert.match(report, /\| Play \| N\/A \|/);

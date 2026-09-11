@@ -184,7 +184,10 @@ Typisk eierskap:
 - `for_na` → Før/etter;
 - Lesespor → Lesespor;
 - source summaries / eksterne lenker → Kilder;
-- tasks/training/play/events/møter → På stedet;
+- events → Utforsk → Events;
+- møter → Utforsk → Møtes;
+- play og andre faktiske lokale stedstypehandlinger → På stedet;
+- tasks er fjernet; training følger sportsstedets type-spesifikke innhold;
 - observations/Knowledge → sine egne systemer.
 
 ## 11. Quiz

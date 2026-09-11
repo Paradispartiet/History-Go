@@ -66,7 +66,7 @@ declare global {
     HG_TodayActionRouter?: any;
     HGHeaderMenu?: { open: () => void; close: () => void; toggle: () => void; isOpen: () => boolean };
     initLeftPanel?: () => void;
-    setLeftPanelMode?: (mode: unknown) => "nearby" | "people" | "nature" | "routes" | "badges";
+    setLeftPanelMode?: (mode: unknown) => "nearby" | "people" | "nature" | "events" | "social" | "routes" | "badges";
     rerenderActiveLeftPanelMode?: () => void;
     renderActiveLeftPanelModeNow?: () => void;
     openNearbyDrawer?: () => void;
@@ -134,8 +134,8 @@ declare global {
     };
     renderNearbyPeople?: () => void;
     HGLeftPanelMode?: {
-      getActiveMode?: () => "nearby" | "people" | "nature" | "routes" | "badges";
-      setMode?: (mode: unknown) => "nearby" | "people" | "nature" | "routes" | "badges";
+      getActiveMode?: () => "nearby" | "people" | "nature" | "events" | "social" | "routes" | "badges";
+      setMode?: (mode: unknown) => "nearby" | "people" | "nature" | "events" | "social" | "routes" | "badges";
       renderNow?: () => void;
       rerender?: () => void;
       updateControlVisibility?: () => void;
@@ -377,12 +377,10 @@ declare global {
     bootCritical?: any;
     renderGallery?: any;
     wire?: any;
-    __HG_CANONICAL_SOCIAL_EVENTS__?: any;
     __HG_I18N_CONTENT_PATCHED?: any;
     __HG_LAST_ERROR__?: any;
     __HG_LEFT_PANEL_INIT_DONE__?: any;
     __HG_NATURE_PLACE_BRIDGE_LOADER__?: any;
-    __HG_PLACE_SOCIAL_CACHE__?: any;
     __HG_STORY_STATE_MEM__?: any;
     __civiDayPhaseUiPatched?: any;
     __civiNpcCharacterThreadPatched?: any;

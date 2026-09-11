@@ -1083,33 +1083,37 @@ Denne oppskriften gjentar ikke samlingspool, profiler eller naturkartkrav. **Pla
 
 ---
 
-# DEL E — PÅ STEDET OG SPILLHANDLINGER
+# DEL E — UTFORSK, PÅ STEDET OG SPILLHANDLINGER
 
-## 9. På stedet
+## 9. Utforsk og På stedet
 
-**LES FØRST:** `docs/PLACE_POPUP_SYSTEM.md`
+**LES FØRST:** `docs/PLACE_POPUP_SYSTEM.md` og `docs/PLACE_ONSITE_SYSTEM.md`
 
-### Events
-- [ ] canonical event skjer faktisk ved stedet;
-- [ ] historiske hendelser er ikke blandet inn som dagens event.
+### Utforsk → Events
+- [ ] canonical event skjer faktisk ved et canonical Place;
+- [ ] historiske hendelser er ikke blandet inn som dagens event;
+- [ ] eventet kan vises globalt i Utforsk uten en egen PlaceCard-eventknapp.
 
-### Møter
+### Utforsk → Møtes
 Når Social Meet/Spotmeeting brukes:
 
 **LES FØRST:**
 - `docs/HG_SPOTMEETING.md`
 - `docs/HG_SOCIAL_MEET_IDENTITY_CONTRACT.md`
 
-- [ ] stedet er egnet offentlig møtekontekst;
+- [ ] **Møtes** er den ene spillerinngangen;
+- [ ] «Foreslå kunnskapsmøte» bruker canonical context/place-id;
+- [ ] «Mine møter / Social Meet» bruker eksisterende invite-/status-eier;
 - [ ] privacy-/sikkerhetsgrenser respekteres;
-- [ ] ingen live-posisjon, nearby people eller offentlig besøkshistorikk lekker fra place-data.
+- [ ] ingen live-posisjon, nearby people eller offentlig besøkshistorikk lekker fra place-data;
+- [ ] PlaceCard dupliserer ikke Events, Kunnskapsmøte eller Social Meet.
 
-### Gjør på stedet
-- [ ] `tasks_profile` vurdert;
-- [ ] `training_profile` vurdert;
+### På stedet
 - [ ] `play_profile` vurdert;
-- [ ] handlingen er reelt mulig på stedet;
+- [ ] eventuell lokal handling er reelt mulig på stedet;
 - [ ] sikkerhet og fysisk gjennomførbarhet vurdert;
+- [ ] ordinære Places uten ekte lokal handling viser ikke en tom På stedet-flate;
+- [ ] `tasks_profile` produseres ikke; `training_profile` følger sportsstedets type-spesifikke innhold;
 - [ ] gammel Wonderkammer-aktivitet flyttes hit bare når den faktisk er en handling.
 
 ---
@@ -1547,12 +1551,12 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] Related brukes bare i relasjonssystemet og aldri som PlaceCard-samling;
 - [ ] preview og innhold følger PlaceCard-kontrakten.
 
-### På stedet / læring
-- [ ] Events / N/A;
-- [ ] Møter / N/A;
-- [ ] Tasks / N/A;
-- [ ] Training / N/A;
-- [ ] Play / N/A;
+### Utforsk / På stedet / læring
+- [ ] Utforsk → Events / N/A;
+- [ ] Utforsk → Møtes / N/A;
+- [ ] PlaceCard dupliserer ikke Events/Møtes;
+- [ ] Training følger riktig type-spesifikk eier / N/A;
+- [ ] Play/lokal stedstypehandling / N/A;
 - [ ] Quiz etter canonical quizprosedyre / N/A;
 - [ ] Observer / N/A;
 - [ ] Notat / N/A;
@@ -1674,12 +1678,12 @@ Samlet: [ ] fire tydelig forskjellige samlinger  [ ] dokumentert Objects/kategor
 - [ ] quizprofil + eksakt settantall: `narrow` 3 / `normal` 4 / `rich` 5–8 / `major` 8–10
 - [ ] begrunnelse for eksakt settantall og eventuelle holdback-spor
 
-### H. På stedet
-- [ ] Events / N/A
-- [ ] Møter / N/A
-- [ ] Tasks / N/A
-- [ ] Training / N/A
-- [ ] Play / N/A
+### H. Utforsk / På stedet
+- [ ] Utforsk → Events / N/A
+- [ ] Utforsk → Møtes / N/A
+- [ ] ingen PlaceCard-duplikat av Events/Møtes
+- [ ] Training hos riktig type-spesifikk eier / N/A
+- [ ] Play/lokal handling / N/A
 - [ ] Observer / N/A
 - [ ] Notat / N/A
 - [ ] Rute / N/A

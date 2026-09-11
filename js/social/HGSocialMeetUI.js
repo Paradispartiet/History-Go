@@ -54,11 +54,6 @@
       #${SHEET_ID} .hg-social-meet-action[data-hg-social-meet-action=decline],#${SHEET_ID} .hg-social-meet-action[data-hg-social-meet-action=cancel]{border-color:rgba(255,255,255,.20);background:rgba(255,255,255,.08);color:rgba(255,255,255,.82)}
       #${SHEET_ID} .hg-social-meet-action:disabled{opacity:.55;cursor:wait}
       #${SHEET_ID} .hg-social-empty{margin:0;color:rgba(255,255,255,.60);font-size:13px;line-height:1.35}
-      .pc-events-spotmeeting{display:none!important}
-      .pc-events-social-meet{display:grid;gap:6px;padding:8px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.055)}
-      .pc-events-social-meet-title{color:#fff;font-weight:900;font-size:13px;line-height:1.1}
-      .pc-events-social-meet-sub{margin:0;color:rgba(255,255,255,.66);font-size:11px;line-height:1.25}
-      .pc-events-social-meet-open{min-height:32px;border-radius:999px;border:1px solid rgba(247,226,163,.38);background:rgba(247,226,163,.14);color:#f7e2a3;font-size:12px;font-weight:900;cursor:pointer;text-align:center}
     `;
     root.document.head?.appendChild(style);
   }
@@ -275,48 +270,13 @@
     if (sheet) sheet.hidden = true;
   }
 
-  async function refreshPlaceSummaryElement(element, placeId){
-    const loaded = await loadInbox({ filter: 'place', placeId, sourceSurface: 'placeCardOnSite' });
-    currentData = loaded.inbox;
-    const html = renderPlaceSummary(placeId);
-    if (element?.outerHTML !== html) element.outerHTML = html;
-  }
-
-  function renderPlaceSummary(placeId){
-    const summary = getPlaceSummary(placeId);
-    return `<section class="pc-events-social-meet" data-hg-social-meet-onsite="1" data-hg-social-meet-place="${escapeHTML(placeId || '')}"><span class="pc-events-social-meet-title">Social Meet</span><p class="pc-events-social-meet-sub">${escapeHTML(summary.label)}</p><button class="pc-events-social-meet-open" type="button" data-hg-social-meet-open="place" data-hg-social-meet-place="${escapeHTML(placeId || '')}">Åpne Social Meet</button></section>`;
-  }
-
-  function getPlaceIdFromEventsBox(box){
-    const card = root.document?.getElementById?.('placeCard');
-    return String(card?.dataset?.currentPlaceId || box?.querySelector?.('[data-knowledge-spot-match]')?.getAttribute?.('data-knowledge-spot-match') || '').trim();
-  }
-
-  function cleanupWrongOnSiteContent(box){
-    box?.querySelectorAll?.('.pc-events-spotmeeting,[data-hg-spotmeeting-onsite="1"]').forEach(node => node.remove());
-  }
-
-  function enhanceEventsBox(box){
-    if (!box?.querySelector) return;
-    cleanupWrongOnSiteContent(box);
-    const placeId = getPlaceIdFromEventsBox(box);
-    if (!placeId) return;
-    const existing = box.querySelector('[data-hg-social-meet-onsite="1"]');
-    const html = renderPlaceSummary(placeId);
-    if (existing) {
-      if (existing.outerHTML !== html) existing.outerHTML = html;
-      refreshPlaceSummaryElement(box.querySelector('[data-hg-social-meet-onsite="1"]'), placeId);
-    } else {
-      box.insertAdjacentHTML('beforeend', html);
-      refreshPlaceSummaryElement(box.querySelector('[data-hg-social-meet-onsite="1"]'), placeId);
-    }
-  }
-
   function enhanceOnSiteLinks(scope = root.document){
-    const boxes = [];
-    if (scope?.id === 'pcEventsBox') boxes.push(scope);
-    if (scope?.querySelectorAll) boxes.push(...scope.querySelectorAll('#pcEventsBox'));
-    boxes.forEach(enhanceEventsBox);
+    const roots = [];
+    if (scope?.id === 'pcEventsBox') roots.push(scope);
+    if (scope?.querySelectorAll) roots.push(...scope.querySelectorAll('#pcEventsBox'));
+    roots.forEach(box => {
+      box?.querySelectorAll?.('.pc-events-spotmeeting,[data-hg-spotmeeting-onsite="1"],.pc-events-social-meet,[data-hg-social-meet-onsite="1"]').forEach(node => node.remove());
+    });
   }
 
 
@@ -405,7 +365,8 @@
     const mode = String(target.getAttribute('data-hg-social-meet-open') || 'all');
     const placeId = String(target.getAttribute('data-hg-social-meet-place') || '').trim();
     const filter = mode === 'place' ? 'place' : 'all';
-    open({ filter, placeId, sourceSurface: filter === 'place' ? 'placeCardOnSite' : 'globalMenu' });
+    const sourceSurface = target.hasAttribute('data-hg-spotmeeting-social-followup') ? 'spotmeetingFollowUp' : 'socialMeetLink';
+    open({ filter, placeId, sourceSurface });
   }
 
   function bind(){
@@ -421,6 +382,6 @@
     return { ok: true, ui: 'socialMeetProfilePopup', sheetMounted: Boolean(root.document?.getElementById?.(SHEET_ID)), onSiteLinks: root.document?.querySelectorAll?.('[data-hg-social-meet-onsite="1"]')?.length || 0, hasRuntime: Boolean(root.HG_Spotmeeting) };
   }
 
-  root.HG_SocialMeetUI = { open, close, render, renderPlaceSummary, getPlaceSummary, enhanceOnSiteLinks, bind, health };
+  root.HG_SocialMeetUI = { open, close, render, getPlaceSummary, enhanceOnSiteLinks, bind, health };
   bind();
 }());
