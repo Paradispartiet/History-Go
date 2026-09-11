@@ -99,13 +99,14 @@ function list<T = unknown>(value: unknown): T[] {
 }
 
 function selectedPlaceId(): string {
-  return cleanText(document.getElementById("placeCard")?.dataset.currentPlaceId);
+  const card = document.getElementById("placeCard");
+  return cleanText(card instanceof HTMLElement ? card.dataset.currentPlaceId : "");
 }
 
 function placeById(placeId: string): Record<string, any> | null {
   const id = cleanText(placeId);
   if (!id) return null;
-  return list<Record<string, any>>(win.PLACES).find(place => cleanText(place?.id) === id) || null;
+  return list<Record<string, any>>(win.PLACES).find(place => cleanText(place && place.id) === id) || null;
 }
 
 function formatEventDate(value: unknown): string {
@@ -147,9 +148,13 @@ function bindExploreEvents(host: HTMLElement): void {
     const placeId = cleanText(target.dataset.exploreEventPlace);
     if (!placeId) return;
     event.preventDefault();
-    win.closeNearbyDrawer?.();
-    const opened = win.HGMapView?.openPlace?.(placeId);
-    if (opened === false) win.showToast?.("Kunne ikke åpne stedet for eventet akkurat nå.");
+    if (typeof win.closeNearbyDrawer === "function") win.closeNearbyDrawer();
+    const opened = win.HGMapView && typeof win.HGMapView.openPlace === "function"
+      ? win.HGMapView.openPlace(placeId)
+      : false;
+    if (opened === false && typeof win.showToast === "function") {
+      win.showToast("Kunne ikke åpne stedet for eventet akkurat nå.");
+    }
   });
 }
 
@@ -195,7 +200,7 @@ async function renderExploreEvents(): Promise<void> {
   host.innerHTML = events.map(event => {
     const placeId = cleanText(event.place_id);
     const place = placeById(placeId);
-    const placeName = cleanText(place?.name || place?.title || placeId);
+    const placeName = cleanText(place && (place.name || place.title) || placeId);
     const when = formatEventDate(event.start);
     const description = cleanText(event.description);
     return `<button type="button" class="hg-explore-card hg-explore-event-card" data-explore-event-place="${escapeHtml(placeId)}">
@@ -219,11 +224,15 @@ function bindExploreSocial(host: HTMLElement): void {
     const action = cleanText(target.dataset.exploreSocialAction);
     if (action === "manage") {
       event.preventDefault();
-      win.HG_SocialMeetUI?.open?.({
-        filter: "all",
-        placeId: "",
-        sourceSurface: "explorePanel"
-      });
+      if (win.HG_SocialMeetUI && typeof win.HG_SocialMeetUI.open === "function") {
+        win.HG_SocialMeetUI.open({
+          filter: "all",
+          placeId: "",
+          sourceSurface: "explorePanel"
+        });
+      } else if (typeof win.showToast === "function") {
+        win.showToast("Social Meet er ikke lastet ennå.");
+      }
       return;
     }
 
@@ -232,17 +241,23 @@ function bindExploreSocial(host: HTMLElement): void {
     const placeId = selectedPlaceId();
     const place = placeById(placeId);
     if (!placeId || !place) {
-      win.showToast?.("Velg et sted først for å foreslå et kunnskapsmøte.");
+      if (typeof win.showToast === "function") {
+        win.showToast("Velg et sted først for å foreslå et kunnskapsmøte.");
+      }
       return;
     }
-    win.HG_SpotmeetingUI?.open?.({
-      contextType: "place",
-      contextId: placeId,
-      title: cleanText(place.name || place.title || placeId),
-      reason: "Kunnskapsmøte rundt dette stedet",
-      sourceSurface: "explorePanel",
-      preferredAction: "match"
-    });
+    if (win.HG_SpotmeetingUI && typeof win.HG_SpotmeetingUI.open === "function") {
+      win.HG_SpotmeetingUI.open({
+        contextType: "place",
+        contextId: placeId,
+        title: cleanText(place.name || place.title || placeId),
+        reason: "Kunnskapsmøte rundt dette stedet",
+        sourceSurface: "explorePanel",
+        preferredAction: "match"
+      });
+    } else if (typeof win.showToast === "function") {
+      win.showToast("Kunnskapsmøte er ikke lastet ennå.");
+    }
   });
 }
 
@@ -253,7 +268,7 @@ function renderExploreSocial(): void {
 
   const placeId = selectedPlaceId();
   const place = placeById(placeId);
-  const placeName = cleanText(place?.name || place?.title || "");
+  const placeName = cleanText(place && (place.name || place.title) || "");
   const proposeDisabled = !placeId || !place;
   const proposeMeta = proposeDisabled
     ? "Velg et sted under Steder først."
