@@ -174,13 +174,13 @@ Et dialektfenomen eies av **nærmeste relevante område-Place**. Et Sagene-ord e
 
 **Stoppgate:** Dialektinnhold på et Place uten `placeScope: "area"` er en datamodellfeil. Flytt innholdet til riktig områdeeier eller klassifiser det som vanlig, direkte stedsspesifikt Språkleksikon dersom det faktisk tilhører enkeltstedet. Manglende dialekt er lov; manglende Språkleksikon på et produksjonsklart sted er ikke lov.
 
-## 8. Presentasjon i stedspopupen
+## 8. Presentasjon i stedspopupen og Språkatlas
 
 **Språk er en fast fane på alle canonical Places** i den samme horisontalt scrollbar fanestripen som de øvrige grunnfanene. Det finnes ingen brukerrettet **Mer**-fane.
 
 `place-popup-direct-tabs.js` sørger for at Språk-fanen alltid finnes. `place-language-layer.js` fyller den med canonical Språkleksikon-data når språkfilen er materialisert.
 
-Språkfanen viser:
+Språkfanen viser bare **stedets eget Språkleksikon**:
 
 - antall oppføringer;
 - typefordeling;
@@ -190,6 +190,8 @@ Språkfanen viser:
 - relaterte steder og språkspor;
 - kilder;
 - samlingsstatus.
+
+**Språkatlas Norge skal aldri renderes inne i PlaceCard eller stedspopupen.** Det er en egen kunnskapsside på `sprakatlas.html`. Den canonicale brukerinngangen er **Header Menu → Læring → Språkatlas Norge**. Et Place med eksplisitt `atlas_local_ids` kan i tillegg ha en dyp lenke **«Se talemålet i Språkatlas»** som åpner den samme separate siden med riktig profil i fokus; lenken skal ikke åpne atlaset inne i Språk-fanen.
 
 Når språkdata finnes, kan en kompakt **Språk på stedet**-forhåndsvisning i Om peke til språkfanen.
 
@@ -336,11 +338,11 @@ Språkkontakt skal heller ikke gjøre separate språk til dialekttrekk. For nors
 <!-- SPRÅKATLAS_PLACES_V1_START -->
 ## Språkatlas → Places v1
 
-Språkatlaset og PlaceCard bruker samme canonical språkdata. `atlas_local_ids` i en språkfil er bare en presis navigasjonsrelasjon til en lokal atlasprofil; feltet gjør aldri et enkelt-Place til dialekteier. Dialektinnhold følger fortsatt regelen `placeScope: "area"`. Konkrete `feature_evidence`-påstander eies av atlasprofilen og skal ikke kopieres inn i Place-filen.
+Språkatlaset og PlaceCard bruker samme canonical språkdata, men **ikke samme UI-flate**. Atlaset eies av den separate siden `sprakatlas.html`; PlaceCard viser bare stedets Språkleksikon. `atlas_local_ids` i en språkfil er bare en presis navigasjonsrelasjon til en lokal atlasprofil; feltet gjør aldri et enkelt-Place til dialekteier. Dialektinnhold følger fortsatt regelen `placeScope: "area"`. Konkrete `feature_evidence`-påstander eies av atlasprofilen og skal ikke kopieres inn i Place-filen.
 
 Når en atlasprofil eller region velges, viser runtime **«Utforsk steder med dokumenterte språkspor»**. Listen bygges fra `data/leksikon/sprak/manifest.json`, språkfilene og runtime `window.PLACES`. Den er derfor aldri en fullstendig oversikt over hvor talemålet finnes. Lokale profiler matches bare via eksplisitt `atlas_local_ids`; runtime får ikke gjette en lokal profil bare fordi et Place ligger i samme brede dialektregion.
 
-Fra et Place med en eksplisitt lokal atlasrelasjon vises **«Se talemålet i Språkatlas»**. Navigasjon til et annet Place går gjennom `HGMapView.openPlace()`, slik at kartet flyttes ferdig før PlaceCard åpnes. Et område-Place kan ha null egne **dialektoppføringer** når all konkret talemålsevidens allerede ligger canonical i `local_varieties[].feature_evidence`, men Place-et skal fortsatt ha ordinære språk-/begrepsoppføringer. Språk-fanen viser da stedets begreper sammen med atlasprofilen uten å duplisere dialektevidensen.
+Fra et Place med en eksplisitt lokal atlasrelasjon kan **«Se talemålet i Språkatlas»** peke til `sprakatlas.html?focus=<atlas-id>`. Atlaset åpnes da som egen side. Fra atlasets liste over dokumenterte Place-koblinger går navigasjon tilbake til hovedappen og åpner det canonical Place-et i vanlig PlaceCard. Et område-Place kan ha null egne **dialektoppføringer** når all konkret talemålsevidens allerede ligger canonical i `local_varieties[].feature_evidence`, men Place-et skal fortsatt ha ordinære språk-/begrepsoppføringer. Språk-fanen viser da bare stedets egne begreper; atlasbelegget forblir på den separate atlas-siden.
 
 ### Dekningsaudit per 19. august 2026
 
