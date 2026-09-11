@@ -9,6 +9,8 @@ const index = read("index.html");
 const source = read("js/ui/leftPanelMode.ts");
 const bundle = read("dist/web/leftPanelMode.js");
 const onsite = read("js/ui/place-onsite-surface.js");
+const nearbyCss = read("css/nearby.css");
+const headerMenu = read("js/ui/header-menu.js");
 const socialUi = read("js/social/HGSocialMeetUI.js");
 const contract = json("data/categories/place_onsite_contract.json");
 
@@ -17,7 +19,11 @@ test("Utforsk eier Events og én samlet Møtes-inngang", () => {
   assert.match(index, /data-leftmode="social"[^>]*>Møtes</);
   assert.match(index, /id="leftEventsList"/);
   assert.match(index, /id="leftSocialList"/);
-  assert.doesNotMatch(index, /id="btnSocialMeet"/);
+  assert.match(index, /id="btnSocialMeet"/);
+  assert.match(index, /Møtes \/ Social Meet/);
+  assert.match(nearbyCss, /\.nearby-tabs\{[\s\S]*flex-wrap:\s*wrap[\s\S]*overflow:\s*visible/);
+  assert.match(headerMenu, /setLeftPanelMode\("social"\)|HGLeftPanelMode\?\.setMode\?\.\("social"\)/);
+  assert.match(headerMenu, /openNearbyDrawer\(\)|HGNearbyDrawer\?\.open\?\.\(\)/);
 
   assert.match(source, /events:\s*"leftEventsList"/);
   assert.match(source, /social:\s*"leftSocialList"/);
