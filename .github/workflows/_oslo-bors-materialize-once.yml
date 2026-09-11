@@ -1,0 +1,54 @@
+name: Oslo Bors materialize once
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+    paths:
+      - 'tools/finalize-borsen-oslo-completion.mjs'
+      - '.github/workflows/_oslo-bors-materialize-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.head_ref == 'agent/oslo-bors-production-closure-20260911'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: agent/oslo-bors-production-closure-20260911
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Materialize Oslo Bors
+        run: node tools/finalize-borsen-oslo-completion.mjs
+      - name: Validate focused contracts
+        run: |
+          node scripts/audit-naeringsliv-place-production.mjs
+          node scripts/audit-fagverk-place-pages.mjs
+          npm run places:index:check
+          npm run place-open:check
+          npm run epoker:places:check
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          node --test tests/borsen-oslo-production-closure.test.mjs
+      - name: Remove one-shot workflow
+        run: git rm -- .github/workflows/_oslo-bors-materialize-once.yml
+      - name: Commit permanent Oslo Bors closure
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --stat
+          git commit -m 'Complete Oslo Bors place production on fresh main'
+          git push origin HEAD:agent/oslo-bors-production-closure-20260911
