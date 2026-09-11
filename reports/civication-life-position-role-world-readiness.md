@@ -1,16 +1,16 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 200
-**Classification:** 1 ready / 159 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 2 ready / 158 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 14
-**Exact governed-source matches:** 1
-**Multi-scene narrative foundations:** 1
+**Exact governed-source matches:** 2
+**Multi-scene narrative foundations:** 2
 **Completed life-position Role Worlds:** 1
-**Pending ready positions:** 0
+**Pending ready positions:** 1
 
 ## Decision
 
-No unfinished life position is currently ready for Role World production. Supporter remains source-ready but is already role_world_complete; the remaining standalone-capable positions require authored depth first.
+First pending ready Role World position: **by/nabolagskjenner — Nabolagskjenner**.
 
 Livelihood templates count as provenance for an economic opportunity, but never as sufficient Role World depth on their own.
 
@@ -18,7 +18,7 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `by/nabolagskjenner` | needs_authored_depth | 0 | 1 | 0 |
+| 1 | `by/nabolagskjenner` | ready | 1 | 1 | 14 |
 | 2 | `film_tv/filmklubbmenneske` | needs_authored_depth | 0 | 1 | 0 |
 | 3 | `filosofi/sofafilosof` | needs_authored_depth | 0 | 1 | 0 |
 | 4 | `historie/historievandrer` | needs_authored_depth | 0 | 1 | 0 |
