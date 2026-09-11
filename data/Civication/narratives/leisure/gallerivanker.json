@@ -1,0 +1,683 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "gallerivanker_stream",
+  "type": "leisure",
+  "title": "Gallerivanker i kunstrommet",
+  "sociological_theme": "smak_status_tolkning_tilgang_og_grensen_mot_profesjonell_kunstmyndighet",
+  "applies_when": {
+    "any_tags": [
+      "gallerivanker",
+      "kunst:gallerivanker"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "veggen_uten_forklaring",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Et lite galleri",
+      "subject": "Hva ser du før du leser teksten?",
+      "situation": [
+        "Du går inn i et galleri der et verk henger uten lang introduksjon, og du merker hvor raskt egne forventninger begynner å fylle tomrommet.",
+        "En annen besøkende spør hva verket «egentlig betyr», selv om du bare har sett det noen minutter.",
+        "Gallerivankerrollen handler om å kunne undersøke en tolkning uten å gjøre smak eller selvsikkerhet til kuratorisk fasit."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hva du faktisk legger merke til og markere tydelig at tolkningen er din, ikke verkets offisielle mening.",
+          "effect": 1,
+          "tags": [
+            "interpretation",
+            "epistemic_humility",
+            "art_viewing"
+          ],
+          "feedback": "Du gjør samtalen rikere uten å låne institusjonell autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Gi en sikker forklaring fordi du kjenner nok kunst til å forstå hva kunstneren må ha ment.",
+          "effect": -1,
+          "tags": [
+            "authority_overreach",
+            "status",
+            "interpretation_as_fact"
+          ],
+          "feedback": "Du høres kunnskapsrik ut, men gjør egen lesning til en falsk fasit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_interpretation_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "navnedropping_pa_apningen",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En bekjent på vernissage",
+      "subject": "Kjenner du kunstneren?",
+      "situation": [
+        "På en åpning går samtalen fort over i hvem som kjenner hvem, hvilke atelierer folk har besøkt og hvem som allerede har sett neste utstilling.",
+        "Du merker at nettverk og referanser fungerer som sosial valuta selv når ingen formell adgangskontroll finnes.",
+        "Et kunstmiljø kan være åpent i døra og samtidig vanskelig å tre inn i sosialt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakke med nye folk uten å gjøre nettverket ditt til målestokk for om de hører til.",
+          "effect": 1,
+          "tags": [
+            "inclusion",
+            "network",
+            "status_awareness"
+          ],
+          "feedback": "Du bruker kjennskap som bro i stedet for adgangskort."
+        },
+        {
+          "id": "B",
+          "label": "Legge inn noen navn du kjenner tidlig i samtalen for å etablere at du hører hjemme her.",
+          "effect": -1,
+          "tags": [
+            "name_dropping",
+            "status_anxiety",
+            "gatekeeping"
+          ],
+          "feedback": "Du sikrer posisjon, men gjør miljøets sosiale terskel høyere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_network_status"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fotografiet_og_det_rode_skiltet",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En gallerivert",
+      "subject": "Ikke fotografer dette verket",
+      "situation": [
+        "Du løfter telefonen ved et verk før en vert peker på et lite skilt om at fotografering ikke er tillatt.",
+        "Begrunnelsen er ikke synlig, og det er fristende å tenke at et raskt bilde ikke skader noen.",
+        "Som besøkende har du ingen rett til å overstyre kunstnerens, rettighetshaverens eller visningsstedets rammer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legge bort telefonen og spørre om det finnes et godkjent bilde eller annen dokumentasjon du kan bruke senere.",
+          "effect": 1,
+          "tags": [
+            "rights_boundary",
+            "respect",
+            "source_care"
+          ],
+          "feedback": "Du beholder nysgjerrigheten uten å gjøre tilgang til eierskap."
+        },
+        {
+          "id": "B",
+          "label": "Ta bildet diskret siden det bare er til privat bruk.",
+          "effect": -1,
+          "tags": [
+            "rights_violation",
+            "entitlement",
+            "reputation_risk"
+          ],
+          "feedback": "Et lite regelbrudd gjør egen dokumentasjon viktigere enn rammen rundt verket."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_photo_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "etiketten_som_ikke_stemmer",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "En veggtekst",
+      "subject": "Er årstallet feil?",
+      "situation": [
+        "Du oppdager at årstallet på en veggtekst ikke passer med det du husker fra en katalog.",
+        "Du er ganske sikker, men har ikke katalogen foran deg og vet ikke om verket, serien eller tekstversjonen har endret seg.",
+        "Å oppdage et mulig avvik gir grunn til å spørre, ikke rett til å endre institusjonens metadata."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Nevne avviket forsiktig til en ansatt og vise til kilden når du kan dokumentere den.",
+          "effect": 1,
+          "tags": [
+            "source_care",
+            "correction",
+            "institution_boundary"
+          ],
+          "feedback": "Du bidrar til kvalitet uten å late som du eier katalogdataene."
+        },
+        {
+          "id": "B",
+          "label": "Forklare til andre besøkende at galleriet har gjort en feil fordi du husker katalogen godt.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "status",
+            "metadata_authority"
+          ],
+          "feedback": "Du gjør en mulig feil til sikker offentlig korrigering uten kildegrunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_metadata_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prislappen_og_antakelsen",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En venn",
+      "subject": "Den er dyr, så den må være viktig",
+      "situation": [
+        "En venn ser en høy pris og antar at prisen sier noe sikkert om verkets kunsthistoriske betydning.",
+        "Du vet at kunstmarked, galleri, kunstnerkarriere, format og etterspørsel kan påvirke pris på mange måter.",
+        "Som Gallerivanker kan du diskutere marked og smak, men du er ikke selger, takstperson eller investeringsrådgiver."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skille pris fra kunsthistorisk verdi og si at du ikke kan vurdere kjøp eller fremtidig verdi for andre.",
+          "effect": 1,
+          "tags": [
+            "market_boundary",
+            "status",
+            "interpretation"
+          ],
+          "feedback": "Du holder samtalen interessant uten å gjøre besøkervaner til investeringsråd."
+        },
+        {
+          "id": "B",
+          "label": "Si at prisen trolig vil stige fordi kunstneren virker på vei opp.",
+          "effect": -1,
+          "tags": [
+            "financial_advice",
+            "authority_overreach",
+            "market_status"
+          ],
+          "feedback": "Du gjør sosial kunstkunnskap til spekulativ økonomisk autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_market_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kunstneren_vil_ikke_forklare",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kunstneren på åpningen",
+      "subject": "Jeg vil ikke gi én forklaring",
+      "situation": [
+        "En deltaker presser kunstneren for å forklare hva verket «betyr», og vender seg deretter til deg for en mer tilfredsstillende tolkning.",
+        "Du har tanker om verket, men kunstnerens avvisning av én fasit er i seg selv en tydelig grense.",
+        "Kunstnersamtaler er relasjoner, ikke råmateriale for å demonstrere hvor mye du kan."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dele egen lesning som nettopp en lesning og la kunstneren slippe å bli presset inn i en endelig forklaring.",
+          "effect": 1,
+          "tags": [
+            "artist_boundary",
+            "interpretation",
+            "respect"
+          ],
+          "feedback": "Du åpner samtalen uten å overta kunstnerens posisjon."
+        },
+        {
+          "id": "B",
+          "label": "Gi gruppa en helhetlig forklaring fordi noen må hjelpe publikum å forstå verket.",
+          "effect": -1,
+          "tags": [
+            "curatorial_overreach",
+            "status",
+            "artist_voice"
+          ],
+          "feedback": "Du fyller tomrommet ved å gjøre deg selv til uoppnevnt formidler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_artist_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_usynlige_ryddingen",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Et lite galleri etter åpning",
+      "subject": "Hvem rydder når alle går?",
+      "situation": [
+        "Etter en travel åpning blir det tydelig hvor mye av kvelden som bæres av glass, søppel, stoler, garderobe og små praktiske oppgaver.",
+        "De mest synlige personene i rommet er ikke nødvendigvis de som gjør mest av dette arbeidet.",
+        "Gallerilivets prestisje kan skjule et lag av usynlig service- og omsorgsarbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hjelpe når det er naturlig og kreditere dem som faktisk bar det praktiske arbeidet.",
+          "effect": 1,
+          "tags": [
+            "invisible_work",
+            "credit",
+            "care"
+          ],
+          "feedback": "Du ser hele institusjonen, ikke bare de mest prestisjefylte rollene."
+        },
+        {
+          "id": "B",
+          "label": "La de ansatte ordne det fordi din rolle her er å delta i kunstsamtalen.",
+          "effect": -1,
+          "tags": [
+            "status_hierarchy",
+            "invisible_work",
+            "distance"
+          ],
+          "feedback": "Du beholder sosial posisjon, men gjør arbeidshierarkiet enda mindre synlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_invisible_work"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nykommeren_i_hvit_kube",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En førstegangsbesøkende",
+      "subject": "Kan man bare gå inn?",
+      "situation": [
+        "En person uten gallerivane står utenfor og spør om det koster penger, om man må kjenne noen og om det er lov å bare se.",
+        "For deg er rutinene blitt selvsagte, men det som føles uformelt for en erfaren Gallerivanker kan være fullt av uskrevne koder.",
+        "Kulturell kapital blir mest synlig når noen ikke vet hvilke regler alle andre later som er åpenbare."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklare de praktiske rammene enkelt og invitere personen til å se uten krav om riktig språk eller bakgrunn.",
+          "effect": 1,
+          "tags": [
+            "access",
+            "cultural_capital",
+            "welcoming"
+          ],
+          "feedback": "Du gjør erfaringen din til en lavere terskel."
+        },
+        {
+          "id": "B",
+          "label": "Gi en rask innføring i hvordan man bør oppføre seg og hvilke kunstnere man burde kjenne først.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status",
+            "social_code"
+          ],
+          "feedback": "Du hjelper med reglene, men gjør samtidig medlemskapet i miljøet betinget av forkunnskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_access_code"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verket_som_ser_skadet_ut",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En annen besøkende",
+      "subject": "Bør vi si fra?",
+      "situation": [
+        "Et verk ser ut til å ha en sprekk eller løs del, men du vet ikke om det er skade, materialets natur eller en del av verket.",
+        "Du kan varsle om observasjonen, men du har ingen konservatorfaglig kompetanse til å diagnostisere tilstand eller flytte verket.",
+        "Omsorg for kunstverket krever nettopp å kjenne grensene for egen rolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Varsle en ansatt om hva du konkret observerte og la riktig fagperson vurdere resten.",
+          "effect": 1,
+          "tags": [
+            "conservation_boundary",
+            "care",
+            "observation"
+          ],
+          "feedback": "Du bidrar uten å gjøre observasjon til diagnose."
+        },
+        {
+          "id": "B",
+          "label": "Gå nærmere og kjenne forsiktig etter om delen faktisk sitter løst.",
+          "effect": -1,
+          "tags": [
+            "handling_violation",
+            "conservation_overreach",
+            "entitlement"
+          ],
+          "feedback": "Du prøver å hjelpe, men gjør deg selv til risiko for verket."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_conservation_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ekstravakt_pa_apning",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Et lite galleri",
+      "subject": "Kan du ta en enkel ekstravakt?",
+      "situation": [
+        "Et lite galleri tilbyr deg en betalt ekstravakt med publikumslogistikk, rydding og praktisk hjelp under en åpning.",
+        "Oppdraget er avgrenset og gjør deg ikke til kurator, gallerist, kunsthandler, formidler, konservator eller person med salgs-, proveniens- eller kunstnerisk beslutningsmyndighet.",
+        "Her møtes livsposisjon og levevei, men de skal fortsatt være separate lag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta vakten med tydelig praktisk scope og eskalere faglige, salgs- og verkrelaterte spørsmål til riktig person.",
+          "effect": 1,
+          "tags": [
+            "bounded_gig",
+            "livelihood_boundary",
+            "role_clarity"
+          ],
+          "feedback": "Du kan tjene litt på et konkret oppdrag uten å blåse opp myndigheten."
+        },
+        {
+          "id": "B",
+          "label": "Bruke vakten som anledning til å presentere deg som en del av galleriets faglige team.",
+          "effect": -1,
+          "tags": [
+            "career_confusion",
+            "authority_overreach",
+            "status"
+          ],
+          "feedback": "Tilgang bak disken blir gjort om til en faglig posisjon oppdraget aldri ga."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_livelihood_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_vil_kjope",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En nær venn",
+      "subject": "Kan du snakke med galleriet for meg?",
+      "situation": [
+        "En venn vurderer å kjøpe et verk og ber deg bruke kontaktene dine for å få «den riktige prisen» og bekrefte at verket er et godt kjøp.",
+        "Du kjenner folk i miljøet, men har ingen fullmakt til å forhandle på vegne av galleriet eller gi økonomisk garanti.",
+        "Nettverk er sosial kapital, ikke automatisk megler- eller rådgivningsmandat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Tilby å introdusere vennen til riktig kontakt, men la pris, vilkår og vurdering være mellom dem.",
+          "effect": 1,
+          "tags": [
+            "network_boundary",
+            "market_boundary",
+            "care"
+          ],
+          "feedback": "Du bruker relasjonen som introduksjon uten å bli mellommann med oppdiktet fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Love å presse prisen litt fordi du kjenner hvordan slike steder fungerer.",
+          "effect": -1,
+          "tags": [
+            "brokerage_overreach",
+            "status",
+            "financial_risk"
+          ],
+          "feedback": "Du gjør sosial nærhet til en forhandlingsmyndighet du ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_broker_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kritikken_etter_apningen",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Gruppa på vei videre",
+      "subject": "Dette var bare hype",
+      "situation": [
+        "Etter åpningen blir samtalen hard: noen avviser hele utstillingen som nettverkshype, andre mener kritikken bare viser manglende kunstforståelse.",
+        "Du ser hvordan smak lett blir en dom over menneskene som liker eller misliker verket.",
+        "Kritikk kan være presis uten å gjøre kulturell smak til sosial rangering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakke konkret om verk, utstilling og begrunnelser uten å rangere personene etter hvor sofistikert smaken deres er.",
+          "effect": 1,
+          "tags": [
+            "criticism",
+            "status_awareness",
+            "plural_voice"
+          ],
+          "feedback": "Uenigheten får innhold uten å bli en sosial opptaksprøve."
+        },
+        {
+          "id": "B",
+          "label": "Påpeke at mye av kritikken kommer fra folk som ikke kjenner kunstfeltet godt nok.",
+          "effect": -1,
+          "tags": [
+            "taste_hierarchy",
+            "gatekeeping",
+            "status"
+          ],
+          "feedback": "Du forsvarer utstillingen ved å gjøre kompetanse til sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_taste_hierarchy"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historien_i_katalogen",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "En katalogtekst",
+      "subject": "Er dette fakta eller kuratorisk lesning?",
+      "situation": [
+        "En katalogtekst kombinerer dokumenterte opplysninger med en sterk tolkning av verkets plass i kunsthistorien.",
+        "Senere gjentar noen tolkningen som om den var et ubestridt faktum.",
+        "En erfaren Gallerivanker kan lære å skille dokumentasjon, kunstnerposisjon, kritikk og kuratorisk tolkning uten å eie noen av dem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skille eksplisitt mellom hva teksten dokumenterer og hva den argumenterer for.",
+          "effect": 1,
+          "tags": [
+            "source_care",
+            "curatorial_interpretation",
+            "critical_reading"
+          ],
+          "feedback": "Du bruker katalogen som kilde med sjangerbevissthet."
+        },
+        {
+          "id": "B",
+          "label": "Gjenta tolkningen som faktum fordi den står i den offisielle katalogen.",
+          "effect": -1,
+          "tags": [
+            "institutional_authority",
+            "interpretation_as_fact",
+            "source_risk"
+          ],
+          "feedback": "Institusjonens stemme blir gjort til historisk fasit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_catalog_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_slags_gallerivanker",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Den siste åpningen",
+      "subject": "Hva har du egentlig lært å se?",
+      "situation": [
+        "Etter mange besøk merker du at gallerilivet ikke bare handler om verkene: det handler også om språk, nettverk, arbeid, penger, adgang, institusjoner og hvem som får virke hjemme i rommet.",
+        "Gallerivanker er en valgt besøks- og interessepraksis, ikke en jobbtittel eller sertifisering.",
+        "Den sosiale testen er om erfaringen din gjør kunstrommet mer nysgjerrig og tilgjengelig, eller bare gjør din egen smak til høyere status."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta med deg en vane videre: skill egen tolkning fra fakta, bruk nettverk som bro og kjenn grensene mot faglig og økonomisk myndighet.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "access",
+            "role_clarity"
+          ],
+          "feedback": "Identiteten blir en måte å se og delta på, ikke en rang."
+        },
+        {
+          "id": "B",
+          "label": "Konkludere med at neste steg er å bli enda mer kjent i miljøet slik at folk automatisk lytter til vurderingene dine.",
+          "effect": -1,
+          "tags": [
+            "status_identity",
+            "network_power",
+            "authority_pressure"
+          ],
+          "feedback": "Du bygger synlighet, men gjør erfaring til et prosjekt om posisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_season_reflection"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
