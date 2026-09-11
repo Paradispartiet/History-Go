@@ -1,0 +1,1058 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "kunst",
+  "role_scope": "kunst_gallerivanker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "kunst",
+    "id": "gallerivanker",
+    "label": "Gallerivanker"
+  },
+  "title": "Gallerivanker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å delta i kunstrom med nysgjerrighet og sosial kompetanse uten å gjøre smak, nettverk eller gjentatt tilstedeværelse til profesjonell kunstmyndighet",
+    "description": "Gallerivanker-livet undersøker hvordan smak, kulturell kapital, nettverk, publikumsadferd, arbeid, marked og institusjonelle koder former hvem som føler seg hjemme i kunstrommet. Spilleren må lære å skille egen tolkning fra dokumentert fakta og kuratorisk posisjon, sosial kjennskap fra salgs- eller rådgivningsfullmakt, og omsorg for et verk fra konservatorfaglig kompetanse. Et avgrenset betalt åpningsskift kan gi inntekt, men gjør ikke spilleren til kurator, gallerist, kunsthandler, formidler, konservator eller institusjonell beslutningstaker."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "class_power",
+    "status_anxiety",
+    "shame_reputation",
+    "public_private_leakage",
+    "public_attention",
+    "invisible_work",
+    "care_vs_efficiency"
+  ],
+  "social_environments": [
+    "den hvite kuben der verk, veggtekst og taushet inviterer til tolkning uten at besøkeren får definisjonsmyndighet",
+    "vernissagen der navn, invitasjoner og kjennskap fungerer som sosial kapital og kan senke eller heve terskelen for nye deltakere",
+    "publikumsrommet der fotografering, verkshåndtering og praktiske regler uttrykker rettigheter og ansvar som ikke kan overstyres av interesse",
+    "samtalen med kunstneren der nysgjerrighet møter kunstnerens rett til å avvise én forklaring eller kontrollere hvordan eget arbeid omtales",
+    "markedssamtalen der pris, popularitet og nettverk lett forveksles med kunsthistorisk verdi eller investeringskunnskap",
+    "bak åpningen der rydding, logistikk og publikumsarbeid gjør institusjonens usynlige arbeid synlig",
+    "katalog- og veggtekstlesningen der dokumenterte opplysninger, kuratorisk argument og institusjonell stemme må kunne skilles",
+    "det avgrensede ekstraskiftet der praktisk betalt arbeid ikke blir en snarvei til faglig eller institusjonell autoritet"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "gallerivert",
+      "social_function": "setter praktiske publikumsgrenser og gjør forskjellen mellom gjestfrihet, institusjonelle regler og faglig myndighet synlig",
+      "class_position": "frontlinjemedarbeider med ansvar for dagens publikumsrom, men uten automatisk kuratorisk, konservatorfaglig eller salgsjuridisk myndighet",
+      "status": "synlig representant for stedet i møtet med publikum, med situert praktisk autoritet",
+      "power_over_player": "kan forklare regler, stoppe fotografering eller håndtering og eskalere spørsmål til riktig fagperson",
+      "wants": "at publikum skal kunne oppleve kunsten uten at verk, rettigheter, sikkerhet eller andre besøkende blir satt i fare",
+      "conceals": "hvor mye emosjonelt og praktisk arbeid som ligger bak et tilsynelatende uformelt kunstrom",
+      "speech_style": "vennlig, kort og tydelig på hva som er tillatt og hvem som må svare på faglige spørsmål",
+      "teaches_player": "at et åpent kunstrom fortsatt har grenser, og at praktisk vertskap ikke er det samme som kuratorisk eller konservatorfaglig myndighet"
+    },
+    {
+      "id": "nettverksveteran",
+      "social_function": "gjør navnekunnskap, invitasjoner og sosial gjenkjennelse til synlig kulturell kapital",
+      "class_position": "ressurssterk gjenganger med stort uformelt nettverk, men uten formell rett til å avgjøre hvem som hører hjemme i kunstfeltet",
+      "status": "høy uformell status fordi personen kjenner kunstnere, steder og åpninger og lett blir gjenkjent",
+      "power_over_player": "kan introdusere spilleren, ignorere nye deltakere eller etablere uskrevne standarder for hva som teller som riktig smak",
+      "wants": "å være sentral i miljøets samtaler og ha oversikt over hva som skjer før alle andre",
+      "conceals": "hvor avhengig egen posisjon er av at nettverket fortsetter å fungere som sosial valuta",
+      "speech_style": "rask, referansetett og full av navn, steder og kommende åpninger",
+      "teaches_player": "at kulturell kapital kan åpne dører, men også gjøre et formelt åpent rom sosialt lukket"
+    },
+    {
+      "id": "forstegangsbesokende",
+      "social_function": "gjør de uskrevne reglene i gallerirommet synlige ved å spørre om det alle erfarne deltakere tar for gitt",
+      "class_position": "besøkende med lav intern kunstfeltkapital, men full rett til å være i publikumsrommet",
+      "status": "lav eller uavklart status i miljøet, men høy analytisk verdi som test på hvor inkluderende rommet faktisk er",
+      "power_over_player": "kan avsløre om spillerens erfaring brukes som vertskap eller som sosial opptaksprøve",
+      "wants": "å kunne se kunst uten å måtte bevise riktig språk, klær, nettverk eller forkunnskap først",
+      "conceals": "at usikkerhet rundt kodene kan gjøre selv gratis og åpne rom sosialt utilgjengelige",
+      "speech_style": "konkret, forsiktig og full av praktiske spørsmål om pris, adgang og hva man får lov til",
+      "teaches_player": "at tilgjengelighet også handler om kulturelle koder, ikke bare om en ulåst dør"
+    },
+    {
+      "id": "kunstner_pa_apning",
+      "social_function": "gjør kunstnerens egen stemme, samtykke og rett til å avvise en endelig forklaring synlig",
+      "class_position": "opphaver og deltaker i feltet med særskilt relasjon til verket, men ikke nødvendigvis eneste gyldige fortolker",
+      "status": "høy symbolsk status i rommet fordi eget arbeid er sentrum for oppmerksomheten",
+      "power_over_player": "kan åpne eller lukke samtalen, korrigere feil om eget arbeid og sette grenser for fotografering eller personlige spørsmål",
+      "wants": "at verket skal få møte publikum uten at kunstneren reduseres til fasitmaskin eller sosial rekvisitt",
+      "conceals": "at offentlig oppmerksomhet rundt åpningen også kan være krevende og gjøre grensesetting sosialt kostbart",
+      "speech_style": "kan være presis, unnvikende eller åpen avhengig av spørsmålet, men tydelig når én fasit presses fram",
+      "teaches_player": "at nærhet til kunstneren ikke gir eierskap til kunstnerens mening, relasjoner eller profesjonelle nettverk"
+    },
+    {
+      "id": "praktisk_apningskoordinator",
+      "social_function": "tilbyr og avgrenser det lille betalte åpningsskiftet og gjør forskjellen mellom praktisk arbeid og faglig kunstrolle eksplisitt",
+      "class_position": "lokal oppdragsgiver med kontroll over et enkelt casual shift, men uten myndighet til å gjøre spilleren til kurator, gallerist, kunsthandler, formidler eller konservator",
+      "status": "funksjonell status som den som organiserer publikumsflyt, rydding og praktiske oppgaver på arrangementet",
+      "power_over_player": "kan tilby eller avslutte et avgrenset skift og fordele praktiske oppgaver innenfor arrangementet",
+      "wants": "at åpningen skal fungere trygt og ryddig uten at midlertidig hjelp begynner å love salg, tolke på vegne av institusjonen eller håndtere verk",
+      "conceals": "at tilgang bak disken og kontakt med publikum lett kan oppleves som mer faglig status enn skiftet faktisk gir",
+      "speech_style": "praktisk, direkte og tydelig på oppgaver, eskalering og hvem som har ansvar for faglige spørsmål",
+      "teaches_player": "at betaling og intern tilgang for et enkelt skift ikke skaper salgs-, proveniens-, katalog-, kuratorisk eller konservatorfaglig myndighet"
+    },
+    {
+      "id": "kritisk_venn",
+      "social_function": "gjør hvordan smak, pris og kritikk lett blir til sosial rangering eller økonomiske påstander synlig",
+      "class_position": "jevnaldrende besøkende uten profesjonell kunstrolle, men med egen smak og sosial trygghet",
+      "status": "middels status i miljøet og stor betydning for hvordan spillerens holdninger blir testet i private samtaler",
+      "power_over_player": "kan be om kjøpsråd, utfordre utstillingen eller gjøre spillerens behov for å virke kunnskapsrik tydelig",
+      "wants": "å forstå hva som er interessant, overvurdert eller verdt å bruke tid og penger på",
+      "conceals": "at ønsket om en sikker vurdering også kan handle om frykt for å velge feil og tape sosial eller økonomisk status",
+      "speech_style": "direkte, skeptisk og rask til å koble pris, hype og kunstnerstatus til kvalitet",
+      "teaches_player": "at vennskap og erfaring ikke gjør spilleren til kunsthandler, takstperson eller investeringsrådgiver"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "interpretive_humility",
+      "meaning": "om spilleren skiller egen lesning fra dokumentert opplysning, kunstnerposisjon og kuratorisk argument",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cultural_capital_access",
+      "meaning": "om erfaring, språk og nettverk brukes som bro for nye deltakere eller som sosial adgangskontroll",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rights_and_artist_boundary",
+      "meaning": "om fotografering, kunstnerkontakt, verkshåndtering og rettigheter respekteres uten at interesse blir eierskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "market_authority_boundary",
+      "meaning": "om pris, hype og nettverk diskuteres uten å bli salgsfullmakt, takst eller investeringsråd",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "invisible_work_recognition",
+      "meaning": "om publikumslivets prestisje også gjør praktisk, emosjonelt og materiellomsorgsarbeid synlig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "livelihood_boundary",
+      "meaning": "om et avgrenset betalt åpningsskift holdes adskilt fra livsposisjon, ansettelse og profesjonell kunstmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du går inn i et galleri der et verk henger uten lang introduksjon, og du merker hvor raskt egne forventninger begynner å fylle tomrommet. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "interpretation_status",
+          "source_institution_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#veggen_uten_forklaring"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du går inn i et galleri der et verk henger uten lang introduksjon, og du merker hvor raskt egne forventninger begynner å fylle tomrommet. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "interpretation_status",
+          "source_institution_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#veggen_uten_forklaring"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du går inn i et galleri der et verk henger uten lang introduksjon, og du merker hvor raskt egne forventninger begynner å fylle tomrommet. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "interpretation_status",
+          "source_institution_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#veggen_uten_forklaring"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du går inn i et galleri der et verk henger uten lang introduksjon, og du merker hvor raskt egne forventninger begynner å fylle tomrommet. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "interpretation_status",
+          "source_institution_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#veggen_uten_forklaring"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "social",
+        "summary": "Dag 2, morning: På en åpning går samtalen fort over i hvem som kjenner hvem, hvilke atelierer folk har besøkt og hvem som allerede har sett neste utstilling. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#navnedropping_pa_apningen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: På en åpning går samtalen fort over i hvem som kjenner hvem, hvilke atelierer folk har besøkt og hvem som allerede har sett neste utstilling. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#navnedropping_pa_apningen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: På en åpning går samtalen fort over i hvem som kjenner hvem, hvilke atelierer folk har besøkt og hvem som allerede har sett neste utstilling. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#navnedropping_pa_apningen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: På en åpning går samtalen fort over i hvem som kjenner hvem, hvilke atelierer folk har besøkt og hvem som allerede har sett neste utstilling. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#navnedropping_pa_apningen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Du løfter telefonen ved et verk før en vert peker på et lite skilt om at fotografering ikke er tillatt. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "rights_artist_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#fotografiet_og_det_rode_skiltet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Du løfter telefonen ved et verk før en vert peker på et lite skilt om at fotografering ikke er tillatt. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "rights_artist_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#fotografiet_og_det_rode_skiltet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Du løfter telefonen ved et verk før en vert peker på et lite skilt om at fotografering ikke er tillatt. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "rights_artist_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#fotografiet_og_det_rode_skiltet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 3, evening: Du løfter telefonen ved et verk før en vert peker på et lite skilt om at fotografering ikke er tillatt. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "rights_artist_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#fotografiet_og_det_rode_skiltet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Du oppdager at årstallet på en veggtekst ikke passer med det du husker fra en katalog. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "source_institution_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#etiketten_som_ikke_stemmer"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Du oppdager at årstallet på en veggtekst ikke passer med det du husker fra en katalog. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "source_institution_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#etiketten_som_ikke_stemmer"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Du oppdager at årstallet på en veggtekst ikke passer med det du husker fra en katalog. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "source_institution_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#etiketten_som_ikke_stemmer"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Du oppdager at årstallet på en veggtekst ikke passer med det du husker fra en katalog. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "source_institution_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#etiketten_som_ikke_stemmer"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "social",
+        "summary": "Dag 5, morning: En venn ser en høy pris og antar at prisen sier noe sikkert om verkets kunsthistoriske betydning. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "market_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#prislappen_og_antakelsen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: En venn ser en høy pris og antar at prisen sier noe sikkert om verkets kunsthistoriske betydning. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "market_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#prislappen_og_antakelsen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: En venn ser en høy pris og antar at prisen sier noe sikkert om verkets kunsthistoriske betydning. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "market_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#prislappen_og_antakelsen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 5, evening: En venn ser en høy pris og antar at prisen sier noe sikkert om verkets kunsthistoriske betydning. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "market_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#prislappen_og_antakelsen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 6, morning: En deltaker presser kunstneren for å forklare hva verket «betyr», og vender seg deretter til deg for en mer tilfredsstillende tolkning. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "interpretation_status",
+          "rights_artist_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#kunstneren_vil_ikke_forklare"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: En deltaker presser kunstneren for å forklare hva verket «betyr», og vender seg deretter til deg for en mer tilfredsstillende tolkning. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "interpretation_status",
+          "rights_artist_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#kunstneren_vil_ikke_forklare"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: En deltaker presser kunstneren for å forklare hva verket «betyr», og vender seg deretter til deg for en mer tilfredsstillende tolkning. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "interpretation_status",
+          "rights_artist_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#kunstneren_vil_ikke_forklare"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: En deltaker presser kunstneren for å forklare hva verket «betyr», og vender seg deretter til deg for en mer tilfredsstillende tolkning. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "interpretation_status",
+          "rights_artist_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#kunstneren_vil_ikke_forklare"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Etter en travel åpning blir det tydelig hvor mye av kvelden som bæres av glass, søppel, stoler, garderobe og små praktiske oppgaver. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "invisible_work_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#den_usynlige_ryddingen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 7, lunch: Etter en travel åpning blir det tydelig hvor mye av kvelden som bæres av glass, søppel, stoler, garderobe og små praktiske oppgaver. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "invisible_work_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#den_usynlige_ryddingen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Etter en travel åpning blir det tydelig hvor mye av kvelden som bæres av glass, søppel, stoler, garderobe og små praktiske oppgaver. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "invisible_work_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#den_usynlige_ryddingen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Etter en travel åpning blir det tydelig hvor mye av kvelden som bæres av glass, søppel, stoler, garderobe og små praktiske oppgaver. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "invisible_work_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#den_usynlige_ryddingen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "social",
+        "summary": "Dag 8, morning: En person uten gallerivane står utenfor og spør om det koster penger, om man må kjenne noen og om det er lov å bare se. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#nykommeren_i_hvit_kube"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: En person uten gallerivane står utenfor og spør om det koster penger, om man må kjenne noen og om det er lov å bare se. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#nykommeren_i_hvit_kube"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: En person uten gallerivane står utenfor og spør om det koster penger, om man må kjenne noen og om det er lov å bare se. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#nykommeren_i_hvit_kube"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: En person uten gallerivane står utenfor og spør om det koster penger, om man må kjenne noen og om det er lov å bare se. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#nykommeren_i_hvit_kube"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Et verk ser ut til å ha en sprekk eller løs del, men du vet ikke om det er skade, materialets natur eller en del av verket. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "rights_artist_boundary",
+          "invisible_work_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#verket_som_ser_skadet_ut"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Et verk ser ut til å ha en sprekk eller løs del, men du vet ikke om det er skade, materialets natur eller en del av verket. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "rights_artist_boundary",
+          "invisible_work_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#verket_som_ser_skadet_ut"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Et verk ser ut til å ha en sprekk eller løs del, men du vet ikke om det er skade, materialets natur eller en del av verket. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "rights_artist_boundary",
+          "invisible_work_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#verket_som_ser_skadet_ut"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 9, evening: Et verk ser ut til å ha en sprekk eller løs del, men du vet ikke om det er skade, materialets natur eller en del av verket. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "rights_artist_boundary",
+          "invisible_work_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#verket_som_ser_skadet_ut"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Et lite galleri tilbyr deg en betalt ekstravakt med publikumslogistikk, rydding og praktisk hjelp under en åpning. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "livelihood_boundary",
+          "invisible_work_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#ekstravakt_pa_apning"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Et lite galleri tilbyr deg en betalt ekstravakt med publikumslogistikk, rydding og praktisk hjelp under en åpning. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "livelihood_boundary",
+          "invisible_work_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#ekstravakt_pa_apning"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Et lite galleri tilbyr deg en betalt ekstravakt med publikumslogistikk, rydding og praktisk hjelp under en åpning. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "livelihood_boundary",
+          "invisible_work_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#ekstravakt_pa_apning"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 10, evening: Et lite galleri tilbyr deg en betalt ekstravakt med publikumslogistikk, rydding og praktisk hjelp under en åpning. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "livelihood_boundary",
+          "invisible_work_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#ekstravakt_pa_apning"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 11, morning: En venn vurderer å kjøpe et verk og ber deg bruke kontaktene dine for å få «den riktige prisen» og bekrefte at verket er et godt kjøp. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "market_status",
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#vennen_vil_kjope"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: En venn vurderer å kjøpe et verk og ber deg bruke kontaktene dine for å få «den riktige prisen» og bekrefte at verket er et godt kjøp. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "market_status",
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#vennen_vil_kjope"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: En venn vurderer å kjøpe et verk og ber deg bruke kontaktene dine for å få «den riktige prisen» og bekrefte at verket er et godt kjøp. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "market_status",
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#vennen_vil_kjope"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En venn vurderer å kjøpe et verk og ber deg bruke kontaktene dine for å få «den riktige prisen» og bekrefte at verket er et godt kjøp. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "market_status",
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#vennen_vil_kjope"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "social",
+        "summary": "Dag 12, morning: Etter åpningen blir samtalen hard: noen avviser hele utstillingen som nettverkshype, andre mener kritikken bare viser manglende kunstforståelse. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "interpretation_status",
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#kritikken_etter_apningen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Etter åpningen blir samtalen hard: noen avviser hele utstillingen som nettverkshype, andre mener kritikken bare viser manglende kunstforståelse. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "interpretation_status",
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#kritikken_etter_apningen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Etter åpningen blir samtalen hard: noen avviser hele utstillingen som nettverkshype, andre mener kritikken bare viser manglende kunstforståelse. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "interpretation_status",
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#kritikken_etter_apningen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: Etter åpningen blir samtalen hard: noen avviser hele utstillingen som nettverkshype, andre mener kritikken bare viser manglende kunstforståelse. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "interpretation_status",
+          "cultural_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#kritikken_etter_apningen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: En katalogtekst kombinerer dokumenterte opplysninger med en sterk tolkning av verkets plass i kunsthistorien. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "source_institution_boundary",
+          "interpretation_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#historien_i_katalogen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: En katalogtekst kombinerer dokumenterte opplysninger med en sterk tolkning av verkets plass i kunsthistorien. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "source_institution_boundary",
+          "interpretation_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#historien_i_katalogen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: En katalogtekst kombinerer dokumenterte opplysninger med en sterk tolkning av verkets plass i kunsthistorien. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "source_institution_boundary",
+          "interpretation_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#historien_i_katalogen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: En katalogtekst kombinerer dokumenterte opplysninger med en sterk tolkning av verkets plass i kunsthistorien. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "source_institution_boundary",
+          "interpretation_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#historien_i_katalogen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Etter mange besøk merker du at gallerilivet ikke bare handler om verkene: det handler også om språk, nettverk, arbeid, penger, adgang, institusjoner og hvem som får virke hjemme i rommet. Morgenen etablerer kunstrommets norm, kilde eller sosiale grense før dagens vurderinger får feste.",
+        "thread_ids": [
+          "interpretation_status",
+          "cultural_access",
+          "livelihood_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#sesongslutt_hva_slags_gallerivanker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Etter mange besøk merker du at gallerilivet ikke bare handler om verkene: det handler også om språk, nettverk, arbeid, penger, adgang, institusjoner og hvem som får virke hjemme i rommet. Midt på dagen blir smak, nettverk, arbeid og hvem som får definere situasjonen synlig i møte med andre.",
+        "thread_ids": [
+          "interpretation_status",
+          "cultural_access",
+          "livelihood_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#sesongslutt_hva_slags_gallerivanker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Etter mange besøk merker du at gallerilivet ikke bare handler om verkene: det handler også om språk, nettverk, arbeid, penger, adgang, institusjoner og hvem som får virke hjemme i rommet. Ettermiddagen gjør tolknings-, rettighets-, markeds- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "interpretation_status",
+          "cultural_access",
+          "livelihood_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#sesongslutt_hva_slags_gallerivanker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Etter mange besøk merker du at gallerilivet ikke bare handler om verkene: det handler også om språk, nettverk, arbeid, penger, adgang, institusjoner og hvem som får virke hjemme i rommet. Kvelden viser hvordan valget påvirker tillit, status, tilgang eller spillerens forhold til kunstrommet.",
+        "thread_ids": [
+          "interpretation_status",
+          "cultural_access",
+          "livelihood_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/gallerivanker.json#sesongslutt_hva_slags_gallerivanker"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "interpretation_status",
+      "relationship": "forholdet mellom egen smak, tolkningssikkerhet og fristelsen til å opptre som kuratorisk fasit",
+      "beat_refs": [
+        "1/afternoon",
+        "6/lunch",
+        "6/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "cultural_access",
+      "relationship": "forholdet mellom nettverk, gallerikoder, kulturell kapital og hvem som opplever at de hører hjemme",
+      "beat_refs": [
+        "2/lunch",
+        "2/evening",
+        "8/afternoon",
+        "8/evening",
+        "11/lunch",
+        "12/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "rights_artist_boundary",
+      "relationship": "forholdet til kunstnerens, verkets og institusjonens grenser for fotografering, håndtering og fortolkende overtakelse",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "6/evening",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "source_institution_boundary",
+      "relationship": "forholdet mellom egne observasjoner, katalogkilder, veggtekst og institusjonell metadata- eller definisjonsmyndighet",
+      "beat_refs": [
+        "1/morning",
+        "4/afternoon",
+        "4/evening",
+        "9/morning",
+        "13/lunch",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "market_status",
+      "relationship": "forholdet mellom pris, hype, nettverk, sosial trygghet og grensene mot salg eller økonomisk rådgivning",
+      "beat_refs": [
+        "5/lunch",
+        "5/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "invisible_work_care",
+      "relationship": "forholdet mellom kunstrommets synlige prestisje og det praktiske omsorgsarbeidet som holder publikum, verk og arrangement sammen",
+      "beat_refs": [
+        "3/morning",
+        "7/lunch",
+        "7/evening",
+        "9/lunch",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "livelihood_boundary",
+      "relationship": "forholdet mellom Gallerivanker-identiteten og det avgrensede casual-shiftet uten profesjonell kunstmyndighet",
+      "beat_refs": [
+        "2/morning",
+        "7/afternoon",
+        "10/lunch",
+        "10/afternoon",
+        "11/morning",
+        "14/afternoon"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "smak_som_status",
+      "description": "Etter åpninger og kritiske samtaler kan spilleren sitte igjen med spørsmålet om egen smak faktisk ble tydeligere eller bare ble brukt for å rangere seg selv og andre.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/gallerivanker.json#veggen_uten_forklaring",
+        "data/Civication/narratives/leisure/gallerivanker.json#navnedropping_pa_apningen",
+        "data/Civication/narratives/leisure/gallerivanker.json#kritikken_etter_apningen"
+      ]
+    },
+    {
+      "id": "kunstner_og_rettighetsgrense",
+      "description": "Fotografering og kunstnersamtaler følger spilleren hjem som en påminnelse om at nærhet til verk og opphaver ikke betyr eierskap til bilde, mening eller privat relasjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/gallerivanker.json#fotografiet_og_det_rode_skiltet",
+        "data/Civication/narratives/leisure/gallerivanker.json#kunstneren_vil_ikke_forklare",
+        "data/Civication/narratives/leisure/gallerivanker.json#verket_som_ser_skadet_ut"
+      ]
+    },
+    {
+      "id": "marked_og_vennskap",
+      "description": "Prisprat og venners kjøpsønsker gjør det tydelig hvor raskt sosial kunnskap kan bli tolket som økonomisk garanti eller forhandlingsmakt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/gallerivanker.json#prislappen_og_antakelsen",
+        "data/Civication/narratives/leisure/gallerivanker.json#vennen_vil_kjope"
+      ]
+    },
+    {
+      "id": "bak_apningen",
+      "description": "Rydding, publikumslogistikk og et lite betalt skift gjør spørsmålet om hvem som faktisk bærer kunstrommet synlig etter at den prestisjefylte delen av kvelden er over.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/gallerivanker.json#den_usynlige_ryddingen",
+        "data/Civication/narratives/leisure/gallerivanker.json#ekstravakt_pa_apning",
+        "data/Civication/narratives/leisure/gallerivanker.json#sesongslutt_hva_slags_gallerivanker"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "tolkning_blir_rykte",
+      "setup_ref": "1/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "nettverk_blir_adgangskode",
+      "setup_ref": "2/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "rettighetsgrense_blir_tillit",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "metadata_overclaim_blir_kildeproblem",
+      "setup_ref": "4/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "markedsprat_blir_radgivningsforventning",
+      "setup_ref": "5/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "reputation",
+        "livelihood"
+      ]
+    },
+    {
+      "id": "casual_shift_blir_autoritetsgrense",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "livelihood",
+        "reputation",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/gallerivanker.json#veggen_uten_forklaring",
+      "data/Civication/narratives/leisure/gallerivanker.json#navnedropping_pa_apningen",
+      "data/Civication/narratives/leisure/gallerivanker.json#fotografiet_og_det_rode_skiltet",
+      "data/Civication/narratives/leisure/gallerivanker.json#etiketten_som_ikke_stemmer",
+      "data/Civication/narratives/leisure/gallerivanker.json#prislappen_og_antakelsen",
+      "data/Civication/narratives/leisure/gallerivanker.json#kunstneren_vil_ikke_forklare",
+      "data/Civication/narratives/leisure/gallerivanker.json#den_usynlige_ryddingen",
+      "data/Civication/narratives/leisure/gallerivanker.json#nykommeren_i_hvit_kube",
+      "data/Civication/narratives/leisure/gallerivanker.json#verket_som_ser_skadet_ut",
+      "data/Civication/narratives/leisure/gallerivanker.json#ekstravakt_pa_apning",
+      "data/Civication/narratives/leisure/gallerivanker.json#vennen_vil_kjope",
+      "data/Civication/narratives/leisure/gallerivanker.json#kritikken_etter_apningen",
+      "data/Civication/narratives/leisure/gallerivanker.json#historien_i_katalogen",
+      "data/Civication/narratives/leisure/gallerivanker.json#sesongslutt_hva_slags_gallerivanker"
+    ]
+  }
+}
