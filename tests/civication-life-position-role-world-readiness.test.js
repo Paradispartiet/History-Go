@@ -22,20 +22,21 @@ const taxonomy = readJson('data/Civication/nonCareerRoleTaxonomy.json');
 assert.equal(audit.schema, 'civication_life_position_role_world_readiness_v1');
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 200);
-assert.equal(audit.summary.classifications.role_world_candidate, 1);
+assert.equal(audit.summary.classifications.role_world_complete, 1);
+assert.equal(audit.summary.classifications.role_world_candidate, 0);
 assert.equal(audit.summary.classifications.needs_authored_depth, 159);
 assert.equal(audit.summary.classifications.prefer_overlay_context, 40);
+assert.equal(audit.summary.completed_life_position_role_worlds, 1);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 1);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 1);
 
-assert.equal(audit.first_candidate.key, 'sport/supporter');
-assert.equal(audit.first_candidate.classification, 'role_world_candidate');
+assert.equal(audit.first_candidate, null);
 
 const supporter = audit.positions.find((row) => row.key === 'sport/supporter');
 assert.ok(supporter);
-assert.equal(supporter.classification, 'role_world_candidate');
-assert.equal(supporter.authored_depth.max_narrative_depth, 5);
+assert.equal(supporter.classification, 'role_world_complete');
+assert.equal(supporter.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(supporter.evidence.exact_source_refs, [
   'data/Civication/narratives/leisure/football_supporter.json'
 ]);
@@ -50,9 +51,11 @@ for (const row of audit.positions.filter((item) => item.classification === 'pref
     `${row.key}: overlay/context classification must come from status/outcome semantics`);
 }
 
+assert.ok(!(audit.queue || []).some((row) => row.key === 'sport/supporter'),
+  'completed Supporter world must leave the life-position readiness queue');
 assert.equal(new Set(audit.positions.map((row) => row.key)).size, 200);
 assert.ok(audit.semantics.audit_only_no_new_runtime);
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness ok: Supporter first / 1 candidate / 159 authored-depth / 40 overlay-context');
+console.log('civication life-position Role World readiness ok: Supporter complete / 0 candidates / 159 authored-depth / 40 overlay-context');
