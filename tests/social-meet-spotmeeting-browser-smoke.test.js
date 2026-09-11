@@ -146,18 +146,18 @@ assert(sheet && !sheet.hidden, 'legacy openSpotMatchList opens canonical sheet r
 appWindow.HG_SpotmeetingUI.close();
 
 placeCard.innerHTML = '<button type="button" data-knowledge-spot-match="1">Møt folk</button>';
-click(appWindow, '[data-knowledge-spot-match]', 'På stedet → Møt folk');
+click(appWindow, '[data-knowledge-spot-match]', 'People → Møt folk');
 sheet = appWindow.document.getElementById('hgSpotmeetingSheet');
-assert(sheet && !sheet.hidden, 'På stedet opens canonical Spotmeeting sheet');
-assert(sheet.textContent.includes('Factory Memory'), 'På stedet sheet preserves active place context');
-assertNoForbiddenUi(sheet, 'På stedet canonical Spotmeeting sheet');
+assert(sheet && !sheet.hidden, 'contextual People shortcut opens canonical Spotmeeting sheet');
+assert(sheet.textContent.includes('Factory Memory'), 'contextual shortcut preserves active place context');
+assertNoForbiddenUi(sheet, 'contextual Spotmeeting sheet');
 
 const prodWindow = makeDom(`<!doctype html><body><div id="placeCard" data-current-place-id="factory_memory"></div></body>`, 'http://localhost/index.html');
 runScript(prodWindow, 'js/social/HGSpotmeeting.js');
 runScript(prodWindow, 'js/social/HGSpotmeetingUI.js');
 runScript(prodWindow, 'js/social/HGSpotmeetingPlaceCardDemo.js');
 prodWindow.PLACES = [{ id: 'factory_memory', name: 'Factory Memory' }];
-prodWindow.HG_SpotmeetingUI.open({ contextType: 'place', contextId: 'factory_memory', title: 'Factory Memory', reason: 'Kunnskapsmøte rundt dette stedet', sourceSurface: 'placeCardOnSite' });
+prodWindow.HG_SpotmeetingUI.open({ contextType: 'place', contextId: 'factory_memory', title: 'Factory Memory', reason: 'Kunnskapsmøte rundt dette stedet', sourceSurface: 'explorePanel' });
 const prodSheet = prodWindow.document.getElementById('hgSpotmeetingSheet');
 assert(prodSheet.textContent.includes('Ekte Spotmeeting er ikke aktivert for denne klienten ennå.'), 'production without configured FastAPI renders backend-disabled state inside sheet');
 assertNoForbiddenUi(prodSheet, 'production backend-disabled Spotmeeting sheet');
@@ -171,7 +171,7 @@ vm.runInContext(`(function(){${renderInline[1]}; renderSpotmeetingInbox();}())`,
 const emptyInbox = emptyProfileWindow.document.getElementById('spotmeeting-inbox');
 assert(emptyInbox.querySelector('[data-spotmeeting-empty]'), 'empty spotmeeting inbox renders a dedicated empty state');
 assert(emptyInbox.textContent.includes('Ingen kunnskapsmøter ennå.'), 'empty state explains there are no knowledge meetings yet');
-assert(emptyInbox.textContent.includes('Send et forslag fra et stedskort.'), 'empty state tells players where to start');
+assert(emptyInbox.textContent.includes('Start et forslag fra Utforsk → Møtes.'), 'empty state points players to the canonical Møtes hub');
 assert(emptyInbox.textContent.includes('Kunnskapsmøter bruker bare forhåndsvalg, ikke fritekst.'), 'empty inbox renders preset-only helper text');
 assert(emptyInbox.textContent.includes('Du deler ikke posisjon eller live-status.'), 'empty inbox renders no live-status helper text');
 assertNoForbiddenUi(emptyInbox, 'empty spotmeeting inbox');
