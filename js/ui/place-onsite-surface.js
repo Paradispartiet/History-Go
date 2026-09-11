@@ -165,7 +165,7 @@
     decorate(); observe(); loadPolicy();
   }
 
-  global.HGPlaceOnSiteSurface = { decorate, renderSurface, renderPlayProfile, renderEventContent, renderMoreContent, resolvedPolicy, visibleActions, extraActions };
+  global.HGPlaceOnSiteSurface = { decorate, renderSurface, renderPlayProfile, resolvedPolicy, visibleActions };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once:true }); else init();
   ["hg:appReady","hg:place-selected","hg:placesUpdated"].forEach(name => global.addEventListener?.(name, decorate));
 })(window);
