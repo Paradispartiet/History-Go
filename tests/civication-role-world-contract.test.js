@@ -100,6 +100,8 @@ for (const [profile, ids] of Object.entries(themeBank.reference_profiles || {}))
 }
 
 assert.equal(schema.properties.schema.const, 'civication_role_world_v1');
+assert.deepEqual(schema.properties.subject_type.enum, ['career_role', 'life_position']);
+assert.ok(schema.properties.life_position_ref, 'Role World schema must support explicit life-position subjects');
 for (const required of ['season', 'primary_threads', 'private_aftermath', 'delayed_consequences']) {
   assert.ok(schema.required.includes(required));
 }
@@ -117,6 +119,11 @@ for (const entry of index.roles || []) {
   assert.equal(world.role_scope, entry.role_scope);
   assert.equal(world.status, entry.status);
   assert.ok(policy.role_world_statuses.includes(world.status));
+  if (entry.subject_type === 'life_position') {
+    assert.equal(world.subject_type, 'life_position', `${entry.path}: life-position index entry must own a life-position world`);
+    assert.ok(world.life_position_ref, `${entry.path}: life-position Role World must bind canonical life position`);
+    assert.equal(entry.life_position_key, `${world.life_position_ref.badge_id}/${world.life_position_ref.id}`);
+  }
 
   for (const themeId of world.theme_ids || []) assert.ok(themeIds.has(themeId), `Unknown Role World theme: ${themeId}`);
   for (const npc of world.recurring_people_archetypes || []) {
@@ -178,6 +185,9 @@ assert.doesNotMatch(sceneDoc, /Neste 4H-D/);
 assert.match(roleMailDoc, /Mail er delivery/);
 assert.doesNotMatch(roleMailDoc, /Dette er autoritativ jobbmailflyt/);
 
+assert.equal(index.career_role_world_count, 85);
+assert.equal(index.life_position_role_world_count, 1);
+assert.equal(index.roles.length, 86);
 const completeWorlds = index.roles.filter((entry) => entry.status === 'role_world_complete');
 assert.ok(completeWorlds.length >= 5, 'The completed five-world reference wave must remain intact');
 const referenceWorlds = completeWorlds.slice(0, 5);

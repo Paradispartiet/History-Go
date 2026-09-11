@@ -317,6 +317,10 @@ Den fjerde strukturelt annerledes piloten er nå materialisert i `media/media_re
 
 Neste produksjonssteg er en separat Role World Realism Matrix/gate-PR som bare skal låse felter med faktisk bevis fra arkiv, plan, sport og journalistikk. Bred rollout skal ikke starte før den gaten beskytter mot completion-inflasjon og parallell runtime.
 
+### Første life-position Role World
+
+`Sport / Supporter` er den første `life_position`-subjekttypen som er materialisert gjennom samme Role World-kontrakt. Den bruker den eksisterende narrative SceneCatalog-adapteren og `CivicationLifePositions` som aktiveringskontekst; den oppretter ingen karriererolle, jobbstatus, lønn eller parallell runtime. Career Role World-antallet forblir 85 selv om den samlede Role World-indeksen nå er 86.
+
 ## 14. Canonical authoring workflow
 
 Den praktiske produksjonsoppskriften er canonical i:
