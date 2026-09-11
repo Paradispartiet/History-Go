@@ -81,17 +81,17 @@ assert.equal(stageAudit.authored_depth.exact_source_ref_count, 0);
 assert.ok(!stageAudit.evidence.exact_source_refs.includes(streamPath));
 
 assert.deepEqual(audit.summary.classifications, {
-  ready: 9,
-  needs_authored_depth: 151,
+  ready: 10,
+  needs_authored_depth: 150,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.completed_life_position_role_worlds, 9);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 9);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 9);
-assert.equal(audit.first_ready, null);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
+assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 10);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 10);
+assert.equal(audit.first_ready?.key, 'natur/artsjeger');
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'natur/artsjeger');
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'natur/artsjeger');
 assert.equal(
   audit.semantics.duplicate_life_position_ids_or_labels_require_badge_scoped_governed_binding,
   true
