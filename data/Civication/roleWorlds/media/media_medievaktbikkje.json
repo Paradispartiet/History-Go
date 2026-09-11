@@ -1,0 +1,1107 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "media",
+  "role_scope": "media_medievaktbikkje",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "media",
+    "id": "medievaktbikkje",
+    "label": "Medievaktbikkje"
+  },
+  "title": "Medievaktbikkje",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å praktisere streng og etterprøvbar mediekritikk uten å gjøre mistanke, oppmerksomhet eller et lite researchhonorar til journaliststatus eller redaksjonell myndighet",
+    "description": "Medievaktbikkje-livet undersøker hvordan framing, kildevalg, manglende stemmer, tall, bilder, anonyme kilder, rettelser, virality og personkritikk former offentlig forståelse. Spilleren må kunne kritisere publisert arbeid uten å dikte motiv, oppdatere egen kritikk når fakta endres, og skille ekspertise fra total autoritet. Et avgrenset researchnotat kan gi inntekt, men gjør ikke spilleren til ansatt journalist, redaktør, kildeansvarlig, representant for en redaksjon eller person med publiserings- eller redaksjonell beslutningsmyndighet."
+  },
+  "theme_ids": [
+    "public_attention",
+    "professional_culture",
+    "shame_reputation",
+    "social_mask",
+    "public_private_leakage",
+    "local_knowledge_vs_system",
+    "numerical_control",
+    "care_vs_efficiency"
+  ],
+  "social_environments": [
+    "den private medieloggen der spilleren sammenligner overskrifter, kilder, tall og rettelser over tid",
+    "den offentlige samtalen der kritikk kan få status raskere enn dokumentasjonen blir kontrollert",
+    "kildesammenligningen der ekspertise, berørte erfaringer og institusjonelle stemmer må veies uten falsk symmetri",
+    "rettelsessporet der gamle påstander må oppdateres når den publiserte saken endres",
+    "den visuelle og statistiske flaten der korrekt materiale kan skape et misvisende helhetsinntrykk uten å være direkte falskt",
+    "kontakten med profesjonelle medieaktører der innsyn og svar ikke gir spilleren redaksjonell myndighet",
+    "det avgrensede researchoppdraget der kildearbeid kan gi honorar uten å bli en journaliststilling",
+    "nettverket av kommentarer og delinger der personangrep, virality og gruppekonsensus kan trekke kritikken bort fra etterprøvbare påstander"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "berort_person",
+      "social_function": "gjør representasjon, fravær og konsekvensene av mediedekning konkrete for noen som faktisk er berørt",
+      "class_position": "person med erfaringskunnskap og høy saklig relevans, men uten automatisk kontroll over hvordan en publisert sak skal utformes",
+      "status": "situert status som berørt part med kunnskap om egne erfaringer og lokale konsekvenser",
+      "power_over_player": "kan korrigere spillerens antakelser om berørte erfaringer og påvirke relasjonell tillit dersom kritikken overtar deres stemme",
+      "wants": "at egen erfaring verken skal usynliggjøres eller brukes som pynt i en ferdig konklusjon",
+      "conceals": "at det kan være krevende å skille ønsket om å bli hørt fra ønsket om å kontrollere hele framstillingen",
+      "speech_style": "konkret, erfaringsnær og sensitiv for hvem som får definere problemet",
+      "teaches_player": "at manglende stemmer kan være et reelt representasjonsproblem uten at én berørt person blir universell fasit"
+    },
+    {
+      "id": "erfaren_mediekritiker",
+      "social_function": "gir spilleren et mer metodisk språk for framing, kildebruk, korrigering og usikkerhet uten å bli en redaksjonell sjef",
+      "class_position": "erfaren offentlig kritiker med kunnskap og status, men uten myndighet over spillerens life-position eller publiseringsvalg",
+      "status": "uformell faglig prestisje basert på presisjon, historikk og evne til å dokumentere kritikk",
+      "power_over_player": "kan påvirke hvilke metoder og standarder spilleren oppfatter som troverdige",
+      "wants": "at kritikk skal være etterprøvbar nok til å tåle at den undersøkes like hardt som mediearbeidet den vurderer",
+      "conceals": "at sterk offentlig kritikk også kan gi status og gjøre det fristende å favorisere sikre konklusjoner",
+      "speech_style": "analytisk, kildeorientert og skeptisk til motivtolkning uten dokumentasjon",
+      "teaches_player": "at vaktbikkjerollen mister kraft når sikkerheten blir større enn evidensen"
+    },
+    {
+      "id": "redaksjonell_kontakt",
+      "social_function": "representerer en faktisk profesjonell institusjon og gjør grensen mellom kritikk utenfra og redaksjonell beslutningsmyndighet tydelig",
+      "class_position": "profesjonell redaksjonell aktør med situert myndighet i egen organisasjon, ikke over spillerens Medievaktbikkje-identitet",
+      "status": "høy institusjonell status i spørsmål om egne arbeidsprosesser, publisering og rettelser",
+      "power_over_player": "kan svare, korrigere, avvise kritikk eller forklare prosess, men kan ikke gjøre spilleren til ansatt eller gi generell redaksjonell autoritet uten egen avtale",
+      "wants": "at kritikk av organisasjonens arbeid skal skille faktiske feil, redaksjonelle valg og udokumenterte motivpåstander",
+      "conceals": "at institusjonell lojalitet kan påvirke hvor defensivt svakheter forklares",
+      "speech_style": "presis, prosessorientert og bevisst på hva som kan bekreftes offentlig",
+      "teaches_player": "at innsyn i en profesjonell prosess ikke gjør observatøren til deltaker i den"
+    },
+    {
+      "id": "kildeekspert",
+      "social_function": "gjør skillet mellom faglig ekspertise, mediesitat og det som faktisk kan utledes av dokumentasjon synlig",
+      "class_position": "person med spesialisert kunnskap, men uten automatisk autoritet over hele saken eller over andre kildetyper",
+      "status": "høy epistemisk status innen et avgrenset fagområde",
+      "power_over_player": "kan styrke eller svekke spillerens faktagrunnlag og synliggjøre hvor konklusjoner går lenger enn data",
+      "wants": "at egen kunnskap brukes innenfor faglige begrensninger og ikke som dekorasjon for en ferdig vinkel",
+      "conceals": "at ekspertstatus også kan gjøre egne antakelser vanskeligere å få øye på",
+      "speech_style": "forbeholden, definisjonsbevisst og opptatt av hvilke data eller metoder en påstand faktisk bygger på",
+      "teaches_player": "at ekspertkilder må veies etter relevans og evidens, ikke bare tittel eller hyppighet"
+    },
+    {
+      "id": "researchnotat_oppdragsgiver",
+      "social_function": "tilbyr det avgrensede betalte researchoppdraget og gjør levevei kontra profesjonell mediemakt eksplisitt",
+      "class_position": "oppdragsgiver med kontroll over ett konkret researchnotat, uten myndighet til å gjøre spilleren til journalist, redaktør eller representant for en redaksjon",
+      "status": "funksjonell status som bestiller, avklarer omfang og godkjenner leveransen innenfor kontrakten",
+      "power_over_player": "kan avtale spørsmål, frist, honorar og format for notatet, men ikke gi kilde-, publiserings- eller redaksjonell beslutningsmyndighet utover oppdraget",
+      "wants": "et kort, dokumenterbart og nyttig bakgrunnsnotat som prosjektet selv kan arbeide videre med",
+      "conceals": "at behovet for en tydelig vinkel kan skape press mot sterkere formuleringer enn de åpne kildene bærer",
+      "speech_style": "praktisk, resultatfokusert og tidvis utålmodig med forbehold",
+      "teaches_player": "at et honorert researchprodukt fortsatt er et avgrenset produkt, ikke en profesjonell medieposisjon"
+    },
+    {
+      "id": "nettpublikum",
+      "social_function": "gjør virality, kommentarklima og offentlig status synlig som distribuert sosial kraft uten samlet faglig mandat",
+      "class_position": "spredt publikum med ulik kunnskap, interesser og motivasjon",
+      "status": "skiftende kollektiv synlighet uttrykt gjennom delinger, kommentarer og oppmerksomhet",
+      "power_over_player": "kan forsterke enkelte kritikker raskt og belønne sikre, personlige eller polariserende formuleringer",
+      "wants": "ulike ting samtidig og kan derfor ikke behandles som én konsekvent redaksjonell eller sannhetssøkende aktør",
+      "conceals": "at plattformdynamikk og gruppetilhørighet påvirker hva som ser ut som spontan konsensus",
+      "speech_style": "fragmentert, rask og ofte mer sikker enn kildegrunnlaget",
+      "teaches_player": "at popularitet er informasjon om oppmerksomhet, ikke automatisk evidens om kritikkens kvalitet"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "framing_vs_motive",
+      "meaning": "om spilleren kan analysere språk, utvalg og effekt uten å gjøre observerbar framing til sikker kunnskap om skjulte intensjoner",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_representation",
+      "meaning": "om kildevalg, manglende stemmer, ekspertise og anonymitet vurderes etter relevans, begrensninger og hva som faktisk kan etterprøves",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "correction_and_temporality",
+      "meaning": "om kritikken oppdateres når saker rettes, nye kilder kommer til eller tidligere påstander mister grunnlaget sitt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "attention_and_virality",
+      "meaning": "om delinger, kommentarfelt og oppmerksomhet behandles som offentlig dynamikk fremfor sannhets- eller kvalitetsmål",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "professional_authority_boundary",
+      "meaning": "om kontakt med redaksjoner, eksperter og offentlig debatt holdes adskilt fra journalistisk eller redaksjonell beslutningsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "livelihood_boundary",
+      "meaning": "om det avgrensede researchnotatet forblir ett freelance assignment og ikke blir brukt som snarvei til ansettelse, representasjon eller profesjonell mediemakt",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du ser to medier omtale den samme hendelsen med nesten identiske fakta, men den ene overskriften plasserer en aktør tydelig i sentrum mens den andre gjør hendelsen nærmest aktørløs. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "framing_inference",
+          "critique_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#overskriften_som_flytter_skylden"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du ser to medier omtale den samme hendelsen med nesten identiske fakta, men den ene overskriften plasserer en aktør tydelig i sentrum mens den andre gjør hendelsen nærmest aktørløs. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "framing_inference",
+          "critique_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#overskriften_som_flytter_skylden"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du ser to medier omtale den samme hendelsen med nesten identiske fakta, men den ene overskriften plasserer en aktør tydelig i sentrum mens den andre gjør hendelsen nærmest aktørløs. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "framing_inference",
+          "critique_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#overskriften_som_flytter_skylden"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du ser to medier omtale den samme hendelsen med nesten identiske fakta, men den ene overskriften plasserer en aktør tydelig i sentrum mens den andre gjør hendelsen nærmest aktørløs. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "framing_inference",
+          "critique_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#overskriften_som_flytter_skylden"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Når du går gjennom flere saker om samme tema, ser du at den samme typen institusjonskilde får forklare problemet nesten hver gang. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "source_representation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#kilden_som_alltid_er_med"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Når du går gjennom flere saker om samme tema, ser du at den samme typen institusjonskilde får forklare problemet nesten hver gang. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "source_representation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#kilden_som_alltid_er_med"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Når du går gjennom flere saker om samme tema, ser du at den samme typen institusjonskilde får forklare problemet nesten hver gang. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "source_representation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#kilden_som_alltid_er_med"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Når du går gjennom flere saker om samme tema, ser du at den samme typen institusjonskilde får forklare problemet nesten hver gang. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "source_representation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#kilden_som_alltid_er_med"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: En person som er direkte berørt av en omtalt beslutning sier at deres gruppe ikke ble kontaktet i saken du nettopp leste. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "source_representation",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#den_som_mangler_i_saken"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: En person som er direkte berørt av en omtalt beslutning sier at deres gruppe ikke ble kontaktet i saken du nettopp leste. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "source_representation",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#den_som_mangler_i_saken"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: En person som er direkte berørt av en omtalt beslutning sier at deres gruppe ikke ble kontaktet i saken du nettopp leste. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "source_representation",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#den_som_mangler_i_saken"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: En person som er direkte berørt av en omtalt beslutning sier at deres gruppe ikke ble kontaktet i saken du nettopp leste. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "source_representation",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#den_som_mangler_i_saken"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Du oppdager at formuleringer i en nyhetssak ligger svært nær en pressemelding fra aktøren saken handler om. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "source_representation",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#pressemeldingen_som_blir_nyhet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Du oppdager at formuleringer i en nyhetssak ligger svært nær en pressemelding fra aktøren saken handler om. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "source_representation",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#pressemeldingen_som_blir_nyhet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Du oppdager at formuleringer i en nyhetssak ligger svært nær en pressemelding fra aktøren saken handler om. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "source_representation",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#pressemeldingen_som_blir_nyhet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Du oppdager at formuleringer i en nyhetssak ligger svært nær en pressemelding fra aktøren saken handler om. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "source_representation",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#pressemeldingen_som_blir_nyhet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: En sak fremhever at et fenomen har økt med 200 prosent, men selve antallet gikk fra én hendelse til tre. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "evidence_weight",
+          "correction_accountability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#tallet_uten_nevner"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: En sak fremhever at et fenomen har økt med 200 prosent, men selve antallet gikk fra én hendelse til tre. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "evidence_weight",
+          "correction_accountability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#tallet_uten_nevner"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: En sak fremhever at et fenomen har økt med 200 prosent, men selve antallet gikk fra én hendelse til tre. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "evidence_weight",
+          "correction_accountability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#tallet_uten_nevner"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: En sak fremhever at et fenomen har økt med 200 prosent, men selve antallet gikk fra én hendelse til tre. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "evidence_weight",
+          "correction_accountability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#tallet_uten_nevner"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Et dramatisk bilde brukes i en ny sak, og bildeteksten viser at fotografiet er flere år gammelt og tatt i en annen situasjon. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "framing_inference",
+          "virality_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#bildet_fra_feil_tidspunkt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Et dramatisk bilde brukes i en ny sak, og bildeteksten viser at fotografiet er flere år gammelt og tatt i en annen situasjon. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "framing_inference",
+          "virality_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#bildet_fra_feil_tidspunkt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Et dramatisk bilde brukes i en ny sak, og bildeteksten viser at fotografiet er flere år gammelt og tatt i en annen situasjon. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "framing_inference",
+          "virality_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#bildet_fra_feil_tidspunkt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Et dramatisk bilde brukes i en ny sak, og bildeteksten viser at fotografiet er flere år gammelt og tatt i en annen situasjon. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "framing_inference",
+          "virality_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#bildet_fra_feil_tidspunkt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Du ser at en sak du kritiserte tidligere nå har fått en tydelig rettelse og endret formulering. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "correction_accountability",
+          "critique_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#korrigeringen_som_kommer_senere"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Du ser at en sak du kritiserte tidligere nå har fått en tydelig rettelse og endret formulering. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "correction_accountability",
+          "critique_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#korrigeringen_som_kommer_senere"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Du ser at en sak du kritiserte tidligere nå har fått en tydelig rettelse og endret formulering. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "correction_accountability",
+          "critique_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#korrigeringen_som_kommer_senere"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Du ser at en sak du kritiserte tidligere nå har fått en tydelig rettelse og endret formulering. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "correction_accountability",
+          "critique_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#korrigeringen_som_kommer_senere"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: En viktig påstand bygger på en anonym kilde, og artikkelen forklarer bare kort hvorfor identiteten ikke oppgis. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "source_representation",
+          "evidence_weight"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#anonym_kilde_og_sikkerhet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: En viktig påstand bygger på en anonym kilde, og artikkelen forklarer bare kort hvorfor identiteten ikke oppgis. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "source_representation",
+          "evidence_weight"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#anonym_kilde_og_sikkerhet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: En viktig påstand bygger på en anonym kilde, og artikkelen forklarer bare kort hvorfor identiteten ikke oppgis. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "source_representation",
+          "evidence_weight"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#anonym_kilde_og_sikkerhet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: En viktig påstand bygger på en anonym kilde, og artikkelen forklarer bare kort hvorfor identiteten ikke oppgis. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "source_representation",
+          "evidence_weight"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#anonym_kilde_og_sikkerhet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: En venn mener en sak er ubalansert fordi én posisjon får langt mer plass enn en marginal motposisjon. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "evidence_weight",
+          "virality_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#falsk_balanse"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: En venn mener en sak er ubalansert fordi én posisjon får langt mer plass enn en marginal motposisjon. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "evidence_weight",
+          "virality_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#falsk_balanse"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: En venn mener en sak er ubalansert fordi én posisjon får langt mer plass enn en marginal motposisjon. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "evidence_weight",
+          "virality_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#falsk_balanse"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: En venn mener en sak er ubalansert fordi én posisjon får langt mer plass enn en marginal motposisjon. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "evidence_weight",
+          "virality_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#falsk_balanse"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Et lite redaksjonelt prosjekt tilbyr deg et avgrenset honorar for å samle åpne kilder om et tema og levere et kort researchnotat. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "livelihood_research",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#researchnotatet_og_oppdragets_grense"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Et lite redaksjonelt prosjekt tilbyr deg et avgrenset honorar for å samle åpne kilder om et tema og levere et kort researchnotat. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "livelihood_research",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#researchnotatet_og_oppdragets_grense"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Et lite redaksjonelt prosjekt tilbyr deg et avgrenset honorar for å samle åpne kilder om et tema og levere et kort researchnotat. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "livelihood_research",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#researchnotatet_og_oppdragets_grense"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Et lite redaksjonelt prosjekt tilbyr deg et avgrenset honorar for å samle åpne kilder om et tema og levere et kort researchnotat. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "livelihood_research",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#researchnotatet_og_oppdragets_grense"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: I researchnotatet finner du flere kilder som peker i samme retning, men ikke nok til den bastante vinkelen oppdragsgiveren håpet på. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "livelihood_research",
+          "professional_authority",
+          "evidence_weight"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#oppdragsgiver_vil_ha_en_sikrere_vinkel"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: I researchnotatet finner du flere kilder som peker i samme retning, men ikke nok til den bastante vinkelen oppdragsgiveren håpet på. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "livelihood_research",
+          "professional_authority",
+          "evidence_weight"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#oppdragsgiver_vil_ha_en_sikrere_vinkel"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: I researchnotatet finner du flere kilder som peker i samme retning, men ikke nok til den bastante vinkelen oppdragsgiveren håpet på. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "livelihood_research",
+          "professional_authority",
+          "evidence_weight"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#oppdragsgiver_vil_ha_en_sikrere_vinkel"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: I researchnotatet finner du flere kilder som peker i samme retning, men ikke nok til den bastante vinkelen oppdragsgiveren håpet på. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "livelihood_research",
+          "professional_authority",
+          "evidence_weight"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#oppdragsgiver_vil_ha_en_sikrere_vinkel"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: En skjermdump med en oppsiktsvekkende påstand sprer seg raskt, og flere ber deg kommentere fordi du ofte følger med på mediedekning. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "virality_attention",
+          "correction_accountability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#den_virale_pastanden"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: En skjermdump med en oppsiktsvekkende påstand sprer seg raskt, og flere ber deg kommentere fordi du ofte følger med på mediedekning. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "virality_attention",
+          "correction_accountability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#den_virale_pastanden"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: En skjermdump med en oppsiktsvekkende påstand sprer seg raskt, og flere ber deg kommentere fordi du ofte følger med på mediedekning. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "virality_attention",
+          "correction_accountability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#den_virale_pastanden"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: En skjermdump med en oppsiktsvekkende påstand sprer seg raskt, og flere ber deg kommentere fordi du ofte følger med på mediedekning. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "virality_attention",
+          "correction_accountability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#den_virale_pastanden"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: En diskusjon om en svak sak glir over i spekulasjoner om personen som skrev den, motivene deres og hva slags menneske de må være. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "critique_reputation",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#kritikken_som_blir_personangrep"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: En diskusjon om en svak sak glir over i spekulasjoner om personen som skrev den, motivene deres og hva slags menneske de må være. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "critique_reputation",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#kritikken_som_blir_personangrep"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: En diskusjon om en svak sak glir over i spekulasjoner om personen som skrev den, motivene deres og hva slags menneske de må være. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "critique_reputation",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#kritikken_som_blir_personangrep"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: En diskusjon om en svak sak glir over i spekulasjoner om personen som skrev den, motivene deres og hva slags menneske de må være. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "critique_reputation",
+          "professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#kritikken_som_blir_personangrep"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Etter uker med overskrifter, kildemønstre, manglende stemmer, rettelser, statistikk, bilder og et lite researchoppdrag ser du at mediekritikk består av mange små etterprøvbare spørsmål. Morgenen etablerer dagens kilde-, framing- eller offentlighetsproblem før spilleren låser seg til en forklaring.",
+        "thread_ids": [
+          "framing_inference",
+          "source_representation",
+          "livelihood_research",
+          "critique_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#sesongslutt_hva_slags_medievaktbikkje"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Etter uker med overskrifter, kildemønstre, manglende stemmer, rettelser, statistikk, bilder og et lite researchoppdrag ser du at mediekritikk består av mange små etterprøvbare spørsmål. Midt på dagen blir perspektiver, kildegrenser eller sosialt press synlig i møte med andre.",
+        "thread_ids": [
+          "framing_inference",
+          "source_representation",
+          "livelihood_research",
+          "critique_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#sesongslutt_hva_slags_medievaktbikkje"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Etter uker med overskrifter, kildemønstre, manglende stemmer, rettelser, statistikk, bilder og et lite researchoppdrag ser du at mediekritikk består av mange små etterprøvbare spørsmål. Ettermiddagen gjør spørsmålet om evidens, representasjon, rettelse eller myndighetsgrense til et konkret valg.",
+        "thread_ids": [
+          "framing_inference",
+          "source_representation",
+          "livelihood_research",
+          "critique_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#sesongslutt_hva_slags_medievaktbikkje"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Etter uker med overskrifter, kildemønstre, manglende stemmer, rettelser, statistikk, bilder og et lite researchoppdrag ser du at mediekritikk består av mange små etterprøvbare spørsmål. Kvelden viser hvordan valget påvirker tillit, omdømme, egen sikkerhet i kritikken eller forholdet til profesjonelle medieinstitusjoner.",
+        "thread_ids": [
+          "framing_inference",
+          "source_representation",
+          "livelihood_research",
+          "critique_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/medievaktbikkje.json#sesongslutt_hva_slags_medievaktbikkje"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "framing_inference",
+      "relationship": "forholdet mellom observerbart språk og utvalg på den ene siden og fristelsen til å gjøre dem til sikker kunnskap om redaksjonelle motiver på den andre",
+      "beat_refs": [
+        "1/morning",
+        "1/afternoon",
+        "4/lunch",
+        "6/afternoon",
+        "7/evening",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "source_representation",
+      "relationship": "forholdet mellom kildehierarki, manglende stemmer, anonymitet og hvem som får definere hva en sak handler om",
+      "beat_refs": [
+        "2/lunch",
+        "3/afternoon",
+        "4/afternoon",
+        "8/lunch",
+        "9/evening",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "evidence_weight",
+      "relationship": "forholdet mellom prosenttall, ekspertise, balanse og hvor mye dokumentasjon ulike påstander faktisk fortjener",
+      "beat_refs": [
+        "5/morning",
+        "5/afternoon",
+        "8/afternoon",
+        "9/afternoon",
+        "11/lunch",
+        "12/morning",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "correction_accountability",
+      "relationship": "forholdet mellom å holde medier ansvarlige for feil og samtidig holde egen kritikk oppdatert når rettelser eller ny dokumentasjon kommer",
+      "beat_refs": [
+        "1/evening",
+        "5/evening",
+        "7/morning",
+        "7/afternoon",
+        "12/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "virality_attention",
+      "relationship": "forholdet mellom offentlig oppmerksomhet, delingstempo, kommentarklima og fristelsen til å gjøre popularitet til sannhetsindikator",
+      "beat_refs": [
+        "6/lunch",
+        "8/evening",
+        "9/lunch",
+        "12/afternoon",
+        "13/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "professional_authority",
+      "relationship": "forholdet mellom å kritisere og undersøke profesjonelt mediearbeid og grensene mot å opptre som journalist, redaktør eller representant for en redaksjon",
+      "beat_refs": [
+        "3/evening",
+        "4/evening",
+        "10/lunch",
+        "10/afternoon",
+        "11/afternoon",
+        "13/afternoon",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "livelihood_research",
+      "relationship": "forholdet mellom Medievaktbikkje-ferdighetene og det avgrensede betalte researchnotatet uten ansettelse eller generell kilde-/publiseringsmyndighet",
+      "beat_refs": [
+        "10/morning",
+        "10/afternoon",
+        "11/morning",
+        "11/evening",
+        "14/morning",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "critique_reputation",
+      "relationship": "forholdet mellom presis offentlig kritikk, personangrep og spillerens egen status som en som hevder å se gjennom mediene",
+      "beat_refs": [
+        "1/lunch",
+        "7/lunch",
+        "12/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "mistanke_uten_motivbevis",
+      "description": "Etter flere framingfunn kan spilleren sitte igjen med en sterk mistanke om hvorfor en sak ble skrevet slik; den private testen er om mistanken kan forbli hypotese når motivbevis mangler.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/medievaktbikkje.json#overskriften_som_flytter_skylden",
+        "data/Civication/narratives/leisure/medievaktbikkje.json#pressemeldingen_som_blir_nyhet",
+        "data/Civication/narratives/leisure/medievaktbikkje.json#sesongslutt_hva_slags_medievaktbikkje"
+      ]
+    },
+    {
+      "id": "hvem_som_ble_borte",
+      "description": "Mønstre i kildebruk og manglende stemmer følger spilleren hjem som et spørsmål om representasjon uten at en enkelt kilde eller gruppe kan gjøres til automatisk fasit.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/medievaktbikkje.json#kilden_som_alltid_er_med",
+        "data/Civication/narratives/leisure/medievaktbikkje.json#den_som_mangler_i_saken",
+        "data/Civication/narratives/leisure/medievaktbikkje.json#anonym_kilde_og_sikkerhet"
+      ]
+    },
+    {
+      "id": "egen_kritikk_ma_rettes",
+      "description": "Når den opprinnelige saken korrigeres, blir spillerens egen integritet avhengig av å oppdatere påstander som tidligere var sanne eller rimelige.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/medievaktbikkje.json#korrigeringen_som_kommer_senere",
+        "data/Civication/narratives/leisure/medievaktbikkje.json#den_virale_pastanden"
+      ]
+    },
+    {
+      "id": "oppmerksomhet_som_belonning",
+      "description": "Sterk respons på en kritikk kan gi sosial belønning akkurat når nyanser og forbehold er minst attraktive å beholde.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/medievaktbikkje.json#falsk_balanse",
+        "data/Civication/narratives/leisure/medievaktbikkje.json#den_virale_pastanden",
+        "data/Civication/narratives/leisure/medievaktbikkje.json#kritikken_som_blir_personangrep"
+      ]
+    },
+    {
+      "id": "honorar_uten_redaksjonsrolle",
+      "description": "Researchnotatet gjør ferdigheten økonomisk synlig samtidig som spilleren må leve med at oppdraget ikke gir rett til å representere redaksjonen, love publisering eller opptre med profesjonell kildeautoritet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/medievaktbikkje.json#researchnotatet_og_oppdragets_grense",
+        "data/Civication/narratives/leisure/medievaktbikkje.json#oppdragsgiver_vil_ha_en_sikrere_vinkel",
+        "data/Civication/narratives/leisure/medievaktbikkje.json#sesongslutt_hva_slags_medievaktbikkje"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "framingkritikk_blir_motivfortelling",
+      "setup_ref": "1/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "kildehierarki_blir_representasjonsproblem",
+      "setup_ref": "2/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "manglende_stemme_blir_tillitsprovelse",
+      "setup_ref": "3/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "statistikkontekst_blir_korrigeringsansvar",
+      "setup_ref": "5/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "viral_pastand_blir_egen_kilderisiko",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "researchhonorar_blir_autoritetsgrense",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "livelihood",
+        "reputation",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/medievaktbikkje.json#overskriften_som_flytter_skylden",
+      "data/Civication/narratives/leisure/medievaktbikkje.json#kilden_som_alltid_er_med",
+      "data/Civication/narratives/leisure/medievaktbikkje.json#den_som_mangler_i_saken",
+      "data/Civication/narratives/leisure/medievaktbikkje.json#pressemeldingen_som_blir_nyhet",
+      "data/Civication/narratives/leisure/medievaktbikkje.json#tallet_uten_nevner",
+      "data/Civication/narratives/leisure/medievaktbikkje.json#bildet_fra_feil_tidspunkt",
+      "data/Civication/narratives/leisure/medievaktbikkje.json#korrigeringen_som_kommer_senere",
+      "data/Civication/narratives/leisure/medievaktbikkje.json#anonym_kilde_og_sikkerhet",
+      "data/Civication/narratives/leisure/medievaktbikkje.json#falsk_balanse",
+      "data/Civication/narratives/leisure/medievaktbikkje.json#researchnotatet_og_oppdragets_grense",
+      "data/Civication/narratives/leisure/medievaktbikkje.json#oppdragsgiver_vil_ha_en_sikrere_vinkel",
+      "data/Civication/narratives/leisure/medievaktbikkje.json#den_virale_pastanden",
+      "data/Civication/narratives/leisure/medievaktbikkje.json#kritikken_som_blir_personangrep",
+      "data/Civication/narratives/leisure/medievaktbikkje.json#sesongslutt_hva_slags_medievaktbikkje"
+    ]
+  }
+}
