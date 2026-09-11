@@ -55,19 +55,15 @@ function assertNoForbidden(scope) {
     health() { return { ok: true, mode: 'supabase' }; }
   };
   run(backendWindow, 'js/social/HGSocialMeetUI.js');
-  result = await backendWindow.HG_SocialMeetUI.open({ filter: 'place', placeId: 'p1', sourceSurface: 'placeCardOnSite' });
+  result = await backendWindow.HG_SocialMeetUI.open({ filter: 'place', placeId: 'p1', sourceSurface: 'spotmeetingFollowUp' });
   sheet = backendWindow.document.getElementById('hgSocialMeetSheet');
   assert(result.ok, 'Social Meet UI opens with backend adapter');
-  assert.deepStrictEqual(JSON.parse(JSON.stringify(calls[0])), { filter: 'place', placeId: 'p1', sourceSurface: 'placeCardOnSite' }, 'place filter sends correct placeId/sourceSurface to adapter');
+  assert.deepStrictEqual(JSON.parse(JSON.stringify(calls[0])), { filter: 'place', placeId: 'p1', sourceSurface: 'spotmeetingFollowUp' }, 'place-filtered follow-up sends correct placeId/sourceSurface to adapter');
   assert(sheet.textContent.includes('Backendplassen'), 'adapter invite for place renders');
   assert(!sheet.textContent.includes('Annet sted'), 'place-filtered popup excludes other places');
-  const onsite = backendWindow.document.querySelector('[data-hg-social-meet-onsite="1"]');
-  assert(onsite, 'På stedet renders Social Meet card');
-  assert(onsite.textContent.includes('Social Meet'), 'På stedet card shows Social Meet');
-  assert(onsite.textContent.includes('Åpne Social Meet'), 'På stedet card shows open link');
-  assert(!text(backendWindow.document.getElementById('pcEventsBox')).includes('Kunnskapsmøte'), 'På stedet removes Kunnskapsmøte grid/content');
-  await new Promise(resolve => backendWindow.setTimeout(resolve, 0));
-  assert(backendWindow.document.querySelector('[data-hg-social-meet-onsite="1"]').textContent.includes('1 forslag venter her'), 'På stedet status updates from adapter');
+  assert(!backendWindow.document.querySelector('[data-hg-social-meet-onsite="1"]'), 'Social Meet skal ikke lenger injiseres i PlaceCard');
+  assert(!text(backendWindow.document.getElementById('pcEventsBox')).includes('Kunnskapsmøte'), 'legacy Kunnskapsmøte-innhold ryddes ut av PlaceCard');
+  assert(!text(backendWindow.document.getElementById('pcEventsBox')).includes('Social Meet'), 'legacy Social Meet-innhold ryddes ut av PlaceCard');
 
   let changedCalls = calls.length;
   backendWindow.dispatchEvent(new backendWindow.CustomEvent('hg:spotmeetingChanged'));
