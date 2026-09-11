@@ -25,16 +25,16 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 200);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 7,
-  needs_authored_depth: 153,
+  ready: 8,
+  needs_authored_depth: 152,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.completed_life_position_role_worlds, 7);
-assert.equal(audit.summary.pending_ready_positions, 0);
+assert.equal(audit.summary.pending_ready_positions, 1);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 7);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 7);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 8);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 8);
+assert.equal(audit.first_ready?.key, 'media/medievaktbikkje');
 
 assert.deepEqual(policy.noncareer_subject_boundary.life_position_readiness.classifications, [
   'ready',
