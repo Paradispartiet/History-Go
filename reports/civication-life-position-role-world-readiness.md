@@ -1,16 +1,16 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 200
-**Classification:** 9 ready / 151 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 10 ready / 150 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 14
-**Exact governed-source matches:** 9
-**Multi-scene narrative foundations:** 9
+**Exact governed-source matches:** 10
+**Multi-scene narrative foundations:** 10
 **Completed life-position Role Worlds:** 9
-**Pending ready positions:** 0
+**Pending ready positions:** 1
 
 ## Decision
 
-No unfinished life position is currently ready for Role World production. Source-ready positions that are already role_world_complete remain visible in the 200-position audit but are excluded from the pending queue; remaining standalone-capable positions require authored depth first.
+First pending ready Role World position: **natur/artsjeger — Artsjeger**.
 
 Livelihood templates count as provenance for an economic opportunity, but never as sufficient Role World depth on their own.
 
@@ -18,7 +18,7 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `natur/artsjeger` | needs_authored_depth | 0 | 1 | 0 |
+| 1 | `natur/artsjeger` | ready | 1 | 1 | 14 |
 | 2 | `scenekunst/scenehenger` | needs_authored_depth | 0 | 1 | 0 |
 | 3 | `sport/klubbmenneske` | needs_authored_depth | 0 | 1 | 0 |
 | 4 | `vitenskap/maker` | needs_authored_depth | 0 | 1 | 0 |

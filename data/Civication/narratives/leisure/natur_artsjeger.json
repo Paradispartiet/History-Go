@@ -1,0 +1,673 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "natur_artsjeger_stream",
+  "type": "leisure",
+  "title": "Artsjeger i naturen",
+  "sociological_theme": "artsjeger_observasjon_usikkerhet_feltetikk_registrering_og_grensen_mot_profesjonell_naturforvaltning",
+  "applies_when": {
+    "any_tags": [
+      "natur:artsjeger"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "observasjonen_som_nesten_passer",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En artsvenn",
+      "subject": "Er du sikker på arten?",
+      "situation": [
+        "Du ser en fugl på avstand som ligner sterkt på arten du håpet å finne denne uka.",
+        "Lyset er dårlig, kjennetegnene er delvis skjult, og ønsket om å få et nytt kryss gjør det lett å fylle inn det du ikke faktisk så.",
+        "Artsjeger-identiteten handler om å lete og lære, ikke om å gjøre usikkerhet om til sikker artsbestemmelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrer funnet som usikkert og noter hvilke kjennetegn som faktisk var synlige.",
+          "effect": 1,
+          "tags": [
+            "uncertainty",
+            "observation",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar observasjonen være mer presis enn ønsket om et nytt kryss."
+        },
+        {
+          "id": "B",
+          "label": "Velg den mest spennende arten fordi helhetsinntrykket virker riktig.",
+          "effect": -1,
+          "tags": [
+            "misidentification",
+            "status_pressure",
+            "confirmation_bias"
+          ],
+          "feedback": "Listen vokser, men bevisgrunnlaget blir svakere enn registreringen gir inntrykk av."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_observasjonen_som_nesten_passer"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samme_individ_to_ganger",
+      "message_type": "story",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Et nytt punkt på kartet",
+      "subject": "To funn eller samme fugl?",
+      "situation": [
+        "Du ser en rovfugl først ved vannet og senere lenger opp i dalen.",
+        "Tidspunkt og retning gjør det mulig at det er samme individ, men to registreringer ville se mer imponerende ut.",
+        "Artsjakt må skille mellom antall observasjoner og antall individer når grunnlaget er uklart."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter muligheten for at det er samme individ og unngå å telle dobbelt.",
+          "effect": 1,
+          "tags": [
+            "counting",
+            "provenance",
+            "uncertainty"
+          ],
+          "feedback": "Du prioriterer sporbarhet fremfor en penere statistikk."
+        },
+        {
+          "id": "B",
+          "label": "Registrer to individer fordi observasjonene skjedde på forskjellige steder.",
+          "effect": -1,
+          "tags": [
+            "overcount",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "Geografisk avstand blir brukt som sikkerhet du ikke egentlig har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_samme_individ_to_ganger"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_sjeldne_lokasjonen",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En erfaren feltobservatør",
+      "subject": "Hvor mye skal deles?",
+      "situation": [
+        "Du finner en sjelden art på et sårbart hekkested og får lyst til å dele funnet med hele nettverket.",
+        "En presis lokasjon kan hjelpe andre å se arten, men kan også trekke trafikk til et område som tåler lite forstyrrelse.",
+        "Å være Artsjeger gir ikke eierskap til funnstedet eller rett til å maksimere oppmerksomheten rundt det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del observasjonen gjennom en kanal som kan skjerme eller generalisere sensitiv lokasjon.",
+          "effect": 1,
+          "tags": [
+            "sensitive_location",
+            "care",
+            "sharing_boundary"
+          ],
+          "feedback": "Du lar naturhensyn veie tyngre enn synlighet."
+        },
+        {
+          "id": "B",
+          "label": "Legg ut nøyaktige koordinater med en gang slik at flere kan få samme kryss.",
+          "effect": -1,
+          "tags": [
+            "disturbance_risk",
+            "status",
+            "location_exposure"
+          ],
+          "feedback": "Funnets sosiale verdi blir prioritert foran områdets sårbarhet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_den_sjeldne_lokasjonen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_som_krever_ett_skritt_til",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Et teleobjektiv",
+      "subject": "Bare litt nærmere?",
+      "situation": [
+        "Du mangler et tydelig bilde av et dyr som holder seg i ro nær vegetasjonen.",
+        "Ett steg nærmere kan gi bedre dokumentasjon, men du merker at dyret allerede følger nøye med på deg.",
+        "Dokumentasjon er ikke bedre hvis den produseres ved unødvendig forstyrrelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bli stående eller trekk deg tilbake og aksepter et dårligere bilde.",
+          "effect": 1,
+          "tags": [
+            "disturbance",
+            "care",
+            "documentation_boundary"
+          ],
+          "feedback": "Du lar dyrets reaksjon sette grensen for dokumentasjonen."
+        },
+        {
+          "id": "B",
+          "label": "Gå nærmere til du får detaljene som trengs for sikker bestemmelse.",
+          "effect": -1,
+          "tags": [
+            "disturbance_risk",
+            "photo_pressure",
+            "overreach"
+          ],
+          "feedback": "Bevisbehovet blir gjort viktigere enn situasjonen du dokumenterer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_bildet_som_krever_ett_skritt_til"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "registreringen_fra_en_venn",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En melding i gruppa",
+      "subject": "Kan du legge den inn for meg?",
+      "situation": [
+        "En venn sender et uklart bilde og ber deg registrere arten fordi du kjenner systemet bedre.",
+        "Du var ikke til stede, mangler tidspunkt og posisjon, og kan ikke skille mellom observatørens minne og det bildet faktisk viser.",
+        "Artsjeger-erfaring gjør deg ikke til eier av andres observasjoner eller kildegrunnlag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hjelp vennen med å registrere selv og be dem markere usikkerhet og manglende data.",
+          "effect": 1,
+          "tags": [
+            "provenance",
+            "peer_help",
+            "source_boundary"
+          ],
+          "feedback": "Du hjelper uten å overta observasjonen."
+        },
+        {
+          "id": "B",
+          "label": "Legg den inn på din konto siden du uansett tror du kjenner arten.",
+          "effect": -1,
+          "tags": [
+            "provenance_loss",
+            "misattribution",
+            "certainty_inflation"
+          ],
+          "feedback": "Hjelp blir til en registrering som skjuler hvem som faktisk observerte hva."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_registreringen_fra_en_venn"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "feilbestemmelsen_som_blir_rettet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Et varsel om kommentar",
+      "subject": "Noen mener du tok feil",
+      "situation": [
+        "En annen bruker peker på et kjennetegn som taler mot artsbestemmelsen din.",
+        "Du kjenner et stikk av prestisje fordi funnet allerede er delt med andre.",
+        "Artsjakt som læringspraksis må tåle korrigering uten at enhver uenighet blir en kamp om status."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå gjennom kjennetegnene på nytt og korriger registreringen hvis kritikken holder.",
+          "effect": 1,
+          "tags": [
+            "correction",
+            "learning",
+            "reputation"
+          ],
+          "feedback": "Du gjør korrigering til en del av praksisen, ikke et nederlag."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar artsnavnet offentlig før du har sett nærmere på motargumentet.",
+          "effect": -1,
+          "tags": [
+            "defensiveness",
+            "status",
+            "confirmation_bias"
+          ],
+          "feedback": "Prestisje kommer foran ny vurdering av beviset."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_feilbestemmelsen_som_blir_rettet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "privat_grunn_og_det_gode_funnstedet",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Et gjerde ved skogkanten",
+      "subject": "Snarveien inn",
+      "situation": [
+        "Et interessant område ligger rett på andre siden av et tydelig gjerde og en privat innkjørsel.",
+        "Du ser ingen mennesker, og kartet antyder at habitatet kan være godt for arten du leter etter.",
+        "Et godt funnsted opphever ikke adgangsregler, eierskap eller behovet for å finne en lovlig rute."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn offentlig eller avklart adkomst selv om det koster tid og kanskje funnet.",
+          "effect": 1,
+          "tags": [
+            "access",
+            "property_boundary",
+            "patience"
+          ],
+          "feedback": "Du lar jakten tilpasse seg stedet, ikke omvendt."
+        },
+        {
+          "id": "B",
+          "label": "Gå raskt gjennom siden du bare skal observere og ikke ta noe med deg.",
+          "effect": -1,
+          "tags": [
+            "access_overreach",
+            "entitlement",
+            "shortcut"
+          ],
+          "feedback": "Den fredelige hensikten blir brukt som begrunnelse for adgang du ikke har avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_privat_grunn_og_det_gode_funnstedet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lokkemiddelet",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "En ivrig artsjeger",
+      "subject": "Vi kan få den fram",
+      "situation": [
+        "En bekjent foreslår lydavspilling eller annet lokkemiddel for å få en sky art til å vise seg.",
+        "Metoden kan øke sjansen for observasjon, men kan påvirke dyrets atferd og gjøre situasjonen mindre naturlig.",
+        "Artsjegerrollen gir ikke automatisk faglig grunnlag for å avgjøre når påvirkning er forsvarlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La være og dokumenter bare det som skjer uten aktiv lokking.",
+          "effect": 1,
+          "tags": [
+            "non_interference",
+            "care",
+            "method_boundary"
+          ],
+          "feedback": "Du velger observasjon framfor å produsere observasjonen."
+        },
+        {
+          "id": "B",
+          "label": "Bruk lokkemiddelet kort fordi arten ellers er vanskelig å få på lista.",
+          "effect": -1,
+          "tags": [
+            "disturbance_risk",
+            "method_overreach",
+            "list_pressure"
+          ],
+          "feedback": "Jakten på sikker observasjon begynner å endre situasjonen du vil observere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_lokkemiddelet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_invasive_arten",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En turkamerat",
+      "subject": "Skal vi gjøre noe med den?",
+      "situation": [
+        "Du registrerer en art som lokalt omtales som uønsket eller invasiv.",
+        "En turkamerat foreslår at dere straks bør fjerne individet siden dere nå vet hva det er.",
+        "Å kunne kjenne igjen og rapportere en art er ikke det samme som å ha forvaltningsmandat eller kompetanse til tiltak."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dokumenter funnet og bruk riktig rapporteringskanal uten å ta forvaltningen i egne hender.",
+          "effect": 1,
+          "tags": [
+            "reporting",
+            "authority_boundary",
+            "stewardship"
+          ],
+          "feedback": "Du skiller observasjon fra beslutningsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Iverksett et tiltak selv fordi problemet er åpenbart og noen må handle.",
+          "effect": -1,
+          "tags": [
+            "management_overreach",
+            "authority",
+            "ecological_risk"
+          ],
+          "feedback": "Artskunnskap blir gjort til forvaltningsmyndighet du ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_den_invasive_arten"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "feltregistreringsoppdraget",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Lokalt naturprosjekt",
+      "subject": "Et lite honorar for feltregistrering",
+      "situation": [
+        "Et lokalt naturprosjekt tilbyr et avgrenset honorar for å registrere observasjoner i et bestemt område og tidsrom.",
+        "Oppdraget gjelder tidspunkt, sted, observasjon og enkel dokumentasjon; det gir ikke ansvar for artsforvaltning, konsekvensutredning, offentlig vedtak eller faglig godkjenning.",
+        "Betalt feltregistrering kan bruke Artsjeger-ferdigheter uten å gjøre livsposisjonen til profesjonell biolog-, konsulent- eller myndighetsrolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Aksepter oppdraget med tydelig scope og lever bare observasjonene og usikkerheten som faktisk finnes.",
+          "effect": 1,
+          "tags": [
+            "livelihood",
+            "scope_boundary",
+            "field_registration"
+          ],
+          "feedback": "Honoraret betaler for avgrenset registreringsarbeid, ikke for en faglig myndighetstittel."
+        },
+        {
+          "id": "B",
+          "label": "Presentér oppdraget som om prosjektet har engasjert deg til å vurdere områdets naturverdi.",
+          "effect": -1,
+          "tags": [
+            "scope_creep",
+            "professional_authority",
+            "reputation_risk"
+          ],
+          "feedback": "Et lite registreringsoppdrag blåses opp til en fagrolle som ikke er avtalt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_feltregistreringsoppdraget"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "oppdragsgiveren_vil_ha_et_sikrere_svar",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Prosjektkontakten",
+      "subject": "Kan du bare konkludere?",
+      "situation": [
+        "I feltregistreringsoppdraget får du spørsmål om en usikker observasjon kan føres som bekreftet for å gjøre datasettet mer komplett.",
+        "Du har notater og et bilde, men de avgjørende kjennetegnene mangler.",
+        "Betaling endrer ikke hvor sikkert observasjonsgrunnlaget er."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lever den som usikker eller uavklart og forklar nøyaktig hva som mangler.",
+          "effect": 1,
+          "tags": [
+            "paid_work",
+            "uncertainty",
+            "data_integrity"
+          ],
+          "feedback": "Du lar dokumentasjonen styre graden av sikkerhet også når noen betaler."
+        },
+        {
+          "id": "B",
+          "label": "Velg mest sannsynlige art fordi oppdragsgiver trenger et ryddig datasett.",
+          "effect": -1,
+          "tags": [
+            "paid_pressure",
+            "certainty_inflation",
+            "data_quality"
+          ],
+          "feedback": "Kundens behov blir gjort til biologisk bevis."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_oppdragsgiveren_vil_ha_et_sikrere_svar"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kartet_som_avslorer_mer_enn_feltet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Kveldens registreringskart",
+      "subject": "Mønsteret ser tydelig ut",
+      "situation": [
+        "Når du ser alle egne funn på kartet, virker det som om en art foretrekker én bestemt del av området.",
+        "Du har få observasjoner og har dessuten gått mer i noen deler av området enn i andre.",
+        "Artsjegerdata kan gi hypoteser, men innsamlingsmønsteret må ikke forveksles med en sikker økologisk konklusjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv mønsteret som en mulig observasjonseffekt og noter hvor du faktisk lette.",
+          "effect": 1,
+          "tags": [
+            "sampling_bias",
+            "interpretation",
+            "method_humility"
+          ],
+          "feedback": "Du skiller feltinnsats fra naturens faktiske fordeling."
+        },
+        {
+          "id": "B",
+          "label": "Konkluder med habitatpreferanse fordi punktene ligger tydelig samlet.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "sampling_bias",
+            "pseudo_expertise"
+          ],
+          "feedback": "Et skjevt letemønster blir presentert som økologisk kunnskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_kartet_som_avslorer_mer_enn_feltet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_skadde_fuglen",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Et urolig møte i veikanten",
+      "subject": "Den trenger hjelp",
+      "situation": [
+        "Du finner en fugl som virker skadet og ikke flyr unna når du nærmer deg.",
+        "Du kjenner arten og vil hjelpe, men du kan ikke avgjøre skadeomfang, behandling eller lovlig håndtering bare fra Artsjeger-erfaring.",
+        "Omsorg krever også å vite når situasjonen bør overtas av personer eller tjenester med riktig ansvar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold avstand, sikre enkel informasjon om sted og situasjon, og kontakt relevant fag- eller hjelpetjeneste.",
+          "effect": 1,
+          "tags": [
+            "care",
+            "referral",
+            "competence_boundary"
+          ],
+          "feedback": "Du bruker observasjonsevnen til å hjelpe uten å improvisere behandling."
+        },
+        {
+          "id": "B",
+          "label": "Ta fuglen med hjem og behandle den selv fordi du kjenner arten godt.",
+          "effect": -1,
+          "tags": [
+            "handling_overreach",
+            "animal_welfare",
+            "competence_risk"
+          ],
+          "feedback": "Artskunnskap blir gjort til behandlingskompetanse den ikke er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_den_skadde_fuglen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_slags_artsjeger",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Feltboka etter mange turer",
+      "subject": "Hva var egentlig poenget?",
+      "situation": [
+        "Etter mange turer har du både sikre funn, feilbestemmelser, korrigeringer, tomme dager og ett betalt registreringsoppdrag.",
+        "Listen er lengre enn før, men de viktigste forskjellene ligger i hvordan du håndterte usikkerhet, påvirkning, kildegrunnlag og grenser for egen rolle.",
+        "Artsjeger kan være en vedvarende praksis for oppmerksomhet og læring uten å bli konkurranse, profesjonstittel eller forvaltningsmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold både treff, usikkerheter og korrigeringer i feltboka som del av det du faktisk lærte.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "learning",
+            "identity"
+          ],
+          "feedback": "Praksisen måles i bedre observasjon og dømmekraft, ikke bare i antall arter."
+        },
+        {
+          "id": "B",
+          "label": "Rydd bort de usikre og feilaktige registreringene slik at sesongen framstår mer vellykket.",
+          "effect": -1,
+          "tags": [
+            "status_editing",
+            "learning_loss",
+            "reputation"
+          ],
+          "feedback": "Historikken blir polert på bekostning av det som faktisk gjorde deg bedre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artsjeger_sesongslutt_hva_slags_artsjeger"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

@@ -9,7 +9,7 @@ const vm = require('node:vm');
 const ROOT = path.resolve(__dirname, '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 
-const streamPath = 'data/Civication/narratives/leisure/gallerivanker.json';
+const streamPath = 'data/Civication/narratives/leisure/natur_artsjeger.json';
 const stream = readJson(streamPath);
 const manifest = readJson('data/Civication/narratives/manifest.json');
 const audit = readJson('data/Civication/lifePositionRoleWorldReadiness.json');
@@ -19,9 +19,9 @@ const taxonomy = readJson('data/Civication/nonCareerRoleTaxonomy.json');
 const policy = readJson('data/Civication/roleWorldPolicy.json');
 
 assert.equal(stream.schema, 'civication_narrative_stream_v1');
-assert.equal(stream.id, 'gallerivanker_stream');
+assert.equal(stream.id, 'natur_artsjeger_stream');
 assert.equal(stream.type, 'leisure');
-assert.deepEqual(stream.applies_when.any_tags, ['gallerivanker', 'kunst:gallerivanker']);
+assert.deepEqual(stream.applies_when.any_tags, ['natur:artsjeger']);
 assert.equal(stream.storylets.length, 14);
 assert.equal(new Set(stream.storylets.map((row) => row.id)).size, 14);
 
@@ -38,33 +38,36 @@ for (const row of stream.storylets) {
 }
 assert.ok(manifest.streams.some((entry) => entry.id === stream.id && entry.path === streamPath));
 
-const profile = catalog.badges.find((row) => row.badge_id === 'kunst');
-const position = profile.positions.find((row) => row.id === 'gallerivanker');
+const position = catalog.badges.find((row) => row.badge_id === 'natur')
+  .positions.find((row) => row.id === 'artsjeger');
 assert.deepEqual(position, {
-  id: 'gallerivanker',
-  label: 'Gallerivanker',
-  threshold: 5,
-  kind: 'hobby_identity',
-  description: 'Du stikker innom gallerier også når du ikke har planlagt det.',
-  hooks: ['galleri', 'utstilling', 'oppdagelse']
+  id: 'artsjeger',
+  label: 'Artsjeger',
+  threshold: 25,
+  kind: 'practice_identity',
+  description: 'Du samler observasjoner og prøver å finne én art til uten at listen blir hele poenget.',
+  hooks: ['arter', 'registrering', 'feilbestemmelse']
 });
 
-const opportunity = livelihood.templates.find((row) => row.id === 'gallerivanker_apningshjelp');
+const opportunity = livelihood.templates.find((row) => row.id === 'artsjeger_feltregistrering');
 assert.ok(opportunity);
-assert.equal(opportunity.badge_id, 'kunst');
-assert.equal(opportunity.life_position_label, 'Gallerivanker');
-assert.equal(opportunity.kind_id, 'casual_shift');
-assert.deepEqual(opportunity.income, { model: 'variable', min: 3, max: 6 });
+assert.equal(opportunity.badge_id, 'natur');
+assert.equal(opportunity.life_position_label, 'Artsjeger');
+assert.equal(opportunity.kind_id, 'freelance_assignment');
+assert.deepEqual(opportunity.income, { model: 'variable', min: 3, max: 7 });
 assert.deepEqual(opportunity.direct_costs, { fixed: 1 });
+assert.match(opportunity.description, /registrering/i);
+assert.match(opportunity.description, /ikke profesjonell artsforvaltning|myndighetsutøvelse/i);
 
-const ready = audit.positions.find((row) => row.key === 'kunst/gallerivanker');
+const ready = audit.positions.find((row) => row.key === 'natur/artsjeger');
 assert.ok(ready);
 assert.equal(ready.classification, 'ready');
-assert.equal(ready.role_world_status, 'role_world_complete');
-assert.equal(ready.role_world_path, 'data/Civication/roleWorlds/kunst/kunst_gallerivanker.json');
+assert.equal(ready.role_world_status, 'role_world_not_started');
+assert.equal(ready.role_world_path, null);
 assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
-assert.deepEqual(ready.evidence.livelihood_templates, ['gallerivanker_apningshjelp']);
+assert.deepEqual(ready.evidence.livelihood_templates, ['artsjeger_feltregistrering']);
+
 assert.deepEqual(audit.summary.classifications, {
   ready: 10,
   needs_authored_depth: 150,
@@ -78,12 +81,24 @@ assert.equal(audit.first_ready?.key, 'natur/artsjeger');
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'natur/artsjeger');
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'natur/artsjeger');
 
+const authorityText = stream.storylets
+  .flatMap((row) => [row.situation.join(' '), ...row.choices.map((choice) => choice.feedback || '')])
+  .join(' ');
+assert.match(authorityText, /forvaltning|myndighet|artsbestemmelse|usikkerhet|dokumentasjon/i);
+
+const paidAnchor = stream.storylets.find((row) => row.id === 'feltregistreringsoppdraget');
+assert.ok(paidAnchor);
+assert.match(
+  paidAnchor.situation.join(' ') + ' ' + paidAnchor.choices.map((choice) => choice.feedback || '').join(' '),
+  /registrering|forvaltning|myndighet|avgrens/i
+);
+
 const narrativeSource = fs.readFileSync(
   path.join(ROOT, 'js/Civication/systems/civicationNarrativeSceneSource.js'),
   'utf8'
 );
 
-let activeLifePositions = [{ badge_id: 'kunst', id: 'gallerivanker', label: 'Gallerivanker' }];
+let activeLifePositions = [{ badge_id: 'natur', id: 'artsjeger', label: 'Artsjeger' }];
 const filesByPath = new Map([
   ['data/Civication/narratives/manifest.json', manifest],
   [streamPath, stream]
@@ -123,37 +138,40 @@ vm.runInContext(narrativeSource, sandbox, { filename: 'civicationNarrativeSceneS
 (async () => {
   const api = sandbox.window.CivicationNarrativeSceneSource;
   let snapshot = await api.getActivationSnapshot({ state, active: null });
-  assert.ok(snapshot.matched_stream_ids.includes('gallerivanker_stream'));
+  assert.ok(snapshot.matched_stream_ids.includes('natur_artsjeger_stream'));
 
   const scenes = await api.getSourceScenes({
     state,
     active: null,
     phaseId: 'evening',
-    candidate_stream_ids: ['gallerivanker_stream'],
+    candidate_stream_ids: ['natur_artsjeger_stream'],
     used_storylet_keys: []
   });
   assert.ok(scenes.length >= 1);
-  assert.equal(scenes[0].narrative_stream_id, 'gallerivanker_stream');
+  assert.equal(scenes[0].narrative_stream_id, 'natur_artsjeger_stream');
   assert.equal(scenes[0].workday_related, false);
   assert.equal(scenes[0].role_scope, '');
   assert.equal(scenes[0].career_id, '');
 
-  for (const position of [
-    { badge_id: 'kunst', id: 'vernissagegjenger', label: 'Vernissagegjenger' },
-    { badge_id: 'kunst', id: 'gatekunstjeger', label: 'Gatekunstjeger' },
-    { badge_id: 'kunst', id: 'ateliermenneske', label: 'Ateliermenneske' }
+  for (const other of [
+    { badge_id: 'natur', id: 'fuglekikker', label: 'Fuglekikker' },
+    { badge_id: 'natur', id: 'sanker', label: 'Sanker' },
+    { badge_id: 'natur', id: 'turgaer', label: 'Turgåer' },
+    { badge_id: 'vitenskap', id: 'folkeforsker', label: 'Folkeforsker' }
   ]) {
-    activeLifePositions = [position];
+    activeLifePositions = [other];
     snapshot = await api.getActivationSnapshot({ state, active: null });
-    assert.ok(!snapshot.matched_stream_ids.includes('gallerivanker_stream'),
-      position.id + ' must not inherit Gallerivanker narrative');
+    assert.ok(
+      !snapshot.matched_stream_ids.includes('natur_artsjeger_stream'),
+      other.badge_id + '/' + other.id + ' must not inherit Natur Artsjeger narrative'
+    );
   }
 
   activeLifePositions = [];
   snapshot = await api.getActivationSnapshot({ state, active: null });
-  assert.ok(!snapshot.matched_stream_ids.includes('gallerivanker_stream'));
+  assert.ok(!snapshot.matched_stream_ids.includes('natur_artsjeger_stream'));
 
-  console.log('civication Gallerivanker readiness ok: 14 anchors / exact life-position activation / bounded casual shift / no career scope');
+  console.log('civication Natur Artsjeger readiness ok: 14 anchors / exact natur:artsjeger activation / bounded field registration / no career scope');
 })().catch((error) => {
   console.error(error);
   process.exitCode = 1;
