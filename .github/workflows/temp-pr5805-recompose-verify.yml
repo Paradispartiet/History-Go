@@ -1,0 +1,47 @@
+name: TEMP PR5805 recompose verification
+on:
+  push:
+    branches:
+      - agent/pr5805-recompose-20260911
+    paths:
+      - .github/workflows/temp-pr5805-recompose-verify.yml
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate legacy theory report on fresh-main composition
+        run: node scripts/audit-fagverk-litteratur-legacy-theory.mjs --write-report >/dev/null
+      - name: Verify exact legacy failure is repaired
+        run: node --test tests/fagverk-litteratur-legacy-theory-audit.test.mjs tests/fagverk-litteratur-legacy-theory-adjudication.test.mjs
+      - name: Verify strict theory chain
+        run: |
+          node scripts/audit-fagverk-theory-integrity.mjs
+          node --test tests/litteratur-theory-integrity.test.mjs tests/fagverk-theory-integrity.test.mjs
+      - name: Verify expanded quality
+        run: |
+          node scripts/audit-litteratur-article-editorial-quality-v1.mjs
+          node tools/audit-litteratur-expanded-quality.mjs
+          node --test tests/litteratur-article-editorial-quality-v1.test.mjs tests/litteratur-expanded-quality.test.mjs
+      - name: Verify shared Fagverk contracts
+        run: |
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Commit regenerated legacy report if changed
+        run: |
+          if git diff --quiet -- reports/fagverk/litteratur-legacy-theory-audit.json; then
+            echo "Legacy report already current on fresh-main composition"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/fagverk/litteratur-legacy-theory-audit.json
+          git commit -m "temp: regenerate Litteratur legacy theory report [skip ci]"
+          git push
