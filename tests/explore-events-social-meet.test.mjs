@@ -6,6 +6,7 @@ const read = path => fs.readFileSync(path, "utf8");
 const json = path => JSON.parse(read(path));
 
 const index = read("index.html");
+const app = read("js/app.js");
 const source = read("js/ui/leftPanelMode.ts");
 const bundle = read("dist/web/leftPanelMode.js");
 const onsite = read("js/ui/place-onsite-surface.js");
@@ -24,6 +25,12 @@ test("Utforsk eier Events og én samlet Møtes-inngang", () => {
   assert.match(nearbyCss, /\.nearby-tabs\{[\s\S]*flex-wrap:\s*wrap[\s\S]*overflow:\s*visible/);
   assert.match(headerMenu, /setLeftPanelMode\("social"\)|HGLeftPanelMode\?\.setMode\?\.\("social"\)/);
   assert.match(headerMenu, /openNearbyDrawer\(\)|HGNearbyDrawer\?\.open\?\.\(\)/);
+
+  assert.match(index, /css\/nearby\.css\?v=20260911-explore-meet-runtime2/);
+  assert.match(index, /js\/ui\/header-menu\.js\?v=20260911-explore-meet-runtime2/);
+  assert.match(index, /js\/app\.js\?v=20260911-explore-meet-runtime2/);
+  assert.match(app, /dist\/web\/leftPanelMode\.js\?v=20260911-explore-meet-runtime2/);
+  assert.match(app, /dist\/web\/left-panel\.js\?v=20260911-explore-meet-runtime2/);
 
   assert.match(source, /events:\s*"leftEventsList"/);
   assert.match(source, /social:\s*"leftSocialList"/);
