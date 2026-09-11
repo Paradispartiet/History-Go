@@ -90,10 +90,11 @@ const portraitMeta = commonsMeta(urls.portraitPage, "Ukjent kunstner", "Wikimedi
 
 const desc = "Hausmannsbrua fører Hausmanns gate over Akerselva og stod ferdig i 1892. Broen ble bygd i 1890–92 av Christiania kommunale Veivesen ved ingeniør P. Schaaning som en støpejerns bue- og fagverkskonstruksjon. Utvidelsen i 1986 ga seks kjørefelt, men det gamle smijernsrekkverket ble bevart og de historiske bueformene videreført.";
 const popupDesc = [
-  "Hausmannsbrua fører Hausmanns gate over Akerselva. Broen ble bygd i perioden 1890–92 av Christiania kommunale Veivesen ved ingeniør P. Schaaning og stod ferdig i 1892. Store norske leksikon beskriver konstruksjonen som en buebro og fagverkskonstruksjon bygd av støpejernsdeler. Broen er 28 meter lang, og det lengste spennet er 16 meter.",
-  "I 1986 ble broen utvidet til seks kjørefelt. Oslo byleksikon oppgir at de gamle buekonstruksjonene ble kopiert, mens smijernsrekkverket fra den eldre broen ble beholdt. Dagens bro er derfor et sammensatt byggverk: trafikkbredden er nyere, mens et konkret materialspor og den historiske formen viser tilbake til 1892. Broen er tatt med i nasjonal verneplan for veger, bruer og vegrelaterte kulturminner.",
-  "Navnet kommer via Hausmanns gate fra Fredrik Ferdinand Hausmann (1693–1757). Hausmann eide Ankerløkken og Mangelsgården, men døde mer enn hundre år før broen stod ferdig. People-koblingen gjelder derfor navneopphavet, ikke brobygging eller prosjektering.",
-  "Et blått historieskilt fra Selskabet for Oslo Byes Vel legger et senere formidlingslag til stedet. Bro, bevart rekkverk, gatenavn og historieskilt må holdes som ulike typer evidens. Ett nåtidsfoto kan dokumentere den synlige konstruksjonen, men byggeår, ombygging, navn og vernestatus må kildebelegges separat."
+  "Hausmannsbrua fører Hausmanns gate over Akerselva og markerer et tydelig møte mellom gatenettet og elverommet. Broen ble bygd i perioden 1890–92 av Christiania kommunale Veivesen ved ingeniør P. Schaaning og stod ferdig i 1892. Store norske leksikon beskriver konstruksjonen som en buebro og fagverkskonstruksjon bygd av støpejernsdeler. Den oppgitte totallengden er 28 meter, mens det lengste spennet er 16 meter. Disse målene og dateringen er kildeopplysninger; på stedet kan en besøkende undersøke den synlige formen, men ikke måle eller datere konstruksjonen sikkert bare ved observasjon.",
+  "I 1986 ble Hausmannsbrua utvidet til seks kjørefelt for å håndtere en annen trafikksituasjon enn den broen ble bygd for i 1890-årene. Oslo byleksikon oppgir at de gamle buekonstruksjonene ble kopiert under utvidelsen, mens smijernsrekkverket fra den eldre broen ble beholdt. Den brede trafikkbroen inneholder med andre ord både et omfattende ombyggingslag og et dokumentert eldre materialspor. Rekkverket er behandlet som et eget fysisk objekt fordi kildene peker eksplisitt på at dette elementet ble bevart. Bue- og fagverksformen behandles som del av brostrukturen, slik at konstruksjonen ikke splittes opp i kunstige samlingsobjekter.",
+  "Hausmannsbrua er tatt med i nasjonal verneplan for veger, bruer og vegrelaterte kulturminner. Vernestatusen betyr ikke at konstruksjonen står urørt fra 1892. Kildene viser tvert imot en bro som er bygd om, utvidet og tilpasset, samtidig som utvalgte historiske trekk er ført videre. Denne kombinasjonen gjør stedet nyttig for å undersøke hvordan teknisk infrastruktur kan forandres over tid uten at alle eldre lag forsvinner. En feltobservasjon kan registrere materialer, rekkverk, spenn, brobredde og forbindelsen over elva, mens kildene må forklare hvilke deler som hører til 1892 og hvilke som følger av ombyggingen i 1986.",
+  "Navnet Hausmannsbrua kommer via Hausmanns gate fra Fredrik Ferdinand Hausmann, som levde 1693–1757. Hausmann eide Ankerløkken og Mangelsgården, men døde lenge før brobyggingen i 1890–92. People-koblingen gjelder navneopphavet og ikke prosjektering, bygging eller ledelse av broarbeidet. Brokildene navngir ingeniøren som P. Schaaning. Full personidentitet for denne ingeniøren materialiseres ikke før en direkte kilde knytter initialen og etternavnet til en entydig personprofil.",
+  "Et blått historieskilt fra Selskabet for Oslo Byes Vel legger et senere formidlingslag til brostedet. Skiltet er en kilde til hvordan organisasjonen presenterer historien på stedet, men det er ikke en del av støpejernskonstruksjonen fra 1892. Bro, bevart rekkverk, gatenavn og historieskilt representerer ulike typer evidens. Et fotografi kan dokumentere synlige former og materialer, mens byggeår, ombyggingshistorie, navneopphav og vernestatus krever egne kilder. Hausmannsbrua kan slik leses som et samlet sted med flere dokumenterte lag uten at konstruksjon, personhistorie og ettertidens formidling blandes sammen."
 ].join("\n\n");
 
 const object = {
@@ -553,11 +554,11 @@ fs.rmSync(path.join(root, "data/quiz/historie/hausmannsbrua_sets.json"), { force
 
 const claimDefs = {
   identity: ["Hausmannsbrua fører Hausmanns gate over Akerselva.", urls.bridge, "innledning og plassering", "institutional", "identity"],
-  build: ["Hausmannsbrua ble bygd i 1890–92 av Christiania kommunale Veivesen ved ingeniør P. Schaaning og stod ferdig i 1892.", urls.snl, "brohistorikken", "recognized_reference"],
-  structure: ["Broen er en støpejerns bue- og fagverkskonstruksjon, 28 meter lang med et lengste spenn på 16 meter.", urls.snl, "teknisk beskrivelse", "recognized_reference"],
-  widening: ["I 1986 ble broen utvidet til seks kjørefelt.", urls.snl, "avsnittet om ombygging", "recognized_reference"],
+  build: ["Hausmannsbrua ble bygd i 1890–92 av Christiania kommunale Veivesen ved ingeniør P. Schaaning og stod ferdig i 1892.", urls.snl, "brohistorikken", "reputable_secondary"],
+  structure: ["Broen er en støpejerns bue- og fagverkskonstruksjon, 28 meter lang med et lengste spenn på 16 meter.", urls.snl, "teknisk beskrivelse", "reputable_secondary"],
+  widening: ["I 1986 ble broen utvidet til seks kjørefelt.", urls.snl, "avsnittet om ombygging", "reputable_secondary"],
   preservation: ["Ved 1986-ombyggingen ble gamle bueformer kopiert og smijernsrekkverket fra den eldre broen beholdt.", urls.bridge, "avsnittet om ombygging", "institutional"],
-  protection: ["Hausmannsbrua inngår i nasjonal verneplan for veger, bruer og vegrelaterte kulturminner.", urls.snl, "avsnittet om vern", "recognized_reference"],
+  protection: ["Hausmannsbrua inngår i nasjonal verneplan for veger, bruer og vegrelaterte kulturminner.", urls.snl, "avsnittet om vern", "reputable_secondary"],
   name: ["Broen har navn etter Hausmanns gate, som er oppkalt etter Fredrik Ferdinand Hausmann.", urls.gate, "navnehistorikken", "institutional"],
   plaque: ["Selskabet for Oslo Byes Vel har markert Hausmanns bru med blått historieskilt.", urls.plaqueEvent, "arrangementsbeskrivelsen", "official"],
   method: ["Stedets tidslag må skilles gjennom kildeproveniens, materialobservasjon og eksplisitte dateringer.", urls.bridge, "samlet kildegrunnlag", "institutional"]
@@ -581,7 +582,7 @@ const mapCoverage = (textValue) => sentences(textValue).map((sentence, index) =>
 const readiness = [
   ["Når stod broen ferdig?", "1892", "når", claimIds.build],
   ["Hva er hovedmaterialet?", "Støpejern", "hva", claimIds.structure],
-  ["Hvor lang er broen?", "28 meter", "mål", claimIds.structure],
+  ["Hvor lang er broen?", "28 meter", "hva", claimIds.structure],
   ["Når ble den utvidet?", "1986", "når", claimIds.widening],
   ["Hva ble bevart?", "Smijernsrekkverket", "hvilket_verk_eller_objekt", claimIds.preservation],
   ["Hvem er navneopphavet?", "Fredrik Ferdinand Hausmann", "hvem", claimIds.name],
