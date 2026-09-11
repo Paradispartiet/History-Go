@@ -26,7 +26,7 @@
     return String(value == null ? "" : value).trim();
   }
   function escapeHtml(value) {
-    return cleanText(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+    return cleanText(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
   }
   function list(value) {
     return Array.isArray(value) ? value : [];
