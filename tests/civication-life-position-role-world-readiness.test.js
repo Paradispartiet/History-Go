@@ -29,12 +29,12 @@ assert.deepEqual(audit.summary.classifications, {
   needs_authored_depth: 155,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 4);
-assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.completed_life_position_role_worlds, 5);
+assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 5);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 5);
-assert.equal(audit.first_ready?.key, 'historie/historievandrer');
+assert.equal(audit.first_ready, null);
 
 assert.deepEqual(policy.noncareer_subject_boundary.life_position_readiness.classifications, [
   'ready',
@@ -112,4 +112,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 5 ready / 155 authored-depth / 40 not-standalone; 4 complete / Historievandrer next');
+console.log('civication life-position Role World readiness v2 ok: 5 ready / 155 authored-depth / 40 not-standalone; 5 complete / no pending ready');
