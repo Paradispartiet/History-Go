@@ -5,9 +5,10 @@ on:
       - agent/hausmannsbrua-place-production-20260911
 jobs:
   regenerate:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -19,9 +20,14 @@ jobs:
         run: node scripts/build-fagverk-release-manifest.mjs
       - name: Verify release manifest
         run: node scripts/build-fagverk-release-manifest.mjs --check
-      - name: Upload generated manifest
-        uses: actions/upload-artifact@v4
-        with:
-          name: hausmannsbrua-fagverk-release
-          path: data/fagverk/fagverk_release.json
-          if-no-files-found: error
+      - name: Commit generated manifest
+        run: |
+          if git diff --quiet -- data/fagverk/fagverk_release.json; then
+            echo "Release manifest already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fagverk/fagverk_release.json
+          git commit -m "Refresh Hausmannsbrua Fagverk release"
+          git push origin HEAD:agent/hausmannsbrua-place-production-20260911
