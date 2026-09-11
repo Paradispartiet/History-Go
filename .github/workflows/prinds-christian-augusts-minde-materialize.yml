@@ -31,6 +31,22 @@ jobs:
         run: |
           cat tools/.tmp-prinds-finalizer-part01.b64 tools/.tmp-prinds-finalizer-part02.b64 tools/.tmp-prinds-finalizer-part03.b64 \
             | base64 --decode | gzip --decompress > tools/finalize-prinds-christian-augusts-minde-completion.mjs
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tools/finalize-prinds-christian-augusts-minde-completion.mjs')
+          s=p.read_text()
+          old="const rawBrands = read('data/brands/brands_master_raw.json'); upsert(rawBrands, brandSummary); writeCompact('data/brands/brands_master_raw.json', rawBrands);"
+          new="""const rawBrandFile = 'data/brands/brands_master_raw.json';
+          const rawBrandPath = path.join(root, rawBrandFile);
+          const rawBrandsText = fs.readFileSync(rawBrandPath, 'utf8');
+          const rawBrands = JSON.parse(rawBrandsText.replaceAll('\\\\n', '\\n'));
+          upsert(rawBrands, brandSummary);
+          const rawBrandsSerialized = JSON.stringify(rawBrands).replace('[{', '[\\\\n{').replace(/},\\{/g, '},\\\\n{').replace(/}\\]$/, '}\\\\n]\\\\n');
+          fs.writeFileSync(rawBrandPath, rawBrandsSerialized);"""
+          if old not in s:
+              raise SystemExit('raw brand compatibility target not found')
+          p.write_text(s.replace(old,new))
+          PY
           node --check tools/finalize-prinds-christian-augusts-minde-completion.mjs
 
       - name: Materialize Prinds Christian Augusts Minde
