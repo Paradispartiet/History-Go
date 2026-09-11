@@ -5,6 +5,9 @@ on:
     paths:
       - 'data/fag/musikk/**'
       - 'data/fagverk/musikk/**'
+      - 'data/places/musikk/**'
+      - 'data/places/media/oslo/places_oslo_media/nrk_huset_marienlyst.json'
+      - 'data/places/scenekunst/oslo/chateau_neuf.json'
       - 'reports/fagverk/musikk-subject-audit.json'
       - 'reports/fagverk/musikk-theory-integrity-audit.json'
       - 'reports/fagverk/musikk-legacy-theory-audit.json'
@@ -13,6 +16,7 @@ on:
       - 'scripts/audit-fagverk-musikk.mjs'
       - 'scripts/audit-fagverk-musikk-legacy-theory.mjs'
       - 'scripts/audit-fagverk-musikk-legacy-adjudication.mjs'
+      - 'scripts/audit-musikk-source-refresh-place-case-expansion.mjs'
       - 'tools/audit-musikk-theory-integrity.mjs'
       - 'tools/audit-musikk-expanded-quality.mjs'
       - 'tests/fagverk-musikk.test.mjs'
@@ -38,13 +42,15 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
-      - name: Verify bounded Musikk whole-subject expansion audit
+      - name: Verify Musikk post-completion whole-subject expansion proof
         run: |
+          node --check scripts/audit-musikk-source-refresh-place-case-expansion.mjs
           node --check tools/audit-musikk-expanded-quality.mjs
           node scripts/audit-fagverk-musikk.mjs
           node tools/audit-musikk-theory-integrity.mjs
           node scripts/audit-fagverk-musikk-legacy-theory.mjs > /tmp/musikk-legacy-theory.json
           node scripts/audit-fagverk-musikk-legacy-adjudication.mjs > /tmp/musikk-legacy-adjudication.json
+          node scripts/audit-musikk-source-refresh-place-case-expansion.mjs > /tmp/musikk-maintenance.json
           node tools/audit-musikk-expanded-quality.mjs
           node --test tests/fagverk-musikk.test.mjs tests/musikk-theory-integrity.test.mjs tests/musikk-expanded-quality.test.mjs
       - name: Preserve shared Fagverk contracts
