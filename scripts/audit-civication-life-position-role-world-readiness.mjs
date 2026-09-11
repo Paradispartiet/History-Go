@@ -409,7 +409,7 @@ function renderReport(data) {
   lines.push(`**Pending ready positions:** ${data.summary.pending_ready_positions}`,'');
   lines.push('## Decision','');
   if (data.first_ready) lines.push(`First pending ready Role World position: **${data.first_ready.key} — ${data.first_ready.label}**.`,'');
-  else lines.push('No unfinished life position is currently ready for Role World production. Supporter remains source-ready but is already role_world_complete; the remaining standalone-capable positions require authored depth first.','');
+  else lines.push('No unfinished life position is currently ready for Role World production. Source-ready positions that are already role_world_complete remain visible in the 200-position audit but are excluded from the pending queue; remaining standalone-capable positions require authored depth first.','');
   lines.push('Livelihood templates count as provenance for an economic opportunity, but never as sufficient Role World depth on their own.','');
   lines.push('## Top queue','');
   lines.push('| Rank | Position | Class | Exact refs | Livelihood | Narrative depth |');

@@ -29,13 +29,12 @@ assert.deepEqual(audit.summary.classifications, {
   needs_authored_depth: 158,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 1);
-assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.completed_life_position_role_worlds, 2);
+assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 2);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 2);
-assert.equal(audit.first_ready.key, 'by/nabolagskjenner');
-assert.equal(audit.first_ready.classification, 'ready');
+assert.equal(audit.first_ready, null);
 
 assert.deepEqual(policy.noncareer_subject_boundary.life_position_readiness.classifications, [
   'ready',
@@ -47,7 +46,8 @@ assert.equal(policy.noncareer_subject_boundary.life_position_readiness.lifecycle
 const nabolagskjenner = audit.positions.find((row) => row.key === 'by/nabolagskjenner');
 assert.ok(nabolagskjenner);
 assert.equal(nabolagskjenner.classification, 'ready');
-assert.equal(nabolagskjenner.role_world_status, 'role_world_not_started');
+assert.equal(nabolagskjenner.role_world_status, 'role_world_complete');
+assert.equal(nabolagskjenner.role_world_path, 'data/Civication/roleWorlds/by/by_nabolagskjenner.json');
 assert.equal(nabolagskjenner.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(nabolagskjenner.evidence.exact_source_refs, [
   'data/Civication/narratives/leisure/nabolagskjenner.json'
@@ -84,8 +84,8 @@ for (const row of audit.positions.filter((item) => item.classification === 'read
   assert.ok(row.authored_depth.exact_source_ref_count >= 1, `${row.key}: ready requires exact governed provenance`);
 }
 
-assert.ok(!(audit.queue || []).some((row) => row.key === 'sport/supporter'),
-  'completed Supporter world must leave the life-position readiness queue');
+assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjenner'].includes(row.key)),
+  'completed life-position worlds must leave the readiness queue');
 assert.ok((audit.queue || []).every((row) => row.classification !== 'not_a_standalone_world'));
 assert.equal(new Set(audit.positions.map((row) => row.key)).size, 200);
 assert.deepEqual(new Set(audit.positions.map((row) => row.classification)),
@@ -95,4 +95,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 2 ready / 158 authored-depth / 40 not-standalone; Nabolagskjenner pending / Supporter complete');
+console.log('civication life-position Role World readiness v2 ok: 2 ready / 158 authored-depth / 40 not-standalone; 2 life-position Role Worlds complete');
