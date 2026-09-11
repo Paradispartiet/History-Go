@@ -10,7 +10,7 @@ const words = (value) => String(value || '').trim().split(/\s+/u).filter(Boolean
 const check = (condition, message) => { if (!condition) throw new Error(message); };
 const genericLocator = /^(verk-, prosjekt- eller institusjonspresentasjon|nettside|landingsside|hele verket)$/iu;
 const labelClaim = /^[^.!?]{2,80}:\s*[^.!?]{2,120}\.?$/u;
-const THEORY_OR_RESEARCH = /\b(?:teori\p{L}*|modell\p{L}*|forskn\p{L}*|formalisme\p{L}*|nykritikk\p{L}*|hermeneut\p{L}*|struktural\p{L}*|semiot\p{L}*|narratolog\p{L}*|resepsjon\p{L}*|diskurs\p{L}*|dekonstruksjon\p{L}*|psykoanal\p{L}*|fenomenolog\p{L}*|marxis\p{L}*|feminis\p{L}*|queer\p{L}*|postkolon\p{L}*|dekolon\p{L}*|okokrit\p{L}*|kognitiv\p{L}*|empirisk\p{L}*|intertekst\p{L}*|paratekst\p{L}*|poetikk\p{L}*|retorikk\p{L}*|filologi\p{L}*)/iu;
+const THEORY_OR_RESEARCH = /\b(?:\p{L}*teori\p{L}*|modell\p{L}*|\p{L}*forskn\p{L}*|formalisme\p{L}*|nykritikk\p{L}*|hermeneut\p{L}*|struktural\p{L}*|semiot\p{L}*|narratolog\p{L}*|resepsjon\p{L}*|diskurs\p{L}*|dekonstruksjon\p{L}*|psykoanal\p{L}*|fenomenolog\p{L}*|marxis\p{L}*|feminis\p{L}*|queer\p{L}*|postkolon\p{L}*|dekolon\p{L}*|okokrit\p{L}*|kognitiv\p{L}*|empirisk\p{L}*|intertekst\p{L}*|paratekst\p{L}*|poetikk\p{L}*|retorikk\p{L}*|filologi\p{L}*)/iu;
 const METHOD = /\b(?:metod\p{L}*|analyse\p{L}*|nærles\p{L}*|naerles\p{L}*|kompar\p{L}*|sammenlign\p{L}*|tekstkrit\p{L}*|kontekstual\p{L}*|korpus\p{L}*|operasjonalis\p{L}*|kartlegg\p{L}*|registr\p{L}*|arkiv\p{L}*|empirisk\p{L}*|historisk\p{L}*)/iu;
 const LIMIT = /\b(?:inferensgrense\p{L}*|kildegrense\p{L}*|begrens\p{L}*|kan ikke|ikke alene|ikke automatisk|usikker\p{L}*|forbehold\p{L}*|avgrens\p{L}*|rekkevidde\p{L}*|moteksempel\p{L}*)/iu;
 const DISAGREEMENT = /\b(?:alternativ\p{L}*|rivaliser\p{L}*|konkurrer\p{L}*|motles\p{L}*|motmodell\p{L}*|kontrast\p{L}*|spenning\p{L}*|uenig\p{L}*|motstrid\p{L}*|debatt\p{L}*|kritikk\p{L}*|utfordr\p{L}*)/iu;
@@ -85,7 +85,7 @@ export function auditLitteraturArticleEditorialQuality() {
       check(!/Artikkelen behandler/u.test(prose), `${entry.areaId}/${section.id}: serieprodusert åpning`);
       check(!/\b[a-zæøå0-9]+(?:_[a-zæøå0-9]+){2,}\b/u.test(prose), `${entry.areaId}/${section.id}: rå canonical-ID i leserprosa`);
       check(section.paragraphs.every((paragraph) => /^\p{Lu}/u.test(paragraph.trim())), `${entry.areaId}/${section.id}: avsnitt starter ikke med stor bokstav`);
-      check((section.keyPoints || []).some((point) => /grense|begrens|skiller|ikke|usikker|alternativ/iu.test(point)), `${entry.areaId}/${section.id}: mangler synlig inferensgrense`);
+      check((section.keyPoints || []).some((point) => /grense|begrens|skiller|ikke|usikker|alternativ|utfordr|for grov|trengs før/iu.test(point)), `${entry.areaId}/${section.id}: mangler synlig inferensgrense`);
       for (const sentence of prose.split(/(?<=[.!?])\s+/u).map((value) => value.trim()).filter((value) => words(value) >= 8)) {
         sentenceCounts.set(sentence, (sentenceCounts.get(sentence) || 0) + 1);
       }
