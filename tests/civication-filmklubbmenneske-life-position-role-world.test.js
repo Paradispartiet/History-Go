@@ -132,8 +132,8 @@ assert.deepEqual(readiness.evidence.livelihood_templates, ['filmklubbmenneske_vi
 assert.ok(!audit.queue.some((row) => row.key === 'film_tv/filmklubbmenneske'));
 assert.equal(audit.summary.life_position_role_world_complete, 3);
 assert.equal(audit.summary.completed_life_position_role_worlds, 3);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.first_ready?.key, 'filosofi/sofafilosof');
 
 execFileSync(process.execPath, ['tests/civication-role-world-contract.test.js'], { cwd: ROOT, stdio: 'pipe' });
 execFileSync(process.execPath, ['tests/civication-noncareer-role-taxonomy.test.js'], { cwd: ROOT, stdio: 'pipe' });
