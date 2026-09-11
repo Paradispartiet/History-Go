@@ -189,29 +189,6 @@ function narrativeMetadataMatch(record, position) {
     applies_when: record.json.applies_when
   }));
   const rel = normalizeText(record.rel);
-  return canonicalNeedles(position).some((needle) => meta.includes(needle) || rel.includes(needle));
-}
-
-');
-}
-
-function containsCanonicalNeedle(haystack, needle) {
-  const text = String(haystack || '');
-  const token = String(needle || '');
-  if (!text || !token) return false;
-  return new RegExp('(^|[^a-z0-9])' + regexEscape(token) + '($|[^a-z0-9])').test(text);
-}
-
-function narrativeMetadataMatch(record, position) {
-  if (!record.json || !record.rel.startsWith('data/Civication/narratives/')) return false;
-  const meta = normalizeText(JSON.stringify({
-    id: record.json.id,
-    type: record.json.type,
-    title: record.json.title,
-    sociological_theme: record.json.sociological_theme,
-    applies_when: record.json.applies_when
-  }));
-  const rel = normalizeText(record.rel);
   return canonicalNeedles(position).some((needle) =>
     containsCanonicalNeedle(meta, needle) || containsCanonicalNeedle(rel, needle)
   );
