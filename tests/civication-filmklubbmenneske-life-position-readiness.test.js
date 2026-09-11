@@ -15,6 +15,8 @@ const manifest = readJson('data/Civication/narratives/manifest.json');
 const audit = readJson('data/Civication/lifePositionRoleWorldReadiness.json');
 const catalog = readJson('data/Civication/lifePositionCatalog.json');
 const livelihood = readJson('data/Civication/livelihoodOpportunityTemplates.json');
+const taxonomy = readJson('data/Civication/nonCareerRoleTaxonomy.json');
+const policy = readJson('data/Civication/roleWorldPolicy.json');
 
 assert.equal(stream.schema, 'civication_narrative_stream_v1');
 assert.equal(stream.id, 'filmklubbmenneske_stream');
@@ -75,6 +77,8 @@ assert.equal(audit.summary.pending_ready_positions, 1);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 3);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 3);
 assert.equal(audit.first_ready?.key, 'film_tv/filmklubbmenneske');
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'film_tv/filmklubbmenneske');
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'film_tv/filmklubbmenneske');
 
 const genericKjenner = audit.positions.find((row) => row.key === 'film_tv/kjenner');
 assert.ok(genericKjenner);
