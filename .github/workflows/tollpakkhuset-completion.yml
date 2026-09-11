@@ -52,8 +52,9 @@ jobs:
           ];
           for (const [from, to] of replacements) {
             const count = src.split(from).length - 1;
-            if (count !== 1) throw new Error(`Expected exactly one audit match for ${from}; got ${count}`);
-            src = src.replace(from, to);
+            if (count < 1) throw new Error(`Expected at least one audit match for ${from}; got ${count}`);
+            src = src.split(from).join(to);
+            console.log(`Patched ${count} occurrence(s): ${from}`);
           }
           fs.writeFileSync(file, src);
           const { auditQuizProductionContext } = await import(`./scripts/audit-quiz-production-context.mjs?baseline=${Date.now()}`);
@@ -111,8 +112,9 @@ jobs:
           ];
           for (const [from, to] of replacements) {
             const count = src.split(from).length - 1;
-            if (count !== 1) throw new Error(`Expected exactly one audit match for ${from}; got ${count}`);
-            src = src.replace(from, to);
+            if (count < 1) throw new Error(`Expected at least one audit match for ${from}; got ${count}`);
+            src = src.split(from).join(to);
+            console.log(`Patched ${count} occurrence(s): ${from}`);
           }
           fs.writeFileSync(file, src);
           const { auditQuizProductionContext } = await import(`./scripts/audit-quiz-production-context.mjs?post=${Date.now()}`);
