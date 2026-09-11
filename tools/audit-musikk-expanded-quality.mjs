@@ -5,6 +5,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { auditRepository } from '../scripts/audit-fagverk-musikk.mjs';
 import { auditMusikkTheoryIntegrity } from './audit-musikk-theory-integrity.mjs';
+import { auditMusikkSourceRefreshPlaceCaseExpansion } from '../scripts/audit-musikk-source-refresh-place-case-expansion.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CONTRACT = 'data/fag/musikk/expanded_quality_contract_v1.json';
@@ -12,7 +13,7 @@ const SUBJECT_STATUS = 'data/fagverk/subject_status.json';
 const PLAN = 'reports/fagverk/fagverk-expanded-subject-by-subject-audit-v1.json';
 const THEORY_BINDINGS = 'data/fag/musikk/musikkvitenskap_canonical_v1/theory_integrity_bindings_v1.json';
 const LEGACY_ADJUDICATION = 'data/fag/musikk/legacy_theory_adjudication_v1.json';
-const MAINTENANCE_DIR = 'data/fagverk/musikk/maintenance';
+const ROUND_FILE = 'data/fagverk/musikk/maintenance/source-refresh-place-case-expansion-round1-2026-09-11.json';
 const REPORT = 'reports/fagverk/musikk-expanded-quality-audit.json';
 
 const abs = (p) => path.join(ROOT, p);
@@ -21,13 +22,15 @@ const assert = (ok, message) => { if (!ok) throw new Error(message); };
 
 const REQUIRED_RULES = {
   whole_subject_expansion_proof_required: true,
-  strict_theory_integrity_alone_is_insufficient: true,
+  all_canonical_domains_must_be_reconciled: true,
+  every_canonical_chapter_must_have_post_completion_source_case_expansion: true,
+  strict_theory_integrity_required_per_major_field: true,
+  baseline_complete_audit_required: true,
+  post_completion_maintenance_may_supply_expansion_evidence: true,
   legacy_equivalence_or_route_retirement_alone_is_insufficient: true,
-  missing_expansion_proof_is_not_automatically_a_content_gap: true,
-  separate_post_completion_quality_expansion_evidence_required: true,
   content_rewrite_allowed_only_for_proven_substantive_gap: true,
   quality_status_is_separate_from_global_editorial_lifecycle: true,
-  global_subject_lifecycle_is_read_only_for_this_audit: true,
+  global_subject_lifecycle_is_read_only_for_this_reconciliation: true,
   global_subject_by_subject_plan_is_read_only: true,
   all_declared_rules_and_required_gates_are_enforced: true
 };
@@ -46,7 +49,11 @@ const EXPECTED = {
   legacy_knowledge_sections: 8,
   legacy_canonical_supersedes: 8,
   legacy_migrated_sections: 0,
-  post_completion_expansion_artifacts: 0,
+  maintenance_rounds: 1,
+  reconciled_chapters: 8,
+  maintenance_cases: 8,
+  source_refreshes: 16,
+  projected_unique_places: 8,
   substantive_content_gaps: 0
 };
 
@@ -55,6 +62,7 @@ const REQUIRED_GATES = [
   'tools/audit-musikk-theory-integrity.mjs',
   'scripts/audit-fagverk-musikk-legacy-theory.mjs',
   'scripts/audit-fagverk-musikk-legacy-adjudication.mjs',
+  'scripts/audit-musikk-source-refresh-place-case-expansion.mjs',
   'tools/audit-musikk-expanded-quality.mjs',
   'tests/musikk-expanded-quality.test.mjs'
 ];
@@ -67,7 +75,7 @@ function runJsonScript(script) {
 
 function assertContract(contract) {
   assert(contract.schema === 'history_go_musikk_expanded_quality_contract_v1', 'Ugyldig Musikk expanded-quality-kontrakt');
-  assert(contract.version === '1.0.0' && contract.status === 'active', 'Musikk expanded-quality-kontrakten er ikke aktiv v1.0.0');
+  assert(contract.version === '1.1.0' && contract.status === 'active', 'Musikk expanded-quality-kontrakten er ikke aktiv v1.1.0');
   assert(JSON.stringify(contract.rules) === JSON.stringify(REQUIRED_RULES), 'Musikk expanded-quality-reglene er svekket, mangler eller har ukjente tillegg');
   assert(JSON.stringify(contract.expected) === JSON.stringify(EXPECTED), 'Musikk expanded-quality-denominator eller nullkøer er endret');
   assert(JSON.stringify(contract.required_gates) === JSON.stringify(REQUIRED_GATES), 'Musikk expanded-quality required_gates er usynkronisert');
@@ -81,16 +89,18 @@ export function auditMusikkExpandedQuality({ writeReport = false, checkReport = 
   const plan = json(PLAN);
   const theoryBindings = json(THEORY_BINDINGS);
   const legacyAdjudicationData = json(LEGACY_ADJUDICATION);
+  const maintenanceDoc = json(ROUND_FILE);
   assertContract(contract);
 
   const { report: complete } = auditRepository({ writeReport: false, checkReport: true });
   const theory = auditMusikkTheoryIntegrity({ writeReport: false, checkReport: true });
   const legacyAudit = runJsonScript('scripts/audit-fagverk-musikk-legacy-theory.mjs');
   const legacyAdjudication = runJsonScript('scripts/audit-fagverk-musikk-legacy-adjudication.mjs');
+  const maintenance = auditMusikkSourceRefreshPlaceCaseExpansion();
 
   const musikkStatus = status.subjects.find((row) => row.id === 'musikk');
   assert(musikkStatus, 'Global Fagverk-status mangler Musikk');
-  assert(musikkStatus.editorialStatus === 'complete', 'Denne auditen skal ikke mutere global Musikk lifecycle-status');
+  assert(musikkStatus.editorialStatus === 'complete', 'Denne reconciliationen skal ikke mutere global Musikk lifecycle-status');
   assert(musikkStatus.nextGate === 'maintenance_source_refresh_and_place_case_expansion', 'Global Musikk nextGate er uventet endret');
 
   assert(plan.status === 'read_only_fail_closed_audit_complete', 'Fag-for-fag-planen er ikke lenger read-only fail-closed');
@@ -98,7 +108,7 @@ export function auditMusikkExpandedQuality({ writeReport = false, checkReport = 
   assert(plan.standard?.missing_expansion_proof_is_not_automatically_a_content_gap === true, 'Planen skiller ikke lenger proof gap fra content gap');
   const planMusikk = plan.subjects.find((row) => row.id === 'musikk');
   assert(planMusikk, 'Read-only fag-for-fag-plan mangler Musikk');
-  assert(planMusikk.whole_subject_expansion_proven === false, 'Read-only plan-snapshot skal ikke muteres av denne auditen');
+  assert(planMusikk.whole_subject_expansion_proven === false, 'Read-only plan-snapshot skal ikke muteres av denne reconciliationen');
   assert(planMusikk.content_gap_proven === false, 'Read-only plan-snapshot skal fortsatt vise at intet innholdshull var bevist');
   assert(planMusikk.expanded_verdict === 'HIGH_QUALITY_COMPLETE_NO_SEPARATE_WHOLE_SUBJECT_EXPANSION_PROOF', 'Read-only plan-snapshot har uventet Musikk-verdict');
 
@@ -128,39 +138,68 @@ export function auditMusikkExpandedQuality({ writeReport = false, checkReport = 
   assert(legacyAdjudication.summary?.redirectReady === true, 'Musikk legacy-adjudisering er ikke fullført');
   assert((legacyAdjudicationData.sections || []).filter((row) => row.role === 'knowledge').every((row) => (row.migration_refs || []).length === 0), 'Musikk legacy-adjudisering inneholder migreringsbevis som må revurderes');
 
-  const postCompletionExpansionArtifacts = fs.existsSync(abs(MAINTENANCE_DIR))
-    ? fs.readdirSync(abs(MAINTENANCE_DIR)).filter((name) => !name.startsWith('.')).length
-    : 0;
-  assert(postCompletionExpansionArtifacts === EXPECTED.post_completion_expansion_artifacts, 'Musikk har fått post-completion expansion-artefakter; bounded audit må revurderes');
+  assert(maintenance.status === 'passed', 'Musikk maintenance round 1 er ikke grønn');
+  assert(maintenance.round === 1, 'Musikk expanded-quality forventer eksakt maintenance round 1');
+  assert(maintenance.chapter_count === EXPECTED.reconciled_chapters, 'Musikk maintenance reconciler ikke alle 8 kapitler');
+  assert(maintenance.canonical_chapter_count === EXPECTED.canonical_chapters, 'Musikk maintenance er ikke låst til 8 canonicale kapitler');
+  assert(maintenance.case_count === EXPECTED.maintenance_cases, 'Musikk maintenance har feil antall nye case');
+  assert(maintenance.source_refresh_count === EXPECTED.source_refreshes, 'Musikk maintenance har feil antall kildekontroller');
+  assert(maintenance.baseline_unique_place_count === EXPECTED.baseline_unique_places, 'Musikk maintenance bruker feil stedscase-baseline');
+  assert(maintenance.projected_unique_place_count === EXPECTED.projected_unique_places, 'Musikk maintenance dokumenterer feil projisert stedscasebredde');
+  assert(maintenance.gates?.claim_provenance_preserved === true, 'Musikk maintenance svekker claim provenance');
+  assert(maintenance.gates?.theory_integrity_scope_unchanged === true, 'Musikk maintenance endrer theory-integrity-scope');
+  assert(maintenance.gates?.subject_architecture_unchanged === true, 'Musikk maintenance endrer fagarkitekturen');
+  assert(maintenance.gates?.completion_status_preserved === true, 'Musikk maintenance endrer completion-status');
+  assert(maintenance.gates?.existing_place_only === true, 'Musikk maintenance introduserer uventet stedsproduksjon');
+  assert(maintenance.gates?.no_chapter_prose_rewrite === true, 'Musikk maintenance omskriver uventet kapittelprosa');
+
+  assert(maintenanceDoc.status === 'verified', 'Musikk maintenance-evidence er ikke verified');
+  assert(maintenanceDoc.scope?.maintenance_evidence_only === true, 'Musikk maintenance skal være evidence-only');
+  assert(maintenanceDoc.scope?.place_production === false && maintenanceDoc.scope?.chapter_prose_rewrite === false, 'Musikk maintenance skal verken produsere steder eller omskrive kapitler');
+  assert(maintenanceDoc.target_chapters.length === EXPECTED.reconciled_chapters, 'Musikk maintenance har feil target-denominator');
+  assert(new Set(maintenanceDoc.target_chapters).size === EXPECTED.reconciled_chapters, 'Musikk maintenance-targets overlapper');
+  assert(maintenanceDoc.cases.length === EXPECTED.maintenance_cases, 'Musikk maintenance-doc har feil case-denominator');
+  assert(maintenanceDoc.source_refresh.length === EXPECTED.source_refreshes, 'Musikk maintenance-doc har feil source-denominator');
+  assert(new Set(maintenanceDoc.source_refresh.map((source) => source.id)).size === EXPECTED.source_refreshes, 'Musikk maintenance-kilde-ID-er overlapper');
+
+  const canonicalChapterIds = complete.chapterAudits.map((row) => row.chapterId);
+  assert(new Set(canonicalChapterIds).size === EXPECTED.canonical_chapters, 'Musikk subject-audit har ikke 8 unike canonicale kapittel-ID-er');
+  assert(canonicalChapterIds.every((chapterId) => maintenanceDoc.target_chapters.includes(chapterId)), 'Minst ett canonicalt Musikk-kapittel mangler post-completion expansion');
+  assert(maintenanceDoc.target_chapters.every((chapterId) => canonicalChapterIds.includes(chapterId)), 'Maintenance inneholder et ikke-canonicalt Musikk-kapittel');
 
   const theoryByDomain = new Map(theory.fields.map((field) => [field.domainId, field]));
+  const casesByChapter = new Map(maintenanceDoc.cases.map((item) => [item.chapter_id, item]));
   const domains = complete.canonicalDomainOrder.map((domainId) => {
     const theoryField = theoryByDomain.get(domainId);
     assert(theoryField?.strictlyProven === true, `${domainId}: strict theory proof mangler`);
     const chapter = complete.chapterAudits.find((row) => row.domainId === domainId);
     assert(chapter, `${domainId}: canonicalt Musikk-kapittel mangler`);
+    assert(casesByChapter.has(chapter.chapterId), `${domainId}: kapittelet mangler post-completion kildebundet stedscase`);
+    assert(chapter.paragraphCount >= 27 && chapter.claimCount >= 1 && chapter.sourceCount >= 1, `${domainId}: baseline helfagskvalitet er svekket`);
     return {
       domainId,
       chapterId: chapter.chapterId,
       strictTheoryProven: true,
-      separatePostCompletionExpansionEvidence: false,
+      postCompletionSourceCaseExpansionProven: true,
+      postCompletionCaseCount: 1,
       substantiveContentGapProven: false
     };
   });
-  assert(domains.length === EXPECTED.canonical_domains, 'Musikk expanded-quality-audit dekker ikke 8/8 fagområder');
+  assert(domains.length === EXPECTED.canonical_domains, 'Musikk expanded-quality dekker ikke 8/8 fagområder');
+  assert(domains.every((row) => row.strictTheoryProven && row.postCompletionSourceCaseExpansionProven && !row.substantiveContentGapProven), 'Musikk expanded-quality har ulukket fagområde');
 
   const report = {
     schema: 'history_go_musikk_expanded_quality_audit_v1',
-    version: '1.0.0',
+    version: '1.1.0',
     subject_id: 'musikk',
-    status: 'WHOLE_SUBJECT_EXPANSION_NOT_PROVEN',
+    status: 'PROVEN_WHOLE_SUBJECT_EXPANSION',
     canonical_editorial_status_mutated: false,
     canonical_editorial_status: musikkStatus.editorialStatus,
-    quality_status: 'high_quality_complete_without_separate_whole_subject_expansion_proof',
-    whole_subject_expansion_proven: false,
+    quality_status: 'expanded_and_audited',
+    whole_subject_expansion_proven: true,
     content_gap_proven: false,
     content_rewrite_required: false,
-    conclusion: 'Musikk består bounded whole-subject-auditen som et sterkt complete-fag, men separate expanded-status kan ikke bevises. 8/8 felt er strict theory-proven, 8/8 legacy-kunnskapsseksjoner er canonicalt superseded uten migrering, og 0 substansielle innholdshull er påvist. Samtidig finnes ingen separat post-completion source/case- eller annen kvalitetsutvidelse over de åtte canonicale kapitlene. Manglende expansion-proof skal derfor ikke konverteres til kunstig innholdsproduksjon.',
+    conclusion: 'Musikk har bevist helfags expanded-kvalitet uten omskriving av de åtte canonicale kapitlene: 8/8 kapitler fikk dokumentert post-completion kilde- og stedscaseutvidelse i en permanent maintenance-runde med 16 kildeoppfriskninger og 8 eksisterende canonicale stedanker. Alle 8 fagområder forblir strict theory-proven, legacy-reconciliationen forblir 8/8 uten migrering, og 0 substansielle innholdshull er påvist. Global Fagverk-lifecycle forblir complete, og den historiske read-only fag-for-fag-planen muteres ikke.',
     summary: {
       canonicalDomains: EXPECTED.canonical_domains,
       canonicalChapters: EXPECTED.canonical_chapters,
@@ -175,7 +214,11 @@ export function auditMusikkExpandedQuality({ writeReport = false, checkReport = 
       legacyKnowledgeSections: EXPECTED.legacy_knowledge_sections,
       legacyCanonicalSupersedes: EXPECTED.legacy_canonical_supersedes,
       legacyMigratedSections: EXPECTED.legacy_migrated_sections,
-      postCompletionExpansionArtifacts,
+      maintenanceRounds: EXPECTED.maintenance_rounds,
+      reconciledChapters: EXPECTED.reconciled_chapters,
+      maintenanceCases: EXPECTED.maintenance_cases,
+      sourceRefreshes: EXPECTED.source_refreshes,
+      projectedUniquePlaces: EXPECTED.projected_unique_places,
       substantiveContentGapsProven: EXPECTED.substantive_content_gaps
     },
     readOnlyPlanSnapshot: {
@@ -186,13 +229,14 @@ export function auditMusikkExpandedQuality({ writeReport = false, checkReport = 
       priorContentGapProven: planMusikk.content_gap_proven
     },
     domains,
-    nextAction: 'Do not create Musikk content without a demonstrated qualitative gap. Whole-subject expansion proof can be reopened only after explicit post-completion quality expansion evidence exists or a future bounded audit proves a real content gap.',
     evidence: {
       completeAudit: 'reports/fagverk/musikk-subject-audit.json',
       theoryAudit: 'reports/fagverk/musikk-theory-integrity-audit.json',
       theoryBindings: THEORY_BINDINGS,
       legacyTheoryAudit: 'reports/fagverk/musikk-legacy-theory-audit.json',
       legacyAdjudication: LEGACY_ADJUDICATION,
+      maintenanceRounds: [ROUND_FILE],
+      expandedQualityContract: CONTRACT,
       globalLifecycleRegistry: SUBJECT_STATUS
     }
   };
@@ -212,7 +256,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const args = new Set(process.argv.slice(2));
   try {
     const report = auditMusikkExpandedQuality({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-    console.log(`Musikk whole-subject audit OK: ${report.summary.canonicalDomains}/8 fagområder strict-proven, ${report.summary.postCompletionExpansionArtifacts} post-completion expansion-artefakter, ${report.summary.substantiveContentGapsProven} innholdshull, expanded=${report.whole_subject_expansion_proven}.`);
+    console.log(`Musikk expanded-quality OK: ${report.summary.canonicalDomains}/8 fagområder, ${report.summary.reconciledChapters}/8 post-completion-reconciled chapters, ${report.summary.strictFields}/8 strict fields, ${report.summary.substantiveContentGapsProven} innholdshull.`);
   } catch (error) {
     console.error(`Musikk expanded-quality FEIL: ${error.message}`);
     process.exitCode = 1;
