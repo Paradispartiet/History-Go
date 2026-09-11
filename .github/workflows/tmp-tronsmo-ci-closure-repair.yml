@@ -1,0 +1,89 @@
+name: TEMP Tronsmo CI closure repair
+
+on:
+  push:
+    branches:
+      - agent/tronsmo-bokhandel-completion-20260910
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: ${{ contains(github.event.head_commit.message, '[tronsmo-ci-closure-repair]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Lock fresh main and restore main-owned generated files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin main
+          expected_main='c2dfb1247bcf4f6af1b4013d9efa1b6e9b06dd5b'
+          actual_main="$(git rev-parse origin/main)"
+          echo "origin/main=$actual_main"
+          if [ "$actual_main" != "$expected_main" ]; then
+            echo "main moved; aborting targeted repair so Tronsmo can be replayed against the new base" >&2
+            exit 1
+          fi
+          git checkout origin/main -- data/leksikon/manifest.json reports/knowledge-contract-audit.json
+      - name: Reinsert Tronsmo manifest entry without reordering main
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const p='data/leksikon/manifest.json';
+          const tronsmo='data/leksikon/places/oslo/litteratur/leksikon_tronsmo_bokhandel.json';
+          const manifest=JSON.parse(fs.readFileSync(p,'utf8'));
+          manifest.files ||= [];
+          manifest.files=manifest.files.filter(file=>file!==tronsmo);
+          manifest.files.push(tronsmo);
+          fs.writeFileSync(p,`${JSON.stringify(manifest,null,2)}\n`);
+          const birk='data/leksikon/places/oslo/by/leksikon_oslo_by_birkelunden.json';
+          const news='data/leksikon/places/oslo/by/leksikon_oslo_by_birkelunden_news.json';
+          const i=manifest.files.indexOf(birk);
+          if(i<0 || manifest.files[i+1]!==news) throw new Error('Canonical Birkelunden/news adjacency was not preserved from main');
+          if(manifest.files.filter(file=>file===tronsmo).length!==1) throw new Error('Tronsmo manifest entry must appear exactly once');
+          NODE
+      - name: Re-record Tronsmo READ-FIRST preflight
+        run: |
+          node scripts/place-production-rule-preflight.mjs record \
+            --workcard reports/place-production/tronsmo-bokhandel-workcard-current.json \
+            --place-id tronsmo_bokhandel \
+            --category litteratur
+      - name: Verify the three closure repairs
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/place-production-rule-preflight.mjs validate \
+            --workcard reports/place-production/tronsmo-bokhandel-workcard-current.json
+          node scripts/audit-repository-hygiene-v1.mjs
+          node --test tests/birkelunden-phase7e-news.test.mjs tests/tronsmo-bokhandel-completion.test.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const bytes=fs.statSync('reports/knowledge-contract-audit.json').size;
+          if(bytes>500*1024) throw new Error(`knowledge-contract-audit still too large: ${bytes}`);
+          console.log(`knowledge-contract-audit restored to ${bytes} bytes`);
+          NODE
+      - name: Remove temporary workflow and commit permanent repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/tmp-tronsmo-ci-closure-repair.yml
+          git add -A
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'No repair changes to commit' >&2
+            exit 1
+          fi
+          git commit -m 'Close Tronsmo production CI regressions'
+          git push
