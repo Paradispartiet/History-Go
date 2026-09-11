@@ -1,16 +1,16 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 200
-**Classification:** 1 role_world_complete / 0 role_world_candidate / 159 needs_authored_depth / 40 prefer_overlay_context
+**Classification:** 1 ready / 159 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 14
 **Exact governed-source matches:** 1
 **Multi-scene narrative foundations:** 1
 **Completed life-position Role Worlds:** 1
-**Pending source-backed candidates:** 0
+**Pending ready positions:** 0
 
 ## Decision
 
-The existing source-backed candidate has been completed; no remaining life position currently has enough governed multi-scene role-specific depth to enter Role World production without prior source authoring.
+No unfinished life position is currently ready for Role World production. Supporter remains source-ready but is already role_world_complete; the remaining standalone-capable positions require authored depth first.
 
 Livelihood templates count as provenance for an economic opportunity, but never as sufficient Role World depth on their own.
 
@@ -51,9 +51,10 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 ## Boundaries
 
+- Readiness classification is separate from Role World lifecycle status; completed worlds stay visible in the 200-position audit but leave the pending queue.
 - This audit does not create a NonCareerRoleEngine or new scene format.
 - Circumstances, relationships and livelihood remain separate runtime layers.
 - Generic private-life scenes may support aftermath, but cannot prove a specific life-position world by themselves.
-- Achievement/fame/legacy/mandate statuses remain contextual by default unless later authored evidence proves an independent social world.
+- Achievement/fame/legacy/mandate statuses are not standalone worlds by default unless later governed evidence proves an independent social world.
 - Every actual Role World remains one subject per PR and must pass the normal Role World + Scene Pipeline gates.
 
