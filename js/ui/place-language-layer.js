@@ -581,7 +581,7 @@ for (const place of list(global.PLACES)) {
           ${mapBlock("vestlandsk", "Vestlandsk", "is-west")}
           ${mapBlock("austlandsk", "Østlandsk", "is-east")}
         </div>
-        ${activeNames.length ? `<p class="hg-language-atlas-current"><strong>Koblet til dette stedet:</strong> ${esc(unique(activeNames).join(" · "))}${atlasTarget ? ` <button type="button" data-open-atlas-target="${esc(atlasTarget)}">Se talemålet i Språkatlas</button>` : ""}</p>` : ""}
+        ${activeNames.length ? `<p class="hg-language-atlas-current"><strong>Aktivt atlasområde:</strong> ${esc(unique(activeNames).join(" · "))}</p>` : ""}
         <div class="hg-language-atlas-selection" data-atlas-selection hidden aria-live="polite">
           <span>Utforsker</span>
           <strong data-atlas-selection-title></strong>
