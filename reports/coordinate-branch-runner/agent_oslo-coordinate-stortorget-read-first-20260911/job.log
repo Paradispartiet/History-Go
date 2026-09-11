@@ -1,0 +1,49 @@
+Recorded current rule preflight in reports/place-production/stortorget-workcard-current.json
+Place READ-FIRST preflight PASS: reports/place-production/stortorget-workcard-current.json
+Place READ-FIRST preflight PASS (1 workcard(s) validated).
+TAP version 13
+# Subtest: historie preflight requires all canonical rule files plus category badge
+ok 1 - historie preflight requires all canonical rule files plus category badge
+  ---
+  duration_ms: 1.081953
+  type: 'test'
+  ...
+# Subtest: recorded historie preflight snapshots the canonical four-collection route
+ok 2 - recorded historie preflight snapshots the canonical four-collection route
+  ---
+  duration_ms: 2.951423
+  type: 'test'
+  ...
+# Subtest: fresh rule evidence validates and a stale hash is rejected
+ok 3 - fresh rule evidence validates and a stale hash is rejected
+  ---
+  duration_ms: 4.488278
+  type: 'test'
+  ...
+# Subtest: status-only workcard cleanup does not pretend to be a new rule-read
+ok 4 - status-only workcard cleanup does not pretend to be a new rule-read
+  ---
+  duration_ms: 0.400929
+  type: 'test'
+  ...
+# Subtest: production-relevant workcard edits still require fresh rule evidence
+ok 5 - production-relevant workcard edits still require fresh rule evidence
+  ---
+  duration_ms: 0.407488
+  type: 'test'
+  ...
+# Subtest: READ-FIRST compares place workcards against the current pull-request base branch
+ok 6 - READ-FIRST compares place workcards against the current pull-request base branch
+  ---
+  duration_ms: 0.272715
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 83.190736

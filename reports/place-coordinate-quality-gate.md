@@ -1,6 +1,6 @@
 # Place coordinate quality gate
 
-Generert: 2026-09-01T12:17:53.680Z
+Generert: 2026-09-11T03:21:38.814Z
 
 ## Oppsummering
 - Aktive filer validert: **1547**
@@ -34,7 +34,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places/vulkan_energisentral.json
 - data/places/by/oslo/places/aker_brygge.json
 - data/places/by/oslo/places/tigeren.json
-- data/places/by/oslo/places/gronland_kirke.json
 - data/places/by/oslo/places/kampen_kirke.json
 - data/places/by/oslo/places/jernbanetorget.json
 - data/places/by/oslo/places/oslo_bussterminal.json
@@ -96,7 +95,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/gamle_trikkestallen/gamle_trikkestallen.json
 - data/places/politikk/oslo/slottet/slottet.json
 - data/places/by/oslo/sofienberg_kirke/sofienberg_kirke.json
-- data/places/by/oslo/trefoldighetskirken/trefoldighetskirken.json
 - data/places/historie/oslo/places_historie_added_batch_01/nonneseter_kloster.json
 - data/places/historie/oslo/places_historie_added_batch_01/oslo_ladegard.json
 - data/places/historie/oslo/places_historie_added_batch_01/galgeberg.json
@@ -1565,6 +1563,8 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/religion/oslo/akershus_slottskirke/akershus_slottskirke.json
 - data/places/religion/oslo/det_kongelige_mausoleum/det_kongelige_mausoleum.json
 - data/places/by/oslo/places/hammersborg_torg.json
+- data/places/religion/oslo/trefoldighetskirken/trefoldighetskirken.json
+- data/places/religion/oslo/gronland_kirke/gronland_kirke.json
 
 ## Harde feil
 - Ingen
@@ -1574,7 +1574,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places/ring_3.json#ring_3: lineært sted uten anchors
 - data/places/by/oslo/places/oslo_s.json#oslo_s: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places/vulkan_energisentral.json#vulkan_energisentral: coordStatus=verified uten coordPrecisionM
-- data/places/by/oslo/places/gronland_kirke.json#gronland_kirke: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places/kampen_kirke.json#kampen_kirke: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places/oslo_bussterminal.json#oslo_bussterminal: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places/christiania_torv.json#christiania_torv: lineært sted uten anchors
@@ -1592,7 +1591,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/gamle_trikkestallen/gamle_trikkestallen.json#gamle_trikkestallen: coordStatus=verified uten coordPrecisionM
 - data/places/politikk/oslo/slottet/slottet.json#slottet: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/sofienberg_kirke/sofienberg_kirke.json#sofienberg_kirke: coordStatus=verified uten coordPrecisionM
-- data/places/by/oslo/trefoldighetskirken/trefoldighetskirken.json#trefoldighetskirken: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie_added_batch_01/oslo_ladegard.json#oslo_ladegard: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie_added_batch_01/botsfengselet.json#botsfengselet: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie_added_batch_01/prinds_christian_augusts_minde.json#prinds_christian_augusts_minde: lineært sted uten anchors
@@ -2232,6 +2230,8 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/politikk/oslo/bla_skilt/bla_skilt_anna_rogstad_henrichsens_gate_3.json#bla_skilt_anna_rogstad_henrichsens_gate_3: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/bla_skilt/bla_skilt_astri_stockfleth_sofies_gate_74.json#bla_skilt_astri_stockfleth_sofies_gate_74: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv/freia_fabrikken.json#freia_fabrikken: coordStatus=verified uten coordPrecisionM
+- data/places/religion/oslo/trefoldighetskirken/trefoldighetskirken.json#trefoldighetskirken: coordStatus=verified uten coordPrecisionM
+- data/places/religion/oslo/gronland_kirke/gronland_kirke.json#gronland_kirke: coordStatus=verified uten coordPrecisionM
 
 ## Coordinate review candidates
 
@@ -2257,7 +2257,6 @@ Totalt 808 signaler fordelt på 703 steder. Et sted kan ha flere signaler. Kandi
 | gronland_basarene | Grønland basarene | by | data/places/by/oslo/places/gronland_basarene.json | 59.91278287002734 | 10.76391148376898 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | oslo_s | Oslo S | by | data/places/by/oslo/places/oslo_s.json | 59.91087480164096 | 10.750736725832216 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | vulkan_energisentral | Vulkan energisentral | by | data/places/by/oslo/places/vulkan_energisentral.json | 59.92225253860743 | 10.751749415749577 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| gronland_kirke | Grønland kirke | by | data/places/by/oslo/places/gronland_kirke.json | 59.9110993638745 | 10.767560036280734 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | kampen_kirke | Kampen kirke | by | data/places/by/oslo/places/kampen_kirke.json | 59.911907208292654 | 10.781606997031624 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | oslo_bussterminal | Oslo bussterminal | by | data/places/by/oslo/places/oslo_bussterminal.json | 59.911683292287975 | 10.758147862149471 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | deichman_bjorvika | Deichman Bjørvika | by | data/places/by/oslo/places/deichman_bjorvika.json | 59.90868907082338 | 10.75212918471088 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -2274,7 +2273,6 @@ Totalt 808 signaler fordelt på 703 steder. Et sted kan ha flere signaler. Kandi
 | gamle_trikkestallen | Gamle trikkestallen på Torshov | by | data/places/by/oslo/gamle_trikkestallen/gamle_trikkestallen.json | 59.93283549643305 | 10.768161829321377 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | slottet | Det kongelige slott | politikk | data/places/politikk/oslo/slottet/slottet.json | 59.917063045432855 | 10.727724636631736 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | sofienberg_kirke | Sofienberg kirke | by | data/places/by/oslo/sofienberg_kirke/sofienberg_kirke.json | 59.922239531059745 | 10.765987821107696 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| trefoldighetskirken | Trefoldighetskirken | by | data/places/by/oslo/trefoldighetskirken/trefoldighetskirken.json | 59.91672903151453 | 10.744766562559661 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | oslo_ladegard | Oslo ladegård | historie | data/places/historie/oslo/places_historie_added_batch_01/oslo_ladegard.json | 59.906175969346684 | 10.767673829543098 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | botsfengselet | Botsfengselet | historie | data/places/historie/oslo/places_historie_added_batch_01/botsfengselet.json | 59.90971506327703 | 10.774997663433767 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | peststotten_krist_kirkegard | Peststøtten – Krist kirkegård | historie | data/places/historie/oslo/places_historie_added_batch_01/peststotten_krist_kirkegard.json | 59.917469 | 10.746586 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -2645,6 +2643,8 @@ Totalt 808 signaler fordelt på 703 steder. Et sted kan ha flere signaler. Kandi
 | bla_skilt_anna_rogstad_henrichsens_gate_3 | Blått skilt: Anna Rogstad | politikk | data/places/politikk/oslo/bla_skilt/bla_skilt_anna_rogstad_henrichsens_gate_3.json | 59.92525946253369 | 10.737431441020538 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | bla_skilt_astri_stockfleth_sofies_gate_74 | Blått skilt: Astri Stockfleth | naeringsliv | data/places/naeringsliv/oslo/bla_skilt/bla_skilt_astri_stockfleth_sofies_gate_74.json | 59.929416529092734 | 10.73480365969341 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | freia_fabrikken | Freia-fabrikken | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv/freia_fabrikken.json | 59.925721706960225 | 10.76524607727546 | 90 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| trefoldighetskirken | Trefoldighetskirken | religion | data/places/religion/oslo/trefoldighetskirken/trefoldighetskirken.json | 59.91672903151453 | 10.744766562559661 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| gronland_kirke | Grønland kirke | religion | data/places/religion/oslo/gronland_kirke/gronland_kirke.json | 59.9110993638745 | 10.767560036280734 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
 ### lineært sted uten anchors (84)
 
@@ -2731,7 +2731,7 @@ Totalt 808 signaler fordelt på 703 steder. Et sted kan ha flere signaler. Kandi
 | lisbon_santo_antonio_festival | Santo António-festivalen i Lisboa | religion | data/places/religion/europe/portugal/lisbon/lisbon_santo_antonio_festival.json | 38.7117 | -9.1297 | 700 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | kristiansand | Kristiansand | by | data/places/by/agder/kristiansand/kristiansand.json | 58.14615 | 7.9957333 | 900 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | nic_waals_institutt | Nic Waals Institutt | psykologi | data/places/psykologi/oslo/places_psykologi/nic_waals_institutt.json | 59.941911 | 10.748727 | 90 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| lesekiosk_42_munkedamsveien | Lesekiosk 42 – Munkedamsveien | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_42_munkedamsveien.json | 59.9122394 | 10.7272333 | 45 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| lesekiosk_42_munkedamsveien | Lesekiosk 42 – Munkedamsveien | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_42_munkedamsveien.json | 59.9118415 | 10.7189098 | 45 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | mosseveien_miljostasjon | Mosseveien miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/mosseveien_miljostasjon.json | 59.880436134678 | 10.773377511603 | 45 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | tveita_miljostasjon | Tveita miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/tveita_miljostasjon.json | 59.916287307096 | 10.847120089516 | 45 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
@@ -3074,11 +3074,11 @@ Totalt 808 signaler fordelt på 703 steder. Et sted kan ha flere signaler. Kandi
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01/bla_skilt_helverschous_lokke_munkedamsveien_35.json | 59.911785794838465 | 10.7259247905869 | 35 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 | galleri_schaeffers_gate_5 | Galleri Schaeffers Gate 5 | kunst | data/places/kunst/oslo/places_kunst/galleri_schaeffers_gate_5.json | 59.92127390279403 | 10.762304822006952 | 50 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 | sofienbergparken_gjenvinningsstasjon | Sofienbergparken gjenvinningsstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/sofienbergparken_gjenvinningsstasjon.json | 59.923564 | 10.7656953 | 55 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
-| lesekiosk_22_vigelandsparken | Lesekiosk 22 – Vigelandsparken | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_22_vigelandsparken.json | 59.9262575 | 10.7031905 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
-| lesekiosk_42_munkedamsveien | Lesekiosk 42 – Munkedamsveien | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_42_munkedamsveien.json | 59.9122394 | 10.7272333 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
-| lesekiosk_56_vestgrensa_2 | Lesekiosk 56 – John Colletts plass | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_56_vestgrensa_2.json | 59.9411528 | 10.7296172 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
-| lesekiosk_1_solli_plass | Lesekiosk 1 – Solli plass | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_1_solli_plass.json | 59.9150102 | 10.7179623 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
-| lesekiosk_78_olav_kyrres_plass | Lesekiosk 78 – Olav Kyrres plass | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_78_olav_kyrres_plass.json | 59.9192766 | 10.6945543 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| lesekiosk_22_vigelandsparken | Lesekiosk 22 – Vigelandsparken | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_22_vigelandsparken.json | 59.9254315 | 10.704871 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| lesekiosk_42_munkedamsveien | Lesekiosk 42 – Munkedamsveien | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_42_munkedamsveien.json | 59.9118415 | 10.7189098 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| lesekiosk_56_vestgrensa_2 | Lesekiosk 56 – John Colletts plass | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_56_vestgrensa_2.json | 59.9407512 | 10.7294955 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| lesekiosk_1_solli_plass | Lesekiosk 1 – Solli plass | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_1_solli_plass.json | 59.9148491 | 10.7182501 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| lesekiosk_78_olav_kyrres_plass | Lesekiosk 78 – Olav Kyrres plass | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_78_olav_kyrres_plass.json | 59.9191394 | 10.6955202 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 | mosseveien_miljostasjon | Mosseveien miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/mosseveien_miljostasjon.json | 59.880436134678 | 10.773377511603 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 | tveita_miljostasjon | Tveita miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/tveita_miljostasjon.json | 59.916287307096 | 10.847120089516 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 | hammersborg_torg | Hammersborg torg | by | data/places/by/oslo/places/hammersborg_torg.json | 59.9167293 | 10.7484971 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
