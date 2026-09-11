@@ -60,7 +60,7 @@ try {
     true
   );
 
-  console.log('civication life-position readiness badge scope ok: musikk/scenehenger isolated from scenekunst/scenehenger');
+  console.log('civication life-position readiness badge scope ok: musikk/scenehenger isolated from scenekunst/scenehenger by canonical badge binding');
 } finally {
   if (fs.existsSync(fixturePath)) fs.unlinkSync(fixturePath);
   fs.writeFileSync(auditPath, originalAudit);
