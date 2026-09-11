@@ -66,7 +66,7 @@ declare global {
     HG_TodayActionRouter?: any;
     HGHeaderMenu?: { open: () => void; close: () => void; toggle: () => void; isOpen: () => boolean };
     initLeftPanel?: () => void;
-    setLeftPanelMode?: (mode: unknown) => "nearby" | "people" | "nature" | "routes" | "badges";
+    setLeftPanelMode?: (mode: unknown) => "nearby" | "people" | "nature" | "events" | "social" | "routes" | "badges";
     rerenderActiveLeftPanelMode?: () => void;
     renderActiveLeftPanelModeNow?: () => void;
     openNearbyDrawer?: () => void;
@@ -134,8 +134,8 @@ declare global {
     };
     renderNearbyPeople?: () => void;
     HGLeftPanelMode?: {
-      getActiveMode?: () => "nearby" | "people" | "nature" | "routes" | "badges";
-      setMode?: (mode: unknown) => "nearby" | "people" | "nature" | "routes" | "badges";
+      getActiveMode?: () => "nearby" | "people" | "nature" | "events" | "social" | "routes" | "badges";
+      setMode?: (mode: unknown) => "nearby" | "people" | "nature" | "events" | "social" | "routes" | "badges";
       renderNow?: () => void;
       rerender?: () => void;
       updateControlVisibility?: () => void;
