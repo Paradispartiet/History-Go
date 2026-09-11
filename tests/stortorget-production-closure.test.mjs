@@ -19,6 +19,7 @@ const [carl] = read(peopleFile);
 const claims = read(claimsFile);
 const production = read(productionFile);
 const runtime = read("data/runtime/place-open/stortorget.json");
+const [story] = read(storyFile);
 
 test("Stortorget is a complete canonical square without coordinate drift", () => {
   assert.equal(place.id, "stortorget");
@@ -66,6 +67,18 @@ test("Stortorget learning and before/now surfaces are materialized", () => {
   assert.ok(runtime.language.entries.some((entry) => entry.term === "Stortorvet"));
 });
 
+test("Stortorget Story score matches Stories integrity governance", () => {
+  assert.equal(story.id, "st_stortorget_hovedmarked_1737");
+  assert.deepEqual(story.score, {
+    narrative: 3,
+    historical: 2,
+    source: 5,
+    play_value: 3,
+    originality: 3,
+    total: 16
+  });
+});
+
 test("Stortorget alone passes the canonical v4.2 packet validator", () => {
   const result = validatePacket({
     packet: production,
@@ -84,10 +97,12 @@ test("Stortorget user-facing description contains no internal product instructio
 test("Stortorget canonical rebuild entrypoint preserves all production stages", () => {
   const runner = fs.readFileSync(path.join(root, "tools/build-stortorget-completion.mjs"), "utf8");
   assert.match(runner, /finalize-stortorget-completion\.mjs/u);
+  assert.match(runner, /finalize-stortorget-story-integrity\.mjs/u);
   assert.match(runner, /finalize-stortorget-quiz\.mjs/u);
   assert.match(runner, /finalize-stortorget-v42\.mjs/u);
 });
 
 test("Stortorget closure leaves no temporary materialization workflow", () => {
   assert.equal(fs.existsSync(path.join(root, ".github/workflows/_stortorget-materialize-once.yml")), false);
+  assert.equal(fs.existsSync(path.join(root, ".github/workflows/_stortorget-current-main-materialize-once.yml")), false);
 });
