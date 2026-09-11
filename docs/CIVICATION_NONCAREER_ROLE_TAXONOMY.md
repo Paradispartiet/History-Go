@@ -96,7 +96,7 @@ Dette tallet er **ikke** `roleModels`-tallet.
 
 RoleModel-manifestet har **293 filer**. Scenario People-resolveren reduserer dette til **287 canonical roleModels** etter seks shadow-relasjoner. Disse filene brukes til authored rolle-/personresolusjon og kan representere work scopes, Badge-tiers, statusnivåer eller alias. De skal ikke telles som 287 spillerroller.
 
-Career Role World-grunnlaget har fortsatt **85 ferdige karriererolleverdener**. **Supporter**, **Nabolagskjenner**, **Filmklubbmenneske**, **Sofafilosof**, **Historievandrer**, **Gallerivanker**, **Skrivebordspoet** og **Medievaktbikkje** er nå fullførte life-position Role Worlds. Den samlede Role World-indeksen har dermed **93 verdener = 85 career + 8 life_position**.
+Career Role World-grunnlaget har fortsatt **85 ferdige karriererolleverdener**. **Supporter**, **Nabolagskjenner**, **Filmklubbmenneske**, **Sofafilosof**, **Historievandrer**, **Gallerivanker**, **Skrivebordspoet**, **Medievaktbikkje** og **Scenehenger (Musikk)** er nå fullførte life-position Role Worlds. Den samlede Role World-indeksen har dermed **94 verdener = 85 career + 9 life_position**.
 
 ## 4. Hvorfor 118 life_position-deskriptorer, men 117 not_job-tiers?
 
@@ -193,7 +193,7 @@ Tilsvarende er «nær venn» en relasjonsstatus mellom to personer, ikke en livs
 
 Neste non-career Role World-arbeid skal være **readiness først, rolle-for-rolle**. Den maskinlesbare køen ligger i `data/Civication/lifePositionRoleWorldReadiness.json` og genereres av `scripts/audit-civication-life-position-role-world-readiness.mjs`.
 
-`sport/supporter`, `by/nabolagskjenner`, `film_tv/filmklubbmenneske`, `filosofi/sofafilosof`, `historie/historievandrer`, `kunst/gallerivanker`, `litteratur/skrivebordspoet` og `media/medievaktbikkje` er source-backed `ready`-posisjoner som allerede er ferdigstilt som Role Worlds. `musikk/scenehenger` har nå egen governed 14-storylet narrativ dybde og er den eneste uferdige `ready`-kandidaten. Den badge-aware readiness-auditen holder samtidig `scenekunst/scenehenger` separat på `needs_authored_depth`. Fasit er nå **9 ready = 8 role_world_complete + 1 pending**, **151 needs_authored_depth** og **40 not_a_standalone_world**.
+`sport/supporter`, `by/nabolagskjenner`, `film_tv/filmklubbmenneske`, `filosofi/sofafilosof`, `historie/historievandrer`, `kunst/gallerivanker`, `litteratur/skrivebordspoet`, `media/medievaktbikkje` og `musikk/scenehenger` er source-backed `ready`-posisjoner som nå alle er ferdigstilt som Role Worlds. Den badge-aware readiness-auditen holder samtidig `scenekunst/scenehenger` separat på `needs_authored_depth`. Fasit er nå **9 ready = 9 role_world_complete + 0 pending**, **151 needs_authored_depth** og **40 not_a_standalone_world**. Det finnes ingen ny uferdig `ready`-kandidat; neste køhode krever authored dybde før Role World-produksjon.
 
 
 ```text
