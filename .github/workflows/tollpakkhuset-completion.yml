@@ -98,9 +98,11 @@ jobs:
       - name: Validate Næringsliv production contract
         run: node scripts/audit-naeringsliv-place-production.mjs --all
 
-      - name: Validate quiz contracts
+      - name: Validate quiz manifest
+        run: node scripts/audit-quiz-manifest-v2.mjs
+
+      - name: Validate quiz production context against baseline
         run: |
-          node scripts/audit-quiz-manifest-v2.mjs
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           const file = 'scripts/audit-quiz-production-context.mjs';
@@ -146,8 +148,12 @@ jobs:
           }
           console.log('Quiz production context PASS: Tollpakkhuset clean and no baseline regressions');
           NODE
-          node scripts/audit-quiz-progression.mjs
-          node scripts/audit-quiz-theory-binding.mjs
+
+      - name: Validate quiz progression
+        run: node scripts/audit-quiz-progression.mjs
+
+      - name: Validate quiz theory binding
+        run: node scripts/audit-quiz-theory-binding.mjs
 
       - name: Validate place runtime and collection contract
         run: |
