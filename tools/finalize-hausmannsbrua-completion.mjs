@@ -197,6 +197,13 @@ Object.assign(place, {
     stories: { status: "produced" },
     reading_tracks: { status: "produced" }
   },
+  externalLinks: [
+    { type: "reference", label: "Store norske leksikon – Hausmanns bru", url: urls.snl, lang: "nb", verifiedAt },
+    { type: "local_history", label: "Oslo byleksikon – Hausmanns bru", url: urls.bridge, lang: "nb", verifiedAt },
+    { type: "local_history", label: "Oslo byleksikon – Hausmanns gate", url: urls.gate, lang: "nb", verifiedAt },
+    { type: "official", label: "Selskabet for Oslo Byes Vel – blå skilt langs nedre Akerselva", url: urls.plaqueEvent, lang: "nb", verifiedAt },
+    { type: "map", label: "OpenStreetMap – Hausmannsbrua", url: place.coordSourceUrl, verifiedAt }
+  ],
   source_summary: { safe_sources: [urls.snl, urls.bridge, urls.gate, urls.plaqueEvent] },
   production_status: "complete",
   production_verified_at: verifiedAt
@@ -212,16 +219,18 @@ place.fagverk = {
   status: "curated",
   intro: "Hausmannsbrua er et feltsted for å undersøke hvordan teknisk infrastruktur kan bygges om uten at alle eldre material- og formspor forsvinner. Stedet gjør det også mulig å skille fysisk konstruksjon, navnehistorie, vern og senere historieformidling.",
   article: [
-    "Broen ble bygd i 1890–92 og stod ferdig i 1892. Kildene beskriver en støpejerns bue- og fagverkskonstruksjon på 28 meter, med 16 meter som lengste spenn. Disse tekniske opplysningene kommer fra oppslagskilder; et besøk kan vise form og materialpreg, men kan ikke alene bevise mål eller byggeår.",
-    "Utvidelsen i 1986 er stedets tydeligste transformasjonslag. Broen ble tilpasset seks kjørefelt, samtidig som gamle bueformer ble kopiert og det eldre smijernsrekkverket bevart. Det viser at vern ikke alltid betyr at et byggverk fryses i én opprinnelig tilstand.",
-    "Navnet Hausmannsbrua kommer via Hausmanns gate fra Fredrik Ferdinand Hausmann. Han døde i 1757 og var ikke brobygger. Navnesporet er derfor et historisk lag som er eldre enn selve broen og må skilles fra prosjektering og konstruksjon.",
-    "Vernestatusen gjør hverdagsinfrastruktur til kulturminne. Det avgjørende er ikke bare alder, men også konstruksjonstype, materialbruk og hvordan 1892-laget ble håndtert gjennom senere ombygging.",
-    "Det blå historieskiltet er et formidlingslag, ikke del av broens 1892-konstruksjon. En kildekritisk lesning holder fysisk objekt, organisatorisk formidling og historisk påstand adskilt, selv når de møtes på samme sted."
+    "Hausmannsbrua kan leses som et teknisk dokument i full skala. Kildene daterer byggingen til 1890–92 og ferdigstillelsen til 1892, og beskriver en støpejerns bue- og fagverkskonstruksjon på 28 meter med 16 meter som lengste spenn. På stedet kan besøkende undersøke rytmen i konstruksjonen, forholdet mellom spenn og elveløp og hvordan broen møter gateplanet. Derimot kan verken byggeår, eksakte mål eller ansvarlig etat fastslås sikkert bare ved å se på dagens bro; disse opplysningene må hentes fra kontrollerte historiske og tekniske kilder.",
+    "Ombyggingen i 1986 gjør broen særlig egnet til å studere transformasjon. Trafikkbehovet førte til en utvidelse til seks kjørefelt, men ombyggingen ble ikke gjennomført som en full utsletting av den eldre konstruksjonens uttrykk. Oslo byleksikon oppgir at de gamle buekonstruksjonene ble kopiert, mens det eldre smijernsrekkverket ble beholdt. Dermed kan dagens bredde og kapasitet leses som et nyere lag, samtidig som materialer og former gjør den tidligere broen synlig i det nåværende byggverket.",
+    "Det bevarte smijernsrekkverket er metodisk viktig fordi det gir et konkret skille mellom hel struktur og enkeltobjekt. Hele brokroppen eies som Structure, mens rekkverket kan behandles som et selvstendig Object fordi kildene uttrykkelig dokumenterer at nettopp dette fysiske elementet ble bevart gjennom 1986-arbeidet. Andre detaljer splittes ikke ut bare for å fylle en samling. Denne grensen viser hvordan samlingsmodellen kan følge faktisk evidens i stedet for å produsere kunstige underobjekter.",
+    "Navnet legger et annet tidslag over teknikkhistorien. Hausmannsbrua har navn etter Hausmanns gate, som igjen viser til Fredrik Ferdinand Hausmann. Han døde i 1757, mer enn hundre år før broen stod ferdig, og kan derfor ikke behandles som brobygger eller prosjekterende ingeniør. People-koblingen handler om navneopphav. På samme måte holdes ingeniøren P. Schaaning utenfor People-samlingen inntil en kilde knytter initialen og etternavnet direkte til en entydig full personidentitet.",
+    "Vernestatusen viser at infrastruktur kan være kulturminne samtidig som den fortsatt brukes. En nasjonal verneplan må ikke forstås som at alle deler er urørte eller at broen står i en opprinnelig 1892-tilstand. Det interessante er nettopp kombinasjonen av fortsatt trafikkfunksjon, omfattende ombygging og videreføring av utvalgte historiske trekk. Feltarbeid bør derfor registrere hva som faktisk kan observeres i materialer og former, og deretter bruke kilder til å avgjøre hvilke lag som er gamle, kopierte, ombygde eller senere tilført.",
+    "Det blå historieskiltet fra Selskabet for Oslo Byes Vel representerer enda en type stedlig evidens: ettertidens organiserte formidling. Skiltet kan hjelpe en besøkende til å finne historiske påstander, men er ikke selv bevis for at alle påstandene er sanne, og det er heller ikke en del av 1892-konstruksjonen. En kildekritisk lesning av Hausmannsbrua holder derfor minst fire nivåer fra hverandre: det observerbare byggverket, dokumenterte historiske hendelser, navnehistorien og den senere formidlingen av disse lagene."
   ],
   subject_ids: ["by"],
   emne_ids: ["em_by_infrastruktur_mobilitet", "em_by_materialitet_og_sanseerfaring", "em_by_historiske_lag_i_hverdagsrom", "em_by_barrierer_forbindelser"],
+  chapter_ids: ["urbanisme-idealer-forbindelser-fortetting", "byliv-stemning-mikrokomfort", "arkitektur-type-skala-byform", "historiske-lag-ruiner-minner"],
   lenses: [
-    { id: "hausmannsbrua-konstruksjon", title: "Bro som teknisk system", prompt: "Hvilke synlige deler viser bue- og fagverksprinsippet?", subject_id: "by", emne_id: "em_by_infrastruktur_mobilitet", evidence: "Skill observerbar form fra kildebelagte mål, datoer og ingeniøropplysninger." },
+    { id: "hausmannsbrua-konstruksjon", title: "Bro som teknisk system", prompt: "Hvilke synlige deler av Hausmannsbrua viser bue- og fagverksprinsippet i praksis?", subject_id: "by", emne_id: "em_by_infrastruktur_mobilitet", evidence: "Skill observerbar form fra kildebelagte mål, datoer og ingeniøropplysninger." },
     { id: "hausmannsbrua-materiale", title: "Tid i materialer", prompt: "Hva kan rekkverk og støpejernsformer fortelle om eldre lag?", subject_id: "by", emne_id: "em_by_materialitet_og_sanseerfaring", evidence: "Rekkverket er eksplisitt dokumentert som bevart ved 1986-ombyggingen." },
     { id: "hausmannsbrua-transformasjon", title: "Ombygging uten utsletting", prompt: "Hvordan kan seks kjørefelt og historiske former eksistere i samme bro?", subject_id: "by", emne_id: "em_by_historiske_lag_i_hverdagsrom", evidence: "Sammenhold 1892-konstruksjonen med utvidelsen i 1986." },
     { id: "hausmannsbrua-navn", title: "Navn er ikke byggherre", prompt: "Hvorfor er Fredrik Ferdinand Hausmann relevant når han døde lenge før broen ble bygd?", subject_id: "by", emne_id: "em_by_historiske_lag_i_hverdagsrom", evidence: "Navnet går via Hausmanns gate; personkoblingen gjelder navneopphav." },
@@ -249,6 +258,17 @@ place.fagverk = {
   verified_at: verifiedAt
 };
 write(placeFile, place);
+const fagverkRegistry = read("data/fagverk/fagverk_registry.json");
+fagverkRegistry.placeLinks ||= {};
+fagverkRegistry.placeLinks[placeId] = {
+  sourceFile: placeFile.replace(/^data\//, ""),
+  field: "fagverk",
+  schema: place.fagverk.schema,
+  level: place.fagverk.level,
+  status: place.fagverk.status
+};
+fagverkRegistry.updatedAt = verifiedAt;
+write("data/fagverk/fagverk_registry.json", fagverkRegistry);
 
 const peopleFile = "data/people/historie/oslo/akerselva/fredrik_ferdinand_hausmann.json";
 const people = read(peopleFile);
