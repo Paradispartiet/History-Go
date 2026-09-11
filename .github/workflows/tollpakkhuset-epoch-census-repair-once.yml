@@ -1,0 +1,55 @@
+name: Tollpakkhuset epoch census repair one-shot
+
+on:
+  push:
+    branches: [agent/tollpakkhuset-completion-20260911-v2]
+    paths:
+      - ".github/workflows/tollpakkhuset-epoch-census-repair-once.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  repair-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Repair Tollpakkhuset epoch census guards
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'tests/epoke-place-index.test.mjs';
+          let src = fs.readFileSync(file, 'utf8');
+          const replacements = [
+            ['assert.equal(index.stats.verified_place_production_milestone_count, 531);', 'assert.equal(index.stats.verified_place_production_milestone_count, 533);'],
+            ['assert.equal(coverage.dated_evidence_place_count, 243);', 'assert.equal(coverage.dated_evidence_place_count, 244);'],
+            ['assert.equal(coverage.awaiting_source_backed_history_count, 342);', 'assert.equal(coverage.awaiting_source_backed_history_count, 341);'],
+            ['"peststotten_krist_kirkegard", "stortorget"]) {', '"peststotten_krist_kirkegard", "stortorget", "tollpakkhuset"]) {']
+          ];
+          for (const [from, to] of replacements) {
+            const count = src.split(from).length - 1;
+            if (count !== 1) throw new Error(`Expected exactly one match for ${from}; got ${count}`);
+            src = src.replace(from, to);
+          }
+          fs.writeFileSync(file, src);
+          NODE
+      - name: Verify epoch contracts
+        run: |
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs
+      - name: Publish clean census repair
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/tollpakkhuset-epoch-census-repair-once.yml
+          git add tests/epoke-place-index.test.mjs
+          git commit -m "Update epoch census for Tollpakkhuset"
+          git push origin HEAD:agent/tollpakkhuset-completion-20260911-v2
