@@ -68,17 +68,17 @@ assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['sofafilosof_samtalekveld']);
 assert.equal(audit.summary.selectable_life_positions, 200);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 6,
-  needs_authored_depth: 154,
+  ready: 7,
+  needs_authored_depth: 153,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.completed_life_position_role_worlds, 6);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 6);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 6);
-assert.equal(audit.first_ready, null);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
+assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 7);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 7);
+assert.equal(audit.first_ready?.key, 'litteratur/skrivebordspoet');
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'litteratur/skrivebordspoet');
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'litteratur/skrivebordspoet');
 
 const narrativeSource = fs.readFileSync(
   path.join(ROOT, 'js/Civication/systems/civicationNarrativeSceneSource.js'),
