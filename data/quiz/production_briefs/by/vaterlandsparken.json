@@ -1,0 +1,475 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "by",
+  "targetId": "vaterlandsparken",
+  "profile_hint": "normal",
+  "reviewed_at": "2026-09-11",
+  "review_note": "Parkens fysiske identitet, historiske lag, kunst/minne og sosial geografi er kildebundet med uttrykte etiske og metodiske grenser.",
+  "scope": {
+    "place": "Vaterlandsparken",
+    "production_profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "total_questions": 28,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "official": {
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/vaterlandsparken/",
+      "source_type": "primary_institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert mot påstandene som bruker denne kilde-ID-en."
+    },
+    "bylex": {
+      "url": "https://oslobyleksikon.no/side/Vaterlandsparken",
+      "source_type": "edited_local_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert mot påstandene som bruker denne kilde-ID-en."
+    },
+    "local": {
+      "url": "https://lokalhistoriewiki.no/Vaterlandsparken",
+      "source_type": "edited_local_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert mot påstandene som bruker denne kilde-ID-en."
+    },
+    "report": {
+      "url": "https://www.oslo.kommune.no/get-file/1347840/738e3c7ef7cf94310c543472cc63bc1a1940ad3b2f36ecbd6869719b0c368472/",
+      "source_type": "government_report",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert mot påstandene som bruker denne kilde-ID-en."
+    },
+    "social": {
+      "url": "https://aktuelt.oslo.kommune.no/apne-rusmiljo-i-oslo-sentrum",
+      "source_type": "primary_institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert mot påstandene som bruker denne kilde-ID-en."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_04_historiske_lag_og_transformasjon",
+      "kur_by_06_makt_symboler_og_representasjon",
+      "kur_by_07_gronn_blaa_og_offentlig_natur"
+    ],
+    "emne_ids": [
+      "em_by_parker_som_sosial_infrastruktur",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_materialitet_og_sanseerfaring",
+      "em_by_symbolsk_makt_og_representasjon",
+      "em_by_inkludering_ekskludering",
+      "em_by_sosial_miks_i_offentlige_rom",
+      "em_by_styring_forvaltning_planmakt"
+    ],
+    "topic_hook_ids": [
+      "makt_rett_til_byen"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_for_etter",
+      "met_gaanalyse"
+    ],
+    "thinker_ids": [
+      "henri_lefebvre"
+    ],
+    "works": [
+      "The Production of Space"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/vaterlandsparken_sets.json",
+      "data/quiz/manifest.json",
+      "data/places/natur/oslo/places_oslo_natur_akerselvarute/vaterlandsparken.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/by/vaterlandsparken_sets.json",
+      "set_count": 6,
+      "question_count": 42,
+      "finding": "Legacy 6×7-bank var kildebasert, men repetitiv og manglet dagens canonical production_context/progresjon."
+    },
+    "decisions": [
+      "Bevar stedsspesifikke fakta og kilder.",
+      "Reduser 42→28 fordi fire selvstendige læringsjobber dekker identitet/historie, minne/kunst, byrom/sosial geografi og metode uten repetisjon.",
+      "Hold de første fjorten spørsmålene teori- og metodefrie; teori/metode innføres bare i finalsettet."
+    ],
+    "knowledge_migration": "Alle 28 spørsmål får stabile Knowledge-ID-er."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire kildebærende læringsjobber uten utfyllingsspørsmål."
+  },
+  "held_back_candidates": [
+    "Midlertidige bygge- og ferdselsendringer.",
+    "Påstander om enkeltpersoners rus, helse eller tilhørighet fra observasjon.",
+    "Eksakt optisk før/etter uten dokumentert kamerastandpunkt.",
+    "Nybrua som del av parkidentiteten."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Parken ble opparbeidet av Oslo kommune i 1993–94.",
+      "source_ids": [
+        "bylex",
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kildene navngir 13.3 og A. Haukeland som landskapsarkitekter.",
+      "source_ids": [
+        "bylex"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Arealet var regulert til islamsk kultursenter og ble omtalt som moskétomta.",
+      "source_ids": [
+        "bylex",
+        "local"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kommunale kilder beskriver eldre fjord- og sumpmark.",
+      "source_ids": [
+        "official",
+        "report"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Vaterlandsparken ligger direkte ved Akerselva.",
+      "source_ids": [
+        "official",
+        "bylex"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bysten i parken forestiller Ólafia Jóhannsdóttir.",
+      "source_ids": [
+        "local",
+        "bylex"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kristinn Pjetursson utførte bysten i 1930.",
+      "source_ids": [
+        "local",
+        "bylex"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Lokalhistoriewiki daterer parkplasseringen til 2004.",
+      "source_ids": [
+        "local"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bysten ble utført i 1930, lenge før den kom til parken.",
+      "source_ids": [
+        "local",
+        "bylex"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ola Enstad laget installasjonen.",
+      "source_ids": [
+        "bylex",
+        "local"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon daterer installasjonen til 1990.",
+      "source_ids": [
+        "bylex"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kildene oppgir «Stupere» som vanlig kortnavn.",
+      "source_ids": [
+        "bylex",
+        "local"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den canonicale identiteten er selve parkarealet.",
+      "source_ids": [
+        "official",
+        "bylex"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sosiale miljøer kan overlappe geografisk uten å være identiske med parken.",
+      "source_ids": [
+        "social"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fysisk stedsobservasjon kan registrere synlige romlige forhold.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Ett tidspunkt er ikke representativt for all bruk.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Objektets alder og plasseringens alder er ulike historiske opplysninger.",
+      "source_ids": [
+        "local"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Et ubygget prosjekt kan fortsatt prege stedets planhistorie.",
+      "source_ids": [
+        "bylex",
+        "report"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Ulike kamerastandpunkter begrenser hva bildene kan bevise.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Installasjonen må leses sammen med plasseringen over elverommet.",
+      "source_ids": [
+        "bylex",
+        "local"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kommunen dokumenterer et område- og tjenestelag, ikke egenskaper ved alle individer.",
+      "source_ids": [
+        "social"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedsanalyse må skille romlige observasjoner fra sensitive personpåstander.",
+      "source_ids": [
+        "social"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur",
+      "method_id": "met_feltobservasjon"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bilder kan vise elementer; årsaker krever dokumentasjon.",
+      "source_ids": [
+        "report"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "method_id": "met_for_etter"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Parken kan analyseres som fysisk ramme for hverdagslig sambruk.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur",
+      "method_id": "met_gaanalyse"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Teori hjelper å stille spørsmål, mens stedspåstander må bæres av casekilder.",
+      "source_ids": [
+        "official",
+        "social"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon",
+      "method_id": "met_feltobservasjon"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ulike bruksinteresser kan eksistere i samme offentlige rom.",
+      "source_ids": [
+        "official",
+        "social"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_inkludering_ekskludering",
+      "method_id": "met_feltobservasjon",
+      "topic_hook_id": "makt_rett_til_byen",
+      "thinker_id": "henri_lefebvre",
+      "work": "The Production of Space"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et sosialt lag skal dokumenteres uten stigmatisering eller totalisering.",
+      "source_ids": [
+        "social"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur",
+      "method_id": "met_feltobservasjon"
+    },
+    {
+      "claim_id": "claim_vaterlandsparken_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedsobservasjon, historiske kilder og sosial dokumentasjon må ha hver sin evidensrolle.",
+      "source_ids": [
+        "official",
+        "bylex",
+        "social"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "method_id": "met_for_etter"
+    }
+  ]
+}
