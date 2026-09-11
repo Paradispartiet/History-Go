@@ -470,6 +470,13 @@ for (const place of list(global.PLACES)) {
     return regionIds.find(id => regions.has(id)) || regionIds.find(id => macros.has(id)) || "";
   }
 
+  function atlasPageHref(target = "") {
+    const url = new URL("sprakatlas.html", document.baseURI);
+    const focus = text(target);
+    if (focus) url.searchParams.set("focus", focus);
+    return url.href;
+  }
+
   function atlasItemKind(atlas, item) {
     const id = text(item?.id);
     if (list(atlas?.local_varieties).some(row => text(row?.id) === id)) return "local";
@@ -613,8 +620,8 @@ for (const place of list(global.PLACES)) {
     const heroText = entries.length
       ? `${entries.length} ${entries.length === 1 ? "språkoppføring" : "språkoppføringer"}${dialectArea ? ` · ${dialectArea}` : ""}. Ord, uttrykk, navn og dialekttrekk samles som dokumentert stedskunnskap.`
       : atlasLocal
-        ? `Dokumentert lokal talemålsprofil${dialectArea ? ` · ${dialectArea}` : ""}. Konkrete målmerker, variasjon og kilder leses fra den canonical atlasprofilen uten å dupliseres i Place-filen.`
-        : "Språkatlaset gir dokumentert språkfaglig kontekst for dette stedet.";
+        ? `Dokumentert lokal talemålsprofil${dialectArea ? ` · ${dialectArea}` : ""}. Konkrete målmerker, variasjon og kilder ligger i Språkatlas Norge, som åpnes som egen side fra hovedmenyen.`
+        : "Språkatlas Norge ligger som en egen side i hovedmenyen; denne fanen viser bare stedets eget Språkleksikon.";
     const typeFilters = [...counts.entries()]
       .sort((a, b) => b[1] - a[1])
       .map(([type, count]) => `<button type="button" data-language-filter="${esc(type)}" aria-pressed="false">${esc(TYPE_LABELS[type] || "Begrep")} <span>${count}</span></button>`)
@@ -643,7 +650,6 @@ for (const place of list(global.PLACES)) {
             <p>Disse språksporene er kildebelagt som del av talemålet i området. Et ord kan også finnes i andre dialektområder; lokal attestasjon betyr ikke at formen er unik her.</p>
           </section>
         ` : ""}
-        ${renderLanguageAtlas(article, atlas)}
         ${filters ? `<nav class="hg-language-filters" aria-label="Filtrer Språkleksikon"><button type="button" data-language-filter="all" aria-pressed="true">Alle <span>${entries.length}</span></button>${filters}</nav>` : ""}
         <div class="hg-language-list">${entries.map(entry => entryCard(entry, article)).join("")}</div>
       </div>
@@ -714,15 +720,10 @@ for (const place of list(global.PLACES)) {
       ${terms.length ? `<p>${terms.map(term => `<span>${esc(term)}</span>`).join("")}</p>` : ""}
       <div class="hg-language-teaser-actions">
         <button type="button" data-open-language-tab>Åpne språkleksikon</button>
-        ${atlasTarget ? `<button type="button" data-open-language-atlas="${esc(atlasTarget)}">Se talemålet i Språkatlas</button>` : ""}
+        ${atlasTarget ? `<a data-open-language-atlas-page href="${esc(atlasPageHref(atlasTarget))}">Se talemålet i Språkatlas</a>` : ""}
       </div>
     `;
     teaser.querySelector("[data-open-language-tab]")?.addEventListener("click", () => activateTab(tablist, panelWrap, TAB_ID, true));
-    teaser.querySelector("[data-open-language-atlas]")?.addEventListener("click", () => {
-      activateTab(tablist, panelWrap, TAB_ID, false);
-      const languagePanel = panelWrap.querySelector(`[data-place-panel="${TAB_ID}"]`);
-      if (languagePanel) activateAtlasSelection(languagePanel, atlas, atlasTarget);
-    });
     about.prepend(teaser);
   }
 
@@ -867,6 +868,135 @@ for (const place of list(global.PLACES)) {
     });
   }
 
+  function standaloneAtlasArticle(atlas, focusId = "") {
+    const id = text(focusId);
+    const article = {
+      atlas_local_ids: [],
+      atlas_region_ids: [],
+      atlas_overlay_ids: []
+    };
+    if (!id || !atlas) return article;
+
+    const local = list(atlas?.local_varieties).find(row => text(row?.id) === id) || null;
+    if (local) {
+      article.atlas_local_ids = [id];
+      const regionId = text(local?.region_id);
+      if (regionId) article.atlas_region_ids = [regionId];
+      return article;
+    }
+
+    if (list(atlas?.dialect_regions).some(row => text(row?.id) === id)
+      || list(atlas?.macro_regions).some(row => text(row?.id) === id)) {
+      article.atlas_region_ids = [id];
+      return article;
+    }
+
+    if (list(atlas?.urban_overlays).some(row => text(row?.id) === id)) {
+      article.atlas_overlay_ids = [id];
+    }
+    return article;
+  }
+
+  function setStandaloneAtlasFocus(focusId) {
+    const id = text(focusId);
+    if (!id) return;
+    try {
+      const url = new URL(global.location.href);
+      url.searchParams.set("focus", id);
+      global.history?.replaceState?.({}, "", `${url.pathname}${url.search}${url.hash}`);
+    } catch {}
+  }
+
+  function openStandalonePlace(placeId) {
+    const id = text(placeId);
+    if (!id) return;
+    const url = new URL("index.html", document.baseURI);
+    url.hash = `#/place/${encodeURIComponent(id)}`;
+    global.location.assign(url.href);
+  }
+
+  function bindStandaloneAtlas(host, atlas) {
+    if (!(host instanceof HTMLElement) || host.dataset.hgStandaloneAtlasBound === "1") return;
+    host.dataset.hgStandaloneAtlasBound = "1";
+
+    host.addEventListener("click", event => {
+      const target = event.target instanceof Element ? event.target : null;
+      if (!target) return;
+
+      const atlasPlace = target.closest("[data-atlas-open-place]");
+      if (atlasPlace) {
+        event.preventDefault();
+        openStandalonePlace(atlasPlace.getAttribute("data-atlas-open-place"));
+        return;
+      }
+
+      const openAtlasTarget = target.closest("[data-open-atlas-target]");
+      if (openAtlasTarget) {
+        const id = text(openAtlasTarget.getAttribute("data-open-atlas-target"));
+        activateAtlasSelection(host, atlas, id);
+        setStandaloneAtlasFocus(id);
+        return;
+      }
+
+      const atlasFocus = target.closest("[data-atlas-focus]");
+      if (atlasFocus) {
+        const id = text(atlasFocus.getAttribute("data-atlas-focus"));
+        activateAtlasSelection(host, atlas, id);
+        setStandaloneAtlasFocus(id);
+        return;
+      }
+
+      const atlasRegion = target.closest("[data-atlas-region]");
+      if (atlasRegion) {
+        const id = text(atlasRegion.getAttribute("data-atlas-region"));
+        activateAtlasSelection(host, atlas, id, atlasRegion.getAttribute("data-atlas-macro-id"));
+        setStandaloneAtlasFocus(id);
+        return;
+      }
+
+      const atlasLocal = target.closest("[data-atlas-local]");
+      if (atlasLocal) {
+        const id = text(atlasLocal.getAttribute("data-atlas-local"));
+        activateAtlasSelection(host, atlas, id, atlasLocal.getAttribute("data-atlas-macro-id"));
+        setStandaloneAtlasFocus(id);
+      }
+    });
+  }
+
+  async function initStandaloneAtlasPage() {
+    const page = document.querySelector("[data-sprakatlas-page]");
+    if (!(page instanceof HTMLElement)) return false;
+    const host = page.querySelector("[data-sprakatlas-page-host]");
+    if (!(host instanceof HTMLElement)) return false;
+
+    ensureStyle();
+    installKnowledgeBridge();
+    host.setAttribute("aria-busy", "true");
+
+    try {
+      if ((!Array.isArray(global.PLACES) || !global.PLACES.length)
+        && typeof global.DataHub?.loadPlacesBase === "function") {
+        const places = await global.DataHub.loadPlacesBase({ cache: "default" });
+        if (Array.isArray(places)) global.PLACES = places;
+      }
+
+      const atlas = await loadAtlas();
+      if (!atlas) throw new Error("Språkatlas-data kunne ikke lastes.");
+
+      const focusId = text(new URL(global.location.href).searchParams.get("focus"));
+      host.innerHTML = renderLanguageAtlas(standaloneAtlasArticle(atlas, focusId), atlas);
+      bindStandaloneAtlas(host, atlas);
+      if (focusId) activateAtlasSelection(host, atlas, focusId);
+      host.removeAttribute("aria-busy");
+      return true;
+    } catch (error) {
+      console.warn("[Språkatlas]", error);
+      host.removeAttribute("aria-busy");
+      host.innerHTML = `<section class="hg-language-atlas"><header class="hg-language-atlas-head"><div class="hg-language-kicker">Språkatlas Norge</div><strong>Atlaset kunne ikke lastes</strong><p>Prøv å laste siden på nytt.</p></header></section>`;
+      return false;
+    }
+  }
+
   function resolvePopupRoot(root = null) {
     if (root instanceof HTMLElement) {
       if (root.matches(".hg-popup.place-popup-v2")) return root;
@@ -974,10 +1104,14 @@ for (const place of list(global.PLACES)) {
     captureLanguageKnowledge,
     getCollected: collectedLanguageEntries,
     isCollected,
+    atlasPageHref,
+    initStandalonePage: initStandaloneAtlasPage,
     decoratePopup: decorateLanguage
   };
 
-  if (!install()) {
+  if (document.querySelector("[data-sprakatlas-page]")) {
+    void initStandaloneAtlasPage();
+  } else if (!install()) {
     let attempts = 0;
     const timer = global.setInterval(() => {
       attempts += 1;
