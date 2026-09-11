@@ -1,11 +1,12 @@
 {
   "schema": "history_go_literature_editorial_quality_v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "subjectId": "litteratur",
-  "updatedAt": "2026-08-07",
+  "updatedAt": "2026-09-09",
   "contract": "docs/LITTERATUR_ARTICLE_EDITORIAL_CONTRACT_V1.md",
-  "status": "rewrite_in_progress",
-  "definition": "Redaksjonell ferdigstatus krever selvstendige, forklarende og kildeførte hovedartikler; strukturell fullfeltdekning teller ikke alene.",
+  "status": "editorial_ready_complete",
+  "qualityStatus": "expanded_and_audited",
+  "definition": "Redaksjonell ferdigstatus krever selvstendige, forklarende og kildeførte hovedartikler; strukturell fullfeltdekning teller ikke alene. Expanded-kvalitet er en separat kvalitetsdimensjon og endrer ikke global Fagverk-lifecycle-status.",
   "totals": {
     "areas": 28,
     "topics": 168,
@@ -15,146 +16,34 @@
     "rewritePendingTopics": 0
   },
   "areas": [
-    {
-      "areaId": "faggrunnlag_metode_forskningspraksis",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "medier_intermedialitet_adapsjon",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "litteratursosiologi_institusjoner_offentlighet",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "poetikk_estetikk_litteraritet",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "sprak_stil_retorikk",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "narratologi_prosa",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "lyrikk_poetiske_former",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "drama_teatertekst_framforing",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "sjanger_modus_form",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "formalisme_nykritikk_strukturalisme_semiotikk",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "poststrukturalisme_dekonstruksjon_diskurs",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "hermeneutikk_fortolkning_teori",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "psykoanalyse_fenomenologi_eksistens",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "minne_traume_vitnesbyrd_livsskriving",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "leser_resepsjon_affekt",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "forfatterskap_intertekstualitet",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "tekstkritikk_bokhistorie_arkiv",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "kjonn_feminisme_queer",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "klasse_marxisme_okonomi_arbeid",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "postkolonial_dekolonial_rase_migrasjon",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "okokritikk_dyr_miljo",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "kognitiv_empirisk_digital_litteraturvitenskap",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "komparativ_verdenslitteratur_oversettelse",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "norsk_nordisk_samisk_minoritetslitteratur",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "muntlighet_folklore_urfolkskunnskap",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "barne_ungdoms_didaktisk_litteratur",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "eldre_litteratur_antik_middelalder_tidligmoderne",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    },
-    {
-      "areaId": "moderne_og_samtidig_litteraturhistorie",
-      "status": "editorial_ready_v1",
-      "topicCount": 6
-    }
+    { "areaId": "faggrunnlag_metode_forskningspraksis", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "medier_intermedialitet_adapsjon", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "litteratursosiologi_institusjoner_offentlighet", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "poetikk_estetikk_litteraritet", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "sprak_stil_retorikk", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "narratologi_prosa", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "lyrikk_poetiske_former", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "drama_teatertekst_framforing", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "sjanger_modus_form", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "formalisme_nykritikk_strukturalisme_semiotikk", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "poststrukturalisme_dekonstruksjon_diskurs", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "hermeneutikk_fortolkning_teori", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "psykoanalyse_fenomenologi_eksistens", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "minne_traume_vitnesbyrd_livsskriving", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "leser_resepsjon_affekt", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "forfatterskap_intertekstualitet", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "tekstkritikk_bokhistorie_arkiv", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "kjonn_feminisme_queer", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "klasse_marxisme_okonomi_arbeid", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "postkolonial_dekolonial_rase_migrasjon", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "okokritikk_dyr_miljo", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "kognitiv_empirisk_digital_litteraturvitenskap", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "komparativ_verdenslitteratur_oversettelse", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "norsk_nordisk_samisk_minoritetslitteratur", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "muntlighet_folklore_urfolkskunnskap", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "barne_ungdoms_didaktisk_litteratur", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "eldre_litteratur_antik_middelalder_tidligmoderne", "status": "editorial_ready_v1", "topicCount": 6 },
+    { "areaId": "moderne_og_samtidig_litteraturhistorie", "status": "editorial_ready_v1", "topicCount": 6 }
   ],
   "pendingAreaIds": []
 }
