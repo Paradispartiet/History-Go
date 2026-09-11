@@ -57,6 +57,8 @@ test('Tronsmo Bokhandel full production contract',()=>{
   const lesItems=Array.isArray(lesDoc)?lesDoc:lesDoc.items;
   assert.equal(lesItems.filter(x=>x.place_ids?.includes('tronsmo_bokhandel')).length,4);
   const report=j('reports/place-production/tronsmo-bokhandel-completion-v1.json');
+  assert.equal(report.leksikonFile,leksikonPath);
+  assert.equal(report.quiz.questions,28);
   assert.equal(report.quality_score.total,30);
 });
 
