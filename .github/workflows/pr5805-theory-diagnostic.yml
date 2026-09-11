@@ -1,0 +1,29 @@
+name: PR5805 theory diagnostic
+
+on:
+  push:
+    branches:
+      - agent/pr5805-theory-diagnostic-20260911
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  isolate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Syntax check global strict runner
+        run: node --check scripts/audit-fagverk-theory-integrity.mjs
+      - name: Verify theory-quality baseline freshness
+        run: node scripts/audit-fagverk-theory-quality.mjs
+      - name: Verify Litteratur scientific package
+        run: node scripts/audit-litteratur-scientific-package-v1.mjs
+      - name: Verify Litteratur strict theory runner
+        run: node tools/audit-litteratur-theory-integrity.mjs
+      - name: Verify global strict theory runner
+        run: node scripts/audit-fagverk-theory-integrity.mjs
