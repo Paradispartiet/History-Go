@@ -34,8 +34,10 @@ test("Møtes samler oppstart og oppfølging uten å slå sammen domenemotorene",
   assert.match(source, /data-explore-social-action="propose"/);
   assert.match(source, /data-explore-social-action="manage"/);
 
-  assert.match(bundle, /Foreslå kunnskapsmøte/);
-  assert.match(bundle, /Åpne Social Meet/);
+  assert.match(bundle, /data-explore-social-action="propose"/);
+  assert.match(bundle, /data-explore-social-action="manage"/);
+  assert.match(bundle, /HG_SpotmeetingUI/);
+  assert.match(bundle, /HG_SocialMeetUI/);
 });
 
 test("Events rendres fra canonical HGEvents og åpner canonical Place", () => {
