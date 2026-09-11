@@ -1,0 +1,58 @@
+name: By expanded quality
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/by/**'
+      - 'data/fagverk/by/**'
+      - 'reports/fagverk/by-complete-audit.json'
+      - 'reports/fagverk/by-theory-integrity-audit.json'
+      - 'reports/fagverk/by-expanded-quality-audit.json'
+      - 'reports/fagverk/fagverk-expanded-subject-by-subject-audit-v1.json'
+      - 'scripts/audit-fagverk-by-complete.mjs'
+      - 'scripts/audit-by-source-refresh-place-case-expansion.mjs'
+      - 'scripts/audit-by-source-refresh-place-case-expansion-round2.mjs'
+      - 'scripts/audit-by-source-refresh-place-case-expansion-round3.mjs'
+      - 'scripts/validate-by-editorial-integrity.mjs'
+      - 'tools/audit-by-theory-integrity.mjs'
+      - 'tools/audit-by-expanded-quality.mjs'
+      - 'tests/by-theory-integrity.test.mjs'
+      - 'tests/by-source-refresh-place-case-expansion.test.mjs'
+      - 'tests/by-source-refresh-place-case-expansion-round2.test.mjs'
+      - 'tests/by-source-refresh-place-case-expansion-round3.test.mjs'
+      - 'tests/by-expanded-quality.test.mjs'
+      - '.github/workflows/by-expanded-quality.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  expanded-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify By whole-subject expanded quality
+        run: |
+          node --check tools/audit-by-expanded-quality.mjs
+          node scripts/audit-fagverk-by-complete.mjs
+          node tools/audit-by-theory-integrity.mjs
+          node scripts/validate-by-editorial-integrity.mjs
+          node scripts/audit-by-source-refresh-place-case-expansion.mjs
+          node scripts/audit-by-source-refresh-place-case-expansion-round2.mjs
+          node scripts/audit-by-source-refresh-place-case-expansion-round3.mjs
+          node tools/audit-by-expanded-quality.mjs
+          node --test tests/by-theory-integrity.test.mjs tests/by-source-refresh-place-case-expansion.test.mjs tests/by-source-refresh-place-case-expansion-round2.test.mjs tests/by-source-refresh-place-case-expansion-round3.test.mjs tests/by-expanded-quality.test.mjs
+      - name: Preserve shared Fagverk contracts
+        run: |
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
