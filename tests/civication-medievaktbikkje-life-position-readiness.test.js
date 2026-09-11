@@ -9,7 +9,7 @@ const vm = require('node:vm');
 const ROOT = path.resolve(__dirname, '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 
-const streamPath = 'data/Civication/narratives/leisure/skrivebordspoet.json';
+const streamPath = 'data/Civication/narratives/leisure/medievaktbikkje.json';
 const stream = readJson(streamPath);
 const manifest = readJson('data/Civication/narratives/manifest.json');
 const audit = readJson('data/Civication/lifePositionRoleWorldReadiness.json');
@@ -19,9 +19,9 @@ const taxonomy = readJson('data/Civication/nonCareerRoleTaxonomy.json');
 const policy = readJson('data/Civication/roleWorldPolicy.json');
 
 assert.equal(stream.schema, 'civication_narrative_stream_v1');
-assert.equal(stream.id, 'skrivebordspoet_stream');
+assert.equal(stream.id, 'medievaktbikkje_stream');
 assert.equal(stream.type, 'leisure');
-assert.deepEqual(stream.applies_when.any_tags, ['skrivebordspoet', 'litteratur:skrivebordspoet']);
+assert.deepEqual(stream.applies_when.any_tags, ['medievaktbikkje', 'media:medievaktbikkje']);
 assert.equal(stream.storylets.length, 14);
 assert.equal(new Set(stream.storylets.map((row) => row.id)).size, 14);
 
@@ -38,33 +38,33 @@ for (const row of stream.storylets) {
 }
 assert.ok(manifest.streams.some((entry) => entry.id === stream.id && entry.path === streamPath));
 
-const profile = catalog.badges.find((row) => row.badge_id === 'litteratur');
-const position = profile.positions.find((row) => row.id === 'skrivebordspoet');
+const profile = catalog.badges.find((row) => row.badge_id === 'media');
+const position = profile.positions.find((row) => row.id === 'medievaktbikkje');
 assert.deepEqual(position, {
-  id: 'skrivebordspoet',
-  label: 'Skrivebordspoet',
+  id: 'medievaktbikkje',
+  label: 'Medievaktbikkje',
   threshold: 40,
   kind: 'practice_identity',
-  description: 'Du skriver uten å måtte kalle deg profesjonell forfatter.',
-  hooks: ['skriving', 'notater', 'skrivesperre']
+  description: 'Du følger hvem som setter saker, hvem som mangler og hvordan framing endrer en historie.',
+  hooks: ['mediekritikk', 'kilder', 'korrigering']
 });
 
-const opportunity = livelihood.templates.find((row) => row.id === 'skrivebordspoet_introtekst');
+const opportunity = livelihood.templates.find((row) => row.id === 'medievaktbikkje_researchnotat');
 assert.ok(opportunity);
-assert.equal(opportunity.badge_id, 'litteratur');
-assert.equal(opportunity.life_position_label, 'Skrivebordspoet');
+assert.equal(opportunity.badge_id, 'media');
+assert.equal(opportunity.life_position_label, 'Medievaktbikkje');
 assert.equal(opportunity.kind_id, 'freelance_assignment');
 assert.deepEqual(opportunity.income, { model: 'variable', min: 3, max: 7 });
 assert.deepEqual(opportunity.direct_costs, { fixed: 0 });
 
-const ready = audit.positions.find((row) => row.key === 'litteratur/skrivebordspoet');
+const ready = audit.positions.find((row) => row.key === 'media/medievaktbikkje');
 assert.ok(ready);
 assert.equal(ready.classification, 'ready');
-assert.equal(ready.role_world_status, 'role_world_complete');
-assert.equal(ready.role_world_path, 'data/Civication/roleWorlds/litteratur/litteratur_skrivebordspoet.json');
+assert.equal(ready.role_world_status, 'role_world_not_started');
+assert.equal(ready.role_world_path, null);
 assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
-assert.deepEqual(ready.evidence.livelihood_templates, ['skrivebordspoet_introtekst']);
+assert.deepEqual(ready.evidence.livelihood_templates, ['medievaktbikkje_researchnotat']);
 assert.deepEqual(audit.summary.classifications, {
   ready: 8,
   needs_authored_depth: 152,
@@ -78,16 +78,19 @@ assert.equal(audit.first_ready?.key, 'media/medievaktbikkje');
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'media/medievaktbikkje');
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'media/medievaktbikkje');
 
-const paidAnchor = stream.storylets.find((row) => row.id === 'honorar_for_introtekst');
+const paidAnchor = stream.storylets.find((row) => row.id === 'researchnotatet_og_oppdragets_grense');
 assert.ok(paidAnchor);
-assert.match(paidAnchor.situation.join(' '), /ikke.*forlagsredaktør|profesjonell forfatter|publiserings-|kontrakts-|forskuddsmyndighet/i);
+assert.match(
+  paidAnchor.situation.join(' '),
+  /ikke.*ansatt journalist|ikke.*redaktør|publiserings-|redaksjonell beslutningsmyndighet/i
+);
 
 const narrativeSource = fs.readFileSync(
   path.join(ROOT, 'js/Civication/systems/civicationNarrativeSceneSource.js'),
   'utf8'
 );
 
-let activeLifePositions = [{ badge_id: 'litteratur', id: 'skrivebordspoet', label: 'Skrivebordspoet' }];
+let activeLifePositions = [{ badge_id: 'media', id: 'medievaktbikkje', label: 'Medievaktbikkje' }];
 const filesByPath = new Map([
   ['data/Civication/narratives/manifest.json', manifest],
   [streamPath, stream]
@@ -127,37 +130,38 @@ vm.runInContext(narrativeSource, sandbox, { filename: 'civicationNarrativeSceneS
 (async () => {
   const api = sandbox.window.CivicationNarrativeSceneSource;
   let snapshot = await api.getActivationSnapshot({ state, active: null });
-  assert.ok(snapshot.matched_stream_ids.includes('skrivebordspoet_stream'));
+  assert.ok(snapshot.matched_stream_ids.includes('medievaktbikkje_stream'));
 
   const scenes = await api.getSourceScenes({
     state,
     active: null,
     phaseId: 'evening',
-    candidate_stream_ids: ['skrivebordspoet_stream'],
+    candidate_stream_ids: ['medievaktbikkje_stream'],
     used_storylet_keys: []
   });
   assert.ok(scenes.length >= 1);
-  assert.equal(scenes[0].narrative_stream_id, 'skrivebordspoet_stream');
+  assert.equal(scenes[0].narrative_stream_id, 'medievaktbikkje_stream');
   assert.equal(scenes[0].workday_related, false);
   assert.equal(scenes[0].role_scope, '');
   assert.equal(scenes[0].career_id, '');
 
-  for (const position of [
-    { badge_id: 'litteratur', id: 'bokorm', label: 'Bokorm' },
-    { badge_id: 'litteratur', id: 'bokklubbmenneske', label: 'Bokklubbmenneske' },
-    { badge_id: 'litteratur', id: 'smaforlagsnerd', label: 'Småforlagsnerd' }
+  for (const other of [
+    { badge_id: 'media', id: 'nyhetsjunkie', label: 'Nyhetsjunkie' },
+    { badge_id: 'media', id: 'podkastsluker', label: 'Podkastsluker' },
+    { badge_id: 'media', id: 'kommentarfeltveteran', label: 'Kommentarfeltveteran' },
+    { badge_id: 'media', id: 'debattant', label: 'Debattant' }
   ]) {
-    activeLifePositions = [position];
+    activeLifePositions = [other];
     snapshot = await api.getActivationSnapshot({ state, active: null });
-    assert.ok(!snapshot.matched_stream_ids.includes('skrivebordspoet_stream'),
-      position.id + ' must not inherit Skrivebordspoet narrative');
+    assert.ok(!snapshot.matched_stream_ids.includes('medievaktbikkje_stream'),
+      other.id + ' must not inherit Medievaktbikkje narrative');
   }
 
   activeLifePositions = [];
   snapshot = await api.getActivationSnapshot({ state, active: null });
-  assert.ok(!snapshot.matched_stream_ids.includes('skrivebordspoet_stream'));
+  assert.ok(!snapshot.matched_stream_ids.includes('medievaktbikkje_stream'));
 
-  console.log('civication Skrivebordspoet readiness ok: 14 anchors / exact life-position activation / bounded freelance assignment / no career scope');
+  console.log('civication Medievaktbikkje readiness ok: 14 anchors / exact life-position activation / bounded research assignment / media career scope remains closed');
 })().catch((error) => {
   console.error(error);
   process.exitCode = 1;

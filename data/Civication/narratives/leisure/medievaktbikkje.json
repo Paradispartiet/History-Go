@@ -1,0 +1,682 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "medievaktbikkje_stream",
+  "type": "leisure",
+  "title": "Medievaktbikkje i offentligheten",
+  "sociological_theme": "medievaktbikkje_framing_kildekritikk_korrigering_og_grensen_mot_profesjonell_redaksjonsmyndighet",
+  "applies_when": {
+    "any_tags": [
+      "medievaktbikkje",
+      "media:medievaktbikkje"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "overskriften_som_flytter_skylden",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "To ulike overskrifter",
+      "subject": "Samme hendelse, to ansvarsbilder",
+      "situation": [
+        "Du ser to medier omtale den samme hendelsen med nesten identiske fakta, men den ene overskriften plasserer en aktør tydelig i sentrum mens den andre gjør hendelsen nærmest aktørløs.",
+        "Forskjellen er liten nok til å se nøytral ut, men stor nok til å påvirke hvem leseren oppfatter som ansvarlig.",
+        "Medievaktbikkje-praksisen handler om å undersøke framing uten å late som du kjenner redaksjonens intensjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenligne ordvalg, ingress og dokumenterte fakta før du beskriver hvilken framing tekstene faktisk skaper.",
+          "effect": 1,
+          "tags": [
+            "framing",
+            "source_care",
+            "uncertainty"
+          ],
+          "feedback": "Du kritiserer den observerbare effekten uten å dikte motiv."
+        },
+        {
+          "id": "B",
+          "label": "Konkludere med at den ene redaksjonen bevisst beskytter aktøren fordi overskriften er mildere.",
+          "effect": -1,
+          "tags": [
+            "motive_inference",
+            "overclaim",
+            "media_distrust"
+          ],
+          "feedback": "Du gjør en språklig forskjell til bevis for en intensjon du ikke har kilde til."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_framing_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kilden_som_alltid_er_med",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "En uke med nyhetssaker",
+      "subject": "Hvem får definere problemet?",
+      "situation": [
+        "Når du går gjennom flere saker om samme tema, ser du at den samme typen institusjonskilde får forklare problemet nesten hver gang.",
+        "Kilden kan være relevant og kompetent, men gjentakelsen gjør også andre erfaringer og perspektiver mindre synlige.",
+        "Kildekritikk betyr å undersøke mønsteret, ikke å anta at en ofte brukt kilde derfor er uredelig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Notere hvilke kildetyper som faktisk brukes, hvilke som mangler og hva hver av dem kan og ikke kan dokumentere.",
+          "effect": 1,
+          "tags": [
+            "source_diversity",
+            "evidence",
+            "media_pattern"
+          ],
+          "feedback": "Du gjør fravær og dominans målbare uten å gjøre dem til konspirasjon."
+        },
+        {
+          "id": "B",
+          "label": "Avvise kilden som propaganda fordi mediene bruker samme type ekspert for ofte.",
+          "effect": -1,
+          "tags": [
+            "source_rejection",
+            "overgeneralization",
+            "distrust"
+          ],
+          "feedback": "Du erstatter kildekritikk med en total dom over kildens troverdighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_source_pattern"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_som_mangler_i_saken",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En berørt person",
+      "subject": "Ingen spurte oss",
+      "situation": [
+        "En person som er direkte berørt av en omtalt beslutning sier at deres gruppe ikke ble kontaktet i saken du nettopp leste.",
+        "Det betyr ikke automatisk at artikkelen er feil, men det endrer hva du vet om hvilke perspektiver som ble representert.",
+        "Å peke på en manglende stemme krever at du skiller mellom fravær, faktiske feil og redaksjonelle prioriteringer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskrive konkret at perspektivet mangler og undersøke om fraværet påvirker påstander eller bare bredden i framstillingen.",
+          "effect": 1,
+          "tags": [
+            "missing_voice",
+            "representation",
+            "claim_scope"
+          ],
+          "feedback": "Du gjør kritikken presis nok til at den kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Kalle hele saken ugyldig fordi alle berørte ikke er sitert.",
+          "effect": -1,
+          "tags": [
+            "false_standard",
+            "overclaim",
+            "representation"
+          ],
+          "feedback": "Du gjør representasjonsmangel til en sterkere faktadom enn bevisene bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_missing_voice"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pressemeldingen_som_blir_nyhet",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "En publisert pressemelding",
+      "subject": "Hvor mye er egentlig kontrollert?",
+      "situation": [
+        "Du oppdager at formuleringer i en nyhetssak ligger svært nær en pressemelding fra aktøren saken handler om.",
+        "Noen av faktaene kan være riktige, men likheten gjør det relevant å undersøke hvilke opplysninger som kommer fra avsenderen og hvilke som er kontrollert uavhengig.",
+        "Mediekritikk blir sterkere når du kan vise kildeveien i stedet for bare å mistenke den."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenligne tekstene punkt for punkt og markere hvilke påstander som ser ut til å være selvrapporterte og hvilke som har uavhengig støtte.",
+          "effect": 1,
+          "tags": [
+            "provenance",
+            "press_release",
+            "source_care"
+          ],
+          "feedback": "Du gjør avhengigheten synlig uten å kalle alt feil."
+        },
+        {
+          "id": "B",
+          "label": "Anta at hele saken er bestilt innhold fordi flere formuleringer er like.",
+          "effect": -1,
+          "tags": [
+            "motive_inference",
+            "overclaim",
+            "source_confusion"
+          ],
+          "feedback": "Du går fra dokumenterbar tekstlikhet til udokumentert styring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_pressrelease_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tallet_uten_nevner",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "En dramatisk prosent",
+      "subject": "Opp 200 prosent",
+      "situation": [
+        "En sak fremhever at et fenomen har økt med 200 prosent, men selve antallet gikk fra én hendelse til tre.",
+        "Prosenten er matematisk korrekt og samtidig egnet til å skape et langt større intuitivt inntrykk enn de absolutte tallene.",
+        "En Medievaktbikkje må kritisere presentasjonen presist uten å påstå at korrekt matematikk i seg selv er løgn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legge prosent og absolutte tall ved siden av hverandre og beskrive hvordan valg av mål påvirker leserens inntrykk.",
+          "effect": 1,
+          "tags": [
+            "statistics",
+            "context",
+            "framing"
+          ],
+          "feedback": "Du tilfører den manglende nevneren i stedet for å bytte én forenkling med en annen."
+        },
+        {
+          "id": "B",
+          "label": "Kalle prosenttallet falskt fordi tre hendelser fortsatt er lite.",
+          "effect": -1,
+          "tags": [
+            "statistical_error",
+            "overclaim",
+            "correction_risk"
+          ],
+          "feedback": "Du svarer på misvisende kontekst med en uriktig faktapåstand."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_number_context"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_fra_feil_tidspunkt",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Et sterkt illustrasjonsfoto",
+      "subject": "Bildet er ekte, men når er det fra?",
+      "situation": [
+        "Et dramatisk bilde brukes i en ny sak, og bildeteksten viser at fotografiet er flere år gammelt og tatt i en annen situasjon.",
+        "Bildet er ikke manipulert, men plasseringen kan få leseren til å tro at det dokumenterer det som skjer nå.",
+        "Visuell framing må vurderes med samme kildeomsorg som tekstlige påstander."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Peke på dato og kontekst for bildet og beskrive hvilken misforståelse plasseringen kan skape.",
+          "effect": 1,
+          "tags": [
+            "visual_context",
+            "provenance",
+            "framing"
+          ],
+          "feedback": "Du korrigerer konteksten uten å påstå at bildet er falskt."
+        },
+        {
+          "id": "B",
+          "label": "Dele saken som eksempel på falske bilder i mediene.",
+          "effect": -1,
+          "tags": [
+            "mislabeling",
+            "overclaim",
+            "visual_distrust"
+          ],
+          "feedback": "Du kritiserer en reell kontekstfeil ved å beskrive en annen feil som ikke skjedde."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_visual_context"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "korrigeringen_som_kommer_senere",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "En rettelsesmerknad",
+      "subject": "Saken ble endret",
+      "situation": [
+        "Du ser at en sak du kritiserte tidligere nå har fått en tydelig rettelse og endret formulering.",
+        "Den opprinnelige feilen er fortsatt relevant som hendelse, men videre kritikk må også ta inn at den ble rettet.",
+        "En vaktbikkje som aldri oppdaterer egen kritikk kan selv bli en kilde til foreldet informasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppdatere egen omtale med hva som var feil, hva som er rettet og når endringen skjedde.",
+          "effect": 1,
+          "tags": [
+            "correction",
+            "accountability",
+            "update"
+          ],
+          "feedback": "Du holder både mediet og din egen kritikk ansvarlig for tidslinjen."
+        },
+        {
+          "id": "B",
+          "label": "La den gamle kritikken stå uendret fordi en rettelse ikke kan viske ut at feilen skjedde.",
+          "effect": -1,
+          "tags": [
+            "stale_claim",
+            "confirmation_bias",
+            "correction"
+          ],
+          "feedback": "Du bevarer historikken ved å gjøre den nåværende situasjonen feil."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_correction_loop"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "anonym_kilde_og_sikkerhet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "En sak med anonym kilde",
+      "subject": "Hvor mye kan leseren kontrollere?",
+      "situation": [
+        "En viktig påstand bygger på en anonym kilde, og artikkelen forklarer bare kort hvorfor identiteten ikke oppgis.",
+        "Anonymitet kan være nødvendig for å beskytte en kilde, men den reduserer samtidig hva du som leser kan kontrollere direkte.",
+        "Mediekritikk bør synliggjøre denne usikkerheten uten å late som anonymitet i seg selv beviser svak journalistikk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skille mellom det du kan verifisere selv, det mediet sier det har kontrollert og det som fortsatt må bæres av tillit.",
+          "effect": 1,
+          "tags": [
+            "anonymous_source",
+            "uncertainty",
+            "source_care"
+          ],
+          "feedback": "Du gjør kunnskapsgrensen eksplisitt uten å kreve at en beskyttet kilde avsløres."
+        },
+        {
+          "id": "B",
+          "label": "Avvise påstanden fordi en anonym kilde aldri kan være troverdig.",
+          "effect": -1,
+          "tags": [
+            "source_absolutism",
+            "distrust",
+            "false_standard"
+          ],
+          "feedback": "Du gjør en legitim usikkerhet til en universell regel kildesituasjonen ikke støtter."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_anonymous_source"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "falsk_balanse",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En venn i diskusjon",
+      "subject": "Men begge sider må vel få like mye plass?",
+      "situation": [
+        "En venn mener en sak er ubalansert fordi én posisjon får langt mer plass enn en marginal motposisjon.",
+        "Lik taletid kan noen ganger være rettferdig, men kan også skjule store forskjeller i dokumentasjon, faglig støtte eller relevans.",
+        "Balanse er ikke alltid det samme som matematisk symmetri."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøke hva påstandene bygger på og vurdere om plassfordelingen følger dokumentasjon og relevans framfor et krav om lik tid.",
+          "effect": 1,
+          "tags": [
+            "false_balance",
+            "evidence_weight",
+            "framing"
+          ],
+          "feedback": "Du vurderer balanse som et kildeproblem, ikke som et stoppeklokkeproblem."
+        },
+        {
+          "id": "B",
+          "label": "Kreve like mye plass til alle identifiserbare sider for at en sak skal være objektiv.",
+          "effect": -1,
+          "tags": [
+            "false_equivalence",
+            "symmetry",
+            "source_error"
+          ],
+          "feedback": "Du gjør objektivitet til en fordelingsregel uavhengig av evidens."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_balance_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "researchnotatet_og_oppdragets_grense",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Et lite redaksjonelt prosjekt",
+      "subject": "Kan du lage et kort bakgrunnsnotat?",
+      "situation": [
+        "Et lite redaksjonelt prosjekt tilbyr deg et avgrenset honorar for å samle åpne kilder om et tema og levere et kort researchnotat.",
+        "Oppdraget gjør deg ikke til ansatt journalist, redaktør, kildeansvarlig eller person med publiserings- eller redaksjonell beslutningsmyndighet.",
+        "Medievaktbikkje-identiteten kan gi en relevant ferdighet og et lite leveveisoppdrag uten at lagene skal blandes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklare spørsmål, kildekrav, leveranseformat, frist og at notatet bare er bakgrunnsmateriale som oppdragsgiver selv må vurdere videre.",
+          "effect": 1,
+          "tags": [
+            "bounded_freelance",
+            "livelihood_boundary",
+            "source_scope"
+          ],
+          "feedback": "Du tar betalt for et konkret researchprodukt uten å overta en profesjonell redaksjonsrolle."
+        },
+        {
+          "id": "B",
+          "label": "Presentere deg overfor kilder som del av redaksjonen siden notatet uansett skal brukes journalistisk.",
+          "effect": -1,
+          "tags": [
+            "authority_overreach",
+            "career_confusion",
+            "source_trust"
+          ],
+          "feedback": "Et lite oppdrag blir brukt til å låne en institusjonell rolle avtalen aldri ga."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_livelihood_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "oppdragsgiver_vil_ha_en_sikrere_vinkel",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Oppdragsgiveren",
+      "subject": "Kan du få det til å se tydeligere ut?",
+      "situation": [
+        "I researchnotatet finner du flere kilder som peker i samme retning, men ikke nok til den bastante vinkelen oppdragsgiveren håpet på.",
+        "Du blir bedt om å formulere funnet mer sikkert fordi en tydelig konklusjon er lettere å bruke videre.",
+        "Et honorar endrer ikke hvor langt kildene faktisk bærer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Levere det kildene støtter, markere usikkerheten og skille observerte mønstre fra konklusjoner som krever mer dokumentasjon.",
+          "effect": 1,
+          "tags": [
+            "editorial_integrity",
+            "claim_boundary",
+            "client_pressure"
+          ],
+          "feedback": "Du lar oppdragets nytte stoppe der evidensen stopper."
+        },
+        {
+          "id": "B",
+          "label": "Stramme formuleringen fordi oppdragsgiveren har bedre oversikt over hva prosjektet trenger.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "client_pressure",
+            "source_risk"
+          ],
+          "feedback": "Bestillerens behov blir gjort til erstatning for kildegrunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_paid_claim_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_virale_pastanden",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En raskt delt påstand",
+      "subject": "Alle deler dette nå",
+      "situation": [
+        "En skjermdump med en oppsiktsvekkende påstand sprer seg raskt, og flere ber deg kommentere fordi du ofte følger med på mediedekning.",
+        "Du finner ingen originalkilde, bare nye kontoer som viser til hverandre.",
+        "Tempoet i offentligheten kan gjøre kildekjede viktigere akkurat når folk har minst tålmodighet til å vente."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at påstanden foreløpig ikke kan spores til en originalkilde og vente med konklusjon til kjeden kan dokumenteres.",
+          "effect": 1,
+          "tags": [
+            "viral_claim",
+            "verification",
+            "uncertainty"
+          ],
+          "feedback": "Du gjør fraværet av dokumentasjon til selve informasjonen."
+        },
+        {
+          "id": "B",
+          "label": "Dele skjermdumpen med forbehold fordi så mange uavhengige kontoer neppe kan ta feil samtidig.",
+          "effect": -1,
+          "tags": [
+            "circular_source",
+            "virality",
+            "verification_gap"
+          ],
+          "feedback": "Du teller kopier av samme ubekreftede påstand som uavhengig støtte."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_viral_verification"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kritikken_som_blir_personangrep",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Et kommentarfelt",
+      "subject": "Det er denne journalisten som er problemet",
+      "situation": [
+        "En diskusjon om en svak sak glir over i spekulasjoner om personen som skrev den, motivene deres og hva slags menneske de må være.",
+        "Du kan dokumentere problemer i saken, men ikke de private motivene kommentarfeltet tillegger personen.",
+        "Mediekritikk mister presisjon når den går fra publisert arbeid til udokumenterte karakterdommer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Føre diskusjonen tilbake til konkrete påstander, kildevalg, framing og rettelser som faktisk kan etterprøves.",
+          "effect": 1,
+          "tags": [
+            "critique_boundary",
+            "reputation",
+            "evidence"
+          ],
+          "feedback": "Du holder kritikken hard mot arbeidet og presis om personen."
+        },
+        {
+          "id": "B",
+          "label": "La personkritikken stå fordi dårlige saker vanligvis sier noe om holdningene til den som skrev dem.",
+          "effect": -1,
+          "tags": [
+            "personal_attack",
+            "motive_inference",
+            "reputation_risk"
+          ],
+          "feedback": "Du gjør en dokumentert faglig svakhet til udokumentert psykologisering."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_person_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_slags_medievaktbikkje",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Din egen medielogg",
+      "subject": "Hva følger du egentlig med på?",
+      "situation": [
+        "Etter uker med overskrifter, kildemønstre, manglende stemmer, rettelser, statistikk, bilder og et lite researchoppdrag ser du at mediekritikk består av mange små etterprøvbare spørsmål.",
+        "Medievaktbikkje er en valgt kritisk praksis, ikke en journaliststilling, redaktørtittel eller garanti for å vite hva som foregår inne i en redaksjon.",
+        "Den viktigste testen er om du kan være streng på dokumentasjon også når kritikken bekrefter det du allerede mistenkte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde en fast regel videre: skill publisert evidens, kildebegrensninger, framing, antatte motiver og profesjonell myndighet.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "role_clarity",
+            "media_literacy"
+          ],
+          "feedback": "Vaktbikkjepraksisen blir en disiplin for etterprøvbar kritikk, ikke en snarvei til redaksjonell autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Bestemme at nok mønstergjenkjenning betyr at du vanligvis kan stole på magefølelsen om hvorfor medier gjør som de gjør.",
+          "effect": -1,
+          "tags": [
+            "confirmation_bias",
+            "authority_inflation",
+            "media_distrust"
+          ],
+          "feedback": "Kritisk praksis glir over i sikkerhet uten kildestøtte."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "mediawatch_season_reflection"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
