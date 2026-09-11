@@ -1,0 +1,74 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import { validatePacket } from "../scripts/validate-place-description-production-v4_2.mjs";
+const read=p=>JSON.parse(fs.readFileSync(p,"utf8"));
+const placeFile="data/places/natur/oslo/places_oslo_natur_akerselvarute/vaterlandsparken.json";
+const place=read(placeFile);
+const quiz=read("data/quiz/by/vaterlandsparken_sets.json");
+const packet=read("data/places/production/vaterlandsparken.json");
+const sub=read("data/places/subkultur-production/vaterlandsparken.json");
+test("Vaterlandsparken full place closure preserves identity",()=>{
+  assert.equal(place.id,"vaterlandsparken");
+  assert.equal(place.lat,59.9130617);
+  assert.equal(place.lon,10.7570946);
+  assert.equal(place.sourceObjectId,"osm-way:4334996");
+  assert.equal(place.coordStatus,"verified_geometry");
+  assert.equal(place.production_status,"complete");
+  assert.equal(place.production_profile,"standard");
+  assert.deepEqual(place.place_card_profile.collection_ids,["people","objects","brands","historical_events"]);
+  assert.equal(sub.status,"ready");
+});
+test("Vaterlandsparken visual and learning surfaces are complete",()=>{
+  assert.equal(place.frontImageMeta.orientation,"portrait");
+  assert.ok(fs.existsSync(place.image));
+  assert.ok(fs.existsSync(place.frontImage));
+  assert.ok(fs.existsSync("bilder/QuizCards/Vaterlandsparken.webp"));
+  assert.ok(fs.existsSync("bilder/kort/people/olafia_johannsdottir.webp"));
+  assert.ok(fs.existsSync("bilder/kort/objects/vaterlandsparken_olafia_byste.webp"));
+  assert.ok(fs.existsSync("bilder/kort/brands/oslo_bymiljoetaten.webp"));
+  assert.equal(place.historical_events.length,4);
+  assert.ok(place.historical_events.every(e=>fs.existsSync(e.image)&&e.imageMeta.generated===true));
+  assert.equal(place.chronology.length,10);
+  assert.equal(place.fagverk.schema,"history_go_place_fagverk_v2");
+  assert.equal(place.fagverk.level,"full");
+  assert.equal(place.fagverk.status,"curated");
+  assert.equal(place.fagverk.lenses.length,4);
+  assert.ok(place.fagverk.guiding_questions.length>=4);
+  assert.ok(place.fagverk.concepts.length>=6);
+  assert.ok(place.fagverk.observable_traces.length>=2);
+  assert.ok(place.fagverk.source_urls.length>=4);
+});
+test("Vaterlandsparken has normal 4x7 quiz with delayed theory",()=>{
+  assert.equal(quiz.sets.length,4);
+  const questions=quiz.sets.flatMap(s=>s.questions||[]);
+  assert.equal(questions.length,28);
+  assert.ok(questions.slice(0,14).every(q=>!q.method_id&&!q.thinker_id&&!q.topic_hook_id));
+  assert.ok(questions.slice(21).some(q=>q.method_id));
+  assert.ok(questions.slice(21).some(q=>q.topic_hook_id==="makt_rett_til_byen"&&q.thinker_id==="henri_lefebvre"&&q.work==="The Production of Space"));
+  assert.ok(questions.every(q=>Array.isArray(q.source)&&q.source.length>0));
+});
+test("Vaterlandsparken Story, language, readings and ethical boundary are explicit",()=>{
+  const stories=read("data/stories/stories_nybrua_vaterlandsparken_split.json");
+  const story=stories.find(s=>s.id==="st_vaterlandsparken_waterland_til_park");
+  assert.equal(story.quality_profile,"episode_v1");
+  const lang=read("data/leksikon/sprak/places/europe/norway/oslo/vaterlandsparken.json");
+  assert.equal(lang.entries.length,6);
+  const readings=read("data/lesespor/oslo/lesespor_oslo_by.json").items.filter(x=>(x.place_ids||[]).includes("vaterlandsparken"));
+  assert.equal(readings.length,5);
+  assert.match(place.popupDesc,/skal ikke brukes til å redusere enkeltmennesker/u);
+  assert.doesNotMatch(place.popupDesc,/History Go|canonical-id/u);
+});
+test("Vaterlandsparken place-description packet validates",()=>{
+  const result=validatePacket({packet,place,packetFile:"data/places/production/vaterlandsparken.json",now:new Date("2026-09-11T12:00:00Z")});
+  assert.deepEqual(result.issues,[]);
+});
+test("Vaterlandsparken production proof is 30/30",()=>{
+  const gate=read("reports/place-production/vaterlandsparken-phase1-24-gate-audit-v1.json");
+  const report=read("reports/place-production/vaterlandsparken-production-v1.json");
+  assert.equal(gate.quality_score.total,30);
+  assert.equal(gate.quality_score.critical_findings,0);
+  assert.equal(gate.quality_score.unresolved_blockers,0);
+  assert.equal(report.status,"complete");
+  assert.equal(report.completion.unresolved_blockers,0);
+});
