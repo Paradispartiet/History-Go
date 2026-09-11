@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07090c">
+  <title>Språkatlas Norge · History Go</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/place-language-layer.css" data-hg-place-language-style="1">
+  <style>
+    html,body{min-height:100%;background:#07090c}
+    body.hg-sprakatlas-standalone{margin:0;color:#f4f5f7}
+    .sprakatlas-topbar{
+      position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;
+      min-height:66px;padding:10px max(16px,env(safe-area-inset-left));
+      padding-right:max(16px,env(safe-area-inset-right));
+      border-bottom:1px solid rgba(255,255,255,.09);
+      background:rgba(7,9,12,.94);backdrop-filter:blur(18px)
+    }
+    .sprakatlas-topbar img{width:52px;height:52px;object-fit:contain}
+    .sprakatlas-topbar-copy{display:grid;gap:1px;min-width:0;flex:1}
+    .sprakatlas-topbar-copy span{font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#ffe168}
+    .sprakatlas-topbar-copy strong{font-size:16px;color:#fff}
+    .sprakatlas-back{
+      display:inline-flex;align-items:center;min-height:38px;padding:0 12px;border:1px solid rgba(255,255,255,.13);
+      border-radius:999px;color:#fff;text-decoration:none;font-size:12px;font-weight:800;background:rgba(255,255,255,.04)
+    }
+    .sprakatlas-shell{width:min(980px,calc(100% - 24px));margin:0 auto;padding:22px 0 max(44px,env(safe-area-inset-bottom))}
+    .sprakatlas-page-intro{display:grid;gap:7px;margin:0 0 16px;padding:4px 2px}
+    .sprakatlas-page-intro span{font-size:11px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:#ffe168}
+    .sprakatlas-page-intro h1{margin:0;font-size:clamp(28px,5vw,44px);line-height:1.05;color:#fff}
+    .sprakatlas-page-intro p{max-width:760px;margin:0;color:rgba(255,255,255,.68);font-size:14px;line-height:1.55}
+    .hg-sprakatlas-page[data-hg-language-layer="1"]{display:block}
+    [data-sprakatlas-page-host][aria-busy="true"]{min-height:55vh;display:grid;place-items:center;color:rgba(255,255,255,.62)}
+    @media (max-width:620px){
+      .sprakatlas-topbar{gap:9px;min-height:60px}
+      .sprakatlas-topbar img{width:44px;height:44px}
+      .sprakatlas-topbar-copy strong{font-size:14px}
+      .sprakatlas-back{padding:0 10px}
+      .sprakatlas-shell{width:min(100% - 16px,980px);padding-top:14px}
+    }
+  </style>
+</head>
+<body class="hg-app hg-sprakatlas-standalone">
+  <header class="sprakatlas-topbar">
+    <a href="index.html#/map" aria-label="Til History Go-kartet">
+      <img src="bilder/logo_historygo.PNG" alt="History Go">
+    </a>
+    <div class="sprakatlas-topbar-copy">
+      <span>History Go</span>
+      <strong>Språkatlas Norge</strong>
+    </div>
+    <a class="sprakatlas-back" href="index.html#/map">← Kartet</a>
+  </header>
+
+  <main class="sprakatlas-shell">
+    <section class="sprakatlas-page-intro" aria-labelledby="sprakatlasTitle">
+      <span>Egen kunnskapsside</span>
+      <h1 id="sprakatlasTitle">Språkatlas Norge</h1>
+      <p>Utforsk lokale talemål, regionale soner og dokumenterte språkspor. De fire hovedområdene er grove orienteringsfelt, ikke fire enkeltstående dialekter.</p>
+    </section>
+
+    <section class="hg-sprakatlas-page hg-place-popup-v2"
+             data-hg-language-layer="1"
+             data-sprakatlas-page
+             aria-label="Språkatlas Norge">
+      <div data-sprakatlas-page-host aria-busy="true">Laster Språkatlas Norge …</div>
+    </section>
+  </main>
+
+  <script src="js/DomainRegistry.js"></script>
+  <script src="dist/web/knowledgeV2.js"></script>
+  <script src="js/dataHub.js"></script>
+  <script src="js/ui/place-language-layer.js"></script>
+  <script src="js/ui/sprakatlas-collection-v4.js"></script>
+</body>
+</html>
