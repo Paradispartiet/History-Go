@@ -171,12 +171,12 @@ vm.runInContext(
 assert.equal(relationshipSandbox.window.CivicationRelationshipEngine.STAGE_BY_LEVEL.length, 6,
   'relasjonssystemet skal fortsatt eie seks vennskapsstadier separat fra livsposisjoner');
 
-assert.equal(roleWorldIndex.roles.length, 89, 'Role World-indeksen skal ha 85 karriereverdener + fire life-position worlds');
+assert.equal(roleWorldIndex.roles.length, 90, 'Role World-indeksen skal ha 85 karriereverdener + fem life-position worlds');
 assert.ok(roleWorldIndex.roles.every((role) => role.status === 'role_world_complete'));
 const careerRoleWorlds = roleWorldIndex.roles.filter((role) => role.subject_type !== 'life_position');
 const lifePositionWorlds = roleWorldIndex.roles.filter((role) => role.subject_type === 'life_position');
 assert.equal(careerRoleWorlds.length, 85, 'karriereverdener skal fortsatt være nøyaktig 85');
-assert.equal(lifePositionWorlds.length, 4, 'Supporter, Nabolagskjenner, Filmklubbmenneske og Sofafilosof skal være materialisert som life-position worlds');
+assert.equal(lifePositionWorlds.length, 5, 'Supporter, Nabolagskjenner, Filmklubbmenneske, Sofafilosof og Historievandrer skal være materialisert som life-position worlds');
 const lifeWorldByKey = new Map(lifePositionWorlds.map((row) => [row.life_position_key, row]));
 assert.deepEqual(lifeWorldByKey.get('sport/supporter').life_position_ref, { badge_id: 'sport', id: 'supporter', label: 'Supporter' });
 assert.equal(lifeWorldByKey.get('sport/supporter').role_scope, 'sport_supporter');
@@ -186,7 +186,9 @@ assert.deepEqual(lifeWorldByKey.get('film_tv/filmklubbmenneske').life_position_r
 assert.equal(lifeWorldByKey.get('film_tv/filmklubbmenneske').role_scope, 'film_tv_filmklubbmenneske');
 assert.deepEqual(lifeWorldByKey.get('filosofi/sofafilosof').life_position_ref, { badge_id: 'filosofi', id: 'sofafilosof', label: 'Sofafilosof' });
 assert.equal(lifeWorldByKey.get('filosofi/sofafilosof').role_scope, 'filosofi_sofafilosof');
-assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 89, career_role_worlds: 85, life_position_role_worlds: 4 });
+assert.deepEqual(lifeWorldByKey.get('historie/historievandrer').life_position_ref, { badge_id: 'historie', id: 'historievandrer', label: 'Historievandrer' });
+assert.equal(lifeWorldByKey.get('historie/historievandrer').role_scope, 'historie_historievandrer');
+assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 90, career_role_worlds: 85, life_position_role_worlds: 5 });
 assert.equal(roleModelManifest.files.length, 293,
   'roleModel-manifestet er authored inventory og skal ikke forveksles med spillerrolle-antallet');
 assert.equal(scenarioPeople.summary.role_model_file_count, 293);
@@ -213,7 +215,7 @@ const expectedCounts = {
   life_circumstance_option_values: 18,
   relationship_stages: 6,
   career_role_worlds: 85,
-  life_position_role_worlds: 4,
+  life_position_role_worlds: 5,
   total_role_worlds: 89,
   role_model_manifest_files: 293,
   canonical_scenario_role_models: 287,
