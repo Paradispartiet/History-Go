@@ -30,7 +30,7 @@ Spotmeeting må ikke forstås som et separat sosialt produkt. Det er den produkt
 | Begrep | Betydning | Status |
 | --- | --- | --- |
 | **HG Social** | Teknisk/arkitektonisk navn på det sosiale kunnskapslaget. | Finnes som backend-ready lokal/demo social layer. |
-| **Social Meet** | Brukerrettet produktnavn for den sosiale møteflaten i profilen. | Finnes som profilfane. |
+| **Social Meet** | Oppfølgingsflaten for forslag, avtaler, læringssirkler og sosial læringshistorikk. | Åpnes primært fra Utforsk → Møtes; profil kan fortsatt vise innstillinger/historikk. |
 | **Knowledge Match** | Forslag basert på felles temaer, konsepter, ruter, quizinteresser og læringssignaler. | Lokal/demo/read-model. |
 | **Meet Invite** | Generell invitasjon mellom brukere som eksplisitt velger å møtes eller samarbeide. | Del av HG Social. |
 | **Confirmed Meet** | Privat avtalt møte etter eksplisitt aksept fra deltakerne. | Del av HG Social. |
@@ -169,19 +169,24 @@ Profilinnstillinger
   - show social reputation
 ```
 
-### PlaceCard
+### Utforsk → Møtes
 
-PlaceCard kan vise en Spotmeeting-inngang når konteksten er trygg:
+Møteproduktet har én spillerinngang i venstre Utforsk-panel:
 
 ```text
-PlaceCard
-  - "Foreslå kunnskapsmøte"
-  - viser relevante demo/knowledge matches i TEST_MODE
-  - sender preset-melding
-  - skriver til spotmeeting inbox
+Møtes
+  - Foreslå kunnskapsmøte
+      - bruker valgt Place-kontekst
+      - viser relevante demo/knowledge matches i TEST_MODE
+      - sender preset-melding
+      - skriver til spotmeeting inbox
+  - Mine møter / Social Meet
+      - forslag og svar
+      - avtalte/gjennomførte møter
+      - læringssirkler og sosial læringshistorikk
 ```
 
-PlaceCard må ikke vise nearby people, live users, distance, last seen eller GPS-baserte signaler.
+PlaceCard skal ikke duplisere denne inngangen. Møtes må heller ikke vise nearby people, live users, distance, last seen eller GPS-baserte signaler.
 
 ### Min dag / NextUp
 
