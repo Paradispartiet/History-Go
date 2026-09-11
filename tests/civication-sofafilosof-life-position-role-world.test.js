@@ -126,7 +126,7 @@ assert.deepEqual(index.summary, {
 });
 assert.equal(index.career_role_world_count, 85);
 assert.equal(index.life_position_role_world_count, 5);
-assert.equal(index.status, '89_role_worlds_materialized');
+assert.equal(index.status, '90_role_worlds_materialized');
 
 assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds, [
   'sport/supporter',
