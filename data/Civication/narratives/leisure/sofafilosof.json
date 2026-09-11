@@ -1,0 +1,746 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "sofafilosof_stream",
+  "type": "leisure",
+  "title": "Sofafilosof i samtalen",
+  "sociological_theme": "uformell_tenking_status_uenighet_og_epistemisk_ydmykhet",
+  "applies_when": {
+    "any_tags": [
+      "sofafilosof",
+      "filosofi:sofafilosof"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "middagssamtalen_som_tar_over",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En venn ved bordet",
+      "subject": "Kan vi spise uten at alt blir et prinsippspørsmål?",
+      "situation": [
+        "En vanlig middag glir fra småprat over i en diskusjon om ansvar, frihet og hva mennesker egentlig skylder hverandre.",
+        "Du merker hvor lett et interessant spørsmål kan gjøre resten av bordet til publikum for den som har mest lyst til å analysere.",
+        "Sofafilosofrollen handler her mindre om å ha svaret enn om å merke når refleksjon åpner samtalen og når den overtar rommet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stille ett tydelig spørsmål, høre svarene og la samtalen skifte tema når de andre vil videre.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "social_awareness",
+            "epistemic_humility"
+          ],
+          "feedback": "Du holder spørsmålet levende uten å gjøre hele kvelden til din seminarflate."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette å presse argumentet fordi de andre bare trenger å tenke litt grundigere.",
+          "effect": -1,
+          "tags": [
+            "conversation_capture",
+            "status",
+            "overanalysis"
+          ],
+          "feedback": "Du får mer filosofisk dybde på egne premisser, men mindre gjensidighet rundt bordet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_conversation_space"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        }
+      ]
+    },
+    {
+      "id": "vennen_vil_ha_livsrad",
+      "message_type": "people",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En nær venn",
+      "subject": "Hva ville du gjort hvis du var meg?",
+      "situation": [
+        "En venn står foran et vanskelig brudd og ber deg tenke høyt om hva som er rett å gjøre.",
+        "Du er vant til å vende problemer fra flere sider, men vennens situasjon er ikke et tankeeksperiment og du har ikke profesjonell behandlings- eller rådgivningsmyndighet.",
+        "Spørsmålet er hvordan refleksjon kan støtte en venn uten å gjøre deg til ekspert på et annet menneskes liv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hjelpe vennen å formulere hvilke hensyn som står mot hverandre, og være tydelig på at valget er deres.",
+          "effect": 1,
+          "tags": [
+            "care",
+            "boundary",
+            "reflection"
+          ],
+          "feedback": "Du bruker refleksjon som støtte uten å overta ansvar eller late som du kjenner fasiten."
+        },
+        {
+          "id": "B",
+          "label": "Gi en prinsipiell konklusjon og forklare at problemet blir enklere når man tenker konsekvent.",
+          "effect": -1,
+          "tags": [
+            "authority_overreach",
+            "abstraction",
+            "relationship_pressure"
+          ],
+          "feedback": "Du tilbyr klarhet, men gjør vennens liv til et problem du selv mener å ha løst."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_advice_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        }
+      ]
+    },
+    {
+      "id": "uenighet_om_rettferdighet",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En gammel venn",
+      "subject": "Vi er helt uenige — men om hva?",
+      "situation": [
+        "En politisk diskusjon blir skarp, og dere bruker begge ordet «rettferdig» som om det betydde det samme.",
+        "Du ser at dere både er uenige om fakta, om verdier og om hvilke konsekvenser som teller mest.",
+        "Det filosofiske arbeidet ligger i å skille uenighetene fra hverandre uten å bruke begrepsanalyse som en måte å vinne sosialt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prøve å gjengi vennens sterkeste poeng før du sier hvor din egen uenighet faktisk ligger.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "charity",
+            "disagreement"
+          ],
+          "feedback": "Konflikten forsvinner ikke, men dere får et mer presist bilde av hva dere faktisk bestrider."
+        },
+        {
+          "id": "B",
+          "label": "Finne den svakeste formuleringen deres og bruke den som bevis på at hele synet faller.",
+          "effect": -1,
+          "tags": [
+            "rhetorical_win",
+            "status",
+            "misrepresentation"
+          ],
+          "feedback": "Du får et lett poeng, men samtalen lærer dere mindre om den reelle uenigheten."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_disagreement_style"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om argumentasjon",
+          "url": "https://snl.no/argumentasjon"
+        }
+      ]
+    },
+    {
+      "id": "begrepet_ingen_tor_sporre_om",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En ny i vennegjengen",
+      "subject": "Hva betyr egentlig det ordet?",
+      "situation": [
+        "Samtalen har samlet flere filosofiske uttrykk som de faste deltakerne bruker uten forklaring.",
+        "En ny person spør forsiktig om ett av dem, og du merker at vokabularet fungerer både som verktøy for presisjon og som et tegn på hvem som hører til.",
+        "Du kan gjøre begrepet til en inngang eller til en liten opptaksprøve."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklare begrepet med et konkret eksempel og spørre om det faktisk hjelper i denne diskusjonen.",
+          "effect": 1,
+          "tags": [
+            "access",
+            "concept_clarity",
+            "welcoming"
+          ],
+          "feedback": "Fagspråket beholder nytten sin uten å bli en sosial adgangskode."
+        },
+        {
+          "id": "B",
+          "label": "Si at betydningen blir åpenbar når man har lest nok filosofi.",
+          "effect": -1,
+          "tags": [
+            "jargon_gatekeeping",
+            "status",
+            "exclusion"
+          ],
+          "feedback": "Du beskytter presisjonen på en måte som samtidig gjør kunnskap til rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_jargon_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        }
+      ]
+    },
+    {
+      "id": "fri_vilje_klokken_to",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Den som fortsatt er våken",
+      "subject": "Hvis alt har årsaker, kunne jeg egentlig valgt annerledes?",
+      "situation": [
+        "En sen kveld ender i spørsmålet om fri vilje, og alle rundt bordet begynner å trekke inn egne erfaringer.",
+        "Du liker hvordan et abstrakt problem kan åpne nye perspektiver, men merker også at folk snakker fra svært ulike livssituasjoner.",
+        "Et filosofisk spørsmål kan undersøkes uten at noens erfaring reduseres til illustrasjon for en teori."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skille mellom det abstrakte problemet og de personlige historiene, og spørre før du bruker noens erfaring som eksempel.",
+          "effect": 1,
+          "tags": [
+            "thought_experiment",
+            "consent",
+            "reflection"
+          ],
+          "feedback": "Samtalen beholder både idéleken og respekten for dem som har satt noe personlig på spill."
+        },
+        {
+          "id": "B",
+          "label": "Bruke den sterkeste personlige historien som eksempel fordi den gjør argumentet mer overbevisende.",
+          "effect": -1,
+          "tags": [
+            "instrumentalization",
+            "boundary",
+            "argument_pressure"
+          ],
+          "feedback": "Argumentet blir levende, men en annens erfaring blir råstoff du ikke eier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_personal_example_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om tankeeksperiment",
+          "url": "https://snl.no/tankeeksperiment"
+        }
+      ]
+    },
+    {
+      "id": "sitatet_som_var_for_godt",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Gruppchatten",
+      "subject": "Dette sitatet oppsummerer alt!",
+      "situation": [
+        "Et slående sitat med navnet til en kjent filosof begynner å gå rundt i chatten og passer perfekt til diskusjonen dere nettopp hadde.",
+        "Når du leter etter opphavet, finner du bare nettsider som siterer hverandre og ingen tydelig primærkilde.",
+        "Det frister å dele videre fordi formuleringen er god, men kildeomsorg gjelder også når et sitat bekrefter noe du allerede liker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dele poenget uten autoritetsnavnet og skrive at attribusjonen er usikker til du finner en ordentlig kilde.",
+          "effect": 1,
+          "tags": [
+            "source_care",
+            "critical_thinking",
+            "uncertainty"
+          ],
+          "feedback": "Du beholder ideen og gjør samtidig usikkerheten synlig for resten av gruppa."
+        },
+        {
+          "id": "B",
+          "label": "Dele sitatet med filosofnavnet fordi meningen uansett passer med det personen kunne ha ment.",
+          "effect": -1,
+          "tags": [
+            "false_authority",
+            "confirmation",
+            "source_risk"
+          ],
+          "feedback": "Et godt poeng får lånt autoritet fra en kilde du ikke faktisk har verifisert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_source_hygiene"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om kritisk tenkning",
+          "url": "https://snl.no/kritisk_tenkning"
+        }
+      ]
+    },
+    {
+      "id": "tankeeksperimentet_blir_personlig",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En deltaker i samtalen",
+      "subject": "Det der handler jo faktisk om meg",
+      "situation": [
+        "Du introduserer et tankeeksperiment om lojalitet og plikt, og en deltaker kjenner igjen trekk fra en konflikt de nylig har fortalt deg om.",
+        "For deg var eksemplet ment som en nøytral test av prinsipper, mens den andre personen opplever at privat informasjon plutselig er blitt felles materiale.",
+        "Abstraksjon kan skape avstand til et problem, men den kan også skjule hvem som betaler for eksemplet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stoppe eksemplet, erkjenne koblingen og finne et nytt scenario som ikke bruker den andres historie.",
+          "effect": 1,
+          "tags": [
+            "consent",
+            "thought_experiment",
+            "repair"
+          ],
+          "feedback": "Du beskytter selve spørsmålet ved å fjerne en unødvendig personlig kostnad."
+        },
+        {
+          "id": "B",
+          "label": "Forklare at tankeeksperimentet er generelt nok til at ingen burde ta det personlig.",
+          "effect": -1,
+          "tags": [
+            "boundary_denial",
+            "abstraction",
+            "relationship_pressure"
+          ],
+          "feedback": "Du forsvarer metodens renhet, men lar den andre bære konsekvensen av ditt eksempel."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_thought_experiment_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om tankeeksperiment",
+          "url": "https://snl.no/tankeeksperiment"
+        }
+      ]
+    },
+    {
+      "id": "boken_du_ikke_ble_ferdig_med",
+      "message_type": "people",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Lesegjengen",
+      "subject": "Hva mente forfatteren egentlig?",
+      "situation": [
+        "Samtalen dreier inn på en bok du startet på, men aldri leste ferdig.",
+        "Du kjenner hovedideen fra omtaler og tidligere diskusjoner, og ingen andre ved bordet vet hvor langt du kom.",
+        "I et miljø der kunnskap gir status, kan det være mer sosialt krevende å si «jeg vet ikke» enn å improvisere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hvor langt du faktisk kom og skille mellom det du leste selv og det du bare har hørt omtalt.",
+          "effect": 1,
+          "tags": [
+            "epistemic_humility",
+            "source_care",
+            "status"
+          ],
+          "feedback": "Du mister muligheten til å virke allvitende, men gjør samtalens kunnskapsgrunnlag mer pålitelig."
+        },
+        {
+          "id": "B",
+          "label": "Snakke som om du har lest hele boka og fylle hullene med det du antar passer.",
+          "effect": -1,
+          "tags": [
+            "bluff",
+            "status",
+            "epistemic_risk"
+          ],
+          "feedback": "Du holder posisjonen i rommet, men gjør egen usikkerhet til andres falske grunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_admit_limits"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om kritisk tenkning",
+          "url": "https://snl.no/kritisk_tenkning"
+        }
+      ]
+    },
+    {
+      "id": "nykommer_i_samtalekvelden",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En førstegangsbesøkende",
+      "subject": "Er dette bare for folk som har studert filosofi?",
+      "situation": [
+        "En ny deltaker blir sittende stille mens andre refererer til filosofer, teorier og gamle interne diskusjoner.",
+        "Du har ingen formell vertsrolle, men blir sett på som en av dem som alltid holder slike samtaler i gang.",
+        "Spørsmålet er om miljøets kunnskapsnivå skal fungere som en ressurs eller som en sosial terskel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spørre hva som fikk personen til å komme, og koble spørsmålet deres til diskusjonen uten å kreve forkunnskap.",
+          "effect": 1,
+          "tags": [
+            "welcoming",
+            "dialogue",
+            "plural_voice"
+          ],
+          "feedback": "Du gjør filosofi til noe man kan delta i før man behersker miljøets referanseliste."
+        },
+        {
+          "id": "B",
+          "label": "Anbefale en lang leseliste og foreslå at personen kommer tilbake når grunnlaget sitter bedre.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status",
+            "exclusion"
+          ],
+          "feedback": "Du gir en tydelig læringsvei, men lar fellesskapet vente på den andre siden av pensum."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_newcomer_access"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        }
+      ]
+    },
+    {
+      "id": "honorar_for_samtalekveld",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Et lite kultursted",
+      "subject": "Kan du lede en åpen samtalekveld for et lite honorar?",
+      "situation": [
+        "Et kultursted tilbyr deg betaling for å holde en uformell samtale om et filosofisk spørsmål i gang en kveld.",
+        "Oppdraget er avgrenset til vertskap, spørsmål og tidsstyring; det gjør deg ikke til akademisk filosof, terapeut, etikkrådgiver eller faglig myndighet.",
+        "Her møtes livsposisjon og levevei, men de må forbli to forskjellige lag i Civication."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta oppdraget som et eget avgrenset gig og beskrive rollen tydelig som samtaleledelse.",
+          "effect": 1,
+          "tags": [
+            "bounded_gig",
+            "livelihood_boundary",
+            "hosting"
+          ],
+          "feedback": "Du kan få betalt for en konkret oppgave uten at Sofafilosof-identiteten blir gjort om til en profesjon."
+        },
+        {
+          "id": "B",
+          "label": "Presentere honoraret som dokumentasjon på at du nå kan tilby profesjonell filosofisk rådgivning.",
+          "effect": -1,
+          "tags": [
+            "career_confusion",
+            "authority_overreach",
+            "livelihood_confusion"
+          ],
+          "feedback": "Et lite oppdrag blir blåst opp til kompetanse og myndighet avtalen aldri ga."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_livelihood_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        }
+      ]
+    },
+    {
+      "id": "du_tok_feil_i_gar",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Din egen meldingstråd",
+      "subject": "Argumentet mitt holdt ikke",
+      "situation": [
+        "Dagen etter en lang diskusjon oppdager du at et premiss du presset hardt på var svakt og at en venn faktisk påpekte problemet underveis.",
+        "Ingen krever at du tar det opp igjen, og det ville være enkelt å la samtalen forsvinne i chatloggen.",
+        "Kritisk tenkning blir sosialt vanskeligst når vurderingen må rettes mot ens egen tidligere selvsikkerhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skrive kort at du har tenkt videre, peke på feilen og kreditere innvendingen som fikk deg til å se den.",
+          "effect": 1,
+          "tags": [
+            "revision",
+            "critical_thinking",
+            "credit"
+          ],
+          "feedback": "Du gjør meningsendring til en del av tenkningen i stedet for et tap av ansikt."
+        },
+        {
+          "id": "B",
+          "label": "La saken ligge og satse på at ingen husker hvor sikkert du uttalte deg.",
+          "effect": -1,
+          "tags": [
+            "face_saving",
+            "status",
+            "epistemic_inertia"
+          ],
+          "feedback": "Du beholder sosial ro nå, men lærer miljøet at selvsikkerhet veier mer enn revisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_public_revision"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om kritisk tenkning",
+          "url": "https://snl.no/kritisk_tenkning"
+        }
+      ]
+    },
+    {
+      "id": "sorg_er_ikke_et_argument",
+      "message_type": "people",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En venn i sorg",
+      "subject": "Jeg orker ikke diskutere hva døden betyr",
+      "situation": [
+        "En venn har mistet noen og sier at de ikke vil ha teorier om mening, frihet eller hva et godt liv krever.",
+        "Du kjenner mange spørsmål som kunne knyttes til situasjonen, men den andres behov akkurat nå er ikke intellektuell utforskning.",
+        "En livsposisjon bygget på refleksjon må også romme at noen øyeblikk krever nærvær fremfor analyse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legge spørsmålene bort og spørre hva slags praktisk eller menneskelig støtte vennen ønsker nå.",
+          "effect": 1,
+          "tags": [
+            "care",
+            "boundary",
+            "presence"
+          ],
+          "feedback": "Du lar relasjonen være viktigere enn behovet for å gjøre erfaringen filosofisk interessant."
+        },
+        {
+          "id": "B",
+          "label": "Forsøke å vise hvordan filosofiske perspektiver kan gjøre sorgen lettere å forstå.",
+          "effect": -1,
+          "tags": [
+            "overanalysis",
+            "boundary",
+            "emotional_distance"
+          ],
+          "feedback": "Du tilbyr mening før den andre har bedt om den og gjør nærvær til et argument."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_when_not_to_analyze"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nettdebatten_og_flokken",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "En offentlig kommentarfelttråd",
+      "subject": "Dette argumentet fortjener å bli knust",
+      "situation": [
+        "En dårlig formulert påstand får massiv motstand på nett, og du ser flere gode innvendinger blant mye latterliggjøring.",
+        "Du er enig i kritikken, men tempoet i tråden gjør det lett å gå fra argumentanalyse til sosial straff.",
+        "Å skille en svak påstand fra verdien til personen som skrev den er en del av den samme kritiske disiplinen du forventer av andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kritisere det konkrete argumentet, unngå personangrep og trekke deg når poenget allerede er dekket.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "restraint",
+            "online_norms"
+          ],
+          "feedback": "Du bidrar med saklig motstand uten å gjøre mengden av kritikere til et eget bevis."
+        },
+        {
+          "id": "B",
+          "label": "Legge til en spiss kommentar fordi personen burde tåle konsekvensene av å skrive noe dumt offentlig.",
+          "effect": -1,
+          "tags": [
+            "dogpile",
+            "status",
+            "personalization"
+          ],
+          "feedback": "Du står på riktig side av argumentet, men bruker flokken til å gjøre uenigheten sosialt dyrere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_online_disagreement"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om argumentasjon",
+          "url": "https://snl.no/argumentasjon"
+        }
+      ]
+    },
+    {
+      "id": "sesongslutt_hva_slags_tenker",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Vennegjengen etter nok en lang kveld",
+      "subject": "Hva har alle disse samtalene gjort med oss?",
+      "situation": [
+        "Når du ser tilbake på mange kvelder, er det ikke de mest elegante poengene du husker best, men hvem som våget å endre mening, hvem som ble stille og hvem som stadig fikk definere spørsmålene.",
+        "Sofafilosof har aldri vært en jobb eller en tittel andre må anerkjenne; det er en valgt måte å bruke hverdagen og relasjonene på.",
+        "Den sosiale testen er derfor ikke hvor ofte du vinner diskusjoner, men hva slags samtaler som blir mulige når du er med."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge én vane å ta med videre: spørre mer presist, innrømme usikkerhet tidligere og gi mer plass til andre.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "epistemic_humility",
+            "relationship"
+          ],
+          "feedback": "Identiteten blir en praksis som kan justeres, ikke en rang du må forsvare."
+        },
+        {
+          "id": "B",
+          "label": "Konkludere med at du først og fremst trenger flere argumenter og mer kunnskap for å bli den tydeligste stemmen.",
+          "effect": -1,
+          "tags": [
+            "status_identity",
+            "conversation_capture",
+            "stagnation"
+          ],
+          "feedback": "Du investerer i skarphet, men risikerer å gjøre hele miljøet til en scene for egen posisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_season_reflection"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        }
+      ]
+    }
+  ]
+}
