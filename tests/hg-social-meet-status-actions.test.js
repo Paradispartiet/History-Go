@@ -51,7 +51,7 @@ function buttonsFor(card) { return [...card.querySelectorAll('[data-hg-social-me
   window.addEventListener('updateProfile', event => events.push(['profile', event.detail]));
 
   run(window, 'js/social/HGSocialMeetUI.js');
-  await window.HG_SocialMeetUI.open({ filter: 'all', sourceSurface: 'globalMenu' });
+  await window.HG_SocialMeetUI.open({ filter: 'all', sourceSurface: 'explorePanel' });
   let sheet = window.document.getElementById('hgSocialMeetSheet');
 
   const cardByTitle = title => [...sheet.querySelectorAll('.hg-social-card')].find(card => card.textContent.includes(title));
@@ -81,17 +81,16 @@ function buttonsFor(card) { return [...card.querySelectorAll('[data-hg-social-me
   assert(calls.some(call => call[0] === 'complete' && call[1] === 'pending-1'), 'Marker gjennomført calls adapter completeInvite');
 
   invites = [{ inviteId: 'decline-1', status: 'pending', targetDisplayName: 'Ny', context: { contextId: 'p1', contextType: 'place', title: 'Decline me' }, presetLabel: 'Vil du møtes rundt dette temaet?' }];
-  await window.HG_SocialMeetUI.open({ filter: 'all', sourceSurface: 'globalMenu' });
+  await window.HG_SocialMeetUI.open({ filter: 'all', sourceSurface: 'explorePanel' });
   sheet = window.document.getElementById('hgSocialMeetSheet');
   cardByTitle('Decline me').querySelector('[data-hg-social-meet-action="decline"]').click();
   await tick(window); await tick(window);
   assert(calls.some(call => call[0] === 'decline' && call[1] === 'decline-1'), 'Avslå calls adapter declineInvite');
 
   const onsiteText = text(window.document.getElementById('pcEventsBox'));
-  assert(onsiteText.includes('Social Meet'), 'På stedet keeps Social Meet status/link');
-  assert(onsiteText.includes('Åpne Social Meet'), 'På stedet keeps open Social Meet link');
-  assert(!onsiteText.includes('Se kunnskapsmatcher'), 'Kunnskapsmøte grid does not return to På stedet');
-  assert(!onsiteText.includes('Inviter til quiz'), 'quiz invite shortcut does not return to På stedet');
+  assert(!onsiteText.includes('Social Meet'), 'Social Meet does not return to PlaceCard');
+  assert(!onsiteText.includes('Se kunnskapsmatcher'), 'Kunnskapsmøte grid does not return to PlaceCard');
+  assert(!onsiteText.includes('Inviter til quiz'), 'quiz invite shortcut does not return to PlaceCard');
   assertNoForbidden(sheet);
 
   const fallbackWindow = makeWindow();
@@ -105,7 +104,7 @@ function buttonsFor(card) { return [...card.querySelectorAll('[data-hg-social-me
     confirmSpotmeetingCompleted(id) { localCalls.push(['localComplete', id]); localStatus = 'completed'; return { ok: true }; }
   };
   run(fallbackWindow, 'js/social/HGSocialMeetUI.js');
-  await fallbackWindow.HG_SocialMeetUI.open({ filter: 'all', sourceSurface: 'globalMenu' });
+  await fallbackWindow.HG_SocialMeetUI.open({ filter: 'all', sourceSurface: 'explorePanel' });
   fallbackWindow.document.querySelector('[data-hg-social-meet-action="accept"]').click();
   await tick(fallbackWindow); await tick(fallbackWindow);
   assert.deepStrictEqual(localCalls[0], ['localAccept', 'local-1'], 'local fallback is used when adapter is missing');
