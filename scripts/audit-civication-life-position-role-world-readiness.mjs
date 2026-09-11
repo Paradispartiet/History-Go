@@ -40,6 +40,7 @@ function collectStrings(value, out = []) {
 }
 
 const taxonomy = readJson('data/Civication/nonCareerRoleTaxonomy.json');
+const roleWorldIndex = readJson('data/Civication/roleWorlds/index.json');
 const badgeIndex = readJson('data/badges/index.json');
 const catalog = readJson('data/Civication/lifePositionCatalog.json');
 const overlayIndex = readJson('data/Civication/badgeCareerContracts/index.json');
@@ -237,9 +238,16 @@ function classify(position, evidence) {
   return 'needs_authored_depth';
 }
 
+const completedLifeWorlds = new Map((roleWorldIndex.roles || [])
+  .filter((entry) => entry?.subject_type === 'life_position' && entry?.life_position_ref?.badge_id && entry?.life_position_ref?.id)
+  .map((entry) => [`${entry.life_position_ref.badge_id}::${entry.life_position_ref.id}`, entry]));
+
 const rows = positions.map((position) => {
   const evidence = sourceEvidence(position);
   const classification = classify(position, evidence);
+  const completedWorld = position.id
+    ? completedLifeWorlds.get(`${position.badge_id}::${position.id}`) || null
+    : null;
   const mode = semanticMode(position.kind);
   let priority = classification === 'role_world_candidate' ? 1000
     : classification === 'needs_authored_depth' ? 500 : 200;
@@ -261,6 +269,8 @@ const rows = positions.map((position) => {
     semantic_mode: mode,
     runtime_source: position.source,
     classification,
+    role_world_status: completedWorld?.status || 'role_world_not_started',
+    role_world_path: completedWorld?.path || null,
     priority_score: priority,
     authored_depth: {
       description_present: Boolean(position.description),
@@ -288,7 +298,7 @@ const classCounts = Object.fromEntries(['role_world_candidate','needs_authored_d
   .map((id)=>[id, rows.filter((row)=>row.classification===id).length]));
 
 const queue = rows
-  .filter((row)=>row.classification !== 'prefer_overlay_context')
+  .filter((row)=>row.classification !== 'prefer_overlay_context' && row.role_world_status !== 'role_world_complete')
   .sort((a,b)=>b.priority_score-a.priority_score || a.key.localeCompare(b.key,'nb'))
   .map((row,index)=>({
     rank:index+1,
@@ -314,7 +324,8 @@ const output = {
     badge_career_overlays:'data/Civication/badgeCareerContracts/index.json',
     livelihood_templates:'data/Civication/livelihoodOpportunityTemplates.json',
     role_world_standard:'docs/CIVICATION_ROLE_WORLD_STANDARD.md',
-    scene_pipeline:'data/Civication/SCENE_PIPELINE_V1.md'
+    scene_pipeline:'data/Civication/SCENE_PIPELINE_V1.md',
+    role_world_index:'data/Civication/roleWorlds/index.json'
   },
   semantics:{
     audit_only_no_new_runtime:true,
@@ -336,7 +347,9 @@ const output = {
     queue_length:queue.length,
     livelihood_backed_positions:rows.filter((row)=>row.authored_depth.livelihood_template_count>0).length,
     positions_with_exact_governed_sources:rows.filter((row)=>row.authored_depth.exact_source_ref_count>0).length,
-    positions_with_multi_scene_narrative_foundation:rows.filter((row)=>row.authored_depth.max_narrative_depth>=4).length
+    positions_with_multi_scene_narrative_foundation:rows.filter((row)=>row.authored_depth.max_narrative_depth>=4).length,
+    life_position_role_world_complete: rows.filter((row)=>row.role_world_status==='role_world_complete').length,
+    pending_source_backed_candidates: queue.filter((row)=>row.classification==='role_world_candidate').length
   },
   first_candidate:queue.find((row)=>row.classification==='role_world_candidate') || null,
   queue,
@@ -350,10 +363,12 @@ function renderReport(data) {
   lines.push(`**Classification:** ${data.summary.classifications.role_world_candidate} role_world_candidate / ${data.summary.classifications.needs_authored_depth} needs_authored_depth / ${data.summary.classifications.prefer_overlay_context} prefer_overlay_context`);
   lines.push(`**Livelihood-backed:** ${data.summary.livelihood_backed_positions}`);
   lines.push(`**Exact governed-source matches:** ${data.summary.positions_with_exact_governed_sources}`);
-  lines.push(`**Multi-scene narrative foundations:** ${data.summary.positions_with_multi_scene_narrative_foundation}`,'');
+  lines.push(`**Multi-scene narrative foundations:** ${data.summary.positions_with_multi_scene_narrative_foundation}`);
+  lines.push(`**Completed life-position Role Worlds:** ${data.summary.life_position_role_world_complete}`);
+  lines.push(`**Pending source-backed candidates:** ${data.summary.pending_source_backed_candidates}`,'');
   lines.push('## Decision','');
-  if (data.first_candidate) lines.push(`First source-backed Role World candidate: **${data.first_candidate.key} — ${data.first_candidate.label}**.`,'');
-  else lines.push('No life position currently has enough existing multi-scene role-specific narrative depth to enter Role World production without prior source authoring.','');
+  if (data.first_candidate) lines.push(`First pending source-backed Role World candidate: **${data.first_candidate.key} — ${data.first_candidate.label}**.`,'');
+  else lines.push('The existing source-backed candidate has been completed; no remaining life position currently has enough governed multi-scene role-specific depth to enter Role World production without prior source authoring.','');
   lines.push('Livelihood templates count as provenance for an economic opportunity, but never as sufficient Role World depth on their own.','');
   lines.push('## Top queue','');
   lines.push('| Rank | Position | Class | Exact refs | Livelihood | Narrative depth |');
