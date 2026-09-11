@@ -142,23 +142,24 @@ assert.equal(entry.status, 'role_world_complete');
 assert.equal(entry.path, worldPath);
 
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 2);
+assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 3);
 assert.deepEqual(index.summary, {
-  role_worlds_total: 87,
+  role_worlds_total: 88,
   career_role_worlds: 85,
-  life_position_role_worlds: 2
+  life_position_role_worlds: 3
 });
 assert.equal(index.career_role_world_count, 85);
-assert.equal(index.life_position_role_world_count, 2);
+assert.equal(index.life_position_role_world_count, 3);
 
 assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds, [
   'sport/supporter',
-  'by/nabolagskjenner'
+  'by/nabolagskjenner',
+  'film_tv/filmklubbmenneske'
 ]);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'film_tv/filmklubbmenneske');
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 2);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 87);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 3);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 88);
 
 const readiness = audit.positions.find((row) => row.key === 'by/nabolagskjenner');
 assert.ok(readiness);
@@ -168,9 +169,9 @@ assert.equal(readiness.role_world_path, worldPath);
 assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.ok(!audit.queue.some((row) => row.key === 'by/nabolagskjenner'));
-assert.equal(audit.summary.life_position_role_world_complete, 2);
-assert.equal(audit.summary.pending_ready_positions, 1);
-assert.equal(audit.first_ready?.key, 'film_tv/filmklubbmenneske');
+assert.equal(audit.summary.life_position_role_world_complete, 3);
+assert.equal(audit.summary.pending_ready_positions, 0);
+assert.equal(audit.first_ready, null);
 
 execFileSync(process.execPath, ['tests/civication-role-world-contract.test.js'], {
   cwd: ROOT,
@@ -189,4 +190,4 @@ execFileSync(process.execPath, ['tests/civication-nabolagskjenner-life-position-
   stdio: 'pipe'
 });
 
-console.log('civication Nabolagskjenner Role World ok: 56/56 coverage / 14 governed anchors / 87 total worlds / no new runtime');
+console.log('civication Nabolagskjenner Role World ok: 56/56 coverage / 14 governed anchors / 88 total worlds / no new runtime');

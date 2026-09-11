@@ -29,12 +29,12 @@ assert.deepEqual(audit.summary.classifications, {
   needs_authored_depth: 157,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 2);
-assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.completed_life_position_role_worlds, 3);
+assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 3);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 3);
-assert.equal(audit.first_ready?.key, 'film_tv/filmklubbmenneske');
+assert.equal(audit.first_ready, null);
 
 assert.deepEqual(policy.noncareer_subject_boundary.life_position_readiness.classifications, [
   'ready',
@@ -52,6 +52,13 @@ assert.equal(nabolagskjenner.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(nabolagskjenner.evidence.exact_source_refs, [
   'data/Civication/narratives/leisure/nabolagskjenner.json'
 ]);
+
+const filmklubbmenneske = audit.positions.find((row) => row.key === 'film_tv/filmklubbmenneske');
+assert.ok(filmklubbmenneske);
+assert.equal(filmklubbmenneske.classification, 'ready');
+assert.equal(filmklubbmenneske.role_world_status, 'role_world_complete');
+assert.equal(filmklubbmenneske.role_world_path, 'data/Civication/roleWorlds/film_tv/film_tv_filmklubbmenneske.json');
+assert.equal(filmklubbmenneske.authored_depth.max_narrative_depth, 14);
 
 const genericKjenner = audit.positions.find((row) => row.key === 'film_tv/kjenner');
 assert.ok(genericKjenner);
@@ -84,7 +91,7 @@ for (const row of audit.positions.filter((item) => item.classification === 'read
   assert.ok(row.authored_depth.exact_source_ref_count >= 1, `${row.key}: ready requires exact governed provenance`);
 }
 
-assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjenner'].includes(row.key)),
+assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjenner','film_tv/filmklubbmenneske'].includes(row.key)),
   'completed life-position worlds must leave the readiness queue');
 assert.ok((audit.queue || []).every((row) => row.classification !== 'not_a_standalone_world'));
 assert.equal(new Set(audit.positions.map((row) => row.key)).size, 200);
