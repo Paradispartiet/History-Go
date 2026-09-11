@@ -76,7 +76,7 @@ if (indexedKeys.has(archiveKey)) {
   const archiveEntry = (roleWorldIndex.roles || []).find((entry) => `${entry.category}/${entry.role_scope}` === archiveKey);
   assert.equal(archiveEntry?.status, 'role_world_complete', 'An indexed archive pilot must be a genuine completed Role World');
   assert.ok(archiveEntry?.path && exists(archiveEntry.path), 'An indexed archive pilot must own a standalone Role World source file');
-  const archiveWorld = readJson(archiveEntry.path);
+  const archiveWorld = json(archiveEntry.path);
   assert.equal(archiveWorld.category, archivePilot.category);
   assert.equal(archiveWorld.role_scope, archivePilot.role_scope);
   assert.equal(archiveWorld.status, 'role_world_complete');
