@@ -107,7 +107,7 @@ place.for_na={
   now:"2025-bildet dokumenterer samme canonicale park i en nyere tilstand.",
   change:"Bildene viser samme park på ulike tidspunkter, men ståsted og utsnitt er ikke dokumentert som identiske. De kan brukes til å sammenligne synlige park- og byromselementer, ikke til eksakte mål på endring.",
   caveat:"Ulike eller udokumenterte kamerastandpunkter; ingen optisk eksakt før/etter-påstand.",
-  lookFor:["elvekanten","plen og harde flater","ganglinjer","trær","bygningskantene rundt parken"],
+  lookFor:["parkens rektangulære hovedform","forholdet mellom plen og harde flater","elvekanten langs Akerselva","utsynet mot Vaterlands bru","bysten av Ólafia Jóhannsdóttir","Stupere over elva ved sørenden","forbindelsen mot Lilletorget","kontrasten mellom høyhus, trafikkrom og park"],
   sources:[urls.oldPage,urls.nowPage,urls.official]
 };
 
