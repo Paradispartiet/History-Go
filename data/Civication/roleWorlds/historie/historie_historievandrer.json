@@ -1,0 +1,1038 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_historievandrer",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "historie",
+    "id": "historievandrer",
+    "label": "Historievandrer"
+  },
+  "title": "Historievandrer",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å gjøre steder historisk lesbare uten å gjøre egne tolkninger, lokal status eller fortellerglede til kildeautoritet",
+    "description": "Historievandrer-livet undersøker hvordan byrom, fasader, kart, minner, bilder og lokale fortellinger blir historisk meningsfulle gjennom sosial bruk og kildearbeid. Spilleren må lære å skille synlige spor fra antakelser, muntlige minner fra dokumenterte fakta, og historisk interesse fra retten til å gå inn på privat område, dele sårbare historier eller opptre som historiker, arkivar, autorisert guide eller kulturminnemyndighet. Et avgrenset honorert vandringsoppdrag kan gi inntekt, men gir ingen profesjonell eller offentlig myndighet."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "public_private_leakage",
+    "public_attention",
+    "shame_reputation",
+    "status_anxiety",
+    "class_power",
+    "care_vs_efficiency",
+    "invisible_work"
+  ],
+  "social_environments": [
+    "gater, plasser og fasader der bygningens nåtid og eldre lag kan leses samtidig",
+    "nabolagssamtaler der muntlige minner, familiehistorier og lokale konflikter lever side om side",
+    "digitale bilde- og kartarkiver der proveniens, datering og stedsidentifikasjon må vurderes",
+    "minnesmerker og kulturmiljøer der noen historier er offentlig synlige og andre fraværende",
+    "private bakgårder, boliger og sårbare familiehistorier der dagens grenser må veie tyngre enn nysgjerrighet",
+    "lokale møter om vern, bruk og riving der historisk kunnskap møter dagens interesser uten å gi spilleren vedtaksmyndighet",
+    "små lokalhistoriske vandringer der et avgrenset honorar må holdes adskilt fra profesjonell ekspertstatus"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "eldre_nabo",
+      "social_function": "bærer muntlig lokal kunnskap og gjør forskjellen mellom levd minne, kollektiv fortelling og dokumenterbar hendelse synlig",
+      "class_position": "lokal beboer med høy erfaringsbasert stedskapital, men uten monopol på nabolagets historie",
+      "status": "høy lokal troverdighet i enkelte spørsmål, særlig om hverdagsliv og endringer over tid",
+      "power_over_player": "kan åpne minner, korrigere outsider-blikket og trekke tillit hvis fortellingen blir brukt uten respekt",
+      "wants": "at eget og andres liv i området skal bli forstått uten å bli pynt eller feilaktig fasit",
+      "conceals": "at egne minner også kan være selektive, konfliktfylte og formet av senere fortellinger",
+      "speech_style": "konkret, stedsnær og full av navn, hendelser og sammenligninger med hvordan det var før",
+      "teaches_player": "at muntlig historie både er kilde og sosial relasjon, og derfor må krediteres, kontekstualiseres og noen ganger holdes privat"
+    },
+    {
+      "id": "kildebevisst_venn",
+      "social_function": "presser på forskjellen mellom funn, sannsynlig tolkning og fortelling som bare har blitt gjentatt mange ganger",
+      "class_position": "jevnaldrende historieinteressert uten formell myndighet, men med høy metodisk bevissthet",
+      "status": "respektert fordi personen heller sier usikkert enn å fylle hullene",
+      "power_over_player": "kan gjøre overdrivelser sosialt synlige og løfte standarden for hvordan gruppa bruker bilder, kart og tekster",
+      "wants": "at gode historier skal tåle å bli merket med hva man faktisk vet og ikke vet",
+      "conceals": "at sterk kildekritikk også kan bli en statussport hvis den brukes for å ydmyke andre",
+      "speech_style": "spørrende, presis og rask til å spørre om dato, opphav og hvem som faktisk sier hva",
+      "teaches_player": "at kildeomsorg er sterkest når den gjør fortellingen mer etterprøvbar uten å gjøre usikkerhet skamfull"
+    },
+    {
+      "id": "dagens_beboer",
+      "social_function": "representerer menneskene som bruker et historisk sted nå og setter grenser for fotografering, adgang og privatliv",
+      "class_position": "beboer eller bruker med faktisk rett til dagens rom, uavhengig av stedets historiske interesse",
+      "status": "kan ha lav status i historiefortellingen, men høy legitim kontroll over egen bolig og private område",
+      "power_over_player": "kan nekte adgang, be om avstand og avsløre om spilleren setter fortid over levende mennesker",
+      "wants": "å slippe at hjemmet eller hverdagen blir behandlet som åpent museumsmateriale",
+      "conceals": "at stadige historieinteresserte besøk kan føles belastende selv når hvert enkelt besøk virker uskyldig",
+      "speech_style": "direkte, praktisk og tydelig på hva som er privat og hva som oppleves invaderende",
+      "teaches_player": "at historisk verdi ikke opphever dagens rettigheter, privatliv eller samtykke"
+    },
+    {
+      "id": "lokal_arrangor",
+      "social_function": "tilbyr et konkret honorert vandringsoppdrag og gjør skillet mellom frivillig praksis, gig og profesjon synlig",
+      "class_position": "lokal kultur- eller foreningsaktør med økonomisk makt over ett arrangement, men uten myndighet til å autorisere spilleren som historiker eller offentlig guide",
+      "status": "praktisk status som oppdragsgiver og vert for arrangementet",
+      "power_over_player": "kan gi et avgrenset oppdrag, kreve pålitelighet og stoppe samarbeidet hvis innhold eller grenser ikke holder",
+      "wants": "en trygg og interessant vandring med ryddige stopp, tydelig usikkerhet og respekt for deltakere og steder",
+      "conceals": "at publikumspress kan gjøre den mest dramatiske versjonen økonomisk fristende",
+      "speech_style": "konkret, logistisk og opptatt av tid, rute, publikum og hva som faktisk kan forsvares",
+      "teaches_player": "at betaling for et konkret bidrag ikke skaper historiker-, arkivar-, kulturminne- eller offentlig myndighet"
+    },
+    {
+      "id": "vernaktivist",
+      "social_function": "gjør koblingen mellom historisk kunnskap og dagens interessekonflikter tydelig uten å representere hele kulturminnefeltet",
+      "class_position": "engasjert lokal aktør med politisk og sosial mobiliseringsevne, men uten automatisk vedtaksmyndighet",
+      "status": "kan ha høy offentlig synlighet i en lokal vernesak",
+      "power_over_player": "kan løfte spillerens kunnskap inn i debatten, presse på for tydelig sidevalg eller kritisere forsiktige formuleringer",
+      "wants": "at historiske verdier skal få reell vekt før irreversible endringer skjer",
+      "conceals": "at strategiske behov i en kampanje kan belønne enklere og mer entydige historier enn kildene tåler",
+      "speech_style": "engasjert, normativ og rask til å koble konkrete steder til større spørsmål om tap, identitet og makt",
+      "teaches_player": "at historisk dokumentasjon kan være relevant i en konflikt uten å bli et vedtak eller én tvungen politisk konklusjon"
+    },
+    {
+      "id": "ny_vandrer",
+      "social_function": "tester om spillerens kunnskap åpner stedet for andre eller gjør den historiske samtalen til en opptaksprøve",
+      "class_position": "deltaker med lite lokalkunnskap og lav intern status, men full rett til å spørre hvordan en påstand er kjent",
+      "status": "lav kunnskapsstatus i gruppa, men høy betydning som korrektiv mot lånt ekspertautoritet",
+      "power_over_player": "kan stille det enkle spørsmålet som avslører en brutt kildekjede eller en ubegrunnet sikkerhet",
+      "wants": "å forstå hvordan man kan se, spørre og undersøke selv fremfor bare å memorere spillerens svar",
+      "conceals": "at det kan føles sosialt risikabelt å spørre om noe alle andre later til å vite",
+      "speech_style": "enkelt, nysgjerrig og konkret: hvordan vet vi dette, hvor sto det, hva er sikkert",
+      "teaches_player": "at god formidling viser kunnskapsveien, ikke bare konklusjonen"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "source_discipline",
+      "meaning": "om spilleren holder forskjellen mellom synlig spor, dokumentert påstand, muntlig minne og spekulasjon tydelig over tid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "plural_memory",
+      "meaning": "om uenige minner og fravær får stå som historisk materiale eller presses inn i én ryddig fortelling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "access_and_privacy",
+      "meaning": "om historisk nysgjerrighet respekterer privat område, bolig, samtykke og sårbare kilder",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_story_power",
+      "meaning": "hvordan minnesmerker, populære myter og lokale kampanjer fordeler synlighet og autoritet mellom ulike historier",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "status_without_authority",
+      "meaning": "om lokalkunnskap og fortellerevne gir sosial status uten å bli forvekslet med profesjonell eller offentlig myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "livelihood_boundary",
+      "meaning": "om et avgrenset honorert vandringsoppdrag holdes adskilt fra livsposisjon, ansettelse og faglig autoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du stopper ved en minneplakett som forteller én kort versjon av bygningens historie, mens spor i fasaden peker mot flere ombygginger og bruksendringer. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#plaketten_og_hullet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du stopper ved en minneplakett som forteller én kort versjon av bygningens historie, mens spor i fasaden peker mot flere ombygginger og bruksendringer. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#plaketten_og_hullet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du stopper ved en minneplakett som forteller én kort versjon av bygningens historie, mens spor i fasaden peker mot flere ombygginger og bruksendringer. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#plaketten_og_hullet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du stopper ved en minneplakett som forteller én kort versjon av bygningens historie, mens spor i fasaden peker mot flere ombygginger og bruksendringer. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#plaketten_og_hullet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 2, morning: To personer som har bodd lenge i området forteller helt ulike historier om det samme gamle butikklokalet. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "plural_memory",
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#to_naboer_to_minner"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: To personer som har bodd lenge i området forteller helt ulike historier om det samme gamle butikklokalet. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "plural_memory",
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#to_naboer_to_minner"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: To personer som har bodd lenge i området forteller helt ulike historier om det samme gamle butikklokalet. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "plural_memory",
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#to_naboer_to_minner"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: To personer som har bodd lenge i området forteller helt ulike historier om det samme gamle butikklokalet. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "plural_memory",
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#to_naboer_to_minner"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Et gammelt industrispor fortsetter inn i en bakgård som i dag er privat. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "access_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#bakgarden_er_privatomrade"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Et gammelt industrispor fortsetter inn i en bakgård som i dag er privat. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "access_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#bakgarden_er_privatomrade"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Et gammelt industrispor fortsetter inn i en bakgård som i dag er privat. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "access_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#bakgarden_er_privatomrade"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 3, evening: Et gammelt industrispor fortsetter inn i en bakgård som i dag er privat. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "access_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#bakgarden_er_privatomrade"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Du finner et gammelt gatefoto som ligner sterkt på stedet du står ved, men filen har usikker dato og svak stedsangivelse. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#bildet_uten_dato"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Du finner et gammelt gatefoto som ligner sterkt på stedet du står ved, men filen har usikker dato og svak stedsangivelse. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#bildet_uten_dato"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Du finner et gammelt gatefoto som ligner sterkt på stedet du står ved, men filen har usikker dato og svak stedsangivelse. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#bildet_uten_dato"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Du finner et gammelt gatefoto som ligner sterkt på stedet du står ved, men filen har usikker dato og svak stedsangivelse. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#bildet_uten_dato"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "social",
+        "summary": "Dag 5, morning: Et lokalt minnesmerke løfter fram noen navn og hendelser, mens en eldre beboer forteller om mennesker som ikke ble nevnt. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "plural_memory",
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#minnesmerket_og_navnet_som_mangler"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Et lokalt minnesmerke løfter fram noen navn og hendelser, mens en eldre beboer forteller om mennesker som ikke ble nevnt. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "plural_memory",
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#minnesmerket_og_navnet_som_mangler"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Et lokalt minnesmerke løfter fram noen navn og hendelser, mens en eldre beboer forteller om mennesker som ikke ble nevnt. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "plural_memory",
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#minnesmerket_og_navnet_som_mangler"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Et lokalt minnesmerke løfter fram noen navn og hendelser, mens en eldre beboer forteller om mennesker som ikke ble nevnt. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "plural_memory",
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#minnesmerket_og_navnet_som_mangler"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "social",
+        "summary": "Dag 6, morning: En venn har hørt en spektakulær historie om en gammel bygning og gjentar den til resten av gruppa. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "evidence_place_reading",
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#historien_som_selger_bedre"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: En venn har hørt en spektakulær historie om en gammel bygning og gjentar den til resten av gruppa. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "evidence_place_reading",
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#historien_som_selger_bedre"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: En venn har hørt en spektakulær historie om en gammel bygning og gjentar den til resten av gruppa. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "evidence_place_reading",
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#historien_som_selger_bedre"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 6, evening: En venn har hørt en spektakulær historie om en gammel bygning og gjentar den til resten av gruppa. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "evidence_place_reading",
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#historien_som_selger_bedre"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 7, morning: Et tidligere butikklokale er bygget om til bolig, men fasaden har fortsatt spor etter den gamle virksomheten. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "access_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#den_gamle_butikken_er_noens_hjem"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Et tidligere butikklokale er bygget om til bolig, men fasaden har fortsatt spor etter den gamle virksomheten. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "access_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#den_gamle_butikken_er_noens_hjem"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Et tidligere butikklokale er bygget om til bolig, men fasaden har fortsatt spor etter den gamle virksomheten. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "access_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#den_gamle_butikken_er_noens_hjem"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Et tidligere butikklokale er bygget om til bolig, men fasaden har fortsatt spor etter den gamle virksomheten. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "access_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#den_gamle_butikken_er_noens_hjem"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Et helt kvartal er forandret, og bare gateforløpet og noen gamle trær gjør den tidligere strukturen lesbar. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#revet_men_ikke_borte"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Et helt kvartal er forandret, og bare gateforløpet og noen gamle trær gjør den tidligere strukturen lesbar. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#revet_men_ikke_borte"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Et helt kvartal er forandret, og bare gateforløpet og noen gamle trær gjør den tidligere strukturen lesbar. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#revet_men_ikke_borte"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Et helt kvartal er forandret, og bare gateforløpet og noen gamle trær gjør den tidligere strukturen lesbar. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#revet_men_ikke_borte"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 9, morning: Et barn i gruppa spør hvordan du vet at et hus faktisk ble brukt slik du nettopp beskrev. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "evidence_place_reading",
+          "status_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#barnet_spor_hva_som_er_sant"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Et barn i gruppa spør hvordan du vet at et hus faktisk ble brukt slik du nettopp beskrev. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "evidence_place_reading",
+          "status_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#barnet_spor_hva_som_er_sant"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Et barn i gruppa spør hvordan du vet at et hus faktisk ble brukt slik du nettopp beskrev. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "evidence_place_reading",
+          "status_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#barnet_spor_hva_som_er_sant"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Et barn i gruppa spør hvordan du vet at et hus faktisk ble brukt slik du nettopp beskrev. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "evidence_place_reading",
+          "status_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#barnet_spor_hva_som_er_sant"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: En lokal arrangør tilbyr et lite honorar for å forberede stopp, holde oversikt over deltakerne og bidra med stedshistorie på en vandring. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "status_authority",
+          "livelihood_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#honorar_for_lokalvandring"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: En lokal arrangør tilbyr et lite honorar for å forberede stopp, holde oversikt over deltakerne og bidra med stedshistorie på en vandring. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "status_authority",
+          "livelihood_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#honorar_for_lokalvandring"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: En lokal arrangør tilbyr et lite honorar for å forberede stopp, holde oversikt over deltakerne og bidra med stedshistorie på en vandring. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "status_authority",
+          "livelihood_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#honorar_for_lokalvandring"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 10, evening: En lokal arrangør tilbyr et lite honorar for å forberede stopp, holde oversikt over deltakerne og bidra med stedshistorie på en vandring. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "status_authority",
+          "livelihood_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#honorar_for_lokalvandring"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 11, morning: En bekjent forteller en sterk familiehistorie knyttet til et lokalt hus og sier samtidig at deler av historien ikke skal deles offentlig. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "access_privacy",
+          "plural_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#historien_fra_en_sarbar_familie"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 11, lunch: En bekjent forteller en sterk familiehistorie knyttet til et lokalt hus og sier samtidig at deler av historien ikke skal deles offentlig. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "access_privacy",
+          "plural_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#historien_fra_en_sarbar_familie"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: En bekjent forteller en sterk familiehistorie knyttet til et lokalt hus og sier samtidig at deler av historien ikke skal deles offentlig. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "access_privacy",
+          "plural_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#historien_fra_en_sarbar_familie"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En bekjent forteller en sterk familiehistorie knyttet til et lokalt hus og sier samtidig at deler av historien ikke skal deles offentlig. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "access_privacy",
+          "plural_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#historien_fra_en_sarbar_familie"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "social",
+        "summary": "Dag 12, morning: Et omstridt bygg står mellom vern, ny bruk og mulig riving, og du kjenner historien bedre enn mange i rommet. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "status_authority",
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#vern_eller_bruk"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Et omstridt bygg står mellom vern, ny bruk og mulig riving, og du kjenner historien bedre enn mange i rommet. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "status_authority",
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#vern_eller_bruk"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Et omstridt bygg står mellom vern, ny bruk og mulig riving, og du kjenner historien bedre enn mange i rommet. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "status_authority",
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#vern_eller_bruk"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: Et omstridt bygg står mellom vern, ny bruk og mulig riving, og du kjenner historien bedre enn mange i rommet. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "status_authority",
+          "public_memory_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#vern_eller_bruk"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Et historisk kart bruker andre gatenavn og stedsnavn enn dagens kart. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#kartet_og_navnene"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Et historisk kart bruker andre gatenavn og stedsnavn enn dagens kart. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#kartet_og_navnene"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Et historisk kart bruker andre gatenavn og stedsnavn enn dagens kart. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#kartet_og_navnene"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Et historisk kart bruker andre gatenavn og stedsnavn enn dagens kart. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "evidence_place_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#kartet_og_navnene"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Etter mange turer ser du at de mest interessante stedene sjelden hadde én ferdig historie: de hadde dokumenter, spor, minner, hull, konflikter og mennesker som fortsatt bruker dem. Morgenen etablerer stedssporet, kilden eller den sosiale grensen før dagens tolkning får feste.",
+        "thread_ids": [
+          "plural_memory",
+          "status_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#sesongslutt_hvem_eier_stedets_historie"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Etter mange turer ser du at de mest interessante stedene sjelden hadde én ferdig historie: de hadde dokumenter, spor, minner, hull, konflikter og mennesker som fortsatt bruker dem. Midt på dagen blir minne, kunnskap og hvem som får definere stedet synlig i møte med andre.",
+        "thread_ids": [
+          "plural_memory",
+          "status_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#sesongslutt_hvem_eier_stedets_historie"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Etter mange turer ser du at de mest interessante stedene sjelden hadde én ferdig historie: de hadde dokumenter, spor, minner, hull, konflikter og mennesker som fortsatt bruker dem. Ettermiddagen gjør kilde-, tilgangs- eller autoritetsproblemet til et konkret valg.",
+        "thread_ids": [
+          "plural_memory",
+          "status_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#sesongslutt_hvem_eier_stedets_historie"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Etter mange turer ser du at de mest interessante stedene sjelden hadde én ferdig historie: de hadde dokumenter, spor, minner, hull, konflikter og mennesker som fortsatt bruker dem. Kvelden viser hvordan valget endrer tillit, omdømme eller spillerens forhold til å eie fortellingen.",
+        "thread_ids": [
+          "plural_memory",
+          "status_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json#sesongslutt_hvem_eier_stedets_historie"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "evidence_place_reading",
+      "relationship": "forholdet mellom stedsspor, kart, bilder, kildekjeder og hvor sikkert spilleren presenterer en tolkning",
+      "beat_refs": [
+        "1/morning",
+        "1/afternoon",
+        "4/afternoon",
+        "6/evening",
+        "9/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "plural_memory",
+      "relationship": "forholdet til beboere og kilder som husker samme sted forskjellig eller bærer historier som ikke står på plaketten",
+      "beat_refs": [
+        "2/lunch",
+        "2/evening",
+        "5/afternoon",
+        "11/lunch",
+        "11/evening",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "access_privacy",
+      "relationship": "forholdet mellom historisk nysgjerrighet og dagens rett til privatliv, eiendom og kontroll over personlige historier",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon"
+      ]
+    },
+    {
+      "id": "public_memory_power",
+      "relationship": "forholdet mellom historiefortelling, minnesmerker, nostalgi og samtidige konflikter om hva et sted skal bety",
+      "beat_refs": [
+        "5/lunch",
+        "6/afternoon",
+        "8/evening",
+        "12/lunch",
+        "12/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "status_authority",
+      "relationship": "forholdet mellom kunnskap, publikumsforventning, honorar og grensene mot profesjonell eller offentlig myndighet",
+      "beat_refs": [
+        "9/lunch",
+        "10/morning",
+        "10/afternoon",
+        "10/evening",
+        "12/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "livelihood_boundary",
+      "relationship": "forholdet mellom et konkret betalt vandringsoppdrag og identitetens ikke-profesjonelle status",
+      "beat_refs": [
+        "3/morning",
+        "6/morning",
+        "10/lunch",
+        "10/afternoon",
+        "12/morning"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "source_overclaim_echo",
+      "description": "Etter en god fortelling kan spilleren bli sittende med spørsmålet om publikum nå husker kildegrunnlaget eller bare den mest sikre formuleringen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historievandrer.json#plaketten_og_hullet",
+        "data/Civication/narratives/leisure/historievandrer.json#bildet_uten_dato",
+        "data/Civication/narratives/leisure/historievandrer.json#barnet_spor_hva_som_er_sant"
+      ]
+    },
+    {
+      "id": "memory_and_consent_aftertaste",
+      "description": "Uenige minner og sårbare familiehistorier følger spilleren hjem som et ansvar for kreditering, samtykke og å tåle at én fortelling ikke kan avslutte saken.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historievandrer.json#to_naboer_to_minner",
+        "data/Civication/narratives/leisure/historievandrer.json#historien_fra_en_sarbar_familie",
+        "data/Civication/narratives/leisure/historievandrer.json#sesongslutt_hvem_eier_stedets_historie"
+      ]
+    },
+    {
+      "id": "privacy_and_place_cost",
+      "description": "Fristelsen til å komme nærmere et historisk spor blir stående mot erfaringen av at dagens beboere ikke er kulisser for fortiden.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historievandrer.json#bakgarden_er_privatomrade",
+        "data/Civication/narratives/leisure/historievandrer.json#den_gamle_butikken_er_noens_hjem"
+      ]
+    },
+    {
+      "id": "authority_afterthought",
+      "description": "Publikums ros, et lite honorar eller plass i en vernedebatt kan kjennes som ekspertstatus, men gir fortsatt ingen historiker-, arkivar-, guide- eller kulturminnemyndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historievandrer.json#honorar_for_lokalvandring",
+        "data/Civication/narratives/leisure/historievandrer.json#vern_eller_bruk",
+        "data/Civication/narratives/leisure/historievandrer.json#sesongslutt_hvem_eier_stedets_historie"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "spekulasjon_blir_fortellernorm",
+      "setup_ref": "1/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "minnevalg_blir_lokal_tillit",
+      "setup_ref": "2/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "adgangsgrense_blir_beboertillit",
+      "setup_ref": "3/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "myte_blir_offentlig_historie",
+      "setup_ref": "6/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "gig_blir_autoritetsgrense",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "livelihood",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "vernsak_blir_rolleforstaelse",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "relationship",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/historievandrer.json#plaketten_og_hullet",
+      "data/Civication/narratives/leisure/historievandrer.json#to_naboer_to_minner",
+      "data/Civication/narratives/leisure/historievandrer.json#bakgarden_er_privatomrade",
+      "data/Civication/narratives/leisure/historievandrer.json#bildet_uten_dato",
+      "data/Civication/narratives/leisure/historievandrer.json#minnesmerket_og_navnet_som_mangler",
+      "data/Civication/narratives/leisure/historievandrer.json#historien_som_selger_bedre",
+      "data/Civication/narratives/leisure/historievandrer.json#den_gamle_butikken_er_noens_hjem",
+      "data/Civication/narratives/leisure/historievandrer.json#revet_men_ikke_borte",
+      "data/Civication/narratives/leisure/historievandrer.json#barnet_spor_hva_som_er_sant",
+      "data/Civication/narratives/leisure/historievandrer.json#honorar_for_lokalvandring",
+      "data/Civication/narratives/leisure/historievandrer.json#historien_fra_en_sarbar_familie",
+      "data/Civication/narratives/leisure/historievandrer.json#vern_eller_bruk",
+      "data/Civication/narratives/leisure/historievandrer.json#kartet_og_navnene",
+      "data/Civication/narratives/leisure/historievandrer.json#sesongslutt_hvem_eier_stedets_historie"
+    ]
+  }
+}
