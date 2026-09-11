@@ -33,7 +33,7 @@ const storyPath='data/stories/stories_nybrua_vaterlandsparken_split.json',storie
 assert(stories.some(x=>x.place_id==='nybrua_vaterlandsparken'));assert(stories.some(x=>x.place_id==='vaterlandsparken'));
 assert(read('data/stories/stories_manifest.json').files.some(x=>x.path===storyPath));
 const lex=read('data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json');
-for(const id of ['nybrua_vaterlandsparken','vaterlandsparken']){const a=lex.find(x=>x.place_id===id);assert(a&&a.version===2&&a.facts.length>=10&&a.sources.length>=2);}
+for(const id of ['nybrua_vaterlandsparken','vaterlandsparken']){const a=lex.find(x=>x.place_id===id);assert(a&&(id==='vaterlandsparken'?a.version===3:a.version===2)&&a.facts.length>=10&&a.sources.length>=2);}
 const index=read(`${dir}_index.json`),ni=index.find(x=>x.id===n.id),vi=index.find(x=>x.id===v.id);
 assert(ni&&vi);assert.deepStrictEqual([ni.lat,ni.lon,ni.year],[n.lat,n.lon,n.year]);assert.deepStrictEqual([vi.lat,vi.lon,vi.year],[v.lat,v.lon,v.year]);
 const man=read(`${dir}_manifest.json`);
