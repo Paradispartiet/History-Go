@@ -288,18 +288,20 @@ body.hg-app.map-only #nearbyExploreToggle{
   display: flex;
   gap: 7px;
   align-items: center;
+  align-content: center;
   flex: 1 1 auto;
   min-width: 0;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  overflow: visible;
 
   margin-top: 8px;
   background: transparent;
 }
 
-/* Tabs midtstilt i head */
+/* Alle Utforsk-moduser skal være synlige uten skjult horisontal scrolling. */
 #nearbyListContainer .nearby-tabs{
   margin-left: 0;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 /* pill button */
@@ -372,12 +374,8 @@ body.hg-app.hg-phone #nearbyList:not(.nearby-strip) .nearby-dist{
 
 body.hg-app.hg-phone #nearbyListContainer .nearby-tabs{
   justify-content: flex-start;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-body.hg-app.hg-phone #nearbyListContainer .nearby-tabs::-webkit-scrollbar{
-  display: none;
+  flex-wrap: wrap;
+  overflow: visible;
 }
 
 body.hg-app.hg-phone #nearbyListContainer .nearby-tab{

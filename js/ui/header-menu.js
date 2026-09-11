@@ -182,7 +182,21 @@
       event.stopPropagation();
     });
 
-    ["btnLesespor", "btnFagverk", "btnSprakatlas", "btnKnowledge"].forEach((id) => {
+    document.getElementById("btnSocialMeet")?.addEventListener("click", () => {
+      if (typeof window.setLeftPanelMode === "function") {
+        window.setLeftPanelMode("social");
+      } else {
+        window.HGLeftPanelMode?.setMode?.("social");
+      }
+      if (typeof window.openNearbyDrawer === "function") {
+        window.openNearbyDrawer();
+      } else {
+        window.HGNearbyDrawer?.open?.();
+      }
+      headerMenuApi.close();
+    });
+
+    ["btnLesespor", "btnFagverk", "btnSprakatlas", "btnKnowledge", "btnSocialMeet"].forEach((id) => {
       document.getElementById(id)?.addEventListener("click", () => headerMenuApi.close());
     });
 
