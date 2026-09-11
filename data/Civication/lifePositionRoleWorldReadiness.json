@@ -31,30 +31,40 @@
   "summary": {
     "selectable_life_positions": 200,
     "classifications": {
-      "ready": 4,
-      "needs_authored_depth": 156,
+      "ready": 5,
+      "needs_authored_depth": 155,
       "not_a_standalone_world": 40
     },
     "completed_life_position_role_worlds": 4,
     "queue_length": 156,
     "livelihood_backed_positions": 14,
-    "positions_with_exact_governed_sources": 4,
-    "positions_with_multi_scene_narrative_foundation": 4,
+    "positions_with_exact_governed_sources": 5,
+    "positions_with_multi_scene_narrative_foundation": 5,
     "life_position_role_world_complete": 4,
-    "pending_ready_positions": 0
+    "pending_ready_positions": 1
   },
-  "first_ready": null,
+  "first_ready": {
+    "rank": 1,
+    "key": "historie/historievandrer",
+    "label": "Historievandrer",
+    "badge_id": "historie",
+    "classification": "ready",
+    "priority_score": 1435,
+    "exact_source_ref_count": 1,
+    "livelihood_template_count": 1,
+    "max_narrative_depth": 14
+  },
   "queue": [
     {
       "rank": 1,
       "key": "historie/historievandrer",
       "label": "Historievandrer",
       "badge_id": "historie",
-      "classification": "needs_authored_depth",
-      "priority_score": 570,
-      "exact_source_ref_count": 0,
+      "classification": "ready",
+      "priority_score": 1435,
+      "exact_source_ref_count": 1,
       "livelihood_template_count": 1,
-      "max_narrative_depth": 0
+      "max_narrative_depth": 14
     },
     {
       "rank": 2,
@@ -3044,20 +3054,22 @@
       "kind": "practice_identity",
       "semantic_mode": "lived_identity_or_practice",
       "runtime_source": "catalog",
-      "classification": "needs_authored_depth",
+      "classification": "ready",
       "role_world_status": "role_world_not_started",
       "role_world_path": null,
-      "priority_score": 570,
+      "priority_score": 1435,
       "authored_depth": {
         "description_present": true,
         "hook_count": 3,
-        "exact_source_ref_count": 0,
+        "exact_source_ref_count": 1,
         "thematic_source_ref_count": 0,
         "livelihood_template_count": 1,
-        "max_narrative_depth": 0
+        "max_narrative_depth": 14
       },
       "evidence": {
-        "exact_source_refs": [],
+        "exact_source_refs": [
+          "data/Civication/narratives/leisure/historievandrer.json"
+        ],
         "thematic_source_refs": [],
         "livelihood_templates": [
           "historievandrer_lokalvandring"
@@ -3065,8 +3077,9 @@
         "livelihood_ref": "data/Civication/livelihoodOpportunityTemplates.json"
       },
       "next_work": [
-        "author_role_specific_private_life_social_or_narrative_sources",
-        "then_reaudit_before_role_world_production"
+        "inventory_existing_scene_provenance",
+        "author_role_world_14x4",
+        "bind_primary_threads_and_private_aftermath"
       ]
     },
     {
@@ -5284,14 +5297,15 @@
         "description_present": true,
         "hook_count": 3,
         "exact_source_ref_count": 0,
-        "thematic_source_ref_count": 1,
+        "thematic_source_ref_count": 2,
         "livelihood_template_count": 1,
         "max_narrative_depth": 0
       },
       "evidence": {
         "exact_source_refs": [],
         "thematic_source_refs": [
-          "data/Civication/narratives/leisure/filmklubbmenneske.json"
+          "data/Civication/narratives/leisure/filmklubbmenneske.json",
+          "data/Civication/narratives/leisure/historievandrer.json"
         ],
         "livelihood_templates": [
           "frilanser_kortoppdrag"

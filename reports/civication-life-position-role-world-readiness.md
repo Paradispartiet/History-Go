@@ -1,16 +1,16 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 200
-**Classification:** 4 ready / 156 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 5 ready / 155 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 14
-**Exact governed-source matches:** 4
-**Multi-scene narrative foundations:** 4
+**Exact governed-source matches:** 5
+**Multi-scene narrative foundations:** 5
 **Completed life-position Role Worlds:** 4
-**Pending ready positions:** 0
+**Pending ready positions:** 1
 
 ## Decision
 
-No unfinished life position is currently ready for Role World production. Source-ready positions that are already role_world_complete remain visible in the 200-position audit but are excluded from the pending queue; remaining standalone-capable positions require authored depth first.
+First pending ready Role World position: **historie/historievandrer — Historievandrer**.
 
 Livelihood templates count as provenance for an economic opportunity, but never as sufficient Role World depth on their own.
 
@@ -18,7 +18,7 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `historie/historievandrer` | needs_authored_depth | 0 | 1 | 0 |
+| 1 | `historie/historievandrer` | ready | 1 | 1 | 14 |
 | 2 | `kunst/gallerivanker` | needs_authored_depth | 0 | 1 | 0 |
 | 3 | `litteratur/skrivebordspoet` | needs_authored_depth | 0 | 1 | 0 |
 | 4 | `media/medievaktbikkje` | needs_authored_depth | 0 | 1 | 0 |
