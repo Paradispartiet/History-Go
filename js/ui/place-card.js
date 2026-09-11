@@ -341,7 +341,7 @@ function renderPlaceCardForNa(place) {
 }
 
 
-const PLACE_CARD_PROGRESSIVE_LOADS = { full: new Set(), lesespor: new Set(), quiz: new Set(), music: new Set(), nature: new Set(), nav: new Set(), social: new Set() };
+const PLACE_CARD_PROGRESSIVE_LOADS = { full: new Set(), lesespor: new Set(), quiz: new Set(), music: new Set(), nature: new Set(), nav: new Set() };
 function placeCardPerfEnabled() { return window.HG_DEBUG_PLACECARD_PERF === true; }
 function placeCardPerfMark(placeId, label, start) {
   if (!placeCardPerfEnabled()) return;
