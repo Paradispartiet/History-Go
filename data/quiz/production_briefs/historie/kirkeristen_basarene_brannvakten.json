@@ -1,0 +1,443 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "kirkeristen_basarene_brannvakten",
+  "scope": "place",
+  "status": "reviewed",
+  "reviewed_at": "2026-09-10",
+  "profile_hint": "normal_4x7",
+  "review_note": "Kildene er eksplisitt avgrenset mellom 1800-tallsfunksjoner, vern, nåbruk og 2026-eierskap.",
+  "sources": {
+    "oppdag": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/kirkeristen-og-basarene",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Navn, byggfaser, brannvakt, 1858/1860 og slangetårn-utkikk-grensen."
+    },
+    "city2026": {
+      "url": "https://aktuelt.oslo.kommune.no/kirkeristen-far-nytt-liv-med-gode-matopplevelser",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "2026-salg, kjøpere, pris og rehabiliteringskrav."
+    },
+    "citySale": {
+      "url": "https://aktuelt.oslo.kommune.no/fauna-og-andenaes-kjoper-kirkeristen-av-oslo-kommune",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Byggeperiode, arkitekt, slakterboder, fredning, 1937/1949 og hovedbrannstasjon til 1939."
+    },
+    "glass": {
+      "url": "https://www.osloglassstudio.com/info.html",
+      "source_type": "primary",
+      "review_status": "reviewed",
+      "review_note": "Dagens glassblåseri, kunstnere og publikumsfunksjon."
+    },
+    "historic1860": {
+      "url": "https://commons.wikimedia.org/wiki/File:Andreas_Ludvig_S%C3%B8borg_-_Christiania_Bazarer_(Slagterboder)_og_Brandvagtsbygning_-_1860_-_Oslo_Museum_-_OB.02751.jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "CC0-xylografi av basarene og Brannvakten i 1860."
+    }
+  },
+  "selected_curriculum": {
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kulturminner_bevaring",
+      "em_his_samtid_ettertid_fortelling"
+    ],
+    "topic_hook_ids": [
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_tidslagsanalyse",
+      "met_institusjonshistorisk_analyse",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "reinhart_koselleck"
+    ],
+    "works": [
+      "Futures Past"
+    ]
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire kildebårne sett dekker direkte stedskunnskap, brannberedskap, historiske lag og kildekritisk syntese."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/kirkeristen_basarene_brannvakten_sets.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Produser én canonical normal 4x7-pakke med fjorten rene faktaspørsmål først."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "retained_rule": "Ingen aktiv målquiz ble funnet."
+    }
+  },
+  "held_back_candidates": [
+    "Brannvakttårnet som utkikkstårn.",
+    "Oslo Glass Studio som opprinnelig basarfunksjon.",
+    "Oslo domkirke som del av samme Place-identitet.",
+    "Ubegrunnet optisk før–nå-sammenligning."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Navnet knyttes til ferister som skulle holde dyr ute.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Grosch tegnet anlegget.",
+      "source_ids": [
+        "citySale"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Basarbyggingen startet i 1840.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo kommune daterer oppføringen til 1840–1859.",
+      "source_ids": [
+        "citySale"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Basarene var opprinnelig slakterboder.",
+      "source_ids": [
+        "citySale"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Brannvakten ble reist midt i 1850-årene.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Tårnet var et slangetårn.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Brannvakten holdt utkikk fra kirkens tårn.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "En stor brann rammet sentrale kvartaler i 1858.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "1860 markerer profesjonalisering og ny vannforsyning.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kirkeristen ble fredet i 1927.",
+      "source_ids": [
+        "city2026"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Det fredede anlegget ble vedtatt revet til fordel for park.",
+      "source_ids": [
+        "citySale"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Rivingsvedtaket ble opphevet i 1949.",
+      "source_ids": [
+        "citySale"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Brannvakten var hovedbrannstasjon til 1939.",
+      "source_ids": [
+        "citySale"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kirkeristen må periodiseres som et flertrinns byggeforløp.",
+      "source_ids": [
+        "citySale"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Basarene svarer på behov for ordnet kjøtthandel.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Tørking av slanger og brannutkikk var ulike funksjoner.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bildet er en samtidig visuell kilde til det ferdige anlegget.",
+      "source_ids": [
+        "historic1860"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "En visuell kilde har avgrenset utsagnskraft.",
+      "source_ids": [
+        "historic1860"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Vern og byutviklingsbeslutninger kan trekke i ulike retninger.",
+      "source_ids": [
+        "citySale"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Glassvirksomheten hører til dagens bruk, ikke opprinnelig funksjon.",
+      "source_ids": [
+        "glass"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedsavgrensning må følge historisk funksjon og canonical identitet, ikke bare naboskap.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling",
+      "method_id": "met_sporlesning"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Eierskiftet er et nytt tidslag og må ikke projiseres bakover som årsak til 1800-tallets anlegg.",
+      "source_ids": [
+        "city2026"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom",
+      "method_id": "met_tidslagsanalyse",
+      "topic_hook_id": "his_tidslag_samtidighet",
+      "thinker_id": "reinhart_koselleck",
+      "work": "Futures Past"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Rehabiliteringskravet viser at eierskap og bruk kan endres samtidig som kulturminnerestriksjoner består.",
+      "source_ids": [
+        "city2026"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "method_id": "met_institusjonshistorisk_analyse"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildene har ulik samtidighet, sjanger og utsagnskraft.",
+      "source_ids": [
+        "historic1860"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "method_id": "met_kildekritikk"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Historisk lagdeling hindrer at nye hendelser projiseres bakover.",
+      "source_ids": [
+        "city2026"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling",
+      "method_id": "met_institusjonshistorisk_analyse"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kirkeristen viser at politiske beslutninger om kulturminner kan reverseres.",
+      "source_ids": [
+        "citySale"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "method_id": "met_institusjonshistorisk_analyse"
+    },
+    {
+      "claim_id": "claim_kirkeristen_basarene_brannvakten_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildekritikk korrigerer en intuitiv, men feil funksjonstolkning.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "method_id": "met_kildekritikk"
+    }
+  ]
+}

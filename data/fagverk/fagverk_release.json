@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.15.0",
     "updated_at": "2026-09-08",
-    "content_sha256": "1c79fdb4cc26aedb429168ad522aed844756465be6f77c4bc426ec9d9c546139"
+    "content_sha256": "74c36af03c05fbe6543995531284bb31048e3acb5160daea18113d62052d5027"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "76fc09c1333fd075825a7aa00882715870634963dc1b850937e52acea38f8176"
+    "content_sha256": "6ffb269d46a930acd1d5884f9b11c37fb3b6ee32ba03e1a5707517cbf88de81a"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 190,
     "module_file_count": 497,
-    "package_file_count": 420,
+    "package_file_count": 423,
     "chapter_referenced_file_count": 934,
-    "referenced_file_count": 1283,
+    "referenced_file_count": 1286,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2452,9 +2452,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 83,
+      "package_file_count": 86,
       "required_package_file_count": 4,
-      "optional_package_file_count": 79,
+      "optional_package_file_count": 82,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -2757,6 +2757,18 @@
           "content_sha256": "03b329a3d5754efcf3f9248ea677e9ca269cbc8f76b0e850e626aff47e1e2f59"
         },
         {
+          "path": "data/quiz/historie/kirkeristen_basarene_brannvakten_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.kirkeristen_basarene_brannvakten.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "ebcd0a2b5a1af1cf2bbab9b6e3481530954913b98267bfb1a4263f21df95f6c3"
+        },
+        {
           "path": "data/quiz/historie/mollergata_19_sets.json",
           "required": false,
           "fields": [
@@ -3019,6 +3031,18 @@
           ],
           "exists": true,
           "content_sha256": "309ed881d26d29421f1b6442e2c892e021cbf55789ed1a3eb1b41723bc6127a5"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/kirkeristen_basarene_brannvakten.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.kirkeristen_basarene_brannvakten.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "23bcfc397f9c3452f1b0c2ce41db9a72ffef526de94f1ab25c85eb2d2f57657e"
         },
         {
           "path": "data/quiz/production_briefs/historie/mollergata_19.json",
@@ -3285,6 +3309,18 @@
           "content_sha256": "a3b26bffad2215955e0b5b6864b009a4c47dfd014dd55994b05c7aa2f51f4a32"
         },
         {
+          "path": "data/quiz/production_context/historie/kirkeristen_basarene_brannvakten.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.kirkeristen_basarene_brannvakten.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "49288c952b92fa5d9e524800458219ec85d50b5601e8e0519f6b85964091c99f"
+        },
+        {
           "path": "data/quiz/production_context/historie/mollergata_19.json",
           "required": false,
           "fields": [
@@ -3453,20 +3489,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "3c63927d31e43d700a44f2ccbe188907f5e121e8b139a0aca9d5b7dccd15e2e0",
+      "package_content_sha256": "7a33f2ca44a5e638d8da4cef519cc520ec1b1dbbe36ed2be2b9eb2593125bf53",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 175,
+      "referenced_file_count": 178,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "c9a4d8cc95dc383da70dbb498ee8a4eaa55be8fc2bc81e646a8cccff914bd841",
-      "content_sha256": "9bc314b4c6464450f18173d193ce5cd0ffdb4578e3e9ded513e58c3475ecd3dc",
+      "structure_sha256": "c1afb807300e9794c5cdbadbb49afe9db9dea6e5468b65fcdbea672c54987f37",
+      "content_sha256": "77df0c6771450ba4ce2a5b0c970334f28724a8023dffd7610cd8a1d6fa41c617",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -7753,5 +7789,5 @@
       ]
     }
   },
-  "release_sha256": "ccda60284003252920a62247043eaea0b8e6fb602ee82902833e8d9392ecaf30"
+  "release_sha256": "bb1614b0e0938f2612e6fc3bdd488fffd045bc3f36886aeffe4d040900c0a6d3"
 }
