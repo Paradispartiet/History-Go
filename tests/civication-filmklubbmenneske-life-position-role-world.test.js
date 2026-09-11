@@ -102,14 +102,14 @@ assert.equal(entry.status, 'role_world_complete');
 assert.equal(entry.path, worldPath);
 
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 7);
+assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 8);
 assert.deepEqual(index.summary, {
-  role_worlds_total: 92,
+  role_worlds_total: 93,
   career_role_worlds: 85,
-  life_position_role_worlds: 7
+  life_position_role_worlds: 8
 });
 assert.equal(index.career_role_world_count, 85);
-assert.equal(index.life_position_role_world_count, 7);
+assert.equal(index.life_position_role_world_count, 8);
 
 assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds, [
   'sport/supporter',
@@ -118,12 +118,13 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'filosofi/sofafilosof',
   'historie/historievandrer',
   'kunst/gallerivanker',
-'litteratur/skrivebordspoet'
+'litteratur/skrivebordspoet',
+  'media/medievaktbikkje'
 ]);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'media/medievaktbikkje');
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 7);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 92);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 8);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 93);
 
 const readiness = audit.positions.find((row) => row.key === 'film_tv/filmklubbmenneske');
 assert.ok(readiness);
@@ -134,10 +135,10 @@ assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.deepEqual(readiness.evidence.livelihood_templates, ['filmklubbmenneske_visningshjelp']);
 assert.ok(!audit.queue.some((row) => row.key === 'film_tv/filmklubbmenneske'));
-assert.equal(audit.summary.life_position_role_world_complete, 7);
-assert.equal(audit.summary.completed_life_position_role_worlds, 7);
-assert.equal(audit.summary.pending_ready_positions, 1);
-assert.equal(audit.first_ready?.key, 'media/medievaktbikkje');
+assert.equal(audit.summary.life_position_role_world_complete, 8);
+assert.equal(audit.summary.completed_life_position_role_worlds, 8);
+assert.equal(audit.summary.pending_ready_positions, 0);
+assert.equal(audit.first_ready, null);
 
 execFileSync(process.execPath, ['tests/civication-role-world-contract.test.js'], { cwd: ROOT, stdio: 'pipe' });
 execFileSync(process.execPath, ['tests/civication-noncareer-role-taxonomy.test.js'], { cwd: ROOT, stdio: 'pipe' });
