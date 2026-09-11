@@ -163,24 +163,48 @@ jobs:
           node scripts/audit-fagverk-place-pages.mjs --write
           node scripts/build-fagverk-release-manifest.mjs
 
+      - name: Refresh Tollpakkhuset epoch expectations on fresh main
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'tests/epoke-place-index.test.mjs';
+          let source = fs.readFileSync(file, 'utf8');
+
+          const replacements = [
+            [
+              'assert.equal(index.stats.verified_place_production_milestone_count, 545);',
+              'assert.equal(index.stats.verified_place_production_milestone_count, 549);'
+            ],
+            [
+              'assert.equal(coverage.dated_evidence_place_count, 243);',
+              'assert.equal(coverage.dated_evidence_place_count, 244);'
+            ],
+            [
+              'assert.equal(coverage.awaiting_source_backed_history_count, 341);',
+              'assert.equal(coverage.awaiting_source_backed_history_count, 340);'
+            ]
+          ];
+          for (const [before, after] of replacements) {
+            if (!source.includes(before)) throw new Error(`Fresh-main epoch expectation changed unexpectedly: ${before}`);
+            source = source.replace(before, after);
+          }
+
+          if (!source.includes('"tollpakkhuset"')) {
+            const anchor = '"prinds_christian_augusts_minde", "stortorget"';
+            if (!source.includes(anchor)) throw new Error('Could not locate reviewed Oslo-place list anchor');
+            source = source.replace(anchor, '"prinds_christian_augusts_minde", "stortorget", "tollpakkhuset"');
+          }
+          fs.writeFileSync(file, source);
+          NODE
+
       - name: Validate repaired contracts
         shell: bash
         run: |
           set -euo pipefail
           log='tollpakkhuset-validation-diagnostic.log'
           : > "$log"
-          run_check() {
-            printf '\n>>> %q' "$1" | tee -a "$log"
-            shift
-            for arg in "$@"; do printf ' %q' "$arg" | tee -a "$log"; done
-            printf '\n' | tee -a "$log"
-            set +e
-            "$@" 2>&1 | tee -a "$log"
-            status=${PIPESTATUS[0]}
-            set -e
-            printf '<<< exit %s\n' "$status" | tee -a "$log"
-            return "$status"
-          }
 
           run_cmd() {
             printf '\n>>> ' | tee -a "$log"
