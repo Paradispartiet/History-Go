@@ -1,0 +1,62 @@
+name: Diagnose PR 5805 theory first failure
+
+on:
+  push:
+    branches:
+      - agent/diag-pr5805-theory-first-failure-20260911
+
+permissions:
+  contents: read
+
+jobs:
+  isolate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: baseline theory quality
+        run: node --input-type=module -e "import { auditFagverkTheoryQuality as f } from './scripts/audit-fagverk-theory-quality.mjs'; f({checkReport:true});"
+      - name: film_tv
+        run: node --input-type=module -e "import { auditFilmTvTheoryCanon as f } from './scripts/audit-fagverk-film-tv-theory-canon.mjs'; f();"
+      - name: religion
+        run: node --input-type=module -e "import { auditReligionTheoryCanon as f } from './scripts/audit-fagverk-religion-theory-canon.mjs'; f();"
+      - name: scenekunst
+        run: node --input-type=module -e "import { auditScenekunstTheoryCanon as f } from './scripts/audit-fagverk-scenekunst-theory-canon.mjs'; f();"
+      - name: subkultur
+        run: node --input-type=module -e "import { auditSubkulturTheoryAttribution as f } from './scripts/audit-subkultur-theory-attribution-v1.mjs'; f();"
+      - name: historie
+        run: node --input-type=module -e "import { auditHistoryTheoryIntegrity as f } from './tools/audit-historie-theory-integrity.mjs'; f();"
+      - name: by
+        run: node --input-type=module -e "import { auditByTheoryIntegrity as f } from './tools/audit-by-theory-integrity.mjs'; f();"
+      - name: kunst
+        run: node --input-type=module -e "import { auditKunstTheoryIntegrity as f } from './tools/audit-kunst-theory-integrity.mjs'; f();"
+      - name: media
+        run: node --input-type=module -e "import { auditMediaTheoryIntegrity as f } from './tools/audit-media-theory-integrity.mjs'; f();"
+      - name: musikk
+        run: node --input-type=module -e "import { auditMusikkTheoryIntegrity as f } from './tools/audit-musikk-theory-integrity.mjs'; f();"
+      - name: litteratur
+        run: node --input-type=module -e "import { auditLitteraturTheoryIntegrity as f } from './tools/audit-litteratur-theory-integrity.mjs'; f();"
+      - name: natur
+        run: node --input-type=module -e "import { auditNaturTheoryIntegrity as f } from './tools/audit-natur-theory-integrity.mjs'; f();"
+      - name: helse
+        run: node --input-type=module -e "import { auditHelseTheoryIntegrity as f } from './tools/audit-helse-theory-integrity.mjs'; f();"
+      - name: naeringsliv
+        run: node --input-type=module -e "import { auditNaeringslivTheoryIntegrity as f } from './tools/audit-naeringsliv-theory-integrity.mjs'; f();"
+      - name: psykologi
+        run: node --input-type=module -e "import { auditPsykologiTheoryIntegrity as f } from './tools/audit-psykologi-theory-integrity.mjs'; f();"
+      - name: sport
+        run: node --input-type=module -e "import { auditSportTheoryIntegrity as f } from './tools/audit-sport-theory-integrity.mjs'; f();"
+      - name: vitenskap
+        run: node --input-type=module -e "import { auditVitenskapTheoryIntegrity as f } from './tools/audit-vitenskap-theory-integrity.mjs'; f();"
+      - name: politikk
+        run: node --input-type=module -e "import { auditPolitikkTheoryIntegrity as f } from './tools/audit-politikk-theory-integrity.mjs'; f();"
+      - name: filosofi
+        run: node --input-type=module -e "import { auditFilosofiTheoryIntegrity as f } from './tools/audit-filosofi-theory-integrity.mjs'; f();"
+      - name: teknologi
+        run: node --input-type=module -e "import { auditTechnologyTheoryIntegrity as f } from './tools/audit-teknologi-theory-integrity.mjs'; f();"
+      - name: utdanning
+        run: node --input-type=module -e "import { auditUtdanningTheoryIntegrity as f } from './tools/audit-utdanning-theory-integrity.mjs'; f();"
+      - name: global audit
+        run: node scripts/audit-fagverk-theory-integrity.mjs
