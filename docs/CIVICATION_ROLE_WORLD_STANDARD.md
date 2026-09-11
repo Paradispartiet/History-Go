@@ -16,12 +16,15 @@ Canonical kontrakter og produksjonsfiler:
 - [`../data/Civication/roleWorldThemeBank.json`](../data/Civication/roleWorldThemeBank.json)
 - [`../data/Civication/roleWorldAuthoringChecklist.json`](../data/Civication/roleWorldAuthoringChecklist.json)
 - [`CIVICATION_ROLE_WORLD_AUTHORING_GUIDE.md`](CIVICATION_ROLE_WORLD_AUTHORING_GUIDE.md)
+- [`CIVICATION_NONCAREER_ROLE_TAXONOMY.md`](CIVICATION_NONCAREER_ROLE_TAXONOMY.md)
 - [`../data/Civication/roleWorlds/index.json`](../data/Civication/roleWorlds/index.json)
 - [`../tests/civication-role-world-contract.test.js`](../tests/civication-role-world-contract.test.js)
 
 ## 2. Civication som én samlet modell
 
 ### Lag A — spillerens liv
+
+Role World-subjektet kan være en canonical **karriererolle** eller en spiller-valgt **livsposisjon**. Den maskinlesbare grensen for ikke-karriere-roller ligger i [`../data/Civication/nonCareerRoleTaxonomy.json`](../data/Civication/nonCareerRoleTaxonomy.json). Livsomstendigheter, relasjonsstatus og levevei er kontekst/state, ikke egne Role World-subjekter.
 
 Role World skal lese og påvirke et liv som kan bestå av:
 
