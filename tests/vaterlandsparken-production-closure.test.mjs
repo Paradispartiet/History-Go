@@ -1,5 +1,5 @@
 import test from "node:test";
-// Exact-head CI retrigger after fail-closed Vaterlandsparken materialization.
+// Exact-head CI retrigger after permanent Vaterlandsparken release-manifest sync.
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { validatePacket } from "../scripts/validate-place-description-production-v4_2.mjs";
