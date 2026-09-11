@@ -1,0 +1,41 @@
+name: TEMP life-position badge-scope readiness materialization
+
+on:
+  push:
+    branches:
+      - agent/civication-life-position-badge-scope-readiness-20260911
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-life-position-badge-scope-readiness-20260911
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Materialize readiness
+        run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+      - name: Validate badge-scoped readiness
+        run: |
+          node tests/civication-life-position-readiness-badge-scope.test.js
+          node tests/civication-life-position-role-world-readiness.test.js
+          node tests/civication-noncareer-role-taxonomy.test.js
+          git diff --check
+      - name: Commit generated readiness
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/Civication/lifePositionRoleWorldReadiness.json reports/civication-life-position-role-world-readiness.md
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+          else
+            git commit -m "[skip ci] Materialize badge-scoped life-position readiness"
+            git push origin HEAD:agent/civication-life-position-badge-scope-readiness-20260911
+          fi
