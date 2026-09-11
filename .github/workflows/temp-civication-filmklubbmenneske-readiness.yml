@@ -1,0 +1,42 @@
+name: TEMP materialize Filmklubbmenneske readiness
+
+on:
+  push:
+    branches:
+      - agent/civication-life-position-readiness-20260911
+    paths:
+      - data/Civication/roleWorlds/index.json
+      - data/Civication/roleWorlds/film_tv/film_tv_filmklubbmenneske.json
+      - data/Civication/nonCareerRoleTaxonomy.json
+      - data/Civication/roleWorldPolicy.json
+      - scripts/audit-civication-life-position-role-world-readiness.mjs
+      - .github/workflows/temp-civication-filmklubbmenneske-readiness.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-life-position-readiness-20260911
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Materialize life-position readiness
+        run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+      - name: Commit generated outputs
+        shell: bash
+        run: |
+          git add data/Civication/lifePositionRoleWorldReadiness.json reports/civication-life-position-role-world-readiness.md
+          if git diff --cached --quiet; then
+            echo "No generated drift."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "[skip ci] Materialize Filmklubbmenneske readiness"
+          git push origin HEAD:agent/civication-life-position-readiness-20260911
