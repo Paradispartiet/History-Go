@@ -377,12 +377,10 @@ declare global {
     bootCritical?: any;
     renderGallery?: any;
     wire?: any;
-    __HG_CANONICAL_SOCIAL_EVENTS__?: any;
     __HG_I18N_CONTENT_PATCHED?: any;
     __HG_LAST_ERROR__?: any;
     __HG_LEFT_PANEL_INIT_DONE__?: any;
     __HG_NATURE_PLACE_BRIDGE_LOADER__?: any;
-    __HG_PLACE_SOCIAL_CACHE__?: any;
     __HG_STORY_STATE_MEM__?: any;
     __civiDayPhaseUiPatched?: any;
     __civiNpcCharacterThreadPatched?: any;
