@@ -137,7 +137,7 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'media/medievaktbikkje',
 'musikk/scenehenger'
 ]);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'natur/artsjeger');
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 9);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 94);
@@ -153,8 +153,8 @@ assert.deepEqual(readiness.evidence.livelihood_templates, ['gallerivanker_apning
 assert.ok(!audit.queue.some((row) => row.key === 'kunst/gallerivanker'));
 assert.equal(audit.summary.life_position_role_world_complete, 9);
 assert.equal(audit.summary.completed_life_position_role_worlds, 9);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.first_ready?.key, 'natur/artsjeger');
 
 const livelihoodAnchor = stream.storylets.find((row) => row.id === 'ekstravakt_pa_apning');
 assert.ok(livelihoodAnchor);
