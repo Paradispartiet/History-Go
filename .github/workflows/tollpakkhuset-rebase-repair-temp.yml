@@ -58,6 +58,19 @@ jobs:
           set -euo pipefail
           git show dc3c5c7bc2a0c1beeaea05c4d177fe72a46e24d3:tools/build-tollpakkhuset-completion.mjs > tools/build-tollpakkhuset-completion.mjs
 
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'tools/build-tollpakkhuset-completion.mjs';
+          let source = fs.readFileSync(file, 'utf8');
+          const staleQuizBuild = 'execFileSync(process.execPath, ["scripts/build-quiz-production-context.mjs", "--category", "naeringsliv", "--target", placeId, "--output", contextFile], { cwd: root, stdio: "inherit" });\n';
+          const stalePlaceOpenBuild = 'execFileSync(process.execPath, ["scripts/build-place-open-payloads.mjs"], { cwd: root, stdio: "inherit" });\n';
+          if (!source.includes(staleQuizBuild) || !source.includes(stalePlaceOpenBuild)) {
+            throw new Error('Historical Tollpakkhuset materializer tail changed unexpectedly');
+          }
+          source = source.replace(staleQuizBuild, '').replace(stalePlaceOpenBuild, '');
+          fs.writeFileSync(file, source);
+          NODE
+
           raw_brand_file='data/brands/brands_master_raw.json'
           raw_brand_backup='/tmp/brands_master_raw.json'
           if [[ -f "$raw_brand_file" ]]; then
