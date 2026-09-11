@@ -25,16 +25,17 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 200);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 1,
-  needs_authored_depth: 159,
+  ready: 2,
+  needs_authored_depth: 158,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.completed_life_position_role_worlds, 1);
-assert.equal(audit.summary.pending_ready_positions, 0);
+assert.equal(audit.summary.pending_ready_positions, 1);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 1);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 1);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 2);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 2);
+assert.equal(audit.first_ready.key, 'by/nabolagskjenner');
+assert.equal(audit.first_ready.classification, 'ready');
 
 assert.deepEqual(policy.noncareer_subject_boundary.life_position_readiness.classifications, [
   'ready',
@@ -42,6 +43,22 @@ assert.deepEqual(policy.noncareer_subject_boundary.life_position_readiness.class
   'not_a_standalone_world'
 ]);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.lifecycle_field, 'role_world_status');
+
+const nabolagskjenner = audit.positions.find((row) => row.key === 'by/nabolagskjenner');
+assert.ok(nabolagskjenner);
+assert.equal(nabolagskjenner.classification, 'ready');
+assert.equal(nabolagskjenner.role_world_status, 'role_world_not_started');
+assert.equal(nabolagskjenner.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(nabolagskjenner.evidence.exact_source_refs, [
+  'data/Civication/narratives/leisure/nabolagskjenner.json'
+]);
+
+const genericKjenner = audit.positions.find((row) => row.key === 'film_tv/kjenner');
+assert.ok(genericKjenner);
+assert.equal(genericKjenner.classification, 'needs_authored_depth');
+assert.equal(genericKjenner.authored_depth.exact_source_ref_count, 0,
+  'generic Kjenner must not match the substring inside Nabolagskjenner');
+assert.equal(genericKjenner.authored_depth.max_narrative_depth, 0);
 
 const supporter = audit.positions.find((row) => row.key === 'sport/supporter');
 assert.ok(supporter);
@@ -78,4 +95,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 1 ready / 159 authored-depth / 40 not-standalone; Supporter lifecycle complete');
+console.log('civication life-position Role World readiness v2 ok: 2 ready / 158 authored-depth / 40 not-standalone; Nabolagskjenner pending / Supporter complete');
