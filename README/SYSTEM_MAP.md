@@ -206,9 +206,12 @@ History Go er delt i tydelige lag:
 
 ### 6.5 Venstre panel + PlaceCard
 - js/ui/left-panel.js
+- js/ui/leftPanelMode.ts
 - js/ui/place-card.js
 - js/ui/popup-utils.js
 - Eier: collapsePlaceCard / expandPlaceCard, initLeftPanel, enterMapMode / exitMapMode
+- Utforsk-modes: Steder, Folk, Natur, **Events**, **Møtes**, Ruter og Merker.
+- `Events` leser canonical `HGEvents`. `Møtes` er én brukerinngang som ruter opprettelse til `HG_SpotmeetingUI` og oppfølging til `HG_SocialMeetUI`; PlaceCard eier ikke disse globale oppdagelsesflatene.
 
 ### 6.6 Badges og modal
 - js/ui/badges.js
@@ -648,6 +651,6 @@ Optional panel `window.HG_SocialMatchGraphPanel` renders local self profile, top
 
 - `js/social/HGSpotmeeting.js` exposes `window.HG_Spotmeeting`.
 - Storage key: `hg_spotmeeting_v1`.
-- PlaceCard shows a `Kunnskapsmøte` section with context-bound actions for match, quiz, route, and observation.
+- Utforsk → Møtes starts a `Kunnskapsmøte` in selected Place context with actions for match, quiz, route, and observation; PlaceCard no longer owns a separate meeting section.
 - Profile shows a read-only spotmeeting inbox summary when the social profile area exists.
 - Production returns `backend_not_enabled` for real discovery; `HG_TEST_MODE` may read seeded HG Social demo candidates only.
