@@ -1,0 +1,436 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "naeringsliv",
+  "targetId": "borsen_oslo",
+  "profile_hint": "normal",
+  "reviewed_at": "2026-09-11",
+  "review_note": "Oslo byleksikon, Oppdag Kvadraturen, Lokalhistoriewiki og Euronext skiller institusjon, bygg, markedsskift, spekulasjon og dagens regulerte marked. Krakk behandles uten monokausalitet, og fysisk bygning skilles fra elektronisk handel.",
+  "scope": {
+    "place": "Oslo Børs",
+    "production_profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "total_questions": 28,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/B%C3%B8rsen",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Etablering, åpning, bygging, Grosch, Thor Olsen, utvidelser, Merkur og bygningsbruk."
+    },
+    "oppdag": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/tollbugata-2-borsen",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Jobbetid, krakk, Børshagen og stedshistorie."
+    },
+    "lokalhistorie": {
+      "url": "https://lokalhistoriewiki.no/wiki/Oslo_B%C3%B8rs",
+      "source_type": "curated_reference",
+      "review_status": "reviewed",
+      "review_note": "Fondsbørs fra 1881, tidlige verdipapirer og valutanotering."
+    },
+    "euronext": {
+      "url": "https://www.euronext.com/en/about/our-organisation",
+      "source_type": "primary_business",
+      "review_status": "reviewed",
+      "review_note": "Dagens regulerte Oslo-marked, adresse og integrasjonsår 2019."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kapital_eierskap_finans"
+    ],
+    "emne_ids": [
+      "em_naering_bank_bors_forsikring",
+      "em_naering_finansdistrikt_kontorby",
+      "em_naering_eierskap_styring",
+      "em_naering_kapital_finans",
+      "em_naering_kriser_boomer_omstilling",
+      "em_naering_risiko_regulering"
+    ],
+    "topic_hook_ids": [
+      "kapitalmakt"
+    ],
+    "method_ids": [
+      "met_naering_kapital_og_finansanalyse",
+      "met_naering_risiko_og_kriseanalyse",
+      "met_naering_romlig_okonomisk_analyse",
+      "met_naering_eierskaps_og_styringsanalyse"
+    ],
+    "thinker_ids": [
+      "thomas_piketty"
+    ],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/naeringsliv",
+      "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01/borsen_oslo.json"
+    ],
+    "active_before": {
+      "finding": "Legacy quiz profile existed in Place metadata but no current source-led 4x7 package for borsen_oslo."
+    },
+    "decisions": [
+      "Replace with one canonical normal 4x7 package.",
+      "Keep first fourteen questions direct and place-specific.",
+      "Introduce methods only in final set."
+    ],
+    "knowledge_migration": "All 28 questions receive stable Knowledge IDs."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Four distinct learning jobs cover institution/building, securities history, risk/current market and analysis."
+  },
+  "held_back_candidates": [
+    "Live share prices or index values.",
+    "A claim that every crash has the same cause.",
+    "A claim that physical trading-floor activity describes today's market.",
+    "Unverified claims about individual investor motives."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_borsen_oslo_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Lovgrunnlaget for Christiania Børs kom i 1818.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_bank_bors_forsikring"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christiania Børs åpnet 15. april 1819.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_bank_bors_forsikring"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "De første lokalene var leide rom før egen børsbygning.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_finansdistrikt_kontorby"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kjøpmannen Thor Olsen tok initiativ til byggeprosjektet.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Grosch tegnet bygningen fra 1826–1828.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_finansdistrikt_kontorby"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bygningen ble oppført i perioden 1826–1828.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_finansdistrikt_kontorby"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver den klassisistiske empirearkitekturen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_finansdistrikt_kontorby"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bystyret brukte bygningen fram til 1880.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_finansdistrikt_kontorby"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fra 1881 fikk børsen en tydelig fonds- og verdipapirfunksjon.",
+      "source_ids": [
+        "lokalhistorie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_bank_bors_forsikring"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tidlige lister omfattet både obligasjonsserier og aksjer.",
+      "source_ids": [
+        "lokalhistorie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Spekulasjonsperioden i 1890-årene endte med krakket i 1899.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kriser_boomer_omstilling"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Carl Michalsen tegnet den store utvidelsen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_finansdistrikt_kontorby"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Merkurfiguren ble satt opp i 1911.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_finansdistrikt_kontorby"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Gerhard Munthe laget veggmaleriene.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_finansdistrikt_kontorby"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Børsen organiserer et marked; den garanterer ikke gevinst eller sikker verdi.",
+      "source_ids": [
+        "euronext"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Instrumentene representerer ulike finansielle krav.",
+      "source_ids": [
+        "lokalhistorie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Krakket synliggjør markedsrisiko uten å gi én universell årsak.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kriser_boomer_omstilling"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oppdag Kvadraturen knytter jobbetiden til skipsaksjer og fraktrater.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kriser_boomer_omstilling"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Børsen fikk ny handelssal under glasstak.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_finansdistrikt_kontorby"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Valutakursnoteringen ble flyttet fra Børsen til Norges Bank.",
+      "source_ids": [
+        "lokalhistorie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_bank_bors_forsikring"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Integrasjonen i Euronext skjedde i 2019.",
+      "source_ids": [
+        "euronext"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Regulert marked betyr regelstyrt markedsinfrastruktur, ikke prisgaranti.",
+      "source_ids": [
+        "euronext"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_risiko_regulering"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Krakkhistorien viser at pris og forventninger kan flytte seg raskt.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Analysen må holde ulike deler av kapitalmarkedet fra hverandre.",
+      "source_ids": [
+        "euronext"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kriseanalyse krever periodisering, mekanismer og kildegrenser.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kriser_boomer_omstilling"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Arkitekturen dokumenterer institusjonell tilstedeværelse, ikke individuelle handler.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_finansdistrikt_kontorby"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Euronext-integrasjonen endret eierskap og nettverk uten å flytte Oslo-adressen.",
+      "source_ids": [
+        "euronext"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_borsen_oslo_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Markedshistorie må skille tidsrekkefølge og plausible mekanismer fra sikker kausalitet.",
+      "source_ids": [
+        "oppdag",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_risiko_regulering"
+    }
+  ]
+}

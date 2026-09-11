@@ -1,0 +1,117 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "thor_olsen",
+  "profile_file": "data/people/naeringsliv/oslo/borsen_oslo/thor_olsen.json",
+  "identity": {
+    "canonical_identity": "Kjøpmannen Thor Olsen (1786–1868), initiativtaker til Christiania Børs' egen bygning i 1826.",
+    "name_variants": [
+      "Thor Olsen"
+    ],
+    "not": [
+      "arkitekten Christian Heinrich Grosch",
+      "Oslo Børs som institusjon"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "canonical_name",
+      "claim": "Den canonicale personen er kjøpmannen Thor Olsen.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/B%C3%B8rsen",
+      "source_location": "avsnittet om børsbygningen",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "bors_initiative",
+      "claim": "Thor Olsen tok initiativ til at Christiania Børs skulle få en egen bygning.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/B%C3%B8rsen",
+      "source_location": "avsnittet om byggingen 1826–1828",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image_identity",
+      "claim": "Oslo Museums fotografi av Thor Olsen er tatt av Claus Peter Knudsen mellom 1860 og 1868.",
+      "status": "verified",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Thor_Olsen.jpg",
+      "source_location": "Commons file metadata",
+      "source_type": "archive",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-11",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "canonical_name"
+    ],
+    "desc": [
+      "bors_initiative"
+    ],
+    "popupDesc": [
+      "bors_initiative"
+    ],
+    "image": [
+      "image_identity"
+    ],
+    "cardImage": [
+      "image_identity"
+    ],
+    "imageMeta": [
+      "image_identity"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "bors_initiative"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "canonical_name"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "bors_initiative"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "bors_initiative"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "image_identity"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
