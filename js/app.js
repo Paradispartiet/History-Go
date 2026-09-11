@@ -82,10 +82,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await safeRun("loadNearbyDrawer", () => loadScriptOnce("js/ui/nearby-drawer.js"));
     await safeRun("loadNearbyFilters", () => loadScriptOnce("dist/web/nearbyFilters.js"));
-    await safeRun("loadLeftPanelMode", () => loadScriptOnce("dist/web/leftPanelMode.js"));
+    await safeRun("loadLeftPanelMode", () => loadScriptOnce("dist/web/leftPanelMode.js?v=20260911-explore-meet-runtime2"));
     await safeRun("loadNearbyFilterControls", () => loadScriptOnce("dist/web/nearbyFilterControls.js"));
     await safeRun("loadNearbyBadgesPanel", () => loadScriptOnce("dist/web/nearbyBadgesPanel.js"));
-    await safeRun("loadLeftPanel", () => loadScriptOnce("dist/web/left-panel.js"));
+    await safeRun("loadLeftPanel", () => loadScriptOnce("dist/web/left-panel.js?v=20260911-explore-meet-runtime2"));
 
     // PlaceCard-runtime: kjernen (LayerManager + bottomSheetController) før selve
     // place-card.js, og før MapView/AppRouter lastes – slik at window.openPlaceCard
