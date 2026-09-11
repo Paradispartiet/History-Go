@@ -1,0 +1,27 @@
+name: Temp Hausmannsbrua Fagverk release
+on:
+  push:
+    branches:
+      - agent/hausmannsbrua-place-production-20260911
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/hausmannsbrua-place-production-20260911
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Regenerate release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Upload generated manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: hausmannsbrua-fagverk-release
+          path: data/fagverk/fagverk_release.json
+          if-no-files-found: error
