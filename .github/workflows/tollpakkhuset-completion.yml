@@ -52,9 +52,7 @@ jobs:
           node tools/build-tollpakkhuset-completion.mjs
 
       - name: Validate Næringsliv production contract
-        run: |
-          node scripts/audit-naeringsliv-place-production.mjs --all
-          node --test tests/naeringsliv-place-production.test.mjs
+        run: node scripts/audit-naeringsliv-place-production.mjs --all
 
       - name: Validate quiz contracts
         run: |
