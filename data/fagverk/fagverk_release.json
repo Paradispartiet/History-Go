@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.15.0",
     "updated_at": "2026-09-11",
-    "content_sha256": "b4d27519e6b12b18b62d105ecaebba32c942dd3e092f449f8c47f85585d4b6f8"
+    "content_sha256": "64d65a89c0595c3695f08e33340b535e1915fe63f7fe69899362bad2dc92da58"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "b7ef24d30d29fb04a315442347d4e9444b9ce6442a8efdb63908652b7fdf5255"
+    "content_sha256": "dbd3e931624fd044b8915cc7e7642663d8e3d8fe1fdad0c5320e19aee2d166cd"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 190,
     "module_file_count": 497,
-    "package_file_count": 435,
+    "package_file_count": 438,
     "chapter_referenced_file_count": 934,
-    "referenced_file_count": 1298,
+    "referenced_file_count": 1301,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2560,9 +2560,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 86,
+      "package_file_count": 89,
       "required_package_file_count": 4,
-      "optional_package_file_count": 82,
+      "optional_package_file_count": 85,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -2961,6 +2961,18 @@
           "content_sha256": "6bdf6c873383038e72411283530ee0b7c5e314f2154f5bd724f9b844c9a82f60"
         },
         {
+          "path": "data/quiz/historie/prinds_christian_augusts_minde_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.prinds_christian_augusts_minde.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "d7c5988286a38aec9f5a7e3432f31ce018b29e00511bd45995bd67f4e6d0d9a9"
+        },
+        {
           "path": "data/quiz/historie/the_mini_bottle_gallery_sets.json",
           "required": false,
           "fields": [
@@ -3235,6 +3247,18 @@
           ],
           "exists": true,
           "content_sha256": "7282684c51f769e9565eb00dc14141c9d5c81373a03f0cc0402f0e78a521746d"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/prinds_christian_augusts_minde.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.prinds_christian_augusts_minde.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "7d552df173bedb3a2a62e49efa066448f32849933a7063b2434098f0b910c18b"
         },
         {
           "path": "data/quiz/production_briefs/historie/the_mini_bottle_gallery.json",
@@ -3513,6 +3537,18 @@
           "content_sha256": "0a94290b2fc01196c6a1e2e1f59ed1ac7714ec20da66c6ed34f2073c385c38d2"
         },
         {
+          "path": "data/quiz/production_context/historie/prinds_christian_augusts_minde.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.prinds_christian_augusts_minde.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "02ced56e005758f2ac5d60ee92a3ffecd21569f141f47e1f5b59ce6b6a91187b"
+        },
+        {
           "path": "data/quiz/production_context/historie/the_mini_bottle_gallery.json",
           "required": false,
           "fields": [
@@ -3597,20 +3633,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "7a33f2ca44a5e638d8da4cef519cc520ec1b1dbbe36ed2be2b9eb2593125bf53",
+      "package_content_sha256": "dd8616a5b9359b16a14ea5eaaf86f421fbe0ecd535c863e6ac4f654787ffcc59",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 178,
+      "referenced_file_count": 181,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "c1afb807300e9794c5cdbadbb49afe9db9dea6e5468b65fcdbea672c54987f37",
-      "content_sha256": "77df0c6771450ba4ce2a5b0c970334f28724a8023dffd7610cd8a1d6fa41c617",
+      "structure_sha256": "ca64d0e5926b537e2ea52fd362e3575621cccc4a9c4fe0d72bf8067c0c42c388",
+      "content_sha256": "85316e3aa55f22d72617262520be6c23c214b4da9881bab06b787394b6bf1148",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -7933,5 +7969,5 @@
       ]
     }
   },
-  "release_sha256": "b370874e2099bb509f19b88f8ef32b99169789f3b2bfa090a4f4cdbc2029559a"
+  "release_sha256": "e4e09145d31e8fc177820c9b7c67c3c3a8aaf5e83e9b43dca1a992ff841e683b"
 }

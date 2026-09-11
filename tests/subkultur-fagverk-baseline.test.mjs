@@ -58,10 +58,10 @@ test('live gaprapport lukker teori-, kapittel-, pathway- og runtimeporten', () =
 
 test('Places og People følger dataauditen mens legacyquiz holdes utenfor fullstendighetsbeviset', () => {
   const report = buildReport();
-  assert.equal(report.current.subkultur_places, 65);
-  assert.equal(report.current.primary_subkultur_places, 54);
+  assert.equal(report.current.subkultur_places, 64);
+  assert.equal(report.current.primary_subkultur_places, 53);
   assert.equal(report.current.secondary_subkultur_places, 11);
-  assert.equal(report.current.places_with_subkultur_emne, 65);
+  assert.equal(report.current.places_with_subkultur_emne, 64);
   assert.equal(report.current.subkultur_people, 45);
   assert.equal(report.current.people_with_subkultur_emne, 45);
   assert.equal(report.current.legacy_quiz.active_legacy_questions, 73);

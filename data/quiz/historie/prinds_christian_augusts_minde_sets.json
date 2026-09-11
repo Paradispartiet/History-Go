@@ -1,20 +1,27 @@
 {
   "targetId": "prinds_christian_augusts_minde",
   "categoryId": "historie",
-  "generator_version": "historie_v5_1_manual_source_based",
-  "generated_from": [
-    "data/places/historie/oslo/places_historie_added_batch_01.json",
-    "Oslo byleksikon / Prinds Christian Augusts Minde",
-    "data/fag/historie/supersetQUIZMAL_historie.json"
-  ],
+  "size_class": "normal_4x7",
+  "generated_from": "data/quiz/production_briefs/historie/prinds_christian_augusts_minde.json",
+  "generator_version": "history_go_manual_reviewed_v1",
+  "sources": {
+    "prindsen": "https://prindsen.no/om-prindsen.html",
+    "byleksikon": "https://oslobyleksikon.no/side/Prinds_Christian_Augusts_Minde",
+    "snl": "https://snl.no/Prinds_Christian_Augusts_Minde",
+    "oslo_service": "https://www.oslo.kommune.no/helse-og-omsorg/rustjenester/alle-rusinstitusjoner/prindsen-mottakssenter/",
+    "oslo_center": "https://www.oslo.kommune.no/helse-og-omsorg/rustjenester/sentrumsarbeid/"
+  },
   "sets": [
     {
       "set_id": "historie_prinds_christian_augusts_minde_set_1",
+      "level": 1,
       "order": 1,
-      "mode": "history_intro_story",
+      "phase": "opening",
+      "title": "Stiftelsen og stedet",
+      "xp": 50,
       "questions": [
         {
-          "id": "prinds_christian_augusts_minde_quiz_1",
+          "id": "prinds_christian_augusts_minde_quiz_01",
           "quiz_id": "historie_prinds_christian_augusts_minde_set_1_q1",
           "categoryId": "historie",
           "placeId": "prinds_christian_augusts_minde",
@@ -22,86 +29,63 @@
           "natureId": "",
           "targetId": "prinds_christian_augusts_minde",
           "question_scope": "place",
-          "question": "Hva er Prinds Christian Augusts Minde særlig viktig som i Oslo-historien?",
+          "question": "Hva er Prinds Christian Augusts Minde først og fremst?",
           "options": [
-            "Et sosialhistorisk anlegg knyttet til fattigomsorg, arbeid og institusjonshistorie",
-            "Et kongelig slott fra middelalderen",
-            "Et moderne kjøpesenter"
+            "Et sosialhistorisk institusjonsanlegg",
+            "Et middelalderslott",
+            "En jernbanestasjon"
           ],
-          "answer": "Et sosialhistorisk anlegg knyttet til fattigomsorg, arbeid og institusjonshistorie",
+          "answer": "Et sosialhistorisk institusjonsanlegg",
           "answerIndex": 0,
-          "dimension": "sosialhistorie",
-          "topic": "Prindsen",
-          "knowledge": "Prinds Christian Augusts Minde, ofte kalt Prindsen, gjør Oslos historie om fattigomsorg, arbeid, asyl og sosial kontroll synlig i byrommet.",
+          "dimension": "opening",
+          "topic": "hva_er_prinds_christian_augusts_minde_først_og_f",
+          "knowledge": "Prindsen er et sosialhistorisk anlegg der fattigomsorg, arbeid, helse og kontroll har vært samlet.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "intro_story",
-          "year": 1809,
-          "epoke_id": "1800_tall",
+          "question_layer": "normal_opening",
+          "year": null,
+          "epoke_id": null,
           "epoke_domain": "historie",
-          "emne_id": "em_his_sosialhistorie_hverdagsliv",
-          "related_emner": [
-            "em_his_tilhorighet_ekskludering",
-            "em_his_stat_institusjoner"
-          ],
-          "core_concepts": [
-            "fattigomsorg",
-            "institusjon",
-            "sosial kontroll"
-          ],
-          "concept_focus": [
-            "sosialhistorie"
-          ],
+          "emne_id": "em_his_velferd_hverdagsliv",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
             "prinds_christian_augusts_minde",
             "prindsen",
-            "sosialhistorie"
+            "oslo",
+            "historie"
           ],
-          "required_tags": [
-            "history_anchor",
-            "em_his"
-          ],
+          "required_tags": [],
           "source": [
-            "History Go place profile: prinds_christian_augusts_minde",
-            "Oslo byleksikon / Prinds Christian Augusts Minde"
+            "prindsen"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Prinds Christian Augusts Minde er et viktig sosialhistorisk anlegg knyttet til fattigomsorg, arbeid, asyl og sosial kontroll.",
-          "guidance_basis": {
-            "emne_id": "em_his_sosialhistorie_hverdagsliv",
-            "method_id": "met_arkivlesning"
-          },
-          "method_id": "met_arkivlesning",
-          "history_anchor_type": "institutional_place",
-          "source_note": "Kildebasert historisk quizspørsmål.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_prinds_christian_augusts_044a790aca",
+          "source_origin": "external",
+          "claim_basis": "Prindsen er et sosialhistorisk anlegg der fattigomsorg, arbeid, helse og kontroll har vært samlet.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_01",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_01",
           "knowledge_unit_ids": [
-            "ku_historie_prinds_christian_augusts_044a790aca"
+            "ku_his_prinds_christian_augusts_minde_01"
           ],
           "concept_ids": [
-            "co_historie_fattigomsorg_6d7184a58d",
             "co_historie_institusjon_f70250b601",
-            "co_historie_sosial_kontroll_e2976b0685",
-            "co_historie_sosialhistorie_696a560c7a"
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
         },
         {
-          "id": "prinds_christian_augusts_minde_quiz_2",
+          "id": "prinds_christian_augusts_minde_quiz_02",
           "quiz_id": "historie_prinds_christian_augusts_minde_set_1_q2",
           "categoryId": "historie",
           "placeId": "prinds_christian_augusts_minde",
@@ -109,86 +93,63 @@
           "natureId": "",
           "targetId": "prinds_christian_augusts_minde",
           "question_scope": "place",
-          "question": "Hva viser Prindsen om eldre omsorgs- og kontrollhistorie?",
+          "question": "Hvilken adresse har det historiske anlegget?",
           "options": [
-            "At omsorg, arbeid, tvang og utenforskap ofte var tett sammenvevd",
-            "At fattigomsorg aldri fantes i byen",
-            "At stedet bare handlet om kongebolig"
+            "Kongens gate 1",
+            "Karl Johans gate 22",
+            "Storgata 36"
           ],
-          "answer": "At omsorg, arbeid, tvang og utenforskap ofte var tett sammenvevd",
-          "answerIndex": 0,
-          "dimension": "velferd",
-          "topic": "Omsorg og kontroll",
-          "knowledge": "Prindsen viser hvordan samfunnet organiserte mennesker som ble sett som fattige, syke, uønskede eller institusjonstrengende.",
+          "answer": "Storgata 36",
+          "answerIndex": 2,
+          "dimension": "opening",
+          "topic": "hvilken_adresse_har_det_historiske_anlegget_",
+          "knowledge": "Prindsen-dokumentasjonen oppgir Storgata 36 som adresse for anlegget.",
           "trivia": [],
-          "difficulty": 2,
-          "question_type": "analysis",
-          "question_layer": "visible_traces_sources",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
           "year": null,
-          "epoke_id": "1800_tall",
+          "epoke_id": null,
           "epoke_domain": "historie",
-          "emne_id": "em_his_tilhorighet_ekskludering",
-          "related_emner": [
-            "em_his_velferd_hverdagsliv",
-            "em_his_sosialhistorie_hverdagsliv"
-          ],
-          "core_concepts": [
-            "utenforskap",
-            "tvang",
-            "omsorg"
-          ],
-          "concept_focus": [
-            "institusjonshistorie"
-          ],
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
+            "prinds_christian_augusts_minde",
             "prindsen",
-            "omsorg",
-            "utenforskap"
+            "oslo",
+            "historie"
           ],
-          "required_tags": [
-            "history_anchor",
-            "em_his"
-          ],
+          "required_tags": [],
           "source": [
-            "History Go place profile: prinds_christian_augusts_minde",
-            "Oslo byleksikon / Prinds Christian Augusts Minde"
+            "prindsen"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Prindsen viser hvordan omsorg, kontroll, arbeid og utenforskap kunne være tett sammenvevd i eldre institusjonshistorie.",
-          "guidance_basis": {
-            "emne_id": "em_his_tilhorighet_ekskludering",
-            "method_id": "met_kildekritikk"
-          },
-          "method_id": "met_kildekritikk",
-          "history_anchor_type": "institutional_place",
-          "source_note": "Kildebasert historisk quizspørsmål.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_prindsen_viser_hvordan_s_f0ebb4651b",
+          "source_origin": "external",
+          "claim_basis": "Prindsen-dokumentasjonen oppgir Storgata 36 som adresse for anlegget.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_02",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_02",
           "knowledge_unit_ids": [
-            "ku_historie_prindsen_viser_hvordan_s_f0ebb4651b"
+            "ku_his_prinds_christian_augusts_minde_02"
           ],
           "concept_ids": [
-            "co_historie_utenforskap_3fd3af9ffd",
-            "co_historie_tvang_31d023578a",
-            "co_historie_omsorg_95a9ba33b8",
-            "co_historie_institusjonshistorie_18e8aab900"
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
         },
         {
-          "id": "prinds_christian_augusts_minde_quiz_3",
+          "id": "prinds_christian_augusts_minde_quiz_03",
           "quiz_id": "historie_prinds_christian_augusts_minde_set_1_q3",
           "categoryId": "historie",
           "placeId": "prinds_christian_augusts_minde",
@@ -196,85 +157,1806 @@
           "natureId": "",
           "targetId": "prinds_christian_augusts_minde",
           "question_scope": "place",
-          "question": "Hvorfor er Prindsen mer enn bare et gammelt gårdsanlegg?",
+          "question": "Når ble stiftelsen Prinds Christian Augusts Minde opprettet?",
           "options": [
-            "Fordi stedet gjør fattigdom, institusjon, sosial kontroll og byens usynlige grupper historisk lesbare",
-            "Fordi det var et kloster for kongelige munker",
-            "Fordi det først og fremst er et minnesmerke over polarfart"
+            "1927",
+            "1809",
+            "1819"
           ],
-          "answer": "Fordi stedet gjør fattigdom, institusjon, sosial kontroll og byens usynlige grupper historisk lesbare",
-          "answerIndex": 0,
-          "dimension": "syntese",
-          "topic": "Byens sosiale blindsoner",
-          "knowledge": "Stedet gir en inngang til grupper som ofte er mindre synlige i monumental historie: fattige, syke, institusjonaliserte og sosialt marginaliserte.",
+          "answer": "1809",
+          "answerIndex": 1,
+          "dimension": "opening",
+          "topic": "når_ble_stiftelsen_prinds_christian_augusts_mind",
+          "knowledge": "Stiftelsen ble opprettet i 1809.",
           "trivia": [],
-          "difficulty": 2,
-          "question_type": "synthesis",
-          "question_layer": "synthesis_comparison",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
           "year": null,
-          "epoke_id": "flere_epoker",
+          "epoke_id": null,
           "epoke_domain": "historie",
-          "emne_id": "em_his_kilder_taushet_blindsoner",
-          "related_emner": [
-            "em_his_sosialhistorie_hverdagsliv",
-            "em_his_tilhorighet_ekskludering"
-          ],
-          "core_concepts": [
-            "blindsoner",
-            "fattigdom",
-            "institusjon"
-          ],
-          "concept_focus": [
-            "historisk syntese"
-          ],
+          "emne_id": "em_his_tilhorighet_ekskludering",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
+            "prinds_christian_augusts_minde",
             "prindsen",
-            "blindsoner",
-            "fattigdom"
+            "oslo",
+            "historie"
           ],
-          "required_tags": [
-            "history_anchor",
-            "em_his"
-          ],
+          "required_tags": [],
           "source": [
-            "History Go place profile: prinds_christian_augusts_minde",
-            "Oslo byleksikon / Prinds Christian Augusts Minde"
+            "prindsen"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Prindsen gjør sosialhistoriske blindsoner som fattigdom, institusjonalisering og utenforskap synlige i byrommet.",
-          "guidance_basis": {
-            "emne_id": "em_his_kilder_taushet_blindsoner",
-            "method_id": "met_arkivlesning"
-          },
-          "method_id": "met_arkivlesning",
-          "history_anchor_type": "institutional_place",
-          "source_note": "Kildebasert historisk quizspørsmål.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_stedet_gir_en_inngang_ti_a33a4b7e7b",
+          "source_origin": "external",
+          "claim_basis": "Stiftelsen ble opprettet i 1809.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_03",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_03",
           "knowledge_unit_ids": [
-            "ku_historie_stedet_gir_en_inngang_ti_a33a4b7e7b"
+            "ku_his_prinds_christian_augusts_minde_03"
           ],
           "concept_ids": [
-            "co_historie_blindsoner_0392eae0d8",
-            "co_historie_fattigdom_bf134b83b2",
             "co_historie_institusjon_f70250b601",
-            "co_historie_historisk_syntese_bfeb63ea5e"
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_04",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hvem var stiftelsen oppkalt til ære for?",
+          "options": [
+            "Christian August",
+            "Christian IV",
+            "Karl Johan"
+          ],
+          "answer": "Christian August",
+          "answerIndex": 0,
+          "dimension": "opening",
+          "topic": "hvem_var_stiftelsen_oppkalt_til_ære_for_",
+          "knowledge": "Navnet var en æresbevisning til stattholder Christian August.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_stat_institusjoner",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Navnet var en æresbevisning til stattholder Christian August.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_04",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_04",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_04"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_05",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hva var et hovedmål med stiftelsen i 1809?",
+          "options": [
+            "Å bygge et universitet",
+            "Å drive tollstasjon",
+            "Å hjelpe fattige og arbeidsløse"
+          ],
+          "answer": "Å hjelpe fattige og arbeidsløse",
+          "answerIndex": 2,
+          "dimension": "opening",
+          "topic": "hva_var_et_hovedmål_med_stiftelsen_i_1809_",
+          "knowledge": "Stiftelsen skulle hjelpe fattige og arbeidsløse.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_spor_materialitet",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Stiftelsen skulle hjelpe fattige og arbeidsløse.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_05",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_05",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_05"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_06",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Når kjøpte stiftelsen Mangelsgården?",
+          "options": [
+            "1840",
+            "1812",
+            "1809"
+          ],
+          "answer": "1812",
+          "answerIndex": 1,
+          "dimension": "opening",
+          "topic": "når_kjøpte_stiftelsen_mangelsgården_",
+          "knowledge": "Mangelsgården ble kjøpt i 1812.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Mangelsgården ble kjøpt i 1812.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_06",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_06",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_06"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_07",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hva ble flyttet til Mangelsgården etter kjøpet?",
+          "options": [
+            "Fattigvesenets spinnerier",
+            "Stortinget permanent",
+            "Hovedbrannstasjonen"
+          ],
+          "answer": "Fattigvesenets spinnerier",
+          "answerIndex": 0,
+          "dimension": "opening",
+          "topic": "hva_ble_flyttet_til_mangelsgården_etter_kjøpet_",
+          "knowledge": "Fattigvesenets spinnerier ble flyttet til Mangelsgården.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fattigvesenets spinnerier ble flyttet til Mangelsgården.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_07",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_07",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_07"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "historie_prinds_christian_augusts_minde_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "title": "Arbeid, helse og institusjoner",
+      "xp": 75,
+      "questions": [
+        {
+          "id": "prinds_christian_augusts_minde_quiz_08",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_2_q1",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Når ble den faste arbeidsanstalten etablert?",
+          "options": [
+            "1829",
+            "1908",
+            "1819"
+          ],
+          "answer": "1819",
+          "answerIndex": 2,
+          "dimension": "middle",
+          "topic": "når_ble_den_faste_arbeidsanstalten_etablert_",
+          "knowledge": "Den faste anstalten ble etablert som arbeidshus i 1819.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_velferd_hverdagsliv",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den faste anstalten ble etablert som arbeidshus i 1819.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_08",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_08",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_08"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_09",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_2_q2",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hva viser kildene om frivillighet ved arbeidshuset?",
+          "options": [
+            "Ingen fikk arbeide der",
+            "Tvangsplassering forekom fra starten",
+            "All plassering var alltid frivillig"
+          ],
+          "answer": "Tvangsplassering forekom fra starten",
+          "answerIndex": 1,
+          "dimension": "middle",
+          "topic": "hva_viser_kildene_om_frivillighet_ved_arbeidshus",
+          "knowledge": "Arbeidet skulle i prinsippet være frivillig, men tvangsplassering forekom fra starten.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeidet skulle i prinsippet være frivillig, men tvangsplassering forekom fra starten.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_09",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_09",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_09"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_10",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_2_q3",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hvilket arbeid er dokumentert ved anstalten?",
+          "options": [
+            "Steinhogging, spinning, veving og drevplukking",
+            "Bare skipsbygging",
+            "Bare boktrykk"
+          ],
+          "answer": "Steinhogging, spinning, veving og drevplukking",
+          "answerIndex": 0,
+          "dimension": "middle",
+          "topic": "hvilket_arbeid_er_dokumentert_ved_anstalten_",
+          "knowledge": "Prindsen-dokumentasjonen nevner steinhogging, spinning, veving og drevplukking.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_tilhorighet_ekskludering",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Prindsen-dokumentasjonen nevner steinhogging, spinning, veving og drevplukking.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_10",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_10",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_10"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_11",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Når ble dollhuset for hovedstaden etablert?",
+          "options": [
+            "1812",
+            "2009",
+            "1829"
+          ],
+          "answer": "1829",
+          "answerIndex": 2,
+          "dimension": "middle",
+          "topic": "når_ble_dollhuset_for_hovedstaden_etablert_",
+          "knowledge": "Et eget dollhus med ni plasser ble etablert i 1829.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_stat_institusjoner",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Et eget dollhus med ni plasser ble etablert i 1829.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_11",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_11",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_11"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_12",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hvor lå dollhuset?",
+          "options": [
+            "På Akershus slott",
+            "I Mangelsgårdens nordfløy",
+            "I Oslo domkirke"
+          ],
+          "answer": "I Mangelsgårdens nordfløy",
+          "answerIndex": 1,
+          "dimension": "middle",
+          "topic": "hvor_lå_dollhuset_",
+          "knowledge": "Dollhuset lå i nordfløyen av Mangelsgården.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_spor_materialitet",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Dollhuset lå i nordfløyen av Mangelsgården.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_12",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_12",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_12"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_13",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Når ble Fabrikkbygningen tatt i bruk?",
+          "options": [
+            "1833",
+            "1850",
+            "1927"
+          ],
+          "answer": "1833",
+          "answerIndex": 0,
+          "dimension": "middle",
+          "topic": "når_ble_fabrikkbygningen_tatt_i_bruk_",
+          "knowledge": "Fabrikkbygningen ble tatt i bruk i 1833.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fabrikkbygningen ble tatt i bruk i 1833.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_13",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_13",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_13"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_14",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Når ble fattigsykehuset på området oppført?",
+          "options": [
+            "1905",
+            "2013",
+            "1840"
+          ],
+          "answer": "1840",
+          "answerIndex": 2,
+          "dimension": "middle",
+          "topic": "når_ble_fattigsykehuset_på_området_oppført_",
+          "knowledge": "Byens fattigsykehus ble oppført inne på området i 1840.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Byens fattigsykehus ble oppført inne på området i 1840.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_14",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_14",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_14"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "historie_prinds_christian_augusts_minde_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "title": "Vern og dagens tjenester",
+      "xp": 100,
+      "questions": [
+        {
+          "id": "prinds_christian_augusts_minde_quiz_15",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_3_q1",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hva skjedde med asylet etter kravene i sinnssykeloven av 1848?",
+          "options": [
+            "Det ble flyttet til Bergen",
+            "Det ble utbedret og godkjent i 1850",
+            "Det ble revet samme år"
+          ],
+          "answer": "Det ble utbedret og godkjent i 1850",
+          "answerIndex": 1,
+          "dimension": "bridge",
+          "topic": "hva_skjedde_med_asylet_etter_kravene_i_sinnssyke",
+          "knowledge": "Utbedringer gjorde at asylet kunne godkjennes i 1850.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_velferd_hverdagsliv",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Utbedringer gjorde at asylet kunne godkjennes i 1850.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_15",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_15",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_15"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_16",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_3_q2",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Når var kvinneavdelingen på Prindsen avviklet til fordel for Dikemark?",
+          "options": [
+            "1908",
+            "1819",
+            "1970"
+          ],
+          "answer": "1908",
+          "answerIndex": 0,
+          "dimension": "bridge",
+          "topic": "når_var_kvinneavdelingen_på_prindsen_avviklet_ti",
+          "knowledge": "Kvinneavdelingen flyttet til Dikemark i 1908; mannlige pasienter var flyttet i 1905.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kvinneavdelingen flyttet til Dikemark i 1908; mannlige pasienter var flyttet i 1905.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_16",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_16",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_16"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_17",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_3_q3",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Når ble Mangelsgården fredet?",
+          "options": [
+            "1908",
+            "2009",
+            "1927"
+          ],
+          "answer": "1927",
+          "answerIndex": 2,
+          "dimension": "bridge",
+          "topic": "når_ble_mangelsgården_fredet_",
+          "knowledge": "Mangelsgården ble fredet i 1927.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_tilhorighet_ekskludering",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Mangelsgården ble fredet i 1927.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_17",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_17",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_17"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_18",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Når ble hele Prinds Christian Augusts Minde fredet?",
+          "options": [
+            "1970",
+            "2009",
+            "1927"
+          ],
+          "answer": "2009",
+          "answerIndex": 1,
+          "dimension": "bridge",
+          "topic": "når_ble_hele_prinds_christian_augusts_minde_fred",
+          "knowledge": "Riksantikvaren fredet hele anlegget i 2009.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_stat_institusjoner",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Riksantikvaren fredet hele anlegget i 2009.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_18",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_18",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_18"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_19",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hva betyr betegnelsen «De fattiges kvartal» i denne sammenhengen?",
+          "options": [
+            "Den peker på stedets lange historie med fattige og utstøtte",
+            "Den viser til et kongelig boligområde",
+            "Den er et navn på en handelskjede"
+          ],
+          "answer": "Den peker på stedets lange historie med fattige og utstøtte",
+          "answerIndex": 0,
+          "dimension": "bridge",
+          "topic": "hva_betyr_betegnelsen_de_fattiges_kvartal_i_denn",
+          "knowledge": "Betegnelsen framhever rundt to hundre år med virksomheter knyttet til fattige og utstøtte.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_spor_materialitet",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Betegnelsen framhever rundt to hundre år med virksomheter knyttet til fattige og utstøtte.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_19",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_19",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_19"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_20",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hvorfor er den lukkede arkitekturen historisk viktig?",
+          "options": [
+            "Den viser at stedet var festning",
+            "Den beviser at alle bygg er fra 1600-tallet",
+            "Den er del av historien om skjerming og sosial kontroll"
+          ],
+          "answer": "Den er del av historien om skjerming og sosial kontroll",
+          "answerIndex": 2,
+          "dimension": "bridge",
+          "topic": "hvorfor_er_den_lukkede_arkitekturen_historisk_vi",
+          "knowledge": "Kulturminneverdien omfatter også et lukket preg knyttet til hvordan fattige og syke ble holdt utenfor det vanlige bylivet.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kulturminneverdien omfatter også et lukket preg knyttet til hvordan fattige og syke ble holdt utenfor det vanlige bylivet.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_20",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_20",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_20"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_21",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hva er Prindsen mottakssenter i dag?",
+          "options": [
+            "Et privat hotell",
+            "Et helse- og sosialfaglig lavterskeltilbud",
+            "Et historisk tvangsarbeidshus"
+          ],
+          "answer": "Et helse- og sosialfaglig lavterskeltilbud",
+          "answerIndex": 1,
+          "dimension": "bridge",
+          "topic": "hva_er_prindsen_mottakssenter_i_dag_",
+          "knowledge": "Oslo kommune beskriver mottakssenteret som et helse- og sosialfaglig lavterskeltilbud.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "oslo_service"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo kommune beskriver mottakssenteret som et helse- og sosialfaglig lavterskeltilbud.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_21",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_21",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_21"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "historie_prinds_christian_augusts_minde_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "title": "Kilder, makt og tidslag",
+      "xp": 125,
+      "questions": [
+        {
+          "id": "prinds_christian_augusts_minde_quiz_22",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_4_q1",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hvilken besøksadresse oppgir Oslo kommune for mottakssenteret?",
+          "options": [
+            "Hausmannsgate 11",
+            "Storgata 1",
+            "Rådhusplassen 1"
+          ],
+          "answer": "Hausmannsgate 11",
+          "answerIndex": 0,
+          "dimension": "final",
+          "topic": "hvilken_besøksadresse_oppgir_oslo_kommune_for_mo",
+          "knowledge": "Oslo kommune oppgir Hausmannsgate 11 som besøksadresse.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_velferd_hverdagsliv",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "oslo_service"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo kommune oppgir Hausmannsgate 11 som besøksadresse.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_22",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_22",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_22"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_23",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_4_q2",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hvilken etat har ansvar for kommunens rusfaglige arbeid i Oslo?",
+          "options": [
+            "Kulturetaten",
+            "Byantikvaren",
+            "Velferdsetaten"
+          ],
+          "answer": "Velferdsetaten",
+          "answerIndex": 2,
+          "dimension": "final",
+          "topic": "hvilken_etat_har_ansvar_for_kommunens_rusfaglige",
+          "knowledge": "Oslo kommune oppgir at Velferdsetaten har ansvar for kommunens rusfaglige arbeid.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "oslo_center"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo kommune oppgir at Velferdsetaten har ansvar for kommunens rusfaglige arbeid.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_23",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_23",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_23"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_24",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_4_q3",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hvilken tjeneste finnes ved dagens mottakssenter?",
+          "options": [
+            "Universitetsbibliotek",
+            "Brukerrom og feltpleie",
+            "Passkontroll"
+          ],
+          "answer": "Brukerrom og feltpleie",
+          "answerIndex": 1,
+          "dimension": "final",
+          "topic": "hvilken_tjeneste_finnes_ved_dagens_mottakssenter",
+          "knowledge": "Mottakssenteret tilbyr blant annet brukerrom, feltpleie, akuttovernatting og smittevern.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_tilhorighet_ekskludering",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "oslo_service"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Mottakssenteret tilbyr blant annet brukerrom, feltpleie, akuttovernatting og smittevern.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_24",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_24",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_24"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_25",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_4_q4",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hvorfor kan et kulturhistorisk skilt ikke brukes som eneste fasit om Prindsen?",
+          "options": [
+            "Det er en senere, komprimert framstilling som må kontrolleres mot andre kilder",
+            "Fordi skilt aldri kan leses",
+            "Fordi det står i en annen by"
+          ],
+          "answer": "Det er en senere, komprimert framstilling som må kontrolleres mot andre kilder",
+          "answerIndex": 0,
+          "dimension": "final",
+          "topic": "hvorfor_kan_et_kulturhistorisk_skilt_ikke_brukes",
+          "knowledge": "Et skilt er et fysisk ettertidsspor og må sammenholdes med historiske og institusjonelle kilder.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_stat_institusjoner",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Et skilt er et fysisk ettertidsspor og må sammenholdes med historiske og institusjonelle kilder.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_25",
+          "method_id": "met_sporlesning",
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_25",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_25"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ],
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_26",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_4_q5",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hva kan Oslo kommunes nåværende mottakssenterside dokumentere best?",
+          "options": [
+            "Nøyaktig hvordan arbeidshuset fungerte i 1819",
+            "Alle pasienters erfaringer på 1800-tallet",
+            "Dagens tjenester, målgruppe og kontaktinformasjon"
+          ],
+          "answer": "Dagens tjenester, målgruppe og kontaktinformasjon",
+          "answerIndex": 2,
+          "dimension": "final",
+          "topic": "hva_kan_oslo_kommunes_nåværende_mottakssentersid",
+          "knowledge": "Den kommunale siden er en nåtidskilde til dagens tjeneste, ikke en primærkilde til 1800-tallet.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_spor_materialitet",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "oslo_service"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den kommunale siden er en nåtidskilde til dagens tjeneste, ikke en primærkilde til 1800-tallet.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_26",
+          "method_id": "met_kildekritikk",
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_26",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_26"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ],
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_27",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_4_q6",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hva viser arbeidshuset om forholdet mellom omsorg og kontroll?",
+          "options": [
+            "At kontroll ikke fantes",
+            "At hjelp og tvang kunne være tett sammenvevd",
+            "At de alltid var helt adskilt"
+          ],
+          "answer": "At hjelp og tvang kunne være tett sammenvevd",
+          "answerIndex": 1,
+          "dimension": "final",
+          "topic": "hva_viser_arbeidshuset_om_forholdet_mellom_omsor",
+          "knowledge": "Arbeidshuset skulle gi hjelp, men tvangsplassering viser at omsorg og kontroll kunne virke samtidig.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeidshuset skulle gi hjelp, men tvangsplassering viser at omsorg og kontroll kunne virke samtidig.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_27",
+          "method_id": "met_kildekritikk",
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_27",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_27"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ],
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "prinds_christian_augusts_minde_quiz_28",
+          "quiz_id": "historie_prinds_christian_augusts_minde_set_4_q7",
+          "categoryId": "historie",
+          "placeId": "prinds_christian_augusts_minde",
+          "personId": "",
+          "natureId": "",
+          "targetId": "prinds_christian_augusts_minde",
+          "question_scope": "place",
+          "question": "Hvordan bør de mange tidslagene ved Prindsen undersøkes?",
+          "options": [
+            "Som ulike historiske lag med egne kilder, ikke som én uendret institusjon",
+            "Som om alt stammer fra 1809",
+            "Bare gjennom dagens tjenester"
+          ],
+          "answer": "Som ulike historiske lag med egne kilder, ikke som én uendret institusjon",
+          "answerIndex": 0,
+          "dimension": "final",
+          "topic": "hvordan_bør_de_mange_tidslagene_ved_prindsen_und",
+          "knowledge": "Prindsen rommer skiftende institusjoner og bruk; langvarige strukturer og kortere hendelser må skilles kildekritisk.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "prinds_christian_augusts_minde",
+            "prindsen",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "prindsen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Prindsen rommer skiftende institusjoner og bruk; langvarige strukturer og kortere hendelser må skilles kildekritisk.",
+          "claim_id": "claim_prinds_christian_augusts_minde_quiz_28",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_prinds_christian_augusts_minde_28",
+          "knowledge_unit_ids": [
+            "ku_his_prinds_christian_augusts_minde_28"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_sosialhistorie_696a560c7a",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concepts": [
+            "institusjon",
+            "sosialhistorie",
+            "kildekritikk"
+          ],
+          "topic_hook_id": "his_tidslag_samtidighet",
+          "thinker_id": "fernand_braudel",
+          "work": "The Mediterranean and the Mediterranean World",
+          "theory_ref": {
+            "topic_hook_id": "his_tidslag_samtidighet",
+            "thinker_id": "fernand_braudel",
+            "work": "The Mediterranean and the Mediterranean World",
+            "why_it_helps": "Braudels skille mellom hendelser og lang varighet hjelper til å holde stiftelsen, institusjonsendringene, vernet og dagens tjenester fra hverandre uten å erstatte stedskildene."
+          },
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/theory_objects_historie_canonical_v5_5.json"
+          ]
         }
       ]
     }
-  ]
+  ],
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "normal_4x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/prinds_christian_augusts_minde.json",
+    "context_artifact": "data/quiz/production_context/historie/prinds_christian_augusts_minde.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor",
+      "his_makt_stat_institusjoner",
+      "his_industri_arbeid_sosialhistorie",
+      "his_velferd_rett_hverdagsliv",
+      "his_migrasjon_minoritet_tilhorighet",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_velferd_hverdagsliv",
+      "em_his_tilhorighet_ekskludering",
+      "em_his_stat_institusjoner",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "fernand_braudel"
+    ],
+    "works": [
+      "The Mediterranean and the Mediterranean World"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/historie/prinds_christian_augusts_minde_sets.json"
+      ],
+      "active_before": {
+        "categoryId": "historie",
+        "set_count": 1,
+        "question_count": 3
+      },
+      "decisions": [
+        "Legacy 1x3 var utilstrekkelig og erstattes av source-led 4x7.",
+        "Kjernepåstandene om sosialhistorie er bevart i omskrevet form, ikke som ukontrollert kopiering."
+      ],
+      "knowledge_migration": {
+        "status": "completed",
+        "retained_rule": "Bare kildebårne kunnskapsenheter videreføres."
+      }
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Fire sett dekker stiftelse, arbeid og helse, vern og dagens tjeneste samt kildekritisk syntese uten filler."
+    },
+    "held_back_candidates": [
+      "Individuelle beboererfaringer uten førstepersonskilder",
+      "Likestilling av dagens mottakssenter med 1800-tallets institusjoner",
+      "Ett enkelt byggeår for hele anlegget"
+    ],
+    "normal_opening_questions": 14,
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  }
 }
