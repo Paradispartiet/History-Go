@@ -18,7 +18,7 @@ const badges=new Set(read('data/badges/by.json').sub);
 for(const p of [n,v]){
   assert.strictEqual(p.category,'by');assert(!('rounds' in p)&&!('rundinger' in p));
   assert(p.works.length>=4);assert(p.civication_store.length>=4&&p.civication_store.every(x=>x.physicalObject&&x.placeSpecific));
-  assert(p.brands.length>=4);assert(p.for_na.look_for.length>=8);assert(p.nature_profile.summary.length>=600);
+  assert(p.brands.length>=4);assert((p.for_na.lookFor||p.for_na.look_for).length>=8);assert(p.nature_profile.summary.length>=600);
   assert(p.underbadge_ids.length>=3&&p.underbadge_ids.every(id=>badges.has(id)));
 }
 const peoplePath='data/people/by/oslo/akerselva/people_nybrua_vaterlandsparken.json',people=read(peoplePath);
