@@ -168,4 +168,4 @@ execFileSync(process.execPath, ['tests/civication-noncareer-role-taxonomy.test.j
 execFileSync(process.execPath, ['tests/civication-life-position-role-world-readiness.test.js'], { cwd: ROOT, stdio: 'pipe' });
 execFileSync(process.execPath, ['tests/civication-skrivebordspoet-life-position-readiness.test.js'], { cwd: ROOT, stdio: 'pipe' });
 
-console.log('civication Skrivebordspoet Role World ok: 56/56 coverage / 14 governed anchors / 92 total worlds / no new runtime');
+console.log('civication Skrivebordspoet Role World ok: 56/56 coverage / 14 governed anchors / 92 total worlds / 7 life-position worlds / no new runtime');
