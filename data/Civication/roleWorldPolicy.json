@@ -197,5 +197,22 @@
     "professional_culture_global_runtime_field": false,
     "rollout_queue_path": "data/Civication/roleWorldRolloutReadiness.json",
     "rule": "Bred rollout betyr ikke masse-materialisering: hver canonical rolle leveres i egen PR, må være rollout_ready eller få eksplisitt authored debt lukket, og kan ikke omgå blockers, authority, provenance eller registry-paritet."
+  },
+  "noncareer_subject_boundary": {
+    "taxonomy": "data/Civication/nonCareerRoleTaxonomy.json",
+    "documentation": "docs/CIVICATION_NONCAREER_ROLE_TAXONOMY.md",
+    "allowed_subject_classes": [
+      "career_role",
+      "life_position"
+    ],
+    "not_standalone_subject_classes": [
+      "life_circumstance",
+      "relationship_state",
+      "livelihood",
+      "role_model",
+      "legacy_noncareer_work_world"
+    ],
+    "mass_materialization_allowed": false,
+    "rule": "Role World kan produseres for en canonical karriererolle eller en eksplisitt spiller-valgt life_position. Andre livslag er kontekst/state og skal ikke dupliseres som parallelle rollemotorer."
   }
 }
