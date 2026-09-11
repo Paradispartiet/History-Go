@@ -430,6 +430,8 @@ body.hg-app.hg-phone #nearbyListContainer.is-drawer-open .nearby-strip{
 .nearby-tab[data-leftmode="badges"]{ background: rgb(176,132,0); color: #fff;} /* gul */
 .nearby-tab[data-leftmode="people"]{ background: rgb(170,38,34); }  /* rød */
 .nearby-tab[data-leftmode="nature"]{ background: rgb(30,120,138); } /* turkis */
+.nearby-tab[data-leftmode="events"]{ background: rgb(145,76,24); } /* event */
+.nearby-tab[data-leftmode="social"]{ background: rgb(108,55,128); } /* møtes */
 
 /* Active: mer solid */
 .nearby-tab.is-active[data-leftmode="nearby"]{ background: rgb(0,95,200); }
@@ -437,6 +439,8 @@ body.hg-app.hg-phone #nearbyListContainer.is-drawer-open .nearby-strip{
 .nearby-tab.is-active[data-leftmode="badges"]{ background: rgb(210,160,0); color: #fff; }
 .nearby-tab.is-active[data-leftmode="people"]{ background: rgb(210,50,44); }
 .nearby-tab.is-active[data-leftmode="nature"]{ background: rgb(42,155,175); }
+.nearby-tab.is-active[data-leftmode="events"]{ background: rgb(182,96,30); }
+.nearby-tab.is-active[data-leftmode="social"]{ background: rgb(139,72,163); }
 
 /* Ingen focus-ring */
 .nearby-tab:focus,
@@ -736,3 +740,136 @@ body.hg-app.hg-phone #nearbyListContainer.is-drawer-open .nearby-strip{
 .nearby-favorites-filter-icon.is-active {
   color: #ffd75a;
 }
+
+/* ============================================================
+   UTFORSK — EVENTS + MØTES
+   Globale oppdagelsesflater. Ikke PlaceCard-eid innhold.
+   ============================================================ */
+
+#nearbyListContainer #leftEventsList[hidden],
+#nearbyListContainer #leftSocialList[hidden]{
+  display:none;
+}
+
+#leftEventsList,
+#leftSocialList{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:stretch;
+  gap:10px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:8px 2px 2px;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+
+#leftEventsList::-webkit-scrollbar,
+#leftSocialList::-webkit-scrollbar{
+  display:none;
+}
+
+.hg-explore-card{
+  flex:0 0 230px;
+  min-width:0;
+  min-height:124px;
+  display:grid;
+  align-content:start;
+  gap:6px;
+  padding:12px 13px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:16px;
+  background:rgba(10,10,12,.94);
+  color:#fff;
+  text-align:left;
+  box-shadow:0 8px 24px rgba(0,0,0,.22);
+}
+
+button.hg-explore-card{
+  font:inherit;
+  cursor:pointer;
+}
+
+button.hg-explore-card:hover,
+button.hg-explore-card:focus-visible{
+  border-color:rgba(255,255,255,.28);
+  outline:none;
+}
+
+.hg-explore-card-kicker{
+  color:rgba(255,220,120,.92);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+.hg-explore-card > strong{
+  font-size:14px;
+  line-height:1.15;
+}
+
+.hg-explore-card-meta,
+.hg-explore-card > small{
+  color:rgba(255,255,255,.68);
+  font-size:11px;
+  line-height:1.3;
+}
+
+.hg-explore-card > small{
+  display:-webkit-box;
+  overflow:hidden;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+}
+
+.hg-explore-social-card > button{
+  width:max-content;
+  max-width:100%;
+  min-height:32px;
+  margin-top:auto;
+  padding:6px 10px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font:inherit;
+  font-size:11px;
+  font-weight:850;
+  cursor:pointer;
+}
+
+.hg-explore-social-card > button:disabled{
+  opacity:.45;
+  cursor:default;
+}
+
+.hg-explore-empty{
+  width:100%;
+  min-height:100px;
+  display:grid;
+  place-items:center;
+  padding:14px;
+  color:rgba(255,255,255,.65);
+  font-size:12px;
+  text-align:center;
+}
+
+body.hg-app.hg-phone #nearbyListContainer.is-drawer-open #leftEventsList,
+body.hg-app.hg-phone #nearbyListContainer.is-drawer-open #leftSocialList{
+  height:100%;
+  flex-direction:column;
+  flex-wrap:nowrap;
+  align-items:stretch;
+  overflow-x:hidden;
+  overflow-y:auto;
+  padding:8px;
+}
+
+body.hg-app.hg-phone #nearbyListContainer.is-drawer-open .hg-explore-card{
+  flex:0 0 auto;
+  width:100%;
+  min-height:118px;
+}
+
