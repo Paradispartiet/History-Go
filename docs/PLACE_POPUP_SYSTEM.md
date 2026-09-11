@@ -46,8 +46,9 @@ Før innhold fordeles på faner eller eierflater, skal canonical place-register/
 Tre roller skal holdes adskilt:
 
 1. **Rundinger/samlinger** = visuelle samlinger av identifiserbare ting, med egne popuper.
-2. **På stedet** = hva som skjer eller kan gjøres der.
-3. **Stedspopup** = kunnskap om stedet.
+2. **Utforsk** = globale oppdagelsesflater som Events og Møtes.
+3. **På stedet** = type-spesifikke handlinger som faktisk må utføres på det konkrete stedet.
+4. **Stedspopup** = kunnskap om stedet.
 
 Ikke flytt innhold mellom disse bare for å fylle UI. Samtidig skal kunnskap som beskriver en konkret samlingsenhet vises hos samlingen som eier enheten, slik at den samme informasjonen ikke dupliseres som en ekstra stedspopupfane.
 
@@ -63,7 +64,9 @@ Popupen leser fra eksisterende eide systemer:
 - Lesespor → Lesespor;
 - source summaries / eksterne lenker → Kilder;
 - observations/Knowledge → egne systemer;
-- play/events/møteflater → På stedet;
+- events → Utforsk → Events;
+- møteflater → Utforsk → Møtes;
+- play og andre ekte lokale stedstypehandlinger → På stedet;
 - `training_profile` → sportsinnhold i stedspopupen for sportssteder.
 
 Data skal ikke kopieres inn i én gigantisk place-fil bare fordi flere brukerflater viser dem samlet eller kontekstuelt.
@@ -284,22 +287,27 @@ Den samme opplysningen skal heller ikke vises parallelt som både egen stedspopu
 
 Ukjent legacy-innhold skal ikke bli en ny `Mer`, «Annet» eller «Tillegg»-fane. Det skal holdes synlig under **Om** inntil canonical eier er avklart og reviewet.
 
-## 14. På stedet
+## 14. Utforsk og På stedet
 
-På stedet er **ikke en fast knapperekke**. Synlighet eies av den canonical kategori-/stedstype-kontrakten:
+**Utforsk i venstre panel** eier de globale oppdagelsesflatene:
+
+- **Events** — kommende canonical events fra `HGEvents`;
+- **Møtes** — én brukerinngang som kombinerer «Foreslå kunnskapsmøte» (`HG_SpotmeetingUI`) og «Mine møter / Social Meet» (`HG_SocialMeetUI`).
+
+Kunnskapsmøte og Social Meet er dermed samlet på UX-/navigasjonsnivå, men beholder separate runtime- og state-ansvar.
+
+**På stedet** eier bare type-spesifikke handlinger som faktisk må utføres på det konkrete stedet. Synlighet styres av:
 
 - `docs/PLACE_ONSITE_SYSTEM.md`;
 - `data/categories/place_onsite_contract.json`.
 
-Policyen har tre moduser: `always`, `whenData` og `never`. Canonical kategori bestemmer grunnpolicyen, mens fysisk stedstype kan overstyre den.
-
-Bredt tilgjengelige møteflater er **Social Meet / Avtal å møtes** og **Kunnskapsmøte / Spotmeeting**. Events er kategori- og datastyrt. **Lek vises bare for faktiske lekeplasser/lekeparker**, uavhengig av hvilken overordnet kategori stedet tilhører.
+Policyen har `always`, `whenData` og `never`; fysisk stedstype kan overstyre kategori. **Lek vises bare for faktiske lekeplasser/lekeparker**.
 
 `tasks_profile` / Oppgaver er ikke en del av History GO-produktet og skal ikke produseres eller presenteres.
 
 `training_profile` er ikke en generell På stedet-handling. Trening er type-spesifikt innhold og vises i **stedspopupen for sportssteder** når relevant.
 
-Quiz, Observer, Notat og Rute beholder egne flows utenfor På stedet-baren.
+Quiz, Observer, Notat og Rute beholder egne flows utenfor både Møtes og den lokale På stedet-flaten.
 
 ## 15. Rundinger og samlingspopuper
 
@@ -318,7 +326,7 @@ Språk er et popup-/kunnskapslag, ikke en ny runding.
 
 Wonderkammer er legacy migreringsgrunnlag, ikke en ny popupflate eller runding.
 
-Legacy-innhold migreres etter faktisk type til subsystemet som eier innholdet. Personverk hører i People-profilen, fysiske kunstverk kan være Objects, og tidsbundne produksjoner hører i Events/På stedet.
+Legacy-innhold migreres etter faktisk type til subsystemet som eier innholdet. Personverk hører i People-profilen, fysiske kunstverk kan være Objects, og tidsbundne nåtidshendelser hører i Utforsk → Events.
 
 Nye Wonderkammer-entries skal ikke produseres gjennom popup-systemet.
 
