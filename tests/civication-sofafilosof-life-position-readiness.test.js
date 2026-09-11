@@ -72,13 +72,13 @@ assert.deepEqual(audit.summary.classifications, {
   needs_authored_depth: 154,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 5);
-assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.completed_life_position_role_worlds, 6);
+assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 6);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 6);
-assert.equal(audit.first_ready?.key, 'kunst/gallerivanker');
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'kunst/gallerivanker');
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'kunst/gallerivanker');
+assert.equal(audit.first_ready, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
 
 const narrativeSource = fs.readFileSync(
   path.join(ROOT, 'js/Civication/systems/civicationNarrativeSceneSource.js'),
