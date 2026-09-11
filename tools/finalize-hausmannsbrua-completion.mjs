@@ -474,7 +474,18 @@ const quizQuestions = rawQuestions.map((row, index) => {
     claim_basis: knowledge, claim_id: "claim_hausmannsbrua_quiz_" + String(index + 1).padStart(2, "0"),
     primary_knowledge_unit_id: knowledgeId, knowledge_unit_ids: [knowledgeId], concept_ids: [], term_ids: [],
     knowledge_contract_version: 1, knowledge_link_status: "linked",
-    ...(method_id ? { method_id, guidance_basis: ["data/fag/by/fagkart_by.json", "data/fag/by/methods_by.json"] } : {})
+    ...(method_id ? { method_id, guidance_basis: ["data/fag/by/fagkart_by.json", "data/fag/by/methods_by.json"] } : {}),
+    ...(index === 34 ? {
+      topic_hook_id: "his_spor_gatebilde",
+      thinker_id: "pierre_nora",
+      work: "Les Lieux de Mémoire",
+      theory_ref: {
+        topic_hook_id: "his_spor_gatebilde",
+        thinker_id: "pierre_nora",
+        work: "Les Lieux de Mémoire",
+        why_it_helps: "Noras minnestedsbegrep hjelper å skille dokumenterte historiske lag og senere formidling uten å erstatte de stedsspesifikke kildene."
+      }
+    } : {})
   };
 });
 const phases = ["opening", "middle", "middle", "bridge", "final"];
