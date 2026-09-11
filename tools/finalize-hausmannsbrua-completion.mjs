@@ -403,10 +403,10 @@ const lesesporFile = "data/lesespor/oslo/lesespor_oslo_by.json";
 const lesespor = read(lesesporFile);
 lesespor.items = (lesespor.items || []).filter((item) => !(item.place_ids || []).includes(placeId));
 for (const [index, title, publication, url, sourceQuality, relevance, themes] of [
-  [1, "Hausmanns bru", "Store norske leksikon", urls.snl, "recognized_reference", "Teknisk og historisk oversikt over bygging, mål, 1986-ombygging og vernestatus.", ["brohistorie", "støpejern", "vern"]],
+  [1, "Hausmanns bru", "Store norske leksikon", urls.snl, "recognized", "Teknisk og historisk oversikt over bygging, mål, 1986-ombygging og vernestatus.", ["brohistorie", "støpejern", "vern"]],
   [2, "Hausmanns bru", "Oslo byleksikon", urls.bridge, "canonical", "Lokalhistorisk oversikt med bevaringsdetaljer og blåskilt.", ["Akerselva", "ombygging", "rekkverk"]],
   [3, "Hausmanns gate", "Oslo byleksikon", urls.gate, "canonical", "Navnehistorien som forklarer Fredrik Ferdinand Hausmanns indirekte kobling til broen.", ["stedsnavn", "Hausmann", "historiske lag"]],
-  [4, "Blå skilt langs nedre Akerselva", "Selskabet for Oslo Byes Vel", urls.plaqueEvent, "official", "Organisasjonens dokumentasjon av skiltmarkeringen på Hausmanns bru og andre broer langs nedre elv.", ["blåskilt", "historieformidling", "Akerselva"]],
+  [4, "Blå skilt langs nedre Akerselva", "Selskabet for Oslo Byes Vel", urls.plaqueEvent, "institutional", "Organisasjonens dokumentasjon av skiltmarkeringen på Hausmanns bru og andre broer langs nedre elv.", ["blåskilt", "historieformidling", "Akerselva"]],
   [5, "Hausmanns bru", "Lokalhistoriewiki", urls.local, "recognized", "Supplerende lokalhistorisk lesespor; enkeltpåstander brukes bare når de kan kryssjekkes mot sterkere kilder.", ["lokalhistorie", "kildekritikk", "bro"]]
 ]) {
   lesespor.items.push({ id: "lesespor_hausmannsbrua_00" + index, title, popupDesc: relevance, author: null, publication, type: "faglig_kilde", subjects: [{ type: "place", name: "Hausmannsbrua", id: placeId }], place_ids: [placeId], person_ids: index === 3 ? ["fredrik_ferdinand_hausmann"] : [], category_hints: ["by", "historie"], summary: { themes }, classification: { tags: ["Hausmannsbrua", ...themes] }, url, access: "open", rights: "link_only", source_quality: sourceQuality, curation_status: "approved", relevance, verifiedAt });
