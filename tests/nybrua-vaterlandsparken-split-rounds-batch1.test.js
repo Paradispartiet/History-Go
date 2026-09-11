@@ -25,8 +25,9 @@ const peoplePath='data/people/by/oslo/akerselva/people_nybrua_vaterlandsparken.j
 for(const id of ['gunder_juel','olafia_johannsdottir','kristinn_pjetursson','ola_enstad'])assert(people.some(x=>x.id===id),`Missing ${id}`);
 assert(read('data/people/manifest.json').files.includes('people/by/oslo/akerselva/people_nybrua_vaterlandsparken.json'));
 for(const [id,qpath] of [['nybrua_vaterlandsparken','data/quiz/by/nybrua_vaterlandsparken_sets.json'],['vaterlandsparken','data/quiz/by/vaterlandsparken_sets.json']]){
- const q=read(qpath);assert.strictEqual(q.place_id,id);assert.strictEqual(q.sets.length,6);
+ const q=read(qpath);assert.strictEqual(q.place_id,id);assert.strictEqual(q.sets.length,id==='vaterlandsparken'?4:6);
  assert(q.sets.every(s=>s.questions.length===7&&s.questions.every(x=>Array.isArray(x.source)&&x.source.length&&x.claim_basis)));
+ if(id==='vaterlandsparken')assert.strictEqual(new Set(q.sets.flatMap(s=>s.questions.map(x=>x.question))).size,28);
 }
 const storyPath='data/stories/stories_nybrua_vaterlandsparken_split.json',stories=read(storyPath);
 assert(stories.some(x=>x.place_id==='nybrua_vaterlandsparken'));assert(stories.some(x=>x.place_id==='vaterlandsparken'));
