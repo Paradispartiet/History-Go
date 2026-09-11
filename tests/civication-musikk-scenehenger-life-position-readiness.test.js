@@ -9,7 +9,7 @@ const vm = require('node:vm');
 const ROOT = path.resolve(__dirname, '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 
-const streamPath = 'data/Civication/narratives/leisure/medievaktbikkje.json';
+const streamPath = 'data/Civication/narratives/leisure/musikk_scenehenger.json';
 const stream = readJson(streamPath);
 const manifest = readJson('data/Civication/narratives/manifest.json');
 const audit = readJson('data/Civication/lifePositionRoleWorldReadiness.json');
@@ -19,9 +19,9 @@ const taxonomy = readJson('data/Civication/nonCareerRoleTaxonomy.json');
 const policy = readJson('data/Civication/roleWorldPolicy.json');
 
 assert.equal(stream.schema, 'civication_narrative_stream_v1');
-assert.equal(stream.id, 'medievaktbikkje_stream');
+assert.equal(stream.id, 'musikk_scenehenger_stream');
 assert.equal(stream.type, 'leisure');
-assert.deepEqual(stream.applies_when.any_tags, ['medievaktbikkje', 'media:medievaktbikkje']);
+assert.deepEqual(stream.applies_when.any_tags, ['musikk:scenehenger']);
 assert.equal(stream.storylets.length, 14);
 assert.equal(new Set(stream.storylets.map((row) => row.id)).size, 14);
 
@@ -38,33 +38,48 @@ for (const row of stream.storylets) {
 }
 assert.ok(manifest.streams.some((entry) => entry.id === stream.id && entry.path === streamPath));
 
-const profile = catalog.badges.find((row) => row.badge_id === 'media');
-const position = profile.positions.find((row) => row.id === 'medievaktbikkje');
-assert.deepEqual(position, {
-  id: 'medievaktbikkje',
-  label: 'Medievaktbikkje',
-  threshold: 40,
-  kind: 'practice_identity',
-  description: 'Du følger hvem som setter saker, hvem som mangler og hvordan framing endrer en historie.',
-  hooks: ['mediekritikk', 'kilder', 'korrigering']
+const music = catalog.badges.find((row) => row.badge_id === 'musikk')
+  .positions.find((row) => row.id === 'scenehenger');
+assert.deepEqual(music, {
+  id: 'scenehenger',
+  label: 'Scenehenger',
+  threshold: 60,
+  kind: 'social_identity',
+  description: 'Du kjenner konsertstedene og folkene rundt dem og blir ofte lenger enn planlagt.',
+  hooks: ['scene', 'nettverk', 'nytt_band']
 });
 
-const opportunity = livelihood.templates.find((row) => row.id === 'medievaktbikkje_researchnotat');
-assert.ok(opportunity);
-assert.equal(opportunity.badge_id, 'media');
-assert.equal(opportunity.life_position_label, 'Medievaktbikkje');
-assert.equal(opportunity.kind_id, 'freelance_assignment');
-assert.deepEqual(opportunity.income, { model: 'variable', min: 3, max: 7 });
-assert.deepEqual(opportunity.direct_costs, { fixed: 0 });
+const stage = catalog.badges.find((row) => row.badge_id === 'scenekunst')
+  .positions.find((row) => row.id === 'scenehenger');
+assert.ok(stage);
+assert.equal(stage.label, 'Scenehenger');
 
-const ready = audit.positions.find((row) => row.key === 'media/medievaktbikkje');
+const opportunity = livelihood.templates.find((row) => row.id === 'scenehenger_konsertcrew');
+assert.ok(opportunity);
+assert.equal(opportunity.badge_id, 'musikk');
+assert.equal(opportunity.life_position_label, 'Scenehenger');
+assert.equal(opportunity.kind_id, 'gig_honorarium');
+assert.deepEqual(opportunity.income, { model: 'variable', min: 3, max: 7 });
+assert.deepEqual(opportunity.direct_costs, { fixed: 1 });
+
+const ready = audit.positions.find((row) => row.key === 'musikk/scenehenger');
 assert.ok(ready);
 assert.equal(ready.classification, 'ready');
-assert.equal(ready.role_world_status, 'role_world_complete');
-assert.equal(ready.role_world_path, 'data/Civication/roleWorlds/media/media_medievaktbikkje.json');
+assert.equal(ready.role_world_status, 'role_world_not_started');
+assert.equal(ready.role_world_path, null);
 assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
-assert.deepEqual(ready.evidence.livelihood_templates, ['medievaktbikkje_researchnotat']);
+assert.deepEqual(ready.evidence.livelihood_templates, ['scenehenger_konsertcrew']);
+
+const stageAudit = audit.positions.find((row) => row.key === 'scenekunst/scenehenger');
+assert.ok(stageAudit);
+assert.equal(stageAudit.classification, 'needs_authored_depth');
+assert.equal(stageAudit.role_world_status, 'role_world_not_started');
+assert.equal(stageAudit.role_world_path, null);
+assert.equal(stageAudit.authored_depth.max_narrative_depth, 0);
+assert.equal(stageAudit.authored_depth.exact_source_ref_count, 0);
+assert.ok(!stageAudit.evidence.exact_source_refs.includes(streamPath));
+
 assert.deepEqual(audit.summary.classifications, {
   ready: 9,
   needs_authored_depth: 151,
@@ -77,12 +92,16 @@ assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 9);
 assert.equal(audit.first_ready?.key, 'musikk/scenehenger');
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'musikk/scenehenger');
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'musikk/scenehenger');
+assert.equal(
+  audit.semantics.duplicate_life_position_ids_or_labels_require_badge_scoped_governed_binding,
+  true
+);
 
-const paidAnchor = stream.storylets.find((row) => row.id === 'researchnotatet_og_oppdragets_grense');
+const paidAnchor = stream.storylets.find((row) => row.id === 'konsertcrew_honoraret');
 assert.ok(paidAnchor);
 assert.match(
   paidAnchor.situation.join(' '),
-  /ikke.*ansatt journalist|ikke.*redaktør|publiserings-|redaksjonell beslutningsmyndighet/i
+  /ikke.*lyd-|ikke.*lyst|sikkerhetsansvarlig|booker|artistmanager|kontrakter|artistbetaling/i
 );
 
 const narrativeSource = fs.readFileSync(
@@ -90,7 +109,7 @@ const narrativeSource = fs.readFileSync(
   'utf8'
 );
 
-let activeLifePositions = [{ badge_id: 'media', id: 'medievaktbikkje', label: 'Medievaktbikkje' }];
+let activeLifePositions = [{ badge_id: 'musikk', id: 'scenehenger', label: 'Scenehenger' }];
 const filesByPath = new Map([
   ['data/Civication/narratives/manifest.json', manifest],
   [streamPath, stream]
@@ -130,38 +149,43 @@ vm.runInContext(narrativeSource, sandbox, { filename: 'civicationNarrativeSceneS
 (async () => {
   const api = sandbox.window.CivicationNarrativeSceneSource;
   let snapshot = await api.getActivationSnapshot({ state, active: null });
-  assert.ok(snapshot.matched_stream_ids.includes('medievaktbikkje_stream'));
+  assert.ok(snapshot.matched_stream_ids.includes('musikk_scenehenger_stream'));
 
   const scenes = await api.getSourceScenes({
     state,
     active: null,
     phaseId: 'evening',
-    candidate_stream_ids: ['medievaktbikkje_stream'],
+    candidate_stream_ids: ['musikk_scenehenger_stream'],
     used_storylet_keys: []
   });
   assert.ok(scenes.length >= 1);
-  assert.equal(scenes[0].narrative_stream_id, 'medievaktbikkje_stream');
+  assert.equal(scenes[0].narrative_stream_id, 'musikk_scenehenger_stream');
   assert.equal(scenes[0].workday_related, false);
   assert.equal(scenes[0].role_scope, '');
   assert.equal(scenes[0].career_id, '');
 
+  activeLifePositions = [{ badge_id: 'scenekunst', id: 'scenehenger', label: 'Scenehenger' }];
+  snapshot = await api.getActivationSnapshot({ state, active: null });
+  assert.ok(!snapshot.matched_stream_ids.includes('musikk_scenehenger_stream'),
+    'scenekunst/scenehenger must not inherit the Musikk Scenehenger stream');
+
   for (const other of [
-    { badge_id: 'media', id: 'nyhetsjunkie', label: 'Nyhetsjunkie' },
-    { badge_id: 'media', id: 'podkastsluker', label: 'Podkastsluker' },
-    { badge_id: 'media', id: 'kommentarfeltveteran', label: 'Kommentarfeltveteran' },
-    { badge_id: 'media', id: 'debattant', label: 'Debattant' }
+    { badge_id: 'musikk', id: 'konsertgjenger', label: 'Konsertgjenger' },
+    { badge_id: 'musikk', id: 'musikknerd', label: 'Musikknerd' },
+    { badge_id: 'musikk', id: 'plategraver', label: 'Plategraver' },
+    { badge_id: 'musikk', id: 'festivalveteran', label: 'Festivalveteran' }
   ]) {
     activeLifePositions = [other];
     snapshot = await api.getActivationSnapshot({ state, active: null });
-    assert.ok(!snapshot.matched_stream_ids.includes('medievaktbikkje_stream'),
-      other.id + ' must not inherit Medievaktbikkje narrative');
+    assert.ok(!snapshot.matched_stream_ids.includes('musikk_scenehenger_stream'),
+      other.id + ' must not inherit Musikk Scenehenger narrative');
   }
 
   activeLifePositions = [];
   snapshot = await api.getActivationSnapshot({ state, active: null });
-  assert.ok(!snapshot.matched_stream_ids.includes('medievaktbikkje_stream'));
+  assert.ok(!snapshot.matched_stream_ids.includes('musikk_scenehenger_stream'));
 
-  console.log('civication Medievaktbikkje readiness ok: 14 anchors / exact life-position activation / bounded research assignment / media career scope remains closed');
+  console.log('civication Musikk Scenehenger readiness ok: 14 anchors / badge-exact activation / Scenekunst remains isolated / bounded concert crew role');
 })().catch((error) => {
   console.error(error);
   process.exitCode = 1;

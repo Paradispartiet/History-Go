@@ -161,7 +161,7 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
 'litteratur/skrivebordspoet',
   'media/medievaktbikkje'
 ]);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'musikk/scenehenger');
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 8);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 93);
@@ -175,8 +175,8 @@ assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.ok(!audit.queue.some((row) => row.key === 'by/nabolagskjenner'));
 assert.equal(audit.summary.life_position_role_world_complete, 8);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.first_ready?.key, 'musikk/scenehenger');
 
 execFileSync(process.execPath, ['tests/civication-role-world-contract.test.js'], {
   cwd: ROOT,

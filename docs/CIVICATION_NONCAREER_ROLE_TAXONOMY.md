@@ -193,7 +193,7 @@ Tilsvarende er «nær venn» en relasjonsstatus mellom to personer, ikke en livs
 
 Neste non-career Role World-arbeid skal være **readiness først, rolle-for-rolle**. Den maskinlesbare køen ligger i `data/Civication/lifePositionRoleWorldReadiness.json` og genereres av `scripts/audit-civication-life-position-role-world-readiness.mjs`.
 
-`sport/supporter`, `by/nabolagskjenner`, `film_tv/filmklubbmenneske`, `filosofi/sofafilosof`, `historie/historievandrer`, `kunst/gallerivanker`, `litteratur/skrivebordspoet` og `media/medievaktbikkje` er source-backed `ready`-posisjoner som nå alle er ferdigstilt som Role Worlds. Readiness-auditen bruker tre separate klasser — `ready`, `needs_authored_depth` og `not_a_standalone_world` — mens faktisk produksjonsstatus ligger separat i `role_world_status`. Fasit er nå **8 ready = 8 role_world_complete + 0 pending**, **152 needs_authored_depth** og **40 not_a_standalone_world**. Det finnes ingen ny uferdig `ready`-kandidat; neste køhode krever authored dybde før Role World-produksjon.
+`sport/supporter`, `by/nabolagskjenner`, `film_tv/filmklubbmenneske`, `filosofi/sofafilosof`, `historie/historievandrer`, `kunst/gallerivanker`, `litteratur/skrivebordspoet` og `media/medievaktbikkje` er source-backed `ready`-posisjoner som allerede er ferdigstilt som Role Worlds. `musikk/scenehenger` har nå egen governed 14-storylet narrativ dybde og er den eneste uferdige `ready`-kandidaten. Den badge-aware readiness-auditen holder samtidig `scenekunst/scenehenger` separat på `needs_authored_depth`. Fasit er nå **9 ready = 8 role_world_complete + 1 pending**, **151 needs_authored_depth** og **40 not_a_standalone_world**.
 
 
 ```text

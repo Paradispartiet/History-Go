@@ -25,16 +25,16 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 200);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 8,
-  needs_authored_depth: 152,
+  ready: 9,
+  needs_authored_depth: 151,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.completed_life_position_role_worlds, 8);
-assert.equal(audit.summary.pending_ready_positions, 0);
+assert.equal(audit.summary.pending_ready_positions, 1);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 8);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 8);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 9);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 9);
+assert.equal(audit.first_ready?.key, 'musikk/scenehenger');
 
 assert.deepEqual(policy.noncareer_subject_boundary.life_position_readiness.classifications, [
   'ready',
