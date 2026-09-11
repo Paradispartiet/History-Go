@@ -1,0 +1,108 @@
+name: Tollpakkhuset completion materialization
+
+on:
+  push:
+    branches: [agent/tollpakkhuset-completion-20260911-v2]
+    paths:
+      - "tools/build-tollpakkhuset-completion.mjs"
+      - ".github/workflows/tollpakkhuset-completion.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tollpakkhuset-completion-20260911-v2
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Configure git and integrate fresh main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download verified source assets
+        run: |
+          curl -L --fail --retry 3 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Oslo_Tollbod_stenpakkhuset_rk_117572_IMG_2583.JPG' -o /tmp/tollpakkhuset-place.jpg
+          curl -L --fail --retry 3 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Gad_Frederik_Clement_-_Johan_Henrik_Nebelong_-_Norsk_portrettarkiv_-_Riksantikvaren_-_N000136.jpg' -o /tmp/nebelong.jpg
+          curl -L --fail --retry 3 'https://altinncdn.no/orgs/tad/tad.png' -o /tmp/tolletaten.png
+          file /tmp/tollpakkhuset-place.jpg /tmp/nebelong.jpg /tmp/tolletaten.png
+
+      - name: Materialize Tollpakkhuset
+        run: |
+          node --check tools/build-tollpakkhuset-completion.mjs
+          node tools/build-tollpakkhuset-completion.mjs
+
+      - name: Validate Næringsliv production contract
+        run: |
+          node scripts/audit-naeringsliv-place-production.mjs --all
+          node --test tests/naeringsliv-place-production.test.mjs
+
+      - name: Validate quiz contracts
+        run: |
+          node scripts/audit-quiz-manifest-v2.mjs
+          node scripts/audit-quiz-production-context.mjs
+          node scripts/audit-quiz-progression.mjs
+          node scripts/audit-quiz-theory-binding.mjs
+
+      - name: Validate place runtime and collection contract
+        run: |
+          node scripts/build-place-open-payloads.mjs --check
+          node --test tests/place-rounds-visual-collections.test.mjs tests/place-open-hyperfast.test.mjs
+
+      - name: Validate canonical place data
+        run: |
+          npm run build:tools
+          node dist/tools/check_place_emne_ids.mjs
+          node dist/tools/check_duplicate_json_keys.mjs
+          node dist/tools/check_stories_integrity.mjs
+
+      - name: Validate no empty Tollpakkhuset collections
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const p=JSON.parse(fs.readFileSync('data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollpakkhuset.json','utf8'));
+          const ids=p.place_card_profile?.collection_ids||[];
+          if (JSON.stringify(ids)!==JSON.stringify(['people','objects','brands','productions'])) throw new Error(`unexpected collection_ids ${JSON.stringify(ids)}`);
+          if (!p.related_people_ids?.includes('johan_henrik_nebelong')) throw new Error('Nebelong missing');
+          if (!p.objects?.length || !p.productions?.length) throw new Error('object/production collection empty');
+          const brands=JSON.parse(fs.readFileSync('data/brands/brands_by_place.json','utf8'));
+          if (!(brands.tollpakkhuset||[]).includes('tolletaten')) throw new Error('Tolletaten brand missing');
+          const runtime=JSON.parse(fs.readFileSync('data/runtime/place-open/tollpakkhuset.json','utf8'));
+          if (!runtime.people?.some(x=>x.id==='johan_henrik_nebelong')) throw new Error('runtime People missing');
+          if (!runtime.brands?.some(x=>x.id==='tolletaten')) throw new Error('runtime Brand missing');
+          console.log('Tollpakkhuset four-collection membership PASS');
+          NODE
+
+      - name: Remove temporary materialization machinery
+        run: |
+          rm tools/build-tollpakkhuset-completion.mjs
+          rm .github/workflows/tollpakkhuset-completion.yml
+
+      - name: Commit verified Tollpakkhuset completion
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No materialized changes to commit"
+            exit 1
+          fi
+          git commit -m "Complete Tollpakkhuset production"
+          git push origin HEAD:${GITHUB_REF_NAME}
