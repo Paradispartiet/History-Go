@@ -10,6 +10,10 @@ test('Stortorget story score matches canonical integrity metrics', () => {
   assert.equal(story.score.historical, 2);
   assert.equal(story.score.originality, 3);
   assert.equal(story.score.total, 16);
+  assert.equal(
+    story.score.narrative + story.score.historical + story.score.source + story.score.play_value + story.score.originality,
+    story.score.total
+  );
 });
 
 test('Canonical Stortorget rebuild includes story integrity finalization', () => {
