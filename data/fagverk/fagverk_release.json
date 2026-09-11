@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.15.0",
     "updated_at": "2026-09-08",
-    "content_sha256": "1c79fdb4cc26aedb429168ad522aed844756465be6f77c4bc426ec9d9c546139"
+    "content_sha256": "dcafa4cd6236ee2cd6ae7b60ba3221e8682e0586b5c55b389cda74c2012865e7"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "76fc09c1333fd075825a7aa00882715870634963dc1b850937e52acea38f8176"
+    "content_sha256": "f85feff66b37b7f9781b0f27aa5cb1568422a864452a5aa7bb87c3e84cf0dc0f"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 190,
     "module_file_count": 497,
-    "package_file_count": 420,
+    "package_file_count": 429,
     "chapter_referenced_file_count": 934,
-    "referenced_file_count": 1283,
+    "referenced_file_count": 1292,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -76,9 +76,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 87,
+      "package_file_count": 90,
       "required_package_file_count": 4,
-      "optional_package_file_count": 83,
+      "optional_package_file_count": 86,
       "package_files": [
         {
           "path": "data/fag/by/emner_by.json",
@@ -355,6 +355,18 @@
           ],
           "exists": true,
           "content_sha256": "03cef357d71c2c216c1cada6007af592ae272d9f2c054a61336c00e488ad12d2"
+        },
+        {
+          "path": "data/quiz/by/stortorget_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.stortorget.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "90e27f333edb36d1ed5d8de2a5d2bf367e58adc7e7365b58c82f0a6045a8bf77"
         },
         {
           "path": "data/quiz/by/torggata_sets.json",
@@ -669,6 +681,18 @@
           "content_sha256": "8b13e68da3e231ea14d62fefd80f9a6f5f4cac54c85b192dc4bf3d0e8c304f7d"
         },
         {
+          "path": "data/quiz/production_briefs/by/stortorget.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.stortorget.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "0c9bcd2ecad70ad542db911e61ed418f5d855ad05040bbf984c482534f8478c5"
+        },
+        {
           "path": "data/quiz/production_briefs/by/torggata.json",
           "required": false,
           "fields": [
@@ -981,6 +1005,18 @@
           "content_sha256": "21a89402147507123c07eca9fd2906c82e877e5ec5025c67cdcfcc757f99c02f"
         },
         {
+          "path": "data/quiz/production_context/by/stortorget.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.stortorget.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "3a5b7da445f70786f687c7a61021dbee2186d81d048c5c1666aebcc865fdc8ae"
+        },
+        {
           "path": "data/quiz/production_context/by/torggata.json",
           "required": false,
           "fields": [
@@ -1125,20 +1161,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "9842a379951cdab4dfb4391d49ac9ec4c62283afc4a25d3cf43d66deb28bfe05",
+      "package_content_sha256": "46ad11d83247542a1ca475fe279b84f01daae5dd18371c81e614a74ec51d125c",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 102,
       "chapter_content_sha256": "38e5be5259e0aa3d733f4ddeeb46df87769c935ad9dd76cd175f8bb645ee79fa",
-      "referenced_file_count": 189,
+      "referenced_file_count": 192,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "1acd113152c70682fac962362c3a97ac6fa1ee8c7c4e4aa2e0e89474d8f7be7d",
-      "content_sha256": "639b5a8fbd05349ca9da001f6eaf983b65a22610721068b36ed22b480d50580e",
+      "structure_sha256": "9eac7ff89dece4b8a6d0cd733298da1177ac743323aaaea13d1aa43e6eea5e23",
+      "content_sha256": "b8d72d326365813d658dfa9365542b2edb059f69e22939f954ad309f6b099551",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -2452,9 +2488,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 83,
+      "package_file_count": 86,
       "required_package_file_count": 4,
-      "optional_package_file_count": 79,
+      "optional_package_file_count": 82,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -2757,6 +2793,18 @@
           "content_sha256": "03b329a3d5754efcf3f9248ea677e9ca269cbc8f76b0e850e626aff47e1e2f59"
         },
         {
+          "path": "data/quiz/historie/kirkeristen_basarene_brannvakten_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.kirkeristen_basarene_brannvakten.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "ebcd0a2b5a1af1cf2bbab9b6e3481530954913b98267bfb1a4263f21df95f6c3"
+        },
+        {
           "path": "data/quiz/historie/mollergata_19_sets.json",
           "required": false,
           "fields": [
@@ -3019,6 +3067,18 @@
           ],
           "exists": true,
           "content_sha256": "309ed881d26d29421f1b6442e2c892e021cbf55789ed1a3eb1b41723bc6127a5"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/kirkeristen_basarene_brannvakten.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.kirkeristen_basarene_brannvakten.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "23bcfc397f9c3452f1b0c2ce41db9a72ffef526de94f1ab25c85eb2d2f57657e"
         },
         {
           "path": "data/quiz/production_briefs/historie/mollergata_19.json",
@@ -3285,6 +3345,18 @@
           "content_sha256": "a3b26bffad2215955e0b5b6864b009a4c47dfd014dd55994b05c7aa2f51f4a32"
         },
         {
+          "path": "data/quiz/production_context/historie/kirkeristen_basarene_brannvakten.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.kirkeristen_basarene_brannvakten.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "49288c952b92fa5d9e524800458219ec85d50b5601e8e0519f6b85964091c99f"
+        },
+        {
           "path": "data/quiz/production_context/historie/mollergata_19.json",
           "required": false,
           "fields": [
@@ -3453,20 +3525,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "3c63927d31e43d700a44f2ccbe188907f5e121e8b139a0aca9d5b7dccd15e2e0",
+      "package_content_sha256": "7a33f2ca44a5e638d8da4cef519cc520ec1b1dbbe36ed2be2b9eb2593125bf53",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 175,
+      "referenced_file_count": 178,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "c9a4d8cc95dc383da70dbb498ee8a4eaa55be8fc2bc81e646a8cccff914bd841",
-      "content_sha256": "9bc314b4c6464450f18173d193ce5cd0ffdb4578e3e9ded513e58c3475ecd3dc",
+      "structure_sha256": "c1afb807300e9794c5cdbadbb49afe9db9dea6e5468b65fcdbea672c54987f37",
+      "content_sha256": "77df0c6771450ba4ce2a5b0c970334f28724a8023dffd7610cd8a1d6fa41c617",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -4572,9 +4644,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 49,
+      "package_file_count": 52,
       "required_package_file_count": 4,
-      "optional_package_file_count": 45,
+      "optional_package_file_count": 48,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -4769,6 +4841,18 @@
           "content_sha256": "b81c74cc303b147f6febf519a439cc3cac4a08ce4f552bdfd1a43a4488c9d0c9"
         },
         {
+          "path": "data/quiz/naeringsliv/borsen_oslo_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.borsen_oslo.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "a4d88deb08785c0f2518e137f32ee7e49efc3d6866f27d116580153b85c3cce9"
+        },
+        {
           "path": "data/quiz/naeringsliv/freia_fabrikken_sets.json",
           "required": false,
           "fields": [
@@ -4889,6 +4973,18 @@
           "content_sha256": "0266a328ca8e93aac5a4c0750b68566375625de6be5ce2f83e27551b3c21c3da"
         },
         {
+          "path": "data/quiz/production_briefs/naeringsliv/borsen_oslo.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.borsen_oslo.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "358aa30d7fa01e7b6ae23827037e96e6841d824d154cdc664b0bf1963e2973e9"
+        },
+        {
           "path": "data/quiz/production_briefs/naeringsliv/freia_fabrikken.json",
           "required": false,
           "fields": [
@@ -5007,6 +5103,18 @@
           ],
           "exists": true,
           "content_sha256": "073361731d5d2a2c3ac501bcd942a170dfd1fc52485bf979e8634ee174eac041"
+        },
+        {
+          "path": "data/quiz/production_context/naeringsliv/borsen_oslo.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.borsen_oslo.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "9f2e0938fbee5b9ff713e129231d62f9bd91fd5e739fbb378d98516de06143b2"
         },
         {
           "path": "data/quiz/production_context/naeringsliv/freia_fabrikken.json",
@@ -5165,20 +5273,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "e3f51db80064c4df98a62af38384650bb92dcede511ca09aea9b9f2a1dd152e5",
+      "package_content_sha256": "90c90baae6c7141c1af23c35f3b54eb38b8c48f6c869f8082cc762190d387e5f",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 121,
+      "referenced_file_count": 124,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "95b859641928712614633e334d26129f70839ee08ca88adbcebb264b76b53032",
-      "content_sha256": "6e6593981523040ac88c7b4ea937a25fa54c0c57387d4acaf1de93189ef4b609",
+      "structure_sha256": "4b9b33de896119b945778d021ffbb0608cd2a0a8ce170ae45b5198987207af73",
+      "content_sha256": "b7daaa5424f26ecfc52bcbf0392f17a20d8346eec9cece74a4232d2c3e1c642c",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -7753,5 +7861,5 @@
       ]
     }
   },
-  "release_sha256": "ccda60284003252920a62247043eaea0b8e6fb602ee82902833e8d9392ecaf30"
+  "release_sha256": "7024f6831c6b11ff6a9a75af3f637e34ec5ce5349321a529cc16dd608f791edf"
 }

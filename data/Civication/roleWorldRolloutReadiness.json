@@ -1491,16 +1491,17 @@
       ],
       "career_status": "playable",
       "runtime_gate": true,
-      "role_world_status": "role_world_not_started",
+      "role_world_status": "role_world_complete",
       "structural_family": "other",
       "classification": "rollout_ready",
-      "priority_score": 1010,
+      "priority_score": 660,
       "dimensions": {
         "persistent_work_object": {
           "status": "proven",
           "evidence": [
             "data/Civication/mailFamilies/historie/job/historie_arkiv_og_dokumentasjon_job.json",
             "data/Civication/mailPlans/historie/historie_arkiv_og_dokumentasjon_plan.json",
+            "data/Civication/roleWorlds/historie/historie_arkiv_og_dokumentasjon.json",
             "data/Civication/workGrammars/historie/historie_arkiv_og_dokumentasjon.json",
             "reports/civication-persistent-work-object-foundation-baseline.md",
             "reports/civication-work-object-scene-pipeline.md"
@@ -1523,6 +1524,7 @@
           "evidence": [
             "data/Civication/mailFamilies/historie/job/historie_arkiv_og_dokumentasjon_job.json",
             "data/Civication/mailPlans/historie/historie_arkiv_og_dokumentasjon_plan.json",
+            "data/Civication/roleWorlds/historie/historie_arkiv_og_dokumentasjon.json",
             "data/Civication/workGrammars/historie/historie_arkiv_og_dokumentasjon.json"
           ],
           "rationale": "The current runtime-authored role already exposes deadline/rework/handoff signals; rollout must make the rhythm role-specific and persistent."
@@ -1533,6 +1535,7 @@
             "data/Civication/mailFamilies/historie/knowledge/historie_arkiv_og_dokumentasjon_knowledge.json",
             "data/Civication/mailPlans/historie/historie_arkiv_og_dokumentasjon_plan.json",
             "data/Civication/roleModels/historie/historie_arkiv_og_dokumentasjon.json",
+            "data/Civication/roleWorlds/historie/historie_arkiv_og_dokumentasjon.json",
             "data/Civication/workGrammars/historie/historie_arkiv_og_dokumentasjon.json",
             "reports/civication-persistent-work-object-foundation-baseline.md",
             "reports/civication-work-object-scene-pipeline.md"
@@ -1540,12 +1543,13 @@
           "rationale": "Matrix pilot evidence proves that History Go knowledge can unlock a better professional affordance without granting formal authority."
         },
         "situated_reputation": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
             "data/Civication/mailFamilies/historie/job/historie_arkiv_og_dokumentasjon_job.json",
-            "data/Civication/mailPlans/historie/historie_arkiv_og_dokumentasjon_plan.json"
+            "data/Civication/mailPlans/historie/historie_arkiv_og_dokumentasjon_plan.json",
+            "data/Civication/roleWorlds/historie/historie_arkiv_og_dokumentasjon.json"
           ],
-          "rationale": "Situated reputation audiences are not yet explicit for this role; do not substitute the legacy/global reputation summary."
+          "rationale": "Role-authored sources already contain situated audience/standing signals; rollout must bind only bounded authored audience IDs."
         },
         "people_places_integrity": {
           "status": "proven",
@@ -1553,6 +1557,7 @@
             "data/Civication/mailFamilies/historie/people/historie_arkiv_og_dokumentasjon_people.json",
             "data/Civication/mailPlans/historie/historie_arkiv_og_dokumentasjon_plan.json",
             "data/Civication/roleModels/historie/historie_arkiv_og_dokumentasjon.json",
+            "data/Civication/roleWorlds/historie/historie_arkiv_og_dokumentasjon.json",
             "data/Civication/workGrammars/historie/historie_arkiv_og_dokumentasjon.json",
             "reports/civication-persistent-work-object-foundation-baseline.md",
             "reports/civication-work-object-scene-pipeline.md"
@@ -1564,12 +1569,12 @@
           "evidence": [
             "data/Civication/mailFamilies/historie/job/historie_arkiv_og_dokumentasjon_job.json",
             "data/Civication/mailPlans/historie/historie_arkiv_og_dokumentasjon_plan.json",
+            "data/Civication/roleWorlds/historie/historie_arkiv_og_dokumentasjon.json",
             "data/Civication/workGrammars/historie/historie_arkiv_og_dokumentasjon.json",
             "reports/civication-persistent-work-object-foundation-baseline.md",
             "reports/civication-work-object-scene-pipeline.md",
             "tests/civication-historie-arkiv-dokumentasjon-playability.test.js",
-            "tests/civication-historie-arkiv-work-object-continuity.test.js",
-            "tests/civication-history-go-choice-affordance.test.js"
+            "tests/civication-historie-arkiv-dokumentasjon-role-world-rollout.test.js"
           ],
           "rationale": "Matrix pilot evidence proves stable authored provenance and compiled-registry parity for this role."
         }
@@ -1580,14 +1585,14 @@
         "rationale": "Cross-role linkage is optional and must only be authored where the work itself is genuinely shared."
       },
       "blockers": [],
-      "authored_work_required": [
-        "situated_reputation"
-      ],
+      "authored_work_required": [],
       "source_refs": [
         "data/Civication/mailFamilies/historie/job/historie_arkiv_og_dokumentasjon_job.json",
         "data/Civication/mailPlans/historie/historie_arkiv_og_dokumentasjon_plan.json",
+        "data/Civication/roleWorlds/historie/historie_arkiv_og_dokumentasjon.json",
         "data/Civication/workGrammars/historie/historie_arkiv_og_dokumentasjon.json",
         "tests/civication-historie-arkiv-dokumentasjon-playability.test.js",
+        "tests/civication-historie-arkiv-dokumentasjon-role-world-rollout.test.js",
         "tests/civication-historie-arkiv-work-object-continuity.test.js",
         "tests/civication-history-go-choice-affordance.test.js",
         "tests/civication-history-life-career-split.test.js"

@@ -4,8 +4,17 @@
   "type": "leisure",
   "title": "Fotballsupporter etter jobb",
   "sociological_theme": "tilhorighet_og_fritidskapital",
-  "applies_when": { "any_tags": ["football", "fotball", "supporter"] },
-  "time_slots": ["leisure", "personal"],
+  "applies_when": {
+    "any_tags": [
+      "football",
+      "fotball",
+      "supporter"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal"
+  ],
   "storylets": [
     {
       "id": "match_chat",
@@ -19,12 +28,38 @@
         "Ingen kaller det omsorg, men de merker fort hvis du forsvinner over flere kampkvelder."
       ],
       "choices": [
-        { "id": "A", "label": "Svar at du kommer til avspark, men hopper over pubrunden før kamp.", "effect": 1, "tags": ["belonging", "boundary"], "feedback": "Du er fortsatt en del av gjengen, bare med en tydeligere ramme." },
-        { "id": "B", "label": "Skriv at du tar hele kvelden fra førkamp til siste sang.", "effect": 0, "tags": ["group_loyalty", "late_night"], "feedback": "Chatten eksploderer i tomler opp, og forventningene skrus opp." }
+        {
+          "id": "A",
+          "label": "Svar at du kommer til avspark, men hopper over pubrunden før kamp.",
+          "effect": 1,
+          "tags": [
+            "belonging",
+            "boundary"
+          ],
+          "feedback": "Du er fortsatt en del av gjengen, bare med en tydeligere ramme."
+        },
+        {
+          "id": "B",
+          "label": "Skriv at du tar hele kvelden fra førkamp til siste sang.",
+          "effect": 0,
+          "tags": [
+            "group_loyalty",
+            "late_night"
+          ],
+          "feedback": "Chatten eksploderer i tomler opp, og forventningene skrus opp."
+        }
       ],
-      "opens_streams": ["working_class_shift_life", "alcohol_pressure_stream"],
-      "adds_flags": ["football_evening", "pub_social_pressure"],
-      "risk_links": ["fatigue_risk"],
+      "opens_streams": [
+        "working_class_shift_life",
+        "alcohol_pressure_stream"
+      ],
+      "adds_flags": [
+        "football_evening",
+        "pub_social_pressure"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
       "links": []
     },
     {
@@ -39,12 +74,37 @@
         "Stemningen er varm, men lojaliteten måles i små handlinger alle ser."
       ],
       "choices": [
-        { "id": "A", "label": "Bli med på første skål, men bestill alkoholfritt i samme slengen.", "effect": 1, "tags": ["social_navigation", "boundary"], "feedback": "Du holder rytmen i gruppa uten å miste styring på kvelden." },
-        { "id": "B", "label": "Ta samme tempo som bordet og bli med på hver runde.", "effect": -1, "tags": ["pub", "pressure"], "feedback": "Du glir inn i fellesskapet, men flytter belastningen til neste morgen." }
+        {
+          "id": "A",
+          "label": "Bli med på første skål, men bestill alkoholfritt i samme slengen.",
+          "effect": 1,
+          "tags": [
+            "social_navigation",
+            "boundary"
+          ],
+          "feedback": "Du holder rytmen i gruppa uten å miste styring på kvelden."
+        },
+        {
+          "id": "B",
+          "label": "Ta samme tempo som bordet og bli med på hver runde.",
+          "effect": -1,
+          "tags": [
+            "pub",
+            "pressure"
+          ],
+          "feedback": "Du glir inn i fellesskapet, men flytter belastningen til neste morgen."
+        }
       ],
-      "opens_streams": ["alcohol_pressure_stream"],
-      "adds_flags": ["pub_social_pressure"],
-      "risk_links": ["work_risk", "fatigue_risk"],
+      "opens_streams": [
+        "alcohol_pressure_stream"
+      ],
+      "adds_flags": [
+        "pub_social_pressure"
+      ],
+      "risk_links": [
+        "work_risk",
+        "fatigue_risk"
+      ],
       "links": []
     },
     {
@@ -59,14 +119,42 @@
         "For deg betyr turen både tilhørighet og et regnestykke av søvn, penger og turnus."
       ],
       "choices": [
-        { "id": "A", "label": "Bli med, men ta fri fra første timer på skiftet dagen etter.", "effect": 1, "tags": ["planning", "belonging"], "feedback": "Du prioriterer turen og gjør kostnaden synlig i planlegginga." },
-        { "id": "B", "label": "Stå over turen og foreslå felleskamp hjemme i stedet.", "effect": 0, "tags": ["economic_boundary", "local_community"], "feedback": "Du blir hjemme, men holder kontakten gjennom et alternativ gjengen kan samles om." }
+        {
+          "id": "A",
+          "label": "Bli med, men ta fri fra første timer på skiftet dagen etter.",
+          "effect": 1,
+          "tags": [
+            "planning",
+            "belonging"
+          ],
+          "feedback": "Du prioriterer turen og gjør kostnaden synlig i planlegginga."
+        },
+        {
+          "id": "B",
+          "label": "Stå over turen og foreslå felleskamp hjemme i stedet.",
+          "effect": 0,
+          "tags": [
+            "economic_boundary",
+            "local_community"
+          ],
+          "feedback": "Du blir hjemme, men holder kontakten gjennom et alternativ gjengen kan samles om."
+        }
       ],
-      "opens_streams": ["working_class_shift_life"],
-      "adds_flags": ["leisure_planning_pressure"],
-      "risk_links": ["fatigue_risk", "economic_risk"],
+      "opens_streams": [
+        "working_class_shift_life"
+      ],
+      "adds_flags": [
+        "leisure_planning_pressure"
+      ],
+      "risk_links": [
+        "fatigue_risk",
+        "economic_risk"
+      ],
       "links": [
-        { "label": "Terminlister og kampprogram", "url": "https://www.fotball.no/turneringer" }
+        {
+          "label": "Terminlister og kampprogram",
+          "url": "https://www.fotball.no/turneringer"
+        }
       ]
     },
     {
@@ -81,15 +169,43 @@
         "Du bestemmer om du går inn i praten eller lar dagen starte stille."
       ],
       "choices": [
-        { "id": "A", "label": "Send en kort analyse i chatten før du går inn på skiftet.", "effect": 1, "tags": ["participation", "micro_belonging"], "feedback": "Du blir nevnt videre i tråden, og navnet ditt holder seg aktivt i fellesskapet." },
-        { "id": "B", "label": "Les alt, men la være å svare før arbeidsdagen er over.", "effect": 0, "tags": ["distance", "energy_saving"], "feedback": "Du sparer energi, men glipper litt av den kollektive rytmen i chatten." }
+        {
+          "id": "A",
+          "label": "Send en kort analyse i chatten før du går inn på skiftet.",
+          "effect": 1,
+          "tags": [
+            "participation",
+            "micro_belonging"
+          ],
+          "feedback": "Du blir nevnt videre i tråden, og navnet ditt holder seg aktivt i fellesskapet."
+        },
+        {
+          "id": "B",
+          "label": "Les alt, men la være å svare før arbeidsdagen er over.",
+          "effect": 0,
+          "tags": [
+            "distance",
+            "energy_saving"
+          ],
+          "feedback": "Du sparer energi, men glipper litt av den kollektive rytmen i chatten."
+        }
       ],
-      "opens_streams": ["working_class_shift_life"],
-      "adds_flags": ["community_followup"],
+      "opens_streams": [
+        "working_class_shift_life"
+      ],
+      "adds_flags": [
+        "community_followup"
+      ],
       "risk_links": [],
       "links": [
-        { "label": "Fotballnyheter", "url": "https://www.nrk.no/sport/fotball/" },
-        { "label": "Norsk supporterkultur", "url": "https://snl.no/supporter" }
+        {
+          "label": "Fotballnyheter",
+          "url": "https://www.nrk.no/sport/fotball/"
+        },
+        {
+          "label": "Norsk supporterkultur",
+          "url": "https://snl.no/supporter"
+        }
       ]
     },
     {
@@ -104,13 +220,444 @@
         "Denne typen praktisk omtanke blir aldri kalt omsorg, men den gjør hverdagen mindre ensom."
       ],
       "choices": [
-        { "id": "A", "label": "Takke i chatten etter kampen og tilby å holde plass neste gang.", "effect": 1, "tags": ["reciprocity", "community"], "feedback": "Gesten blir registrert, og båndet i gruppa strammes litt til." },
-        { "id": "B", "label": "La det passere uten kommentar og gå rett hjem etter sluttsignalet.", "effect": 0, "tags": ["withdrawal", "fatigue"], "feedback": "Kvelden fungerer, men du glir litt ut av den uformelle gjensidigheten." }
+        {
+          "id": "A",
+          "label": "Takke i chatten etter kampen og tilby å holde plass neste gang.",
+          "effect": 1,
+          "tags": [
+            "reciprocity",
+            "community"
+          ],
+          "feedback": "Gesten blir registrert, og båndet i gruppa strammes litt til."
+        },
+        {
+          "id": "B",
+          "label": "La det passere uten kommentar og gå rett hjem etter sluttsignalet.",
+          "effect": 0,
+          "tags": [
+            "withdrawal",
+            "fatigue"
+          ],
+          "feedback": "Kvelden fungerer, men du glir litt ut av den uformelle gjensidigheten."
+        }
       ],
-      "opens_streams": ["working_class_shift_life"],
-      "adds_flags": ["supporter_belonging"],
+      "opens_streams": [
+        "working_class_shift_life"
+      ],
+      "adds_flags": [
+        "supporter_belonging"
+      ],
+      "risk_links": [],
+      "links": []
+    },
+    {
+      "id": "ticket_budget_choice",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Venn fra tribunen",
+      "subject": "Sesongkort eller litt mer luft i økonomien?",
+      "situation": [
+        "Fornyelsen av sesongkortet åpner, og prisen kommer samme uke som et par andre utgifter du allerede har utsatt.",
+        "I supporterchatten snakker folk som om fornyelse er en selvfølge, men ingen ser kontoen din.",
+        "Valget handler både om penger, tilhørighet og hvor mye av kalenderen du vil binde før resten av livet er planlagt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fornye nå, men kutte én planlagt bortetur og si det åpent til gjengen.",
+          "effect": 1,
+          "tags": [
+            "economic_boundary",
+            "belonging"
+          ],
+          "feedback": "Du beholder plassen din og gjør økonomigrensen synlig før forventningene løper av gårde."
+        },
+        {
+          "id": "B",
+          "label": "Vente med fornyelsen og undersøke enkeltbilletter først.",
+          "effect": 0,
+          "tags": [
+            "economic_caution",
+            "uncertainty"
+          ],
+          "feedback": "Du kjøper deg tid, men må tåle at andre tolker nølingen som mindre lojalitet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "supporter_budget_visible"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "new_supporter_gatekeeping",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure",
+        "personal"
+      ],
+      "from": "En ny person på feltet",
+      "subject": "Hvor pleier dere å stå?",
+      "situation": [
+        "En ny supporter spør hvor folk møtes og hvilke sanger som er greie å henge seg på.",
+        "Noen i gjengen svarer vennlig, mens andre gjør små tester av hvor mye den nye egentlig kan.",
+        "Du merker hvor fort kunnskap om ritualer kan brukes både til å inkludere og til å rangere folk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklare kodene uten å gjøre kunnskap til opptaksprøve.",
+          "effect": 1,
+          "tags": [
+            "inclusion",
+            "community"
+          ],
+          "feedback": "Den nye blir stående, og du flytter litt av statusen fra kontroll til vertskap."
+        },
+        {
+          "id": "B",
+          "label": "La den nye finne ut av det selv slik du måtte gjøre.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status"
+          ],
+          "feedback": "Du beskytter den gamle terskelen, men gjør fellesskapet smalere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "supporter_inclusion_choice"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "derby_boundary",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "leisure",
+        "personal"
+      ],
+      "from": "En venn som holder med rivalen",
+      "subject": "Skal vi faktisk se derbyet sammen?",
+      "situation": [
+        "En nær venn foreslår å møtes før derbyet selv om dere står på hver deres side.",
+        "I din egen gjeng blir det fleipet med at slikt vennskap burde settes på pause på kampdag.",
+        "Rivalisering er en del av ritualet, men du må bestemme hvor grensen går mellom lek, gruppepress og faktisk relasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Møtes før kampen og være tydelig på at rivalisering stopper ved vennskapet.",
+          "effect": 1,
+          "tags": [
+            "boundary",
+            "relationship"
+          ],
+          "feedback": "Du beholder derbyintensiteten uten å late som hele personen på andre siden er motstanderen."
+        },
+        {
+          "id": "B",
+          "label": "Avlyse møtet for å slippe kommentarer fra egen gjeng.",
+          "effect": -1,
+          "tags": [
+            "group_pressure",
+            "distance"
+          ],
+          "feedback": "Du unngår intern friksjon, men lar gruppen bestemme mer av privatlivet enn du egentlig ønsket."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "derby_private_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "volunteer_choreography",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Tifo- og dugnadsgjengen",
+      "subject": "Vi mangler folk til forberedelsene",
+      "situation": [
+        "Det skal males, bæres og ryddes før neste hjemmekamp, arbeid de fleste på tribunen aldri ser.",
+        "De samme få navnene dukker opp hver gang det trengs hender, mens mange først kommer når resultatet skal oppleves.",
+        "Du blir invitert inn i den usynlige delen av supporterlivet der status og faktisk innsats ikke alltid følger hverandre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta én konkret vakt og bli til oppryddingen er ferdig.",
+          "effect": 1,
+          "tags": [
+            "reciprocity",
+            "invisible_work"
+          ],
+          "feedback": "Du oppdager at fellesskapet også bygges når ingen filmer det."
+        },
+        {
+          "id": "B",
+          "label": "Takke nei denne gangen, men tilby å dekke en senere oppgave.",
+          "effect": 0,
+          "tags": [
+            "boundary",
+            "planning"
+          ],
+          "feedback": "Du setter en grense uten å late som dugnaden ikke finnes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "supporter_invisible_work"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "family_calendar_conflict",
+      "message_type": "people",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "En nær person hjemme",
+      "subject": "Du vet at det er samme lørdag?",
+      "situation": [
+        "En familieavtale kolliderer med en kamp du har snakket om i flere uker.",
+        "Hjemme blir det påpekt at 'bare denne kampen' har vært argumentet flere ganger allerede.",
+        "Det som for deg er en sesongrytme, kan for andre se ut som at resten av livet alltid må flytte seg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stå over kampen og avtale neste kamp tydelig på forhånd.",
+          "effect": 1,
+          "tags": [
+            "private_relationship",
+            "reciprocity"
+          ],
+          "feedback": "Det koster sportslig FOMO, men gjør supporteridentiteten mer forutsigbar for de nærmeste."
+        },
+        {
+          "id": "B",
+          "label": "Dra på kampen og love å gjøre opp for det senere.",
+          "effect": -1,
+          "tags": [
+            "public_private_leakage",
+            "debt"
+          ],
+          "feedback": "Du får kampen, men oppretter en privat gjeld som ikke forsvinner med sluttsignalet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "supporter_family_tradeoff"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "online_after_loss",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Supporterchatten",
+      "subject": "Noen må si det som det er",
+      "situation": [
+        "Et tungt tap følges av skjermbilder, rykter og stadig hardere formuleringer i chatten.",
+        "En påstand om en spiller eller trener blir delt uten at noen egentlig vet hvor den kommer fra.",
+        "Du kjenner både behovet for å ventilere og risikoen for at kollektiv frustrasjon gjør mennesker til mål."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bremse ryktet og holde kritikken til det som faktisk skjedde i kampen.",
+          "effect": 1,
+          "tags": [
+            "source_care",
+            "public_attention"
+          ],
+          "feedback": "Du blir ikke den mest høylytte, men du hindrer at frustrasjon blir presentert som fakta."
+        },
+        {
+          "id": "B",
+          "label": "Dele videre med forbeholdet «hvis dette stemmer».",
+          "effect": -1,
+          "tags": [
+            "rumor",
+            "reputation_risk"
+          ],
+          "feedback": "Forbeholdet følger ikke like langt som skjermbildet gjør."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "supporter_online_reputation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "away_trip_reciprocity",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Borteturgruppa",
+      "subject": "Hvem legger ut for billettene?",
+      "situation": [
+        "En i gruppa kan kjøpe samlet, men da må noen legge ut et beløp som ikke er lite for alle.",
+        "Tidligere turer har etterlatt små uoppgjorte summer som ingen liker å mase om.",
+        "Planleggingen viser hvordan klasse og likviditet kan gjemme seg bak et tilsynelatende enkelt spørsmål om hvem som klikker 'kjøp'."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Foreslå at alle betaler sin del før bestilling og tilby praktisk hjelp i stedet.",
+          "effect": 1,
+          "tags": [
+            "economic_fairness",
+            "planning"
+          ],
+          "feedback": "Det blir litt mer administrasjon, men mindre taus økonomisk risiko for én person."
+        },
+        {
+          "id": "B",
+          "label": "La den samme personen legge ut igjen fordi det er enklest.",
+          "effect": -1,
+          "tags": [
+            "invisible_cost",
+            "group_habit"
+          ],
+          "feedback": "Turen kommer raskere i boks, mens belastningen forblir skjevt fordelt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "supporter_shared_costs"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "season_slump",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "En eldre tribunevenn",
+      "subject": "Man trenger ikke bevise noe hver eneste kamp",
+      "situation": [
+        "Laget er inne i en lang svak periode, og du merker at kampdagene gir mindre glede enn før.",
+        "Samtidig er fravær synlig i en liten gruppe der folk legger merke til hvem som møter opp.",
+        "En eldre supporter sier at lojalitet også kan tåle pauser, men du er usikker på om resten av miljøet er enig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta én kamp fri uten å lage en stor forklaring av det.",
+          "effect": 1,
+          "tags": [
+            "sustainable_identity",
+            "boundary"
+          ],
+          "feedback": "Du tester om tilhørigheten tåler at du ikke presterer som supporter hver uke."
+        },
+        {
+          "id": "B",
+          "label": "Møte opp selv om du egentlig er utslitt, for å unngå spørsmål.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "fatigue"
+          ],
+          "feedback": "Plassen din er fylt, men kroppen og motivasjonen betaler for synligheten."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "supporter_sustainability_test"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "final_match_belonging",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Tribunegjengen",
+      "subject": "Siste hjemmekamp — samme plass?",
+      "situation": [
+        "Sesongen avsluttes, og de vante menneskene samler seg på de samme stedene én gang til.",
+        "Du ser tilbake på turer, chatkrangler, små tjenester og ganger der andre holdt av plass eller du selv gjorde det.",
+        "Supporterlivet framstår mindre som en rang og mer som en måte å fordele tid, penger, omsorg og oppmerksomhet på."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bestemme deg for en supporterhverdag som også har plass til resten av livet.",
+          "effect": 1,
+          "tags": [
+            "sustainable_belonging",
+            "reflection"
+          ],
+          "feedback": "Du beholder tilhørigheten uten å gjøre maksimal tilstedeværelse til identitetens eneste mål."
+        },
+        {
+          "id": "B",
+          "label": "Bestemme at neste sesong skal du være med på absolutt alt.",
+          "effect": 0,
+          "tags": [
+            "ambition",
+            "status"
+          ],
+          "feedback": "Ambisjonen gir energi, men setter også opp en ny test mellom fellesskap og kapasitet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "supporter_season_reflection"
+      ],
       "risk_links": [],
       "links": []
     }
-  ]
+  ],
+  "reviewed_at": "2026-09-11"
 }

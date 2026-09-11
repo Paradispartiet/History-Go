@@ -166,11 +166,24 @@
     };
   }
 
+  function activeLifePositionTags() {
+    const context = window.CivicationLifePositions?.getLifeContext?.();
+    const positions = Array.isArray(context?.active_life_positions)
+      ? context.active_life_positions
+      : [];
+    return uniqueStrings(positions.flatMap((position) => [
+      norm(position?.id),
+      norm(position?.label),
+      norm(position?.badge_id && position?.id ? `${position.badge_id}:${position.id}` : "")
+    ]));
+  }
+
   function activeTags(active, state) {
     return uniqueStrings([
       ...(Array.isArray(active?.tags) ? active.tags : []),
       ...(Array.isArray(active?.interests) ? active.interests : []),
       ...(Array.isArray(state?.identity_tags) ? state.identity_tags : []),
+      ...activeLifePositionTags(),
       norm(active?.role_id),
       norm(active?.role_key),
       norm(active?.title)

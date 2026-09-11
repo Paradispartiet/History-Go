@@ -1,0 +1,669 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "nabolagskjenner_stream",
+  "type": "leisure",
+  "title": "Nabolagskjenner i byen",
+  "sociological_theme": "lokal_kunnskap_tilhorighet_og_byrom",
+  "applies_when": {
+    "any_tags": [
+      "nabolagskjenner",
+      "by:nabolagskjenner"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "the_usual_bench",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "En kjent person fra området",
+      "subject": "Noen sitter på den vanlige plassen",
+      "situation": [
+        "Du går gjennom et byrom du kjenner godt og ser at en gruppe du ikke har sett før har tatt i bruk benken der de samme lokale ansiktene ofte pleier å sitte.",
+        "Ingen har eierskap til plassen, men du merker hvor fort vane kan føles som en uskreven rettighet.",
+        "Spørsmålet er om lokalkunnskap skal brukes til å åpne stedet for flere eller til å markere hvem som regnes som innenfor."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Slå deg ned i nærheten og la den nye bruken bli en del av stedet.",
+          "effect": 1,
+          "tags": [
+            "inclusion",
+            "place_belonging"
+          ],
+          "feedback": "Plassen føles litt mindre forutsigbar og samtidig mer offentlig."
+        },
+        {
+          "id": "B",
+          "label": "Kommentere til en kjent at «de har tatt plassen vår».",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "local_status"
+          ],
+          "feedback": "Du bekrefter fellesskapet med den kjente, men gjør også en offentlig plass mer privat i hodet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "neighborhood_belonging_visible"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "shortcut_closed",
+      "message_type": "people",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Nabo i forbifarten",
+      "subject": "Snarveien er plutselig stengt",
+      "situation": [
+        "En gangforbindelse du bruker ofte er sperret av midlertidig arbeid, og flere stopper opp for å finne en ny vei.",
+        "Du kjenner bakgatene og de små forbindelsene som ikke er åpenbare for folk som bare følger hovedkartet.",
+        "Lokal kunnskap gir praktisk handlingsrom, men også en liten status som den som alltid vet hvordan området faktisk fungerer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vise folk den alternative ruta og forklare hvor den kommer ut.",
+          "effect": 1,
+          "tags": [
+            "local_knowledge",
+            "care"
+          ],
+          "feedback": "Kunnskapen din blir en liten offentlig tjeneste i stedet for et privat fortrinn."
+        },
+        {
+          "id": "B",
+          "label": "Ta snarveien du kjenner selv og la de andre finne ut av det.",
+          "effect": 0,
+          "tags": [
+            "private_advantage",
+            "distance"
+          ],
+          "feedback": "Du sparer tid, men beholder lokalkunnskapen som et individuelt fortrinn."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "local_route_knowledge"
+      ],
+      "risk_links": [],
+      "links": []
+    },
+    {
+      "id": "new_place_old_regulars",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En lokal bekjent",
+      "subject": "Det nye stedet er fullt — men av hvem?",
+      "situation": [
+        "Et nytt serveringssted åpner ved et torg du har brukt lenge, og området fylles med folk som tidligere sjelden var der.",
+        "Noen lokale er glade for mer aktivitet, mens andre snakker om priser og følelsen av at hverdagsstedet deres er i ferd med å få et annet publikum.",
+        "Du kjenner både gleden over et levende byrom og uroen når økonomi blir en stille inngangsbillett til å føle seg hjemme."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prøve stedet én gang, men fortsette å bruke de åpne møteplassene rundt torget.",
+          "effect": 1,
+          "tags": [
+            "mixed_use",
+            "economic_awareness"
+          ],
+          "feedback": "Du lar endringen være en del av området uten å gjøre forbruk til mål på tilhørighet."
+        },
+        {
+          "id": "B",
+          "label": "Avskrive hele endringen som at nabolaget «ikke er for oss lenger».",
+          "effect": -1,
+          "tags": [
+            "status_boundary",
+            "withdrawal"
+          ],
+          "feedback": "Du beskytter en kjent identitet, men gir samtidig fra deg noe av retten til å bruke stedet videre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "neighborhood_change_noticed"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": [
+        {
+          "label": "Levende Oslo og Bylivsundersøkelsen",
+          "url": "https://www.oslo.kommune.no/byutvikling/levende-oslo/"
+        }
+      ]
+    },
+    {
+      "id": "street_activity_request",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En lokal initiativtaker",
+      "subject": "Kan du hjelpe oss å få folk med?",
+      "situation": [
+        "En liten gruppe vil arrangere en åpen aktivitet i gata og spør om du kan spre ordet fordi du kjenner folk og rytmen i området.",
+        "Det er nettopp den typen usynlig sosialt arbeid som ofte faller på de samme menneskene som kan navn, steder og hvem som faktisk møter opp.",
+        "Du må velge hvor mye av lokalkunnskapen din som skal bli gratis organisasjonsarbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta én avgrenset oppgave og be gruppa fordele resten tydelig.",
+          "effect": 1,
+          "tags": [
+            "community_work",
+            "boundary"
+          ],
+          "feedback": "Du bidrar uten å gjøre nabolagskunnskap til et permanent gratisansvar."
+        },
+        {
+          "id": "B",
+          "label": "Ta på deg kontaktene, påminnelsene og praktiske spørsmålene selv.",
+          "effect": -1,
+          "tags": [
+            "invisible_work",
+            "overcommitment"
+          ],
+          "feedback": "Tiltaket får fart, men din uformelle rolle begynner å ligne en jobb ingen har definert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "neighborhood_invisible_work"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": [
+        {
+          "label": "Oslo kommunes bylivstilskudd",
+          "url": "https://www.oslo.kommune.no/tilskudd-legater-og-stipend/bylivstilskudd/"
+        }
+      ]
+    },
+    {
+      "id": "square_conflict",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal",
+        "leisure"
+      ],
+      "from": "Nabolagschatten",
+      "subject": "Hvem skal torget egentlig være for?",
+      "situation": [
+        "En diskusjon i nabolagschatten starter med støy og ender raskt i påstander om ungdommer, småbarnsfamilier, hundeeiere og eldre.",
+        "Du kjenner torget godt nok til å vite at de ulike gruppene bruker det på forskjellige tider og at irritasjonen ofte bygger på korte øyeblikksbilder.",
+        "Lokalkunnskap kan nyansere konflikten, men den kan også brukes til å hevde at du vet bedre enn alle andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskrive når og hvordan ulike grupper faktisk bruker plassen, uten å kåre én som «de egentlige lokale».",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "plural_public"
+          ],
+          "feedback": "Diskusjonen blir mindre enkel, men også mindre fiendtlig."
+        },
+        {
+          "id": "B",
+          "label": "Støtte gruppen du selv kjenner best og bruke lang botid som hovedargument.",
+          "effect": -1,
+          "tags": [
+            "local_hierarchy",
+            "conflict"
+          ],
+          "feedback": "Du får tydelig støtte fra noen, men gjør ansiennitet til en uformell rett til byrommet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "public_space_conflict"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "Levende gater – sosialt og inkluderende byliv",
+          "url": "https://magasin.oslo.kommune.no/byplan/oslo-far-levende-gater-vi-skal-skape-en-sosial-og-inkluderende-by"
+        }
+      ]
+    },
+    {
+      "id": "memory_or_fact",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En eldre nabo",
+      "subject": "«Det var alltid sånn her»",
+      "situation": [
+        "En eldre nabo forteller en utførlig historie om hvordan et hjørne, en butikk og et møtepunkt pleide å fungere.",
+        "Historien er verdifull som minne, men noen småtrekk kolliderer med det du husker fra kart, bilder eller lokalhistoriske kilder.",
+        "Som nabolagskjenner står du mellom respekt for levd erfaring og fristelsen til å gjøre lokal hukommelse om til sikker dokumentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde fortellingen som et minne og sjekke de konkrete detaljene før du gjengir dem som fakta.",
+          "effect": 1,
+          "tags": [
+            "source_care",
+            "local_memory"
+          ],
+          "feedback": "Du beholder både personens erfaring og skillet mellom erindring og dokumentasjon."
+        },
+        {
+          "id": "B",
+          "label": "Gjengi historien videre ordrett fordi den kommer fra noen som har bodd her lenge.",
+          "effect": -1,
+          "tags": [
+            "oral_memory",
+            "source_risk"
+          ],
+          "feedback": "Fortellingen får kraft gjennom lokal autoritet, men usikkerheten forsvinner på veien."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "neighborhood_memory_checked"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "walk_with_new_neighbor",
+      "message_type": "milestone",
+      "time_slot": [
+        "people",
+        "leisure",
+        "personal"
+      ],
+      "from": "En som nylig har flyttet til området",
+      "subject": "Kan du vise meg hvor ting faktisk skjer?",
+      "situation": [
+        "En nyinnflyttet spør om en liten runde i området, ikke for severdigheter, men for å forstå butikkene, snarveiene, møteplassene og tidene på døgnet.",
+        "Du oppdager hvor mye av det du kaller «å kjenne nabolaget» som egentlig består av relasjoner, rytmer og praktiske småtrekk fremfor store fakta.",
+        "Du kan bruke rollen som portvakt eller som vertskap og samtidig godta at den nye personen etter hvert vil lage sitt eget nabolag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vise fram flere ulike miljøer og si tydelig at området ikke har én riktig måte å brukes på.",
+          "effect": 1,
+          "tags": [
+            "hosting",
+            "plural_belonging"
+          ],
+          "feedback": "Lokalkunnskapen din blir startpunkt for en annens tilhørighet, ikke en opptaksprøve."
+        },
+        {
+          "id": "B",
+          "label": "Fokusere på stedene og kodene du selv mener definerer hvem som virkelig kjenner området.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status"
+          ],
+          "feedback": "Du gir en tydelig guide, men gjør din egen versjon av nabolaget til fasit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "neighborhood_host_role"
+      ],
+      "risk_links": [],
+      "links": [
+        {
+          "label": "Oslo kommune om byliv",
+          "url": "https://magasin.oslo.kommune.no/byplan/tags/byliv"
+        }
+      ]
+    },
+    {
+      "id": "corner_shop_last_week",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Butikkeieren på hjørnet",
+      "subject": "Siste uke før døra låses",
+      "situation": [
+        "En liten butikk du har brukt lenge skal stenge, og eieren kjenner mange kunder ved navn.",
+        "Utenfor døra blir avskjeden raskt omtalt som et tap for nabolaget, også av personer som sjelden handlet der den siste tiden.",
+        "Du kjenner både sorgen over at et hverdagsanker forsvinner og den konkrete økonomien som gjorde driften vanskelig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stikk innom, kjøp det du faktisk trenger og spør eieren hva de selv vil at folk skal huske.",
+          "effect": 1,
+          "tags": [
+            "local_memory",
+            "reciprocity"
+          ],
+          "feedback": "Avskjeden tar utgangspunkt i menneskene som faktisk bar stedet."
+        },
+        {
+          "id": "B",
+          "label": "Skriv et nostalgisk innlegg uten å snakke med dem som drev butikken.",
+          "effect": -1,
+          "tags": [
+            "nostalgia",
+            "public_claim"
+          ],
+          "feedback": "Historien blir synlig, men eieren reduseres til bakgrunn for din egen fortelling."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "neighborhood_shop_memory"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "group_chat_rumor",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Nabolagschatten",
+      "subject": "Vet noen hvem disse er?",
+      "situation": [
+        "Et uklart bilde av to personer utenfor en oppgang blir delt sammen med en advarsel om at noe virker mistenkelig.",
+        "Svarene fylles raskt av gamle historier som ikke nødvendigvis handler om de samme personene.",
+        "Fordi andre oppfatter deg som en som følger med i området, får kommentaren din mer tyngde enn en tilfeldig reaksjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om konkrete opplysninger og stoppe koblingen mellom bildet og eldre rykter.",
+          "effect": 1,
+          "tags": [
+            "source_care",
+            "local_trust"
+          ],
+          "feedback": "Du bruker lokal troverdighet til å bremse en påstand før den fester seg."
+        },
+        {
+          "id": "B",
+          "label": "Skrive at du også har hatt en dårlig følelse i det siste, selv om du ikke vet mer.",
+          "effect": -1,
+          "tags": [
+            "rumor_amplification",
+            "status_weight"
+          ],
+          "feedback": "Vag uro blir sterkere fordi den kommer fra noen andre lytter til."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "neighborhood_rumor_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "field_registration_offer",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Lokalt plassprosjekt",
+      "subject": "Kan du notere hvordan torget brukes?",
+      "situation": [
+        "Et lite prosjekt tilbyr betaling for noen timers enkel notering av hvordan mennesker bruker et lokalt torg.",
+        "Du kjenner området godt, men oppdraget er avgrenset til å skrive ned det som skjer på avtalte tidspunkter.",
+        "Oppdragsgiveren ber ikke om planfaglige vurderinger eller myndighetsutøvelse, og den grensen må forbli tydelig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta oppdraget og skille tydelig mellom det du noterer og det du personlig mener om plassen.",
+          "effect": 1,
+          "tags": [
+            "bounded_gig",
+            "method_boundary"
+          ],
+          "feedback": "Kjennskap til området styrker oppdraget uten å bli presentert som profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta oppdraget og legge til råd som om lokalkunnskapen ga deg et formelt mandat.",
+          "effect": -1,
+          "tags": [
+            "scope_creep",
+            "authority_overreach"
+          ],
+          "feedback": "Du gjør et lite oppdrag større enn avtalen og blander erfaring med myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "neighborhood_field_gig"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "courtyard_evening",
+      "message_type": "people",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Arrangøren i bakgården",
+      "subject": "Kan vi holde på litt lenger?",
+      "situation": [
+        "En liten felleskveld er planlagt i gårdsrommet, og arrangøren spør deg hva som pleier å fungere.",
+        "Du vet hvilke leiligheter som får mest lyd og hvem som ofte står opp tidlig, men du taler ikke på vegne av dem.",
+        "Kjennskap til hverdagen gir innsikt, ikke fullmakt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell hva du vet og foreslå at arrangøren spør de mest berørte direkte.",
+          "effect": 1,
+          "tags": [
+            "local_context",
+            "consent_boundary"
+          ],
+          "feedback": "Du deler innsikt uten å gjøre deg selv til representant for andre."
+        },
+        {
+          "id": "B",
+          "label": "Si at det sikkert går fint og avgjør saken på miljøets vegne.",
+          "effect": -1,
+          "tags": [
+            "informal_authority",
+            "overreach"
+          ],
+          "feedback": "Det er effektivt, men lokalkunnskap blir gjort om til en fullmakt du ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "neighborhood_authority_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "favor_chain",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nabo i oppgangen",
+      "subject": "Kan du ta inn pakken min?",
+      "situation": [
+        "En nabo spør om du kan ta inn en levering fordi du ofte er hjemme når budet kommer.",
+        "Det er en liten tjeneste, men de samme få personene ender ofte som uoffisielle problemløsere i oppgangen.",
+        "Hverdagsfellesskap bygges av slike tjenester, men også av om byrdene faktisk går begge veier."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si ja denne gangen og be om hjelp tilbake med en konkret liten ting senere.",
+          "effect": 1,
+          "tags": [
+            "reciprocity",
+            "micro_help"
+          ],
+          "feedback": "Tjenesten blir del av en gjensidig vane i stedet for en fast rolle."
+        },
+        {
+          "id": "B",
+          "label": "Si ja automatisk selv om du allerede kjenner irritasjonen vokse.",
+          "effect": 0,
+          "tags": [
+            "silent_obligation",
+            "boundary_debt"
+          ],
+          "feedback": "Du holder freden nå, men gjør det vanskeligere å sette en ærlig grense senere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "neighborhood_reciprocity"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "blocked_entrance",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Person med rullator",
+      "subject": "Denne inngangen fungerer ikke nå",
+      "situation": [
+        "Midlertidig lagring foran en inngang gjør passasjen trang, og en person med rullator må snu.",
+        "Du vet hvem som vanligvis har kontakt med gårdeieren og hvordan praktiske feil pleier å bli meldt.",
+        "Her er lokalkunnskap mest verdifull som kobling til riktig kanal, ikke som en anledning til å overta saken."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hjelpe med kontaktinformasjonen og la den berørte personen beskrive behovet med egne ord.",
+          "effect": 1,
+          "tags": [
+            "access_help",
+            "channel_knowledge"
+          ],
+          "feedback": "Du fjerner friksjon uten å gjøre deg selv til talsperson."
+        },
+        {
+          "id": "B",
+          "label": "Ta hele saken selv og formulere hva du mener den andre personen trenger.",
+          "effect": 0,
+          "tags": [
+            "helping_overreach",
+            "voice_substitution"
+          ],
+          "feedback": "Du prøver å hjelpe, men gjør den berørte personens egen stemme mindre synlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "neighborhood_access_channel"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "belonging_seniority",
+      "message_type": "milestone",
+      "time_slot": [
+        "evening",
+        "people",
+        "personal"
+      ],
+      "from": "En gammel kjenning",
+      "subject": "Hvor lenge må man bo her før man er herfra?",
+      "situation": [
+        "En prat glir over i hvem som kan kalle seg ordentlig lokal, og botid blir brukt som en enkel målestokk.",
+        "Du har nok erfaring i nabolaget til at andre forventer at du støtter en streng grense.",
+        "Samtidig vet du at tilhørighet også skapes gjennom hverdagslige bidrag, omsorg og det å faktisk være til stede."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at botid gir minner, men ikke enerett på å definere hvem som hører til.",
+          "effect": 1,
+          "tags": [
+            "belonging_open",
+            "status_boundary"
+          ],
+          "feedback": "Du beholder verdien av erfaring uten å gjøre den til medlemskort."
+        },
+        {
+          "id": "B",
+          "label": "Enig i at de nyeste bør holde litt tilbake til de har vært her lenge nok.",
+          "effect": -1,
+          "tags": [
+            "seniority_gate",
+            "local_gatekeeping"
+          ],
+          "feedback": "Du gjør tid i området til sosial rang og flytter terskelen foran dem som nettopp kom."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "neighborhood_belonging_test"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
