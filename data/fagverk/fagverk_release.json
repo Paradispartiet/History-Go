@@ -10,8 +10,8 @@
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.15.0",
-    "updated_at": "2026-09-08",
-    "content_sha256": "2cfacafbd2488dcf5c1993896a9544c1e7f55cfe0e5c99503557039b6caca2a9"
+    "updated_at": "2026-09-11",
+    "content_sha256": "b4d27519e6b12b18b62d105ecaebba32c942dd3e092f449f8c47f85585d4b6f8"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "1e7169983a5761766e343efb7d0ed502fa478e219e0a73e4a38d16573556575b"
+    "content_sha256": "b7ef24d30d29fb04a315442347d4e9444b9ce6442a8efdb63908652b7fdf5255"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 190,
     "module_file_count": 497,
-    "package_file_count": 432,
+    "package_file_count": 435,
     "chapter_referenced_file_count": 934,
-    "referenced_file_count": 1295,
+    "referenced_file_count": 1298,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -76,9 +76,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 93,
+      "package_file_count": 96,
       "required_package_file_count": 4,
-      "optional_package_file_count": 89,
+      "optional_package_file_count": 92,
       "package_files": [
         {
           "path": "data/fag/by/emner_by.json",
@@ -235,6 +235,18 @@
           ],
           "exists": true,
           "content_sha256": "fabb8ad54d44905e196e88ebf1513f4615b5785e6ce280554b89bd9c8a772dd3"
+        },
+        {
+          "path": "data/quiz/by/hausmannsbrua_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.hausmannsbrua.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "e33a11dd840ef3b9b4a6f8e2af3f3ba553d1a9944e66f0005d0a9da04f9b57ab"
         },
         {
           "path": "data/quiz/by/helsfyr_sets.json",
@@ -573,6 +585,18 @@
           "content_sha256": "8779e99bb6e013a03fe810a915642566a66ef640b534717a39efc697394bb4b8"
         },
         {
+          "path": "data/quiz/production_briefs/by/hausmannsbrua.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.hausmannsbrua.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "9d6cc44d1b5da8aa33ce2c47932840bd5f9af3bb20698f0cb6a94d2c535a26df"
+        },
+        {
           "path": "data/quiz/production_briefs/by/helsfyr.json",
           "required": false,
           "fields": [
@@ -909,6 +933,18 @@
           "content_sha256": "6b3915ec3f2ec3aa02b20b079b103084bd8b056c89dfd601cc36fb49f39e17fb"
         },
         {
+          "path": "data/quiz/production_context/by/hausmannsbrua.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.hausmannsbrua.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "ff5889a9d3fe21ad937cf52a65908bd811dba7c9fb3a9fc9e74fb73e3d705569"
+        },
+        {
           "path": "data/quiz/production_context/by/helsfyr.json",
           "required": false,
           "fields": [
@@ -1197,20 +1233,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "f2a6f65f1b86d59d0bd1eb87a44b9fe86657caa4a93789d599e3f97f38784cb1",
+      "package_content_sha256": "3e26cf3113e430238c89e2a927219eed33860885e97b3dac9baf121e63bb3bfd",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 102,
       "chapter_content_sha256": "38e5be5259e0aa3d733f4ddeeb46df87769c935ad9dd76cd175f8bb645ee79fa",
-      "referenced_file_count": 195,
+      "referenced_file_count": 198,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "f07e0bda80c6d89f8d1ad167563ec61b1c5c8a14796a071cd0bfa1b350c6597a",
-      "content_sha256": "4d637605733bfa58a95dcf76333ace0ae4feaa04c974667697e096853521197c",
+      "structure_sha256": "097981e32c40054f3fd8aac7d110d42898b3dfa4c7f4de0424d28d5b171453f5",
+      "content_sha256": "be9ed448964cb78cadcfee9cb4757d92677eea0f570673aa0f5cb54ae3ca68bb",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -7897,5 +7933,5 @@
       ]
     }
   },
-  "release_sha256": "c461777dcd0f2e07aa31d5bda8e6ec64b416625b2732ee1291fd2729ef621eea"
+  "release_sha256": "17e21e541687c79e64868299c36104188daf16505d149408ebd3c5e5c9ee42c1"
 }

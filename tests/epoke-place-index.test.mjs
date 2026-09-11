@@ -17,7 +17,24 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   assert.equal(index.stats.canonical_story_milestone_count, 239);
-  assert.equal(index.stats.verified_place_production_milestone_count, 534);
+  assert.equal(index.stats.verified_place_production_milestone_count, 537);
+});
+
+test("Hausmannsbrua contributes exactly three verified production milestones", () => {
+  const index = buildEpokePlaceIndex();
+  const milestones = Object.values(index.domains.historie.epochs)
+    .flatMap((epoch) => epoch.places || [])
+    .filter((place) => place.place_id === "hausmannsbrua")
+    .flatMap((place) => place.milestones || [])
+    .filter((milestone) => milestone.evidence_type === "verified_place_production_claim");
+  assert.deepEqual(
+    milestones.map((milestone) => milestone.claim_id).sort(),
+    [
+      "claim_hausmannsbrua_build",
+      "claim_hausmannsbrua_preservation",
+      "claim_hausmannsbrua_widening"
+    ]
+  );
 });
 
 test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
