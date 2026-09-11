@@ -9,8 +9,8 @@ const { execFileSync } = require('node:child_process');
 const ROOT = path.resolve(__dirname, '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 
-const worldPath = 'data/Civication/roleWorlds/filosofi/filosofi_sofafilosof.json';
-const narrativePath = 'data/Civication/narratives/leisure/sofafilosof.json';
+const worldPath = 'data/Civication/roleWorlds/musikk/musikk_scenehenger.json';
+const narrativePath = 'data/Civication/narratives/leisure/musikk_scenehenger.json';
 
 const world = readJson(worldPath);
 const stream = readJson(narrativePath);
@@ -19,30 +19,30 @@ const taxonomy = readJson('data/Civication/nonCareerRoleTaxonomy.json');
 const audit = readJson('data/Civication/lifePositionRoleWorldReadiness.json');
 const checklist = readJson('data/Civication/roleWorldAuthoringChecklist.json');
 const themeBank = readJson('data/Civication/roleWorldThemeBank.json');
+const policy = readJson('data/Civication/roleWorldPolicy.json');
 
 assert.equal(world.schema, 'civication_role_world_v1');
 assert.equal(world.version, 1);
-assert.equal(world.category, 'filosofi');
-assert.equal(world.role_scope, 'filosofi_sofafilosof');
+assert.equal(world.category, 'musikk');
+assert.equal(world.role_scope, 'musikk_scenehenger');
 assert.equal(world.subject_type, 'life_position');
 assert.deepEqual(world.life_position_ref, {
-  badge_id: 'filosofi',
-  id: 'sofafilosof',
-  label: 'Sofafilosof'
+  badge_id: 'musikk',
+  id: 'scenehenger',
+  label: 'Scenehenger'
 });
-assert.equal(world.title, 'Sofafilosof');
+assert.equal(world.title, 'Scenehenger — musikkscenen');
 assert.equal(world.status, 'role_world_complete');
-assert.ok(world.sociological_core?.main_problem);
-assert.ok(world.sociological_core?.description);
 assert.equal(world.materialization?.no_new_runtime, true);
-assert.match(world.sociological_core.description, /ikke.*terapeut|terapeut.*ikke/i);
-assert.match(world.sociological_core.description, /profesjonell.*autoritet|autoritet/i);
+assert.match(
+  world.sociological_core.description,
+  /ikke.*lyd-|ikke.*lyst|sikkerhetsansvarlig|booker|manager|artist|kontrakts-|artistbetalingsmyndighet/i
+);
 
 const phases = ['morning', 'lunch', 'afternoon', 'evening'];
 assert.equal(world.season.days, 14);
 assert.deepEqual(world.season.day_phases, phases);
 assert.equal(world.season.coverage.length, 56);
-
 const coverage = new Set(world.season.coverage.map((row) => row.day + '/' + row.phase));
 assert.equal(coverage.size, 56);
 for (let day = 1; day <= 14; day += 1) {
@@ -54,22 +54,18 @@ assert.equal(storyIds.size, 14);
 function verifyNarrativeRef(reference) {
   const prefix = narrativePath + '#';
   assert.ok(reference.startsWith(prefix), 'unexpected materialization source ' + reference);
-  assert.ok(storyIds.has(reference.slice(prefix.length)), 'missing Sofafilosof anchor ' + reference);
+  assert.ok(storyIds.has(reference.slice(prefix.length)), 'missing Musikk Scenehenger anchor ' + reference);
 }
 for (const beat of world.season.coverage) {
   assert.ok(Array.isArray(beat.materialization_refs) && beat.materialization_refs.length >= 1);
   beat.materialization_refs.forEach(verifyNarrativeRef);
 }
 for (const aftermath of world.private_aftermath) aftermath.materialization_refs.forEach(verifyNarrativeRef);
-
 assert.equal(world.materialization.source_refs.length, 14);
 assert.equal(new Set(world.materialization.source_refs).size, 14);
 world.materialization.source_refs.forEach(verifyNarrativeRef);
 
-assert.deepEqual(
-  themeBank.reference_profiles['filosofi/filosofi_sofafilosof'],
-  world.theme_ids
-);
+assert.deepEqual(themeBank.reference_profiles['musikk/musikk_scenehenger'], world.theme_ids);
 assert.ok(checklist.reference_worlds.includes(worldPath));
 
 const requiredPersonFields = [
@@ -80,14 +76,14 @@ assert.ok(world.recurring_people_archetypes.length >= 5);
 for (const person of world.recurring_people_archetypes) {
   for (const field of requiredPersonFields) assert.ok(person[field], person.id + ' missing ' + field);
 }
-const venue = world.recurring_people_archetypes.find((row) => row.id === 'kultursted_vert');
-assert.ok(venue);
-assert.match(venue.class_position, /ingen autoritet.*sertifisere|ingen.*autoritet/i);
-assert.match(venue.teaches_player, /ikke.*akademisk|ikke.*terapeutisk|ikke.*rådgivningsmyndighet/i);
+const crew = world.recurring_people_archetypes.find((row) => row.id === 'crewleder');
+assert.ok(crew);
+assert.match(crew.class_position, /sikkerhets-|tekniker|oppgave|mandat/i);
+assert.match(crew.teaches_player, /sikkerhet|teknikk|booking|management/i);
 
 const threadIds = new Set(world.primary_threads.map((row) => row.id));
 assert.equal(threadIds.size, world.primary_threads.length);
-assert.ok(world.primary_threads.length >= 4);
+assert.ok(world.primary_threads.length >= 6);
 for (const thread of world.primary_threads) {
   assert.ok(thread.beat_refs.length >= 5 && thread.beat_refs.length <= 10,
     thread.id + ' must use 5-10 beats');
@@ -108,10 +104,10 @@ for (const delayed of world.delayed_consequences) {
   assert.ok(Array.isArray(delayed.domains) && delayed.domains.length >= 1);
 }
 
-const entry = index.roles.find((row) => row.life_position_key === 'filosofi/sofafilosof');
+const entry = index.roles.find((row) => row.life_position_key === 'musikk/scenehenger');
 assert.ok(entry);
-assert.equal(entry.category, 'filosofi');
-assert.equal(entry.role_scope, 'filosofi_sofafilosof');
+assert.equal(entry.category, 'musikk');
+assert.equal(entry.role_scope, 'musikk_scenehenger');
 assert.equal(entry.subject_type, 'life_position');
 assert.deepEqual(entry.life_position_ref, world.life_position_ref);
 assert.equal(entry.status, 'role_world_complete');
@@ -135,36 +131,50 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'filosofi/sofafilosof',
   'historie/historievandrer',
   'kunst/gallerivanker',
-'litteratur/skrivebordspoet',
+  'litteratur/skrivebordspoet',
   'media/medievaktbikkje',
-'musikk/scenehenger'
+  'musikk/scenehenger'
 ]);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 9);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 94);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 9);
 
-const readiness = audit.positions.find((row) => row.key === 'filosofi/sofafilosof');
+const readiness = audit.positions.find((row) => row.key === 'musikk/scenehenger');
 assert.ok(readiness);
 assert.equal(readiness.classification, 'ready');
 assert.equal(readiness.role_world_status, 'role_world_complete');
 assert.equal(readiness.role_world_path, worldPath);
 assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
-assert.deepEqual(readiness.evidence.livelihood_templates, ['sofafilosof_samtalekveld']);
-assert.ok(!audit.queue.some((row) => row.key === 'filosofi/sofafilosof'));
+assert.deepEqual(readiness.evidence.livelihood_templates, ['scenehenger_konsertcrew']);
+assert.ok(!audit.queue.some((row) => row.key === 'musikk/scenehenger'));
 assert.equal(audit.summary.life_position_role_world_complete, 9);
 assert.equal(audit.summary.completed_life_position_role_worlds, 9);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.first_ready, null);
 
-const livelihoodAnchor = stream.storylets.find((row) => row.id === 'honorar_for_samtalekveld');
+const stage = audit.positions.find((row) => row.key === 'scenekunst/scenehenger');
+assert.ok(stage);
+assert.equal(stage.classification, 'needs_authored_depth');
+assert.equal(stage.role_world_status, 'role_world_not_started');
+assert.equal(stage.authored_depth.max_narrative_depth, 0);
+assert.equal(stage.authored_depth.exact_source_ref_count, 0);
+assert.ok(!stage.evidence.exact_source_refs.includes(narrativePath));
+
+const livelihoodAnchor = stream.storylets.find((row) => row.id === 'konsertcrew_honoraret');
 assert.ok(livelihoodAnchor);
-assert.match(livelihoodAnchor.situation.join(' '), /ikke.*akademisk filosof|ikke.*terapeut|ikke.*etikkrådgiver|ingen ny myndighet/i);
+assert.match(
+  livelihoodAnchor.situation.join(' '),
+  /ikke.*lyd-|ikke.*lyst|sikkerhetsansvarlig|booker|artistmanager|kontrakter|artistbetaling/i
+);
 
 execFileSync(process.execPath, ['tests/civication-role-world-contract.test.js'], { cwd: ROOT, stdio: 'pipe' });
 execFileSync(process.execPath, ['tests/civication-noncareer-role-taxonomy.test.js'], { cwd: ROOT, stdio: 'pipe' });
 execFileSync(process.execPath, ['tests/civication-life-position-role-world-readiness.test.js'], { cwd: ROOT, stdio: 'pipe' });
-execFileSync(process.execPath, ['tests/civication-sofafilosof-life-position-readiness.test.js'], { cwd: ROOT, stdio: 'pipe' });
+execFileSync(process.execPath, ['tests/civication-musikk-scenehenger-life-position-readiness.test.js'], { cwd: ROOT, stdio: 'pipe' });
+execFileSync(process.execPath, ['tests/civication-life-position-readiness-badge-scope.test.js'], { cwd: ROOT, stdio: 'pipe' });
 
-console.log('civication Sofafilosof Role World ok: 56/56 coverage / 14 governed anchors / 91 total worlds / no new runtime');
+console.log('civication Musikk Scenehenger Role World ok: 56/56 coverage / 14 governed anchors / 94 total worlds / 9 completed life-position worlds / Scenekunst remains separate');
