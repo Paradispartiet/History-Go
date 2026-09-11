@@ -121,6 +121,17 @@
       }));
     }
 
+    if (!document.getElementById("btnSprakatlas")) {
+      group.appendChild(createLearningLink({
+        id: "btnSprakatlas",
+        href: "sprakatlas.html",
+        iconText: "🗺️",
+        labelText: "Språkatlas Norge",
+        description: "Utforsk lokale talemål og dialektområder",
+        modifier: "header-menu-action--sprakatlas"
+      }));
+    }
+
     if (!document.getElementById("btnKnowledge")) {
       group.appendChild(createLearningLink({
         id: "btnKnowledge",
@@ -171,7 +182,7 @@
       event.stopPropagation();
     });
 
-    ["btnLesespor", "btnFagverk", "btnKnowledge"].forEach((id) => {
+    ["btnLesespor", "btnFagverk", "btnSprakatlas", "btnKnowledge"].forEach((id) => {
       document.getElementById(id)?.addEventListener("click", () => headerMenuApi.close());
     });
 
