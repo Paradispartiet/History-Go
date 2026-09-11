@@ -1,0 +1,1050 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_nabolagskjenner",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "by",
+    "id": "nabolagskjenner",
+    "label": "Nabolagskjenner"
+  },
+  "title": "Nabolagskjenner",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "lokalkunnskap som sosial kapital uten at kjennskap blir eierskap eller uformell myndighet",
+    "description": "Nabolagskjenner-verdenen undersøker hvordan hverdagskunnskap om folk, ruter, steder, minner og rytmer kan skape omsorg, gjensidighet og tilhørighet samtidig som den samme kunnskapen kan bli gatekeeping, ryktespredning, nostalgisk eierskap og uformell makt. Spilleren skal kunne være en ressurs i nærmiljøet uten å late som lang botid, nettverk eller observasjon gir profesjonell eller offentlig myndighet."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "class_power",
+    "status_anxiety",
+    "shame_reputation",
+    "public_attention",
+    "invisible_work",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "precarity"
+  ],
+  "social_environments": [
+    "benken, torget og de små møtepunktene der faste brukere kjenner rytmen",
+    "oppgangen og bakgården der tjenester, støy og naboskap må forhandles",
+    "nabolagschatten der observasjoner raskt kan bli rykter eller sosial rang",
+    "lokale butikker, kafeer og møteplasser som endrer eierskap, pris og klientell",
+    "snarveier, innganger og byrom der praktisk kunnskap møter formelle systemer og tilgjengelighet",
+    "hjemmet og privatlivet der uformelt ansvar kan bli slitsomt eller skape stolthet"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "gammel_nabo",
+      "social_function": "bærer lang hukommelse om steder, personer og tidligere bruk",
+      "class_position": "lokal beboer med høy ansiennitet, men ingen formell myndighet",
+      "status": "høy uformell troverdighet blant enkelte etablerte naboer",
+      "power_over_player": "kan validere spillerens lokale status eller gjøre avvik fra den etablerte fortellingen sosialt kostbare",
+      "wants": "at erfaring og stedstilhørighet ikke skal slettes når området endres",
+      "conceals": "at egne minner også er selektive og at endring kan ha vært nødvendig for andre",
+      "speech_style": "anekdotisk, konkret og sikker; bruker ofte før-og-nå-sammenligninger",
+      "teaches_player": "at levd erfaring er verdifull provenance, men ikke automatisk dokumentert fasit"
+    },
+    {
+      "id": "ny_nabo",
+      "social_function": "gjør tersklene, kodene og portvoktingen i miljøet synlige",
+      "class_position": "ny beboer med lite lokal sosial kapital",
+      "status": "lav intern status, men voksende nettverk gjennom deltakelse",
+      "power_over_player": "kan speile om spilleren bruker kunnskap som vertskap eller medlemskontroll",
+      "wants": "å finne praktiske innganger til området uten å måtte bevise at hen fortjener å høre til",
+      "conceals": "usikkerhet om hvilke spørsmål som avslører at hen er ny",
+      "speech_style": "nysgjerrig og konkret; spør om det andre omtaler som selvsagt",
+      "teaches_player": "at tilhørighet kan bygges raskere når lokalkunnskap deles uten opptaksprøve"
+    },
+    {
+      "id": "lokal_initiativtaker",
+      "social_function": "kobler mennesker, arrangementer og små praktiske behov i nærmiljøet",
+      "class_position": "frivillig organisator med nettverk, men uten arbeidsgiver- eller forvaltningsmakt",
+      "status": "høy funksjonell status når noe faktisk skal skje",
+      "power_over_player": "kan gjøre spillerens kontaktflate til en ressurs og samtidig skyve usynlig arbeid over på spilleren",
+      "wants": "at folk møter opp og at små lokale tiltak ikke stopper i organisering",
+      "conceals": "hvor avhengig tiltaket er av noen få personer som alltid sier ja",
+      "speech_style": "vennlig, direkte og oppgaveorientert",
+      "teaches_player": "at fellesskap trenger arbeid, men at arbeid bør fordeles og avgrenses"
+    },
+    {
+      "id": "lokal_naringsdriver",
+      "social_function": "viser hvordan et hverdagssted også er arbeid, husleie, pris og økonomisk risiko",
+      "class_position": "småskala næringsdrivende med økonomisk ansvar, men begrenset makt over områdeutviklingen",
+      "status": "synlig og kjent, men sårbar for endringer i kundestrøm og kostnader",
+      "power_over_player": "kan gi innsikt i hva lokal lojalitet betyr når den møter faktiske inntekter og utgifter",
+      "wants": "at stedet skal verdsettes gjennom reell bruk, ikke bare nostalgiske erklæringer",
+      "conceals": "hvor nær marginene kan være når omgivelsene omtaler stedet som en institusjon",
+      "speech_style": "jordnær, tidsknapp og konkret om hva som faktisk selger eller ikke fungerer",
+      "teaches_player": "at lokal identitet også har materielle vilkår"
+    },
+    {
+      "id": "nabolagschat_deltaker",
+      "social_function": "forsterker eller korrigerer påstander i den digitale lokale offentligheten",
+      "class_position": "beboer med varierende botid og høyere digital enn formell innflytelse",
+      "status": "kan få rask status gjennom synlighet, sikker tone eller mange bekreftelser",
+      "power_over_player": "kan spre spillerens utsagn videre og gjøre vag lokalkunnskap til sosialt faktum",
+      "wants": "trygghet, respons og følelsen av at noen følger med",
+      "conceals": "hvor lite av situasjonen hen selv faktisk har observert",
+      "speech_style": "rask, kategorisk og ofte preget av korte bekreftelser eller advarsler",
+      "teaches_player": "at omdømme og rykter kan vokse raskere enn kildegrunnlaget"
+    },
+    {
+      "id": "berort_nabo",
+      "social_function": "gjør konsekvensene av støy, adgang, tjenester og representasjon personlige",
+      "class_position": "beboer eller bruker av området uten særskilt lokal status",
+      "status": "varierer med saken og hvor godt behovet passer etablerte normer",
+      "power_over_player": "kan akseptere hjelp, avvise å bli representert eller gjøre spillerens overtramp synlig",
+      "wants": "å bli hørt som berørt person fremfor å bli fortolket gjennom andres lokale ekspertise",
+      "conceals": "at det kan være krevende å utfordre en person som alle andre omtaler som hjelpsom",
+      "speech_style": "konkret om behov og mer direkte når andre snakker på vedkommendes vegne",
+      "teaches_player": "at kunnskap om kanaler og steder ikke er det samme som mandat til å definere andres behov"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "relationship_private",
+      "meaning": "om hjelpsomhet og lokal involvering styrker eller tapper nære relasjoner",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "economic_room",
+      "meaning": "hvordan lokale vaner, småkjøp og avgrensede oppdrag møter faktisk økonomisk rom",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "local_belonging",
+      "meaning": "opplevd tilhørighet uten at botid eller kjennskap blir medlemskort",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reciprocity_balance",
+      "meaning": "om små tjenester og organisasjonsarbeid fordeles gjensidig eller samler seg hos de samme",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "informal_authority",
+      "meaning": "hvor lett lokal troverdighet glir over i å tale på vegne av andre eller hevde særskilt rett",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_reputation",
+      "meaning": "hvordan chat, minner og offentlige påstander former lokal status uten én global poengsum",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du går gjennom et byrom du kjenner godt og ser at en gruppe du ikke har sett før har tatt i bruk benken der de samme lokale ansiktene ofte pleier å sitte. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#the_usual_bench"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 1, lunch: Du går gjennom et byrom du kjenner godt og ser at en gruppe du ikke har sett før har tatt i bruk benken der de samme lokale ansiktene ofte pleier å sitte. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#the_usual_bench"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du går gjennom et byrom du kjenner godt og ser at en gruppe du ikke har sett før har tatt i bruk benken der de samme lokale ansiktene ofte pleier å sitte. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#the_usual_bench"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du går gjennom et byrom du kjenner godt og ser at en gruppe du ikke har sett før har tatt i bruk benken der de samme lokale ansiktene ofte pleier å sitte. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#the_usual_bench"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: En gangforbindelse du bruker ofte er sperret av midlertidig arbeid, og flere stopper opp for å finne en ny vei. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "local_knowledge_and_formal_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#shortcut_closed"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: En gangforbindelse du bruker ofte er sperret av midlertidig arbeid, og flere stopper opp for å finne en ny vei. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "local_knowledge_and_formal_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#shortcut_closed"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: En gangforbindelse du bruker ofte er sperret av midlertidig arbeid, og flere stopper opp for å finne en ny vei. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "local_knowledge_and_formal_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#shortcut_closed"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: En gangforbindelse du bruker ofte er sperret av midlertidig arbeid, og flere stopper opp for å finne en ny vei. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "local_knowledge_and_formal_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#shortcut_closed"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Et nytt serveringssted åpner ved et torg du har brukt lenge, og området fylles med folk som tidligere sjelden var der. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "memory_change_and_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#new_place_old_regulars"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 3, lunch: Et nytt serveringssted åpner ved et torg du har brukt lenge, og området fylles med folk som tidligere sjelden var der. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "memory_change_and_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#new_place_old_regulars"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Et nytt serveringssted åpner ved et torg du har brukt lenge, og området fylles med folk som tidligere sjelden var der. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "memory_change_and_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#new_place_old_regulars"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Et nytt serveringssted åpner ved et torg du har brukt lenge, og området fylles med folk som tidligere sjelden var der. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "memory_change_and_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#new_place_old_regulars"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: En liten gruppe vil arrangere en åpen aktivitet i gata og spør om du kan spre ordet fordi du kjenner folk og rytmen i området. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#street_activity_request"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 4, lunch: En liten gruppe vil arrangere en åpen aktivitet i gata og spør om du kan spre ordet fordi du kjenner folk og rytmen i området. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#street_activity_request"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: En liten gruppe vil arrangere en åpen aktivitet i gata og spør om du kan spre ordet fordi du kjenner folk og rytmen i området. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#street_activity_request"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: En liten gruppe vil arrangere en åpen aktivitet i gata og spør om du kan spre ordet fordi du kjenner folk og rytmen i området. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#street_activity_request"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: En diskusjon i nabolagschatten starter med støy og ender raskt i påstander om ungdommer, småbarnsfamilier, hundeeiere og eldre. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#square_conflict"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 5, lunch: En diskusjon i nabolagschatten starter med støy og ender raskt i påstander om ungdommer, småbarnsfamilier, hundeeiere og eldre. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#square_conflict"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: En diskusjon i nabolagschatten starter med støy og ender raskt i påstander om ungdommer, småbarnsfamilier, hundeeiere og eldre. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#square_conflict"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: En diskusjon i nabolagschatten starter med støy og ender raskt i påstander om ungdommer, småbarnsfamilier, hundeeiere og eldre. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#square_conflict"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: En eldre nabo forteller en utførlig historie om hvordan et hjørne, en butikk og et møtepunkt pleide å fungere. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "memory_change_and_status",
+          "local_knowledge_and_formal_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#memory_or_fact"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 6, lunch: En eldre nabo forteller en utførlig historie om hvordan et hjørne, en butikk og et møtepunkt pleide å fungere. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "memory_change_and_status",
+          "local_knowledge_and_formal_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#memory_or_fact"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: En eldre nabo forteller en utførlig historie om hvordan et hjørne, en butikk og et møtepunkt pleide å fungere. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "memory_change_and_status",
+          "local_knowledge_and_formal_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#memory_or_fact"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: En eldre nabo forteller en utførlig historie om hvordan et hjørne, en butikk og et møtepunkt pleide å fungere. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "memory_change_and_status",
+          "local_knowledge_and_formal_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#memory_or_fact"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: En nyinnflyttet spør om en liten runde i området, ikke for severdigheter, men for å forstå butikkene, snarveiene, møteplassene og tidene på døgnet. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "belonging_and_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#walk_with_new_neighbor"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 7, lunch: En nyinnflyttet spør om en liten runde i området, ikke for severdigheter, men for å forstå butikkene, snarveiene, møteplassene og tidene på døgnet. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "belonging_and_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#walk_with_new_neighbor"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: En nyinnflyttet spør om en liten runde i området, ikke for severdigheter, men for å forstå butikkene, snarveiene, møteplassene og tidene på døgnet. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "belonging_and_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#walk_with_new_neighbor"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: En nyinnflyttet spør om en liten runde i området, ikke for severdigheter, men for å forstå butikkene, snarveiene, møteplassene og tidene på døgnet. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "belonging_and_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#walk_with_new_neighbor"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: En liten butikk du har brukt lenge skal stenge, og eieren kjenner mange kunder ved navn. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "memory_change_and_status",
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#corner_shop_last_week"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 8, lunch: En liten butikk du har brukt lenge skal stenge, og eieren kjenner mange kunder ved navn. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "memory_change_and_status",
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#corner_shop_last_week"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: En liten butikk du har brukt lenge skal stenge, og eieren kjenner mange kunder ved navn. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "memory_change_and_status",
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#corner_shop_last_week"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: En liten butikk du har brukt lenge skal stenge, og eieren kjenner mange kunder ved navn. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "memory_change_and_status",
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#corner_shop_last_week"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Et uklart bilde av to personer utenfor en oppgang blir delt sammen med en advarsel om at noe virker mistenkelig. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#group_chat_rumor"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 9, lunch: Et uklart bilde av to personer utenfor en oppgang blir delt sammen med en advarsel om at noe virker mistenkelig. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#group_chat_rumor"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Et uklart bilde av to personer utenfor en oppgang blir delt sammen med en advarsel om at noe virker mistenkelig. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#group_chat_rumor"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Et uklart bilde av to personer utenfor en oppgang blir delt sammen med en advarsel om at noe virker mistenkelig. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#group_chat_rumor"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Et lite prosjekt tilbyr betaling for noen timers enkel notering av hvordan mennesker bruker et lokalt torg. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "reciprocity_and_invisible_work",
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#field_registration_offer"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: Et lite prosjekt tilbyr betaling for noen timers enkel notering av hvordan mennesker bruker et lokalt torg. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "reciprocity_and_invisible_work",
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#field_registration_offer"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Et lite prosjekt tilbyr betaling for noen timers enkel notering av hvordan mennesker bruker et lokalt torg. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "reciprocity_and_invisible_work",
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#field_registration_offer"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Et lite prosjekt tilbyr betaling for noen timers enkel notering av hvordan mennesker bruker et lokalt torg. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "reciprocity_and_invisible_work",
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#field_registration_offer"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: En liten felleskveld er planlagt i gårdsrommet, og arrangøren spør deg hva som pleier å fungere. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "memory_change_and_status",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#courtyard_evening"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 11, lunch: En liten felleskveld er planlagt i gårdsrommet, og arrangøren spør deg hva som pleier å fungere. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "memory_change_and_status",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#courtyard_evening"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: En liten felleskveld er planlagt i gårdsrommet, og arrangøren spør deg hva som pleier å fungere. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "memory_change_and_status",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#courtyard_evening"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En liten felleskveld er planlagt i gårdsrommet, og arrangøren spør deg hva som pleier å fungere. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "memory_change_and_status",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#courtyard_evening"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: En nabo spør om du kan ta inn en levering fordi du ofte er hjemme når budet kommer. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#favor_chain"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 12, lunch: En nabo spør om du kan ta inn en levering fordi du ofte er hjemme når budet kommer. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#favor_chain"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: En nabo spør om du kan ta inn en levering fordi du ofte er hjemme når budet kommer. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#favor_chain"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: En nabo spør om du kan ta inn en levering fordi du ofte er hjemme når budet kommer. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "reciprocity_and_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#favor_chain"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Midlertidig lagring foran en inngang gjør passasjen trang, og en person med rullator må snu. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#blocked_entrance"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 13, lunch: Midlertidig lagring foran en inngang gjør passasjen trang, og en person med rullator må snu. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#blocked_entrance"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Midlertidig lagring foran en inngang gjør passasjen trang, og en person med rullator må snu. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#blocked_entrance"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Midlertidig lagring foran en inngang gjør passasjen trang, og en person med rullator må snu. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#blocked_entrance"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: En prat glir over i hvem som kan kalle seg ordentlig lokal, og botid blir brukt som en enkel målestokk. Morgenen setter den praktiske rammen og skiller det spilleren faktisk vet fra antakelser om andre.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "memory_change_and_status",
+          "reciprocity_and_invisible_work",
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#belonging_seniority"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 14, lunch: En prat glir over i hvem som kan kalle seg ordentlig lokal, og botid blir brukt som en enkel målestokk. Midt på dagen lar en konkret person utfordre hvem som får definere stedet, minnet eller den uformelle normen.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "memory_change_and_status",
+          "reciprocity_and_invisible_work",
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#belonging_seniority"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: En prat glir over i hvem som kan kalle seg ordentlig lokal, og botid blir brukt som en enkel målestokk. Ettermiddagen gjør lokalkunnskap til et valg om hjelp, grensesetting, dokumentasjon eller sosial makt.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "memory_change_and_status",
+          "reciprocity_and_invisible_work",
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#belonging_seniority"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: En prat glir over i hvem som kan kalle seg ordentlig lokal, og botid blir brukt som en enkel målestokk. Kvelden viser etterklangen i relasjoner, omdømme, økonomisk rom eller følelsen av å høre til.",
+        "thread_ids": [
+          "belonging_and_gatekeeping",
+          "memory_change_and_status",
+          "reciprocity_and_invisible_work",
+          "local_knowledge_and_formal_system",
+          "public_claims_and_informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/nabolagskjenner.json#belonging_seniority"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "belonging_and_gatekeeping",
+      "relationship": "ny nabo og etablerte brukere: lokalkunnskap kan åpne miljøet eller bli opptaksprøve",
+      "beat_refs": [
+        "1/lunch",
+        "3/lunch",
+        "7/afternoon",
+        "9/evening",
+        "14/lunch",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "memory_change_and_status",
+      "relationship": "gammel nabo og lokale steder: hvem får definere hva området var, er og bør bli",
+      "beat_refs": [
+        "3/morning",
+        "6/lunch",
+        "8/afternoon",
+        "11/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "reciprocity_and_invisible_work",
+      "relationship": "lokal initiativtaker og nærmiljøet: tjenester og organisering må være gjensidige for å være bærekraftige",
+      "beat_refs": [
+        "1/evening",
+        "4/afternoon",
+        "8/evening",
+        "10/afternoon",
+        "12/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "local_knowledge_and_formal_system",
+      "relationship": "berørte naboer og formelle kanaler: kjennskap kan redusere friksjon uten å erstatte fag, rettigheter eller myndighet",
+      "beat_refs": [
+        "2/morning",
+        "5/afternoon",
+        "6/afternoon",
+        "10/morning",
+        "13/afternoon",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "public_claims_and_informal_authority",
+      "relationship": "nabolagschatten og andre berørte: lokal troverdighet gir ansvar for kilder, rykter og representasjon",
+      "beat_refs": [
+        "5/lunch",
+        "9/afternoon",
+        "10/evening",
+        "11/lunch",
+        "13/lunch",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "hjelpsomhet_blir_forventning",
+      "description": "Små tjenester kan gi ekte nærhet, men gjentakelse uten gjensidighet kan gjøre den uformelle rollen til et privat ansvar spilleren ikke har valgt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/nabolagskjenner.json#street_activity_request",
+        "data/Civication/narratives/leisure/nabolagskjenner.json#favor_chain"
+      ]
+    },
+    {
+      "id": "rykter_folger_med_hjem",
+      "description": "Påstander i nabolagschatten kan fortsette som uro, skam eller sosial friksjon etter at den konkrete situasjonen er over.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/nabolagskjenner.json#group_chat_rumor",
+        "data/Civication/narratives/leisure/nabolagskjenner.json#square_conflict"
+      ]
+    },
+    {
+      "id": "stedstap_blir_personlig",
+      "description": "En butikk, snarvei eller kjent møteplass kan forsvinne uten at spilleren mister tilhørigheten; sorg og endring trenger ikke bli eierskap.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/nabolagskjenner.json#corner_shop_last_week",
+        "data/Civication/narratives/leisure/nabolagskjenner.json#new_place_old_regulars"
+      ]
+    },
+    {
+      "id": "grensen_mellom_hjelp_og_mandat",
+      "description": "Det kan føles godt å være den som vet hvem man skal kontakte, men privat selvbilde og sosial status påvirkes når andre begynner å forvente at spilleren representerer dem.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/nabolagskjenner.json#field_registration_offer",
+        "data/Civication/narratives/leisure/nabolagskjenner.json#blocked_entrance"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "vertskap_blir_tilhoring",
+      "setup_ref": "1/lunch",
+      "return_ref": "7/afternoon",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "lokal_endring_blir_statuskamp",
+      "setup_ref": "3/morning",
+      "return_ref": "14/lunch",
+      "domains": [
+        "relationship",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "gratis_arbeid_blir_forventning",
+      "setup_ref": "4/afternoon",
+      "return_ref": "12/lunch",
+      "domains": [
+        "relationship",
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "rykte_blir_omdomme",
+      "setup_ref": "9/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "avgrenset_oppdrag_blir_myndighetsgrense",
+      "setup_ref": "10/afternoon",
+      "return_ref": "13/afternoon",
+      "domains": [
+        "economy",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "minne_blir_felles_historie",
+      "setup_ref": "6/lunch",
+      "return_ref": "14/morning",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/nabolagskjenner.json#the_usual_bench",
+      "data/Civication/narratives/leisure/nabolagskjenner.json#shortcut_closed",
+      "data/Civication/narratives/leisure/nabolagskjenner.json#new_place_old_regulars",
+      "data/Civication/narratives/leisure/nabolagskjenner.json#street_activity_request",
+      "data/Civication/narratives/leisure/nabolagskjenner.json#square_conflict",
+      "data/Civication/narratives/leisure/nabolagskjenner.json#memory_or_fact",
+      "data/Civication/narratives/leisure/nabolagskjenner.json#walk_with_new_neighbor",
+      "data/Civication/narratives/leisure/nabolagskjenner.json#corner_shop_last_week",
+      "data/Civication/narratives/leisure/nabolagskjenner.json#group_chat_rumor",
+      "data/Civication/narratives/leisure/nabolagskjenner.json#field_registration_offer",
+      "data/Civication/narratives/leisure/nabolagskjenner.json#courtyard_evening",
+      "data/Civication/narratives/leisure/nabolagskjenner.json#favor_chain",
+      "data/Civication/narratives/leisure/nabolagskjenner.json#blocked_entrance",
+      "data/Civication/narratives/leisure/nabolagskjenner.json#belonging_seniority"
+    ]
+  }
+}

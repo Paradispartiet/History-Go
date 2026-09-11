@@ -96,7 +96,7 @@ Dette tallet er **ikke** `roleModels`-tallet.
 
 RoleModel-manifestet har **293 filer**. Scenario People-resolveren reduserer dette til **287 canonical roleModels** etter seks shadow-relasjoner. Disse filene brukes til authored rolle-/personresolusjon og kan representere work scopes, Badge-tiers, statusnivåer eller alias. De skal ikke telles som 287 spillerroller.
 
-Career Role World-grunnlaget har fortsatt **85 ferdige karriererolleverdener**. I tillegg er **Supporter** nå den første fullførte life-position Role Worlden, slik at den samlede Role World-indeksen har **86 verdener = 85 career + 1 life_position**.
+Career Role World-grunnlaget har fortsatt **85 ferdige karriererolleverdener**. **Supporter** var den første fullførte life-position Role Worlden, og **Nabolagskjenner** er nå den andre. Den samlede Role World-indeksen har dermed **87 verdener = 85 career + 2 life_position**.
 
 ## 4. Hvorfor 118 life_position-deskriptorer, men 117 not_job-tiers?
 
@@ -193,7 +193,7 @@ Tilsvarende er «nær venn» en relasjonsstatus mellom to personer, ikke en livs
 
 Neste non-career Role World-arbeid skal være **readiness først, rolle-for-rolle**. Den maskinlesbare køen ligger i `data/Civication/lifePositionRoleWorldReadiness.json` og genereres av `scripts/audit-civication-life-position-role-world-readiness.mjs`.
 
-`sport/supporter` var den første source-backed kandidaten og er nå ferdigstilt som Role World. Readiness-auditen bruker tre separate klasser — `ready`, `needs_authored_depth` og `not_a_standalone_world` — mens faktisk produksjonsstatus ligger separat i `role_world_status`. På dagens `main` er Supporter den eneste `ready`-posisjonen og samtidig `role_world_complete`; ingen uferdig posisjon er dermed klar for produksjon. De øvrige 159 standalone-kapable posisjonene trenger authored dybde først, mens 40 status-/utfallsposisjoner er `not_a_standalone_world`.
+`sport/supporter` var den første source-backed kandidaten og `by/nabolagskjenner` den andre; begge er nå ferdigstilt som Role Worlds. Readiness-auditen bruker tre separate klasser — `ready`, `needs_authored_depth` og `not_a_standalone_world` — mens faktisk produksjonsstatus ligger separat i `role_world_status`. På dagens `main` er begge de to `ready`-posisjonene samtidig `role_world_complete`, så ingen uferdig posisjon er klar for produksjon. De øvrige **158** standalone-kapable posisjonene trenger authored dybde først, mens **40** status-/utfallsposisjoner er `not_a_standalone_world`.
 
 
 ```text

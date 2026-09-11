@@ -29,7 +29,8 @@ assert.ok(manifest.streams.some((entry) => entry.id === stream.id && entry.path 
 const ready = audit.positions.find((row) => row.key === 'by/nabolagskjenner');
 assert.ok(ready);
 assert.equal(ready.classification, 'ready');
-assert.equal(ready.role_world_status, 'role_world_not_started');
+assert.equal(ready.role_world_status, 'role_world_complete');
+assert.equal(ready.role_world_path, 'data/Civication/roleWorlds/by/by_nabolagskjenner.json');
 assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 
