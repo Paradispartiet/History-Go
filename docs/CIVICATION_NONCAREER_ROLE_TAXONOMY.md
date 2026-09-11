@@ -216,3 +216,7 @@ Vi skal ikke:
 - skape generiske 56-beat grids uten authored sourcegrunnlag.
 
 Dette holder Civication som **ett livssystem med flere separate state-lag**, ikke som en samling konkurrerende rollemotorer.
+
+## Materialiserte life-position Role Worlds
+
+Per 2026-09-11 er tre life-position Role Worlds canonicalt komplette: `sport/supporter`, `by/nabolagskjenner` og `film_tv/filmklubbmenneske`. De 85 Career Role Worlds forblir en separat, uendret telling. Neste kandidat skal komme fra den source-first readiness-køen; ingen ny verden materialiseres bare fordi en livsposisjon finnes.
