@@ -131,11 +131,11 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'litteratur/skrivebordspoet',
   'media/medievaktbikkje'
 ]);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'musikk/scenehenger');
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 8);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 93);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'musikk/scenehenger');
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 8);
 
 const readiness = audit.positions.find((row) => row.key === 'media/medievaktbikkje');
@@ -149,8 +149,8 @@ assert.deepEqual(readiness.evidence.livelihood_templates, ['medievaktbikkje_rese
 assert.ok(!audit.queue.some((row) => row.key === 'media/medievaktbikkje'));
 assert.equal(audit.summary.life_position_role_world_complete, 8);
 assert.equal(audit.summary.completed_life_position_role_worlds, 8);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.first_ready?.key, 'musikk/scenehenger');
 
 const livelihoodAnchor = stream.storylets.find((row) => row.id === 'researchnotatet_og_oppdragets_grense');
 assert.ok(livelihoodAnchor);

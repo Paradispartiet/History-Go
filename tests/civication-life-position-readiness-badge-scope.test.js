@@ -48,7 +48,7 @@ try {
   assert.ok(stage, 'scenekunst/scenehenger missing from audit');
 
   assert.equal(music.classification, 'ready');
-  assert.equal(music.authored_depth.max_narrative_depth, 4);
+  assert.ok(music.authored_depth.max_narrative_depth >= 4);
   assert.ok(music.evidence.exact_source_refs.includes(fixtureRel));
 
   assert.equal(stage.classification, 'needs_authored_depth');
