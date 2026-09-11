@@ -1,0 +1,718 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "by",
+  "targetId": "stortorget",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1158,
+    "selection_sha256": "1b7f3f2a08424c0c151195d6507f122aa1595a450869b694e2dfe390da48c2ee",
+    "category_id": "by",
+    "target_id": "stortorget"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/by/pensum_by.json",
+      "bytes": 16713,
+      "sha256": "8de40f1af13426445083f0f3339cb4892f4833921c3614747c29656d165a0b2b",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/by/emner_by.json",
+      "bytes": 594396,
+      "sha256": "7019313fc4b9efa3aa5393a0dd3180b12abba00b0672cb65b44efd0e5c27e8c6",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/by/fagkart_by.json",
+      "bytes": 374396,
+      "sha256": "88d4d9a5e23f60e88da6542d55d84cae5ae4516fb2130163e6de013f88c50127",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/by/methods_by.json",
+      "bytes": 44201,
+      "sha256": "14f3c0fd567a4a43c4d151867bb3d01bdb73da8c95ce6f3e3128fee0964dfd76",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/by/supersetQUIZMAL_by.json",
+      "bytes": 6860,
+      "sha256": "a42443c293a254519c489a705662c46ae8593f348b329c34c3f4f3eda129945a",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/by/stortorget.json",
+      "bytes": 15622,
+      "sha256": "ff4b02d8cda402943d5a0ac52a4483861d123defb157f9e4a3768599d008e553"
+    },
+    "target": {
+      "path": "data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/stortorget.json",
+      "bytes": 15641,
+      "sha256": "9a4129f2e5c9d01d100445cee2968a9cbc0bb96f2ba0dfe969a568f42a06a4fb"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1177,
+      "selection_sha256": "79f7be71223aae21595cc9adb13993cabd9bd8a72d122cf3abf008369b3ced1a"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_stortorget.json",
+        "matches": 1,
+        "selection_bytes": 1925,
+        "selection_sha256": "d16564f4440504de58339732d95a5165796f3905dcbe0834a319b0795ef3415b"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/by/stortorget_sets.json",
+  "source_registry": {
+    "kommune": {
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/stortorget",
+      "source_type": "official_municipal_source",
+      "review_status": "reviewed",
+      "review_note": "Hovedtorg fra 1737, nåværende torghandel og Christian IV-monumentets datering er kontrollert."
+    },
+    "oppdag": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/stortorget",
+      "source_type": "institutional_local_history",
+      "review_status": "reviewed",
+      "review_note": "Stadsport, terrengarbeid, markedsflytting, byvekt, vannpost, gasslys og Youngstorget-overføring er kontrollert."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Stortorvet",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Navn, torgidentitet og offentlig kunst på Stortorvet er kontrollert."
+    },
+    "statue": {
+      "url": "https://oslobyleksikon.no/index.php/Christian_4-statuen",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Christian IV-statuens kunstner og avdukingshistorie er kontrollert."
+    },
+    "nkl": {
+      "url": "https://nkl.snl.no/Carl_Ludvig_Jacobsen",
+      "source_type": "national_biographical_reference",
+      "review_status": "reviewed",
+      "review_note": "Carl Ludvig Jacobsens identitet, utdanning, konkurransepremie og verk er kontrollert."
+    },
+    "osm": {
+      "url": "https://www.openstreetmap.org/way/179095465",
+      "source_type": "open_geodata",
+      "review_status": "reviewed",
+      "review_note": "Way 179095465 er kontrollert som navngitt torggeometri for Stortorvet/Stortorget."
+    },
+    "current_photo": {
+      "url": "https://commons.wikimedia.org/wiki/File:2019-08-23_Oslo_11_-_Stortorvet.jpg",
+      "source_type": "licensed_image_record",
+      "review_status": "reviewed",
+      "review_note": "2019-fotografiet er kontrollert som dokumentarfoto av torgrommet."
+    },
+    "historic_image": {
+      "url": "https://commons.wikimedia.org/wiki/File:Ludvig_Wilhelm_Theodor_Bratz_-_Marked_p%C3%A5_Stortorvet_-_Oslo_Museum_-_OB.01017.jpg",
+      "source_type": "museum_image_record",
+      "review_status": "reviewed",
+      "review_note": "Bratz-motivet fra 1843 er kontrollert som historisk kunstnerisk framstilling av markedet på Stortorget."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/stortorget_sets.json",
+      "data/quiz/manifest.json",
+      "data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/stortorget.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen canonical Stortorget-settpakke var registrert før fullproduksjonen."
+    },
+    "decisions": [
+      "Behold stedskortets eldre inline-quiz som legacy-kortflate, men opprett canonical kildeledet 4×7-settpakke.",
+      "Hold de første 14 spørsmålene teori- og metodefrie.",
+      "Innfør metode i brodelen og eksplisitt teori først i finaldelen."
+    ],
+    "knowledge_migration": "Alle 28 canonical spørsmål får stabile By-, claim- og Knowledge-ID-er; ingen eksisterende canonical sett-ID-er overskrives."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Stortorget har fire selvstendige læringsjobber — etablering/hovedmarked, handel/infrastruktur, kilde- og laglesning samt offentlig-rom-analyse — med tilstrekkelig ekstern kildedekning for normal 4×7 uten å fylle ut en rich-profil kunstig."
+  },
+  "held_back_candidates": [
+    "Påstander om identisk kamerapunkt mellom 1843 og 2019.",
+    "Nøyaktige besøkstall eller omsetning uten kilde.",
+    "Nabovirksomheter som falske Brands for selve torgflaten."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 7,
+      "emner": 82,
+      "topic_hooks": 81,
+      "methods": 14
+    },
+    "candidate_emner": [
+      {
+        "id": "em_by_historiske_lag_i_hverdagsrom",
+        "title": "Historiske lag i hverdagsrom",
+        "score": 100
+      },
+      {
+        "id": "em_by_offentlige_rom_motesteder",
+        "title": "Offentlige rom og møtesteder",
+        "score": 100
+      },
+      {
+        "id": "em_by_torg_plasser_som_scene",
+        "title": "Torg og plasser som scene",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "ark_bygningstyper",
+        "title": "Bygningstyper",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "bolig_endring_tid",
+        "title": "Endring over tid",
+        "category_id": "bolig_og_nabolag",
+        "score": 10
+      },
+      {
+        "id": "byliv_aapne_rom",
+        "title": "Bruk av åpne rom",
+        "category_id": "byliv",
+        "score": 10
+      },
+      {
+        "id": "his_bevaring",
+        "title": "Bevaring",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_epoker",
+        "title": "Arkitektoniske epoker",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_glemt_historie",
+        "title": "Hva som glemmes",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_spor_gatebilde",
+        "title": "Historiske spor i gatebildet",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "urb_byidealer",
+        "title": "Byidealer",
+        "category_id": "urbanisme",
+        "score": 10
+      },
+      {
+        "id": "urb_historiske_visjoner",
+        "title": "Historiske byvisjoner",
+        "category_id": "urbanisme",
+        "score": 10
+      },
+      {
+        "id": "urb_offentlig_rom_ide",
+        "title": "Offentlig rom som idé",
+        "category_id": "urbanisme",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_torg_plasser_som_scene",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_offentlige_rom_motesteder"
+    ],
+    "topic_hook_ids": [
+      "byliv_aapne_rom",
+      "his_spor_gatebilde"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_for_etter",
+      "met_morfologisk_analyse",
+      "met_arkiv_minne_spor"
+    ],
+    "thinker_ids": [
+      "william_h_whyte",
+      "pierre_nora"
+    ],
+    "works": [
+      "The Social Life of Small Urban Spaces",
+      "Les Lieux de Mémoire"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_stortorget_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Stortorget ligger foran Oslo domkirke.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Stortorget ble byens hovedtorg i 1737.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Markedet ble flyttet fra Christiania Torv til Stortorget i 1737.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Området ved Stortorget lå tidligere ved Stadsporten og byvollen.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Terrenget ved det nye torget ble fylt opp og planert fra omkring 1730.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Markedet gjorde Stortorget til et møtested mellom byfolk og produsenter fra omlandet.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det årlige hovedmarkedet på Stortorget varte til 1850-årene.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Deler av markedstrafikken ble flyttet videre til Nytorvet, dagens Youngstorget.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hestemarked og annen handel fortsatte på Stortorget etter at deler av markedet flyttet.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "En byvekt var del av infrastrukturen rundt handelen på Stortorget.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "En offentlig vannpost var del av den historiske torginfrastrukturen.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Byens første gasslykt ble tent på Stortorget i 1848.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Gasskandelaberen på Stortorget ble kalt Fiat Lux.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fiat Lux ble flyttet da Christian IV-monumentet overtok plassen på torget.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Carl Ludvig Jacobsen utførte Christian IV-monumentet på Stortorget.",
+      "source_ids": [
+        "nkl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Christian IV-monumentet ble ferdig i 1878.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Christian IV-monumentet ble avduket 28. september 1880.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oslo kommune oppgir at Stortorvet har helårlig torghandel i dag.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bratz' framstilling fra 1843 dokumenterer markedet som historisk motiv på Stortorget.",
+      "source_ids": [
+        "historic_image"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Et fotografi fra 2019 dokumenterer Stortorget med Christian IV-monumentet i dagens torgrom.",
+      "source_ids": [
+        "current_photo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Et før–nå-par med et maleri fra 1843 og et foto fra 2019 kan vise historiske lag, men ikke måle geometrisk endring fra identisk kamerapunkt.",
+      "source_ids": [
+        "historic_image"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Dagens bruk av torget kan undersøkes gjennom konkret observasjon av opphold, handel og bevegelse.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "OSM-way 179095465 avgrenser Stortorvet/Stortorget som en navngitt torgflate.",
+      "source_ids": [
+        "osm"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Kilder til Stortorget må skilles etter medietype: et historisk maleri er ikke det samme som et fotografi.",
+      "source_ids": [
+        "historic_image"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "William H. Whytes byromsperspektiv kan brukes til å strukturere observasjon av faktisk opphold og bevegelse på Stortorget.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Pierre Noras minneperspektiv kan brukes til å undersøke hvordan markedsbruk, monument og navnekontinuitet samler ulike historiske lag på Stortorget.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Flyttingen fra Christiania Torv til Stortorget viser at et hovedtorg kan skifte plass når byens romlige tyngdepunkt og behov endres.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_stortorget_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "At torghandel fortsetter mens infrastrukturen og monumentene endres, gjør Stortorget egnet til å sammenligne kontinuitet og endring i offentlig rom.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_stortorget_hovedmarked_1737",
+      "source_file": "data/stories/stories_stortorget.json",
+      "summary": "Da markedet ble flyttet fra Christiania Torv i 1737, ble Stortorget det nye hovedtorget ved byens tidligere port og domkirken."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "by_stortorget_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_stortorget_quiz_01",
+        "claim_stortorget_quiz_02",
+        "claim_stortorget_quiz_03",
+        "claim_stortorget_quiz_04",
+        "claim_stortorget_quiz_05",
+        "claim_stortorget_quiz_06",
+        "claim_stortorget_quiz_07"
+      ]
+    },
+    {
+      "set_id": "by_stortorget_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_stortorget_quiz_08",
+        "claim_stortorget_quiz_09",
+        "claim_stortorget_quiz_10",
+        "claim_stortorget_quiz_11",
+        "claim_stortorget_quiz_12",
+        "claim_stortorget_quiz_13",
+        "claim_stortorget_quiz_14"
+      ]
+    },
+    {
+      "set_id": "by_stortorget_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_stortorget_quiz_15",
+        "claim_stortorget_quiz_16",
+        "claim_stortorget_quiz_17",
+        "claim_stortorget_quiz_18",
+        "claim_stortorget_quiz_19",
+        "claim_stortorget_quiz_20",
+        "claim_stortorget_quiz_21"
+      ]
+    },
+    {
+      "set_id": "by_stortorget_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_stortorget_quiz_22",
+        "claim_stortorget_quiz_23",
+        "claim_stortorget_quiz_24",
+        "claim_stortorget_quiz_25",
+        "claim_stortorget_quiz_26",
+        "claim_stortorget_quiz_27",
+        "claim_stortorget_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 12,
+      "concept_theory": 2
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.429,
+      "concept_theory": 0.071
+    }
+  }
+}

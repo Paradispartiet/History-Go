@@ -1,0 +1,160 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "carl_ludvig_jacobsen",
+  "profile_file": "data/people/by/oslo/stortorget/people_stortorget.json",
+  "identity": {
+    "canonical_identity": "Carl Ludvig Jacobsen",
+    "name_variants": [
+      "Carl Ludvig Jacobsen"
+    ],
+    "not": [
+      "den danske bryggeren Carl Jacobsen"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Carl Ludvig Jacobsen levde fra 1835 til 1923 og var norsk billedhugger.",
+      "status": "verified",
+      "source_url": "https://nkl.snl.no/Carl_Ludvig_Jacobsen",
+      "source_location": "Biografi",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-10",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "education",
+      "claim": "Jacobsen studerte ved Kunstakademiet i København og arbeidet i Herman Wilhelm Bissens atelier.",
+      "status": "verified",
+      "source_url": "https://nkl.snl.no/Carl_Ludvig_Jacobsen",
+      "source_location": "Utdannelse",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-10",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "competition",
+      "claim": "Jacobsen fikk første premie i konkurransen om Christian IV-monumentet i 1876.",
+      "status": "verified",
+      "source_url": "https://nkl.snl.no/Carl_Ludvig_Jacobsen",
+      "source_location": "Priser, premier og utmerkelser",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-10",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "stortorget_work",
+      "claim": "Jacobsen utførte Christian IV-statuen på Stortorget.",
+      "status": "verified",
+      "source_url": "https://nkl.snl.no/Carl_Ludvig_Jacobsen",
+      "source_location": "Offentlige arbeider",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-10",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "unveiling",
+      "claim": "Christian IV-statuen ble ferdig i 1878 og avduket på Stortorget 28. september 1880.",
+      "status": "verified",
+      "source_url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/stortorget",
+      "source_location": "Om torget",
+      "source_type": "official",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-10",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image_identity",
+      "claim": "Oslo Museum identifiserer fotografiet OB.Z05482 som Carl Ludvig Jacobsen, fotografert av Marie Magdalena Rustad omkring 1890.",
+      "status": "verified",
+      "source_url": "https://www.oslobilder.no/OMU/OB.Z05482",
+      "source_location": "Katalogmetadata",
+      "source_type": "catalogue",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-10",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "kindLabel": [
+      "identity"
+    ],
+    "year": [
+      "unveiling"
+    ],
+    "placeId": [
+      "stortorget_work",
+      "unveiling"
+    ],
+    "places[stortorget]": [
+      "stortorget_work",
+      "unveiling"
+    ],
+    "image": [
+      "image_identity"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "competition",
+          "stortorget_work",
+          "unveiling"
+        ],
+        "evidence_mode": "explicit"
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "education"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "competition"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "unveiling"
+        ]
+      },
+      {
+        "sentence": 5,
+        "claim_ids": [
+          "stortorget_work"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "6/6",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-10",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
