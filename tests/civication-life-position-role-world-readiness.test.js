@@ -29,12 +29,12 @@ assert.deepEqual(audit.summary.classifications, {
   needs_authored_depth: 156,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 3);
-assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.completed_life_position_role_worlds, 4);
+assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 4);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 4);
-assert.equal(audit.first_ready?.key, 'filosofi/sofafilosof');
+assert.equal(audit.first_ready, null);
 
 assert.deepEqual(policy.noncareer_subject_boundary.life_position_readiness.classifications, [
   'ready',
@@ -63,8 +63,8 @@ assert.equal(filmklubbmenneske.authored_depth.max_narrative_depth, 14);
 const sofafilosof = audit.positions.find((row) => row.key === 'filosofi/sofafilosof');
 assert.ok(sofafilosof);
 assert.equal(sofafilosof.classification, 'ready');
-assert.equal(sofafilosof.role_world_status, 'role_world_not_started');
-assert.equal(sofafilosof.role_world_path, null);
+assert.equal(sofafilosof.role_world_status, 'role_world_complete');
+assert.equal(sofafilosof.role_world_path, 'data/Civication/roleWorlds/filosofi/filosofi_sofafilosof.json');
 assert.equal(sofafilosof.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(sofafilosof.evidence.exact_source_refs, [
   'data/Civication/narratives/leisure/sofafilosof.json'
@@ -112,4 +112,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 4 ready / 156 authored-depth / 40 not-standalone; 3 complete / Sofafilosof next');
+console.log('civication life-position Role World readiness v2 ok: 4 ready / 156 authored-depth / 40 not-standalone; 4 complete / no pending ready');
