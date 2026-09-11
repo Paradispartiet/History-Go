@@ -17,7 +17,24 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   assert.equal(index.stats.canonical_story_milestone_count, 239);
-  assert.equal(index.stats.verified_place_production_milestone_count, 533);
+  assert.equal(index.stats.verified_place_production_milestone_count, 545);
+});
+
+test("Hausmannsbrua contributes exactly three verified production milestones", () => {
+  const index = buildEpokePlaceIndex();
+  const milestones = Object.values(index.domains.historie.epochs)
+    .flatMap((epoch) => epoch.places || [])
+    .filter((place) => place.place_id === "hausmannsbrua")
+    .flatMap((place) => place.milestones || [])
+    .filter((milestone) => milestone.evidence_type === "verified_place_production_claim");
+  assert.deepEqual(
+    milestones.map((milestone) => milestone.claim_id).sort(),
+    [
+      "claim_hausmannsbrua_build",
+      "claim_hausmannsbrua_preservation",
+      "claim_hausmannsbrua_widening"
+    ]
+  );
 });
 
 test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
@@ -118,11 +135,11 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .sort();
 
   // Reviewed Oslo places, including the phase-2 blue signs, carry dated, source-backed History evidence.
-  assert.equal(coverage.canonical_place_count, 587);
-  assert.equal(coverage.dated_evidence_place_count, 244);
+  assert.equal(coverage.canonical_place_count, 586);
+  assert.equal(coverage.dated_evidence_place_count, 243);
   assert.equal(coverage.documented_case_place_count, 2);
   assert.equal(coverage.awaiting_source_backed_history_count, 341);
-  for (const placeId of ["akershus_slott", "bogstadveien", "gamle_radhus", "gamle_trikkestallen", "markveien", "waisenhuset_kongens_gate", "paulus_kirke", "freia_fabrikken", "lilleborg_fabrikker", "ovre_foss", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken", "the_mini_bottle_gallery", "hammersborg_torg", "gronland_kirke", "rodelokka", "vinderen", "ullern", "spikersuppa", "mollergata_skole", "slottsparken", "peststotten_krist_kirkegard", "stortorget", "tollpakkhuset"]) {
+  for (const placeId of ["akershus_slott", "bogstadveien", "gamle_radhus", "gamle_trikkestallen", "markveien", "waisenhuset_kongens_gate", "paulus_kirke", "freia_fabrikken", "lilleborg_fabrikker", "ovre_foss", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken", "the_mini_bottle_gallery", "hammersborg_torg", "gronland_kirke", "rodelokka", "vinderen", "ullern", "spikersuppa", "mollergata_skole", "slottsparken", "peststotten_krist_kirkegard", "prinds_christian_augusts_minde", "stortorget"]) {
     assert.equal(
       coverage.places.find((place) => place.place_id === placeId)?.status,
       "dated_evidence",

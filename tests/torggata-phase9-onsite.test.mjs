@@ -15,11 +15,11 @@ test("Torggata fase 9 migrerer legacy tasks_profile og bruker canonical by-polic
   assert.equal(place.id, "torggata");
   assert.equal(place.category, "by");
   assert.deepEqual(onsite.categoryPolicy.by, {
-    events: "always",
-    "social-meet": "always",
-    "knowledge-meet": "always",
     play: "never"
   });
+  assert.equal(onsite.movedSurfaces.events, "Utforsk → Events");
+  assert.match(onsite.movedSurfaces["social-meet"], /Utforsk → Møtes/);
+  assert.match(onsite.movedSurfaces["knowledge-meet"], /Utforsk → Møtes/);
   for (const field of ["events", "tasks_profile", "training_profile", "play_profile"]) {
     assert.equal(Object.hasOwn(place, field), false, field);
   }
@@ -41,28 +41,20 @@ test("Torggata beholder relevante fysiske spor etter task-migrasjonen", () => {
   assert.match(redesign.source_note, /civication_store/);
 });
 
-test("Torggata har ingen registrert canonical event og viser gyldig tomtilstand", () => {
+test("Torggata har ingen registrert canonical event; eventflaten eies nå av Utforsk", () => {
   assert.equal(socialRows.some(row => row.place_id === "torggata"), false);
   assert.deepEqual(canonicalEvents.filter(event => event.place_id === "torggata"), []);
-  assert.match(runtime, /Ingen aktuelle events registrert her ennå/);
+  assert.doesNotMatch(runtime, /HGEvents|HG_SocialMeetUI|HG_SpotmeetingUI/);
 });
 
-test("Torggata På stedet renderer fast hovedrad og place-bundne møteflows", async () => {
+test("Torggata På stedet er tom når stedet ikke har en ekte type-spesifikk handling", async () => {
   const dom = new JSDOM('<!doctype html><body><div id="placeCard" data-current-place-id="torggata"><div id="pcEventsBox"><div class="pc-events-head"></div></div></div></body>', {
     url: "https://history-go.test/",
     runScripts: "outside-only"
   });
   const w = dom.window;
   w.PLACES = [place];
-  w.__HG_CANONICAL_SOCIAL_EVENTS__ = [];
   w.fetch = async () => ({ ok: true, json: async () => onsite });
-
-  let popup = null;
-  let socialOpen = null;
-  let knowledgeOpen = null;
-  w.showPlaceCardRoundPopup = payload => { popup = payload; };
-  w.HG_SocialMeetUI = { open: payload => { socialOpen = payload; } };
-  w.HG_SpotmeetingUI = { open: payload => { knowledgeOpen = payload; } };
 
   w.eval(runtime);
   w.document.dispatchEvent(new w.Event("DOMContentLoaded", { bubbles: true }));
@@ -70,24 +62,8 @@ test("Torggata På stedet renderer fast hovedrad og place-bundne møteflows", as
   await Promise.resolve();
   w.HGPlaceOnSiteSurface.decorate(true);
 
-  const labels = Array.from(w.document.querySelectorAll("[data-hg-onsite-action] .pc-onsite-action-label"), node => node.textContent.trim());
-  assert.deepEqual(labels, ["Events", "Avtal å møtes", "Kunnskapsmøte", "Mer"]);
-
-  w.document.querySelector('[data-hg-onsite-action="events"]').click();
-  assert.equal(popup.title, "Events");
-  assert.match(popup.html, /Ingen aktuelle events registrert her ennå/);
-
-  w.document.querySelector('[data-hg-onsite-action="social-meet"]').click();
-  assert.equal(socialOpen.filter, "place");
-  assert.equal(socialOpen.placeId, "torggata");
-
-  w.document.querySelector('[data-hg-onsite-action="knowledge-meet"]').click();
-  assert.equal(knowledgeOpen.contextType, "place");
-  assert.equal(knowledgeOpen.contextId, "torggata");
-
-  w.document.querySelector('[data-hg-onsite-action="more"]').click();
-  assert.equal(popup.title, "Mer");
-  assert.match(popup.html, /Ingen flere funksjoner for dette stedet/);
+  assert.deepEqual(Array.from(w.document.querySelectorAll("[data-hg-onsite-action]")), []);
+  assert.equal(w.document.getElementById("pcEventsBox").hidden, true);
   dom.window.close();
 });
 

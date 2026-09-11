@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-09-09T10:09:45.522Z
+Generert: 2026-09-11T09:18:25.644Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-09-09T10:09:45.522Z |
-| peopleFilesRead | 772 |
-| totalPeople | 1427 |
-| uniquePeopleIds | 1427 |
+| generatedAt | 2026-09-11T09:18:25.644Z |
+| peopleFilesRead | 775 |
+| totalPeople | 1431 |
+| uniquePeopleIds | 1431 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 772 |
+| geographicPeopleFiles | 775 |
 | categoriesRepresented | 17 |
 
 ## People-filer
@@ -51,6 +51,7 @@ Generert: 2026-09-09T10:09:45.522Z
 | data/people/by/oslo/people_by_oslo.json | by | ja | 24 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/st_hallvard_kirke_kloster/kjell_lund.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/st_hallvard_kirke_kloster/nils_slaatto.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/stortorget/people_stortorget.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/torggata/adelsten_jensen.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/torggata/alexander_claes.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/torggata/alma_fahlstrom.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -136,6 +137,7 @@ Generert: 2026-09-09T10:09:45.522Z
 | data/people/historie/oslo/people_historie_oslo_politics_places_batch_03.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/people_historie_oslo_politics_places_batch_04.json | historie | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/people_historie_oslo.json | historie | ja | 69 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/peststotten_krist_kirkegard/people_peststotten_krist_kirkegard.json | historie | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/st_hallvard_kirke_kloster/johan_castricum.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/stattholdergarden/peter_gruner.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/waisenhuset/people_waisenhuset.json | historie | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -414,6 +416,7 @@ Generert: 2026-09-09T10:09:45.522Z
 | data/people/naeringsliv/oslo/kafe_grei/christian_brinch.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/lilleborg_fabrikker/peter_wessel_wind_kildal_lilleborg.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/myrens_verksted/jens_jacob_jensen_myrens.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/oslo/oslo_posthus/rudolf_emanuel_jacobsen.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/ovre_foss/halvor_schou.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_03.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_04.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -799,15 +802,15 @@ Generert: 2026-09-09T10:09:45.522Z
 
 | Kategori | People | Flate filer | Geofiler | Foreslått neste steg | Begrunnelse |
 |---|---:|---:|---:|---|---|
-| by | 83 | 0 | 52 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| by | 84 | 0 | 53 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | filantroper | 16 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 24 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| historie | 238 | 0 | 75 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| historie | 240 | 0 | 76 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | kunst | 82 | 0 | 31 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 166 | 0 | 129 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 31 | 0 | 6 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | musikk | 124 | 0 | 88 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| naeringsliv | 81 | 0 | 31 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| naeringsliv | 82 | 0 | 32 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 22 | 0 | 4 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 110 | 0 | 52 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | psykologi | 5 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -819,7 +822,7 @@ Generert: 2026-09-09T10:09:45.522Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 772
+- Allerede geografisk strukturert: 775
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -873,6 +876,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/by/oslo/people_by_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=24/24; source_place_id=0/24; placesArray=24/24; categories=by
 - data/people/by/oslo/st_hallvard_kirke_kloster/kjell_lund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/st_hallvard_kirke_kloster/nils_slaatto.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
+- data/people/by/oslo/stortorget/people_stortorget.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=1/1; placesArray=1/1; categories=by; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
 - data/people/by/oslo/torggata/adelsten_jensen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/torggata/alexander_claes.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/torggata/alma_fahlstrom.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
@@ -958,6 +962,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/historie/oslo/people_historie_oslo_politics_places_batch_03.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/people_historie_oslo_politics_places_batch_04.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=historie
 - data/people/historie/oslo/people_historie_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=69/69; source_place_id=0/69; placesArray=69/69; categories=historie
+- data/people/historie/oslo/peststotten_krist_kirkegard/people_peststotten_krist_kirkegard.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=2/2; placesArray=2/2; categories=historie; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
 - data/people/historie/oslo/st_hallvard_kirke_kloster/johan_castricum.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/stattholdergarden/peter_gruner.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/waisenhuset/people_waisenhuset.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=historie
@@ -1236,6 +1241,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/naeringsliv/oslo/kafe_grei/christian_brinch.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/oslo/lilleborg_fabrikker/peter_wessel_wind_kildal_lilleborg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/oslo/myrens_verksted/jens_jacob_jensen_myrens.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
+- data/people/naeringsliv/oslo/oslo_posthus/rudolf_emanuel_jacobsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=1/1; placesArray=1/1; categories=naeringsliv; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
 - data/people/naeringsliv/oslo/ovre_foss/halvor_schou.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=1/1; placesArray=1/1; categories=naeringsliv; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_03.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_04.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv

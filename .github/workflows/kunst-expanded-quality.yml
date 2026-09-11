@@ -1,0 +1,50 @@
+name: Kunst expanded quality
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/kunst/**'
+      - 'data/fagverk/kunst/**'
+      - 'reports/fagverk/kunst-complete-audit.json'
+      - 'reports/fagverk/kunst-theory-integrity-audit.json'
+      - 'reports/fagverk/kunst-expanded-quality-audit.json'
+      - 'reports/fagverk/fagverk-expanded-subject-by-subject-audit-v1.json'
+      - 'scripts/audit-fagverk-kunst-complete.mjs'
+      - 'scripts/audit-kunst-source-refresh-place-case-expansion.mjs'
+      - 'tools/audit-kunst-theory-integrity.mjs'
+      - 'tools/audit-kunst-expanded-quality.mjs'
+      - 'tests/kunst-theory-integrity.test.mjs'
+      - 'tests/kunst-source-refresh-place-case-expansion.test.mjs'
+      - 'tests/kunst-expanded-quality.test.mjs'
+      - '.github/workflows/kunst-expanded-quality.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  expanded-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify Kunst whole-subject expanded quality
+        run: |
+          node --check tools/audit-kunst-expanded-quality.mjs
+          node scripts/audit-fagverk-kunst-complete.mjs
+          node tools/audit-kunst-theory-integrity.mjs
+          node scripts/audit-kunst-source-refresh-place-case-expansion.mjs
+          node tools/audit-kunst-expanded-quality.mjs
+          node --test tests/kunst-theory-integrity.test.mjs tests/kunst-source-refresh-place-case-expansion.test.mjs tests/kunst-expanded-quality.test.mjs
+      - name: Preserve shared Fagverk contracts
+        run: |
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check

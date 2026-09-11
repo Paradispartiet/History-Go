@@ -1,0 +1,433 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "prinds_christian_augusts_minde",
+  "scope": "place",
+  "status": "reviewed",
+  "reviewed_at": "2026-09-11",
+  "profile_hint": "normal_4x7",
+  "review_note": "Prindsen-dokumentasjonen, Oslo Byleksikon, SNL og Oslo kommunes nåtidssider er skilt etter tidslag; dagens mottakssenter brukes ikke som kilde til 1800-tallet.",
+  "sources": {
+    "prindsen": {
+      "url": "https://prindsen.no/om-prindsen.html",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Stiftelse, bygninger, arbeid, dollhus, asyl, fredning og dagens bruk."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Prinds_Christian_Augusts_Minde",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Byhistorisk identitet og institusjonskronologi."
+    },
+    "snl": {
+      "url": "https://snl.no/Prinds_Christian_Augusts_Minde",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Fagredigert kontroll av hovedhistorien."
+    },
+    "oslo_service": {
+      "url": "https://www.oslo.kommune.no/helse-og-omsorg/rustjenester/alle-rusinstitusjoner/prindsen-mottakssenter/",
+      "source_type": "official_current",
+      "review_status": "reviewed",
+      "review_note": "Målgruppe, samfunnsoppdrag, tjenester og besøksadresse."
+    },
+    "oslo_center": {
+      "url": "https://www.oslo.kommune.no/helse-og-omsorg/rustjenester/sentrumsarbeid/",
+      "source_type": "official_current",
+      "review_status": "reviewed",
+      "review_note": "Velferdsetatens ansvar for kommunens rusfaglige arbeid."
+    }
+  },
+  "selected_curriculum": {
+    "emne_ids": [
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_velferd_hverdagsliv",
+      "em_his_tilhorighet_ekskludering",
+      "em_his_stat_institusjoner",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "fernand_braudel"
+    ],
+    "works": [
+      "The Mediterranean and the Mediterranean World"
+    ]
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire sett dekker stiftelse, arbeid og helse, vern og dagens tjeneste samt kildekritisk syntese uten filler."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/prinds_christian_augusts_minde_sets.json"
+    ],
+    "active_before": {
+      "categoryId": "historie",
+      "set_count": 1,
+      "question_count": 3
+    },
+    "decisions": [
+      "Legacy 1x3 var utilstrekkelig og erstattes av source-led 4x7.",
+      "Kjernepåstandene om sosialhistorie er bevart i omskrevet form, ikke som ukontrollert kopiering."
+    ],
+    "knowledge_migration": {
+      "status": "completed",
+      "retained_rule": "Bare kildebårne kunnskapsenheter videreføres."
+    }
+  },
+  "held_back_candidates": [
+    "Individuelle beboererfaringer uten førstepersonskilder",
+    "Likestilling av dagens mottakssenter med 1800-tallets institusjoner",
+    "Ett enkelt byggeår for hele anlegget"
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Prindsen er et sosialhistorisk anlegg der fattigomsorg, arbeid, helse og kontroll har vært samlet.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Prindsen-dokumentasjonen oppgir Storgata 36 som adresse for anlegget.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Stiftelsen ble opprettet i 1809.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_tilhorighet_ekskludering"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Navnet var en æresbevisning til stattholder Christian August.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Stiftelsen skulle hjelpe fattige og arbeidsløse.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Mangelsgården ble kjøpt i 1812.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Fattigvesenets spinnerier ble flyttet til Mangelsgården.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den faste anstalten ble etablert som arbeidshus i 1819.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Arbeidet skulle i prinsippet være frivillig, men tvangsplassering forekom fra starten.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Prindsen-dokumentasjonen nevner steinhogging, spinning, veving og drevplukking.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_tilhorighet_ekskludering"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Et eget dollhus med ni plasser ble etablert i 1829.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Dollhuset lå i nordfløyen av Mangelsgården.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fabrikkbygningen ble tatt i bruk i 1833.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Byens fattigsykehus ble oppført inne på området i 1840.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Utbedringer gjorde at asylet kunne godkjennes i 1850.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kvinneavdelingen flyttet til Dikemark i 1908; mannlige pasienter var flyttet i 1905.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Mangelsgården ble fredet i 1927.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_tilhorighet_ekskludering"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Riksantikvaren fredet hele anlegget i 2009.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Betegnelsen framhever rundt to hundre år med virksomheter knyttet til fattige og utstøtte.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kulturminneverdien omfatter også et lukket preg knyttet til hvordan fattige og syke ble holdt utenfor det vanlige bylivet.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oslo kommune beskriver mottakssenteret som et helse- og sosialfaglig lavterskeltilbud.",
+      "source_ids": [
+        "oslo_service"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oslo kommune oppgir Hausmannsgate 11 som besøksadresse.",
+      "source_ids": [
+        "oslo_service"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oslo kommune oppgir at Velferdsetaten har ansvar for kommunens rusfaglige arbeid.",
+      "source_ids": [
+        "oslo_center"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Mottakssenteret tilbyr blant annet brukerrom, feltpleie, akuttovernatting og smittevern.",
+      "source_ids": [
+        "oslo_service"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_tilhorighet_ekskludering"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et skilt er et fysisk ettertidsspor og må sammenholdes med historiske og institusjonelle kilder.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Den kommunale siden er en nåtidskilde til dagens tjeneste, ikke en primærkilde til 1800-tallet.",
+      "source_ids": [
+        "oslo_service"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Arbeidshuset skulle gi hjelp, men tvangsplassering viser at omsorg og kontroll kunne virke samtidig.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_prinds_christian_augusts_minde_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Prindsen rommer skiftende institusjoner og bruk; langvarige strukturer og kortere hendelser må skilles kildekritisk.",
+      "source_ids": [
+        "prindsen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    }
+  ]
+}

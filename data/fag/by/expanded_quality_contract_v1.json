@@ -1,0 +1,44 @@
+{
+  "schema": "history_go_by_expanded_quality_contract_v1",
+  "version": "1.0.0",
+  "subject_id": "by",
+  "status": "active",
+  "purpose": "Reconciles existing post-completion By expansion into a bounded whole-subject proof without rewriting content or mutating the global Fagverk lifecycle.",
+  "rules": {
+    "whole_subject_expansion_proof_required": true,
+    "all_canonical_domains_must_be_reconciled": true,
+    "every_canonical_chapter_must_have_post_completion_source_case_expansion": true,
+    "strict_theory_integrity_required_per_major_field": true,
+    "baseline_complete_audit_required": true,
+    "post_completion_maintenance_may_supply_expansion_evidence": true,
+    "content_rewrite_allowed_only_for_proven_substantive_gap": true,
+    "quality_status_is_separate_from_global_editorial_lifecycle": true,
+    "global_subject_lifecycle_is_read_only_for_this_reconciliation": true,
+    "global_subject_by_subject_plan_is_read_only": true,
+    "all_declared_rules_and_required_gates_are_enforced": true
+  },
+  "expected": {
+    "canonical_domains": 12,
+    "canonical_chapters": 17,
+    "canonical_emner": 82,
+    "baseline_claims": 306,
+    "baseline_sources": 219,
+    "strictly_proven_fields": 12,
+    "maintenance_rounds": 3,
+    "reconciled_chapters": 17,
+    "maintenance_cases": 17,
+    "source_refreshes": 36,
+    "minimum_projected_unique_places": 41,
+    "substantive_content_gaps": 0
+  },
+  "required_gates": [
+    "scripts/audit-fagverk-by-complete.mjs",
+    "tools/audit-by-theory-integrity.mjs",
+    "scripts/audit-by-source-refresh-place-case-expansion.mjs",
+    "scripts/audit-by-source-refresh-place-case-expansion-round2.mjs",
+    "scripts/audit-by-source-refresh-place-case-expansion-round3.mjs",
+    "tools/audit-by-expanded-quality.mjs",
+    "tests/by-expanded-quality.test.mjs"
+  ],
+  "read_only_plan_ref": "reports/fagverk/fagverk-expanded-subject-by-subject-audit-v1.json"
+}

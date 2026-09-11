@@ -25,6 +25,8 @@ Det eier:
 
 `Civication.html` er fortsatt en separat side. `#/civication` navigerer dit og er ikke en intern index-visning.
 
+`sprakatlas.html` er tilsvarende en separat kunnskapsside for **Språkatlas Norge**. Den åpnes fra Header Menu og rendres aldri som en intern PlaceCard-/stedspopupflate. PlaceCard kan bare deep-linke til siden med `?focus=<atlas-id>` når et eksplisitt atlas-spor finnes.
+
 ## Entry- og bootmodell
 
 `index.html` laster den minimale app-shell-flaten og starter modul-entryen:

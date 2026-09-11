@@ -27,7 +27,8 @@ Et History GO-sted har tre tydelig forskjellige brukerroller:
 
 1. **PlaceCard-samlinger** — visuelle innganger til identifiserbare ting som faktisk hører til stedet.
 2. **Stedspopup** — kunnskap om stedet.
-3. **På stedet** — hva som skjer eller kan gjøres der.
+3. **Utforsk** — globale oppdagelsesflater som Events og Møtes.
+4. **På stedet** — lokale, stedstypebundne handlinger som faktisk utføres på stedet.
 
 Canonical PlaceCard-modell for nye og fullproduserte ordinære Places:
 
@@ -64,7 +65,7 @@ Fanenes innhold følger produksjonsprofil og innholdsplan. Universal core — s�
 
 `Mer`, `Annet` og `Tillegg` er ikke brukerrettede popupfaner. Tidligere restinnhold rutes til canonical eier: Objects/Gjenstander, People, Relaterte steder eller Om etter `docs/PLACE_POPUP_SYSTEM.md`.
 
-På stedet omfatter blant annet Events, Social Meet og Spotmeeting/Kunnskapsmøte når disse faktisk er relevante og implementert. Type-spesifikt innhold som trening følger sin egen stedstypekontrakt.
+Utforsk i venstre panel eier **Events** og den samlede **Møtes**-inngangen. Møtes kombinerer oppstart av Kunnskapsmøte med oppfølging i Social Meet, uten å slå sammen de interne runtime-/state-eierne. På stedet er redusert til ekte lokale stedstypehandlinger som Lek. Type-spesifikt innhold som trening følger sin egen stedstypekontrakt.
 
 Eiere:
 
@@ -202,7 +203,8 @@ Eksisterende Wonderkammer-data behandles som migreringsgrunnlag og klassifiseres
 - bygning/anlegg → `structures` når det er en identifiserbar konstruksjon;
 - annet delpunkt eller liten detalj → steddata/popup, ikke automatisk samling;
 - naturmål → `destinations` når det er et navngitt turmål;
-- handling → På stedet;
+- global event-/møteoppdagelse → Utforsk;
+- lokal stedstypehandling → På stedet;
 - navigasjon → relations/NextUp;
 - chronology/hendelse → Historie;
 - narrativ episode → Stories når storykontrakten er oppfylt.

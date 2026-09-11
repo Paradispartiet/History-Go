@@ -27,10 +27,10 @@ surfaces map to responsibilities like this:
 
 | Surface | Responsibility |
 | --- | --- |
-| **På stedet** (on the place card) | A link/status entry point into Social Meet — "start a Kunnskapsmøte here", or show the status of an existing one. |
-| **Kunnskapsmøte** | The popup/flow for **starting a meeting proposal** — pick a context and a preset message, send an invite. |
-| **Social Meet** | The popup for **following up** proposals: pending/accepted/completed invites, agreements, learning circles, and social learning history. |
-| **Profil** | Settings, privacy and history controls. |
+| **Utforsk → Møtes** | The single player-facing meeting hub. It offers both **Foreslå kunnskapsmøte** for the selected context and **Mine møter** for follow-up. |
+| **Kunnskapsmøte** | The internal popup/flow for **starting a meeting proposal** — pick a context and a preset message, send an invite. |
+| **Social Meet** | The internal/user popup for **following up** proposals: pending/accepted/completed invites, agreements, learning circles, and social learning history. |
+| **Profil** | Settings, privacy and history controls; not the primary meeting entry. |
 
 In one line:
 

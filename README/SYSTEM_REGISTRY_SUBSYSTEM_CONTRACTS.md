@@ -261,10 +261,11 @@ There is no chat, free text, live location, nearby, followers, feed, distance, l
 
 Product split:
 
-- **Kunnskapsmøte** (`HG_SpotmeetingUI`) starts a concrete meeting.
-- **Social Meet** (`HG_SocialMeetUI`) follows it up.
-- **Profile** keeps settings/privacy/history and may link to Social Meet, but is not the only surface.
+- **Utforsk → Møtes** is the single canonical player-facing entry.
+- **Kunnskapsmøte** (`HG_SpotmeetingUI`) starts a concrete meeting proposal in a selected context.
+- **Social Meet** (`HG_SocialMeetUI`) follows proposals up through pending/accepted/completed status, agreements, learning circles and history.
+- **Profile** keeps settings/privacy/history and may link to Social Meet, but is not the primary entry.
 
-`HG_SocialMeetUI.open({ filter, placeId, sourceSurface })` supports the global menu, PlaceCard on-site context and Spotmeeting follow-up. It also renders the on-site status card under «På stedet».
+The two runtimes remain separate owners because creation and follow-up have different state/backend responsibilities; only the **navigation and product surface are unified**. `HG_SocialMeetUI.open({ filter, placeId, sourceSurface })` supports the Explore hub and Spotmeeting follow-up. It must not inject a Social Meet card into PlaceCard/På stedet.
 
 Status: local-only, privacy-safe, no gameplay mutation, no backend.

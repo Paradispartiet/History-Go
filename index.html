@@ -151,18 +151,6 @@
              <span id="civicationUnreadBadge" class="nav-unread-badge" hidden aria-hidden="true"></span>
           </a>
 
-          <button id="btnSocialMeet"
-                  class="header-menu-action"
-                  type="button"
-                  role="menuitem"
-                  aria-label="Social Meet"
-                  title="Social Meet"
-                  data-hg-social-meet-open="all"
-                  data-hg-social-meet-source="globalMenu">
-            <span class="header-menu-action-icon" aria-hidden="true">🤝</span>
-            <span class="header-menu-action-label">Social Meet</span>
-          </button>
-
           <button id="btnMinDag" class="header-menu-action" type="button" role="menuitem" aria-label="Min dag" title="Min dag" onclick="window.HG_TodayHubPanel?.render?.() || console.warn('[Min dag] HG_TodayHubPanel mangler')">
             <span class="header-menu-action-icon hg-header-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" focusable="false">
@@ -181,6 +169,16 @@
                   title="Psykologirommet">
             <span class="header-menu-action-icon" aria-hidden="true">🧠</span>
             <span class="header-menu-action-label">Psykologirommet</span>
+          </button>
+
+          <button id="btnSocialMeet"
+                  class="header-menu-action"
+                  type="button"
+                  role="menuitem"
+                  aria-label="Møtes / Social Meet"
+                  title="Møtes / Social Meet">
+            <span class="header-menu-action-icon" aria-hidden="true">🤝</span>
+            <span class="header-menu-action-label">Møtes / Social Meet</span>
           </button>
 
           <button id="btnLesespor" class="header-menu-action" type="button" role="menuitem" aria-label="Lesespor" title="Lesespor" data-hg-i18n-aria-label="ui.nav.readingTracks" data-hg-i18n-title="ui.nav.readingTracks">
@@ -226,6 +224,8 @@
           <button class="nearby-tab is-active" data-leftmode="nearby" data-i18n="ui.tabs.places" type="button">Steder</button>
           <button class="nearby-tab" data-leftmode="people" data-i18n="ui.tabs.people" type="button">Folk</button>
           <button class="nearby-tab" data-leftmode="nature" data-i18n="ui.tabs.nature" type="button">Natur</button>
+          <button class="nearby-tab" data-leftmode="events" type="button">Events</button>
+          <button class="nearby-tab" data-leftmode="social" type="button">Møtes</button>
           <button class="nearby-tab" data-leftmode="routes" data-i18n="ui.tabs.routes" type="button">Ruter</button>
           <button class="nearby-tab" data-leftmode="badges" data-i18n="ui.tabs.badges" type="button">Merker</button>
         </div>
@@ -235,6 +235,8 @@
         <div id="nearbyList" class="nearby-strip"></div>
         <div id="leftPeopleList" class="nearby-strip" hidden></div>
         <div id="leftNatureList" class="nearby-strip" hidden></div>
+        <div id="leftEventsList" class="nearby-strip hg-explore-events-list" hidden></div>
+        <div id="leftSocialList" class="nearby-strip hg-explore-social-list" hidden></div>
         <div id="leftRoutesList" class="nearby-strip" hidden></div>
         <div id="leftBadgesList" class="nearby-strip" hidden></div>
       </div>

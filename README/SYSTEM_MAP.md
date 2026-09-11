@@ -206,9 +206,13 @@ History Go er delt i tydelige lag:
 
 ### 6.5 Venstre panel + PlaceCard
 - js/ui/left-panel.js
+- js/ui/leftPanelMode.ts
 - js/ui/place-card.js
 - js/ui/popup-utils.js
 - Eier: collapsePlaceCard / expandPlaceCard, initLeftPanel, enterMapMode / exitMapMode
+- Utforsk-modes: Steder, Folk, Natur, **Events**, **Møtes**, Ruter og Merker.
+- `Events` leser canonical `HGEvents`. `Møtes` er én brukerinngang som ruter opprettelse til `HG_SpotmeetingUI` og oppfølging til `HG_SocialMeetUI`; PlaceCard eier ikke disse globale oppdagelsesflatene.
+- Header-menyens **Møtes / Social Meet** er en eksplisitt shortcut som aktiverer samme `social`-mode og åpner Utforsk-draweren; den skal ikke fjernes når møteinnhold flyttes ut av PlaceCard.
 
 ### 6.6 Badges og modal
 - js/ui/badges.js
@@ -226,11 +230,18 @@ History Go er delt i tydelige lag:
 - Eier: full profil, samling, merker, profilkart, historikk og profilpaneler
 - Rolle: canonical profilside; ikke en intern APP SHELL-view
 
-### 6.9 Søk
+### 6.9 Språkatlas Norge
+- `sprakatlas.html`
+- `js/ui/place-language-layer.js`
+- `js/ui/sprakatlas-collection-v4.js`
+- Eier: separat atlasvisning over canonical `data/leksikon/sprak/norge_atlas_v1.json`, eksplisitte atlas→Place-relasjoner og Knowledge V2-samling
+- Rolle: egen kunnskapsside åpnet fra **Header Menu → Læring → Språkatlas Norge**. Atlaset rendres ikke inne i PlaceCard; PlaceCard beholder bare den stedsspesifikke Språk-fanen.
+
+### 6.10 Søk
 - js/ui/search.js
 - Eier: global search-widget
 
-### 6.10 Chips
+### 6.11 Chips
 - js/hgchips.js
 
 ---
@@ -641,6 +652,6 @@ Optional panel `window.HG_SocialMatchGraphPanel` renders local self profile, top
 
 - `js/social/HGSpotmeeting.js` exposes `window.HG_Spotmeeting`.
 - Storage key: `hg_spotmeeting_v1`.
-- PlaceCard shows a `Kunnskapsmøte` section with context-bound actions for match, quiz, route, and observation.
+- Utforsk → Møtes starts a `Kunnskapsmøte` in selected Place context with actions for match, quiz, route, and observation; PlaceCard no longer owns a separate meeting section.
 - Profile shows a read-only spotmeeting inbox summary when the social profile area exists.
 - Production returns `backend_not_enabled` for real discovery; `HG_TEST_MODE` may read seeded HG Social demo candidates only.

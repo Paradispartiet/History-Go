@@ -4,7 +4,9 @@ on:
   pull_request:
     paths:
       - 'data/leksikon/sprak/**'
+      - 'sprakatlas.html'
       - 'js/ui/place-language-layer.js'
+      - 'js/ui/header-menu.js'
       - 'js/ui/sprakatlas-map-experience-v3.js'
       - 'js/ui/sprakatlas-collection-v4.js'
       - 'js/ui/place-popup-direct-tabs.js'
@@ -25,6 +27,7 @@ on:
       - 'tests/place-language-dialect-scope.test.mjs'
       - 'tests/birkelunden-phase7h-language.test.mjs'
       - 'tests/sprakatlas-map-v3.test.mjs'
+      - 'tests/sprakatlas-standalone-page.test.mjs'
       - 'tests/sprakatlas-collection-v4.test.mjs'
       - 'tests/place-popup-direct-tabs.test.mjs'
       - 'tests/place-popup-all-direct-tabs-visible.test.mjs'
@@ -55,6 +58,7 @@ jobs:
       - name: Check language, atlas and owner-routing runtime syntax
         run: |
           node --check js/ui/place-language-layer.js
+          node --check js/ui/header-menu.js
           node --check js/ui/sprakatlas-map-experience-v3.js
           node --check js/ui/sprakatlas-collection-v4.js
           node --check js/ui/place-popup-direct-tabs.js
@@ -64,4 +68,4 @@ jobs:
         run: node --check js/knowledgePage.js
 
       - name: Test language data, dialect checklist, atlas and owner-routing contract
-        run: node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/birkelunden-phase7h-language.test.mjs tests/sprakatlas-map-v3.test.mjs tests/sprakatlas-collection-v4.test.mjs tests/place-popup-direct-tabs.test.mjs tests/place-popup-all-direct-tabs-visible.test.mjs
+        run: node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/birkelunden-phase7h-language.test.mjs tests/sprakatlas-map-v3.test.mjs tests/sprakatlas-collection-v4.test.mjs tests/sprakatlas-standalone-page.test.mjs tests/place-popup-direct-tabs.test.mjs tests/place-popup-all-direct-tabs-visible.test.mjs

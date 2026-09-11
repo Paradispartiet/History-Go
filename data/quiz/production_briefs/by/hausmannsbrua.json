@@ -1,0 +1,528 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "by",
+  "targetId": "hausmannsbrua",
+  "scope": "Hausmannsbruas 1890–92-bygging, støpejernskonstruksjon, 1986-ombygging og bevaring, navnehistorie, vernestatus og kildekritisk stedslesning.",
+  "status": "reviewed",
+  "reviewed_at": "2026-09-11",
+  "profile_hint": "rich_5x7",
+  "review_note": "SNL, Oslo byleksikon, Oslo Byes Vel og lisensierte historiske/nåtidsbilder er sammenholdt. P. Schaanings fulle identitet, mulig jernbaneforgjenger og anekdotiske legacy-påstander er holdt tilbake.",
+  "sources": {
+    "snl_bridge": {
+      "url": "https://snl.no/Hausmanns_bru",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for byggeperiode, 1892, konstruksjonstype, mål, 1986-utvidelse og vernestatus."
+    },
+    "oslo_bridge": {
+      "url": "https://oslobyleksikon.no/side/Hausmanns_bru",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for brohistorie, 1986-ombygging, bevart rekkverk og blåskilt."
+    },
+    "oslo_gate": {
+      "url": "https://oslobyleksikon.no/side/Hausmanns_gate",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for navneopprinnelse via Fredrik Ferdinand Hausmann."
+    },
+    "oslo_byes_vel": {
+      "url": "https://www.oslobyesvel.no/kalender/avduking-av-bl-skilt-og-guidet-tur-over-broer-langs-nedre-akerselva/10",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for skiltmarkeringen langs nedre Akerselva i 2019."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_infrastruktur_mobilitet",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_barrierer_forbindelser",
+      "em_by_materialitet_og_sanseerfaring"
+    ],
+    "topic_hook_ids": [
+      "his_spor_gatebilde",
+      "ark_materialbruk",
+      "urb_bil_vs_menneske"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_gaanalyse"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem selvstendige læringsjobber dekker konstruksjon, materialitet, 1986-ombygging, navn/vern/formidling og kilde-/feltmetode. Et sjette sett ville gjenta kjernepåstandene."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/hausmannsbrua_sets.json",
+      "data/quiz/by/hausmannsbrua_sets.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/historie/hausmannsbrua_sets.json",
+      "set_count": 6,
+      "question_count": 42,
+      "finding": "Legacy-filen lå under Historie, hadde systematisk svarposisjon og inneholdt interne produksjons-/Nature-spørsmål."
+    },
+    "decisions": {
+      "keep_as_claim_basis": [
+        "1890–92",
+        "1892",
+        "støpejern",
+        "28 meter",
+        "16 meter",
+        "1986",
+        "seks kjørefelt",
+        "bevart smijernsrekkverk",
+        "Fredrik Ferdinand Hausmann"
+      ],
+      "rewrite": "35 spørsmål er omskrevet til en kildeledet By-progresjon med fordelt fasitposisjon.",
+      "move": "Canonical pakke flyttes til data/quiz/by/hausmannsbrua_sets.json.",
+      "remove": [
+        "Nature-fyll",
+        "interne canonical-/batchspørsmål",
+        "udokumenterte jernbane- og anekdotepåstander",
+        "gjentakelser"
+      ]
+    },
+    "knowledge_migration": "Nye unike Knowledge-ID-er eies av By-pakken; legacy-filen fjernes etter materialisering."
+  },
+  "held_back_candidates": [
+    "P. Schaanings fulle identitet: initial og etternavn er dokumentert ved broen, men full personidentitet er ikke direkte verifisert.",
+    "Påstand om første jernbanebro/prototype holdes utenfor til sterkere kilder dokumenterer den.",
+    "Anekdote om dampveivals og kontrollvekter holdes utenfor canonical quiz.",
+    "Et sjette sett som ville gjenta de fem dokumenterte læringsjobbene."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Broen stod ferdig i 1892 etter bygging i 1890–92.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hausmannsbrua fører Hausmanns gate over Akerselva.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christiania kommunale Veivesen oppførte broen.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Broen ble bygd ved ingeniør P. Schaaning; fullt navn holdes tilbake fordi identiteten ikke er direkte verifisert.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Broens bue- og fagverksdeler beskrives som støpejern.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Total lengde er oppgitt til 28 meter.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det lengste spennet er oppgitt til 16 meter.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hausmannsbrua beskrives som en fagverkskonstruksjon.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "SNL klassifiserer også Hausmannsbrua som buebro.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Det eldre smijernsrekkverket ble beholdt da broen ble utvidet.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir at de gamle buekonstruksjonene ble kopiert.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Broen ble utvidet til seks kjørefelt i 1986.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ombyggingen økte kapasiteten samtidig som rekkverk og historiske former ble videreført.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Rekkverket kvalifiserer som signaturobjekt fordi det er et identifiserbart fysisk 1892-lag som ble bevart gjennom ombyggingen.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Broen har navn etter Hausmanns gate.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hausmanns gate er oppkalt etter Fredrik Ferdinand Hausmann.",
+      "source_ids": [
+        "oslo_gate"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fredrik Ferdinand Hausmann levde 1693–1757.",
+      "source_ids": [
+        "oslo_gate"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hausmann døde i 1757, mens broen stod ferdig i 1892.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Navnehistorien knytter Hausmann til Ankerløkken og Mangelsgården.",
+      "source_ids": [
+        "oslo_gate"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Personkoblingen gjelder navneopphavet via Hausmanns gate.",
+      "source_ids": [
+        "oslo_gate"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Hausmannsbrua er tatt med i en nasjonal verneplan for veg- og brokulturminner.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Stedet kombinerer aktiv bruk, ombygging og kulturminneverdi.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Det blå skiltet er et senere historieformidlingslag.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Selskabet for Oslo Byes Vel står bak de blå historieskiltene.",
+      "source_ids": [
+        "oslo_byes_vel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hausmanns liv og navnehistorien er eldre enn selve broen.",
+      "source_ids": [
+        "oslo_gate"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Stedet må leses som separate historiske lag i riktig rekkefølge.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Canonical eierskap skiller hele infrastrukturen fra det dokumenterte fysiske signaturobjektet.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Et ekstra Object ville kreve et selvstendig fysisk objekt med egen kilde, bilde og historie; konstruksjonsdelene eies ellers av Structures.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bildene har ulike kamerastandpunkter og brukes til kvalitativ sammenligning.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En gåanalyse kan følge hvordan broen kobler bysidene over elva.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Materialitet kan leses visuelt fra offentlig gangareal.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Historiske påstander krever kilder utover et senere fotografi.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildegrunnlaget dokumenterer initial og etternavn, men ikke en sikkert identifisert full personprofil.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Legacy-påstanden er ikke sterk nok til canonical bruk uten kryssjekk.",
+      "source_ids": [
+        "snl_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_hausmannsbrua_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedets lag blir tydeligst når fysisk observasjon og eksplisitte kilder holdes sammen.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    }
+  ]
+}

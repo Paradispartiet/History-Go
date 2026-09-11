@@ -1,0 +1,685 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "musikk_scenehenger_stream",
+  "type": "leisure",
+  "title": "Scenehenger i musikkscenen",
+  "sociological_theme": "scenehenger_musikk_tilhorighet_nettverk_gratisarbeid_og_grensen_mot_profesjonell_sceneautoritet",
+  "applies_when": {
+    "any_tags": [
+      "musikk:scenehenger"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "gjestelisten_som_sosial_valuta",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En bekjent ved døra",
+      "subject": "Kan du fikse ett navn på lista?",
+      "situation": [
+        "Du kjenner flere rundt et lite konsertsted, og en venn spør om du kan «fikse» plass på gjestelista.",
+        "Du har sosial tilgang til miljøet, men ingen formell myndighet over billettsalg, akkreditering eller hvem arrangøren slipper inn.",
+        "Scenehenger-status kan gi nærhet og nettverk uten at nærhet blir en rett til å love tilgang på andres vegne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du kan spørre riktig person, men ikke love noe før arrangøren selv har bekreftet plassen.",
+          "effect": 1,
+          "tags": [
+            "access_boundary",
+            "network",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker nettverket uten å late som du eier gjestelista."
+        },
+        {
+          "id": "B",
+          "label": "Skrive at det er ordnet fordi du kjenner folk der og sannsynligvis kan få noen til å slippe vennen inn.",
+          "effect": -1,
+          "tags": [
+            "status_inflation",
+            "access_overreach",
+            "reputation_risk"
+          ],
+          "feedback": "Sosial kapital blir gjort til myndighet du ikke faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_access_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "alltid_den_siste_som_gar",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Et tommere konsertlokale",
+      "subject": "Blir du fordi du vil eller fordi du bør?",
+      "situation": [
+        "Etter konserten blir du igjen mens de fleste publikummerne går, slik du ofte gjør.",
+        "Det er en del av tilhørigheten å bli kjent med folk etter showet, men du merker også forventningen om at «de som virkelig er en del av scenen» alltid blir igjen.",
+        "Scenehenger-identiteten kan være et sosialt fellesskap uten at hver kveld må bli en lojalitetstest."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dra når du faktisk vil og la tilhørigheten tåle at du ikke alltid er den siste som går.",
+          "effect": 1,
+          "tags": [
+            "belonging",
+            "boundary",
+            "social_identity"
+          ],
+          "feedback": "Du skiller fellesskap fra plikt til konstant tilstedeværelse."
+        },
+        {
+          "id": "B",
+          "label": "Bli selv om du er ferdig for kvelden fordi fravær kan gjøre at folk glemmer deg.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "social_pressure",
+            "exhaustion"
+          ],
+          "feedback": "Tilhørigheten begynner å måles i hvor lenge du holder ut."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_presence_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "backstagebildet",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En venn med kamera",
+      "subject": "Bare ett bilde?",
+      "situation": [
+        "En venn vil ta et bilde backstage mens en artist og crewet slapper av etter konserten.",
+        "Du har fått være i området fordi du kjenner folk, men det betyr ikke at alle i rommet forventer å bli fotografert eller lagt ut.",
+        "Backstage-tilgang er sosial tillit, ikke automatisk samtykke til dokumentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør de som faktisk er på bildet før noe tas eller deles, og aksepter et nei uten diskusjon.",
+          "effect": 1,
+          "tags": [
+            "privacy",
+            "consent",
+            "backstage"
+          ],
+          "feedback": "Du behandler tilgang som tillit, ikke som innholdsrettighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta bildet raskt fordi alle vet at backstage er en del av offentlig musikkliv.",
+          "effect": -1,
+          "tags": [
+            "privacy_breach",
+            "status",
+            "public_private_leakage"
+          ],
+          "feedback": "Du gjør en privat sone offentlig bare fordi du fikk komme inn."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_backstage_privacy"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lydsjekken_og_knappen",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En tom scene før dørene åpner",
+      "subject": "Kan du bare skru ned den?",
+      "situation": [
+        "Under lydsjekk peker en bekjent på en kontroll og ber deg gjøre en rask justering mens teknikeren er ute av rommet.",
+        "Du har sett mange lydsjekker og kjenner språket rundt dem, men du er ikke satt opp som lydtekniker og kjenner ikke hele signalveien eller ansvaret.",
+        "Scenehenger-erfaring kan gi forståelse uten å gi teknisk mandat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La utstyret stå og få tak i personen som faktisk har teknikeransvaret.",
+          "effect": 1,
+          "tags": [
+            "technical_boundary",
+            "safety",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller scenevanthet fra operativt teknikeransvar."
+        },
+        {
+          "id": "B",
+          "label": "Gjøre den lille justeringen fordi du har sett hvordan det gjøres mange ganger.",
+          "effect": -1,
+          "tags": [
+            "technician_overreach",
+            "equipment_risk",
+            "status_inflation"
+          ],
+          "feedback": "Kjent miljø blir forvekslet med kvalifisert ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_technical_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bandet_som_vil_mote_bookeren",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Et nytt lokalt band",
+      "subject": "Kan du introdusere oss?",
+      "situation": [
+        "Et nytt band vet at du kjenner folk på flere konsertsteder og spør om du kan «fikse et møte» med en booker.",
+        "Du kan gjøre en introduksjon, men du bestemmer verken program, honorar, kontrakt eller hvem som blir booket.",
+        "Nettverk fungerer best når introduksjon holdes adskilt fra løfter om utfallet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Tilby en enkel introduksjon dersom bookeren er komfortabel med det, uten å love møte eller booking.",
+          "effect": 1,
+          "tags": [
+            "network",
+            "booking_boundary",
+            "expectation"
+          ],
+          "feedback": "Du kobler mennesker uten å late som du styrer programmet."
+        },
+        {
+          "id": "B",
+          "label": "Si at du nok kan ordne noe fordi du vet hva stedet liker og kjenner riktig person.",
+          "effect": -1,
+          "tags": [
+            "booking_overreach",
+            "status",
+            "reputation_risk"
+          ],
+          "feedback": "Nettverkskapital blir presentert som bookingmakt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_booking_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ryktet_om_hvorfor_noen_forsvant",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En sen samtale utenfor lokalet",
+      "subject": "Alle vet jo hvorfor",
+      "situation": [
+        "Noen forteller deg hvorfor en person plutselig ikke lenger dukker opp rundt scenen, og historien sprer seg som noe «alle vet».",
+        "Du har ingen direkte kilde, bare flere som gjentar samme versjon.",
+        "Små musikkscener kan være tette nok til at rykter får konsekvenser lenge før noen har kontrollert dem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ikke spre forklaringen videre som faktum og skille det du vet fra det du bare har hørt.",
+          "effect": 1,
+          "tags": [
+            "gossip_boundary",
+            "reputation",
+            "source_care"
+          ],
+          "feedback": "Du nekter sosial repetisjon å bli bevis."
+        },
+        {
+          "id": "B",
+          "label": "Fortelle det videre med forbehold fordi så mange uavhengige personer sier det samme.",
+          "effect": -1,
+          "tags": [
+            "gossip",
+            "circular_source",
+            "reputation_harm"
+          ],
+          "feedback": "Du teller gjenfortellinger av samme rykte som uavhengig bekreftelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_gossip_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gratis_merchbord",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En artist du kjenner",
+      "subject": "Kan du stå her bare mens vi spiller?",
+      "situation": [
+        "Rett før et sett spør en artist om du kan passe merchbordet gratis fordi den som skulle gjøre det ikke kom.",
+        "Det kan være en hyggelig vennetjeneste, men det innebærer også ansvar for varer, betaling og tid gjennom hele konserten.",
+        "At du ofte er rundt scenen gjør ikke arbeidet ditt automatisk gratis eller grenseløst."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklare hvor lenge du skal stå der, hvordan betaling håndteres og om dette faktisk er en vennetjeneste eller et oppdrag.",
+          "effect": 1,
+          "tags": [
+            "invisible_work",
+            "boundary",
+            "merch"
+          ],
+          "feedback": "Du gjør forventningen konkret før den blir til usynlig plikt."
+        },
+        {
+          "id": "B",
+          "label": "Si ja uten avklaring fordi det er sånn man stiller opp for folk i scenen.",
+          "effect": -1,
+          "tags": [
+            "free_labor",
+            "loyalty_pressure",
+            "resentment"
+          ],
+          "feedback": "Tilhørighet brukes til å gjøre arbeid usynlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_unpaid_work_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "etterfesten_og_tilhørigheten",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En melding etter stengetid",
+      "subject": "Kommer du eller?",
+      "situation": [
+        "Du blir invitert videre etter konserten og merker at det føles som om de viktige samtalene alltid skjer etter at selve arrangementet er over.",
+        "Det er sant at relasjoner bygges uformelt, men ingen enkelt etterfest er en obligatorisk inngangsbillett til scenen.",
+        "Sosial sceneidentitet blir skjør dersom alle grenser tolkes som manglende lojalitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge ut fra egen kapasitet og stole på at reelle relasjoner tåler at du ikke følger med videre hver gang.",
+          "effect": 1,
+          "tags": [
+            "social_boundary",
+            "belonging",
+            "network"
+          ],
+          "feedback": "Du lar nettverket være mer robust enn én sen kveld."
+        },
+        {
+          "id": "B",
+          "label": "Bli med selv om du egentlig vil hjem fordi du ellers kan gå glipp av relasjoner og muligheter.",
+          "effect": -1,
+          "tags": [
+            "fear_of_missing_out",
+            "status_anxiety",
+            "social_pressure"
+          ],
+          "feedback": "Nettverket begynner å styre når du får lov til å avslutte kvelden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_afterparty_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_nye_artisten_alle_har_en_mening_om",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En samtale ved baren",
+      "subject": "Hva synes du egentlig?",
+      "situation": [
+        "Et nytt band har nettopp spilt, og folk rundt deg begynner raskt å rangere både musikken og personene i bandet.",
+        "Du kjenner miljøet godt nok til at vurderingen din blir lyttet til, selv om du verken representerer publikum, arrangør eller bransje.",
+        "Scenehenger-status kan gi sosial påvirkning uten å gjøre smak til institusjonell dom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si konkret hva du reagerte på musikalsk og holde personrykter og bastante karriereprognoser utenfor.",
+          "effect": 1,
+          "tags": [
+            "taste",
+            "reputation",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker sceneerfaring som perspektiv, ikke som domsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Si at bandet neppe kommer langt fordi du kjenner hva folk og steder i scenen faktisk vil ha.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_inflation",
+            "reputation_harm"
+          ],
+          "feedback": "Sosial erfaring blir gjort til bransjefasit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_taste_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konsertcrew_honoraret",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Et lokalt konsertsted",
+      "subject": "Kan du hjelpe crewet i kveld?",
+      "situation": [
+        "Et lite konsertsted tilbyr et avgrenset honorar for praktisk arrangementsassistanse rundt innslipp, artistområde og nedrigg.",
+        "Oppdraget gjør deg ikke til lyd- eller lystekniker, sikkerhetsansvarlig, booker, artistmanager eller person med ansvar for kontrakter og artistbetaling.",
+        "Her møtes Scenehenger-identiteten og levevei, men oppdragets ansvar må forbli eksplisitt avgrenset."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklare arbeidstid, konkrete oppgaver, hvem som leder crewet og hva du uttrykkelig ikke har ansvar for før du sier ja.",
+          "effect": 1,
+          "tags": [
+            "bounded_gig",
+            "livelihood_boundary",
+            "role_clarity"
+          ],
+          "feedback": "Du tar betalt for et konkret crewoppdrag uten å blåse det opp til en profesjonell scenejobb."
+        },
+        {
+          "id": "B",
+          "label": "Ta oppdraget og være fleksibel med alle oppgaver som dukker opp fordi du kjenner huset og folkene.",
+          "effect": -1,
+          "tags": [
+            "scope_creep",
+            "career_confusion",
+            "safety_risk"
+          ],
+          "feedback": "Sosial scenevanthet blir brukt som erstatning for avklart ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_livelihood_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "doren_mangler_folk",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Crewlederen",
+      "subject": "Kan du bare ta døra litt?",
+      "situation": [
+        "Under det betalte crewoppdraget mangler det plutselig folk ved inngangen, og du blir bedt om å «ta døra» en stund.",
+        "Å ønske folk velkommen eller skanne billetter kan være en avtalt oppgave, men vakthold, konflikthåndtering og sikkerhetsavgjørelser krever et annet ansvar enn du har fått.",
+        "Tidspress endrer ikke hvilken myndighet eller kompetanse oppdraget faktisk gir."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklare om det bare gjelder enkel publikumsflyt og billettsjekk, og få en ansvarlig person til å håndtere sikkerhet og konflikter.",
+          "effect": 1,
+          "tags": [
+            "security_boundary",
+            "scope",
+            "safety"
+          ],
+          "feedback": "Du hjelper innenfor oppdraget uten å ta over sikkerhetsansvar."
+        },
+        {
+          "id": "B",
+          "label": "Ta hele døra fordi noen må gjøre det og du kjenner hvordan slike kvelder fungerer.",
+          "effect": -1,
+          "tags": [
+            "security_overreach",
+            "scope_creep",
+            "risk"
+          ],
+          "feedback": "Behov i øyeblikket blir gjort til sikkerhetsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_security_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kabelen_som_ikke_virker",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En stresset artist",
+      "subject": "Kan du se på denne?",
+      "situation": [
+        "En artist du kjenner holder fram en kabel og ber deg finne ut hvorfor et signal ikke kommer fram før settet starter.",
+        "Du kan hjelpe med å finne teknikeren eller hente riktig person, men crewoppdraget ditt gir deg ikke feilsøkingsansvar på sceneutstyret.",
+        "Det er lett å bli oppfattet som «en som kan ting» når du er mye rundt produksjonen; ansvar må likevel følge faktisk rolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finne teknikeren eller crewlederen og beskrive problemet uten å koble om eller feilsøke utstyret selv.",
+          "effect": 1,
+          "tags": [
+            "technical_boundary",
+            "support",
+            "safety"
+          ],
+          "feedback": "Du er nyttig uten å late som du har teknikerrollen."
+        },
+        {
+          "id": "B",
+          "label": "Teste noen åpenbare koblinger selv fordi det sannsynligvis bare er en enkel feil.",
+          "effect": -1,
+          "tags": [
+            "technician_overreach",
+            "equipment_risk",
+            "scope_creep"
+          ],
+          "feedback": "En liten forsinkelse blir brukt til å utvide oppdraget til teknisk ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_paid_technical_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "demoen_og_den_uformelle_makten",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Et ungt band",
+      "subject": "Hvem burde vi sende denne til?",
+      "situation": [
+        "Et band sender deg en demo og spør hvem i byen de bør kontakte og om du tror materialet er «godt nok».",
+        "Du kan kjenne scener og personer, men du er ikke manager, agent eller booker og kan ikke love hvordan andre vurderer musikken.",
+        "Sosial kunnskap er mest verdifull når den deles som orientering, ikke som skjult bransjeautoritet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dele noen relevante steder og kontakter som offentlig eller personlig tips, og være tydelig på at vurdering og booking ligger hos dem.",
+          "effect": 1,
+          "tags": [
+            "network",
+            "mentoring_boundary",
+            "booking"
+          ],
+          "feedback": "Du gir orientering uten å overta bandets karriereløp."
+        },
+        {
+          "id": "B",
+          "label": "Fortelle hvem de bør kontakte og hvordan de bør endre materialet fordi du kjenner hva bookerne ser etter.",
+          "effect": -1,
+          "tags": [
+            "manager_overreach",
+            "gatekeeping",
+            "status"
+          ],
+          "feedback": "Sceneerfaring blir gjort til uformell managerrolle."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_network_authority_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_slags_scenehenger",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "En roligere kveld mellom konserter",
+      "subject": "Hva betyr det å høre til her?",
+      "situation": [
+        "Etter uker med gjestelister, backstage, nye band, rykter, gratis småtjenester og ett betalt crewoppdrag ser du hvor mye av musikkscenen som bæres av uformelle relasjoner.",
+        "Scenehenger er en sosial identitet rundt konserter og mennesker, ikke en snarvei til teknikerjobb, sikkerhetsansvar, bookingmakt, management eller artiststatus.",
+        "Den sosiale testen er om du kan være tett på miljøet uten å gjøre nærhet til rett over andres arbeid, tilgang eller karrierer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde en fast regel videre: skill tilhørighet, nettverk, vennetjenester, honorert crew og profesjonell myndighet.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "role_clarity",
+            "belonging"
+          ],
+          "feedback": "Sceneidentiteten blir et sosialt liv, ikke en uformell jobbtittel."
+        },
+        {
+          "id": "B",
+          "label": "Bestemme at du etter hvert har vært rundt scenen lenge nok til å bruke mer av den uformelle autoriteten du allerede har.",
+          "effect": -1,
+          "tags": [
+            "status_inflation",
+            "authority_overreach",
+            "career_confusion"
+          ],
+          "feedback": "Lang tilstedeværelse blir gjort til rett på roller ingen faktisk har gitt deg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "music_scene_season_reflection"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

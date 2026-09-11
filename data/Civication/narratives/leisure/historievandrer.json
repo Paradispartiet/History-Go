@@ -1,0 +1,683 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "historievandrer_stream",
+  "type": "leisure",
+  "title": "Historievandrer i byen",
+  "sociological_theme": "stedsspor_lokal_hukommelse_kildekritikk_og_retten_til_a_fortelle",
+  "applies_when": {
+    "any_tags": [
+      "historievandrer",
+      "historie:historievandrer"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "plaketten_og_hullet",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "En gammel fasade",
+      "subject": "Plaketten sier mindre enn stedet",
+      "situation": [
+        "Du stopper ved en minneplakett som forteller én kort versjon av bygningens historie, mens spor i fasaden peker mot flere ombygginger og bruksendringer.",
+        "Det er fristende å fylle hullene med en sammenhengende fortelling, men selve stedet gir bare deler av beviset.",
+        "Historievandrerrollen begynner i forskjellen mellom det du kan se, det du kan dokumentere og det du bare forestiller deg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Notere hva som faktisk er synlig, skille det fra antakelser og lete etter flere kilder før du forteller historien videre.",
+          "effect": 1,
+          "tags": [
+            "source_care",
+            "place_reading",
+            "epistemic_humility"
+          ],
+          "feedback": "Stedet blir rikere når usikkerheten får være en del av fortellingen."
+        },
+        {
+          "id": "B",
+          "label": "Bygge en sammenhengende historie rundt sporene fordi det gjør stedet lettere å forstå.",
+          "effect": -1,
+          "tags": [
+            "speculation",
+            "narrative_pressure",
+            "source_risk"
+          ],
+          "feedback": "Fortellingen blir glatt, men du visker ut skillet mellom funn og fantasi."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_evidence_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_naboer_to_minner",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "To naboer",
+      "subject": "Det skjedde ikke sånn",
+      "situation": [
+        "To personer som har bodd lenge i området forteller helt ulike historier om det samme gamle butikklokalet.",
+        "Begge snakker med sikkerhet, og begge knytter minnet til familie, arbeid og hvem som hørte til i gata.",
+        "Muntlige minner kan være verdifulle kilder uten at du må kåre én forteller til hele stedets fasit."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde begge versjonene, notere hvem som forteller hva og markere tydelig hvor minnene spriker.",
+          "effect": 1,
+          "tags": [
+            "oral_history",
+            "plural_memory",
+            "source_care"
+          ],
+          "feedback": "Uenigheten blir data om hvordan stedet huskes, ikke bare et problem som må ryddes bort."
+        },
+        {
+          "id": "B",
+          "label": "Velge versjonen som passer best med det du allerede trodde om området.",
+          "effect": -1,
+          "tags": [
+            "confirmation",
+            "memory_flattening",
+            "status"
+          ],
+          "feedback": "Du får en ryddig historie, men mister selve konflikten mellom minner."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_memory_plurality"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bakgarden_er_privatomrade",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En beboer",
+      "subject": "Du kan ikke bare gå inn her",
+      "situation": [
+        "Et gammelt industrispor fortsetter inn i en bakgård som i dag er privat.",
+        "Fra porten ser du detaljer som kunne gjort historien mer konkret, men du har ingen avtale om adgang.",
+        "Interesse for stedets fortid gir ikke rett til å krysse dagens grenser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stoppe ved grensen, dokumentere det som er offentlig synlig og eventuelt spørre om adgang senere.",
+          "effect": 1,
+          "tags": [
+            "access_boundary",
+            "respect",
+            "place_reading"
+          ],
+          "feedback": "Du beholder nysgjerrigheten uten å gjøre historisk interesse til eiendomsrett."
+        },
+        {
+          "id": "B",
+          "label": "Gå raskt inn fordi du bare skal ta ett bilde og stedet er historisk viktig.",
+          "effect": -1,
+          "tags": [
+            "trespass",
+            "entitlement",
+            "reputation_risk"
+          ],
+          "feedback": "Du får kanskje bildet, men gjør egen interesse viktigere enn dagens brukere av stedet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_access_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_uten_dato",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Et digitalt bildearkiv",
+      "subject": "Dette skal være samme gate",
+      "situation": [
+        "Du finner et gammelt gatefoto som ligner sterkt på stedet du står ved, men filen har usikker dato og svak stedsangivelse.",
+        "Et skilt i bakgrunnen kan passe med hypotesen din, men bildet er kopiert flere ganger uten tydelig proveniens.",
+        "Et visuelt treff er et spor, ikke automatisk identifikasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Merk bildet som usikkert og let etter daterbare detaljer eller bedre proveniens før du binder det til stedet.",
+          "effect": 1,
+          "tags": [
+            "image_provenance",
+            "source_care",
+            "uncertainty"
+          ],
+          "feedback": "Du lar bildet arbeide som hypotese til identifikasjonen kan underbygges."
+        },
+        {
+          "id": "B",
+          "label": "Bruke bildet som dokumentasjon fordi likheten er for stor til å være tilfeldig.",
+          "effect": -1,
+          "tags": [
+            "visual_overclaim",
+            "provenance_gap",
+            "confirmation"
+          ],
+          "feedback": "Et overbevisende bilde får mer beviskraft enn metadataene tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_image_provenance"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "minnesmerket_og_navnet_som_mangler",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Et minnesmerke",
+      "subject": "Hvem ble ikke skrevet inn?",
+      "situation": [
+        "Et lokalt minnesmerke løfter fram noen navn og hendelser, mens en eldre beboer forteller om mennesker som ikke ble nevnt.",
+        "Du innser at minnesmerker ikke bare bevarer historie; de viser også hvilke historier som fikk offentlig plass.",
+        "Historievandring kan undersøke både det som er skrevet i stein og det som mangler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortelle hva minnesmerket faktisk sier, og samtidig undersøke dokumenterte fravær uten å dikte motivene bak dem.",
+          "effect": 1,
+          "tags": [
+            "public_memory",
+            "absence",
+            "source_care"
+          ],
+          "feedback": "Du gjør minnet til et historisk objekt uten å late som du kjenner alle grunnene til utvalget."
+        },
+        {
+          "id": "B",
+          "label": "Forklare de manglende navnene med den mest sannsynlige politiske årsaken uten å sjekke nærmere.",
+          "effect": -1,
+          "tags": [
+            "motive_speculation",
+            "memory_politics",
+            "overclaim"
+          ],
+          "feedback": "Fraværet får en sterk forklaring, men du gjør antakelsen til historie."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_public_memory"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historien_som_selger_bedre",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En venn på tur",
+      "subject": "Den dramatiske versjonen er jo mye bedre",
+      "situation": [
+        "En venn har hørt en spektakulær historie om en gammel bygning og gjentar den til resten av gruppa.",
+        "Du finner raskt ut at historien finnes i mange gjenfortellinger, men de konkrete detaljene varierer og ingen viser til en primærkilde.",
+        "Lokale myter kan være interessante som myter uten å måtte oppgraderes til fakta."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at historien er godt kjent som lokal fortelling, men skille den fra det som faktisk kan dokumenteres.",
+          "effect": 1,
+          "tags": [
+            "local_myth",
+            "source_care",
+            "storytelling"
+          ],
+          "feedback": "Du beholder fortellingens kulturelle verdi uten å gi den falsk kildeautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Fortelle den som sann fordi alle lokale kjenner den og den gjør turen bedre.",
+          "effect": -1,
+          "tags": [
+            "myth_as_fact",
+            "audience_pressure",
+            "source_risk"
+          ],
+          "feedback": "Du får mer dramaturgi, men gjør popularitet til bevis."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_myth_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_gamle_butikken_er_noens_hjem",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En beboer i første etasje",
+      "subject": "Folk tar bilder inn vinduet vårt",
+      "situation": [
+        "Et tidligere butikklokale er bygget om til bolig, men fasaden har fortsatt spor etter den gamle virksomheten.",
+        "Flere historieinteresserte fotograferer tett på vinduene for å dokumentere detaljer.",
+        "Historisk verdi i bygningen opphever ikke privatlivet til dem som bor der nå."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fotografere fasaden fra offentlig sted uten å fange inn privat interiør eller personer.",
+          "effect": 1,
+          "tags": [
+            "privacy",
+            "place_reading",
+            "present_users"
+          ],
+          "feedback": "Du dokumenterer historiske spor uten å gjøre nåværende beboere til utstillingsobjekter."
+        },
+        {
+          "id": "B",
+          "label": "Ta nærbilder gjennom vinduet fordi de gamle detaljene ellers ikke synes.",
+          "effect": -1,
+          "tags": [
+            "privacy_intrusion",
+            "entitlement",
+            "reputation_risk"
+          ],
+          "feedback": "Historien blir bedre dokumentert på bekostning av dagens privatliv."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_privacy_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "revet_men_ikke_borte",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "En tomt med nye bygg",
+      "subject": "Her lå noe annet",
+      "situation": [
+        "Et helt kvartal er forandret, og bare gateforløpet og noen gamle trær gjør den tidligere strukturen lesbar.",
+        "Du merker hvor lett det er å romantisere alt som er borte bare fordi det er borte.",
+        "Historisk interesse krever også plass til at eldre bymiljøer kunne være trange, utrygge eller ekskluderende."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lete etter både tap, brukskvaliteter og dokumenterte problemer før du vurderer forandringen.",
+          "effect": 1,
+          "tags": [
+            "change_over_time",
+            "anti_romanticization",
+            "context"
+          ],
+          "feedback": "Du lar fortiden være virkelig nok til å romme både verdi og konflikt."
+        },
+        {
+          "id": "B",
+          "label": "Beskrive rivingen som et entydig tap fordi gamle miljøer alltid hadde mer karakter.",
+          "effect": -1,
+          "tags": [
+            "nostalgia",
+            "flattening",
+            "presentism"
+          ],
+          "feedback": "Du får en klar holdning, men gjør historisk kompleksitet til estetisk nostalgi."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_change_over_time"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "barnet_spor_hva_som_er_sant",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Et barn på tur",
+      "subject": "Hvordan vet du det?",
+      "situation": [
+        "Et barn i gruppa spør hvordan du vet at et hus faktisk ble brukt slik du nettopp beskrev.",
+        "Du har lest opplysningen i en lokalhistorisk tekst, men husker ikke hvilken kilde forfatteren bygget på.",
+        "Spørsmålet gjør forskjellen mellom å kjenne en fortelling og å kjenne dens kilde synlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hva du har lest, være ærlig om at du ikke kjenner underlaget ennå og vise hvordan dere kan undersøke det.",
+          "effect": 1,
+          "tags": [
+            "source_chain",
+            "teaching",
+            "epistemic_humility"
+          ],
+          "feedback": "Du gjør kildekritikk til en del av nysgjerrigheten i stedet for et ekspertforsvar."
+        },
+        {
+          "id": "B",
+          "label": "Svare at historikere har slått det fast og gå videre for å beholde flyten.",
+          "effect": -1,
+          "tags": [
+            "borrowed_authority",
+            "status",
+            "source_gap"
+          ],
+          "feedback": "Du beholder rollen som den som vet, men skjuler hvor kunnskapskjeden faktisk stopper."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_source_chain"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "honorar_for_lokalvandring",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "En lokal arrangør",
+      "subject": "Kan du hjelpe til med vandringen på lørdag?",
+      "situation": [
+        "En lokal arrangør tilbyr et lite honorar for å forberede stopp, holde oversikt over deltakerne og bidra med stedshistorie på en vandring.",
+        "Oppdraget er konkret og avgrenset; det gjør deg ikke til autorisert guide, historiker, arkivar, kulturminneforvalter eller representant for offentlige myndigheter.",
+        "Her møtes livsposisjon og inntekt, men de må forbli to forskjellige lag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta oppdraget som et avgrenset gig, avklare hvilke stopp du faktisk kan stå inne for og markere usikkerhet i stoffet.",
+          "effect": 1,
+          "tags": [
+            "bounded_gig",
+            "livelihood_boundary",
+            "source_care"
+          ],
+          "feedback": "Du kan få betalt for et konkret bidrag uten å blåse opp identiteten til en profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke honoraret som tegn på at du nå kan presentere deg som lokalhistorisk ekspert i andre sammenhenger.",
+          "effect": -1,
+          "tags": [
+            "authority_overreach",
+            "career_confusion",
+            "status"
+          ],
+          "feedback": "Et lite oppdrag blir gjort til en autoritet avtalen aldri ga."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_livelihood_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historien_fra_en_sarbar_familie",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En bekjent",
+      "subject": "Ikke bruk navnet vårt",
+      "situation": [
+        "En bekjent forteller en sterk familiehistorie knyttet til et lokalt hus og sier samtidig at deler av historien ikke skal deles offentlig.",
+        "Detaljene kunne gitt et sted mer menneskelig dybde, men kilden har satt en tydelig grense.",
+        "Historisk interesse gir ikke eierskap til andres minner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle opplysningene som private og bare bruke det som uttrykkelig er avtalt eller finnes i åpne kilder.",
+          "effect": 1,
+          "tags": [
+            "consent",
+            "oral_history",
+            "privacy"
+          ],
+          "feedback": "Tillit blir en del av kildearbeidet, ikke et hinder som må omgås."
+        },
+        {
+          "id": "B",
+          "label": "Anonymisere familien og bruke detaljene likevel fordi ingen da kan kjenne dem igjen sikkert.",
+          "effect": -1,
+          "tags": [
+            "consent_breach",
+            "story_pressure",
+            "privacy_risk"
+          ],
+          "feedback": "Du reduserer sporbarheten, men overstyrer fortsatt en uttalt grense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_oral_consent"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vern_eller_bruk",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Et lokalt møte",
+      "subject": "Skal alt gammelt bevares?",
+      "situation": [
+        "Et omstridt bygg står mellom vern, ny bruk og mulig riving, og du kjenner historien bedre enn mange i rommet.",
+        "Noen forventer at historisk interesse automatisk betyr at du støtter full bevaring.",
+        "Å forstå et steds historie er ikke det samme som å ha formell kulturminnefaglig myndighet eller én nødvendig politisk konklusjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bidra med dokumenterbare historiske forhold og skille dem fra ditt eget syn på hva som bør skje videre.",
+          "effect": 1,
+          "tags": [
+            "heritage_boundary",
+            "public_debate",
+            "source_care"
+          ],
+          "feedback": "Du gjør historien relevant uten å late som den alene avgjør dagens beslutning."
+        },
+        {
+          "id": "B",
+          "label": "Presentere ditt eget vernesyn som det historien krever fordi du kjenner stedet best.",
+          "effect": -1,
+          "tags": [
+            "authority_overreach",
+            "heritage_claim",
+            "status"
+          ],
+          "feedback": "Kunnskap om fortiden blir brukt som mandat over dagens konflikt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_heritage_authority"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kartet_og_navnene",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Et gammelt kart",
+      "subject": "Samme sted, andre navn",
+      "situation": [
+        "Et historisk kart bruker andre gatenavn og stedsnavn enn dagens kart.",
+        "Du oppdager at enkelte navn har flyttet seg, forsvunnet eller blitt brukt om større områder enn i dag.",
+        "Å legge gamle navn rett oppå dagens geografi kan skape en falsk presisjon som kildene ikke støtter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Markere tidslaget og forklare hvilke identifikasjoner som er sikre, sannsynlige eller fortsatt usikre.",
+          "effect": 1,
+          "tags": [
+            "historical_map",
+            "spatial_uncertainty",
+            "source_care"
+          ],
+          "feedback": "Kartet blir en tidsbundet kilde i stedet for en perfekt fasit over dagens by."
+        },
+        {
+          "id": "B",
+          "label": "Bruke dagens grenser for alle gamle navn fordi det gjør kartfortellingen enklere å følge.",
+          "effect": -1,
+          "tags": [
+            "anachronism",
+            "spatial_flattening",
+            "overclaim"
+          ],
+          "feedback": "Du får et ryddig kart, men flytter dagens geografi bakover i tid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_spatial_uncertainty"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hvem_eier_stedets_historie",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Den siste vandringen",
+      "subject": "Hva slags historievandrer ble du?",
+      "situation": [
+        "Etter mange turer ser du at de mest interessante stedene sjelden hadde én ferdig historie: de hadde dokumenter, spor, minner, hull, konflikter og mennesker som fortsatt bruker dem.",
+        "Historievandrer er ikke en offentlig tittel eller et sertifikat; det er en valgt praksis for å lese steder mer oppmerksomt.",
+        "Den sosiale testen er om nysgjerrigheten din gjør fortiden mer etterprøvbar og flerstemt, eller bare gjør deg selv til hovedfortelleren."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta med deg en fast vane videre: skille funn fra antakelser, kreditere kilder og la uenighet og usikkerhet bli synlig.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "source_care",
+            "plural_memory"
+          ],
+          "feedback": "Identiteten blir en disiplin for oppmerksomhet, ikke en rett til å eie stedets fortelling."
+        },
+        {
+          "id": "B",
+          "label": "Konkludere med at du først og fremst trenger flere historier å kunne utenat for å bli den folk lytter til.",
+          "effect": -1,
+          "tags": [
+            "status_identity",
+            "story_accumulation",
+            "authority_pressure"
+          ],
+          "feedback": "Du bygger repertoar, men risikerer å gjøre historievandringen til en scene for egen autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historievandrer_season_reflection"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

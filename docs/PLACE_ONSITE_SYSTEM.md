@@ -1,63 +1,51 @@
-# History GO — stedsfunksjonsrad
+# History GO — lokale stedsfunksjoner
 
 Status: **canonical handlingskontrakt**  
 Eier: `place_onsite_contract`  
 Runtime: `js/ui/place-onsite-surface.js`  
 Datakontrakt: `data/categories/place_onsite_contract.json`  
-Sist kontrollert: **2026-07-29**
+Sist kontrollert: **2026-09-11**
 
-## Fast hovedrad
+## Hovedregel
 
-PlaceCard viser alltid disse fire knappene, i denne rekkefølgen:
+PlaceCard skal ikke være hovednavigasjon for globale oppdagelses- eller møteflater.
 
-1. **Events**
-2. **Avtal å møtes**
-3. **Kunnskapsmøte**
-4. **Mer**
+**Events** og de sosiale møteflatene er flyttet til **Utforsk i venstre panel**:
 
-Det skal ikke stå «På stedet» som egen overskrift, og det skal ikke finnes en egen `+`-knapp i raden.
+- **Utforsk → Events** viser kommende canonical events fra `HGEvents`.
+- **Utforsk → Møtes** er én samlet brukerinngang for møteproduktet.
+  - **Foreslå kunnskapsmøte** starter `HG_SpotmeetingUI` i valgt Place-kontekst.
+  - **Mine møter / Social Meet** åpner `HG_SocialMeetUI` for forslag, avtaler, svar, læringssirkler og historikk.
+- Header-menyen beholder **Møtes / Social Meet** som en hurtiginngang til den samme `Utforsk → Møtes`-flaten. Den er en shortcut, ikke en separat produkteier.
 
-### Events
+Det finnes derfor ikke lenger separate PlaceCard-knapper for **Events**, **Avtal å møtes**, **Kunnskapsmøte** eller **Social Meet**.
 
-Events-knappen er alltid synlig. Hvis stedet ikke har aktuelle canonical events, åpner knappen en tomtilstand som sier at ingen aktuelle events er registrert ennå.
+## Møtes er én brukerflate, to interne ansvar
 
-Historiske hendelser er ikke «Events»; de hører i Historie.
+Kunnskapsmøte og Social Meet skal **slås sammen på navigasjons-/UX-nivå**, men ikke til én domenemotor:
 
-### Avtal å møtes
+- `HG_SpotmeetingUI` eier opprettelsen av et konkret møteforslag.
+- `HG_SocialMeetUI` eier oppfølging av forslag, avtaler, status og historikk.
 
-Bred sosial stedsfunksjon. Den er alltid tilgjengelig i hovedraden. Privacy- og backendgrenser gjelder fortsatt; live-posisjon skal ikke eksponeres.
+Dette bevarer eksisterende state-, backend- og privacy-kontrakter samtidig som spilleren bare trenger å finne én **Møtes**-inngang.
 
-### Kunnskapsmøte
+## Hva kan fortsatt ligge i PlaceCard/På stedet?
 
-Bred stedsbundet lærings-/samtalefunksjon. Den er alltid tilgjengelig i hovedraden.
-
-### Mer
-
-`Mer` er alltid siste knapp. Alle kategori-, stedstype- eller innholdsavhengige stedsfunksjoner skal ligge her i stedet for å utvide hovedraden.
-
-Synlighet inne i Mer bestemmes i denne rekkefølgen:
-
-1. canonical kategori;
-2. stedstype (`placeType`, `place_type`, `locatorType`, `type` eller `subtype`);
-3. om funksjonen har reelt innhold når policyen er `whenData`.
-
-Stedstype kan overstyre kategori.
-
-## Relative funksjoner under Mer
+Bare handlinger som faktisk er bundet til den konkrete stedstypen eller stedet og som ikke er globale oppdagelsesflater.
 
 ### Lek
 
-Lek vises **bare inne i Mer-popupen**, og bare når stedstypen er en faktisk lekeplass/lekepark (`lekeplass`, `lekepark`, `playground`).
+Lek vises bare når stedstypen er en faktisk lekeplass/lekepark (`lekeplass`, `lekepark`, `playground`).
 
 En park, stadion, kirke, konsertscene eller annet sted får ikke Lek bare fordi lek kan forekomme der.
 
-Andre framtidige kategori- eller stedstypeavhengige funksjoner skal følge samme mønster: de legges i `Mer`, ikke som nye faste knapper i hovedraden.
+Framtidige lokale handlinger må på samme måte kvalifisere gjennom canonical kategori/stedstype eller reelle data. Et ordinært Place uten slike handlinger skal ikke vise en tom «På stedet»-flate.
 
 ## Ekskluderte konsepter
 
 ### Oppgaver
 
-Oppgaver/`tasks_profile` er fjernet som History GO-produktkonsept og skal ikke presenteres i stedsfunksjonsraden eller Mer.
+Oppgaver/`tasks_profile` er fjernet som History GO-produktkonsept og skal ikke presenteres som stedsfunksjon.
 
 ### Trening
 
@@ -65,12 +53,15 @@ Trening er ikke en generell stedsfunksjon. `training_profile` er type-spesifikt 
 
 ### Quiz, Observer, Notat og Rute
 
-Disse beholder sine egne etablerte flows og skal ikke dupliseres inn i hovedraden eller Mer.
+Disse beholder sine egne etablerte flows og skal ikke dupliseres inn i Utforsk → Møtes eller den lokale stedsflaten.
 
 ## Canonical kategori-policy
 
-Den maskinlesbare matrisen ligger i `data/categories/place_onsite_contract.json`. Matrisen styrer relative funksjoner som kan dukke opp under `Mer`; den skal ikke brukes til å skjule de fire faste hovedknappene.
+Den maskinlesbare matrisen ligger i `data/categories/place_onsite_contract.json`.
+
+- `movedSurfaces` låser Events og begge møteansvarene til Utforsk.
+- `categoryPolicy` og `placeTypeOverrides` styrer bare gjenværende lokale stedsfunksjoner.
 
 ## Sluttregel
 
-Hovedraden er alltid **Events | Avtal å møtes | Kunnskapsmøte | Mer**. Alt annet er sekundært og må kvalifisere gjennom kategori, stedstype eller reelle data før det kan vises under `Mer`.
+**Utforsk eier oppdagelse: Events og Møtes. PlaceCard eier bare ekte, lokale stedsfunksjoner.**

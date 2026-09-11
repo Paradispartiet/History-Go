@@ -1,733 +1,1289 @@
 {
   "place_id": "vaterlandsparken",
-  "generator_version": "chatgpt_history_go_manual_v1_source_grounded",
-  "generated_from": [
-    "data/places/natur/oslo/places_oslo_natur_akerselvarute/vaterlandsparken.json",
-    "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json",
-    "data/stories/stories_nybrua_vaterlandsparken_split.json",
-    "data/quiz/regler/SET_MAL_README_v3.md"
-  ],
-  "manual_production_notes": {
-    "quality_direction": "sted → observasjon → emne → forståelse",
-    "source_caveats": [
-      "Vaterlandsparken er skilt fra Nybrua.",
-      "Canonical år er 1993, første år i 1993–94-perioden."
-    ]
+  "targetId": "vaterlandsparken",
+  "categoryId": "by",
+  "sources": {
+    "official": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/vaterlandsparken/",
+    "bylex": "https://oslobyleksikon.no/side/Vaterlandsparken",
+    "local": "https://lokalhistoriewiki.no/Vaterlandsparken",
+    "report": "https://www.oslo.kommune.no/get-file/1347840/738e3c7ef7cf94310c543472cc63bc1a1940ad3b2f36ecbd6869719b0c368472/",
+    "social": "https://aktuelt.oslo.kommune.no/apne-rusmiljo-i-oslo-sentrum"
+  },
+  "size_class": "normal",
+  "generator_version": "canonical_place_production_v1",
+  "profile_snapshot": {
+    "place_type": "historisk elvepark og sosialt byrom",
+    "subtype": "historisk_elvepark_og_natidig_sosialt_territorium",
+    "signature_features": [
+      "opparbeidet 1993–94",
+      "omtrent 90 x 75 meter",
+      "tidligere fjord og sump",
+      "tidligere kjent som moskétomta",
+      "Ólafia Jóhannsdóttir-bysten",
+      "Ola Enstads Stupere over elva",
+      "kommunalt parkrom som også inngår i dagens åpne rus- og gatemiljø",
+      "eget område for oppsøkende innsats rettet mot unge med tilknytning til Vaterlandsmiljøet",
+      "samme sted rommer parkbruk, gjennomgang, marginalisering og sosialt arbeid"
+    ],
+    "primary_angles": [
+      "parkhistorie",
+      "våtmark_og_utfylling",
+      "landskapsarkitektur",
+      "sosialhistorie",
+      "offentlig_kunst",
+      "sanering_og_byutvikling",
+      "sosial_geografi",
+      "ungdomsmiljo",
+      "oppsokende_sosialt_arbeid",
+      "retten_til_byen"
+    ],
+    "question_families": [
+      "historisk_endring",
+      "stedlig_observasjon",
+      "kunst_og_person",
+      "navneopprinnelse",
+      "landskapsarkitektur",
+      "kildekritikk",
+      "bruk",
+      "sosial_geografi",
+      "konflikt_og_kontroll"
+    ],
+    "avoid_angles": [
+      "blande_inn_nybrua",
+      "tidssensitive_byggeprosjekter",
+      "generisk_park",
+      "usikre_artsdetaljer",
+      "kun_rusproblem",
+      "stigmatisering_av_mennesker",
+      "sensasjonalisering"
+    ],
+    "must_include": [
+      "1993–94",
+      "13.3 Landskapsarkitekter",
+      "A. Haukeland landskapsarkitekter",
+      "moskétomta",
+      "Ólafia Jóhannsdóttir",
+      "Kristinn Pjetursson",
+      "1930",
+      "2004",
+      "Ola Enstad",
+      "Stupere",
+      "1990",
+      "dobbelrollen som fysisk park og sosialt territorium",
+      "at dagens miljø håndteres gjennom både oppsøkende sosialt arbeid og byromstiltak",
+      "at den canonical fysiske identiteten fortsatt er Vaterlandsparken"
+    ],
+    "contrast_targets": [
+      "nybrua_vaterlandsparken",
+      "vaterland_historisk_elvelop",
+      "akerselva_utlop_bjorvika",
+      "brugata_storgata_rusmiljo",
+      "plata_oslo",
+      "slottsparken"
+    ],
+    "notes": "Skal leses i flere lag: park- og landskapshistorie, dagens hverdagsbruk og et dokumentert sosialt Subkultur-lag. Unngå å gjøre rusmiljøet til hele stedets identitet eller å beskrive enkeltpersoner."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/vaterlandsparken_sets.json",
+      "data/quiz/manifest.json",
+      "data/places/natur/oslo/places_oslo_natur_akerselvarute/vaterlandsparken.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/by/vaterlandsparken_sets.json",
+      "set_count": 6,
+      "question_count": 42,
+      "finding": "Legacy 6×7-bank var kildebasert, men repetitiv og manglet dagens canonical production_context/progresjon."
+    },
+    "decisions": [
+      "Bevar stedsspesifikke fakta og kilder.",
+      "Reduser 42→28 fordi fire selvstendige læringsjobber dekker identitet/historie, minne/kunst, byrom/sosial geografi og metode uten repetisjon.",
+      "Hold de første fjorten spørsmålene teori- og metodefrie; teori/metode innføres bare i finalsettet."
+    ],
+    "knowledge_migration": "Alle 28 spørsmål får stabile Knowledge-ID-er."
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "normal_4x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/by/vaterlandsparken.json",
+    "context_artifact": "data/quiz/production_context/by/vaterlandsparken.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_04_historiske_lag_og_transformasjon",
+      "kur_by_06_makt_symboler_og_representasjon",
+      "kur_by_07_gronn_blaa_og_offentlig_natur"
+    ],
+    "emne_ids": [
+      "em_by_parker_som_sosial_infrastruktur",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_materialitet_og_sanseerfaring",
+      "em_by_symbolsk_makt_og_representasjon",
+      "em_by_inkludering_ekskludering",
+      "em_by_sosial_miks_i_offentlige_rom",
+      "em_by_styring_forvaltning_planmakt"
+    ],
+    "topic_hook_ids": [
+      "makt_rett_til_byen"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_for_etter",
+      "met_gaanalyse"
+    ],
+    "thinker_ids": [
+      "henri_lefebvre"
+    ],
+    "works": [
+      "The Production of Space"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/by/vaterlandsparken_sets.json",
+        "data/quiz/manifest.json",
+        "data/places/natur/oslo/places_oslo_natur_akerselvarute/vaterlandsparken.json"
+      ],
+      "active_before": {
+        "file": "data/quiz/by/vaterlandsparken_sets.json",
+        "set_count": 6,
+        "question_count": 42,
+        "finding": "Legacy 6×7-bank var kildebasert, men repetitiv og manglet dagens canonical production_context/progresjon."
+      },
+      "decisions": [
+        "Bevar stedsspesifikke fakta og kilder.",
+        "Reduser 42→28 fordi fire selvstendige læringsjobber dekker identitet/historie, minne/kunst, byrom/sosial geografi og metode uten repetisjon.",
+        "Hold de første fjorten spørsmålene teori- og metodefrie; teori/metode innføres bare i finalsettet."
+      ],
+      "knowledge_migration": "Alle 28 spørsmål får stabile Knowledge-ID-er."
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Fire kildebærende læringsjobber uten utfyllingsspørsmål."
+    },
+    "held_back_candidates": [
+      "Midlertidige bygge- og ferdselsendringer.",
+      "Påstander om enkeltpersoners rus, helse eller tilhørighet fra observasjon.",
+      "Eksakt optisk før/etter uten dokumentert kamerastandpunkt.",
+      "Nybrua som del av parkidentiteten."
+    ],
+    "normal_opening_questions": 14,
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
   },
   "sets": [
     {
-      "id": "vaterlandsparken_s1",
-      "title": "Identitet og sted",
+      "set_id": "by_vaterlandsparken_set_1",
+      "title": "Parken og tidslagene",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
       "questions": [
         {
-          "id": "vaterlandsparken_s1_q1",
+          "id": "vaterlandsparken_quiz_01",
+          "quiz_id": "by_vaterlandsparken_set_1_q1",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
           "question": "Når ble Vaterlandsparken opparbeidet?",
           "options": [
             "1993–94",
-            "1827",
-            "1941"
+            "1978–79",
+            "2003–04"
           ],
-          "answerIndex": 0,
           "answer": "1993–94",
-          "knowledge": "Oslo kommune opparbeidet parken i 1993–94.",
+          "answerIndex": 0,
+          "knowledge": "Parken ble opparbeidet av Oslo kommune i 1993–94.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken"
+            "bylex",
+            "official"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Parken ble opparbeidet av Oslo kommune i 1993–94.",
+          "claim_id": "claim_vaterlandsparken_quiz_01",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_01",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_01"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s1_q2",
+          "id": "vaterlandsparken_quiz_02",
+          "quiz_id": "by_vaterlandsparken_set_1_q2",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
           "question": "Hvem planla parken?",
           "options": [
+            "Christian H. Grosch og Linstow",
             "13.3 Landskapsarkitekter og A. Haukeland landskapsarkitekter",
-            "Gunder Juel og Aubert",
-            "Ola Enstad alene"
+            "Vigeland og Munch"
           ],
-          "answerIndex": 0,
           "answer": "13.3 Landskapsarkitekter og A. Haukeland landskapsarkitekter",
-          "knowledge": "To landskapsarkitektmiljøer er kreditert for parkplanen.",
+          "answerIndex": 1,
+          "knowledge": "Kildene navngir 13.3 og A. Haukeland som landskapsarkitekter.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken"
+            "bylex"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Kildene navngir 13.3 og A. Haukeland som landskapsarkitekter.",
+          "claim_id": "claim_vaterlandsparken_quiz_02",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_02",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_02",
+            "ku_by_haukeland_som_landskapsa_2f1f497520"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s1_q3",
-          "question": "Omtrent hvor stor er parken?",
+          "id": "vaterlandsparken_quiz_03",
+          "quiz_id": "by_vaterlandsparken_set_1_q3",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva ble tomta lenge kalt før parken?",
           "options": [
-            "90 × 75 meter",
-            "900 × 750 meter",
-            "12,5 × 1,9 meter"
+            "børstomta",
+            "slottsjordet",
+            "moskétomta"
           ],
-          "answerIndex": 0,
-          "answer": "90 × 75 meter",
-          "knowledge": "Oslo byleksikon oppgir omtrentlige mål.",
+          "answer": "moskétomta",
+          "answerIndex": 2,
+          "knowledge": "Arealet var regulert til islamsk kultursenter og ble omtalt som moskétomta.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken"
+            "bylex",
+            "local"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Arealet var regulert til islamsk kultursenter og ble omtalt som moskétomta.",
+          "claim_id": "claim_vaterlandsparken_quiz_03",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_03",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_03"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s1_q4",
-          "question": "Hva ble tomta lenge kalt?",
+          "id": "vaterlandsparken_quiz_04",
+          "quiz_id": "by_vaterlandsparken_set_1_q4",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hvilket landskap lå her før den tette byen?",
           "options": [
-            "Moskétomta",
-            "Eventyrbrua",
-            "Ankerløkken"
+            "fjord- og sumpmark",
+            "høyfjell",
+            "barskogreservat"
           ],
+          "answer": "fjord- og sumpmark",
           "answerIndex": 0,
-          "answer": "Moskétomta",
-          "knowledge": "Tomta var regulert til islamsk kultursenter før parkplanen.",
+          "knowledge": "Kommunale kilder beskriver eldre fjord- og sumpmark.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken",
-            "Lokalhistoriewiki – Vaterlandsparken"
+            "official",
+            "report"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Kommunale kilder beskriver eldre fjord- og sumpmark.",
+          "claim_id": "claim_vaterlandsparken_quiz_04",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_04",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_04"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s1_q5",
-          "question": "Hvordan beskriver Oslo kommune området før 1700-tallet?",
+          "id": "vaterlandsparken_quiz_05",
+          "quiz_id": "by_vaterlandsparken_set_1_q5",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hvilken elv grenser til parken?",
           "options": [
-            "Fjord og sump",
-            "Fjell og tørrhei",
-            "Ferdig bypark"
+            "Lysakerelva",
+            "Akerselva",
+            "Alna"
           ],
-          "answerIndex": 0,
-          "answer": "Fjord og sump",
-          "knowledge": "Landskapshistorien forklarer parkens vannnære plassering.",
+          "answer": "Akerselva",
+          "answerIndex": 1,
+          "knowledge": "Vaterlandsparken ligger direkte ved Akerselva.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_materialitet_og_sanseerfaring",
           "source": [
-            "Oslo kommune – Vaterlandsparken"
+            "official",
+            "bylex"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Vaterlandsparken ligger direkte ved Akerselva.",
+          "claim_id": "claim_vaterlandsparken_quiz_05",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_05",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_05"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s1_q6",
-          "question": "Hva ble vannkanten brukt til?",
+          "id": "vaterlandsparken_quiz_06",
+          "quiz_id": "by_vaterlandsparken_set_1_q6",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hvem minnes med en byste i parken?",
           "options": [
-            "Utskiping av tømmer",
-            "Flyplass",
-            "Kullgruve"
+            "Camilla Collett",
+            "Aasta Hansteen",
+            "Ólafia Jóhannsdóttir"
           ],
-          "answerIndex": 0,
-          "answer": "Utskiping av tømmer",
-          "knowledge": "Tømmertransport er en del av stedets eldre bruk.",
+          "answer": "Ólafia Jóhannsdóttir",
+          "answerIndex": 2,
+          "knowledge": "Bysten i parken forestiller Ólafia Jóhannsdóttir.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_symbolsk_makt_og_representasjon",
           "source": [
-            "Oslo kommune – Vaterlandsparken"
+            "local",
+            "bylex"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Bysten i parken forestiller Ólafia Jóhannsdóttir.",
+          "claim_id": "claim_vaterlandsparken_quiz_06",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_06",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_06"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s1_q7",
-          "question": "Hva peker navnet Vaterland tilbake på?",
+          "id": "vaterlandsparken_quiz_07",
+          "quiz_id": "by_vaterlandsparken_set_1_q7",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hvem laget Ólafia-bysten?",
           "options": [
-            "Waterland – vasstrukkent land",
-            "Et familienavn fra 1900-tallet",
-            "En brokonstruksjon"
+            "Kristinn Pjetursson",
+            "Ola Enstad",
+            "Gustav Vigeland"
           ],
+          "answer": "Kristinn Pjetursson",
           "answerIndex": 0,
-          "answer": "Waterland – vasstrukkent land",
-          "knowledge": "Navnet bærer minnet om det våte landskapet.",
+          "knowledge": "Kristinn Pjetursson utførte bysten i 1930.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_symbolsk_makt_og_representasjon",
           "source": [
-            "Oslo kommune – Vaterlandsparken"
+            "local",
+            "bylex"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Kristinn Pjetursson utførte bysten i 1930.",
+          "claim_id": "claim_vaterlandsparken_quiz_07",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_07",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_07"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         }
       ]
     },
     {
-      "id": "vaterlandsparken_s2",
-      "title": "Historiske lag",
+      "set_id": "by_vaterlandsparken_set_2",
+      "title": "Minner og kunst",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "xp": 75,
       "questions": [
         {
-          "id": "vaterlandsparken_s2_q1",
-          "question": "Hva ble tomta lenge kalt?",
-          "options": [
-            "Moskétomta",
-            "Eventyrbrua",
-            "Ankerløkken"
-          ],
-          "answerIndex": 0,
-          "answer": "Moskétomta",
-          "knowledge": "Tomta var regulert til islamsk kultursenter før parkplanen.",
-          "source": [
-            "Oslo byleksikon – Vaterlandsparken",
-            "Lokalhistoriewiki – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        },
-        {
-          "id": "vaterlandsparken_s2_q2",
-          "question": "Hvordan beskriver Oslo kommune området før 1700-tallet?",
-          "options": [
-            "Fjord og sump",
-            "Fjell og tørrhei",
-            "Ferdig bypark"
-          ],
-          "answerIndex": 0,
-          "answer": "Fjord og sump",
-          "knowledge": "Landskapshistorien forklarer parkens vannnære plassering.",
-          "source": [
-            "Oslo kommune – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        },
-        {
-          "id": "vaterlandsparken_s2_q3",
-          "question": "Hva ble vannkanten brukt til?",
-          "options": [
-            "Utskiping av tømmer",
-            "Flyplass",
-            "Kullgruve"
-          ],
-          "answerIndex": 0,
-          "answer": "Utskiping av tømmer",
-          "knowledge": "Tømmertransport er en del av stedets eldre bruk.",
-          "source": [
-            "Oslo kommune – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        },
-        {
-          "id": "vaterlandsparken_s2_q4",
-          "question": "Hva peker navnet Vaterland tilbake på?",
-          "options": [
-            "Waterland – vasstrukkent land",
-            "Et familienavn fra 1900-tallet",
-            "En brokonstruksjon"
-          ],
-          "answerIndex": 0,
-          "answer": "Waterland – vasstrukkent land",
-          "knowledge": "Navnet bærer minnet om det våte landskapet.",
-          "source": [
-            "Oslo kommune – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        },
-        {
-          "id": "vaterlandsparken_s2_q5",
-          "question": "Hvem blir minnet med en byste i parken?",
-          "options": [
-            "Ólafia Jóhannsdóttir",
-            "Gunder Juel",
-            "Oscar Hoff"
-          ],
-          "answerIndex": 0,
-          "answer": "Ólafia Jóhannsdóttir",
-          "knowledge": "Bysten knytter parken til områdets sosialhistorie.",
-          "source": [
-            "Oslo byleksikon – Vaterlandsparken",
-            "Lokalhistoriewiki – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        },
-        {
-          "id": "vaterlandsparken_s2_q6",
-          "question": "Hvem utførte Ólafia-bysten?",
-          "options": [
-            "Kristinn Pjetursson",
-            "Ola Enstad",
-            "Dyre Vaa"
-          ],
-          "answerIndex": 0,
-          "answer": "Kristinn Pjetursson",
-          "knowledge": "Bysten ble utført i 1930.",
-          "source": [
-            "Oslo byleksikon – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        },
-        {
-          "id": "vaterlandsparken_s2_q7",
-          "question": "Når ble bysten utført?",
+          "id": "vaterlandsparken_quiz_08",
+          "quiz_id": "by_vaterlandsparken_set_2_q1",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Når ble Ólafia-bysten plassert i Vaterlandsparken?",
           "options": [
             "1930",
-            "1990",
-            "2004"
-          ],
-          "answerIndex": 0,
-          "answer": "1930",
-          "knowledge": "1930 er kunstverkets utførelsesår.",
-          "source": [
-            "Oslo byleksikon – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        }
-      ]
-    },
-    {
-      "id": "vaterlandsparken_s3",
-      "title": "Se på stedet",
-      "questions": [
-        {
-          "id": "vaterlandsparken_s3_q1",
-          "question": "Hva peker navnet Vaterland tilbake på?",
-          "options": [
-            "Waterland – vasstrukkent land",
-            "Et familienavn fra 1900-tallet",
-            "En brokonstruksjon"
-          ],
-          "answerIndex": 0,
-          "answer": "Waterland – vasstrukkent land",
-          "knowledge": "Navnet bærer minnet om det våte landskapet.",
-          "source": [
-            "Oslo kommune – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        },
-        {
-          "id": "vaterlandsparken_s3_q2",
-          "question": "Hvem blir minnet med en byste i parken?",
-          "options": [
-            "Ólafia Jóhannsdóttir",
-            "Gunder Juel",
-            "Oscar Hoff"
-          ],
-          "answerIndex": 0,
-          "answer": "Ólafia Jóhannsdóttir",
-          "knowledge": "Bysten knytter parken til områdets sosialhistorie.",
-          "source": [
-            "Oslo byleksikon – Vaterlandsparken",
-            "Lokalhistoriewiki – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        },
-        {
-          "id": "vaterlandsparken_s3_q3",
-          "question": "Hvem utførte Ólafia-bysten?",
-          "options": [
-            "Kristinn Pjetursson",
-            "Ola Enstad",
-            "Dyre Vaa"
-          ],
-          "answerIndex": 0,
-          "answer": "Kristinn Pjetursson",
-          "knowledge": "Bysten ble utført i 1930.",
-          "source": [
-            "Oslo byleksikon – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        },
-        {
-          "id": "vaterlandsparken_s3_q4",
-          "question": "Når ble bysten utført?",
-          "options": [
-            "1930",
-            "1990",
-            "2004"
-          ],
-          "answerIndex": 0,
-          "answer": "1930",
-          "knowledge": "1930 er kunstverkets utførelsesår.",
-          "source": [
-            "Oslo byleksikon – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        },
-        {
-          "id": "vaterlandsparken_s3_q5",
-          "question": "Når kom bysten til Vaterlandsparken?",
-          "options": [
             "2004",
-            "1930",
-            "1993"
+            "1990"
           ],
-          "answerIndex": 0,
           "answer": "2004",
-          "knowledge": "Lokalhistoriewiki oppgir at bysten har stått her siden 2004.",
+          "answerIndex": 1,
+          "knowledge": "Lokalhistoriewiki daterer parkplasseringen til 2004.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Lokalhistoriewiki – Vaterlandsparken"
+            "local"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Lokalhistoriewiki daterer parkplasseringen til 2004.",
+          "claim_id": "claim_vaterlandsparken_quiz_08",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_08",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_08"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s3_q6",
+          "id": "vaterlandsparken_quiz_09",
+          "quiz_id": "by_vaterlandsparken_set_2_q2",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Når ble selve bysten utført?",
+          "options": [
+            "1993",
+            "2004",
+            "1930"
+          ],
+          "answer": "1930",
+          "answerIndex": 2,
+          "knowledge": "Bysten ble utført i 1930, lenge før den kom til parken.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "local",
+            "bylex"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bysten ble utført i 1930, lenge før den kom til parken.",
+          "claim_id": "claim_vaterlandsparken_quiz_09",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_09",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_09"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "vaterlandsparken_quiz_10",
+          "quiz_id": "by_vaterlandsparken_set_2_q3",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
           "question": "Hvem laget «Dykkar Installasjon»?",
           "options": [
             "Ola Enstad",
             "Kristinn Pjetursson",
-            "Aubert"
+            "Dyre Vaa"
           ],
-          "answerIndex": 0,
           "answer": "Ola Enstad",
-          "knowledge": "Installasjonen er et eget kunstlag over Akerselva.",
+          "answerIndex": 0,
+          "knowledge": "Ola Enstad laget installasjonen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_symbolsk_makt_og_representasjon",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken"
+            "bylex",
+            "local"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Ola Enstad laget installasjonen.",
+          "claim_id": "claim_vaterlandsparken_quiz_10",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_10",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_10"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s3_q7",
-          "question": "Hva kalles «Dykkar Installasjon» ofte?",
-          "options": [
-            "Stupere",
-            "Waterland",
-            "Nybrua"
-          ],
-          "answerIndex": 0,
-          "answer": "Stupere",
-          "knowledge": "Tilnavnet beskriver figurene som ser ut til å stupe mot vannet.",
-          "source": [
-            "Oslo byleksikon – Vaterlandsparken",
-            "Lokalhistoriewiki – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        }
-      ]
-    },
-    {
-      "id": "vaterlandsparken_s4",
-      "title": "Personer og verk",
-      "questions": [
-        {
-          "id": "vaterlandsparken_s4_q1",
-          "question": "Når ble bysten utført?",
-          "options": [
-            "1930",
-            "1990",
-            "2004"
-          ],
-          "answerIndex": 0,
-          "answer": "1930",
-          "knowledge": "1930 er kunstverkets utførelsesår.",
-          "source": [
-            "Oslo byleksikon – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        },
-        {
-          "id": "vaterlandsparken_s4_q2",
-          "question": "Når kom bysten til Vaterlandsparken?",
+          "id": "vaterlandsparken_quiz_11",
+          "quiz_id": "by_vaterlandsparken_set_2_q4",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Når ble «Dykkar Installasjon» satt opp?",
           "options": [
             "2004",
-            "1930",
-            "1993"
+            "1990",
+            "1998"
           ],
-          "answerIndex": 0,
-          "answer": "2004",
-          "knowledge": "Lokalhistoriewiki oppgir at bysten har stått her siden 2004.",
+          "answer": "1990",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon daterer installasjonen til 1990.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Lokalhistoriewiki – Vaterlandsparken"
+            "bylex"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Oslo byleksikon daterer installasjonen til 1990.",
+          "claim_id": "claim_vaterlandsparken_quiz_11",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_11",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_11"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s4_q3",
-          "question": "Hvem laget «Dykkar Installasjon»?",
-          "options": [
-            "Ola Enstad",
-            "Kristinn Pjetursson",
-            "Aubert"
-          ],
-          "answerIndex": 0,
-          "answer": "Ola Enstad",
-          "knowledge": "Installasjonen er et eget kunstlag over Akerselva.",
-          "source": [
-            "Oslo byleksikon – Vaterlandsparken"
-          ],
-          "claim_basis": "documented_external_sources"
-        },
-        {
-          "id": "vaterlandsparken_s4_q4",
+          "id": "vaterlandsparken_quiz_12",
+          "quiz_id": "by_vaterlandsparken_set_2_q5",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
           "question": "Hva kalles «Dykkar Installasjon» ofte?",
           "options": [
-            "Stupere",
-            "Waterland",
-            "Nybrua"
+            "Elvespill",
+            "Neve med rose",
+            "Stupere"
           ],
-          "answerIndex": 0,
           "answer": "Stupere",
-          "knowledge": "Tilnavnet beskriver figurene som ser ut til å stupe mot vannet.",
+          "answerIndex": 2,
+          "knowledge": "Kildene oppgir «Stupere» som vanlig kortnavn.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_symbolsk_makt_og_representasjon",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken",
-            "Lokalhistoriewiki – Vaterlandsparken"
+            "bylex",
+            "local"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Kildene oppgir «Stupere» som vanlig kortnavn.",
+          "claim_id": "claim_vaterlandsparken_quiz_12",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_12",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_12"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s4_q5",
-          "question": "Når ble Stupere satt opp?",
+          "id": "vaterlandsparken_quiz_13",
+          "quiz_id": "by_vaterlandsparken_set_2_q6",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva er Vaterlandsparkens canonicale fysiske identitet?",
           "options": [
-            "1990",
-            "1827",
-            "2004"
+            "en offentlig park",
+            "en bro",
+            "et kjøpesenter"
           ],
+          "answer": "en offentlig park",
           "answerIndex": 0,
-          "answer": "1990",
-          "knowledge": "Installasjonen ble satt opp i 1990.",
+          "knowledge": "Den canonicale identiteten er selve parkarealet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken"
+            "official",
+            "bylex"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Den canonicale identiteten er selve parkarealet.",
+          "claim_id": "claim_vaterlandsparken_quiz_13",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_13",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_13"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s4_q6",
-          "question": "Hva bør spilleren se etter for å lese parkens landskapshistorie?",
+          "id": "vaterlandsparken_quiz_14",
+          "quiz_id": "by_vaterlandsparken_set_2_q7",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva er viktig å holde separat fra selve parkidentiteten?",
           "options": [
-            "Forskjellen mellom den flate parkflaten og elvas lavere løp",
-            "Bare høyhusenes logoer",
-            "Trikkespor på Nybrua"
+            "Akerselva som fysisk grense",
+            "det dokumenterte rus- og gatemiljøet som sosialt lag",
+            "parkens gressplen"
           ],
-          "answerIndex": 0,
-          "answer": "Forskjellen mellom den flate parkflaten og elvas lavere løp",
-          "knowledge": "Nivå og vannkant gjør utfylling og elverom observerbart.",
+          "answer": "det dokumenterte rus- og gatemiljøet som sosialt lag",
+          "answerIndex": 1,
+          "knowledge": "Sosiale miljøer kan overlappe geografisk uten å være identiske med parken.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "normal_opening",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
           "source": [
-            "Oslo kommune – Vaterlandsparken"
+            "social"
           ],
-          "claim_basis": "place_observation_plus_source"
-        },
-        {
-          "id": "vaterlandsparken_s4_q7",
-          "question": "Hva viser moskétomta-laget?",
-          "options": [
-            "At urealiserte planer også former byen",
-            "At parken var en ferdig moské",
-            "At Nybrua ble revet"
+          "source_origin": "external",
+          "claim_basis": "Sosiale miljøer kan overlappe geografisk uten å være identiske med parken.",
+          "claim_id": "claim_vaterlandsparken_quiz_14",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_14",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_14"
           ],
-          "answerIndex": 0,
-          "answer": "At urealiserte planer også former byen",
-          "knowledge": "Den tidligere reguleringen forklarer den åpne tomta før parken.",
-          "source": [
-            "Oslo byleksikon – Vaterlandsparken"
-          ],
-          "claim_basis": "source_modeling"
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         }
       ]
     },
     {
-      "id": "vaterlandsparken_s5",
-      "title": "Byplan og transport",
+      "set_id": "by_vaterlandsparken_set_3",
+      "title": "Byrom og sosial geografi",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "xp": 100,
       "questions": [
         {
-          "id": "vaterlandsparken_s5_q1",
-          "question": "Hva kalles «Dykkar Installasjon» ofte?",
+          "id": "vaterlandsparken_quiz_15",
+          "quiz_id": "by_vaterlandsparken_set_3_q1",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva kan du observere direkte i parken?",
           "options": [
-            "Stupere",
-            "Waterland",
-            "Nybrua"
+            "alle brukeres motivasjon",
+            "historiske årsaker uten kilder",
+            "materialer, kanter og ganglinjer"
           ],
-          "answerIndex": 0,
-          "answer": "Stupere",
-          "knowledge": "Tilnavnet beskriver figurene som ser ut til å stupe mot vannet.",
+          "answer": "materialer, kanter og ganglinjer",
+          "answerIndex": 2,
+          "knowledge": "Fysisk stedsobservasjon kan registrere synlige romlige forhold.",
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_by_materialitet_og_sanseerfaring",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken",
-            "Lokalhistoriewiki – Vaterlandsparken"
+            "official"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Fysisk stedsobservasjon kan registrere synlige romlige forhold.",
+          "claim_id": "claim_vaterlandsparken_quiz_15",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_15",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_15"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s5_q2",
-          "question": "Når ble Stupere satt opp?",
+          "id": "vaterlandsparken_quiz_16",
+          "quiz_id": "by_vaterlandsparken_set_3_q2",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva kan ett parkbesøk ikke bevise?",
           "options": [
-            "1990",
-            "1827",
-            "2004"
+            "stabile bruksmønstre for alle grupper",
+            "at parken har ganglinjer",
+            "at Akerselva ligger ved parken"
           ],
+          "answer": "stabile bruksmønstre for alle grupper",
           "answerIndex": 0,
-          "answer": "1990",
-          "knowledge": "Installasjonen ble satt opp i 1990.",
+          "knowledge": "Ett tidspunkt er ikke representativt for all bruk.",
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken"
+            "official"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Ett tidspunkt er ikke representativt for all bruk.",
+          "claim_id": "claim_vaterlandsparken_quiz_16",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_16",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_16"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s5_q3",
-          "question": "Hva bør spilleren se etter for å lese parkens landskapshistorie?",
+          "id": "vaterlandsparken_quiz_17",
+          "quiz_id": "by_vaterlandsparken_set_3_q3",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hvorfor må 1930 og 2004 holdes fra hverandre?",
           "options": [
-            "Forskjellen mellom den flate parkflaten og elvas lavere løp",
-            "Bare høyhusenes logoer",
-            "Trikkespor på Nybrua"
+            "begge er parkens anleggsår",
+            "1930 er bystens utførelsesår, 2004 er parkplasseringen",
+            "begge er år for Stupere"
           ],
-          "answerIndex": 0,
-          "answer": "Forskjellen mellom den flate parkflaten og elvas lavere løp",
-          "knowledge": "Nivå og vannkant gjør utfylling og elverom observerbart.",
+          "answer": "1930 er bystens utførelsesår, 2004 er parkplasseringen",
+          "answerIndex": 1,
+          "knowledge": "Objektets alder og plasseringens alder er ulike historiske opplysninger.",
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Oslo kommune – Vaterlandsparken"
+            "local"
           ],
-          "claim_basis": "place_observation_plus_source"
+          "source_origin": "external",
+          "claim_basis": "Objektets alder og plasseringens alder er ulike historiske opplysninger.",
+          "claim_id": "claim_vaterlandsparken_quiz_17",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_17",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_17"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s5_q4",
-          "question": "Hva viser moskétomta-laget?",
+          "id": "vaterlandsparken_quiz_18",
+          "quiz_id": "by_vaterlandsparken_set_3_q4",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva viser moskétomta best?",
           "options": [
-            "At urealiserte planer også former byen",
-            "At parken var en ferdig moské",
-            "At Nybrua ble revet"
+            "at parken alltid var ferdig planlagt",
+            "at alle planer blir bygget",
+            "at urealiserte planer også kan være et historisk bylag"
           ],
-          "answerIndex": 0,
-          "answer": "At urealiserte planer også former byen",
-          "knowledge": "Den tidligere reguleringen forklarer den åpne tomta før parken.",
+          "answer": "at urealiserte planer også kan være et historisk bylag",
+          "answerIndex": 2,
+          "knowledge": "Et ubygget prosjekt kan fortsatt prege stedets planhistorie.",
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken"
+            "bylex",
+            "report"
           ],
-          "claim_basis": "source_modeling"
+          "source_origin": "external",
+          "claim_basis": "Et ubygget prosjekt kan fortsatt prege stedets planhistorie.",
+          "claim_id": "claim_vaterlandsparken_quiz_18",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_18",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_18"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s5_q5",
-          "question": "Hvorfor er Stupere et stedsspesifikt verk?",
+          "id": "vaterlandsparken_quiz_19",
+          "quiz_id": "by_vaterlandsparken_set_3_q5",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hvordan bør 2006- og 2025-bildene brukes?",
           "options": [
-            "Det bruker Akerselva og vannspeilet som del av installasjonen",
-            "Det står inne i et museum",
-            "Det er en løs plakat"
+            "til forsiktig sammenligning med ståstedskaveat",
+            "som eksakt optisk før/etter",
+            "som bevis på alle sosiale endringer"
           ],
+          "answer": "til forsiktig sammenligning med ståstedskaveat",
           "answerIndex": 0,
-          "answer": "Det bruker Akerselva og vannspeilet som del av installasjonen",
-          "knowledge": "Kunstverket henger over elverommet ved parken.",
+          "knowledge": "Ulike kamerastandpunkter begrenser hva bildene kan bevise.",
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_by_materialitet_og_sanseerfaring",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken"
+            "official"
           ],
-          "claim_basis": "place_observation_plus_source"
+          "source_origin": "external",
+          "claim_basis": "Ulike kamerastandpunkter begrenser hva bildene kan bevise.",
+          "claim_id": "claim_vaterlandsparken_quiz_19",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_19",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_19"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s5_q6",
-          "question": "Hva skiller Vaterlandsparken fra Nybrua i dataene?",
+          "id": "vaterlandsparken_quiz_20",
+          "quiz_id": "by_vaterlandsparken_set_3_q6",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva gjør elva i kunstverket «Stupere»?",
           "options": [
-            "Parken er en egen arealgeometri sør for broen",
-            "De er samme OSM-way",
-            "Parken ligger på brodekket"
+            "den beviser kunstnerens motiv",
+            "den inngår i verkets romlige scene",
+            "den gjør parken til en bro"
           ],
-          "answerIndex": 0,
-          "answer": "Parken er en egen arealgeometri sør for broen",
-          "knowledge": "Splitten følger to navngitte fysiske objekter.",
+          "answer": "den inngår i verkets romlige scene",
+          "answerIndex": 1,
+          "knowledge": "Installasjonen må leses sammen med plasseringen over elverommet.",
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_by_materialitet_og_sanseerfaring",
           "source": [
-            "Coordinate evidence – Nybrua / Vaterlandsparken"
+            "bylex",
+            "local"
           ],
-          "claim_basis": "coordinate_evidence_modeling"
+          "source_origin": "external",
+          "claim_basis": "Installasjonen må leses sammen med plasseringen over elverommet.",
+          "claim_id": "claim_vaterlandsparken_quiz_20",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_20",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_20"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         },
         {
-          "id": "vaterlandsparken_s5_q7",
-          "question": "Hvilket punkt passer som canonical parkmarkør?",
+          "id": "vaterlandsparken_quiz_21",
+          "quiz_id": "by_vaterlandsparken_set_3_q7",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva dokumenterer kommunens arbeid med åpne rusmiljøer?",
           "options": [
-            "Representasjonspunktet til OSM-way 4334996",
-            "Et tilfeldig punkt ved Nybrua",
-            "Sentrum av Oslo Spektrum"
+            "at alle parkbrukere bruker rusmidler",
+            "at parken ikke er offentlig",
+            "at Vaterland inngår i et sosialt oppfølgingsfelt"
           ],
-          "answerIndex": 0,
-          "answer": "Representasjonspunktet til OSM-way 4334996",
-          "knowledge": "Den navngitte parkgeometrien gir et entydig area_anchor.",
+          "answer": "at Vaterland inngår i et sosialt oppfølgingsfelt",
+          "answerIndex": 2,
+          "knowledge": "Kommunen dokumenterer et område- og tjenestelag, ikke egenskaper ved alle individer.",
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
           "source": [
-            "OpenStreetMap – Vaterlandsparken"
+            "social"
           ],
-          "claim_basis": "verified_geometry"
+          "source_origin": "external",
+          "claim_basis": "Kommunen dokumenterer et område- og tjenestelag, ikke egenskaper ved alle individer.",
+          "claim_id": "claim_vaterlandsparken_quiz_21",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_21",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_21"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
         }
       ]
     },
     {
-      "id": "vaterlandsparken_s6",
-      "title": "Sammenlign og forstå",
+      "set_id": "by_vaterlandsparken_set_4",
+      "title": "Metode, makt og kildegrenser",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "xp": 125,
       "questions": [
         {
-          "id": "vaterlandsparken_s6_q1",
-          "question": "Hva viser moskétomta-laget?",
+          "id": "vaterlandsparken_quiz_22",
+          "quiz_id": "by_vaterlandsparken_set_4_q1",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva er en etisk grense ved feltobservasjon her?",
           "options": [
-            "At urealiserte planer også former byen",
-            "At parken var en ferdig moské",
-            "At Nybrua ble revet"
+            "ikke identifisere eller diagnostisere enkeltpersoner fra synlig adferd",
+            "fotografere alle nærgående",
+            "anta gruppetilhørighet fra klær"
           ],
+          "answer": "ikke identifisere eller diagnostisere enkeltpersoner fra synlig adferd",
           "answerIndex": 0,
-          "answer": "At urealiserte planer også former byen",
-          "knowledge": "Den tidligere reguleringen forklarer den åpne tomta før parken.",
+          "knowledge": "Stedsanalyse må skille romlige observasjoner fra sensitive personpåstander.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken"
+            "social"
           ],
-          "claim_basis": "source_modeling"
+          "source_origin": "external",
+          "claim_basis": "Stedsanalyse må skille romlige observasjoner fra sensitive personpåstander.",
+          "claim_id": "claim_vaterlandsparken_quiz_22",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_22",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_22"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "method_id": "met_feltobservasjon",
+          "guidance_basis": [
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
         },
         {
-          "id": "vaterlandsparken_s6_q2",
-          "question": "Hvorfor er Stupere et stedsspesifikt verk?",
+          "id": "vaterlandsparken_quiz_23",
+          "quiz_id": "by_vaterlandsparken_set_4_q2",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva bør en før/etter-analyse skille mellom?",
           "options": [
-            "Det bruker Akerselva og vannspeilet som del av installasjonen",
-            "Det står inne i et museum",
-            "Det er en løs plakat"
+            "alle bilder som identiske",
+            "synlig endring og historisk årsaksforklaring",
+            "årstall og kilder som irrelevante"
           ],
-          "answerIndex": 0,
-          "answer": "Det bruker Akerselva og vannspeilet som del av installasjonen",
-          "knowledge": "Kunstverket henger over elverommet ved parken.",
+          "answer": "synlig endring og historisk årsaksforklaring",
+          "answerIndex": 1,
+          "knowledge": "Bilder kan vise elementer; årsaker krever dokumentasjon.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken"
+            "report"
           ],
-          "claim_basis": "place_observation_plus_source"
+          "source_origin": "external",
+          "claim_basis": "Bilder kan vise elementer; årsaker krever dokumentasjon.",
+          "claim_id": "claim_vaterlandsparken_quiz_23",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_23",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_23"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "method_id": "met_for_etter",
+          "guidance_basis": [
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
         },
         {
-          "id": "vaterlandsparken_s6_q3",
-          "question": "Hva skiller Vaterlandsparken fra Nybrua i dataene?",
+          "id": "vaterlandsparken_quiz_24",
+          "quiz_id": "by_vaterlandsparken_set_4_q3",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva betyr sosial infrastruktur i denne analysen?",
           "options": [
-            "Parken er en egen arealgeometri sør for broen",
-            "De er samme OSM-way",
-            "Parken ligger på brodekket"
+            "kun tekniske rør",
+            "et privat medlemskap",
+            "et sted som muliggjør møte, opphold og hverdagsbruk"
           ],
-          "answerIndex": 0,
-          "answer": "Parken er en egen arealgeometri sør for broen",
-          "knowledge": "Splitten følger to navngitte fysiske objekter.",
+          "answer": "et sted som muliggjør møte, opphold og hverdagsbruk",
+          "answerIndex": 2,
+          "knowledge": "Parken kan analyseres som fysisk ramme for hverdagslig sambruk.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
           "source": [
-            "Coordinate evidence – Nybrua / Vaterlandsparken"
+            "official"
           ],
-          "claim_basis": "coordinate_evidence_modeling"
+          "source_origin": "external",
+          "claim_basis": "Parken kan analyseres som fysisk ramme for hverdagslig sambruk.",
+          "claim_id": "claim_vaterlandsparken_quiz_24",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_24",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_24"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "method_id": "met_gaanalyse",
+          "guidance_basis": [
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
         },
         {
-          "id": "vaterlandsparken_s6_q4",
-          "question": "Hvilket punkt passer som canonical parkmarkør?",
+          "id": "vaterlandsparken_quiz_25",
+          "quiz_id": "by_vaterlandsparken_set_4_q4",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva er den tryggeste måten å bruke teori om offentlig rom på?",
           "options": [
-            "Representasjonspunktet til OSM-way 4334996",
-            "Et tilfeldig punkt ved Nybrua",
-            "Sentrum av Oslo Spektrum"
+            "som spørsmål og analysegrep, ikke som erstatning for stedsbevis",
+            "som bevis på alle brukeres mening",
+            "som juridisk eierskapsdokument"
           ],
+          "answer": "som spørsmål og analysegrep, ikke som erstatning for stedsbevis",
           "answerIndex": 0,
-          "answer": "Representasjonspunktet til OSM-way 4334996",
-          "knowledge": "Den navngitte parkgeometrien gir et entydig area_anchor.",
+          "knowledge": "Teori hjelper å stille spørsmål, mens stedspåstander må bæres av casekilder.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "emne_id": "em_by_symbolsk_makt_og_representasjon",
           "source": [
-            "OpenStreetMap – Vaterlandsparken"
+            "official",
+            "social"
           ],
-          "claim_basis": "verified_geometry"
+          "source_origin": "external",
+          "claim_basis": "Teori hjelper å stille spørsmål, mens stedspåstander må bæres av casekilder.",
+          "claim_id": "claim_vaterlandsparken_quiz_25",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_25",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_25"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "method_id": "met_feltobservasjon",
+          "guidance_basis": [
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
         },
         {
-          "id": "vaterlandsparken_s6_q5",
-          "question": "Hvorfor er canonical år 1993?",
+          "id": "vaterlandsparken_quiz_26",
+          "quiz_id": "by_vaterlandsparken_set_4_q5",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva kan konkurrerende bruk av parken vise?",
           "options": [
-            "Det er første år i den dokumenterte anleggsperioden 1993–94",
-            "Det er året Stupere ble laget",
-            "Det er året Nybrua åpnet"
+            "at én gruppe eier parken",
+            "at offentlig rom kan romme ulike interesser samtidig",
+            "at konflikt alltid er negativ"
           ],
-          "answerIndex": 0,
-          "answer": "Det er første år i den dokumenterte anleggsperioden 1993–94",
-          "knowledge": "Datamodellen bruker første år for en dokumentert flerårsperiode.",
+          "answer": "at offentlig rom kan romme ulike interesser samtidig",
+          "answerIndex": 1,
+          "knowledge": "Ulike bruksinteresser kan eksistere i samme offentlige rom.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "emne_id": "em_by_inkludering_ekskludering",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken"
+            "official",
+            "social"
           ],
-          "claim_basis": "source_modeling"
+          "source_origin": "external",
+          "claim_basis": "Ulike bruksinteresser kan eksistere i samme offentlige rom.",
+          "claim_id": "claim_vaterlandsparken_quiz_26",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_26",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_26"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "method_id": "met_feltobservasjon",
+          "guidance_basis": [
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ],
+          "topic_hook_id": "makt_rett_til_byen",
+          "thinker_id": "henri_lefebvre",
+          "work": "The Production of Space",
+          "theory_ref": {
+            "topic_hook_id": "makt_rett_til_byen",
+            "thinker_id": "henri_lefebvre",
+            "work": "The Production of Space",
+            "why_it_helps": "Lefebvres perspektiv gjør det mulig å undersøke tilgang, bruk og romproduksjon uten å gjøre sosial bruk til juridisk eierskap eller grenseløs råderett."
+          }
         },
         {
-          "id": "vaterlandsparken_s6_q6",
-          "question": "Hva er den beste History Go-lesningen av parken?",
+          "id": "vaterlandsparken_quiz_27",
+          "quiz_id": "by_vaterlandsparken_set_4_q6",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva bør analysen gjøre med rusmiljøet?",
           "options": [
-            "Les våtmark, sanering, parkplan, sosialt minne og kunst som lag på samme sted",
-            "Lær bare at det er en plen",
-            "Behandle Nybrua og parken som samme punkt"
+            "ignorere alle kommunale kilder",
+            "gjøre det til parkens eneste identitet",
+            "behandle det som et dokumentert lag uten å la det definere alle mennesker eller hele parken"
           ],
-          "answerIndex": 0,
-          "answer": "Les våtmark, sanering, parkplan, sosialt minne og kunst som lag på samme sted",
-          "knowledge": "Stedet viser hvordan landskap og byplanlegging bygger på hverandre.",
+          "answer": "behandle det som et dokumentert lag uten å la det definere alle mennesker eller hele parken",
+          "answerIndex": 2,
+          "knowledge": "Et sosialt lag skal dokumenteres uten stigmatisering eller totalisering.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
           "source": [
-            "Oslo kommune – Vaterlandsparken",
-            "Oslo byleksikon – Vaterlandsparken"
+            "social"
           ],
-          "claim_basis": "place_observation_plus_source"
+          "source_origin": "external",
+          "claim_basis": "Et sosialt lag skal dokumenteres uten stigmatisering eller totalisering.",
+          "claim_id": "claim_vaterlandsparken_quiz_27",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_27",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_27"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "method_id": "met_feltobservasjon",
+          "guidance_basis": [
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
         },
         {
-          "id": "vaterlandsparken_s6_q7",
-          "question": "Når ble Vaterlandsparken opparbeidet?",
+          "id": "vaterlandsparken_quiz_28",
+          "quiz_id": "by_vaterlandsparken_set_4_q7",
+          "categoryId": "by",
+          "placeId": "vaterlandsparken",
+          "targetId": "vaterlandsparken",
+          "question_scope": "place",
+          "question": "Hva er den viktigste kildegrensen for Vaterlandsparken?",
           "options": [
-            "1993–94",
-            "1827",
-            "1941"
+            "skille det som observeres nå fra historiske og sosiale påstander som krever egne kilder",
+            "anta at dagens utseende forklarer hele historien",
+            "bruke ett bilde som bevis for alle perioder"
           ],
+          "answer": "skille det som observeres nå fra historiske og sosiale påstander som krever egne kilder",
           "answerIndex": 0,
-          "answer": "1993–94",
-          "knowledge": "Oslo kommune opparbeidet parken i 1993–94.",
+          "knowledge": "Stedsobservasjon, historiske kilder og sosial dokumentasjon må ha hver sin evidensrolle.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Oslo byleksikon – Vaterlandsparken"
+            "official",
+            "bylex",
+            "social"
           ],
-          "claim_basis": "documented_external_sources"
+          "source_origin": "external",
+          "claim_basis": "Stedsobservasjon, historiske kilder og sosial dokumentasjon må ha hver sin evidensrolle.",
+          "claim_id": "claim_vaterlandsparken_quiz_28",
+          "primary_knowledge_unit_id": "ku_by_vaterlandsparken_28",
+          "knowledge_unit_ids": [
+            "ku_by_vaterlandsparken_28"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "method_id": "met_for_etter",
+          "guidance_basis": [
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
         }
       ]
     }

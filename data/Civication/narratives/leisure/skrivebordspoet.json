@@ -1,0 +1,683 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "skrivebordspoet_stream",
+  "type": "leisure",
+  "title": "Skrivebordspoet ved siden av hverdagen",
+  "sociological_theme": "skriving_sarbarhet_status_kreditering_og_grensen_mot_profesjonell_litteraturrolle_og_redaksjonsmyndighet",
+  "applies_when": {
+    "any_tags": [
+      "skrivebordspoet",
+      "litteratur:skrivebordspoet"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "notatboken_ingen_ser",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Den lukkede notatboken",
+      "subject": "Må teksten bli noe?",
+      "situation": [
+        "Du har skrevet jevnlig i en notatbok som ingen andre har lest, og en kveld spør du deg selv om teksten teller når den aldri blir publisert.",
+        "Det er fristende å måle praksisen mot bøker, tidsskrifter og navn som allerede finnes offentlig.",
+        "Skrivebordspoet er en skrivepraksis før den er en prestasjon, og identiteten trenger ikke en profesjonell tittel for å være virkelig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La teksten få være praksis nå og vurdere publisering som et senere, separat valg.",
+          "effect": 1,
+          "tags": [
+            "practice_identity",
+            "intrinsic_motivation",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder skrivingen som noe du gjør, ikke bare som en søknad om status."
+        },
+        {
+          "id": "B",
+          "label": "Bestemme at teksten ikke teller før noen profesjonelle har valgt den ut.",
+          "effect": -1,
+          "tags": [
+            "status_dependency",
+            "publication_pressure",
+            "self_erasure"
+          ],
+          "feedback": "Du gjør institusjonell anerkjennelse til inngangsbilletten for å skrive."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_practice_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "skrivesperren_og_den_perfekte_forste_linjen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Et tomt dokument",
+      "subject": "Første linje må være god",
+      "situation": [
+        "Du har omskrevet første linje så mange ganger at resten av teksten aldri begynner.",
+        "Perfeksjonismen føles som kvalitetskontroll, men fungerer også som en måte å unngå risikoen ved å skrive noe uferdig.",
+        "En levende skrivepraksis må tåle skisser som ikke fortjener publikum ennå."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skrive en bevisst grov versjon og skille arbeidsutkast fra vurderingen som kommer senere.",
+          "effect": 1,
+          "tags": [
+            "process",
+            "uncertainty",
+            "creative_practice"
+          ],
+          "feedback": "Du lager et rom der teksten kan eksistere før den må prestere."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette å polere åpningen til den høres profesjonell ut før du går videre.",
+          "effect": -1,
+          "tags": [
+            "perfectionism",
+            "status_anxiety",
+            "stagnation"
+          ],
+          "feedback": "Språket blir blankere mens teksten fortsatt står stille."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_process_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennens_historie_i_diktet",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En nær venn",
+      "subject": "Dette ligner veldig på det jeg fortalte deg",
+      "situation": [
+        "Du har brukt detaljer fra en venns vanskelige periode i et dikt, uten navn men med trekk vennen kjenner igjen.",
+        "For deg ble detaljene materiale; for vennen var de betrodd i en privat relasjon.",
+        "At en tekst er kunstnerisk bearbeidet opphever ikke spørsmål om samtykke, gjenkjennelighet og tillit."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stoppe deling og avklare med vennen hva som faktisk kan brukes, selv om teksten må endres.",
+          "effect": 1,
+          "tags": [
+            "consent",
+            "privacy",
+            "relationship_trust"
+          ],
+          "feedback": "Du lar relasjonen sette en reell grense for materialet."
+        },
+        {
+          "id": "B",
+          "label": "Beholde teksten fordi anonymisering betyr at historien nå er din litterære versjon.",
+          "effect": -1,
+          "tags": [
+            "consent_breach",
+            "appropriation",
+            "privacy_risk"
+          ],
+          "feedback": "Du beholder diktet ved å gjøre fortellerrett viktigere enn tilliten."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_private_material"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verkstedet_som_vil_skrive_om_stemmen",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En skrivegruppe",
+      "subject": "Dette ville fungert bedre om du gjorde det sånn",
+      "situation": [
+        "I en skrivegruppe foreslår flere store endringer som ville gjort teksten strammere, men også mindre gjenkjennelig som din.",
+        "Tilbakemeldingen er konkret og velment, og du merker hvor lett gruppekonsensus kan høres ut som redaksjonell fasit.",
+        "Kritikk kan være nyttig evidens om leseropplevelse uten å bli eierskap til teksten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lytte etter mønstre i reaksjonene, teste noen forslag og beholde ansvaret for den endelige stemmen.",
+          "effect": 1,
+          "tags": [
+            "feedback",
+            "author_voice",
+            "revision"
+          ],
+          "feedback": "Du bruker verkstedet som informasjon, ikke som en uformell redaksjon med vetorett."
+        },
+        {
+          "id": "B",
+          "label": "Gjøre alle endringene fordi flere erfarne lesere sikkert vet bedre hva teksten trenger.",
+          "effect": -1,
+          "tags": [
+            "group_authority",
+            "voice_loss",
+            "status"
+          ],
+          "feedback": "Du får konsensus, men mister skillet mellom råd og beslutning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_feedback_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "linjen_som_ligner_for_mye",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "En gammel diktsamling",
+      "subject": "Hvor har jeg dette bildet fra?",
+      "situation": [
+        "Du finner en formulering i et eget utkast som ligger ubehagelig nær en linje i en diktsamling du leste tidligere.",
+        "Du husker ikke om likheten er bevisst, tilfeldig eller noe du tok inn uten å merke det.",
+        "Originalitet handler også om å tåle å undersøke egen kildehukommelse før teksten deles."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Markere linjen som usikker, finne kilden igjen og omskrive eller kreditere der det er relevant.",
+          "effect": 1,
+          "tags": [
+            "attribution",
+            "source_care",
+            "authorship"
+          ],
+          "feedback": "Du behandler påvirkning som noe som kan undersøkes, ikke skjules."
+        },
+        {
+          "id": "B",
+          "label": "La linjen stå fordi ingen kan eie en stemning og du sikkert hadde kommet på den selv.",
+          "effect": -1,
+          "tags": [
+            "plagiarism_risk",
+            "self_justification",
+            "source_gap"
+          ],
+          "feedback": "Du løser usikkerheten ved å erklære den irrelevant."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_attribution_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "likene_som_blir_kvalitetsdom",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En tekst lagt ut på nett",
+      "subject": "Denne fikk mye mer respons",
+      "situation": [
+        "To korte tekster du deler på nett får helt ulik respons, og den mest tilgjengelige får langt flere likerklikk.",
+        "Det er lett å lese tallene som en objektiv dom over hvilken tekst som er best.",
+        "Offentlig oppmerksomhet er sosial informasjon, men ikke en litterær fasit."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrere hva responsen sier om publikum og format uten å gjøre antallet likerklikk til kvalitetsmål.",
+          "effect": 1,
+          "tags": [
+            "public_attention",
+            "metric_boundary",
+            "creative_judgment"
+          ],
+          "feedback": "Du kan lære av respons uten å la plattformen redigere smaken din."
+        },
+        {
+          "id": "B",
+          "label": "Skifte skrivestil mot det som får mest respons fordi publikum allerede har vist hva som fungerer.",
+          "effect": -1,
+          "tags": [
+            "metric_control",
+            "status_anxiety",
+            "creative_conformity"
+          ],
+          "feedback": "Tallene blir en redaktør som aldri trenger å begrunne vurderingen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_attention_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "avslaget_fra_tidsskriftet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "En standardisert e-post",
+      "subject": "Takk, men nei takk",
+      "situation": [
+        "Et lite tidsskrift avslår teksten din med en kort standardmelding.",
+        "Du vet ingenting om redaksjonens kapasitet, tema, smak eller hvor mange tekster de fikk inn.",
+        "Avslag er et reelt utfall i en publiseringsprosess, men det er ikke en total dom over skrivepraksisen eller identiteten din."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La avslaget være avgrenset til denne innsendingen og vurdere teksten på nytt uten å gjøre redaksjonen til dommer over hele praksisen.",
+          "effect": 1,
+          "tags": [
+            "rejection",
+            "resilience",
+            "role_clarity"
+          ],
+          "feedback": "Du tar avslaget alvorlig uten å gjøre det allmektig."
+        },
+        {
+          "id": "B",
+          "label": "Legge teksten bort permanent fordi en faktisk redaksjon allerede har sagt hva den er verdt.",
+          "effect": -1,
+          "tags": [
+            "status_dependency",
+            "rejection_shame",
+            "stagnation"
+          ],
+          "feedback": "Én institusjonell beslutning blir gjort til universell litterær sannhet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_rejection_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "opplesningen_og_skjelvingen",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En åpen mikrofon",
+      "subject": "Vil du lese noe?",
+      "situation": [
+        "Du melder deg på en åpen mikrofon og kjenner at en privat tekst endrer karakter idet et rom fullt av mennesker lytter.",
+        "Noen reagerer sterkt, andre ser ned, og du vet ikke hva stillheten betyr.",
+        "Å lese offentlig kan gi erfaring og sosial status uten å gjøre deg til profesjonell forfatter eller autorisert litterær stemme."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lese teksten som din egen praksis og la publikumsreaksjonen være én erfaring blant flere.",
+          "effect": 1,
+          "tags": [
+            "performance",
+            "vulnerability",
+            "public_attention"
+          ],
+          "feedback": "Du tåler synlighet uten å kreve at den må bekrefte en profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "Tolke den sterke responsen som bevis på at du nå bør presentere deg som profesjonell forfatter.",
+          "effect": -1,
+          "tags": [
+            "status_inflation",
+            "public_attention",
+            "career_confusion"
+          ],
+          "feedback": "Et godt øyeblikk blir gjort til en jobb- og autoritetsport."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_public_performance_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "teksten_som_vennen_vil_ha_gratis",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En bekjent",
+      "subject": "Kan du bare skrive dette litt fint?",
+      "situation": [
+        "En bekjent ber deg skrive en tale eller presentasjonstekst gratis fordi «du er jo den som skriver».",
+        "Oppgaven virker liten, men krever tid og gjør det uklart om du hjelper som venn eller tar et faktisk oppdrag.",
+        "En identitet kan gjøre ferdigheter synlige uten å skape plikt til gratisarbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklare om dette er en liten vennetjeneste eller et oppdrag, og sette en rimelig grense før du sier ja.",
+          "effect": 1,
+          "tags": [
+            "boundary",
+            "invisible_work",
+            "relationship"
+          ],
+          "feedback": "Du gjør arbeidet synlig før forventningen rekker å bli rettighet."
+        },
+        {
+          "id": "B",
+          "label": "Si ja med en gang fordi det virker smålig å kreve noe når skriving bare er hobbyen din.",
+          "effect": -1,
+          "tags": [
+            "free_labor",
+            "role_pressure",
+            "resentment"
+          ],
+          "feedback": "At arbeidet ikke er en fast jobb gjør tiden din usynlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_unpaid_labor_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "honorar_for_introtekst",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "En litteraturarrangør",
+      "subject": "Kan du skrive en kort introduksjon?",
+      "situation": [
+        "En litteraturarrangør tilbyr et lite honorar for en kort introduksjonstekst til en opplesningskveld.",
+        "Oppdraget er konkret og avgrenset; det gjør deg ikke til forlagsredaktør, profesjonell forfatter, rettighetsansvarlig eller person med publiserings-, kontrakts- eller forskuddsmyndighet.",
+        "Her møtes Skrivebordspoet-identiteten og levevei, men de skal fortsatt være separate lag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta oppdraget med tydelig lengde, frist, kildegrunnlag og hvem som godkjenner den endelige teksten.",
+          "effect": 1,
+          "tags": [
+            "bounded_freelance",
+            "livelihood_boundary",
+            "editorial_scope"
+          ],
+          "feedback": "Du kan få betalt for én tekst uten å blåse opp oppdraget til en profesjonell rolle."
+        },
+        {
+          "id": "B",
+          "label": "Bruke oppdraget som tegn på at du nå kan opptre som redaksjonell representant for arrangementet og forfatterne.",
+          "effect": -1,
+          "tags": [
+            "career_confusion",
+            "authority_overreach",
+            "status"
+          ],
+          "feedback": "Et lite honorar blir gjort til myndighet avtalen aldri ga."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_livelihood_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arrangoren_vil_ha_en_sikrere_pastand",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Litteraturarrangøren",
+      "subject": "Kan du skrive at denne boka forandret norsk litteratur?",
+      "situation": [
+        "I introduksjonsteksten ønsker arrangøren en stor påstand om en bok og ber deg formulere den «litt sikrere».",
+        "Du finner anmeldelser og omtaler som støtter at boka var viktig, men ikke en kilde som gjør den store formuleringen til ubestridt faktum.",
+        "Et honorert tekstoppdrag gir ansvar for presisjon, ikke rett til å gjøre reklamespråk til dokumentert litteraturhistorie."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Omskrive påstanden til noe kildene faktisk bærer og markere vurdering som vurdering.",
+          "effect": 1,
+          "tags": [
+            "source_care",
+            "editorial_integrity",
+            "claim_boundary"
+          ],
+          "feedback": "Du leverer en bedre tekst ved å gjøre sikkerheten mindre falsk."
+        },
+        {
+          "id": "B",
+          "label": "Bruke den sterke formuleringen fordi arrangøren er oppdragsgiver og teksten tross alt er promotering.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "client_pressure",
+            "source_risk"
+          ],
+          "feedback": "Oppdragsforholdet blir brukt som erstatning for kildegrunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_paid_claim_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fellesheftet_og_hvem_som_eier_hva",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En liten skrivegruppe",
+      "subject": "Skal vi lage et hefte?",
+      "situation": [
+        "Skrivegruppen vil samle tekster i et lite hefte, og noen foreslår å rydde språket i alles bidrag før trykk.",
+        "Ingen har avklart hvem som kan endre tekst, hvilke navn som skal stå, eller om gamle bilder og sitater faktisk kan brukes.",
+        "Et kollektivt prosjekt trenger eksplisitte grenser for kreditering, redigering og rettigheter selv om det er uformelt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklare samtykke til redigering, kreditering og materialbruk før noen endrer eller publiserer andres bidrag.",
+          "effect": 1,
+          "tags": [
+            "collective_authorship",
+            "rights",
+            "consent"
+          ],
+          "feedback": "Det lille prosjektet får en ryddig arbeidsform uten å late som gruppa er et forlag."
+        },
+        {
+          "id": "B",
+          "label": "La den mest språksterke i gruppa redigere alt for helhetens skyld og ordne detaljer senere.",
+          "effect": -1,
+          "tags": [
+            "editorial_overreach",
+            "rights_gap",
+            "group_power"
+          ],
+          "feedback": "Effektiviteten skaper en uformell redaktørrolle uten avklart mandat."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_collective_rights_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_gamle_teksten_som_ikke_lenger_er_deg",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Et gammelt utkast",
+      "subject": "Skrev jeg virkelig dette?",
+      "situation": [
+        "Du finner en tekst fra flere år tilbake som bruker et språk og et syn du ikke lenger står for.",
+        "Det er fristende enten å slette den helt eller å late som den aldri var en del av praksisen.",
+        "Et privat arkiv kan vise endring over tid uten at eldre tekst må bli offentlig identitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde utkastet som privat spor og skille historien om egen praksis fra hva du velger å publisere nå.",
+          "effect": 1,
+          "tags": [
+            "self_archive",
+            "change_over_time",
+            "identity"
+          ],
+          "feedback": "Du tåler kontinuitet uten å gjøre alle gamle ord til dagens posisjon."
+        },
+        {
+          "id": "B",
+          "label": "Slette alt gammelt som ikke passer med hvordan du vil framstå som skriver i dag.",
+          "effect": -1,
+          "tags": [
+            "self_curating",
+            "status_anxiety",
+            "memory_loss"
+          ],
+          "feedback": "Du får en ryddigere identitet ved å gjøre utviklingen mindre synlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_self_archive"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hvem_skriver_du_for",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Det siste utkastet",
+      "subject": "Hva slags Skrivebordspoet ble du?",
+      "situation": [
+        "Etter uker med notater, avslag, opplesning, verksted og et lite betalt oppdrag ser du at skrivingen lever i flere rom samtidig: privat, sosialt, offentlig og av og til økonomisk.",
+        "Skrivebordspoet er en valgt praksis, ikke en jobbport eller garanti om publisering.",
+        "Den sosiale testen er om du kan ta teksten alvorlig uten å gjøre redaksjonell anerkjennelse, publikumsrespons eller honorar til eierskap over stemmen din."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta med deg en fast regel videre: skill praksis, publisering, oppdrag og profesjonell myndighet, og behold kilde-, samtykke- og krediteringsgrenser tydelige.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "role_clarity",
+            "authorship"
+          ],
+          "feedback": "Identiteten blir en disiplin for å skrive, ikke en snarvei til tittel."
+        },
+        {
+          "id": "B",
+          "label": "Bestemme at neste mål må være å få nok publiseringer til at ingen lenger kan tvile på at du er en ekte forfatter.",
+          "effect": -1,
+          "tags": [
+            "status_identity",
+            "publication_pressure",
+            "career_confusion"
+          ],
+          "feedback": "Skrivepraksisen blir igjen gjort avhengig av ekstern rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deskpoet_season_reflection"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

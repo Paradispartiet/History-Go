@@ -77,7 +77,7 @@ Ingen ny Språkatlas→AHA-eksport opprettes. History Go eksporterer allerede `h
 
 ## UI
 
-v4 utvider bare den eksisterende Språkatlas-seleksjonen. Det opprettes ingen ny PlaceCard-runding.
+v4 utvider bare den eksisterende Språkatlas-seleksjonen, som nå eies av den separate siden `sprakatlas.html`. Atlasbelegg skal ikke renderes inne i PlaceCard; det opprettes heller ingen ny PlaceCard-runding.
 
 For et samleklart atlasbelegg vises claim, tids-/verifiseringsmetadata, kilder og **Samle kunnskapen**. Etter samling skifter knappen til **Samlet**.
 

@@ -168,18 +168,16 @@ Samlingsmodellen eies **kun** av `data/places/README_place_rounds.md`.
 
 For nye/fullproduserte ordinære steder viser PlaceCard nøyaktig fire ferdige samlinger i 2×2. Related er et relasjons-/navigasjonssystem, ikke en samling.
 
-### På stedet
+### Utforsk og På stedet
 
-Hva som faktisk skjer eller kan gjøres ved stedet, for eksempel:
+Globale oppdagelsesflater ligger i venstre **Utforsk**-panel:
 
-- Events;
-- Social Meet;
-- Spotmeeting/Kunnskapsmøte;
-- Tasks;
-- Training;
-- Play.
+- **Events** — kommende canonical events;
+- **Møtes** — én inngang for å foreslå Kunnskapsmøte og følge opp i Social Meet.
 
-Quiz, Observer, Notat og Rute kan ha egne flows.
+PlaceCard/**På stedet** er bare for reelle, stedstypebundne handlinger som faktisk utføres på stedet, for eksempel **Play/Lek** når stedet er en faktisk lekeplass. Tasks er fjernet som produktkonsept, og Training følger sportsstedets type-spesifikke innhold.
+
+Quiz, Observer, Notat og Rute beholder egne flows.
 
 ### Stedspopup
 

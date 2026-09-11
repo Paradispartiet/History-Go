@@ -1,44 +1,99 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "status": "canonical",
-  "updatedAt": "2026-07-29",
-  "rule": "Events er alltid første synlige handling. Øvrige stedshandlinger styres av kategori og stedstype og samles under Mer. Aktivitetsflater skal bare finnes der stedets type eller kategori faktisk tilsier dem.",
+  "updatedAt": "2026-09-11",
+  "rule": "Events og møteflater eies av Utforsk i venstre panel. PlaceCard/På stedet viser bare kategori- eller stedstypeavhengige handlinger som faktisk må utføres på det konkrete stedet.",
   "actions": {
-    "events": { "label": "Events", "icon": "📅" },
-    "social-meet": { "label": "Avtal å møtes", "icon": "👥" },
-    "knowledge-meet": { "label": "Kunnskapsmøte", "icon": "🧠" },
-    "play": { "label": "Lek", "icon": "🛝" }
+    "play": {
+      "label": "Lek",
+      "icon": "🛝"
+    }
   },
-  "modes": ["always", "whenData", "never"],
+  "modes": [
+    "always",
+    "whenData",
+    "never"
+  ],
   "categoryPolicy": {
-    "by": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "historie": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "kunst": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "litteratur": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "media": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "musikk": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "naeringsliv": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "natur": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "politikk": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "psykologi": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "helse": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "utdanning": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "religion": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "scenekunst": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "sport": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "subkultur": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "vitenskap": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "teknologi": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "filosofi": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" },
-    "film_tv": { "events": "always", "social-meet": "always", "knowledge-meet": "always", "play": "never" }
+    "by": {
+      "play": "never"
+    },
+    "historie": {
+      "play": "never"
+    },
+    "kunst": {
+      "play": "never"
+    },
+    "litteratur": {
+      "play": "never"
+    },
+    "media": {
+      "play": "never"
+    },
+    "musikk": {
+      "play": "never"
+    },
+    "naeringsliv": {
+      "play": "never"
+    },
+    "natur": {
+      "play": "never"
+    },
+    "politikk": {
+      "play": "never"
+    },
+    "psykologi": {
+      "play": "never"
+    },
+    "helse": {
+      "play": "never"
+    },
+    "utdanning": {
+      "play": "never"
+    },
+    "religion": {
+      "play": "never"
+    },
+    "scenekunst": {
+      "play": "never"
+    },
+    "sport": {
+      "play": "never"
+    },
+    "subkultur": {
+      "play": "never"
+    },
+    "vitenskap": {
+      "play": "never"
+    },
+    "teknologi": {
+      "play": "never"
+    },
+    "filosofi": {
+      "play": "never"
+    },
+    "film_tv": {
+      "play": "never"
+    }
   },
   "placeTypeOverrides": {
-    "lekeplass": { "play": "always" },
-    "lekepark": { "play": "always" },
-    "playground": { "play": "always" }
+    "lekeplass": {
+      "play": "always"
+    },
+    "lekepark": {
+      "play": "always"
+    },
+    "playground": {
+      "play": "always"
+    }
   },
   "excludedConcepts": {
     "tasks": "Oppgaver er fjernet fra History GO-produktet.",
     "training": "Trening er type-spesifikt sportsinnhold i stedspopupen, ikke en På stedet-handling."
+  },
+  "movedSurfaces": {
+    "events": "Utforsk → Events",
+    "social-meet": "Utforsk → Møtes / Mine møter",
+    "knowledge-meet": "Utforsk → Møtes / Foreslå kunnskapsmøte"
   }
 }
