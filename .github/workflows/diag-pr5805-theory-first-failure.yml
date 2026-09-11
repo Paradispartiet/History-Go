@@ -1,13 +1,10 @@
-name: Diagnose PR 5805 theory first failure
-
+name: Diagnose PR 5805 exact theory workflow
 on:
   push:
     branches:
       - agent/diag-pr5805-theory-first-failure-20260911
-
 permissions:
   contents: read
-
 jobs:
   isolate:
     runs-on: ubuntu-latest
@@ -16,47 +13,143 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: baseline theory quality
-        run: node --input-type=module -e "import { auditFagverkTheoryQuality as f } from './scripts/audit-fagverk-theory-quality.mjs'; f({checkReport:true});"
-      - name: film_tv
-        run: node --input-type=module -e "import { auditFilmTvTheoryCanon as f } from './scripts/audit-fagverk-film-tv-theory-canon.mjs'; f();"
-      - name: religion
-        run: node --input-type=module -e "import { auditReligionTheoryCanon as f } from './scripts/audit-fagverk-religion-theory-canon.mjs'; f();"
-      - name: scenekunst
-        run: node --input-type=module -e "import { auditScenekunstTheoryCanon as f } from './scripts/audit-fagverk-scenekunst-theory-canon.mjs'; f();"
-      - name: subkultur
-        run: node --input-type=module -e "import { auditSubkulturTheoryAttribution as f } from './scripts/audit-subkultur-theory-attribution-v1.mjs'; f();"
-      - name: historie
-        run: node --input-type=module -e "import { auditHistoryTheoryIntegrity as f } from './tools/audit-historie-theory-integrity.mjs'; f();"
-      - name: by
-        run: node --input-type=module -e "import { auditByTheoryIntegrity as f } from './tools/audit-by-theory-integrity.mjs'; f();"
-      - name: kunst
-        run: node --input-type=module -e "import { auditKunstTheoryIntegrity as f } from './tools/audit-kunst-theory-integrity.mjs'; f();"
-      - name: media
-        run: node --input-type=module -e "import { auditMediaTheoryIntegrity as f } from './tools/audit-media-theory-integrity.mjs'; f();"
-      - name: musikk
-        run: node --input-type=module -e "import { auditMusikkTheoryIntegrity as f } from './tools/audit-musikk-theory-integrity.mjs'; f();"
-      - name: litteratur
-        run: node --input-type=module -e "import { auditLitteraturTheoryIntegrity as f } from './tools/audit-litteratur-theory-integrity.mjs'; f();"
-      - name: natur
-        run: node --input-type=module -e "import { auditNaturTheoryIntegrity as f } from './tools/audit-natur-theory-integrity.mjs'; f();"
-      - name: helse
-        run: node --input-type=module -e "import { auditHelseTheoryIntegrity as f } from './tools/audit-helse-theory-integrity.mjs'; f();"
-      - name: naeringsliv
-        run: node --input-type=module -e "import { auditNaeringslivTheoryIntegrity as f } from './tools/audit-naeringsliv-theory-integrity.mjs'; f();"
-      - name: psykologi
-        run: node --input-type=module -e "import { auditPsykologiTheoryIntegrity as f } from './tools/audit-psykologi-theory-integrity.mjs'; f();"
-      - name: sport
-        run: node --input-type=module -e "import { auditSportTheoryIntegrity as f } from './tools/audit-sport-theory-integrity.mjs'; f();"
-      - name: vitenskap
-        run: node --input-type=module -e "import { auditVitenskapTheoryIntegrity as f } from './tools/audit-vitenskap-theory-integrity.mjs'; f();"
-      - name: politikk
-        run: node --input-type=module -e "import { auditPolitikkTheoryIntegrity as f } from './tools/audit-politikk-theory-integrity.mjs'; f();"
-      - name: filosofi
-        run: node --input-type=module -e "import { auditFilosofiTheoryIntegrity as f } from './tools/audit-filosofi-theory-integrity.mjs'; f();"
-      - name: teknologi
-        run: node --input-type=module -e "import { auditTechnologyTheoryIntegrity as f } from './tools/audit-teknologi-theory-integrity.mjs'; f();"
-      - name: utdanning
-        run: node --input-type=module -e "import { auditUtdanningTheoryIntegrity as f } from './tools/audit-utdanning-theory-integrity.mjs'; f();"
-      - name: global audit
+      - name: 01 check scripts/audit-fagverk-theory-integrity.mjs
+        run: node --check scripts/audit-fagverk-theory-integrity.mjs
+      - name: 02 check scripts/audit-fagverk-kunst-legacy-theory.mjs
+        run: node --check scripts/audit-fagverk-kunst-legacy-theory.mjs
+      - name: 03 check scripts/audit-fagverk-kunst-legacy-adjudication.mjs
+        run: node --check scripts/audit-fagverk-kunst-legacy-adjudication.mjs
+      - name: 04 check scripts/materialize-kunst-gatekunst-legacy-gap-v1.mjs
+        run: node --check scripts/materialize-kunst-gatekunst-legacy-gap-v1.mjs
+      - name: 05 check scripts/audit-fagverk-litteratur-legacy-theory.mjs
+        run: node --check scripts/audit-fagverk-litteratur-legacy-theory.mjs
+      - name: 06 check scripts/audit-fagverk-litteratur-legacy-adjudication.mjs
+        run: node --check scripts/audit-fagverk-litteratur-legacy-adjudication.mjs
+      - name: 07 check scripts/audit-fagverk-media-legacy-theory.mjs
+        run: node --check scripts/audit-fagverk-media-legacy-theory.mjs
+      - name: 08 check scripts/audit-fagverk-media-legacy-adjudication.mjs
+        run: node --check scripts/audit-fagverk-media-legacy-adjudication.mjs
+      - name: 09 check scripts/audit-fagverk-musikk-legacy-theory.mjs
+        run: node --check scripts/audit-fagverk-musikk-legacy-theory.mjs
+      - name: 10 check scripts/audit-fagverk-musikk-legacy-adjudication.mjs
+        run: node --check scripts/audit-fagverk-musikk-legacy-adjudication.mjs
+      - name: 11 check scripts/audit-fagverk-naeringsliv-legacy-theory.mjs
+        run: node --check scripts/audit-fagverk-naeringsliv-legacy-theory.mjs
+      - name: 12 check scripts/audit-fagverk-naeringsliv-legacy-adjudication.mjs
+        run: node --check scripts/audit-fagverk-naeringsliv-legacy-adjudication.mjs
+      - name: 13 check scripts/audit-fagverk-natur-legacy-theory.mjs
+        run: node --check scripts/audit-fagverk-natur-legacy-theory.mjs
+      - name: 14 check scripts/audit-fagverk-natur-legacy-adjudication.mjs
+        run: node --check scripts/audit-fagverk-natur-legacy-adjudication.mjs
+      - name: 15 check scripts/audit-fagverk-sport-legacy-theory.mjs
+        run: node --check scripts/audit-fagverk-sport-legacy-theory.mjs
+      - name: 16 check tools/audit-by-theory-integrity.mjs
+        run: node --check tools/audit-by-theory-integrity.mjs
+      - name: 17 check tools/audit-kunst-theory-integrity.mjs
+        run: node --check tools/audit-kunst-theory-integrity.mjs
+      - name: 18 check tools/audit-media-theory-integrity.mjs
+        run: node --check tools/audit-media-theory-integrity.mjs
+      - name: 19 check tools/audit-musikk-theory-integrity.mjs
+        run: node --check tools/audit-musikk-theory-integrity.mjs
+      - name: 20 check tools/audit-litteratur-theory-integrity.mjs
+        run: node --check tools/audit-litteratur-theory-integrity.mjs
+      - name: 21 check tools/audit-natur-theory-integrity.mjs
+        run: node --check tools/audit-natur-theory-integrity.mjs
+      - name: 22 check tools/audit-helse-theory-integrity.mjs
+        run: node --check tools/audit-helse-theory-integrity.mjs
+      - name: 23 check tools/audit-naeringsliv-theory-integrity.mjs
+        run: node --check tools/audit-naeringsliv-theory-integrity.mjs
+      - name: 24 check tools/audit-psykologi-theory-integrity.mjs
+        run: node --check tools/audit-psykologi-theory-integrity.mjs
+      - name: 25 check tools/audit-sport-theory-integrity.mjs
+        run: node --check tools/audit-sport-theory-integrity.mjs
+      - name: 26 check tools/audit-vitenskap-theory-integrity.mjs
+        run: node --check tools/audit-vitenskap-theory-integrity.mjs
+      - name: 27 check tools/audit-politikk-theory-integrity.mjs
+        run: node --check tools/audit-politikk-theory-integrity.mjs
+      - name: 28 check tools/audit-filosofi-theory-integrity.mjs
+        run: node --check tools/audit-filosofi-theory-integrity.mjs
+      - name: 29 check tools/audit-teknologi-theory-integrity.mjs
+        run: node --check tools/audit-teknologi-theory-integrity.mjs
+      - name: 30 run scripts/audit-fagverk-theory-integrity.mjs
         run: node scripts/audit-fagverk-theory-integrity.mjs
+      - name: 31 run scripts/audit-fagverk-media-legacy-theory.mjs --no-check-report
+        run: node scripts/audit-fagverk-media-legacy-theory.mjs --no-check-report
+      - name: 32 run scripts/audit-fagverk-media-legacy-adjudication.mjs
+        run: node scripts/audit-fagverk-media-legacy-adjudication.mjs
+      - name: 33 run scripts/audit-fagverk-musikk-legacy-theory.mjs --no-check-report
+        run: node scripts/audit-fagverk-musikk-legacy-theory.mjs --no-check-report
+      - name: 34 run scripts/audit-fagverk-musikk-legacy-adjudication.mjs
+        run: node scripts/audit-fagverk-musikk-legacy-adjudication.mjs
+      - name: 35 run scripts/audit-fagverk-naeringsliv-legacy-theory.mjs
+        run: node scripts/audit-fagverk-naeringsliv-legacy-theory.mjs
+      - name: 36 run scripts/audit-fagverk-naeringsliv-legacy-adjudication.mjs
+        run: node scripts/audit-fagverk-naeringsliv-legacy-adjudication.mjs
+      - name: 37 run scripts/audit-fagverk-natur-legacy-theory.mjs
+        run: node scripts/audit-fagverk-natur-legacy-theory.mjs
+      - name: 38 run scripts/audit-fagverk-natur-legacy-adjudication.mjs
+        run: node scripts/audit-fagverk-natur-legacy-adjudication.mjs
+      - name: 39 run scripts/audit-fagverk-sport-legacy-theory.mjs
+        run: node scripts/audit-fagverk-sport-legacy-theory.mjs
+      - name: 40 test tests/by-theory-integrity.test.mjs
+        run: node --test tests/by-theory-integrity.test.mjs
+      - name: 41 test tests/kunst-theory-integrity.test.mjs
+        run: node --test tests/kunst-theory-integrity.test.mjs
+      - name: 42 test tests/fagverk-kunst-legacy-theory-audit.test.mjs
+        run: node --test tests/fagverk-kunst-legacy-theory-audit.test.mjs
+      - name: 43 test tests/fagverk-kunst-gatekunst-legacy-gap-v1.test.mjs
+        run: node --test tests/fagverk-kunst-gatekunst-legacy-gap-v1.test.mjs
+      - name: 44 test tests/fagverk-kunst-legacy-theory-adjudication.test.mjs
+        run: node --test tests/fagverk-kunst-legacy-theory-adjudication.test.mjs
+      - name: 45 test tests/media-theory-integrity.test.mjs
+        run: node --test tests/media-theory-integrity.test.mjs
+      - name: 46 test tests/fagverk-media-legacy-theory-audit.test.mjs
+        run: node --test tests/fagverk-media-legacy-theory-audit.test.mjs
+      - name: 47 test tests/fagverk-media-legacy-theory-adjudication.test.mjs
+        run: node --test tests/fagverk-media-legacy-theory-adjudication.test.mjs
+      - name: 48 test tests/musikk-theory-integrity.test.mjs
+        run: node --test tests/musikk-theory-integrity.test.mjs
+      - name: 49 test tests/fagverk-musikk-legacy-theory-audit.test.mjs
+        run: node --test tests/fagverk-musikk-legacy-theory-audit.test.mjs
+      - name: 50 test tests/fagverk-musikk-legacy-theory-adjudication.test.mjs
+        run: node --test tests/fagverk-musikk-legacy-theory-adjudication.test.mjs
+      - name: 51 test tests/fagverk-naeringsliv-legacy-theory-audit.test.mjs
+        run: node --test tests/fagverk-naeringsliv-legacy-theory-audit.test.mjs
+      - name: 52 test tests/fagverk-naeringsliv-legacy-theory-adjudication.test.mjs
+        run: node --test tests/fagverk-naeringsliv-legacy-theory-adjudication.test.mjs
+      - name: 53 test tests/fagverk-natur-legacy-theory-audit.test.mjs
+        run: node --test tests/fagverk-natur-legacy-theory-audit.test.mjs
+      - name: 54 test tests/fagverk-natur-legacy-theory-adjudication.test.mjs
+        run: node --test tests/fagverk-natur-legacy-theory-adjudication.test.mjs
+      - name: 55 test tests/fagverk-sport-legacy-theory-audit.test.mjs
+        run: node --test tests/fagverk-sport-legacy-theory-audit.test.mjs
+      - name: 56 test tests/litteratur-theory-integrity.test.mjs
+        run: node --test tests/litteratur-theory-integrity.test.mjs
+      - name: 57 test tests/fagverk-litteratur-legacy-theory-audit.test.mjs
+        run: node --test tests/fagverk-litteratur-legacy-theory-audit.test.mjs
+      - name: 58 test tests/fagverk-litteratur-legacy-theory-adjudication.test.mjs
+        run: node --test tests/fagverk-litteratur-legacy-theory-adjudication.test.mjs
+      - name: 59 test tests/natur-theory-integrity.test.mjs
+        run: node --test tests/natur-theory-integrity.test.mjs
+      - name: 60 test tests/helse-theory-integrity.test.mjs
+        run: node --test tests/helse-theory-integrity.test.mjs
+      - name: 61 test tests/naeringsliv-theory-integrity.test.mjs
+        run: node --test tests/naeringsliv-theory-integrity.test.mjs
+      - name: 62 test tests/psykologi-theory-integrity.test.mjs
+        run: node --test tests/psykologi-theory-integrity.test.mjs
+      - name: 63 test tests/sport-theory-integrity.test.mjs
+        run: node --test tests/sport-theory-integrity.test.mjs
+      - name: 64 test tests/vitenskap-theory-integrity.test.mjs
+        run: node --test tests/vitenskap-theory-integrity.test.mjs
+      - name: 65 test tests/politikk-theory-integrity.test.mjs
+        run: node --test tests/politikk-theory-integrity.test.mjs
+      - name: 66 test tests/filosofi-theory-integrity.test.mjs
+        run: node --test tests/filosofi-theory-integrity.test.mjs
+      - name: 67 test tests/teknologi-theory-integrity.test.mjs
+        run: node --test tests/teknologi-theory-integrity.test.mjs
+      - name: 68 test tests/fagverk-theory-integrity.test.mjs
+        run: node --test tests/fagverk-theory-integrity.test.mjs
+      - name: 69 test tests/fagverk-documentation-contract.test.mjs
+        run: node --test tests/fagverk-documentation-contract.test.mjs
+      - name: 70 test tests/fagverk-expansion-19-plus-1-final-reconciliation.test.mjs
+        run: node --test tests/fagverk-expansion-19-plus-1-final-reconciliation.test.mjs
