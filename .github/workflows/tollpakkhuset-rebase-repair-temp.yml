@@ -57,10 +57,22 @@ jobs:
         run: |
           set -euo pipefail
           git show dc3c5c7bc2a0c1beeaea05c4d177fe72a46e24d3:tools/build-tollpakkhuset-completion.mjs > tools/build-tollpakkhuset-completion.mjs
+
+          raw_brand_file='data/brands/brands_master_raw.json'
+          raw_brand_backup='/tmp/brands_master_raw.json'
+          if [[ -f "$raw_brand_file" ]]; then
+            mv "$raw_brand_file" "$raw_brand_backup"
+          fi
+
           set +e
           node --trace-uncaught tools/build-tollpakkhuset-completion.mjs > /tmp/tollpakkhuset-materializer.log 2>&1
           status=$?
           set -e
+
+          if [[ -f "$raw_brand_backup" ]]; then
+            mv "$raw_brand_backup" "$raw_brand_file"
+          fi
+
           cat /tmp/tollpakkhuset-materializer.log
           cp /tmp/tollpakkhuset-materializer.log tollpakkhuset-materializer-diagnostic.log
           exit "$status"
