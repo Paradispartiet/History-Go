@@ -29,12 +29,12 @@ assert.deepEqual(audit.summary.classifications, {
   needs_authored_depth: 157,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 2);
-assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.completed_life_position_role_worlds, 3);
+assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 3);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 3);
-assert.equal(audit.first_ready?.key, 'film_tv/filmklubbmenneske');
+assert.equal(audit.first_ready, null);
 
 assert.deepEqual(policy.noncareer_subject_boundary.life_position_readiness.classifications, [
   'ready',
@@ -84,7 +84,7 @@ for (const row of audit.positions.filter((item) => item.classification === 'read
   assert.ok(row.authored_depth.exact_source_ref_count >= 1, `${row.key}: ready requires exact governed provenance`);
 }
 
-assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjenner'].includes(row.key)),
+assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjenner','film_tv/filmklubbmenneske'].includes(row.key)),
   'completed life-position worlds must leave the readiness queue');
 assert.ok((audit.queue || []).every((row) => row.classification !== 'not_a_standalone_world'));
 assert.equal(new Set(audit.positions.map((row) => row.key)).size, 200);
@@ -95,4 +95,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 3 ready / 157 authored-depth / 40 not-standalone; 2 complete / Filmklubbmenneske next');
+console.log('civication life-position Role World readiness v2 ok: 3 ready / 157 authored-depth / 40 not-standalone; 3 complete / 0 pending');
