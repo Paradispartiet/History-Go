@@ -1,0 +1,5042 @@
+
+===== Stortorget canonical rebuild =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node tools/build-stortorget-completion.mjs
+Stortorget completion materialized: stortorget
+Stortorget canonical quiz production materialized: normal_4x7
+Stortorget v4.2 repaired: 24 verified claims, 8 quiz-readiness questions
+Stortorget story integrity score aligned.
+Stortorget canonical production rebuild complete.
+exit=0
+
+===== cycle 1: scenario people =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+Skrev scenarioPeople for 287 canonicale roller / 19 kategorier / 1425 People.
+Resolved assignments: 26194; missing candidates: 259.
+exit=0
+
+===== cycle 1: history people =====
+$ npm run civication:history-people:build
+
+> history-go@0.0.0 civication:history-people:build
+> npm run build:scripts && node dist/scripts/build-civication-history-people-index.mjs
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Skrev data/Civication/historyPeople_index.json: 1426 personer i 16 kategorier.
+Hoppet over 5 personer uten id/name/category.
+exit=0
+
+===== cycle 1: Fagverk registry =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/materialize-natur-final-registry.mjs
+Materialiserte Natur-sluttfasen statisk: 12/12 kapitler, inkludert sopp/lav/mikroorganismer.
+exit=0
+
+===== cycle 1: places index =====
+$ npm run places:index:build
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1534 places -> data/places/places_index.json; skipped 13 disabled place(s); applied 211 category override(s)
+exit=0
+
+===== cycle 1: runtime/place-open =====
+$ npm run place-open:build
+
+> history-go@0.0.0 place-open:build
+> node scripts/build-place-open-payloads.mjs
+
+built 1534 place-open payloads
+exit=0
+
+===== cycle 1: epoch index =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/build-epoke-place-index.mjs
+Wrote data/epoker/epoke-place-index.json: 289 places, 1686 milestones
+exit=0
+
+===== cycle 1: Stortorget quiz context =====
+
+===== cycle 1: Knowledge canonical write =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+Knowledge canonical data: 4725 questions, 5929 units, 134 unresolved emne links.
+Updated: data/knowledge/knowledge_units.generated.json, reports/knowledge-id-backfill.json
+Knowledge contract audit: 0 error question(s), 1021 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+exit=0
+
+===== cycle 1: Fagverk release =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/build-fagverk-release-manifest.mjs
+Wrote Fagverk release 0a914acfe3fc648bffea5f59fce58a773b2624e60330861cc580c74cf5852418: 20 packages, 190 chapters.
+exit=0
+
+===== cycle 1: final runtime/place-open =====
+$ npm run place-open:build
+
+> history-go@0.0.0 place-open:build
+> node scripts/build-place-open-payloads.mjs
+
+built 1534 place-open payloads
+exit=0
+
+===== cycle 1: final epoch index =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/build-epoke-place-index.mjs
+Wrote data/epoker/epoke-place-index.json: 289 places, 1686 milestones
+exit=0
+Fixed-point cycle 1: 1489d0451377d63869162983904e2ade799e32f5cdebe602a3b3e93b9567e88d (36 files)
+
+===== cycle 2: scenario people =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+Skrev scenarioPeople for 287 canonicale roller / 19 kategorier / 1426 People.
+Resolved assignments: 26210; missing candidates: 259.
+exit=0
+
+===== cycle 2: history people =====
+$ npm run civication:history-people:build
+
+> history-go@0.0.0 civication:history-people:build
+> npm run build:scripts && node dist/scripts/build-civication-history-people-index.mjs
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Skrev data/Civication/historyPeople_index.json: 1426 personer i 16 kategorier.
+Hoppet over 5 personer uten id/name/category.
+exit=0
+
+===== cycle 2: Fagverk registry =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/materialize-natur-final-registry.mjs
+Materialiserte Natur-sluttfasen statisk: 12/12 kapitler, inkludert sopp/lav/mikroorganismer.
+exit=0
+
+===== cycle 2: places index =====
+$ npm run places:index:build
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1534 places -> data/places/places_index.json; skipped 13 disabled place(s); applied 211 category override(s)
+exit=0
+
+===== cycle 2: runtime/place-open =====
+$ npm run place-open:build
+
+> history-go@0.0.0 place-open:build
+> node scripts/build-place-open-payloads.mjs
+
+built 1534 place-open payloads
+exit=0
+
+===== cycle 2: epoch index =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/build-epoke-place-index.mjs
+Wrote data/epoker/epoke-place-index.json: 289 places, 1686 milestones
+exit=0
+
+===== cycle 2: Stortorget quiz context =====
+
+===== cycle 2: Knowledge canonical write =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+Knowledge canonical data: 4725 questions, 5929 units, 134 unresolved emne links.
+Knowledge contract audit: 0 error question(s), 1021 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+exit=0
+
+===== cycle 2: Fagverk release =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/build-fagverk-release-manifest.mjs
+Wrote Fagverk release 0a914acfe3fc648bffea5f59fce58a773b2624e60330861cc580c74cf5852418: 20 packages, 190 chapters.
+exit=0
+
+===== cycle 2: final runtime/place-open =====
+$ npm run place-open:build
+
+> history-go@0.0.0 place-open:build
+> node scripts/build-place-open-payloads.mjs
+
+built 1534 place-open payloads
+exit=0
+
+===== cycle 2: final epoch index =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/build-epoke-place-index.mjs
+Wrote data/epoker/epoke-place-index.json: 289 places, 1686 milestones
+exit=0
+Fixed-point cycle 2: f6f9918256fdce5eeaa52b6800276c0468414209984cccb9e96816445f34c88d (36 files)
+
+===== cycle 3: scenario people =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+Skrev scenarioPeople for 287 canonicale roller / 19 kategorier / 1426 People.
+Resolved assignments: 26210; missing candidates: 259.
+exit=0
+
+===== cycle 3: history people =====
+$ npm run civication:history-people:build
+
+> history-go@0.0.0 civication:history-people:build
+> npm run build:scripts && node dist/scripts/build-civication-history-people-index.mjs
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Skrev data/Civication/historyPeople_index.json: 1426 personer i 16 kategorier.
+Hoppet over 5 personer uten id/name/category.
+exit=0
+
+===== cycle 3: Fagverk registry =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/materialize-natur-final-registry.mjs
+Materialiserte Natur-sluttfasen statisk: 12/12 kapitler, inkludert sopp/lav/mikroorganismer.
+exit=0
+
+===== cycle 3: places index =====
+$ npm run places:index:build
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1534 places -> data/places/places_index.json; skipped 13 disabled place(s); applied 211 category override(s)
+exit=0
+
+===== cycle 3: runtime/place-open =====
+$ npm run place-open:build
+
+> history-go@0.0.0 place-open:build
+> node scripts/build-place-open-payloads.mjs
+
+built 1534 place-open payloads
+exit=0
+
+===== cycle 3: epoch index =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/build-epoke-place-index.mjs
+Wrote data/epoker/epoke-place-index.json: 289 places, 1686 milestones
+exit=0
+
+===== cycle 3: Stortorget quiz context =====
+
+===== cycle 3: Knowledge canonical write =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+Knowledge canonical data: 4725 questions, 5929 units, 134 unresolved emne links.
+Knowledge contract audit: 0 error question(s), 1021 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+exit=0
+
+===== cycle 3: Fagverk release =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/build-fagverk-release-manifest.mjs
+Wrote Fagverk release 0a914acfe3fc648bffea5f59fce58a773b2624e60330861cc580c74cf5852418: 20 packages, 190 chapters.
+exit=0
+
+===== cycle 3: final runtime/place-open =====
+$ npm run place-open:build
+
+> history-go@0.0.0 place-open:build
+> node scripts/build-place-open-payloads.mjs
+
+built 1534 place-open payloads
+exit=0
+
+===== cycle 3: final epoch index =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/build-epoke-place-index.mjs
+Wrote data/epoker/epoke-place-index.json: 289 places, 1686 milestones
+exit=0
+Fixed-point cycle 3: f6f9918256fdce5eeaa52b6800276c0468414209984cccb9e96816445f34c88d (36 files)
+Fixed point reached after cycle 3.
+Epoch combined stats: stories=238, production=521, dated=243, awaiting=342
+
+===== Stortorget v4.2 validator =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node tools/validate-stortorget-v42.mjs
+Stortorget v4.2 valid: 24 claims, 8 quiz-readiness questions
+exit=0
+
+===== Stortorget and epoch regressions =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node --test tests/quiz-progression-phase-order.test.mjs tests/stortorget-production-closure.test.mjs tests/stortorget-story-integrity.test.mjs tests/epoke-place-index.test.mjs
+TAP version 13
+# Subtest: generated epoch-place index is deterministic and current
+ok 1 - generated epoch-place index is deterministic and current
+  ---
+  duration_ms: 395.010942
+  type: 'test'
+  ...
+# Subtest: canonical place geography separates Oslo, Lisboa and other countries deterministically
+ok 2 - canonical place geography separates Oslo, Lisboa and other countries deterministically
+  ---
+  duration_ms: 294.166371
+  type: 'test'
+  ...
+# Subtest: history index supports multi-epoch places without changing primary categories
+ok 3 - history index supports multi-epoch places without changing primary categories
+  ---
+  duration_ms: 273.388836
+  type: 'test'
+  ...
+# Subtest: every indexed milestone is dated, inspectable and sourced from an approved canonical evidence lane
+ok 4 - every indexed milestone is dated, inspectable and sourced from an approved canonical evidence lane
+  ---
+  duration_ms: 340.171751
+  type: 'test'
+  ...
+# Subtest: Oslo coverage classifies every canonical place exactly once without overstating completeness
+ok 5 - Oslo coverage classifies every canonical place exactly once without overstating completeness
+  ---
+  duration_ms: 261.474337
+  type: 'test'
+  ...
+# Subtest: Gamlebyen leksikon chronology materializes only reviewed exact anchors
+ok 6 - Gamlebyen leksikon chronology materializes only reviewed exact anchors
+  ---
+  duration_ms: 266.545231
+  type: 'test'
+  ...
+# Subtest: Eastern Gamlebyen chronology replaces approximate metadata with reviewed exact anchors
+ok 7 - Eastern Gamlebyen chronology replaces approximate metadata with reviewed exact anchors
+  ---
+  duration_ms: 250.536516
+  type: 'test'
+  ...
+# Subtest: Kampen and Klosterenga chronology materializes exact place-specific anchors only
+ok 8 - Kampen and Klosterenga chronology materializes exact place-specific anchors only
+  ---
+  duration_ms: 258.784509
+  type: 'test'
+  ...
+# Subtest: Sagene and Torshov chronology materializes exact district and park events only
+ok 9 - Sagene and Torshov chronology materializes exact district and park events only
+  ---
+  duration_ms: 236.870407
+  type: 'test'
+  ...
+# Subtest: Grorud chronology materializes exact district and park events only
+ok 10 - Grorud chronology materializes exact district and park events only
+  ---
+  duration_ms: 258.062099
+  type: 'test'
+  ...
+# Subtest: verified production claims fail closed for uncertainty, current-only state and non-Oslo places
+ok 11 - verified production claims fail closed for uncertainty, current-only state and non-Oslo places
+  ---
+  duration_ms: 246.001329
+  type: 'test'
+  ...
+# Subtest: production year extraction rejects commercial names and Oslo postal codes
+ok 12 - production year extraction rejects commercial names and Oslo postal codes
+  ---
+  duration_ms: 0.17121
+  type: 'test'
+  ...
+# Subtest: explicit timeline anchors materialize reviewed multi-year historical claims
+ok 13 - explicit timeline anchors materialize reviewed multi-year historical claims
+  ---
+  duration_ms: 238.234757
+  type: 'test'
+  ...
+# Subtest: every epoch and parallel track has substantial canonical place coverage
+ok 14 - every epoch and parallel track has substantial canonical place coverage
+  ---
+  duration_ms: 244.628002
+  type: 'test'
+  ...
+# Subtest: epoch places expose existing source-inspectable people, works and stories without copying popup prose
+ok 15 - epoch places expose existing source-inspectable people, works and stories without copying popup prose
+  ---
+  duration_ms: 264.311173
+  type: 'test'
+  ...
+# Subtest: parallel tracks remain separate cross-period relations
+ok 16 - parallel tracks remain separate cross-period relations
+  ---
+  duration_ms: 242.025245
+  type: 'test'
+  ...
+# Subtest: every History epoch has distinct analysis grounded in its Fagverk periods
+ok 17 - every History epoch has distinct analysis grounded in its Fagverk periods
+  ---
+  duration_ms: 0.936331
+  type: 'test'
+  ...
+# Subtest: binding is rejected before its configured start phase and allowed from that point onward
+ok 18 - binding is rejected before its configured start phase and allowed from that point onward
+  ---
+  duration_ms: 0.781601
+  type: 'test'
+  ...
+# Subtest: Stortorget is a complete canonical square without coordinate drift
+ok 19 - Stortorget is a complete canonical square without coordinate drift
+  ---
+  duration_ms: 2.072345
+  type: 'test'
+  ...
+# Subtest: Stortorget has real People, object and related-place surfaces
+ok 20 - Stortorget has real People, object and related-place surfaces
+  ---
+  duration_ms: 0.24056
+  type: 'test'
+  ...
+# Subtest: Stortorget learning and before/now surfaces are materialized
+ok 21 - Stortorget learning and before/now surfaces are materialized
+  ---
+  duration_ms: 0.334134
+  type: 'test'
+  ...
+# Subtest: Stortorget alone passes the canonical v4.2 packet validator
+ok 22 - Stortorget alone passes the canonical v4.2 packet validator
+  ---
+  duration_ms: 24.763901
+  type: 'test'
+  ...
+# Subtest: Stortorget user-facing description contains no internal product instructions
+ok 23 - Stortorget user-facing description contains no internal product instructions
+  ---
+  duration_ms: 0.325058
+  type: 'test'
+  ...
+# Subtest: Stortorget canonical rebuild entrypoint preserves all production stages
+ok 24 - Stortorget canonical rebuild entrypoint preserves all production stages
+  ---
+  duration_ms: 0.27842
+  type: 'test'
+  ...
+# Subtest: Stortorget closure leaves no temporary materialization workflow
+ok 25 - Stortorget closure leaves no temporary materialization workflow
+  ---
+  duration_ms: 0.222296
+  type: 'test'
+  ...
+# Subtest: Stortorget story score matches canonical integrity metrics
+ok 26 - Stortorget story score matches canonical integrity metrics
+  ---
+  duration_ms: 0.852855
+  type: 'test'
+  ...
+# Subtest: Canonical Stortorget rebuild includes story integrity finalization
+ok 27 - Canonical Stortorget rebuild includes story integrity finalization
+  ---
+  duration_ms: 0.311682
+  type: 'test'
+  ...
+# Subtest: Stortorget story is materialized as dated Oslo epoch evidence
+ok 28 - Stortorget story is materialized as dated Oslo epoch evidence
+  ---
+  duration_ms: 0.282759
+  type: 'test'
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 28
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4166.189063
+exit=0
+
+===== quiz production context audit =====
+$ npm run audit:quiz-production-context
+
+> history-go@0.0.0 audit:quiz-production-context
+> node scripts/audit-quiz-production-context.mjs
+
+{
+  "status": "passed",
+  "categoriesWithQuizProduction": 8,
+  "quizFilesChecked": 78,
+  "checked": [
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "targetId": "deichman_bjorvika",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/torggata_sets.json",
+      "targetId": "torggata",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/birkelunden_sets.json",
+      "targetId": "birkelunden",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/christiania_torv_sets.json",
+      "targetId": "christiania_torv",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/bankplassen_sets_merged.json",
+      "targetId": "bankplassen",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/grev_wedels_plass_sets.json",
+      "targetId": "grev_wedels_plass",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/storgata_sets.json",
+      "targetId": "storgata",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/olaf_ryes_plass_sets.json",
+      "targetId": "olaf_ryes_plass",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/sofienbergparken_sets.json",
+      "targetId": "sofienbergparken",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/markveien_sets.json",
+      "targetId": "markveien",
+      "questions": 42
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/gamle_trikkestallen_sets.json",
+      "targetId": "gamle_trikkestallen",
+      "questions": 28
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/universitetsplassen_sets.json",
+      "targetId": "universitetsplassen",
+      "questions": 56
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/tullin_sets.json",
+      "targetId": "tullin",
+      "questions": 42
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/ankerbrua_sets.json",
+      "targetId": "ankerbrua",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/hammersborg_torg_sets.json",
+      "targetId": "hammersborg_torg",
+      "questions": 28
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/toyen_torg_sets.json",
+      "targetId": "toyen_torg",
+      "questions": 28
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/ullevål_hageby_sets.json",
+      "targetId": "ullevål_hageby",
+      "questions": 28
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/romsaås_sets.json",
+      "targetId": "romsaås",
+      "questions": 28
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/rodelokka_sets.json",
+      "targetId": "rodelokka",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/helsfyr_sets.json",
+      "targetId": "helsfyr",
+      "questions": 28
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/vaalerenga_sets.json",
+      "targetId": "vaalerenga",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/vinderen_sets.json",
+      "targetId": "vinderen",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/ullern_sets.json",
+      "targetId": "ullern",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/spikersuppa_sets.json",
+      "targetId": "spikersuppa",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/radhusplassen_sets.json",
+      "targetId": "radhusplassen",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/slottsparken_sets.json",
+      "targetId": "slottsparken",
+      "questions": 35
+    },
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/stortorget_sets.json",
+      "targetId": "stortorget",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/gamle_aker_kirke_sets.json",
+      "targetId": "gamle_aker_kirke",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/var_frelsers_gravlund_sets.json",
+      "targetId": "var_frelsers_gravlund",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "targetId": "grindheim_runestein",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "targetId": "grindheim_steinkross",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "targetId": "grindheimsveien_nord_gravfelt",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "targetId": "hoyland_gravhaug_etne",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/paulus_kirke_sets.json",
+      "targetId": "paulus_kirke",
+      "questions": 35
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/oslo_hospital_sets.json",
+      "targetId": "oslo_hospital",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/ekebergparken_museum_sets.json",
+      "targetId": "ekebergparken_museum",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/botsfengselet_sets.json",
+      "targetId": "botsfengselet",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/gamle_radhus_sets.json",
+      "targetId": "gamle_radhus",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/ekeberg_helleristninger_sets.json",
+      "targetId": "ekeberg_helleristninger",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/akershus_festning_sets.json",
+      "targetId": "akershus_festning",
+      "questions": 56
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/forsvarsmuseet_sets.json",
+      "targetId": "forsvarsmuseet",
+      "questions": 35
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/norges_hjemmefrontmuseum_sets.json",
+      "targetId": "norges_hjemmefrontmuseum",
+      "questions": 35
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/akershus_slott_sets.json",
+      "targetId": "akershus_slott",
+      "questions": 49
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/myntgatakvartalet_sets.json",
+      "targetId": "myntgatakvartalet",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/waisenhuset_kongens_gate_sets.json",
+      "targetId": "waisenhuset_kongens_gate",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/mollergata_19_sets.json",
+      "targetId": "mollergata_19",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/the_mini_bottle_gallery_sets.json",
+      "targetId": "the_mini_bottle_gallery",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/mollergata_skole_sets.json",
+      "targetId": "mollergata_skole",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/peststotten_krist_kirkegard_sets.json",
+      "targetId": "peststotten_krist_kirkegard",
+      "questions": 28
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/kirkeristen_basarene_brannvakten_sets.json",
+      "targetId": "kirkeristen_basarene_brannvakten",
+      "questions": 28
+    },
+    {
+      "categoryId": "kunst",
+      "file": "data/quiz/kunst/norske_grafikere_sets.json",
+      "targetId": "norske_grafikere",
+      "questions": 28
+    },
+    {
+      "categoryId": "kunst",
+      "file": "data/quiz/kunst/skulptursonen_ovre_slottsgate_sets.json",
+      "targetId": "skulptursonen_ovre_slottsgate",
+      "questions": 28
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "targetId": "telegrafbygningen",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "targetId": "oslo_posthus",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "targetId": "havnelageret",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/freia_fabrikken_sets.json",
+      "targetId": "freia_fabrikken",
+      "questions": 21
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/schous_bryggeri_sets_merged.json",
+      "targetId": "schous_bryggeri",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/ringnes_bryggeri_sets_merged.json",
+      "targetId": "ringnes_bryggeri",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/myrens_verksted_sets.json",
+      "targetId": "myrens_verksted",
+      "questions": 28
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/alunverket_sets.json",
+      "targetId": "alunverket",
+      "questions": 28
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/lilleborg_fabrikker_sets.json",
+      "targetId": "lilleborg_fabrikker",
+      "questions": 28
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/ovre_foss_sets.json",
+      "targetId": "ovre_foss",
+      "questions": 28
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/tinghuset_sets.json",
+      "targetId": "tinghuset",
+      "questions": 21
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/regjeringskvartalet_sets.json",
+      "targetId": "regjeringskvartalet",
+      "questions": 70
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/youngstorget_sets.json",
+      "targetId": "youngstorget",
+      "questions": 35
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/oslo_radhus_sets.json",
+      "targetId": "oslo_radhus",
+      "questions": 56
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/stortinget_sets.json",
+      "targetId": "stortinget",
+      "questions": 56
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/slottet_sets.json",
+      "targetId": "slottet",
+      "questions": 56
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/slottsplassen_sets.json",
+      "targetId": "slottsplassen",
+      "questions": 56
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/eidsvolls_plass_sets.json",
+      "targetId": "eidsvolls_plass",
+      "questions": 56
+    },
+    {
+      "categoryId": "politikk",
+      "file": "data/quiz/politikk/22_juli_senteret_sets.json",
+      "targetId": "22_juli_senteret",
+      "questions": 56
+    },
+    {
+      "categoryId": "religion",
+      "file": "data/quiz/religion/akershus_slottskirke_sets.json",
+      "targetId": "akershus_slottskirke",
+      "questions": 35
+    },
+    {
+      "categoryId": "religion",
+      "file": "data/quiz/religion/det_kongelige_mausoleum_sets.json",
+      "targetId": "det_kongelige_mausoleum",
+      "questions": 28
+    },
+    {
+      "categoryId": "religion",
+      "file": "data/quiz/religion/trefoldighetskirken_sets.json",
+      "targetId": "trefoldighetskirken",
+      "questions": 35
+    },
+    {
+      "categoryId": "religion",
+      "file": "data/quiz/religion/gronland_kirke_sets.json",
+      "targetId": "gronland_kirke",
+      "questions": 35
+    },
+    {
+      "categoryId": "sport",
+      "file": "data/quiz/sport/ekebergsletta_sets.json",
+      "targetId": "ekebergsletta",
+      "questions": 35
+    },
+    {
+      "categoryId": "subkultur",
+      "file": "data/quiz/subkultur/brugata_storgata_rusmiljo_sets.json",
+      "targetId": "brugata_storgata_rusmiljo",
+      "questions": 35
+    },
+    {
+      "categoryId": "subkultur",
+      "file": "data/quiz/subkultur/hausmania_sets.json",
+      "targetId": "hausmania",
+      "questions": 28
+    }
+  ],
+  "failures": []
+}
+exit=0
+
+===== quiz progression audit =====
+$ npm run audit:quiz-progression
+
+> history-go@0.0.0 audit:quiz-progression
+> node scripts/audit-quiz-progression.mjs
+
+{
+  "status": "passed",
+  "quizFilesChecked": 78,
+  "openingPolicy": "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
+  "checked": [
+    {
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/torggata_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/birkelunden_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 8,
+          "concept_theory": 6
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.229,
+          "concept_theory": 0.171
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/christiania_torv_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 8,
+          "concept_theory": 6
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.229,
+          "concept_theory": 0.171
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/bankplassen_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 20,
+          "context": 8,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.229,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/grev_wedels_plass_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/storgata_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 20,
+          "context": 8,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.229,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/olaf_ryes_plass_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/sofienbergparken_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/markveien_sets.json",
+      "profile": "rich_6x7",
+      "balance": {
+        "total": 42,
+        "counts": {
+          "fact": 25,
+          "context": 10,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.595,
+          "context": 0.238,
+          "concept_theory": 0.167
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/gamle_trikkestallen_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 16,
+          "context": 7,
+          "concept_theory": 5
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.25,
+          "concept_theory": 0.179
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/universitetsplassen_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 28,
+          "context": 14,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/tullin_sets.json",
+      "profile": "rich_6x7",
+      "balance": {
+        "total": 42,
+        "counts": {
+          "fact": 23,
+          "context": 12,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.548,
+          "context": 0.286,
+          "concept_theory": 0.167
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/ankerbrua_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 20,
+          "context": 8,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.229,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/hammersborg_torg_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/toyen_torg_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/ullevål_hageby_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/romsaås_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/rodelokka_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/helsfyr_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/vaalerenga_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/vinderen_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/ullern_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/spikersuppa_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/radhusplassen_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/slottsparken_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 21,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.6,
+          "context": 0.2,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/by/stortorget_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 8,
+          "concept_theory": 6
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.286,
+          "concept_theory": 0.214
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/gamle_aker_kirke_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/var_frelsers_gravlund_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/paulus_kirke_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 18,
+          "context": 10,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.514,
+          "context": 0.286,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/oslo_hospital_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/ekebergparken_museum_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/botsfengselet_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/gamle_radhus_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/ekeberg_helleristninger_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/akershus_festning_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 30,
+          "context": 12,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.536,
+          "context": 0.214,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/forsvarsmuseet_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 18,
+          "context": 10,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.514,
+          "context": 0.286,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/norges_hjemmefrontmuseum_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 18,
+          "context": 10,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.514,
+          "context": 0.286,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/akershus_slott_sets.json",
+      "profile": "rich_7x7",
+      "balance": {
+        "total": 49,
+        "counts": {
+          "fact": 25,
+          "context": 12,
+          "concept_theory": 12
+        },
+        "ratios": {
+          "fact": 0.51,
+          "context": 0.245,
+          "concept_theory": 0.245
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/myntgatakvartalet_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/waisenhuset_kongens_gate_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/mollergata_19_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/the_mini_bottle_gallery_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/mollergata_skole_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/peststotten_krist_kirkegard_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/kirkeristen_basarene_brannvakten_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/kunst/norske_grafikere_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/kunst/skulptursonen_ovre_slottsgate_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/freia_fabrikken_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/schous_bryggeri_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/ringnes_bryggeri_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/myrens_verksted_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/alunverket_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/lilleborg_fabrikker_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/ovre_foss_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 14,
+          "context": 7,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/tinghuset_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/regjeringskvartalet_sets.json",
+      "profile": "major_10x7",
+      "balance": {
+        "total": 70,
+        "counts": {
+          "fact": 39,
+          "context": 19,
+          "concept_theory": 12
+        },
+        "ratios": {
+          "fact": 0.557,
+          "context": 0.271,
+          "concept_theory": 0.171
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/youngstorget_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/oslo_radhus_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 28,
+          "context": 14,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/stortinget_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 28,
+          "context": 14,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/slottet_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 28,
+          "context": 14,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/slottsplassen_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 28,
+          "context": 14,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/eidsvolls_plass_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 28,
+          "context": 14,
+          "concept_theory": 14
+        },
+        "ratios": {
+          "fact": 0.5,
+          "context": 0.25,
+          "concept_theory": 0.25
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/politikk/22_juli_senteret_sets.json",
+      "profile": "major_8x7",
+      "balance": {
+        "total": 56,
+        "counts": {
+          "fact": 37,
+          "context": 12,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.661,
+          "context": 0.214,
+          "concept_theory": 0.125
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/religion/akershus_slottskirke_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 18,
+          "context": 9,
+          "concept_theory": 8
+        },
+        "ratios": {
+          "fact": 0.514,
+          "context": 0.257,
+          "concept_theory": 0.229
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/religion/det_kongelige_mausoleum_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 16,
+          "context": 7,
+          "concept_theory": 5
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.25,
+          "concept_theory": 0.179
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/religion/trefoldighetskirken_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 18,
+          "context": 9,
+          "concept_theory": 8
+        },
+        "ratios": {
+          "fact": 0.514,
+          "context": 0.257,
+          "concept_theory": 0.229
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/religion/gronland_kirke_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 18,
+          "context": 9,
+          "concept_theory": 8
+        },
+        "ratios": {
+          "fact": 0.514,
+          "context": 0.257,
+          "concept_theory": 0.229
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/sport/ekebergsletta_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 14,
+          "context": 14,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.4,
+          "context": 0.4,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/subkultur/brugata_storgata_rusmiljo_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 12,
+          "context": 16,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.343,
+          "context": 0.457,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/subkultur/hausmania_sets.json",
+      "profile": "normal_4x7",
+      "balance": {
+        "total": 28,
+        "counts": {
+          "fact": 17,
+          "context": 9,
+          "concept_theory": 2
+        },
+        "ratios": {
+          "fact": 0.607,
+          "context": 0.321,
+          "concept_theory": 0.071
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    }
+  ],
+  "failures": []
+}
+exit=0
+
+===== quiz theory binding audit =====
+$ npm run audit:quiz-theory-binding
+
+> history-go@0.0.0 audit:quiz-theory-binding
+> node scripts/audit-quiz-theory-binding.mjs
+
+{
+  "status": "passed",
+  "quizFilesChecked": 78,
+  "checked": [
+    {
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "questions": 35,
+      "theoryQuestions": 3,
+      "methodQuestions": 2
+    },
+    {
+      "file": "data/quiz/by/torggata_sets.json",
+      "questions": 35,
+      "theoryQuestions": 2,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/by/birkelunden_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/by/christiania_torv_sets.json",
+      "questions": 35,
+      "theoryQuestions": 2,
+      "methodQuestions": 2
+    },
+    {
+      "file": "data/quiz/by/bankplassen_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 3,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/by/grev_wedels_plass_sets.json",
+      "questions": 35,
+      "theoryQuestions": 3,
+      "methodQuestions": 2
+    },
+    {
+      "file": "data/quiz/by/storgata_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 2
+    },
+    {
+      "file": "data/quiz/by/olaf_ryes_plass_sets.json",
+      "questions": 35,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/by/sofienbergparken_sets.json",
+      "questions": 35,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/by/markveien_sets.json",
+      "questions": 42,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/by/gamle_trikkestallen_sets.json",
+      "questions": 28,
+      "theoryQuestions": 5,
+      "methodQuestions": 5
+    },
+    {
+      "file": "data/quiz/by/universitetsplassen_sets.json",
+      "questions": 56,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/by/tullin_sets.json",
+      "questions": 42,
+      "theoryQuestions": 6,
+      "methodQuestions": 6
+    },
+    {
+      "file": "data/quiz/by/ankerbrua_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/by/hammersborg_torg_sets.json",
+      "questions": 28,
+      "theoryQuestions": 5,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/by/toyen_torg_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 3
+    },
+    {
+      "file": "data/quiz/by/ullevål_hageby_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 3
+    },
+    {
+      "file": "data/quiz/by/romsaås_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 3
+    },
+    {
+      "file": "data/quiz/by/rodelokka_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 3
+    },
+    {
+      "file": "data/quiz/by/helsfyr_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 5
+    },
+    {
+      "file": "data/quiz/by/vaalerenga_sets.json",
+      "questions": 35,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/by/vinderen_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/by/ullern_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/by/spikersuppa_sets.json",
+      "questions": 35,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/by/radhusplassen_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 2
+    },
+    {
+      "file": "data/quiz/by/slottsparken_sets.json",
+      "questions": 35,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/by/stortorget_sets.json",
+      "questions": 28,
+      "theoryQuestions": 2,
+      "methodQuestions": 6
+    },
+    {
+      "file": "data/quiz/historie/gamle_aker_kirke_sets.json",
+      "questions": 21,
+      "theoryQuestions": 4,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/var_frelsers_gravlund_sets.json",
+      "questions": 28,
+      "theoryQuestions": 5,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "questions": 21,
+      "theoryQuestions": 2,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "questions": 21,
+      "theoryQuestions": 2,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "questions": 21,
+      "theoryQuestions": 2,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "questions": 21,
+      "theoryQuestions": 1,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/paulus_kirke_sets.json",
+      "questions": 35,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/historie/oslo_hospital_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/historie/ekebergparken_museum_sets.json",
+      "questions": 28,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/historie/botsfengselet_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/historie/gamle_radhus_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/historie/ekeberg_helleristninger_sets.json",
+      "questions": 28,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/historie/akershus_festning_sets.json",
+      "questions": 56,
+      "theoryQuestions": 1,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/historie/forsvarsmuseet_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/historie/norges_hjemmefrontmuseum_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/historie/akershus_slott_sets.json",
+      "questions": 49,
+      "theoryQuestions": 1,
+      "methodQuestions": 3
+    },
+    {
+      "file": "data/quiz/historie/myntgatakvartalet_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/historie/waisenhuset_kongens_gate_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/historie/mollergata_19_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/historie/the_mini_bottle_gallery_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 5
+    },
+    {
+      "file": "data/quiz/historie/mollergata_skole_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 2
+    },
+    {
+      "file": "data/quiz/historie/peststotten_krist_kirkegard_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/historie/kirkeristen_basarene_brannvakten_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/kunst/norske_grafikere_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 5
+    },
+    {
+      "file": "data/quiz/kunst/skulptursonen_ovre_slottsgate_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/freia_fabrikken_sets.json",
+      "questions": 21,
+      "theoryQuestions": 4,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/naeringsliv/schous_bryggeri_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/ringnes_bryggeri_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/myrens_verksted_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/alunverket_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/lilleborg_fabrikker_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/ovre_foss_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/politikk/tinghuset_sets.json",
+      "questions": 21,
+      "theoryQuestions": 1,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/politikk/regjeringskvartalet_sets.json",
+      "questions": 70,
+      "theoryQuestions": 4,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/politikk/youngstorget_sets.json",
+      "questions": 35,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/politikk/oslo_radhus_sets.json",
+      "questions": 56,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/politikk/stortinget_sets.json",
+      "questions": 56,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/politikk/slottet_sets.json",
+      "questions": 56,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/politikk/slottsplassen_sets.json",
+      "questions": 56,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/politikk/eidsvolls_plass_sets.json",
+      "questions": 56,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/politikk/22_juli_senteret_sets.json",
+      "questions": 56,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/religion/akershus_slottskirke_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/religion/det_kongelige_mausoleum_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 3
+    },
+    {
+      "file": "data/quiz/religion/trefoldighetskirken_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/religion/gronland_kirke_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/sport/ekebergsletta_sets.json",
+      "questions": 35,
+      "theoryQuestions": 7,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/subkultur/brugata_storgata_rusmiljo_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/subkultur/hausmania_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 2
+    }
+  ],
+  "failures": []
+}
+exit=0
+
+===== quiz production tests =====
+$ npm run test:quiz-production
+
+> history-go@0.0.0 test:quiz-production
+> node --test tests/quiz-production-pipeline.test.mjs
+
+TAP version 13
+# Subtest: builds the full by production context through the manifest
+ok 1 - builds the full by production context through the manifest
+  ---
+  duration_ms: 214.040326
+  type: 'test'
+  ...
+# Subtest: builds the full history production context through domain-based curriculum
+ok 2 - builds the full history production context through domain-based curriculum
+  ---
+  duration_ms: 293.145659
+  type: 'test'
+  ...
+# Subtest: isolates each history target in the manifest proof
+ok 3 - isolates each history target in the manifest proof
+  ---
+  duration_ms: 276.041838
+  type: 'test'
+  ...
+# Subtest: builds the Grindheimsvegen grave-field context before quiz writing
+ok 4 - builds the Grindheimsvegen grave-field context before quiz writing
+  ---
+  duration_ms: 270.245627
+  type: 'test'
+  ...
+# Subtest: builds the Høyland grave-mound context before quiz writing
+ok 5 - builds the Høyland grave-mound context before quiz writing
+  ---
+  duration_ms: 266.014499
+  type: 'test'
+  ...
+# Subtest: builds the Oslo tinghus Politikk context with a narrow ordinary opening
+ok 6 - builds the Oslo tinghus Politikk context with a narrow ordinary opening
+  ---
+  duration_ms: 250.192399
+  type: 'test'
+  ...
+# Subtest: passes production-context, progression and theory-binding audits
+ok 7 - passes production-context, progression and theory-binding audits
+  ---
+  duration_ms: 15871.614183
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17523.541321
+exit=0
+
+===== Fagverk Phase 3 full matrix =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/run-fagverk-phase3-ci-v1.mjs
+Fagverk Phase 3 mode: full matrix
+Selected subjects: kunst, media, sport, filosofi, scenekunst
+Fagverk inventar OK: 19 toppfag, 1 spesialisering, 80 required kjernefiler, 4 schemafamilier.
+Fagverk fase 1 OK: 19 materialiserte fag bruker generell motor uten politikkfallback.
+Kunst Fase 3 OK: 6 fagområder, 21 emner, 21 metoder og 60 hooks.
+Kunst helhetsaudit OK: 6/6 fagområder, 21/21 emner, 6 kapitler, 100 kilder og 140 claims.
+{
+  "schema": "history_go_kunst_theory_integrity_audit_v1",
+  "version": "1.0.0",
+  "subject_id": "kunst",
+  "status": "STRICTLY_PROVEN",
+  "proof_scope": "per_canonical_major_field",
+  "completion_status_read_only": true,
+  "content_rewrite_required": false,
+  "summary": {
+    "canonicalMajorFields": 6,
+    "fieldsStrictlyProven": 6,
+    "explicitProofBridges": 0,
+    "substantiveContentGapsProven": 0
+  },
+  "sourceModel": {
+    "theoryGrounding": "canonical thinker + substantive contribution + named work",
+    "appliedEvidence": "verified prose-bound claims + academically appropriate inspectable source"
+  },
+  "fields": [
+    {
+      "domainId": "felt_institusjon",
+      "strictlyProven": true
+    },
+    {
+      "domainId": "produksjon_praksis",
+      "strictlyProven": true
+    },
+    {
+      "domainId": "estetisk_sprak_form",
+      "strictlyProven": true
+    },
+    {
+      "domainId": "makt_legitimitet",
+      "strictlyProven": true
+    },
+    {
+      "domainId": "publikum_offentlighet",
+      "strictlyProven": true
+    },
+    {
+      "domainId": "tid_transformasjon",
+      "strictlyProven": true
+    }
+  ]
+}
+Media Fase 3 OK: 6 hovedområder, 120 hovedemner og 56 nested Populærkultur-emner.
+Sport audit OK: 6 områder, 116 emner, 6 kapitler.
+{
+  "schema": "history_go_sport_theory_integrity_audit_v1",
+  "version": "1.0.0",
+  "subject_id": "sport",
+  "status": "STRICTLY_PROVEN",
+  "proof_scope": "per_canonical_major_field",
+  "profile": "hybrid",
+  "completion_status_read_only": true,
+  "content_rewrite_required": false,
+  "health_safety": "verified_group_evidence_not_individual_medical_or_performance_advice",
+  "summary": {
+    "canonicalMajorFields": 6,
+    "fieldsStrictlyProven": 6,
+    "theoryObjects": 12,
+    "scholarlySources": 12,
+    "personWorkBindings": 12,
+    "claimBindings": 12,
+    "actualProseBindings": 12,
+    "theorySourceProseBindings": 12,
+    "universalArticlesValidated": 116,
+    "substantiveContentGapsProven": 0
+  },
+  "lockedBaseline": {
+    "topics": 116,
+    "methods": 109,
+    "canonicalTopicHooks": 60,
+    "qualityTheoryHooks": 56,
+    "theoryUnits": 56,
+    "thinkers": 183,
+    "primaryWorks": 123,
+    "registeredChapters": 6,
+    "sections": 54,
+    "paragraphs": 162,
+    "claims": 162,
+    "chapterSources": 74,
+    "peerReviewedSources": 25,
+    "standaloneArticles": 116,
+    "canonicalConcepts": 140,
+    "totalArticleWords": 134923
+  },
+  "sourceModel": {
+    "theoryGrounding": "canonical theory unit + named person + concrete work + academically appropriate source",
+    "appliedEvidence": "existing article prose + exact claim-ledger source binding",
+    "universalScope": "all 116 articles retain at least two theory units, mechanism, rival, criticism, boundary and anti-trivia prose",
+    "safety": "group evidence never becomes individual diagnosis, medical advice or performance prognosis"
+  },
+  "fields": [
+    {
+      "domainId": "arenaer_steder_groundhopper",
+      "strictlyProven": true,
+      "theoryObjectCount": 2,
+      "scholarlySourceCount": 2,
+      "personWorkBindingCount": 2,
+      "claimBindingCount": 2,
+      "actualProseBindingCount": 2,
+      "universalArticleGate": true,
+      "healthSafetyGuard": true
+    },
+    {
+      "domainId": "regler_spill_konkurranse",
+      "strictlyProven": true,
+      "theoryObjectCount": 2,
+      "scholarlySourceCount": 2,
+      "personWorkBindingCount": 2,
+      "claimBindingCount": 2,
+      "actualProseBindingCount": 2,
+      "universalArticleGate": true,
+      "healthSafetyGuard": true
+    },
+    {
+      "domainId": "kropp_trening_prestasjon",
+      "strictlyProven": true,
+      "theoryObjectCount": 2,
+      "scholarlySourceCount": 2,
+      "personWorkBindingCount": 2,
+      "claimBindingCount": 2,
+      "actualProseBindingCount": 2,
+      "universalArticleGate": true,
+      "healthSafetyGuard": true
+    },
+    {
+      "domainId": "klubber_lag_frivillighet",
+      "strictlyProven": true,
+      "theoryObjectCount": 2,
+      "scholarlySourceCount": 2,
+      "personWorkBindingCount": 2,
+      "claimBindingCount": 2,
+      "actualProseBindingCount": 2,
+      "universalArticleGate": true,
+      "healthSafetyGuard": true
+    },
+    {
+      "domainId": "supportere_publikum_kultur",
+      "strictlyProven": true,
+      "theoryObjectCount": 2,
+      "scholarlySourceCount": 2,
+      "personWorkBindingCount": 2,
+      "claimBindingCount": 2,
+      "actualProseBindingCount": 2,
+      "universalArticleGate": true,
+      "healthSafetyGuard": true
+    },
+    {
+      "domainId": "inkludering_helse_lek_samfunn",
+      "strictlyProven": true,
+      "theoryObjectCount": 2,
+      "scholarlySourceCount": 2,
+      "personWorkBindingCount": 2,
+      "claimBindingCount": 2,
+      "actualProseBindingCount": 2,
+      "universalArticleGate": true,
+      "healthSafetyGuard": true
+    }
+  ]
+}
+Filosofi Fase 3 OK: 20 fagområder, 68 emner, 34 metoder og 51 hooks.
+{
+  "schema": "history_go_filosofi_theory_integrity_audit_v1",
+  "version": "1.0.0",
+  "subject_id": "filosofi",
+  "profile": "theorist_rival",
+  "status": "STRICTLY_PROVEN",
+  "proof_scope": "per_canonical_major_field_plus_universal_article_gate",
+  "completion_status_read_only": true,
+  "content_rewrite_required": false,
+  "rules": {
+    "fixed_theorist_quota_forbidden": true,
+    "named_people_require_prose_bound_work_or_research_contribution": true,
+    "theory_metadata_without_prose_binding_fails": true,
+    "contested_fields_require_rival_or_alternative": true,
+    "academically_appropriate_used_sources_required": true,
+    "personal_opinion_is_not_scored_knowledge": true
+  },
+  "summary": {
+    "canonicalMajorFields": 22,
+    "fieldsStrictlyProven": 22,
+    "canonicalDomains": 20,
+    "canonicalArticles": 68,
+    "articlesStrictlyProven": 68,
+    "canonicalChapters": 20,
+    "canonicalConcepts": 204,
+    "canonicalMethods": 34,
+    "canonicalHooks": 51,
+    "claims": 428,
+    "exactProseBoundClaims": 396,
+    "claimSourceBindings": 1317,
+    "scholarlySourceRecords": 110,
+    "usedScholarlySources": 109,
+    "personWorkAnchors": 174,
+    "substantiveContentGapsProven": 0
+  },
+  "fields": [
+    {
+      "fieldId": "epistemology",
+      "domainIds": [
+        "erkjennelse_sannhet"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_kunnskap_begrunnelse_sannhet"
+      ],
+      "canonicalFieldArticles": 4,
+      "exactProseBoundClaims": 25,
+      "scholarlySources": 5,
+      "personWorkAnchors": 10,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "logic",
+      "domainIds": [
+        "argumentasjon_logikk"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_argument_premiss_konklusjon"
+      ],
+      "canonicalFieldArticles": 4,
+      "exactProseBoundClaims": 24,
+      "scholarlySources": 5,
+      "personWorkAnchors": 8,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "metaphysics",
+      "domainIds": [
+        "metafysikk_virkelighet"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_ontologi_substans_relajson"
+      ],
+      "canonicalFieldArticles": 4,
+      "exactProseBoundClaims": 24,
+      "scholarlySources": 6,
+      "personWorkAnchors": 11,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "action",
+      "domainIds": [
+        "handlingsfilosofi"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_intensjon_grunner_arsaker_handling"
+      ],
+      "canonicalFieldArticles": 2,
+      "exactProseBoundClaims": 10,
+      "scholarlySources": 6,
+      "personWorkAnchors": 6,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "language",
+      "domainIds": [
+        "sprakfilosofi"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_mening_referanse_sannhetsbetingelser"
+      ],
+      "canonicalFieldArticles": 2,
+      "exactProseBoundClaims": 10,
+      "scholarlySources": 6,
+      "personWorkAnchors": 6,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "mathematics",
+      "domainIds": [
+        "matematikkfilosofi"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_matematiske_objekter_platonisme_nominalisme"
+      ],
+      "canonicalFieldArticles": 2,
+      "exactProseBoundClaims": 10,
+      "scholarlySources": 5,
+      "personWorkAnchors": 6,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "mind",
+      "domainIds": [
+        "sinn_bevissthet_identitet"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_kropp_sinn_bevissthet"
+      ],
+      "canonicalFieldArticles": 4,
+      "exactProseBoundClaims": 24,
+      "scholarlySources": 3,
+      "personWorkAnchors": 9,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "physics",
+      "domainIds": [
+        "fysikkfilosofi"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_romtid_relativitet_tid"
+      ],
+      "canonicalFieldArticles": 2,
+      "exactProseBoundClaims": 10,
+      "scholarlySources": 6,
+      "personWorkAnchors": 6,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "probability_decision",
+      "domainIds": [
+        "sannsynlighet_beslutning"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_sannsynlighet_frekvens_bayes"
+      ],
+      "canonicalFieldArticles": 2,
+      "exactProseBoundClaims": 10,
+      "scholarlySources": 6,
+      "personWorkAnchors": 6,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "psychology_cognitive",
+      "domainIds": [
+        "sinn_bevissthet_identitet",
+        "teknologi_ai"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_kropp_sinn_bevissthet",
+        "em_filosofi_ai_intelligens_personskap"
+      ],
+      "canonicalFieldArticles": 8,
+      "exactProseBoundClaims": 49,
+      "scholarlySources": 9,
+      "personWorkAnchors": 18,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "religion",
+      "domainIds": [
+        "religionsfilosofi"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_gudsargumenter_nodvendighet_forklaring"
+      ],
+      "canonicalFieldArticles": 2,
+      "exactProseBoundClaims": 10,
+      "scholarlySources": 6,
+      "personWorkAnchors": 6,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "science",
+      "domainIds": [
+        "vitenskapsfilosofi"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_demarkasjon_falsifikasjon"
+      ],
+      "canonicalFieldArticles": 4,
+      "exactProseBoundClaims": 24,
+      "scholarlySources": 3,
+      "personWorkAnchors": 12,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "aesthetics",
+      "domainIds": [
+        "estetikk_fortolkning"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_skjonnhet_smak_dom"
+      ],
+      "canonicalFieldArticles": 4,
+      "exactProseBoundClaims": 24,
+      "scholarlySources": 5,
+      "personWorkAnchors": 10,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "feminist",
+      "domainIds": [
+        "sosial_filosofi_makt"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_kjonn_performativitet_feminisme"
+      ],
+      "canonicalFieldArticles": 4,
+      "exactProseBoundClaims": 24,
+      "scholarlySources": 5,
+      "personWorkAnchors": 9,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "metaethics",
+      "domainIds": [
+        "etikk_moralpsykologi"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_metaetikk_moralsk_sannhet"
+      ],
+      "canonicalFieldArticles": 4,
+      "exactProseBoundClaims": 24,
+      "scholarlySources": 5,
+      "personWorkAnchors": 10,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "normative_applied_ethics",
+      "domainIds": [
+        "etikk_moralpsykologi",
+        "miljo_dyr_klima"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_normativ_etikk",
+        "em_filosofi_anvendt_etikk_ansvar"
+      ],
+      "canonicalFieldArticles": 8,
+      "exactProseBoundClaims": 48,
+      "scholarlySources": 8,
+      "personWorkAnchors": 18,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "law",
+      "domainIds": [
+        "rettsfilosofi"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_rettens_natur_positivisme_naturrett"
+      ],
+      "canonicalFieldArticles": 2,
+      "exactProseBoundClaims": 10,
+      "scholarlySources": 6,
+      "personWorkAnchors": 6,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "political",
+      "domainIds": [
+        "politisk_filosofi_rettferdighet"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_rettferdighet_likhet_fordeling"
+      ],
+      "canonicalFieldArticles": 4,
+      "exactProseBoundClaims": 24,
+      "scholarlySources": 3,
+      "personWorkAnchors": 11,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "ancient",
+      "domainIds": [
+        "globale_tradisjoner"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_antikk_middelalder_modernitet"
+      ],
+      "canonicalFieldArticles": 6,
+      "exactProseBoundClaims": 36,
+      "scholarlySources": 18,
+      "personWorkAnchors": 14,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "medieval",
+      "domainIds": [
+        "globale_tradisjoner"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_antikk_middelalder_modernitet"
+      ],
+      "canonicalFieldArticles": 6,
+      "exactProseBoundClaims": 36,
+      "scholarlySources": 18,
+      "personWorkAnchors": 14,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "early_modern",
+      "domainIds": [
+        "globale_tradisjoner"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_antikk_middelalder_modernitet"
+      ],
+      "canonicalFieldArticles": 6,
+      "exactProseBoundClaims": 36,
+      "scholarlySources": 18,
+      "personWorkAnchors": 14,
+      "strictlyProven": true
+    },
+    {
+      "fieldId": "history_since_1800",
+      "domainIds": [
+        "globale_tradisjoner",
+        "eksistens_fenomenologi",
+        "sosial_filosofi_makt"
+      ],
+      "evidenceArticleIds": [
+        "em_filosofi_eksistens_mening_autentisitet",
+        "em_filosofi_makt_disiplin_hegemoni"
+      ],
+      "canonicalFieldArticles": 14,
+      "exactProseBoundClaims": 84,
+      "scholarlySources": 25,
+      "personWorkAnchors": 34,
+      "strictlyProven": true
+    }
+  ],
+  "universalArticleGate": {
+    "status": "STRICTLY_PROVEN",
+    "articles": [
+      {
+        "articleId": "em_filosofi_argument_premiss_konklusjon",
+        "domainId": "argumentasjon_logikk",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_gyldighet_holdbarhet",
+        "domainId": "argumentasjon_logikk",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_uformell_logikk_feilslutninger",
+        "domainId": "argumentasjon_logikk",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_dialog_uenighet",
+        "domainId": "argumentasjon_logikk",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_kunnskap_begrunnelse_sannhet",
+        "domainId": "erkjennelse_sannhet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_skepsis_feilbarlighet",
+        "domainId": "erkjennelse_sannhet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_vitnesbyrd_ekspertise_tillit",
+        "domainId": "erkjennelse_sannhet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 18,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_epistemisk_urettferdighet_standpunkt",
+        "domainId": "erkjennelse_sannhet",
+        "exactProseBoundClaims": 7,
+        "claimSourceBindings": 24,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 19,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_ontologi_substans_relajson",
+        "domainId": "metafysikk_virkelighet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_arsak_nodvendighet_mulighet",
+        "domainId": "metafysikk_virkelighet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_tid_endring_prosess",
+        "domainId": "metafysikk_virkelighet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_realisme_antirealisme",
+        "domainId": "metafysikk_virkelighet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_kropp_sinn_bevissthet",
+        "domainId": "sinn_bevissthet_identitet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_intentionalitet_representasjon",
+        "domainId": "sinn_bevissthet_identitet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 18,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_personlig_identitet_selv",
+        "domainId": "sinn_bevissthet_identitet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_fri_vilje_ansvar",
+        "domainId": "sinn_bevissthet_identitet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_normativ_etikk",
+        "domainId": "etikk_moralpsykologi",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 19,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_metaetikk_moralsk_sannhet",
+        "domainId": "etikk_moralpsykologi",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_omsorg_relasjon_sarbarhet",
+        "domainId": "etikk_moralpsykologi",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_anvendt_etikk_ansvar",
+        "domainId": "etikk_moralpsykologi",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_stat_samfunnskontrakt_legitimitet",
+        "domainId": "politisk_filosofi_rettferdighet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_frihet_rettigheter_tvang",
+        "domainId": "politisk_filosofi_rettferdighet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_rettferdighet_likhet_fordeling",
+        "domainId": "politisk_filosofi_rettferdighet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_demokrati_offentlig_fornuft",
+        "domainId": "politisk_filosofi_rettferdighet",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_makt_disiplin_hegemoni",
+        "domainId": "sosial_filosofi_makt",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_rase_kolonialitet_dekolonisering",
+        "domainId": "sosial_filosofi_makt",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 28,
+        "scholarlySources": 4,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 19,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_kjonn_performativitet_feminisme",
+        "domainId": "sosial_filosofi_makt",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_anerkjennelse_fremmedgjoring_frigjoring",
+        "domainId": "sosial_filosofi_makt",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_skjonnhet_smak_dom",
+        "domainId": "estetikk_fortolkning",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_kunstverk_kunststatus_institusjon",
+        "domainId": "estetikk_fortolkning",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 30,
+        "scholarlySources": 5,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_hermeneutikk_fortolkning",
+        "domainId": "estetikk_fortolkning",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_kunst_politikk_offentlighet",
+        "domainId": "estetikk_fortolkning",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_demarkasjon_falsifikasjon",
+        "domainId": "vitenskapsfilosofi",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_paradigmer_forskningsprogrammer",
+        "domainId": "vitenskapsfilosofi",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_evidens_forklaring_modell",
+        "domainId": "vitenskapsfilosofi",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_verdier_objektivitet_vitenskap",
+        "domainId": "vitenskapsfilosofi",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_teknologi_makt_infrastruktur",
+        "domainId": "teknologi_ai",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_ai_intelligens_personskap",
+        "domainId": "teknologi_ai",
+        "exactProseBoundClaims": 7,
+        "claimSourceBindings": 32,
+        "scholarlySources": 4,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 19,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_algoritmisk_rettferdighet_ansvar",
+        "domainId": "teknologi_ai",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_data_personvern_overvaking",
+        "domainId": "teknologi_ai",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_eksistens_mening_autentisitet",
+        "domainId": "eksistens_fenomenologi",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_angst_absurditet_dodelighet",
+        "domainId": "eksistens_fenomenologi",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_fenomenologi_livsverden_kropp",
+        "domainId": "eksistens_fenomenologi",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_den_andre_ansikt_ansvar",
+        "domainId": "eksistens_fenomenologi",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_natur_egenverdi_dypokologi",
+        "domainId": "miljo_dyr_klima",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_dyr_moralsk_status",
+        "domainId": "miljo_dyr_klima",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_klimarettferdighet_generasjoner",
+        "domainId": "miljo_dyr_klima",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_okofeminisme_urfolkskunnskap",
+        "domainId": "miljo_dyr_klima",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 17,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_antikk_middelalder_modernitet",
+        "domainId": "globale_tradisjoner",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 18,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_kinesisk_filosofi",
+        "domainId": "globale_tradisjoner",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 18,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_indisk_buddhistisk_filosofi",
+        "domainId": "globale_tradisjoner",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 18,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_islamsk_jodisk_filosofi",
+        "domainId": "globale_tradisjoner",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 18,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_afrikansk_filosofi_ubuntu",
+        "domainId": "globale_tradisjoner",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 18,
+        "scholarlySources": 3,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 18,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_latinamerikansk_dekolonial_filosofi",
+        "domainId": "globale_tradisjoner",
+        "exactProseBoundClaims": 6,
+        "claimSourceBindings": 24,
+        "scholarlySources": 4,
+        "personWorkAnchors": 2,
+        "roleParagraphs": 18,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_mening_referanse_sannhetsbetingelser",
+        "domainId": "sprakfilosofi",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_sprakhandling_pragmatikk_regelfolging",
+        "domainId": "sprakfilosofi",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_gudsargumenter_nodvendighet_forklaring",
+        "domainId": "religionsfilosofi",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_ondskap_skjulthet_religios_epistemologi",
+        "domainId": "religionsfilosofi",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_rettens_natur_positivisme_naturrett",
+        "domainId": "rettsfilosofi",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_rettstolkning_prinsipper_straff",
+        "domainId": "rettsfilosofi",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_matematiske_objekter_platonisme_nominalisme",
+        "domainId": "matematikkfilosofi",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_matematisk_bevis_formalisme_intuisjonisme",
+        "domainId": "matematikkfilosofi",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_intensjon_grunner_arsaker_handling",
+        "domainId": "handlingsfilosofi",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_delt_handling_kollektiv_agency_ansvar",
+        "domainId": "handlingsfilosofi",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_romtid_relativitet_tid",
+        "domainId": "fysikkfilosofi",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_kvantemekanikk_maling_realisme",
+        "domainId": "fysikkfilosofi",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_sannsynlighet_frekvens_bayes",
+        "domainId": "sannsynlighet_beslutning",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      },
+      {
+        "articleId": "em_filosofi_beslutning_forventet_nytte_risiko",
+        "domainId": "sannsynlighet_beslutning",
+        "exactProseBoundClaims": 5,
+        "claimSourceBindings": 21,
+        "scholarlySources": 3,
+        "personWorkAnchors": 3,
+        "roleParagraphs": 20,
+        "strictlyProven": true
+      }
+    ]
+  }
+}
+Scenekunst Phase 3 OK: 4 fagområder, 20 emner, 14 metoder.
+Verified Fagverk release 0a914acfe3fc648bffea5f59fce58a773b2624e60330861cc580c74cf5852418: 20 packages, 190 chapters.
+TAP version 13
+# Subtest: Filosofi beholder eksakt canonical dekning uten å forveksle dekning med universitetsdybde
+ok 1 - Filosofi beholder eksakt canonical dekning uten å forveksle dekning med universitetsdybde
+  ---
+  duration_ms: 0.968211
+  type: 'test'
+  ...
+# Subtest: alle artikler har solid strukturell baseline, men struktur er ikke kvalitetsproxy
+ok 2 - alle artikler har solid strukturell baseline, men struktur er ikke kvalitetsproxy
+  ---
+  duration_ms: 11.917402
+  type: 'test'
+  ...
+# Subtest: completion er bare grønn når alle artikler er individuelt universitetsreviewet og feltbenchmarken er komplett
+ok 3 - completion er bare grønn når alle artikler er individuelt universitetsreviewet og feltbenchmarken er komplett
+  ---
+  duration_ms: 0.239428
+  type: 'test'
+  ...
+# Subtest: alle canonicale begreper er skrevet ut i faktisk artikkelprosa
+ok 4 - alle canonicale begreper er skrevet ut i faktisk artikkelprosa
+  ---
+  duration_ms: 3.033252
+  type: 'test'
+  ...
+# Subtest: kapitlene eier alle emneartikler uten duplikat
+ok 5 - kapitlene eier alle emneartikler uten duplikat
+  ---
+  duration_ms: 0.451945
+  type: 'test'
+  ...
+# Subtest: Filosofi-kildene er inspectable og rollebeskrevet
+ok 6 - Filosofi-kildene er inspectable og rollebeskrevet
+  ---
+  duration_ms: 0.383337
+  type: 'test'
+  ...
+# Subtest: completion-auditen skiller strukturelle porter, universitetsdybde og feltdekning
+ok 7 - completion-auditen skiller strukturelle porter, universitetsdybde og feltdekning
+  ---
+  duration_ms: 0.24067
+  type: 'test'
+  ...
+# Subtest: Filosofi-prosa er fri for kjente maskinmønstre og rå ID-er
+ok 8 - Filosofi-prosa er fri for kjente maskinmønstre og rå ID-er
+  ---
+  duration_ms: 14.946262
+  type: 'test'
+  ...
+# Subtest: argumentrekonstruksjonen gjentar ikke identisk kontrollsetning i samme artikkel
+ok 9 - argumentrekonstruksjonen gjentar ikke identisk kontrollsetning i samme artikkel
+  ---
+  duration_ms: 0.945118
+  type: 'test'
+  ...
+# Subtest: universitetsreviewede artikler får ikke bruke den gamle metamalens argument
+ok 10 - universitetsreviewede artikler får ikke bruke den gamle metamalens argument
+  ---
+  duration_ms: 2.166871
+  type: 'test'
+  ...
+# Subtest: globale tradisjoner har tradisjonsspesifikke debattaktører, primærankre og eksplisitt universitetsdybde før komparasjon
+ok 11 - globale tradisjoner har tradisjonsspesifikke debattaktører, primærankre og eksplisitt universitetsdybde før komparasjon
+  ---
+  duration_ms: 4.903398
+  type: 'test'
+  ...
+# Subtest: begrepsavsnitt forklarer begreper uten å tvinges inn i én boilerplate-formel
+ok 12 - begrepsavsnitt forklarer begreper uten å tvinges inn i én boilerplate-formel
+  ---
+  duration_ms: 2.302575
+  type: 'test'
+  ...
+# Subtest: major-university-field benchmark er eksplisitt, kildeført og ærlig avgrenset
+ok 13 - major-university-field benchmark er eksplisitt, kildeført og ærlig avgrenset
+  ---
+  duration_ms: 1.831805
+  type: 'test'
+  ...
+# Subtest: de syv tidligere hullene er egne canonicale hovedområder med universitetsdybde
+ok 14 - de syv tidligere hullene er egne canonicale hovedområder med universitetsdybde
+  ---
+  duration_ms: 1.526554
+  type: 'test'
+  ...
+# Subtest: feltbenchmarkens forventede tall matcher alle canonicale kilder
+ok 15 - feltbenchmarkens forventede tall matcher alle canonicale kilder
+  ---
+  duration_ms: 0.3261
+  type: 'test'
+  ...
+# Subtest: complete krever både 100 prosent universitetreview og 100 prosent benchmarkdekning
+ok 16 - complete krever både 100 prosent universitetreview og 100 prosent benchmarkdekning
+  ---
+  duration_ms: 0.28333
+  type: 'test'
+  ...
+# Subtest: fagverk-registryet kan ikke drive tilbake til gammel 13/54/162 eller 4/54-status
+ok 17 - fagverk-registryet kan ikke drive tilbake til gammel 13/54/162 eller 4/54-status
+  ---
+  duration_ms: 0.472954
+  type: 'test'
+  ...
+# Subtest: university_depth_reviewed kan ikke motsies av artikkelens egen review-state
+ok 18 - university_depth_reviewed kan ikke motsies av artikkelens egen review-state
+  ---
+  duration_ms: 0.986113
+  type: 'test'
+  ...
+# Subtest: universitetsstatus kan ikke sertifiseres av kjent generator-malprosa
+ok 19 - universitetsstatus kan ikke sertifiseres av kjent generator-malprosa
+  ---
+  duration_ms: 16.712167
+  type: 'test'
+  ...
+# Subtest: teorihistorie er fri for regex-skjøter fra quality-repair
+ok 20 - teorihistorie er fri for regex-skjøter fra quality-repair
+  ---
+  duration_ms: 0.896386
+  type: 'test'
+  ...
+# Subtest: kildeavsnittet må omtale de faktiske emnespesifikke sekundærkildene og ikke et annet emnes kildeliste
+ok 21 - kildeavsnittet må omtale de faktiske emnespesifikke sekundærkildene og ikke et annet emnes kildeliste
+  ---
+  duration_ms: 7.654893
+  type: 'test'
+  ...
+# Subtest: primærverk skal være reelle argumentankere, ikke bare metadata
+ok 22 - primærverk skal være reelle argumentankere, ikke bare metadata
+  ---
+  duration_ms: 1.76
+  type: 'test'
+  ...
+# Subtest: Filosofi er materialisert og auditert som komplett major-field Fase 3-fag
+ok 23 - Filosofi er materialisert og auditert som komplett major-field Fase 3-fag
+  ---
+  duration_ms: 34.680632
+  type: 'test'
+  ...
+# Subtest: Filosofi beholder fagkart-eide områder og pensum som progresjonslag
+ok 24 - Filosofi beholder fagkart-eide områder og pensum som progresjonslag
+  ---
+  duration_ms: 22.265409
+  type: 'test'
+  ...
+# Subtest: Filosofi løser emner, metoder, hooks, begreper og teoretikere
+ok 25 - Filosofi løser emner, metoder, hooks, begreper og teoretikere
+  ---
+  duration_ms: 18.091205
+  type: 'test'
+  ...
+# Subtest: Filosofi låser argument-first, kildekrav, global kanon og konsistent sluttstatus
+ok 26 - Filosofi låser argument-first, kildekrav, global kanon og konsistent sluttstatus
+  ---
+  duration_ms: 19.94974
+  type: 'test'
+  ...
+# Subtest: ingen Filosofi-artikkel kan lenger være selvdeklarert university_depth_polished
+ok 27 - ingen Filosofi-artikkel kan lenger være selvdeklarert university_depth_polished
+  ---
+  duration_ms: 1.264805
+  type: 'test'
+  ...
+# Subtest: de fire artiklene som avslørte den falske porten er substansielt universitetsreviewet
+ok 28 - de fire artiklene som avslørte den falske porten er substansielt universitetsreviewet
+  ---
+  duration_ms: 0.891457
+  type: 'test'
+  ...
+# Subtest: hver universitetsreviewet artikkel har reelt rekonstruerbart argument, rival og kilder
+ok 29 - hver universitetsreviewet artikkel har reelt rekonstruerbart argument, rival og kilder
+  ---
+  duration_ms: 9.530399
+  type: 'test'
+  ...
+# Subtest: claim-mønster er ikke lenger mekanisk 54 ganger seks
+ok 30 - claim-mønster er ikke lenger mekanisk 54 ganger seks
+  ---
+  duration_ms: 0.37985
+  type: 'test'
+  ...
+# Subtest: Filosofi kan ikke være komplett før alle registrerte artikler har bestått samme port
+ok 31 - Filosofi kan ikke være komplett før alle registrerte artikler har bestått samme port
+  ---
+  duration_ms: 0.223197
+  type: 'test'
+  ...
+# Subtest: generell motor normaliserer forklarte begreper uten Politikk-avhengighet
+ok 32 - generell motor normaliserer forklarte begreper uten Politikk-avhengighet
+  ---
+  duration_ms: 3.573231
+  type: 'test'
+  ...
+# Subtest: canonical subject-resolver er streng og bruker aldri alias eller fallback
+ok 33 - canonical subject-resolver er streng og bruker aldri alias eller fallback
+  ---
+  duration_ms: 0.681775
+  type: 'test'
+  ...
+# Subtest: manifest-resolver holder required kjernefiler innenfor data/fag
+ok 34 - manifest-resolver holder required kjernefiler innenfor data/fag
+  ---
+  duration_ms: 0.480008
+  type: 'test'
+  ...
+# Subtest: standard canonical adapter bruker pensumdomener og canonicale id-er
+ok 35 - standard canonical adapter bruker pensumdomener og canonicale id-er
+  ---
+  duration_ms: 0.530101
+  type: 'test'
+  ...
+# Subtest: foundation-adapter henter fagområder fra fagkart uten å gjøre kursmoduler til renderer
+ok 36 - foundation-adapter henter fagområder fra fagkart uten å gjøre kursmoduler til renderer
+  ---
+  duration_ms: 1.312284
+  type: 'test'
+  ...
+# Subtest: by-adapter leser emnekoblinger i nested topic hooks
+ok 37 - by-adapter leser emnekoblinger i nested topic hooks
+  ---
+  duration_ms: 0.624658
+  type: 'test'
+  ...
+# Subtest: nested Teknologi-spesialisering bruker vitenskapelig fagkart og focus-koblinger
+ok 38 - nested Teknologi-spesialisering bruker vitenskapelig fagkart og focus-koblinger
+  ---
+  duration_ms: 0.850029
+  type: 'test'
+  ...
+# Subtest: kapittelhydrering normaliserer pedagogiske felter og laster claims-kilder
+ok 39 - kapittelhydrering normaliserer pedagogiske felter og laster claims-kilder
+  ---
+  duration_ms: 2.006111
+  type: 'test'
+  ...
+# Subtest: alle tolv Næringsliv-kapitler hydrerer renderbare eksempler, misoppfatninger og canonicale kilder
+ok 40 - alle tolv Næringsliv-kapitler hydrerer renderbare eksempler, misoppfatninger og canonicale kilder
+  ---
+  duration_ms: 20.081717
+  type: 'test'
+  ...
+# Subtest: materialisert fagside og committed fase-1-rapport passerer full audit
+ok 41 - materialisert fagside og committed fase-1-rapport passerer full audit
+  ---
+  duration_ms: 353.944174
+  type: 'test'
+  ...
+# Subtest: Kunst er individuelt materialisert og auditert som første Fase 3-fag
+ok 42 - Kunst er individuelt materialisert og auditert som første Fase 3-fag
+  ---
+  duration_ms: 38.080559
+  type: 'test'
+  ...
+# Subtest: alle Kunst-emner er integrert uten kunstige fagområder
+ok 43 - alle Kunst-emner er integrert uten kunstige fagområder
+  ---
+  duration_ms: 28.062879
+  type: 'test'
+  ...
+# Subtest: materialitet, teknikk og håndverk bruker eksisterende Kunst-område og hooks
+ok 44 - materialitet, teknikk og håndverk bruker eksisterende Kunst-område og hooks
+  ---
+  duration_ms: 22.832079
+  type: 'test'
+  ...
+# Subtest: Kunst-merkesiden er compatibility-redirect mens legacy-kilden er bevart i arkiv
+ok 45 - Kunst-merkesiden er compatibility-redirect mens legacy-kilden er bevart i arkiv
+  ---
+  duration_ms: 0.648984
+  type: 'test'
+  ...
+# Subtest: Media er individuelt materialisert og auditert som andre Fase 3-fag
+ok 46 - Media er individuelt materialisert og auditert som andre Fase 3-fag
+  ---
+  duration_ms: 80.570149
+  type: 'test'
+  ...
+# Subtest: alle hovedemner er integrert uten syntetiske Media-områder
+ok 47 - alle hovedemner er integrert uten syntetiske Media-områder
+  ---
+  duration_ms: 45.027998
+  type: 'test'
+  ...
+# Subtest: de to etterregistrerte Media-emnene bruker eksisterende områder og hooks
+ok 48 - de to etterregistrerte Media-emnene bruker eksisterende områder og hooks
+  ---
+  duration_ms: 58.590378
+  type: 'test'
+  ...
+# Subtest: Populærkultur er komplett nested mediefelt og ikke et toppfag
+ok 49 - Populærkultur er komplett nested mediefelt og ikke et toppfag
+  ---
+  duration_ms: 60.870208
+  type: 'test'
+  ...
+# Subtest: Media compatibility-URL peker til integrert Progresjon og Fagverk-forsiden
+ok 50 - Media compatibility-URL peker til integrert Progresjon og Fagverk-forsiden
+  ---
+  duration_ms: 0.594862
+  type: 'test'
+  ...
+# Subtest: builds deterministic whole-architecture Fagverk releases
+ok 51 - builds deterministic whole-architecture Fagverk releases
+  ---
+  duration_ms: 41.975945
+  type: 'test'
+  ...
+# Subtest: reports optional gaps without invalidating the required package contract
+ok 52 - reports optional gaps without invalidating the required package contract
+  ---
+  duration_ms: 3.521454
+  type: 'test'
+  ...
+# Subtest: Scenekunst bevarer Phase 3-foundation gjennom completion
+ok 53 - Scenekunst bevarer Phase 3-foundation gjennom completion
+  ---
+  duration_ms: 20.087598
+  type: 'test'
+  ...
+# Subtest: fagkartet beholder canonical 5/6/4/5-eierskap
+ok 54 - fagkartet beholder canonical 5/6/4/5-eierskap
+  ---
+  duration_ms: 10.534867
+  type: 'test'
+  ...
+# Subtest: Sport er komplett og bevarer den canonicale Fase 3-strukturen
+ok 55 - Sport er komplett og bevarer den canonicale Fase 3-strukturen
+  ---
+  duration_ms: 32.02705
+  type: 'test'
+  ...
+# Subtest: Sport har 6/6 kapitler i canonical rekkefølge og dekker 116/116 emner nøyaktig én gang
+ok 56 - Sport har 6/6 kapitler i canonical rekkefølge og dekker 116/116 emner nøyaktig én gang
+  ---
+  duration_ms: 3.836473
+  type: 'test'
+  ...
+# Subtest: alle seks Sport-kapitler har 9 seksjoner, 27 avsnitt, 27 claims og inspiserbare eksterne kilder
+ok 57 - alle seks Sport-kapitler har 9 seksjoner, 27 avsnitt, 27 claims og inspiserbare eksterne kilder
+  ---
+  duration_ms: 5.024835
+  type: 'test'
+  ...
+# Subtest: Sport completion overlay og status er konsistente
+ok 58 - Sport completion overlay og status er konsistente
+  ---
+  duration_ms: 0.548075
+  type: 'test'
+  ...
+# Subtest: Sport beholder source-first og Groundhopper-kontraktene
+ok 59 - Sport beholder source-first og Groundhopper-kontraktene
+  ---
+  duration_ms: 17.734491
+  type: 'test'
+  ...
+# Subtest: Sport-merkesiden skiller merket fra fagsiden
+ok 60 - Sport-merkesiden skiller merket fra fagsiden
+  ---
+  duration_ms: 0.418422
+  type: 'test'
+  ...
+# Subtest: inventaret dekker 19 toppfag, Teknologi-spesialiseringen og alle required core-filer
+ok 61 - inventaret dekker 19 toppfag, Teknologi-spesialiseringen og alle required core-filer
+  ---
+  duration_ms: 224.018333
+  type: 'test'
+  ...
+# Subtest: statusregisteret tillater bare dokumentert fremdrift gjennom materialized og audited
+ok 62 - statusregisteret tillater bare dokumentert fremdrift gjennom materialized og audited
+  ---
+  duration_ms: 0.565998
+  type: 'test'
+  ...
+# Subtest: Auditerte fag har dokumentert og statusriktig fremdrift gjennom den generelle motoren
+ok 63 - Auditerte fag har dokumentert og statusriktig fremdrift gjennom den generelle motoren
+  ---
+  duration_ms: 7.899249
+  type: 'test'
+  ...
+# Subtest: baseline report er en deterministisk projeksjon av eide kilder
+ok 64 - baseline report er en deterministisk projeksjon av eide kilder
+  ---
+  duration_ms: 1.418492
+  type: 'test'
+  ...
+# Subtest: Musikk deklarerer vitenskapelig pakke uten å opprette ny schemafamilie
+ok 65 - Musikk deklarerer vitenskapelig pakke uten å opprette ny schemafamilie
+  ---
+  duration_ms: 0.829821
+  type: 'test'
+  ...
+# Subtest: pilotsettet dekker fire schemafamilier uten å gjøre Teknologi til toppfag
+ok 66 - pilotsettet dekker fire schemafamilier uten å gjøre Teknologi til toppfag
+  ---
+  duration_ms: 0.729063
+  type: 'test'
+  ...
+# Subtest: 19+1-utvidelsen låser tolv eksplisitte canonicale underkategorier
+ok 67 - 19+1-utvidelsen låser tolv eksplisitte canonicale underkategorier
+  ---
+  duration_ms: 0.548526
+  type: 'test'
+  ...
+# Subtest: Helse og Utdanning er strict-complete med monotont fulltekstgrunnlag
+ok 68 - Helse og Utdanning er strict-complete med monotont fulltekstgrunnlag
+  ---
+  duration_ms: 4.219308
+  type: 'test'
+  ...
+# Subtest: Filosofi strict-proves alle 22 canonicale major fields
+ok 69 - Filosofi strict-proves alle 22 canonicale major fields
+  ---
+  duration_ms: 134.424203
+  type: 'test'
+  ...
+# Subtest: den universelle porten kontrollerer 68/68 artikler og hele registrerte baselinen
+ok 70 - den universelle porten kontrollerer 68/68 artikler og hele registrerte baselinen
+  ---
+  duration_ms: 110.730712
+  type: 'test'
+  ...
+# Subtest: strict proof er claim-, kilde-, fulltekst- og person→verk-bundet
+ok 71 - strict proof er claim-, kilde-, fulltekst- og person→verk-bundet
+  ---
+  duration_ms: 80.620273
+  type: 'test'
+  ...
+# Subtest: proof-reconciliation omskriver ikke Filosofi-corpuset eller completion-status
+ok 72 - proof-reconciliation omskriver ikke Filosofi-corpuset eller completion-status
+  ---
+  duration_ms: 77.527374
+  type: 'test'
+  ...
+# Subtest: Kunst strict theory integrity proves every canonical major field (6/6)
+ok 73 - Kunst strict theory integrity proves every canonical major field (6/6)
+  ---
+  duration_ms: 437.839737
+  type: 'test'
+  ...
+# Subtest: Sport strict theory integrity proves every canonical major field (6/6)
+ok 74 - Sport strict theory integrity proves every canonical major field (6/6)
+  ---
+  duration_ms: 169.584981
+  type: 'test'
+  ...
+1..74
+# tests 74
+# suites 0
+# pass 74
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1246.237028
+exit=0
+
+===== Knowledge canonical check =====
+$ npm run knowledge:canonical:check
+
+> history-go@0.0.0 knowledge:canonical:check
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --check
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Knowledge canonical data: 4725 questions, 5929 units, 134 unresolved emne links.
+Knowledge contract audit: 0 error question(s), 1021 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+exit=0
+
+===== Knowledge legacy check =====
+$ npm run knowledge:legacy:check
+
+> history-go@0.0.0 knowledge:legacy:check
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --legacy-only
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Legacy Knowledge audit: 0 active reference(s).
+exit=0
+
+===== Knowledge audit =====
+$ npm run audit:knowledge
+
+> history-go@0.0.0 audit:knowledge
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --audit-only
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Knowledge contract audit: 0 error question(s), 1021 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+exit=0
+
+===== Knowledge links =====
+$ /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/audit-knowledge-links.mjs
+Knowledge link audit: 53 statiske ruter kontrollert i 2891 runtime-filer.
+Gyldige Knowledge-subjects leses fra data/categories/category_contract.json: by, historie, kunst, litteratur, media, musikk, naeringsliv, natur, politikk, psykologi, helse, utdanning, religion, scenekunst, sport, subkultur, vitenskap, filosofi, film_tv.
+Kontrollerte 2 dynamiske legacy-rutegeneratorer.
+exit=0
+
+===== places check =====
+$ bash scripts/check-places.sh
+== Places JSON parse ==
+json ok (1549 files)
+== Place primary/secondary badge audit ==
+place badge audit ok (0 places, 0 secondary badge links)
+== Active subkultur place concreteness guard ==
+active subkultur place concreteness ok
+== Build places index ==
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1534 places -> data/places/places_index.json; skipped 13 disabled place(s); applied 211 category override(s)
+== Place category override contract ==
+place-category-overrides: PASS
+== Religion candidate audit ==
+Religion candidate audit: 0 unreviewed candidate(s); 22 reviewed non-Religion decision(s).
+== Build tools ==
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+== Places index check ==
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index.json is in sync with source place files after disabled-place filtering and place overrides.
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity OK: runtime index coordinate fields match source files.
+== Places emne check ==
+
+> history-go@0.0.0 places:emner:check
+> npm run build:tools && node dist/tools/check_place_emne_ids.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+=== Place emne_id validation ===
+Active place files: 1547
+Active manifest emne files scanned: 21
+Canonical emne ids loaded: 1583
+
+Missing emne_ids: 0
+
+Duplicate emne_ids within same place: 0
+
+Duplicate place ids across active files: 0
+
+Duplicate place ids within same active file: 0
+
+Duplicate canonical emne_ids across active manifest files: 0
+== Places coordinate check ==
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity OK: runtime index coordinate fields match source files.
+== Places check complete ==
+exit=0
+
+===== diff whitespace =====
+$ git diff --check
+exit=0
+
+===== working tree summary =====
+$ git status --short
+ M data/Civication/historyPeople_index.json
+ M data/Civication/scenarioPeople/generated/by.json
+ M data/Civication/scenarioPeople_index.json
+ M data/epoker/epoke-place-index.json
+ M data/fag/fag_manifest.json
+ M data/fagverk/fagverk_release.json
+ M data/knowledge/knowledge_units.generated.json
+ M data/leksikon/manifest.json
+ M data/leksikon/sprak/manifest.json
+ M data/people/manifest.json
+ M data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/stortorget.json
+ M data/places/place_image_backlog_summary.json
+ M data/places/places_index.json
+ M data/quiz/manifest.json
+ M data/runtime/leksikon-all/part-008.json
+ M data/runtime/people-all/part-007.json
+ M data/runtime/place-open/stortorget.json
+ M data/runtime/stories-all/part-004.json
+ M data/runtime/stories-all/part-005.json
+ M data/runtime/stories-all/part-006.json
+ M data/stories/stories_manifest.json
+ M reports/knowledge-contract-audit.json
+ M reports/knowledge-id-backfill.json
+ M tests/epoke-place-index.test.mjs
+?? bilder/historisk/stortorget/
+?? bilder/kort/objects/stortorget_christian_iv_monument.webp
+?? bilder/kort/people/carl_ludvig_jacobsen.webp
+?? bilder/kort/places/stortorget.webp
+?? bilder/places/stortorget.webp
+?? bilder/places/stortorget_front_portrait.webp
+?? data/leksikon/places/oslo/by/leksikon_stortorget.json
+?? data/leksikon/sprak/places/europe/norway/oslo/stortorget.json
+?? data/people/by/oslo/stortorget/
+?? data/people/claims/by/oslo/stortorget/
+?? data/places/production/stortorget.json
+?? data/quiz/by/stortorget_sets.json
+?? data/quiz/production_briefs/by/stortorget.json
+?? data/quiz/production_context/by/stortorget.json
+?? data/stories/stories_stortorget.json
+?? reports/coordinate-branch-runner/agent_oslo-coordinate-stortorget-fresh-main-replay-20260911-v1/
+?? reports/knowledge-link-audit.json
+?? reports/place-production/stortorget-workcard-current.json
+exit=0

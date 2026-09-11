@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-09-02T08:42:39.128Z
+Generert: 2026-09-11T03:13:07.134Z
 
 Aktive steder: 1597
 
@@ -207,6 +207,25 @@ Aktive steder: 1597
 | ibsen_quotes | data/coordinate-evidence/oslo/litteratur/ibsen_quotes.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | inger_hagerups_plass | data/coordinate-evidence/oslo/litteratur/inger_hagerups_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kulturkirken_jakob_litteratur | data/coordinate-evidence/oslo/litteratur/kulturkirken_jakob_litteratur.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| lesekiosk_0_sentralen | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_0_sentralen.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_1_solli_plass | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_1_solli_plass.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_10_refstadsvingen | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_10_refstadsvingen.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_11_kjelsasveien_141 | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_11_kjelsasveien_141.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_13_jacob_aalls_gate_58 | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_13_jacob_aalls_gate_58.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_22_vigelandsparken | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_22_vigelandsparken.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_23_skoyen_stasjon | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_23_skoyen_stasjon.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_42_munkedamsveien | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_42_munkedamsveien.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_48_valerenga_kirke | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_48_valerenga_kirke.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_50_bislett_stadion | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_50_bislett_stadion.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_51_skedsmogata_20 | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_51_skedsmogata_20.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_56_vestgrensa_2 | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_56_vestgrensa_2.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_74_huk_aveny_35 | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_74_huk_aveny_35.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_76_hjemmets_kolonihager | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_76_hjemmets_kolonihager.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_78_olav_kyrres_plass | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_78_olav_kyrres_plass.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_79_inkognitogata | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_79_inkognitogata.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_8_radhusgata_28 | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_8_radhusgata_28.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_80_majorstukrysset | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_80_majorstukrysset.json | applied_to_place | candidate_ready_for_production | OK |
+| lesekiosk_9_akershusstranda_3 | data/coordinate-evidence/oslo/litteratur/lesekiosk/lesekiosk_9_akershusstranda_3.json | applied_to_place | candidate_ready_for_production | OK |
 | norli_universitetsgata | data/coordinate-evidence/oslo/litteratur/norli_universitetsgata.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oscar_braaten_statuen | data/coordinate-evidence/oslo/litteratur/oscar_braaten_statuen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ruth_maier_minne | data/coordinate-evidence/oslo/litteratur/ruth_maier_minne.json | applied_to_place | do_not_change_coordinates_yet | OK |
