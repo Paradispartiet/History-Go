@@ -118,26 +118,27 @@ assert.equal(entry.status, 'role_world_complete');
 assert.equal(entry.path, worldPath);
 
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 4);
+assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 5);
 assert.deepEqual(index.summary, {
-  role_worlds_total: 89,
+  role_worlds_total: 90,
   career_role_worlds: 85,
-  life_position_role_worlds: 4
+  life_position_role_worlds: 5
 });
 assert.equal(index.career_role_world_count, 85);
-assert.equal(index.life_position_role_world_count, 4);
-assert.equal(index.status, '89_role_worlds_materialized');
+assert.equal(index.life_position_role_world_count, 5);
+assert.equal(index.status, '90_role_worlds_materialized');
 
 assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds, [
   'sport/supporter',
   'by/nabolagskjenner',
   'film_tv/filmklubbmenneske',
-  'filosofi/sofafilosof'
+  'filosofi/sofafilosof',
+  'historie/historievandrer'
 ]);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'historie/historievandrer');
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 4);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 89);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 5);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 90);
 
 const readiness = audit.positions.find((row) => row.key === 'filosofi/sofafilosof');
 assert.ok(readiness);
@@ -148,10 +149,10 @@ assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.deepEqual(readiness.evidence.livelihood_templates, ['sofafilosof_samtalekveld']);
 assert.ok(!audit.queue.some((row) => row.key === 'filosofi/sofafilosof'));
-assert.equal(audit.summary.life_position_role_world_complete, 4);
-assert.equal(audit.summary.completed_life_position_role_worlds, 4);
-assert.equal(audit.summary.pending_ready_positions, 1);
-assert.equal(audit.first_ready?.key, 'historie/historievandrer');
+assert.equal(audit.summary.life_position_role_world_complete, 5);
+assert.equal(audit.summary.completed_life_position_role_worlds, 5);
+assert.equal(audit.summary.pending_ready_positions, 0);
+assert.equal(audit.first_ready, null);
 
 const livelihoodAnchor = stream.storylets.find((row) => row.id === 'honorar_for_samtalekveld');
 assert.ok(livelihoodAnchor);
@@ -162,4 +163,4 @@ execFileSync(process.execPath, ['tests/civication-noncareer-role-taxonomy.test.j
 execFileSync(process.execPath, ['tests/civication-life-position-role-world-readiness.test.js'], { cwd: ROOT, stdio: 'pipe' });
 execFileSync(process.execPath, ['tests/civication-sofafilosof-life-position-readiness.test.js'], { cwd: ROOT, stdio: 'pipe' });
 
-console.log('civication Sofafilosof Role World ok: 56/56 coverage / 14 governed anchors / 89 total worlds / no new runtime');
+console.log('civication Sofafilosof Role World ok: 56/56 coverage / 14 governed anchors / 90 total worlds / no new runtime');
