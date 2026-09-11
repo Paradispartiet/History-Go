@@ -191,7 +191,10 @@ Tilsvarende er «nær venn» en relasjonsstatus mellom to personer, ikke en livs
 
 ## 10. Produksjonsregel videre
 
-Neste non-career Role World-arbeid skal være **readiness først, rolle-for-rolle**:
+Neste non-career Role World-arbeid skal være **readiness først, rolle-for-rolle**. Den maskinlesbare køen ligger i `data/Civication/lifePositionRoleWorldReadiness.json` og genereres av `scripts/audit-civication-life-position-role-world-readiness.mjs`.
+
+Første source-backed kandidat i dagens audit er `sport/supporter`; de øvrige livsposisjonene må enten få mer authored dybde eller behandles som status-/utfallskontekst før de kan vurderes som standalone Role Worlds.
+
 
 ```text
 canonical life_position
