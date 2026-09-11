@@ -134,7 +134,7 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'historie/historievandrer',
   'kunst/gallerivanker'
 ]);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'litteratur/skrivebordspoet');
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 6);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 91);
@@ -150,8 +150,8 @@ assert.deepEqual(readiness.evidence.livelihood_templates, ['historievandrer_loka
 assert.ok(!audit.queue.some((row) => row.key === 'historie/historievandrer'));
 assert.equal(audit.summary.life_position_role_world_complete, 6);
 assert.equal(audit.summary.completed_life_position_role_worlds, 6);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.first_ready?.key, 'litteratur/skrivebordspoet');
 
 const livelihoodAnchor = stream.storylets.find((row) => row.id === 'honorar_for_lokalvandring');
 assert.ok(livelihoodAnchor);
