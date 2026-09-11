@@ -44,7 +44,6 @@ const roleWorldIndex = readJson('data/Civication/roleWorlds/index.json');
 const badgeIndex = readJson('data/badges/index.json');
 const catalog = readJson('data/Civication/lifePositionCatalog.json');
 const overlayIndex = readJson('data/Civication/badgeCareerContracts/index.json');
-const roleWorldIndex = readJson('data/Civication/roleWorlds/index.json');
 
 const completedLifePositionWorlds = new Map(
   (roleWorldIndex.roles || [])
@@ -264,15 +263,11 @@ function classify(position, evidence) {
   return 'needs_authored_depth';
 }
 
-const completedLifeWorlds = new Map((roleWorldIndex.roles || [])
-  .filter((entry) => entry?.subject_type === 'life_position' && entry?.life_position_ref?.badge_id && entry?.life_position_ref?.id)
-  .map((entry) => [entry.life_position_key || `${entry.life_position_ref.badge_id}/${entry.life_position_ref.id}`, entry]));
-
 const rows = positions.map((position) => {
   const evidence = sourceEvidence(position);
   const classification = classify(position, evidence);
   const completedWorld = position.id
-    ? completedLifeWorlds.get(positionKey(position)) || null
+    ? completedLifePositionWorlds.get(positionKey(position)) || null
     : null;
   const mode = semanticMode(position.kind);
   let priority = classification === 'role_world_complete' ? 0
