@@ -5,6 +5,8 @@
     nearby: "nearbyList",
     people: "leftPeopleList",
     nature: "leftNatureList",
+    events: "leftEventsList",
+    social: "leftSocialList",
     routes: "leftRoutesList",
     badges: "leftBadgesList"
   };
@@ -19,6 +21,175 @@
     var _a;
     const activeMode = (_a = document.querySelector(".nearby-tab.is-active")) == null ? void 0 : _a.getAttribute("data-leftmode");
     return normalizeMode(activeMode);
+  }
+  function cleanText(value) {
+    return String(value == null ? "" : value).trim();
+  }
+  function escapeHtml(value) {
+    return cleanText(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+  }
+  function list(value) {
+    return Array.isArray(value) ? value : [];
+  }
+  function selectedPlaceId() {
+    const card = document.getElementById("placeCard");
+    return cleanText(card instanceof HTMLElement ? card.dataset.currentPlaceId : "");
+  }
+  function placeById(placeId) {
+    const id = cleanText(placeId);
+    if (!id) return null;
+    return list(win.PLACES).find((place) => cleanText(place && place.id) === id) || null;
+  }
+  function formatEventDate(value) {
+    const raw = cleanText(value);
+    if (!raw) return "";
+    const timestamp = Date.parse(raw);
+    if (!Number.isFinite(timestamp)) return raw;
+    const options = raw.length <= 10 ? { day: "numeric", month: "short" } : { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" };
+    return new Intl.DateTimeFormat("nb-NO", options).format(new Date(timestamp));
+  }
+  function eventIsCurrent(event, now = Date.now()) {
+    const status = cleanText(event.status).toLowerCase();
+    if (status === "cancelled" || status === "past") return false;
+    if (status === "ongoing") return true;
+    const endMs = Date.parse(cleanText(event.end));
+    if (Number.isFinite(endMs)) return endMs >= now;
+    const startRaw = cleanText(event.start);
+    const startMs = Date.parse(startRaw);
+    if (!Number.isFinite(startMs)) return status === "upcoming";
+    const startDate = new Date(startMs);
+    const today = new Date(now);
+    const dayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+    return startDate.getTime() >= dayStart;
+  }
+  function bindExploreEvents(host) {
+    if (host.dataset.hgExploreEventsBound === "1") return;
+    host.dataset.hgExploreEventsBound = "1";
+    host.addEventListener("click", (event) => {
+      const target = event.target instanceof Element ? event.target.closest("[data-explore-event-place]") : null;
+      if (!(target instanceof HTMLElement)) return;
+      const placeId = cleanText(target.dataset.exploreEventPlace);
+      if (!placeId) return;
+      event.preventDefault();
+      if (typeof win.closeNearbyDrawer === "function") win.closeNearbyDrawer();
+      const opened = win.HGMapView && typeof win.HGMapView.openPlace === "function" ? win.HGMapView.openPlace(placeId) : false;
+      if (opened === false && typeof win.showToast === "function") {
+        win.showToast("Kunne ikke åpne stedet for eventet akkurat nå.");
+      }
+    });
+  }
+  async function renderExploreEvents() {
+    const host = document.getElementById("leftEventsList");
+    if (!(host instanceof HTMLElement)) return;
+    bindExploreEvents(host);
+    const eventsRuntime = win.HGEvents;
+    if (!eventsRuntime) {
+      host.innerHTML = '<div class="hg-explore-empty">Eventoversikten lastes inn …</div>';
+      return;
+    }
+    if (!eventsRuntime.ready && typeof eventsRuntime.init === "function") {
+      try {
+        await eventsRuntime.init();
+      } catch {
+        host.innerHTML = '<div class="hg-explore-empty">Kunne ikke laste events akkurat nå.</div>';
+        return;
+      }
+    }
+    const events = list(
+      typeof eventsRuntime.getAll === "function" ? eventsRuntime.getAll() : eventsRuntime.all
+    ).filter((event) => eventIsCurrent(event)).sort((a, b) => {
+      const aMs = Date.parse(cleanText(a.start));
+      const bMs = Date.parse(cleanText(b.start));
+      const safeA = Number.isFinite(aMs) ? aMs : Number.MAX_SAFE_INTEGER;
+      const safeB = Number.isFinite(bMs) ? bMs : Number.MAX_SAFE_INTEGER;
+      if (safeA !== safeB) return safeA - safeB;
+      return cleanText(a.title).localeCompare(cleanText(b.title), "nb");
+    }).slice(0, 24);
+    if (!events.length) {
+      host.innerHTML = '<div class="hg-explore-empty">Ingen kommende events er registrert akkurat nå.</div>';
+      return;
+    }
+    host.innerHTML = events.map((event) => {
+      const placeId = cleanText(event.place_id);
+      const place = placeById(placeId);
+      const placeName = cleanText(place && (place.name || place.title) || placeId);
+      const when = formatEventDate(event.start);
+      const description = cleanText(event.description);
+      return `<button type="button" class="hg-explore-card hg-explore-event-card" data-explore-event-place="${escapeHtml(placeId)}">
+      <span class="hg-explore-card-kicker">${escapeHtml(when || "Event")}</span>
+      <strong>${escapeHtml(event.title || "Event")}</strong>
+      <span class="hg-explore-card-meta">${escapeHtml(placeName || "History Go-sted")}</span>
+      ${description ? `<small>${escapeHtml(description)}</small>` : ""}
+    </button>`;
+    }).join("");
+  }
+  function bindExploreSocial(host) {
+    if (host.dataset.hgExploreSocialBound === "1") return;
+    host.dataset.hgExploreSocialBound = "1";
+    host.addEventListener("click", (event) => {
+      const target = event.target instanceof Element ? event.target.closest("[data-explore-social-action]") : null;
+      if (!(target instanceof HTMLElement)) return;
+      const action = cleanText(target.dataset.exploreSocialAction);
+      if (action === "manage") {
+        event.preventDefault();
+        if (win.HG_SocialMeetUI && typeof win.HG_SocialMeetUI.open === "function") {
+          win.HG_SocialMeetUI.open({
+            filter: "all",
+            placeId: "",
+            sourceSurface: "explorePanel"
+          });
+        } else if (typeof win.showToast === "function") {
+          win.showToast("Social Meet er ikke lastet ennå.");
+        }
+        return;
+      }
+      if (action !== "propose") return;
+      event.preventDefault();
+      const placeId = selectedPlaceId();
+      const place = placeById(placeId);
+      if (!placeId || !place) {
+        if (typeof win.showToast === "function") {
+          win.showToast("Velg et sted først for å foreslå et kunnskapsmøte.");
+        }
+        return;
+      }
+      if (win.HG_SpotmeetingUI && typeof win.HG_SpotmeetingUI.open === "function") {
+        win.HG_SpotmeetingUI.open({
+          contextType: "place",
+          contextId: placeId,
+          title: cleanText(place.name || place.title || placeId),
+          reason: "Kunnskapsmøte rundt dette stedet",
+          sourceSurface: "explorePanel",
+          preferredAction: "match"
+        });
+      } else if (typeof win.showToast === "function") {
+        win.showToast("Kunnskapsmøte er ikke lastet ennå.");
+      }
+    });
+  }
+  function renderExploreSocial() {
+    const host = document.getElementById("leftSocialList");
+    if (!(host instanceof HTMLElement)) return;
+    bindExploreSocial(host);
+    const placeId = selectedPlaceId();
+    const place = placeById(placeId);
+    const placeName = cleanText(place && (place.name || place.title) || "");
+    const proposeDisabled = !placeId || !place;
+    const proposeMeta = proposeDisabled ? "Velg et sted under Steder først." : `Rundt ${placeName}.`;
+    host.innerHTML = `
+    <article class="hg-explore-card hg-explore-social-card">
+      <span class="hg-explore-card-kicker">Møtes</span>
+      <strong>Foreslå kunnskapsmøte</strong>
+      <span class="hg-explore-card-meta">${escapeHtml(proposeMeta)}</span>
+      <button type="button" data-explore-social-action="propose" ${proposeDisabled ? "disabled" : ""}>Foreslå møte</button>
+    </article>
+    <article class="hg-explore-card hg-explore-social-card">
+      <span class="hg-explore-card-kicker">Social Meet</span>
+      <strong>Mine møter</strong>
+      <span class="hg-explore-card-meta">Forslag, avtaler, svar, læringssirkler og møtehistorikk.</span>
+      <button type="button" data-explore-social-action="manage">Åpne Social Meet</button>
+    </article>
+  `;
   }
   function updateControlVisibility() {
     const mode = getActiveMode();
@@ -45,6 +216,8 @@
     if (mode === "nearby") (_a = win.renderNearbyPlaces) == null ? void 0 : _a.call(win);
     if (mode === "people") (_b = win.renderNearbyPeople) == null ? void 0 : _b.call(win);
     if (mode === "nature") (_c = win.renderNearbyNature) == null ? void 0 : _c.call(win);
+    if (mode === "events") renderExploreEvents();
+    if (mode === "social") renderExploreSocial();
     if (mode === "routes") (_d = win.renderLeftRoutesList) == null ? void 0 : _d.call(win);
     if (mode === "badges") (_e = win.renderLeftBadges) == null ? void 0 : _e.call(win);
   }
@@ -98,4 +271,10 @@
     rerender,
     updateControlVisibility
   };
+  win.addEventListener("hg:placeCardUpdated", () => {
+    if (getActiveMode() === "social") rerender();
+  });
+  win.addEventListener("hg:spotmeetingChanged", () => {
+    if (getActiveMode() === "social") rerender();
+  });
 })();
