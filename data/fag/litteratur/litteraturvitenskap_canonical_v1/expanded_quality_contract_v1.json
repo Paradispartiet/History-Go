@@ -1,0 +1,44 @@
+{
+  "schema": "history_go_literature_expanded_quality_contract_v1",
+  "version": "1.1.0",
+  "subject_id": "litteratur",
+  "status": "active",
+  "purpose": "Beviser helfags expanded-kvalitet som separat kvalitetsdimensjon uten å mutere global Fagverk-lifecycle. Beviset er fail-closed over alle 28 områder og alle 168 aktive artikler.",
+  "rules": {
+    "whole_subject_editorial_expansion_required": true,
+    "all_canonical_areas_must_be_editorial_ready": true,
+    "all_canonical_topics_must_be_editorial_ready": true,
+    "every_article_must_pass_expanded_requirement_review": true,
+    "strict_theory_integrity_required_per_major_field": true,
+    "specialized_full_field_contracts_are_additional_depth_not_universal_denominator": true,
+    "missing_specialized_wrapper_is_not_a_content_gap_when_universal_editorial_and_strict_gates_pass": true,
+    "content_rewrite_allowed_only_for_proven_substantive_gap": true,
+    "quality_status_is_separate_from_global_editorial_lifecycle": true,
+    "global_subject_lifecycle_is_read_only_for_this_reconciliation": true,
+    "all_declared_rules_and_required_gates_are_enforced": true
+  },
+  "expected": {
+    "canonical_areas": 28,
+    "canonical_topics": 168,
+    "editorial_ready_areas": 28,
+    "editorial_ready_topics": 168,
+    "fully_reviewed_articles": 168,
+    "article_requirement_gaps": 0,
+    "article_requirement_dimensions": 8,
+    "rewrite_pending_areas": 0,
+    "rewrite_pending_topics": 0,
+    "strictly_proven_fields": 28,
+    "specialized_full_field_contracts": 18,
+    "legacy_editorial_expansion_areas": 10,
+    "substantive_content_gaps": 0
+  },
+  "required_gates": [
+    "docs/LITTERATUR_ARTICLE_EDITORIAL_CONTRACT_V1.md",
+    "scripts/audit-litteratur-article-editorial-quality-v1.mjs",
+    "tools/audit-litteratur-theory-integrity.mjs",
+    "scripts/audit-litteratur-assessment-v1.mjs",
+    "tools/audit-litteratur-expanded-quality.mjs",
+    "tests/litteratur-article-editorial-quality-v1.test.mjs",
+    "tests/litteratur-expanded-quality.test.mjs"
+  ]
+}
