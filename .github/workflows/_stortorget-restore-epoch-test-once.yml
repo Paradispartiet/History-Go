@@ -34,6 +34,7 @@ jobs:
           s = p.read_text()
           replacements = [
               ('assert.equal(index.stats.canonical_story_milestone_count, 236);', 'assert.equal(index.stats.canonical_story_milestone_count, 237);'),
+              ('assert.equal(index.stats.verified_place_production_milestone_count, 507);', 'assert.equal(index.stats.verified_place_production_milestone_count, 512);'),
               ('assert.equal(coverage.dated_evidence_place_count, 241);', 'assert.equal(coverage.dated_evidence_place_count, 242);'),
               ('assert.equal(coverage.awaiting_source_backed_history_count, 344);', 'assert.equal(coverage.awaiting_source_backed_history_count, 343);'),
               ('"slottsparken", "peststotten_krist_kirkegard"])', '"slottsparken", "peststotten_krist_kirkegard", "stortorget"])'),
