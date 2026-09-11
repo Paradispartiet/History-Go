@@ -1,0 +1,772 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "sofafilosof_stream",
+  "type": "leisure",
+  "title": "Sofafilosof i den lange samtalen",
+  "sociological_theme": "hverdagsfilosofi_dialog_og_uformell_kulturell_kapital",
+  "applies_when": {
+    "any_tags": [
+      "sofafilosof",
+      "filosofi:sofafilosof"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "fri_vilje_blir_personlig",
+      "message_type": "people",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En venn i sofaen",
+      "subject": "Snakker vi fortsatt om fri vilje, eller om meg?",
+      "situation": [
+        "En vanlig kveld har glidd over i en lang diskusjon om fri vilje, ansvar og hvor mye mennesker egentlig kan velge annerledes enn de gjør.",
+        "Du merker at eksemplene blir stadig mer hentet fra vennens faktiske liv, og at et abstrakt spørsmål begynner å ligne en vurdering av personen foran deg.",
+        "Sofafilosofrollen gir deg ingen terapeutisk eller profesjonell myndighet; utfordringen er å holde undringen levende uten å gjøre vennen til et case."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør om dere skal gå tilbake til selve begrepet ansvar og teste flere mulige definisjoner.",
+          "effect": 1,
+          "tags": [
+            "concept_clarity",
+            "care",
+            "boundary"
+          ],
+          "feedback": "Samtalen beholder dybden uten at du gjør vennens liv til et problem du skal diagnostisere."
+        },
+        {
+          "id": "B",
+          "label": "Forklar hva vennens valg avslører om den egentlige psykologiske årsaken bak handlingene.",
+          "effect": -1,
+          "tags": [
+            "authority_overreach",
+            "personalization"
+          ],
+          "feedback": "Du går fra filosofisk samtale til en sikker forklaring på et annet menneske du ikke har grunnlag for å gi."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_personal_boundary_visible"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        },
+        {
+          "label": "UiB om filosofisk praksis som dialog",
+          "url": "https://www4.uib.no/finn-ansatte/emil.perron"
+        }
+      ]
+    },
+    {
+      "id": "definisjonen_glipper",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Samtalegjengen",
+      "subject": "Vi bruker «rettferdig» på tre forskjellige måter",
+      "situation": [
+        "Diskusjonen om rettferdighet går raskt, men etter noen minutter høres det ut som tre personer forsvarer tre forskjellige betydninger av samme ord.",
+        "Den ene mener lik behandling, den andre mener behov, og den tredje snakker om fortjent belønning.",
+        "Du kan bremse rytmen og avklare hva dere faktisk mener, eller bruke uklarheten til å vinne den versjonen av diskusjonen som passer deg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stoppe opp og be hver person formulere hva de mener med «rettferdig» før dere argumenterer videre.",
+          "effect": 1,
+          "tags": [
+            "definition",
+            "inquiry",
+            "plurality"
+          ],
+          "feedback": "Uenigheten blir ikke mindre, men den blir mer presis og lettere å undersøke sammen."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette raskt og bytte mellom betydningene når det styrker ditt eget poeng.",
+          "effect": -1,
+          "tags": [
+            "concept_drift",
+            "rhetorical_advantage"
+          ],
+          "feedback": "Du får flere enkle poenger, men samtalen mister et felles spørsmål å være uenig om."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_definition_norm"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om Sokrates og samtalekunst",
+          "url": "https://snl.no/Sokrates"
+        },
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        }
+      ]
+    },
+    {
+      "id": "den_sikre stemmen",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Den mest beleste i gruppa",
+      "subject": "Jeg har lest dette; svaret er egentlig ganske enkelt",
+      "situation": [
+        "En deltaker viser til flere filosofer og snakker med en sikkerhet som gjør at andre gradvis blir stillere.",
+        "Referansene kan være nyttige, men navnene begynner også å fungere som sosial rang: den som kjenner kanonen får definere hva som teller som et godt spørsmål.",
+        "Du må velge om kunnskapen skal brukes som ressurs i undersøkelsen eller som en snarvei rundt den."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om argumentet bak referansen og invitere en av de stille deltakerne til å teste premisset.",
+          "effect": 1,
+          "tags": [
+            "status_boundary",
+            "argument",
+            "inclusion"
+          ],
+          "feedback": "Fagkunnskap får plass, men autoriteten flyttes tilbake til argumentet som alle kan undersøke."
+        },
+        {
+          "id": "B",
+          "label": "La den mest beleste avgjøre spørsmålet; vedkommende har tross alt lest mest.",
+          "effect": -1,
+          "tags": [
+            "cultural_capital",
+            "status_capture"
+          ],
+          "feedback": "Samtalen får en effektiv rangordning, men mindre rom for spørsmål som ikke allerede har riktig språk."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_cultural_capital_visible"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        }
+      ]
+    },
+    {
+      "id": "aporia_uten_panikk",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "En sen kveld",
+      "subject": "Etter to timer har vi mindre svar enn da vi startet",
+      "situation": [
+        "Dere har testet flere svar på spørsmålet om hva et godt liv er, og nesten alle har fått problemer når eksemplene blir konkrete.",
+        "Stemningen blir urolig når noen spør hva poenget er hvis samtalen ikke leverer en konklusjon.",
+        "Sokratisk utspørring kan ende i apori, en faktisk uvisshet, men sosialt kan det føles som nederlag å si at man ikke vet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppsummere hva dere nå vet at dere ikke kan ta for gitt, og la spørsmålet stå åpent.",
+          "effect": 1,
+          "tags": [
+            "aporia",
+            "epistemic_humility",
+            "reflection"
+          ],
+          "feedback": "Mangelen på fasit blir behandlet som et resultat av undersøkelsen, ikke som bevis på at kvelden mislyktes."
+        },
+        {
+          "id": "B",
+          "label": "Velge det mest elegante svaret og erklære det som kveldens konklusjon så samtalen får en ordentlig slutt.",
+          "effect": -1,
+          "tags": [
+            "false_closure",
+            "status"
+          ],
+          "feedback": "Dere får en avslutning, men den dekker over nettopp de innvendingene samtalen brukte kvelden på å oppdage."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_aporia_tolerated"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om Sokrates og samtalekunst",
+          "url": "https://snl.no/Sokrates"
+        }
+      ]
+    },
+    {
+      "id": "tankeeksperimentet_treffer_noen",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En deltaker",
+      "subject": "Det hypotetiske eksemplet er ikke hypotetisk for meg",
+      "situation": [
+        "Du bruker et dramatisk tankeeksperiment for å teste en moralsk intuisjon, og merker at en person i rommet har en erfaring som gjør eksemplet langt mindre abstrakt.",
+        "Tankeeksperimenter er et klassisk filosofisk verktøy, men gruppa består av mennesker med ulike grenser og historier.",
+        "Du kan beholde spørsmålet og endre formen, eller gjøre motviljen til et tegn på at personen ikke tåler filosofisk konsekvens."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør om dere kan reformulere eksemplet slik at argumentet fortsatt testes uten å gjøre personens erfaring til rekvisitt.",
+          "effect": 1,
+          "tags": [
+            "thought_experiment",
+            "care",
+            "reframing"
+          ],
+          "feedback": "Det filosofiske spørsmålet overlever fordi formen kan endres uten at noen må ofres for poenget."
+        },
+        {
+          "id": "B",
+          "label": "Insister på at ekte filosofi krever at personlige reaksjoner legges til side.",
+          "effect": -1,
+          "tags": [
+            "abstraction_pressure",
+            "social_cost"
+          ],
+          "feedback": "Du forsvarer tankeeksperimentet ved å gjøre én deltakers erfaring mindre legitim enn gruppas analytiske rytme."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_thought_experiment_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        }
+      ]
+    },
+    {
+      "id": "uenighet_med_naer_venn",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En nær venn",
+      "subject": "Du argumenterer som om vennskapet vårt er en debatt",
+      "situation": [
+        "En uenighet om plikt og lojalitet startet som filosofi, men dere kjenner begge igjen ekte konflikter fra vennskapet i argumentene.",
+        "Du har blitt flink til å finne moteksempler, mens vennen begynner å høre hvert nytt eksempel som en måte å slippe å svare på det personlige.",
+        "Spørsmålet er når undersøkelse gjør relasjonen tydeligere, og når argumentasjonsformen blir en sosial maske."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at dette ikke lenger bare er et tankeproblem, og spør hva vennen faktisk trenger at du forstår.",
+          "effect": 1,
+          "tags": [
+            "relationship",
+            "social_mask",
+            "care"
+          ],
+          "feedback": "Du slipper ikke spørsmålet, men lar relasjonen få et språk som ikke bare består av premisser og moteksempler."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette å teste vennens påstander til de henger logisk sammen.",
+          "effect": -1,
+          "tags": [
+            "argumentative_mask",
+            "relationship_cost"
+          ],
+          "feedback": "Argumentet blir ryddigere samtidig som vennen opplever at selve relasjonen blir behandlet som en feil i resonnementet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_argument_private_leakage"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        }
+      ]
+    },
+    {
+      "id": "nettdiskusjonen_som_publikumssport",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En gruppechat",
+      "subject": "Noen tok skjermbilde av svaret ditt",
+      "situation": [
+        "En diskusjon om moral har flyttet seg fra stua til en gruppechat der flere leser enn de som faktisk deltar.",
+        "Det frister å formulere den skarpeste replikken fordi synlige reaksjoner belønner slagkraft mer enn langsom begrepsavklaring.",
+        "Når filosofisk identitet blir offentlig stil, kan skillet mellom å undersøke en påstand og å vinne over en person bli uklart."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svare på påstanden uten å gjøre personen til poenget, og markere hva du fortsatt er usikker på.",
+          "effect": 1,
+          "tags": [
+            "public_attention",
+            "argument",
+            "uncertainty"
+          ],
+          "feedback": "Svaret er mindre spektakulært, men det tåler bedre at flere enn motparten leser det."
+        },
+        {
+          "id": "B",
+          "label": "Skrive den mest delbare formuleringen du kommer på, selv om den forenkler motpartens syn.",
+          "effect": -1,
+          "tags": [
+            "public_performance",
+            "strawman",
+            "status"
+          ],
+          "feedback": "Du vinner oppmerksomhet ved å gjøre en sosial scene av en uenighet som var mer komplisert enn sitatet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_public_argument_norm"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        }
+      ]
+    },
+    {
+      "id": "sitatet_du_ikke_har_sjekket",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Samtalevennen",
+      "subject": "Sa filosofen egentlig det?",
+      "situation": [
+        "Du gjentar et kjent sitat som passer perfekt til diskusjonen, og en annen spør hvor det faktisk kommer fra.",
+        "Du husker formuleringen fra nettet, men ikke kilden, oversettelsen eller om ordlyden er autentisk.",
+        "Sofafilosofrollen belønner nysgjerrighet, men skal ikke gjøre selvsikker gjengivelse til kunnskapsbevis."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du ikke vet om ordlyden er sikker, og behandle poenget som en parafrase til dere kan sjekke kilden.",
+          "effect": 1,
+          "tags": [
+            "source_humility",
+            "provenance",
+            "integrity"
+          ],
+          "feedback": "Samtalen mister et perfekt sitat og får en tydeligere grense mellom idé, minne og dokumentert kilde."
+        },
+        {
+          "id": "B",
+          "label": "Stå på sitatet; poenget er uansett typisk for filosofen.",
+          "effect": -1,
+          "tags": [
+            "false_attribution",
+            "status"
+          ],
+          "feedback": "Navnet gir argumentet tyngde, men du låner autoritet fra en kilde du ikke kan gjøre rede for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_source_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        }
+      ]
+    },
+    {
+      "id": "samtalekvelden_hvem_faar_ordet",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Verten på kulturstedet",
+      "subject": "Det er fullt rundt bordet, men fire personer har ikke sagt noe",
+      "situation": [
+        "En åpen samtalekveld har trukket flere enn ventet, og noen få deltakere svarer raskt på nesten alle spørsmål.",
+        "Det finnes ingen foreleserrolle i rommet; verdien ligger i at argumenter og erfaringer kan undersøkes i fellesskap.",
+        "Du kan bruke din uformelle status til å fordele rommet eller la verbal fart bli den praktiske adgangsbilletten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stille et avgrenset spørsmål og invitere stemmer som ennå ikke har vært inne.",
+          "effect": 1,
+          "tags": [
+            "facilitation",
+            "inclusion",
+            "dialogue"
+          ],
+          "feedback": "Tempoet synker litt, men flere blir reelle deltakere i stedet for publikum til de mest taleføre."
+        },
+        {
+          "id": "B",
+          "label": "La samtalen gå dit energien er; de stille kan jo bare ta ordet hvis de vil.",
+          "effect": -1,
+          "tags": [
+            "voice_inequality",
+            "status_capture"
+          ],
+          "feedback": "Samtalen virker spontan samtidig som selve rytmen favoriserer dem som allerede har sosial og verbal trygghet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_dialogue_access"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "UiB om filosofiske samtaler, filosofikafé og filosofipub",
+          "url": "https://www.uib.no/fg/lingclim/170005/filosofisk-uke-samtaler-om-filosofiens-verdi-rolle-og-plass-i-samfunnet"
+        },
+        {
+          "label": "UiB om filosofisk praksis som dialog",
+          "url": "https://www4.uib.no/finn-ansatte/emil.perron"
+        }
+      ]
+    },
+    {
+      "id": "uenighet_uten_dommer",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "To venner på hver sin side",
+      "subject": "Kan du avgjøre hvem av oss som har rett?",
+      "situation": [
+        "To venner ber deg avgjøre en prinsipiell uenighet fordi du har fått ry på deg for å gjøre kvelder filosofiske.",
+        "Du kan hjelpe dem å skille premisser og konsekvenser, men livsposisjonen gjør deg ikke til dommer, terapeut eller sertifisert filosofisk praktiker.",
+        "Statusen din i gjengen blir mest synlig akkurat når andre prøver å gjøre den om til myndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du kan hjelpe dem å undersøke argumentene, men ikke avgjøre relasjonen eller gi en profesjonell vurdering.",
+          "effect": 1,
+          "tags": [
+            "authority_boundary",
+            "dialogue",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker ferdighetene uten å gjøre sosial tillit om til en myndighet rollen ikke har."
+        },
+        {
+          "id": "B",
+          "label": "Ta rollen som nøytral ekspert og gi en endelig dom over hvem som tenker mest rasjonelt.",
+          "effect": -1,
+          "tags": [
+            "authority_overreach",
+            "expert_status"
+          ],
+          "feedback": "Et rykte for gode spørsmål blir omskrevet til en ekspertrolle som verken Badge-posisjonen eller relasjonen har gitt deg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_authority_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "UiB om filosofisk praksis som dialog",
+          "url": "https://www4.uib.no/finn-ansatte/emil.perron"
+        },
+        {
+          "label": "Utdanning.no om filosof som yrke og filosofisk praksis",
+          "url": "https://utdanning.no/yrker/beskrivelse/filosof"
+        }
+      ]
+    },
+    {
+      "id": "hverdagsfilosofi_eller_kanonprove",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "En ny deltaker",
+      "subject": "Må jeg ha lest Platon for å være med?",
+      "situation": [
+        "En ny person spør om det forventes at alle har lest bestemte filosofer før de kan delta i samtalen.",
+        "Gruppa liker referanser og bøker, men Sofafilosoflivet begynte nettopp med at vanlige spørsmål fikk lov til å bli store.",
+        "Du kan gjøre tradisjonen tilgjengelig som ressurs eller bruke den som markør på hvem som allerede hører til."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at forkunnskap ikke er inngangskrav, og bruk én kort referanse bare hvis den hjelper spørsmålet personen allerede har.",
+          "effect": 1,
+          "tags": [
+            "access",
+            "philosophy_everyday",
+            "cultural_capital"
+          ],
+          "feedback": "Tradisjonen blir noe gruppa kan hente hjelp fra, ikke en opptaksprøve før tenkningen får begynne."
+        },
+        {
+          "id": "B",
+          "label": "Gi en leseliste over det viktigste man bør kunne før neste kveld.",
+          "effect": -1,
+          "tags": [
+            "canon_gatekeeping",
+            "status"
+          ],
+          "feedback": "Du tilbyr et tydelig kart, men gjør samtidig kulturell kapital til en sosial terskel."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_canon_access"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        },
+        {
+          "label": "Store norske leksikon om Sokrates og samtalekunst",
+          "url": "https://snl.no/Sokrates"
+        }
+      ]
+    },
+    {
+      "id": "mening_og_det_gode_livet",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En venn som er lei av råd",
+      "subject": "Ikke gi meg en løsning; hjelp meg å tenke",
+      "situation": [
+        "En venn vil snakke om mening, arbeid og hva et godt liv kan være, men sier uttrykkelig at hen ikke ønsker enda en oppskrift på hvordan livet bør fikses.",
+        "Filosofiske samtaler kan undersøke verdier og perspektiver uten å love behandling eller raske løsninger.",
+        "Du må tåle at samtalen kanskje gjør spørsmålet klarere uten å gjøre livet enkelt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hvilke verdier som allerede er synlige i vennens egne valg, og undersøk spenningene uten å foreskrive en løsning.",
+          "effect": 1,
+          "tags": [
+            "values",
+            "meaning",
+            "non_prescriptive"
+          ],
+          "feedback": "Samtalen gir mer språk til spørsmålet uten å late som du kan levere et riktig liv på bestilling."
+        },
+        {
+          "id": "B",
+          "label": "Gi en tydelig filosofi for hvordan vennen bør leve; poenget er jo å få noe praktisk ut av samtalen.",
+          "effect": -1,
+          "tags": [
+            "prescription",
+            "authority_overreach"
+          ],
+          "feedback": "Du erstatter én type råd med en annen og gjør undringen om til en oppskrift du ikke har mandat til å gi."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_nonprescriptive_norm"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "UiB om filosofisk praksis som dialog",
+          "url": "https://www4.uib.no/finn-ansatte/emil.perron"
+        },
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        }
+      ]
+    },
+    {
+      "id": "honorert_samtalekveld",
+      "message_type": "people",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Et lite kultursted",
+      "subject": "Kan du lede en åpen samtalekveld mot et lite honorar?",
+      "situation": [
+        "Kulturstedet tilbyr et lite honorar for å holde rammen rundt en uformell kveld om frihet og ansvar.",
+        "Tilbudet er et separat livelihood-oppdrag: Sofafilosofidentiteten i seg selv gir verken lønn, sertifisering eller en profesjonell filosofisk praktikerrolle.",
+        "Du kan ta et avgrenset fasiliteringsoppdrag eller blåse den økonomiske muligheten opp til en ny faglig status."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle det som et tydelig avgrenset gig: avtale tema, tid og vertskapsoppgave uten å love profesjonell veiledning.",
+          "effect": 1,
+          "tags": [
+            "bounded_gig",
+            "livelihood_boundary",
+            "facilitation"
+          ],
+          "feedback": "Et faktisk oppdrag kan gi inntekt uten at identiteten begynner å betale lønn eller skape en profesjonsautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Presentere honoraret som bevis på at du nå kan markedsføre deg som profesjonell filosofisk veileder.",
+          "effect": -1,
+          "tags": [
+            "livelihood_confusion",
+            "credential_overreach"
+          ],
+          "feedback": "Et lite arrangementstilbud blir gjort om til en kompetanse og tittel som krever et annet grunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_livelihood_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "economic_risk"
+      ],
+      "links": [
+        {
+          "label": "UiB om filosofiske samtaler, filosofikafé og filosofipub",
+          "url": "https://www.uib.no/fg/lingclim/170005/filosofisk-uke-samtaler-om-filosofiens-verdi-rolle-og-plass-i-samfunnet"
+        },
+        {
+          "label": "Utdanning.no om filosof som yrke og filosofisk praksis",
+          "url": "https://utdanning.no/yrker/beskrivelse/filosof"
+        }
+      ]
+    },
+    {
+      "id": "kvelden_etter_uenigheten",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Samtalegjengen dagen etter",
+      "subject": "Hva slags samtaler vil vi egentlig ha?",
+      "situation": [
+        "Etter flere kvelder med sterke spørsmål, misforståelser, gode argumenter og noen sosiale bommerter spør gruppa hva den ønsker å ta med videre.",
+        "Det er blitt tydelig at samtalekultur ikke bare handler om hvilke ideer dere diskuterer, men om hvem som får være usikker, hvem som får definere ordene og hvem som orker å komme tilbake.",
+        "Sofafilosofrollen kan bli et fellesskap for lang tenkning eller en scene der status måles i å ha det siste ordet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Foreslå en enkel norm: spørsmål før dom, tydelige begreper, rom for «jeg vet ikke» og ingen krav om fagbakgrunn.",
+          "effect": 1,
+          "tags": [
+            "community_norm",
+            "epistemic_humility",
+            "sustainable_identity"
+          ],
+          "feedback": "Gruppa lager ingen fasit for filosofi, men en mer bærekraftig måte å fortsette å være uenig på."
+        },
+        {
+          "id": "B",
+          "label": "La normen være at den beste argumentasjonen vinner; resten ordner seg hvis folk skjerper seg.",
+          "effect": -1,
+          "tags": [
+            "status_competition",
+            "exclusion"
+          ],
+          "feedback": "Samtalen får et klart prestasjonsideal, men mindre plass til tvil, nykommere og spørsmål som ennå ikke har et elegant språk."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sofa_season_reflection"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "Store norske leksikon om filosofi",
+          "url": "https://snl.no/filosofi"
+        },
+        {
+          "label": "Store norske leksikon om Sokrates og samtalekunst",
+          "url": "https://snl.no/Sokrates"
+        }
+      ]
+    }
+  ]
+}
