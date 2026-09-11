@@ -166,7 +166,20 @@ function canonicalNeedles(position) {
 }
 
 function regexEscape(value) {
-  return String(value || '').replace(/[-/\\^$*+?.()|[\]{}]/g, '\\function narrativeMetadataMatch(record, position) {
+  const specials = new Set('\\^$.*+?()[]{}|/'.split(''));
+  return [...String(value || '')]
+    .map((char) => specials.has(char) ? '\\' + char : char)
+    .join('');
+}
+
+function containsCanonicalNeedle(haystack, needle) {
+  const text = String(haystack || '');
+  const token = String(needle || '');
+  if (!text || !token) return false;
+  return new RegExp('(^|[^a-z0-9])' + regexEscape(token) + '($|[^a-z0-9])').test(text);
+}
+
+function narrativeMetadataMatch(record, position) {
   if (!record.json || !record.rel.startsWith('data/Civication/narratives/')) return false;
   const meta = normalizeText(JSON.stringify({
     id: record.json.id,
