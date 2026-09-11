@@ -116,7 +116,7 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'by/nabolagskjenner',
   'film_tv/filmklubbmenneske'
 ]);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'filosofi/sofafilosof');
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 3);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 88);
