@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
+import { validatePacket } from "../scripts/validate-place-description-production-v4_2.mjs";
 
 const root = process.cwd();
 const read = (file) => JSON.parse(fs.readFileSync(path.join(root, file), "utf8"));
@@ -52,6 +53,8 @@ test("Stortorget learning and before/now surfaces are materialized", () => {
   assert.equal(production.status, "ready_v4_2");
   assert.equal(production.completion.currentStatus, "current");
   assert.equal(production.completion.claimsVerified.verified, production.completion.claimsVerified.total);
+  assert.equal(production.quizReadiness.questions.length, 8);
+  assert.ok(production.quizReadiness.questions.filter((question) => question.normalKnowledgeQuestion === true).length >= 5);
   assert.equal(place.for_na.beforeImage, "bilder/historisk/stortorget/stortorget_marked_1843.webp");
   assert.equal(place.for_na.nowImage, "bilder/places/stortorget.webp");
   assert.ok(fs.existsSync(path.join(root, leksikonFile)));
@@ -61,6 +64,21 @@ test("Stortorget learning and before/now surfaces are materialized", () => {
   assert.ok(runtime.leksikon.length > 0);
   assert.equal(runtime.language.place_id, "stortorget");
   assert.ok(runtime.language.entries.some((entry) => entry.term === "Stortorvet"));
+});
+
+test("Stortorget alone passes the canonical v4.2 packet validator", () => {
+  const result = validatePacket({
+    packet: production,
+    place,
+    packetFile: productionFile,
+    now: new Date("2026-09-11T00:00:00Z")
+  });
+  assert.deepEqual(result.issues, []);
+});
+
+test("Stortorget user-facing description contains no internal product instructions", () => {
+  assert.equal(/History Go|canonical[- ]?id|må holdes adskilt fra/iu.test(`${place.desc}\n${place.popupDesc}`), false);
+  assert.ok(place.popupDesc.trim().split(/\s+/u).length >= 300);
 });
 
 test("Stortorget closure leaves no temporary materialization workflow", () => {
