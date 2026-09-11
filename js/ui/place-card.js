@@ -1101,7 +1101,6 @@ const leksikonEl        = document.getElementById("pcLeksikonList");
 const worksEl           = document.getElementById("pcWorksList");
 
 const eventsBox         = document.getElementById("pcEventsBox");
-const addEventBtn       = document.getElementById("pcAddEvent");
   
 const btnInfo   = document.getElementById("pcInfo");
 const btnQuiz   = document.getElementById("pcQuiz");
@@ -2227,164 +2226,16 @@ if (brandsEl) {
 }
 
 
-/**
- * @param {string | number | null | undefined} placeId
- * @returns {Promise<PlaceCardRecord | null>}
- */
-async function loadPlaceSocialData(placeId) {
-  const id = String(placeId || "").trim();
-  if (!id) return null;
-
-  if (!window.__HG_PLACE_SOCIAL_CACHE__) window.__HG_PLACE_SOCIAL_CACHE__ = {};
-  if (Object.prototype.hasOwnProperty.call(window.__HG_PLACE_SOCIAL_CACHE__, id)) {
-    return window.__HG_PLACE_SOCIAL_CACHE__[id];
-  }
-
-  const url = `data/social/place_social/oslo/place_social.json`;
-  try {
-    const res = await fetch(url, { cache: "no-cache" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    const list = Array.isArray(json) ? json : [json].filter(Boolean);
-    const out = list.find(item => String(item?.place_id || "").trim() === id) || null;
-    window.__HG_PLACE_SOCIAL_CACHE__[id] = out;
-    return out;
-  } catch (err) {
-    console.warn("[social] could not load place_social", err);
-    window.__HG_PLACE_SOCIAL_CACHE__[id] = null;
-    return null;
-  }
-}
-
-/**
- * @returns {Promise<PlaceCardRecord[]>}
- */
-async function loadCanonicalSocialEvents() {
-  if (Array.isArray(window.__HG_CANONICAL_SOCIAL_EVENTS__)) {
-    return window.__HG_CANONICAL_SOCIAL_EVENTS__;
-  }
-
-  const url = `data/social/events/oslo/canonical_events.json`;
-  try {
-    const res = await fetch(url, { cache: "no-cache" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    const list = Array.isArray(json) ? json : [json].filter(Boolean);
-    window.__HG_CANONICAL_SOCIAL_EVENTS__ = list;
-    return list;
-  } catch (err) {
-    console.warn("[social] could not load canonical events", err);
-    window.__HG_CANONICAL_SOCIAL_EVENTS__ = [];
-    return [];
-  }
-}
-
-// --- EVENTS BOX (ikke runding) ---
+// --- LEGACY EVENTS / SOCIAL PLACE-CARD SURFACE RETIRED ---
+// Canonical brukerinnganger ligger nå i venstre Utforsk-panel:
+// Events -> HGEvents, Møtes -> HG_SpotmeetingUI / HG_SocialMeetUI.
+// pcEventsBox beholdes kun som host for ekte type-spesifikke På stedet-handlinger.
 if (eventsBox) {
-  const socialData = window.__HG_PLACE_SOCIAL_CACHE__?.[String(place.id)] || null;
-  const canonicalEvents = Array.isArray(window.__HG_CANONICAL_SOCIAL_EVENTS__) ? window.__HG_CANONICAL_SOCIAL_EVENTS__ : [];
-  if (!PLACE_CARD_PROGRESSIVE_LOADS.social.has(placeId)) {
-    PLACE_CARD_PROGRESSIVE_LOADS.social.add(placeId);
-    void Promise.all([loadPlaceSocialData(String(place.id)), loadCanonicalSocialEvents()])
-      .then(() => reopenCurrentPlaceCard(placeId, place))
-      .catch((e) => console.warn("[openPlaceCard.social]", e));
-  }
-
-  const defaultSocialData = {
-    place_id: place.id,
-    social_enabled: true,
-    people_count: 0,
-    friends_count: 0,
-    active_event_ids: [],
-    canonical_event_ids: [],
-    social_modes: ["meetup", "message_game", "group_quiz"]
-  };
-
-  const social = socialData || defaultSocialData;
-  const socialEnabled = social?.social_enabled !== false;
-
-  const head = `
-    <div class="pc-events-head">
-      <span class="pc-events-title">${tt("ui.static.onSite", "På stedet")}</span>
-      <button id="pcAddEvent" class="pc-events-add" type="button" aria-label="${tt("ui.attr.add", "Legg til")}">＋</button>
-    </div>
-  `;
-
-  const peopleCount = Number(social?.people_count) || 0;
-  const friendsCount = Number(social?.friends_count) || 0;
-  const canonicalIds = Array.isArray(social?.canonical_event_ids)
-    ? social.canonical_event_ids.map(id => String(id || "").trim()).filter(Boolean)
-    : [];
-
-  const canonicalForPlace = socialEnabled
-    ? canonicalEvents.filter(evt => {
-        const evtPlaceId = String(evt?.place_id || "").trim();
-        const evtId = String(evt?.id || "").trim();
-        const placeMatch = evtPlaceId === String(place.id || "").trim();
-        const idMatch = !canonicalIds.length || canonicalIds.includes(evtId);
-        return placeMatch && idMatch;
-      })
-    : [];
-
-  const modes = new Set(
-    Array.isArray(social?.social_modes) && social.social_modes.length
-      ? social.social_modes
-      : defaultSocialData.social_modes
-  );
-
-  const modeButtons = [
-    modes.has("meetup")
-      ? `<button class="pc-events-action" type="button" data-social-action="meetup">${tt("ui.events.meetup", "Avtal å møtes")}</button>`
-      : "",
-    modes.has("message_game")
-      ? `<button class="pc-events-action" type="button" data-social-action="message_game">${tt("ui.events.messageGame", "Start meldingsspill")}</button>`
-      : "",
-    modes.has("group_quiz")
-      ? `<button class="pc-events-action" type="button" data-social-action="group_quiz">${tt("ui.events.groupQuiz", "Ta quiz sammen")}</button>`
-      : ""
-  ].filter(Boolean).join("");
-
-  const compactStatus = tt("ui.events.knowledgeMeet", "Møt folk");
-  const compactEvents = tt("ui.events.knowledgeMeetHint", "Kunnskapsmatcher · ikke lokasjon");
-
-  const body = `
-    <button class="pc-events-action" type="button" data-knowledge-spot-match="${escapePlaceCardHTML(String(place.id || ""))}">${escapePlaceCardHTML(compactStatus)}</button>
-    <div class="pc-events-preview-line" title="${escapePlaceCardHTML(compactEvents)}">${escapePlaceCardHTML(compactEvents)}</div>
-  `;
-
-  eventsBox.innerHTML = head + body;
-
-  const addBtn = document.getElementById("pcAddEvent");
-  if (addBtn) {
-    addBtn.onclick = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const currentPlaceId = String(document.getElementById("placeCard")?.dataset?.currentPlaceId || place.id || "").trim();
-      console.log("[social] add/forslag", currentPlaceId);
-    };
-  }
-
-  eventsBox.onclick = (event) => {
-    event?.preventDefault?.();
-    event?.stopPropagation?.();
-    const currentPlaceId = String(document.getElementById("placeCard")?.dataset?.currentPlaceId || place.id || "").trim();
-    if (typeof window.HG_SpotmeetingUI?.open === "function") {
-      window.HG_SpotmeetingUI.open({
-        contextType: "place",
-        contextId: currentPlaceId,
-        title: place.name || place.title || currentPlaceId,
-        reason: "Kunnskapsmøte rundt dette stedet",
-        sourceSurface: "placeCardOnSite",
-        preferredAction: "match"
-      });
-      return;
-    }
-    if (typeof window.openSpotMatchList === "function") {
-      window.openSpotMatchList(currentPlaceId);
-      return;
-    }
-    window.showToast?.("Kunnskapsmatcher er ikke lastet ennå");
-  };
+  eventsBox.onclick = null;
+  eventsBox.hidden = true;
+  [...eventsBox.children].forEach(child => {
+    if (!child.classList?.contains("pc-events-head")) child.remove();
+  });
 }
 
 // --- LEKSIKON LIST + LEKSIKON ICON ---
