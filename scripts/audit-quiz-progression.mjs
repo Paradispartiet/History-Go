@@ -42,6 +42,11 @@ function isTheoryBound(question) {
   return Boolean(question.topic_hook_id || question.thinker_id || question.theory_ref);
 }
 
+export function phaseAllowsBinding(phases, setIndex, startPhase) {
+  const startIndex = phases.indexOf(startPhase);
+  return startIndex >= 0 && setIndex >= startIndex;
+}
+
 function normalizedQuestionType(question) {
   return String(question?.question_type ?? "").trim().toLowerCase();
 }
@@ -245,8 +250,8 @@ export async function auditQuizProgression({ root = process.cwd() } = {}) {
       }
 
       if (context.theory_start_phase) {
-        for (const set of sets) {
-          if (set.phase !== context.theory_start_phase && asArray(set.questions).some(isTheoryBound)) {
+        for (const [index, set] of sets.entries()) {
+          if (!phaseAllowsBinding(phases, index, context.theory_start_phase) && asArray(set.questions).some(isTheoryBound)) {
             addFailure(failures, quizPath, "teori starter før oppgitt fase", {
               setId: set.set_id,
               expectedStartPhase: context.theory_start_phase
@@ -255,8 +260,8 @@ export async function auditQuizProgression({ root = process.cwd() } = {}) {
         }
       }
       if (context.method_start_phase) {
-        for (const set of sets) {
-          if (set.phase !== context.method_start_phase && asArray(set.questions).some((question) => question.method_id)) {
+        for (const [index, set] of sets.entries()) {
+          if (!phaseAllowsBinding(phases, index, context.method_start_phase) && asArray(set.questions).some((question) => question.method_id)) {
             addFailure(failures, quizPath, "metode starter før oppgitt fase", {
               setId: set.set_id,
               expectedStartPhase: context.method_start_phase
