@@ -1,0 +1,53 @@
+name: Litteratur expanded quality
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/expanded_quality_contract_v1.json'
+      - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/editorial_quality_v1.json'
+      - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/coverage_contract_v1.json'
+      - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/topic_foundations_v1.json'
+      - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/**'
+      - 'data/quiz/litteratur/litteratur_subject_pathways_v1.json'
+      - 'reports/fagverk/litteratur-theory-integrity-audit.json'
+      - 'reports/fagverk/litteratur-expanded-quality-audit.json'
+      - 'scripts/audit-litteratur-article-editorial-quality-v1.mjs'
+      - 'scripts/audit-litteratur-assessment-v1.mjs'
+      - 'tools/audit-litteratur-theory-integrity.mjs'
+      - 'tools/audit-litteratur-expanded-quality.mjs'
+      - 'tests/litteratur-article-editorial-quality-v1.test.mjs'
+      - 'tests/litteratur-theory-integrity.test.mjs'
+      - 'tests/litteratur-expanded-quality.test.mjs'
+      - '.github/workflows/litteratur-expanded-quality.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  expanded-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify Litteratur expanded quality
+        run: |
+          node --check scripts/audit-litteratur-article-editorial-quality-v1.mjs
+          node --check tools/audit-litteratur-expanded-quality.mjs
+          node scripts/audit-litteratur-article-editorial-quality-v1.mjs
+          node scripts/audit-litteratur-assessment-v1.mjs
+          node tools/audit-litteratur-theory-integrity.mjs
+          node tools/audit-litteratur-expanded-quality.mjs
+          node --test tests/litteratur-article-editorial-quality-v1.test.mjs tests/litteratur-theory-integrity.test.mjs tests/litteratur-expanded-quality.test.mjs
+      - name: Preserve shared Fagverk contracts
+        run: |
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
