@@ -165,6 +165,27 @@ function canonicalNeedles(position) {
   ]).filter((value)=>value.length >= 4);
 }
 
+const canonicalNeedleOwners = new Map();
+for (const position of positions) {
+  for (const needle of canonicalNeedles(position)) {
+    const badges = canonicalNeedleOwners.get(needle) || new Set();
+    badges.add(normalizeText(position.badge_id));
+    canonicalNeedleOwners.set(needle, badges);
+  }
+}
+
+function needleNeedsBadgeScope(needle) {
+  return (canonicalNeedleOwners.get(String(needle || ''))?.size || 0) > 1;
+}
+
+function badgeScopedTokens(position) {
+  const badge = normalizeText(position.badge_id);
+  return uniq([
+    position.id && `${badge}:${normalizeText(position.id)}`,
+    position.label && `${badge}:${normalizeText(position.label)}`
+  ]).filter(Boolean);
+}
+
 function regexEscape(value) {
   const specials = new Set('\\^$.*+?()[]{}|/'.split(''));
   return [...String(value || '')]
@@ -189,21 +210,37 @@ function narrativeMetadataMatch(record, position) {
     applies_when: record.json.applies_when
   }));
   const rel = normalizeText(record.rel);
-  return canonicalNeedles(position).some((needle) =>
-    containsCanonicalNeedle(meta, needle) || containsCanonicalNeedle(rel, needle)
-  );
+  const scoped = badgeScopedTokens(position).some((token) => containsCanonicalNeedle(meta, token));
+  return canonicalNeedles(position).some((needle) => {
+    const matched = containsCanonicalNeedle(meta, needle) || containsCanonicalNeedle(rel, needle);
+    if (!matched) return false;
+    return needleNeedsBadgeScope(needle) ? scoped : true;
+  });
 }
 
 function structuredLifePositionBinding(value, position) {
   if (!value || typeof value !== 'object') return false;
   const wantedLabel = normalizeText(position.label);
   const wantedId = normalizeText(position.id || '');
+  const wantedBadge = normalizeText(position.badge_id);
   if (Array.isArray(value)) return value.some((item) => structuredLifePositionBinding(item, position));
+
+  const objectBadge = normalizeText(
+    value.badge_id || value.life_position_badge_id || value.life_position_badge || ''
+  );
+
   for (const [key, child] of Object.entries(value)) {
     const k = normalizeText(key);
     if (['life_position_label','life_position_id','life_position'].includes(k)) {
       const v = normalizeText(typeof child === 'string' ? child : JSON.stringify(child));
-      if ((wantedId && v === wantedId) || v === wantedLabel) return true;
+      const matchedNeedle = canonicalNeedles(position).find((needle) => v === needle) || null;
+      if (matchedNeedle) {
+        if (!needleNeedsBadgeScope(matchedNeedle) || objectBadge === wantedBadge) return true;
+      }
+      if ((wantedId && v === wantedId) || v === wantedLabel) {
+        const ambiguous = [wantedId, wantedLabel].filter(Boolean).some(needleNeedsBadgeScope);
+        if (!ambiguous || objectBadge === wantedBadge) return true;
+      }
     }
     if (child && typeof child === 'object' && structuredLifePositionBinding(child, position)) return true;
   }
@@ -374,7 +411,8 @@ const output = {
     one_life_position_per_role_world_pr:true,
     livelihood_opportunity_alone_is_not_role_world_depth:true,
     generic_private_life_content_is_supporting_context_not_role_specific_completion:true,
-    status_or_achievement_positions_default_to_context_until_independent_authored_world_is_proven:true
+    status_or_achievement_positions_default_to_context_until_independent_authored_world_is_proven:true,
+    duplicate_life_position_ids_or_labels_require_badge_scoped_governed_binding:true
   },
   classification_contract:{
     ready:'Existing governed authored sources provide a multi-scene role-specific narrative foundation. Readiness is independent of lifecycle, so an already completed Role World may remain classified ready while role_world_status is role_world_complete and it is excluded from the pending queue.',
