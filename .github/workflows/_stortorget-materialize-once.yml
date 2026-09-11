@@ -28,6 +28,8 @@ jobs:
         run: node tools/finalize-stortorget-completion.mjs
       - name: Materialize canonical Stortorget quiz production
         run: node tools/finalize-stortorget-quiz.mjs
+      - name: Repair and materialize strict Stortorget v4.2 packet
+        run: node tools/finalize-stortorget-v42.mjs
       - name: Normalize image backlog summary
         run: |
           node scripts/audit-place-images.mjs --mode=all --report=/tmp/stortorget-image-audit.json
@@ -71,8 +73,8 @@ jobs:
         run: npm run place-open:build
       - name: Regenerate Fagverk release manifest
         run: node scripts/build-fagverk-release-manifest.mjs
-      - name: Verify place description v4.2
-        run: node scripts/validate-place-description-production-v4_2.mjs
+      - name: Verify Stortorget place description v4.2
+        run: node tools/validate-stortorget-v42.mjs
       - name: Verify places index
         run: npm run places:index:check
       - name: Verify place-open payloads
@@ -81,10 +83,10 @@ jobs:
         run: node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
       - name: Verify Fagverk release manifest
         run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Remove one-shot workflow from permanent tree
+        run: git rm -- .github/workflows/_stortorget-materialize-once.yml
       - name: Verify Stortorget regression
         run: node --test tests/stortorget-production-closure.test.mjs
-      - name: Remove one-shot workflow
-        run: git rm -- .github/workflows/_stortorget-materialize-once.yml
       - name: Commit permanent Stortorget production
         run: |
           git config user.name 'github-actions[bot]'
