@@ -30,18 +30,28 @@ jobs:
           node scripts/audit-litteratur-article-editorial-quality-v1.mjs
           node tools/audit-litteratur-expanded-quality.mjs
           node --test tests/litteratur-article-editorial-quality-v1.test.mjs tests/litteratur-expanded-quality.test.mjs
-      - name: Verify shared Fagverk contracts
+      - name: Verify general engine
+        run: node scripts/audit-fagverk-general-engine.mjs
+      - name: Confirm release manifest is stale before regeneration
+        id: release_before
+        continue-on-error: true
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Require stale release manifest diagnosis
+        run: test "${{ steps.release_before.outcome }}" = failure
+      - name: Regenerate release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify regenerated release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Require generated drift limited to known reports
+        run: git diff --exit-code -- . ':!reports/fagverk/litteratur-legacy-theory-audit.json' ':!data/fagverk/fagverk_release.json'
+      - name: Commit generated reports on temporary recomposition branch
         run: |
-          node scripts/audit-fagverk-general-engine.mjs
-          node scripts/build-fagverk-release-manifest.mjs --check
-      - name: Commit regenerated legacy report if changed
-        run: |
-          if git diff --quiet -- reports/fagverk/litteratur-legacy-theory-audit.json; then
-            echo "Legacy report already current on fresh-main composition"
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/fagverk/litteratur-legacy-theory-audit.json
-          git commit -m "temp: regenerate Litteratur legacy theory report [skip ci]"
+          git add reports/fagverk/litteratur-legacy-theory-audit.json data/fagverk/fagverk_release.json
+          if git diff --cached --quiet; then
+            echo "No generated drift remains"
+            exit 0
+          fi
+          git commit -m "temp: refresh PR 5805 generated reports [skip ci]"
           git push
