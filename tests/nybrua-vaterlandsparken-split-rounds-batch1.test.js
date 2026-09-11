@@ -11,9 +11,9 @@ assert.strictEqual(n.sourceObjectId,'osm-way:315066295');assert.strictEqual(v.so
 assert.strictEqual(n.coordStatus,'verified_geometry');assert.strictEqual(v.coordStatus,'verified_geometry');
 const rad=x=>x*Math.PI/180,dist=6371000*2*Math.asin(Math.sqrt(Math.sin(rad(v.lat-n.lat)/2)**2+Math.cos(rad(n.lat))*Math.cos(rad(v.lat))*Math.sin(rad(v.lon-n.lon)/2)**2));
 assert(dist>500&&dist<580,`Unexpected split distance ${dist}`);
-const runtime=fs.readFileSync(path.join(repo,'js/ui/place-card.js'),'utf8'),m=runtime.match(/by:\s*\[([^\]]+)\]/);assert(m);
-const expected=['people','nature','badges','works','civication','brands','før_nå','fortellinger','leksikon'];
-assert.deepStrictEqual(JSON.parse('['+m[1]+']'),expected);
+const runtime=fs.readFileSync(path.join(repo,'js/ui/place-rounds-visual-collections.js'),'utf8');
+assert(/Nye\/fullproduserte Places bruker eksplisitt 1–4 collection_ids/.test(runtime));
+assert.deepStrictEqual(v.place_card_profile.collection_ids,['people','objects','brands','historical_events']);
 const badges=new Set(read('data/badges/by.json').sub);
 for(const p of [n,v]){
   assert.strictEqual(p.category,'by');assert(!('rounds' in p)&&!('rundinger' in p));
