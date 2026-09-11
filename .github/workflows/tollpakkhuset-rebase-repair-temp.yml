@@ -56,8 +56,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git show dc3c5c7bc2a0c1beeaea05c4d177fe72a46e24d3:tools/build-tollpakkhuset-completion.mjs > /tmp/build-tollpakkhuset-completion.mjs
-          node /tmp/build-tollpakkhuset-completion.mjs
+          git show dc3c5c7bc2a0c1beeaea05c4d177fe72a46e24d3:tools/build-tollpakkhuset-completion.mjs > tools/build-tollpakkhuset-completion.mjs
+          node tools/build-tollpakkhuset-completion.mjs
 
       - name: Restore verified post-materialization Tollpakkhuset source repairs
         shell: bash
@@ -142,6 +142,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          rm -f tools/build-tollpakkhuset-completion.mjs
           rm .github/workflows/tollpakkhuset-rebase-repair-temp.yml
           git add -A
           if git diff --cached --quiet; then
