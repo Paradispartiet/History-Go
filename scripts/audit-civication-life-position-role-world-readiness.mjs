@@ -150,15 +150,44 @@ function semanticMode(kind) {
   return 'lived_identity_or_practice';
 }
 
-function narrativeDepth(record, position) {
-  if (!record.json) return 0;
-  const hay = normalizeText(JSON.stringify(record.json));
-  const needles = uniq([
+function canonicalNeedles(position) {
+  return uniq([
     position.id && normalizeText(position.id),
-    normalizeText(position.label),
-    ...position.hooks.map(normalizeText)
+    normalizeText(position.label)
   ]).filter((value)=>value.length >= 4);
-  if (!needles.some((needle)=>hay.includes(needle))) return 0;
+}
+
+function narrativeMetadataMatch(record, position) {
+  if (!record.json || !record.rel.startsWith('data/Civication/narratives/')) return false;
+  const meta = normalizeText(JSON.stringify({
+    id: record.json.id,
+    type: record.json.type,
+    title: record.json.title,
+    sociological_theme: record.json.sociological_theme,
+    applies_when: record.json.applies_when
+  }));
+  const rel = normalizeText(record.rel);
+  return canonicalNeedles(position).some((needle) => meta.includes(needle) || rel.includes(needle));
+}
+
+function structuredLifePositionBinding(value, position) {
+  if (!value || typeof value !== 'object') return false;
+  const wantedLabel = normalizeText(position.label);
+  const wantedId = normalizeText(position.id || '');
+  if (Array.isArray(value)) return value.some((item) => structuredLifePositionBinding(item, position));
+  for (const [key, child] of Object.entries(value)) {
+    const k = normalizeText(key);
+    if (['life_position_label','life_position_id','life_position'].includes(k)) {
+      const v = normalizeText(typeof child === 'string' ? child : JSON.stringify(child));
+      if ((wantedId && v === wantedId) || v === wantedLabel) return true;
+    }
+    if (child && typeof child === 'object' && structuredLifePositionBinding(child, position)) return true;
+  }
+  return false;
+}
+
+function narrativeDepth(record, position) {
+  if (!narrativeMetadataMatch(record, position)) return 0;
   if (Array.isArray(record.json.storylets)) return record.json.storylets.length;
   if (Array.isArray(record.json.scenes)) return record.json.scenes.length;
   if (Array.isArray(record.json.events)) return record.json.events.length;
@@ -182,7 +211,8 @@ function sourceEvidence(position) {
     const depth = narrativeDepth(record, position);
     if (depth > maxNarrativeDepth) maxNarrativeDepth = depth;
 
-    if (strongNeedles.some((needle)=>record.normalized.includes(needle))) exact.push(record.rel);
+    const directBinding = structuredLifePositionBinding(record.json, position) || narrativeMetadataMatch(record, position);
+    if (directBinding) exact.push(record.rel);
     else if (hookNeedles.length >= 2 && hookNeedles.filter((needle)=>record.normalized.includes(needle)).length >= 2) thematic.push(record.rel);
   }
 
