@@ -44,6 +44,14 @@ const roleWorldIndex = readJson('data/Civication/roleWorlds/index.json');
 const badgeIndex = readJson('data/badges/index.json');
 const catalog = readJson('data/Civication/lifePositionCatalog.json');
 const overlayIndex = readJson('data/Civication/badgeCareerContracts/index.json');
+const roleWorldIndex = readJson('data/Civication/roleWorlds/index.json');
+
+const completedLifePositionWorlds = new Map(
+  (roleWorldIndex.roles || [])
+    .filter((entry) => entry.subject_type === 'life_position' && entry.status === 'role_world_complete')
+    .map((entry) => [String(entry.life_position_key || ''), entry])
+    .filter(([key]) => key)
+);
 
 const overlays = new Map((overlayIndex.files || []).map((rel) => {
   const overlay = readJson(rel);
@@ -226,7 +234,25 @@ function sourceEvidence(position) {
   };
 }
 
+function positionKey(position) {
+  return `${position.badge_id}/${position.id || normalizeText(position.label).replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')}`;
+}
+
 function classify(position, evidence) {
+  const key = positionKey(position);
+  const completedEntry = completedLifePositionWorlds.get(key);
+  if (completedEntry) {
+    if (!exists(completedEntry.path)) throw new Error(`${key}: completed life-position Role World path missing: ${completedEntry.path}`);
+    const world = readJson(completedEntry.path);
+    if (world.status !== 'role_world_complete' || world.subject_type !== 'life_position') {
+      throw new Error(`${key}: indexed completed life-position Role World has invalid subject/status`);
+    }
+    if (world.life_position_ref?.badge_id !== position.badge_id || world.life_position_ref?.id !== position.id) {
+      throw new Error(`${key}: Role World life_position_ref does not match canonical selectable position`);
+    }
+    return 'role_world_complete';
+  }
+
   const mode = semanticMode(position.kind);
   const hasDeepNarrative = evidence.max_narrative_depth >= 4;
   const exactNonEconomic = evidence.exact_source_refs.filter((rel)=>!rel.includes('livelihood')).length;
@@ -249,7 +275,8 @@ const rows = positions.map((position) => {
     ? completedLifeWorlds.get(`${position.badge_id}::${position.id}`) || null
     : null;
   const mode = semanticMode(position.kind);
-  let priority = classification === 'role_world_candidate' ? 1000
+  let priority = classification === 'role_world_complete' ? 0
+    : classification === 'role_world_candidate' ? 1000
     : classification === 'needs_authored_depth' ? 500 : 200;
   priority += evidence.max_narrative_depth * 25;
   priority += evidence.exact_source_refs.length * 15;
@@ -259,7 +286,7 @@ const rows = positions.map((position) => {
   if (mode === 'overlay_or_outcome_status') priority -= 50;
 
   return {
-    key: `${position.badge_id}/${position.id || normalizeText(position.label).replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')}`,
+    key: positionKey(position),
     badge_id: position.badge_id,
     badge_name: position.badge_name,
     id: position.id,
@@ -286,15 +313,17 @@ const rows = positions.map((position) => {
       livelihood_templates: evidence.livelihood_templates,
       livelihood_ref: evidence.livelihood_ref
     },
-    next_work: classification === 'role_world_candidate'
-      ? ['inventory_existing_scene_provenance','author_role_world_14x4','bind_primary_threads_and_private_aftermath']
+    next_work: classification === 'role_world_complete'
+      ? []
+      : classification === 'role_world_candidate'
+        ? ['inventory_existing_scene_provenance','author_role_world_14x4','bind_primary_threads_and_private_aftermath']
       : classification === 'prefer_overlay_context'
         ? ['keep_as_context_or_outcome_status','promote_only_if_future_authored_world_proves_independent_social_life']
         : ['author_role_specific_private_life_social_or_narrative_sources','then_reaudit_before_role_world_production']
   };
 }).sort((a,b)=>a.key.localeCompare(b.key,'nb'));
 
-const classCounts = Object.fromEntries(['role_world_candidate','needs_authored_depth','prefer_overlay_context']
+const classCounts = Object.fromEntries(['role_world_complete','role_world_candidate','needs_authored_depth','prefer_overlay_context']
   .map((id)=>[id, rows.filter((row)=>row.classification===id).length]));
 
 const queue = rows
@@ -323,6 +352,7 @@ const output = {
     badge_index:'data/badges/index.json',
     badge_career_overlays:'data/Civication/badgeCareerContracts/index.json',
     livelihood_templates:'data/Civication/livelihoodOpportunityTemplates.json',
+    role_world_index:'data/Civication/roleWorlds/index.json',
     role_world_standard:'docs/CIVICATION_ROLE_WORLD_STANDARD.md',
     scene_pipeline:'data/Civication/SCENE_PIPELINE_V1.md',
     role_world_index:'data/Civication/roleWorlds/index.json'
@@ -337,6 +367,7 @@ const output = {
     status_or_achievement_positions_default_to_context_until_independent_authored_world_is_proven:true
   },
   classification_contract:{
+    role_world_complete:'A canonical selectable life position now owns a registered role_world_complete source with matching life_position_ref. It leaves the readiness queue without changing Career Role World counts.',
     role_world_candidate:'Existing governed authored sources already provide a multi-scene role-specific narrative foundation. Candidate may enter a dedicated one-position Role World PR, but is not complete until the normal 14x4/provenance/threads/private-aftermath gates pass.',
     needs_authored_depth:'Canonical selectable life position, but current governed sources are too thin for Role World production. Author role-specific private/life/social/narrative material before 14x4 materialization.',
     prefer_overlay_context:'Primarily achievement, fame, legacy, mandate, selection or reputation status with no independent authored social world. Keep it as context/outcome by default; it may be reconsidered only if future source depth proves a standalone world.'
@@ -344,6 +375,7 @@ const output = {
   summary:{
     selectable_life_positions:rows.length,
     classifications:classCounts,
+    completed_life_position_role_worlds:classCounts.role_world_complete,
     queue_length:queue.length,
     livelihood_backed_positions:rows.filter((row)=>row.authored_depth.livelihood_template_count>0).length,
     positions_with_exact_governed_sources:rows.filter((row)=>row.authored_depth.exact_source_ref_count>0).length,
@@ -360,7 +392,7 @@ function renderReport(data) {
   const lines=[];
   lines.push('# Civication life-position Role World readiness','');
   lines.push(`**Selectable life positions audited:** ${data.summary.selectable_life_positions}`);
-  lines.push(`**Classification:** ${data.summary.classifications.role_world_candidate} role_world_candidate / ${data.summary.classifications.needs_authored_depth} needs_authored_depth / ${data.summary.classifications.prefer_overlay_context} prefer_overlay_context`);
+  lines.push(`**Classification:** ${data.summary.classifications.role_world_complete} role_world_complete / ${data.summary.classifications.role_world_candidate} role_world_candidate / ${data.summary.classifications.needs_authored_depth} needs_authored_depth / ${data.summary.classifications.prefer_overlay_context} prefer_overlay_context`);
   lines.push(`**Livelihood-backed:** ${data.summary.livelihood_backed_positions}`);
   lines.push(`**Exact governed-source matches:** ${data.summary.positions_with_exact_governed_sources}`);
   lines.push(`**Multi-scene narrative foundations:** ${data.summary.positions_with_multi_scene_narrative_foundation}`);
@@ -399,5 +431,5 @@ if (checkMode) {
   if (readText(OUTPUT)!==jsonText) throw new Error(`${OUTPUT} is stale; run with --write.`);
   if (readText(REPORT)!==reportText) throw new Error(`${REPORT} is stale; run with --write.`);
   if (rows.length!==200) throw new Error(`Expected 200 selectable life positions, got ${rows.length}`);
-  console.log(`PASS: ${rows.length} life positions audited; ${classCounts.role_world_candidate} candidate, ${classCounts.needs_authored_depth} needs depth, ${classCounts.prefer_overlay_context} overlay/context.`);
+  console.log(`PASS: ${rows.length} life positions audited; ${classCounts.role_world_complete} complete, ${classCounts.role_world_candidate} candidate, ${classCounts.needs_authored_depth} needs depth, ${classCounts.prefer_overlay_context} overlay/context.`);
 }
