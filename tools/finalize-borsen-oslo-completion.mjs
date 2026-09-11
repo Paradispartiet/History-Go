@@ -626,3 +626,4 @@ execFileSync("npm",["run","place-open:build"],{cwd:root,stdio:"inherit"});
 execFileSync(process.execPath,["scripts/build-epoke-place-index.mjs"],{cwd:root,stdio:"inherit"});
 
 console.log(JSON.stringify({place:placeId,collections:place.place_card_profile.collection_ids,quizQuestions:questions.length,chronology:chronology.length,readingTracks:newReadings.length,languageTerms:language.entries.length,quality:30},null,2));
+// Exact-head CI retrigger after canonical fresh-main materialization.
