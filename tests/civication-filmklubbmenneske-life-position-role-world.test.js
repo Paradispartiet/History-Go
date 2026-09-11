@@ -102,26 +102,27 @@ assert.equal(entry.status, 'role_world_complete');
 assert.equal(entry.path, worldPath);
 
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 5);
+assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 6);
 assert.deepEqual(index.summary, {
-  role_worlds_total: 90,
+  role_worlds_total: 91,
   career_role_worlds: 85,
-  life_position_role_worlds: 5
+  life_position_role_worlds: 6
 });
 assert.equal(index.career_role_world_count, 85);
-assert.equal(index.life_position_role_world_count, 5);
+assert.equal(index.life_position_role_world_count, 6);
 
 assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds, [
   'sport/supporter',
   'by/nabolagskjenner',
   'film_tv/filmklubbmenneske',
   'filosofi/sofafilosof',
-  'historie/historievandrer'
+  'historie/historievandrer',
+  'kunst/gallerivanker'
 ]);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'kunst/gallerivanker');
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 5);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 90);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 6);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 91);
 
 const readiness = audit.positions.find((row) => row.key === 'film_tv/filmklubbmenneske');
 assert.ok(readiness);
@@ -132,14 +133,14 @@ assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.deepEqual(readiness.evidence.livelihood_templates, ['filmklubbmenneske_visningshjelp']);
 assert.ok(!audit.queue.some((row) => row.key === 'film_tv/filmklubbmenneske'));
-assert.equal(audit.summary.life_position_role_world_complete, 5);
-assert.equal(audit.summary.completed_life_position_role_worlds, 5);
-assert.equal(audit.summary.pending_ready_positions, 1);
-assert.equal(audit.first_ready?.key, 'kunst/gallerivanker');
+assert.equal(audit.summary.life_position_role_world_complete, 6);
+assert.equal(audit.summary.completed_life_position_role_worlds, 6);
+assert.equal(audit.summary.pending_ready_positions, 0);
+assert.equal(audit.first_ready, null);
 
 execFileSync(process.execPath, ['tests/civication-role-world-contract.test.js'], { cwd: ROOT, stdio: 'pipe' });
 execFileSync(process.execPath, ['tests/civication-noncareer-role-taxonomy.test.js'], { cwd: ROOT, stdio: 'pipe' });
 execFileSync(process.execPath, ['tests/civication-life-position-role-world-readiness.test.js'], { cwd: ROOT, stdio: 'pipe' });
 execFileSync(process.execPath, ['tests/civication-filmklubbmenneske-life-position-readiness.test.js'], { cwd: ROOT, stdio: 'pipe' });
 
-console.log('civication Filmklubbmenneske Role World ok: 56/56 coverage / 14 governed anchors / 90 total worlds / no new runtime');
+console.log('civication Filmklubbmenneske Role World ok: 56/56 coverage / 14 governed anchors / 91 total worlds / no new runtime');
