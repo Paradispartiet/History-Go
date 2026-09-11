@@ -153,7 +153,7 @@ place.fagverk={
   concepts:["sosial infrastruktur","historiske lag","sanering","offentlig rom","representasjon","stedsminne","rett til byen","feltobservasjon","evidensgrense","landskapsarkitektur"],
   observable_traces:[
     {title:"Elvekant og parkflate",observation:"Registrer overgangen mellom vann, plen, harde flater og ganglinjer.",interpretation_boundary:"Historisk funksjon og tidligere terreng krever kilder.",source_urls:[urls.official,urls.bylex]},
-    {title:"Ólafia-bysten",observation:"Les sokkel, plassering og forhold til hovedlinjene i parken.",interpretation_boundary:"Objektet viser ikke alene Ólafias biografi eller årsaken til flyttingen.",source_urls:[urls.local,urls.bustPage]},
+    {title:"Ólafia-bysten i parken",observation:"Les sokkel, plassering og forhold til hovedlinjene i parken.",interpretation_boundary:"Objektet viser ikke alene Ólafias biografi eller årsaken til flyttingen.",source_urls:[urls.local,urls.bylex]},
     {title:"Tidsavgrenset parkbruk",observation:"Tell passering og opphold i et kort, anonymt tidsrom uten personbeskrivelser.",interpretation_boundary:"Ett tidsrom er ikke representativt for hele dagen, uka eller alle brukergrupper.",source_urls:[urls.official]}
   ],
   source_urls:[urls.official,urls.bylex,urls.local,urls.landscape,urls.social,urls.outreach,urls.parkReport],
@@ -166,7 +166,8 @@ place.externalLinks=[
   ["reference","Store norske leksikon – 13.3 Landskapsarkitekter",urls.landscape],
   ["map","OpenStreetMap – Vaterlandsparken",urls.osm],
   ["official","Oslo kommune – åpne rusmiljø i Oslo sentrum",urls.social],
-  ["official","Oslo kommune – Uteseksjonen",urls.outreach]
+  ["official","Oslo kommune – Uteseksjonen",urls.outreach],
+  ["official","Oslo kommune – Vaterlandsparken mulighetsstudie",urls.parkReport]
 ].map(row=>({type:row[0],label:row[1],url:row[2],verifiedAt}));
 place.module_audit={for_na:{status:"produced_with_location_and_viewpoint_caveat"},news:{status:"not_applicable_after_fresh_review",rationale:"Tidsfølsomme bygge- og trygghetstiltak hardkodes ikke som canonical parkhistorie.",reviewedAt:verifiedAt},events:{status:"not_applicable",rationale:"Ingen stabil stedsegen kalender er nødvendig for full Place-produksjon."},dialect:{status:"not_applicable",rationale:"Stedsnavn og fagtermer dokumenteres, men ingen kildebelagt dialektprofil."}};
 write(placeFile,place);
