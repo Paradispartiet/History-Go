@@ -249,29 +249,28 @@ function classify(position, evidence) {
     if (world.life_position_ref?.badge_id !== position.badge_id || world.life_position_ref?.id !== position.id) {
       throw new Error(`${key}: Role World life_position_ref does not match canonical selectable position`);
     }
-    return 'role_world_complete';
   }
 
   const mode = semanticMode(position.kind);
   const hasDeepNarrative = evidence.max_narrative_depth >= 4;
   const exactNonEconomic = evidence.exact_source_refs.filter((rel)=>!rel.includes('livelihood')).length;
 
-  if (hasDeepNarrative && exactNonEconomic >= 1) return 'role_world_candidate';
+  if (hasDeepNarrative && exactNonEconomic >= 1) return 'ready';
   if (mode === 'overlay_or_outcome_status' && exactNonEconomic === 0 && evidence.livelihood_templates.length === 0) {
-    return 'prefer_overlay_context';
+    return 'not_a_standalone_world';
   }
   return 'needs_authored_depth';
 }
 
 const rows = positions.map((position) => {
   const evidence = sourceEvidence(position);
-  const classification = classify(position, evidence);
   const completedWorld = position.id
     ? completedLifePositionWorlds.get(positionKey(position)) || null
     : null;
+  const classification = classify(position, evidence);
   const mode = semanticMode(position.kind);
-  let priority = classification === 'role_world_complete' ? 0
-    : classification === 'role_world_candidate' ? 1000
+  let priority = completedWorld ? 0
+    : classification === 'ready' ? 1000
     : classification === 'needs_authored_depth' ? 500 : 200;
   priority += evidence.max_narrative_depth * 25;
   priority += evidence.exact_source_refs.length * 15;
@@ -308,21 +307,21 @@ const rows = positions.map((position) => {
       livelihood_templates: evidence.livelihood_templates,
       livelihood_ref: evidence.livelihood_ref
     },
-    next_work: classification === 'role_world_complete'
+    next_work: completedWorld
       ? []
-      : classification === 'role_world_candidate'
+      : classification === 'ready'
         ? ['inventory_existing_scene_provenance','author_role_world_14x4','bind_primary_threads_and_private_aftermath']
-      : classification === 'prefer_overlay_context'
+      : classification === 'not_a_standalone_world'
         ? ['keep_as_context_or_outcome_status','promote_only_if_future_authored_world_proves_independent_social_life']
         : ['author_role_specific_private_life_social_or_narrative_sources','then_reaudit_before_role_world_production']
   };
 }).sort((a,b)=>a.key.localeCompare(b.key,'nb'));
 
-const classCounts = Object.fromEntries(['role_world_complete','role_world_candidate','needs_authored_depth','prefer_overlay_context']
+const classCounts = Object.fromEntries(['ready','needs_authored_depth','not_a_standalone_world']
   .map((id)=>[id, rows.filter((row)=>row.classification===id).length]));
 
 const queue = rows
-  .filter((row)=>row.classification !== 'prefer_overlay_context' && row.role_world_status !== 'role_world_complete')
+  .filter((row)=>row.classification !== 'not_a_standalone_world' && row.role_world_status !== 'role_world_complete')
   .sort((a,b)=>b.priority_score-a.priority_score || a.key.localeCompare(b.key,'nb'))
   .map((row,index)=>({
     rank:index+1,
@@ -337,8 +336,8 @@ const queue = rows
   }));
 
 const output = {
-  schema:'civication_life_position_role_world_readiness_v1',
-  version:1,
+  schema:'civication_life_position_role_world_readiness_v2',
+  version:2,
   reviewed_at:'2026-09-11',
   generated_by:'scripts/audit-civication-life-position-role-world-readiness.mjs',
   source_contracts:{
@@ -355,29 +354,29 @@ const output = {
     audit_only_no_new_runtime:true,
     all_positions_come_from_CivicationLifePositions:true,
     role_world_completion_semantics_unchanged:true,
+    readiness_classification_is_independent_of_role_world_lifecycle:true,
     one_life_position_per_role_world_pr:true,
     livelihood_opportunity_alone_is_not_role_world_depth:true,
     generic_private_life_content_is_supporting_context_not_role_specific_completion:true,
     status_or_achievement_positions_default_to_context_until_independent_authored_world_is_proven:true
   },
   classification_contract:{
-    role_world_complete:'A canonical selectable life position now owns a registered role_world_complete source with matching life_position_ref. It leaves the readiness queue without changing Career Role World counts.',
-    role_world_candidate:'Existing governed authored sources already provide a multi-scene role-specific narrative foundation. Candidate may enter a dedicated one-position Role World PR, but is not complete until the normal 14x4/provenance/threads/private-aftermath gates pass.',
+    ready:'Existing governed authored sources provide a multi-scene role-specific narrative foundation. Readiness is independent of lifecycle, so an already completed Role World may remain classified ready while role_world_status is role_world_complete and it is excluded from the pending queue.',
     needs_authored_depth:'Canonical selectable life position, but current governed sources are too thin for Role World production. Author role-specific private/life/social/narrative material before 14x4 materialization.',
-    prefer_overlay_context:'Primarily achievement, fame, legacy, mandate, selection or reputation status with no independent authored social world. Keep it as context/outcome by default; it may be reconsidered only if future source depth proves a standalone world.'
+    not_a_standalone_world:'Primarily achievement, fame, legacy, mandate, selection or reputation status with no independent authored social world. Keep it as context/outcome by default; reconsider only if future governed source depth proves a standalone world.'
   },
   summary:{
     selectable_life_positions:rows.length,
     classifications:classCounts,
-    completed_life_position_role_worlds:classCounts.role_world_complete,
+    completed_life_position_role_worlds:rows.filter((row)=>row.role_world_status==='role_world_complete').length,
     queue_length:queue.length,
     livelihood_backed_positions:rows.filter((row)=>row.authored_depth.livelihood_template_count>0).length,
     positions_with_exact_governed_sources:rows.filter((row)=>row.authored_depth.exact_source_ref_count>0).length,
     positions_with_multi_scene_narrative_foundation:rows.filter((row)=>row.authored_depth.max_narrative_depth>=4).length,
-    life_position_role_world_complete: rows.filter((row)=>row.role_world_status==='role_world_complete').length,
-    pending_source_backed_candidates: queue.filter((row)=>row.classification==='role_world_candidate').length
+    life_position_role_world_complete:rows.filter((row)=>row.role_world_status==='role_world_complete').length,
+    pending_ready_positions:queue.filter((row)=>row.classification==='ready').length
   },
-  first_candidate:queue.find((row)=>row.classification==='role_world_candidate') || null,
+  first_ready:queue.find((row)=>row.classification==='ready') || null,
   queue,
   positions:rows
 };
@@ -386,25 +385,26 @@ function renderReport(data) {
   const lines=[];
   lines.push('# Civication life-position Role World readiness','');
   lines.push(`**Selectable life positions audited:** ${data.summary.selectable_life_positions}`);
-  lines.push(`**Classification:** ${data.summary.classifications.role_world_complete} role_world_complete / ${data.summary.classifications.role_world_candidate} role_world_candidate / ${data.summary.classifications.needs_authored_depth} needs_authored_depth / ${data.summary.classifications.prefer_overlay_context} prefer_overlay_context`);
+  lines.push(`**Classification:** ${data.summary.classifications.ready} ready / ${data.summary.classifications.needs_authored_depth} needs_authored_depth / ${data.summary.classifications.not_a_standalone_world} not_a_standalone_world`);
   lines.push(`**Livelihood-backed:** ${data.summary.livelihood_backed_positions}`);
   lines.push(`**Exact governed-source matches:** ${data.summary.positions_with_exact_governed_sources}`);
   lines.push(`**Multi-scene narrative foundations:** ${data.summary.positions_with_multi_scene_narrative_foundation}`);
   lines.push(`**Completed life-position Role Worlds:** ${data.summary.life_position_role_world_complete}`);
-  lines.push(`**Pending source-backed candidates:** ${data.summary.pending_source_backed_candidates}`,'');
+  lines.push(`**Pending ready positions:** ${data.summary.pending_ready_positions}`,'');
   lines.push('## Decision','');
-  if (data.first_candidate) lines.push(`First pending source-backed Role World candidate: **${data.first_candidate.key} — ${data.first_candidate.label}**.`,'');
-  else lines.push('The existing source-backed candidate has been completed; no remaining life position currently has enough governed multi-scene role-specific depth to enter Role World production without prior source authoring.','');
+  if (data.first_ready) lines.push(`First pending ready Role World position: **${data.first_ready.key} — ${data.first_ready.label}**.`,'');
+  else lines.push('No unfinished life position is currently ready for Role World production. Supporter remains source-ready but is already role_world_complete; the remaining standalone-capable positions require authored depth first.','');
   lines.push('Livelihood templates count as provenance for an economic opportunity, but never as sufficient Role World depth on their own.','');
   lines.push('## Top queue','');
   lines.push('| Rank | Position | Class | Exact refs | Livelihood | Narrative depth |');
   lines.push('| ---: | --- | --- | ---: | ---: | ---: |');
   for (const row of data.queue.slice(0,30)) lines.push(`| ${row.rank} | \`${row.key}\` | ${row.classification} | ${row.exact_source_ref_count} | ${row.livelihood_template_count} | ${row.max_narrative_depth} |`);
   lines.push('','## Boundaries','');
+  lines.push('- Readiness classification is separate from Role World lifecycle status; completed worlds stay visible in the 200-position audit but leave the pending queue.');
   lines.push('- This audit does not create a NonCareerRoleEngine or new scene format.');
   lines.push('- Circumstances, relationships and livelihood remain separate runtime layers.');
   lines.push('- Generic private-life scenes may support aftermath, but cannot prove a specific life-position world by themselves.');
-  lines.push('- Achievement/fame/legacy/mandate statuses remain contextual by default unless later authored evidence proves an independent social world.');
+  lines.push('- Achievement/fame/legacy/mandate statuses are not standalone worlds by default unless later governed evidence proves an independent social world.');
   lines.push('- Every actual Role World remains one subject per PR and must pass the normal Role World + Scene Pipeline gates.','');
   return lines.join('\n')+'\n';
 }
@@ -425,5 +425,5 @@ if (checkMode) {
   if (readText(OUTPUT)!==jsonText) throw new Error(`${OUTPUT} is stale; run with --write.`);
   if (readText(REPORT)!==reportText) throw new Error(`${REPORT} is stale; run with --write.`);
   if (rows.length!==200) throw new Error(`Expected 200 selectable life positions, got ${rows.length}`);
-  console.log(`PASS: ${rows.length} life positions audited; ${classCounts.role_world_complete} complete, ${classCounts.role_world_candidate} candidate, ${classCounts.needs_authored_depth} needs depth, ${classCounts.prefer_overlay_context} overlay/context.`);
+  console.log(`PASS: ${rows.length} life positions audited; ${classCounts.ready} ready, ${classCounts.needs_authored_depth} needs depth, ${classCounts.not_a_standalone_world} not standalone; ${output.summary.life_position_role_world_complete} Role World complete.`);
 }

@@ -218,15 +218,15 @@
       "path": "data/Civication/lifePositionRoleWorldReadiness.json",
       "report": "reports/civication-life-position-role-world-readiness.md",
       "generator": "scripts/audit-civication-life-position-role-world-readiness.mjs",
-      "first_source_backed_candidate": "sport/supporter",
+      "first_source_backed_candidate": null,
       "classifications": [
-        "role_world_complete",
-        "role_world_candidate",
+        "ready",
         "needs_authored_depth",
-        "prefer_overlay_context"
+        "not_a_standalone_world"
       ],
-      "rule": "Readiness is source-first. A livelihood opportunity alone is not enough; a Role World candidate must have role-specific governed narrative depth and still pass the ordinary one-subject Role World completion contract. Completed life-position Role Worlds leave the candidate queue without changing Career Role World counts.",
-      "first_completed_life_position_role_world": "sport/supporter"
+      "rule": "Readiness is source-first and independent of Role World lifecycle. A livelihood opportunity alone is not enough; ready requires role-specific governed multi-scene narrative depth. Completed life-position Role Worlds remain classified by readiness but leave the pending queue through role_world_status. Status/outcome positions without an independent authored social world are not_a_standalone_world.",
+      "first_completed_life_position_role_world": "sport/supporter",
+      "lifecycle_field": "role_world_status"
     }
   }
 }
