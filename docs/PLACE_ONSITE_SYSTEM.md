@@ -16,6 +16,7 @@ PlaceCard skal ikke være hovednavigasjon for globale oppdagelses- eller møtefl
 - **Utforsk → Møtes** er én samlet brukerinngang for møteproduktet.
   - **Foreslå kunnskapsmøte** starter `HG_SpotmeetingUI` i valgt Place-kontekst.
   - **Mine møter / Social Meet** åpner `HG_SocialMeetUI` for forslag, avtaler, svar, læringssirkler og historikk.
+- Header-menyen beholder **Møtes / Social Meet** som en hurtiginngang til den samme `Utforsk → Møtes`-flaten. Den er en shortcut, ikke en separat produkteier.
 
 Det finnes derfor ikke lenger separate PlaceCard-knapper for **Events**, **Avtal å møtes**, **Kunnskapsmøte** eller **Social Meet**.
 
