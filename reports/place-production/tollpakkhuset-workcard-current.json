@@ -1,1 +1,161 @@
-{}
+{
+  "schema": "history_go_place_workcard_v2",
+  "placeId": "tollpakkhuset",
+  "name": "Tollpakkhuset",
+  "canonicalSource": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollpakkhuset.json",
+  "primaryCategory": "naeringsliv",
+  "underbadgeIds": [
+    "shipping_og_havn",
+    "handel_og_markeder"
+  ],
+  "productionProfile": "standard",
+  "profileStatus": "confirmed",
+  "profileReason": "Tollpakkhuset er et avgrenset enkeltbygg, men kildene bærer flere selvstendige spor om pakkhusfunksjon, tollbehandling og vareflyt, arkitektur, Norsk Tollmuseum og senere rehabilitering. Standardprofil gir komplett sted uten å fylle med perifert stoff.",
+  "status": "in_progress",
+  "activePhase": "preflight_and_source_review",
+  "baseMain": "abd2875a4263af8353f2eeb5a26f39678c4aacde",
+  "coordinateDecision": {
+    "status": "REUSE_VERIFIED",
+    "lat": 59.9096073,
+    "lon": 10.7497695,
+    "sourceObjectId": "osm-way:112195503",
+    "reason": "Eksisterende koordinat er den dokumenterte geometriske midten av det navngitte OSM-bygningspolygonet Stenpakkhuset, kryssjekket mot Riksantikvaren. Ingen koordinatendring planlegges."
+  },
+  "badgeRouting": {
+    "status": "PASS",
+    "routingOrder": [
+      "universal_canonical_core",
+      "primary_badge_family",
+      "active_underbadge_ids",
+      "place_specific_source_review",
+      "confirmed_production_profile",
+      "final_content_plan"
+    ],
+    "researchLanes": [
+      "production_or_service",
+      "work",
+      "technology",
+      "markets",
+      "logistics",
+      "business_identity",
+      "industrial_or_commercial_change"
+    ]
+  },
+  "nullMeasurement": {
+    "existingPlace": true,
+    "existingDescription": "legacy_short",
+    "existingProductionPackage": false,
+    "existingNaeringslivProductionReport": false,
+    "existingPlaceCardProfile": false,
+    "existingCollections": {
+      "people": 0,
+      "objects": 0,
+      "brands": 0,
+      "productions": 0
+    },
+    "existingLanguage": false,
+    "existingLeksikon": false,
+    "existingReadingTracks": 0,
+    "existingDedicatedQuiz": false,
+    "existingDedicatedQuizCard": false,
+    "existingBeforeAfter": false,
+    "existingNews": false,
+    "existingRuntimePlaceOpen": true,
+    "runtimeGap": "Place-open finnes, men people, brands, leksikon, lesespor og språk er tomme."
+  },
+  "sourceReview": {
+    "status": "reviewed_for_preflight",
+    "sources": [
+      {
+        "url": "https://www.oppdagkvadraturen.no/stoppesteder/tollpakkhuset",
+        "role": "historie, bygg, pakkhusfunksjon, vareflyt"
+      },
+      {
+        "url": "https://riksantikvaren.no/eksempelsamling/to-fredede-bygninger-blir-til-tolldirektorates-hovedkontor/",
+        "role": "fredning, ombruk, dagens kontorfunksjon og bevarte spor"
+      },
+      {
+        "url": "https://riksantikvaren.no/eksempelsamling/innvendige-varevinduer/",
+        "role": "bevarte jernvinduer og rehabilitering"
+      },
+      {
+        "url": "https://snl.no/Norsk_Tollmuseum",
+        "role": "museum, samling og Tollpakkhuset"
+      },
+      {
+        "url": "https://oslobyleksikon.no/side/Norsk_Tollmuseum",
+        "role": "museumskronologi, inkludert perioden 1926–1981 ved Jernbanetollstedet"
+      },
+      {
+        "url": "https://oslobyleksikon.no/side/Tollboden",
+        "role": "Tollpakkhuset, 1949-avkorting, utfylling 1957–1960 og dagens kontorbruk"
+      },
+      {
+        "url": "https://nkl.snl.no/Johan_Henrik_Nebelong",
+        "role": "arkitekt og verk 1846–1850"
+      },
+      {
+        "url": "https://riksantikvaren.no/content/uploads/2019/10/tollbugata1a252coslotollbod.pdf",
+        "role": "fredningsdokumentasjon, bygningsidentitet og interiørspor"
+      },
+      {
+        "url": "https://www.kvadraturenoslo.no/content/artikler/printversjoner/stil_og_arkitektur/6.senempire.pdf",
+        "role": "arkitektur, funksjonsuttrykk og havnefront"
+      }
+    ],
+    "conflictsAndLimits": [
+      "Norsk Tollmuseum skal ikke beskrives som kontinuerlig lokalisert i Tollpakkhuset fra 1915 til 2019; Oslo byleksikon oppgir lokaler ved Jernbanetollstedet 1926–1981.",
+      "Samlingstall for Norsk Tollmuseum varierer mellom eldre kilder; tall brukes bare fra en eksplisitt valgt og datert kilde eller utelates.",
+      "Tollboden, Tollpakkhuset og Tollbukaia er separate canonical steder og skal ikke blandes i hovedpåstander eller samlinger."
+    ]
+  },
+  "contentPlan": {
+    "placeDescription": "PRODUCE",
+    "placeProductionClaims": "PRODUCE",
+    "naeringslivProductionReport": "PRODUCE",
+    "fagverk": "PRODUCE",
+    "chronology": "PRODUCE",
+    "language": "PRODUCE",
+    "people": {
+      "status": "PRODUCE_CANDIDATE_VERIFIED",
+      "candidate": "johan_henrik_nebelong",
+      "reason": "Nebelongs direkte arkitektrolle for Tollpakkhuset 1846–1850 er eksplisitt dokumentert i både Oppdag Kvadraturen og SNL/NBL."
+    },
+    "objects": {
+      "status": "RESEARCH_REQUIRED",
+      "reason": "Objects må være fysiske, identifiserbare og stedsspesifikke. Bygningsdeler brukes ikke som filler; museumsgjenstander må ha dokumenterbar kobling til Norsk Tollmuseum/Tollpakkhuset og eget bilde."
+    },
+    "brands": {
+      "status": "RESEARCH_REQUIRED",
+      "candidates": [
+        "Norsk Tollmuseum",
+        "Tolletaten"
+      ],
+      "reason": "Brand må bestå identitets- og logo/ordmerkeporten. Place-navnet skal ikke brukes som brandfyll."
+    },
+    "productions": {
+      "status": "PRODUCE",
+      "candidate": "tollbehandling_og_varehandtering",
+      "reason": "Næringslivets kategoriuttrykk skal være en dokumentert tjeneste/prosess. Pakkhusets kildebelagte hovedfunksjon var inn- og utlasting, lagring og fortolling av varer."
+    },
+    "quiz": "PRODUCE_AFTER_EXISTING_QUIZ_AUDIT",
+    "quizProfileProvisional": "normal_4x7",
+    "beforeAfter": "RESEARCH_REQUIRED",
+    "news": "RESEARCH_REQUIRED",
+    "readingTracks": "RESEARCH_REQUIRED",
+    "stories": "RESEARCH_REQUIRED"
+  },
+  "hardBlockers": [
+    "Objects-samlingen mangler ennå godkjente canonical medlemmer med bilde.",
+    "Brands-samlingen mangler ennå godkjent brand med verifisert logo/ordmerke.",
+    "Dedikert quiz, QuizCard, språk, Fagverk og produksjonspakker er ikke materialisert.",
+    "Manuell slutt-QA og exact-head CI er ikke kjørt."
+  ],
+  "rejectedAtPreflight": [
+    "related som PlaceCard-samling",
+    "Structures som automatisk erstatning for Næringslivets Productions-samling",
+    "Tollboden eller Tollbukaia som innholdseier for Tollpakkhuset",
+    "bygningsdeler uten selvstendig objektidentitet som Objects-fyll"
+  ],
+  "verifiedAt": "2026-09-11"
+}
