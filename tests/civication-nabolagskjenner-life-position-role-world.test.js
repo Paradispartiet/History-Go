@@ -155,7 +155,7 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'sport/supporter',
   'by/nabolagskjenner'
 ]);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'film_tv/filmklubbmenneske');
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 2);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 87);
@@ -169,8 +169,8 @@ assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.ok(!audit.queue.some((row) => row.key === 'by/nabolagskjenner'));
 assert.equal(audit.summary.life_position_role_world_complete, 2);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.first_ready?.key, 'film_tv/filmklubbmenneske');
 
 execFileSync(process.execPath, ['tests/civication-role-world-contract.test.js'], {
   cwd: ROOT,

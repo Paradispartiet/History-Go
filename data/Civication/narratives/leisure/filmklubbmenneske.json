@@ -1,0 +1,703 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "filmklubbmenneske_stream",
+  "type": "leisure",
+  "title": "Filmklubbmenneske rundt visningen",
+  "sociological_theme": "smak_fellesskap_og_uformell_kurateringsmakt",
+  "applies_when": {
+    "any_tags": [
+      "filmklubbmenneske",
+      "film_tv:filmklubbmenneske"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "programbordet_sjeldent_eller_trygt",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Programgruppa",
+      "subject": "Skal vi vise det sjeldne valget eller filmen alle kjenner?",
+      "situation": [
+        "Programgruppa sitter med to muligheter til neste visning: en vanskelig tilgjengelig film noen brenner for, og en kjent tittel som sannsynligvis vil fylle flere seter.",
+        "Du merker at smak fungerer som mer enn personlig preferanse når den avgjør hva et helt fellesskap faktisk får anledning til å se.",
+        "Spørsmålet er om kuratering skal bli en opptaksprøve i riktig smak eller en måte å åpne flere innganger til film på."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Foreslå den sjeldne filmen, men planlegg en kort og inkluderende introduksjon som gir flere en inngang.",
+          "effect": 1,
+          "tags": [
+            "curation",
+            "access",
+            "plural_taste"
+          ],
+          "feedback": "Programvalget beholder særpreget uten å gjøre forkunnskap til billett inn i fellesskapet."
+        },
+        {
+          "id": "B",
+          "label": "Insister på den sjeldne filmen og si at de som ikke forstår valget får lese seg opp.",
+          "effect": -1,
+          "tags": [
+            "taste_gatekeeping",
+            "status"
+          ],
+          "feedback": "Du beskytter en tydelig profil, men lar smak bli en sosial grense mellom de innvidde og resten."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_program_power_visible"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "Norsk filmklubbforbund om filmklubbdrift",
+          "url": "https://filmklubb.no/wp/filmklubb/"
+        }
+      ]
+    },
+    {
+      "id": "rettigheter_for_plakat",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Den som holder orden på visningen",
+      "subject": "Plakaten er nesten klar, men visningen er ikke avklart",
+      "situation": [
+        "Noen har laget en flott plakat til en film alle har lyst til å vise, men ingen i gruppa kan ennå bekrefte at visningsrettighetene er avklart.",
+        "I et frivillig miljø er det lett å behandle praktiske rettigheter som kjedelig papirarbeid som kommer etter de kreative valgene.",
+        "Du kan bruke entusiasmen til å få prosessen riktig eller la ønsket om en god kveld presse klubben inn i en gråsone."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Holde igjen offentlig annonsering til rettigheter og vilkår er bekreftet.",
+          "effect": 1,
+          "tags": [
+            "rights_boundary",
+            "process",
+            "responsibility"
+          ],
+          "feedback": "Visningen blir litt mindre spontan, men klubben beholder kontroll på hva den faktisk har lov til å arrangere."
+        },
+        {
+          "id": "B",
+          "label": "Publisere plakaten nå og regne med at rettighetene ordner seg senere.",
+          "effect": -1,
+          "tags": [
+            "rights_risk",
+            "shortcut"
+          ],
+          "feedback": "Programmet ser ferdig ut utad før det finnes et sikkert grunnlag for visningen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_rights_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "economic_risk"
+      ],
+      "links": [
+        {
+          "label": "Norsk filmklubbforbund om å drive filmklubb",
+          "url": "https://filmklubb.no/hva-vil-det-si-a-drive-filmklubb/"
+        }
+      ]
+    },
+    {
+      "id": "introen_som_stenger_eller_apner",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Kveldens innleder",
+      "subject": "Hvor mye må publikum vite før filmen starter?",
+      "situation": [
+        "Før visningen diskuterer dere hvor lang introduksjonen skal være og hvor mye filmhistorie som bør forklares på forhånd.",
+        "En god innledning kan gi sammenheng og nysgjerrighet, men den kan også signalisere at bare de som behersker riktig språk egentlig hører hjemme i rommet.",
+        "Du kjenner gleden ved fordypning og samtidig ubehaget når formidling blir en demonstrasjon av hvem som kan mest."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be innlederen gi noen få konkrete holdepunkter og spare den tyngste analysen til samtalen etterpå.",
+          "effect": 1,
+          "tags": [
+            "film_literacy",
+            "hosting",
+            "access"
+          ],
+          "feedback": "Folk får en inngang til filmen uten at opplevelsen blir ferdigtolket før lyset slukkes."
+        },
+        {
+          "id": "B",
+          "label": "La innlederen bruke hele fagregisteret; det er publikums ansvar å henge med.",
+          "effect": -1,
+          "tags": [
+            "expert_status",
+            "gatekeeping"
+          ],
+          "feedback": "Kunnskapsnivået blir synlig, men noen i salen lærer mest at de står utenfor samtalen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_intro_style"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "NFK FAQ om å sette film i kontekst",
+          "url": "https://filmklubb.no/wp/filmklubb/faq/"
+        }
+      ]
+    },
+    {
+      "id": "frivillig_skift_for_dorene",
+      "message_type": "people",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "En annen frivillig",
+      "subject": "Hvem tar bordet, programarkene og ryddingen?",
+      "situation": [
+        "Det er kort tid til dørene åpner, og de synlige delene av kvelden er klare, mens medlemsbord, programark og opprydding fortsatt mangler eiere.",
+        "I klubben får de gode filmvalgene og introduksjonene mest oppmerksomhet, men visningen fungerer bare fordi noen gjør mange små oppgaver ingen applauderer.",
+        "Du merker hvor fort den som alltid sier ja kan bli en uoffisiell driftsressurs uten at arbeidet noen gang fordeles ordentlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta én tydelig oppgave og be resten av gruppa fordele de andre før dørene åpner.",
+          "effect": 1,
+          "tags": [
+            "volunteer_work",
+            "boundary",
+            "reciprocity"
+          ],
+          "feedback": "Du bidrar konkret uten å gjøre pålitelighet til et permanent gratisansvar."
+        },
+        {
+          "id": "B",
+          "label": "Ta alt som mangler selv; det går raskest når du bare gjør det.",
+          "effect": -1,
+          "tags": [
+            "invisible_work",
+            "overcommitment"
+          ],
+          "feedback": "Kvelden reddes, men arbeidsdelingen blir enda mindre synlig fordi du skjuler problemet med egen innsats."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_invisible_work"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nykommer_spor_hva_skal_jeg_se",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En ny i klubben",
+      "subject": "Jeg kjenner nesten ingen av filmene dere snakker om",
+      "situation": [
+        "En nykommer blir stående etter visningen og sier at navnene og referansene i samtalen gikk litt fort.",
+        "Du har vært med lenge nok til å vite hvilke filmer gruppa stadig vender tilbake til og hvilke interne referanser som gir status.",
+        "Det er et lite øyeblikk der kunnskap enten kan bli vertskap eller en test på om den nye personen fortjener å være med."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva personen likte ved kveldens film og anbefal én mulig vei videre derfra.",
+          "effect": 1,
+          "tags": [
+            "welcoming",
+            "film_literacy",
+            "community"
+          ],
+          "feedback": "Kunnskapen din blir en bro inn i miljøet i stedet for en liste over alt den andre mangler."
+        },
+        {
+          "id": "B",
+          "label": "Ramse opp de viktigste filmene alle i klubben bør ha sett før de kan følge diskusjonene.",
+          "effect": -1,
+          "tags": [
+            "canon_gate",
+            "status"
+          ],
+          "feedback": "Du gir et tydelig kart, men kartet ligner samtidig en opptaksprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_newcomer_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samtalen_etter_filmen",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalelederen",
+      "subject": "Tre personer har tatt hele diskusjonen",
+      "situation": [
+        "Etter filmen har samtalen vært livlig, men de samme tre personene har svart på nesten alle spørsmålene.",
+        "De kan mye og mener mye, mens flere andre sitter med reaksjoner de aldri helt finner et naturlig tidspunkt å slippe inn.",
+        "Du må velge om en god filmsamtale først og fremst må være faglig skarp eller også må fordele taletid og trygghet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om stemmer som ikke har vært inne ennå, og åpne med et konkret spørsmål om en scene eller reaksjon.",
+          "effect": 1,
+          "tags": [
+            "discussion_access",
+            "plural_voice",
+            "hosting"
+          ],
+          "feedback": "Samtalen mister litt tempo og får samtidig flere erfaringer inn i rommet."
+        },
+        {
+          "id": "B",
+          "label": "La de mest kunnskapsrike fortsette; kvaliteten blir høyere når de slipper å bli avbrutt.",
+          "effect": -1,
+          "tags": [
+            "status_capture",
+            "discussion_gatekeeping"
+          ],
+          "feedback": "Diskusjonen blir konsentrert, men klubben lærer også hvem som forventes å snakke og hvem som forventes å lytte."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_discussion_norm"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tom_sal_favoritt",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Kassereren i klubben",
+      "subject": "Favoritten vår trakk nesten ingen",
+      "situation": [
+        "En film programgruppa var svært stolt av endte med få mennesker i salen og en kostnad klubben merker i budsjettet.",
+        "Noen vil svare med tryggere titler resten av sesongen, mens andre mener et lite publikum nettopp er grunnen til at slike filmer trenger filmklubben.",
+        "Du står mellom kulturelt særpreg, økonomisk handlingsrom og spørsmålet om hvem programmet faktisk er til for."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde rom for sjeldne filmer, men koble dem til tydeligere formidling og en økonomisk plan for sesongen.",
+          "effect": 1,
+          "tags": [
+            "program_balance",
+            "economic_room",
+            "curation"
+          ],
+          "feedback": "Klubben beholder risiko i programmet uten å late som kostnaden ikke finnes."
+        },
+        {
+          "id": "B",
+          "label": "Bestemme at lave besøkstall viser at publikum ikke fortjener de vanskeligere valgene.",
+          "effect": -1,
+          "tags": [
+            "audience_blame",
+            "taste_status"
+          ],
+          "feedback": "Et økonomisk problem blir raskt omtolket til en dom over publikums smak."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_program_economy"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tilgjengelig_visning",
+      "message_type": "people",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Et medlem som gjerne vil komme",
+      "subject": "Kan neste visning legges opp så jeg faktisk får deltatt?",
+      "situation": [
+        "Et medlem forklarer at tidspunkt, teksting eller den praktiske adkomsten gjør enkelte av visningene vanskelige å delta på.",
+        "Programgruppa har allerede forelsket seg i en bestemt visningsplan og er redd for at endringer skal koste tid, penger eller filmvalg.",
+        "Du ser at tilgjengelighet ikke er et tillegg til fellesskapet når den avgjør hvem som faktisk kan være til stede."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta behovet inn i neste planleggingsrunde og undersøke hva klubben konkret kan endre uten å love mer enn den kan holde.",
+          "effect": 1,
+          "tags": [
+            "accessibility",
+            "care",
+            "planning"
+          ],
+          "feedback": "Behovet blir en del av programarbeidet i stedet for et privat problem medlemmet må løse alene."
+        },
+        {
+          "id": "B",
+          "label": "Si at filmklubben dessverre må prioritere selve filmene framfor individuelle behov.",
+          "effect": -1,
+          "tags": [
+            "access_exclusion",
+            "program_priority"
+          ],
+          "feedback": "Programmet forblir enkelt å administrere, men fellesskapet blir smalere enn medlemslista tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_accessibility_visible"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lokal_partner_grenser",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kontaktpersonen på visningsstedet",
+      "subject": "Lokalet kan hjelpe, men ikke på alle premissene våre",
+      "situation": [
+        "Visningsstedet tilbyr teknikk og lokale, men har egne åpningstider, bemanningsgrenser og krav til hvordan kvelden må gjennomføres.",
+        "Noen i klubben snakker som om samarbeidspartneren bare skal levere rommet rundt programmet dere allerede har bestemt.",
+        "Du kjenner verdien av et selvstendig filmklubbmiljø og samtidig realiteten i at en visning ofte er avhengig av institusjoner med andre hensyn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forhandle om de viktigste programbehovene og samtidig gjøre de praktiske grensene synlige for resten av klubben.",
+          "effect": 1,
+          "tags": [
+            "institution_boundary",
+            "collaboration",
+            "transparency"
+          ],
+          "feedback": "Samarbeidet blir en faktisk forhandling i stedet for en kamp mellom kunstnerisk vilje og skjult logistikk."
+        },
+        {
+          "id": "B",
+          "label": "Love gruppa at dere får det som dere vil og presse detaljene på kontaktpersonen senere.",
+          "effect": -1,
+          "tags": [
+            "scope_pressure",
+            "hidden_constraint"
+          ],
+          "feedback": "Du kjøper intern ro ved å flytte hele konflikten til den personen som skal få kvelden til å fungere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_venue_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "NFK om filmklubber og visningssteder",
+          "url": "https://filmklubb.no/hva-vil-det-si-a-drive-filmklubb/"
+        }
+      ]
+    },
+    {
+      "id": "programtekst_og_kreditering",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Den som redigerer programarket",
+      "subject": "Hvem gjorde egentlig arbeidet bak teksten?",
+      "situation": [
+        "Programarket nærmer seg trykk, og en kort introduksjon er blitt forbedret gjennom research, korrektur og flere små innspill fra ulike medlemmer.",
+        "Navnet til den mest synlige personen står under teksten, mens de som fant kildene og ryddet argumentene ikke er nevnt.",
+        "I et frivillig kulturmiljø kan ære, synlighet og kreditering være en av få tydelige belønninger som finnes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kreditere hovedforfatteren og nevne research- og redaksjonsbidrag der de faktisk har formet teksten.",
+          "effect": 1,
+          "tags": [
+            "credit",
+            "invisible_work",
+            "fairness"
+          ],
+          "feedback": "Det lille programarket viser at også usynlig kulturarbeid har eiere og bidragsytere."
+        },
+        {
+          "id": "B",
+          "label": "La den mest kjente personen stå alene; flere navn gjør bare teksten rotete.",
+          "effect": -1,
+          "tags": [
+            "status_credit",
+            "invisible_work"
+          ],
+          "feedback": "Resultatet ser ryddig ut, mens arbeidsfordelingen forsvinner bak den mest synlige rollen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_credit_norm"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kanon_hvem_mangler",
+      "message_type": "class_case",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Et medlem i programgruppa",
+      "subject": "Vi viser de samme filmhistoriene på nytt",
+      "situation": [
+        "Når dere ser over sesongene, oppdager noen at klubbens filmhistoriske fordypning ofte vender tilbake til de samme landene, periodene og regissørene.",
+        "Andre svarer at en kanon finnes av en grunn og at klubben ikke bør velge filmer bare for å fylle representasjonsruter.",
+        "Du må skille mellom å utvide nysgjerrigheten og å late som hvert programvalg kan løse hele filmhistoriens skjevheter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegge blindsonene og la dem påvirke letingen etter sterke filmer, uten å gi opp faglig diskusjon om hvert enkelt verk.",
+          "effect": 1,
+          "tags": [
+            "canon_reflection",
+            "plural_history",
+            "curation"
+          ],
+          "feedback": "Programarbeidet får flere spørsmål å stille før smak blir presentert som naturlig og universell."
+        },
+        {
+          "id": "B",
+          "label": "Avvise hele spørsmålet; en ekte filmklubb skal bare vise det gruppa allerede mener er best.",
+          "effect": -1,
+          "tags": [
+            "canon_gate",
+            "taste_authority"
+          ],
+          "feedback": "Smaken framstår nøytral, selv om den er blitt formet av en bestemt gruppe og historie."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_canon_reflection"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": [
+        {
+          "label": "NFI om filmhistorie og filmkunst på cinematek",
+          "url": "https://www.nfi.no/barn-og-unge/film-pa-cinemateket"
+        }
+      ]
+    },
+    {
+      "id": "medlemspris_og_tilgang",
+      "message_type": "people",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Et medlem med stramt budsjett",
+      "subject": "Jeg liker klubben, men denne måneden er trang",
+      "situation": [
+        "En person som har vært på flere visninger sier at medlemskap, transport og småutgifter begynner å bli nok til at neste kveld ryker.",
+        "Klubben har reelle kostnader til rettigheter og drift, samtidig som økonomisk terskel kan gjøre et kulturfellesskap sosialt likere enn programmet tilsier.",
+        "Du kan verken love gratis adgang til alt eller late som tilgang bare handler om interesse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta spørsmålet inn i økonomiarbeidet og undersøke lovlige, bærekraftige måter å holde terskelen nede på.",
+          "effect": 1,
+          "tags": [
+            "economic_access",
+            "membership",
+            "care"
+          ],
+          "feedback": "Klubben gjør økonomi til et felles designspørsmål uten å late som kostnadene forsvinner."
+        },
+        {
+          "id": "B",
+          "label": "Si at medlemskap er billig sammenlignet med kommersiell kino og derfor ikke er et reelt problem.",
+          "effect": -1,
+          "tags": [
+            "economic_blindness",
+            "status_boundary"
+          ],
+          "feedback": "Regnestykket kan være sant for deg og samtidig bomme på den andres faktiske handlingsrom."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_economic_access"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "relationship_risk"
+      ],
+      "links": [
+        {
+          "label": "NFK om medlemskap og åpne visninger",
+          "url": "https://filmklubb.no/kan-du-se-film-i-en-filmklubb-uten-a-bli-medlem/"
+        }
+      ]
+    },
+    {
+      "id": "visningshjelp_honorar",
+      "message_type": "people",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Filmklubben",
+      "subject": "Kan du ta et avgrenset betalt skift på visningen?",
+      "situation": [
+        "Klubben trenger noen til publikumsflyt, programark og praktiske oppgaver rundt en kommende visning og tilbyr et lite honorar for det avgrensede arbeidet.",
+        "Du er valgt som Filmklubbmenneske fordi du deltar i miljøet, men denne konkrete inntekten oppstår først fordi et separat oppdrag faktisk blir tilbudt.",
+        "Oppgaven gjør deg ikke til kurator, kinodriver eller filmbransjeansatt, og den gir ingen ny myndighet over programmet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurdere oppdraget som et eget avgrenset gig og holde identitet, frivillighet og betalt arbeid tydelig fra hverandre.",
+          "effect": 1,
+          "tags": [
+            "bounded_gig",
+            "livelihood_boundary",
+            "practical_work"
+          ],
+          "feedback": "Du kan tjene litt på et faktisk oppdrag uten at filmklubbidentiteten i seg selv begynner å betale lønn."
+        },
+        {
+          "id": "B",
+          "label": "Behandle honoraret som bevis på at du nå har en profesjonell rolle i klubbens programmering.",
+          "effect": -1,
+          "tags": [
+            "authority_overreach",
+            "livelihood_confusion"
+          ],
+          "feedback": "Et lite praktisk oppdrag blir blåst opp til en status og myndighet kontrakten aldri ga."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_livelihood_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongavslutning_hvem_ble_vi",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Programgruppa etter siste visning",
+      "subject": "Hva slags filmklubb ble vi denne sesongen?",
+      "situation": [
+        "Etter sesongens siste visning ligger besøkstall, programark, interne diskusjoner og minner om kveldene spredt utover bordet.",
+        "Noen vurderer sesongen etter hvor sterke filmene var, andre etter hvor mange som kom, og noen etter om nye mennesker faktisk ble værende i miljøet.",
+        "Du ser at en filmklubb over tid ikke bare kuraterer filmer; den kuraterer også normer for smak, arbeid, samtale og hvem som føler eierskap til rommet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppsummere både program, deltakelse og arbeidsdeling og ta med én konkret endring inn i neste sesong.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "community_design",
+            "sustainable_identity"
+          ],
+          "feedback": "Sesongen blir et læringsspor i stedet for bare en liste over filmer dere allerede har vist."
+        },
+        {
+          "id": "B",
+          "label": "Konkludere med at kvaliteten på filmene er det eneste som teller; resten er støy rundt verket.",
+          "effect": -1,
+          "tags": [
+            "taste_absolutism",
+            "community_blindness"
+          ],
+          "feedback": "Programmet blir stående som fasit, mens fellesskapet og arbeidet som bar det blir mindre synlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmclub_season_reflection"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
