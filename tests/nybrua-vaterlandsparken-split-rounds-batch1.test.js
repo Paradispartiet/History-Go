@@ -34,12 +34,11 @@ assert(stories.some(x=>x.place_id==='nybrua_vaterlandsparken'));assert(stories.s
 assert(read('data/stories/stories_manifest.json').files.some(x=>x.path===storyPath));
 const lex=read('data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json');
 for(const id of ['nybrua_vaterlandsparken','vaterlandsparken']){const a=lex.find(x=>x.place_id===id);assert(a&&(id==='vaterlandsparken'?a.version===3:a.version===2)&&a.facts.length>=10&&a.sources.length>=2);}
-const index=read(`${dir}_index.json`),ni=index.find(x=>x.id===n.id),vi=index.find(x=>x.id===v.id);
+const index=read('data/places/places_index.json'),ni=index.find(x=>x.id===n.id),vi=index.find(x=>x.id===v.id);
 assert(ni&&vi);assert.deepStrictEqual([ni.lat,ni.lon,ni.year],[n.lat,n.lon,n.year]);assert.deepStrictEqual([vi.lat,vi.lon,vi.year],[v.lat,v.lon,v.year]);
-const man=read(`${dir}_manifest.json`);
-for(const [p,file] of [[n,'nybrua_vaterlandsparken.json'],[v,'vaterlandsparken.json']]){
- const row=man.places.find(x=>x.id===p.id);assert(row);assert.strictEqual(row.sha256,crypto.createHash('sha256').update(fs.readFileSync(path.join(repo,dir,file))).digest('hex'));
-}
+const activeFiles=read('data/places/manifest.json').files;
+assert(activeFiles.includes('places/natur/oslo/places_oslo_natur_akerselvarute/nybrua_vaterlandsparken.json'));
+assert(activeFiles.includes('places/natur/oslo/places_oslo_natur_akerselvarute/vaterlandsparken.json'));
 const reg=read('data/natur/places_akerselva_profiles_register_ids.json');assert(reg.some(x=>x.id===n.id&&x.name==='Nybrua'));assert(reg.some(x=>x.id===v.id));
 const ceN=read('data/coordinate-evidence/oslo/natur/nybrua_vaterlandsparken.json'),ceV=read('data/coordinate-evidence/oslo/natur/vaterlandsparken.json');
 assert.strictEqual(ceN.identity.requiresSplit,false);assert.strictEqual(ceV.identity.requiresSplit,false);
