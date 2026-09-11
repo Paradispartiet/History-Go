@@ -1,0 +1,300 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "borsen_oslo",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01/borsen_oslo.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Oslo Børs er en stedbundet børs- og markedsinstitusjon som organiserer notering og handel i verdipapirer, med fysisk adresse i Tollbugata 2 og institusjonshistorie fra 1819.",
+    "anchorType": "stock_exchange",
+    "placeObjectDistinction": "Rapporten analyserer børsinstitusjonen ved Tollbugata 2 og dens dokumenterte markedsfunksjoner, ikke alle børsnoterte selskaper eller Euronext-gruppen som helhet.",
+    "temporalScope": {
+      "start": "1819",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Perioden følger institusjonen fra åpningen til dagens Euronext-integrerte regulerte Oslo-marked."
+    },
+    "sourceIds": [
+      "source_borsen_byleksikon",
+      "source_borsen_euronext"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_felt_arbeid_verdiskaping",
+      "siteSpecificRationale": "Børsen er en markedsinstitusjon der kapital, informasjonsarbeid, megling og regulert omsetning organiseres som økonomisk verdiskaping, samtidig som kildene ikke gir grunnlag for å tallfeste arbeidsproduktivitet på stedet.",
+      "caseIds": [
+        "case_borsen_market_infrastructure"
+      ]
+    },
+    {
+      "emneId": "em_naering_geografi_infrastruktur",
+      "siteSpecificRationale": "Tollbugata 2 gjør finansmarkedets historiske infrastruktur fysisk: en permanent børsbygning i Kvadraturen kobles til dagens elektroniske, Euronext-integrerte markedsinfrastruktur.",
+      "caseIds": [
+        "case_borsen_market_infrastructure"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_borsen_byleksikon",
+      "url": "https://oslobyleksikon.no/side/B%C3%B8rsen",
+      "sourceLocation": "Børsen – etablering, bygg, funksjon og utvidelser",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-09-11",
+      "temporalCoverage": "mixed",
+      "provenance": "Oslo byleksikons redaksjonelle stedspost om Børsen.",
+      "limitations": "Gir historikk og bygningsfunksjon, men ingen sammenhengende pris- eller omsetningsserie."
+    },
+    {
+      "id": "source_borsen_oppdag",
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/tollbugata-2-borsen",
+      "sourceLocation": "Tollbugata 2 – jobbetider og krakk",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-09-11",
+      "temporalCoverage": "historical",
+      "provenance": "Oppdag Kvadraturens stedsspesifikke historiske formidling.",
+      "limitations": "Brukes til daterte spekulasjons- og krakkeksempler, ikke som kvantitativ finansdatabase."
+    },
+    {
+      "id": "source_borsen_euronext",
+      "url": "https://www.euronext.com/en/about/our-organisation",
+      "sourceLocation": "Our organisation – Oslo",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-09-11",
+      "temporalCoverage": "current",
+      "provenance": "Euronexts egen organisasjonsside for nasjonal regulert markedsplass og Oslo-adresse.",
+      "limitations": "Primærkilde til egen nåværende organisasjon; brukes ikke alene til uavhengig effektvurdering."
+    },
+    {
+      "id": "source_borsen_lokalhistorie",
+      "url": "https://lokalhistoriewiki.no/wiki/Oslo_B%C3%B8rs",
+      "sourceLocation": "Oslo Børs – funksjonsskift og verdipapirhandel",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-09-11",
+      "temporalCoverage": "mixed",
+      "provenance": "Lokalhistoriewikis kuraterte oppslag om Oslo Børs.",
+      "limitations": "Sekundærkilde; tall og funksjonsskift brukes sammen med andre kilder."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_borsen_market_infrastructure",
+      "claim": "Oslo Børs skaper markedsinfrastruktur ved å samle regler, notering, informasjon og handelsinteresse slik at verdipapirer kan omsettes og prises, mens krakkhistorien viser at likviditet og prisdannelse også bærer risiko.",
+      "unitOfAnalysis": {
+        "unit": "Oslo Børs som regulert markedsplass ved Tollbugata 2",
+        "boundary": "Analysen gjelder markedsinstitusjonen og dens dokumenterte stedshistorie, ikke resultatene til enkeltinvestorer eller alle børsnoterte selskaper.",
+        "scale": "market",
+        "temporalScope": {
+          "start": "1819",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Perioden dekker tidlig børsfunksjon, verdipapirmarked, kriser og dagens Euronext-integrasjon."
+        },
+        "sourceIds": [
+          "source_borsen_byleksikon",
+          "source_borsen_oppdag",
+          "source_borsen_euronext",
+          "source_borsen_lokalhistorie"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Utstedere og investorer",
+          "roleOrInterest": "Søker henholdsvis kapitaltilgang og mulighet til å kjøpe eller selge finansielle krav.",
+          "economicPosition": "Tilbyr og etterspør verdipapirer innenfor markedsplassens regler og informasjonskrav.",
+          "sourceIds": [
+            "source_borsen_euronext",
+            "source_borsen_lokalhistorie"
+          ]
+        },
+        {
+          "name": "Oslo Børs / Euronext",
+          "roleOrInterest": "Organiserer den regulerte markedsplassen, notering og handelsinfrastruktur.",
+          "economicPosition": "Kontrollerer markedsregler og teknisk/institusjonell adgang til den organiserte markedsplassen.",
+          "sourceIds": [
+            "source_borsen_euronext",
+            "source_borsen_byleksikon"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Markedsregler, teknologi, handelsinteresse, informasjon og noterte finansielle instrumenter er nødvendige innsatsfaktorer.",
+            "sourceIds": [
+              "source_borsen_euronext",
+              "source_borsen_lokalhistorie"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Markedsplassen organiserer notering og omsetning slik at kjøps- og salgsinteresse kan møtes under felles regler.",
+          "sourceIds": [
+            "source_borsen_euronext"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Observerbare markedspriser, likviditet og tilgang til et organisert annenhåndsmarked er sentrale markedsutfall.",
+            "sourceIds": [
+              "source_borsen_euronext"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene dokumenterer markedsfunksjon og historiske skift, men denne stedsproduksjonen beregner ikke samfunnsøkonomisk nettoverdi eller avkastning.",
+          "sourceIds": [
+            "source_borsen_euronext",
+            "source_borsen_byleksikon"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_kapital_og_finansanalyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Institusjonens funksjonsskift, instrumenttyper, dokumenterte krakk og Euronext-integrasjon brukes som stedbundne markedsindikatorer.",
+        "unit": "dokumenterte institusjons- og markedsskift",
+        "period": "1819–2026",
+        "comparability": "Kildene kan sammenholdes om funksjoner og perioder, men de utgjør ikke én homogen kurs- eller omsetningsserie.",
+        "dataLimitations": "Stedsproduksjonen inneholder ikke komplett historisk datasett for priser, volum, volatilitet, spread eller markedsverdi.",
+        "sourceIds": [
+          "source_borsen_byleksikon",
+          "source_borsen_oppdag",
+          "source_borsen_euronext",
+          "source_borsen_lokalhistorie"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Børsens markedsregler og Euronext-eierskapet gir institusjonen kontroll over organisert markedsadgang, mens verdipapirene eies av separate aktører.",
+        "laborPosition": "Ansatte driver markedsinfrastruktur og tilsynsnære funksjoner, men åpne stedskilder gir ikke grunnlag for detaljert lønns- eller bemanningsanalyse.",
+        "beneficiaries": [
+          "Utstedere kan få tilgang til organiserte kapitalmarkeder.",
+          "Investorer får en regulert markedsplass for omsetning og prisinformasjon."
+        ],
+        "costRiskBearers": [
+          "Investorer bærer markedsrisiko på egne posisjoner.",
+          "Utstedere og markedsaktører bærer kostnader ved notering, etterlevelse og markedstilgang."
+        ],
+        "sourceIds": [
+          "source_borsen_euronext",
+          "source_borsen_lokalhistorie"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Krakkene viser at priser, likviditet og forventninger kan endres kraftig; regulert markedsinfrastruktur eliminerer ikke markedsrisiko.",
+          "sourceIds": [
+            "source_borsen_oppdag",
+            "source_borsen_euronext"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene bærer ikke en robust stedsspesifikk kvantifisering av eksterne kostnader eller gevinster som kan attribueres til selve børsbygningen."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Historiske kilder beskriver åpning, jobbetider og funksjonsskift, mens Euronext dokumenterer dagens regulerte markedsrolle og Oslo-adresse.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Materialet viser tidsrekkefølge og plausible markedsmekanismer, men isolerer ikke én årsak til krakkene eller én effekt av Euronext-integrasjonen.",
+        "alternativeExplanations": [
+          "Makroøkonomi, kredittforhold, internasjonale priser, regulering og investorforventninger kan virke samtidig."
+        ],
+        "uncertainty": "Åpne kilder dokumenterer institusjon og hendelser bedre enn de dokumenterer kontrafaktiske effekter eller individuelle beslutningsmotiver.",
+        "sourceIds": [
+          "source_borsen_byleksikon",
+          "source_borsen_oppdag",
+          "source_borsen_euronext",
+          "source_borsen_lokalhistorie"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "active",
+    "statement": "Euronext oppgir Oslo som nasjonal regulert verdipapir- og derivatmarkedsplass med adresse Tollbugata 2, og integrasjonsår 2019.",
+    "originalEconomicRoleRelationship": "Dagens elektroniske og Euronext-integrerte marked viderefører børsens organiserte markedsrolle, men arbeidsform, teknologi, instrumentbredde og eierskap er vesentlig endret siden 1819.",
+    "checkedAt": "2026-09-11",
+    "sourceIds": [
+      "source_borsen_euronext"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "borsen_oslo",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/naeringsliv/borsen_oslo.json",
+    "productionContext": "data/quiz/production_context/naeringsliv/borsen_oslo.json",
+    "requiredInputs": [
+      "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Tretten daterte kronologiankere og episode_v1-storyen om 1899-krakket er kildekontrollert og skilt fra analysepåstander."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01/borsen_oslo.json",
+        "data/places/production/borsen_oslo.json"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/leksikon/places/oslo/naeringsliv/leksikon_borsen_oslo.json"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/production_briefs/naeringsliv/borsen_oslo.json",
+        "data/quiz/production_context/naeringsliv/borsen_oslo.json"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/people/naeringsliv/oslo/borsen_oslo/thor_olsen.json",
+        "data/people/claims/naeringsliv/oslo/borsen_oslo/thor_olsen.claims.json"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/stories/stories_borsen_oslo.json"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "https://oslobyleksikon.no/side/B%C3%B8rsen",
+        "https://www.euronext.com/en/about/our-organisation"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/leksikon/sprak/places/europe/norway/oslo/borsen_oslo.json"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "tests/borsen-oslo-production-closure.test.mjs"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History Go Oslo Børs production closure",
+    "reviewedAt": "2026-09-11",
+    "notes": "Fail-closed Næringsliv-produksjon som skiller institusjon fra bygg, markedspris fra verdi og dokumentert tidsrekkefølge fra sterk kausalitet."
+  }
+}

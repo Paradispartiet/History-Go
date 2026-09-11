@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.15.0",
     "updated_at": "2026-09-08",
-    "content_sha256": "74c36af03c05fbe6543995531284bb31048e3acb5160daea18113d62052d5027"
+    "content_sha256": "dcafa4cd6236ee2cd6ae7b60ba3221e8682e0586b5c55b389cda74c2012865e7"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "0fa9a1a02dded4230e52422e9064e27a5d74014cc6d650d40949ae219d3e15f4"
+    "content_sha256": "f85feff66b37b7f9781b0f27aa5cb1568422a864452a5aa7bb87c3e84cf0dc0f"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 190,
     "module_file_count": 497,
-    "package_file_count": 426,
+    "package_file_count": 429,
     "chapter_referenced_file_count": 934,
-    "referenced_file_count": 1289,
+    "referenced_file_count": 1292,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -4644,9 +4644,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 49,
+      "package_file_count": 52,
       "required_package_file_count": 4,
-      "optional_package_file_count": 45,
+      "optional_package_file_count": 48,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -4841,6 +4841,18 @@
           "content_sha256": "b81c74cc303b147f6febf519a439cc3cac4a08ce4f552bdfd1a43a4488c9d0c9"
         },
         {
+          "path": "data/quiz/naeringsliv/borsen_oslo_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.borsen_oslo.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "a4d88deb08785c0f2518e137f32ee7e49efc3d6866f27d116580153b85c3cce9"
+        },
+        {
           "path": "data/quiz/naeringsliv/freia_fabrikken_sets.json",
           "required": false,
           "fields": [
@@ -4961,6 +4973,18 @@
           "content_sha256": "0266a328ca8e93aac5a4c0750b68566375625de6be5ce2f83e27551b3c21c3da"
         },
         {
+          "path": "data/quiz/production_briefs/naeringsliv/borsen_oslo.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.borsen_oslo.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "358aa30d7fa01e7b6ae23827037e96e6841d824d154cdc664b0bf1963e2973e9"
+        },
+        {
           "path": "data/quiz/production_briefs/naeringsliv/freia_fabrikken.json",
           "required": false,
           "fields": [
@@ -5079,6 +5103,18 @@
           ],
           "exists": true,
           "content_sha256": "073361731d5d2a2c3ac501bcd942a170dfd1fc52485bf979e8634ee174eac041"
+        },
+        {
+          "path": "data/quiz/production_context/naeringsliv/borsen_oslo.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.borsen_oslo.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "9f2e0938fbee5b9ff713e129231d62f9bd91fd5e739fbb378d98516de06143b2"
         },
         {
           "path": "data/quiz/production_context/naeringsliv/freia_fabrikken.json",
@@ -5237,20 +5273,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "e3f51db80064c4df98a62af38384650bb92dcede511ca09aea9b9f2a1dd152e5",
+      "package_content_sha256": "90c90baae6c7141c1af23c35f3b54eb38b8c48f6c869f8082cc762190d387e5f",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 121,
+      "referenced_file_count": 124,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "95b859641928712614633e334d26129f70839ee08ca88adbcebb264b76b53032",
-      "content_sha256": "6e6593981523040ac88c7b4ea937a25fa54c0c57387d4acaf1de93189ef4b609",
+      "structure_sha256": "4b9b33de896119b945778d021ffbb0608cd2a0a8ce170ae45b5198987207af73",
+      "content_sha256": "b7daaa5424f26ecfc52bcbf0392f17a20d8346eec9cece74a4232d2c3e1c642c",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -7825,5 +7861,5 @@
       ]
     }
   },
-  "release_sha256": "0a914acfe3fc648bffea5f59fce58a773b2624e60330861cc580c74cf5852418"
+  "release_sha256": "7024f6831c6b11ff6a9a75af3f637e34ec5ce5349321a529cc16dd608f791edf"
 }
