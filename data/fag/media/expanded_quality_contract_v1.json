@@ -1,0 +1,44 @@
+{
+  "schema": "history_go_media_expanded_quality_contract_v1",
+  "version": "1.0.0",
+  "subject_id": "media",
+  "status": "active",
+  "purpose": "Runs a bounded fail-closed whole-subject expansion audit for Media without inventing content or mutating the global Fagverk lifecycle.",
+  "rules": {
+    "whole_subject_expansion_proof_required": true,
+    "strict_theory_integrity_alone_is_insufficient": true,
+    "legacy_equivalence_or_route_retirement_alone_is_insufficient": true,
+    "missing_expansion_proof_is_not_automatically_a_content_gap": true,
+    "separate_post_completion_quality_expansion_evidence_required": true,
+    "content_rewrite_allowed_only_for_proven_substantive_gap": true,
+    "quality_status_is_separate_from_global_editorial_lifecycle": true,
+    "global_subject_lifecycle_is_read_only_for_this_audit": true,
+    "global_subject_by_subject_plan_is_read_only": true,
+    "all_declared_rules_and_required_gates_are_enforced": true
+  },
+  "expected": {
+    "canonical_domains": 6,
+    "canonical_chapters": 6,
+    "canonical_emner": 120,
+    "canonical_methods": 115,
+    "baseline_claims": 160,
+    "baseline_sources": 126,
+    "baseline_unique_places": 15,
+    "strictly_proven_fields": 6,
+    "theory_objects": 12,
+    "legacy_knowledge_sections": 10,
+    "legacy_canonical_supersedes": 10,
+    "legacy_migrated_sections": 0,
+    "post_completion_expansion_artifacts": 0,
+    "substantive_content_gaps": 0
+  },
+  "required_gates": [
+    "scripts/audit-fagverk-media-complete.mjs",
+    "tools/audit-media-theory-integrity.mjs",
+    "scripts/audit-fagverk-media-legacy-theory.mjs",
+    "scripts/audit-fagverk-media-legacy-adjudication.mjs",
+    "tools/audit-media-expanded-quality.mjs",
+    "tests/media-expanded-quality.test.mjs"
+  ],
+  "read_only_plan_ref": "reports/fagverk/fagverk-expanded-subject-by-subject-audit-v1.json"
+}
