@@ -1,0 +1,324 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "tollpakkhuset",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollpakkhuset.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Tollpakkhuset var en stedbundet toll-, lager- og varebehandlingsinfrastruktur ved Christianias havn og inngår i dag i et fredet administrativt tollanlegg.",
+    "anchorType": "warehouse",
+    "placeObjectDistinction": "Analysen gjelder den separate lagerbygningen Stenpakkhuset/Tollpakkhuset og dens dokumenterte funksjoner, ikke Tollboden fra 1896, kaien Tollbukaia eller Tolletaten som landsdekkende organisasjon.",
+    "temporalScope": {
+      "start": "1846",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Perioden følger oppføring, historisk varebehandling, senere museumslag og dokumentert administrativ tolltilknytning."
+    },
+    "sourceIds": [
+      "source_oppdag",
+      "source_riks_plan",
+      "source_sikt"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_havn_transport",
+      "siteSpecificRationale": "Pakkhuset var et fysisk ledd ved sjøtollstedet mellom havn, lager og videre vareflyt.",
+      "caseIds": [
+        "case_tollpakkhuset_customs_warehouse"
+      ]
+    },
+    {
+      "emneId": "em_naering_logistikk_verdikjeder",
+      "siteSpecificRationale": "Bueåpninger, varerom, veieboder og heiser dokumenterer en stedbundet logistikk- og kontrollkjede.",
+      "caseIds": [
+        "case_tollpakkhuset_customs_warehouse"
+      ]
+    },
+    {
+      "emneId": "em_naering_arbeid_verdiskaping",
+      "siteSpecificRationale": "Veiing, kontroll, intern transport og lager var konkrete arbeidsprosesser i bygningen.",
+      "caseIds": [
+        "case_tollpakkhuset_customs_warehouse"
+      ]
+    },
+    {
+      "emneId": "em_naering_risiko_regulering",
+      "siteSpecificRationale": "Tollfunksjonen viser hvordan offentlig kontroll og dokumentasjon inngår i handelens vareflyt.",
+      "caseIds": [
+        "case_tollpakkhuset_customs_warehouse"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_oppdag",
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/tollpakkhuset",
+      "sourceLocation": "Tollpakkhuset – historikk, arkitekt og varefunksjon",
+      "sourceType": "official",
+      "verifiedAt": "2026-09-11",
+      "temporalCoverage": "historical",
+      "provenance": "Oslo kommunes/Byantikvarens stedspresentasjon i Oppdag Kvadraturen.",
+      "limitations": "Formidlingskilden gir ikke økonomiske tidsserier eller regnskapsdata."
+    },
+    {
+      "id": "source_riks_plan",
+      "url": "https://riksantikvaren.no/content/uploads/2019/10/tollbugata1a252coslotollbod.pdf",
+      "sourceLocation": "Stenpakkhuset – plan, tekniske endringer, vern og bruk",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-09-11",
+      "temporalCoverage": "mixed",
+      "provenance": "Riksantikvarens forvaltningsplan for det statlige kulturhistoriske tollanlegget.",
+      "limitations": "Planen dokumenterer bygg og funksjoner, men gir ikke varevolum, lønn eller kostnadsserier."
+    },
+    {
+      "id": "source_riks_hq",
+      "url": "https://riksantikvaren.no/eksempelsamling/to-fredede-bygninger-blir-til-tolldirektorates-hovedkontor/",
+      "sourceLocation": "rehabilitering og Tolldirektoratets hovedkontor",
+      "sourceType": "official",
+      "verifiedAt": "2026-09-11",
+      "temporalCoverage": "current",
+      "provenance": "Riksantikvarens eksempelsamling for rehabilitering av de fredede tollbygningene.",
+      "limitations": "Prosjektpresentasjonen beskriver vern og bruk, ikke operativ tollklarering for publikum."
+    },
+    {
+      "id": "source_sikt",
+      "url": "https://forvaltningsdatabasen.sikt.no/en/data/organisasjon/880455702?aar=2026",
+      "sourceLocation": "TOLLETATEN 2026 – key information",
+      "sourceType": "registry",
+      "verifiedAt": "2026-09-11",
+      "temporalCoverage": "current",
+      "provenance": "Sikts statlige organisasjonsdatabase med Enhetsregister-opplysninger for Tolletaten.",
+      "limitations": "Forretningsadresse dokumenterer organisasjonstilknytning, ikke hvilke publikumstjenester som utføres i hvert bygg."
+    },
+    {
+      "id": "source_toll_current",
+      "url": "https://www.toll.no/no/om-oss/kontakt-oss/ekspedisjonssteder/oslo",
+      "sourceLocation": "Oslo – ekspedisjonssteder",
+      "sourceType": "official",
+      "verifiedAt": "2026-09-11",
+      "temporalCoverage": "current",
+      "provenance": "Tolletatens egen oppdaterte oversikt over operative ekspedisjonssteder.",
+      "limitations": "Siden avgrenser nåværende tjenestesteder, men beskriver ikke detaljert Tollpakkhusets historiske drift."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_tollpakkhuset_customs_warehouse",
+      "claim": "Tollpakkhuset samlet lasting, veiing, kontroll, intern transport og midlertidig lager i et stedbundet ledd mellom sjøtransport og videre vareflyt.",
+      "unitOfAnalysis": {
+        "unit": "Tollpakkhuset i Tollbugata 1A",
+        "boundary": "Analysen gjelder den separate pakkhusbygningen og dokumentert varebehandling i bygget, ikke hele Oslo havn eller Tolletatens nasjonale virksomhet.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1846",
+          "end": "1956",
+          "precision": "period",
+          "rationale": "Perioden dekker oppføring, dokumenterte kapasitetsendringer og bygningens fysiske forkorting."
+        },
+        "sourceIds": [
+          "source_oppdag",
+          "source_riks_plan"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Tollvesenet og tollansatte",
+          "roleOrInterest": "Kontrollerte, veide, registrerte og forvaltet varer i tollprosessen.",
+          "economicPosition": "Offentlig kontrollaktør som bestemte om varer kunne gå videre i den regulerte vareflyten.",
+          "sourceIds": [
+            "source_oppdag",
+            "source_riks_plan"
+          ]
+        },
+        {
+          "name": "Kjøpmenn, vareeiere og transportører",
+          "roleOrInterest": "Brakte varer til og fra pakkhuset og hadde interesse av korrekt og effektiv behandling.",
+          "economicPosition": "Private handels- og transportaktører var avhengige av toll- og lagerleddet for videre vareflyt.",
+          "sourceIds": [
+            "source_oppdag",
+            "source_riks_plan"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Varer, pakkhusrom, veieboder, vekter, vareheiser og arbeidskraft var innsatsfaktorer i den stedbundne prosessen.",
+            "sourceIds": [
+              "source_oppdag",
+              "source_riks_plan"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Varer ble lastet inn, veid, kontrollert, flyttet internt og lagret mens tollbehandlingen pågikk.",
+          "sourceIds": [
+            "source_oppdag",
+            "source_riks_plan"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Den dokumenterte tjenesten gjorde varer klare for videre regulert vareflyt etter kontroll og midlertidig lagring.",
+            "sourceIds": [
+              "source_oppdag",
+              "source_riks_plan"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene dokumenterer tjenestekjeden og fysisk kapasitet, men ikke nok tall til å beregne produktivitet, margin eller samlet vareverdi.",
+          "sourceIds": [
+            "source_oppdag",
+            "source_riks_plan"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_infrastrukturanalyse",
+        "evidenceType": "mixed",
+        "indicatorOrObservation": "Antall dokumenterte veieboder/vekter og vareheiser brukes som fysiske kapasitetsindikatorer gjennom utvalgte bygningsfaser.",
+        "unit": "antall veieplasser/vekter og vareheiser",
+        "period": "1846–1930",
+        "comparability": "Opprinnelig plan og senere ombygginger kan sammenholdes som fysiske konfigurasjoner, men teller ulike typer installasjoner og perioder.",
+        "dataLimitations": "Kildene mangler konsistente serier for tonnasje, behandlingstid, bemanning, kostnader og faktisk utnyttelsesgrad.",
+        "sourceIds": [
+          "source_riks_plan"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Tollvesenet kontrollerte det offentlige kontroll- og lagerleddet; dagens etatstilknytning er administrativ og skal ikke projiseres bakover som uendret organisasjon.",
+        "laborPosition": "Tollansatte utførte kontrollarbeidet, mens de tilgjengelige kildene ikke gir grunnlag for detaljer om lønn, arbeidstid eller forhandlingsmakt.",
+        "beneficiaries": [
+          "Handelsaktører fikk varer gjennom et formalisert toll- og kontrollsystem.",
+          "Staten fikk et fysisk sted for kontroll og administrasjon av vareførsel."
+        ],
+        "costRiskBearers": [
+          "Vareeiere og transportører kunne bære kostnader og tidsrisiko knyttet til regulert vareflyt.",
+          "Tollmyndigheten bar drifts- og forvaltningsansvar for kontrollinfrastrukturen."
+        ],
+        "sourceIds": [
+          "source_oppdag",
+          "source_riks_plan"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Vareflyten var avhengig av fysisk håndtering, riktig veiing, kontroll og intern transport; senere gateendring reduserte selve bygningsvolumet.",
+          "sourceIds": [
+            "source_riks_plan"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene dokumenterer kontroll, lager og ombygging, men gir ikke robust nok grunnlag for å tallfeste eller attribuere stedets eksterne virkninger."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Opprinnelig plan med fem veieboder sammenholdes med senere konfigurasjoner med elektriske heiser og sju vekter.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Kildene viser at den fysiske varebehandlingsinfrastrukturen ble endret, men isolerer ikke én sikker årsak eller en målt produktivitetseffekt.",
+        "alternativeExplanations": [
+          "Endrede varevolumer, arbeidsrutiner, tekniske muligheter og administrative behov kan alle ha påvirket ombyggingene."
+        ],
+        "uncertainty": "Bygningshistorien viser rekkefølge og installasjoner, men ikke kontrafaktisk årsaksvirkning eller økonomisk avkastning.",
+        "sourceIds": [
+          "source_oppdag",
+          "source_riks_plan"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "mixed",
+    "statement": "Den historiske pakkhusfunksjonen er avsluttet; bygningen inngår i et fredet tollanlegg med administrativ Tolletaten-tilknytning, mens publikums ekspedisjonssteder i Oslo ligger andre steder.",
+    "originalEconomicRoleRelationship": "Dagens administrative bruk viderefører tollinstitusjonens tilknytning til stedet, men erstatter den historiske rollen som varebehandlings- og lagerbygg.",
+    "checkedAt": "2026-09-11",
+    "sourceIds": [
+      "source_riks_hq",
+      "source_sikt",
+      "source_toll_current"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "tollpakkhuset",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/naeringsliv/tollpakkhuset.json",
+    "productionContext": "data/quiz/production_context/naeringsliv/tollpakkhuset.json",
+    "requiredInputs": [
+      "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Chronology er materialisert i leksikonets tidslinje. Story er vurdert, men ikke tvunget inn fordi kildene primært bærer et flertrinns funksjonsforløp."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollpakkhuset.json",
+        "data/places/production/tollpakkhuset.json"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/leksikon/places/oslo/naeringsliv/leksikon_tollpakkhuset.json",
+        "data/quiz/production_briefs/naeringsliv/tollpakkhuset.json"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/production_briefs/naeringsliv/tollpakkhuset.json",
+        "data/quiz/production_context/naeringsliv/tollpakkhuset.json"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/people/naeringsliv/oslo/tollpakkhuset/johan_henrik_nebelong.json",
+        "data/brands/brands_master.json"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/places/naeringsliv-production/tollpakkhuset.json",
+        "data/leksikon/places/oslo/naeringsliv/leksikon_tollpakkhuset.json"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "https://riksantikvaren.no/content/uploads/2019/10/tollbugata1a252coslotollbod.pdf",
+        "https://forvaltningsdatabasen.sikt.no/en/data/organisasjon/880455702?aar=2026",
+        "https://www.toll.no/no/om-oss/kontakt-oss/ekspedisjonssteder/oslo"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/leksikon/sprak/places/europe/norway/oslo/tollpakkhuset.json"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/naeringsliv/tollpakkhuset_sets.json"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History Go Tollpakkhuset production closure",
+    "reviewedAt": "2026-09-11",
+    "notes": "Fail-closed Næringsliv-rapport for tollager, vareflyt, kontroll og ombruk. Ingen udokumentert lønnsomhet, throughput eller kausalitet hevdes."
+  }
+}

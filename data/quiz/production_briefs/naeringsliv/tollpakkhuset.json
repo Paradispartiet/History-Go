@@ -1,0 +1,383 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "naeringsliv",
+  "targetId": "tollpakkhuset",
+  "reviewed_at": "2026-09-11",
+  "review_note": "Focused 3×7: første 14 spørsmål er direkte stedskunnskap; siste sju bruker dokumenterte stedspåstander til infrastrukturanalyse, arbeidsliv, målegrenser og ombruk.",
+  "sources": {
+    "place_record": {
+      "url": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollpakkhuset.json",
+      "source_type": "canonical_place_record",
+      "review_status": "reviewed",
+      "review_note": "Canonical identitet, geometri og stedsscope."
+    },
+    "oppdag": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/tollpakkhuset",
+      "source_type": "official_place_history",
+      "review_status": "reviewed",
+      "review_note": "Oppføring, arkitekt, lagerfunksjon, bueåpninger og fysisk skille mellom byggene."
+    },
+    "riks_plan": {
+      "url": "https://riksantikvaren.no/content/uploads/2019/10/tollbugata1a252coslotollbod.pdf",
+      "source_type": "heritage_management_plan",
+      "review_status": "reviewed",
+      "review_note": "Veieboder, vekter, heiser, port/gulv, 1956-endring, museum og brukslag."
+    },
+    "riks_fred": {
+      "url": "https://riksantikvaren.no/content/uploads/2019/10/8.tollbugata1aoslo3.pdf",
+      "source_type": "heritage_protection_record",
+      "review_status": "reviewed",
+      "review_note": "Fredningsomfang, identitet og bevarte arbeidsspor."
+    },
+    "riks_hq": {
+      "url": "https://riksantikvaren.no/eksempelsamling/to-fredede-bygninger-blir-til-tolldirektorates-hovedkontor/",
+      "source_type": "heritage_reuse_case",
+      "review_status": "reviewed",
+      "review_note": "Rehabilitering og tolladministrativ ombruk."
+    },
+    "museum": {
+      "url": "https://snl.no/Norsk_Tollmuseum",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Museum etablert 1915; brukes ikke som innflyttingsdato."
+    },
+    "nbl": {
+      "url": "https://nbl.snl.no/Henrik_Nebelong",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Nebelong-identitet og Tollpakkhuset som verk."
+    },
+    "sikt": {
+      "url": "https://forvaltningsdatabasen.sikt.no/en/data/organisasjon/880455702?aar=2026",
+      "source_type": "official_registry",
+      "review_status": "reviewed",
+      "review_note": "Tolletatens aktive 2026-status og adresse."
+    },
+    "toll_oslo": {
+      "url": "https://www.toll.no/no/om-oss/kontakt-oss/ekspedisjonssteder/oslo",
+      "source_type": "primary_official_current",
+      "review_status": "reviewed",
+      "review_note": "Avgrenser dagens operative ekspedisjonssteder i Oslo."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "kapital_eierskap_finans",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_havn_transport",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_risiko_regulering"
+    ],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_infrastrukturanalyse",
+      "met_naering_arbeidslivsanalyse",
+      "met_naering_byhistorisk_naeringsanalyse"
+    ],
+    "thinker_ids": [
+      "adam_smith"
+    ],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/naeringsliv",
+      "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollpakkhuset.json"
+    ],
+    "active_before": {
+      "finding": "Ingen aktiv canonical kildeledet 3x7-pakke for Tollpakkhuset var registrert før materialiseringen."
+    },
+    "decisions": [
+      "Materialiser én canonical narrow 3x7-pakke.",
+      "Bevar de første fjorten spørsmålene som direkte stedskunnskap.",
+      "Legg metode og eksplisitt teoribinding først i siste sett."
+    ],
+    "knowledge_migration": "Alle 21 spørsmål får stabile claim- og Knowledge-identiteter i den canonicale pakken."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Tre læringsjobber dekker bygg og varehåndtering, tidslag og institusjonsbruk samt avsluttende analyse av kapasitet, arbeid og ombruk uten å fylle med perifert stoff."
+  },
+  "held_back_candidates": [
+    "Å bruke antall vekter eller heiser som direkte mål på varevolum eller produktivitet.",
+    "Å beskrive Tollpakkhuset som ordinært publikumsekspedisjonssted i 2026.",
+    "Å slå Tollpakkhuset, Tollboden og Tollbukaia sammen til ett fysisk sted."
+  ],
+  "profile_hint": "narrow",
+  "claims": [
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oppdag Kvadraturen og Riksantikvaren daterer Tollpakkhuset til 1846–1850.",
+      "source_ids": [
+        "oppdag",
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Johan Henrik Nebelong tegnet Tollpakkhuset.",
+      "source_ids": [
+        "oppdag",
+        "nbl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bygningen ble oppført som lager for Tollvesenet.",
+      "source_ids": [
+        "oppdag",
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Oppdag Kvadraturen knytter de store åpningene til inn- og utlasting av varer for tollbehandling.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Forvaltningsplanen beskriver fire veieboder i første etasje.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Andre etasje hadde blant annet én veiebod.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Tre elektriske vareheiser ble installert i 1897.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Riksantikvaren beskriver utvidelse for sju vekter rundt 1929–1930.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "En fjerde heis ble installert i 1930.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Omtrent 8 × 25 meter av nordvestre del ble fjernet i 1956.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Museet ble grunnlagt i 1915, men flyttet inn i Tollpakkhuset i 1979.",
+      "source_ids": [
+        "riks_plan",
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Treklossgulvet er et funksjonelt spor etter varehåndtering.",
+      "source_ids": [
+        "riks_plan",
+        "riks_fred"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Tollpakkhuset er lagerbygningen; Tollboden er den separate administrasjonsbygningen fra 1896.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Tolletaten er registrert i Tollbugata, mens etatens ekspedisjonsoversikt peker på andre operative steder i Oslo.",
+      "source_ids": [
+        "sikt",
+        "toll_oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_risiko_regulering"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Metoden undersøker hvordan fysisk infrastruktur organiserer flyt, kapasitet og avhengigheter.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder",
+      "method_id": "met_naering_infrastrukturanalyse"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Antall vekter er en fysisk kapasitetsindikator, ikke en direkte serie for varevolum eller produktivitet.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping",
+      "method_id": "met_naering_infrastrukturanalyse"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Fysisk utstyr kan si noe om kapasitet, men produktivitet krever forhold mellom innsats og output.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping",
+      "method_id": "met_naering_infrastrukturanalyse"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Tollvesenet kontrollerte vareflyten, mens handels- og transportaktører måtte få varer gjennom prosessen.",
+      "source_ids": [
+        "oppdag",
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_risiko_regulering"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bygningshistorien dokumenterer endringer, ikke én bevist økonomisk årsak.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_risiko_regulering",
+      "method_id": "met_naering_byhistorisk_naeringsanalyse"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Materiell kontinuitet betyr ikke at samme virksomhetsfunksjon fortsetter.",
+      "source_ids": [
+        "riks_plan",
+        "riks_hq"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_tollpakkhuset_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Skillet bevarer fysisk presisjon og hindrer at bygning, kai og administrasjonsbygg blir ett kunstig sted.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    }
+  ]
+}
