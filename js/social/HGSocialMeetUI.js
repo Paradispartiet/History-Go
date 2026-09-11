@@ -365,7 +365,8 @@
     const mode = String(target.getAttribute('data-hg-social-meet-open') || 'all');
     const placeId = String(target.getAttribute('data-hg-social-meet-place') || '').trim();
     const filter = mode === 'place' ? 'place' : 'all';
-    open({ filter, placeId, sourceSurface: filter === 'place' ? 'placeCardOnSite' : 'globalMenu' });
+    const sourceSurface = target.hasAttribute('data-hg-spotmeeting-social-followup') ? 'spotmeetingFollowUp' : 'socialMeetLink';
+    open({ filter, placeId, sourceSurface });
   }
 
   function bind(){
