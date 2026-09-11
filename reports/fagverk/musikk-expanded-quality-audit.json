@@ -1,15 +1,15 @@
 {
   "schema": "history_go_musikk_expanded_quality_audit_v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "subject_id": "musikk",
-  "status": "WHOLE_SUBJECT_EXPANSION_NOT_PROVEN",
+  "status": "PROVEN_WHOLE_SUBJECT_EXPANSION",
   "canonical_editorial_status_mutated": false,
   "canonical_editorial_status": "complete",
-  "quality_status": "high_quality_complete_without_separate_whole_subject_expansion_proof",
-  "whole_subject_expansion_proven": false,
+  "quality_status": "expanded_and_audited",
+  "whole_subject_expansion_proven": true,
   "content_gap_proven": false,
   "content_rewrite_required": false,
-  "conclusion": "Musikk består bounded whole-subject-auditen som et sterkt complete-fag, men separate expanded-status kan ikke bevises. 8/8 felt er strict theory-proven, 8/8 legacy-kunnskapsseksjoner er canonicalt superseded uten migrering, og 0 substansielle innholdshull er påvist. Samtidig finnes ingen separat post-completion source/case- eller annen kvalitetsutvidelse over de åtte canonicale kapitlene. Manglende expansion-proof skal derfor ikke konverteres til kunstig innholdsproduksjon.",
+  "conclusion": "Musikk har bevist helfags expanded-kvalitet uten omskriving av de åtte canonicale kapitlene: 8/8 kapitler fikk dokumentert post-completion kilde- og stedscaseutvidelse i en permanent maintenance-runde med 16 kildeoppfriskninger og 8 eksisterende canonicale stedanker. Alle 8 fagområder forblir strict theory-proven, legacy-reconciliationen forblir 8/8 uten migrering, og 0 substansielle innholdshull er påvist. Global Fagverk-lifecycle forblir complete, og den historiske read-only fag-for-fag-planen muteres ikke.",
   "summary": {
     "canonicalDomains": 8,
     "canonicalChapters": 8,
@@ -24,7 +24,11 @@
     "legacyKnowledgeSections": 8,
     "legacyCanonicalSupersedes": 8,
     "legacyMigratedSections": 0,
-    "postCompletionExpansionArtifacts": 0,
+    "maintenanceRounds": 1,
+    "reconciledChapters": 8,
+    "maintenanceCases": 8,
+    "sourceRefreshes": 16,
+    "projectedUniquePlaces": 8,
     "substantiveContentGapsProven": 0
   },
   "readOnlyPlanSnapshot": {
@@ -39,66 +43,77 @@
       "domainId": "etnomusikologi_kultur_samfunn",
       "chapterId": "etnomusikologi-kultur-samfunn",
       "strictTheoryProven": true,
-      "separatePostCompletionExpansionEvidence": false,
+      "postCompletionSourceCaseExpansionProven": true,
+      "postCompletionCaseCount": 1,
       "substantiveContentGapProven": false
     },
     {
       "domainId": "framforing_praksis_samspill",
       "chapterId": "framforing-praksis-samspill",
       "strictTheoryProven": true,
-      "separatePostCompletionExpansionEvidence": false,
+      "postCompletionSourceCaseExpansionProven": true,
+      "postCompletionCaseCount": 1,
       "substantiveContentGapProven": false
     },
     {
       "domainId": "historisk_musikkvitenskap_historiografi",
       "chapterId": "historisk-musikkvitenskap-historiografi",
       "strictTheoryProven": true,
-      "separatePostCompletionExpansionEvidence": false,
+      "postCompletionSourceCaseExpansionProven": true,
+      "postCompletionCaseCount": 1,
       "substantiveContentGapProven": false
     },
     {
       "domainId": "institusjoner_okonomi_politikk_offentlighet",
       "chapterId": "institusjoner-okonomi-politikk-offentlighet",
       "strictTheoryProven": true,
-      "separatePostCompletionExpansionEvidence": false,
+      "postCompletionSourceCaseExpansionProven": true,
+      "postCompletionCaseCount": 1,
       "substantiveContentGapProven": false
     },
     {
       "domainId": "lydmedier_teknologi_beregning",
       "chapterId": "lydmedier-teknologi-beregning",
       "strictTheoryProven": true,
-      "separatePostCompletionExpansionEvidence": false,
+      "postCompletionSourceCaseExpansionProven": true,
+      "postCompletionCaseCount": 1,
       "substantiveContentGapProven": false
     },
     {
       "domainId": "musikalsk_analyse_lyd_struktur",
       "chapterId": "musikalsk-analyse-lyd-struktur",
       "strictTheoryProven": true,
-      "separatePostCompletionExpansionEvidence": false,
+      "postCompletionSourceCaseExpansionProven": true,
+      "postCompletionCaseCount": 1,
       "substantiveContentGapProven": false
     },
     {
       "domainId": "norsk_nordisk_samisk_sted_arkiv",
       "chapterId": "norsk-nordisk-samisk-sted-arkiv",
       "strictTheoryProven": true,
-      "separatePostCompletionExpansionEvidence": false,
+      "postCompletionSourceCaseExpansionProven": true,
+      "postCompletionCaseCount": 1,
       "substantiveContentGapProven": false
     },
     {
       "domainId": "persepsjon_kognisjon_akustikk",
       "chapterId": "persepsjon-kognisjon-akustikk",
       "strictTheoryProven": true,
-      "separatePostCompletionExpansionEvidence": false,
+      "postCompletionSourceCaseExpansionProven": true,
+      "postCompletionCaseCount": 1,
       "substantiveContentGapProven": false
     }
   ],
-  "nextAction": "Do not create Musikk content without a demonstrated qualitative gap. Whole-subject expansion proof can be reopened only after explicit post-completion quality expansion evidence exists or a future bounded audit proves a real content gap.",
   "evidence": {
     "completeAudit": "reports/fagverk/musikk-subject-audit.json",
     "theoryAudit": "reports/fagverk/musikk-theory-integrity-audit.json",
     "theoryBindings": "data/fag/musikk/musikkvitenskap_canonical_v1/theory_integrity_bindings_v1.json",
     "legacyTheoryAudit": "reports/fagverk/musikk-legacy-theory-audit.json",
     "legacyAdjudication": "data/fag/musikk/legacy_theory_adjudication_v1.json",
+    "maintenanceRounds": [
+      "data/fagverk/musikk/maintenance/source-refresh-place-case-expansion-round1-2026-09-11.json"
+    ],
+    "expandedQualityContract": "data/fag/musikk/expanded_quality_contract_v1.json",
     "globalLifecycleRegistry": "data/fagverk/subject_status.json"
   }
 }

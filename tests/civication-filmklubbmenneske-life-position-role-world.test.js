@@ -122,7 +122,7 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'media/medievaktbikkje',
 'musikk/scenehenger'
 ]);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'natur/artsjeger');
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 9);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 94);
@@ -138,8 +138,8 @@ assert.deepEqual(readiness.evidence.livelihood_templates, ['filmklubbmenneske_vi
 assert.ok(!audit.queue.some((row) => row.key === 'film_tv/filmklubbmenneske'));
 assert.equal(audit.summary.life_position_role_world_complete, 9);
 assert.equal(audit.summary.completed_life_position_role_worlds, 9);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.first_ready?.key, 'natur/artsjeger');
 
 execFileSync(process.execPath, ['tests/civication-role-world-contract.test.js'], { cwd: ROOT, stdio: 'pipe' });
 execFileSync(process.execPath, ['tests/civication-noncareer-role-taxonomy.test.js'], { cwd: ROOT, stdio: 'pipe' });
