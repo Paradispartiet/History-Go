@@ -96,7 +96,7 @@ Dette tallet er **ikke** `roleModels`-tallet.
 
 RoleModel-manifestet har **293 filer**. Scenario People-resolveren reduserer dette til **287 canonical roleModels** etter seks shadow-relasjoner. Disse filene brukes til authored rolle-/personresolusjon og kan representere work scopes, Badge-tiers, statusnivåer eller alias. De skal ikke telles som 287 spillerroller.
 
-Career Role World-grunnlaget har fortsatt **85 ferdige karriererolleverdener**. **Supporter** var den første fullførte life-position Role Worlden, og **Nabolagskjenner** er nå den andre. Den samlede Role World-indeksen har dermed **87 verdener = 85 career + 2 life_position**.
+Career Role World-grunnlaget har fortsatt **85 ferdige karriererolleverdener**. **Supporter**, **Nabolagskjenner** og **Filmklubbmenneske** er nå fullførte life-position Role Worlds. Den samlede Role World-indeksen har dermed **88 verdener = 85 career + 3 life_position**.
 
 ## 4. Hvorfor 118 life_position-deskriptorer, men 117 not_job-tiers?
 
@@ -193,7 +193,7 @@ Tilsvarende er «nær venn» en relasjonsstatus mellom to personer, ikke en livs
 
 Neste non-career Role World-arbeid skal være **readiness først, rolle-for-rolle**. Den maskinlesbare køen ligger i `data/Civication/lifePositionRoleWorldReadiness.json` og genereres av `scripts/audit-civication-life-position-role-world-readiness.mjs`.
 
-`sport/supporter` var den første source-backed kandidaten og `by/nabolagskjenner` den andre; begge er ferdigstilt som Role Worlds. `film_tv/filmklubbmenneske` er nå den tredje source-backed posisjonen og den eneste uferdige `ready`-kandidaten. Readiness-auditen bruker tre separate klasser — `ready`, `needs_authored_depth` og `not_a_standalone_world` — mens faktisk produksjonsstatus ligger separat i `role_world_status`. Fasit er nå **3 ready = 2 role_world_complete + 1 pending**, **157 needs_authored_depth** og **40 not_a_standalone_world**.
+`sport/supporter`, `by/nabolagskjenner` og `film_tv/filmklubbmenneske` er de tre source-backed `ready`-posisjonene og er nå alle ferdigstilt som Role Worlds. Readiness-auditen bruker tre separate klasser — `ready`, `needs_authored_depth` og `not_a_standalone_world` — mens faktisk produksjonsstatus ligger separat i `role_world_status`. Fasit er nå **3 ready = 3 role_world_complete + 0 pending**, **157 needs_authored_depth** og **40 not_a_standalone_world**. Det finnes derfor ingen ny uferdig `ready`-kandidat før mer authored dybde er produsert.
 
 
 ```text
