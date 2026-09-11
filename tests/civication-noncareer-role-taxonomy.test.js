@@ -216,7 +216,7 @@ const expectedCounts = {
   relationship_stages: 6,
   career_role_worlds: 85,
   life_position_role_worlds: 5,
-  total_role_worlds: 89,
+  total_role_worlds: 90,
   role_model_manifest_files: 293,
   canonical_scenario_role_models: 287,
   shadowed_role_models: 6,
