@@ -71,7 +71,17 @@ for (const pilot of indexedPilots) {
 }
 const archivePilot = pilots.find((pilot) => pilot.id === 'archive_documentation');
 assert.ok(archivePilot, 'Archive structural vertical must remain declared');
-assert.ok(!indexedKeys.has(`${archivePilot.category}/${archivePilot.role_scope}`), 'Archive vertical must not be fabricated into Role World completion by the Matrix');
+const archiveKey = `${archivePilot.category}/${archivePilot.role_scope}`;
+if (indexedKeys.has(archiveKey)) {
+  const archiveEntry = (roleWorldIndex.roles || []).find((entry) => `${entry.category}/${entry.role_scope}` === archiveKey);
+  assert.equal(archiveEntry?.status, 'role_world_complete', 'An indexed archive pilot must be a genuine completed Role World');
+  assert.ok(archiveEntry?.path && exists(archiveEntry.path), 'An indexed archive pilot must own a standalone Role World source file');
+  const archiveWorld = json(archiveEntry.path);
+  assert.equal(archiveWorld.category, archivePilot.category);
+  assert.equal(archiveWorld.role_scope, archivePilot.role_scope);
+  assert.equal(archiveWorld.status, 'role_world_complete');
+  assert.equal(archiveWorld.materialization?.no_new_runtime, true, 'Archive Role World completion must not be manufactured by new runtime');
+}
 const careerPilot = pilots.find((pilot) => pilot.id === 'by_plan');
 assert.ok(careerPilot && careerMatrix.worlds.some((world) => world.key === `${careerPilot.category}/${careerPilot.role_scope}`), 'Career Matrix remains an independent status source');
 
