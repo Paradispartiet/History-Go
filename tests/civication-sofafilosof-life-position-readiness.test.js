@@ -61,8 +61,8 @@ assert.deepEqual(opportunity.direct_costs, { fixed: 1 });
 const ready = audit.positions.find((row) => row.key === 'filosofi/sofafilosof');
 assert.ok(ready);
 assert.equal(ready.classification, 'ready');
-assert.equal(ready.role_world_status, 'role_world_not_started');
-assert.equal(ready.role_world_path, null);
+assert.equal(ready.role_world_status, 'role_world_complete');
+assert.equal(ready.role_world_path, 'data/Civication/roleWorlds/filosofi/filosofi_sofafilosof.json');
 assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['sofafilosof_samtalekveld']);
@@ -72,13 +72,13 @@ assert.deepEqual(audit.summary.classifications, {
   needs_authored_depth: 156,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 3);
-assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.completed_life_position_role_worlds, 4);
+assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 4);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 4);
-assert.equal(audit.first_ready?.key, 'filosofi/sofafilosof');
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'filosofi/sofafilosof');
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'filosofi/sofafilosof');
+assert.equal(audit.first_ready, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
 
 const narrativeSource = fs.readFileSync(
   path.join(ROOT, 'js/Civication/systems/civicationNarrativeSceneSource.js'),

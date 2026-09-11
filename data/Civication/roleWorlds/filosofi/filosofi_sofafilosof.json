@@ -1,0 +1,1024 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_sofafilosof",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "filosofi",
+    "id": "sofafilosof",
+    "label": "Sofafilosof"
+  },
+  "title": "Sofafilosof",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "refleksjon og kunnskap som sosial ressurs uten at samtalen blir dominans eller falsk ekspertmyndighet",
+    "description": "Sofafilosof-livet undersøker hvordan hverdagslige samtaler om frihet, rettferdighet, mening og ansvar kan skape nærhet, nysgjerrighet og kritisk tenkning, samtidig som språk, referanser og selvsikkerhet kan bli sosial kapital. Spilleren må lære å skille mellom å undersøke et spørsmål og å overta rommet, mellom å støtte en venn og å opptre som terapeut eller rådgiver, og mellom et avgrenset honorert samtaleoppdrag og profesjonell filosofisk autoritet."
+  },
+  "theme_ids": [
+    "status_anxiety",
+    "shame_reputation",
+    "social_mask",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "public_attention",
+    "class_power",
+    "emotional_labor"
+  ],
+  "social_environments": [
+    "middagsbordet og sofaen der vanlige kvelder glir over i lange samtaler om verdier og mening",
+    "vennegjengen der språk, referanser og evnen til å formulere seg gir uformell status",
+    "private én-til-én-samtaler der refleksjon møter omsorg, sorg og grenser for råd",
+    "gruppechatten og lesesamtalen der sitater, kilder og kunnskapsstatus blir synlige",
+    "åpne samtalekvelder der nykommere tester om filosofi fungerer som invitasjon eller opptaksprøve",
+    "offentlige nettdebatter der argumentkritikk lett glir over i personstatus og flokkadferd",
+    "hjemmet etter samtalen der spilleren må leve med tvil, feil, relasjonell etterklang og behovet for å revidere seg selv"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "samtaleveteran",
+      "social_function": "erfaren deltaker som raskt rammer inn spørsmål og setter standarden for språk og referanser",
+      "class_position": "ressurssterk deltaker med høy kulturell og språklig kapital, men uten formell fagmyndighet",
+      "status": "høy uformell status fordi personen virker belest, rolig og argumentativt sikker",
+      "power_over_player": "kan legitimere spillerens resonnementer, trekke samtalen inn i prestisjespråk eller normalisere hvem som får definere temaet",
+      "wants": "at samtalene skal være krevende nok til å føles meningsfulle og ikke ende i ren småprat",
+      "conceals": "hvor mye egen status avhenger av at andre godtar bestemte referanser og samtaleformer som tegn på dybde",
+      "speech_style": "presis, referansetett og rask til å skille mellom begreper og premisser",
+      "teaches_player": "at intellektuell skarphet kan åpne spørsmål, men også produsere rang og taushet"
+    },
+    {
+      "id": "nykommer",
+      "social_function": "gjør terskelen inn i gruppas begreper, gamle diskusjoner og uskrevne normer synlig",
+      "class_position": "deltaker med lav intern kulturell kapital og ingen kontroll over samtalens normer",
+      "status": "lav eller uavklart status, men høy betydning som test på om miljøet faktisk tåler nye stemmer",
+      "power_over_player": "kan avsløre om spillerens forklaringer fungerer som vertskap eller som en kunnskapsprøve",
+      "wants": "å kunne tenke høyt uten å måtte bevise utdanning, leseliste eller riktig vokabular først",
+      "conceals": "hvor lett usikkerhet blir tolket som mangel på interessante tanker når andre snakker raskt og sikkert",
+      "speech_style": "konkret, spørsmålsorientert og forsiktig før tryggheten vokser",
+      "teaches_player": "at en god filosofisk samtale må kunne gi plass til tenkning før ekspertise"
+    },
+    {
+      "id": "naer_venn",
+      "social_function": "binder refleksjonen til faktisk omsorg, sårbarhet og konsekvenser i et nært forhold",
+      "class_position": "likestilt privat relasjon uten profesjonell klient- eller rådgiverrolle",
+      "status": "høy personlig betydning, men ingen faglig underordning til spilleren",
+      "power_over_player": "kan sette grenser for analyse, be om støtte eller trekke tillit tilbake hvis livet blir behandlet som et tankeeksperiment",
+      "wants": "å bli møtt som person og ikke bare som et interessant problem som kan løses prinsipielt",
+      "conceals": "hvor sårbart det kan være å be en selvsikker venn om råd når man egentlig trenger nærvær",
+      "speech_style": "personlig, direkte og mindre opptatt av perfekte formuleringer enn av om spilleren faktisk lytter",
+      "teaches_player": "at refleksjon ikke opphever omsorg, samtykke eller den andres eierskap til eget liv"
+    },
+    {
+      "id": "pragmatisk_skeptiker",
+      "social_function": "utfordrer miljøets tendens til å gjøre hvert hverdagsproblem til en lang prinsipiell diskusjon",
+      "class_position": "ordinær venn eller deltaker med sosial trygghet, men lav interesse for filosofisk status",
+      "status": "middels intern status og ofte høy troverdighet når gruppa blir for selvopptatt",
+      "power_over_player": "kan stoppe samtalen, avsløre overanalyse og minne gruppa om praktiske eller relasjonelle konsekvenser",
+      "wants": "at refleksjon skal gjøre noe klarere uten å spise opp hele kvelden eller mennesket bak problemet",
+      "conceals": "at skepsisen til filosofisk språk også kan skjule egen usikkerhet når samtalen blir abstrakt",
+      "speech_style": "kort, konkret, humoristisk og rask til å spørre hva poenget betyr i praksis",
+      "teaches_player": "at et spørsmål ikke blir bedre bare fordi det kan analyseres lenger"
+    },
+    {
+      "id": "kildevokter",
+      "social_function": "gjør forskjellen mellom egne tanker, andrehåndskunnskap, sitater og verifiserbare kilder synlig",
+      "class_position": "jevnaldrende deltaker med høy kildebevissthet, men uten formell sensur- eller ekspertmyndighet",
+      "status": "respektert for presisjon og vilje til å si at noe er usikkert",
+      "power_over_player": "kan korrigere attribusjoner, spørre etter grunnlaget for sterke påstander og gjøre bløff sosialt kostbar",
+      "wants": "at gruppa skal tåle usikkerhet og revisjon uten å fylle hull med autoritetsnavn",
+      "conceals": "at pedantisk kildekontroll også kan bli en annen måte å vinne status på hvis den brukes uten proporsjoner",
+      "speech_style": "rolig, avgrensende og tydelig på forskjellen mellom det som er lest, hørt og antatt",
+      "teaches_player": "at epistemisk ydmykhet krever både kildeomsorg og proporsjonalitet"
+    },
+    {
+      "id": "kultursted_vert",
+      "social_function": "tilbyr et avgrenset honorert samtaleoppdrag og gjør skillet mellom identitet, gig og profesjon synlig",
+      "class_position": "lokal oppdragsgiver med økonomisk makt over et enkelt arrangement, men ingen autoritet til å sertifisere spilleren som filosof eller rådgiver",
+      "status": "funksjonell status som arrangør og betalende part i det konkrete oppdraget",
+      "power_over_player": "kan tilby eller avslutte et avgrenset gig og stille praktiske krav til vertskap og tidsramme",
+      "wants": "en åpen samtalekveld der flere deltar og oppdraget holder seg innenfor avtalt ramme",
+      "conceals": "at et lite honorar lett kan bli tolket som større faglig legitimitet enn oppdraget faktisk gir",
+      "speech_style": "praktisk, konkret og tydelig på tid, publikum og hva oppdraget faktisk omfatter",
+      "teaches_player": "at betaling for fasilitering ikke skaper akademisk, terapeutisk eller etisk rådgivningsmyndighet"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "epistemic_humility",
+      "meaning": "om spilleren skiller mellom det som er kjent, antatt, lest, hørt og fortsatt uklart",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "conversational_space",
+      "meaning": "om spørsmål, språk og taletid gjør flere i stand til å delta eller lar én stemme dominere",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "relationship_trust",
+      "meaning": "om venner opplever refleksjonen som støtte og nysgjerrighet eller som analyse uten samtykke",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "status_without_authority",
+      "meaning": "hvordan belesthet og formuleringsevne gir uformell status uten å bli profesjonell myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_reliability",
+      "meaning": "hvordan sitater, bøker og påstander behandles når kildene er ufullstendige eller usikre",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "livelihood_boundary",
+      "meaning": "om et avgrenset honorert samtaleoppdrag holdes adskilt fra identitet, ansettelse og faglig autoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: En vanlig middag glir fra småprat over i en diskusjon om ansvar, frihet og hva mennesker egentlig skylder hverandre. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#middagssamtalen_som_tar_over"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: En vanlig middag glir fra småprat over i en diskusjon om ansvar, frihet og hva mennesker egentlig skylder hverandre. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#middagssamtalen_som_tar_over"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: En vanlig middag glir fra småprat over i en diskusjon om ansvar, frihet og hva mennesker egentlig skylder hverandre. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#middagssamtalen_som_tar_over"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: En vanlig middag glir fra småprat over i en diskusjon om ansvar, frihet og hva mennesker egentlig skylder hverandre. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#middagssamtalen_som_tar_over"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 2, morning: En venn står foran et vanskelig brudd og ber deg tenke høyt om hva som er rett å gjøre. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "care_boundaries",
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#vennen_vil_ha_livsrad"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: En venn står foran et vanskelig brudd og ber deg tenke høyt om hva som er rett å gjøre. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "care_boundaries",
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#vennen_vil_ha_livsrad"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: En venn står foran et vanskelig brudd og ber deg tenke høyt om hva som er rett å gjøre. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "care_boundaries",
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#vennen_vil_ha_livsrad"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: En venn står foran et vanskelig brudd og ber deg tenke høyt om hva som er rett å gjøre. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "care_boundaries",
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#vennen_vil_ha_livsrad"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: En politisk diskusjon blir skarp, og dere bruker begge ordet «rettferdig» som om det betydde det samme. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "disagreement_revision",
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#uenighet_om_rettferdighet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: En politisk diskusjon blir skarp, og dere bruker begge ordet «rettferdig» som om det betydde det samme. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "disagreement_revision",
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#uenighet_om_rettferdighet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: En politisk diskusjon blir skarp, og dere bruker begge ordet «rettferdig» som om det betydde det samme. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "disagreement_revision",
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#uenighet_om_rettferdighet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 3, evening: En politisk diskusjon blir skarp, og dere bruker begge ordet «rettferdig» som om det betydde det samme. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "disagreement_revision",
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#uenighet_om_rettferdighet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "social",
+        "summary": "Dag 4, morning: Samtalen har samlet flere filosofiske uttrykk som de faste deltakerne bruker uten forklaring. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#begrepet_ingen_tor_sporre_om"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Samtalen har samlet flere filosofiske uttrykk som de faste deltakerne bruker uten forklaring. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#begrepet_ingen_tor_sporre_om"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Samtalen har samlet flere filosofiske uttrykk som de faste deltakerne bruker uten forklaring. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#begrepet_ingen_tor_sporre_om"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Samtalen har samlet flere filosofiske uttrykk som de faste deltakerne bruker uten forklaring. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#begrepet_ingen_tor_sporre_om"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: En sen kveld ender i spørsmålet om fri vilje, og alle rundt bordet begynner å trekke inn egne erfaringer. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "care_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#fri_vilje_klokken_to"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: En sen kveld ender i spørsmålet om fri vilje, og alle rundt bordet begynner å trekke inn egne erfaringer. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "care_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#fri_vilje_klokken_to"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: En sen kveld ender i spørsmålet om fri vilje, og alle rundt bordet begynner å trekke inn egne erfaringer. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "care_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#fri_vilje_klokken_to"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: En sen kveld ender i spørsmålet om fri vilje, og alle rundt bordet begynner å trekke inn egne erfaringer. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "care_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#fri_vilje_klokken_to"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Et slående sitat med navnet til en kjent filosof begynner å gå rundt i chatten og passer perfekt til diskusjonen dere nettopp hadde. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "source_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#sitatet_som_var_for_godt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 6, lunch: Et slående sitat med navnet til en kjent filosof begynner å gå rundt i chatten og passer perfekt til diskusjonen dere nettopp hadde. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "source_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#sitatet_som_var_for_godt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Et slående sitat med navnet til en kjent filosof begynner å gå rundt i chatten og passer perfekt til diskusjonen dere nettopp hadde. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "source_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#sitatet_som_var_for_godt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 6, evening: Et slående sitat med navnet til en kjent filosof begynner å gå rundt i chatten og passer perfekt til diskusjonen dere nettopp hadde. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "source_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#sitatet_som_var_for_godt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 7, morning: Du introduserer et tankeeksperiment om lojalitet og plikt, og en deltaker kjenner igjen trekk fra en konflikt de nylig har fortalt deg om. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "care_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#tankeeksperimentet_blir_personlig"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Du introduserer et tankeeksperiment om lojalitet og plikt, og en deltaker kjenner igjen trekk fra en konflikt de nylig har fortalt deg om. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "care_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#tankeeksperimentet_blir_personlig"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Du introduserer et tankeeksperiment om lojalitet og plikt, og en deltaker kjenner igjen trekk fra en konflikt de nylig har fortalt deg om. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "care_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#tankeeksperimentet_blir_personlig"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Du introduserer et tankeeksperiment om lojalitet og plikt, og en deltaker kjenner igjen trekk fra en konflikt de nylig har fortalt deg om. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "care_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#tankeeksperimentet_blir_personlig"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Samtalen dreier inn på en bok du startet på, men aldri leste ferdig. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "source_humility",
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#boken_du_ikke_ble_ferdig_med"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 8, lunch: Samtalen dreier inn på en bok du startet på, men aldri leste ferdig. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "source_humility",
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#boken_du_ikke_ble_ferdig_med"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Samtalen dreier inn på en bok du startet på, men aldri leste ferdig. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "source_humility",
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#boken_du_ikke_ble_ferdig_med"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Samtalen dreier inn på en bok du startet på, men aldri leste ferdig. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "source_humility",
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#boken_du_ikke_ble_ferdig_med"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 9, morning: En ny deltaker blir sittende stille mens andre refererer til filosofer, teorier og gamle interne diskusjoner. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "dialogue_status",
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#nykommer_i_samtalekvelden"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: En ny deltaker blir sittende stille mens andre refererer til filosofer, teorier og gamle interne diskusjoner. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "dialogue_status",
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#nykommer_i_samtalekvelden"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: En ny deltaker blir sittende stille mens andre refererer til filosofer, teorier og gamle interne diskusjoner. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "dialogue_status",
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#nykommer_i_samtalekvelden"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: En ny deltaker blir sittende stille mens andre refererer til filosofer, teorier og gamle interne diskusjoner. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "dialogue_status",
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#nykommer_i_samtalekvelden"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Et kultursted tilbyr deg betaling for å holde en uformell samtale om et filosofisk spørsmål i gang en kveld. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#honorar_for_samtalekveld"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Et kultursted tilbyr deg betaling for å holde en uformell samtale om et filosofisk spørsmål i gang en kveld. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#honorar_for_samtalekveld"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Et kultursted tilbyr deg betaling for å holde en uformell samtale om et filosofisk spørsmål i gang en kveld. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#honorar_for_samtalekveld"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 10, evening: Et kultursted tilbyr deg betaling for å holde en uformell samtale om et filosofisk spørsmål i gang en kveld. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#honorar_for_samtalekveld"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Dagen etter en lang diskusjon oppdager du at et premiss du presset hardt på var svakt og at en venn faktisk påpekte problemet underveis. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "disagreement_revision",
+          "source_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#du_tok_feil_i_gar"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 11, lunch: Dagen etter en lang diskusjon oppdager du at et premiss du presset hardt på var svakt og at en venn faktisk påpekte problemet underveis. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "disagreement_revision",
+          "source_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#du_tok_feil_i_gar"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Dagen etter en lang diskusjon oppdager du at et premiss du presset hardt på var svakt og at en venn faktisk påpekte problemet underveis. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "disagreement_revision",
+          "source_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#du_tok_feil_i_gar"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Dagen etter en lang diskusjon oppdager du at et premiss du presset hardt på var svakt og at en venn faktisk påpekte problemet underveis. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "disagreement_revision",
+          "source_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#du_tok_feil_i_gar"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 12, morning: En venn har mistet noen og sier at de ikke vil ha teorier om mening, frihet eller hva et godt liv krever. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "care_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#sorg_er_ikke_et_argument"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 12, lunch: En venn har mistet noen og sier at de ikke vil ha teorier om mening, frihet eller hva et godt liv krever. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "care_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#sorg_er_ikke_et_argument"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: En venn har mistet noen og sier at de ikke vil ha teorier om mening, frihet eller hva et godt liv krever. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "care_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#sorg_er_ikke_et_argument"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: En venn har mistet noen og sier at de ikke vil ha teorier om mening, frihet eller hva et godt liv krever. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "care_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#sorg_er_ikke_et_argument"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "social",
+        "summary": "Dag 13, morning: En dårlig formulert påstand får massiv motstand på nett, og du ser flere gode innvendinger blant mye latterliggjøring. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "disagreement_revision",
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#nettdebatten_og_flokken"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: En dårlig formulert påstand får massiv motstand på nett, og du ser flere gode innvendinger blant mye latterliggjøring. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "disagreement_revision",
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#nettdebatten_og_flokken"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: En dårlig formulert påstand får massiv motstand på nett, og du ser flere gode innvendinger blant mye latterliggjøring. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "disagreement_revision",
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#nettdebatten_og_flokken"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 13, evening: En dårlig formulert påstand får massiv motstand på nett, og du ser flere gode innvendinger blant mye latterliggjøring. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "disagreement_revision",
+          "dialogue_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#nettdebatten_og_flokken"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Når du ser tilbake på mange kvelder, er det ikke de mest elegante poengene du husker best, men hvem som våget å endre mening, hvem som ble stille og hvem som stadig fikk definere spørsmålene. Morgenen gjør premisser, forventninger eller relasjonelle grenser synlige før dagens samtaler tar form.",
+        "thread_ids": [
+          "dialogue_status",
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#sesongslutt_hva_slags_tenker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Når du ser tilbake på mange kvelder, er det ikke de mest elegante poengene du husker best, men hvem som våget å endre mening, hvem som ble stille og hvem som stadig fikk definere spørsmålene. Midt på dagen blir kunnskap, språk og sosial posisjon tolket av andre i miljøet.",
+        "thread_ids": [
+          "dialogue_status",
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#sesongslutt_hva_slags_tenker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Når du ser tilbake på mange kvelder, er det ikke de mest elegante poengene du husker best, men hvem som våget å endre mening, hvem som ble stille og hvem som stadig fikk definere spørsmålene. Ettermiddagen gjør spenningen til et konkret valg om dialog, kildeomsorg, grense eller ansvar.",
+        "thread_ids": [
+          "dialogue_status",
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#sesongslutt_hva_slags_tenker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Når du ser tilbake på mange kvelder, er det ikke de mest elegante poengene du husker best, men hvem som våget å endre mening, hvem som ble stille og hvem som stadig fikk definere spørsmålene. Kvelden viser den private eller relasjonelle etterklangen av hvordan spilleren brukte refleksjon og status.",
+        "thread_ids": [
+          "dialogue_status",
+          "identity_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/sofafilosof.json#sesongslutt_hva_slags_tenker"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "dialogue_status",
+      "relationship": "forholdet mellom samtalekvalitet, språk, taletid og uformell intellektuell status",
+      "beat_refs": [
+        "1/lunch",
+        "1/evening",
+        "4/lunch",
+        "8/afternoon",
+        "9/evening",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "care_boundaries",
+      "relationship": "forholdet til venner som trenger nærvær, råd eller vern mot å bli gjort til eksempler",
+      "beat_refs": [
+        "2/afternoon",
+        "5/evening",
+        "7/afternoon",
+        "12/lunch",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "disagreement_revision",
+      "relationship": "forholdet mellom uenighet, ansiktstap, offentlig kritikk og evnen til å revidere egne standpunkter",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "11/lunch",
+        "11/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "source_humility",
+      "relationship": "forholdet til kilder, usikkerhet og fristelsen til å låne autoritet fra bøker eller navn man ikke behersker",
+      "beat_refs": [
+        "6/morning",
+        "6/afternoon",
+        "8/morning",
+        "8/evening",
+        "11/afternoon"
+      ]
+    },
+    {
+      "id": "identity_authority",
+      "relationship": "forholdet mellom Sofafilosof-identitet, sosial legitimitet, avgrenset honorar og grensene mot profesjonell myndighet",
+      "beat_refs": [
+        "2/morning",
+        "9/morning",
+        "10/morning",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "conversation_capture_echo",
+      "description": "Etter kvelder der spilleren tok mye plass, blir spørsmålet om nysgjerrighet faktisk åpnet rom eller bare gjorde andres kveld til publikum for spillerens analyse.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/sofafilosof.json#middagssamtalen_som_tar_over",
+        "data/Civication/narratives/leisure/sofafilosof.json#begrepet_ingen_tor_sporre_om",
+        "data/Civication/narratives/leisure/sofafilosof.json#nykommer_i_samtalekvelden"
+      ]
+    },
+    {
+      "id": "advice_and_consent_aftertaste",
+      "description": "Råd, tankeeksperimenter og sorg følger spilleren hjem som et spørsmål om når refleksjon hjelper et forhold og når den overskrider den andres grenser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/sofafilosof.json#vennen_vil_ha_livsrad",
+        "data/Civication/narratives/leisure/sofafilosof.json#tankeeksperimentet_blir_personlig",
+        "data/Civication/narratives/leisure/sofafilosof.json#sorg_er_ikke_et_argument"
+      ]
+    },
+    {
+      "id": "epistemic_face_cost",
+      "description": "Usikre sitater, en ulest bok og et svakt tidligere argument gjør det privat kostbart å velge mellom sosial sikkerhet og å innrømme hva man faktisk ikke vet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/sofafilosof.json#sitatet_som_var_for_godt",
+        "data/Civication/narratives/leisure/sofafilosof.json#boken_du_ikke_ble_ferdig_med",
+        "data/Civication/narratives/leisure/sofafilosof.json#du_tok_feil_i_gar"
+      ]
+    },
+    {
+      "id": "identity_authority_afterthought",
+      "description": "Et lite honorar og høy sosial status kan føles som profesjonell legitimitet, men spilleren må fortsatt leve med at Sofafilosof er en livsposisjon og ikke en akademisk eller terapeutisk autorisasjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/sofafilosof.json#honorar_for_samtalekveld",
+        "data/Civication/narratives/leisure/sofafilosof.json#nykommer_i_samtalekvelden",
+        "data/Civication/narratives/leisure/sofafilosof.json#sesongslutt_hva_slags_tenker"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "dominans_blir_samtalenorm",
+      "setup_ref": "1/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "rad_blir_tillitsgrense",
+      "setup_ref": "2/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "uenighet_blir_revisjonsnorm",
+      "setup_ref": "3/evening",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "kildebluff_blir_epistemisk_omdomme",
+      "setup_ref": "6/afternoon",
+      "return_ref": "11/afternoon",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "gig_blir_identitetsgrense",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "livelihood",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "nettdebatt_blir_offentlig_samtalestil",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "relationship",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/sofafilosof.json#middagssamtalen_som_tar_over",
+      "data/Civication/narratives/leisure/sofafilosof.json#vennen_vil_ha_livsrad",
+      "data/Civication/narratives/leisure/sofafilosof.json#uenighet_om_rettferdighet",
+      "data/Civication/narratives/leisure/sofafilosof.json#begrepet_ingen_tor_sporre_om",
+      "data/Civication/narratives/leisure/sofafilosof.json#fri_vilje_klokken_to",
+      "data/Civication/narratives/leisure/sofafilosof.json#sitatet_som_var_for_godt",
+      "data/Civication/narratives/leisure/sofafilosof.json#tankeeksperimentet_blir_personlig",
+      "data/Civication/narratives/leisure/sofafilosof.json#boken_du_ikke_ble_ferdig_med",
+      "data/Civication/narratives/leisure/sofafilosof.json#nykommer_i_samtalekvelden",
+      "data/Civication/narratives/leisure/sofafilosof.json#honorar_for_samtalekveld",
+      "data/Civication/narratives/leisure/sofafilosof.json#du_tok_feil_i_gar",
+      "data/Civication/narratives/leisure/sofafilosof.json#sorg_er_ikke_et_argument",
+      "data/Civication/narratives/leisure/sofafilosof.json#nettdebatten_og_flokken",
+      "data/Civication/narratives/leisure/sofafilosof.json#sesongslutt_hva_slags_tenker"
+    ]
+  }
+}
