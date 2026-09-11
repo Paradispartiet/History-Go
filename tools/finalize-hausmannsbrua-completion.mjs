@@ -656,6 +656,36 @@ if (!/hausmannsbrua:\s*["']bilder\/QuizCards\/Hausmannsbrua\.webp["']/.test(ui))
   fs.writeFileSync(path.join(root, uiFile), ui);
 }
 
+const imageAuditFile = path.join(process.env.RUNNER_TEMP || "/tmp", "hausmannsbrua-place-image-audit.json");
+execFileSync(process.execPath, ["scripts/audit-place-images.mjs", "--mode=all", "--report=" + imageAuditFile], { cwd: root, stdio: "ignore" });
+const imageAudit = JSON.parse(fs.readFileSync(imageAuditFile, "utf8"));
+const imageBacklogFile = "data/places/place_image_backlog_summary.json";
+const imageBacklog = read(imageBacklogFile);
+imageBacklog.generatedAt = verifiedAt;
+imageBacklog.generatedFromCommit = "hausmannsbrua_completion_20260911";
+imageBacklog.totalPlaces = imageAudit.totalPlaces;
+imageBacklog.summary = {
+  validLocal: imageAudit.summary.local,
+  validRemote: imageAudit.summary.remote,
+  optionalMissing: imageAudit.summary.optional,
+  missing: imageAudit.summary.missing,
+  invalidLocalPath: imageAudit.summary.invalid,
+  remaining: imageAudit.summary.missing + imageAudit.summary.invalid
+};
+imageBacklog.byCategory = Object.fromEntries(
+  Object.entries(imageAudit.byCategory).map(([category, bucket]) => [
+    category,
+    {
+      total: bucket.total,
+      valid: bucket.local + bucket.remote,
+      optional: bucket.optional,
+      missing: bucket.missing,
+      invalid: bucket.invalid
+    }
+  ])
+);
+write(imageBacklogFile, imageBacklog);
+
 execFileSync(process.execPath, ["--experimental-strip-types", "scripts/build-civication-scenario-people-index.mts"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "civication:history-people:build"], { cwd: root, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/materialize-natur-final-registry.mjs"], { cwd: root, stdio: "inherit" });
