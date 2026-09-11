@@ -1,0 +1,88 @@
+name: Litteratur final derived regeneration once
+
+on:
+  push:
+    branches:
+      - agent/litteratur-final-derived-regen-20260911
+
+permissions:
+  contents: write
+
+concurrency:
+  group: litteratur-final-derived-regen-once
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: agent/litteratur-final-derived-regen-20260911
+          fetch-depth: 1
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate global theory integrity reports
+        run: |
+          npm run audit:fagverk:theory-integrity -- --write-report --no-check-report
+          npm run audit:fagverk:theory-integrity
+      - name: Regenerate Fagverk release feed
+        run: |
+          npm run build:fagverk:release-feed
+          npm run audit:fagverk:release-feed
+      - name: Regenerate whole-architecture release manifest
+        run: |
+          node scripts/materialize-natur-final-registry.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-release-manifest.test.mjs
+      - name: Verify Litteratur gates remain green
+        run: |
+          node tools/audit-litteratur-theory-integrity.mjs
+          node tools/audit-litteratur-expanded-quality.mjs
+      - name: Validate generated scope
+        run: |
+          python - <<'PY'
+          import subprocess
+          allowed = {
+            'reports/fagverk/global-theory-strict-audit.json',
+            'reports/fagverk/fagverk-theory-integrity-audit.json',
+            'reports/fagverk/litteratur-theory-integrity-audit.json',
+            'data/fag/release_feed/fagverk_release_feed_v1.json',
+            'data/fagverk/fagverk_registry.json',
+            'data/fagverk/subject_status.json',
+            'data/fagverk/fagverk_release.json',
+          }
+          changed = set(filter(None, subprocess.check_output(['git','diff','--name-only'], text=True).splitlines()))
+          unexpected = sorted(changed - allowed)
+          print('Generated changes:')
+          for path in sorted(changed): print(path)
+          if unexpected:
+            raise SystemExit('Unexpected generated paths: ' + ', '.join(unexpected))
+          required = {
+            'reports/fagverk/global-theory-strict-audit.json',
+            'data/fag/release_feed/fagverk_release_feed_v1.json',
+            'data/fagverk/fagverk_release.json',
+          }
+          missing = sorted(required - changed)
+          if missing:
+            raise SystemExit('Expected stale outputs did not regenerate: ' + ', '.join(missing))
+          PY
+      - name: Commit generated outputs and remove one-shot workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/fagverk/global-theory-strict-audit.json \
+            reports/fagverk/fagverk-theory-integrity-audit.json \
+            reports/fagverk/litteratur-theory-integrity-audit.json \
+            data/fag/release_feed/fagverk_release_feed_v1.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/fagverk_release.json
+          git rm .github/workflows/litteratur-final-derived-regen-once.yml
+          git commit -m 'Regenerate deterministic Fagverk outputs for Litteratur closure'
+          git push origin HEAD:agent/litteratur-final-derived-regen-20260911
