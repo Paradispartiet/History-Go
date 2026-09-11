@@ -1,0 +1,53 @@
+name: Media expansion readiness
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/media/**'
+      - 'data/fagverk/media/**'
+      - 'reports/fagverk/media-complete-audit.json'
+      - 'reports/fagverk/media-theory-integrity-audit.json'
+      - 'reports/fagverk/media-legacy-theory-audit.json'
+      - 'reports/fagverk/media-expanded-quality-audit.json'
+      - 'reports/fagverk/fagverk-expanded-subject-by-subject-audit-v1.json'
+      - 'scripts/audit-fagverk-media-complete.mjs'
+      - 'scripts/audit-fagverk-media-legacy-theory.mjs'
+      - 'scripts/audit-fagverk-media-legacy-adjudication.mjs'
+      - 'tools/audit-media-theory-integrity.mjs'
+      - 'tools/audit-media-expanded-quality.mjs'
+      - 'tests/fagverk-media-complete.test.mjs'
+      - 'tests/media-theory-integrity.test.mjs'
+      - 'tests/media-expanded-quality.test.mjs'
+      - '.github/workflows/media-expanded-quality.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  expansion-readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify bounded Media whole-subject expansion audit
+        run: |
+          node --check tools/audit-media-expanded-quality.mjs
+          node scripts/audit-fagverk-media-complete.mjs
+          node tools/audit-media-theory-integrity.mjs
+          node scripts/audit-fagverk-media-legacy-theory.mjs > /tmp/media-legacy-theory.json
+          node scripts/audit-fagverk-media-legacy-adjudication.mjs > /tmp/media-legacy-adjudication.json
+          node tools/audit-media-expanded-quality.mjs
+          node --test tests/fagverk-media-complete.test.mjs tests/media-theory-integrity.test.mjs tests/media-expanded-quality.test.mjs
+      - name: Preserve shared Fagverk contracts
+        run: |
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
