@@ -1,0 +1,163 @@
+{
+  "schema": "civication_noncareer_role_taxonomy_v1",
+  "version": 1,
+  "status": "canonical_classification_boundary",
+  "reviewed_at": "2026-09-11",
+  "purpose": "Klassifiserer Civication-roller utenfor formell jobb uten å opprette en ny runtime eller blande livsposisjon, livsomstendighet, relasjon, levevei, roleModel og Career Role World.",
+  "authoritative_sources": {
+    "badge_index": "data/badges/index.json",
+    "badge_career_overlays": "data/Civication/badgeCareerContracts/index.json",
+    "badge_career_audit": "data/Civication/badgeCareerAuditPolicy.json",
+    "life_position_catalog": "data/Civication/lifePositionCatalog.json",
+    "life_position_runtime": "js/Civication/systems/civicationLifePositionRuntime.js",
+    "career_policy": "data/Civication/careerGameplayPolicy.json",
+    "career_matrix": "data/Civication/careerGameplayMatrix.json",
+    "role_model_manifest": "data/Civication/roleModels/manifest.json",
+    "scenario_people_index": "data/Civication/scenarioPeople_index.json",
+    "relationship_runtime": "js/Civication/systems/civicationRelationshipEngine.js",
+    "livelihood_contract": "docs/CIVICATION_LIVELIHOOD_CONTRACT.md",
+    "role_world_policy": "data/Civication/roleWorldPolicy.json",
+    "role_world_standard": "docs/CIVICATION_ROLE_WORLD_STANDARD.md",
+    "scene_pipeline": "data/Civication/SCENE_PIPELINE_V1.md"
+  },
+  "principles": [
+    "Formell jobb, livsposisjon, livsomstendighet, levevei og relasjon er separate canonical lag.",
+    "Livsposisjoner er spiller-valgte og employment-independent; Badge-poeng kan åpne valg, men tildeler aldri identitet automatisk.",
+    "En life_position kan sameksistere med career_unlock uten at livsposisjonen selv blir ansettelse, lønn eller profesjonsmyndighet.",
+    "Activity-, benefit- og housing-status er circumstances i hg_civi_life_positions_v1, ikke egne Role Worlds eller jobbroller.",
+    "Vennskap og relasjonsnivå eies av CivicationRelationshipEngine og skal ikke dupliseres som livsposisjoner.",
+    "Livelihood er dokumenterte inntektsstrømmer/muligheter og omskriver verken jobbstatus eller identitet.",
+    "roleModel er en authored fag-/rollemodell og kan være alias, Badge-tier eller canonical work scope; antallet roleModels er derfor ikke antallet spillerroller.",
+    "Role World kan beskrive en formell karriererolle eller en canonical life_position, men må fortsatt materialiseres gjennom civication_scene_v1 og eksisterende Scene Pipeline."
+  ],
+  "classes": {
+    "career_role": {
+      "runtime_owner": "CivicationState",
+      "state": "hg_active_position_v1",
+      "meaning": "Formell jobb eller offentlig/organisatorisk posisjon som er åpnet gjennom canonical career-kontrakt og eventuelle kvalifikasjons-/utnevnelsesporter.",
+      "selectable_identity": false,
+      "role_world_subject": true
+    },
+    "life_position": {
+      "runtime_owner": "CivicationLifePositions",
+      "state": "hg_civi_life_positions_v1.active_by_badge",
+      "meaning": "Selvvalgt identitet, praksis, status eller livsbane som er uavhengig av formell jobb.",
+      "sources": [
+        "effective Badge tier life_position/life_positions after required overlays",
+        "data/Civication/lifePositionCatalog.json",
+        "OPEN_LIFE_POSITIONS in civicationLifePositionRuntime.js"
+      ],
+      "selectable_identity": true,
+      "role_world_subject": true,
+      "role_world_rule": "Ikke alle livsposisjoner skal masseproduseres som Role Worlds. Hver kandidat må først bevise eget sosiologisk problem, authored provenance, sosialt miljø, 14x4-dekning og materialisering i eksisterende Scene Pipeline."
+    },
+    "life_circumstance": {
+      "runtime_owner": "CivicationLifePositions",
+      "state": "hg_civi_life_positions_v1.circumstances",
+      "axes": [
+        "activity_status",
+        "benefit_status",
+        "housing_status",
+        "housing_choice"
+      ],
+      "meaning": "Livsomstendighet som student/arbeidssøker/pensjonist, ytelse eller bosituasjon. Dette er kontekst som kan påvirke scener, ikke en selvstendig identitetsrolle.",
+      "selectable_identity": false,
+      "role_world_subject": false
+    },
+    "relationship_state": {
+      "runtime_owner": "CivicationRelationshipEngine",
+      "meaning": "Relasjonell progresjon mellom spilleren og andre mennesker, fra fremmed til nær venn, med trust/familiarity og sosial historikk.",
+      "selectable_identity": false,
+      "role_world_subject": false
+    },
+    "livelihood": {
+      "runtime_owner": "CivicationLivelihoods",
+      "state": "hg_civi_livelihood_v1",
+      "meaning": "Kildedokumentert inntektsmulighet eller strøm som kan eksistere med eller uten jobb og med eller uten livsposisjon.",
+      "selectable_identity": false,
+      "role_world_subject": false
+    },
+    "role_model": {
+      "runtime_owner": "authored_content",
+      "meaning": "Faglig/redaksjonell rollemodell for Career, Badge-tier eller Scenario People-resolusjon. En roleModel-fil er ikke i seg selv en spillerrolle.",
+      "selectable_identity": false,
+      "role_world_subject": false
+    },
+    "legacy_noncareer_work_world": {
+      "runtime_owner": "career_audit_only",
+      "meaning": "Work-world discovery som Career Gameplay eksplisitt har klassifisert som not_applicable. Dette er ikke en uttømmende liste over livsposisjoner.",
+      "selectable_identity": false,
+      "role_world_subject": false
+    }
+  },
+  "canonical_counts": {
+    "badge_count": 19,
+    "badge_tier_count": 274,
+    "effective_badge_tier_life_position_descriptors": 118,
+    "badge_audit_not_job_replace_tiers": 117,
+    "catalog_life_positions": 85,
+    "tier_catalog_duplicate_positions": 8,
+    "unique_badge_scoped_life_positions": 195,
+    "always_open_life_paths": 5,
+    "selectable_life_positions_total": 200,
+    "life_circumstance_axes": 4,
+    "life_circumstance_option_values": 18,
+    "relationship_stages": 6,
+    "career_role_worlds": 85,
+    "role_model_manifest_files": 293,
+    "canonical_scenario_role_models": 287,
+    "shadowed_role_models": 6,
+    "career_matrix_explicit_noncareer_worlds": 3
+  },
+  "semantic_edge_cases": [
+    {
+      "id": "required_badge_overlays",
+      "rule": "Natur og Næringsliv får life_position/career-kontraktene gjennom obligatoriske Badge Career overlays før runtime. Taxonomien skal telle effective tiers, ikke bare rå Badge-JSON."
+    },
+    {
+      "id": "catalog_runtime_dedupe",
+      "rule": "Helse og Utdanning har til sammen åtte posisjoner både som Badge-tier life_position og i lifePositionCatalog. CivicationLifePositions dedupliserer på badge_id + label, så de teller én gang i selectable total."
+    },
+    {
+      "id": "doktorgradsstudent",
+      "badge_id": "historie",
+      "label": "Doktorgradsstudent",
+      "rule": "Er en employment-independent doctoral_study_stage og samtidig en separat gated career_unlock. Formell jobb krever academic_phd_admission_or_employment; Badge/livsposisjon alene gir ikke ansettelse."
+    },
+    {
+      "id": "career_unlock_does_not_convert_identity",
+      "rule": "En tier kan ha life_position og samtidig åpne en separat career_unlock. Career-kontrakten må fortsatt gjennom sin egen policy/gate, og identiteten kan bestå uten formell jobb."
+    },
+    {
+      "id": "subkultur_split",
+      "rule": "Subkultur beholder elleve canonicale tier-livsposisjoner og kan åpne separate saklige jobber. Livsposisjonstittelen er ikke den aktive jobbtittelen."
+    }
+  ],
+  "role_world_rollout_boundary": {
+    "mass_materialization_allowed": false,
+    "one_subject_per_pr": true,
+    "allowed_subject_classes": [
+      "career_role",
+      "life_position"
+    ],
+    "not_standalone_role_world_subjects": [
+      "life_circumstance",
+      "relationship_state",
+      "livelihood",
+      "role_model",
+      "legacy_noncareer_work_world"
+    ],
+    "life_position_readiness_requires": [
+      "canonical runtime-selectable life_position",
+      "explicit sociological core distinct from a job definition",
+      "authored source inventory with real provenance",
+      "social environment and recurring people grammar",
+      "exact 14 days x four phases dramaturgical coverage",
+      "primary relational threads and private aftermath",
+      "delayed consequences",
+      "materialization through existing private/life/social/narrative or other governed sources",
+      "no_new_runtime true",
+      "full Role World and Scene Pipeline gates"
+    ]
+  }
+}
