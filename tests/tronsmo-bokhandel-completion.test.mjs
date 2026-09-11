@@ -51,7 +51,8 @@ test('Tronsmo Bokhandel full production contract',()=>{
   const leks=j('data/leksikon/places/oslo/litteratur/leksikon_tronsmo_bokhandel.json');
   assert.equal(leks[0].chronology.length,4);
   const lm=j('data/leksikon/manifest.json');
-  assert.ok(lm.files.includes('data/leksikon/places/oslo/litteratur/leksikon_tronsmo_bokhandel.json'));
+  const leksikonPath='data/leksikon/places/oslo/litteratur/leksikon_tronsmo_bokhandel.json';
+  assert.equal(lm.files.filter(file=>file===leksikonPath).length,1);
   const lesDoc=j('data/lesespor/oslo/lesespor_oslo_litteratur.json');
   const lesItems=Array.isArray(lesDoc)?lesDoc:lesDoc.items;
   assert.equal(lesItems.filter(x=>x.place_ids?.includes('tronsmo_bokhandel')).length,4);
