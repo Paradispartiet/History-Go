@@ -69,6 +69,7 @@ body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser p
 }
 
 body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser button,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser a[data-open-language-atlas-page],
 body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-collect{
   width: fit-content;
   min-height: 36px;
@@ -83,8 +84,16 @@ body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-collect{
   cursor: pointer;
 }
 
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser a[data-open-language-atlas-page]{
+  display:inline-flex;
+  align-items:center;
+  text-decoration:none;
+}
+
 body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser button:hover,
 body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser button:focus-visible,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser a[data-open-language-atlas-page]:hover,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser a[data-open-language-atlas-page]:focus-visible,
 body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-collect:hover,
 body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-collect:focus-visible{
   border-color: rgba(246,200,0,.78);

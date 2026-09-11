@@ -226,11 +226,18 @@ History Go er delt i tydelige lag:
 - Eier: full profil, samling, merker, profilkart, historikk og profilpaneler
 - Rolle: canonical profilside; ikke en intern APP SHELL-view
 
-### 6.9 Søk
+### 6.9 Språkatlas Norge
+- `sprakatlas.html`
+- `js/ui/place-language-layer.js`
+- `js/ui/sprakatlas-collection-v4.js`
+- Eier: separat atlasvisning over canonical `data/leksikon/sprak/norge_atlas_v1.json`, eksplisitte atlas→Place-relasjoner og Knowledge V2-samling
+- Rolle: egen kunnskapsside åpnet fra **Header Menu → Læring → Språkatlas Norge**. Atlaset rendres ikke inne i PlaceCard; PlaceCard beholder bare den stedsspesifikke Språk-fanen.
+
+### 6.10 Søk
 - js/ui/search.js
 - Eier: global search-widget
 
-### 6.10 Chips
+### 6.11 Chips
 - js/hgchips.js
 
 ---

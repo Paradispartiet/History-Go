@@ -7,17 +7,19 @@ Presentasjon: `js/ui/sprakatlas-map-experience-v3.js` over eksisterende `HGMap` 
 
 ## Produktregel
 
-Når en lokal talemålsprofil, dialektregion eller makroregion velges i Språkatlaset, kan History Go markere de **allerede eksplisitt koblede canonical Places** på hovedkartet. Kartlaget er transient presentasjon. Det oppretter ingen nye språkdata, koordinater, Places, kartdatabase eller atlasrelasjoner.
+**Språkatlas Norge eies nå av den separate siden `sprakatlas.html` og skal ikke renderes inne i PlaceCard.** Normal atlasbruk skjer derfor uten et samtidig MapLibre-kart i samme DOM.
 
-For lokale profiler er regelen hard: et kartpunkt kommer bare fra et språk-Place som eksplisitt har profilens ID i `atlas_local_ids`. Region- og makrofokus bygger tilsvarende bare på canonical `atlas_region_ids` og atlasets eksisterende region→makro-relasjon. Runtime får ikke finne nærmeste Place, gjette fra koordinater eller tilordne et sted fordi det ligger innenfor en antatt dialektgrense.
+De eksplisitte atlas→Place-relasjonene er fortsatt canonical. For lokale profiler er regelen hard: et Place kan bare kobles når språkfilen eksplisitt har profilens ID i `atlas_local_ids`. Region- og makrofokus bygger tilsvarende bare på canonical `atlas_region_ids` og atlasets eksisterende region→makro-relasjon. Runtime får ikke finne nærmeste Place, gjette fra koordinater eller tilordne et sted fordi det ligger innenfor en antatt dialektgrense.
+
+`js/ui/sprakatlas-map-experience-v3.js` beholdes fail-closed som kompatibilitetsruntime for en eventuell atlas-seleksjon som faktisk sameksisterer med hovedkartet, men standalone-siden laster den ikke. Den skal ikke brukes til å trekke atlaset tilbake inn i PlaceCard.
 
 ## Brukerflyt
 
-Den eksisterende listen **«Utforsk steder med dokumenterte språkspor»** beholdes som tekstlig og tastaturvennlig navigasjon. Når listen har eksplisitte Place-treff får den i tillegg **«Vis stedet på kartet»** eller **«Vis N steder på kartet»**.
+Den eksisterende listen **«Utforsk steder med dokumenterte språkspor»** beholdes som tekstlig og tastaturvennlig navigasjon på `sprakatlas.html`. Et Place-treff åpner hovedappen på det canonical Place-et; det opprettes ingen separat språk-popup eller konkurrerende PlaceCard-rute.
 
-Atlasvalget markerer treffene transient på det eksisterende History Go-kartet. Ett dokumentert sted sentreres; flere får et felles kartutsnitt. Kartmarkørene åpner samme canonical Place gjennom `HGMapView.openPlace()` og dermed vanlig PlaceCard. Det opprettes ingen separat språk-popup eller konkurrerende PlaceCard-rute.
+Place → **«Se talemålet i Språkatlas»** navigerer til `sprakatlas.html?focus=<atlas-id>`. Standalone-siden aktiverer den samme canonical atlas-seleksjonen og viser dokumenterte Place-koblinger. Hovedinngangen er **Header Menu → Læring → Språkatlas Norge**.
 
-Place → **«Se talemålet i Språkatlas»** bruker atlasets eksisterende `data-atlas-place-selection`. v3 observerer den samme selection-hosten som atlaslisten bruker, slik at reverse navigasjon aktiverer samme dokumenterte kartsett uten en parallell relasjonsmodell.
+Kompatibilitetsruntime v3 kan fortsatt bruke `HGMapView.openPlace()` når den kjører i en hovedkartkontekst, men dette er ikke lenger atlasets normale brukerflate.
 
 ## Eierskap og evidens
 

@@ -138,6 +138,16 @@ Arbeidsdagen har **én** dagrytme og **ett** sett fase-skrivere. Ikke innfør pa
 
 ---
 
+## STANDALONE SPRÅKATLAS
+
+- `sprakatlas.html` er canonical brukerflate for **Språkatlas Norge**.
+- Inngangen ligger i hovedappens **Header Menu → Læring → Språkatlas Norge**.
+- Atlaset skal **ikke** renderes inne i PlaceCard eller stedspopupen. Språk-fanen eier bare stedets Språkleksikon.
+- Canonical atlasdata forblir `data/leksikon/sprak/norge_atlas_v1.json`; Place-koblinger kommer bare fra eksisterende språkmanifest/`atlas_*_ids`.
+- `js/ui/place-language-layer.js` kan rendre atlaset på standalone-siden og deep-linke med `?focus=<atlas-id>`.
+- `js/ui/sprakatlas-collection-v4.js` beholder eksplisitt Knowledge V2-samling fra atlasbelegg.
+- Endringen oppretter ingen ny content store, Place-type, Knowledge-Subject eller atlasdatabase.
+
 ## INIT-REGLER
 
 | Funksjon | Fil | Når |
