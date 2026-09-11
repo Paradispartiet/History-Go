@@ -46,6 +46,25 @@ jobs:
           curl -L --fail --retry 3 'https://altinncdn.no/orgs/tad/tad.png' -o /tmp/tolletaten.png
           file /tmp/tollpakkhuset-place.jpg /tmp/nebelong.jpg /tmp/tolletaten.png
 
+      - name: Repair relative quiz phase contract
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'tools/build-tollpakkhuset-completion.mjs';
+          let src = fs.readFileSync(file, 'utf8');
+          const replacements = [
+            ['phase: i === 0 ? "opening" : i === 1 ? "middle" : "final"', 'phase: i === 0 ? "opening" : i === 1 ? "bridge" : "final"'],
+            ['planned_phase: i < 7 ? "opening" : i < 14 ? "middle" : "final"', 'planned_phase: i < 7 ? "opening" : i < 14 ? "bridge" : "final"']
+          ];
+          for (const [from, to] of replacements) {
+            const count = src.split(from).length - 1;
+            if (count !== 1) throw new Error(`Expected exactly one match for ${from}; got ${count}`);
+            src = src.replace(from, to);
+          }
+          fs.writeFileSync(file, src);
+          console.log('Tollpakkhuset 3-set progression repaired to opening → bridge → final');
+          NODE
+
       - name: Materialize Tollpakkhuset
         run: |
           node --check tools/build-tollpakkhuset-completion.mjs
