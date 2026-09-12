@@ -160,7 +160,7 @@ assert.equal(audit.first_ready?.key, 'scenekunst/scenehenger');
 
 const stage = audit.positions.find((row) => row.key === 'scenekunst/scenehenger');
 assert.ok(stage);
-assert.equal(stage.classification, 'needs_authored_depth');
+assert.equal(stage.classification, 'ready');
 assert.equal(stage.role_world_status, 'role_world_not_started');
 assert.equal(stage.authored_depth.max_narrative_depth, 0);
 assert.equal(stage.authored_depth.exact_source_ref_count, 0);
