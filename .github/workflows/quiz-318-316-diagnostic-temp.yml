@@ -1,0 +1,63 @@
+name: Quiz 318-316 diagnostic temp
+
+on:
+  push:
+    branches:
+      - agent/quiz-318-316-diagnostic-20260912
+    paths:
+      - ".github/workflows/quiz-318-316-diagnostic-temp.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Regenerate quiz production context in runner only
+        run: |
+          set -euo pipefail
+          npm run quiz:context
+          echo "Changed files after deterministic context rebuild:"
+          git status --short
+          echo "Changed paths:"
+          git diff --name-only
+          echo "Diff stat:"
+          git diff --stat
+
+      - name: Run complete quiz governance chain and expose every result
+        shell: bash
+        run: |
+          set +e
+          overall=0
+          run_check() {
+            label="$1"
+            shift
+            echo "::group::$label"
+            "$@"
+            rc=$?
+            echo "RESULT $label rc=$rc"
+            echo "::endgroup::"
+            if [ "$rc" -ne 0 ]; then overall=1; fi
+          }
+          run_check audit_quiz_manifest_v2 npm run audit:quiz-manifest:v2
+          run_check audit_quiz_templates npm run audit:quiz-templates
+          run_check audit_quiz_production_context npm run audit:quiz-production-context
+          run_check audit_quiz_progression npm run audit:quiz-progression
+          run_check audit_quiz_theory_binding npm run audit:quiz-theory-binding
+          run_check test_quiz_content_audit npm run test:quiz-content-audit
+          run_check test_quiz_production npm run test:quiz-production
+          echo "FINAL_DIAGNOSTIC_RC=$overall"
+          exit "$overall"
