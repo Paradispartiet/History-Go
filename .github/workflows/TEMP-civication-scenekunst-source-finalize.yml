@@ -1,0 +1,62 @@
+name: TEMP Civication Scenekunst source finalize
+
+on:
+  push:
+    branches:
+      - 'agent/civication-scenekunst-scenehenger-depth-20260912'
+    paths:
+      - '.github/workflows/TEMP-civication-scenekunst-source-finalize.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-civication-scenekunst-source-finalize
+  cancel-in-progress: true
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Materialize career gameplay matrix
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+
+      - name: Verify generated matrices
+        run: |
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node scripts/audit-civication-life-position-role-world-readiness.mjs --check
+
+      - name: Verify Scenehenger readiness contracts
+        run: |
+          node tests/civication-life-position-role-world-readiness.test.js
+          node tests/civication-life-position-readiness-badge-scope.test.js
+          node tests/civication-musikk-scenehenger-life-position-readiness.test.js
+          node tests/civication-scenekunst-scenehenger-life-position-readiness.test.js
+          node tests/civication-career-gameplay-matrix.test.js
+          node tests/civication-administrasjonsmedarbeider-readiness-prerequisites.test.js
+
+      - name: Commit generated career state
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/Civication/careerGameplayMatrix.json \
+            reports/civication-career-gameplay-matrix.md
+          if git diff --cached --quiet; then
+            echo "No career matrix changes"
+            exit 0
+          fi
+          git commit -m "Regenerate career matrix after Scenekunst readiness"
+          git push origin HEAD:${{ github.ref_name }}
