@@ -1852,7 +1852,7 @@
             </div>
             <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
           </section>
-          <section class="pc-sheet-onsite" data-hg-place-sheet-onsite aria-label="Events og møter"></section>
+          <section class="pc-sheet-onsite" data-hg-place-sheet-onsite aria-label="Events og m\xF8ter"></section>
         </div>
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
       </div>
