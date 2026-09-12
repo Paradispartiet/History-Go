@@ -93,6 +93,92 @@ body.hg-app #placeCard .pc-onsite-action-label{
   white-space:nowrap;
 }
 
+body.hg-app #placeCard .pc-onsite-action-count{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:20px;
+  height:20px;
+  padding:0 5px;
+  border-radius:999px;
+  background:rgba(255,255,255,.13);
+  color:#fff;
+  font-size:10px;
+  font-weight:900;
+}
+
+body.hg-app #placeCard .pc-onsite-action-events{
+  border-color:rgba(232,159,87,.42);
+}
+
+body.hg-app #placeCard .pc-onsite-action-meet{
+  border-color:rgba(181,121,210,.46);
+}
+
+body.hg-app .pc-onsite-event-popup,
+body.hg-app .pc-onsite-meet-hub{
+  display:grid;
+  gap:8px;
+}
+
+body.hg-app .pc-onsite-event{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:10px;
+  align-items:center;
+  padding:10px 12px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  background:rgba(255,255,255,.045);
+}
+
+body.hg-app .pc-onsite-event strong{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+body.hg-app .pc-onsite-event span{
+  color:rgba(255,255,255,.66);
+  font-size:11px;
+}
+
+body.hg-app .pc-onsite-meet-choice{
+  width:100%;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  gap:10px;
+  align-items:center;
+  min-height:54px;
+  padding:10px 12px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  text-align:left;
+  font:inherit;
+  cursor:pointer;
+}
+
+body.hg-app .pc-onsite-meet-choice > span:first-child{
+  font-size:20px;
+}
+
+body.hg-app .pc-onsite-meet-choice > span:last-child{
+  display:grid;
+  gap:2px;
+}
+
+body.hg-app .pc-onsite-meet-choice strong{
+  font-size:13px;
+}
+
+body.hg-app .pc-onsite-meet-choice small{
+  color:rgba(255,255,255,.65);
+  font-size:11px;
+  line-height:1.25;
+}
+
 @media (max-width:700px){
   body.hg-app #placeCard .pc-events-quad{
     padding:6px;
@@ -116,5 +202,12 @@ body.hg-app #placeCard .pc-onsite-action-label{
 
   body.hg-app #placeCard .pc-onsite-action-label{
     font-size:10px;
+  }
+
+  body.hg-app #placeCard .pc-onsite-action-count{
+    min-width:16px;
+    height:16px;
+    padding:0 3px;
+    font-size:8px;
   }
 }
