@@ -2226,16 +2226,12 @@ if (brandsEl) {
 }
 
 
-// --- LEGACY EVENTS / SOCIAL PLACE-CARD SURFACE RETIRED ---
-// Canonical brukerinnganger ligger nå i venstre Utforsk-panel:
-// Events -> HGEvents, Møtes -> HG_SpotmeetingUI / HG_SocialMeetUI.
-// pcEventsBox beholdes kun som host for ekte type-spesifikke På stedet-handlinger.
+// --- CANONICAL EVENTS / MØTES PLACE-CARD SURFACE ---
+// Utforsk eier de globale oversiktene, mens pcEventsBox er stedssnarveien.
+// Ikke skjul eller tøm boksen her: HGPlaceOnSiteSurface eier rendering/state.
 if (eventsBox) {
   eventsBox.onclick = null;
-  eventsBox.hidden = true;
-  [...eventsBox.children].forEach(child => {
-    if (!child.classList?.contains("pc-events-head")) child.remove();
-  });
+  window.HGPlaceOnSiteSurface?.decorate?.(true);
 }
 
 // --- LEKSIKON LIST + LEKSIKON ICON ---

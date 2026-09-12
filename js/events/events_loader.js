@@ -2,6 +2,11 @@
 (function () {
   "use strict";
 
+  // Legacy parser-time support only. When this loader is fetched dynamically by
+  // js/app.js after DOMContentLoaded, document.write() would replace the live page.
+  // The app entry loads HGNavigator/NextUp through its normal runtime path instead.
+  if (document.readyState !== "loading") return;
+
   if (!document.querySelector('script[src="js/hgNavigator.js"]')) {
     document.write('<script src="js/hgNavigator.js"><\/script>');
   }
