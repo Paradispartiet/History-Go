@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadHGSocialMeetAdapter", () => loadScriptOnce("js/social/HGSocialMeetAdapter.js"));
     await safeRun("loadHGSpotmeeting", () => loadScriptOnce("js/social/HGSpotmeeting.js"));
     await safeRun("loadHGSpotmeetingUI", () => loadScriptOnce("js/social/HGSpotmeetingUI.js"));
+    await safeRun("loadHGSocialMeetUI", () => loadScriptOnce("js/social/HGSocialMeetUI.js?v=20260912-live-surfaces1"));
     await safeRun("loadHGSpotmeetingPlaceCardDemo", () => loadScriptOnce("js/social/HGSpotmeetingPlaceCardDemo.js"));
     await safeRun("loadHGSocialMatchGraphPanel", () => loadScriptOnce("js/social/HGSocialMatchGraphPanel.js"));
     await safeRun("loadHGPublicProfilePreviewPanel", () => loadScriptOnce("js/social/HGPublicProfilePreviewPanel.js"));
@@ -70,6 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadNearbyPlacesList", () => loadScriptOnce("dist/web/nearbyPlacesList.js"));
     await safeRun("loadNearbyPeopleList", () => loadScriptOnce("dist/web/nearbyPeopleList.js"));
     await safeRun("loadLists", () => loadScriptOnce("js/ui/lists.js"));
+    await safeRun("loadEventsRuntime", () => loadScriptOnce("js/events/events_loader.js?v=20260912-live-surfaces1"));
 
     // persistence.js etter lists.js: saveVisited() kaller renderCollection() (lists.js)
     // og bruker state.js-globalene (personDialogs/peopleCollected/merits). Må være
@@ -106,6 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // entry-handleren må derfor være lastet før brukeren kan klikke dem.
     await safeRun("loadWonderkammerEntry", () => loadScriptOnce("js/ui/wonderkammer-entry.js"));
     await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js"));
+    await safeRun("loadPlaceOnsiteSurface", () => loadScriptOnce("js/ui/place-onsite-surface.js?v=20260912-live-surfaces1"));
     await safeRun("loadMicroPlaceCard", () => loadScriptOnce("js/ui/micro-place-card.js"));
     await safeRun("loadPlacePopupV2", () => loadScriptOnce("js/ui/place-popup-v2.js"));
     await safeRun("loadPlacePopupTabs", () => loadScriptOnce("js/ui/place-popup-tabs.js"));
