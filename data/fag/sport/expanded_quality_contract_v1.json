@@ -1,0 +1,51 @@
+{
+  "schema": "history_go_sport_expanded_quality_contract_v1",
+  "version": "1.0.0",
+  "subject_id": "sport",
+  "purpose": "Fail-closed bounded whole-subject expansion-proof reconciliation for Sport after canonical completion.",
+  "rules": {
+    "whole_subject_expansion_proof_required": true,
+    "strict_theory_integrity_alone_is_insufficient": true,
+    "legacy_equivalence_or_route_retirement_alone_is_insufficient": true,
+    "single_legacy_gap_migration_alone_is_insufficient": true,
+    "missing_expansion_proof_is_not_a_content_gap": true,
+    "new_content_requires_demonstrated_substantive_gap": true,
+    "quality_status_is_separate_from_canonical_lifecycle": true,
+    "canonical_lifecycle_is_read_only": true,
+    "global_subject_by_subject_plan_is_read_only": true
+  },
+  "expected_baseline": {
+    "canonical_domains": 6,
+    "canonical_emner": 116,
+    "canonical_methods": 109,
+    "canonical_hooks": 60,
+    "canonical_chapters": 6,
+    "chapter_sections": 54,
+    "chapter_paragraphs": 162,
+    "chapter_claims": 162,
+    "chapter_source_registrations": 74,
+    "standalone_articles": 116,
+    "strict_fields": 6,
+    "strict_theory_objects": 12,
+    "legacy_knowledge_sections": 10,
+    "legacy_canonical_supersedes": 9,
+    "legacy_migrated_sections": 1,
+    "post_completion_whole_subject_expansion_artifacts": 0,
+    "substantive_content_gaps": 0
+  },
+  "excluded_as_whole_subject_expansion_proof": [
+    "strict theory proof over unchanged existing corpus",
+    "legacy anchor-equivalence audit",
+    "single exclusion-concept migration closing the legacy sosial gap",
+    "legacy adjudication and route retirement",
+    "Civication Role World work, Groundhopper runtime/data work, people/place/quiz/story work outside the canonical Sport Fagverk corpus"
+  ],
+  "required_gates": [
+    "scripts/audit-fagverk-sport-phase3.mjs",
+    "tools/audit-sport-theory-integrity.mjs",
+    "scripts/audit-fagverk-sport-legacy-theory.mjs",
+    "scripts/audit-fagverk-sport-legacy-adjudication.mjs",
+    "tools/audit-sport-expanded-quality.mjs",
+    "tests/sport-expanded-quality.test.mjs"
+  ]
+}
