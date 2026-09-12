@@ -1,4 +1,4 @@
-name: Quiz 318-316 diagnostic temp
+name: Materialize Tollpakkhuset quiz context repair
 
 on:
   push:
@@ -6,17 +6,19 @@ on:
       - agent/quiz-318-316-diagnostic-20260912
     paths:
       - ".github/workflows/quiz-318-316-diagnostic-temp.yml"
-  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  diagnose:
+  materialize:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: agent/tollpakkhuset-quiz-context-sync-20260912
+          fetch-depth: 0
 
       - uses: actions/setup-node@v5
         with:
@@ -26,40 +28,50 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Regenerate only Tollpakkhuset quiz production context in runner
-        run: |
-          set -euo pipefail
-          npm run quiz:context -- --category naeringsliv --target tollpakkhuset --output data/quiz/production_context/naeringsliv/tollpakkhuset.json
-          echo "Changed files after deterministic targeted context rebuild:"
-          git status --short
-          echo "Changed paths:"
-          git diff --name-only
-          echo "Diff stat:"
-          git diff --stat
-          echo "Exact Tollpakkhuset diff:"
-          git diff -- data/quiz/production_context/naeringsliv/tollpakkhuset.json
-
-      - name: Run complete quiz governance chain and expose every result
+      - name: Apply exact deterministic Tollpakkhuset context repair
         shell: bash
         run: |
-          set +e
-          overall=0
-          run_check() {
-            label="$1"
-            shift
-            echo "::group::$label"
-            "$@"
-            rc=$?
-            echo "RESULT $label rc=$rc"
-            echo "::endgroup::"
-            if [ "$rc" -ne 0 ]; then overall=1; fi
-          }
-          run_check audit_quiz_manifest_v2 npm run audit:quiz-manifest:v2
-          run_check audit_quiz_templates npm run audit:quiz-templates
-          run_check audit_quiz_production_context npm run audit:quiz-production-context
-          run_check audit_quiz_progression npm run audit:quiz-progression
-          run_check audit_quiz_theory_binding npm run audit:quiz-theory-binding
-          run_check test_quiz_content_audit npm run test:quiz-content-audit
-          run_check test_quiz_production npm run test:quiz-production
-          echo "FINAL_DIAGNOSTIC_RC=$overall"
-          exit "$overall"
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('data/quiz/production_context/naeringsliv/tollpakkhuset.json')
+          s = p.read_text()
+          old_bytes = '"selection_bytes": 1097'
+          new_bytes = '"selection_bytes": 1521'
+          old_hash = '"selection_sha256": "1917ac8319d23a71e71b0b0255b7a669d431a79171291bb6ff8d066923ad5d0f"'
+          new_hash = '"selection_sha256": "b67c6827822642a6df534f5c93c6a48e05b99ce6380d72da39a266d8f6962e95"'
+          assert s.count(old_bytes) == 1, f'expected one old selection_bytes, got {s.count(old_bytes)}'
+          assert s.count(old_hash) == 1, f'expected one old selection hash, got {s.count(old_hash)}'
+          s = s.replace(old_bytes, new_bytes).replace(old_hash, new_hash)
+          p.write_text(s)
+          PY
+          test "$(git diff --name-only)" = "data/quiz/production_context/naeringsliv/tollpakkhuset.json"
+          git diff --check
+          git diff --stat
+          git diff -- data/quiz/production_context/naeringsliv/tollpakkhuset.json
+          additions=$(git diff --numstat | awk '{s+=$1} END{print s+0}')
+          deletions=$(git diff --numstat | awk '{s+=$2} END{print s+0}')
+          test "$additions" -eq 2
+          test "$deletions" -eq 2
+
+      - name: Verify complete quiz governance chain
+        run: |
+          set -euo pipefail
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-templates
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-content-audit
+          npm run test:quiz-production
+
+      - name: Commit and push one-file repair
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/production_context/naeringsliv/tollpakkhuset.json
+          test "$(git diff --cached --name-only)" = "data/quiz/production_context/naeringsliv/tollpakkhuset.json"
+          git commit -m "Sync Tollpakkhuset quiz context with places index"
+          git push origin HEAD:agent/tollpakkhuset-quiz-context-sync-20260912
+          echo "REPAIR_HEAD=$(git rev-parse HEAD)"
