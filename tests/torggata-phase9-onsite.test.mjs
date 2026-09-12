@@ -17,10 +17,8 @@ test("Torggata fase 9 migrerer legacy tasks_profile og bruker canonical by-polic
   assert.deepEqual(onsite.categoryPolicy.by, {
     play: "never"
   });
-  assert.match(onsite.movedSurfaces.events, /Utforsk → Events/);
-  assert.match(onsite.movedSurfaces.events, /PlaceCard/);
+  assert.equal(onsite.movedSurfaces.events, "Utforsk → Events");
   assert.match(onsite.movedSurfaces["social-meet"], /Utforsk → Møtes/);
-  assert.match(onsite.movedSurfaces["social-meet"], /PlaceCard/);
   assert.match(onsite.movedSurfaces["knowledge-meet"], /Utforsk → Møtes/);
   for (const field of ["events", "tasks_profile", "training_profile", "play_profile"]) {
     assert.equal(Object.hasOwn(place, field), false, field);
