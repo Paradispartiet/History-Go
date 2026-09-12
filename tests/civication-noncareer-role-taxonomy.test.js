@@ -99,7 +99,7 @@ const catalogPositions = (catalog.badges || []).flatMap((profile) =>
     source: 'catalog'
   }))
 );
-assert.equal(catalogPositions.length, 85, 'Life Position Catalog skal fortsatt ha 85 posisjoner');
+assert.equal(catalogPositions.length, 84, 'Life Position Catalog skal ha 84 posisjoner etter canonical opprydding');
 
 const keyOf = (position) => `${position.badge_id}::${position.label}`;
 const tierKeys = new Set(tierPositions.map(keyOf));
@@ -108,8 +108,8 @@ assert.equal(new Set(duplicateKeys).size, 8,
   'Helse/Utdanning skal fortsatt gi åtte tier+katalog-duplikater som runtime dedupliserer');
 
 const uniqueBadgeScoped = new Set([...tierPositions, ...catalogPositions].map(keyOf));
-assert.equal(uniqueBadgeScoped.size, 195,
-  'tier + katalog skal materialisere 195 unike Badge-scopede livsposisjoner');
+assert.equal(uniqueBadgeScoped.size, 194,
+  'tier + katalog skal materialisere 194 unike Badge-scopede livsposisjoner');
 
 const merits = Object.fromEntries(badges.map((badge) => [
   badge.id,
@@ -149,9 +149,9 @@ assert.deepEqual(
 );
 
 const unlocked = lifeApi.getAllUnlockedPositions();
-assert.equal(unlocked.length, 200,
-  'canonical runtime skal materialisere 200 unike valgbare livsposisjoner ved full Badge-progresjon');
-assert.equal(new Set(unlocked.map(keyOf)).size, 200,
+assert.equal(unlocked.length, 199,
+  'canonical runtime skal materialisere 199 unike valgbare livsposisjoner ved full Badge-progresjon');
+assert.equal(new Set(unlocked.map(keyOf)).size, 199,
   'runtime-resultatet skal være deduplisert på badge_id + label');
 
 const circumstanceOptions = lifeApi.getCircumstanceOptions();
@@ -208,11 +208,11 @@ const expectedCounts = {
   badge_tier_count: 274,
   effective_badge_tier_life_position_descriptors: 118,
   badge_audit_not_job_replace_tiers: 117,
-  catalog_life_positions: 85,
+  catalog_life_positions: 84,
   tier_catalog_duplicate_positions: 8,
-  unique_badge_scoped_life_positions: 195,
+  unique_badge_scoped_life_positions: 194,
   always_open_life_paths: 5,
-  selectable_life_positions_total: 200,
+  selectable_life_positions_total: 199,
   life_circumstance_axes: 4,
   life_circumstance_option_values: 18,
   relationship_stages: 6,
@@ -237,4 +237,4 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.allowed_subject_classes,
   ['career_role', 'life_position']);
 assert.equal(taxonomy.role_world_rollout_boundary.mass_materialization_allowed, false);
 
-console.log('civication non-career role taxonomy ok: 200 selectable life positions / 85 career Role Worlds + 2 life-position worlds / layers remain separate');
+console.log('civication non-career role taxonomy ok: 199 selectable life positions / 85 career Role Worlds + 10 life-position worlds / layers remain separate');
