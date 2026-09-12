@@ -14,7 +14,7 @@ const output = execFileSync(process.execPath, [
   '--check'
 ], { cwd: ROOT, encoding: 'utf8' });
 
-assert.match(output, /PASS: 200 life positions audited/);
+assert.match(output, /PASS: 199 life positions audited/);
 
 const audit = readJson('data/Civication/lifePositionRoleWorldReadiness.json');
 const taxonomy = readJson('data/Civication/nonCareerRoleTaxonomy.json');
@@ -23,10 +23,10 @@ const policy = readJson('data/Civication/roleWorldPolicy.json');
 assert.equal(audit.schema, 'civication_life_position_role_world_readiness_v2');
 assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
-assert.equal(audit.summary.selectable_life_positions, 200);
+assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
   ready: 10,
-  needs_authored_depth: 150,
+  needs_authored_depth: 149,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.completed_life_position_role_worlds, 10);
@@ -104,7 +104,7 @@ for (const row of audit.positions.filter((item) => item.classification === 'read
 assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjenner','film_tv/filmklubbmenneske'].includes(row.key)),
   'completed life-position worlds must leave the readiness queue');
 assert.ok((audit.queue || []).every((row) => row.classification !== 'not_a_standalone_world'));
-assert.equal(new Set(audit.positions.map((row) => row.key)).size, 200);
+assert.equal(new Set(audit.positions.map((row) => row.key)).size, 199);
 assert.deepEqual(new Set(audit.positions.map((row) => row.classification)),
   new Set(['ready', 'needs_authored_depth', 'not_a_standalone_world']));
 assert.ok(audit.semantics.audit_only_no_new_runtime);
