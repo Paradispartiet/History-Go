@@ -1,7 +1,7 @@
 # Civication life-position Role World readiness
 
-**Selectable life positions audited:** 200
-**Classification:** 10 ready / 150 needs_authored_depth / 40 not_a_standalone_world
+**Selectable life positions audited:** 199
+**Classification:** 10 ready / 149 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 14
 **Exact governed-source matches:** 10
 **Multi-scene narrative foundations:** 10
@@ -10,7 +10,7 @@
 
 ## Decision
 
-No unfinished life position is currently ready for Role World production. Source-ready positions that are already role_world_complete remain visible in the 200-position audit but are excluded from the pending queue; remaining standalone-capable positions require authored depth first.
+No unfinished life position is currently ready for Role World production. Source-ready positions that are already role_world_complete remain visible in the 199-position audit but are excluded from the pending queue; remaining standalone-capable positions require authored depth first.
 
 Livelihood templates count as provenance for an economic opportunity, but never as sufficient Role World depth on their own.
 
@@ -29,29 +29,29 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 | 9 | `liv_lovsbane/kriminell` | needs_authored_depth | 0 | 0 | 0 |
 | 10 | `naeringsliv/frilanser` | needs_authored_depth | 0 | 1 | 0 |
 | 11 | `by/byflanor` | needs_authored_depth | 0 | 0 | 0 |
-| 12 | `by/byromsnerd` | needs_authored_depth | 0 | 0 | 0 |
-| 13 | `by/byvandrer` | needs_authored_depth | 0 | 0 | 0 |
-| 14 | `by/urbanist` | needs_authored_depth | 0 | 0 | 0 |
-| 15 | `film_tv/festivalgjenger` | needs_authored_depth | 0 | 0 | 0 |
-| 16 | `film_tv/filmfantast` | needs_authored_depth | 0 | 0 | 0 |
-| 17 | `film_tv/filminteressert` | needs_authored_depth | 0 | 0 | 0 |
-| 18 | `film_tv/filmnerd` | needs_authored_depth | 0 | 0 | 0 |
-| 19 | `film_tv/kinogjenger` | needs_authored_depth | 0 | 0 | 0 |
-| 20 | `film_tv/kjenner` | needs_authored_depth | 0 | 0 | 0 |
-| 21 | `film_tv/seer` | needs_authored_depth | 0 | 0 | 0 |
-| 22 | `film_tv/seriesluker` | needs_authored_depth | 0 | 0 | 0 |
-| 23 | `filosofi/lesesirkelmenneske` | needs_authored_depth | 0 | 0 | 0 |
-| 24 | `filosofi/livsgrubler` | needs_authored_depth | 0 | 0 | 0 |
-| 25 | `helse/evidensleser` | needs_authored_depth | 0 | 0 | 0 |
-| 26 | `helse/folkehelseblikk` | needs_authored_depth | 0 | 0 | 0 |
-| 27 | `helse/helseutforsker` | needs_authored_depth | 0 | 0 | 0 |
-| 28 | `helse/omsorgsetiker` | needs_authored_depth | 0 | 0 | 0 |
-| 29 | `historie/arkivrotte` | needs_authored_depth | 0 | 0 | 0 |
-| 30 | `historie/lokalhistoriker` | needs_authored_depth | 0 | 0 | 0 |
+| 12 | `by/byvandrer` | needs_authored_depth | 0 | 0 | 0 |
+| 13 | `by/urbanist` | needs_authored_depth | 0 | 0 | 0 |
+| 14 | `film_tv/festivalgjenger` | needs_authored_depth | 0 | 0 | 0 |
+| 15 | `film_tv/filmfantast` | needs_authored_depth | 0 | 0 | 0 |
+| 16 | `film_tv/filminteressert` | needs_authored_depth | 0 | 0 | 0 |
+| 17 | `film_tv/filmnerd` | needs_authored_depth | 0 | 0 | 0 |
+| 18 | `film_tv/kinogjenger` | needs_authored_depth | 0 | 0 | 0 |
+| 19 | `film_tv/kjenner` | needs_authored_depth | 0 | 0 | 0 |
+| 20 | `film_tv/seer` | needs_authored_depth | 0 | 0 | 0 |
+| 21 | `film_tv/seriesluker` | needs_authored_depth | 0 | 0 | 0 |
+| 22 | `filosofi/lesesirkelmenneske` | needs_authored_depth | 0 | 0 | 0 |
+| 23 | `filosofi/livsgrubler` | needs_authored_depth | 0 | 0 | 0 |
+| 24 | `helse/evidensleser` | needs_authored_depth | 0 | 0 | 0 |
+| 25 | `helse/folkehelseblikk` | needs_authored_depth | 0 | 0 | 0 |
+| 26 | `helse/helseutforsker` | needs_authored_depth | 0 | 0 | 0 |
+| 27 | `helse/omsorgsetiker` | needs_authored_depth | 0 | 0 | 0 |
+| 28 | `historie/arkivrotte` | needs_authored_depth | 0 | 0 | 0 |
+| 29 | `historie/lokalhistoriker` | needs_authored_depth | 0 | 0 | 0 |
+| 30 | `kunst/ateliermenneske` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 
-- Readiness classification is separate from Role World lifecycle status; completed worlds stay visible in the 200-position audit but leave the pending queue.
+- Readiness classification is separate from Role World lifecycle status; completed worlds stay visible in the 199-position audit but leave the pending queue.
 - This audit does not create a NonCareerRoleEngine or new scene format.
 - Circumstances, relationships and livelihood remain separate runtime layers.
 - Generic private-life scenes may support aftermath, but cannot prove a specific life-position world by themselves.

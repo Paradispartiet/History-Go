@@ -447,14 +447,14 @@ function renderReport(data) {
   lines.push(`**Pending ready positions:** ${data.summary.pending_ready_positions}`,'');
   lines.push('## Decision','');
   if (data.first_ready) lines.push(`First pending ready Role World position: **${data.first_ready.key} — ${data.first_ready.label}**.`,'');
-  else lines.push('No unfinished life position is currently ready for Role World production. Source-ready positions that are already role_world_complete remain visible in the 200-position audit but are excluded from the pending queue; remaining standalone-capable positions require authored depth first.','');
+  else lines.push(`No unfinished life position is currently ready for Role World production. Source-ready positions that are already role_world_complete remain visible in the ${data.summary.selectable_life_positions}-position audit but are excluded from the pending queue; remaining standalone-capable positions require authored depth first.`,'');
   lines.push('Livelihood templates count as provenance for an economic opportunity, but never as sufficient Role World depth on their own.','');
   lines.push('## Top queue','');
   lines.push('| Rank | Position | Class | Exact refs | Livelihood | Narrative depth |');
   lines.push('| ---: | --- | --- | ---: | ---: | ---: |');
   for (const row of data.queue.slice(0,30)) lines.push(`| ${row.rank} | \`${row.key}\` | ${row.classification} | ${row.exact_source_ref_count} | ${row.livelihood_template_count} | ${row.max_narrative_depth} |`);
   lines.push('','## Boundaries','');
-  lines.push('- Readiness classification is separate from Role World lifecycle status; completed worlds stay visible in the 200-position audit but leave the pending queue.');
+  lines.push(`- Readiness classification is separate from Role World lifecycle status; completed worlds stay visible in the ${data.summary.selectable_life_positions}-position audit but leave the pending queue.`);
   lines.push('- This audit does not create a NonCareerRoleEngine or new scene format.');
   lines.push('- Circumstances, relationships and livelihood remain separate runtime layers.');
   lines.push('- Generic private-life scenes may support aftermath, but cannot prove a specific life-position world by themselves.');
@@ -478,6 +478,8 @@ if (checkMode) {
   if (!exists(OUTPUT) || !exists(REPORT)) throw new Error('Readiness outputs missing; run with --write.');
   if (readText(OUTPUT)!==jsonText) throw new Error(`${OUTPUT} is stale; run with --write.`);
   if (readText(REPORT)!==reportText) throw new Error(`${REPORT} is stale; run with --write.`);
-  if (rows.length!==200) throw new Error(`Expected 200 selectable life positions, got ${rows.length}`);
+  const expectedSelectable = Number(taxonomy.canonical_counts?.selectable_life_positions_total);
+  if (!Number.isInteger(expectedSelectable) || expectedSelectable < 1) throw new Error('Canonical selectable life-position count missing from taxonomy.');
+  if (rows.length!==expectedSelectable) throw new Error(`Expected ${expectedSelectable} selectable life positions, got ${rows.length}`);
   console.log(`PASS: ${rows.length} life positions audited; ${classCounts.ready} ready, ${classCounts.needs_authored_depth} needs depth, ${classCounts.not_a_standalone_world} not standalone; ${output.summary.life_position_role_world_complete} Role World complete.`);
 }

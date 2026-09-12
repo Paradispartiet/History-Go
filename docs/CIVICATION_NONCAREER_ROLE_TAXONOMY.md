@@ -88,9 +88,9 @@ På den canonicale baselinen som denne kontrakten ble opprettet mot:
 - **117 tiers** er eksplisitt `not_job / replace` i Badge Career Audit
 - **85** posisjoner ligger i den separate Life Position Catalog
 - **8** av disse er de samme Helse-/Utdanning-posisjonene som også ligger på Badge-tier og dedupliseres av runtime
-- **195 unike Badge-scopede livsposisjoner**
+- **194 unike Badge-scopede livsposisjoner**
 - **5 alltid åpne livsbaner**
-- dermed **200 unike valgbare livsposisjoner**
+- dermed **199 unike valgbare livsposisjoner**
 
 Dette tallet er **ikke** `roleModels`-tallet.
 
@@ -173,7 +173,7 @@ Dermed kan en canonical `life_position` få en egen Role World når den faktisk 
 - materialisering gjennom `civication_scene_v1`;
 - `no_new_runtime: true`.
 
-Det skal **ikke** masseproduseres 200 Role Worlds bare fordi 200 livsposisjoner er valgbare.
+Det skal **ikke** masseproduseres 199 Role Worlds bare fordi 199 livsposisjoner er valgbare.
 
 ## 9. Hva skal ikke være egne Role Worlds?
 
