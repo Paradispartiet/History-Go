@@ -62,8 +62,8 @@ assert.match(opportunity.description, /ikke profesjonell artsforvaltning|myndigh
 const ready = audit.positions.find((row) => row.key === 'natur/artsjeger');
 assert.ok(ready);
 assert.equal(ready.classification, 'ready');
-assert.equal(ready.role_world_status, 'role_world_not_started');
-assert.equal(ready.role_world_path, null);
+assert.equal(ready.role_world_status, 'role_world_complete');
+assert.equal(ready.role_world_path, 'data/Civication/roleWorlds/natur/natur_artsjeger.json');
 assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['artsjeger_feltregistrering']);
@@ -73,13 +73,13 @@ assert.deepEqual(audit.summary.classifications, {
   needs_authored_depth: 150,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 9);
-assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.completed_life_position_role_worlds, 10);
+assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 10);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 10);
-assert.equal(audit.first_ready?.key, 'natur/artsjeger');
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'natur/artsjeger');
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'natur/artsjeger');
+assert.equal(audit.first_ready, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
 
 const authorityText = stream.storylets
   .flatMap((row) => [row.situation.join(' '), ...row.choices.map((choice) => choice.feedback || '')])
