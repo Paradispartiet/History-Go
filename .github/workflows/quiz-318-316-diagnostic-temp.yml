@@ -1,4 +1,4 @@
-name: Diagnose Fagverk release manifest sync
+name: Materialize Fagverk release manifest sync
 
 on:
   push:
@@ -8,10 +8,10 @@ on:
       - ".github/workflows/quiz-318-316-diagnostic-temp.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  diagnose:
+  materialize:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Reproduce canonical release materialization
+      - name: Materialize canonical release state
         shell: bash
         run: |
           set -euo pipefail
@@ -36,22 +36,34 @@ jobs:
           node scripts/materialize-natur-final-registry.mjs
           node --check scripts/build-fagverk-release-manifest.mjs
           node scripts/build-fagverk-release-manifest.mjs
-          echo "=== GENERATED PATHS ==="
-          git status --short
-          echo "=== NAME ONLY ==="
-          git diff --name-only
-          echo "=== NUMSTAT ==="
+          mapfile -t changed < <(git diff --name-only)
+          test "${#changed[@]}" -gt 0
+          for path in "${changed[@]}"; do
+            case "$path" in
+              data/fagverk/fagverk_registry.json|data/fagverk/subject_status.json|data/fagverk/fagverk_release.json) ;;
+              *) echo "Unexpected generated path: $path" >&2; exit 1 ;;
+            esac
+          done
+          echo "Generated paths:"
+          printf '%s\n' "${changed[@]}"
           git diff --numstat
-          echo "=== RELEASE DIFF ==="
-          git diff -- data/fagverk/fagverk_release.json
-          echo "=== REGISTRY DIFF ==="
-          git diff -- data/fagverk/fagverk_registry.json
-          echo "=== SUBJECT STATUS DIFF ==="
-          git diff -- data/fagverk/subject_status.json
+          git diff --check
 
-      - name: Verify generated state against release contract
+      - name: Verify official release contract
         shell: bash
         run: |
           set -euo pipefail
           node --test tests/fagverk-release-manifest.test.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
+
+      - name: Commit and push generated repair only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fagverk/fagverk_registry.json data/fagverk/subject_status.json data/fagverk/fagverk_release.json
+          test -n "$(git diff --cached --name-only)"
+          git commit -m "Sync Fagverk release manifest"
+          git push origin HEAD:agent/fagverk-release-manifest-sync-20260912
+          echo "REPAIR_HEAD=$(git rev-parse HEAD)"
