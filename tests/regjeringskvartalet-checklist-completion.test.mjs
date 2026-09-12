@@ -41,10 +41,7 @@ test('onsite-profilen har bare handlinger som faktisk passer Regjeringskvartalet
   for (const field of ['tasks_profile', 'training_profile', 'play_profile']) {
     assert.equal(Object.hasOwn(place, field), false, field);
   }
-  assert.match(onsite, /CORE_SHORTCUTS = \["events", "meet"\]/);
-  assert.match(onsite, /HGEvents/);
-  assert.match(onsite, /HG_SocialMeetUI/);
-  assert.match(onsite, /HG_SpotmeetingUI/);
+  assert.doesNotMatch(onsite, /CORE_SHORTCUTS|HGEvents|HG_SocialMeetUI|HG_SpotmeetingUI/);
   assert.match(report, /\| Tasks \| N\/A \|/);
   assert.match(report, /\| Training \| N\/A \|/);
   assert.match(report, /\| Play \| N\/A \|/);
