@@ -1,0 +1,61 @@
+name: TEMP Civication Scenekunst Role World generators
+
+on:
+  push:
+    branches:
+      - 'agent/civication-scenekunst-scenehenger-role-world-20260913'
+    paths:
+      - '.github/workflows/TEMP-civication-scenekunst-role-world-generators.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-civication-scenekunst-role-world-generators
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Materialize readiness outputs
+        run: |
+          node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+
+      - name: Verify generator parity
+        run: |
+          node scripts/audit-civication-life-position-role-world-readiness.mjs --check
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+
+      - name: Commit generated state
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/Civication/lifePositionRoleWorldReadiness.json \
+            reports/civication-life-position-role-world-readiness.md \
+            data/Civication/careerGameplayMatrix.json \
+            reports/civication-career-gameplay-matrix.md \
+            data/Civication/roleWorldRolloutReadiness.json \
+            reports/civication-role-world-rollout-readiness.md
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+            exit 0
+          fi
+          git commit -m "Regenerate Civication state for Scenekunst Role World"
+          git push origin HEAD:${{ github.ref_name }}
