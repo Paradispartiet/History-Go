@@ -62,8 +62,8 @@ assert.deepEqual(opportunity.direct_costs, { fixed: 1 });
 const ready = audit.positions.find((row) => row.key === 'scenekunst/scenehenger');
 assert.ok(ready);
 assert.equal(ready.classification, 'ready');
-assert.equal(ready.role_world_status, 'role_world_not_started');
-assert.equal(ready.role_world_path, null);
+assert.equal(ready.role_world_status, 'role_world_complete');
+assert.equal(ready.role_world_path, 'data/Civication/roleWorlds/scenekunst/scenekunst_scenehenger.json');
 assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.equal(ready.authored_depth.exact_source_ref_count, 1);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
@@ -82,15 +82,14 @@ assert.deepEqual(audit.summary.classifications, {
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.selectable_life_positions, 199);
-assert.equal(audit.summary.completed_life_position_role_worlds, 11);
-assert.equal(audit.summary.life_position_role_world_complete, 11);
-assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.completed_life_position_role_worlds, 12);
+assert.equal(audit.summary.life_position_role_world_complete, 12);
+assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 12);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 12);
-assert.equal(audit.first_ready?.key, 'scenekunst/scenehenger');
-assert.equal(audit.first_ready?.priority_score, 1435);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'scenekunst/scenehenger');
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'scenekunst/scenehenger');
+assert.equal(audit.first_ready, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
 
 const paidAnchor = stream.storylets.find((row) => row.id === 'riggehjelpen_for_innslipp');
 assert.ok(paidAnchor);
