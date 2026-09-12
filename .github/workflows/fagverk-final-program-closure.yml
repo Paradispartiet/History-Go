@@ -1,0 +1,63 @@
+name: Fagverk final program closure
+
+on:
+  pull_request:
+    paths:
+      - 'reports/fagverk/fagverk-final-program-closure-v1.json'
+      - 'reports/fagverk/fagverk-expanded-subject-by-subject-audit-v1.json'
+      - 'reports/fagverk/fagverk-expansion-19-plus-1-final-reconciliation-v1.json'
+      - 'reports/fagverk/by-expanded-quality-audit.json'
+      - 'reports/fagverk/kunst-expanded-quality-audit.json'
+      - 'reports/fagverk/litteratur-expanded-quality-audit.json'
+      - 'reports/fagverk/media-expanded-quality-audit.json'
+      - 'reports/fagverk/musikk-expanded-quality-audit.json'
+      - 'reports/fagverk/sport-expanded-quality-audit.json'
+      - 'data/fagverk/subject_status.json'
+      - 'tools/audit-fagverk-final-program-closure.mjs'
+      - 'tests/fagverk-final-program-closure.test.mjs'
+      - '.github/workflows/fagverk-final-program-closure.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'reports/fagverk/fagverk-final-program-closure-v1.json'
+      - 'reports/fagverk/fagverk-expanded-subject-by-subject-audit-v1.json'
+      - 'reports/fagverk/fagverk-expansion-19-plus-1-final-reconciliation-v1.json'
+      - 'reports/fagverk/by-expanded-quality-audit.json'
+      - 'reports/fagverk/kunst-expanded-quality-audit.json'
+      - 'reports/fagverk/litteratur-expanded-quality-audit.json'
+      - 'reports/fagverk/media-expanded-quality-audit.json'
+      - 'reports/fagverk/musikk-expanded-quality-audit.json'
+      - 'reports/fagverk/sport-expanded-quality-audit.json'
+      - 'data/fagverk/subject_status.json'
+      - 'tools/audit-fagverk-final-program-closure.mjs'
+      - 'tests/fagverk-final-program-closure.test.mjs'
+      - '.github/workflows/fagverk-final-program-closure.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  final-program-closure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify final 19+1 Fagverk program closure
+        run: |
+          node --check tools/audit-fagverk-final-program-closure.mjs
+          node tools/audit-fagverk-final-program-closure.mjs
+          node --test tests/fagverk-final-program-closure.test.mjs
+      - name: Preserve shared Fagverk contracts
+        run: |
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
