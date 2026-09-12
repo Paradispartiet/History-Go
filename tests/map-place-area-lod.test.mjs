@@ -114,7 +114,7 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
   const app = read("js/app.js");
   const index = read("index.html");
   assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20260824-area-square-dom3"\)/);
-  assert.match(index, /js\/app\.js\?v=20260824-area-square-dom3/);
+  assert.match(index, /js\/app\.js\?v=20260911-explore-meet-runtime2/);
 
   assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);
   assert.match(source, /id: L_DOTS,[\s\S]*?type: "circle",[\s\S]*?paint: getPlaceDotPaint\(false\)/);
