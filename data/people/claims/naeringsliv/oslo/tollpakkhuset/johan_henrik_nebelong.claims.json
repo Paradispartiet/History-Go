@@ -1,0 +1,128 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "johan_henrik_nebelong",
+  "profile_file": "data/people/naeringsliv/oslo/tollpakkhuset/johan_henrik_nebelong.json",
+  "identity": {
+    "canonical_identity": "Arkitekten Johan Henrik Nebelong (1817–1871), som virket i Norge og tegnet Tollpakkhuset i Tollbugata 1A.",
+    "name_variants": [
+      "Johan Henrik Nebelong",
+      "Henrik Nebelong"
+    ],
+    "not": [
+      "organisten Johan Henrik Nebelong (1847–1931)"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_life_profession",
+      "claim": "Johan Henrik Nebelong var arkitekt, født 20. juli 1817 og død 1. mars 1871.",
+      "status": "verified",
+      "source_url": "https://nbl.snl.no/Henrik_Nebelong",
+      "source_location": "faktaboks og ingress",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "tollpakkhuset_work",
+      "claim": "Nebelong tegnet Tollpakkhuset i Tollbugata 1A, oppført 1846–1850 som lager for Tollvesenet.",
+      "status": "verified",
+      "source_url": "https://nbl.snl.no/Henrik_Nebelong",
+      "source_location": "verksliste / Tollpakkhuset",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image_identity",
+      "claim": "Commons-portrettet er identifisert som arkitekt Johan Henrik Nebelong (1817–1871).",
+      "status": "verified",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Gad_Frederik_Clement_-_Johan_Henrik_Nebelong_-_Norsk_portrettarkiv_-_Riksantikvaren_-_N000136.jpg",
+      "source_location": "filbeskrivelse og metadata",
+      "source_type": "archive",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-11",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_life_profession"
+    ],
+    "kindLabel": [
+      "identity_life_profession"
+    ],
+    "birth_date": [
+      "identity_life_profession"
+    ],
+    "death_date": [
+      "identity_life_profession"
+    ],
+    "active_place": [
+      "identity_life_profession",
+      "tollpakkhuset_work"
+    ],
+    "placeId": [
+      "tollpakkhuset_work"
+    ],
+    "places[tollpakkhuset]": [
+      "tollpakkhuset_work"
+    ],
+    "year": [
+      "tollpakkhuset_work"
+    ],
+    "image": [
+      "image_identity"
+    ],
+    "cardImage": [
+      "image_identity"
+    ],
+    "imageMeta": [
+      "image_identity"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "tollpakkhuset_work"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_life_profession"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "tollpakkhuset_work"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "tollpakkhuset_work",
+          "image_identity"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

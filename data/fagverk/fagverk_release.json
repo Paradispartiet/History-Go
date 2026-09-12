@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.15.0",
     "updated_at": "2026-09-11",
-    "content_sha256": "64d65a89c0595c3695f08e33340b535e1915fe63f7fe69899362bad2dc92da58"
+    "content_sha256": "3ae1e470b738f88993311ce64a31211cc7a1632f324f3159b5d0d19aebd947d0"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "dbd3e931624fd044b8915cc7e7642663d8e3d8fe1fdad0c5320e19aee2d166cd"
+    "content_sha256": "f04fab370df50e75f31f5b2b27e4e792d2320bb964f07157b0ee5f32cc5a09d6"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 190,
     "module_file_count": 497,
-    "package_file_count": 438,
+    "package_file_count": 441,
     "chapter_referenced_file_count": 934,
-    "referenced_file_count": 1301,
+    "referenced_file_count": 1304,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -4752,9 +4752,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 52,
+      "package_file_count": 55,
       "required_package_file_count": 4,
-      "optional_package_file_count": 48,
+      "optional_package_file_count": 51,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -5069,6 +5069,18 @@
           "content_sha256": "39f8fb6985fe8ee9891959dadb582fc0bf9963b2669319a7ab5b29a34ac526dd"
         },
         {
+          "path": "data/quiz/naeringsliv/tollpakkhuset_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.tollpakkhuset.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "e2100a751044d8f234cdfb481c58b4b0abe57a263a6fcd54d4c457538901ed32"
+        },
+        {
           "path": "data/quiz/production_briefs/naeringsliv/alunverket.json",
           "required": false,
           "fields": [
@@ -5199,6 +5211,18 @@
           ],
           "exists": true,
           "content_sha256": "2bfd115a43be6af78830e6e7634154b84c038b2193b4e71a4858578fdc902e4a"
+        },
+        {
+          "path": "data/quiz/production_briefs/naeringsliv/tollpakkhuset.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.tollpakkhuset.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "942594a3cfffdcc582d56dea9c29c949e9d3bd892d3172e9eeab4347e14bf94b"
         },
         {
           "path": "data/quiz/production_context/naeringsliv/alunverket.json",
@@ -5333,6 +5357,18 @@
           "content_sha256": "fd1000249b8bf02674e726398902af3b02062aa6544570f63dc58daf28c7021b"
         },
         {
+          "path": "data/quiz/production_context/naeringsliv/tollpakkhuset.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.tollpakkhuset.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "89ea252c5733e0e9f5547aee85c4f64777c3c865412efca4be810408d48957dd"
+        },
+        {
           "path": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
           "required": false,
           "fields": [
@@ -5381,20 +5417,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "90c90baae6c7141c1af23c35f3b54eb38b8c48f6c869f8082cc762190d387e5f",
+      "package_content_sha256": "13f9d112068fc9c50774b6dd772001b7bf16cbc9f43fd524253c94d34fce4930",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 124,
+      "referenced_file_count": 127,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "4b9b33de896119b945778d021ffbb0608cd2a0a8ce170ae45b5198987207af73",
-      "content_sha256": "b7daaa5424f26ecfc52bcbf0392f17a20d8346eec9cece74a4232d2c3e1c642c",
+      "structure_sha256": "7cc8b8041eb54d31162e16f26e3773216513ba956976a92241e9e8e41da3a969",
+      "content_sha256": "ee038874ec477e331f2c59479448ef8df0945be0c35c6c70223b0b24ee04e77e",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -7969,5 +8005,5 @@
       ]
     }
   },
-  "release_sha256": "e4e09145d31e8fc177820c9b7c67c3c3a8aaf5e83e9b43dca1a992ff841e683b"
+  "release_sha256": "036ef6fe81bfc2962f5665191df3ad16eaf9b69fc91dcd6e5cd66550704f9b7b"
 }

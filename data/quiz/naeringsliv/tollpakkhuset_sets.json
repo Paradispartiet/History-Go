@@ -1,0 +1,881 @@
+{
+  "targetId": "tollpakkhuset",
+  "categoryId": "naeringsliv",
+  "sources": {
+    "place_record": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollpakkhuset.json",
+    "oppdag": "https://www.oppdagkvadraturen.no/stoppesteder/tollpakkhuset",
+    "riks_plan": "https://riksantikvaren.no/content/uploads/2019/10/tollbugata1a252coslotollbod.pdf",
+    "riks_fred": "https://riksantikvaren.no/content/uploads/2019/10/8.tollbugata1aoslo3.pdf",
+    "riks_hq": "https://riksantikvaren.no/eksempelsamling/to-fredede-bygninger-blir-til-tolldirektorates-hovedkontor/",
+    "museum": "https://snl.no/Norsk_Tollmuseum",
+    "nbl": "https://nbl.snl.no/Henrik_Nebelong",
+    "sikt": "https://forvaltningsdatabasen.sikt.no/en/data/organisasjon/880455702?aar=2026",
+    "toll_oslo": "https://www.toll.no/no/om-oss/kontakt-oss/ekspedisjonssteder/oslo"
+  },
+  "production_context": {
+    "manifest_category": "naeringsliv",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/naeringsliv/tollpakkhuset.json",
+    "context_artifact": "data/quiz/production_context/naeringsliv/tollpakkhuset.json",
+    "resolved_files": {
+      "pensum": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "emner": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "fagkart": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "methods": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "kapital_eierskap_finans",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_havn_transport",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_risiko_regulering"
+    ],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_infrastrukturanalyse",
+      "met_naering_arbeidslivsanalyse",
+      "met_naering_byhistorisk_naeringsanalyse"
+    ],
+    "thinker_ids": [
+      "adam_smith"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/naeringsliv",
+        "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollpakkhuset.json"
+      ],
+      "active_before": {
+        "finding": "Ingen aktiv canonical kildeledet 3x7-pakke for Tollpakkhuset var registrert før materialiseringen."
+      },
+      "decisions": [
+        "Materialiser én canonical narrow 3x7-pakke.",
+        "Bevar de første fjorten spørsmålene som direkte stedskunnskap.",
+        "Legg metode og eksplisitt teoribinding først i siste sett."
+      ],
+      "knowledge_migration": "Alle 21 spørsmål får stabile claim- og Knowledge-identiteter i den canonicale pakken."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Tre læringsjobber dekker bygg og varehåndtering, tidslag og institusjonsbruk samt avsluttende analyse av kapasitet, arbeid og ombruk uten å fylle med perifert stoff."
+    },
+    "held_back_candidates": [
+      "Å bruke antall vekter eller heiser som direkte mål på varevolum eller produktivitet.",
+      "Å beskrive Tollpakkhuset som ordinært publikumsekspedisjonssted i 2026.",
+      "Å slå Tollpakkhuset, Tollboden og Tollbukaia sammen til ett fysisk sted."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final",
+    "normal_opening_questions_preserved": 14,
+    "content_balance": {
+      "fact": 11,
+      "context": 6,
+      "concept_theory": 4
+    }
+  },
+  "sets": [
+    {
+      "set_id": "naeringsliv_tollpakkhuset_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "questions": [
+        {
+          "id": "tollpakkhuset_quiz_1",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_1_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Når ble Tollpakkhuset oppført?",
+          "options": [
+            "1846–1850",
+            "1787–1790",
+            "1893–1896"
+          ],
+          "answer": "1846–1850",
+          "answerIndex": 0,
+          "knowledge": "Oppdag Kvadraturen og Riksantikvaren daterer Tollpakkhuset til 1846–1850.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_havn_transport",
+          "source": [
+            "oppdag",
+            "riks_plan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oppdag Kvadraturen og Riksantikvaren daterer Tollpakkhuset til 1846–1850.",
+          "claim_id": "claim_tollpakkhuset_quiz_01",
+          "primary_knowledge_unit_id": "ku_naeringsliv_oppdag_kvadraturen_og_ri_023d1e304e",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_oppdag_kvadraturen_og_ri_023d1e304e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_2",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_1_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hvem tegnet Tollpakkhuset?",
+          "options": [
+            "Adolf Schirmer",
+            "Johan Henrik Nebelong",
+            "Christian H. Grosch"
+          ],
+          "answer": "Johan Henrik Nebelong",
+          "answerIndex": 1,
+          "knowledge": "Johan Henrik Nebelong tegnet Tollpakkhuset.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_havn_transport",
+          "source": [
+            "oppdag",
+            "nbl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Johan Henrik Nebelong tegnet Tollpakkhuset.",
+          "claim_id": "claim_tollpakkhuset_quiz_02",
+          "primary_knowledge_unit_id": "ku_naeringsliv_johan_henrik_nebelong_te_f62af40dbd",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_johan_henrik_nebelong_te_f62af40dbd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_3",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_1_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hva var Tollpakkhuset opprinnelig bygd for?",
+          "options": [
+            "Børs for sjøforsikring",
+            "Passasjerterminal",
+            "Lager for Tollvesenet"
+          ],
+          "answer": "Lager for Tollvesenet",
+          "answerIndex": 2,
+          "knowledge": "Bygningen ble oppført som lager for Tollvesenet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "oppdag",
+            "riks_plan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningen ble oppført som lager for Tollvesenet.",
+          "claim_id": "claim_tollpakkhuset_quiz_03",
+          "primary_knowledge_unit_id": "ku_naeringsliv_bygningen_ble_oppf_rt_so_a268371bbb",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_bygningen_ble_oppf_rt_so_a268371bbb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_4",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_1_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hva gjorde de store bueåpningene i første etasje mulig?",
+          "options": [
+            "Inn- og utlasting av varer",
+            "Jernbanetrafikk gjennom bygget",
+            "Fortøyning av skip inne i bygget"
+          ],
+          "answer": "Inn- og utlasting av varer",
+          "answerIndex": 0,
+          "knowledge": "Oppdag Kvadraturen knytter de store åpningene til inn- og utlasting av varer for tollbehandling.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "oppdag"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oppdag Kvadraturen knytter de store åpningene til inn- og utlasting av varer for tollbehandling.",
+          "claim_id": "claim_tollpakkhuset_quiz_04",
+          "primary_knowledge_unit_id": "ku_naeringsliv_oppdag_kvadraturen_knytt_fb602bef6e",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_oppdag_kvadraturen_knytt_fb602bef6e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_5",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_1_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hvor mange veieboder beskriver Riksantikvaren i den opprinnelige førsteetasjen?",
+          "options": [
+            "Én",
+            "Fire",
+            "Sju"
+          ],
+          "answer": "Fire",
+          "answerIndex": 1,
+          "knowledge": "Forvaltningsplanen beskriver fire veieboder i første etasje.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "source": [
+            "riks_plan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Forvaltningsplanen beskriver fire veieboder i første etasje.",
+          "claim_id": "claim_tollpakkhuset_quiz_05",
+          "primary_knowledge_unit_id": "ku_naeringsliv_forvaltningsplanen_beskr_9b91aea4ea",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_forvaltningsplanen_beskr_9b91aea4ea"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_6",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_1_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hvor mange veieboder beskrives i andre etasje i den opprinnelige løsningen?",
+          "options": [
+            "Fire",
+            "Ingen",
+            "Én"
+          ],
+          "answer": "Én",
+          "answerIndex": 2,
+          "knowledge": "Andre etasje hadde blant annet én veiebod.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "source": [
+            "riks_plan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Andre etasje hadde blant annet én veiebod.",
+          "claim_id": "claim_tollpakkhuset_quiz_06",
+          "primary_knowledge_unit_id": "ku_naeringsliv_andre_etasje_hadde_blant_def935a3bb",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_andre_etasje_hadde_blant_def935a3bb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_7",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_1_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hva ble installert i Tollpakkhuset i 1897?",
+          "options": [
+            "Tre elektriske vareheiser",
+            "En dampturbin",
+            "Et jernbanespor"
+          ],
+          "answer": "Tre elektriske vareheiser",
+          "answerIndex": 0,
+          "knowledge": "Tre elektriske vareheiser ble installert i 1897.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "riks_plan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Tre elektriske vareheiser ble installert i 1897.",
+          "claim_id": "claim_tollpakkhuset_quiz_07",
+          "primary_knowledge_unit_id": "ku_naeringsliv_tre_elektriske_vareheise_895429e7fe",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_tre_elektriske_vareheise_895429e7fe"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_tollpakkhuset_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "questions": [
+        {
+          "id": "tollpakkhuset_quiz_8",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_2_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hvor mange vekter var varebehandlingsrommene utvidet for rundt 1929–1930?",
+          "options": [
+            "Tre",
+            "Sju",
+            "Tolv"
+          ],
+          "answer": "Sju",
+          "answerIndex": 1,
+          "knowledge": "Riksantikvaren beskriver utvidelse for sju vekter rundt 1929–1930.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "source": [
+            "riks_plan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Riksantikvaren beskriver utvidelse for sju vekter rundt 1929–1930.",
+          "claim_id": "claim_tollpakkhuset_quiz_08",
+          "primary_knowledge_unit_id": "ku_naeringsliv_riksantikvaren_beskriver_ef1c16d942",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_riksantikvaren_beskriver_ef1c16d942"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_9",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_2_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hva kom i 1930 i tillegg til de tre eldre vareheisene?",
+          "options": [
+            "En kranbane på taket",
+            "Et rullebånd til jernbanen",
+            "En fjerde heis"
+          ],
+          "answer": "En fjerde heis",
+          "answerIndex": 2,
+          "knowledge": "En fjerde heis ble installert i 1930.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "riks_plan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "En fjerde heis ble installert i 1930.",
+          "claim_id": "claim_tollpakkhuset_quiz_09",
+          "primary_knowledge_unit_id": "ku_naeringsliv_en_fjerde_heis_ble_insta_b83e080af5",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_en_fjerde_heis_ble_insta_b83e080af5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_10",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_2_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hva skjedde med Tollpakkhuset i 1956?",
+          "options": [
+            "En del ble fjernet ved utvidelse av Strandgata",
+            "Hele bygningen ble revet og gjenoppført",
+            "Det ble flyttet til Akershusstranda"
+          ],
+          "answer": "En del ble fjernet ved utvidelse av Strandgata",
+          "answerIndex": 0,
+          "knowledge": "Omtrent 8 × 25 meter av nordvestre del ble fjernet i 1956.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_havn_transport",
+          "source": [
+            "riks_plan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Omtrent 8 × 25 meter av nordvestre del ble fjernet i 1956.",
+          "claim_id": "claim_tollpakkhuset_quiz_10",
+          "primary_knowledge_unit_id": "ku_naeringsliv_omtrent_8_25_meter_av_no_6581a82ac1",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_omtrent_8_25_meter_av_no_6581a82ac1"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_11",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_2_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Når flyttet Norsk Tollmuseum inn i Tollpakkhuset ifølge Riksantikvarens bygningsplan?",
+          "options": [
+            "1915",
+            "1979",
+            "2003"
+          ],
+          "answer": "1979",
+          "answerIndex": 1,
+          "knowledge": "Museet ble grunnlagt i 1915, men flyttet inn i Tollpakkhuset i 1979.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_havn_transport",
+          "source": [
+            "riks_plan",
+            "museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Museet ble grunnlagt i 1915, men flyttet inn i Tollpakkhuset i 1979.",
+          "claim_id": "claim_tollpakkhuset_quiz_11",
+          "primary_knowledge_unit_id": "ku_naeringsliv_museet_ble_grunnlagt_i_1_0e1f642261",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_museet_ble_grunnlagt_i_1_0e1f642261"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_12",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_2_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hva sier Riksantikvaren om det gamle treklossgulvet?",
+          "options": [
+            "Det ble lagt for å dempe togtrafikk",
+            "Det var et rent dekorativt parkettgulv",
+            "Det var egnet når fat og kolli skulle rulles"
+          ],
+          "answer": "Det var egnet når fat og kolli skulle rulles",
+          "answerIndex": 2,
+          "knowledge": "Treklossgulvet er et funksjonelt spor etter varehåndtering.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "source": [
+            "riks_plan",
+            "riks_fred"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Treklossgulvet er et funksjonelt spor etter varehåndtering.",
+          "claim_id": "claim_tollpakkhuset_quiz_12",
+          "primary_knowledge_unit_id": "ku_naeringsliv_treklossgulvet_er_et_fun_4db4aef887",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_treklossgulvet_er_et_fun_4db4aef887"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_13",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_2_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hvilket bygg må Tollpakkhuset ikke forveksles med?",
+          "options": [
+            "Tollboden fra 1896",
+            "Oslo Børs",
+            "Østbanestasjonen"
+          ],
+          "answer": "Tollboden fra 1896",
+          "answerIndex": 0,
+          "knowledge": "Tollpakkhuset er lagerbygningen; Tollboden er den separate administrasjonsbygningen fra 1896.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_havn_transport",
+          "source": [
+            "oppdag"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Tollpakkhuset er lagerbygningen; Tollboden er den separate administrasjonsbygningen fra 1896.",
+          "claim_id": "claim_tollpakkhuset_quiz_13",
+          "primary_knowledge_unit_id": "ku_naeringsliv_tollpakkhuset_er_lagerby_096bc16aa9",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_tollpakkhuset_er_lagerby_096bc16aa9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_14",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_2_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hvilken bruk er dokumentert for Tollpakkhuset i 2026?",
+          "options": [
+            "Oslos eneste tollklareringssted",
+            "Del av et administrativt tollanlegg, ikke dokumentert ordinært ekspedisjonssted",
+            "Aktivt pakkhus for alle importvarer til Oslo"
+          ],
+          "answer": "Del av et administrativt tollanlegg, ikke dokumentert ordinært ekspedisjonssted",
+          "answerIndex": 1,
+          "knowledge": "Tolletaten er registrert i Tollbugata, mens etatens ekspedisjonsoversikt peker på andre operative steder i Oslo.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_risiko_regulering",
+          "source": [
+            "sikt",
+            "toll_oslo"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Tolletaten er registrert i Tollbugata, mens etatens ekspedisjonsoversikt peker på andre operative steder i Oslo.",
+          "claim_id": "claim_tollpakkhuset_quiz_14",
+          "primary_knowledge_unit_id": "ku_naeringsliv_tolletaten_er_registrert_3641e246fc",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_tolletaten_er_registrert_3641e246fc"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_tollpakkhuset_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "questions": [
+        {
+          "id": "tollpakkhuset_quiz_15",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_3_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hvilken analysemetode passer best når du undersøker hvordan porter, veieboder, vekter og heiser koblet varer gjennom bygningen?",
+          "options": [
+            "Psykoanalyse",
+            "Stilanalyse av reklame",
+            "Infrastrukturanalyse"
+          ],
+          "answer": "Infrastrukturanalyse",
+          "answerIndex": 2,
+          "knowledge": "Metoden undersøker hvordan fysisk infrastruktur organiserer flyt, kapasitet og avhengigheter.",
+          "difficulty": 3,
+          "question_type": "concept_theory",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "riks_plan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Metoden undersøker hvordan fysisk infrastruktur organiserer flyt, kapasitet og avhengigheter.",
+          "claim_id": "claim_tollpakkhuset_quiz_15",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_naeringsliv_metoden_unders_ker_hvord_14d8f4148b",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_metoden_unders_ker_hvord_14d8f4148b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_16",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_3_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hva kan sju vekter i 1930 dokumentere mest direkte?",
+          "options": [
+            "At anlegget hadde flere dokumenterte veieplasser",
+            "Nøyaktig årlig varevolum",
+            "At tollbehandling alltid gikk raskere enn i 1850"
+          ],
+          "answer": "At anlegget hadde flere dokumenterte veieplasser",
+          "answerIndex": 0,
+          "knowledge": "Antall vekter er en fysisk kapasitetsindikator, ikke en direkte serie for varevolum eller produktivitet.",
+          "difficulty": 3,
+          "question_type": "concept_theory",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "source": [
+            "riks_plan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Antall vekter er en fysisk kapasitetsindikator, ikke en direkte serie for varevolum eller produktivitet.",
+          "claim_id": "claim_tollpakkhuset_quiz_16",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "arbeid_som_verdiskaping",
+          "thinker_id": "adam_smith",
+          "theory_ref": {
+            "topic_hook_id": "arbeid_som_verdiskaping",
+            "thinker_id": "adam_smith",
+            "why_it_helps": "Arbeidsdeling og produktivitetsbegrepet gir et faglig rammeverk for å skille fysisk kapasitet fra faktisk output uten å gjøre utstyrstall til bevis for produktivitet."
+          },
+          "primary_knowledge_unit_id": "ku_naeringsliv_antall_vekter_er_en_fysi_482c3dc295",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_antall_vekter_er_en_fysi_482c3dc295"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_17",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_3_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hvorfor er antall heiser alene et svakt mål på produktivitet?",
+          "options": [
+            "Heiser kan aldri brukes i logistikk",
+            "Det mangler data om bruk, last, arbeidstid og varevolum",
+            "Produktivitet måles bare i antall ansatte"
+          ],
+          "answer": "Det mangler data om bruk, last, arbeidstid og varevolum",
+          "answerIndex": 1,
+          "knowledge": "Fysisk utstyr kan si noe om kapasitet, men produktivitet krever forhold mellom innsats og output.",
+          "difficulty": 3,
+          "question_type": "concept_theory",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "source": [
+            "riks_plan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fysisk utstyr kan si noe om kapasitet, men produktivitet krever forhold mellom innsats og output.",
+          "claim_id": "claim_tollpakkhuset_quiz_17",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "arbeid_som_verdiskaping",
+          "thinker_id": "adam_smith",
+          "theory_ref": {
+            "topic_hook_id": "arbeid_som_verdiskaping",
+            "thinker_id": "adam_smith",
+            "why_it_helps": "Arbeidsdeling og produktivitetsbegrepet gir et faglig rammeverk for å skille fysisk kapasitet fra faktisk output uten å gjøre utstyrstall til bevis for produktivitet."
+          },
+          "primary_knowledge_unit_id": "ku_naeringsliv_fysisk_utstyr_kan_si_noe_d48c45944a",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_fysisk_utstyr_kan_si_noe_d48c45944a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_18",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_3_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hvilke to aktørgrupper møttes tydelig i Tollpakkhusets økonomiske funksjon?",
+          "options": [
+            "Skuespillere og publikum",
+            "Bankdirektører og aksjemeglere",
+            "Tollvesenet og vareeiere/transportører"
+          ],
+          "answer": "Tollvesenet og vareeiere/transportører",
+          "answerIndex": 2,
+          "knowledge": "Tollvesenet kontrollerte vareflyten, mens handels- og transportaktører måtte få varer gjennom prosessen.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_risiko_regulering",
+          "source": [
+            "oppdag",
+            "riks_plan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Tollvesenet kontrollerte vareflyten, mens handels- og transportaktører måtte få varer gjennom prosessen.",
+          "claim_id": "claim_tollpakkhuset_quiz_18",
+          "primary_knowledge_unit_id": "ku_naeringsliv_tollvesenet_kontrollerte_108d4f58df",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_tollvesenet_kontrollerte_108d4f58df"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_19",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_3_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hva er den sikreste kausale formuleringen om utvidelsene rundt 1930?",
+          "options": [
+            "Kildene dokumenterer endringer i rom, vekter og heiser, men isolerer ikke én årsak",
+            "Flere vekter beviser at profitten doblet seg",
+            "Heisene førte direkte til lavere tollsatser"
+          ],
+          "answer": "Kildene dokumenterer endringer i rom, vekter og heiser, men isolerer ikke én årsak",
+          "answerIndex": 0,
+          "knowledge": "Bygningshistorien dokumenterer endringer, ikke én bevist økonomisk årsak.",
+          "difficulty": 3,
+          "question_type": "concept_theory",
+          "emne_id": "em_naering_risiko_regulering",
+          "source": [
+            "riks_plan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningshistorien dokumenterer endringer, ikke én bevist økonomisk årsak.",
+          "claim_id": "claim_tollpakkhuset_quiz_19",
+          "method_id": "met_naering_byhistorisk_naeringsanalyse",
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_naeringsliv_bygningshistorien_dokume_fc3dab68cd",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_bygningshistorien_dokume_fc3dab68cd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_20",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_3_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hva viser 1979-museet og senere administrativ ombruk?",
+          "options": [
+            "At tollagerfunksjonen var uendret",
+            "At samme bygg kan få nye økonomiske og institusjonelle funksjoner",
+            "At bygningen sluttet å være fredet"
+          ],
+          "answer": "At samme bygg kan få nye økonomiske og institusjonelle funksjoner",
+          "answerIndex": 1,
+          "knowledge": "Materiell kontinuitet betyr ikke at samme virksomhetsfunksjon fortsetter.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_havn_transport",
+          "source": [
+            "riks_plan",
+            "riks_hq"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Materiell kontinuitet betyr ikke at samme virksomhetsfunksjon fortsetter.",
+          "claim_id": "claim_tollpakkhuset_quiz_20",
+          "primary_knowledge_unit_id": "ku_naeringsliv_materiell_kontinuitet_be_c87640c4b4",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_materiell_kontinuitet_be_c87640c4b4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "tollpakkhuset_quiz_21",
+          "quiz_id": "naeringsliv_tollpakkhuset_set_3_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "tollpakkhuset",
+          "targetId": "tollpakkhuset",
+          "question_scope": "place",
+          "question": "Hvorfor skiller History Go mellom Tollpakkhuset og Tollbukaia?",
+          "options": [
+            "De ligger i hver sin by",
+            "Tollbukaia er et museum",
+            "Pakkhuset er en konkret bygning, Tollbukaia er et kai-/linjeanker"
+          ],
+          "answer": "Pakkhuset er en konkret bygning, Tollbukaia er et kai-/linjeanker",
+          "answerIndex": 2,
+          "knowledge": "Skillet bevarer fysisk presisjon og hindrer at bygning, kai og administrasjonsbygg blir ett kunstig sted.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_havn_transport",
+          "source": [
+            "oppdag"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Skillet bevarer fysisk presisjon og hindrer at bygning, kai og administrasjonsbygg blir ett kunstig sted.",
+          "claim_id": "claim_tollpakkhuset_quiz_21",
+          "primary_knowledge_unit_id": "ku_naeringsliv_skillet_bevarer_fysisk_p_e70a636f16",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_skillet_bevarer_fysisk_p_e70a636f16"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}
