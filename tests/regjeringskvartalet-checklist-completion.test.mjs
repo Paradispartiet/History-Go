@@ -35,9 +35,9 @@ test('onsite-profilen har bare handlinger som faktisk passer Regjeringskvartalet
   assert.deepEqual(contract.categoryPolicy.politikk, {
     play: 'never'
   });
-  assert.equal(contract.movedSurfaces.events, 'Utforsk → Events');
-  assert.match(contract.movedSurfaces['social-meet'], /Utforsk → Møtes/);
-  assert.match(contract.movedSurfaces['knowledge-meet'], /Utforsk → Møtes/);
+  assert.equal(contract.movedSurfaces.events, 'PlaceCard → Utforsk → Events');
+  assert.match(contract.movedSurfaces['social-meet'], /PlaceCard → Utforsk → Møtes/);
+  assert.match(contract.movedSurfaces['knowledge-meet'], /PlaceCard → Utforsk → Møtes/);
   for (const field of ['tasks_profile', 'training_profile', 'play_profile']) {
     assert.equal(Object.hasOwn(place, field), false, field);
   }
