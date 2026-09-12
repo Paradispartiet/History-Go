@@ -1,0 +1,40 @@
+name: TEMP rebuild Tollpakkhuset quiz context
+
+on:
+  push:
+    branches:
+      - fix/events-meet-live-surfaces-20260912
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/events-meet-live-surfaces-20260912
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Rebuild deterministic Tollpakkhuset context
+        run: |
+          node scripts/build-quiz-production-context.mjs             --category naeringsliv             --target tollpakkhuset             --output data/quiz/production_context/naeringsliv/tollpakkhuset.json
+          node scripts/audit-quiz-production-context.mjs
+
+      - name: Commit only rebuilt artifact
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/production_context/naeringsliv/tollpakkhuset.json
+          if git diff --cached --quiet; then
+            echo "Artifact already deterministic"
+            exit 0
+          fi
+          git commit -m "Rebuild Tollpakkhuset quiz production context"
+          git push origin HEAD:fix/events-meet-live-surfaces-20260912
