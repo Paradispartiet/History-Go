@@ -114,15 +114,15 @@ assert.equal(entry.status, 'role_world_complete');
 assert.equal(entry.path, worldPath);
 
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 9);
+assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 10);
 assert.deepEqual(index.summary, {
-  role_worlds_total: 94,
+  role_worlds_total: 95,
   career_role_worlds: 85,
-  life_position_role_worlds: 9
+  life_position_role_worlds: 10
 });
 assert.equal(index.career_role_world_count, 85);
-assert.equal(index.life_position_role_world_count, 9);
-assert.equal(index.status, '94_role_worlds_materialized');
+assert.equal(index.life_position_role_world_count, 10);
+assert.equal(index.status, '95_role_worlds_materialized');
 
 assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds, [
   'sport/supporter',
@@ -133,14 +133,15 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'kunst/gallerivanker',
   'litteratur/skrivebordspoet',
   'media/medievaktbikkje',
-  'musikk/scenehenger'
+  'musikk/scenehenger',
+  'natur/artsjeger'
 ]);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'natur/artsjeger');
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 9);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 94);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'natur/artsjeger');
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 9);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 10);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 95);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 10);
 
 const readiness = audit.positions.find((row) => row.key === 'musikk/scenehenger');
 assert.ok(readiness);
@@ -151,10 +152,10 @@ assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.deepEqual(readiness.evidence.livelihood_templates, ['scenehenger_konsertcrew']);
 assert.ok(!audit.queue.some((row) => row.key === 'musikk/scenehenger'));
-assert.equal(audit.summary.life_position_role_world_complete, 9);
-assert.equal(audit.summary.completed_life_position_role_worlds, 9);
-assert.equal(audit.summary.pending_ready_positions, 1);
-assert.equal(audit.first_ready?.key, 'natur/artsjeger');
+assert.equal(audit.summary.life_position_role_world_complete, 10);
+assert.equal(audit.summary.completed_life_position_role_worlds, 10);
+assert.equal(audit.summary.pending_ready_positions, 0);
+assert.equal(audit.first_ready, null);
 
 const stage = audit.positions.find((row) => row.key === 'scenekunst/scenehenger');
 assert.ok(stage);
@@ -177,4 +178,4 @@ execFileSync(process.execPath, ['tests/civication-life-position-role-world-readi
 execFileSync(process.execPath, ['tests/civication-musikk-scenehenger-life-position-readiness.test.js'], { cwd: ROOT, stdio: 'pipe' });
 execFileSync(process.execPath, ['tests/civication-life-position-readiness-badge-scope.test.js'], { cwd: ROOT, stdio: 'pipe' });
 
-console.log('civication Musikk Scenehenger Role World ok: 56/56 coverage / 14 governed anchors / 94 total worlds / 9 completed life-position worlds / Scenekunst remains separate');
+console.log('civication Musikk Scenehenger Role World ok: 56/56 coverage / 14 governed anchors / 95 total worlds / 10 completed life-position worlds / Scenekunst remains separate');

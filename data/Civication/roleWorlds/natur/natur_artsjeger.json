@@ -1,0 +1,1109 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "natur",
+  "role_scope": "natur_artsjeger",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "natur",
+    "id": "artsjeger",
+    "label": "Artsjeger"
+  },
+  "title": "Artsjeger — observasjon, usikkerhet og feltetikk",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å gjøre artsjakt til en vedvarende praksis for oppmerksomhet og læring uten å gjøre funnlister, sosial prestisje eller et lite registreringshonorar til profesjonell biolog-, konsulent-, naturforvaltnings- eller myndighetsautoritet",
+    "description": "Artsjeger-verdenen undersøker hvordan observasjon, registrering, feilbestemmelse, korrigering, sårbare lokaliteter, privat grunn, påvirkning av dyr og små datasett skaper både læring og uformell status. Spilleren må tåle usikkerhet, skille observasjon fra konklusjon, verne om sårbare steder og vite når handling bør overlates til personer med faglig eller offentlig ansvar. Et avgrenset feltregistreringsoppdrag kan gi honorar, men gir ikke mandat til artsforvaltning, konsekvensutredning, behandling av dyr, offentlig vedtak eller faglig godkjenning."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "care_vs_efficiency",
+    "numerical_control",
+    "local_knowledge_vs_system",
+    "shame_reputation",
+    "social_mask",
+    "public_private_leakage",
+    "status_anxiety"
+  ],
+  "social_environments": [
+    "feltstien der observatører sammenligner funn og usikker artsbestemmelse raskt kan bli sosial prestisje",
+    "digitale registreringsflater der kildegrunnlag, korrigering og antall funn blir synlige for andre",
+    "sårbare hekke- og voksesteder der deling av presis lokasjon kan skape reell belastning",
+    "privat grunn og eiendomsgrenser der et interessant habitat ikke opphever adgangsregler",
+    "feltlaget der ulike erfaringsnivåer gjør det tydelig hvem som observerer, hvem som vurderer og hvem som faktisk har faglig ansvar",
+    "det lokale naturprosjektet der et lite honorar for registrering møter tydelige grenser mot forvaltning og myndighetsutøvelse"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "feltkamerat",
+      "social_function": "deler turer, funn og forventninger og gjør artsjaktens sosiale prestisje synlig",
+      "class_position": "likestilt fritidsutøver uten formell myndighet",
+      "status": "høy relasjonell status når turene og funnene deles ofte",
+      "power_over_player": "kan forsterke press om nye kryss, raske konklusjoner eller å gå litt lenger enn planlagt",
+      "wants": "flere gode observasjoner og et fellesskap som føles kompetent og levende",
+      "conceals": "at konkurranse om funn lett påvirker hva som blir oppfattet som sikkert",
+      "speech_style": "ivrig, detaljorientert og rask til å sammenligne kjennetegn",
+      "teaches_player": "at fellesskap rundt naturfunn ikke må gjøre usikkerhet sosialt pinlig"
+    },
+    {
+      "id": "erfaren_artsobservator",
+      "social_function": "representerer læring gjennom korrigering og dokumentasjon uten å være spillerens sjef",
+      "class_position": "erfaren amatør eller frivillig med høy feltkompetanse, men ikke automatisk offentlig mandat",
+      "status": "høy kunnskapsstatus i observatørmiljøet",
+      "power_over_player": "kan utfordre artsbestemmelser og påvirke spillerens omdømme som pålitelig observatør",
+      "wants": "sporbare observasjoner og en kultur der feil kan rettes",
+      "conceals": "at egen erfaring også kan bli til uformell gatekeeping",
+      "speech_style": "rolig, kjennetegnsorientert og eksplisitt om usikkerhet",
+      "teaches_player": "at korreksjon er en del av Artsjeger-praksisen, ikke et tap av identitet"
+    },
+    {
+      "id": "lokal_grunneier",
+      "social_function": "gjør adgang, eierskap og lokal bruk synlig når gode habitater ligger på eller nær privat grunn",
+      "class_position": "lokal rettighetshaver med situert kontroll over egen eiendom",
+      "status": "formell lokal posisjon i spørsmål om adgang på privat område",
+      "power_over_player": "kan tillate eller avvise adgang uten at artsinteresse overstyrer grensen",
+      "wants": "respekt for eiendom, drift og sårbare områder",
+      "conceals": "at lokalkunnskap om arter og ferdsel kan være større enn observatørmiljøet antar",
+      "speech_style": "konkret, lokalkjent og opptatt av hvor folk faktisk går",
+      "teaches_player": "at et godt funnsted aldri i seg selv gir rett til adgang"
+    },
+    {
+      "id": "faglig_biologkontakt",
+      "social_function": "gjør forskjellen mellom Artsjeger-kunnskap og profesjonell biologisk vurdering tydelig",
+      "class_position": "fagperson med formell kompetanse i biologisk vurdering innen eget mandat",
+      "status": "høy faglig autoritet når data skal tolkes utover selve observasjonen",
+      "power_over_player": "kan avvise for bastante konklusjoner og kreve bedre kildegrunnlag",
+      "wants": "at observasjonsdata brukes med riktig usikkerhet og uten å bli overtolket",
+      "conceals": "at profesjonelle også arbeider under tidspress og med ufullstendige data",
+      "speech_style": "presis, sannsynlighetsorientert og tydelig på datagrunnlag",
+      "teaches_player": "at å registrere noe ikke er det samme som å ha mandat til økologisk konklusjon eller forvaltningsråd"
+    },
+    {
+      "id": "naturprosjekt_oppdragsgiver",
+      "social_function": "eier det avgrensede honoraroppdraget og setter rammen for hva som faktisk skal leveres",
+      "class_position": "prosjektaktør med begrenset oppdragsmyndighet over registreringsleveransen",
+      "status": "formell situert status innen prosjektets tid, sted og datakrav",
+      "power_over_player": "kan be om registreringer og dokumentasjon, men kan ikke gjøre usikre funn sikre eller delegere offentlig/faglig myndighet",
+      "wants": "et brukbart og etterprøvbart datasett innenfor avtalt scope",
+      "conceals": "at ønsket om komplette tall kan skape press mot å markere usikkerhet tydelig nok",
+      "speech_style": "praktisk, tidsbevisst og opptatt av leveranseformat",
+      "teaches_player": "at betaling ikke endrer evidensstyrken eller utvider Artsjeger-mandatet"
+    },
+    {
+      "id": "dyrevelferdskontakt",
+      "social_function": "representerer riktig overtakelse når spilleren møter skadde dyr eller situasjoner som krever mer enn observasjon",
+      "class_position": "person eller tjeneste med situert ansvar eller relevant kompetanse for videre håndtering",
+      "status": "høy operativ autoritet i konkrete dyrevelferdssituasjoner",
+      "power_over_player": "kan instruere spilleren om avstand, dokumentasjon og trygg overlevering",
+      "wants": "minst mulig unødvendig håndtering og rask tilgang til riktig hjelp",
+      "conceals": "at ikke alle situasjoner har et enkelt eller godt utfall",
+      "speech_style": "rolig, handlingsrettet og tydelig på hva spilleren ikke bør gjøre",
+      "teaches_player": "at omsorg også betyr å vite når egen rolle skal stoppe"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "certainty_vs_learning",
+      "meaning": "om Artsjeger-identiteten tåler usikkerhet og feilbestemmelse uten å gjøre hvert funn til en prestisjetest",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observation_vs_inference",
+      "meaning": "om registrerte observasjoner holdes adskilt fra sikre økologiske eller forvaltningsmessige konklusjoner",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sharing_vs_sensitivity",
+      "meaning": "om sosial deling og presis lokasjon balanseres mot sårbare arter og steder",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "access_vs_entitlement",
+      "meaning": "om nysgjerrighet på habitat holdes innenfor adgangsregler, privat grunn og lokal bruk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "documentation_vs_disturbance",
+      "meaning": "om ønsket om bedre foto eller lyd aldri blir viktigere enn å unngå unødvendig påvirkning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "care_vs_authority",
+      "meaning": "om bekymring for dyr og arter fører til riktig varsling uten å bli egenbehandling eller forvaltningsmandat",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "livelihood_boundary",
+      "meaning": "om et avgrenset feltregistreringshonorar forblir datainnsamling uten scope creep til biolog-, konsulent- eller myndighetsrolle",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du ser en fugl på avstand som ligner sterkt på arten du håpet å finne denne uka. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "correction_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#observasjonen_som_nesten_passer"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du ser en fugl på avstand som ligner sterkt på arten du håpet å finne denne uka. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "correction_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#observasjonen_som_nesten_passer"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du ser en fugl på avstand som ligner sterkt på arten du håpet å finne denne uka. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "correction_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#observasjonen_som_nesten_passer"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du ser en fugl på avstand som ligner sterkt på arten du håpet å finne denne uka. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "correction_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#observasjonen_som_nesten_passer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Du ser en rovfugl først ved vannet og senere lenger opp i dalen. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "observation_bias",
+          "evidence_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#samme_individ_to_ganger"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Du ser en rovfugl først ved vannet og senere lenger opp i dalen. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "observation_bias",
+          "evidence_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#samme_individ_to_ganger"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Du ser en rovfugl først ved vannet og senere lenger opp i dalen. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "observation_bias",
+          "evidence_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#samme_individ_to_ganger"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Du ser en rovfugl først ved vannet og senere lenger opp i dalen. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "observation_bias",
+          "evidence_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#samme_individ_to_ganger"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Du finner en sjelden art på et sårbart hekkested og får lyst til å dele funnet med hele nettverket. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "sensitive_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#den_sjeldne_lokasjonen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Du finner en sjelden art på et sårbart hekkested og får lyst til å dele funnet med hele nettverket. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "sensitive_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#den_sjeldne_lokasjonen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Du finner en sjelden art på et sårbart hekkested og får lyst til å dele funnet med hele nettverket. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "sensitive_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#den_sjeldne_lokasjonen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Du finner en sjelden art på et sårbart hekkested og får lyst til å dele funnet med hele nettverket. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "sensitive_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#den_sjeldne_lokasjonen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Du mangler et tydelig bilde av et dyr som holder seg i ro nær vegetasjonen. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "sensitive_access",
+          "welfare_intervention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#bildet_som_krever_ett_skritt_til"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Du mangler et tydelig bilde av et dyr som holder seg i ro nær vegetasjonen. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "sensitive_access",
+          "welfare_intervention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#bildet_som_krever_ett_skritt_til"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Du mangler et tydelig bilde av et dyr som holder seg i ro nær vegetasjonen. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "sensitive_access",
+          "welfare_intervention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#bildet_som_krever_ett_skritt_til"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Du mangler et tydelig bilde av et dyr som holder seg i ro nær vegetasjonen. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "sensitive_access",
+          "welfare_intervention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#bildet_som_krever_ett_skritt_til"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: En venn sender et uklart bilde og ber deg registrere arten fordi du kjenner systemet bedre. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "correction_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#registreringen_fra_en_venn"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: En venn sender et uklart bilde og ber deg registrere arten fordi du kjenner systemet bedre. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "correction_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#registreringen_fra_en_venn"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: En venn sender et uklart bilde og ber deg registrere arten fordi du kjenner systemet bedre. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "correction_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#registreringen_fra_en_venn"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: En venn sender et uklart bilde og ber deg registrere arten fordi du kjenner systemet bedre. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "correction_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#registreringen_fra_en_venn"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: En annen bruker peker på et kjennetegn som taler mot artsbestemmelsen din. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "correction_reputation",
+          "observation_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#feilbestemmelsen_som_blir_rettet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: En annen bruker peker på et kjennetegn som taler mot artsbestemmelsen din. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "correction_reputation",
+          "observation_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#feilbestemmelsen_som_blir_rettet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: En annen bruker peker på et kjennetegn som taler mot artsbestemmelsen din. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "correction_reputation",
+          "observation_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#feilbestemmelsen_som_blir_rettet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: En annen bruker peker på et kjennetegn som taler mot artsbestemmelsen din. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "correction_reputation",
+          "observation_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#feilbestemmelsen_som_blir_rettet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Et interessant område ligger rett på andre siden av et tydelig gjerde og en privat innkjørsel. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "sensitive_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#privat_grunn_og_det_gode_funnstedet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Et interessant område ligger rett på andre siden av et tydelig gjerde og en privat innkjørsel. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "sensitive_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#privat_grunn_og_det_gode_funnstedet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Et interessant område ligger rett på andre siden av et tydelig gjerde og en privat innkjørsel. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "sensitive_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#privat_grunn_og_det_gode_funnstedet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Et interessant område ligger rett på andre siden av et tydelig gjerde og en privat innkjørsel. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "sensitive_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#privat_grunn_og_det_gode_funnstedet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: En bekjent foreslår lydavspilling eller annet lokkemiddel for å få en sky art til å vise seg. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "sensitive_access",
+          "boundary_authority",
+          "welfare_intervention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#lokkemiddelet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: En bekjent foreslår lydavspilling eller annet lokkemiddel for å få en sky art til å vise seg. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "sensitive_access",
+          "boundary_authority",
+          "welfare_intervention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#lokkemiddelet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: En bekjent foreslår lydavspilling eller annet lokkemiddel for å få en sky art til å vise seg. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "sensitive_access",
+          "boundary_authority",
+          "welfare_intervention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#lokkemiddelet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: En bekjent foreslår lydavspilling eller annet lokkemiddel for å få en sky art til å vise seg. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "sensitive_access",
+          "boundary_authority",
+          "welfare_intervention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#lokkemiddelet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Du registrerer en art som lokalt omtales som uønsket eller invasiv. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "welfare_intervention",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#den_invasive_arten"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Du registrerer en art som lokalt omtales som uønsket eller invasiv. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "welfare_intervention",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#den_invasive_arten"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Du registrerer en art som lokalt omtales som uønsket eller invasiv. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "welfare_intervention",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#den_invasive_arten"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Du registrerer en art som lokalt omtales som uønsket eller invasiv. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "welfare_intervention",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#den_invasive_arten"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Et lokalt naturprosjekt tilbyr et avgrenset honorar for å registrere observasjoner i et bestemt område og tidsrom. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "livelihood_fieldwork",
+          "boundary_authority",
+          "observation_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#feltregistreringsoppdraget"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Et lokalt naturprosjekt tilbyr et avgrenset honorar for å registrere observasjoner i et bestemt område og tidsrom. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "livelihood_fieldwork",
+          "boundary_authority",
+          "observation_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#feltregistreringsoppdraget"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Et lokalt naturprosjekt tilbyr et avgrenset honorar for å registrere observasjoner i et bestemt område og tidsrom. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "livelihood_fieldwork",
+          "boundary_authority",
+          "observation_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#feltregistreringsoppdraget"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Et lokalt naturprosjekt tilbyr et avgrenset honorar for å registrere observasjoner i et bestemt område og tidsrom. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "livelihood_fieldwork",
+          "boundary_authority",
+          "observation_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#feltregistreringsoppdraget"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: I feltregistreringsoppdraget får du spørsmål om en usikker observasjon kan føres som bekreftet for å gjøre datasettet mer komplett. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "livelihood_fieldwork",
+          "evidence_uncertainty",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#oppdragsgiveren_vil_ha_et_sikrere_svar"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: I feltregistreringsoppdraget får du spørsmål om en usikker observasjon kan føres som bekreftet for å gjøre datasettet mer komplett. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "livelihood_fieldwork",
+          "evidence_uncertainty",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#oppdragsgiveren_vil_ha_et_sikrere_svar"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: I feltregistreringsoppdraget får du spørsmål om en usikker observasjon kan føres som bekreftet for å gjøre datasettet mer komplett. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "livelihood_fieldwork",
+          "evidence_uncertainty",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#oppdragsgiveren_vil_ha_et_sikrere_svar"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: I feltregistreringsoppdraget får du spørsmål om en usikker observasjon kan føres som bekreftet for å gjøre datasettet mer komplett. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "livelihood_fieldwork",
+          "evidence_uncertainty",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#oppdragsgiveren_vil_ha_et_sikrere_svar"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Når du ser alle egne funn på kartet, virker det som om en art foretrekker én bestemt del av området. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "observation_bias",
+          "livelihood_fieldwork"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#kartet_som_avslorer_mer_enn_feltet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Når du ser alle egne funn på kartet, virker det som om en art foretrekker én bestemt del av området. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "observation_bias",
+          "livelihood_fieldwork"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#kartet_som_avslorer_mer_enn_feltet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Når du ser alle egne funn på kartet, virker det som om en art foretrekker én bestemt del av området. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "observation_bias",
+          "livelihood_fieldwork"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#kartet_som_avslorer_mer_enn_feltet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Når du ser alle egne funn på kartet, virker det som om en art foretrekker én bestemt del av området. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "observation_bias",
+          "livelihood_fieldwork"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#kartet_som_avslorer_mer_enn_feltet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Du finner en fugl som virker skadet og ikke flyr unna når du nærmer deg. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "welfare_intervention",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#den_skadde_fuglen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Du finner en fugl som virker skadet og ikke flyr unna når du nærmer deg. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "welfare_intervention",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#den_skadde_fuglen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Du finner en fugl som virker skadet og ikke flyr unna når du nærmer deg. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "welfare_intervention",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#den_skadde_fuglen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Du finner en fugl som virker skadet og ikke flyr unna når du nærmer deg. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "welfare_intervention",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#den_skadde_fuglen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Etter mange turer har du både sikre funn, feilbestemmelser, korrigeringer, tomme dager og ett betalt registreringsoppdrag. Morgenen etablerer hva som faktisk er observert, hva som er usikkert og hvilke grenser som allerede gjelder før jakten på et nytt funn tar fart.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "correction_reputation",
+          "welfare_intervention",
+          "livelihood_fieldwork",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#sesongslutt_hva_slags_artsjeger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Etter mange turer har du både sikre funn, feilbestemmelser, korrigeringer, tomme dager og ett betalt registreringsoppdrag. Midt på dagen blir kunnskap, prestisje og forventninger synlige gjennom andre observatører, venner, grunneiere eller faglige kontakter.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "correction_reputation",
+          "welfare_intervention",
+          "livelihood_fieldwork",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#sesongslutt_hva_slags_artsjeger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Etter mange turer har du både sikre funn, feilbestemmelser, korrigeringer, tomme dager og ett betalt registreringsoppdrag. Ettermiddagen gjør forskjellen mellom nysgjerrig Artsjeger-praksis og profesjonell arts-, forvaltnings- eller myndighetsrolle til et konkret valg.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "correction_reputation",
+          "welfare_intervention",
+          "livelihood_fieldwork",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#sesongslutt_hva_slags_artsjeger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Etter mange turer har du både sikre funn, feilbestemmelser, korrigeringer, tomme dager og ett betalt registreringsoppdrag. Kvelden viser hvordan valget påvirker læring, omdømme, tillit, naturhensyn eller forholdet mellom frivillig praksis og betalt feltregistrering.",
+        "thread_ids": [
+          "evidence_uncertainty",
+          "correction_reputation",
+          "welfare_intervention",
+          "livelihood_fieldwork",
+          "boundary_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsjeger.json#sesongslutt_hva_slags_artsjeger"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "evidence_uncertainty",
+      "relationship": "forholdet mellom ønsket om sikre artsfunn og plikten til å markere hva observasjonen faktisk ikke kan bevise",
+      "beat_refs": [
+        "1/morning",
+        "1/afternoon",
+        "5/lunch",
+        "6/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "sensitive_access",
+      "relationship": "forholdet mellom gode funnsteder, presis lokasjon, dokumentasjon og grenser satt av sårbar natur eller privat grunn",
+      "beat_refs": [
+        "3/morning",
+        "3/evening",
+        "4/afternoon",
+        "7/lunch",
+        "8/afternoon",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "correction_reputation",
+      "relationship": "forholdet mellom korreksjon, kildegrunnlag og spillerens omdømme som pålitelig observatør",
+      "beat_refs": [
+        "1/evening",
+        "5/afternoon",
+        "6/morning",
+        "6/evening",
+        "12/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "welfare_intervention",
+      "relationship": "forholdet mellom omsorg, påvirkning av dyr og grensen mot tiltak eller håndtering som krever annet ansvar",
+      "beat_refs": [
+        "4/evening",
+        "8/lunch",
+        "9/afternoon",
+        "13/morning",
+        "13/evening",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "livelihood_fieldwork",
+      "relationship": "forholdet mellom Artsjeger-ferdigheter og det avgrensede betalte registreringsoppdraget uten profesjonell rolleutglidning",
+      "beat_refs": [
+        "10/morning",
+        "10/afternoon",
+        "11/morning",
+        "11/afternoon",
+        "12/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "observation_bias",
+      "relationship": "forholdet mellom hvor spilleren faktisk leter, hva som blir registrert og fristelsen til å lese små datasett som sikre mønstre",
+      "beat_refs": [
+        "2/morning",
+        "2/evening",
+        "6/lunch",
+        "10/evening",
+        "12/morning",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "boundary_authority",
+      "relationship": "forholdet mellom gjenkjenning og rapportering på den ene siden og profesjonell vurdering, forvaltning eller myndighetsutøvelse på den andre",
+      "beat_refs": [
+        "8/evening",
+        "9/morning",
+        "9/evening",
+        "10/lunch",
+        "11/evening",
+        "13/afternoon",
+        "14/lunch"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "usikkerhet_som_integritet",
+      "description": "Etter turen må spilleren leve med at et mulig nytt funn forblir ubekreftet, og oppdager om identiteten tåler et tomt felt bedre enn et tvilsomt kryss.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_artsjeger.json#observasjonen_som_nesten_passer",
+        "data/Civication/narratives/leisure/natur_artsjeger.json#oppdragsgiveren_vil_ha_et_sikrere_svar",
+        "data/Civication/narratives/leisure/natur_artsjeger.json#sesongslutt_hva_slags_artsjeger"
+      ]
+    },
+    {
+      "id": "korrigeringen_som_blir_synlig",
+      "description": "En offentlig rettelse kan svi sosialt, men kan også bygge tillit til at spillerens registreringer kan etterprøves.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_artsjeger.json#feilbestemmelsen_som_blir_rettet",
+        "data/Civication/narratives/leisure/natur_artsjeger.json#registreringen_fra_en_venn"
+      ]
+    },
+    {
+      "id": "funnstedet_som_ikke_ble_delt",
+      "description": "Å holde igjen en presis lokasjon eller snu ved et gjerde kan føles antiklimatisk samtidig som natur- og adgangshensyn faktisk styrkes.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_artsjeger.json#den_sjeldne_lokasjonen",
+        "data/Civication/narratives/leisure/natur_artsjeger.json#privat_grunn_og_det_gode_funnstedet"
+      ]
+    },
+    {
+      "id": "omsorg_uten_a_overta",
+      "description": "Møtet med påvirkning, invasive arter eller skadde dyr gjør det tydelig at bekymring ikke automatisk gir riktig mandat til inngrep.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_artsjeger.json#lokkemiddelet",
+        "data/Civication/narratives/leisure/natur_artsjeger.json#den_invasive_arten",
+        "data/Civication/narratives/leisure/natur_artsjeger.json#den_skadde_fuglen"
+      ]
+    },
+    {
+      "id": "honorar_uten_profesjonstittel",
+      "description": "Det betalte feltoppdraget gjør Artsjeger-ferdigheter økonomisk synlige samtidig som tolkning, godkjenning, forvaltning og vedtak forblir utenfor rollen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_artsjeger.json#feltregistreringsoppdraget",
+        "data/Civication/narratives/leisure/natur_artsjeger.json#oppdragsgiveren_vil_ha_et_sikrere_svar",
+        "data/Civication/narratives/leisure/natur_artsjeger.json#kartet_som_avslorer_mer_enn_feltet"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "nesten_funn_blir_tillitsmal",
+      "setup_ref": "1/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "sjelden_lokasjon_blir_feltetikk",
+      "setup_ref": "3/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "korrigering_blir_laringskapital",
+      "setup_ref": "6/afternoon",
+      "return_ref": "12/lunch",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "privat_grense_blir_lokal_tillit",
+      "setup_ref": "7/afternoon",
+      "return_ref": "14/lunch",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "honorar_blir_scope_grense",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "livelihood",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "skadet_fugl_blir_rolleforstaelse",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/natur_artsjeger.json#observasjonen_som_nesten_passer",
+      "data/Civication/narratives/leisure/natur_artsjeger.json#samme_individ_to_ganger",
+      "data/Civication/narratives/leisure/natur_artsjeger.json#den_sjeldne_lokasjonen",
+      "data/Civication/narratives/leisure/natur_artsjeger.json#bildet_som_krever_ett_skritt_til",
+      "data/Civication/narratives/leisure/natur_artsjeger.json#registreringen_fra_en_venn",
+      "data/Civication/narratives/leisure/natur_artsjeger.json#feilbestemmelsen_som_blir_rettet",
+      "data/Civication/narratives/leisure/natur_artsjeger.json#privat_grunn_og_det_gode_funnstedet",
+      "data/Civication/narratives/leisure/natur_artsjeger.json#lokkemiddelet",
+      "data/Civication/narratives/leisure/natur_artsjeger.json#den_invasive_arten",
+      "data/Civication/narratives/leisure/natur_artsjeger.json#feltregistreringsoppdraget",
+      "data/Civication/narratives/leisure/natur_artsjeger.json#oppdragsgiveren_vil_ha_et_sikrere_svar",
+      "data/Civication/narratives/leisure/natur_artsjeger.json#kartet_som_avslorer_mer_enn_feltet",
+      "data/Civication/narratives/leisure/natur_artsjeger.json#den_skadde_fuglen",
+      "data/Civication/narratives/leisure/natur_artsjeger.json#sesongslutt_hva_slags_artsjeger"
+    ]
+  }
+}
