@@ -10,6 +10,7 @@ const ROOT = path.resolve(__dirname, '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 
 const streamPath = 'data/Civication/narratives/leisure/musikk_scenehenger.json';
+const stageStreamPath = 'data/Civication/narratives/leisure/scenekunst_scenehenger.json';
 const stream = readJson(streamPath);
 const manifest = readJson('data/Civication/narratives/manifest.json');
 const audit = readJson('data/Civication/lifePositionRoleWorldReadiness.json');
@@ -73,25 +74,26 @@ assert.deepEqual(ready.evidence.livelihood_templates, ['scenehenger_konsertcrew'
 
 const stageAudit = audit.positions.find((row) => row.key === 'scenekunst/scenehenger');
 assert.ok(stageAudit);
-assert.equal(stageAudit.classification, 'needs_authored_depth');
+assert.equal(stageAudit.classification, 'ready');
 assert.equal(stageAudit.role_world_status, 'role_world_not_started');
 assert.equal(stageAudit.role_world_path, null);
-assert.equal(stageAudit.authored_depth.max_narrative_depth, 0);
-assert.equal(stageAudit.authored_depth.exact_source_ref_count, 0);
+assert.equal(stageAudit.authored_depth.max_narrative_depth, 14);
+assert.equal(stageAudit.authored_depth.exact_source_ref_count, 1);
+assert.deepEqual(stageAudit.evidence.exact_source_refs, [stageStreamPath]);
 assert.ok(!stageAudit.evidence.exact_source_refs.includes(streamPath));
 
 assert.deepEqual(audit.summary.classifications, {
-  ready: 11,
-  needs_authored_depth: 148,
+  ready: 12,
+  needs_authored_depth: 147,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.completed_life_position_role_worlds, 11);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 11);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 11);
-assert.equal(audit.first_ready, null);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
+assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 12);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 12);
+assert.equal(audit.first_ready?.key, 'scenekunst/scenehenger');
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'scenekunst/scenehenger');
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'scenekunst/scenehenger');
 assert.equal(
   audit.semantics.duplicate_life_position_ids_or_labels_require_badge_scoped_governed_binding,
   true

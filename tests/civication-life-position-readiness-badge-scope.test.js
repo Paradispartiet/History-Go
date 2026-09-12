@@ -51,8 +51,11 @@ try {
   assert.ok(music.authored_depth.max_narrative_depth >= 4);
   assert.ok(music.evidence.exact_source_refs.includes(fixtureRel));
 
-  assert.equal(stage.classification, 'needs_authored_depth');
-  assert.equal(stage.authored_depth.max_narrative_depth, 0);
+  assert.equal(stage.classification, 'ready');
+  assert.equal(stage.authored_depth.max_narrative_depth, 14);
+  assert.deepEqual(stage.evidence.exact_source_refs, [
+    'data/Civication/narratives/leisure/scenekunst_scenehenger.json'
+  ]);
   assert.ok(!stage.evidence.exact_source_refs.includes(fixtureRel));
 
   assert.equal(
