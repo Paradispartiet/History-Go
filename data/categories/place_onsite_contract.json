@@ -1,9 +1,17 @@
 {
-  "version": "1.2",
+  "version": "1.3",
   "status": "canonical",
-  "updatedAt": "2026-09-11",
-  "rule": "Events og møteflater eies av Utforsk i venstre panel. PlaceCard/På stedet viser bare kategori- eller stedstypeavhengige handlinger som faktisk må utføres på det konkrete stedet.",
+  "updatedAt": "2026-09-12",
+  "rule": "Utforsk eier de globale Events- og Møtes-oversiktene. PlaceCard viser kompakte snarveier til de samme canonicale runtime-ene, pluss ekte stedstypehandlinger.",
   "actions": {
+    "events": {
+      "label": "Events",
+      "icon": "📅"
+    },
+    "meet": {
+      "label": "Møtes",
+      "icon": "🤝"
+    },
     "play": {
       "label": "Lek",
       "icon": "🛝"
@@ -92,8 +100,12 @@
     "training": "Trening er type-spesifikt sportsinnhold i stedspopupen, ikke en På stedet-handling."
   },
   "movedSurfaces": {
-    "events": "Utforsk → Events",
-    "social-meet": "Utforsk → Møtes / Mine møter",
-    "knowledge-meet": "Utforsk → Møtes / Foreslå kunnskapsmøte"
+    "events": "Utforsk → Events er global oversikt; PlaceCard har stedssnarvei",
+    "social-meet": "Utforsk → Møtes / Mine møter er global oversikt; PlaceCard har stedssnarvei",
+    "knowledge-meet": "Utforsk → Møtes / Foreslå kunnskapsmøte er global oversikt; PlaceCard har samme samlede Møtes-snarvei"
+  },
+  "placeCardShortcuts": {
+    "events": "Canonical HGEvents filtrert på aktivt Place",
+    "meet": "Samlet Møtes-inngang: Kunnskapsmøte + Social Meet"
   }
 }
