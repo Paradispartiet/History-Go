@@ -37,7 +37,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/search.css">
-  <link rel="stylesheet" href="css/nearby.css?v=20260912-live-surfaces2">
+  <link rel="stylesheet" href="css/nearby.css?v=20260912-explore-secondary-row1">
   <link rel="stylesheet" href="css/miniProfile.css">
   <link rel="stylesheet" href="css/profile.css">
   <link rel="stylesheet" href="css/merits.css">
@@ -221,14 +221,19 @@
                   aria-label="Filter" data-hg-i18n-aria-label="ui.attr.filter"></button>
         </div>
 
-        <div class="nearby-tabs" role="tablist" aria-label="Utforsk" data-hg-i18n-aria-label="ui.static.explore">
-          <button class="nearby-tab is-active" data-leftmode="nearby" data-i18n="ui.tabs.places" type="button">Steder</button>
-          <button class="nearby-tab" data-leftmode="people" data-i18n="ui.tabs.people" type="button">Folk</button>
-          <button class="nearby-tab" data-leftmode="nature" data-i18n="ui.tabs.nature" type="button">Natur</button>
-          <button class="nearby-tab" data-leftmode="events" type="button">Events</button>
-          <button class="nearby-tab" data-leftmode="social" type="button">Møtes</button>
-          <button class="nearby-tab" data-leftmode="routes" data-i18n="ui.tabs.routes" type="button">Ruter</button>
-          <button class="nearby-tab" data-leftmode="badges" data-i18n="ui.tabs.badges" type="button">Merker</button>
+        <div class="nearby-mode-stack">
+          <div class="nearby-tabs" role="tablist" aria-label="Utforsk" data-hg-i18n-aria-label="ui.static.explore">
+            <button class="nearby-tab is-active" data-leftmode="nearby" data-i18n="ui.tabs.places" type="button">Steder</button>
+            <button class="nearby-tab" data-leftmode="people" data-i18n="ui.tabs.people" type="button">Folk</button>
+            <button class="nearby-tab" data-leftmode="nature" data-i18n="ui.tabs.nature" type="button">Natur</button>
+            <button class="nearby-tab" data-leftmode="routes" data-i18n="ui.tabs.routes" type="button">Ruter</button>
+            <button class="nearby-tab" data-leftmode="badges" data-i18n="ui.tabs.badges" type="button">Merker</button>
+          </div>
+
+          <div class="explore-secondary-actions" aria-label="Events og møter">
+            <button class="nearby-tab explore-secondary-tab" data-leftmode="events" type="button">Events</button>
+            <button class="nearby-tab explore-secondary-tab" data-leftmode="social" type="button">Møtes</button>
+          </div>
         </div>
       </div>
 
