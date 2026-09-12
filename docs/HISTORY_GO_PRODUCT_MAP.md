@@ -65,7 +65,7 @@ Fanenes innhold følger produksjonsprofil og innholdsplan. Universal core — s�
 
 `Mer`, `Annet` og `Tillegg` er ikke brukerrettede popupfaner. Tidligere restinnhold rutes til canonical eier: Objects/Gjenstander, People, Relaterte steder eller Om etter `docs/PLACE_POPUP_SYSTEM.md`.
 
-Utforsk i venstre panel er den globale oversikten for **Events** og den samlede **Møtes**-inngangen. PlaceCard viser i tillegg kompakte stedssnarveier til de samme canonicale runtime-ene: Events filtrert på aktivt Place og Møtes som samler Kunnskapsmøte + Social Meet. Øvrige På stedet-handlinger er ekte lokale stedstypehandlinger som Lek. Type-spesifikt innhold som trening følger sin egen stedstypekontrakt.
+I PlaceCard ligger **Events** og den samlede **Møtes**-inngangen i venstre hero-kolonne direkte under Utforsk-rundingene/rektanglene. Events filtrerer canonical `HGEvents` på aktivt Place; Møtes samler Kunnskapsmøte + Social Meet. Det globale venstre Utforsk-panelet har ikke egne Events/Møtes-tabs. Øvrige På stedet-handlinger er ekte lokale stedstypehandlinger som Lek.
 
 Eiere:
 
