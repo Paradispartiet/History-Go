@@ -143,7 +143,7 @@ assert.equal(audit.first_ready?.key, 'scenekunst/scenehenger');
 const next = audit.queue[0];
 assert.ok(next);
 assert.equal(next.key, 'scenekunst/scenehenger');
-assert.equal(next.classification, 'needs_authored_depth');
+assert.equal(next.classification, 'ready');
 
 assert.match(stream.storylets.find((row) => row.id === 'hva_slags_flanor').situation.join(' '), /myndighet|eierskap/i);
 assert.match(stream.storylets.find((row) => row.id === 'du_har_tid').situation.join(' '), /arbeidstid|helse|omsorgsansvar|økonomisk rom/i);
