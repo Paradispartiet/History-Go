@@ -478,6 +478,6 @@ if (checkMode) {
   if (!exists(OUTPUT) || !exists(REPORT)) throw new Error('Readiness outputs missing; run with --write.');
   if (readText(OUTPUT)!==jsonText) throw new Error(`${OUTPUT} is stale; run with --write.`);
   if (readText(REPORT)!==reportText) throw new Error(`${REPORT} is stale; run with --write.`);
-  if (rows.length!==200) throw new Error(`Expected 200 selectable life positions, got ${rows.length}`);
+  const expectedSelectable = Number(taxonomy.canonical_counts?.selectable_life_positions_total);\n  if (!Number.isInteger(expectedSelectable) || expectedSelectable < 1) throw new Error('Canonical selectable life-position count missing from taxonomy.');\n  if (rows.length!==expectedSelectable) throw new Error(`Expected ${expectedSelectable} selectable life positions, got ${rows.length}`);
   console.log(`PASS: ${rows.length} life positions audited; ${classCounts.ready} ready, ${classCounts.needs_authored_depth} needs depth, ${classCounts.not_a_standalone_world} not standalone; ${output.summary.life_position_role_world_complete} Role World complete.`);
 }
