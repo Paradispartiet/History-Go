@@ -4,21 +4,21 @@ Status: **canonical handlingskontrakt**
 Eier: `place_onsite_contract`  
 Runtime: `js/ui/place-onsite-surface.js`  
 Datakontrakt: `data/categories/place_onsite_contract.json`  
-Sist kontrollert: **2026-09-11**
+Sist kontrollert: **2026-09-12**
 
 ## Hovedregel
 
-PlaceCard skal ikke være hovednavigasjon for globale oppdagelses- eller møteflater.
+Utforsk er fortsatt hovedoversikten for globale **Events** og **Møtes**, men PlaceCard skal også ha kompakte, stedskontekstuelle snarveier til de samme canonicale runtime-ene.
 
-**Events** og de sosiale møteflatene er flyttet til **Utforsk i venstre panel**:
+- **Utforsk → Events** viser den globale oversikten fra `HGEvents`.
+- **PlaceCard → Events** filtrerer samme `HGEvents` på aktivt Place.
+- **Utforsk → Møtes** samler oppstart og oppfølging.
+- **PlaceCard → Møtes** åpner samme samlede inngang i aktiv Place-kontekst:
+  - **Foreslå kunnskapsmøte** → `HG_SpotmeetingUI`.
+  - **Mine møter / Social Meet** → `HG_SocialMeetUI`.
+- Header-menyens **Møtes / Social Meet** åpner `HG_SocialMeetUI` direkte og er ikke avhengig av at Utforsk-draweren er initialisert.
 
-- **Utforsk → Events** viser kommende canonical events fra `HGEvents`.
-- **Utforsk → Møtes** er én samlet brukerinngang for møteproduktet.
-  - **Foreslå kunnskapsmøte** starter `HG_SpotmeetingUI` i valgt Place-kontekst.
-  - **Mine møter / Social Meet** åpner `HG_SocialMeetUI` for forslag, avtaler, svar, læringssirkler og historikk.
-- Header-menyen beholder **Møtes / Social Meet** som en hurtiginngang til den samme `Utforsk → Møtes`-flaten. Den er en shortcut, ikke en separat produkteier.
-
-Det finnes derfor ikke lenger separate PlaceCard-knapper for **Events**, **Avtal å møtes**, **Kunnskapsmøte** eller **Social Meet**.
+PlaceCard-snarveiene er ikke parallelle state-eiere; de peker til de samme canonicale data- og møte-runtime-ene som Utforsk.
 
 ## Møtes er én brukerflate, to interne ansvar
 
@@ -31,7 +31,7 @@ Dette bevarer eksisterende state-, backend- og privacy-kontrakter samtidig som s
 
 ## Hva kan fortsatt ligge i PlaceCard/På stedet?
 
-Bare handlinger som faktisk er bundet til den konkrete stedstypen eller stedet og som ikke er globale oppdagelsesflater.
+I tillegg til de faste Events-/Møtes-snarveiene kan PlaceCard vise handlinger som faktisk er bundet til den konkrete stedstypen eller stedet.
 
 ### Lek
 
@@ -59,9 +59,10 @@ Disse beholder sine egne etablerte flows og skal ikke dupliseres inn i Utforsk �
 
 Den maskinlesbare matrisen ligger i `data/categories/place_onsite_contract.json`.
 
-- `movedSurfaces` låser Events og begge møteansvarene til Utforsk.
-- `categoryPolicy` og `placeTypeOverrides` styrer bare gjenværende lokale stedsfunksjoner.
+- `placeCardShortcuts` låser de stedskontekstuelle Events-/Møtes-snarveiene.
+- `movedSurfaces` beskriver Utforsk som global hovedoversikt uten å forby PlaceCard-snarveier.
+- `categoryPolicy` og `placeTypeOverrides` styrer øvrige lokale stedsfunksjoner.
 
 ## Sluttregel
 
-**Utforsk eier oppdagelse: Events og Møtes. PlaceCard eier bare ekte, lokale stedsfunksjoner.**
+**Utforsk eier de globale oversiktene. PlaceCard kan alltid åpne Events og Møtes i aktiv stedskontekst, uten å eie parallelle data eller state.**
