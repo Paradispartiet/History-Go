@@ -1810,8 +1810,8 @@
       nav.setAttribute("data-hg-place-sheet-nav", "1");
       nav.setAttribute("aria-label", "Hopp til del av stedet");
       nav.innerHTML = NAV_ITEMS.map(([id, label]) => `<button type="button" data-hg-place-sheet-jump="${id}">${label}</button>`).join("");
-      const onsite = shell4.querySelector("[data-hg-place-sheet-onsite]");
-      if (onsite == null ? void 0 : onsite.nextSibling) shell4.insertBefore(nav, onsite.nextSibling);
+      const hero = shell4.querySelector("[data-hg-place-sheet-hero]");
+      if (hero == null ? void 0 : hero.nextSibling) shell4.insertBefore(nav, hero.nextSibling);
       else shell4.appendChild(nav);
       nav.addEventListener("click", (event) => {
         var _a, _b, _c;
@@ -1852,10 +1852,10 @@
             </div>
             <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
           </section>
+          <section class="pc-sheet-onsite" data-hg-place-sheet-onsite aria-label="Events og m\xF8ter"></section>
         </div>
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
       </div>
-      <section class="pc-sheet-onsite" data-hg-place-sheet-onsite></section>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
       <section class="pc-sheet-before-after" data-hg-place-sheet-before-after hidden></section>
@@ -2074,7 +2074,7 @@
     function ensureStylesheet6() {
       const styles = [
         [STYLE_FLAG, "css/place-unified-surface.css"],
-        [SHEET_STYLE_FLAG, "css/place-sheet.css"],
+        [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20260912-onsite-under-explore1"],
         [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css"]
       ];
       for (const [flag, href] of styles) {

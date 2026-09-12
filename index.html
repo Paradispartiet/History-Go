@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
   <title>History Go</title>
 
-  <script src="js/config.js?v=20260909-unified-place-surface"></script>
+  <script src="js/config.js?v=20260912-onsite-under-explore1"></script>
 
   <!-- MapLibre GL JS: MÅ lastes før js/map.js brukes (pinned versjon, ikke "latest"). -->
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" />
@@ -225,8 +225,6 @@
           <button class="nearby-tab is-active" data-leftmode="nearby" data-i18n="ui.tabs.places" type="button">Steder</button>
           <button class="nearby-tab" data-leftmode="people" data-i18n="ui.tabs.people" type="button">Folk</button>
           <button class="nearby-tab" data-leftmode="nature" data-i18n="ui.tabs.nature" type="button">Natur</button>
-          <button class="nearby-tab" data-leftmode="events" type="button">Events</button>
-          <button class="nearby-tab" data-leftmode="social" type="button">Møtes</button>
           <button class="nearby-tab" data-leftmode="routes" data-i18n="ui.tabs.routes" type="button">Ruter</button>
           <button class="nearby-tab" data-leftmode="badges" data-i18n="ui.tabs.badges" type="button">Merker</button>
         </div>
@@ -236,8 +234,6 @@
         <div id="nearbyList" class="nearby-strip"></div>
         <div id="leftPeopleList" class="nearby-strip" hidden></div>
         <div id="leftNatureList" class="nearby-strip" hidden></div>
-        <div id="leftEventsList" class="nearby-strip hg-explore-events-list" hidden></div>
-        <div id="leftSocialList" class="nearby-strip hg-explore-social-list" hidden></div>
         <div id="leftRoutesList" class="nearby-strip" hidden></div>
         <div id="leftBadgesList" class="nearby-strip" hidden></div>
       </div>
@@ -340,7 +336,7 @@
         "dist/web/knowledgeV2.js",
         "js/hgSocialGuards.js",
         "js/knowledgeMatch.js",
-        "js/ui/header-menu.js?v=20260912-live-surfaces2",
+        "js/ui/header-menu.js?v=20260912-onsite-under-explore1",
         "js/ui/psychology-room-entry.js",
         "js/ui/badges.js"
       ];
@@ -359,6 +355,6 @@
     }, { once: true });
   </script>
 
-  <script type="module" src="./js/app.js?v=20260912-live-surfaces2"></script>
+  <script type="module" src="./js/app.js?v=20260912-onsite-under-explore1"></script>
 </body>
 </html>

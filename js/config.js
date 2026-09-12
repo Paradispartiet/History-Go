@@ -63,11 +63,11 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
     "js/ui/sprakatlas-map-experience-v3.js",
     "js/ui/sprakatlas-collection-v4.js",
     "js/ui/place-popup-direct-tabs.js",
-    "js/ui/header-menu.js",
+    "js/ui/header-menu.js?v=20260912-onsite-under-explore1",
     "js/ui/psychology-room-entry.js",
     "js/ui/badges.js",
     "js/ui/personal-collection-map-bridge.js",
-    "dist/web/place-unified-surface.js"
+    "dist/web/place-unified-surface.js?v=20260912-onsite-under-explore1"
   ];
 
   const placeholderType = "application/x-history-go-deferred";

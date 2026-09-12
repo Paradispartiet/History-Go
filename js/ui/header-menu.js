@@ -192,16 +192,7 @@
           sourceSurface: "headerMenu"
         });
       } else {
-        if (typeof window.setLeftPanelMode === "function") {
-          window.setLeftPanelMode("social");
-        } else {
-          window.HGLeftPanelMode?.setMode?.("social");
-        }
-        if (typeof window.openNearbyDrawer === "function") {
-          window.openNearbyDrawer();
-        } else {
-          window.HGNearbyDrawer?.open?.();
-        }
+        window.showToast?.("Møtefunksjonen er ikke lastet ennå");
       }
       headerMenuApi.close();
     });

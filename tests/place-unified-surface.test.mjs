@@ -8,8 +8,10 @@ const root = process.cwd();
 const read = file => fs.readFileSync(path.join(root, file), "utf8");
 
 const source = read("js/ui/place-unified-surface.ts");
+const shellSource = read("js/ui/place-sheet/place-sheet-shell.ts");
 const runtime = read("dist/web/place-unified-surface.js");
 const css = read("css/place-unified-surface.css");
+const sheetCss = read("css/place-sheet.css");
 const phase6Css = read("css/place-sheet-phase6.css");
 const config = read("js/config.js");
 const statusSurface = read("js/ui/place-card-status-surface.js");
@@ -42,11 +44,11 @@ test("unified Place surface keeps public entry points and canonical section set"
 test("unified renderer is critical runtime while Phase 6 adds direct Place Sheet styling", () => {
   assert.match(
     statusSurface,
-    /ensureScript\("dist\/web\/place-unified-surface\.js"\)/,
+    /ensureScript\("dist\/web\/place-unified-surface\.js\?v=20260912-onsite-under-explore1"\)/,
     "Unified Place Surface must load with the primary PlaceCard/popup runtime"
   );
   const directIndex = config.indexOf('"js/ui/place-popup-direct-tabs.js"');
-  const unifiedIndex = config.indexOf('"dist/web/place-unified-surface.js"');
+  const unifiedIndex = config.indexOf('"dist/web/place-unified-surface.js?v=20260912-onsite-under-explore1"');
   assert.ok(directIndex >= 0, "direct-tabs runtime must remain loaded for Micro compatibility");
   assert.ok(unifiedIndex > directIndex, "unified runtime must install after canonical legacy popup routing");
   assert.ok(runtime.length > 500, "committed TypeScript bundle must exist");
@@ -54,6 +56,16 @@ test("unified renderer is critical runtime while Phase 6 adds direct Place Sheet
   assert.match(phase6Css, /Place Sheet Phase 6/);
   assert.match(phase6Css, /pc-sheet-section-nav/);
   assert.match(phase6Css, /is-place-sheet-direct/);
+});
+
+test("Place Sheet source locks Events/Møtes under Explore in the left column", () => {
+  const exploreIndex = shellSource.indexOf('<section class="pc-sheet-explore"');
+  const onsiteIndex = shellSource.indexOf('<section class="pc-sheet-onsite"');
+  const copyIndex = shellSource.indexOf('<div class="pc-sheet-hero-copy"');
+  assert.ok(exploreIndex >= 0 && onsiteIndex > exploreIndex && copyIndex > onsiteIndex);
+  assert.match(sheetCss, /pc-sheet-hero-media > \.pc-sheet-onsite/);
+  assert.match(source, /css\/place-sheet\.css\?v=20260912-onsite-under-explore1/);
+  assert.match(runtime, /css\/place-sheet\.css\?v=20260912-onsite-under-explore1/);
 });
 
 test("plan locks fail-closed parity and Micro Place exception", () => {
@@ -81,7 +93,14 @@ function createPopup(window, place) {
 
 test("standard Places render directly in Place Sheet while Micro keeps the standalone popup", async () => {
   const dom = new JSDOM(`<!doctype html><html><head></head><body class="hg-app">
-    <div id="placeCard" class="is-open"><div class="pc-body"><div class="pc-text"><h2 id="pcTitle"></h2><p id="pcDesc"></p></div><div class="pc-grid"></div></div></div>
+    <div id="placeCard" class="is-open"><div class="pc-body">
+      <div class="pc-text"><h2 id="pcTitle"></h2><p id="pcDesc"></p></div>
+      <div class="pc-grid">
+        <div class="pc-frontcard"></div>
+        <div class="pc-side-stack"><div class="pc-icons-quad"></div></div>
+        <div id="pcEventsBox"></div>
+      </div>
+    </div></div>
   </body></html>`, { url: "https://history-go.test/", runScripts: "outside-only", pretendToBeVisual: true });
   const { window } = dom;
   const standard = { id: "standard_place", name: "Standard Place", placeTier: "standard", popupDesc: "Om standardstedet" };
@@ -133,6 +152,17 @@ test("standard Places render directly in Place Sheet while Micro keeps the stand
   assert.ok(card.querySelector('[data-hg-place-sheet-section="learning"] [data-hg-place-sheet-owner="learning"]'));
   assert.ok(card.querySelector('[data-hg-place-sheet-section="sources"] [data-hg-place-sheet-owner="sources"]'));
   assert.ok(card.querySelector('.pc-sheet-section-nav'));
+
+  const mediaColumn = card.querySelector('[data-hg-place-sheet-media]');
+  const explore = card.querySelector('.pc-sheet-explore');
+  const onsite = card.querySelector('[data-hg-place-sheet-onsite]');
+  const eventsBox = card.querySelector('#pcEventsBox');
+  assert.ok(mediaColumn && explore && onsite && eventsBox);
+  assert.equal(onsite.parentElement, mediaColumn, "Events/Møtes host must stay in PlaceCard left media column");
+  assert.equal(eventsBox.parentElement, onsite, "pcEventsBox must be owned by the onsite slot");
+  const mediaChildren = Array.from(mediaColumn.children);
+  assert.ok(mediaChildren.indexOf(onsite) > mediaChildren.indexOf(explore), "Events/Møtes must sit below Utforsk collections");
+
   assert.equal(typeof window.HGPlacePopupTabs.openTab, "function", "legacy entry point must route into Place Sheet for standard Places");
 
   await window.HGPlacePopupTabs.openTab(standard, "history");

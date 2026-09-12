@@ -132,6 +132,12 @@ Rules remain canonical:
 
 Desktop/tablet may use a spacious 2×2 or context-appropriate balanced layout. Mobile should default to a legible 2×2 composition without shrinking labels into icon-only affordances.
 
+**Events og Møtes** ligger i samme venstre hero-kolonne, direkte under de fire Utforsk-samlingene. Canonical rekkefølge i kolonnen er:
+
+`frontImage → Utforsk-samlinger → Events / Møtes`
+
+De skal ikke dupliseres som egne tabs i det globale venstre Utforsk-panelet.
+
 ### 4.4 Full content stream
 
 After Explore, the user scrolls through the complete place dossier in canonical order:
