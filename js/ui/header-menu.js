@@ -183,15 +183,25 @@
     });
 
     document.getElementById("btnSocialMeet")?.addEventListener("click", () => {
-      if (typeof window.setLeftPanelMode === "function") {
-        window.setLeftPanelMode("social");
+      // Header-snarveien må fungere selv om Utforsk-draweren ikke er initialisert.
+      // Social Meet er den canonicale oppfølgingsflaten; Utforsk er kun fallback.
+      if (typeof window.HG_SocialMeetUI?.open === "function") {
+        window.HG_SocialMeetUI.open({
+          filter: "all",
+          placeId: "",
+          sourceSurface: "headerMenu"
+        });
       } else {
-        window.HGLeftPanelMode?.setMode?.("social");
-      }
-      if (typeof window.openNearbyDrawer === "function") {
-        window.openNearbyDrawer();
-      } else {
-        window.HGNearbyDrawer?.open?.();
+        if (typeof window.setLeftPanelMode === "function") {
+          window.setLeftPanelMode("social");
+        } else {
+          window.HGLeftPanelMode?.setMode?.("social");
+        }
+        if (typeof window.openNearbyDrawer === "function") {
+          window.openNearbyDrawer();
+        } else {
+          window.HGNearbyDrawer?.open?.();
+        }
       }
       headerMenuApi.close();
     });

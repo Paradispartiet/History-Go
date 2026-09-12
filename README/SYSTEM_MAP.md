@@ -211,8 +211,8 @@ History Go er delt i tydelige lag:
 - js/ui/popup-utils.js
 - Eier: collapsePlaceCard / expandPlaceCard, initLeftPanel, enterMapMode / exitMapMode
 - Utforsk-modes: Steder, Folk, Natur, **Events**, **Møtes**, Ruter og Merker.
-- `Events` leser canonical `HGEvents`. `Møtes` er én brukerinngang som ruter opprettelse til `HG_SpotmeetingUI` og oppfølging til `HG_SocialMeetUI`; PlaceCard eier ikke disse globale oppdagelsesflatene.
-- Header-menyens **Møtes / Social Meet** er en eksplisitt shortcut som aktiverer samme `social`-mode og åpner Utforsk-draweren; den skal ikke fjernes når møteinnhold flyttes ut av PlaceCard.
+- `Events` leser canonical `HGEvents`. `Møtes` er én brukerinngang som ruter opprettelse til `HG_SpotmeetingUI` og oppfølging til `HG_SocialMeetUI`. PlaceCard har stedskontekstuelle snarveier til de samme runtime-ene uten parallell state.
+- Header-menyens **Møtes / Social Meet** åpner `HG_SocialMeetUI` direkte; Utforsk er fallback, ikke en runtime-avhengighet.
 
 ### 6.6 Badges og modal
 - js/ui/badges.js
