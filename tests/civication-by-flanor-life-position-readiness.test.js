@@ -9,20 +9,19 @@ const vm = require('node:vm');
 const ROOT = path.resolve(__dirname, '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 
-const streamPath = 'data/Civication/narratives/leisure/sofafilosof.json';
+const streamPath = 'data/Civication/narratives/leisure/by_flanor.json';
 const stream = readJson(streamPath);
 const manifest = readJson('data/Civication/narratives/manifest.json');
 const audit = readJson('data/Civication/lifePositionRoleWorldReadiness.json');
 const catalog = readJson('data/Civication/lifePositionCatalog.json');
-const livelihood = readJson('data/Civication/livelihoodOpportunityTemplates.json');
 const taxonomy = readJson('data/Civication/nonCareerRoleTaxonomy.json');
 const policy = readJson('data/Civication/roleWorldPolicy.json');
 
 assert.equal(stream.schema, 'civication_narrative_stream_v1');
-assert.equal(stream.id, 'sofafilosof_stream');
+assert.equal(stream.id, 'by_flanor_stream');
 assert.equal(stream.type, 'leisure');
-assert.deepEqual(stream.applies_when.any_tags, ['sofafilosof', 'filosofi:sofafilosof']);
-assert.equal(stream.storylets.length, 14, 'Sofafilosof source must carry one authored daily anchor per day');
+assert.deepEqual(stream.applies_when.any_tags, ['by:byflanor']);
+assert.equal(stream.storylets.length, 14);
 assert.equal(new Set(stream.storylets.map((row) => row.id)).size, 14);
 
 for (const row of stream.storylets) {
@@ -36,37 +35,29 @@ for (const row of stream.storylets) {
     assert.ok(String(choice.feedback || '').length >= 20);
   }
 }
-assert.ok(manifest.streams.some((entry) => entry.id === stream.id && entry.path === streamPath),
-  'Sofafilosof stream must be registered');
+assert.ok(manifest.streams.some((entry) => entry.id === stream.id && entry.path === streamPath));
 
-const profile = catalog.badges.find((row) => row.badge_id === 'filosofi');
-const position = profile.positions.find((row) => row.id === 'sofafilosof');
+const position = catalog.badges.find((row) => row.badge_id === 'by')
+  .positions.find((row) => row.id === 'byflanor');
 assert.deepEqual(position, {
-  id: 'sofafilosof',
-  label: 'Sofafilosof',
-  threshold: 10,
+  id: 'byflanor',
+  label: 'Flanør',
+  threshold: 60,
   kind: 'alternative_life_status',
-  description: 'Du kan gjøre en vanlig kveld til en lang diskusjon om fri vilje, rettferdighet eller mening.',
-  hooks: ['samtale', 'venner', 'nattlig_diskusjon']
+  description: 'Du går uten effektivt mål og lar byen bestemme hva dagen blir.',
+  hooks: ['vandring', 'observasjon', 'tilfeldig_mote']
 });
+assert.ok(!catalog.badges.find((row) => row.badge_id === 'by').positions.some((row) => row.id === 'byromsnerd'));
 
-const opportunity = livelihood.templates.find((row) => row.id === 'sofafilosof_samtalekveld');
-assert.ok(opportunity);
-assert.equal(opportunity.badge_id, 'filosofi');
-assert.equal(opportunity.life_position_label, 'Sofafilosof');
-assert.equal(opportunity.kind_id, 'gig_honorarium');
-assert.deepEqual(opportunity.income, { model: 'variable', min: 2, max: 5 });
-assert.deepEqual(opportunity.direct_costs, { fixed: 1 });
-
-const ready = audit.positions.find((row) => row.key === 'filosofi/sofafilosof');
+const ready = audit.positions.find((row) => row.key === 'by/byflanor');
 assert.ok(ready);
 assert.equal(ready.classification, 'ready');
-assert.equal(ready.role_world_status, 'role_world_complete');
-assert.equal(ready.role_world_path, 'data/Civication/roleWorlds/filosofi/filosofi_sofafilosof.json');
+assert.equal(ready.role_world_status, 'role_world_not_started');
+assert.equal(ready.role_world_path, null);
 assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
-assert.deepEqual(ready.evidence.livelihood_templates, ['sofafilosof_samtalekveld']);
-assert.equal(audit.summary.selectable_life_positions, 199);
+assert.deepEqual(ready.evidence.livelihood_templates, []);
+
 assert.deepEqual(audit.summary.classifications, {
   ready: 11,
   needs_authored_depth: 148,
@@ -77,15 +68,23 @@ assert.equal(audit.summary.pending_ready_positions, 1);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 11);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 11);
 assert.equal(audit.first_ready?.key, 'by/byflanor');
+assert.equal(audit.queue[0]?.key, 'by/byflanor');
+assert.equal(audit.queue[0]?.classification, 'ready');
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'by/byflanor');
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'by/byflanor');
+
+const coreText = stream.storylets
+  .flatMap((row) => [row.situation.join(' '), ...row.choices.map((choice) => choice.feedback || '')])
+  .join(' ');
+assert.match(coreText, /oppmerksom|offentlig|forbruk|privatliv|klasse|tid|observasjon/i);
+assert.match(coreText, /ikke.*ekspert|myndighet|autoritet|ikke.*kunnskap|ikke.*fasit/i);
 
 const narrativeSource = fs.readFileSync(
   path.join(ROOT, 'js/Civication/systems/civicationNarrativeSceneSource.js'),
   'utf8'
 );
 
-let activeLifePositions = [{ badge_id: 'filosofi', id: 'sofafilosof', label: 'Sofafilosof' }];
+let activeLifePositions = [{ badge_id: 'by', id: 'byflanor', label: 'Flanør' }];
 const filesByPath = new Map([
   ['data/Civication/narratives/manifest.json', manifest],
   [streamPath, stream]
@@ -93,7 +92,6 @@ const filesByPath = new Map([
 for (const row of manifest.streams || []) {
   if (!filesByPath.has(row.path)) filesByPath.set(row.path, readJson(row.path));
 }
-
 const state = {
   identity_tags: [],
   mail_branch_state: { flags: [] },
@@ -105,7 +103,6 @@ const state = {
     updated_at: null
   }
 };
-
 const sandbox = {
   console,
   Date,
@@ -113,20 +110,11 @@ const sandbox = {
   clearTimeout,
   fetch: async (rel) => {
     const data = filesByPath.get(String(rel));
-    return {
-      ok: !!data,
-      status: data ? 200 : 404,
-      async json() { return data; }
-    };
+    return { ok: !!data, status: data ? 200 : 404, async json() { return data; } };
   },
   window: {
-    CivicationState: {
-      getState: () => state,
-      getActivePosition: () => null
-    },
-    CivicationLifePositions: {
-      getLifeContext: () => ({ active_life_positions: activeLifePositions })
-    }
+    CivicationState: { getState: () => state, getActivePosition: () => null },
+    CivicationLifePositions: { getLifeContext: () => ({ active_life_positions: activeLifePositions }) }
   }
 };
 sandbox.window.window = sandbox.window;
@@ -135,44 +123,40 @@ vm.runInContext(narrativeSource, sandbox, { filename: 'civicationNarrativeSceneS
 
 (async () => {
   const api = sandbox.window.CivicationNarrativeSceneSource;
-  assert.ok(api?.getActivationSnapshot);
-
   let snapshot = await api.getActivationSnapshot({ state, active: null });
-  assert.ok(snapshot.matched_stream_ids.includes('sofafilosof_stream'),
-    'selected Sofafilosof must activate its narrative without a formal job');
+  assert.ok(snapshot.matched_stream_ids.includes('by_flanor_stream'));
 
   const scenes = await api.getSourceScenes({
     state,
     active: null,
     phaseId: 'evening',
-    candidate_stream_ids: ['sofafilosof_stream'],
+    candidate_stream_ids: ['by_flanor_stream'],
     used_storylet_keys: []
   });
   assert.ok(scenes.length >= 1);
-  assert.equal(scenes[0].source_type, 'narrative_stream');
-  assert.equal(scenes[0].narrative_stream_id, 'sofafilosof_stream');
-  assert.equal(scenes[0].channel, 'private');
+  assert.equal(scenes[0].narrative_stream_id, 'by_flanor_stream');
   assert.equal(scenes[0].workday_related, false);
-  assert.equal(scenes[0].role_scope, '',
-    'life-position narrative must not fabricate a career role_scope');
+  assert.equal(scenes[0].role_scope, '');
   assert.equal(scenes[0].career_id, '');
 
-  activeLifePositions = [{ badge_id: 'filosofi', id: 'livsgrubler', label: 'Livsgrubler' }];
-  snapshot = await api.getActivationSnapshot({ state, active: null });
-  assert.ok(!snapshot.matched_stream_ids.includes('sofafilosof_stream'),
-    'Livsgrubler must not inherit Sofafilosof narrative');
-
-  activeLifePositions = [{ badge_id: 'filosofi', id: 'lesesirkelmenneske', label: 'Lesesirkelmenneske' }];
-  snapshot = await api.getActivationSnapshot({ state, active: null });
-  assert.ok(!snapshot.matched_stream_ids.includes('sofafilosof_stream'),
-    'another Filosofi life position must not inherit the stream by category');
+  for (const other of [
+    { badge_id: 'by', id: 'byvandrer', label: 'Byvandrer' },
+    { badge_id: 'by', id: 'nabolagskjenner', label: 'Nabolagskjenner' },
+    { badge_id: 'by', id: 'urbanist', label: 'Urbanist' }
+  ]) {
+    activeLifePositions = [other];
+    snapshot = await api.getActivationSnapshot({ state, active: null });
+    assert.ok(
+      !snapshot.matched_stream_ids.includes('by_flanor_stream'),
+      other.badge_id + '/' + other.id + ' must not inherit Flanør narrative'
+    );
+  }
 
   activeLifePositions = [];
   snapshot = await api.getActivationSnapshot({ state, active: null });
-  assert.ok(!snapshot.matched_stream_ids.includes('sofafilosof_stream'),
-    'Sofafilosof narrative must fail closed without its selected life position');
+  assert.ok(!snapshot.matched_stream_ids.includes('by_flanor_stream'));
 
-  console.log('civication Sofafilosof readiness ok: 14 anchors / exact life-position activation / livelihood kept separate / no career scope');
+  console.log('civication By Flanør readiness ok: 14 anchors / exact by:byflanor activation / no cross-position leakage');
 })().catch((error) => {
   console.error(error);
   process.exitCode = 1;
