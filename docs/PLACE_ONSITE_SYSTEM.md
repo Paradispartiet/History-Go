@@ -8,17 +8,20 @@ Sist kontrollert: **2026-09-12**
 
 ## Hovedregel
 
-Utforsk er fortsatt hovedoversikten for globale **Events** og **Møtes**, men PlaceCard skal også ha kompakte, stedskontekstuelle snarveier til de samme canonicale runtime-ene.
+**Events** og **Møtes** er en del av PlaceCard sin lokale **Utforsk**-flate.
 
-- **Utforsk → Events** viser den globale oversikten fra `HGEvents`.
-- **PlaceCard → Events** filtrerer samme `HGEvents` på aktivt Place.
-- **Utforsk → Møtes** samler oppstart og oppfølging.
-- **PlaceCard → Møtes** åpner samme samlede inngang i aktiv Place-kontekst:
+I standard Place Sheet ligger de i **venstre hero-kolonne**, direkte under de fire canonicale Utforsk-samlingene:
+
+`frontImage → Utforsk-rundinger/rektangler → Events / Møtes`
+
+- **PlaceCard → Utforsk → Events** bruker canonical `HGEvents` filtrert på aktivt Place.
+- **PlaceCard → Utforsk → Møtes** samler oppstart og oppfølging:
   - **Foreslå kunnskapsmøte** → `HG_SpotmeetingUI`.
   - **Mine møter / Social Meet** → `HG_SocialMeetUI`.
-- Header-menyens **Møtes / Social Meet** åpner `HG_SocialMeetUI` direkte og er ikke avhengig av at Utforsk-draweren er initialisert.
+- Header-menyens **Møtes / Social Meet** er fortsatt en direkte snarvei til `HG_SocialMeetUI`.
+- Det globale venstre Utforsk-panelet skal ikke ha egne Events-/Møtes-tabs.
 
-PlaceCard-snarveiene er ikke parallelle state-eiere; de peker til de samme canonicale data- og møte-runtime-ene som Utforsk.
+PlaceCard-snarveiene bruker de samme canonicale data- og møte-runtime-ene og oppretter ingen parallell state.
 
 ## Møtes er én brukerflate, to interne ansvar
 
@@ -31,7 +34,7 @@ Dette bevarer eksisterende state-, backend- og privacy-kontrakter samtidig som s
 
 ## Hva kan fortsatt ligge i PlaceCard/På stedet?
 
-I tillegg til de faste Events-/Møtes-snarveiene kan PlaceCard vise handlinger som faktisk er bundet til den konkrete stedstypen eller stedet.
+Under Events/Møtes kan PlaceCard også vise handlinger som faktisk er bundet til den konkrete stedstypen eller stedet.
 
 ### Lek
 
@@ -59,10 +62,10 @@ Disse beholder sine egne etablerte flows og skal ikke dupliseres inn i Utforsk �
 
 Den maskinlesbare matrisen ligger i `data/categories/place_onsite_contract.json`.
 
-- `movedSurfaces` beskriver Utforsk som global hovedoversikt.
-- Events/Møtes-snarveiene er UI-routing i `js/ui/place-onsite-surface.js`, ikke kategori-policy.
-- `categoryPolicy` og `placeTypeOverrides` styrer bare øvrige lokale stedsfunksjoner.
+- `movedSurfaces` låser Events/Møtes til `PlaceCard → Utforsk`.
+- Place Sheet-shellen eier den fysiske plasseringen i venstre hero-kolonne.
+- `categoryPolicy` og `placeTypeOverrides` styrer øvrige lokale stedsfunksjoner.
 
 ## Sluttregel
 
-**Utforsk eier de globale oversiktene. PlaceCard kan alltid åpne Events og Møtes i aktiv stedskontekst, uten å eie parallelle data eller state.**
+**Events og Møtes ligger i PlaceCard sin venstre Utforsk-kolonne, direkte under samlingene.**
