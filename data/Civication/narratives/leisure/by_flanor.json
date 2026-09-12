@@ -1,0 +1,634 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "by_flanor_stream",
+  "type": "leisure",
+  "title": "Flanør i byen",
+  "sociological_theme": "apen_oppmerksomhet_tid_og_byens_offentlighet",
+  "applies_when": {
+    "any_tags": [
+      "by:byflanor"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "uten_mal_i_dag",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Din egen impuls",
+      "subject": "Ingen plan i dag",
+      "situation": [
+        "Du går ut uten et konkret ærend og merker hvor raskt kroppen likevel søker den mest effektive veien.",
+        "En sidegate virker mer interessant enn hovedstrøket, men den fører deg ikke nærmere noe du har bestemt deg for å gjøre.",
+        "Flanørrollen begynner nettopp i spennet mellom å bruke byen som transportmaskin og å la oppmerksomheten styre tempoet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta av inn i sidegata og la turen få være uten mål.",
+          "effect": 1,
+          "tags": [
+            "open_attention",
+            "slow_city"
+          ],
+          "feedback": "Du gir plass til en byopplevelse som ikke trenger å rettferdiggjøres med produktivitet."
+        },
+        {
+          "id": "B",
+          "label": "Gå den raskeste veien og gjøre turen om til et nyttig ærend.",
+          "effect": 0,
+          "tags": [
+            "efficiency",
+            "instrumental_city"
+          ],
+          "feedback": "Du sparer tid, men lar effektiviteten definere hva som er verdt å legge merke til."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_open_attention"
+      ],
+      "risk_links": [],
+      "links": []
+    },
+    {
+      "id": "benken_uten_kjop",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "En ledig benk",
+      "subject": "Må du kjøpe noe for å bli værende?",
+      "situation": [
+        "Du finner en benk med godt utsyn over et travelt byrom og har lyst til å sitte der en stund.",
+        "Rundt deg er flere av de mest behagelige sitteplassene knyttet til servering og betaling, mens den offentlige benken er enkel og utsatt.",
+        "Situasjonen gjør forskjellen mellom å være i byen som borger og å være i byen som kunde konkret."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sett deg på den offentlige benken og bli så lenge det føles naturlig.",
+          "effect": 1,
+          "tags": [
+            "public_space",
+            "noncommercial_presence"
+          ],
+          "feedback": "Du bruker byen uten å gjøre oppholdet avhengig av kjøpekraft eller en bestilling."
+        },
+        {
+          "id": "B",
+          "label": "Kjøp noe du ikke egentlig vil ha bare for å føle at du har rett til å sitte.",
+          "effect": -1,
+          "tags": [
+            "consumption",
+            "status_comfort"
+          ],
+          "feedback": "Du får mer komfort, men lar forbruk bli inngangsbilletten til å kunne være i byen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_public_space"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "regnet_flytter_byen",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Regnet",
+      "subject": "Når været tegner et nytt kart",
+      "situation": [
+        "Et kraftig regnskyll endrer tempoet i gata på få minutter og folk samler seg under tak, i passasjer og ved innganger.",
+        "Du oppdager hvilke deler av byen som faktisk gir ly uten at noen forventer at du kjøper noe eller går videre.",
+        "Flanørens blikk kan registrere dette uten å late som én våt ettermiddag er en komplett analyse av tilgjengelighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg merke til hvor folk finner ly og behold observasjonen som et øyeblikksbilde.",
+          "effect": 1,
+          "tags": [
+            "weather_observation",
+            "public_access"
+          ],
+          "feedback": "Du ser hvordan været endrer bruken av byen uten å gjøre et enkelt øyeblikk til universell fasit."
+        },
+        {
+          "id": "B",
+          "label": "Konkluder med at området fungerer dårlig for alle fordi akkurat denne turen ble upraktisk.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "observation_bias"
+          ],
+          "feedback": "Du gjør en situasjonsbestemt erfaring større enn det observasjonen faktisk kan bære."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_weather_memory"
+      ],
+      "risk_links": [],
+      "links": []
+    },
+    {
+      "id": "telefonen_vil_bestemme",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Kartappen",
+      "subject": "Skjermen foreslår den riktige veien",
+      "situation": [
+        "Telefonen foreslår konsekvent den raskeste ruta og varsler hver gang du avviker fra den.",
+        "Du merker at blikket flyttes fra fasader, mennesker og lyd til en liten pil som hele tiden forklarer hvor du bør gå.",
+        "Teknologien er nyttig, men den kan også gjøre byen til et problem som skal optimaliseres framfor et miljø som kan oppdages."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg bort telefonen en stund og orienter deg med det du faktisk ser rundt deg.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "digital_boundary"
+          ],
+          "feedback": "Du beholder kartet som verktøy uten å la det eie hele oppmerksomheten din."
+        },
+        {
+          "id": "B",
+          "label": "Følg alle forslagene slavisk for å unngå enhver unødvendig avstikker.",
+          "effect": 0,
+          "tags": [
+            "optimization",
+            "screen_attention"
+          ],
+          "feedback": "Du kommer fram effektivt, men reduserer muligheten for at noe uplanlagt kan få betydning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_phone_boundary"
+      ],
+      "risk_links": [],
+      "links": []
+    },
+    {
+      "id": "fotografiet_med_fremmede",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Et godt motiv",
+      "subject": "Bildet inneholder også andre mennesker",
+      "situation": [
+        "Et lysfall over en fasade og fortauet gir deg lyst til å ta et bilde.",
+        "Flere fremmede står tydelig i motivet, og det er ansiktene og kroppene deres som gjør scenen levende.",
+        "Å observere byen gir ikke automatisk rett til å gjøre andre mennesker til råmateriale for egen dokumentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vent eller endre utsnittet slik at fremmede ikke blir hovedmotivet uten grunn.",
+          "effect": 1,
+          "tags": [
+            "privacy",
+            "observational_ethics"
+          ],
+          "feedback": "Du beholder nysgjerrigheten samtidig som andre menneskers privatliv ikke blir en estetisk ressurs du tar for gitt."
+        },
+        {
+          "id": "B",
+          "label": "Ta nærbildet fordi offentlige rom betyr at alle må tåle å bli brukt i motivet ditt.",
+          "effect": -1,
+          "tags": [
+            "privacy_overreach",
+            "spectacle"
+          ],
+          "feedback": "Du gjør offentlig tilstedeværelse om til et samtykke som menneskene i bildet aldri faktisk ga."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_privacy_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kaffen_som_inngangsbillett",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "En dyr kafé",
+      "subject": "Hvem får sitte lenge?",
+      "situation": [
+        "Du går inn på en kafé mest fordi vindusplassen gir godt utsyn over gata.",
+        "Prisene gjør at et langt opphold raskt blir en liten luksus, mens personer uten bestilling blir bedt om å flytte seg.",
+        "Flanørens frihet til å dvele i byen er også knyttet til penger, trygghet og hvilke steder som tolererer langsom bruk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kjøp bare det du faktisk vil ha og legg merke til hvordan betaling regulerer hvem som kan bli.",
+          "effect": 1,
+          "tags": [
+            "class_awareness",
+            "consumption_boundary"
+          ],
+          "feedback": "Du nyter stedet uten å late som den samme typen opphold er like tilgjengelig for alle."
+        },
+        {
+          "id": "B",
+          "label": "Tolke din egen lange kafétid som bevis på at byen tilbyr fri plass til hvem som helst.",
+          "effect": -1,
+          "tags": [
+            "class_blindness",
+            "consumer_space"
+          ],
+          "feedback": "Du forveksler et kjøpt opphold med generell offentlig tilgjengelighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_class_awareness"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vakker_gate_dyr_hverdag",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En pen gate",
+      "subject": "Estetikk sier ikke alt om livet der",
+      "situation": [
+        "Du går gjennom en gate med velholdte fasader, små butikker og lite synlig trafikk og kjenner umiddelbart at området virker attraktivt.",
+        "Samtidig ser du tegn på høye priser og en hverdag der flere tjenester er rettet mot personer med god økonomi.",
+        "Det estetiske blikket kan være skarpt på detaljer og samtidig blindt for hvem som har råd til å bo, handle eller bli værende."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La inntrykket være både estetisk og sosialt: fint å se på, men ikke automatisk godt for alle.",
+          "effect": 1,
+          "tags": [
+            "aesthetic_attention",
+            "class_awareness"
+          ],
+          "feedback": "Du beholder sansen for byen uten å gjøre skjønnhet til et mål på sosial kvalitet."
+        },
+        {
+          "id": "B",
+          "label": "Konkluder med at området må være et bedre sted å leve fordi det ser mer velstelt ut.",
+          "effect": -1,
+          "tags": [
+            "aesthetic_bias",
+            "status_projection"
+          ],
+          "feedback": "Du lar overflaten bære en sosial konklusjon som observasjonen ikke kan bevise."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_aesthetic_boundary"
+      ],
+      "risk_links": [],
+      "links": []
+    },
+    {
+      "id": "tilfeldig_samtale",
+      "message_type": "people",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En fremmed ved et gatehjørne",
+      "subject": "En samtale du ikke hadde planlagt",
+      "situation": [
+        "En fremmed kommenterer noe dere begge ser og samtalen varer lenger enn et vanlig høflighetsord.",
+        "Du er nysgjerrig, men vet lite om personen og har ingen grunn til å presse fram en mer personlig historie.",
+        "Flanørens åpenhet fungerer best når tilfeldige møter får være gjensidige møter, ikke innsamling av menneskelig materiale."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg samtalen så lenge den er gjensidig og la personen selv bestemme hvor personlig den blir.",
+          "effect": 1,
+          "tags": [
+            "reciprocity",
+            "social_boundary"
+          ],
+          "feedback": "Møtet får verdi uten at nysgjerrigheten din blir et krav om tilgang til den andres liv."
+        },
+        {
+          "id": "B",
+          "label": "Stille stadig mer private spørsmål fordi uventede historier gjør turen mer interessant.",
+          "effect": -1,
+          "tags": [
+            "intrusion",
+            "story_extraction"
+          ],
+          "feedback": "Du gjør den andre til innhold i din egen byopplevelse i stedet for en likeverdig deltaker."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_random_encounter"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "du_har_tid",
+      "message_type": "class_case",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En venn på jobb",
+      "subject": "«Fint å kunne bare gå rundt»",
+      "situation": [
+        "Du møter en venn som er på vei mellom oppgaver og som kommenterer at det må være deilig å ha tid til å vandre uten mål.",
+        "Kommentaren er ikke nødvendigvis kritikk, men den gjør tidsforskjellen mellom dere synlig.",
+        "Formålsløs byvandring kan være frigjørende og samtidig avhenge av arbeidstid, helse, omsorgsansvar og økonomisk rom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Anerkjenn at tiden din faktisk er et handlingsrom ikke alle har akkurat nå.",
+          "effect": 1,
+          "tags": [
+            "time_privilege",
+            "social_awareness"
+          ],
+          "feedback": "Du beholder gleden ved å vandre uten å gjøre din egen tidsfrihet til en universell mulighet."
+        },
+        {
+          "id": "B",
+          "label": "Svare at alle kunne levd mer fritt hvis de bare sluttet å være så opptatt av effektivitet.",
+          "effect": -1,
+          "tags": [
+            "moralizing",
+            "class_blindness"
+          ],
+          "feedback": "Du gjør en konkret forskjell i tid og ansvar om til et spørsmål om personlig innstilling."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_time_awareness"
+      ],
+      "risk_links": [],
+      "links": []
+    },
+    {
+      "id": "egen_by_som_eksotikk",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Et ukjent strøk",
+      "subject": "Nysgjerrighet uten safari",
+      "situation": [
+        "Du går inn i en del av byen du sjelden bruker og merker hvor lett alt ukjent føles mer intenst og interessant.",
+        "Butikker, språk, lukter og rytmer blir raskt registrert som tegn på at området er annerledes enn det du kjenner.",
+        "Nysgjerrighet kan åpne byen, men den kan også gjøre andres hverdagsmiljø til eksotisk kulisse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vær nysgjerrig på stedet uten å rangere eller iscenesette menneskene som bor og arbeider der.",
+          "effect": 1,
+          "tags": [
+            "curiosity",
+            "anti_exoticization"
+          ],
+          "feedback": "Du lar forskjeller være interessante uten å gjøre andres hverdag til en forestilling for ditt blikk."
+        },
+        {
+          "id": "B",
+          "label": "Beskrive området som «en helt annen verden» og samle kontraster som gjør turen mer dramatisk.",
+          "effect": -1,
+          "tags": [
+            "exoticization",
+            "social_distance"
+          ],
+          "feedback": "Du øker følelsen av oppdagelse ved å gjøre et vanlig hverdagsmiljø fremmed på andres bekostning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_exoticization_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "folgestrommen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En menneskestrøm",
+      "subject": "Alle går samme vei",
+      "situation": [
+        "Du merker at mange mennesker beveger seg mot samme gate og følger etter uten å vite hva som skjer.",
+        "Det viser seg å være et arrangement med kø, vakter, reklame og en tydelig overgang mellom åpent byrom og organisert aktivitet.",
+        "Å følge strømmen kan gi et tilfeldig funn, men flanørens blikk bør også registrere hvordan oppmerksomhet blir styrt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se hva som skjer, men legg også merke til køen, grensene og hvem arrangementet faktisk er åpent for.",
+          "effect": 1,
+          "tags": [
+            "public_attention",
+            "access_boundary"
+          ],
+          "feedback": "Du lar tilfeldigheten lede deg uten å glemme at organiserte rom har regler og terskler."
+        },
+        {
+          "id": "B",
+          "label": "Anta at stor oppmerksomhet betyr at dette er det viktigste som skjer i området.",
+          "effect": -1,
+          "tags": [
+            "attention_bias",
+            "spectacle"
+          ],
+          "feedback": "Du lar mengden bestemme betydningen og overser alt som ikke samler like mye synlighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_public_attention"
+      ],
+      "risk_links": [],
+      "links": []
+    },
+    {
+      "id": "detaljen_du_mistolket",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Din egen observasjon",
+      "subject": "Du trodde du visste hva du så",
+      "situation": [
+        "Du har flere ganger lagt merke til den samme personen ved en inngang og begynt å lage en forklaring på hvorfor vedkommende er der.",
+        "Denne gangen skjer noe som gjør det klart at historien du hadde bygget var feil.",
+        "Flanørens styrke er å se detaljer, men detaljrik observasjon er fortsatt ikke det samme som kunnskap om andre menneskers motiv eller liv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Korriger historien i hodet og behold skillet mellom det du ser og det du antar.",
+          "effect": 1,
+          "tags": [
+            "epistemic_humility",
+            "observation"
+          ],
+          "feedback": "Du gjør selve feilslutningen til en påminnelse om at oppmerksomhet ikke gir tilgang til andres indre liv."
+        },
+        {
+          "id": "B",
+          "label": "Holde fast ved den opprinnelige forklaringen fordi den passet så godt med det du hadde sett før.",
+          "effect": -1,
+          "tags": [
+            "projection",
+            "confirmation_bias"
+          ],
+          "feedback": "Du beskytter din egen fortelling ved å gjøre observasjonene mer sikre enn de egentlig var."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_inference_boundary"
+      ],
+      "risk_links": [],
+      "links": []
+    },
+    {
+      "id": "samme_gate_annen_tid",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Den samme gata",
+      "subject": "Byen skifter når klokka gjør det",
+      "situation": [
+        "Du vender tilbake til en gate du nylig gikk gjennom på dagtid, men denne gangen sent på kvelden.",
+        "Lys, lyd, åpne dører og hvem som oppholder seg ute gjør at stedet virker nesten nytt.",
+        "Forskjellen viser hvorfor én vandring aldri kan være en endelig karakteristikk av et byrom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La de to inntrykkene stå ved siden av hverandre og være ufullstendige på hver sin måte.",
+          "effect": 1,
+          "tags": [
+            "temporal_observation",
+            "uncertainty"
+          ],
+          "feedback": "Du bygger et rikere forhold til byen uten å kreve at ett tidspunkt skal være den sanne versjonen."
+        },
+        {
+          "id": "B",
+          "label": "Bestemme at kveldsinntrykket avslører hvordan gata egentlig er.",
+          "effect": -1,
+          "tags": [
+            "single_frame_bias",
+            "overclaim"
+          ],
+          "feedback": "Du bytter bare én forenkling med en annen og gjør et tidspunkt til fasit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_temporal_attention"
+      ],
+      "risk_links": [],
+      "links": []
+    },
+    {
+      "id": "hva_slags_flanor",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Sesongslutt",
+      "subject": "Hva slags flanør vil du være?",
+      "situation": [
+        "Etter mange vandringer har du samlet inntrykk av rom, mennesker, priser, vær, lys, tilfeldige møter og egne feilslutninger.",
+        "Du har sett at den åpne vandringen kan gi nærhet til byen, men også at tid, klasse, privatliv og sosial avstand følger med blikket.",
+        "Spørsmålet er om flanørrollen skal bli en identitet som hevder å kjenne byen, eller en praksis som holder oppmerksomheten åpen uten å kreve eierskap eller myndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg den åpne praksisen: observer nøye, korriger deg selv og la byen være større enn din fortelling.",
+          "effect": 1,
+          "tags": [
+            "open_attention",
+            "epistemic_humility"
+          ],
+          "feedback": "Flanørrollen blir en måte å være til stede på, ikke et krav om ekspertstatus over byen eller menneskene i den."
+        },
+        {
+          "id": "B",
+          "label": "Bruk vandringene som grunnlag for å omtale deg selv som en som vet hvordan byen og folkene egentlig fungerer.",
+          "effect": -1,
+          "tags": [
+            "informal_authority",
+            "overclaim"
+          ],
+          "feedback": "Du gjør mange personlige observasjoner om til en sosial autoritet de aldri var ment å gi."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "flanor_identity_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

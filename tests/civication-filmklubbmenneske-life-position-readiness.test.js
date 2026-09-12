@@ -68,17 +68,17 @@ assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['filmklubbmenneske_visningshjelp']);
 assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 10,
-  needs_authored_depth: 149,
+  ready: 11,
+  needs_authored_depth: 148,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.completed_life_position_role_worlds, 10);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 10);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 10);
-assert.equal(audit.first_ready, null);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
+assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 11);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 11);
+assert.equal(audit.first_ready?.key, 'by/byflanor');
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'by/byflanor');
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'by/byflanor');
 
 const genericKjenner = audit.positions.find((row) => row.key === 'film_tv/kjenner');
 assert.ok(genericKjenner);

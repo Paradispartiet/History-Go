@@ -119,11 +119,11 @@ assert.equal(index.status, '95_role_worlds_materialized');
 
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('natur/artsjeger'));
 assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 10);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'by/byflanor');
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 10);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 95);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'by/byflanor');
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 10);
 
 const readiness = audit.positions.find((row) => row.key === 'natur/artsjeger');
@@ -137,13 +137,14 @@ assert.deepEqual(readiness.evidence.livelihood_templates, ['artsjeger_feltregist
 assert.ok(!audit.queue.some((row) => row.key === 'natur/artsjeger'));
 assert.equal(audit.summary.life_position_role_world_complete, 10);
 assert.equal(audit.summary.completed_life_position_role_worlds, 10);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.first_ready?.key, 'by/byflanor');
 
 const next = audit.queue[0];
 assert.ok(next);
 assert.notEqual(next.key, 'natur/artsjeger');
-assert.equal(next.classification, 'needs_authored_depth');
+assert.equal(next.key, 'by/byflanor');
+assert.equal(next.classification, 'ready');
 
 const paidAnchor = stream.storylets.find((row) => row.id === 'feltregistreringsoppdraget');
 assert.ok(paidAnchor);

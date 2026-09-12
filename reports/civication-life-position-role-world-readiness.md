@@ -1,16 +1,16 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 10 ready / 149 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 11 ready / 148 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 14
-**Exact governed-source matches:** 10
-**Multi-scene narrative foundations:** 10
+**Exact governed-source matches:** 11
+**Multi-scene narrative foundations:** 11
 **Completed life-position Role Worlds:** 10
-**Pending ready positions:** 0
+**Pending ready positions:** 1
 
 ## Decision
 
-No unfinished life position is currently ready for Role World production. Source-ready positions that are already role_world_complete remain visible in the 199-position audit but are excluded from the pending queue; remaining standalone-capable positions require authored depth first.
+First pending ready Role World position: **by/byflanor — Flanør**.
 
 Livelihood templates count as provenance for an economic opportunity, but never as sufficient Role World depth on their own.
 
@@ -18,17 +18,17 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `scenekunst/scenehenger` | needs_authored_depth | 0 | 1 | 0 |
-| 2 | `sport/klubbmenneske` | needs_authored_depth | 0 | 1 | 0 |
-| 3 | `vitenskap/maker` | needs_authored_depth | 0 | 1 | 0 |
-| 4 | `subkultur/gangster` | needs_authored_depth | 0 | 1 | 0 |
-| 5 | `liv_alternativ/bohem` | needs_authored_depth | 0 | 0 | 0 |
-| 6 | `liv_alternativ/nomade` | needs_authored_depth | 0 | 0 | 0 |
-| 7 | `liv_bosituasjon/boms` | needs_authored_depth | 0 | 0 | 0 |
-| 8 | `liv_bosituasjon/uteligger` | needs_authored_depth | 0 | 0 | 0 |
-| 9 | `liv_lovsbane/kriminell` | needs_authored_depth | 0 | 0 | 0 |
-| 10 | `naeringsliv/frilanser` | needs_authored_depth | 0 | 1 | 0 |
-| 11 | `by/byflanor` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `by/byflanor` | ready | 1 | 0 | 14 |
+| 2 | `scenekunst/scenehenger` | needs_authored_depth | 0 | 1 | 0 |
+| 3 | `sport/klubbmenneske` | needs_authored_depth | 0 | 1 | 0 |
+| 4 | `vitenskap/maker` | needs_authored_depth | 0 | 1 | 0 |
+| 5 | `subkultur/gangster` | needs_authored_depth | 0 | 1 | 0 |
+| 6 | `liv_alternativ/bohem` | needs_authored_depth | 0 | 0 | 0 |
+| 7 | `liv_alternativ/nomade` | needs_authored_depth | 0 | 0 | 0 |
+| 8 | `liv_bosituasjon/boms` | needs_authored_depth | 0 | 0 | 0 |
+| 9 | `liv_bosituasjon/uteligger` | needs_authored_depth | 0 | 0 | 0 |
+| 10 | `liv_lovsbane/kriminell` | needs_authored_depth | 0 | 0 | 0 |
+| 11 | `naeringsliv/frilanser` | needs_authored_depth | 0 | 1 | 0 |
 | 12 | `by/byvandrer` | needs_authored_depth | 0 | 0 | 0 |
 | 13 | `by/urbanist` | needs_authored_depth | 0 | 0 | 0 |
 | 14 | `film_tv/festivalgjenger` | needs_authored_depth | 0 | 0 | 0 |

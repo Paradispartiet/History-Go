@@ -32,22 +32,43 @@
   "summary": {
     "selectable_life_positions": 199,
     "classifications": {
-      "ready": 10,
-      "needs_authored_depth": 149,
+      "ready": 11,
+      "needs_authored_depth": 148,
       "not_a_standalone_world": 40
     },
     "completed_life_position_role_worlds": 10,
     "queue_length": 149,
     "livelihood_backed_positions": 14,
-    "positions_with_exact_governed_sources": 10,
-    "positions_with_multi_scene_narrative_foundation": 10,
+    "positions_with_exact_governed_sources": 11,
+    "positions_with_multi_scene_narrative_foundation": 11,
     "life_position_role_world_complete": 10,
-    "pending_ready_positions": 0
+    "pending_ready_positions": 1
   },
-  "first_ready": null,
+  "first_ready": {
+    "rank": 1,
+    "key": "by/byflanor",
+    "label": "Flanør",
+    "badge_id": "by",
+    "classification": "ready",
+    "priority_score": 1405,
+    "exact_source_ref_count": 1,
+    "livelihood_template_count": 0,
+    "max_narrative_depth": 14
+  },
   "queue": [
     {
       "rank": 1,
+      "key": "by/byflanor",
+      "label": "Flanør",
+      "badge_id": "by",
+      "classification": "ready",
+      "priority_score": 1405,
+      "exact_source_ref_count": 1,
+      "livelihood_template_count": 0,
+      "max_narrative_depth": 14
+    },
+    {
+      "rank": 2,
       "key": "scenekunst/scenehenger",
       "label": "Scenehenger",
       "badge_id": "scenekunst",
@@ -58,7 +79,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 2,
+      "rank": 3,
       "key": "sport/klubbmenneske",
       "label": "Klubbmenneske",
       "badge_id": "sport",
@@ -69,7 +90,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 3,
+      "rank": 4,
       "key": "vitenskap/maker",
       "label": "Maker",
       "badge_id": "vitenskap",
@@ -80,7 +101,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 4,
+      "rank": 5,
       "key": "subkultur/gangster",
       "label": "Gangster",
       "badge_id": "subkultur",
@@ -91,7 +112,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 5,
+      "rank": 6,
       "key": "liv_alternativ/bohem",
       "label": "Bohem",
       "badge_id": "liv_alternativ",
@@ -102,7 +123,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 6,
+      "rank": 7,
       "key": "liv_alternativ/nomade",
       "label": "Nomade",
       "badge_id": "liv_alternativ",
@@ -113,7 +134,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 7,
+      "rank": 8,
       "key": "liv_bosituasjon/boms",
       "label": "Boms",
       "badge_id": "liv_bosituasjon",
@@ -124,7 +145,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 8,
+      "rank": 9,
       "key": "liv_bosituasjon/uteligger",
       "label": "Uteligger",
       "badge_id": "liv_bosituasjon",
@@ -135,7 +156,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 9,
+      "rank": 10,
       "key": "liv_lovsbane/kriminell",
       "label": "Kriminell",
       "badge_id": "liv_lovsbane",
@@ -146,7 +167,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 10,
+      "rank": 11,
       "key": "naeringsliv/frilanser",
       "label": "Frilanser",
       "badge_id": "naeringsliv",
@@ -154,17 +175,6 @@
       "priority_score": 545,
       "exact_source_ref_count": 0,
       "livelihood_template_count": 1,
-      "max_narrative_depth": 0
-    },
-    {
-      "rank": 11,
-      "key": "by/byflanor",
-      "label": "Flanør",
-      "badge_id": "by",
-      "classification": "needs_authored_depth",
-      "priority_score": 540,
-      "exact_source_ref_count": 0,
-      "livelihood_template_count": 0,
       "max_narrative_depth": 0
     },
     {
@@ -1697,27 +1707,30 @@
       "kind": "alternative_life_status",
       "semantic_mode": "lived_identity_or_practice",
       "runtime_source": "catalog",
-      "classification": "needs_authored_depth",
+      "classification": "ready",
       "role_world_status": "role_world_not_started",
       "role_world_path": null,
-      "priority_score": 540,
+      "priority_score": 1405,
       "authored_depth": {
         "description_present": true,
         "hook_count": 3,
-        "exact_source_ref_count": 0,
+        "exact_source_ref_count": 1,
         "thematic_source_ref_count": 0,
         "livelihood_template_count": 0,
-        "max_narrative_depth": 0
+        "max_narrative_depth": 14
       },
       "evidence": {
-        "exact_source_refs": [],
+        "exact_source_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json"
+        ],
         "thematic_source_refs": [],
         "livelihood_templates": [],
         "livelihood_ref": null
       },
       "next_work": [
-        "author_role_specific_private_life_social_or_narrative_sources",
-        "then_reaudit_before_role_world_production"
+        "inventory_existing_scene_provenance",
+        "author_role_world_14x4",
+        "bind_primary_threads_and_private_aftermath"
       ]
     },
     {
@@ -5380,13 +5393,15 @@
         "description_present": true,
         "hook_count": 3,
         "exact_source_ref_count": 0,
-        "thematic_source_ref_count": 0,
+        "thematic_source_ref_count": 1,
         "livelihood_template_count": 0,
         "max_narrative_depth": 0
       },
       "evidence": {
         "exact_source_refs": [],
-        "thematic_source_refs": [],
+        "thematic_source_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json"
+        ],
         "livelihood_templates": [],
         "livelihood_ref": null
       },
