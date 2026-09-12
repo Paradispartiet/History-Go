@@ -144,7 +144,7 @@ const next = audit.queue[0];
 assert.ok(next);
 assert.notEqual(next.key, 'natur/artsjeger');
 assert.equal(next.key, 'scenekunst/scenehenger');
-assert.equal(next.classification, 'needs_authored_depth');
+assert.equal(next.classification, 'ready');
 
 const paidAnchor = stream.storylets.find((row) => row.id === 'feltregistreringsoppdraget');
 assert.ok(paidAnchor);
