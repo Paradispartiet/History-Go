@@ -97,8 +97,8 @@ test("Events rendres fra canonical HGEvents i både Utforsk og PlaceCard", () =>
 });
 
 test("PlaceCard har canonicale snarveier til Events og samlet Møtes", () => {
-  assert.match(contract.placeCardShortcuts.events, /HGEvents/);
-  assert.match(contract.placeCardShortcuts.meet, /Kunnskapsmøte \+ Social Meet/);
+  assert.equal(contract.movedSurfaces.events, "Utforsk → Events");
+  assert.match(contract.movedSurfaces["social-meet"], /Utforsk → Møtes/);
   assert.match(onsite, /CORE_SHORTCUTS = \["events", "meet"\]/);
   assert.match(onsite, /data-hg-meet-hub-action="propose"/);
   assert.match(onsite, /data-hg-meet-hub-action="manage"/);
