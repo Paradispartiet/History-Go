@@ -16,19 +16,14 @@ const headerMenu = read("js/ui/header-menu.js");
 const socialUi = read("js/social/HGSocialMeetUI.js");
 const contract = json("data/categories/place_onsite_contract.json");
 
-test("Utforsk viser Events og én samlet Møtes-inngang", () => {
-  assert.match(index, /data-leftmode="events"[^>]*>Events</);
-  assert.match(index, /data-leftmode="social"[^>]*>Møtes</);
-  assert.match(index, /id="leftEventsList"/);
-  assert.match(index, /id="leftSocialList"/);
+test("Events og Møtes vises ikke som globale Utforsk-tabs", () => {
+  assert.doesNotMatch(index, /data-leftmode="events"/);
+  assert.doesNotMatch(index, /data-leftmode="social"/);
+  assert.doesNotMatch(index, /id="leftEventsList"/);
+  assert.doesNotMatch(index, /id="leftSocialList"/);
   assert.match(index, /id="btnSocialMeet"/);
   assert.match(index, /Møtes \/ Social Meet/);
   assert.match(nearbyCss, /\.nearby-tabs\{[\s\S]*flex-wrap:\s*wrap[\s\S]*overflow:\s*visible/);
-
-  assert.match(source, /events:\s*"leftEventsList"/);
-  assert.match(source, /social:\s*"leftSocialList"/);
-  assert.match(bundle, /events:\s*"leftEventsList"/);
-  assert.match(bundle, /social:\s*"leftSocialList"/);
 });
 
 test("index laster de faktiske Events-, Social Meet- og PlaceCard-runtimene", () => {
@@ -85,13 +80,7 @@ test("Møtes samler oppstart og oppfølging uten å slå sammen domenemotorene",
   assert.match(bundle, /HG_SocialMeetUI/);
 });
 
-test("Events rendres fra canonical HGEvents i både Utforsk og PlaceCard", () => {
-  assert.match(source, /HGEvents/);
-  assert.match(source, /eventsRuntime\.init/);
-  assert.match(source, /eventIsCurrent/);
-  assert.match(source, /HGMapView\.openPlace/);
-  assert.match(source, /data-explore-event-place/);
-
+test("Events rendres fra canonical HGEvents i PlaceCard", () => {
   assert.match(onsite, /global\.HGEvents/);
   assert.match(onsite, /getUpcomingByPlace/);
   assert.match(onsite, /openEvents/);
