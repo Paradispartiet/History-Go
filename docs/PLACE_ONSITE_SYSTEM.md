@@ -59,9 +59,9 @@ Disse beholder sine egne etablerte flows og skal ikke dupliseres inn i Utforsk �
 
 Den maskinlesbare matrisen ligger i `data/categories/place_onsite_contract.json`.
 
-- `placeCardShortcuts` låser de stedskontekstuelle Events-/Møtes-snarveiene.
-- `movedSurfaces` beskriver Utforsk som global hovedoversikt uten å forby PlaceCard-snarveier.
-- `categoryPolicy` og `placeTypeOverrides` styrer øvrige lokale stedsfunksjoner.
+- `movedSurfaces` beskriver Utforsk som global hovedoversikt.
+- Events/Møtes-snarveiene er UI-routing i `js/ui/place-onsite-surface.js`, ikke kategori-policy.
+- `categoryPolicy` og `placeTypeOverrides` styrer bare øvrige lokale stedsfunksjoner.
 
 ## Sluttregel
 
