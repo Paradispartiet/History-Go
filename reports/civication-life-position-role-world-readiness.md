@@ -1,16 +1,16 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 11 ready / 148 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 12 ready / 147 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 14
-**Exact governed-source matches:** 11
-**Multi-scene narrative foundations:** 11
+**Exact governed-source matches:** 12
+**Multi-scene narrative foundations:** 12
 **Completed life-position Role Worlds:** 11
-**Pending ready positions:** 0
+**Pending ready positions:** 1
 
 ## Decision
 
-No unfinished life position is currently ready for Role World production. Source-ready positions that are already role_world_complete remain visible in the 199-position audit but are excluded from the pending queue; remaining standalone-capable positions require authored depth first.
+First pending ready Role World position: **scenekunst/scenehenger — Scenehenger**.
 
 Livelihood templates count as provenance for an economic opportunity, but never as sufficient Role World depth on their own.
 
@@ -18,7 +18,7 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `scenekunst/scenehenger` | needs_authored_depth | 0 | 1 | 0 |
+| 1 | `scenekunst/scenehenger` | ready | 1 | 1 | 14 |
 | 2 | `sport/klubbmenneske` | needs_authored_depth | 0 | 1 | 0 |
 | 3 | `vitenskap/maker` | needs_authored_depth | 0 | 1 | 0 |
 | 4 | `subkultur/gangster` | needs_authored_depth | 0 | 1 | 0 |

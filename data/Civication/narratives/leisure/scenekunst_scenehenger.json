@@ -1,0 +1,688 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "scenekunst_scenehenger_stream",
+  "type": "leisure",
+  "title": "Scenehenger i scenekunsten",
+  "sociological_theme": "scenehenger_scenekunst_tilhorighet_backstage_tillit_frivilligarbeid_og_grensen_mot_profesjonell_produksjonsautoritet",
+  "applies_when": {
+    "any_tags": [
+      "scenekunst:scenehenger"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "gjestelisten_etter_premieren",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En venn uten billett",
+      "subject": "Kan du få meg inn etterpå?",
+      "situation": [
+        "Du kjenner flere rundt et lite teater og vet hvem som vanligvis står i døra etter premiere.",
+        "Vennen din antar at Scenehenger-status betyr at du kan ordne adgang, men du har ingen myndighet over billett, akkreditering eller husets kapasitet.",
+        "Sosial nærhet til scenekunstmiljøet er ikke det samme som å disponere andres gjestelister eller sikkerhetsrutiner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du kan spørre, men at bare huset eller produksjonen kan bekrefte adgang.",
+          "effect": 1,
+          "tags": [
+            "access_boundary",
+            "network",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker nettverket uten å late som sosial nærhet er formell adgangsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Love at det ordner seg fordi du kjenner folk ved scenen.",
+          "effect": -1,
+          "tags": [
+            "status_inflation",
+            "access_overreach",
+            "reputation_risk"
+          ],
+          "feedback": "Du gjør uformell scenetilhørighet om til en autoritet du ikke faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "stage_access_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "generalproven_er_ikke_for_alle",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En bekjent i ensemblet",
+      "subject": "Kom inn på generalprøven",
+      "situation": [
+        "En bekjent inviterer deg til generalprøven og sier at det sikkert går fint om du tar med én venn.",
+        "Prøven er fortsatt arbeidsrom for ensemble, teknikk og regi, og du har bare fått en personlig invitasjon.",
+        "Scenehengerrollen gir innsikt i miljøet, men ikke rett til å utvide invitasjoner på produksjonens vegne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Møt alene og avklar med produksjonen før du inviterer noen andre.",
+          "effect": 1,
+          "tags": [
+            "rehearsal_boundary",
+            "consent",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler prøverommet som andres arbeidsplass, ikke som en sosial arena du disponerer."
+        },
+        {
+          "id": "B",
+          "label": "Ta med vennen og anta at det er enklere å be om tilgivelse etterpå.",
+          "effect": -1,
+          "tags": [
+            "boundary_crossing",
+            "entitlement",
+            "trust_risk"
+          ],
+          "feedback": "Du gjør uformell tilgang til et arbeidsrom om til noe som kan gis videre uten samtykke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "rehearsal_access_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_fra_backstage",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Din egen kamerarull",
+      "subject": "Et bra bilde fra kulissene",
+      "situation": [
+        "Du har et godt bilde fra backstage der kostyme, scenografi og to utøvere vises før forestillingen er offentlig.",
+        "Bildet ville signalisere nærhet til miljøet, men du vet ikke om alle som er med har samtykket til publisering.",
+        "Backstage-tilgang skaper et ansvar for privatliv og produksjonshemmeligheter, ikke en automatisk rett til å poste."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be de involverte og produksjonen om samtykke før du deler bildet.",
+          "effect": 1,
+          "tags": [
+            "privacy",
+            "consent",
+            "backstage_ethics"
+          ],
+          "feedback": "Du lar tillit og samtykke veie mer enn verdien av å vise frem sosial tilgang."
+        },
+        {
+          "id": "B",
+          "label": "Poste bildet med en vag tekst fordi ingen har sagt uttrykkelig at det er hemmelig.",
+          "effect": -1,
+          "tags": [
+            "public_private_leakage",
+            "status_display",
+            "trust_risk"
+          ],
+          "feedback": "Du bruker backstage-nærhet som sosial valuta på bekostning av andres kontroll over eget arbeidsrom."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "backstage_photo_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rekvisitten_som_bare_kan_flyttes",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En stresset frivillig",
+      "subject": "Kan du bare flytte denne?",
+      "situation": [
+        "Før innslipp ber en frivillig deg flytte en tung rekvisitt som står i veien ved side-scenen.",
+        "Du kjenner huset, men vet ikke om rekvisitten er markert, balansert eller inngår i en teknisk cue.",
+        "Å være Scenehenger betyr ikke at du kan endre sceneoppsett uten at ansvarlig person vet om det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn sceneansvarlig og avklar hvor rekvisitten faktisk skal stå før du flytter noe.",
+          "effect": 1,
+          "tags": [
+            "technical_boundary",
+            "safety",
+            "role_clarity"
+          ],
+          "feedback": "Du hjelper praktisk uten å ta beslutninger som tilhører produksjon eller teknisk ansvar."
+        },
+        {
+          "id": "B",
+          "label": "Flytte den raskt siden det bare er en rekvisitt og publikum snart slippes inn.",
+          "effect": -1,
+          "tags": [
+            "technical_overreach",
+            "safety_risk",
+            "invisible_work"
+          ],
+          "feedback": "Du lar tidspress gjøre uformell hjelpsomhet til teknisk handling uten oversikt over konsekvensene."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "prop_move_boundary"
+      ],
+      "risk_links": [
+        "safety_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "skuespilleren_vil_ha_arlighet",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En utøver du kjenner",
+      "subject": "Var det egentlig bra?",
+      "situation": [
+        "Etter en prøve spør en utøver du kjenner om du syntes scenen fungerte.",
+        "Du har sett mye teater, men du er ikke dramaturg eller regissør i produksjonen, og utøveren er sårbar etter en lang prøvedag.",
+        "Scenehenger-erfaring kan gi et kvalifisert publikumsperspektiv uten å bli profesjonell instruksjonsmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi et konkret publikumsperspektiv og vær tydelig på at du ikke uttaler deg som faglig ansvarlig.",
+          "effect": 1,
+          "tags": [
+            "feedback_boundary",
+            "care",
+            "role_clarity"
+          ],
+          "feedback": "Du deler erfaring uten å gjøre sosial nærhet om til profesjonell regi eller dramaturgisk autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Fortelle hvordan scenen bør spilles og hva regissøren burde endre.",
+          "effect": -1,
+          "tags": [
+            "authority_inflation",
+            "status_anxiety",
+            "relationship_risk"
+          ],
+          "feedback": "Du gjør tilskuernærhet om til instruksjonsmakt som produksjonen ikke har gitt deg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "audience_feedback_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "frivilligskiftet_og_krediteringen",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En frivilligkoordinator",
+      "subject": "Takk for hjelpen i går",
+      "situation": [
+        "Du hjalp til med garderobe og enkel publikumsflyt under et arrangement og får spørsmål om hvordan du vil krediteres.",
+        "Oppgaven var reell, men avgrenset og uten ansvar for produksjon, sikkerhet eller teknikk.",
+        "Scenehengerrollen kan inkludere frivillig arbeid uten at et par skift blir til en profesjonstittel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk en presis kreditering som frivillig publikumsvert eller praktisk hjelp.",
+          "effect": 1,
+          "tags": [
+            "credit_boundary",
+            "invisible_work",
+            "role_clarity"
+          ],
+          "feedback": "Du anerkjenner faktisk arbeid uten å oppgradere oppgaven til en rolle du ikke hadde."
+        },
+        {
+          "id": "B",
+          "label": "Be om å stå som del av produksjonsteamet fordi du gjorde mer enn publikum så.",
+          "effect": -1,
+          "tags": [
+            "credit_inflation",
+            "status_display",
+            "professional_boundary"
+          ],
+          "feedback": "Du lar usynlig arbeid bli begrunnelse for en profesjonell kreditering som ikke samsvarer med mandatet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "volunteer_credit_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "riggehjelpen_for_innslipp",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Lokal scene",
+      "subject": "Ekstra hender før dørene åpner",
+      "situation": [
+        "En liten scene tilbyr et lite honorar for ikke-teknisk bæring, merking og opprydding før innslipp.",
+        "Oppdraget er eksplisitt avgrenset fra lys, lyd, elektriske koblinger, flysystemer, sikkerhetskontroll og sceneledelse.",
+        "Betalt riggehjelp kan bruke Scenehenger-kjennskap uten å gjøre livsposisjonen til scenetekniker eller produksjonsansvarlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta skiftet og hold deg til bæring, merking og opprydding slik oppdraget er beskrevet.",
+          "effect": 1,
+          "tags": [
+            "livelihood",
+            "scope_boundary",
+            "invisible_work"
+          ],
+          "feedback": "Du lar et lite honorar være avgrenset praktisk arbeid og ikke en snarvei til teknisk autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Ta også noen tekniske oppgaver hvis crewet ser travelt ut og du har sett dem gjøre det før.",
+          "effect": -1,
+          "tags": [
+            "scope_creep",
+            "technical_overreach",
+            "safety_risk"
+          ],
+          "feedback": "Du lar betaling og tidspress utvide et ikke-teknisk oppdrag til arbeid som krever annet ansvar og kompetanse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "stage_rigging_scope"
+      ],
+      "risk_links": [
+        "safety_risk",
+        "livelihood_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lysbordet_du_ikke_skal_rore",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En travel tekniker",
+      "subject": "Hold øye med bordet",
+      "situation": [
+        "En tekniker må løpe ut et øyeblikk og ber deg passe på lysbordet mens døra ved siden av står åpen.",
+        "Du kjenner menyene fra å ha sett mange prøver, men har ikke blitt satt inn som operatør og vet ikke hvilke cues som er live.",
+        "Nærhet til teknisk arbeid er ikke det samme som kompetanse, ansvar eller tillatelse til å betjene systemet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Passe på fysisk tilgang og vente på teknikeren uten å trykke på noe.",
+          "effect": 1,
+          "tags": [
+            "technical_boundary",
+            "safety",
+            "trust"
+          ],
+          "feedback": "Du beskytter arbeidsplassen uten å gjøre observasjonserfaring til teknikerkompetanse."
+        },
+        {
+          "id": "B",
+          "label": "Rette en innstilling som ser åpenbart feil ut før teknikeren kommer tilbake.",
+          "effect": -1,
+          "tags": [
+            "technical_overreach",
+            "safety_risk",
+            "authority_inflation"
+          ],
+          "feedback": "Du gjør kjent grensesnitt til falsk trygghet og tar ansvar for en cue du ikke eier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lighting_console_boundary"
+      ],
+      "risk_links": [
+        "safety_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ryktene_om_rolleskiftet",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En annen Scenehenger",
+      "subject": "Har du hørt hvorfor hun forsvant?",
+      "situation": [
+        "Et rykte går om at en utøver er byttet ut rett før premiere, og flere rundt scenen har hver sin forklaring.",
+        "Du kjenner personer i produksjonen, men ingen har fortalt deg hva som faktisk er offentlig eller riktig.",
+        "Backstage-nærhet kan gjøre rykter mer troverdige uten at de blir sanne eller dine å videreformidle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du ikke vet og la produksjonen eller utøveren selv eie informasjonen.",
+          "effect": 1,
+          "tags": [
+            "confidentiality",
+            "reputation",
+            "role_clarity"
+          ],
+          "feedback": "Du lar usikker informasjon forbli usikker selv om nettverket forventer innsidesvar."
+        },
+        {
+          "id": "B",
+          "label": "Dele den forklaringen du synes høres mest sannsynlig ut, men merke den som et rykte.",
+          "effect": -1,
+          "tags": [
+            "gossip",
+            "public_private_leakage",
+            "reputation_risk"
+          ],
+          "feedback": "Et forbehold fjerner ikke skadepotensialet når sosial nærhet gjør ryktet mer troverdig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "casting_rumor_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "premieren_og_den_usynlige_koen",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Foajeen",
+      "subject": "Alle kjenner noen",
+      "situation": [
+        "På premiere virker det som halve foajeen kjenner skuespillere, regissører eller produsenter.",
+        "Du merker at Scenehenger-status lett måles i hvem som hilser, hvem som får bli etterpå og hvem som beveger seg mellom publikums- og backstageområder.",
+        "Sosial kapital rundt scenekunst kan være reell uten at den må omsettes i hierarki eller demonstrert adgang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Være sosial uten å bruke adgang eller kjendisnærhet som mål på egen plass i miljøet.",
+          "effect": 1,
+          "tags": [
+            "status_anxiety",
+            "social_mask",
+            "belonging"
+          ],
+          "feedback": "Du lar tilhørighet bygges gjennom relasjoner fremfor synlig adgang til de mest attraktive rommene."
+        },
+        {
+          "id": "B",
+          "label": "Sørge for å bli sett med de riktige folkene og finne en vei inn til etterfesten.",
+          "effect": -1,
+          "tags": [
+            "status_display",
+            "access_overreach",
+            "social_mask"
+          ],
+          "feedback": "Scenehenger-identiteten blir en konkurranse om synlig nærhet i stedet for faktisk tilhørighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_status_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennens_egenforestilling",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En nær venn",
+      "subject": "Kan du få folk til å komme?",
+      "situation": [
+        "En venn setter opp en liten egenforestilling og håper du kan bruke nettverket ditt til å fylle noen seter.",
+        "Du kan invitere folk du kjenner, men du kontrollerer verken presse, programmering, støtteordninger eller profesjonelle bookingbeslutninger.",
+        "Scenehenger-nettverk kan være verdifullt uten å bli markedsføringsløfte eller kuratorisk myndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Inviter folk du faktisk kjenner, men vær presis om at du ikke kan love presse, booking eller fullt hus.",
+          "effect": 1,
+          "tags": [
+            "network",
+            "support",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker relasjoner konkret uten å gjøre nettverket til profesjonell distribusjonsmakt."
+        },
+        {
+          "id": "B",
+          "label": "Love å «aktivere miljøet» og antyde at du kan få viktige folk til å komme.",
+          "effect": -1,
+          "tags": [
+            "network_inflation",
+            "status_display",
+            "reputation_risk"
+          ],
+          "feedback": "Du gjør sosial kjennskap om til en leveranse du ikke kontrollerer og setter vennskapet i fare."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "network_promise_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forestillingen_som_endres",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En regissørbekjent",
+      "subject": "Vi kutter hele scenen",
+      "situation": [
+        "Du har sett en scene flere ganger i prøveperioden og får høre at den nå kuttes helt før premiere.",
+        "Du føler eierskap fordi du har fulgt prosessen tett, men beslutningen ligger hos produksjonen og de kunstneriske ansvarlige.",
+        "Å være tett på et arbeid over tid gir emosjonell investering uten medbestemmelse i verket."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Anerkjenn at du kommer til å savne scenen, men respekter at endringen er produksjonens beslutning.",
+          "effect": 1,
+          "tags": [
+            "artistic_boundary",
+            "belonging",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder nærheten til prosessen uten å kreve kunstnerisk beslutningsrett."
+        },
+        {
+          "id": "B",
+          "label": "Argumentere hardt for at scenen må tilbake fordi du kjenner publikummet rundt huset.",
+          "effect": -1,
+          "tags": [
+            "authority_inflation",
+            "audience_claim",
+            "relationship_risk"
+          ],
+          "feedback": "Du gjør sosial og publikumsnær erfaring til en kunstnerisk vetorett du ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artistic_decision_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "etterfesten_og_tausheten",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Etterfesten",
+      "subject": "Det som ble sagt etter midnatt",
+      "situation": [
+        "På etterfesten forteller en person i produksjonen frustrert om konflikt, penger og en kollega som ikke er til stede.",
+        "Du er der som del av det sosiale miljøet, ikke som journalist, HR-person eller produksjonsleder.",
+        "Scenehenger-nærhet kan gi tilgang til sårbar informasjon som ikke bør bli neste dags miljøvaluta."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La samtalen bli i rommet og oppfordre personen til å ta arbeidskonflikten med riktig ansvarlig.",
+          "effect": 1,
+          "tags": [
+            "confidentiality",
+            "care",
+            "role_clarity"
+          ],
+          "feedback": "Du ivaretar relasjonen uten å overta konflikten eller gjøre fortrolighet til sosial kapital."
+        },
+        {
+          "id": "B",
+          "label": "Fortelle en nær venn hva som skjedde fordi vedkommende kjenner miljøet og sikkert vil forstå.",
+          "effect": -1,
+          "tags": [
+            "gossip",
+            "public_private_leakage",
+            "trust_risk"
+          ],
+          "feedback": "Du gjør fortrolighet til nettverksinformasjon og øker konfliktens rekkevidde uten å løse den."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "afterparty_confidentiality"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_slags_scenehenger",
+      "message_type": "social",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Din egen notatbok",
+      "subject": "Hva slags plass har du rundt scenen?",
+      "situation": [
+        "Etter en sesong har du vært i prøverom, foajeer, etterfester, frivilligskift og ett betalt riggehjelpsoppdrag.",
+        "Du kjenner flere mennesker og flere uskrevne regler, men har også sett hvor lett nærhet kan forveksles med adgang, kreditering eller profesjonell myndighet.",
+        "Scenehenger kan være en varig sosial identitet rundt scenekunst uten å bli tekniker, produsent, regissør, sikkerhetsansvarlig eller kunstnerisk beslutningstaker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde Scenehenger-identiteten som relasjonell nærhet, støtte og praktisk hjelp innen tydelige grenser.",
+          "effect": 1,
+          "tags": [
+            "identity",
+            "role_clarity",
+            "belonging"
+          ],
+          "feedback": "Du gjør tilhørigheten robust ved å la profesjonelle roller, samtykke og ansvar forbli tydelige."
+        },
+        {
+          "id": "B",
+          "label": "Se all nærheten som bevis på at du nå egentlig er en del av produksjonsapparatet.",
+          "effect": -1,
+          "tags": [
+            "status_inflation",
+            "professional_boundary",
+            "social_mask"
+          ],
+          "feedback": "Du gjør sosial erfaring til en profesjonell tittel som verken ansvar, kompetanse eller mandat støtter."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "stage_scenehanger_identity"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
