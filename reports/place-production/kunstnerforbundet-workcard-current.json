@@ -1,0 +1,233 @@
+{
+  "schema": "history_go_place_workcard_v2",
+  "place_id": "kunstnerforbundet",
+  "name": "Kunstnerforbundet",
+  "category": "kunst",
+  "status": "source_review_and_production_plan",
+  "canonical_source_file": "data/places/kunst/oslo/places_kunst/kunstnerforbundet.json",
+  "canonical_identity": "Kunstnerforbundet som kunstnerstyrt, ikke-kommersiell visnings- og formidlingsinstitusjon i egen bygård i Kjeld Stubs gate 3; skiftende utstillinger og Atelier Kunstnerforbundet er innhold/programlag under stedet, ikke egne Places i denne produksjonen.",
+  "primary_badge": "kunst",
+  "underbadge_ids_proposed": [
+    "kunstinstitusjoner",
+    "samtidskunst",
+    "kunsthistorie"
+  ],
+  "underbadge_status": "PENDING_FINAL_SOURCE_REVIEW_AND_MATERIALIZATION",
+  "production_profile": "standard",
+  "profile_status": "confirmed_for_plan",
+  "profile_reason": "Kildene dokumenterer mer enn én selvstendig innholdslinje: grunnleggelsen og kunstnerstyringen fra 1910, fast tilhold i Kjeld Stubs gate 3 fra 1917, Overlyssalen og utstillingsarkitekturen, et sammenhengende utstillingsarkiv fra 1910, dagens salgs- og formidlingsfunksjon og Atelier Kunstnerforbundet fra 2018. Bredden er større enn focused, men stedet er ikke et major-kompleks.",
+  "coordinate_decision": "ALLEREDE FERDIG — preserve_verified_geonorge_address_point",
+  "coordinate_status": "PASS_EXISTING",
+  "coordinate_baseline": {
+    "lat": 59.91286247033279,
+    "lon": 10.735585135946035,
+    "r": 65,
+    "coordRole": "display_marker",
+    "coordType": "address_point",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordSourceId": "geonorge-adresser-v1:0301:13743:3"
+  },
+  "prior_work_gate": {
+    "TIDLIGERE-ARBEID-SOK": "Søkt etter kunstnerforbundet/Kunstnerforbundet i canonical place-data og commit-historikk, samt etter quiz-, People-, språk-, produksjons- og place-production-artefakter. PR #3476 er identitets-/koordinatbaselinen. Ingen fullproduksjonspakke, Språkleksikon-fil, quiz production brief/context eller place-production workcard/source-review fantes på preflight-main.",
+    "SISTE_GODKJENTE_PR_COMMIT": "PR #3476 / 88bbf2448bc170faccfab5de698db53463138cdb",
+    "SISTE_GODKJENTE_TILSTAND": "Canonical Kunstnerforbundet-place med resolved institusjonsidentitet, verifisert Geonorge-adressepunkt for Kjeld Stubs gate 3, eksisterende desc/popupDesc og quiz_profile.",
+    "KONKRET_REGRESJONSEVIDENS": "Ingen regresjon funnet i identitet eller koordinater. Fullproduksjonsgapene er manglende nyere subsystemartefakter, ikke feil i #3476-baselinen.",
+    "BESLUTNING": {
+      "identity": "ALLEREDE FERDIG",
+      "coordinates": "ALLEREDE FERDIG",
+      "full_place_production": "REELT NYTT ARBEID"
+    }
+  },
+  "collections": [
+    "people",
+    "objects",
+    "brands",
+    "productions"
+  ],
+  "category_expression": {
+    "id": "productions",
+    "label": "Kunstverk",
+    "status": "CANDIDATE_RESEARCH_REQUIRED"
+  },
+  "objects_category_boundary": "Objects eier fysiske, identifiserbare og stedsspesifikke katalog-/arkiv-/arbeidsobjekter; selve kunstverkene eies av Productions/Kunstverk. Overlyssalen er rom/arkitektur og skal ikke brukes som Object.",
+  "collection_research": {
+    "people": {
+      "status": "SOURCE_CANDIDATE_FOUND_PROFILE_AND_IMAGE_PENDING",
+      "candidates": [
+        "henrik_sorensen"
+      ],
+      "notes": "Offisiell jubileumshistorikk dokumenterer Henrik Sørensen i den lille gruppen bak opprettelsen. Ingen canonical place-specific Henrik Sørensen-profil ble funnet i preflight. Ny People-profil må følge People Profile v1 og egen bildekontrakt før samlingen kan passere."
+    },
+    "objects": {
+      "status": "SOURCE_BOUNDED_HOLDBACK",
+      "candidates": [
+        "kunstnerforbundet_jubileumsbok_2011",
+        "kunstnerforbundet_historisk_utstillingskatalog_eller_invitasjon"
+      ],
+      "notes": "Arkivet dokumenterer kataloger, invitasjonskort, pamfletter og protokoller, og jubileumssiden dokumenterer boken Kunstnerforbundets første hundre år. Ett eller flere konkrete fysiske objekter må avgrenses og få publiserbart medlemsbilde/proveniens før aksept."
+    },
+    "brands": {
+      "status": "CANDIDATE_AUDIT_PENDING",
+      "candidates": [
+        "parabol_studio",
+        "billedkunstnernes_hjelpefond",
+        "kunst_i_kvadraturen",
+        "oslo_art_guide",
+        "oslo_art_weekend"
+      ],
+      "notes": "Kunstnerforbundets offisielle side dokumenterer faste samarbeidspartnere og støtteaktører. Ingen kandidat godkjennes før Brand v1.1, eksisterende brand-katalog, direkte stedstilknytning og 100 % logo/proveniens er kontrollert. Kunstnerforbundet skal ikke mappes som Brand til seg selv."
+    },
+    "productions": {
+      "status": "SOURCE_CANDIDATES_FOUND_RIGHTS_AND_MEMBER_SELECTION_PENDING",
+      "candidates": [
+        "verk_fra_dokumenterte_kunstnerforbundet_utstillinger",
+        "stedsspesifikke_akf_prosjekter"
+      ],
+      "notes": "Offisielle utstillingssider dokumenterer enkeltverk og historiske utstillinger. Skiftende utstillinger skal ikke bli egne Places. Konkret verkutvalg krever rettighets-/bildeaudit og direkte stedsevidens."
+    }
+  },
+  "universal_core": {
+    "identity": "PASS_EXISTING",
+    "coordinates": "PASS_EXISTING",
+    "category": "PASS_EXISTING",
+    "underbadges": "PENDING",
+    "description_v4_2": "MISSING_PRODUCTION_PACKAGE_EXISTING_TEXT_REQUIRES_CLAIM_REVIEW",
+    "fagverk": "MISSING_PLACE_OWNED_FAGVERK",
+    "images": "MISSING_PLACE_IMAGE_AND_PORTRAIT_FRONTIMAGE",
+    "chronology_epoke": "RESEARCH_HAS_CANDIDATES_NOT_MATERIALIZED",
+    "sprakleksikon": "MISSING",
+    "relations": "AUDIT_PENDING",
+    "runtime_materialization": "PENDING",
+    "manual_ui_qa": "PENDING"
+  },
+  "chronology_candidates": [
+    {
+      "year": 1910,
+      "event": "Kunstnerforbundet opprettes og første utstilling åpner 11. desember.",
+      "status": "SOURCE_BACKED_CANDIDATE"
+    },
+    {
+      "year": 1917,
+      "event": "Kunstnerforbundet etablerer seg i Kjeld Stubs gate 3.",
+      "status": "SOURCE_BACKED_CANDIDATE"
+    },
+    {
+      "year": 1918,
+      "event": "Blakstad og Munthe-Kaas får oppdraget med å tegne Overlyssalen.",
+      "status": "SOURCE_BACKED_CANDIDATE"
+    },
+    {
+      "year": 1919,
+      "event": "Første utstilling i Overlyssalen er med Oluf Wold-Torne.",
+      "status": "SOURCE_BACKED_CANDIDATE"
+    },
+    {
+      "year": 2018,
+      "event": "Atelier Kunstnerforbundet starter som atelierprogram i bygården.",
+      "status": "SOURCE_BACKED_CANDIDATE"
+    }
+  ],
+  "language_plan": {
+    "status": "RESEARCH_REQUIRED",
+    "type": "ENKELTSTED",
+    "dialect_layer": "N/A_NOT_AREA_PLACE",
+    "candidate_entries": [
+      "Kunstnerforbundet",
+      "Overlyssalen",
+      "kunstnerstyrt"
+    ],
+    "notes": "Minst ett reelt kildebundet navn-/begrepsspor skal materialiseres i Språkleksikon. Ingen dialektdata tillates for dette enkeltstedet."
+  },
+  "quiz": {
+    "existing_quiz_profile_metadata": true,
+    "active_canonical_package_found": false,
+    "production_brief_found": false,
+    "production_context_found": false,
+    "status": "PENDING_CANONICAL_EXISTING_QUIZ_AUDIT_AND_CLAIM_BANK",
+    "profile_hint": "normal_4x7",
+    "profile_locked": false,
+    "quizcard": "PENDING"
+  },
+  "conditional_modules": {
+    "stories": "AUDIT_PENDING — grunnleggelsen i 1910 kan bære en selvstendig narrativ motor, men skal ikke produseres før Stories-governance er lest og kronologi/story-eierskap er avklart.",
+    "before_after": "CANDIDATE_SEARCH_REQUIRED — ingen kontrollert lisensiert match er godkjent.",
+    "news": "CANDIDATE_AUDIT_PENDING — institusjonen har aktiv nyhets-/programflate; runtime-relevans må avgjøres separat.",
+    "reading_tracks": "PRODUSER — source-rich sted med offisiell historie, arkiv, jubileumsmateriale og Atelier-dokumentasjon.",
+    "routes_relations": "AUDIT_PENDING — lokal kunstinstitusjonsklynge med Tegnerforbundet, Norske Grafikere og Nasjonalmuseet skal vurderes som relasjon/rute, ikke som PlaceCard-fyll."
+  },
+  "rejected_or_uncertain": [
+    "Skiftende utstillinger opprettes ikke som egne Places.",
+    "Atelier Kunstnerforbundet behandles foreløpig som programlag under Kunstnerforbundet, ikke eget Place.",
+    "Overlyssalen er ikke Object.",
+    "Kunstnerforbundet skal ikke brukes som Brand-medlem på sitt eget PlaceCard.",
+    "Ingen sponsor eller samarbeidspartner godkjennes som Brand bare for å fylle samlingen.",
+    "Ingen kunstverk godkjennes uten rettighets-/bildeproveniens og direkte stedstilknytning."
+  ],
+  "null_measurement": {
+    "result": "INCOMPLETE_FULL_PRODUCTION",
+    "blocking_gaps": [
+      "description production v4.2 package",
+      "confirmed underbadges in place file",
+      "place-owned Fagverk",
+      "place image and real portrait frontImage",
+      "Språkleksikon file/manifest mapping",
+      "chronology/epoke materialization",
+      "People canonical member + image",
+      "Objects canonical member(s) + image(s)",
+      "Brands canonical member + verified logo",
+      "Productions/Kunstverk canonical member(s) + image rights",
+      "place_card_profile with exactly four ready collections",
+      "canonical quiz production brief/context/package and QuizCard",
+      "runtime/generated indexes",
+      "exact-head CI and manual UI QA"
+    ]
+  },
+  "sanitation_production_plan": [
+    "Behold canonical identitet og verifisert koordinat fra #3476 uendret.",
+    "Bygg claim-first source review og v4.2 description package før tekst endres.",
+    "Materialiser underbadges, standard Fagverk, chronology/epoke og Språkleksikon fra verifiserte kilder.",
+    "Produser People/Objects/Brands/Productions én kontrakt om gangen uten filler; hold stedet fail-closed dersom en obligatorisk samling mangler ekte bildeklart medlem.",
+    "Auditér eksisterende quiz før profil låses; bygg source brief/context og eksakt settplan etter canonical quizregler.",
+    "Materialiser bilder, QuizCard, runtime og genererte indekser, kjør exact-head CI og avslutt med manuell popup/2x2/flip-QA."
+  ],
+  "active_phase": "SOURCE_REVIEW_AND_PRODUCTION_PLAN",
+  "active_file_scope": [
+    "reports/place-production/kunstnerforbundet-workcard-current.json",
+    "reports/place-production/kunstnerforbundet-source-review-v1.md"
+  ],
+  "previous_phase_merged_and_live_checked": "PR #3476 identity/coordinate baseline is merged; no new full-production phase has been merged.",
+  "branch": "agent/kunstnerforbundet-place-production-20260913",
+  "branch_base": "0ddf7bb4a8f8b505b43721c132005e6a19030484",
+  "branch_status": "ACTIVE_UNMERGED",
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "IN_PROGRESS",
+    "note": "Core place-production, profile, collection, Brand, Objects, description, quiz, People-profile and Språkleksikon contracts have been inspected for this planning checkpoint. Subsystem-specific contracts that own images, Fagverk, Stories, runtime and final QA must be read before those phases can move to PÅGÅR. No canonical subsystem data is changed in this checkpoint."
+  },
+  "popup_status": {
+    "om": "EXISTING_REQUIRES_V4_2_REVIEW",
+    "historie": "PENDING_CHRONOLOGY_MATERIALIZATION",
+    "fortellinger": "AUDIT_PENDING",
+    "for_etter": "AUDIT_PENDING",
+    "nyheter": "AUDIT_PENDING",
+    "lesespor": "PENDING_PRODUCTION",
+    "kilder": "PENDING_PRODUCTION_PACKAGE",
+    "sprak": "MISSING",
+    "spor_og_objekter": "MISSING_COLLECTION",
+    "legg_merke_til": "AUDIT_PENDING",
+    "betydning": "PENDING_FAGVERK",
+    "motpunkter": "AUDIT_PENDING",
+    "relasjoner": "AUDIT_PENDING",
+    "kunnskap": "PENDING_QUIZ_KNOWLEDGE",
+    "observasjoner": "RUNTIME_QA_PENDING"
+  },
+  "manual_final_qa": {
+    "before_after_comparison": "PENDING",
+    "news_coverage": "PENDING",
+    "direct_additional_tabs": "PENDING",
+    "round_coherence": "PENDING",
+    "critical_blockers": "All blocking gaps in null_measurement remain open."
+  },
+  "verified_at": "2026-09-13"
+}
