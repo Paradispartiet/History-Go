@@ -55,7 +55,7 @@ assert.equal(new Set(regjeringskvartaletPeople.map(person => person.id)).size, 2
 
 const storiesLoaderIndex = appRuntime.indexOf('loadScriptOnce("js/stories/stories_loader.js")');
 const brandsLoaderIndex = appRuntime.indexOf('loadScriptOnce("js/brands/brands_loader.js")');
-const placeCardLoaderIndex = appRuntime.indexOf('loadScriptOnce("js/ui/place-card.js")');
+const placeCardLoaderIndex = appRuntime.indexOf('loadScriptOnce("js/ui/place-card.js');
 const brandsInitIndex = appRuntime.indexOf('safeRun("initBrandsBeforeAppReady"');
 const appReadyIndex = appRuntime.indexOf('markAppReady();');
 const routerStartIndex = appRuntime.indexOf('safeRun("HGAppRouter.start"');
