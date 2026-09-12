@@ -96,6 +96,13 @@ test("Events rendres fra canonical HGEvents i både Utforsk og PlaceCard", () =>
   assert.doesNotMatch(onsite, /navigator\.geolocation|nearby users|distance-to-person/i);
 });
 
+test("PlaceCard-kjernen kan ikke skjule eller tømme onsite-flaten etter render", () => {
+  const placeCard = read("js/ui/place-card.js");
+  assert.doesNotMatch(placeCard, /eventsBox\.hidden\s*=\s*true/);
+  assert.doesNotMatch(placeCard, /LEGACY EVENTS \/ SOCIAL PLACE-CARD SURFACE RETIRED/);
+  assert.match(placeCard, /HGPlaceOnSiteSurface\?\.decorate\?\.\(true\)/);
+});
+
 test("PlaceCard har canonicale snarveier til Events og samlet Møtes", () => {
   assert.equal(contract.movedSurfaces.events, "Utforsk → Events");
   assert.match(contract.movedSurfaces["social-meet"], /Utforsk → Møtes/);
