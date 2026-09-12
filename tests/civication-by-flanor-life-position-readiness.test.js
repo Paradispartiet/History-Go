@@ -52,8 +52,8 @@ assert.ok(!catalog.badges.find((row) => row.badge_id === 'by').positions.some((r
 const ready = audit.positions.find((row) => row.key === 'by/byflanor');
 assert.ok(ready);
 assert.equal(ready.classification, 'ready');
-assert.equal(ready.role_world_status, 'role_world_not_started');
-assert.equal(ready.role_world_path, null);
+assert.equal(ready.role_world_status, 'role_world_complete');
+assert.equal(ready.role_world_path, 'data/Civication/roleWorlds/by/by_flanor.json');
 assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, []);
@@ -63,15 +63,15 @@ assert.deepEqual(audit.summary.classifications, {
   needs_authored_depth: 148,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 10);
-assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.completed_life_position_role_worlds, 11);
+assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 11);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 11);
-assert.equal(audit.first_ready?.key, 'by/byflanor');
-assert.equal(audit.queue[0]?.key, 'by/byflanor');
-assert.equal(audit.queue[0]?.classification, 'ready');
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'by/byflanor');
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'by/byflanor');
+assert.equal(audit.first_ready, null);
+assert.equal(audit.queue[0]?.key, 'scenekunst/scenehenger');
+assert.equal(audit.queue[0]?.classification, 'needs_authored_depth');
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
 
 const coreText = stream.storylets
   .flatMap((row) => [row.situation.join(' '), ...row.choices.map((choice) => choice.feedback || '')])

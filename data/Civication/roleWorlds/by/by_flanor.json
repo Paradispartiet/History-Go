@@ -1,0 +1,1101 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_flanor",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "by",
+    "id": "byflanor",
+    "label": "Flanør"
+  },
+  "title": "Flanør — oppmerksomhet, tid og byens offentlighet",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bruke byen langsomt og oppmerksomt uten å gjøre tidsfrihet, estetisk blikk eller mange observasjoner til klasseblindhet, eksotisering eller uformell ekspertmyndighet",
+    "description": "Flanør-verdenen undersøker hvordan formålsløs vandring kan åpne byen for detaljer, tilfeldige møter og andre rytmer enn arbeid og forbruk, samtidig som selve friheten til å dvele er ulikt fordelt. Spilleren møter offentlige benker og kjøpte sitteplasser, tidspress og klasse, fotografi og privatliv, ukjente strøk, menneskestrømmer og egne feilslutninger. Målet er et åpent blikk som tåler korrigering og sosial gjensidighet. Flanør er ikke urbanist, planlegger, forsker, journalist eller lokal myndighet: observasjon kan gi erfaring, men gir ikke mandat til å forklare hvordan byen eller menneskene egentlig fungerer."
+  },
+  "theme_ids": [
+    "alienation",
+    "consumption",
+    "class_power",
+    "public_attention",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "status_anxiety",
+    "social_mask",
+    "shame_reputation"
+  ],
+  "social_environments": [
+    "sidegater og passasjer der avvik fra den effektive ruta gjør oppmerksomhet, tempo og trygghet synlig",
+    "benker, torg og andre offentlige oppholdssteder der retten til å bli værende møter komfort, vær og sosial kontroll",
+    "kafeer og andre halvoffentlige forbruksrom der betaling bestemmer hvem som kan sitte lenge og under hvilke vilkår",
+    "travle gater, kollektivknutepunkt og menneskestrømmer der byen både inviterer til observasjon og belønner effektiv bevegelse",
+    "ukjente strøk og blandede handelsmiljøer der nysgjerrighet lett kan gli over i eksotisering eller sosial avstand",
+    "arrangementer, køer og kveldsbyrom der oppmerksomhet, adgang, status og privatliv forhandles i full offentlighet"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "effektivitetsvenn",
+      "social_function": "gjør forskjellen mellom målrettet hverdagslogistikk og formålsløs vandring konkret",
+      "class_position": "likestilt venn med mindre tidsmessig handlingsrom i hverdagen",
+      "status": "relasjonell nærhet uten formell autoritet over spilleren",
+      "power_over_player": "kan synliggjøre når flanørens tidsfrihet blir oppfattet som luksus eller moralsk overlegenhet",
+      "wants": "at spilleren respekterer at ikke alle kan prioritere langsom bybruk på samme måte",
+      "conceals": "at misunnelse og tidspress kan farge kritikken av spillerens vandring",
+      "speech_style": "kort, praktisk og ofte formulert gjennom konkrete tids- og arbeidskrav",
+      "teaches_player": "at åpen oppmerksomhet ikke må gjøres til en universell livsoppskrift"
+    },
+    {
+      "id": "serveringsarbeider",
+      "social_function": "gjør grensen mellom offentlig opphold og kjøpt opphold synlig i byens forbruksrom",
+      "class_position": "lønnsarbeider som håndhever stedets praktiske regler uten å eie den bredere byen",
+      "status": "situert operativ status i serveringsstedet",
+      "power_over_player": "kan avgjøre om spilleren kan bli sittende, må bestille eller må gi plassen videre",
+      "wants": "flyt i lokalet, rimelig behandling av gjester og færre konflikter om plassbruk",
+      "conceals": "at egne skjønnsvurderinger påvirkes av press, kø og hvilke kunder som oppfattes som ønskelige",
+      "speech_style": "vennlig, effektiv og tydelig når en grense faktisk må håndheves",
+      "teaches_player": "at komfortable observasjonsposter ofte er kommersielle rom med arbeid og adgangsvilkår"
+    },
+    {
+      "id": "tilfeldig_samtalepartner",
+      "social_function": "gjør uplanlagte møter gjensidige i stedet for å være råmateriale for spillerens fortelling",
+      "class_position": "medborger uten plikt til å forklare sitt liv eller representere et område",
+      "status": "likestilt sosial status i møtet",
+      "power_over_player": "kan avslutte samtalen, korrigere spillerens antakelser eller avvise personlige spørsmål",
+      "wants": "en samtale som får være lett, interessant eller kort uten å bli intervju",
+      "conceals": "at egen nysgjerrighet også kan gjøre grensene uklare",
+      "speech_style": "situasjonsnær, spontan og personlig bare når det føles gjensidig",
+      "teaches_player": "at sosial åpenhet krever respekt for hvor langt den andre faktisk vil gå"
+    },
+    {
+      "id": "lokal_beboer",
+      "social_function": "forankrer ukjente strøk som andres hverdagsmiljø framfor spillerens oppdagelseslandskap",
+      "class_position": "person med situert hverdagskunnskap, men ikke nødvendigvis formell eller representativ autoritet",
+      "status": "lokal erfaringsstatus knyttet til faktisk bruk av området",
+      "power_over_player": "kan korrigere eksotiserende beskrivelser og utfordre bastante tolkninger av stedet",
+      "wants": "at området behandles som et vanlig sted å leve, arbeide og handle i",
+      "conceals": "at også lokale fortellinger kan være selektive, nostalgiske eller konfliktfylte",
+      "speech_style": "konkret, stedbundet og lite imponert av store generaliseringer",
+      "teaches_player": "at nærvær i et område ikke gjør spilleren til eier av fortellingen om det"
+    },
+    {
+      "id": "arrangementsvert",
+      "social_function": "gjør skillet mellom åpent byrom og organisert, regulert aktivitet synlig",
+      "class_position": "midlertidig operativ rolle med avgrenset adgangs- og sikkerhetsansvar",
+      "status": "situert autoritet ved arrangementets inngang, kø eller avsperring",
+      "power_over_player": "kan gi eller nekte adgang innen arrangementets regler uten å eie resten av byrommet",
+      "wants": "forutsigbar flyt, tydelige grenser og færre konflikter i menneskestrømmen",
+      "conceals": "at kommersielle og organisatoriske hensyn ofte former hva som framstår som offentlig oppmerksomhet",
+      "speech_style": "kort, instruksjonsorientert og tydelig på hvor grensen går",
+      "teaches_player": "at synlighet og folkemengde ikke er det samme som universell tilgang eller betydning"
+    },
+    {
+      "id": "erfaren_byobservator",
+      "social_function": "gir spilleren en sosial målestokk for oppmerksomhet uten å gjøre observasjon til faglig myndighet",
+      "class_position": "erfaren fritidsutøver med høy kulturell trygghet, men uten offentlig eller profesjonelt mandat",
+      "status": "uformell status gjennom språk, referanser og evne til å legge merke til detaljer",
+      "power_over_player": "kan belønne skarpe observasjoner og samtidig forsterke press om å ha interessante tolkninger",
+      "wants": "et miljø der byen blir sett nøye og snakket om med presisjon",
+      "conceals": "at egen selvsikkerhet også bygger på smak, klasse og sosial posisjon",
+      "speech_style": "assosiativ, observant og rask til å koble detaljer til større historier",
+      "teaches_player": "at et rikt blikk fortsatt må skille mellom det som er sett, antatt og faktisk kjent"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "attention_vs_efficiency",
+      "meaning": "om byen får være et miljø for åpen oppmerksomhet eller reduseres til rute, mål og tidsoptimalisering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_presence_vs_consumption",
+      "meaning": "om spilleren kan være i byen uten at retten til opphold hele tiden kjøpes gjennom kaffe, handel eller arrangement",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "curiosity_vs_intrusion",
+      "meaning": "om nysgjerrighet på fremmede og tilfeldige møter forblir gjensidig uten å bli sosial uttrekking av historier",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observation_vs_inference",
+      "meaning": "om det spilleren ser holdes adskilt fra sikre slutninger om mennesker, steder og motiv",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "aesthetic_gaze_vs_class_awareness",
+      "meaning": "om skjønnhet, vedlikehold og komfort ses sammen med pris, arbeid, trygghet og ulik tilgang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "openness_vs_exoticization",
+      "meaning": "om ukjente strøk kan oppleves med nysgjerrighet uten å gjøre andres hverdagsmiljø til eksotisk kulisse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "flaneur_identity_vs_informal_authority",
+      "meaning": "om mange vandringer blir en åpen praksis eller et krav om å vite hvordan byen og menneskene egentlig fungerer",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du går ut uten et konkret ærend og merker hvor raskt kroppen likevel søker den mest effektive veien. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "open_attention_vs_efficiency",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#uten_mal_i_dag"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du går ut uten et konkret ærend og merker hvor raskt kroppen likevel søker den mest effektive veien. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "open_attention_vs_efficiency",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#uten_mal_i_dag"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du går ut uten et konkret ærend og merker hvor raskt kroppen likevel søker den mest effektive veien. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "open_attention_vs_efficiency",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#uten_mal_i_dag"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du går ut uten et konkret ærend og merker hvor raskt kroppen likevel søker den mest effektive veien. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "open_attention_vs_efficiency",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#uten_mal_i_dag"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Du finner en benk med godt utsyn over et travelt byrom og har lyst til å sitte der en stund. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "public_space_vs_consumption",
+          "class_time_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#benken_uten_kjop"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Du finner en benk med godt utsyn over et travelt byrom og har lyst til å sitte der en stund. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "public_space_vs_consumption",
+          "class_time_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#benken_uten_kjop"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Du finner en benk med godt utsyn over et travelt byrom og har lyst til å sitte der en stund. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "public_space_vs_consumption",
+          "class_time_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#benken_uten_kjop"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Du finner en benk med godt utsyn over et travelt byrom og har lyst til å sitte der en stund. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "public_space_vs_consumption",
+          "class_time_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#benken_uten_kjop"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Et kraftig regnskyll endrer tempoet i gata på få minutter og folk samler seg under tak, i passasjer og ved innganger. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "observation_vs_inference",
+          "public_space_vs_consumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#regnet_flytter_byen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Et kraftig regnskyll endrer tempoet i gata på få minutter og folk samler seg under tak, i passasjer og ved innganger. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "observation_vs_inference",
+          "public_space_vs_consumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#regnet_flytter_byen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Et kraftig regnskyll endrer tempoet i gata på få minutter og folk samler seg under tak, i passasjer og ved innganger. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "observation_vs_inference",
+          "public_space_vs_consumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#regnet_flytter_byen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Et kraftig regnskyll endrer tempoet i gata på få minutter og folk samler seg under tak, i passasjer og ved innganger. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "observation_vs_inference",
+          "public_space_vs_consumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#regnet_flytter_byen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Telefonen foreslår konsekvent den raskeste ruta og varsler hver gang du avviker fra den. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "open_attention_vs_efficiency",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#telefonen_vil_bestemme"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Telefonen foreslår konsekvent den raskeste ruta og varsler hver gang du avviker fra den. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "open_attention_vs_efficiency",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#telefonen_vil_bestemme"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Telefonen foreslår konsekvent den raskeste ruta og varsler hver gang du avviker fra den. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "open_attention_vs_efficiency",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#telefonen_vil_bestemme"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Telefonen foreslår konsekvent den raskeste ruta og varsler hver gang du avviker fra den. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "open_attention_vs_efficiency",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#telefonen_vil_bestemme"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Et lysfall over en fasade og fortauet gir deg lyst til å ta et bilde. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "privacy_reciprocity",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#fotografiet_med_fremmede"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Et lysfall over en fasade og fortauet gir deg lyst til å ta et bilde. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "privacy_reciprocity",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#fotografiet_med_fremmede"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Et lysfall over en fasade og fortauet gir deg lyst til å ta et bilde. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "privacy_reciprocity",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#fotografiet_med_fremmede"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Et lysfall over en fasade og fortauet gir deg lyst til å ta et bilde. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "privacy_reciprocity",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#fotografiet_med_fremmede"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Du går inn på en kafé mest fordi vindusplassen gir godt utsyn over gata. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "public_space_vs_consumption",
+          "class_time_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#kaffen_som_inngangsbillett"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Du går inn på en kafé mest fordi vindusplassen gir godt utsyn over gata. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "public_space_vs_consumption",
+          "class_time_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#kaffen_som_inngangsbillett"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Du går inn på en kafé mest fordi vindusplassen gir godt utsyn over gata. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "public_space_vs_consumption",
+          "class_time_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#kaffen_som_inngangsbillett"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Du går inn på en kafé mest fordi vindusplassen gir godt utsyn over gata. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "public_space_vs_consumption",
+          "class_time_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#kaffen_som_inngangsbillett"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Du går gjennom en gate med velholdte fasader, små butikker og lite synlig trafikk og kjenner umiddelbart at området virker attraktivt. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "class_time_access",
+          "observation_vs_inference"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#vakker_gate_dyr_hverdag"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Du går gjennom en gate med velholdte fasader, små butikker og lite synlig trafikk og kjenner umiddelbart at området virker attraktivt. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "class_time_access",
+          "observation_vs_inference"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#vakker_gate_dyr_hverdag"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Du går gjennom en gate med velholdte fasader, små butikker og lite synlig trafikk og kjenner umiddelbart at området virker attraktivt. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "class_time_access",
+          "observation_vs_inference"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#vakker_gate_dyr_hverdag"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Du går gjennom en gate med velholdte fasader, små butikker og lite synlig trafikk og kjenner umiddelbart at området virker attraktivt. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "class_time_access",
+          "observation_vs_inference"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#vakker_gate_dyr_hverdag"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: En fremmed kommenterer noe dere begge ser og samtalen varer lenger enn et vanlig høflighetsord. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "privacy_reciprocity",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#tilfeldig_samtale"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: En fremmed kommenterer noe dere begge ser og samtalen varer lenger enn et vanlig høflighetsord. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "privacy_reciprocity",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#tilfeldig_samtale"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: En fremmed kommenterer noe dere begge ser og samtalen varer lenger enn et vanlig høflighetsord. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "privacy_reciprocity",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#tilfeldig_samtale"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: En fremmed kommenterer noe dere begge ser og samtalen varer lenger enn et vanlig høflighetsord. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "privacy_reciprocity",
+          "flaneur_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#tilfeldig_samtale"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Du møter en venn som er på vei mellom oppgaver og som kommenterer at det må være deilig å ha tid til å vandre uten mål. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "class_time_access",
+          "open_attention_vs_efficiency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#du_har_tid"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Du møter en venn som er på vei mellom oppgaver og som kommenterer at det må være deilig å ha tid til å vandre uten mål. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "class_time_access",
+          "open_attention_vs_efficiency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#du_har_tid"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Du møter en venn som er på vei mellom oppgaver og som kommenterer at det må være deilig å ha tid til å vandre uten mål. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "class_time_access",
+          "open_attention_vs_efficiency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#du_har_tid"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Du møter en venn som er på vei mellom oppgaver og som kommenterer at det må være deilig å ha tid til å vandre uten mål. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "class_time_access",
+          "open_attention_vs_efficiency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#du_har_tid"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Du går inn i en del av byen du sjelden bruker og merker hvor lett alt ukjent føles mer intenst og interessant. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "privacy_reciprocity",
+          "gaze_social_distance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#egen_by_som_eksotikk"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Du går inn i en del av byen du sjelden bruker og merker hvor lett alt ukjent føles mer intenst og interessant. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "privacy_reciprocity",
+          "gaze_social_distance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#egen_by_som_eksotikk"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Du går inn i en del av byen du sjelden bruker og merker hvor lett alt ukjent føles mer intenst og interessant. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "privacy_reciprocity",
+          "gaze_social_distance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#egen_by_som_eksotikk"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Du går inn i en del av byen du sjelden bruker og merker hvor lett alt ukjent føles mer intenst og interessant. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "privacy_reciprocity",
+          "gaze_social_distance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#egen_by_som_eksotikk"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Du merker at mange mennesker beveger seg mot samme gate og følger etter uten å vite hva som skjer. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "public_space_vs_consumption",
+          "gaze_social_distance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#folgestrommen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Du merker at mange mennesker beveger seg mot samme gate og følger etter uten å vite hva som skjer. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "public_space_vs_consumption",
+          "gaze_social_distance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#folgestrommen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Du merker at mange mennesker beveger seg mot samme gate og følger etter uten å vite hva som skjer. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "public_space_vs_consumption",
+          "gaze_social_distance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#folgestrommen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Du merker at mange mennesker beveger seg mot samme gate og følger etter uten å vite hva som skjer. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "public_space_vs_consumption",
+          "gaze_social_distance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#folgestrommen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Du har flere ganger lagt merke til den samme personen ved en inngang og begynt å lage en forklaring på hvorfor vedkommende er der. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "observation_vs_inference",
+          "privacy_reciprocity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#detaljen_du_mistolket"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Du har flere ganger lagt merke til den samme personen ved en inngang og begynt å lage en forklaring på hvorfor vedkommende er der. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "observation_vs_inference",
+          "privacy_reciprocity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#detaljen_du_mistolket"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Du har flere ganger lagt merke til den samme personen ved en inngang og begynt å lage en forklaring på hvorfor vedkommende er der. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "observation_vs_inference",
+          "privacy_reciprocity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#detaljen_du_mistolket"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Du har flere ganger lagt merke til den samme personen ved en inngang og begynt å lage en forklaring på hvorfor vedkommende er der. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "observation_vs_inference",
+          "privacy_reciprocity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#detaljen_du_mistolket"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Du vender tilbake til en gate du nylig gikk gjennom på dagtid, men denne gangen sent på kvelden. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "observation_vs_inference",
+          "open_attention_vs_efficiency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#samme_gate_annen_tid"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Du vender tilbake til en gate du nylig gikk gjennom på dagtid, men denne gangen sent på kvelden. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "observation_vs_inference",
+          "open_attention_vs_efficiency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#samme_gate_annen_tid"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Du vender tilbake til en gate du nylig gikk gjennom på dagtid, men denne gangen sent på kvelden. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "observation_vs_inference",
+          "open_attention_vs_efficiency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#samme_gate_annen_tid"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Du vender tilbake til en gate du nylig gikk gjennom på dagtid, men denne gangen sent på kvelden. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "observation_vs_inference",
+          "open_attention_vs_efficiency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#samme_gate_annen_tid"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Etter mange vandringer har du samlet inntrykk av rom, mennesker, priser, vær, lys, tilfeldige møter og egne feilslutninger. Morgenen etablerer hva som faktisk er synlig, hvordan tid og oppmerksomhet brukes, og hvilke grenser som gjelder før spilleren gjør byen til sin egen fortelling.",
+        "thread_ids": [
+          "flaneur_boundary",
+          "gaze_social_distance",
+          "class_time_access",
+          "observation_vs_inference"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#hva_slags_flanor"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Etter mange vandringer har du samlet inntrykk av rom, mennesker, priser, vær, lys, tilfeldige møter og egne feilslutninger. Midt på dagen blir ulikhet, forbruk, tilhørighet eller privatliv synlig gjennom andre mennesker som bruker det samme byrommet på andre vilkår.",
+        "thread_ids": [
+          "flaneur_boundary",
+          "gaze_social_distance",
+          "class_time_access",
+          "observation_vs_inference"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#hva_slags_flanor"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Etter mange vandringer har du samlet inntrykk av rom, mennesker, priser, vær, lys, tilfeldige møter og egne feilslutninger. Ettermiddagen gjør forskjellen mellom åpen nysgjerrighet og å bruke mennesker, rom eller egne inntrykk som bevis på en autoritet spilleren ikke har til et konkret valg.",
+        "thread_ids": [
+          "flaneur_boundary",
+          "gaze_social_distance",
+          "class_time_access",
+          "observation_vs_inference"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#hva_slags_flanor"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Etter mange vandringer har du samlet inntrykk av rom, mennesker, priser, vær, lys, tilfeldige møter og egne feilslutninger. Kvelden viser hvordan valget påvirker tempo, selvbilde, relasjoner, klassebevissthet, privatliv eller evnen til å korrigere egne slutninger.",
+        "thread_ids": [
+          "flaneur_boundary",
+          "gaze_social_distance",
+          "class_time_access",
+          "observation_vs_inference"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_flanor.json#hva_slags_flanor"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "open_attention_vs_efficiency",
+      "relationship": "forholdet mellom formålsløs oppmerksomhet og presset om å gjøre tid, ruter og bybruk nyttig eller effektiv",
+      "beat_refs": [
+        "1/morning",
+        "1/afternoon",
+        "4/morning",
+        "4/afternoon",
+        "9/evening",
+        "13/morning",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "public_space_vs_consumption",
+      "relationship": "forholdet mellom retten til å oppholde seg i byen og de kommersielle vilkårene som bestemmer hvem som får sitte, vente og bli",
+      "beat_refs": [
+        "2/lunch",
+        "2/afternoon",
+        "3/evening",
+        "6/morning",
+        "6/afternoon",
+        "11/lunch",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "class_time_access",
+      "relationship": "forholdet mellom tid, penger, trygghet og hvem som faktisk har handlingsrom til å bruke byen langsomt",
+      "beat_refs": [
+        "2/evening",
+        "6/evening",
+        "7/afternoon",
+        "9/morning",
+        "9/afternoon",
+        "11/evening",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "observation_vs_inference",
+      "relationship": "forholdet mellom detaljer spilleren ser og konklusjoner om mennesker eller steder som observasjonen ikke alene kan bevise",
+      "beat_refs": [
+        "3/evening",
+        "7/evening",
+        "12/morning",
+        "12/afternoon",
+        "13/morning",
+        "13/evening",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "privacy_reciprocity",
+      "relationship": "forholdet mellom åpen sosial nysgjerrighet og andre menneskers rett til privatliv, avstand og kontroll over egne historier",
+      "beat_refs": [
+        "5/afternoon",
+        "5/evening",
+        "8/lunch",
+        "8/afternoon",
+        "10/evening",
+        "12/lunch",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "gaze_social_distance",
+      "relationship": "forholdet mellom estetisk eller eksotiserende blikk, sosial avstand og evnen til å se ukjente steder som andres vanlige hverdag",
+      "beat_refs": [
+        "7/lunch",
+        "10/morning",
+        "10/afternoon",
+        "11/morning",
+        "11/afternoon",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "flaneur_boundary",
+      "relationship": "forholdet mellom Flanør som åpen praksis og fristelsen til å gjøre mange vandringer om til uformell ekspertstatus eller sosial autoritet",
+      "beat_refs": [
+        "1/evening",
+        "5/lunch",
+        "8/evening",
+        "12/evening",
+        "14/morning",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "turen_uten_bevis",
+      "description": "En vandring kan ende uten funn, mål eller historie å vise fram, og tvinger spilleren til å kjenne etter om oppmerksomheten fortsatt hadde verdi.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_flanor.json#uten_mal_i_dag",
+        "data/Civication/narratives/leisure/by_flanor.json#telefonen_vil_bestemme",
+        "data/Civication/narratives/leisure/by_flanor.json#hva_slags_flanor"
+      ]
+    },
+    {
+      "id": "plassen_du_ikke_kjopte",
+      "description": "Å sitte på en enkel offentlig benk eller forlate en dyr kafé synliggjør om spilleren oppfatter bytilgang som en borgerlig rett eller en vare.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_flanor.json#benken_uten_kjop",
+        "data/Civication/narratives/leisure/by_flanor.json#kaffen_som_inngangsbillett"
+      ]
+    },
+    {
+      "id": "bildet_du_lot_vaere",
+      "description": "Når et godt motiv ikke tas eller en samtale ikke presses videre, må spilleren tåle at respekt for andre mennesker også betyr å miste innhold.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_flanor.json#fotografiet_med_fremmede",
+        "data/Civication/narratives/leisure/by_flanor.json#tilfeldig_samtale"
+      ]
+    },
+    {
+      "id": "tiden_som_ulikhet",
+      "description": "En venns tidspress og en pen gates høye kostnader gjør det vanskeligere å romantisere langsom byvandring som noe alle bare kan velge.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_flanor.json#vakker_gate_dyr_hverdag",
+        "data/Civication/narratives/leisure/by_flanor.json#du_har_tid"
+      ]
+    },
+    {
+      "id": "byen_storre_enn_blikket",
+      "description": "Feiltolkninger, tidsforskjeller og ukjente strøk gjør det tydelig at mange observasjoner kan gi nærhet til byen uten å gi eierskap til sannheten om den.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_flanor.json#egen_by_som_eksotikk",
+        "data/Civication/narratives/leisure/by_flanor.json#detaljen_du_mistolket",
+        "data/Civication/narratives/leisure/by_flanor.json#samme_gate_annen_tid",
+        "data/Civication/narratives/leisure/by_flanor.json#hva_slags_flanor"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "effektiv_rute_blir_identitetsvalg",
+      "setup_ref": "1/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "benk_blir_tilgangsblikk",
+      "setup_ref": "2/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "foto_blir_personverngrense",
+      "setup_ref": "5/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "tidsfrihet_blir_klassebevissthet",
+      "setup_ref": "9/afternoon",
+      "return_ref": "14/lunch",
+      "domains": [
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "eksotisering_blir_sosial_avstand",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "feilslutning_blir_ydmykhet",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/by_flanor.json#uten_mal_i_dag",
+      "data/Civication/narratives/leisure/by_flanor.json#benken_uten_kjop",
+      "data/Civication/narratives/leisure/by_flanor.json#regnet_flytter_byen",
+      "data/Civication/narratives/leisure/by_flanor.json#telefonen_vil_bestemme",
+      "data/Civication/narratives/leisure/by_flanor.json#fotografiet_med_fremmede",
+      "data/Civication/narratives/leisure/by_flanor.json#kaffen_som_inngangsbillett",
+      "data/Civication/narratives/leisure/by_flanor.json#vakker_gate_dyr_hverdag",
+      "data/Civication/narratives/leisure/by_flanor.json#tilfeldig_samtale",
+      "data/Civication/narratives/leisure/by_flanor.json#du_har_tid",
+      "data/Civication/narratives/leisure/by_flanor.json#egen_by_som_eksotikk",
+      "data/Civication/narratives/leisure/by_flanor.json#folgestrommen",
+      "data/Civication/narratives/leisure/by_flanor.json#detaljen_du_mistolket",
+      "data/Civication/narratives/leisure/by_flanor.json#samme_gate_annen_tid",
+      "data/Civication/narratives/leisure/by_flanor.json#hva_slags_flanor"
+    ]
+  }
+}
