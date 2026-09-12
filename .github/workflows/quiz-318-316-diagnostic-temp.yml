@@ -26,11 +26,11 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Regenerate quiz production context in runner only
+      - name: Regenerate only Tollpakkhuset quiz production context in runner
         run: |
           set -euo pipefail
-          npm run quiz:context
-          echo "Changed files after deterministic context rebuild:"
+          npm run quiz:context -- --category naeringsliv --target tollpakkhuset --output data/quiz/production_context/naeringsliv/tollpakkhuset.json
+          echo "Changed files after deterministic targeted context rebuild:"
           git status --short
           echo "Changed paths:"
           git diff --name-only
