@@ -66,17 +66,17 @@ assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['skrivebordspoet_introtekst']);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 11,
-  needs_authored_depth: 148,
+  ready: 12,
+  needs_authored_depth: 147,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.completed_life_position_role_worlds, 11);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 11);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 11);
-assert.equal(audit.first_ready, null);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
+assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 12);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 12);
+assert.equal(audit.first_ready?.key, 'scenekunst/scenehenger');
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'scenekunst/scenehenger');
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'scenekunst/scenehenger');
 
 const paidAnchor = stream.storylets.find((row) => row.id === 'honorar_for_introtekst');
 assert.ok(paidAnchor);
