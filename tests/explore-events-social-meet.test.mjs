@@ -33,9 +33,11 @@ test("index laster de faktiske Events-, Social Meet- og PlaceCard-runtimene", ()
   assert.match(app, /loadPlaceCard[\s\S]*js\/ui\/place-card\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /dist\/web\/leftPanelMode\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /dist\/web\/left-panel\.js\?v=20260912-live-surfaces2/);
+  assert.match(app, /js\/ui\/place-card-status-surface\.js\?v=20260912-onsite-under-explore1/);
+  assert.match(index, /js\/config\.js\?v=20260912-onsite-under-explore1/);
   assert.match(index, /css\/place-onsite-surface\.css\?v=20260912-live-surfaces2/);
-  assert.match(index, /js\/ui\/header-menu\.js\?v=20260912-live-surfaces2/);
-  assert.match(index, /js\/app\.js\?v=20260912-live-surfaces2/);
+  assert.match(index, /js\/ui\/header-menu\.js\?v=20260912-onsite-under-explore1/);
+  assert.match(index, /js\/app\.js\?v=20260912-onsite-under-explore1/);
 });
 
 test("header-Møtes åpner Social Meet direkte og er ikke avhengig av Utforsk", () => {
@@ -65,19 +67,14 @@ test("header-Møtes åpner Social Meet direkte og er ikke avhengig av Utforsk", 
   dom.window.close();
 });
 
-test("Møtes samler oppstart og oppfølging uten å slå sammen domenemotorene", () => {
-  assert.match(source, /Foreslå kunnskapsmøte/);
-  assert.match(source, /Mine møter/);
-  assert.match(source, /HG_SpotmeetingUI/);
-  assert.match(source, /HG_SocialMeetUI/);
-  assert.match(source, /sourceSurface:\s*"explorePanel"/);
-  assert.match(source, /data-explore-social-action="propose"/);
-  assert.match(source, /data-explore-social-action="manage"/);
-
-  assert.match(bundle, /data-explore-social-action="propose"/);
-  assert.match(bundle, /data-explore-social-action="manage"/);
-  assert.match(bundle, /HG_SpotmeetingUI/);
-  assert.match(bundle, /HG_SocialMeetUI/);
+test("PlaceCard-Møtes samler oppstart og oppfølging uten å slå sammen domenemotorene", () => {
+  assert.match(onsite, /Foreslå kunnskapsmøte/);
+  assert.match(onsite, /Mine møter \/ Social Meet/);
+  assert.match(onsite, /HG_SpotmeetingUI/);
+  assert.match(onsite, /HG_SocialMeetUI/);
+  assert.match(onsite, /sourceSurface:\s*"placeCardOnSite"/);
+  assert.match(onsite, /data-hg-meet-hub-action="propose"/);
+  assert.match(onsite, /data-hg-meet-hub-action="manage"/);
 });
 
 test("Events rendres fra canonical HGEvents i PlaceCard", () => {
@@ -96,8 +93,10 @@ test("PlaceCard-kjernen kan ikke skjule eller tømme onsite-flaten etter render"
 });
 
 test("PlaceCard har canonicale snarveier til Events og samlet Møtes", () => {
-  assert.equal(contract.movedSurfaces.events, "Utforsk → Events");
-  assert.match(contract.movedSurfaces["social-meet"], /Utforsk → Møtes/);
+  assert.equal(contract.movedSurfaces.events, "PlaceCard → Utforsk → Events");
+  assert.match(contract.movedSurfaces["social-meet"], /PlaceCard → Utforsk → Møtes/);
+  assert.equal(contract.actions.events.label, "Events");
+  assert.equal(contract.actions.meet.label, "Møtes");
   assert.match(onsite, /CORE_SHORTCUTS = \["events", "meet"\]/);
   assert.match(onsite, /data-hg-meet-hub-action="propose"/);
   assert.match(onsite, /data-hg-meet-hub-action="manage"/);
