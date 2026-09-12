@@ -261,11 +261,11 @@ There is no chat, free text, live location, nearby, followers, feed, distance, l
 
 Product split:
 
-- **Utforsk → Møtes** is the global canonical meeting entry and sits in the secondary row below the Explore round buttons; PlaceCard does not expose a meeting shortcut.
+- **Utforsk → Møtes** is the global canonical meeting entry; PlaceCard exposes a place-context shortcut to the same runtimes.
 - **Kunnskapsmøte** (`HG_SpotmeetingUI`) starts a concrete meeting proposal in a selected context.
 - **Social Meet** (`HG_SocialMeetUI`) follows proposals up through pending/accepted/completed status, agreements, learning circles and history.
 - **Profile** keeps settings/privacy/history and may link to Social Meet, but is not the primary entry.
 
-The two runtimes remain separate owners because creation and follow-up have different state/backend responsibilities; only the **navigation and product surface are unified**. `HG_SocialMeetUI.open({ filter, placeId, sourceSurface })` supports the header, Explore hub and Spotmeeting follow-up. It must not inject a Social Meet surface into PlaceCard/På stedet.
+The two runtimes remain separate owners because creation and follow-up have different state/backend responsibilities; only the **navigation and product surface are unified**. `HG_SocialMeetUI.open({ filter, placeId, sourceSurface })` supports the header, Explore hub, PlaceCard shortcut and Spotmeeting follow-up. It must not auto-inject a separate Social Meet status card into PlaceCard/På stedet.
 
 Status: local-only, privacy-safe, no gameplay mutation, no backend.
