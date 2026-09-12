@@ -107,24 +107,24 @@ assert.equal(entry.status, 'role_world_complete');
 assert.equal(entry.path, worldPath);
 
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 10);
+assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 11);
 assert.deepEqual(index.summary, {
-  role_worlds_total: 95,
+  role_worlds_total: 96,
   career_role_worlds: 85,
-  life_position_role_worlds: 10
+  life_position_role_worlds: 11
 });
 assert.equal(index.career_role_world_count, 85);
-assert.equal(index.life_position_role_world_count, 10);
-assert.equal(index.status, '95_role_worlds_materialized');
+assert.equal(index.life_position_role_world_count, 11);
+assert.equal(index.status, '96_role_worlds_materialized');
 
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('natur/artsjeger'));
-assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 10);
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'by/byflanor');
+assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 11);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 10);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 95);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'by/byflanor');
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 10);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 11);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 96);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 11);
 
 const readiness = audit.positions.find((row) => row.key === 'natur/artsjeger');
 assert.ok(readiness);
@@ -135,16 +135,16 @@ assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.deepEqual(readiness.evidence.livelihood_templates, ['artsjeger_feltregistrering']);
 assert.ok(!audit.queue.some((row) => row.key === 'natur/artsjeger'));
-assert.equal(audit.summary.life_position_role_world_complete, 10);
-assert.equal(audit.summary.completed_life_position_role_worlds, 10);
-assert.equal(audit.summary.pending_ready_positions, 1);
-assert.equal(audit.first_ready?.key, 'by/byflanor');
+assert.equal(audit.summary.life_position_role_world_complete, 11);
+assert.equal(audit.summary.completed_life_position_role_worlds, 11);
+assert.equal(audit.summary.pending_ready_positions, 0);
+assert.equal(audit.first_ready, null);
 
 const next = audit.queue[0];
 assert.ok(next);
 assert.notEqual(next.key, 'natur/artsjeger');
-assert.equal(next.key, 'by/byflanor');
-assert.equal(next.classification, 'ready');
+assert.equal(next.key, 'scenekunst/scenehenger');
+assert.equal(next.classification, 'needs_authored_depth');
 
 const paidAnchor = stream.storylets.find((row) => row.id === 'feltregistreringsoppdraget');
 assert.ok(paidAnchor);
@@ -158,4 +158,4 @@ execFileSync(process.execPath, ['tests/civication-noncareer-role-taxonomy.test.j
 execFileSync(process.execPath, ['tests/civication-life-position-role-world-readiness.test.js'], { cwd: ROOT, stdio: 'pipe' });
 execFileSync(process.execPath, ['tests/civication-natur-artsjeger-life-position-readiness.test.js'], { cwd: ROOT, stdio: 'pipe' });
 
-console.log('civication Natur Artsjeger Role World ok: 56/56 coverage / 14 governed anchors / 95 total worlds / 10 completed life-position worlds');
+console.log('civication Natur Artsjeger Role World ok: 56/56 coverage / 14 governed anchors / 96 total worlds / 11 completed life-position worlds');
