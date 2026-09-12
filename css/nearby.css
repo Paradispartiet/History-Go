@@ -283,6 +283,39 @@ body.hg-app.map-only #nearbyExploreToggle{
   margin-top: 8px;
 }
 
+.nearby-mode-stack{
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.explore-secondary-actions{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+#nearbyListContainer .explore-secondary-tab{
+  min-height: 38px;
+  padding: 8px 14px;
+  border-radius: 11px;
+  font-size: 14px;
+}
+
+body.hg-app.hg-phone #nearbyListContainer .explore-secondary-actions{
+  gap: 6px;
+  margin-top: 6px;
+}
+
+body.hg-app.hg-phone #nearbyListContainer .explore-secondary-tab{
+  min-height: 34px;
+  padding: 7px 11px;
+  font-size: 13px;
+}
+
 /* Tabs som små buttons */
 .nearby-tabs{
   display: flex;
