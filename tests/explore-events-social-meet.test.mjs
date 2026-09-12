@@ -42,13 +42,13 @@ test("Utforsk har rundingene øverst og Events/Møtes i egen rad under", () => {
 test("index laster de faktiske Events-, Social Meet- og PlaceCard-runtimene", () => {
   assert.match(app, /loadHGSocialMeetUI[\s\S]*js\/social\/HGSocialMeetUI\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /loadEventsRuntime[\s\S]*js\/events\/events_loader\.js\?v=20260912-live-surfaces2/);
-  assert.match(app, /loadPlaceOnsiteSurface[\\s\\S]*js\\/ui\\/place-onsite-surface\\.js\\?v=20260912-explore-secondary-row1/);
+  assert.match(app, /loadPlaceOnsiteSurface[\s\S]*js\/ui\/place-onsite-surface\.js\?v=20260912-explore-secondary-row1/);
   assert.match(app, /loadPlaceCard[\s\S]*js\/ui\/place-card\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /dist\/web\/leftPanelMode\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /dist\/web\/left-panel\.js\?v=20260912-live-surfaces2/);
-  assert.match(index, /css\\/place-onsite-surface\\.css\\?v=20260912-live-surfaces2/);
+  assert.match(index, /css\/place-onsite-surface\.css\?v=20260912-live-surfaces2/);
   assert.match(index, /js\/ui\/header-menu\.js\?v=20260912-live-surfaces2/);
-  assert.match(index, /js\\/app\\.js\\?v=20260912-explore-secondary-row1/);
+  assert.match(index, /js\/app\.js\?v=20260912-explore-secondary-row1/);
 });
 
 test("header-Møtes åpner Social Meet direkte og er ikke avhengig av Utforsk", () => {
