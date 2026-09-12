@@ -36,6 +36,8 @@ jobs:
           git diff --name-only
           echo "Diff stat:"
           git diff --stat
+          echo "Exact Tollpakkhuset diff:"
+          git diff -- data/quiz/production_context/naeringsliv/tollpakkhuset.json
 
       - name: Run complete quiz governance chain and expose every result
         shell: bash
