@@ -69,7 +69,7 @@ assert.equal(audit.summary.positions_with_exact_governed_sources, 12);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 12);
 assert.equal(audit.first_ready?.key, 'scenekunst/scenehenger');
 assert.equal(audit.queue[0]?.key, 'scenekunst/scenehenger');
-assert.equal(audit.queue[0]?.classification, 'needs_authored_depth');
+assert.equal(audit.queue[0]?.classification, 'ready');
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'scenekunst/scenehenger');
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'scenekunst/scenehenger');
 
