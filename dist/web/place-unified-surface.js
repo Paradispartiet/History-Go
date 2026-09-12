@@ -2074,7 +2074,7 @@
     function ensureStylesheet6() {
       const styles = [
         [STYLE_FLAG, "css/place-unified-surface.css"],
-        [SHEET_STYLE_FLAG, "css/place-sheet.css"],
+        [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20260912-onsite-under-explore1"],
         [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css"]
       ];
       for (const [flag, href] of styles) {
