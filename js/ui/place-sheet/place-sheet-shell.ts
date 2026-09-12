@@ -63,8 +63,8 @@ function ensureSectionNav(shell: HTMLElement, place: PlaceSheetPlace): HTMLEleme
     nav.setAttribute("data-hg-place-sheet-nav", "1");
     nav.setAttribute("aria-label", "Hopp til del av stedet");
     nav.innerHTML = NAV_ITEMS.map(([id, label]) => `<button type="button" data-hg-place-sheet-jump="${id}">${label}</button>`).join("");
-    const onsite = shell.querySelector<HTMLElement>("[data-hg-place-sheet-onsite]");
-    if (onsite?.nextSibling) shell.insertBefore(nav, onsite.nextSibling);
+    const hero = shell.querySelector<HTMLElement>("[data-hg-place-sheet-hero]");
+    if (hero?.nextSibling) shell.insertBefore(nav, hero.nextSibling);
     else shell.appendChild(nav);
 
     nav.addEventListener("click", event => {
@@ -107,10 +107,10 @@ function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
             </div>
             <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
           </section>
+          <section class="pc-sheet-onsite" data-hg-place-sheet-onsite aria-label="Events og møter"></section>
         </div>
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
       </div>
-      <section class="pc-sheet-onsite" data-hg-place-sheet-onsite></section>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
       <section class="pc-sheet-before-after" data-hg-place-sheet-before-after hidden></section>
