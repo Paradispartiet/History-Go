@@ -66,10 +66,10 @@ assert.equal(ready.role_world_path, 'data/Civication/roleWorlds/film_tv/film_tv_
 assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['filmklubbmenneske_visningshjelp']);
-assert.equal(audit.summary.selectable_life_positions, 200);
+assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
   ready: 10,
-  needs_authored_depth: 150,
+  needs_authored_depth: 149,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.completed_life_position_role_worlds, 10);
