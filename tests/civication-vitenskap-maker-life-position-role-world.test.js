@@ -82,7 +82,7 @@ assert.ok(entry);
 assert.equal(entry.path, worldPath);
 assert.equal(entry.status, 'role_world_complete');
 assert.equal(index.roles.filter((x) => x.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((x) => x.subject_type === 'life_position').length, 16);
+assert.equal(index.roles.filter((x) => x.subject_type === 'life_position').length, 17);
 assert.equal(index.roles.length, 102);
 assert.equal(index.status, '102_role_worlds_materialized');
 assert.deepEqual(index.summary, { role_worlds_total: 102, career_role_worlds: 85, life_position_role_worlds: 17 });
