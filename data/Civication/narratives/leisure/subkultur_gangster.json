@@ -1,0 +1,692 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "subkultur_gangster_stream",
+  "type": "leisure",
+  "title": "Gangster",
+  "sociological_theme": "subkulturell_gangsteridentitet_som_status_lojalitet_tilhørighet_rykte_og_grensen_mot_tvang_og_ulovlig_handling",
+  "applies_when": {
+    "any_tags": [
+      "subkultur:gangster"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "gjestelisten_og_tjenesten",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En gammel kjenning",
+      "subject": "Bare ett navn til?",
+      "situation": [
+        "En liten undergrunnskveld er nesten full, og en gammel kjenning ber deg presse inn en person som ikke står på listen.",
+        "Forespørselen fremstilles som en liten tjeneste, men alle rundt deg vet at slike tjenester kan bli sosial gjeld.",
+        "Gangsterstatus i miljøet handler ofte like mye om tilgang, rykte og hvem som skylder hvem som om faktisk handling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold deg til arrangørens liste og si at du ikke kan love tilgang du ikke eier.",
+          "effect": 1,
+          "tags": [
+            "access_boundary",
+            "loyalty",
+            "boundary"
+          ],
+          "feedback": "Du skiller personlig lojalitet fra myndighet over andres arrangement."
+        },
+        {
+          "id": "B",
+          "label": "Lov at du skal ordne det selv om du ikke har mandat.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overpromise",
+            "pressure"
+          ],
+          "feedback": "Du gjør status til et løfte på vegne av andre og bygger en gjeld du ikke kontrollerer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_access_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjelden_som_kalles_tjeneste",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En venn fra miljøet",
+      "subject": "Du skylder meg vel en?",
+      "situation": [
+        "En venn minner deg på flere små tjenester fra tidligere og antyder at du nå bør stille opp på kort varsel.",
+        "Det som først var gjensidig hjelp begynner å ligne en uskreven konto over lojalitet.",
+        "Når tjenester blir valuta kan det være vanskelig å si nei uten at det tolkes som svik."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om å gjøre forventningen konkret og si tydelig hva du faktisk kan hjelpe med.",
+          "effect": 1,
+          "tags": [
+            "reciprocity",
+            "boundary",
+            "boundary"
+          ],
+          "feedback": "Du lar lojalitet være en relasjon, ikke en blankofullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Si ja uten å spørre hva det innebærer.",
+          "effect": -1,
+          "tags": [
+            "loyalty_pressure",
+            "ambiguity",
+            "pressure"
+          ],
+          "feedback": "Du beskytter ryktet der og da, men gir fra deg kontroll over hva tjenesten betyr."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_reciprocity_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ryktet_om_hvem_du_kjenner",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En ny person i miljøet",
+      "subject": "Stemmer det at du kjenner dem?",
+      "situation": [
+        "Et rykte sprer seg om at du kjenner folk med mer innflytelse enn du egentlig gjør.",
+        "Noen virker mer interesserte i navnet ditt etter at ryktet begynner å gå.",
+        "Status kan vokse gjennom antydninger, men den blir også sårbar når andre forventer tilgang du ikke har."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Korriger ryktet uten å gjøre et stort nummer av det.",
+          "effect": 1,
+          "tags": [
+            "reputation",
+            "truth",
+            "boundary"
+          ],
+          "feedback": "Du mister litt mystikk, men beholder kontroll over hva navnet ditt faktisk betyr."
+        },
+        {
+          "id": "B",
+          "label": "La antydningen henge fordi den åpner dører.",
+          "effect": -1,
+          "tags": [
+            "reputation_inflation",
+            "social_mask",
+            "pressure"
+          ],
+          "feedback": "Du låner status fra en forbindelse du ikke faktisk kan stå inne for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_reputation_truth"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_vil_ut",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En nær venn",
+      "subject": "Jeg orker ikke dette miljøet lenger",
+      "situation": [
+        "En nær venn sier at presset, konfliktene og de stadige lojalitetstestene har blitt for mye.",
+        "Vennen vil trekke seg tilbake fra miljøet og er redd for å bli fremstilt som illojal.",
+        "Å hjelpe noen ut av en gruppe kan teste om tilhørighet bygger på frivillighet eller sosial tvang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Støtt at vennen kan trekke seg tilbake uten å måtte forklare seg for alle.",
+          "effect": 1,
+          "tags": [
+            "exit",
+            "care",
+            "boundary"
+          ],
+          "feedback": "Du gjør lojalitet kompatibel med retten til å gå."
+        },
+        {
+          "id": "B",
+          "label": "Si at folk vil respektere vennen mindre hvis han eller hun forsvinner nå.",
+          "effect": -1,
+          "tags": [
+            "coercion",
+            "status",
+            "pressure"
+          ],
+          "feedback": "Du gjør tilhørighet avhengig av frykt for sosial straff."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_exit_support"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "undergrunnskvelden_og_flyerne",
+      "message_type": "task",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Kveldens arrangør",
+      "subject": "Kan du hjelpe før dørene åpner?",
+      "situation": [
+        "En liten lovlig undergrunnskveld trenger hjelp med plakater, enkel rigg og opprydding.",
+        "Oppgaven er avgrenset og betalt, men folk i miljøet behandler lett praktisk hjelp som bevis på at du tilhører kjernen.",
+        "Det er et ekte sideoppdrag uten at det gir sikkerhetsansvar, teknikerrolle eller kontroll over arrangementet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta det avgrensede oppdraget og hold deg til plakater, enkel rigg og rydding.",
+          "effect": 1,
+          "tags": [
+            "livelihood",
+            "scope",
+            "boundary"
+          ],
+          "feedback": "Du får et lite honorar uten å late som oppgaven gir mer mandat enn den gjør."
+        },
+        {
+          "id": "B",
+          "label": "Bruk oppdraget til å opptre som om du bestemmer hvem som får komme inn og hva andre skal gjøre.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status",
+            "pressure"
+          ],
+          "feedback": "Du gjør et lite praktisk oppdrag til uformell makt som ikke følger av avtalen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_livelihood_scope"
+      ],
+      "risk_links": [
+        "livelihood_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "jakken_og_signalene",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En bekjent",
+      "subject": "Folk leser mer enn klær",
+      "situation": [
+        "En bekjent kommenterer at klærne og symbolene dine gjør at fremmede antar ting om hvem du er.",
+        "I miljøet kan stil være tilhørighet, ironi, status eller beskyttelse, men utenfor miljøet leses signalene annerledes.",
+        "Den samme estetikken kan gi fellesskap og samtidig trekke en identitet tettere rundt deg enn du ønsker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold stilen du liker, men slutt å bruke symboler du ikke vil stå for offentlig.",
+          "effect": 1,
+          "tags": [
+            "identity",
+            "public_private",
+            "boundary"
+          ],
+          "feedback": "Du skiller selvvalgt estetikk fra et rykte du ikke ønsker å bære."
+        },
+        {
+          "id": "B",
+          "label": "Dobbel ned på de mest ladede signalene fordi reaksjonene gir status.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "public_attention",
+            "pressure"
+          ],
+          "feedback": "Du lar andres uro bli en del av den sosiale gevinsten."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_identity_signal"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "presset_om_a_ta_side",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "To personer i konflikt",
+      "subject": "Alle må vite hvem du står med",
+      "situation": [
+        "To personer i miljøet har en fastlåst konflikt og begge forventer at felles venner markerer side.",
+        "Du kjenner begge og har ikke selv vært del av hendelsen.",
+        "Når nøytralitet tolkes som illojalitet kan sosialt press gjøre små konflikter større."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Nekt å fungere som forsterker for konflikten og tilby å holde deg utenfor.",
+          "effect": 1,
+          "tags": [
+            "deescalation",
+            "loyalty",
+            "boundary"
+          ],
+          "feedback": "Du setter en grense mot at lojalitet må bevises gjennom opptrapping."
+        },
+        {
+          "id": "B",
+          "label": "Marker side offentlig selv om du ikke kjenner hele saken.",
+          "effect": -1,
+          "tags": [
+            "polarization",
+            "reputation",
+            "pressure"
+          ],
+          "feedback": "Du får kortsiktig tilhørighet ved å gjøre konflikten større enn din egen kunnskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_deescalation"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pengene_som_ma_vaere_forklarlige",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En arrangørbekjent",
+      "subject": "Kan vi bare gjøre opp kontant?",
+      "situation": [
+        "Et lite honorar for kveldens lovlige riggjobb skal betales, men arrangøren er vag om beløpet og hva betalingen gjelder.",
+        "Kontant betaling er ikke i seg selv problemet; problemet er at du ikke vil ta imot penger du ikke kan forklare som det avtalte oppdraget.",
+        "Et miljø som lever av uformelle relasjoner trenger fortsatt tydelige grenser mellom lovlig småarbeid og penger uten kjent grunnlag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om at beløpet og oppgaven bekreftes som den avtalte riggjobben før du tar imot betaling.",
+          "effect": 1,
+          "tags": [
+            "money_boundary",
+            "livelihood",
+            "boundary"
+          ],
+          "feedback": "Du holder sideinntekten sporbar til et konkret, lovlig oppdrag."
+        },
+        {
+          "id": "B",
+          "label": "Ta imot et større uklart beløp og unngå å spørre hva resten gjelder.",
+          "effect": -1,
+          "tags": [
+            "unexplained_money",
+            "obligation",
+            "pressure"
+          ],
+          "feedback": "Du bytter klarhet mot sosial enkelhet og skaper en uklar forpliktelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_money_boundary"
+      ],
+      "risk_links": [
+        "livelihood_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "naboen_som_spor",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En nabo",
+      "subject": "Er det bråk igjen i kveld?",
+      "situation": [
+        "En nabo har sett mange mennesker komme og gå rundt en privat samling og spør om det blir støy sent på kvelden.",
+        "Du merker at spørsmålet også handler om hvilket rykte miljøet har fått i bygget.",
+        "Privat tilhørighet får offentlige konsekvenser når andre må leve med støy, uro eller usikkerhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svar konkret om tidspunkt og lydnivå og avtal at samlingen avsluttes rolig.",
+          "effect": 1,
+          "tags": [
+            "neighbor",
+            "care",
+            "boundary"
+          ],
+          "feedback": "Du behandler naboens hverdag som en legitim grense, ikke som fiendtlighet mot miljøet."
+        },
+        {
+          "id": "B",
+          "label": "Avfei spørsmålet som fordommer og si at naboen får tåle litt liv.",
+          "effect": -1,
+          "tags": [
+            "public_private",
+            "conflict",
+            "pressure"
+          ],
+          "feedback": "Du gjør identitet til et argument mot hensyn og øker avstanden til omgivelsene."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_neighbor_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "telefonen_som_ikke_bor_bli_mellomledd",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En perifer bekjent",
+      "subject": "Kan jeg bare bruke mobilen din?",
+      "situation": [
+        "En perifer bekjent ber om å bruke telefonen din for å kontakte noen, men vil ikke si hvorfor egen telefon ikke kan brukes.",
+        "Du trenger ikke vite hva saken gjelder for å vite at du ikke vil være anonymt mellomledd for noe du ikke forstår.",
+        "I tette miljøer kan tilgang til telefon, bil eller konto behandles som en lojalitetstest selv når forespørselen er uklar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si nei til å være mellomledd når formålet er uklart, og tilby heller vanlig praktisk hjelp hvis det finnes et åpent behov.",
+          "effect": 1,
+          "tags": [
+            "intermediary_boundary",
+            "trust",
+            "boundary"
+          ],
+          "feedback": "Du setter grensen ved uklar representasjon, ikke ved vennskap."
+        },
+        {
+          "id": "B",
+          "label": "Lån bort telefonen uten å ville vite hva den skal brukes til.",
+          "effect": -1,
+          "tags": [
+            "ambiguity",
+            "loyalty_pressure",
+            "pressure"
+          ],
+          "feedback": "Du gjør din egen identitet og tilgang tilgjengelig for en handling du ikke kan stå inne for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_intermediary_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_yngre_som_ser_opp_til_deg",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En yngre bekjent",
+      "subject": "Hvordan blir man respektert sånn?",
+      "situation": [
+        "En yngre bekjent sier at folk virker forsiktige rundt deg og spør hvordan man får samme type respekt.",
+        "Spørsmålet gjør det tydelig at det som føles som status for deg kan se ut som en oppskrift på identitet for andre.",
+        "Du kan enten skille respekt fra frykt eller la den yngre tro at hardhet og konflikt er inngangsbilletten til miljøet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at respekt uten frivillighet ikke er mye verdt, og pek på pålitelighet, arbeid og grenser i stedet.",
+          "effect": 1,
+          "tags": [
+            "mentoring",
+            "care",
+            "boundary"
+          ],
+          "feedback": "Du bruker posisjonen din til å avromantisere frykt som sosial kapital."
+        },
+        {
+          "id": "B",
+          "label": "Si at man må sørge for at folk ikke tør å teste en.",
+          "effect": -1,
+          "tags": [
+            "status",
+            "coercion",
+            "pressure"
+          ],
+          "feedback": "Du gjør frykt til ideal uten å ta ansvar for hva den yngre kan lære av det."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_mentoring_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kvelden_som_gar_for_langt",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En venn ved døren",
+      "subject": "Dette er i ferd med å eskalere",
+      "situation": [
+        "En opphetet ordveksling utenfor en kveld trekker til seg flere mennesker, og temperaturen stiger.",
+        "Du kjenner noen på begge sider og merker at din tilstedeværelse kan bli lest som støtte til opptrapping.",
+        "Det mest krevende statusvalget kan være å forlate scenen, hente ansvarlige arrangører og bidra til avstand i stedet for å bli stående som publikum."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Trekk folk du kjenner unna, varsle ansvarlige arrangører og bidra til at situasjonen roer seg.",
+          "effect": 1,
+          "tags": [
+            "deescalation",
+            "safety",
+            "boundary"
+          ],
+          "feedback": "Du velger deeskalering fremfor å gjøre konflikten til en scene for lojalitet."
+        },
+        {
+          "id": "B",
+          "label": "Bli stående tett på for å vise at du ikke trekker deg når det blir spent.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "escalation",
+            "pressure"
+          ],
+          "feedback": "Du lar publikumsrollen bidra til presset selv uten å starte konflikten."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_conflict_deescalation"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "psyche_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ryktene_etterpaa",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Miljøchatten",
+      "subject": "Alle har sin versjon",
+      "situation": [
+        "Dagen etter går det flere motstridende historier om den opphetede kvelden.",
+        "Noen gjør hendelsen større, andre bruker den til å rangere hvem som var modig, feig eller lojal.",
+        "Hvordan du omtaler hendelsen blir en del av miljøets hukommelse og kan enten dempe eller forlenge konflikten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold deg til det du faktisk så og avvis konkurransen om hvem som var tøffest.",
+          "effect": 1,
+          "tags": [
+            "reputation",
+            "deescalation",
+            "boundary"
+          ],
+          "feedback": "Du nekter ryktet å bli en ny arena for opptrapping."
+        },
+        {
+          "id": "B",
+          "label": "Fortell den versjonen som gjør din egen rolle mest imponerende.",
+          "effect": -1,
+          "tags": [
+            "reputation_inflation",
+            "social_mask",
+            "pressure"
+          ],
+          "feedback": "Du forvandler usikker hukommelse til status og gir konflikten et nytt liv."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_rumor_memory"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_slags_gangster",
+      "message_type": "private",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En nær person",
+      "subject": "Hva er det du egentlig vil være kjent for?",
+      "situation": [
+        "Etter to uker med tjenester, rykter, symboler, småjobber og konflikter spør en nær person hva ordet gangster faktisk betyr for deg.",
+        "Du har sett hvordan status kan komme fra tilgang, hardhet og antydninger, men også hvordan samme status kan binde mennesker til forventninger de ikke ønsker.",
+        "Sesongen ender med om identiteten skal være en estetikk og sosial tilhørighet med tydelige grenser, eller et press om å leve opp til et farligere rykte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definer identiteten rundt tilhørighet, stil og lojalitet som tåler nei, exit og lovlige grenser.",
+          "effect": 1,
+          "tags": [
+            "identity",
+            "boundary",
+            "boundary"
+          ],
+          "feedback": "Du beholder fellesskapet uten å gjøre kriminalitet eller tvang til bevis på autentisitet."
+        },
+        {
+          "id": "B",
+          "label": "Bestem deg for at ryktet bare er ekte hvis folk forventer at du alltid går lenger enn andre.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "coercion",
+            "pressure"
+          ],
+          "feedback": "Du gjør status avhengig av stadig hardere forventninger som ingen enkelt beslutning kan kontrollere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gangster_identity_resolution"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
