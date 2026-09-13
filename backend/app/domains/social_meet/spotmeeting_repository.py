@@ -27,6 +27,8 @@ _INVITE_COLUMNS = """
   i.target_user_id,
   sender.profile_id as sender_profile_id,
   recipient.profile_id as recipient_profile_id,
+  sender.display_name as sender_display_name,
+  recipient.display_name as recipient_display_name,
   i.context_type,
   i.context_id,
   i.context_title,
@@ -72,8 +74,10 @@ class PostgresSpotmeetingInviteRepository:
         *,
         sender_auth_user_id: UUID,
         sender_profile_id: UUID,
+        sender_display_name: str,
         recipient_auth_user_id: UUID,
         recipient_profile_id: UUID,
+        recipient_display_name: str,
         request: CreateSpotmeetingInviteRequest,
         supported_consent_version: str,
         now: datetime,
@@ -206,6 +210,8 @@ class PostgresSpotmeetingInviteRepository:
                             row,
                             sender_profile_id=sender_profile_id,
                             recipient_profile_id=recipient_profile_id,
+                            sender_display_name=sender_display_name,
+                            recipient_display_name=recipient_display_name,
                         )
                     )
         except IntegrityError:
@@ -482,6 +488,8 @@ def _map_record(row: RowMapping) -> SpotmeetingInviteRecord:
         recipient_auth_user_id=cast(UUID, row["target_user_id"]),
         sender_profile_id=cast(UUID, row["sender_profile_id"]),
         recipient_profile_id=cast(UUID, row["recipient_profile_id"]),
+        sender_display_name=str(row.get("sender_display_name") or ""),
+        recipient_display_name=str(row.get("recipient_display_name") or ""),
         context_type=SpotmeetingContextType(str(row["context_type"])),
         context_id=str(row["context_id"]),
         context_title=str(row.get("context_title") or ""),
@@ -503,6 +511,8 @@ def _map_inserted_record(
     *,
     sender_profile_id: UUID,
     recipient_profile_id: UUID,
+    sender_display_name: str,
+    recipient_display_name: str,
 ) -> SpotmeetingInviteRecord:
     return SpotmeetingInviteRecord(
         invite_id=cast(UUID, row["id"]),
@@ -510,6 +520,8 @@ def _map_inserted_record(
         recipient_auth_user_id=cast(UUID, row["target_user_id"]),
         sender_profile_id=sender_profile_id,
         recipient_profile_id=recipient_profile_id,
+        sender_display_name=sender_display_name,
+        recipient_display_name=recipient_display_name,
         context_type=SpotmeetingContextType(str(row["context_type"])),
         context_id=str(row["context_id"]),
         context_title=str(row.get("context_title") or ""),
