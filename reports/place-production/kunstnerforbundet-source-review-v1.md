@@ -188,4 +188,6 @@ Det opprettes ikke et spekulativt dialektlag for dette enkeltstedet. Alle tre op
 - `Atelier Kunstnerforbundet` — institusjonens eget programnavn for atelierordningen i bygården;
 - `Overlyssalen` — institusjonens eget navn på utstillingssalen med historisk dokumentasjon tilbake til arkitektoppdraget i 1918.
 
-R4-scope er begrenset til språkfil, manifestbinding og oppdatering av workcard/source-review. R4 lukker ikke `frontImage`, People, Objects, Brands, Productions/Kunstverk, canonical quiz, resterende runtime eller manuell slutt-QA.
+Språkmanifestet inngår i `place-open`-payloaden. Etter første exact-head-kjøring krevde derfor `npm run place-open:build` en deterministisk rematerialisering av `data/runtime/place-open/kunstnerforbundet.json`. En egen scope-guard bekreftet at generatoren endret nøyaktig denne ene runtimefilen og ingen andre genererte filer.
+
+R4-scope er dermed språkfil, manifestbinding, det påkrevde genererte `place-open`-payloadet og oppdatering av workcard/source-review. R4 lukker ikke `frontImage`, People, Objects, Brands, Productions/Kunstverk, canonical quiz, øvrige runtime-/sluttindekser eller manuell slutt-QA.
