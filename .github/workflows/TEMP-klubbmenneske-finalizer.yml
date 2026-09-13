@@ -24,7 +24,7 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Align canonical Role World count assertions
+      - name: Align canonical Role World assertions
         run: |
           node - <<'NODE'
           const fs = require('fs');
@@ -37,12 +37,22 @@ jobs:
             [/life_position_role_worlds:\s*12/g, 'life_position_role_worlds: 13'],
             [/life_position_role_world_count,\s*12/g, 'life_position_role_world_count, 13'],
             [/subject_type === 'life_position'\)\.length,\s*12/g, "subject_type === 'life_position').length, 13"],
+            [/lifePositionWorlds\.length,\s*12/g, 'lifePositionWorlds.length, 13'],
             [/completed_life_position_role_worlds\.length,\s*12/g, 'completed_life_position_role_worlds.length, 13'],
             [/canonical_counts\.life_position_role_worlds,\s*12/g, 'canonical_counts.life_position_role_worlds, 13'],
             [/canonical_counts\.total_role_worlds,\s*97/g, 'canonical_counts.total_role_worlds, 98'],
             [/life_position_readiness\.completed_life_position_role_worlds,\s*12/g, 'life_position_readiness.completed_life_position_role_worlds, 13'],
             [/summary\.life_position_role_world_complete,\s*12/g, 'summary.life_position_role_world_complete, 13'],
             [/summary\.completed_life_position_role_worlds,\s*12/g, 'summary.completed_life_position_role_worlds, 13'],
+            [/summary\.role_worlds_total,\s*97/g, 'summary.role_worlds_total, 98'],
+            [/summary\.life_position_role_worlds,\s*12/g, 'summary.life_position_role_worlds, 13'],
+            [/summary\.positions_with_exact_governed_sources,\s*12/g, 'summary.positions_with_exact_governed_sources, 13'],
+            [/summary\.positions_with_multi_scene_narrative_foundation,\s*12/g, 'summary.positions_with_multi_scene_narrative_foundation, 13'],
+            [/summary\.queue_length,\s*147/g, 'summary.queue_length, 146'],
+            [/classifications\.ready,\s*12/g, 'classifications.ready, 13'],
+            [/classifications\.needs_authored_depth,\s*147/g, 'classifications.needs_authored_depth, 146'],
+            [/ready:\s*12/g, 'ready: 13'],
+            [/needs_authored_depth:\s*147/g, 'needs_authored_depth: 146'],
             [/roles\.length,\s*97/g, 'roles.length, 98'],
             [/97 total worlds/g, '98 total worlds'],
             [/12 completed life-position worlds/g, '13 completed life-position worlds'],
@@ -54,9 +64,13 @@ jobs:
             const before = fs.readFileSync(p, 'utf8');
             let after = before;
             for (const [re, to] of replacements) after = after.replace(re, to);
+            if (after.includes('completed_life_position_role_worlds') && !after.includes("'sport/klubbmenneske'")) {
+              after = after.replace(/'scenekunst\/scenehenger'(\s*\n\s*\])/g, "'scenekunst/scenehenger',\n  'sport/klubbmenneske'$1");
+            }
+            after = after.replace(/tolv canonical life-position worlds/g, 'tretten canonical life-position worlds');
             if (after !== before) { fs.writeFileSync(p, after); changed.push(p); }
           }
-          console.log('count-aligned files:', changed.length);
+          console.log('assertion-aligned files:', changed.length);
           for (const p of changed) console.log(p);
           NODE
       - name: Regenerate readiness
