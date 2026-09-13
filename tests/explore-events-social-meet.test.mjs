@@ -8,6 +8,7 @@ const json = path => JSON.parse(read(path));
 
 const index = read("index.html");
 const app = read("js/app.js");
+const config = read("js/config.js");
 const source = read("js/ui/leftPanelMode.ts");
 const bundle = read("dist/web/leftPanelMode.js");
 const onsite = read("js/ui/place-onsite-surface.js");
@@ -40,10 +41,17 @@ test("index laster de faktiske Events-, Social Meet- og PlaceCard-runtimene", ()
   assert.match(app, /dist\/web\/leftPanelMode\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /dist\/web\/left-panel\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /js\/ui\/place-card-status-surface\.js\?v=20260912-onsite-under-explore1/);
-  assert.match(index, /js\/config\.js\?v=20260912-onsite-under-explore1/);
+  assert.match(index, /js\/config\.js\?v=20260913-social-fastapi-prod1/);
   assert.match(index, /css\/place-onsite-surface\.css\?v=20260912-live-surfaces2/);
   assert.match(index, /js\/ui\/header-menu\.js\?v=20260912-onsite-under-explore1/);
   assert.match(index, /js\/app\.js\?v=20260913-place-status1/);
+});
+
+test("produksjonsfrontend bruker canonical FastAPI-backend og localhost forblir lokal", () => {
+  assert.match(config, /window\.location\?\.hostname !== "paradispartiet\.github\.io"/);
+  assert.match(config, /window\.HG_SOCIAL_MEET_BACKEND = "fastapi"/);
+  assert.match(config, /baseUrl:\s*"https:\/\/history-go-backend\.onrender\.com"/);
+  assert.match(config, /enabled:\s*true/);
 });
 
 test("header-Møtes åpner Social Meet direkte og er ikke avhengig av Utforsk", () => {
