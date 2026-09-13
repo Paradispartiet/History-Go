@@ -1,4 +1,4 @@
-name: TEMP Kunstnerforbundet R6 People materialization
+name: TEMP Kunstnerforbundet R6 People diagnostic
 
 on:
   push:
@@ -6,131 +6,72 @@ on:
       - agent/kunstnerforbundet-people-r6-20260913
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  materialize:
+  diagnose:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout branch
+      - name: Checkout R6 with history
         uses: actions/checkout@v4
         with:
           ref: agent/kunstnerforbundet-people-r6-20260913
-          fetch-depth: 1
+          fetch-depth: 0
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: package-lock.json
-
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
-
-      - name: Install Pillow
-        run: python -m pip install --disable-pip-version-check pillow
-
-      - name: Materialize licensed Henrik Sørensen portrait
+      - name: Compare People claims profile_file paths with green R5 baseline
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p bilder/kort/people
-          curl --fail --location --retry 3 \
-            'https://commons.wikimedia.org/wiki/Special:Redirect/file/Henrik%20S%C3%B8rensen%20OB.F06440.jpg' \
-            -o /tmp/henrik_sorensen.jpg
-          python - <<'PY'
-          from PIL import Image
-          src = '/tmp/henrik_sorensen.jpg'
-          dst = 'bilder/kort/people/henrik_sorensen_kunstnerforbundet.webp'
-          with Image.open(src) as im:
-              im = im.convert('RGB')
-              assert im.size == (878, 1198), im.size
-              im.save(dst, 'WEBP', quality=90, method=6)
-              print(f'portrait={im.size[0]}x{im.size[1]}')
-          PY
-
-      - name: Register People file in manifest
-        shell: bash
-        run: |
-          set -euo pipefail
+          git worktree add --detach /tmp/r5 1dcb688e8a9122972ff6d0ed52462ecb44d41e49
           python - <<'PY'
           import json
           from pathlib import Path
-          path = Path('data/people/manifest.json')
-          data = json.loads(path.read_text())
-          entry = 'people/kunst/oslo/henrik_sorensen.json'
-          files = data['files']
-          if entry not in files:
-              anchor = 'people/kunst/oslo/dyre_vaa.json'
-              if anchor in files:
-                  files.insert(files.index(anchor) + 1, entry)
-              else:
-                  files.append(entry)
-          path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+
+          def scan(root):
+              root = Path(root).resolve()
+              claims_root = root / 'data/people/claims'
+              offenders = []
+              files = sorted(claims_root.rglob('*.json')) if claims_root.exists() else []
+              for path in files:
+                  if path.name == 'README.json':
+                      continue
+                  rel = path.relative_to(root).as_posix()
+                  try:
+                      doc = json.loads(path.read_text())
+                  except Exception as exc:
+                      offenders.append((rel, 'invalid_json', repr(exc), ''))
+                      continue
+                  raw = doc.get('profile_file') if isinstance(doc, dict) else None
+                  text = '' if raw is None else str(raw).strip()
+                  resolved = root / text
+                  if not text:
+                      offenders.append((rel, 'empty_profile_file', text, resolved.relative_to(root).as_posix() if resolved != root else '.'))
+                  elif not resolved.exists():
+                      offenders.append((rel, 'missing_profile_file', text, text))
+                  elif resolved.is_dir():
+                      offenders.append((rel, 'profile_file_is_directory', text, text))
+              return files, offenders
+
+          for label, root in [('R5_BASE', '/tmp/r5'), ('R6_CURRENT', '.')]:
+              files, offenders = scan(root)
+              print(f'[{label}] claims_json_count={len(files)} offenders={len(offenders)}')
+              for row in offenders:
+                  print(f'[{label}] OFFENDER file={row[0]} reason={row[1]} raw={row[2]!r} resolved={row[3]}')
+
+          current = Path('data/people/claims/kunst/oslo/kunstnerforbundet/henrik_sorensen.claims.json')
+          doc = json.loads(current.read_text())
+          profile = Path(str(doc.get('profile_file', '')).strip())
+          print(f'[R6_NEW] claims={current} profile_file={profile} exists={profile.exists()} is_file={profile.is_file()}')
+          assert profile.is_file(), 'Henrik Sørensen profile_file must resolve to a file'
           PY
 
-      - name: Validate People profile before derived builds
-        run: npm run audit:people-profile-canonical
-
-      - name: Build Civication history People index
-        run: npm run civication:history-people:build
-
-      - name: Build People of Places reports
-        run: npm run audit:people-of-places
-
-      - name: Check Civication history People index
-        run: npm run civication:history-people:check
-
-      - name: Probe place-open materialization
-        run: npm run place-open:build
-
-      - name: Guard R6 derived scope
+      - name: Prove baseline audit behavior
         shell: bash
         run: |
-          set -euo pipefail
-          mapfile -t changed < <(git status --short | awk '{print $2}' | sort)
-          printf 'Changed/untracked files:\n%s\n' "${changed[*]:-<none>}"
-          allowed=(
-            'bilder/kort/people/henrik_sorensen_kunstnerforbundet.webp'
-            'data/Civication/historyPeople_index.json'
-            'data/people/manifest.json'
-            'data/runtime/place-open/kunstnerforbundet.json'
-            'reports/people-of-places-status.json'
-            'reports/people-of-places-status.md'
-          )
-          for file in "${changed[@]}"; do
-            ok=0
-            for candidate in "${allowed[@]}"; do
-              if [[ "$file" == "$candidate" ]]; then ok=1; break; fi
-            done
-            if [[ $ok -ne 1 ]]; then
-              echo "Unexpected R6 derived file: $file" >&2
-              exit 1
-            fi
-          done
-          for required in \
-            bilder/kort/people/henrik_sorensen_kunstnerforbundet.webp \
-            data/people/manifest.json \
-            data/Civication/historyPeople_index.json \
-            reports/people-of-places-status.json \
-            reports/people-of-places-status.md; do
-            if ! printf '%s\n' "${changed[@]}" | grep -Fxq "$required"; then
-              echo "Required R6 derived file missing: $required" >&2
-              exit 1
-            fi
-          done
-
-      - name: Commit derived R6 files and remove temporary workflow
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm .github/workflows/tmp-kunstnerforbundet-r6-people-materialize.yml
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add bilder/kort/people/henrik_sorensen_kunstnerforbundet.webp data/people/manifest.json data/Civication/historyPeople_index.json reports/people-of-places-status.json reports/people-of-places-status.md .github/workflows/tmp-kunstnerforbundet-r6-people-materialize.yml
-          if [[ -n "$(git status --porcelain data/runtime/place-open/kunstnerforbundet.json)" ]]; then
-            git add data/runtime/place-open/kunstnerforbundet.json
-          fi
-          git commit -m "Materialize Kunstnerforbundet People R6"
-          git push origin HEAD:agent/kunstnerforbundet-people-r6-20260913
+          set +e
+          cd /tmp/r5
+          node tools/audit-people-profile-canonical.mjs > /tmp/r5-audit.log 2>&1
+          code=$?
+          cat /tmp/r5-audit.log
+          echo "R5_BASE_AUDIT_EXIT=$code"
+          exit 0
