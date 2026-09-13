@@ -143,7 +143,8 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'liv_bosituasjon/uteligger',
   'liv_lovsbane/kriminell',
   'naeringsliv/frilanser',
-  'by/byvandrer'
+  'by/byvandrer',
+  'by/urbanist'
 ]);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
