@@ -14,5 +14,186 @@
     "personal",
     "people"
   ],
-  "storylets": []
+  "storylets": [
+    {
+      "id": "etiketten_er_din",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Din egen presentasjon",
+      "subject": "Et selvvalgt ord",
+      "situation": [
+        "Du har valgt «Boms» som spilleretikett for et omflakkende og lite institusjonsbundet liv.",
+        "Etiketten skal bare brukes om spillerens eget eksplisitte valg.",
+        "Andre menneskers situasjon beskrives med mer presise ord."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk etiketten bare om deg selv.",
+          "effect": 1,
+          "tags": [
+            "etiketten_er_din_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du skiller egen identitet fra kategorisering av andre."
+        },
+        {
+          "id": "B",
+          "label": "Gjør etiketten til en generell kategori.",
+          "effect": -1,
+          "tags": [
+            "etiketten_er_din_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør en selvvalgt identitet til en stereotype."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_self_label"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "natten_med_grenser",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Et sted å sove",
+      "subject": "Tilgjengelig plass har grenser",
+      "situation": [
+        "Du trenger et forsvarlig sted å sove for natten.",
+        "Forskjellige steder har eiere, brukere og regler.",
+        "Mobilitet gir ikke automatisk råderett over andres rom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg et sted der overnatting faktisk er tillatt.",
+          "effect": 1,
+          "tags": [
+            "natten_med_grenser_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du lar mobiliteten stoppe ved andres grenser."
+        },
+        {
+          "id": "B",
+          "label": "Anta at tilgjengelighet automatisk betyr tillatelse.",
+          "effect": -1,
+          "tags": [
+            "natten_med_grenser_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du skyver grenseansvaret over på andre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_sleep_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_lave_forbruket",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Dagsbudsjettet",
+      "subject": "Lite forbruk er fortsatt økonomi",
+      "situation": [
+        "Du har valgt å klare deg med få ting og lave løpende kostnader.",
+        "Mat, transport, vask og uforutsette utgifter finnes fortsatt.",
+        "Nøysomhet gjør ikke økonomiske begrensninger uvirkelige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prioriter nødvendigheter og behold en liten reserve.",
+          "effect": 1,
+          "tags": [
+            "det_lave_forbruket_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du gjør lavt forbruk til praktisk kontroll."
+        },
+        {
+          "id": "B",
+          "label": "Gjør fravær av planlegging til et frihetsideal.",
+          "effect": -1,
+          "tags": [
+            "det_lave_forbruket_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du reduserer framtidig handlingsrom."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_budget_boundary"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vask_og_verdighet",
+      "message_type": "social",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En praktisk dag",
+      "subject": "Vanlige behov krever infrastruktur",
+      "situation": [
+        "Klær må vaskes og utstyr må tørkes eller lades selv uten fast base.",
+        "Tilgjengelige tilbud har åpningstider, priser og regler.",
+        "Praktiske behov handler om verdighet og infrastruktur."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Planlegg rundt tilbud du faktisk har adgang til.",
+          "effect": 1,
+          "tags": [
+            "vask_og_verdighet_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du løser behov uten å overse andres grenser."
+        },
+        {
+          "id": "B",
+          "label": "Anta at eget behov alltid bør gå foran vilkårene.",
+          "effect": -1,
+          "tags": [
+            "vask_og_verdighet_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør behov til et generelt unntak fra grenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_hygiene_access"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    }
+  ]
 }
