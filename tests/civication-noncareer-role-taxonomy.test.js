@@ -171,7 +171,7 @@ vm.runInContext(
 assert.equal(relationshipSandbox.window.CivicationRelationshipEngine.STAGE_BY_LEVEL.length, 6,
   'relasjonssystemet skal fortsatt eie seks vennskapsstadier separat fra livsposisjoner');
 
-assert.equal(roleWorldIndex.roles.length, 98, 'Role World-indeksen skal ha 85 karriereverdener + tolv life-position worlds');
+assert.equal(roleWorldIndex.roles.length, 99, 'Role World-indeksen skal ha 85 karriereverdener + tolv life-position worlds');
 assert.ok(roleWorldIndex.roles.every((role) => role.status === 'role_world_complete'));
 const careerRoleWorlds = roleWorldIndex.roles.filter((role) => role.subject_type !== 'life_position');
 const lifePositionWorlds = roleWorldIndex.roles.filter((role) => role.subject_type === 'life_position');
@@ -192,7 +192,7 @@ assert.deepEqual(lifeWorldByKey.get('kunst/gallerivanker').life_position_ref, { 
 assert.equal(lifeWorldByKey.get('kunst/gallerivanker').role_scope, 'kunst_gallerivanker');
 assert.deepEqual(lifeWorldByKey.get('by/byflanor').life_position_ref, { badge_id: 'by', id: 'byflanor', label: 'Flanør' });
 assert.equal(lifeWorldByKey.get('by/byflanor').role_scope, 'by_flanor');
-assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 98, career_role_worlds: 85, life_position_role_worlds: 13 });
+assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 99, career_role_worlds: 85, life_position_role_worlds: 14 });
 assert.equal(roleModelManifest.files.length, 293,
   'roleModel-manifestet er authored inventory og skal ikke forveksles med spillerrolle-antallet');
 assert.equal(scenarioPeople.summary.role_model_file_count, 293);
@@ -219,7 +219,7 @@ const expectedCounts = {
   life_circumstance_option_values: 18,
   relationship_stages: 6,
   career_role_worlds: 85,
-  life_position_role_worlds: 13,
+  life_position_role_worlds: 14,
   total_role_worlds: 98,
   role_model_manifest_files: 293,
   canonical_scenario_role_models: 287,
@@ -239,4 +239,4 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.allowed_subject_classes,
   ['career_role', 'life_position']);
 assert.equal(taxonomy.role_world_rollout_boundary.mass_materialization_allowed, false);
 
-console.log('civication non-career role taxonomy ok: 199 selectable life positions / 85 career Role Worlds + 13 life-position worlds / layers remain separate');
+console.log('civication non-career role taxonomy ok: 199 selectable life positions / 85 career Role Worlds + 14 life-position worlds / layers remain separate');

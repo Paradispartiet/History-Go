@@ -1,11 +1,11 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 13 ready / 146 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 14 ready / 145 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 14
-**Exact governed-source matches:** 13
-**Multi-scene narrative foundations:** 13
-**Completed life-position Role Worlds:** 13
+**Exact governed-source matches:** 14
+**Multi-scene narrative foundations:** 14
+**Completed life-position Role Worlds:** 14
 **Pending ready positions:** 0
 
 ## Decision
@@ -18,36 +18,36 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `vitenskap/maker` | needs_authored_depth | 0 | 1 | 0 |
-| 2 | `subkultur/gangster` | needs_authored_depth | 0 | 1 | 0 |
-| 3 | `liv_alternativ/bohem` | needs_authored_depth | 0 | 0 | 0 |
-| 4 | `liv_alternativ/nomade` | needs_authored_depth | 0 | 0 | 0 |
-| 5 | `liv_bosituasjon/boms` | needs_authored_depth | 0 | 0 | 0 |
-| 6 | `liv_bosituasjon/uteligger` | needs_authored_depth | 0 | 0 | 0 |
-| 7 | `liv_lovsbane/kriminell` | needs_authored_depth | 0 | 0 | 0 |
-| 8 | `naeringsliv/frilanser` | needs_authored_depth | 0 | 1 | 0 |
-| 9 | `by/byvandrer` | needs_authored_depth | 0 | 0 | 0 |
-| 10 | `by/urbanist` | needs_authored_depth | 0 | 0 | 0 |
-| 11 | `film_tv/festivalgjenger` | needs_authored_depth | 0 | 0 | 0 |
-| 12 | `film_tv/filmfantast` | needs_authored_depth | 0 | 0 | 0 |
-| 13 | `film_tv/filminteressert` | needs_authored_depth | 0 | 0 | 0 |
-| 14 | `film_tv/filmnerd` | needs_authored_depth | 0 | 0 | 0 |
-| 15 | `film_tv/kinogjenger` | needs_authored_depth | 0 | 0 | 0 |
-| 16 | `film_tv/kjenner` | needs_authored_depth | 0 | 0 | 0 |
-| 17 | `film_tv/seer` | needs_authored_depth | 0 | 0 | 0 |
-| 18 | `film_tv/seriesluker` | needs_authored_depth | 0 | 0 | 0 |
-| 19 | `filosofi/lesesirkelmenneske` | needs_authored_depth | 0 | 0 | 0 |
-| 20 | `filosofi/livsgrubler` | needs_authored_depth | 0 | 0 | 0 |
-| 21 | `helse/evidensleser` | needs_authored_depth | 0 | 0 | 0 |
-| 22 | `helse/folkehelseblikk` | needs_authored_depth | 0 | 0 | 0 |
-| 23 | `helse/helseutforsker` | needs_authored_depth | 0 | 0 | 0 |
-| 24 | `helse/omsorgsetiker` | needs_authored_depth | 0 | 0 | 0 |
-| 25 | `historie/arkivrotte` | needs_authored_depth | 0 | 0 | 0 |
-| 26 | `historie/lokalhistoriker` | needs_authored_depth | 0 | 0 | 0 |
-| 27 | `kunst/ateliermenneske` | needs_authored_depth | 0 | 0 | 0 |
-| 28 | `kunst/gatekunstjeger` | needs_authored_depth | 0 | 0 | 0 |
-| 29 | `kunst/vernissagegjenger` | needs_authored_depth | 0 | 0 | 0 |
-| 30 | `litteratur/biblioteksvanker` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `subkultur/gangster` | needs_authored_depth | 0 | 1 | 0 |
+| 2 | `liv_alternativ/bohem` | needs_authored_depth | 0 | 0 | 0 |
+| 3 | `liv_alternativ/nomade` | needs_authored_depth | 0 | 0 | 0 |
+| 4 | `liv_bosituasjon/boms` | needs_authored_depth | 0 | 0 | 0 |
+| 5 | `liv_bosituasjon/uteligger` | needs_authored_depth | 0 | 0 | 0 |
+| 6 | `liv_lovsbane/kriminell` | needs_authored_depth | 0 | 0 | 0 |
+| 7 | `naeringsliv/frilanser` | needs_authored_depth | 0 | 1 | 0 |
+| 8 | `by/byvandrer` | needs_authored_depth | 0 | 0 | 0 |
+| 9 | `by/urbanist` | needs_authored_depth | 0 | 0 | 0 |
+| 10 | `film_tv/festivalgjenger` | needs_authored_depth | 0 | 0 | 0 |
+| 11 | `film_tv/filmfantast` | needs_authored_depth | 0 | 0 | 0 |
+| 12 | `film_tv/filminteressert` | needs_authored_depth | 0 | 0 | 0 |
+| 13 | `film_tv/filmnerd` | needs_authored_depth | 0 | 0 | 0 |
+| 14 | `film_tv/kinogjenger` | needs_authored_depth | 0 | 0 | 0 |
+| 15 | `film_tv/kjenner` | needs_authored_depth | 0 | 0 | 0 |
+| 16 | `film_tv/seer` | needs_authored_depth | 0 | 0 | 0 |
+| 17 | `film_tv/seriesluker` | needs_authored_depth | 0 | 0 | 0 |
+| 18 | `filosofi/lesesirkelmenneske` | needs_authored_depth | 0 | 0 | 0 |
+| 19 | `filosofi/livsgrubler` | needs_authored_depth | 0 | 0 | 0 |
+| 20 | `helse/evidensleser` | needs_authored_depth | 0 | 0 | 0 |
+| 21 | `helse/folkehelseblikk` | needs_authored_depth | 0 | 0 | 0 |
+| 22 | `helse/helseutforsker` | needs_authored_depth | 0 | 0 | 0 |
+| 23 | `helse/omsorgsetiker` | needs_authored_depth | 0 | 0 | 0 |
+| 24 | `historie/arkivrotte` | needs_authored_depth | 0 | 0 | 0 |
+| 25 | `historie/lokalhistoriker` | needs_authored_depth | 0 | 0 | 0 |
+| 26 | `kunst/ateliermenneske` | needs_authored_depth | 0 | 0 | 0 |
+| 27 | `kunst/gatekunstjeger` | needs_authored_depth | 0 | 0 | 0 |
+| 28 | `kunst/vernissagegjenger` | needs_authored_depth | 0 | 0 | 0 |
+| 29 | `litteratur/biblioteksvanker` | needs_authored_depth | 0 | 0 | 0 |
+| 30 | `litteratur/bokklubbmenneske` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 
