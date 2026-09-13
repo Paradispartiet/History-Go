@@ -1,0 +1,685 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "vitenskap_maker_stream",
+  "type": "leisure",
+  "title": "Maker",
+  "sociological_theme": "maker_praksis_prototyping_deling_feillaering_og_grensen_mot_profesjonell_ingenior_maskin_og_sikkerhetsmyndighet",
+  "applies_when": {
+    "any_tags": [
+      "vitenskap:maker"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "verkstedbordet_fullt_igjen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Verkstedsverten",
+      "subject": "Hvem rydder denne gangen?",
+      "situation": [
+        "Fellesbordet er fullt av avkapp, deler og halvferdige småprosjekter etter en travel kveld.",
+        "Flere av tingene kan være nyttige, men ingen har merket hva som faktisk skal beholdes.",
+        "Maker-kultur trenger rom for rot og eksperimentering, men felles ressurser fungerer bare når noen også tar ansvar for orden."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sorter det som er tydelig avfall, merk usikre deler og foreslå en fast avslutningsrutine for fellesbordet.",
+          "effect": 1,
+          "tags": [
+            "invisible_work",
+            "shared_space",
+            "stewardship"
+          ],
+          "feedback": "Du gjør rydding til en synlig del av makerpraksisen i stedet for et usynlig restarbeid."
+        },
+        {
+          "id": "B",
+          "label": "Flytt alt umerket til en kasse og la eierne finne det senere.",
+          "effect": -1,
+          "tags": [
+            "shared_space",
+            "conflict",
+            "ownership"
+          ],
+          "feedback": "Du løser bordet raskt, men gjør andres materialer og halvferdige arbeid til et nytt konfliktpunkt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_shared_space_stewardship"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prototypebriefet_som_vokser",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En bekjent med en idé",
+      "subject": "Kan du bare legge til én ting til?",
+      "situation": [
+        "Du har sagt ja til å hjelpe med en enkel fysisk prototype som først bare skulle vise form og funksjon.",
+        "Underveis kommer det stadig ønsker om sensorer, appkobling, robust kapsling og mer ferdig uttrykk.",
+        "Makerferdigheter kan gjøre en idé konkret, men de gjør ikke et åpent hobbyprosjekt til gratis produktutvikling uten grenser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lås en enkel versjon for denne runden og skriv ned hva som eventuelt hører til en senere iterasjon.",
+          "effect": 1,
+          "tags": [
+            "scope",
+            "prototype",
+            "expectation"
+          ],
+          "feedback": "Du beskytter læringen og leveransen ved å gjøre neste versjon til et nytt valg, ikke en skjult forpliktelse."
+        },
+        {
+          "id": "B",
+          "label": "Si ja til alt nå og regn med at du finner ut av detaljene underveis.",
+          "effect": -1,
+          "tags": [
+            "scope_creep",
+            "overcommitment",
+            "prototype"
+          ],
+          "feedback": "Du lar entusiasme gjøre prototypen grenseløs og gjør både tid og ansvar uklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_scope_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "livelihood_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fellesverktoyet_og_slitasjen",
+      "message_type": "task",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Verkstedschatten",
+      "subject": "Dette verktøyet er utslitt",
+      "situation": [
+        "Et mye brukt håndverktøy fungerer dårligere etter flere uker med deling.",
+        "Ingen enkeltperson kan knyttes til slitasjen, og flere mener at 'verkstedet' bare bør kjøpe nytt.",
+        "Felles verktøy gjør makerpraksis tilgjengelig, men krever også rutiner for vedlikehold, rapportering og kostnader."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrer problemet, stopp videre bruk hvis verktøyet ikke fungerer forsvarlig og la ansvarlig person avgjøre reparasjon eller utskifting.",
+          "effect": 1,
+          "tags": [
+            "tool_stewardship",
+            "safety_boundary",
+            "documentation"
+          ],
+          "feedback": "Du gjør tilstanden synlig uten å improvisere reparasjon eller plassere skyld uten grunnlag."
+        },
+        {
+          "id": "B",
+          "label": "Prøv å justere det selv siden du har fikset lignende ting før.",
+          "effect": -1,
+          "tags": [
+            "unverified_repair",
+            "tool_risk",
+            "overconfidence"
+          ],
+          "feedback": "Du gjør tidligere erfaring om til ansvar for et fellesverktøy du ikke eier eller har vedlikeholdsmandat for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_tool_stewardship"
+      ],
+      "risk_links": [
+        "safety_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "malet_som_ikke_stemmer",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Prosjektloggen",
+      "subject": "To mål, to svar",
+      "situation": [
+        "To målinger av samme del gir ulike svar og passformen blir merkbart dårligere enn forventet.",
+        "Fristelsen er å skylde på verktøyet eller materialet, men det er uklart om avviket kommer fra målemetode, oppspenning eller selve delen.",
+        "Makerpraksis blir mer robust når usikkerhet dokumenteres før man bygger videre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp neste steg, gjenta målingen på samme måte og noter hva som faktisk varierer før du endrer designet.",
+          "effect": 1,
+          "tags": [
+            "measurement",
+            "iteration",
+            "uncertainty"
+          ],
+          "feedback": "Du behandler avviket som informasjon i stedet for som irritasjon som må skjules."
+        },
+        {
+          "id": "B",
+          "label": "Velg gjennomsnittet av de to målene og gå videre.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "uncertainty",
+            "rework"
+          ],
+          "feedback": "Du gjør uavklart variasjon om til falsk presisjon og flytter problemet videre i prosjektet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_measurement_uncertainty"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "feilen_som_blir_laring",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En maker-venn",
+      "subject": "Ikke kast den ennå",
+      "situation": [
+        "En tidlig prototype har en tydelig konstruksjonsfeil og fungerer dårligere enn den forrige versjonen.",
+        "Du er lei av prosjektet og vil helst begynne helt på nytt.",
+        "En venn peker på at den mislykkede versjonen viser nøyaktig hvor belastningen eller toleransen ble feil."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold prototypen som referanse, noter hva den lærte deg og endre bare den delen hypotesen faktisk gjelder.",
+          "effect": 1,
+          "tags": [
+            "failure_learning",
+            "iteration",
+            "documentation"
+          ],
+          "feedback": "Du lar feil bli del av kunnskapen i prosjektet i stedet for et bevis på at hele forsøket var bortkastet."
+        },
+        {
+          "id": "B",
+          "label": "Kast den og bygg en ny versjon uten å bruke tid på å dokumentere hva som gikk galt.",
+          "effect": -1,
+          "tags": [
+            "failure_avoidance",
+            "repetition",
+            "documentation"
+          ],
+          "feedback": "Du beskytter følelsen av framdrift, men øker sjansen for å gjenta den samme feilen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_failure_learning"
+      ],
+      "risk_links": [
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "reservedelen_fra_skuffen",
+      "message_type": "task",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Delehylla",
+      "subject": "Kan denne brukes?",
+      "situation": [
+        "Du finner en komponent på delehylla som ser ut til å passe et reparasjonsprosjekt.",
+        "Merkingen er gammel og du vet ikke sikkert hvor den kom fra eller om spesifikasjonen stemmer.",
+        "Gjenbruk er en sentral del av mange maker-miljøer, men ukjent historikk gjør noen deler til dårlig grunnlag for kritiske funksjoner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk den bare der feil er ufarlig, eller finn en del med kjent spesifikasjon hvis funksjonen er viktig.",
+          "effect": 1,
+          "tags": [
+            "reuse",
+            "provenance",
+            "risk_boundary"
+          ],
+          "feedback": "Du kombinerer gjenbruk med konsekvensbevissthet i stedet for å anta at lik form betyr lik egenskap."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den siden den passer fysisk og se om prosjektet virker.",
+          "effect": -1,
+          "tags": [
+            "unknown_component",
+            "assumption",
+            "risk"
+          ],
+          "feedback": "Du gjør ukjent komponenthistorikk til en skjult premiss i resten av prosjektet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_component_provenance"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nybegynneren_ved_bordet",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En ny besøkende",
+      "subject": "Hvor begynner jeg?",
+      "situation": [
+        "En ny person står ved arbeidsbordet med en enkel idé, men kjenner verken verktøyene eller de uskrevne kodene i rommet.",
+        "De mest erfarne snakker fort og hopper over forklaringer fordi mye virker selvsagt.",
+        "Makerkultur kan spre kunnskap raskt, men kan også bli en statusarena der nybegynnere lærer at spørsmål er pinlige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vis en trygg enkel start, forklar hvilke verktøy som krever opplæring og la personen gjøre mest mulig selv.",
+          "effect": 1,
+          "tags": [
+            "onboarding",
+            "knowledge_sharing",
+            "safety_boundary"
+          ],
+          "feedback": "Du bruker erfaring som inngang til fellesskapet uten å gjøre deg selv uunnværlig."
+        },
+        {
+          "id": "B",
+          "label": "Gjør de vanskelige delene for dem så prosjektet blir vellykket første kveld.",
+          "effect": -1,
+          "tags": [
+            "overhelping",
+            "dependency",
+            "status"
+          ],
+          "feedback": "Du leverer et bedre resultat, men tar bort både læring og eierskap fra nybegynneren."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_newcomer_onboarding"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "deling_av_filer_og_kreditering",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Makergruppen",
+      "subject": "Kan vi dele modellen?",
+      "situation": [
+        "En digital modell du har videreutviklet bygger på ideer, testfiler og innspill fra flere i miljøet.",
+        "Noen vil legge den ut offentlig under ett navn for å gjøre delingen enkel.",
+        "Åpen deling kan styrke miljøet, men kreditering og lisens må gjenspeile hvem som faktisk bidro og hva man har rett til å dele."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar bidrag og delingsvilkår før publisering, og krediter de delene som faktisk kommer fra andre.",
+          "effect": 1,
+          "tags": [
+            "credit",
+            "sharing",
+            "provenance"
+          ],
+          "feedback": "Du gjør åpenhet kompatibel med opphav og samarbeid i stedet for å late som filen oppsto alene."
+        },
+        {
+          "id": "B",
+          "label": "Publiser under gruppenavnet uten detaljer siden alle uansett har hjulpet litt.",
+          "effect": -1,
+          "tags": [
+            "credit_blur",
+            "sharing",
+            "reputation"
+          ],
+          "feedback": "Du forenkler publiseringen ved å gjøre bidrag og ansvar mindre synlige."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_credit_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_betalte_prototypeoppdraget",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Maker-nettverket",
+      "subject": "Lite prototypeoppdrag",
+      "situation": [
+        "Noen i nettverket tilbyr betaling for en enkel fysisk prototype som skal vise form, størrelse og grunnleggende funksjon.",
+        "Oppdraget er et avgrenset makerarbeid og gir ikke ansvar for sertifisering, produktsikkerhetsgodkjenning, profesjonell konstruksjonsdokumentasjon eller masseproduksjon.",
+        "Et lite honorar kan gjøre praksisen økonomisk virkelig uten å gjøre Maker-posisjonen til en regulert eller profesjonell ingeniørrolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtal hva prototypen skal demonstrere, hva den ikke er ment å bevise, og lever innen det avgrensede oppdraget.",
+          "effect": 1,
+          "tags": [
+            "livelihood",
+            "scope_boundary",
+            "prototype"
+          ],
+          "feedback": "Du gjør betaling og leveranse tydelig uten å late som en enkel prototype er et ferdig produkt."
+        },
+        {
+          "id": "B",
+          "label": "Ta også ansvar for at løsningen er klar til videre produksjon hvis kunden blir fornøyd.",
+          "effect": -1,
+          "tags": [
+            "scope_creep",
+            "professional_overreach",
+            "liability"
+          ],
+          "feedback": "Du lar et lite oppdrag utvide seg til profesjonelt ansvar som aldri var del av avtalen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_paid_prototype_scope"
+      ],
+      "risk_links": [
+        "livelihood_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "batteriet_som_ikke_skal_improviseres",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Verkstedsverten",
+      "subject": "Stopp før strømsetting",
+      "situation": [
+        "En batteridrevet prototype er satt sammen med en ukjent strømkilde og improvisert kobling.",
+        "Prosjektet ser enkelt ut, men ingen i rommet kan bekrefte at komponentene og ladingen hører sammen.",
+        "Makeridentitet belønner nysgjerrighet, men usikker elektrisk energi er en grense der man skal stoppe og hente kvalifisert hjelp eller kjent utstyr."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ikke strømsett oppsettet før strømkilde, komponenter og sikker bruk er avklart med kjent dokumentasjon eller kvalifisert hjelp.",
+          "effect": 1,
+          "tags": [
+            "electrical_boundary",
+            "safety",
+            "known_specification"
+          ],
+          "feedback": "Du lar usikkerheten stoppe forsøket før den blir et energiproblem."
+        },
+        {
+          "id": "B",
+          "label": "Prøv kort siden belastningen trolig er liten og du kan koble fra hvis noe blir varmt.",
+          "effect": -1,
+          "tags": [
+            "electrical_risk",
+            "improvisation",
+            "unsafe_test"
+          ],
+          "feedback": "Du gjør manglende kunnskap om energikilden til selve testen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_electrical_safety_boundary"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "maskinen_som_krever_opplaering",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En erfaren verkstedbruker",
+      "subject": "Jeg kan vise deg den fort",
+      "situation": [
+        "Du vil bruke en verkstedmaskin som er raskere enn håndverktøyet du kjenner.",
+        "En erfaren bruker tilbyr en rask uformell demonstrasjon selv om verkstedet har en egen opplærings- og godkjenningsrutine.",
+        "Å ha sett en maskin brukt er ikke det samme som å være godkjent operatør, og sikkerhetsrutiner tilhører maskinens faktiske eier og verksted."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg verkstedets opplæringsrutine før du bruker maskinen og la godkjent person eie sikkerhetsoppsettet.",
+          "effect": 1,
+          "tags": [
+            "machine_boundary",
+            "training",
+            "safety"
+          ],
+          "feedback": "Du lar tilgang følge faktisk opplæring fremfor sosial snarvei."
+        },
+        {
+          "id": "B",
+          "label": "Ta den raske demonstrasjonen og bruk maskinen mens den erfarne personen står ved siden av.",
+          "effect": -1,
+          "tags": [
+            "training_bypass",
+            "machine_risk",
+            "status"
+          ],
+          "feedback": "Du erstatter en formell sikkerhetsgrense med personlig tillit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_machine_training_boundary"
+      ],
+      "risk_links": [
+        "safety_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prosjektet_som_aldri_blir_ferdig",
+      "message_type": "relationship",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "En nær venn",
+      "subject": "Skal den stå på spisebordet hele vinteren?",
+      "situation": [
+        "Et privat prosjekt har vokst i ukevis og okkuperer både plass, kvelder og oppmerksomhet hjemme.",
+        "Hver ny feil gjør det fristende å bestille én del til og utsette andre planer litt til.",
+        "Makerpraksis kan være meningsfull selv uten ferdig resultat, men trenger en grense mot at alle prosjekter blir permanent åpne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definer en stoppdato eller parker prosjektet i en dokumentert tilstand så hjemmet og andre avtaler får plass igjen.",
+          "effect": 1,
+          "tags": [
+            "sustainable_practice",
+            "private_boundary",
+            "project_closure"
+          ],
+          "feedback": "Du lar et uferdig prosjekt være læring uten at det må eie resten av kalenderen."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett til du har løst feilen siden det ellers føles bortkastet å stoppe nå.",
+          "effect": -1,
+          "tags": [
+            "sunk_cost",
+            "overcommitment",
+            "private_pressure"
+          ],
+          "feedback": "Du lar tidligere innsats bestemme hvor mye mer tid prosjektet får."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_project_closure_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verkstedchatten_og_status",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Verkstedschatten",
+      "subject": "Hvem kan egentlig dette?",
+      "situation": [
+        "En diskusjon om et mislykket prosjekt glir over i hvem som 'kan faget' og hvem som bare bygger enkle ting.",
+        "Noen poster bilder av avanserte prosjekter som bevis på kompetanse, mens andre trekker seg fra samtalen.",
+        "Makeridentitet kan romme både nybegynnere og svært erfarne uten at kompleksitet blir eneste mål på verdi."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold diskusjonen til det konkrete problemet og spør etter metode, antakelser og erfaring fremfor status.",
+          "effect": 1,
+          "tags": [
+            "status",
+            "learning_culture",
+            "community"
+          ],
+          "feedback": "Du flytter prestisjen fra prosjektstørrelse til hva folk faktisk kan lære av hverandre."
+        },
+        {
+          "id": "B",
+          "label": "Støtt den mest erfarne siden siden avanserte prosjekter tross alt viser hvem som kan mest.",
+          "effect": -1,
+          "tags": [
+            "status_hierarchy",
+            "gatekeeping",
+            "community"
+          ],
+          "feedback": "Du gjør synlig kompleksitet til sosial rang og gjør terskelen høyere for å vise uferdig arbeid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_status_culture"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_slags_maker",
+      "message_type": "relationship",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En fast verkstedvenn",
+      "subject": "Hva bygger du videre på?",
+      "situation": [
+        "Ved slutten av perioden ligger det både ferdige ting, mislykkede forsøk, delte filer og prosjekter som aldri kom forbi første versjon.",
+        "Du har fått mer selvtillit, men også sett hvor ofte erfaring kan forveksles med mandat eller sikker kunnskap.",
+        "En bærekraftig Maker-identitet handler like mye om dokumenterte grenser, deling og nysgjerrighet som om å få ting til å virke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg hvilke praksiser du vil videreføre: trygg opplæring, sporbar iterasjon, tydelig scope og deling som krediterer andre.",
+          "effect": 1,
+          "tags": [
+            "sustainable_identity",
+            "learning",
+            "boundary"
+          ],
+          "feedback": "Du gjør Maker-posisjonen til en langsiktig praksis uten å blåse den opp til profesjonell autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Mål neste periode på om du kan bygge mer avanserte ting enn de andre i verkstedet.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "complexity_race",
+            "identity"
+          ],
+          "feedback": "Du gjør teknisk kompleksitet til identitetens hovedmål og lar læring bli en konkurranse om prestisje."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "maker_sustainable_identity"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
