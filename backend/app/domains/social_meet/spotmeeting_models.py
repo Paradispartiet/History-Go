@@ -117,6 +117,7 @@ class SpotmeetingInviteView(ApiModel):
     invite_id: UUID
     sender_profile_id: UUID
     recipient_profile_id: UUID
+    counterpart_display_name: str
     context: SpotmeetingContext
     preset_message_id: SpotmeetingPresetId
     state: SpotmeetingInviteState
@@ -141,6 +142,8 @@ class SpotmeetingInviteRecord:
     recipient_auth_user_id: UUID
     sender_profile_id: UUID
     recipient_profile_id: UUID
+    sender_display_name: str
+    recipient_display_name: str
     context_type: SpotmeetingContextType
     context_id: str
     context_title: str
