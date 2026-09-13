@@ -123,7 +123,8 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
 'musikk/scenehenger',
   'natur/artsjeger',
   'by/byflanor',
-  'scenekunst/scenehenger'
+  'scenekunst/scenehenger',
+  'sport/klubbmenneske'
 ]);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
