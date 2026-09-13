@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     environment: Environment = "development"
     api_prefix: str = "/api/v1"
     docs_enabled: bool = True
+    cors_allowed_origins: str = "https://paradispartiet.github.io"
 
     database_url: SecretStr | None = None
     readiness_require_database: bool = False
@@ -63,6 +64,15 @@ class Settings(BaseSettings):
     @property
     def openapi_enabled(self) -> bool:
         return self.docs_enabled and not self.is_production
+
+    @property
+    def cors_origins(self) -> list[str]:
+        origins: list[str] = []
+        for raw_origin in self.cors_allowed_origins.split(","):
+            origin = raw_origin.strip().rstrip("/")
+            if origin and origin not in origins:
+                origins.append(origin)
+        return origins
 
     @property
     def database_configured(self) -> bool:
