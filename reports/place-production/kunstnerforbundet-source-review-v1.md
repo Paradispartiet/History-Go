@@ -1,6 +1,6 @@
 # Kunstnerforbundet — source review v1
 
-Status: **R4 DESCRIPTION + FAGVERK + PLACE IMAGE + REQUIRED GENERATED OUTPUTS + SPRÅKLEKSIKON MATERIALISERT / FULLPRODUKSJON IKKE LUKKET**  
+Status: **R5 DESCRIPTION + FAGVERK + PLACE IMAGE + REQUIRED GENERATED OUTPUTS + SPRÅKLEKSIKON + FRONTIMAGE MATERIALISERT / FULLPRODUKSJON IKKE LUKKET**  
 Place: `kunstnerforbundet`  
 Kategori: `kunst`  
 R2 base: `d37909288fb1bc5214b1c38d5513a1f7b4679604`  
@@ -191,3 +191,12 @@ Det opprettes ikke et spekulativt dialektlag for dette enkeltstedet. Alle tre op
 Språkmanifestet inngår i `place-open`-payloaden. Etter første exact-head-kjøring krevde derfor `npm run place-open:build` en deterministisk rematerialisering av `data/runtime/place-open/kunstnerforbundet.json`. En egen scope-guard bekreftet at generatoren endret nøyaktig denne ene runtimefilen og ingen andre genererte filer.
 
 R4-scope er dermed språkfil, manifestbinding, det påkrevde genererte `place-open`-payloadet og oppdatering av workcard/source-review. R4 lukker ikke `frontImage`, People, Objects, Brands, Productions/Kunstverk, canonical quiz, øvrige runtime-/sluttindekser eller manuell slutt-QA.
+
+
+## 12. R5 — stående frontImage
+
+PlaceCard-kontrakten krever en reell stående `frontImage`-variant med `height > width`. Det eksisterende dokumentarfotoet `bilder/places/kunstnerforbundet.jpg` fra Anne-Sophie Ofrim / Wikimedia Commons (CC BY-SA 4.0) er derfor brukt som eneste kilde.
+
+`bilder/places/kunstnerforbundet_front_portrait.webp` er en stedstro, sentrert 3:4-beskjæring av den samme originalen, normalisert til `900×1200`. Det er ikke gjort noen generativ endring. `frontImageMeta` viderefører kilde, skaper, kreditering og CC BY-SA 4.0-lisens, og canonical Place peker eksplisitt til varianten via `frontImage`.
+
+R5 lukker bare frontImage-gaten. People, Objects, Brands, Productions/Kunstverk, full `place_card_profile`, canonical quiz, øvrige runtime-/sluttindekser og manuell slutt-QA står fortsatt åpne.
