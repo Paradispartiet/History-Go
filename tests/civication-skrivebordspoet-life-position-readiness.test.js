@@ -66,11 +66,11 @@ assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['skrivebordspoet_introtekst']);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 15,
-  needs_authored_depth: 144,
+  ready: 16,
+  needs_authored_depth: 143,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 15);
+assert.equal(audit.summary.completed_life_position_role_worlds, 16);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 15);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 15);
