@@ -75,15 +75,15 @@ assert.equal(entry.path, worldPath);
 assert.equal(entry.status, 'role_world_complete');
 assert.deepEqual(entry.life_position_ref, { badge_id:'liv_alternativ', id:'bohem', label:'Bohem' });
 assert.equal(index.roles.filter((x)=>x.subject_type!=='life_position').length, 85);
-assert.equal(index.roles.filter((x)=>x.subject_type==='life_position').length, 18);
-assert.equal(index.roles.length, 103);
-assert.equal(index.status, '103_role_worlds_materialized');
-assert.deepEqual(index.summary, { role_worlds_total: 103, career_role_worlds:85, life_position_role_worlds: 18 });
+assert.equal(index.roles.filter((x)=>x.subject_type==='life_position').length, 19);
+assert.equal(index.roles.length, 104);
+assert.equal(index.status, '104_role_worlds_materialized');
+assert.deepEqual(index.summary, { role_worlds_total: 104, career_role_worlds:85, life_position_role_worlds: 19 });
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('liv_alternativ/bohem'));
-assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 18);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 18);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 103);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 18);
+assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 19);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 19);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 104);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 19);
 
 const credit = stream.storylets.find((x)=>x.id==='navnet_ditt_pa_plakaten');
 assert.match(credit.choices.find((x)=>x.id==='A').label, /medvirkende|konkrete hjelpen/i);
@@ -91,4 +91,4 @@ assert.match(credit.situation.join(' '), /gir ikke automatisk kunstner-. kurator
 const money = stream.storylets.find((x)=>x.id==='regningen_etter_kvelden');
 assert.match(money.situation.join(' '), /Ustabil økonomi|romantiseres/i);
 
-console.log('civication Liv alternativ Bohem Role World ok: 56/56 / 14 anchors / 103 total / 18 life-position worlds');
+console.log('civication Liv alternativ Bohem Role World ok: 56/56 / 14 anchors / 104 total / 19 life-position worlds');
