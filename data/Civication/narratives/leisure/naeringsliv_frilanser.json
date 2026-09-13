@@ -1,0 +1,678 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "naeringsliv_frilanser_stream",
+  "type": "leisure",
+  "title": "Frilanser",
+  "sociological_theme": "oppdragsarbeid_autonomi_usikkerhet_og_kundemakt",
+  "applies_when": {
+    "any_tags": [
+      "naeringsliv:frilanser"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "det_forste_oppdraget",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En kunde i nettverket",
+      "subject": "Et oppdrag er et tilbud, ikke en ansettelse",
+      "situation": [
+        "En kunde spør om et avgrenset oppdrag med tydelig leveranse og betaling.",
+        "Frilanser-livsposisjonen kan åpne slike muligheter, men skaper verken fast jobb, garantert inntekt eller profesjonsmyndighet.",
+        "Du må fortsatt velge om oppdraget passer tid, kompetanse og økonomi."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar leveranse, tid og betaling før du sier ja.",
+          "effect": 1,
+          "tags": [
+            "det_forste_oppdraget_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du gjør tilbudet konkret uten å late som det er en fast stilling."
+        },
+        {
+          "id": "B",
+          "label": "Behandle enhver henvendelse som arbeid du må ta.",
+          "effect": -1,
+          "tags": [
+            "det_forste_oppdraget_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du gjør usikkerhet om til tvang og svekker eget handlingsrom."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_offer_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prisen_for_tiden",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Prisforhandlingen",
+      "subject": "Tid, risiko og pris henger sammen",
+      "situation": [
+        "Kunden ber om en pris før alle detaljer er helt avklart.",
+        "En lav pris kan gjøre oppdraget lettere å få, men kan også flytte risikoen over på deg dersom omfanget vokser.",
+        "Pris er derfor både økonomi og forhandlingsmakt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Pris ut fra avtalt omfang og hva du faktisk må bære av risiko.",
+          "effect": 1,
+          "tags": [
+            "prisen_for_tiden_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du gjør fordelingen av tid og risiko synlig."
+        },
+        {
+          "id": "B",
+          "label": "Sett prisen så lavt at det blir vanskelig å si nei til ekstraarbeid.",
+          "effect": -1,
+          "tags": [
+            "prisen_for_tiden_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du kjøper kortsiktig adgang med langsiktig press."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_price_power"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "oppdraget_vokser",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Kunden",
+      "subject": "Når et lite oppdrag blir større",
+      "situation": [
+        "Etter oppstart kommer flere ønsker som ikke var del av den første leveransen.",
+        "Små tillegg kan virke ufarlige hver for seg, men samlet spise tid og lønnsomhet.",
+        "Grensen mellom service og gratis merarbeid er et reelt maktspørsmål."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill tydelig mellom avtalt leveranse og nytt arbeid.",
+          "effect": 1,
+          "tags": [
+            "oppdraget_vokser_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du gjør omfangsendring til noe som kan forhandles."
+        },
+        {
+          "id": "B",
+          "label": "Ta alt ekstra uten å endre avtalen for å virke enkel å samarbeide med.",
+          "effect": -1,
+          "tags": [
+            "oppdraget_vokser_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du gjør tilgjengelighet til en skjult rabatt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_scope_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_tomme_uken",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Kalenderen",
+      "subject": "Fri kalender kan også være inntektsusikkerhet",
+      "situation": [
+        "Denne uken er det færre oppdrag enn du håpet på.",
+        "Frilansfrihet betyr at ingen eier hele kalenderen din, men den samme friheten kan gi perioder uten inntekt.",
+        "Tomme dager påvirker både økonomi, selvbilde og hvor mye press du føler til å si ja senere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle tomrommet som usikkerhet som må planlegges, ikke som personlig nederlag.",
+          "effect": 1,
+          "tags": [
+            "den_tomme_uken_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du skiller markedssvingning fra egen verdi."
+        },
+        {
+          "id": "B",
+          "label": "Les den tomme kalenderen som bevis på at du må godta hva som helst neste gang.",
+          "effect": -1,
+          "tags": [
+            "den_tomme_uken_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du lar usikkerhet svekke forhandlingsrommet før neste oppdrag finnes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_dry_period"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fakturaen_som_drojer",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Betalingen",
+      "subject": "Arbeid og betaling skjer ikke alltid samtidig",
+      "situation": [
+        "Leveransen er godkjent, men betalingen kommer senere enn du hadde regnet med.",
+        "Forsinkelse kan være administrasjon, makt eller ren treghet, men kontantstrømmen treffer deg uansett.",
+        "Frilansøkonomi handler derfor også om tid mellom arbeid og betaling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg opp saklig og hold oversikt over hva som faktisk er avtalt.",
+          "effect": 1,
+          "tags": [
+            "fakturaen_som_drojer_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du beskytter økonomien uten å gjøre konflikten større enn nødvendig."
+        },
+        {
+          "id": "B",
+          "label": "La være å følge opp fordi du er redd for å virke vanskelig.",
+          "effect": -1,
+          "tags": [
+            "fakturaen_som_drojer_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du lar kundens tidslinje bli viktigere enn din økonomiske virkelighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_payment_followup"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "alltid_tilgjengelig",
+      "message_type": "relationship",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En fast kunde",
+      "subject": "Fleksibilitet kan bli grenseløs tilgjengelighet",
+      "situation": [
+        "En kunde som bruker deg ofte begynner å sende meldinger sent og forvente raske svar.",
+        "Et godt kundeforhold kan gjøre arbeidet lettere, men gjentakelse kan også skape uuttalte forventninger.",
+        "At du er frilanser betyr ikke at kalenderen alltid er åpen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sett tydelige svar- og arbeidstider som fortsatt gir kunden forutsigbarhet.",
+          "effect": 1,
+          "tags": [
+            "alltid_tilgjengelig_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du gjør fleksibilitet til en avtalt ressurs i stedet for et permanent krav."
+        },
+        {
+          "id": "B",
+          "label": "Svar umiddelbart hver gang for å bevise at du fortjener å bli brukt igjen.",
+          "effect": -1,
+          "tags": [
+            "alltid_tilgjengelig_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du gjør tilgjengelighet til en test du aldri kan bestå ferdig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_availability_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "anbefalingen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En annen frilanser",
+      "subject": "Nettverk kan være både støtte og portvakt",
+      "situation": [
+        "En kollega vurderer å anbefale deg til et oppdrag de selv ikke kan ta.",
+        "Slike anbefalinger kan gi arbeid, kunnskap og trygghet, men de kan også samle muligheter hos noen få personer.",
+        "Nettverk er derfor sosial kapital, ikke bare hyggelig kontakt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bygg gjensidighet uten å gjøre relasjonen til en gjeldsbok.",
+          "effect": 1,
+          "tags": [
+            "anbefalingen_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du lar nettverket være samarbeid uten skjult lydighetskrav."
+        },
+        {
+          "id": "B",
+          "label": "Behandle anbefalingen som en tjeneste du skylder ubetinget tilbake.",
+          "effect": -1,
+          "tags": [
+            "anbefalingen_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du gjør sosial kapital om til personlig gjeld."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_network_reciprocity"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "portefoljen_og_ryktet",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et nytt miljø",
+      "subject": "Tidligere arbeid blir en del av omdømmet",
+      "situation": [
+        "En mulig kunde vurderer deg ut fra tidligere leveranser og hva andre sier om deg.",
+        "Portefølje og rykte kan redusere usikkerhet for kunden, men kan også låse deg til den typen arbeid du allerede har fått.",
+        "Profesjonell identitet formes både av egne valg og andres kategorisering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk tidligere arbeid som bevis uten å la det definere alt du kan gjøre.",
+          "effect": 1,
+          "tags": [
+            "portefoljen_og_ryktet_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du bruker omdømme som signal, ikke som bur."
+        },
+        {
+          "id": "B",
+          "label": "Jakt bare på det arbeidet som gir mest synlig status, uansett om det passer.",
+          "effect": -1,
+          "tags": [
+            "portefoljen_og_ryktet_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du lar ryktet styre retningen mer enn egen vurdering."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_reputation_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "alienation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_kunder_samme_dag",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Kalenderkollisjonen",
+      "subject": "Ingen kunde ser hele kapasitetsbildet",
+      "situation": [
+        "To kunder ønsker viktige leveranser innen nesten samme tidsrom.",
+        "Begge ser sitt oppdrag som avgrenset og rimelig, men du er den eneste som ser samlet belastning.",
+        "Frilansautonomi innebærer også ansvar for å ikke selge den samme tiden to ganger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prioriter, reforhandle eller si nei før kapasiteten er brukt opp.",
+          "effect": 1,
+          "tags": [
+            "to_kunder_samme_dag_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du gjør samlet kapasitet til en faktisk grense."
+        },
+        {
+          "id": "B",
+          "label": "Lov begge alt og håp at du kan arbeide deg ut av kollisjonen.",
+          "effect": -1,
+          "tags": [
+            "to_kunder_samme_dag_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du flytter planleggingsrisiko til fremtidig stress og mulig tillitstap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_capacity_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "frilans_ved_siden_av_jobb",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Arbeidshverdagen",
+      "subject": "Livsposisjon og formell jobb kan sameksistere",
+      "situation": [
+        "Du har en formell jobb eller annen hovedaktivitet samtidig som du tar enkelte oppdrag.",
+        "Frilanser er employment-independent og erstatter ikke automatisk stilling, ytelse, studier eller annen aktivitet.",
+        "Konflikten oppstår når tid, lojalitet eller forventninger lekker mellom lagene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold ansvar, tid og avtaler tydelig adskilt mellom rollene.",
+          "effect": 1,
+          "tags": [
+            "frilans_ved_siden_av_jobb_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du lar ulike livslag sameksistere uten å late som de er samme jobb."
+        },
+        {
+          "id": "B",
+          "label": "La hvert nytt frilansoppdrag få forrang over alle andre forpliktelser.",
+          "effect": -1,
+          "tags": [
+            "frilans_ved_siden_av_jobb_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du gjør én livsposisjon til hele aktivitetsstatusen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_work_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "administrasjonen_ingen_ser",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Etter leveransen",
+      "subject": "Ubetalt administrasjon er fortsatt arbeid",
+      "situation": [
+        "Oppdraget er levert, men du må fortsatt holde orden på avtaler, dokumentasjon, faktura og egen oversikt.",
+        "Kunden ser ofte bare leveransen, mens frilanseren bærer en del usynlig administrativ tid.",
+        "Denne tiden påvirker hva et oppdrag faktisk kostet å gjennomføre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Regn administrasjon som en reell del av arbeidsmengden når du planlegger.",
+          "effect": 1,
+          "tags": [
+            "administrasjonen_ingen_ser_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du synliggjør arbeid som ellers forsvinner fra regnestykket."
+        },
+        {
+          "id": "B",
+          "label": "Lat som alt rundt leveransen er gratis tid fordi kunden ikke ser det.",
+          "effect": -1,
+          "tags": [
+            "administrasjonen_ingen_ser_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du undervurderer egen belastning og gjør neste pris mindre realistisk."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_invisible_admin"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_trenger_en_tjeneste",
+      "message_type": "relationship",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En venn",
+      "subject": "Når vennskap og oppdrag glir sammen",
+      "situation": [
+        "En venn ber om hjelp med noe som ligner arbeidet du vanligvis tar betalt for.",
+        "Vennskap kan romme tjenester, men uklarhet om tid, kvalitet og betaling kan skape forventninger ingen har formulert.",
+        "Det er ikke kynisk å avklare hvilken type relasjon situasjonen skal være."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar om dette er en vennetjeneste, et oppdrag eller noe midt imellom.",
+          "effect": 1,
+          "tags": [
+            "vennen_som_trenger_en_tjeneste_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du beskytter både vennskapet og arbeidsgrensen."
+        },
+        {
+          "id": "B",
+          "label": "Unngå å snakke om forventninger og håp at begge mener det samme.",
+          "effect": -1,
+          "tags": [
+            "vennen_som_trenger_en_tjeneste_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du lar uklarhet gjøre senere konflikt mer sannsynlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_friend_work_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "oppdraget_du_bor_si_nei_til",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En mulig kunde",
+      "subject": "Frihet viser seg også i hva du avslår",
+      "situation": [
+        "Et oppdrag betaler greit, men kunden er uklar, tidsfristen er dårlig og arbeidet passer dårlig med retningen du vil ha.",
+        "Når inntekten er ujevn kan et nei føles dyrere enn et ja.",
+        "Men et ja bruker også tid og kan fortrenge bedre arbeid eller nødvendig hvile."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder hele kostnaden og si nei dersom oppdraget ikke er bærekraftig.",
+          "effect": 1,
+          "tags": [
+            "oppdraget_du_bor_si_nei_til_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du bruker autonomi til å beskytte framtidig kapasitet."
+        },
+        {
+          "id": "B",
+          "label": "Si ja bare fordi tomrom i kalenderen føles farlig.",
+          "effect": -1,
+          "tags": [
+            "oppdraget_du_bor_si_nei_til_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du lar usikkerhet styre før du har vurdert konsekvensene."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_say_no"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "friheten_som_ma_bygges",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "To uker senere",
+      "subject": "Autonomi er en praksis, ikke fravær av struktur",
+      "situation": [
+        "Etter to uker har du sett hvordan kunder, nettverk, tomme perioder, pris og administrasjon trekker i ulike retninger.",
+        "Ingen eier hele kalenderen din, men friheten varer bare dersom du også beskytter økonomi, tid og relasjoner.",
+        "Frilanser-livsposisjonen kan fortsette, kombineres med andre aktiviteter eller tones ned uten at spillet må gjøre den til fast jobb."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bygg videre med tydelige grenser, variasjon og rom til å endre retning.",
+          "effect": 1,
+          "tags": [
+            "friheten_som_ma_bygges_boundary",
+            "frilanser_reflection"
+          ],
+          "feedback": "Du behandler autonomi som noe som må vedlikeholdes sosialt og økonomisk."
+        },
+        {
+          "id": "B",
+          "label": "Mål frihet bare som fravær av sjef og overse hvem som ellers får makt over kalenderen.",
+          "effect": -1,
+          "tags": [
+            "friheten_som_ma_bygges_pressure",
+            "frilanser_myth"
+          ],
+          "feedback": "Du overser at kunder, usikkerhet og rykte også kan styre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilanser_sustainable_autonomy"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "relationship_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    }
+  ]
+}
