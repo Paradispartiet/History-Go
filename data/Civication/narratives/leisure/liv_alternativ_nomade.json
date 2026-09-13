@@ -1,0 +1,658 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "liv_alternativ_nomade_stream",
+  "type": "leisure",
+  "title": "Nomade",
+  "sociological_theme": "mobilt_liv_midertidige_steder_nye_miljoer_frihet_og_forankring_uten_automatisk_bosteds_eller_jobbstatus",
+  "applies_when": {
+    "any_tags": [
+      "liv_alternativ:nomade"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "avreisen_uten_rolle",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Din egen plan",
+      "subject": "Hva er det du faktisk velger?",
+      "situation": [
+        "Du bestemmer deg for å leve mer mobilt og la steder, miljøer og nettverk skifte oftere enn før.",
+        "Folk rundt deg spør om du har mistet jobben, boligen eller retningen, selv om mobiliteten er et selvvalgt livsvalg.",
+        "Nomade er en livsposisjon, ikke automatisk arbeidsledighet, bostedsløshet, ferie eller profesjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv valget presist: du velger mobilitet og færre faste geografiske bindinger, mens jobb, økonomi og boligstatus fortsatt må behandles separat.",
+          "effect": 1,
+          "tags": [
+            "avreisen_uten_rolle_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du gjør identiteten tydelig uten å låne andre livs- eller problemsituasjoner."
+        },
+        {
+          "id": "B",
+          "label": "La andre tolke Nomade som hva som helst — det er enklere enn å forklare skillet.",
+          "effect": -1,
+          "tags": [
+            "avreisen_uten_rolle_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du lar en selvvalgt livsform bli blandet sammen med statuser som har helt andre konsekvenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_identity_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rommet_for_tre_uker",
+      "message_type": "relationship",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En midlertidig vert",
+      "subject": "Tre uker betyr tre uker",
+      "situation": [
+        "Du leier eller låner et rom i noen uker mens du blir kjent med et nytt sted.",
+        "Du opplever rommet som en base i bevegelse; verten opplever det som sitt hjem med faste rutiner og grenser.",
+        "Midlertidighet gjør ikke husregler, privatliv eller sluttdato mindre reelle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar sluttdato, tilgang, gjester og hva du bidrar med før hverdagen glir i gang.",
+          "effect": 1,
+          "tags": [
+            "rommet_for_tre_uker_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du gjør mobiliteten kompatibel med andres behov for forutsigbarhet."
+        },
+        {
+          "id": "B",
+          "label": "La alt være uformelt og flytt grensene etter hvert hvis oppholdet fungerer godt.",
+          "effect": -1,
+          "tags": [
+            "rommet_for_tre_uker_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du gjør din fleksibilitet avhengig av at verten tåler stadig nye premisser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_temporary_home"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_billetten_som_ble_dyr",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Reisebudsjettet",
+      "subject": "Friheten har en pris",
+      "situation": [
+        "En sen endring i planene gjør reisen videre langt dyrere enn du forventet.",
+        "Det mobile livet gir frihet til å skifte sted, men transport, depositum, bagasje og korte opphold kan gjøre hver endring kostbar.",
+        "Mobilitet er ikke økonomisk frihet i seg selv; handlingsrommet varierer med penger og tilgang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Endre planen eller bli lenger der du er slik at kostnaden passer den økonomien du faktisk har.",
+          "effect": 1,
+          "tags": [
+            "den_billetten_som_ble_dyr_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du lar økonomien være en reell ramme uten å gjøre den til et nederlag."
+        },
+        {
+          "id": "B",
+          "label": "Kjøp den dyre løsningen og tenk at ekte frihet krever at man ikke regner så mye.",
+          "effect": -1,
+          "tags": [
+            "den_billetten_som_ble_dyr_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du gjør spontanitet til et krav som kan spise opp senere handlingsrom."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_travel_cost"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ny_i_miljoet",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En lokal bekjent",
+      "subject": "Du kjenner ingen ennå",
+      "situation": [
+        "Du kommer til et nytt miljø der folk allerede kjenner hverandres historier, konflikter og uskrevne regler.",
+        "Det er lett å bli fascinert av alt som virker nytt og anta at du selv også blir en ny person bare ved å være der.",
+        "Nye miljøer gir muligheter, men lokal tillit og kunnskap kan ikke importeres på én kveld."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vær nysgjerrig, lytt mer enn du forklarer, og la relasjonene få tid før du gjør deg til ekspert på stedet.",
+          "effect": 1,
+          "tags": [
+            "ny_i_miljoet_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du går inn i miljøet som gjest og deltaker, ikke som en som allerede kjenner det."
+        },
+        {
+          "id": "B",
+          "label": "Presenter sterke konklusjoner om stedet med en gang; utenfra ser man ofte ting de lokale ikke ser.",
+          "effect": -1,
+          "tags": [
+            "ny_i_miljoet_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du gjør nyhet til autoritet og overser kunnskap som er bygget over tid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_new_environment"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "adressen_som_ikke_folger_deg",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En administrativ beskjed",
+      "subject": "Vi trenger en adresse",
+      "situation": [
+        "En avtale, registrering eller levering krever en adresse på et tidspunkt du er mellom to baser.",
+        "Digitale løsninger gjør mye mobilt, men institusjoner, post, identitetskontroll og praktiske tjenester er fortsatt ofte bygget rundt faste kontaktpunkter.",
+        "Et mobilt liv er ikke det samme som å være usynlig for systemene som fortsatt må kunne nå deg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en lovlig og pålitelig løsning for post og kontakt i stedet for å improvisere falske eller utdaterte opplysninger.",
+          "effect": 1,
+          "tags": [
+            "adressen_som_ikke_folger_deg_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du beholder mobiliteten uten å gjøre praktisk administrasjon til et spill med systemet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk en gammel adresse videre selv om du vet at den ikke lenger fungerer, og håp at ingenting viktig kommer.",
+          "effect": -1,
+          "tags": [
+            "adressen_som_ikke_folger_deg_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du skyver risikoen til framtidige frister, dokumenter og mennesker som prøver å nå deg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_admin_anchor"
+      ],
+      "risk_links": [
+        "bureaucratic_risk",
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennskap_pa_avstand",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En gammel venn",
+      "subject": "Du er alltid på vei et sted",
+      "situation": [
+        "En nær venn sier at samtalene deres stadig må klemmes inn mellom reiser, nye planer og nye mennesker.",
+        "Du opplever at vennskapet tåler avstand; vennen opplever at du ofte kommer tilbake med mange historier, men liten tid.",
+        "Mobilitet kan utvide nettverket samtidig som gamle relasjoner trenger konkret oppmerksomhet for ikke å bli symbolske."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtal tid og vær til stede uten å gjøre samtalen til en rapport fra det siste stedet.",
+          "effect": 1,
+          "tags": [
+            "vennskap_pa_avstand_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du lar kontinuitet være noe som praktiseres, ikke bare noe du føler."
+        },
+        {
+          "id": "B",
+          "label": "Svar at ekte vennskap ikke burde kreve planlegging eller jevn kontakt.",
+          "effect": -1,
+          "tags": [
+            "vennskap_pa_avstand_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du bruker ideen om varig nærhet til å slippe arbeidet som faktisk holder relasjonen levende."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_distance_friendship"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arbeidet_som_trenger_tidssone",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En arbeids- eller prosjektkontakt",
+      "subject": "Hvor er du når vi skal møtes?",
+      "situation": [
+        "En jobb, et oppdrag eller et prosjekt er i prinsippet stedsubundet, men kollegaene trenger fortsatt å vite når du er tilgjengelig.",
+        "Du har flyttet på deg igjen og oppdager at reisetid, tidsforskjeller og ustabil forbindelse påvirker andre mer enn planen din viste.",
+        "Nomade er ikke en jobbrolle og fritar ikke fra forpliktelser du allerede har inngått."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppgi realistisk tilgjengelighet og legg reise rundt avtalene som faktisk må holdes.",
+          "effect": 1,
+          "tags": [
+            "arbeidet_som_trenger_tidssone_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du lar mobiliteten være et livsvalg rundt arbeidet, ikke en skjult kostnad for andre."
+        },
+        {
+          "id": "B",
+          "label": "Hold sted og reiseplan helt privat og løs møtene improvisert når de dukker opp.",
+          "effect": -1,
+          "tags": [
+            "arbeidet_som_trenger_tidssone_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du gjør andres planlegging avhengig av mobiliteten din uten at de får informasjonen de trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_work_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bagasjen_som_blir_lager",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Tingene dine",
+      "subject": "Alt kan ikke være med",
+      "situation": [
+        "Etter flere flyttinger har ting blitt liggende hos venner, i skap og i små lagerrom du betaler for uten å tenke så mye over det.",
+        "Et mobilt liv kan redusere eiendeler, men det kan også flytte kostnaden og ansvaret for dem til andre steder og andre mennesker.",
+        "Lite bagasje er ikke det samme som at eiendelene har sluttet å kreve plass."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sorter, hent, gi bort eller betal tydelig for oppbevaring i stedet for å la venner bli gratis lager.",
+          "effect": 1,
+          "tags": [
+            "bagasjen_som_blir_lager_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du gjør lett bagasje til et faktisk valg i stedet for en skjult kostnad andre bærer."
+        },
+        {
+          "id": "B",
+          "label": "La tingene stå; de er jo ute av veien for deg og vennene kan si fra hvis det blir et problem.",
+          "effect": -1,
+          "tags": [
+            "bagasjen_som_blir_lager_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du flytter arbeidet med grensene til dem som allerede stiller plass til disposisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_storage_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_lokale_invitasjonen",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En ny gruppe",
+      "subject": "Vil du være med videre?",
+      "situation": [
+        "Etter kort tid i et nytt miljø blir du invitert inn i en gruppe som planlegger noe over flere måneder.",
+        "Du liker menneskene, men vet allerede at du sannsynligvis reiser før prosjektet er ferdig.",
+        "Mobilitet kan skape mange forbindelser, men deltakelse blir skjev dersom andre bygger planer på en varighet du ikke har."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hvor lenge du trolig blir og ta en rolle som faktisk kan avsluttes eller overleveres før du drar.",
+          "effect": 1,
+          "tags": [
+            "den_lokale_invitasjonen_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du gjør tilhørigheten reell uten å late som du tilbyr mer kontinuitet enn du kan."
+        },
+        {
+          "id": "B",
+          "label": "Ikke nevn at du skal videre; det kan ødelegge muligheten før du vet om den blir viktig.",
+          "effect": -1,
+          "tags": [
+            "den_lokale_invitasjonen_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du lar andre investere i en varighet du allerede tviler på."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_duration_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "syk_pa_et_nytt_sted",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En dårlig dag",
+      "subject": "Hvem kjenner du her?",
+      "situation": [
+        "Du blir akutt dårlig nok til at dagens planer må avlyses mens du er på et sted der du kjenner få mennesker.",
+        "Situasjonen er ikke dramatisk, men den viser hvor mye hverdagsberedskap som vanligvis ligger i kjente omgivelser, språk, rutiner og mennesker.",
+        "Mobilitet endrer ikke kroppens behov for hvile, hjelp og praktisk støtte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk lokale tjenester ved behov, informer noen du stoler på og gi deg selv rom til å bli bra før du flytter videre.",
+          "effect": 1,
+          "tags": [
+            "syk_pa_et_nytt_sted_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du bygger beredskap uten å gjøre selvstendighet til isolasjon."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett planen og unngå å kontakte noen; det er viktig å vise at du klarer deg alene.",
+          "effect": -1,
+          "tags": [
+            "syk_pa_et_nytt_sted_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du gjør uavhengighet til en prøve som kan forlenge problemet og øke isolasjonen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_support_network"
+      ],
+      "risk_links": [
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forholdet_og_neste_sted",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En person du står nær",
+      "subject": "Hvor er vi om to måneder?",
+      "situation": [
+        "En relasjon har blitt viktigere enn du forventet, samtidig som du har planlagt å reise videre.",
+        "Den andre personen ønsker ikke nødvendigvis å stoppe deg, men trenger å vite om forholdet skal tåle avstand, flytting eller avslutning.",
+        "Frihet er ikke fravær av forhandling når andre menneskers planer er knyttet til dine valg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakk konkret om tid, avstand og forventninger før dere begge bygger videre på ulike antakelser.",
+          "effect": 1,
+          "tags": [
+            "forholdet_og_neste_sted_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du behandler mobiliteten som ditt valg og konsekvensene som noe dere kan forhandle om sammen."
+        },
+        {
+          "id": "B",
+          "label": "Hold planene åpne så lenge som mulig; tydelighet vil bare skape press.",
+          "effect": -1,
+          "tags": [
+            "forholdet_og_neste_sted_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du beskytter egen fleksibilitet ved å legge usikkerheten over på den andre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_relationship_anchor"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stedet_du_bare_forbruker",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En lokal nabo",
+      "subject": "Dere kommer og går hele tiden",
+      "situation": [
+        "Du hører irritasjon over mennesker som kommer kort, bruker de mest synlige stedene og forsvinner igjen uten å ta del i hverdagen rundt dem.",
+        "Du kjenner igjen noe av mønsteret i din egen måte å velge steder på, selv om du ikke opplever deg selv som turist.",
+        "Et mobilt liv kan gjøre steder til kulisser dersom du bare måler dem etter opplevelser de gir deg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lær lokale rutiner, bruk vanlige tjenester og bidra der det er naturlig uten å kreve at kort opphold gir full tilhørighet.",
+          "effect": 1,
+          "tags": [
+            "stedet_du_bare_forbruker_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du forsøker å være deltaker uten å late som midlertidighet er det samme som lokal forankring."
+        },
+        {
+          "id": "B",
+          "label": "Avvis kritikken; du betaler for det du bruker og skylder ikke et sted noe mer.",
+          "effect": -1,
+          "tags": [
+            "stedet_du_bare_forbruker_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du reduserer et levd lokalmiljø til en tjeneste du kjøper tilgang til."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_place_reciprocity"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "flyttingen_som_kolliderer",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Kalenderen",
+      "subject": "To løfter og én avreise",
+      "situation": [
+        "En endring i reiseplanen gjør at avreisedagen kolliderer med en avtale du allerede har lovet å stille opp på.",
+        "Du kan rekke begge bare dersom alt går perfekt, og andre mennesker vil bære konsekvensen hvis transporten ryker.",
+        "Spontan mobilitet blir sosialt kostbar når alle marginer tas fra forpliktelser til andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Flytt reisen eller gi den andre personen reell beskjed tidlig nok til å finne en annen løsning.",
+          "effect": 1,
+          "tags": [
+            "flyttingen_som_kolliderer_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du lar avtalen veie like tungt som ønsket om å komme videre."
+        },
+        {
+          "id": "B",
+          "label": "Behold den stramme planen og sats på at forsinkelser ikke skjer.",
+          "effect": -1,
+          "tags": [
+            "flyttingen_som_kolliderer_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du gjør ditt ønske om mobilitet til andres risiko."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_schedule_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvor_er_hjem",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Din egen oppsummering",
+      "subject": "Bevegelse og forankring",
+      "situation": [
+        "Etter flere steder, midlertidige rom, nye miljøer og avskjeder merker du at mobiliteten både har gitt frihet og gjort kontinuitet til et aktivt arbeid.",
+        "Du har lært at forankring kan ligge i mennesker, rutiner og ansvar — ikke bare i én adresse — men også at steder og relasjoner har egne krav som ikke forsvinner fordi du reiser.",
+        "Spørsmålet er om Nomade skal bety grenseløs bevegelse, eller et mobilt liv som bygger bærbare former for ansvar og tilhørighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg mobilitet med tydelige avtaler, økonomiske marginer, kontinuerlige relasjoner og respekt for stedene du midlertidig blir del av.",
+          "effect": 1,
+          "tags": [
+            "hvor_er_hjem_boundary",
+            "nomade_reflection"
+          ],
+          "feedback": "Du gjør forankring til noe du kan bære med deg uten å late som hvert sted er permanent."
+        },
+        {
+          "id": "B",
+          "label": "Bestem at enhver fast forpliktelse er et tegn på at nomadelivet har mislyktes.",
+          "effect": -1,
+          "tags": [
+            "hvor_er_hjem_pressure",
+            "nomade_myth"
+          ],
+          "feedback": "Du gjør frihet til en rigid identitet som til slutt må avvise alle bånd for å bevise seg selv."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "nomade_integrated_identity"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "economic_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

@@ -1,0 +1,1117 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "liv_alternativ",
+  "role_scope": "liv_alternativ_nomade",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "liv_alternativ",
+    "id": "nomade",
+    "label": "Nomade"
+  },
+  "title": "Nomade — mobilitet, midlertidighet, nettverk og forankring",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å velge et mobilt liv uten å gjøre midlertidighet til ansvarsfravær, nye steder til kulisser eller mobilitet til en skjult jobb-, bolig- eller klassestatus",
+    "description": "Nomade-verdenen undersøker et selvvalgt mobilt liv der bosted, miljø og nettverk kan skifte oftere enn jobb eller identitet. Spilleren møter midlertidige hjem, reiseøkonomi, administrative kontaktpunkter, gamle vennskap, nye lokale miljøer, arbeidsavtaler, lagring, nære relasjoner og avreiser. Verdenen skiller eksplisitt Nomade fra bostedsløshet, ferie, arbeidsledighet og profesjonell reisejobb. Mobilitet kan være frihet, men tilgangen til den formes av penger, dokumenter, tid, språk, relasjoner og stedlige ressurser."
+  },
+  "theme_ids": [
+    "precarity",
+    "class_power",
+    "alienation",
+    "invisible_work",
+    "bureaucratic_power",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "local_knowledge_vs_system",
+    "social_mask",
+    "status_anxiety"
+  ],
+  "social_environments": [
+    "midlertidige rom, korttidsleie og gjestebaser der mobilitet møter husregler og privatliv",
+    "tog, busser, terminaler og overgangssteder der tid, penger og logistikk blir synlige grenser",
+    "nye lokale miljøer der spilleren har ferskt blikk men lite opparbeidet tillit og historie",
+    "digitale relasjoner og avtaler som skal holde kontinuitet på tvers av skiftende geografi",
+    "administrative kontaktpunkter der adresse, dokumenter og tilgjengelighet fortsatt krever stabile holdepunkter",
+    "prosjekter og fellesskap der spillerens planlagte avreise må passe med andres behov for varighet"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "midlertidig_vert",
+      "social_function": "forankrer mobiliteten i konkrete husregler, tidsgrenser og privatliv",
+      "class_position": "person med tilgang til bolig og mer stedlig kontinuitet enn spilleren",
+      "status": "har legitim situert myndighet over eget hjem og avtalt opphold",
+      "power_over_player": "kan sette sluttdato, husregler og avslutte oppholdet",
+      "wants": "å kunne være gjestfri uten at midlertidigheten blir grenseløs",
+      "conceals": "at irritasjon ofte bygges opp før den blir sagt tydelig",
+      "speech_style": "praktisk og konkret om datoer, nøkler, gjester og plass",
+      "teaches_player": "at mobilitet trenger eksplisitte grenser i andres hjem"
+    },
+    {
+      "id": "gammel_venn_hjemme",
+      "social_function": "representerer kontinuitet og tester om nære relasjoner får faktisk tid når spilleren stadig flytter",
+      "class_position": "venn med mer stabil geografi og hverdagsrytme",
+      "status": "nær relasjon uten kontroll over spillerens bosted eller reisevalg",
+      "power_over_player": "kan trekke seg emosjonelt dersom kontakten blir ensidig eller symbolsk",
+      "wants": "å være del av spillerens liv uten bare å høre reisehistorier",
+      "conceals": "at savn kan uttrykkes som irritasjon over livsstilen",
+      "speech_style": "varm, direkte og lite imponert av store fortellinger om frihet",
+      "teaches_player": "at kontinuitet må praktiseres selv når avstanden er frivillig"
+    },
+    {
+      "id": "lokal_bekjent",
+      "social_function": "viser forskjellen mellom å ankomme et sted og å ha lokal kunnskap, tillit og historie der",
+      "class_position": "person med dypere lokal forankring enn spilleren",
+      "status": "uformell lokal kunnskapsbærer uten generell myndighet",
+      "power_over_player": "kan åpne eller lukke sosiale innganger og korrigere raske antakelser",
+      "wants": "at nye mennesker deltar uten å gjøre stedet til kulisse",
+      "conceals": "at også lokale miljøer kan være lukkede og statusstyrte",
+      "speech_style": "konkret om steder, mennesker og hva som faktisk fungerer lokalt",
+      "teaches_player": "at kort nærvær ikke er det samme som lokal autoritet"
+    },
+    {
+      "id": "fjern_arbeidskontakt",
+      "social_function": "holder jobb og prosjektforpliktelser separate fra den mobile livsposisjonen",
+      "class_position": "kollega, oppdragsgiver eller samarbeidspartner med avhengigheter til spillerens tilgjengelighet",
+      "status": "har bare rollebasert myndighet innen avtalt arbeid eller prosjekt",
+      "power_over_player": "kan kreve avtalte leveranser og tilgjengelighet, men ikke styre privat bosted",
+      "wants": "forutsigbar kommunikasjon selv om spilleren flytter",
+      "conceals": "at stabil geografi ofte tas som usynlig standard i planleggingen",
+      "speech_style": "tid, leveranser og praktiske krav framfor livsstilsdiskusjon",
+      "teaches_player": "at Nomade ikke er en arbeidsrolle og ikke opphever eksisterende avtaler"
+    },
+    {
+      "id": "nar_relasjon_med_forankringsbehov",
+      "social_function": "gjør spenningen mellom mobilitet og gjensidig planlegging personlig",
+      "class_position": "partner eller annen nær relasjon med egne planer og bindinger",
+      "status": "likestilt relasjon der ingen eier den andres framtid",
+      "power_over_player": "kan velge hvilke former for avstand og usikkerhet relasjonen tåler",
+      "wants": "klarhet om tid, sted og forventninger uten å kreve full immobilitet",
+      "conceals": "at ønsket om tydelighet også kan romme frykt for å bli forlatt",
+      "speech_style": "følelsesnært, presist om framtid og lite tilfreds med vage svar",
+      "teaches_player": "at frihet må forhandles når andre mennesker bygger planer sammen med deg"
+    },
+    {
+      "id": "annen_mobil_person",
+      "social_function": "speiler både ressursene og privilegiene som kan ligge bak ulike former for mobilitet",
+      "class_position": "person som også lever mobilt, men med andre økonomiske, juridiske eller sosiale forutsetninger",
+      "status": "jevnaldrende uten autoritet, men med sammenlignbar erfaring",
+      "power_over_player": "kan avromantisere spillerens antakelser gjennom kontraster i kostnad, pass, språk og nettverk",
+      "wants": "å dele praktiske erfaringer uten å late som alle nomadeliv er like",
+      "conceals": "at også eget liv kan være mer bundet av penger og dokumenter enn frihetsfortellingen tilsier",
+      "speech_style": "pragmatisk, erfaringsbasert og skeptisk til universelle råd",
+      "teaches_player": "at mobilitet er ulikt tilgjengelig og ulikt kostbar for forskjellige mennesker"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "mobility_vs_anchor",
+      "meaning": "om fri bevegelse får bærbare former for forankring eller krever at alle bånd holdes svake",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "temporary_home_vs_host_boundary",
+      "meaning": "om midlertidige bosteder forhandles som andres hjem eller behandles som grenseløse baser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "freedom_vs_cost",
+      "meaning": "om reisevalg gjøres innenfor faktisk økonomisk handlingsrom eller romantiserer kostnader som frihet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "newness_vs_local_knowledge",
+      "meaning": "om nye miljøer møtes med nysgjerrighet eller om ferskt utenfrablikk gjøres til autoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "distance_vs_continuity",
+      "meaning": "om nære relasjoner får konkret tid og oppfølging når geografien skifter",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "privacy_vs_coordination",
+      "meaning": "om reiseplaner holdes private uten å skjule informasjon andre faktisk trenger for felles avtaler",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "lightness_vs_displaced_burden",
+      "meaning": "om få eiendeler og lite bagasje faktisk reduserer byrden eller bare flytter lagring og ansvar til andre",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "participation_vs_departure",
+      "meaning": "om spilleren går inn i lokale prosjekter med ærlig tidshorisont og overleverbare roller",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du bestemmer deg for å leve mer mobilt og la steder, miljøer og nettverk skifte oftere enn før. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "mobility_vs_anchor",
+          "privacy_vs_coordination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#avreisen_uten_rolle"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du bestemmer deg for å leve mer mobilt og la steder, miljøer og nettverk skifte oftere enn før. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "mobility_vs_anchor",
+          "privacy_vs_coordination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#avreisen_uten_rolle"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du bestemmer deg for å leve mer mobilt og la steder, miljøer og nettverk skifte oftere enn før. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "mobility_vs_anchor",
+          "privacy_vs_coordination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#avreisen_uten_rolle"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du bestemmer deg for å leve mer mobilt og la steder, miljøer og nettverk skifte oftere enn før. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "mobility_vs_anchor",
+          "privacy_vs_coordination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#avreisen_uten_rolle"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Du leier eller låner et rom i noen uker mens du blir kjent med et nytt sted. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "temporary_home_vs_host_boundary",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#rommet_for_tre_uker"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Du leier eller låner et rom i noen uker mens du blir kjent med et nytt sted. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "temporary_home_vs_host_boundary",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#rommet_for_tre_uker"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Du leier eller låner et rom i noen uker mens du blir kjent med et nytt sted. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "temporary_home_vs_host_boundary",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#rommet_for_tre_uker"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Du leier eller låner et rom i noen uker mens du blir kjent med et nytt sted. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "temporary_home_vs_host_boundary",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#rommet_for_tre_uker"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: En sen endring i planene gjør reisen videre langt dyrere enn du forventet. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "freedom_vs_cost",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#den_billetten_som_ble_dyr"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: En sen endring i planene gjør reisen videre langt dyrere enn du forventet. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "freedom_vs_cost",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#den_billetten_som_ble_dyr"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: En sen endring i planene gjør reisen videre langt dyrere enn du forventet. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "freedom_vs_cost",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#den_billetten_som_ble_dyr"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: En sen endring i planene gjør reisen videre langt dyrere enn du forventet. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "freedom_vs_cost",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#den_billetten_som_ble_dyr"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Du kommer til et nytt miljø der folk allerede kjenner hverandres historier, konflikter og uskrevne regler. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "newness_vs_local_knowledge",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#ny_i_miljoet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Du kommer til et nytt miljø der folk allerede kjenner hverandres historier, konflikter og uskrevne regler. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "newness_vs_local_knowledge",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#ny_i_miljoet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Du kommer til et nytt miljø der folk allerede kjenner hverandres historier, konflikter og uskrevne regler. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "newness_vs_local_knowledge",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#ny_i_miljoet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Du kommer til et nytt miljø der folk allerede kjenner hverandres historier, konflikter og uskrevne regler. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "newness_vs_local_knowledge",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#ny_i_miljoet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: En avtale, registrering eller levering krever en adresse på et tidspunkt du er mellom to baser. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "privacy_vs_coordination",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#adressen_som_ikke_folger_deg"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: En avtale, registrering eller levering krever en adresse på et tidspunkt du er mellom to baser. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "privacy_vs_coordination",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#adressen_som_ikke_folger_deg"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: En avtale, registrering eller levering krever en adresse på et tidspunkt du er mellom to baser. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "privacy_vs_coordination",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#adressen_som_ikke_folger_deg"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: En avtale, registrering eller levering krever en adresse på et tidspunkt du er mellom to baser. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "privacy_vs_coordination",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#adressen_som_ikke_folger_deg"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: En nær venn sier at samtalene deres stadig må klemmes inn mellom reiser, nye planer og nye mennesker. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "distance_vs_continuity",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#vennskap_pa_avstand"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: En nær venn sier at samtalene deres stadig må klemmes inn mellom reiser, nye planer og nye mennesker. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "distance_vs_continuity",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#vennskap_pa_avstand"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: En nær venn sier at samtalene deres stadig må klemmes inn mellom reiser, nye planer og nye mennesker. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "distance_vs_continuity",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#vennskap_pa_avstand"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: En nær venn sier at samtalene deres stadig må klemmes inn mellom reiser, nye planer og nye mennesker. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "distance_vs_continuity",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#vennskap_pa_avstand"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: En jobb, et oppdrag eller et prosjekt er i prinsippet stedsubundet, men kollegaene trenger fortsatt å vite når du er tilgjengelig. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "privacy_vs_coordination",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#arbeidet_som_trenger_tidssone"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: En jobb, et oppdrag eller et prosjekt er i prinsippet stedsubundet, men kollegaene trenger fortsatt å vite når du er tilgjengelig. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "privacy_vs_coordination",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#arbeidet_som_trenger_tidssone"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: En jobb, et oppdrag eller et prosjekt er i prinsippet stedsubundet, men kollegaene trenger fortsatt å vite når du er tilgjengelig. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "privacy_vs_coordination",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#arbeidet_som_trenger_tidssone"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: En jobb, et oppdrag eller et prosjekt er i prinsippet stedsubundet, men kollegaene trenger fortsatt å vite når du er tilgjengelig. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "privacy_vs_coordination",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#arbeidet_som_trenger_tidssone"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Etter flere flyttinger har ting blitt liggende hos venner, i skap og i små lagerrom du betaler for uten å tenke så mye over det. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "lightness_vs_displaced_burden",
+          "temporary_home_vs_host_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#bagasjen_som_blir_lager"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Etter flere flyttinger har ting blitt liggende hos venner, i skap og i små lagerrom du betaler for uten å tenke så mye over det. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "lightness_vs_displaced_burden",
+          "temporary_home_vs_host_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#bagasjen_som_blir_lager"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Etter flere flyttinger har ting blitt liggende hos venner, i skap og i små lagerrom du betaler for uten å tenke så mye over det. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "lightness_vs_displaced_burden",
+          "temporary_home_vs_host_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#bagasjen_som_blir_lager"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Etter flere flyttinger har ting blitt liggende hos venner, i skap og i små lagerrom du betaler for uten å tenke så mye over det. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "lightness_vs_displaced_burden",
+          "temporary_home_vs_host_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#bagasjen_som_blir_lager"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Etter kort tid i et nytt miljø blir du invitert inn i en gruppe som planlegger noe over flere måneder. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "participation_vs_departure",
+          "newness_vs_local_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#den_lokale_invitasjonen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Etter kort tid i et nytt miljø blir du invitert inn i en gruppe som planlegger noe over flere måneder. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "participation_vs_departure",
+          "newness_vs_local_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#den_lokale_invitasjonen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Etter kort tid i et nytt miljø blir du invitert inn i en gruppe som planlegger noe over flere måneder. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "participation_vs_departure",
+          "newness_vs_local_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#den_lokale_invitasjonen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Etter kort tid i et nytt miljø blir du invitert inn i en gruppe som planlegger noe over flere måneder. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "participation_vs_departure",
+          "newness_vs_local_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#den_lokale_invitasjonen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Du blir akutt dårlig nok til at dagens planer må avlyses mens du er på et sted der du kjenner få mennesker. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "mobility_vs_anchor",
+          "distance_vs_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#syk_pa_et_nytt_sted"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Du blir akutt dårlig nok til at dagens planer må avlyses mens du er på et sted der du kjenner få mennesker. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "mobility_vs_anchor",
+          "distance_vs_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#syk_pa_et_nytt_sted"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Du blir akutt dårlig nok til at dagens planer må avlyses mens du er på et sted der du kjenner få mennesker. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "mobility_vs_anchor",
+          "distance_vs_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#syk_pa_et_nytt_sted"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Du blir akutt dårlig nok til at dagens planer må avlyses mens du er på et sted der du kjenner få mennesker. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "mobility_vs_anchor",
+          "distance_vs_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#syk_pa_et_nytt_sted"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: En relasjon har blitt viktigere enn du forventet, samtidig som du har planlagt å reise videre. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "distance_vs_continuity",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#forholdet_og_neste_sted"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: En relasjon har blitt viktigere enn du forventet, samtidig som du har planlagt å reise videre. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "distance_vs_continuity",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#forholdet_og_neste_sted"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: En relasjon har blitt viktigere enn du forventet, samtidig som du har planlagt å reise videre. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "distance_vs_continuity",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#forholdet_og_neste_sted"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En relasjon har blitt viktigere enn du forventet, samtidig som du har planlagt å reise videre. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "distance_vs_continuity",
+          "mobility_vs_anchor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#forholdet_og_neste_sted"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Du hører irritasjon over mennesker som kommer kort, bruker de mest synlige stedene og forsvinner igjen uten å ta del i hverdagen rundt dem. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "newness_vs_local_knowledge",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#stedet_du_bare_forbruker"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Du hører irritasjon over mennesker som kommer kort, bruker de mest synlige stedene og forsvinner igjen uten å ta del i hverdagen rundt dem. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "newness_vs_local_knowledge",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#stedet_du_bare_forbruker"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Du hører irritasjon over mennesker som kommer kort, bruker de mest synlige stedene og forsvinner igjen uten å ta del i hverdagen rundt dem. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "newness_vs_local_knowledge",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#stedet_du_bare_forbruker"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Du hører irritasjon over mennesker som kommer kort, bruker de mest synlige stedene og forsvinner igjen uten å ta del i hverdagen rundt dem. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "newness_vs_local_knowledge",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#stedet_du_bare_forbruker"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: En endring i reiseplanen gjør at avreisedagen kolliderer med en avtale du allerede har lovet å stille opp på. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "privacy_vs_coordination",
+          "distance_vs_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#flyttingen_som_kolliderer"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: En endring i reiseplanen gjør at avreisedagen kolliderer med en avtale du allerede har lovet å stille opp på. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "privacy_vs_coordination",
+          "distance_vs_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#flyttingen_som_kolliderer"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: En endring i reiseplanen gjør at avreisedagen kolliderer med en avtale du allerede har lovet å stille opp på. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "privacy_vs_coordination",
+          "distance_vs_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#flyttingen_som_kolliderer"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: En endring i reiseplanen gjør at avreisedagen kolliderer med en avtale du allerede har lovet å stille opp på. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "privacy_vs_coordination",
+          "distance_vs_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#flyttingen_som_kolliderer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Etter flere steder, midlertidige rom, nye miljøer og avskjeder merker du at mobiliteten både har gitt frihet og gjort kontinuitet til et aktivt arbeid. Morgenen etablerer de praktiske ressursene, bindingene og usynlige systemene som gjør mobiliteten mulig eller krevende.",
+        "thread_ids": [
+          "mobility_vs_anchor",
+          "freedom_vs_cost",
+          "distance_vs_continuity",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#hvor_er_hjem"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Etter flere steder, midlertidige rom, nye miljøer og avskjeder merker du at mobiliteten både har gitt frihet og gjort kontinuitet til et aktivt arbeid. Midt på dagen blir forskjellen mellom spillerens bevegelse og andres stedlige eller relasjonelle kontinuitet synlig.",
+        "thread_ids": [
+          "mobility_vs_anchor",
+          "freedom_vs_cost",
+          "distance_vs_continuity",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#hvor_er_hjem"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Etter flere steder, midlertidige rom, nye miljøer og avskjeder merker du at mobiliteten både har gitt frihet og gjort kontinuitet til et aktivt arbeid. Ettermiddagen tvinger fram et valg om avtaler, kostnader, grenser eller hvor mye kontinuitet spilleren faktisk kan love.",
+        "thread_ids": [
+          "mobility_vs_anchor",
+          "freedom_vs_cost",
+          "distance_vs_continuity",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#hvor_er_hjem"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Etter flere steder, midlertidige rom, nye miljøer og avskjeder merker du at mobiliteten både har gitt frihet og gjort kontinuitet til et aktivt arbeid. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller følelsen av å ha et sted og noen mennesker å vende tilbake til.",
+        "thread_ids": [
+          "mobility_vs_anchor",
+          "freedom_vs_cost",
+          "distance_vs_continuity",
+          "participation_vs_departure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_nomade.json#hvor_er_hjem"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "mobility_vs_anchor",
+      "relationship": "forholdet mellom fri bevegelse og bærbare former for forankring i mennesker, rutiner og ansvar",
+      "beat_refs": [
+        "1/morning",
+        "1/afternoon",
+        "3/evening",
+        "6/morning",
+        "10/afternoon",
+        "11/evening",
+        "14/morning",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "temporary_home_vs_host_boundary",
+      "relationship": "forholdet mellom midlertidige baser og respekten for at rommet fortsatt er andres hjem med egne grenser",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "8/morning",
+        "8/evening",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "freedom_vs_cost",
+      "relationship": "forholdet mellom spontan reise og de økonomiske marginene som avgjør hvor mye mobilitet som faktisk er mulig",
+      "beat_refs": [
+        "3/morning",
+        "3/afternoon",
+        "5/lunch",
+        "8/lunch",
+        "13/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "newness_vs_local_knowledge",
+      "relationship": "forholdet mellom energi fra nye miljøer og lokal kunnskap som krever tid, lytting og tillit",
+      "beat_refs": [
+        "4/morning",
+        "4/afternoon",
+        "9/lunch",
+        "9/evening",
+        "12/morning",
+        "12/afternoon"
+      ]
+    },
+    {
+      "id": "distance_vs_continuity",
+      "relationship": "forholdet mellom geografisk avstand og arbeidet som holder gamle og nære relasjoner levende over tid",
+      "beat_refs": [
+        "6/morning",
+        "6/afternoon",
+        "10/evening",
+        "11/morning",
+        "11/afternoon",
+        "13/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "privacy_vs_coordination",
+      "relationship": "forholdet mellom privat reise- og bostedsinformasjon og de opplysningene andre legitimt trenger for felles avtaler",
+      "beat_refs": [
+        "1/evening",
+        "5/morning",
+        "5/afternoon",
+        "7/morning",
+        "7/afternoon",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "lightness_vs_displaced_burden",
+      "relationship": "forholdet mellom å eie og bære lite og risikoen for at oppbevaring, logistikk og praktisk arbeid skyves over på andre",
+      "beat_refs": [
+        "3/lunch",
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "12/lunch",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "participation_vs_departure",
+      "relationship": "forholdet mellom å gå inn i nye fellesskap og ansvaret for å være ærlig om hvor lenge man kan bli og hva man kan fullføre",
+      "beat_refs": [
+        "4/evening",
+        "7/lunch",
+        "9/morning",
+        "9/afternoon",
+        "12/evening",
+        "13/evening",
+        "14/afternoon"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "rommet_som_ikke_var_ditt",
+      "description": "Et kort opphold blir en påminnelse om at mobilitet fungerer fordi noen steder, nøkler og rutiner tilhører andre mennesker som må kunne sette grenser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_alternativ_nomade.json#rommet_for_tre_uker",
+        "data/Civication/narratives/leisure/liv_alternativ_nomade.json#bagasjen_som_blir_lager",
+        "data/Civication/narratives/leisure/liv_alternativ_nomade.json#hvor_er_hjem"
+      ]
+    },
+    {
+      "id": "reisen_som_mistet_marginen",
+      "description": "En dyr eller stram reiseplan synliggjør hvor raskt spontanitet kan bli økonomisk eller sosial risiko når alle buffere er brukt opp.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_alternativ_nomade.json#den_billetten_som_ble_dyr",
+        "data/Civication/narratives/leisure/liv_alternativ_nomade.json#flyttingen_som_kolliderer",
+        "data/Civication/narratives/leisure/liv_alternativ_nomade.json#hvor_er_hjem"
+      ]
+    },
+    {
+      "id": "vennskapet_som_ma_planlegges",
+      "description": "Avstand viser at nære relasjoner trenger tid og oppfølging selv når følelsen av nærhet er sterk.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_alternativ_nomade.json#vennskap_pa_avstand",
+        "data/Civication/narratives/leisure/liv_alternativ_nomade.json#forholdet_og_neste_sted",
+        "data/Civication/narratives/leisure/liv_alternativ_nomade.json#hvor_er_hjem"
+      ]
+    },
+    {
+      "id": "stedet_du_ikke_eide",
+      "description": "Å være ny et sted gjør det mulig å se mye, men også å oppdage hvor mye lokal kunnskap, tillit og ansvar som ikke kan akselereres.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_alternativ_nomade.json#ny_i_miljoet",
+        "data/Civication/narratives/leisure/liv_alternativ_nomade.json#stedet_du_bare_forbruker"
+      ]
+    },
+    {
+      "id": "adressen_som_ble_et_anker",
+      "description": "Praktiske systemer gjør at selv et mobilt liv trenger noen pålitelige kontaktpunkter som kan bære post, avtaler og informasjon over tid.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_alternativ_nomade.json#adressen_som_ikke_folger_deg",
+        "data/Civication/narratives/leisure/liv_alternativ_nomade.json#arbeidet_som_trenger_tidssone"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "dyr_billett_blir_mindre_margin",
+      "setup_ref": "3/afternoon",
+      "return_ref": "13/afternoon",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "lokal_lytting_blir_tillit",
+      "setup_ref": "4/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "adresseanker_blir_tilgjengelighet",
+      "setup_ref": "5/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "bureaucracy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "vennskapstid_blir_kontinuitet",
+      "setup_ref": "6/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "psyche"
+      ]
+    },
+    {
+      "id": "lagringsgrense_blir_frihet",
+      "setup_ref": "8/afternoon",
+      "return_ref": "14/lunch",
+      "domains": [
+        "economy",
+        "relationship"
+      ]
+    },
+    {
+      "id": "avreisehorisont_blir_palitelighet",
+      "setup_ref": "9/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#avreisen_uten_rolle",
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#rommet_for_tre_uker",
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#den_billetten_som_ble_dyr",
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#ny_i_miljoet",
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#adressen_som_ikke_folger_deg",
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#vennskap_pa_avstand",
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#arbeidet_som_trenger_tidssone",
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#bagasjen_som_blir_lager",
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#den_lokale_invitasjonen",
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#syk_pa_et_nytt_sted",
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#forholdet_og_neste_sted",
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#stedet_du_bare_forbruker",
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#flyttingen_som_kolliderer",
+      "data/Civication/narratives/leisure/liv_alternativ_nomade.json#hvor_er_hjem"
+    ]
+  }
+}

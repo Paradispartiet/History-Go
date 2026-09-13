@@ -66,14 +66,14 @@ assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['medievaktbikkje_researchnotat']);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 16,
-  needs_authored_depth: 143,
+  ready: 17,
+  needs_authored_depth: 142,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 16);
+assert.equal(audit.summary.completed_life_position_role_worlds, 17);
 assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 16);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 16);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 17);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 17);
 assert.equal(audit.first_ready, null);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
