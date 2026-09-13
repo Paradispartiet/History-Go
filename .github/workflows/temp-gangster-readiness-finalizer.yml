@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: '22'
       - name: Regenerate life-position readiness
-        run: node scripts/audit-civication-life-position-role-world-readiness.mjs
+        run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
       - name: Commit generated readiness state
         run: |
           if git diff --quiet -- data/Civication/lifePositionRoleWorldReadiness.json reports/civication-life-position-role-world-readiness.md; then
