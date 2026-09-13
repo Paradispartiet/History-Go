@@ -422,6 +422,51 @@
         "reputation_risk"
       ],
       "links": []
+    },
+    {
+      "id": "plassen_som_ogsaa_er_andres",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En offentlig plass",
+      "subject": "Åpent rom er delt rom",
+      "situation": [
+        "Du bruker ofte samme offentlige sted til hvile og møter.",
+        "Andre bruker området til ferdsel, arbeid, lek og pauser.",
+        "Fellesrom er verdifulle fordi mange har adgang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk plassen slik at andre fortsatt kan bruke den.",
+          "effect": 1,
+          "tags": [
+            "plassen_som_ogsaa_er_andres_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du behandler fellesrommet som en delt ressurs."
+        },
+        {
+          "id": "B",
+          "label": "La langvarig bruk bli et uformelt krav på området.",
+          "effect": -1,
+          "tags": [
+            "plassen_som_ogsaa_er_andres_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du forveksler adgang med eierskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_public_space_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
     }
   ]
 }
