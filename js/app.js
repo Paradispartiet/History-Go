@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadHGSocialMeetSupabaseClient", () => loadScriptOnce("js/social/HGSocialMeetSupabaseClient.js?v=20260913-social-ready1"));
     await safeRun("loadHGSocialMeetAdapter", () => loadScriptOnce("js/social/HGSocialMeetAdapter.js?v=20260913-social-ready1"));
     await safeRun("loadHGSpotmeeting", () => loadScriptOnce("js/social/HGSpotmeeting.js"));
-    await safeRun("loadHGSpotmeetingUI", () => loadScriptOnce("js/social/HGSpotmeetingUI.js?v=20260913-meet-people1"));
+    await safeRun("loadHGSpotmeetingUI", () => loadScriptOnce("js/social/HGSpotmeetingUI.js?v=20260913-social-ready1"));
     await safeRun("loadHGSocialMeetUI", () => loadScriptOnce("js/social/HGSocialMeetUI.js?v=20260912-live-surfaces2"));
     await safeRun("loadHGSpotmeetingPlaceCardDemo", () => loadScriptOnce("js/social/HGSpotmeetingPlaceCardDemo.js"));
     await safeRun("loadHGSocialMatchGraphPanel", () => loadScriptOnce("js/social/HGSocialMatchGraphPanel.js"));
