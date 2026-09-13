@@ -118,15 +118,15 @@ assert.equal(entry.status, 'role_world_complete');
 assert.equal(entry.path, worldPath);
 
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 19);
+assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 20);
 assert.deepEqual(index.summary, {
-  role_worlds_total: 104,
+  role_worlds_total: 105,
   career_role_worlds: 85,
-  life_position_role_worlds: 19
+  life_position_role_worlds: 20
 });
 assert.equal(index.career_role_world_count, 85);
-assert.equal(index.life_position_role_world_count, 19);
-assert.equal(index.status, '104_role_worlds_materialized');
+assert.equal(index.life_position_role_world_count, 20);
+assert.equal(index.status, '105_role_worlds_materialized');
 
 assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds, [
   'sport/supporter',
@@ -147,12 +147,13 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'liv_alternativ/bohem',
   'liv_alternativ/nomade',
   'liv_bosituasjon/boms',
-  'liv_bosituasjon/uteligger'
+  'liv_bosituasjon/uteligger',
+  'liv_lovsbane/kriminell'
 ]);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 19);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 104);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 20);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 105);
 
 const readiness = audit.positions.find((row) => row.key === 'filosofi/sofafilosof');
 assert.ok(readiness);
@@ -163,8 +164,8 @@ assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.deepEqual(readiness.evidence.livelihood_templates, ['sofafilosof_samtalekveld']);
 assert.ok(!audit.queue.some((row) => row.key === 'filosofi/sofafilosof'));
-assert.equal(audit.summary.life_position_role_world_complete, 19);
-assert.equal(audit.summary.completed_life_position_role_worlds, 19);
+assert.equal(audit.summary.life_position_role_world_complete, 20);
+assert.equal(audit.summary.completed_life_position_role_worlds, 20);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.first_ready, null);
 
