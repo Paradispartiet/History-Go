@@ -102,11 +102,11 @@ assert.equal(entry.status, 'role_world_complete');
 assert.equal(entry.path, worldPath);
 
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 14);
+assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 15);
 assert.deepEqual(index.summary, {
-  role_worlds_total: 99,
+  role_worlds_total: 100,
   career_role_worlds: 85,
-  life_position_role_worlds: 14
+  life_position_role_worlds: 15
 });
 assert.equal(index.career_role_world_count, 85);
 assert.equal(index.life_position_role_world_count, 14);
@@ -129,8 +129,8 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
 ]);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 14);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 99);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 15);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 100);
 
 const readiness = audit.positions.find((row) => row.key === 'film_tv/filmklubbmenneske');
 assert.ok(readiness);
@@ -141,8 +141,8 @@ assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.deepEqual(readiness.evidence.livelihood_templates, ['filmklubbmenneske_visningshjelp']);
 assert.ok(!audit.queue.some((row) => row.key === 'film_tv/filmklubbmenneske'));
-assert.equal(audit.summary.life_position_role_world_complete, 14);
-assert.equal(audit.summary.completed_life_position_role_worlds, 14);
+assert.equal(audit.summary.life_position_role_world_complete, 15);
+assert.equal(audit.summary.completed_life_position_role_worlds, 15);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.first_ready, null);
 
