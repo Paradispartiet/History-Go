@@ -32,7 +32,7 @@ assert.equal(audit.summary.life_position_role_world_complete, 19);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.first_ready, null);
-assert.equal(audit.queue[0].key, 'liv_bosituasjon/uteligger');
+assert.equal(audit.queue[0].key, 'liv_lovsbane/kriminell');
 assert.equal(world.subject_type, 'life_position');
 assert.equal(world.status, 'role_world_complete');
 assert.equal(world.materialization.no_new_runtime, true);
