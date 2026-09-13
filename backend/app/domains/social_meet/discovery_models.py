@@ -15,7 +15,13 @@ MAX_DISCOVERY_TAGS_PER_GROUP = 16
 MAX_DISCOVERY_TAG_LENGTH = 64
 
 
+class DiscoveryMode(StrEnum):
+    MATCH = "match"
+    PLACE_STATUS = "place_status"
+
+
 class DiscoveryMatchReason(StrEnum):
+    PLACE_STATUS = "place_status"
     CONTEXT_INTEREST_PLACE = "context_interest_place"
     CONTEXT_THEME = "context_theme"
     CONTEXT_ERA = "context_era"
@@ -85,6 +91,7 @@ class DiscoveryContextSignals(ApiModel):
 
 class ContextCandidateRequest(ApiModel):
     context: DiscoveryContextSignals
+    mode: DiscoveryMode = DiscoveryMode.MATCH
     limit: int = Field(default=10, ge=1, le=MAX_DISCOVERY_CANDIDATES)
 
 
@@ -106,6 +113,7 @@ class DiscoveryCandidate(ApiModel):
 
 
 class ContextCandidateResponse(ApiModel):
+    mode: DiscoveryMode
     context_type: SpotmeetingContextType
     context_id: str
     generated_at: datetime
