@@ -53,6 +53,7 @@ Backendgrunnlaget omfatter:
 | Invite abuse controls | Servereid policy | `005_social_meet_abuse_indexes.sql`, [`../docs/HG_SOCIAL_MEET_ABUSE_CONTROLS.md`](../docs/HG_SOCIAL_MEET_ABUSE_CONTROLS.md) |
 | Durable Spotmeeting invites | Servereid lifecycle | `006_spotmeeting_invites_server.sql`, [`../docs/HG_SPOTMEETING_INVITE_BACKEND.md`](../docs/HG_SPOTMEETING_INVITE_BACKEND.md) |
 | Candidate discovery | Implementert, rollout-gated | `007_social_meet_candidate_discovery.sql`, [`../docs/HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md`](../docs/HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md) |
+| Temporary place status | Implementert, separat rollout-gate | `009_social_meet_place_status.sql`, [`../docs/HG_SOCIAL_MEET_PLACE_VISIBILITY_PROPOSAL.md`](../docs/HG_SOCIAL_MEET_PLACE_VISIBILITY_PROPOSAL.md) |
 | Retention & observability | Servereid operations-slice | `008_social_meet_retention_observability.sql`, [`../docs/HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md`](../docs/HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md) |
 
 De tre kravkontraktene eier sikkerhets- og produktkravene:
@@ -93,6 +94,7 @@ FastAPI-klienten bruker Supabase-browserøkten kun som tokenbro. Migrerte discov
 Implementert kode gir ikke automatisk produksjonsaktivering.
 
 - Discovery krever deployment-kill-switch og privat database-/cohort-/percentage-rollout.
+- `place_status` krever i tillegg den separate private `social_meet_place_status`-gaten; default er av.
 - Invite writes krever eksplisitt backendkonfigurasjon og serverpolicy.
 - Destruktiv retention krever eget production-apply-flagg og godkjent operativ prosedyre.
 - Manglende eller deaktivert konfigurasjon skal feile lukket.
