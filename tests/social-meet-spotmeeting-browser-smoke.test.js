@@ -116,8 +116,8 @@ let sheet = appWindow.document.getElementById('hgSpotmeetingSheet');
 assert(sheet && !sheet.hidden, 'People CTA opens the canonical Spotmeeting sheet');
 assert(sheet.textContent.includes('Kunnskapsmøte'), 'canonical sheet has product title');
 assert(sheet.textContent.includes('Factory Memory'), 'canonical sheet shows context title');
-assert(sheet.textContent.includes('Dette viser ikke hvem som fysisk er her nå.'), 'place-context sheet clearly avoids claiming physical presence');
-for (const actionLabel of ['Folk å møte her', 'Inviter til quiz', 'Inviter til observasjon', 'Inviter til rute']) {
+assert(sheet.textContent.includes('selvoppgitt') || sheet.textContent.includes('Selvoppgitt'), 'place-context sheet explains self-declared place status');
+for (const actionLabel of ['Folk her nå', 'Folk å møte', 'Inviter til quiz', 'Inviter til observasjon', 'Inviter til rute']) {
   assert(sheet.textContent.includes(actionLabel), `canonical sheet offers choice: ${actionLabel}`);
 }
 assert(sheet.textContent.includes('Mine møter / Social Meet'), 'place-context sheet keeps a direct follow-up entry');
