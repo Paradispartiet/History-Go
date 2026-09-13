@@ -249,7 +249,7 @@ Safety markers: safety-first, local-only, no GPS/live/followers, and no automati
 
 ## `window.HG_SpotmeetingUI`
 
-`window.HG_SpotmeetingUI` is the canonical user surface for starting a Kunnskapsmøte. It owns `#hgSpotmeetingSheet`, delegates all state to `window.HG_Spotmeeting`, shows demo candidates only in TEST_MODE, renders a backend-disabled state in production, and dispatches `hg:spotmeetingChanged` + `updateProfile` after an invite.
+`window.HG_SpotmeetingUI` is the canonical user surface for starting a Kunnskapsmøte. From `PlaceCard → Utforsk → Møtes`, the default place-context view is **Folk å møte her**: opt-in discoverable Social Meet profiles ranked against the active Place by explicit knowledge/interests. It never claims physical presence. The UI owns `#hgSpotmeetingSheet`, uses FastAPI candidate discovery when configured and rollout-enabled, keeps TEST_MODE demo candidates isolated, fails closed when production discovery is unavailable, and dispatches `hg:spotmeetingChanged` + `updateProfile` after an invite.
 
 `window.openSpotMatchList` is a legacy wrapper into `HG_SpotmeetingUI.open(...)`. `window.HG_SpotmeetingPlaceCardDemo` is only a compatibility/demo wrapper. The footer has no Spotmeeting entry; follow-up runs through `window.HG_SocialMeetUI`.
 
@@ -262,10 +262,10 @@ There is no chat, free text, live location, nearby, followers, feed, distance, l
 Product split:
 
 - **PlaceCard → Utforsk → Møtes** is the canonical meeting entry, rendered in the left Place Sheet hero column immediately below the four Explore collections.
-- **Kunnskapsmøte** (`HG_SpotmeetingUI`) starts a concrete meeting proposal in a selected context.
+- **Kunnskapsmøte** (`HG_SpotmeetingUI`) shows **Folk å møte her** for a Place context and starts a concrete preset-only meeting proposal to a selected profile.
 - **Social Meet** (`HG_SocialMeetUI`) follows proposals up through pending/accepted/completed status, agreements, learning circles and history.
 - **Profile** keeps settings/privacy/history and may link to Social Meet, but is not the primary entry.
 
-The two runtimes remain separate owners because creation and follow-up have different state/backend responsibilities; only the **navigation and product surface are unified**. `HG_SocialMeetUI.open({ filter, placeId, sourceSurface })` supports the header, PlaceCard Explore hub and Spotmeeting follow-up. It must not auto-inject a second Social Meet card elsewhere in PlaceCard.
+The two runtimes remain separate owners because discovery/invite creation and follow-up have different state/backend responsibilities; only the **navigation and product surface are unified**. PlaceCard Møtes routes directly into `HG_SpotmeetingUI`; `HG_SocialMeetUI.open({ filter, placeId, sourceSurface })` supports the header and the fixed **Mine møter / Social Meet** follow-up inside the Spotmeeting sheet. It must not auto-inject a second Social Meet card elsewhere in PlaceCard.
 
-Status: local-only, privacy-safe, no gameplay mutation, no backend.
+Status: FastAPI/PostgreSQL backend implementation exists for identity, privacy-safe discovery and invite lifecycle, but participant-facing production use is fail-closed until deployment URL and rollout/write gates are configured. TEST_MODE remains local/demo only.
