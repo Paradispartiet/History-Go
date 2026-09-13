@@ -319,7 +319,9 @@
     }
 
     if (!canTryBackendDiscovery()) {
-      target.innerHTML = `${renderStatus('Ekte Spotmeeting er ikke aktivert for denne klienten ennå.', 'backendDisabled')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
+      const readiness = root.HG_SocialMeetProfileBridge?.statusSummary?.();
+      const message = readiness?.label || 'Ekte personmatching er ikke koblet til server i denne versjonen ennå.';
+      target.innerHTML = `${renderStatus(message, 'backendDisabled')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
       return;
     }
 
@@ -338,10 +340,17 @@
 
     const suggestions = Array.isArray(result?.suggestions) ? result.suggestions : [];
     if (!result?.ok) {
-      const disabled = ['backend_not_enabled', 'profile_not_published', 'not_authenticated'].includes(String(result?.reason || ''));
-      const message = disabled
-        ? 'Kunnskapsmatcher er ikke tilgjengelige for profilen din ennå.'
-        : 'Kunne ikke hente kunnskapsmatcher akkurat nå.';
+      const reason = String(result?.reason || '');
+      const message = reason === 'not_authenticated' || reason === 'supabase_auth_unavailable'
+        ? 'Logg inn med AHA for å finne folk å møte.'
+        : reason === 'profile_not_published'
+          ? 'Social Meet-profilen din må være oppdagbar før du kan finne andre matcher.'
+          : reason === 'backend_not_enabled'
+            ? 'Personmatching er ikke aktivert på serveren ennå.'
+            : reason === 'network_error' || reason === 'backend_unavailable'
+              ? 'Social Meet-serveren svarer ikke akkurat nå.'
+              : 'Kunne ikke hente kunnskapsmatcher akkurat nå.';
+      const disabled = ['backend_not_enabled','profile_not_published','not_authenticated','supabase_auth_unavailable'].includes(reason);
       target.innerHTML = `${renderStatus(message, disabled ? 'backendDisabled' : 'error')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
       return;
     }
