@@ -14,6 +14,7 @@ from app.domains.social_meet.discovery_models import (
     DiscoveryContextSignals,
     DiscoveryFeatureGate,
     DiscoveryMatchReason,
+    DiscoveryMode,
     DiscoveryProfileRecord,
     RankedDiscoveryCandidate,
 )
@@ -25,7 +26,10 @@ class PostgresSocialMeetDiscoveryRepository:
     def __init__(self, database: Database) -> None:
         self._database = database
 
-    def get_feature_gate(self) -> DiscoveryFeatureGate:
+    def get_feature_gate(
+        self,
+        feature_key: str = "spotmeeting_discovery",
+    ) -> DiscoveryFeatureGate:
         with self._database.engine.connect() as connection:
             row = (
                 connection.execute(
@@ -33,9 +37,10 @@ class PostgresSocialMeetDiscoveryRepository:
                         """
                         select enabled, rollout_percent, allowed_profile_ids
                         from public.hg_social_meet_feature_flags
-                        where feature_key = 'spotmeeting_discovery'
+                        where feature_key = :feature_key
                         """
-                    )
+                    ),
+                    {"feature_key": feature_key},
                 )
                 .mappings()
                 .one_or_none()
@@ -56,6 +61,8 @@ class PostgresSocialMeetDiscoveryRepository:
         requester_profile_id: UUID,
         context: DiscoveryContextSignals,
         supported_consent_version: str,
+        place_status_consent_version: str,
+        mode: DiscoveryMode,
         now: datetime,
         limit: int,
     ) -> list[RankedDiscoveryCandidate]:
@@ -69,6 +76,8 @@ class PostgresSocialMeetDiscoveryRepository:
             "quiz_topic_tags": context.quiz_topic_tags,
             "learning_goal_tags": context.learning_goal_tags,
             "consent_version": supported_consent_version,
+            "place_status_consent_version": place_status_consent_version,
+            "place_status_only": mode is DiscoveryMode.PLACE_STATUS,
             "block_start": now - BLOCK_COOLDOWN,
             "report_start": now - REPORT_COOLDOWN,
             "decline_start": now - DECLINE_COOLDOWN,
@@ -109,6 +118,11 @@ class PostgresSocialMeetDiscoveryRepository:
                             candidate.learning_goals,
                             candidate.knowledge_fingerprint_summary,
                             candidate.updated_at,
+                            (
+                              candidate.current_place_id = :context_id
+                              and candidate.current_place_visible_until > :now
+                              and candidate.current_place_consent_version = :place_status_consent_version
+                            ) as current_place_status,
                             (:context_id = any(candidate.interest_places))
                               as context_interest_place,
                             (
@@ -166,6 +180,14 @@ class PostgresSocialMeetDiscoveryRepository:
                             and candidate.consent_version = :consent_version
                             and candidate.deleted_at is null
                             and candidate.display_name is not null
+                            and (
+                              :place_status_only = false
+                              or (
+                                candidate.current_place_id = :context_id
+                                and candidate.current_place_visible_until > :now
+                                and candidate.current_place_consent_version = :place_status_consent_version
+                              )
+                            )
                             and not exists (
                               select 1
                               from public.hg_social_meet_profile_restrictions restriction
@@ -241,18 +263,22 @@ class PostgresSocialMeetDiscoveryRepository:
                         scored as (
                           select
                             *,
-                            (
-                              case when context_interest_place then 12 else 0 end
-                              + case when context_theme then 6 else 0 end
-                              + case when context_era then 5 else 0 end
-                              + case when context_topic then 7 else 0 end
-                              + case when context_route_category then 7 else 0 end
-                              + case when context_quiz_topic then 7 else 0 end
-                              + case when context_learning_goal then 5 else 0 end
-                              + case when shared_theme then 3 else 0 end
-                              + case when shared_era then 3 else 0 end
-                              + case when shared_learning_goal then 4 else 0 end
-                            ) as compatibility_score
+                            case
+                              when :place_status_only then 1
+                              else (
+                                case when context_interest_place then 12 else 0 end
+                                + case when context_theme then 6 else 0 end
+                                + case when context_era then 5 else 0 end
+                                + case when context_topic then 7 else 0 end
+                                + case when context_route_category then 7 else 0 end
+                                + case when context_quiz_topic then 7 else 0 end
+                                + case when context_learning_goal then 5 else 0 end
+                                + case when shared_theme then 3 else 0 end
+                                + case when shared_era then 3 else 0 end
+                                + case when shared_learning_goal then 4 else 0 end
+                              )
+                            end as compatibility_score,
+                            :place_status_only as place_status_only
                           from compatible
                         )
                         select *
@@ -272,6 +298,9 @@ class PostgresSocialMeetDiscoveryRepository:
 
 def _map_ranked_candidate(row: RowMapping) -> RankedDiscoveryCandidate:
     reasons: list[DiscoveryMatchReason] = []
+    if bool(row.get("place_status_only")) and bool(row.get("current_place_status")):
+        reasons.append(DiscoveryMatchReason.PLACE_STATUS)
+
     reason_columns = (
         ("context_interest_place", DiscoveryMatchReason.CONTEXT_INTEREST_PLACE),
         ("context_theme", DiscoveryMatchReason.CONTEXT_THEME),
