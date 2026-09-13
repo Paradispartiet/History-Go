@@ -32,7 +32,7 @@ try {
     queue_head_after: (after.queue || [])[0] || null,
     changed_positions: changedPositions
   };
-  console.log('UTELIGGER_READINESS_DIAGNOSTIC=' + JSON.stringify(diag));
+  throw new Error('UTELIGGER_READINESS_DIAGNOSTIC=' + JSON.stringify(diag));
 } finally {
   fs.writeFileSync(outputPath, beforeText);
   fs.writeFileSync(reportPath, beforeReport);
