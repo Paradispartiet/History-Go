@@ -113,6 +113,12 @@ class PlaceStatusUpdateRequest(ApiModel):
         return value.strip()
 
 
+class PlaceStatusState(ApiModel):
+    active: bool
+    place_id: str | None = None
+    visible_until: datetime | None = None
+
+
 class CurrentSocialMeetState(ApiModel):
     user_id: UUID
     profile_id: UUID | None
@@ -157,10 +163,10 @@ class SocialMeetProfileRecord:
     profile_visibility: ProfileVisibility
     consent_version: str | None
     consented_at: datetime | None
-    current_place_id: str | None
-    current_place_visible_until: datetime | None
-    current_place_consent_version: str | None
     updated_at: datetime
+    current_place_id: str | None = None
+    current_place_visible_until: datetime | None = None
+    current_place_consent_version: str | None = None
 
 
 def _normalize_list(values: list[object], *, max_item_length: int) -> object:
