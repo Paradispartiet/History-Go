@@ -1,8 +1,14 @@
 const assert = require('assert'), fs = require('fs'), vm = require('vm');
-function boot(extra={}){ global.window=global; global.document={querySelector(){return null}}; for(const k of ['HG_SocialMeetSupabaseClient','HG_SocialMeetAdapter','HG_SOCIAL_MEET_BACKEND','HG_SOCIAL_MEET_SUPABASE','HG_SUPABASE_CONFIG','supabase','__HG_SOCIAL_MEET_SUPABASE_CLIENT__']) delete global[k]; Object.assign(global, extra); vm.runInThisContext(fs.readFileSync('js/social/HGSocialMeetSupabaseClient.js','utf8'),{filename:'HGSocialMeetSupabaseClient.js'}); vm.runInThisContext(fs.readFileSync('js/social/HGSocialMeetAdapter.js','utf8'),{filename:'HGSocialMeetAdapter.js'}); return global.HG_SocialMeetAdapter; }
+function boot(extra={}){ global.window=global; global.document={querySelector(){return null}}; for(const k of ['HG_SocialMeetSupabaseClient','HG_SocialMeetAdapter','HG_SOCIAL_MEET_BACKEND','HG_SOCIAL_MEET_SUPABASE','HG_SUPABASE_CONFIG','supabase','__HG_SOCIAL_MEET_SUPABASE_CLIENT__','HistoryGoAHAAuth']) delete global[k]; Object.assign(global, extra); vm.runInThisContext(fs.readFileSync('js/social/HGSocialMeetSupabaseClient.js','utf8'),{filename:'HGSocialMeetSupabaseClient.js'}); vm.runInThisContext(fs.readFileSync('js/social/HGSocialMeetAdapter.js','utf8'),{filename:'HGSocialMeetAdapter.js'}); return global.HG_SocialMeetAdapter; }
 let adapter = boot();
 assert.strictEqual(adapter.backendMode(), 'local');
 assert(adapter.health().ok, 'local mode is healthy without credentials');
+
+adapter = boot({HistoryGoAHAAuth:{getSession:async()=>({access_token:'aha-token',user:{id:'aha-user'}})}});
+const ahaAuth = global.HG_SocialMeetSupabaseClient.getClient();
+assert.strictEqual(ahaAuth.ok, true);
+assert.strictEqual(ahaAuth.authSource, 'aha');
+assert.strictEqual(global.HG_SocialMeetSupabaseClient.health().ahaAuthAvailable, true);
 assert.strictEqual(adapter.normalizeContext({contextType:'place',contextId:'oslo',title:'Oslo'}).ok, true);
 assert.strictEqual(adapter.normalizeContext({contextType:'place',contextId:'oslo',latitude:59}).reason, 'forbidden_privacy_field');
 assert.strictEqual(adapter.normalizeContext({contextType:'person',contextId:'x'}).reason, 'invalid_context_type');
