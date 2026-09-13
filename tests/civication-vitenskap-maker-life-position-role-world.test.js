@@ -101,4 +101,4 @@ const machine = stream.storylets.find((x) => x.id === 'maskinen_som_krever_oppla
 assert.ok(machine);
 assert.match(machine.situation.join(' '), /opplærings|godkjenningsrutine|ikke det samme som å være godkjent operatør/i);
 
-console.log('civication Vitenskap Maker Role World ok: 56/56 / 14 anchors / 102 total / 18 life-position worlds');
+console.log('civication Vitenskap Maker Role World ok: 56/56 / 14 anchors / 103 total / 18 life-position worlds');
