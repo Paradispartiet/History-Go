@@ -1,0 +1,136 @@
+name: TEMP Kunstnerforbundet R5 wire frontImage
+
+on:
+  push:
+    branches:
+      - agent/kunstnerforbundet-frontimage-r5-20260913
+
+permissions:
+  contents: write
+
+jobs:
+  wire:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/kunstnerforbundet-frontimage-r5-20260913
+          fetch-depth: 1
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Wire canonical frontImage and production status
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          place_path = Path('data/places/kunst/oslo/places_kunst/kunstnerforbundet.json')
+          place = json.loads(place_path.read_text())
+          place['cardImage'] = 'bilder/places/kunstnerforbundet.jpg'
+          place['frontImage'] = 'bilder/places/kunstnerforbundet_front_portrait.webp'
+          place['frontImageMeta'] = {
+              'source': 'wikimedia_commons',
+              'sourcePage': 'https://commons.wikimedia.org/wiki/File:Kunstnerforbundet2.jpg',
+              'creator': 'Anne-Sophie Ofrim',
+              'credit': 'Anne-Sophie Ofrim / Wikimedia Commons',
+              'license': 'CC BY-SA 4.0',
+              'licenseUrl': 'https://creativecommons.org/licenses/by-sa/4.0/',
+              'rightsBasis': 'cc_by_sa_4_0',
+              'outputDimensions': '900x1200',
+              'orientation': 'portrait',
+              'aspectRatio': '3:4',
+              'transformation': 'Stedstro sentrert beskjæring fra original JPEG og WebP-normalisering; ingen generativ endring.',
+              'verifiedAt': '2026-09-13'
+          }
+          place_path.write_text(json.dumps(place, ensure_ascii=False, indent=2) + '\n')
+
+          wc_path = Path('reports/place-production/kunstnerforbundet-workcard-current.json')
+          wc = json.loads(wc_path.read_text())
+          wc['status'] = 'description_fagverk_images_generated_sprakleksikon_and_frontimage_materialized_r5'
+          wc['universal_core']['images'] = 'PASS_PLACE_AND_FRONT_IMAGE_CC_BY_SA'
+          wc['active_phase'] = 'R5_FRONTIMAGE'
+          wc['active_file_scope'] = [
+              'data/places/kunst/oslo/places_kunst/kunstnerforbundet.json',
+              'bilder/places/kunstnerforbundet_front_portrait.webp',
+              'data/runtime/place-open/kunstnerforbundet.json',
+              'reports/place-production/kunstnerforbundet-workcard-current.json',
+              'reports/place-production/kunstnerforbundet-source-review-v1.md'
+          ]
+          wc['remaining_blockers'] = [x for x in wc['remaining_blockers'] if x != 'real portrait frontImage']
+          wc['branch'] = 'agent/kunstnerforbundet-frontimage-r5-20260913'
+          wc['branch_base'] = '8dcb26daf89e7675da1fcba8fc7e6f1401ba80d4'
+          wc['branch_status'] = 'R5_CANDIDATE_PENDING_EXACT_HEAD_CI'
+          wc['front_image'] = {
+              'status': 'PASS',
+              'file': 'bilder/places/kunstnerforbundet_front_portrait.webp',
+              'source': 'https://commons.wikimedia.org/wiki/File:Kunstnerforbundet2.jpg',
+              'creator': 'Anne-Sophie Ofrim',
+              'license': 'CC BY-SA 4.0',
+              'outputDimensions': '900x1200',
+              'orientation': 'portrait',
+              'aspectRatio': '3:4',
+              'transformation': 'center_crop_from_existing_documentary_place_photo_no_generative_change',
+              'verified_at': '2026-09-13'
+          }
+          wc_path.write_text(json.dumps(wc, ensure_ascii=False, indent=2) + '\n')
+
+          review_path = Path('reports/place-production/kunstnerforbundet-source-review-v1.md')
+          review = review_path.read_text()
+          review = review.replace(
+              'Status: **R4 DESCRIPTION + FAGVERK + PLACE IMAGE + REQUIRED GENERATED OUTPUTS + SPRÅKLEKSIKON MATERIALISERT / FULLPRODUKSJON IKKE LUKKET**',
+              'Status: **R5 DESCRIPTION + FAGVERK + PLACE IMAGE + REQUIRED GENERATED OUTPUTS + SPRÅKLEKSIKON + FRONTIMAGE MATERIALISERT / FULLPRODUKSJON IKKE LUKKET**'
+          )
+          section = '''\n\n## 12. R5 — stående frontImage\n\nPlaceCard-kontrakten krever en reell stående `frontImage`-variant med `height > width`. Det eksisterende dokumentarfotoet `bilder/places/kunstnerforbundet.jpg` fra Anne-Sophie Ofrim / Wikimedia Commons (CC BY-SA 4.0) er derfor brukt som eneste kilde.\n\n`bilder/places/kunstnerforbundet_front_portrait.webp` er en stedstro, sentrert 3:4-beskjæring av den samme originalen, normalisert til `900×1200`. Det er ikke gjort noen generativ endring. `frontImageMeta` viderefører kilde, skaper, kreditering og CC BY-SA 4.0-lisens, og canonical Place peker eksplisitt til varianten via `frontImage`.\n\nR5 lukker bare frontImage-gaten. People, Objects, Brands, Productions/Kunstverk, full `place_card_profile`, canonical quiz, øvrige runtime-/sluttindekser og manuell slutt-QA står fortsatt åpne.\n'''
+          if '## 12. R5 — stående frontImage' not in review:
+              review += section
+          review_path.write_text(review)
+          PY
+
+      - name: Materialize place-open payload
+        run: npm run place-open:build
+
+      - name: Guard R5 scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t changed < <(git diff --name-only | sort)
+          printf 'Changed files:\n%s\n' "${changed[*]:-<none>}"
+          expected=(
+            'data/places/kunst/oslo/places_kunst/kunstnerforbundet.json'
+            'data/runtime/place-open/kunstnerforbundet.json'
+            'reports/place-production/kunstnerforbundet-source-review-v1.md'
+            'reports/place-production/kunstnerforbundet-workcard-current.json'
+          )
+          if [[ ${#changed[@]} -ne ${#expected[@]} ]]; then
+            echo 'Unexpected R5 file count' >&2
+            exit 1
+          fi
+          for i in "${!expected[@]}"; do
+            if [[ "${changed[$i]}" != "${expected[$i]}" ]]; then
+              echo "Unexpected R5 file: ${changed[$i]} (expected ${expected[$i]})" >&2
+              exit 1
+            fi
+          done
+
+      - name: Commit R5 wiring and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/tmp-kunstnerforbundet-r5-wire-frontimage.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/kunst/oslo/places_kunst/kunstnerforbundet.json data/runtime/place-open/kunstnerforbundet.json reports/place-production/kunstnerforbundet-workcard-current.json reports/place-production/kunstnerforbundet-source-review-v1.md .github/workflows/tmp-kunstnerforbundet-r5-wire-frontimage.yml
+          git commit -m "Wire Kunstnerforbundet frontImage R5"
+          git push origin HEAD:agent/kunstnerforbundet-frontimage-r5-20260913
