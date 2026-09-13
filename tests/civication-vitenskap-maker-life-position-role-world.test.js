@@ -82,16 +82,16 @@ assert.ok(entry);
 assert.equal(entry.path, worldPath);
 assert.equal(entry.status, 'role_world_complete');
 assert.equal(index.roles.filter((x) => x.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((x) => x.subject_type === 'life_position').length, 14);
-assert.equal(index.roles.length, 99);
-assert.equal(index.status, '99_role_worlds_materialized');
-assert.deepEqual(index.summary, { role_worlds_total: 99, career_role_worlds: 85, life_position_role_worlds: 14 });
+assert.equal(index.roles.filter((x) => x.subject_type === 'life_position').length, 15);
+assert.equal(index.roles.length, 100);
+assert.equal(index.status, '100_role_worlds_materialized');
+assert.deepEqual(index.summary, { role_worlds_total: 100, career_role_worlds: 85, life_position_role_worlds: 15 });
 
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('vitenskap/maker'));
-assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 14);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 14);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 99);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 14);
+assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 15);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 15);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 100);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 15);
 
 const electrical = stream.storylets.find((x) => x.id === 'batteriet_som_ikke_skal_improviseres');
 assert.ok(electrical);
@@ -101,4 +101,4 @@ const machine = stream.storylets.find((x) => x.id === 'maskinen_som_krever_oppla
 assert.ok(machine);
 assert.match(machine.situation.join(' '), /opplærings|godkjenningsrutine|ikke det samme som å være godkjent operatør/i);
 
-console.log('civication Vitenskap Maker Role World ok: 56/56 / 14 anchors / 99 total / 14 life-position worlds');
+console.log('civication Vitenskap Maker Role World ok: 56/56 / 14 anchors / 100 total / 15 life-position worlds');
