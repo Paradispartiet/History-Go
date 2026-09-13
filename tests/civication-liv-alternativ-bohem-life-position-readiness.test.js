@@ -30,11 +30,21 @@ console.log(JSON.stringify({
   same_report: beforeReport===afterReport,
   summary_before: before.summary,
   summary_after: after.summary,
-  first_ready_before: before.first_ready,
-  first_ready_after: after.first_ready,
-  queue_head_before: before.queue.slice(0,5),
-  queue_head_after: after.queue.slice(0,5),
-  position_diffs: positionDiffs
+  queue_head_before: before.queue.slice(0,3),
+  queue_head_after: after.queue.slice(0,3),
+  changed_positions: positionDiffs.map(({key,before,after})=>({
+    key,
+    classification_before: before?.classification,
+    classification_after: after?.classification,
+    priority_before: before?.priority_score,
+    priority_after: after?.priority_score,
+    authored_before: before?.authored_depth,
+    authored_after: after?.authored_depth,
+    thematic_before: before?.evidence?.thematic_source_refs,
+    thematic_after: after?.evidence?.thematic_source_refs,
+    exact_before: before?.evidence?.exact_source_refs,
+    exact_after: after?.evidence?.exact_source_refs
+  }))
 }, null, 2));
 console.log('BOHEM_GENERATOR_DEBUG_END');
 process.stderr.write('BOHEM_GENERATOR_PROBE_VISIBLE\\n');
