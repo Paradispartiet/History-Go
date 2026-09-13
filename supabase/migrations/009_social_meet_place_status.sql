@@ -8,6 +8,31 @@ alter table public.hg_profiles
   add column if not exists current_place_visible_until timestamptz,
   add column if not exists current_place_consent_version text;
 
+-- The existing hg_profiles updated_at trigger is profile freshness, not presence freshness.
+-- Restrict it to profile/account fields so toggling temporary place status cannot
+-- leak an activation timestamp through the public profileUpdatedAt field.
+drop trigger if exists set_hg_profiles_updated_at on public.hg_profiles;
+create trigger set_hg_profiles_updated_at
+  before update of
+    display_name,
+    avatar_url,
+    public_home_place_id,
+    social_user_id,
+    profile_id,
+    short_bio,
+    preferred_themes,
+    favorite_eras,
+    interest_places,
+    learning_goals,
+    knowledge_badges,
+    knowledge_fingerprint_summary,
+    profile_visibility,
+    consent_version,
+    consented_at,
+    deleted_at
+  on public.hg_profiles
+  for each row execute function public.set_updated_at();
+
 create index if not exists hg_profiles_current_place_status_idx
   on public.hg_profiles (current_place_id, current_place_visible_until)
   where current_place_id is not null
