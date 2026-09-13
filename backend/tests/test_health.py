@@ -114,3 +114,35 @@ def test_lifespan_disposes_database_boundary() -> None:
 
     with TestClient(app) as client:
         assert client.get("/api/v1/health/live").status_code == 200
+
+
+def test_cors_allows_canonical_history_go_origin_only() -> None:
+    client = TestClient(
+        create_app(
+            Settings(
+                environment="test",
+                cors_allowed_origins="https://paradispartiet.github.io",
+            )
+        )
+    )
+
+    allowed = client.options(
+        "/api/v1/health/live",
+        headers={
+            "Origin": "https://paradispartiet.github.io",
+            "Access-Control-Request-Method": "GET",
+            "Access-Control-Request-Headers": "Authorization",
+        },
+    )
+    assert allowed.status_code == 200
+    assert allowed.headers["access-control-allow-origin"] == "https://paradispartiet.github.io"
+
+    denied = client.options(
+        "/api/v1/health/live",
+        headers={
+            "Origin": "https://example.invalid",
+            "Access-Control-Request-Method": "GET",
+            "Access-Control-Request-Headers": "Authorization",
+        },
+    )
+    assert "access-control-allow-origin" not in denied.headers
