@@ -66,8 +66,8 @@ assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['gallerivanker_apningshjelp']);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 22,
-  needs_authored_depth: 137,
+  ready: 23,
+  needs_authored_depth: 136,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.completed_life_position_role_worlds, 23);
