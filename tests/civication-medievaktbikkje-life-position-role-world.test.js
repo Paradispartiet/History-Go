@@ -135,7 +135,8 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'by/byflanor',
   'scenekunst/scenehenger',
   'sport/klubbmenneske',
-  'vitenskap/maker'
+  'vitenskap/maker',
+  'subkultur/gangster'
 ]);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
