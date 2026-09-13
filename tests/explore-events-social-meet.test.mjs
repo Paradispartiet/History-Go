@@ -42,7 +42,7 @@ test("index laster de faktiske Events-, Social Meet- og PlaceCard-runtimene", ()
   assert.match(index, /js\/config\.js\?v=20260912-onsite-under-explore1/);
   assert.match(index, /css\/place-onsite-surface\.css\?v=20260912-live-surfaces2/);
   assert.match(index, /js\/ui\/header-menu\.js\?v=20260912-onsite-under-explore1/);
-  assert.match(index, /js\/app\.js\?v=20260913-meet-people1/);
+  assert.match(index, /js\/app\.js\?v=20260913-social-ready1/);
 });
 
 test("header-Møtes åpner Social Meet direkte og er ikke avhengig av Utforsk", () => {
