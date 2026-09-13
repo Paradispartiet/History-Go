@@ -1,0 +1,234 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "tollboden_oslo",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollboden_oslo.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Tollboden var tollanleggets stedbundne administrasjons- og kontrollbygg og inngår i dag i et fredet administrativt tollanlegg.",
+    "anchorType": "economic_institution",
+    "placeObjectDistinction": "Analysen gjelder administrasjonsbygningen Tollboden og dens dokumenterte kontor-, arkiv- og kontrollfunksjoner, ikke Tollpakkhusets lager- og varebehandling, Tollbukaia eller Tolletaten som landsdekkende organisasjon.",
+    "temporalScope": {
+      "start": "1891",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Perioden følger oppføring, dokumenterte administrative bruksendringer, tollbruk frem til 2016 og senere hovedkontorbruk."
+    },
+    "sourceIds": [
+      "source_riks_plan",
+      "source_riks_hq",
+      "source_sikt"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_havn_transport",
+      "siteSpecificRationale": "Tollboden var administrativt knyttet til sjøtollstedet ved havna, men analysen skiller kontorarbeidet fra kaiens fysiske vareflyt.",
+      "caseIds": ["case_tollboden_administrative_control"]
+    },
+    {
+      "emneId": "em_naering_logistikk_verdikjeder",
+      "siteSpecificRationale": "Registrering, dokumentasjon og kontroll i Tollboden var et administrativt ledd i den regulerte varekjeden.",
+      "caseIds": ["case_tollboden_administrative_control"]
+    },
+    {
+      "emneId": "em_naering_arbeid_verdiskaping",
+      "siteSpecificRationale": "Kontorer, arkiv, bibliotek og sikre rom dokumenterer organisering av administrativt arbeid i bygningen.",
+      "caseIds": ["case_tollboden_administrative_control"]
+    },
+    {
+      "emneId": "em_naering_risiko_regulering",
+      "siteSpecificRationale": "Tollforvaltning, arkiv og ildfaste pengeskaprom viser hvordan kontroll, dokumentasjon og sikker oppbevaring inngikk i handelens regulering.",
+      "caseIds": ["case_tollboden_administrative_control"]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_riks_plan",
+      "url": "https://riksantikvaren.no/content/uploads/2019/10/tollbugata1a252coslotollbod.pdf",
+      "sourceLocation": "Tollboden – historikk, planløsning og bruksendringer",
+      "sourceType": "official",
+      "verifiedAt": "2026-09-12",
+      "temporalCoverage": "mixed",
+      "provenance": "Riksantikvarens forvaltningsplan for det statlige kulturhistoriske tollanlegget.",
+      "limitations": "Planen dokumenterer bygg, rom og funksjoner, men gir ikke tidsserier for bemanning, saksvolum, kostnader eller inntekter."
+    },
+    {
+      "id": "source_riks_fredning",
+      "url": "https://riksantikvaren.no/content/uploads/2019/10/8.tollbugata1aoslo3.pdf",
+      "sourceLocation": "Fredningsdokument – avgrensning, arkitektur og kulturhistorisk verdi",
+      "sourceType": "official",
+      "verifiedAt": "2026-09-12",
+      "temporalCoverage": "mixed",
+      "provenance": "Riksantikvarens formelle dokumentasjon av det fredede tollanlegget.",
+      "limitations": "Fredningsgrunnlaget dokumenterer kulturhistorisk verdi, ikke økonomiske resultatmål."
+    },
+    {
+      "id": "source_riks_hq",
+      "url": "https://riksantikvaren.no/eksempelsamling/to-fredede-bygninger-blir-til-tolldirektorates-hovedkontor/",
+      "sourceLocation": "rehabilitering og Tolldirektoratets hovedkontor",
+      "sourceType": "official",
+      "verifiedAt": "2026-09-12",
+      "temporalCoverage": "current",
+      "provenance": "Riksantikvarens eksempelsamling for rehabilitering av de fredede tollbygningene.",
+      "limitations": "Prosjektpresentasjonen beskriver vern og administrativ bruk, ikke løpende driftsdata eller publikums tollklarering."
+    },
+    {
+      "id": "source_sikt",
+      "url": "https://forvaltningsdatabasen.sikt.no/en/data/organisasjon/880455702?aar=2026",
+      "sourceLocation": "TOLLETATEN 2026 – key information",
+      "sourceType": "registry",
+      "verifiedAt": "2026-09-12",
+      "temporalCoverage": "current",
+      "provenance": "Sikts statlige organisasjonsdatabase med Enhetsregister-opplysninger for Tolletaten.",
+      "limitations": "Forretningsadresse dokumenterer organisasjonstilknytning, ikke hvilke tjenester som utføres i hvert bygg."
+    },
+    {
+      "id": "source_toll_current",
+      "url": "https://www.toll.no/no/om-oss/kontakt-oss/ekspedisjonssteder/oslo",
+      "sourceLocation": "Oslo – ekspedisjonssteder",
+      "sourceType": "official",
+      "verifiedAt": "2026-09-12",
+      "temporalCoverage": "current",
+      "provenance": "Tolletatens egen oppdaterte oversikt over operative ekspedisjonssteder.",
+      "limitations": "Siden avgrenser nåværende tjenestesteder, men beskriver ikke detaljert Tollbodens historiske administrasjon."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_tollboden_administrative_control",
+      "claim": "Tollboden samlet administrasjon, registrering, arkiv, sikker oppbevaring og institusjonell kontroll i et eget bygg ved sjøtollstedet.",
+      "unitOfAnalysis": {
+        "unit": "Tollboden i Tollbugata 1A",
+        "boundary": "Analysen gjelder den separate administrasjonsbygningen og dokumenterte administrative funksjoner, ikke Tollpakkhusets veieboder, vareheiser, porter eller lagerarbeid.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1891",
+          "end": "2016",
+          "precision": "period",
+          "rationale": "Perioden dekker oppføring, dokumenterte kontor- og forvaltningsendringer og historisk tollbruk frem til 2016."
+        },
+        "sourceIds": ["source_riks_plan", "source_riks_fredning", "source_riks_hq"]
+      },
+      "actors": [
+        {
+          "name": "Tollvesenet og tollansatte",
+          "roleOrInterest": "Registrerte, dokumenterte, kontrollerte og forvaltet tollsaker fra kontor- og arkivrommene.",
+          "economicPosition": "Offentlig kontrollaktør med myndighet i den regulerte vareflyten.",
+          "sourceIds": ["source_riks_plan", "source_riks_fredning"]
+        },
+        {
+          "name": "Kjøpmenn, vareeiere og transportører",
+          "roleOrInterest": "Var avhengige av administrativ tollbehandling før varer kunne gå videre.",
+          "economicPosition": "Private handels- og transportaktører møtte statens registrerings- og kontrollledd.",
+          "sourceIds": ["source_riks_plan"]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Dokumenter, registreringer, kontorer, arkiv, bibliotek, sikre rom og administrativ arbeidskraft var innsatsfaktorer i tollforvaltningen.",
+            "sourceIds": ["source_riks_plan"]
+          }
+        ],
+        "activity": {
+          "statement": "Tollsaker ble registrert, kontrollert, dokumentert, arkivert og administrativt fulgt opp i bygningen.",
+          "sourceIds": ["source_riks_plan", "source_riks_fredning"]
+        },
+        "outputs": [
+          {
+            "statement": "Den dokumenterte tjenesten ga et administrativt beslutnings- og kontrollgrunnlag for regulert vareførsel.",
+            "sourceIds": ["source_riks_plan", "source_riks_fredning"]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene dokumenterer funksjonskjeden og romlig organisering, men ikke nok tall til å beregne produktivitet, behandlingstid eller økonomisk avkastning.",
+          "sourceIds": ["source_riks_plan"]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_infrastrukturanalyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Romprogram, sikre pengeskaprom, arkiv og senere kontorombygginger brukes som fysiske indikatorer på administrativ kapasitet og organisering.",
+        "unit": "dokumenterte romtyper og funksjonsendringer",
+        "period": "1891–2008",
+        "comparability": "Opprinnelig plan og senere bruksendringer kan sammenholdes som funksjonelle bygningsfaser, men er ikke en konsistent kvantitativ serie.",
+        "dataLimitations": "Kildene oppgir ikke antall ansatte per rom, saksvolum, behandlingstid, beløp, kostnader eller utnyttelsesgrad.",
+        "sourceIds": ["source_riks_plan"]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Tollvesenet kontrollerte det offentlige administrative leddet; dagens etatstilknytning skal ikke projiseres bakover som en uendret organisasjonsform.",
+        "laborPosition": "Tollansatte utførte administrasjon og kontroll, mens kildene ikke gir grunnlag for detaljer om lønn, arbeidstid eller forhandlingsmakt.",
+        "beneficiaries": [
+          "Handelsaktører fikk varer behandlet gjennom et formalisert tollsystem.",
+          "Staten fikk et fysisk sted for registrering, kontroll og forvaltning av vareførsel."
+        ],
+        "costRiskBearers": [
+          "Vareeiere og transportører kunne bære kostnader og tidsrisiko ved administrativ kontroll.",
+          "Tollmyndigheten bar drifts-, sikkerhets- og forvaltningsansvar for kontrollinfrastrukturen."
+        ],
+        "sourceIds": ["source_riks_plan", "source_riks_fredning"]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Tollforvaltningen var avhengig av korrekt registrering, dokumentkontroll, arkiv og sikker oppbevaring; ildfaste rom viser et fysisk svar på oppbevaringsrisiko.",
+          "sourceIds": ["source_riks_plan"]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene dokumenterer administrasjon, kontroll og bygningsbruk, men gir ikke robust grunnlag for å tallfeste eller attribuere stedets eksterne virkninger."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Det opprinnelige administrative romprogrammet sammenholdes med dokumenterte ombygginger i 1979, rundt 1990–2000 og i 2008.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Kildene viser at rombruk og administrative funksjoner ble endret, men isolerer ikke én sikker årsak eller en målt produktivitetseffekt.",
+        "alternativeExplanations": [
+          "Endrede arbeidsrutiner, organisasjonsbehov, teknologi og publikumsfunksjoner kan alle ha påvirket ombyggingene."
+        ],
+        "uncertainty": "Bygningshistorien viser rekkefølge og funksjonsendringer, men ikke kontrafaktisk årsaksvirkning eller økonomisk avkastning.",
+        "sourceIds": ["source_riks_plan", "source_sikt"]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "mixed",
+    "statement": "Den historiske tolladministrasjonen er omformet; Tollboden inngår i et fredet anlegg tilpasset Tolldirektoratets hovedkontor, mens publikums ekspedisjonssteder i Oslo er oppført andre steder.",
+    "originalEconomicRoleRelationship": "Dagens administrative bruk viderefører tollinstitusjonens tilknytning til stedet, men dokumenterer ikke at alle historiske tollfunksjoner eller publikumstjenester fortsatt utføres i Tollboden.",
+    "checkedAt": "2026-09-12",
+    "sourceIds": ["source_riks_hq", "source_sikt", "source_toll_current"]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "tollboden_oslo",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/naeringsliv/tollboden_oslo.json",
+    "productionContext": "data/quiz/production_context/naeringsliv/tollboden_oslo.json",
+    "requiredInputs": [
+      "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Chronology er materialisert i leksikonets tidslinje. Story er vurdert, men ikke tvunget inn fordi kildene bærer et flertrinns administrativt funksjonsforløp."
+  },
+  "gates": {
+    "A": {"status": "PASS", "evidenceRefs": ["data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollboden_oslo.json", "data/places/production/tollboden_oslo.json"]},
+    "B": {"status": "PASS", "evidenceRefs": ["data/leksikon/places/oslo/naeringsliv/leksikon_tollboden_oslo.json", "data/quiz/production_briefs/naeringsliv/tollboden_oslo.json"]},
+    "C": {"status": "PASS", "evidenceRefs": ["data/quiz/production_briefs/naeringsliv/tollboden_oslo.json", "data/quiz/production_context/naeringsliv/tollboden_oslo.json"]},
+    "D": {"status": "PASS", "evidenceRefs": ["data/people/naeringsliv/oslo/tollboden/adolf_schirmer.json", "data/brands/brands_master.json"]},
+    "E": {"status": "PASS", "evidenceRefs": ["data/places/naeringsliv-production/tollboden_oslo.json", "data/leksikon/places/oslo/naeringsliv/leksikon_tollboden_oslo.json"]},
+    "F": {"status": "PASS", "evidenceRefs": ["https://riksantikvaren.no/content/uploads/2019/10/tollbugata1a252coslotollbod.pdf", "https://forvaltningsdatabasen.sikt.no/en/data/organisasjon/880455702?aar=2026", "https://www.toll.no/no/om-oss/kontakt-oss/ekspedisjonssteder/oslo"]},
+    "G": {"status": "PASS", "evidenceRefs": ["data/leksikon/sprak/places/europe/norway/oslo/tollboden_oslo.json"]},
+    "H": {"status": "PASS", "evidenceRefs": ["data/quiz/naeringsliv/tollboden_oslo_sets.json"]}
+  },
+  "review": {
+    "reviewer": "History Go Tollboden production closure",
+    "reviewedAt": "2026-09-12",
+    "notes": "Fail-closed Næringsliv-rapport for administrasjon, registrering, kontroll og ombruk. Ingen Tollpakkhuset-funksjoner, udokumentert throughput, lønnsomhet eller kausalitet hevdes."
+  }
+}

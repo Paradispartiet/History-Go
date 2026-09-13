@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "manual_fail_closed_v1",
+  "categoryId": "naeringsliv",
+  "targetId": "tollboden_oslo",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "category_id": "naeringsliv",
+    "target_id": "tollboden_oslo"
+  },
+  "resolved_files": {
+    "pensum": {"path": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json", "format": "json"},
+    "emner": {"path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json", "format": "json"},
+    "fagkart": {"path": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json", "format": "json"},
+    "methods": {"path": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json", "format": "json"},
+    "supersetQuizMal": {"path": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json", "format": "json"},
+    "quizStandard": {"path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md", "format": "text"},
+    "quizQuestionSchema": {"path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json", "format": "json"}
+  },
+  "required_inputs_loaded": ["pensum", "emner", "fagkart", "methods", "supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+  "source_files": {
+    "brief": {"path": "data/quiz/production_briefs/naeringsliv/tollboden_oslo.json"},
+    "target": {"path": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollboden_oslo.json"}
+  },
+  "planned_quiz_file": "data/quiz/naeringsliv/tollboden_oslo_sets.json",
+  "source_registry": {
+    "riks_plan": {"url": "https://riksantikvaren.no/content/uploads/2019/10/tollbugata1a252coslotollbod.pdf", "source_type": "heritage_management_plan", "review_status": "reviewed"},
+    "riks_fred": {"url": "https://riksantikvaren.no/content/uploads/2019/10/8.tollbugata1aoslo3.pdf", "source_type": "heritage_protection_record", "review_status": "reviewed"},
+    "riks_stair": {"url": "https://riksantikvaren.no/eksempelsamling/nytt-trappelop-forlenger-opprinnelig-trapp-i-tollboden/", "source_type": "heritage_reuse_case", "review_status": "reviewed"},
+    "riks_entry": {"url": "https://riksantikvaren.no/eksempelsamling/nytt-inngangsparti/", "source_type": "heritage_reuse_case", "review_status": "reviewed"},
+    "riks_hq": {"url": "https://riksantikvaren.no/eksempelsamling/to-fredede-bygninger-blir-til-tolldirektorates-hovedkontor/", "source_type": "heritage_reuse_case", "review_status": "reviewed"},
+    "nbl": {"url": "https://nbl.snl.no/Adolf_Schirmer", "source_type": "recognized_reference", "review_status": "reviewed"}
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": ["data/quiz/manifest.json", "data/quiz/naeringsliv", "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollboden_oslo.json"],
+    "active_before": {"finding": "Ingen aktiv canonical kildeledet 3x7-pakke for Tollboden var registrert før denne produksjonen."},
+    "decisions": ["Materialiser én canonical narrow 3x7-pakke.", "Bevar de første fjorten spørsmålene som direkte stedskunnskap.", "Legg metodebinding først i siste sett.", "Ikke gjenbruk Tollpakkhusets lager- og heisstoff."],
+    "knowledge_migration": "Knowledge-identiteter materialiseres og valideres før closure; ingen uverifisert linked-status settes i mellomtilstanden."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Tre læringsjobber dekker administrasjonsbygget, tidslag/ombruk og avsluttende analyse av offentlig kontrollinfrastruktur uten filler."
+  },
+  "held_back_candidates": ["Femte tollbod som sentral vurderingsfakta uten eksplisitt kildebevis.", "Tollpakkhusets veieboder, vareheiser eller pakkhusporter.", "Påstand om at publikumsekspedisjonen dokumentert i 2008 fortsatt drives i bygget i 2026."],
+  "considered_curriculum": {
+    "candidate_emner": ["em_naering_havn_transport", "em_naering_logistikk_verdikjeder", "em_naering_arbeid_verdiskaping", "em_naering_risiko_regulering"],
+    "candidate_methods": ["met_naering_infrastrukturanalyse", "met_naering_arbeidslivsanalyse", "met_naering_byhistorisk_naeringsanalyse"]
+  },
+  "selected_curriculum": {
+    "module_ids": ["arbeid_produksjon_verdiskaping", "kapital_eierskap_finans", "logistikk_infrastruktur_rom"],
+    "emne_ids": ["em_naering_havn_transport", "em_naering_logistikk_verdikjeder", "em_naering_arbeid_verdiskaping", "em_naering_risiko_regulering"],
+    "topic_hook_ids": ["arbeid_som_verdiskaping"],
+    "method_ids": ["met_naering_infrastrukturanalyse", "met_naering_arbeidslivsanalyse", "met_naering_byhistorisk_naeringsanalyse"],
+    "thinker_ids": [],
+    "works": []
+  },
+  "theory_start_phase": "final",
+  "method_start_phase": "final",
+  "normal_opening_questions_preserved": 14,
+  "status": "materialized_context_pending_quiz_and_knowledge_regeneration"
+}
