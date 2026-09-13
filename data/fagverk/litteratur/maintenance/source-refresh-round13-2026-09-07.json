@@ -1,0 +1,175 @@
+{
+  "schema": "history_go_litteratur_maintenance_source_refresh_v1",
+  "version": "1.0.0",
+  "subject_id": "litteratur",
+  "round_id": "source_refresh_round13_2026_09_07",
+  "baseline_main_sha": "4762a6f30715e7b69eda549ed30a4537ca62693c",
+  "checked_at": "2026-09-07",
+  "status": "verified",
+  "scope": {
+    "area_id": "kjonn_feminisme_queer",
+    "canonical_source_mutation": true,
+    "new_strict_subcategory": false,
+    "place_production": false,
+    "maintenance_evidence_only": false,
+    "replacement_policy": "replace_only_when_same-resource-or-authoritative-successor-url-is-verified"
+  },
+  "source_checks": [
+    {
+      "claims_source_id": "gf01",
+      "title": "Gender Trouble",
+      "publisher": "Routledge",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.routledge.com/Gender-Trouble-Feminism-and-the-Subversion-of-Identity/Butler/p/book/9780415389556",
+      "evidence": "Routledge currently serves the exact canonical ISBN endpoint for Gender Trouble with the title, author, description and table of contents.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "gf02",
+      "title": "Bodies That Matter",
+      "publisher": "Routledge",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.routledge.com/Bodies-That-Matter-On-the-Discursive-Limits-of-Sex/Butler/p/book/9780415610155",
+      "evidence": "Routledge currently serves the exact canonical ISBN endpoint for Bodies That Matter with the same title, author and description.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "gf03",
+      "title": "Undoing Gender",
+      "publisher": "Routledge",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.routledge.com/Undoing-Gender/Butler/p/book/9780415969239",
+      "evidence": "Routledge currently serves the exact canonical ISBN endpoint for Undoing Gender with the same title, author and description.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "gf04",
+      "title": "Et dukkehjem",
+      "publisher": "Henrik Ibsens skrifter, Universitetet i Oslo",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://ibsen.uio.no/VERK_Du.html",
+      "evidence": "Henrik Ibsens skrifter continues to expose authoritative Et dukkehjem material, while this exact legacy HTML endpoint is not reliably crawlable. No same-resource successor mapping is proven, so the canonical URL is retained fail-closed.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "gf05",
+      "title": "Et dukkehjem – innledning",
+      "publisher": "Henrik Ibsens skrifter, Universitetet i Oslo",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://www.ibsen.uio.no/DRINNL_Du%7Cintro_background.xhtml",
+      "evidence": "Henrik Ibsens skrifter currently exposes the scholarly introduction to Et dukkehjem in its authoritative archive, but the exact canonical XHTML endpoint is not reliably crawlable. No replacement is justified without an explicit same-resource successor mapping.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "gf06",
+      "title": "Et dukkehjem – tre versjoner",
+      "publisher": "Henrik Ibsens skrifter, Universitetet i Oslo",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://www.ibsen.uio.no/DF_Dukkehjem.html",
+      "evidence": "Henrik Ibsens skrifter remains the authoritative host for the Et dukkehjem textual material, while the exact comparison endpoint is not reliably crawlable. No same-resource successor URL is proven, so the canonical endpoint is retained.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "gf07",
+      "title": "Demarginalizing the Intersection of Race and Sex",
+      "publisher": "Columbia Law School",
+      "verification_state": "verified_live",
+      "canonical_url": "https://scholarship.law.columbia.edu/faculty_scholarship/3007/",
+      "evidence": "Columbia Law School currently serves the exact canonical faculty-scholarship record for Crenshaw's 1989 article with abstract and recommended citation.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "gf08",
+      "title": "Intersectionality: Mapping the Movements of a Theory",
+      "publisher": "Columbia Law School",
+      "verification_state": "verified_live",
+      "canonical_url": "https://scholarship.law.columbia.edu/faculty_scholarship/2779/",
+      "evidence": "Columbia Law School currently serves the exact canonical faculty-scholarship record for the 2013 intersectionality article with abstract and citation metadata.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "gf09",
+      "title": "Kimberlé Crenshaw – faculty profile",
+      "publisher": "Columbia Law School",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.law.columbia.edu/faculty/kimberle-w-crenshaw",
+      "evidence": "Columbia Law School currently serves the exact faculty profile and identifies Crenshaw's work in Critical Race Theory, intersectionality, feminism and law.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "gf10",
+      "title": "The Feminist Press – About",
+      "publisher": "The Feminist Press",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://feministpress.org/about/",
+      "canonical_url": "https://feministpress.org/pages/about",
+      "evidence": "The Feminist Press now serves its authoritative About page at /pages/about. The current page preserves the same publisher identity and documents the press's mission, 1970 founding, recovery work, marginalized voices and editorial vision, making it the same-publisher successor to the legacy /about/ path.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "gf11",
+      "title": "Toni Morrison – Facts",
+      "publisher": "Nobel Prize Outreach",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://www.nobelprize.org/prizes/literature/1993/morrison/facts/",
+      "evidence": "The current Nobel Prize Toni Morrison page exposes the Facts content and explicitly gives the canonical /facts/ citation URL, while direct crawling of that exact endpoint is restricted. The source identity is current and replacement is unnecessary.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "gf12",
+      "title": "Giovanni’s Room",
+      "publisher": "Penguin Random House",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://www.penguinrandomhouse.com/books/7753/giovannis-room-by-james-baldwin/",
+      "evidence": "Penguin Random House-owned current records still identify Giovanni's Room, including the Vintage International 2013 paperback ISBN 9780345806567 and the same 1950s Paris work. However, no authoritative mapping proves that legacy public book ID 7753 corresponds to one specific current PRH public book ID. The URL is therefore retained fail-closed rather than guessed to a new product ID.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "gf13",
+      "title": "The Handmaid’s Tale",
+      "publisher": "Penguin Random House",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.penguinrandomhouse.com/books/6125/the-handmaids-tale-by-margaret-atwood/",
+      "canonical_url": "https://www.penguinrandomhouse.com/books/557793/the-handmaids-tale-movie-tie-in-by-margaret-atwood/",
+      "evidence": "Penguin Random House's current product family 557793 includes the Anchor/Vintage paperback published 16 March 1998, the same legacy edition family associated with old PRH book ID 6125, and preserves the Gilead/Offred presentation plus current reading-guide material. This is a verified same-publisher successor rather than a title-only substitution.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "gf14",
+      "title": "Critical Race Theory: The Key Writings",
+      "publisher": "Columbia Law School",
+      "verification_state": "verified_live",
+      "canonical_url": "https://scholarship.law.columbia.edu/books/101/",
+      "evidence": "Columbia Law School currently serves the exact canonical Faculty Books record with publication metadata, description, ISBN and recommended citation.",
+      "action": "retain_canonical_url"
+    }
+  ],
+  "materialization": {
+    "replacement_targets": [
+      "data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/kjonn_feminisme_queer/claims.json",
+      "scripts/materialize-litteratur-power-ecology-full-fields-v1.mjs",
+      "data/quiz/litteratur/litteratur_subject_pathways_v1.json",
+      "data/knowledge/subjects/litteratur/knowledge_units.generated.json"
+    ]
+  },
+  "summary": {
+    "canonical_sources_checked": 14,
+    "verified_live": 7,
+    "verified_identity_endpoint_restricted": 5,
+    "verified_authoritative_replacement": 2,
+    "canonical_url_replacements": 2
+  },
+  "quality_gates": {
+    "all_14_area_sources_accounted_for": true,
+    "two_authoritative_replacements_materialized": true,
+    "replacement_identity_preserved": true,
+    "gf12_legacy_id_retained_fail_closed": true,
+    "canonical_source_ids_preserved": true,
+    "pathway_source_count_preserved": true,
+    "claim_provenance_scope_unchanged": true,
+    "theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true,
+    "completion_status_preserved": true,
+    "knowledge_provenance_checked_source_id_aware": true
+  }
+}
