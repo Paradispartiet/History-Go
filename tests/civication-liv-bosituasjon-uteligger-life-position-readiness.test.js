@@ -51,5 +51,5 @@ assert.match(world.sociological_core.description, /ingen ny runtime/);
 assert.equal(index.roles.length, 105);
 assert.equal(index.roles.filter((x)=>x.subject_type==='life_position').length, 20);
 assert.equal(index.status, '105_role_worlds_materialized');
-assert.deepEqual(index.summary, { role_worlds_total:104, career_role_worlds:85, life_position_role_worlds:19 });
+assert.deepEqual(index.summary, { role_worlds_total:105, career_role_worlds:85, life_position_role_worlds:20 });
 console.log('civication Liv bosituasjon Uteligger readiness + Role World ok: 56/56 / 14 anchors / 105 total / 20 life-position worlds');
