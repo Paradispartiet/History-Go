@@ -1,0 +1,136 @@
+name: TEMP Kunstnerforbundet R6 People materialization
+
+on:
+  push:
+    branches:
+      - agent/kunstnerforbundet-people-r6-20260913
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/kunstnerforbundet-people-r6-20260913
+          fetch-depth: 1
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+
+      - name: Materialize licensed Henrik Sørensen portrait
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p bilder/kort/people
+          curl --fail --location --retry 3 \
+            'https://commons.wikimedia.org/wiki/Special:Redirect/file/Henrik%20S%C3%B8rensen%20OB.F06440.jpg' \
+            -o /tmp/henrik_sorensen.jpg
+          python - <<'PY'
+          from PIL import Image
+          src = '/tmp/henrik_sorensen.jpg'
+          dst = 'bilder/kort/people/henrik_sorensen_kunstnerforbundet.webp'
+          with Image.open(src) as im:
+              im = im.convert('RGB')
+              assert im.size == (878, 1198), im.size
+              im.save(dst, 'WEBP', quality=90, method=6)
+              print(f'portrait={im.size[0]}x{im.size[1]}')
+          PY
+
+      - name: Register People file in manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('data/people/manifest.json')
+          data = json.loads(path.read_text())
+          entry = 'people/kunst/oslo/henrik_sorensen.json'
+          files = data['files']
+          if entry not in files:
+              anchor = 'people/kunst/oslo/dyre_vaa.json'
+              if anchor in files:
+                  files.insert(files.index(anchor) + 1, entry)
+              else:
+                  files.append(entry)
+          path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+          PY
+
+      - name: Validate People profile before derived builds
+        run: npm run audit:people-profile-canonical
+
+      - name: Build Civication history People index
+        run: npm run civication:history-people:build
+
+      - name: Build People of Places reports
+        run: npm run audit:people-of-places
+
+      - name: Check Civication history People index
+        run: npm run civication:history-people:check
+
+      - name: Probe place-open materialization
+        run: npm run place-open:build
+
+      - name: Guard R6 derived scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t changed < <(git status --short | awk '{print $2}' | sort)
+          printf 'Changed/untracked files:\n%s\n' "${changed[*]:-<none>}"
+          allowed=(
+            'bilder/kort/people/henrik_sorensen_kunstnerforbundet.webp'
+            'data/Civication/historyPeople_index.json'
+            'data/people/manifest.json'
+            'data/runtime/place-open/kunstnerforbundet.json'
+            'reports/people-of-places-status.json'
+            'reports/people-of-places-status.md'
+          )
+          for file in "${changed[@]}"; do
+            ok=0
+            for candidate in "${allowed[@]}"; do
+              if [[ "$file" == "$candidate" ]]; then ok=1; break; fi
+            done
+            if [[ $ok -ne 1 ]]; then
+              echo "Unexpected R6 derived file: $file" >&2
+              exit 1
+            fi
+          done
+          for required in \
+            bilder/kort/people/henrik_sorensen_kunstnerforbundet.webp \
+            data/people/manifest.json \
+            data/Civication/historyPeople_index.json \
+            reports/people-of-places-status.json \
+            reports/people-of-places-status.md; do
+            if ! printf '%s\n' "${changed[@]}" | grep -Fxq "$required"; then
+              echo "Required R6 derived file missing: $required" >&2
+              exit 1
+            fi
+          done
+
+      - name: Commit derived R6 files and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/tmp-kunstnerforbundet-r6-people-materialize.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/kort/people/henrik_sorensen_kunstnerforbundet.webp data/people/manifest.json data/Civication/historyPeople_index.json reports/people-of-places-status.json reports/people-of-places-status.md .github/workflows/tmp-kunstnerforbundet-r6-people-materialize.yml
+          if [[ -n "$(git status --porcelain data/runtime/place-open/kunstnerforbundet.json)" ]]; then
+            git add data/runtime/place-open/kunstnerforbundet.json
+          fi
+          git commit -m "Materialize Kunstnerforbundet People R6"
+          git push origin HEAD:agent/kunstnerforbundet-people-r6-20260913
