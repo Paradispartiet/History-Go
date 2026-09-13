@@ -91,4 +91,4 @@ assert.match(credit.situation.join(' '), /gir ikke automatisk kunstner-. kurator
 const money = stream.storylets.find((x)=>x.id==='regningen_etter_kvelden');
 assert.match(money.situation.join(' '), /Ustabil økonomi|romantiseres/i);
 
-console.log('civication Liv alternativ Bohem Role World ok: 56/56 / 14 anchors / 101 total / 16 life-position worlds');
+console.log('civication Liv alternativ Bohem Role World ok: 56/56 / 14 anchors / 102 total / 17 life-position worlds');
