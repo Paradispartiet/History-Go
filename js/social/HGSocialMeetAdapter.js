@@ -14,16 +14,27 @@
   const FORBIDDEN_LOOKUP = new Set(FORBIDDEN.map(x => x.toLowerCase()));
   const MATCH_REASON_LABELS = Object.freeze({
     contextInterestPlace:'Har valgt dette stedet som interesse',
+    context_interest_place:'Har valgt dette stedet som interesse',
     contextTheme:'Matcher temaet her',
+    context_theme:'Matcher temaet her',
     contextEra:'Deler interesse for epoken',
+    context_era:'Deler interesse for epoken',
     contextTopic:'Matcher kunnskapstemaet',
+    context_topic:'Matcher kunnskapstemaet',
     contextRouteCategory:'Matcher rutetemaet',
+    context_route_category:'Matcher rutetemaet',
     contextQuizTopic:'Matcher quiztemaet',
+    context_quiz_topic:'Matcher quiztemaet',
     contextLearningGoal:'Har relevant læringsmål',
+    context_learning_goal:'Har relevant læringsmål',
     placeStatus:'Har valgt å vise seg på dette stedet nå',
+    place_status:'Har valgt å vise seg på dette stedet nå',
     sharedTheme:'Dere deler tema-interesser',
+    shared_theme:'Dere deler tema-interesser',
     sharedEra:'Dere deler epoke-interesser',
-    sharedLearningGoal:'Dere deler læringsmål'
+    shared_era:'Dere deler epoke-interesser',
+    sharedLearningGoal:'Dere deler læringsmål',
+    shared_learning_goal:'Dere deler læringsmål'
   });
   let fastApiLoadPromise = null;
 
