@@ -11,14 +11,20 @@ from app.domains.social_meet.discovery_models import (
     DiscoveryContextSignals,
     DiscoveryFeatureGate,
     DiscoveryMatchReason,
+    DiscoveryMode,
     DiscoveryProfileRecord,
     RankedDiscoveryCandidate,
 )
 from app.domains.social_meet.discovery_service import (
+    SUPPORTED_PLACE_STATUS_CONSENT_VERSION,
     SocialMeetCandidateDiscoveryService,
     _gate_allows,
 )
-from app.domains.social_meet.models import ProfileVisibility, SocialMeetProfileRecord
+from app.domains.social_meet.models import (
+    PlaceStatusUpdateRequest,
+    ProfileVisibility,
+    SocialMeetProfileRecord,
+)
 from app.domains.social_meet.service import SUPPORTED_CONSENT_VERSION, SocialMeetDomainError
 from app.domains.social_meet.spotmeeting_models import SpotmeetingContextType
 
@@ -33,6 +39,37 @@ class FakeIdentityRepository:
         assert auth_user_id == self.requester.auth_user_id
         return self.requester
 
+    def set_place_status(
+        self,
+        auth_user_id: UUID,
+        *,
+        place_id: str,
+        visible_until: datetime,
+        consent_version: str,
+    ) -> SocialMeetProfileRecord:
+        assert auth_user_id == self.requester.auth_user_id
+        self.requester = SocialMeetProfileRecord(
+            **{
+                **self.requester.__dict__,
+                "current_place_id": place_id,
+                "current_place_visible_until": visible_until,
+                "current_place_consent_version": consent_version,
+            }
+        )
+        return self.requester
+
+    def clear_place_status(self, auth_user_id: UUID) -> SocialMeetProfileRecord:
+        assert auth_user_id == self.requester.auth_user_id
+        self.requester = SocialMeetProfileRecord(
+            **{
+                **self.requester.__dict__,
+                "current_place_id": None,
+                "current_place_visible_until": None,
+                "current_place_consent_version": None,
+            }
+        )
+        return self.requester
+
 
 class FakeDiscoveryRepository:
     def __init__(
@@ -44,7 +81,7 @@ class FakeDiscoveryRepository:
         self.candidates = candidates
         self.limit: int | None = None
 
-    def get_feature_gate(self) -> DiscoveryFeatureGate:
+    def get_feature_gate(self, feature_key: str = "spotmeeting_discovery") -> DiscoveryFeatureGate:
         return self.gate
 
     def rank_context_candidates(
@@ -104,6 +141,61 @@ def test_explicit_profile_cohort_bypasses_zero_percent_rollout() -> None:
     response = service.find_context_candidates(requester.auth_user_id, _request(), now=NOW)
     assert len(response.candidates) == 2
     assert response.stale_after_seconds == 300
+
+
+def test_place_status_requires_separate_consent_and_expires() -> None:
+    requester = _requester()
+    identity = FakeIdentityRepository(requester)
+    repository = FakeDiscoveryRepository(
+        DiscoveryFeatureGate(True, 100, frozenset()),
+        [],
+    )
+    service = SocialMeetCandidateDiscoveryService(
+        Settings(environment="test", spotmeeting_discovery_enabled=True),
+        identity,  # type: ignore[arg-type]
+        repository,  # type: ignore[arg-type]
+    )
+
+    state = service.set_place_status(
+        requester.auth_user_id,
+        PlaceStatusUpdateRequest(
+            place_id="akershus_festning",
+            duration_minutes=60,
+            consent_version=SUPPORTED_PLACE_STATUS_CONSENT_VERSION,
+            preview_confirmed=True,
+        ),
+        now=NOW,
+    )
+
+    assert state.active is True
+    assert state.place_id == "akershus_festning"
+    assert state.visible_until is not None
+    assert int((state.visible_until - NOW).total_seconds()) == 3600
+
+    cleared = service.clear_place_status(requester.auth_user_id)
+    assert cleared.active is False
+    assert identity.requester.current_place_id is None
+
+
+def test_place_status_discovery_requires_place_context() -> None:
+    requester = _requester()
+    service = _service(
+        requester,
+        DiscoveryFeatureGate(True, 100, frozenset()),
+        [],
+    )
+    request = ContextCandidateRequest(
+        mode=DiscoveryMode.PLACE_STATUS,
+        context=DiscoveryContextSignals(
+            context_type=SpotmeetingContextType.TOPIC,
+            context_id="urban_history",
+        ),
+    )
+
+    with pytest.raises(SocialMeetDomainError) as error:
+        service.find_context_candidates(requester.auth_user_id, request, now=NOW)
+
+    assert error.value.code == "invalid_place_status_context"
 
 
 def test_rollout_bucket_is_deterministic_and_honors_hard_bounds() -> None:
