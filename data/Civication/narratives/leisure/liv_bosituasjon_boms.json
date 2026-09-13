@@ -558,6 +558,49 @@
         "relationship_risk"
       ],
       "links": []
+    },
+    {
+      "id": "morgenkaffen",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En kafé",
+      "subject": "En rolig time",
+      "situation": [
+        "Du setter av en rolig time til å ordne dagen.",
+        "En fast liten rutine kan være nyttig også i et omflakkende liv.",
+        "Rutinen trenger ikke bli en ny identitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk timen til å skape oversikt.",
+          "effect": 1,
+          "tags": [
+            "morgenkaffen_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du gjør en liten rutine til et praktisk anker."
+        },
+        {
+          "id": "B",
+          "label": "Avvis rutinen bare fordi den føles fast.",
+          "effect": -1,
+          "tags": [
+            "morgenkaffen_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør bevegelse til et krav."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_small_anchor"
+      ],
+      "risk_links": [],
+      "links": []
     }
   ]
 }
