@@ -1,0 +1,54 @@
+KUNSTNERFORBUNDET R6 PEOPLE VALIDATOR DIAGNOSTIC
+R5_BASE=1dcb688e8a9122972ff6d0ed52462ecb44d41e49
+
+[R5_BASE] claims_json_count=94 offenders=3
+[R5_BASE] OFFENDER file=data/people/claims/by/oslo/ullern/eilif_peterssen.claims.json reason=empty_profile_file raw='' resolved=.
+[R5_BASE] OFFENDER file=data/people/claims/by/oslo/vaalerenga/synnove_finden.claims.json reason=empty_profile_file raw='' resolved=.
+[R5_BASE] OFFENDER file=data/people/claims/by/oslo/vinderen/rasmus_winderen.claims.json reason=empty_profile_file raw='' resolved=.
+[R6_CURRENT] claims_json_count=95 offenders=3
+[R6_CURRENT] OFFENDER file=data/people/claims/by/oslo/ullern/eilif_peterssen.claims.json reason=empty_profile_file raw='' resolved=.
+[R6_CURRENT] OFFENDER file=data/people/claims/by/oslo/vaalerenga/synnove_finden.claims.json reason=empty_profile_file raw='' resolved=.
+[R6_CURRENT] OFFENDER file=data/people/claims/by/oslo/vinderen/rasmus_winderen.claims.json reason=empty_profile_file raw='' resolved=.
+[R6_NEW] claims=data/people/claims/kunst/oslo/kunstnerforbundet/henrik_sorensen.claims.json profile_file=data/people/kunst/oslo/henrik_sorensen.json exists=True is_file=True
+
+R5_BASE_AUDIT_EXIT=1
+node:fs:440
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: EISDIR: illegal operation on a directory, read
+    at Object.readFileSync (node:fs:440:20)
+    at readJson (file:///tmp/r5/tools/audit-people-profile-canonical.mjs:313:24)
+    at auditRepository (file:///tmp/r5/tools/audit-people-profile-canonical.mjs:357:20)
+    at main (file:///tmp/r5/tools/audit-people-profile-canonical.mjs:377:18)
+    at file:///tmp/r5/tools/audit-people-profile-canonical.mjs:388:38
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  errno: -21,
+  code: 'EISDIR',
+  syscall: 'read'
+}
+
+Node.js v22.23.2
+
+R6_CURRENT_AUDIT_EXIT=1
+node:fs:440
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: EISDIR: illegal operation on a directory, read
+    at Object.readFileSync (node:fs:440:20)
+    at readJson (file:///home/runner/work/History-Go/History-Go/tools/audit-people-profile-canonical.mjs:313:24)
+    at auditRepository (file:///home/runner/work/History-Go/History-Go/tools/audit-people-profile-canonical.mjs:357:20)
+    at main (file:///home/runner/work/History-Go/History-Go/tools/audit-people-profile-canonical.mjs:377:18)
+    at file:///home/runner/work/History-Go/History-Go/tools/audit-people-profile-canonical.mjs:388:38
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  errno: -21,
+  code: 'EISDIR',
+  syscall: 'read'
+}
+
+Node.js v22.23.2
