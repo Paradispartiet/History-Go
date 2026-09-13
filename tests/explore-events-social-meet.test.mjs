@@ -29,7 +29,10 @@ test("Events og Møtes vises ikke som globale Utforsk-tabs", () => {
 
 test("index laster de faktiske Events-, Social Meet- og PlaceCard-runtimene", () => {
   assert.match(app, /loadHGSocialMeetUI[\s\S]*js\/social\/HGSocialMeetUI\.js\?v=20260912-live-surfaces2/);
-  assert.match(app, /loadHGSpotmeetingUI[\s\S]*js\/social\/HGSpotmeetingUI\.js\?v=20260913-meet-people1/);
+  assert.match(app, /loadHGSocialMeetSupabaseClient[\s\S]*HGSocialMeetSupabaseClient\.js\?v=20260913-social-ready1/);
+  assert.match(app, /loadHGSocialMeetAdapter[\s\S]*HGSocialMeetAdapter\.js\?v=20260913-social-ready1/);
+  assert.match(app, /loadHGSocialMeetProfileBridge[\s\S]*HGSocialMeetProfileBridge\.js\?v=20260913-social-ready1/);
+  assert.match(app, /loadHGSpotmeetingUI[\s\S]*js\/social\/HGSpotmeetingUI\.js\?v=20260913-social-ready1/);
   assert.match(app, /loadEventsRuntime[\s\S]*js\/events\/events_loader\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /loadPlaceOnsiteSurface[\s\S]*js\/ui\/place-onsite-surface\.js\?v=20260913-meet-people1/);
   assert.match(app, /loadPlaceCard[\s\S]*js\/ui\/place-card\.js\?v=20260912-live-surfaces2/);
