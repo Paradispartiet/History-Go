@@ -76,15 +76,24 @@ class SocialMeetCandidateDiscoveryService:
                 )
 
         limit = min(request.limit, self._settings.spotmeeting_discovery_max_candidates)
-        ranked = self._discovery_repository.rank_context_candidates(
-            requester_profile_id=requester_profile_id,
-            context=request.context,
-            supported_consent_version=SUPPORTED_CONSENT_VERSION,
-            place_status_consent_version=SUPPORTED_PLACE_STATUS_CONSENT_VERSION,
-            mode=request.mode,
-            now=generated_at,
-            limit=limit,
-        )
+        if request.mode is DiscoveryMode.PLACE_STATUS:
+            ranked = self._discovery_repository.rank_context_candidates(
+                requester_profile_id=requester_profile_id,
+                context=request.context,
+                supported_consent_version=SUPPORTED_CONSENT_VERSION,
+                place_status_consent_version=SUPPORTED_PLACE_STATUS_CONSENT_VERSION,
+                mode=request.mode,
+                now=generated_at,
+                limit=limit,
+            )
+        else:
+            ranked = self._discovery_repository.rank_context_candidates(
+                requester_profile_id=requester_profile_id,
+                context=request.context,
+                supported_consent_version=SUPPORTED_CONSENT_VERSION,
+                now=generated_at,
+                limit=limit,
+            )
         return ContextCandidateResponse(
             mode=request.mode,
             context_type=request.context.context_type,
