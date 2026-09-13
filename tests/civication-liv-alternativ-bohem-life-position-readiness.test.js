@@ -23,7 +23,7 @@ assert.deepEqual(row.evidence.livelihood_templates, []);
 assert.equal(row.evidence.livelihood_ref, null);
 assert.ok(!audit.queue.some((item)=>item.key==='liv_alternativ/bohem'));
 assert.equal(audit.summary.classifications.ready, 17);
-assert.equal(audit.summary.classifications.needs_authored_depth, 143);
+assert.equal(audit.summary.classifications.needs_authored_depth, 142);
 assert.equal(audit.summary.completed_life_position_role_worlds, 17);
 assert.equal(audit.summary.life_position_role_world_complete, 17);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
