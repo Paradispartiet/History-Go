@@ -513,6 +513,51 @@
         "psyche_risk"
       ],
       "links": []
+    },
+    {
+      "id": "tingene_du_barer",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Sekken din",
+      "subject": "Få ting krever også ansvar",
+      "situation": [
+        "Sekken har blitt tyngre og enkelte eiendeler ligger hos venner.",
+        "Et lett liv kan ellers flytte lagring og ansvar til mennesker rundt deg.",
+        "Lite eierskap handler også om hvor ting faktisk oppbevares."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sorter, gi bort eller avtal oppbevaring tydelig.",
+          "effect": 1,
+          "tags": [
+            "tingene_du_barer_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du gjør lavt forbruk til en faktisk praksis."
+        },
+        {
+          "id": "B",
+          "label": "La små mengder ligge spredt uten tydelige avtaler.",
+          "effect": -1,
+          "tags": [
+            "tingene_du_barer_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør andres plass til usynlig lager."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_belongings_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
     }
   ]
 }
