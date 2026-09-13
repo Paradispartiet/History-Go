@@ -48,7 +48,7 @@ assert.ok(world.private_aftermath.length >= 4);
 assert.ok(world.delayed_consequences.length >= 6);
 assert.match(world.sociological_core.description, /ufrivillig bostedsløshet/);
 assert.match(world.sociological_core.description, /ingen ny runtime/);
-assert.equal(index.roles.length, 105);
+assert.equal(index.roles.length, 106);
 assert.equal(index.roles.filter((x)=>x.subject_type==='life_position').length, 21);
 assert.equal(index.status, '106_role_worlds_materialized');
 assert.deepEqual(index.summary, { role_worlds_total: 106, career_role_worlds:85, life_position_role_worlds: 21 });
