@@ -109,6 +109,12 @@ for (const required of ['season', 'primary_threads', 'private_aftermath', 'delay
 const requiredNpcFields = new Set(policy.npc_required_fields);
 const validPhases = new Set(policy.season_contract.day_phases);
 const allowedBeatTypes = new Set(policy.season_contract.allowed_beat_types);
+const lifePositionKeyPart = (ref) => ref.id || String(ref.label || '')
+  .normalize('NFKD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, '_')
+  .replace(/^_|_$/g, '');
 
 for (const entry of index.roles || []) {
   assert.ok(entry.path, 'Role World index entry must have path');
@@ -122,7 +128,7 @@ for (const entry of index.roles || []) {
   if (entry.subject_type === 'life_position') {
     assert.equal(world.subject_type, 'life_position', `${entry.path}: life-position index entry must own a life-position world`);
     assert.ok(world.life_position_ref, `${entry.path}: life-position Role World must bind canonical life position`);
-    assert.equal(entry.life_position_key, `${world.life_position_ref.badge_id}/${world.life_position_ref.id}`);
+    assert.equal(entry.life_position_key, `${world.life_position_ref.badge_id}/${lifePositionKeyPart(world.life_position_ref)}`);
   }
 
   for (const themeId of world.theme_ids || []) assert.ok(themeIds.has(themeId), `Unknown Role World theme: ${themeId}`);
