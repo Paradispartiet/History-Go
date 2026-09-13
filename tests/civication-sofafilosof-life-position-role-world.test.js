@@ -149,8 +149,8 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
 ]);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 16);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 101);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 17);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 102);
 
 const readiness = audit.positions.find((row) => row.key === 'filosofi/sofafilosof');
 assert.ok(readiness);
@@ -161,7 +161,7 @@ assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.deepEqual(readiness.evidence.livelihood_templates, ['sofafilosof_samtalekveld']);
 assert.ok(!audit.queue.some((row) => row.key === 'filosofi/sofafilosof'));
-assert.equal(audit.summary.life_position_role_world_complete, 16);
+assert.equal(audit.summary.life_position_role_world_complete, 17);
 assert.equal(audit.summary.completed_life_position_role_worlds, 17);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.first_ready, null);
