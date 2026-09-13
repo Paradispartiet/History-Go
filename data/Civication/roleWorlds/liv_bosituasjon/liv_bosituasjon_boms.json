@@ -1,0 +1,1119 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "liv_bosituasjon",
+  "role_scope": "liv_bosituasjon_boms",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "liv_bosituasjon",
+    "id": "boms",
+    "label": "Boms"
+  },
+  "title": "Boms — omflakkende liv, lavt forbruk, frihet og grenser",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å leve omflakkende og lite institusjonsbundet på egne premisser uten å gjøre knapphet til ideal, andres rom til infrastruktur eller en selvvalgt etikett til stempel på andre",
+    "description": "Boms-verdenen undersøker en selvvalgt spillerposisjon med få ting, lave løpende behov, tilfeldige møter og svakere binding til faste steder. Den skiller eksplisitt spillerens eget valg fra andre menneskers bolig- og livssituasjoner. Verdenen undersøker økonomiske marginer, delte rom, vær, rutiner, vennskap, offentlig plass, uformelle avtaler og hvordan graden av valgfrihet kan endre seg over tid. Den gir ingen jobb-, helse-, rus-, moral- eller kriminalitetsstatus og innfører ingen ny runtime."
+  },
+  "theme_ids": [
+    "precarity",
+    "class_power",
+    "alienation",
+    "invisible_work",
+    "bureaucratic_power",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "local_knowledge_vs_system",
+    "social_mask",
+    "status_anxiety"
+  ],
+  "social_environments": [
+    "midlertidige baser og gjesterom der spillerens mobilitet møter andres husgrenser",
+    "offentlige og halv-offentlige steder der adgang, hvile og andre brukeres behov må eksistere samtidig",
+    "rimelige hverdagssteder der lavt forbruk, rutiner og tilfeldige møter formes av priser og åpningstider",
+    "vennskap og bekjentskap som kan gi tilhørighet uten å bli permanent bolig- eller lagringsinfrastruktur",
+    "uformelle småoppgaver og avtaler der fleksibilitet fortsatt krever klare forventninger",
+    "kontaktpunkter og praktiske rutiner som gjør det mulig å holde orden selv med få faste holdepunkter"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "gammel_venn",
+      "social_function": "tester om livsvalget fortsatt oppleves valgt og om vennskapet får eksistere uten å bli praktisk reserveordning",
+      "class_position": "venn med mer stabil hverdagsbase",
+      "status": "nær relasjon uten myndighet over spillerens identitet",
+      "power_over_player": "kan sette grenser for egen tid og eget hjem",
+      "wants": "å beholde vennskapet og forstå hva spilleren faktisk ønsker",
+      "conceals": "at bekymring noen ganger uttrykkes som kritikk av selve livsstilen",
+      "speech_style": "direkte og konkret om hva som har endret seg",
+      "teaches_player": "at frivillighet kan undersøkes uten at verdighet eller tidligere valg annulleres"
+    },
+    {
+      "id": "midlertidig_vert",
+      "social_function": "gjør samtykke, varighet og privatliv konkrete når spilleren får en kort base",
+      "class_position": "person med stabil tilgang til bolig",
+      "status": "har legitim situert myndighet over eget hjem",
+      "power_over_player": "kan sette sluttdato og praktiske regler",
+      "wants": "å hjelpe uten at tilbudet blir grenseløst",
+      "conceals": "at små belastninger kan bygge seg opp før de sies høyt",
+      "speech_style": "praktisk om tid, plass og avtaler",
+      "teaches_player": "at gjestfrihet blir mer bærekraftig når grensene er tydelige"
+    },
+    {
+      "id": "tilfeldig_bekjent",
+      "social_function": "representerer den åpne sosialiteten i et liv med mange uplanlagte møter",
+      "class_position": "person uten etablert forpliktelse til spilleren",
+      "status": "jevnaldrende sosial kontakt",
+      "power_over_player": "kan velge hvor langt møtet og relasjonen skal utvikle seg",
+      "wants": "en god samtale uten skjulte forventninger",
+      "conceals": "at vennlighet ikke nødvendigvis betyr ønske om videre ansvar",
+      "speech_style": "uformell, åpen og situasjonsdrevet",
+      "teaches_player": "at tilfeldige møter kan ha verdi uten å bli instrumentelle"
+    },
+    {
+      "id": "uformell_oppdragsgiver",
+      "social_function": "tester om fleksibelt arbeid fortsatt behandles som arbeid med klare vilkår",
+      "class_position": "person med en kortvarig oppgave og betalingsansvar",
+      "status": "har kun oppgavebasert myndighet innen avtalt arbeid",
+      "power_over_player": "kan tilby eller avslutte en konkret småjobb",
+      "wants": "at oppgaven blir gjort uten mye administrasjon",
+      "conceals": "at egen bekvemmelighet kan gjøre vilkårene for uklare",
+      "speech_style": "kort, praktisk og resultatfokusert",
+      "teaches_player": "at uformelt ikke betyr verdiløst eller avtalefritt"
+    },
+    {
+      "id": "fast_bruker_av_fellesrom",
+      "social_function": "synliggjør at offentlige steder har flere legitime brukere samtidig",
+      "class_position": "lokal bruker med andre behov enn spilleren",
+      "status": "ingen generell myndighet, men lik rett til bruk",
+      "power_over_player": "kan uttrykke friksjon og be om plass uten å eie området",
+      "wants": "at fellesrommet forblir tilgjengelig for flere",
+      "conceals": "at egne vaner også kan føles som eierskap",
+      "speech_style": "konkret om plass, støy, ferdsel og gjensidighet",
+      "teaches_player": "at adgang ikke er det samme som privat råderett"
+    },
+    {
+      "id": "annen_omflakkende_person",
+      "social_function": "viser at lignende livsformer kan ha ulike grunner, ressurser og grader av frivillighet",
+      "class_position": "person med sammenlignbar mobilitet men andre vilkår",
+      "status": "jevnaldrende uten representasjonsmakt over andre",
+      "power_over_player": "kan utfordre generaliseringer gjennom kontrast",
+      "wants": "å bli møtt som individ framfor kategori",
+      "conceals": "at også egne vilkår kan endre seg over tid",
+      "speech_style": "erfaringsbasert og presis om forskjeller",
+      "teaches_player": "at spillerens selvvalgte etikett ikke beskriver alle med lignende ytre livsform"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "self_label_vs_stigma",
+      "meaning": "om selvvalgt identitet holdes avgrenset til spilleren eller blir en stereotyp kategori for andre",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "choice_vs_constraint",
+      "meaning": "om spilleren kan skille egne valg fra vilkår som gradvis reduserer faktisk handlingsrom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "mobility_vs_boundaries",
+      "meaning": "om bevegelse og midlertidighet respekterer andres rom, tid og avtaler",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "low_consumption_vs_precarity",
+      "meaning": "om lavt forbruk gir handlingsrom eller gjør nødvendige marginer for små",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "routine_vs_instability",
+      "meaning": "om små rutiner kan gi oversikt uten å oppleves som tap av frihet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "friendship_vs_logistics",
+      "meaning": "om vennskap får være relasjon eller blir usynlig bolig-, lagrings- og tidsinfrastruktur",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_space_vs_private_claim",
+      "meaning": "om fellesrom brukes gjensidig eller gradvis behandles som privat base",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "informality_vs_clear_agreements",
+      "meaning": "om fleksibilitet kombineres med tydelighet når arbeid, penger eller andre mennesker berøres",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du har valgt «Boms» som spilleretikett for et omflakkende og lite institusjonsbundet liv. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "self_label_vs_stigma",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#etiketten_er_din"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du har valgt «Boms» som spilleretikett for et omflakkende og lite institusjonsbundet liv. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "self_label_vs_stigma",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#etiketten_er_din"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du har valgt «Boms» som spilleretikett for et omflakkende og lite institusjonsbundet liv. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "self_label_vs_stigma",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#etiketten_er_din"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du har valgt «Boms» som spilleretikett for et omflakkende og lite institusjonsbundet liv. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "self_label_vs_stigma",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#etiketten_er_din"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Du trenger et forsvarlig sted å sove for natten. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "mobility_vs_boundaries",
+          "public_space_vs_private_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#natten_med_grenser"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Du trenger et forsvarlig sted å sove for natten. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "mobility_vs_boundaries",
+          "public_space_vs_private_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#natten_med_grenser"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Du trenger et forsvarlig sted å sove for natten. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "mobility_vs_boundaries",
+          "public_space_vs_private_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#natten_med_grenser"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Du trenger et forsvarlig sted å sove for natten. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "mobility_vs_boundaries",
+          "public_space_vs_private_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#natten_med_grenser"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Du har valgt å klare deg med få ting og lave løpende kostnader. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#det_lave_forbruket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Du har valgt å klare deg med få ting og lave løpende kostnader. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#det_lave_forbruket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Du har valgt å klare deg med få ting og lave løpende kostnader. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#det_lave_forbruket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Du har valgt å klare deg med få ting og lave løpende kostnader. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#det_lave_forbruket"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Klær må vaskes og utstyr må tørkes eller lades selv uten fast base. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "routine_vs_instability",
+          "public_space_vs_private_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vask_og_verdighet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Klær må vaskes og utstyr må tørkes eller lades selv uten fast base. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "routine_vs_instability",
+          "public_space_vs_private_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vask_og_verdighet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Klær må vaskes og utstyr må tørkes eller lades selv uten fast base. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "routine_vs_instability",
+          "public_space_vs_private_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vask_og_verdighet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Klær må vaskes og utstyr må tørkes eller lades selv uten fast base. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "routine_vs_instability",
+          "public_space_vs_private_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vask_og_verdighet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: En venn tilbyr en midlertidig base. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "friendship_vs_logistics",
+          "mobility_vs_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#sofaen_hos_en_venn"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: En venn tilbyr en midlertidig base. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "friendship_vs_logistics",
+          "mobility_vs_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#sofaen_hos_en_venn"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: En venn tilbyr en midlertidig base. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "friendship_vs_logistics",
+          "mobility_vs_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#sofaen_hos_en_venn"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: En venn tilbyr en midlertidig base. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "friendship_vs_logistics",
+          "mobility_vs_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#sofaen_hos_en_venn"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Forholdene blir dårligere enn utstyret og planen din passer til. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vaeret_bestemmer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Forholdene blir dårligere enn utstyret og planen din passer til. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vaeret_bestemmer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Forholdene blir dårligere enn utstyret og planen din passer til. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vaeret_bestemmer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Forholdene blir dårligere enn utstyret og planen din passer til. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vaeret_bestemmer"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: En tilfeldig samtale blir til et godt møte. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "friendship_vs_logistics",
+          "informality_vs_clear_agreements"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#det_tilfeldige_motet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: En tilfeldig samtale blir til et godt møte. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "friendship_vs_logistics",
+          "informality_vs_clear_agreements"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#det_tilfeldige_motet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: En tilfeldig samtale blir til et godt møte. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "friendship_vs_logistics",
+          "informality_vs_clear_agreements"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#det_tilfeldige_motet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: En tilfeldig samtale blir til et godt møte. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "friendship_vs_logistics",
+          "informality_vs_clear_agreements"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#det_tilfeldige_motet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: En avtale krever at du kan nås og finne dokumentene dine. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "routine_vs_instability",
+          "informality_vs_clear_agreements"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#post_og_papirer"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: En avtale krever at du kan nås og finne dokumentene dine. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "routine_vs_instability",
+          "informality_vs_clear_agreements"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#post_og_papirer"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: En avtale krever at du kan nås og finne dokumentene dine. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "routine_vs_instability",
+          "informality_vs_clear_agreements"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#post_og_papirer"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: En avtale krever at du kan nås og finne dokumentene dine. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "routine_vs_instability",
+          "informality_vs_clear_agreements"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#post_og_papirer"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Du får tilbud om noen timers praktisk arbeid. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "informality_vs_clear_agreements"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#jobben_for_en_dag"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Du får tilbud om noen timers praktisk arbeid. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "informality_vs_clear_agreements"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#jobben_for_en_dag"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Du får tilbud om noen timers praktisk arbeid. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "informality_vs_clear_agreements"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#jobben_for_en_dag"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Du får tilbud om noen timers praktisk arbeid. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "informality_vs_clear_agreements"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#jobben_for_en_dag"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Du bruker ofte samme offentlige sted til hvile og møter. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "public_space_vs_private_claim",
+          "mobility_vs_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#plassen_som_ogsaa_er_andres"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Du bruker ofte samme offentlige sted til hvile og møter. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "public_space_vs_private_claim",
+          "mobility_vs_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#plassen_som_ogsaa_er_andres"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Du bruker ofte samme offentlige sted til hvile og møter. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "public_space_vs_private_claim",
+          "mobility_vs_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#plassen_som_ogsaa_er_andres"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Du bruker ofte samme offentlige sted til hvile og møter. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "public_space_vs_private_claim",
+          "mobility_vs_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#plassen_som_ogsaa_er_andres"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: En venn spør om livsstilen fortsatt oppleves valgt eller om vilkårene har endret seg. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "self_label_vs_stigma",
+          "friendship_vs_logistics",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vennen_som_bekymrer_seg"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: En venn spør om livsstilen fortsatt oppleves valgt eller om vilkårene har endret seg. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "self_label_vs_stigma",
+          "friendship_vs_logistics",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vennen_som_bekymrer_seg"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: En venn spør om livsstilen fortsatt oppleves valgt eller om vilkårene har endret seg. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "self_label_vs_stigma",
+          "friendship_vs_logistics",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vennen_som_bekymrer_seg"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En venn spør om livsstilen fortsatt oppleves valgt eller om vilkårene har endret seg. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "self_label_vs_stigma",
+          "friendship_vs_logistics",
+          "choice_vs_constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vennen_som_bekymrer_seg"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Sekken har blitt tyngre og enkelte eiendeler ligger hos venner. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "friendship_vs_logistics"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#tingene_du_barer"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Sekken har blitt tyngre og enkelte eiendeler ligger hos venner. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "friendship_vs_logistics"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#tingene_du_barer"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Sekken har blitt tyngre og enkelte eiendeler ligger hos venner. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "friendship_vs_logistics"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#tingene_du_barer"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Sekken har blitt tyngre og enkelte eiendeler ligger hos venner. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "low_consumption_vs_precarity",
+          "friendship_vs_logistics"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#tingene_du_barer"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Du setter av en rolig time til å ordne dagen. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "routine_vs_instability",
+          "mobility_vs_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#morgenkaffen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Du setter av en rolig time til å ordne dagen. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "routine_vs_instability",
+          "mobility_vs_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#morgenkaffen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Du setter av en rolig time til å ordne dagen. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "routine_vs_instability",
+          "mobility_vs_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#morgenkaffen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Du setter av en rolig time til å ordne dagen. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "routine_vs_instability",
+          "mobility_vs_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#morgenkaffen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Du ser både friheten og arbeidet i et omflakkende liv. Morgenen viser hvilke praktiske ressurser og grenser som ligger bak følelsen av et løst liv.",
+        "thread_ids": [
+          "self_label_vs_stigma",
+          "choice_vs_constraint",
+          "public_space_vs_private_claim",
+          "low_consumption_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#frihet_med_grenser"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Du ser både friheten og arbeidet i et omflakkende liv. Midt på dagen blir forskjellen mellom spillerens valg og andre menneskers behov, plass eller forventninger synlig.",
+        "thread_ids": [
+          "self_label_vs_stigma",
+          "choice_vs_constraint",
+          "public_space_vs_private_claim",
+          "low_consumption_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#frihet_med_grenser"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Du ser både friheten og arbeidet i et omflakkende liv. Ettermiddagen gjør ansvar, kostnad, avtale eller sosial grense til et konkret valg.",
+        "thread_ids": [
+          "self_label_vs_stigma",
+          "choice_vs_constraint",
+          "public_space_vs_private_claim",
+          "low_consumption_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#frihet_med_grenser"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Du ser både friheten og arbeidet i et omflakkende liv. Kvelden viser hvordan valget påvirker tillit, økonomi, tilhørighet eller evnen til å fortsette på egne premisser.",
+        "thread_ids": [
+          "self_label_vs_stigma",
+          "choice_vs_constraint",
+          "public_space_vs_private_claim",
+          "low_consumption_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#frihet_med_grenser"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "self_label_vs_stigma",
+      "relationship": "forholdet mellom en selvvalgt spilleretikett og ansvaret for ikke å bruke den som kategori for andre mennesker",
+      "beat_refs": [
+        "1/morning",
+        "1/afternoon",
+        "11/lunch",
+        "11/evening",
+        "14/morning",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "choice_vs_constraint",
+      "relationship": "forholdet mellom det som fortsatt oppleves selvvalgt og vilkår som kan endre graden av reell valgfrihet",
+      "beat_refs": [
+        "1/evening",
+        "3/lunch",
+        "6/afternoon",
+        "11/morning",
+        "11/afternoon",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "mobility_vs_boundaries",
+      "relationship": "forholdet mellom et omflakkende liv og grensene i midlertidige baser, delte rom og andre menneskers tid",
+      "beat_refs": [
+        "2/morning",
+        "2/afternoon",
+        "5/lunch",
+        "5/evening",
+        "10/afternoon",
+        "13/lunch",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "low_consumption_vs_precarity",
+      "relationship": "forholdet mellom lavt forbruk som valgt praksis og økonomiske eller materielle marginer som fortsatt trengs",
+      "beat_refs": [
+        "3/morning",
+        "3/afternoon",
+        "6/lunch",
+        "9/afternoon",
+        "12/morning",
+        "12/evening",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "routine_vs_instability",
+      "relationship": "forholdet mellom ønsket om lite binding og små rutiner som kan gi oversikt uten å bli en ny tvang",
+      "beat_refs": [
+        "4/morning",
+        "4/evening",
+        "8/lunch",
+        "8/afternoon",
+        "13/morning",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "friendship_vs_logistics",
+      "relationship": "forholdet mellom gjensidig vennskap og risikoen for at andre menneskers hjem, plass eller tid blir usynlig infrastruktur",
+      "beat_refs": [
+        "5/morning",
+        "5/afternoon",
+        "7/evening",
+        "11/lunch",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "public_space_vs_private_claim",
+      "relationship": "forholdet mellom adgang til felles rom og ansvaret for at langvarig bruk ikke utvikler seg til privat krav",
+      "beat_refs": [
+        "2/lunch",
+        "4/lunch",
+        "10/morning",
+        "10/afternoon",
+        "10/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "informality_vs_clear_agreements",
+      "relationship": "forholdet mellom uformell sosial og økonomisk fleksibilitet og behovet for tydelige avtaler når andre berøres",
+      "beat_refs": [
+        "7/afternoon",
+        "8/evening",
+        "9/morning",
+        "9/afternoon",
+        "11/evening",
+        "13/afternoon"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "ordet_du_bare_eier_selv",
+      "description": "Spillerens etikett beholder mening bare når den ikke brukes til å redusere andre menneskers ulike situasjoner til én kategori.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#etiketten_er_din",
+        "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vennen_som_bekymrer_seg",
+        "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#frihet_med_grenser"
+      ]
+    },
+    {
+      "id": "sofaen_som_forble_et_tilbud",
+      "description": "Tydelig varighet gjør at gjestfrihet kan være vennskap i stedet for en uuttalt permanent base.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#sofaen_hos_en_venn",
+        "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#tingene_du_barer"
+      ]
+    },
+    {
+      "id": "reservepengene_som_ga_et_valg",
+      "description": "En liten økonomisk margin gjør lavt forbruk mer frivillig fordi spilleren fortsatt kan endre plan når forholdene krever det.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#det_lave_forbruket",
+        "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vaeret_bestemmer",
+        "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#jobben_for_en_dag"
+      ]
+    },
+    {
+      "id": "plassen_som_forble_felles",
+      "description": "Spilleren kan få rutiner og tilhørighet i offentlige rom uten å gjøre langvarig bruk til privat krav.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#plassen_som_ogsaa_er_andres",
+        "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#morgenkaffen"
+      ]
+    },
+    {
+      "id": "vennskap_uten_skjult_infrastruktur",
+      "description": "Tilfeldige møter og gamle vennskap blir mer gjensidige når mennesker ikke først og fremst vurderes som mulige ressurser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#det_tilfeldige_motet",
+        "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#sofaen_hos_en_venn",
+        "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vennen_som_bekymrer_seg"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "selvetikett_blir_sprakgrense",
+      "setup_ref": "1/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "lavt_forbruk_blir_margin",
+      "setup_ref": "3/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "gjesteavtale_blir_tillit",
+      "setup_ref": "5/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "tilfeldig_mote_blir_gjensidighet",
+      "setup_ref": "7/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "tydelig_smajobb_blir_palitelighet",
+      "setup_ref": "9/afternoon",
+      "return_ref": "13/afternoon",
+      "domains": [
+        "economy",
+        "reputation"
+      ]
+    },
+    {
+      "id": "fellesrom_blir_tilhorighet_uten_eierskap",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#etiketten_er_din",
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#natten_med_grenser",
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#det_lave_forbruket",
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vask_og_verdighet",
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#sofaen_hos_en_venn",
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vaeret_bestemmer",
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#det_tilfeldige_motet",
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#post_og_papirer",
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#jobben_for_en_dag",
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#plassen_som_ogsaa_er_andres",
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#vennen_som_bekymrer_seg",
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#tingene_du_barer",
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#morgenkaffen",
+      "data/Civication/narratives/leisure/liv_bosituasjon_boms.json#frihet_med_grenser"
+    ]
+  }
+}
