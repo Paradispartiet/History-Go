@@ -1,19 +1,95 @@
-const assert = require('assert'), fs = require('fs'), vm = require('vm');
-function boot(extra={}){ global.window=global; global.document={querySelector(){return null}}; for(const k of ['HG_SocialMeetSupabaseClient','HG_SocialMeetAdapter','HG_SOCIAL_MEET_BACKEND','HG_SOCIAL_MEET_SUPABASE','HG_SUPABASE_CONFIG','supabase','__HG_SOCIAL_MEET_SUPABASE_CLIENT__','HistoryGoAHAAuth']) delete global[k]; Object.assign(global, extra); vm.runInThisContext(fs.readFileSync('js/social/HGSocialMeetSupabaseClient.js','utf8'),{filename:'HGSocialMeetSupabaseClient.js'}); vm.runInThisContext(fs.readFileSync('js/social/HGSocialMeetAdapter.js','utf8'),{filename:'HGSocialMeetAdapter.js'}); return global.HG_SocialMeetAdapter; }
+const assert = require('assert');
+const fs = require('fs');
+const vm = require('vm');
+
+function boot(extra = {}) {
+  global.window = global;
+  global.document = { querySelector(){ return null; } };
+  for (const key of [
+    'HG_SocialMeetSupabaseClient',
+    'HG_SocialMeetAdapter',
+    'HG_SocialMeetBackend',
+    'HG_SocialMeetFastApiClient',
+    'HG_SOCIAL_MEET_BACKEND',
+    'HG_SOCIAL_MEET_API',
+    'HG_SOCIAL_MEET_SUPABASE',
+    'HG_SUPABASE_CONFIG',
+    'supabase',
+    '__HG_SOCIAL_MEET_SUPABASE_CLIENT__',
+    'HistoryGoAHAAuth'
+  ]) delete global[key];
+  Object.assign(global, extra);
+  vm.runInThisContext(fs.readFileSync('js/social/HGSocialMeetSupabaseClient.js', 'utf8'), { filename:'HGSocialMeetSupabaseClient.js' });
+  vm.runInThisContext(fs.readFileSync('js/social/HGSocialMeetAdapter.js', 'utf8'), { filename:'HGSocialMeetAdapter.js' });
+  return global.HG_SocialMeetAdapter;
+}
+
 let adapter = boot();
 assert.strictEqual(adapter.backendMode(), 'local');
-assert(adapter.health().ok, 'local mode is healthy without credentials');
+assert(adapter.health().ok, 'local mode is healthy without production backend config');
 
-adapter = boot({HistoryGoAHAAuth:{getSession:async()=>({access_token:'aha-token',user:{id:'aha-user'}})}});
+adapter = boot({
+  HistoryGoAHAAuth:{
+    getSession:async()=>({access_token:'aha-token',user:{id:'aha-user'}})
+  }
+});
 const ahaAuth = global.HG_SocialMeetSupabaseClient.getClient();
 assert.strictEqual(ahaAuth.ok, true);
 assert.strictEqual(ahaAuth.authSource, 'aha');
 assert.strictEqual(global.HG_SocialMeetSupabaseClient.health().ahaAuthAvailable, true);
+
 assert.strictEqual(adapter.normalizeContext({contextType:'place',contextId:'oslo',title:'Oslo'}).ok, true);
 assert.strictEqual(adapter.normalizeContext({contextType:'place',contextId:'oslo',latitude:59}).reason, 'forbidden_privacy_field');
 assert.strictEqual(adapter.normalizeContext({contextType:'person',contextId:'x'}).reason, 'invalid_context_type');
-assert.strictEqual(adapter.mapInvite({id:'i1',created_by:'u1',target_user_id:'u2',context_type:'place',context_id:'p1',preset_message_id:'quiz_together',status:'pending'}).presetLabel, 'Vil du ta denne quizen sammen?');
-adapter = boot({HG_SOCIAL_MEET_BACKEND:'supabase', HG_SOCIAL_MEET_SUPABASE:{enabled:true,url:'https://example.supabase.co',anonKey:'anon'}, supabase:{ createClient(){ return { auth:{getUser:async()=>({data:{user:{id:'creator'}}})}, from(table){ const chain={ select(){return chain}, eq(){return chain}, order(){return Promise.resolve({data:[],error:null})}, maybeSingle(){return Promise.resolve({data:null,error:null})}, single(){return Promise.resolve({data:{id:'i1',created_by:'creator',target_user_id:'target',context_type:'place',context_id:'p1',preset_message_id:'quiz_together',status:'pending'},error:null})}, insert(payload){ chain.payload=payload; return chain }, update(payload){ chain.updatePayload=payload; return chain }, delete(){return chain}, upsert(payload){ chain.payload=payload; return chain } }; return chain; } }; }}});
-assert.strictEqual(adapter.backendMode(), 'supabase');
-assert(adapter.health().ok, 'supabase mode healthy with config and SDK');
-(async()=>{ const created = await adapter.createInvite({contextType:'place',contextId:'p1',title:'Place',sourceSurface:'test'}, 'target', 'quiz_together'); assert(created.ok); assert.strictEqual(created.invite.inviteId, 'i1'); const bad = await adapter.createInvite({contextType:'place',contextId:'p1'}, 'target', 'Hei fritekst'); assert.strictEqual(bad.reason, 'invalid_preset_message'); console.log('hg-social-meet-adapter ok'); })().catch(e=>{ console.error(e); process.exit(1); });
+
+const mapped = adapter.mapInvite({
+  inviteId:'i1',
+  senderProfileId:'sender-profile',
+  recipientProfileId:'recipient-profile',
+  counterpartDisplayName:'Bjørn',
+  context:{contextType:'place',contextId:'p1',title:'Place'},
+  presetMessageId:'quiz_together',
+  state:'pending'
+});
+assert.strictEqual(mapped.presetLabel, 'Vil du ta denne quizen sammen?');
+assert.strictEqual(mapped.targetDisplayName, 'Bjørn');
+assert(!JSON.stringify(mapped).includes('authUserId'));
+
+adapter = boot({
+  HG_SOCIAL_MEET_BACKEND:'supabase',
+  HG_SOCIAL_MEET_SUPABASE:{
+    enabled:true,
+    url:'https://example.supabase.co',
+    anonKey:'anon'
+  },
+  supabase:{
+    createClient(){
+      return { auth:{ getSession:async()=>({data:{session:{access_token:'legacy-token'}}}) } };
+    }
+  }
+});
+const dedicatedAuth = global.HG_SocialMeetSupabaseClient.getClient();
+assert.strictEqual(dedicatedAuth.ok, true);
+assert.strictEqual(dedicatedAuth.authSource, 'social-meet-supabase');
+assert.strictEqual(adapter.backendMode(), 'local', 'invite/discovery writes no longer use direct Supabase mode');
+
+(async()=>{
+  const result = await adapter.createInvite(
+    {contextType:'place',contextId:'p1',title:'Place',sourceSurface:'test'},
+    'target',
+    'quiz_together'
+  );
+  assert.strictEqual(result.ok, false);
+  assert.strictEqual(result.reason, 'backend_not_enabled');
+
+  const bad = await adapter.createInvite(
+    {contextType:'place',contextId:'p1'},
+    'target',
+    'Hei fritekst'
+  );
+  assert.strictEqual(bad.reason, 'invalid_preset_message');
+  console.log('hg-social-meet-adapter ok');
+})().catch(error => {
+  console.error(error);
+  process.exit(1);
+});
