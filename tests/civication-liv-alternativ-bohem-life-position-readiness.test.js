@@ -25,27 +25,22 @@ const positionDiffs = after.positions.filter((row)=>JSON.stringify(row)!==JSON.s
   after: row
 }));
 console.log('BOHEM_GENERATOR_DEBUG_BEGIN');
-console.log(JSON.stringify({
+process.stderr.write('BOHEM_DIFF_META='+JSON.stringify({
   same_json: beforeText===afterText,
   same_report: beforeReport===afterReport,
-  summary_before: before.summary,
   summary_after: after.summary,
-  queue_head_before: before.queue.slice(0,3),
   queue_head_after: after.queue.slice(0,3),
-  changed_positions: positionDiffs.map(({key,before,after})=>({
+  changed_keys: positionDiffs.map(x=>x.key)
+})+'\\n');
+for (const {key,before,after} of positionDiffs) {
+  process.stderr.write('BOHEM_DIFF_ROW='+JSON.stringify({
     key,
-    classification_before: before?.classification,
-    classification_after: after?.classification,
-    priority_before: before?.priority_score,
-    priority_after: after?.priority_score,
-    authored_before: before?.authored_depth,
-    authored_after: after?.authored_depth,
-    thematic_before: before?.evidence?.thematic_source_refs,
-    thematic_after: after?.evidence?.thematic_source_refs,
-    exact_before: before?.evidence?.exact_source_refs,
-    exact_after: after?.evidence?.exact_source_refs
-  }))
-}, null, 2));
+    p:[before?.priority_score,after?.priority_score],
+    a:[before?.authored_depth,after?.authored_depth],
+    t:[before?.evidence?.thematic_source_refs,after?.evidence?.thematic_source_refs],
+    e:[before?.evidence?.exact_source_refs,after?.evidence?.exact_source_refs]
+  })+'\\n');
+}
 console.log('BOHEM_GENERATOR_DEBUG_END');
 process.stderr.write('BOHEM_GENERATOR_PROBE_VISIBLE\\n');
 
