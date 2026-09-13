@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const ROOT=path.resolve(__dirname,'..');
+const read=(p)=>JSON.parse(fs.readFileSync(path.join(ROOT,p),'utf8'));
+const audit=read('data/Civication/lifePositionRoleWorldReadiness.json');
+const stream=read('data/Civication/narratives/leisure/by_byvandrer.json');
+const world=read('data/Civication/roleWorlds/by/by_byvandrer.json');
+const index=read('data/Civication/roleWorlds/index.json');
+const row=audit.positions.find((x)=>x.key==='by/byvandrer');
+assert.ok(row);
+assert.equal(stream.storylets.length,14);
+assert.equal(world.season.coverage.length,56);
+assert.equal(new Set(world.season.coverage.map((x)=>x.day+'/'+x.phase)).size,56);
+assert.equal(row.role_world_status,'role_world_complete');
+assert.equal(row.authored_depth.max_narrative_depth,14);
+assert.equal(audit.summary.completed_life_position_role_worlds,22);
+assert.equal(audit.queue[0].key,'by/urbanist');
+assert.equal(index.roles.length,107);
+assert.equal(index.life_position_role_world_count,22);
+console.log('Byvandrer Role World gate ok');
