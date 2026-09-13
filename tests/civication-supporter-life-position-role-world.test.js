@@ -58,7 +58,7 @@ assert.ok(supporterEntry, 'Supporter Role World must be indexed');
 assert.equal(supporterEntry.subject_type, 'life_position');
 assert.deepEqual(supporterEntry.life_position_ref, world.life_position_ref);
 assert.equal(index.roles.filter((entry) => entry.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((entry) => entry.subject_type === 'life_position').length, 14);
+assert.equal(index.roles.filter((entry) => entry.subject_type === 'life_position').length, 15);
 assert.equal(index.summary.role_worlds_total, 99);
 assert.equal(index.summary.career_role_worlds, 85);
 assert.equal(index.summary.life_position_role_worlds, 14);
