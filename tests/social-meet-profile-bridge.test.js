@@ -73,7 +73,7 @@ async function run(){
     allowMeetInvites:true
   });
   assert.strictEqual(bridge.health().discoverable, true);
-  assert(w.document.getElementById('social-meet-server-status').textContent.includes('ikke hvem som fysisk er på stedet'));
+  assert(w.document.getElementById('social-meet-server-status').textContent.includes('stedsstatus aktiveres separat i Møtes'));
 
   const unpublish = await bridge.unpublish();
   assert.strictEqual(unpublish.ok, true);
