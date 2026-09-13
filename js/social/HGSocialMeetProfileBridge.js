@@ -132,7 +132,7 @@
         code:'discoverable',
         ready:true,
         label:'Du er oppdagbar for kunnskapsmatcher.',
-        detail:'Andre kan finne profilen din via felles kunnskap og interesser. Ingen live-posisjon deles.',
+        detail:'Andre kan finne profilen din via felles kunnskap og interesser. Midlertidig stedsstatus aktiveres separat i Møtes.',
         visibility,
         localOptIn,
         health
@@ -245,7 +245,7 @@
           <strong>Dette blir synlig i matcher</strong>
           <span>${escapeHTML(previewBits)}</span>
         </div>
-        <p class="muted">History Go viser kun frivillige kunnskaps- og interessematcher — ikke hvem som fysisk er på stedet, GPS, avstand eller sist sett.</p>
+        <p class="muted">Denne profilinnstillingen gjelder kun kunnskaps- og interessematcher. Frivillig stedsstatus aktiveres separat i Møtes, utløper automatisk og bruker ikke GPS, avstand eller sist sett.</p>
         <div class="profile-action-row">
           ${backend && !discoverable ? '<button type="button" class="collection-action primary" data-hg-social-profile-publish>Bekreft og gjør profilen oppdagbar</button>' : ''}
           ${backend && discoverable ? '<button type="button" class="collection-action" data-hg-social-profile-unpublish>Skjul profilen fra matcher</button>' : ''}
@@ -279,7 +279,7 @@
       backendConfigured:backendConfigured(),
       status:summary.code,
       discoverable:summary.code === 'discoverable',
-      privacyBoundary:'knowledge_matches_only_no_presence',
+      privacyBoundary:'profile_publication_separate_from_place_status',
       consentVersion:CONSENT_VERSION,
       serverState:cachedState()
     };
