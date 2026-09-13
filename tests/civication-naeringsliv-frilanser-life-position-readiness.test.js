@@ -23,7 +23,11 @@ assert.equal(row.role_world_status, 'role_world_complete');
 assert.equal(row.role_world_path, worldPath);
 assert.equal(row.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(row.evidence.exact_source_refs, [streamPath]);
-assert.deepEqual(row.evidence.thematic_source_refs, []);
+assert.deepEqual(row.evidence.thematic_source_refs, [
+  'data/Civication/narratives/leisure/filmklubbmenneske.json',
+  'data/Civication/narratives/leisure/historievandrer.json',
+  'data/Civication/narratives/leisure/subkultur_gangster.json'
+]);
 assert.deepEqual(row.evidence.livelihood_templates, ['frilanser_kortoppdrag']);
 assert.equal(row.evidence.livelihood_ref, 'data/Civication/livelihoodOpportunityTemplates.json');
 assert.ok(!audit.queue.some((item)=>item.key==='naeringsliv/frilanser'));
