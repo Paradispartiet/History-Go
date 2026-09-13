@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from datetime import UTC, datetime
-from typing import Protocol
+from typing import Protocol, cast
 from uuid import UUID
 
 from app.domains.social_meet.abuse_service import SocialMeetInviteAbuseService
@@ -76,9 +76,6 @@ class SpotmeetingInviteService:
         if recipient is None or recipient.profile_id is None:
             raise _recipient_unavailable()
 
-        assert sender.display_name is not None
-        assert recipient.display_name is not None
-
         self._abuse_service.ensure_invite_creation_allowed(
             auth_user_id,
             request.recipient_profile_id,
@@ -89,10 +86,10 @@ class SpotmeetingInviteService:
         result = self._invite_repository.create_invite_atomic(
             sender_auth_user_id=auth_user_id,
             sender_profile_id=sender.profile_id,
-            sender_display_name=sender.display_name,
+            sender_display_name=cast(str, sender.display_name),
             recipient_auth_user_id=recipient.auth_user_id,
             recipient_profile_id=recipient.profile_id,
-            recipient_display_name=recipient.display_name,
+            recipient_display_name=cast(str, recipient.display_name),
             request=request,
             supported_consent_version=SUPPORTED_CONSENT_VERSION,
             now=checked_at,
