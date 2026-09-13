@@ -3,7 +3,7 @@
   "place_id": "kunstnerforbundet",
   "name": "Kunstnerforbundet",
   "category": "kunst",
-  "status": "description_fagverk_image_generated_and_sprakleksikon_materialized_r4",
+  "status": "description_fagverk_images_generated_sprakleksikon_and_frontimage_materialized_r5",
   "canonical_source_file": "data/places/kunst/oslo/places_kunst/kunstnerforbundet.json",
   "canonical_identity": "Kunstnerforbundet som kunstnerstyrt, ikke-kommersiell visnings- og formidlingsinstitusjon i egen bygård i Kjeld Stubs gate 3; skiftende utstillinger og Atelier Kunstnerforbundet er innhold/programlag under stedet, ikke egne Places i denne produksjonen.",
   "primary_badge": "kunst",
@@ -88,11 +88,11 @@
     "underbadges": "PASS",
     "description_v4_2": "PASS",
     "fagverk": "PASS",
-    "images": "PASS_PLACE_IMAGE_CC_BY_SA_FRONTIMAGE_PENDING",
+    "images": "PASS_PLACE_AND_FRONT_IMAGE_CC_BY_SA",
     "chronology_epoke": "PASS_MATERIALIZED_R3",
     "sprakleksikon": "PASS",
     "relations": "AUDIT_PENDING",
-    "runtime_materialization": "PARTIAL_PLACE_OPEN_MATERIALIZED_R4",
+    "runtime_materialization": "PARTIAL_PLACE_OPEN_MATERIALIZED_R5",
     "manual_ui_qa": "PENDING"
   },
   "collections": {
@@ -108,16 +108,15 @@
     "production_context_found": false,
     "canonical_quiz_status": "PENDING"
   },
-  "active_phase": "R4_SPRAKLEKSIKON",
+  "active_phase": "R5_FRONTIMAGE",
   "active_file_scope": [
-    "data/leksikon/sprak/places/europe/norway/oslo/kunstnerforbundet.json",
-    "data/leksikon/sprak/manifest.json",
+    "data/places/kunst/oslo/places_kunst/kunstnerforbundet.json",
+    "bilder/places/kunstnerforbundet_front_portrait.webp",
     "data/runtime/place-open/kunstnerforbundet.json",
     "reports/place-production/kunstnerforbundet-workcard-current.json",
     "reports/place-production/kunstnerforbundet-source-review-v1.md"
   ],
   "remaining_blockers": [
-    "real portrait frontImage",
     "People canonical member + image",
     "Objects canonical member(s) + image(s)",
     "Brands canonical member + verified logo",
@@ -127,9 +126,9 @@
     "runtime/generated indexes",
     "exact-head CI and manual UI QA"
   ],
-  "branch": "agent/kunstnerforbundet-sprak-r4-20260913",
-  "branch_base": "f721424c87caf120ed20fb38ca82695001e1fcbb",
-  "branch_status": "R4_CANDIDATE_READY_FOR_EXACT_HEAD_CI",
+  "branch": "agent/kunstnerforbundet-frontimage-r5-20260913",
+  "branch_base": "8dcb26daf89e7675da1fcba8fc7e6f1401ba80d4",
+  "branch_status": "R5_CANDIDATE_READY_FOR_EXACT_HEAD_CI",
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
     "status": "PASS",
@@ -207,6 +206,18 @@
     "source": "https://commons.wikimedia.org/wiki/File:Kunstnerforbundet2.jpg",
     "creator": "Anne-Sophie Ofrim",
     "license": "CC BY-SA 4.0",
+    "verified_at": "2026-09-13"
+  },
+  "front_image": {
+    "status": "PASS",
+    "file": "bilder/places/kunstnerforbundet_front_portrait.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Kunstnerforbundet2.jpg",
+    "creator": "Anne-Sophie Ofrim",
+    "license": "CC BY-SA 4.0",
+    "outputDimensions": "900x1200",
+    "orientation": "portrait",
+    "aspectRatio": "3:4",
+    "transformation": "center_crop_from_existing_documentary_place_photo_no_generative_change",
     "verified_at": "2026-09-13"
   }
 }
