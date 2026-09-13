@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "naeringsliv",
+  "targetId": "tollboden_oslo",
+  "reviewed_at": "2026-09-12",
+  "review_note": "Focused 3×7: første 14 spørsmål skal være direkte stedskunnskap; siste sju skal bruke dokumenterte stedspåstander til analyse av offentlig kontroll, infrastruktur og ombruk.",
+  "sources": {
+    "place_record": {
+      "url": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollboden_oslo.json",
+      "source_type": "canonical_place_record",
+      "review_status": "reviewed",
+      "review_note": "Canonical identitet, geometri og stedsavgrensning."
+    },
+    "riks_plan": {
+      "url": "https://riksantikvaren.no/content/uploads/2019/10/tollbugata1a252coslotollbod.pdf",
+      "source_type": "heritage_management_plan",
+      "review_status": "reviewed",
+      "review_note": "Byggeperiode, Schirmer, romprogram, pengeskaprom, transittvarerom og senere brukslag."
+    },
+    "riks_fred": {
+      "url": "https://riksantikvaren.no/content/uploads/2019/10/8.tollbugata1aoslo3.pdf",
+      "source_type": "heritage_protection_record",
+      "review_status": "reviewed",
+      "review_note": "Skillet mellom administrasjonsbygget og Stenpakkhuset, vern og tollhistorisk verdi."
+    },
+    "riks_stair": {
+      "url": "https://riksantikvaren.no/eksempelsamling/nytt-trappelop-forlenger-opprinnelig-trapp-i-tollboden/",
+      "source_type": "heritage_reuse_case",
+      "review_status": "reviewed",
+      "review_note": "1896, Adolf Schirmer, tollbruk til 2016 og senere trappe-/loftstilpasning."
+    },
+    "riks_entry": {
+      "url": "https://riksantikvaren.no/eksempelsamling/nytt-inngangsparti/",
+      "source_type": "heritage_reuse_case",
+      "review_status": "reviewed",
+      "review_note": "Nytt bindeledd og tekniske funksjoner lagt utenfor de fredede hovedvolumene."
+    },
+    "riks_hq": {
+      "url": "https://riksantikvaren.no/eksempelsamling/to-fredede-bygninger-blir-til-tolldirektorates-hovedkontor/",
+      "source_type": "heritage_reuse_case",
+      "review_status": "reviewed",
+      "review_note": "Rehabilitering, aktiverte loft, nye planløsninger og fortsatt lesbare historiske hovedbygg."
+    },
+    "nbl": {
+      "url": "https://nbl.snl.no/Adolf_Schirmer",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Adolf Schirmer-identitet, statlig rolle og Tollboden som verk."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "kapital_eierskap_finans",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_havn_transport",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_risiko_regulering"
+    ],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_infrastrukturanalyse",
+      "met_naering_arbeidslivsanalyse",
+      "met_naering_byhistorisk_naeringsanalyse"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/naeringsliv",
+      "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollboden_oslo.json"
+    ],
+    "active_before": {
+      "finding": "Ingen aktiv canonical kildeledet 3x7-pakke for Tollboden var registrert før denne produksjonen."
+    },
+    "decisions": [
+      "Materialiser én canonical narrow 3x7-pakke.",
+      "Bevar de første fjorten spørsmålene som direkte stedskunnskap.",
+      "Legg metodebinding først i siste sett.",
+      "Ikke gjenbruk Tollpakkhusets veie-, lager- eller heisstoff."
+    ],
+    "knowledge_migration": "Alle 21 spørsmål skal få stabile claim- og Knowledge-identiteter ved endelig quizmaterialisering."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Tre læringsjobber dekker bygg og administrativ funksjon, tidslag og ombruk, samt avsluttende analyse av tolladministrasjon som offentlig kontrollnode uten perifert filler-stoff."
+  },
+  "held_back_candidates": [
+    "Å bruke femte tollbod som vurderingsfakta uten eksplisitt kildebevis.",
+    "Å flytte Tollpakkhusets veieboder, vareheiser eller pakkhusporter over til Tollboden.",
+    "Å beskrive en publikumsekspedisjon dokumentert i 2008 som en pågående 2026-tjeneste.",
+    "Å slå Tollboden, Tollpakkhuset og Tollbukaia sammen til ett fysisk sted."
+  ],
+  "profile_hint": "narrow",
+  "claims": [
+    {"claim_id":"claim_tollboden_quiz_01","order":1,"planned_phase":"opening","family":"fact","statement":"Tollboden ble oppført 1891–1896 og sto ferdig i 1896.","source_ids":["riks_plan","riks_stair"],"source_origin":"external","emne_id":"em_naering_havn_transport"},
+    {"claim_id":"claim_tollboden_quiz_02","order":2,"planned_phase":"opening","family":"fact","statement":"Adolf Schirmer tegnet Tollboden.","source_ids":["riks_plan","riks_stair","nbl"],"source_origin":"external","emne_id":"em_naering_havn_transport"},
+    {"claim_id":"claim_tollboden_quiz_03","order":3,"planned_phase":"opening","family":"fact","statement":"Bygningen ble oppført som administrasjonsbygg for Tollvesenet.","source_ids":["riks_plan"],"source_origin":"external","emne_id":"em_naering_risiko_regulering"},
+    {"claim_id":"claim_tollboden_quiz_04","order":4,"planned_phase":"opening","family":"context","statement":"Tollboden og Stenpakkhuset er to separate bygg med forskjellige funksjoner.","source_ids":["riks_fred"],"source_origin":"external","emne_id":"em_naering_havn_transport"},
+    {"claim_id":"claim_tollboden_quiz_05","order":5,"planned_phase":"opening","family":"fact","statement":"Det opprinnelige romprogrammet omfattet blant annet kontorer, bibliotek og arkiv.","source_ids":["riks_plan"],"source_origin":"external","emne_id":"em_naering_arbeid_verdiskaping"},
+    {"claim_id":"claim_tollboden_quiz_06","order":6,"planned_phase":"opening","family":"fact","statement":"Bygningen hadde avmurte ildfaste rom for pengeskap.","source_ids":["riks_plan"],"source_origin":"external","emne_id":"em_naering_risiko_regulering"},
+    {"claim_id":"claim_tollboden_quiz_07","order":7,"planned_phase":"opening","family":"fact","statement":"Kjelleren hadde også transittvarerom.","source_ids":["riks_plan"],"source_origin":"external","emne_id":"em_naering_logistikk_verdikjeder"},
+    {"claim_id":"claim_tollboden_quiz_08","order":8,"planned_phase":"bridge","family":"context","statement":"Riksantikvaren beskriver Tollboden som et representativt offentlig formålsbygg.","source_ids":["riks_fred","riks_plan"],"source_origin":"external","emne_id":"em_naering_havn_transport"},
+    {"claim_id":"claim_tollboden_quiz_09","order":9,"planned_phase":"bridge","family":"fact","statement":"I 1979 ble deler av bygningen ombygd blant annet for kantine og Oslo Byskriverembete.","source_ids":["riks_plan"],"source_origin":"external","emne_id":"em_naering_arbeid_verdiskaping"},
+    {"claim_id":"claim_tollboden_quiz_10","order":10,"planned_phase":"bridge","family":"fact","statement":"Rundt 1990–2000 ble Tollboden modernisert.","source_ids":["riks_plan"],"source_origin":"external","emne_id":"em_naering_arbeid_verdiskaping"},
+    {"claim_id":"claim_tollboden_quiz_11","order":11,"planned_phase":"bridge","family":"fact","statement":"I 2008 var en ny publikumsekspedisjon under innredning.","source_ids":["riks_plan"],"source_origin":"external","emne_id":"em_naering_risiko_regulering"},
+    {"claim_id":"claim_tollboden_quiz_12","order":12,"planned_phase":"bridge","family":"fact","statement":"Riksantikvarens rehabiliteringsomtale sier at tollbygningene var i tollbruk frem til 2016.","source_ids":["riks_stair","riks_entry","riks_hq"],"source_origin":"external","emne_id":"em_naering_havn_transport"},
+    {"claim_id":"claim_tollboden_quiz_13","order":13,"planned_phase":"bridge","family":"context","statement":"Et nytt bindeledd ble brukt til tekniske funksjoner for å redusere inngrep i de fredede byggene.","source_ids":["riks_entry","riks_hq"],"source_origin":"external","emne_id":"em_naering_logistikk_verdikjeder"},
+    {"claim_id":"claim_tollboden_quiz_14","order":14,"planned_phase":"bridge","family":"context","statement":"Senere rehabilitering aktiverte loft og nye planløsninger mens de historiske hovedvolumene fortsatt skulle være lesbare.","source_ids":["riks_hq","riks_stair"],"source_origin":"external","emne_id":"em_naering_havn_transport"},
+    {"claim_id":"claim_tollboden_quiz_15","order":15,"planned_phase":"final","family":"concept_theory","statement":"Infrastrukturanalyse kan skille mellom administrative kontrollnoder, lagerledd og transportledd i samme havnesystem.","source_ids":["riks_plan","riks_fred"],"source_origin":"external","emne_id":"em_naering_logistikk_verdikjeder","method_id":"met_naering_infrastrukturanalyse"},
+    {"claim_id":"claim_tollboden_quiz_16","order":16,"planned_phase":"final","family":"concept_theory","statement":"Tollboden dokumenterer administrativ kontroll av handel, mens Tollpakkhuset dokumenterer fysisk lager- og varebehandling.","source_ids":["riks_plan","riks_fred"],"source_origin":"external","emne_id":"em_naering_risiko_regulering","method_id":"met_naering_infrastrukturanalyse"},
+    {"claim_id":"claim_tollboden_quiz_17","order":17,"planned_phase":"final","family":"concept_theory","statement":"Romprogrammet kan brukes som kilde til hvordan offentlig kontrollarbeid var organisert, men ikke alene til å måle arbeidsproduktivitet.","source_ids":["riks_plan"],"source_origin":"external","emne_id":"em_naering_arbeid_verdiskaping","method_id":"met_naering_arbeidslivsanalyse"},
+    {"claim_id":"claim_tollboden_quiz_18","order":18,"planned_phase":"final","family":"context","statement":"Pengeskaprommene viser at sikring av verdier og dokumenter var en konkret del av den administrative infrastrukturen.","source_ids":["riks_plan"],"source_origin":"external","emne_id":"em_naering_risiko_regulering"},
+    {"claim_id":"claim_tollboden_quiz_19","order":19,"planned_phase":"final","family":"concept_theory","statement":"At tekniske funksjoner flyttes til et nytt bindeledd er et eksempel på ombruk der nye krav løses uten å viske ut den historiske hovedbygningen.","source_ids":["riks_entry","riks_hq"],"source_origin":"external","emne_id":"em_naering_havn_transport","method_id":"met_naering_byhistorisk_naeringsanalyse"},
+    {"claim_id":"claim_tollboden_quiz_20","order":20,"planned_phase":"final","family":"context","statement":"En kilde som dokumenterer publikumsekspedisjon i 2008 beviser ikke at samme tjeneste fortsatt drives i bygget i 2026.","source_ids":["riks_plan"],"source_origin":"external","emne_id":"em_naering_risiko_regulering"},
+    {"claim_id":"claim_tollboden_quiz_21","order":21,"planned_phase":"final","family":"concept_theory","statement":"Tollboden kan analyseres som en administrativ kontrollnode i havneøkonomien uten å slå den sammen med lagerbygningen eller kaien.","source_ids":["riks_plan","riks_fred"],"source_origin":"external","emne_id":"em_naering_logistikk_verdikjeder","method_id":"met_naering_infrastrukturanalyse"}
+  ]
+}

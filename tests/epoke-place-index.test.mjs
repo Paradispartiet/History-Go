@@ -17,7 +17,7 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   assert.equal(index.stats.canonical_story_milestone_count, 239);
-  assert.equal(index.stats.verified_place_production_milestone_count, 549);
+  assert.equal(index.stats.verified_place_production_milestone_count, 552);
 });
 
 test("Hausmannsbrua contributes exactly three verified production milestones", () => {
