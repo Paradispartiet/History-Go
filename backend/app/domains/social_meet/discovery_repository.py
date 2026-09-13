@@ -78,6 +78,7 @@ class PostgresSocialMeetDiscoveryRepository:
             "consent_version": supported_consent_version,
             "place_status_consent_version": place_status_consent_version,
             "place_status_only": mode is DiscoveryMode.PLACE_STATUS,
+            "now": now,
             "block_start": now - BLOCK_COOLDOWN,
             "report_start": now - REPORT_COOLDOWN,
             "decline_start": now - DECLINE_COOLDOWN,
