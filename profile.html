@@ -132,6 +132,7 @@
           <section class="profile-section knowledge-match-section profile-social-stack" id="profileSocialLayer" aria-label="Social Meet">
             <div class="section-head"><h2>Social Meet</h2><span class="section-meta">Kunnskapsmøter, læringssirkler og sosial læringshistorikk.</span></div>
             <p class="muted">Personvern styres i ⚙ Innstillinger.</p>
+            <div id="social-meet-server-status" aria-live="polite"></div>
             <div id="miniProfile" class="social-mini-profile-anchor">MiniProfile</div>
             <div id="meet-invite-inbox" aria-live="polite"></div>
             <div id="spotmeeting-inbox" aria-live="polite"></div>
@@ -185,8 +186,12 @@
   <script src="dist/web/hgModeration.js"></script>
   <script src="js/hgSocialGuards.js"></script>
   <script src="js/knowledgeMatch.js"></script>
-  <script src="js/social/HGSocialMeetSupabaseClient.js"></script>
-  <script src="js/social/HGSocialMeetAdapter.js"></script>
+  <script src="js/social/HGSocialSurfaceContract.js"></script>
+  <script src="js/social/HGSocialSignals.js"></script>
+  <script src="js/social/HGPublicProfileReadModel.js"></script>
+  <script src="js/social/HGSocialMeetSupabaseClient.js?v=20260913-social-ready1"></script>
+  <script src="js/social/HGSocialMeetAdapter.js?v=20260913-social-ready1"></script>
+  <script src="js/social/HGSocialMeetProfileBridge.js?v=20260913-social-ready1"></script>
   <script src="js/social/HGSpotmeeting.js"></script>
   <script src="js/profile.js"></script>
   <script src="js/ui/personal-collection-v1.js"></script>
