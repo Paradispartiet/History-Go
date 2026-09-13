@@ -131,6 +131,26 @@ fastapi dev backend/app/main.py
 
 OpenAPI er tilgjengelig utenfor production og slås av automatisk når `HG_BACKEND_ENVIRONMENT=production`.
 
+## Vercel deployment boundary
+
+The backend is deployable as a standalone Vercel Python/FastAPI project with **Root Directory = `backend`**.
+`backend/pyproject.toml` declares `app.main:app` as the Vercel entrypoint.
+
+Production browser calls originate from the History Go GitHub Pages origin and are accepted only through the explicit CORS allowlist. The default production origin is `https://paradispartiet.github.io`; additional origins must be configured explicitly through `HG_BACKEND_CORS_ALLOWED_ORIGINS`.
+
+Required production environment configuration includes:
+
+- `HG_BACKEND_ENVIRONMENT=production`;
+- `HG_BACKEND_DATABASE_URL` — server-side PostgreSQL connection only;
+- `HG_BACKEND_SUPABASE_URL` — the canonical AHA Supabase project;
+- `HG_BACKEND_SUPABASE_PUBLISHABLE_KEY` when legacy token verification requires it;
+- `HG_BACKEND_READINESS_REQUIRE_DATABASE=true`;
+- `HG_BACKEND_READINESS_REQUIRE_AUTH=true`;
+- `HG_BACKEND_SPOTMEETING_DISCOVERY_ENABLED=true` only when the private database rollout gates are ready;
+- `HG_BACKEND_SPOTMEETING_INVITE_WRITES_ENABLED=true` only when participant invite writes are intentionally live.
+
+Do not expose database credentials or Supabase secret/service-role keys to the browser.
+
 ## Validation
 
 ```bash
