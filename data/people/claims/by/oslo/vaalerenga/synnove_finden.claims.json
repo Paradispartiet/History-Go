@@ -1,26 +1,108 @@
 {
   "schema": "history_go_people_claims_v1",
-  "personId": "synnove_finden",
-  "placeId": "vaalerenga",
-  "verifiedAt": "2026-09-05",
+  "version": "1.0.0",
+  "person_id": "synnove_finden",
+  "profile_file": "data/people/by/oslo/vaalerenga/synnove_finden.json",
+  "identity": {
+    "canonical_identity": "Synnøve Finden, norsk meierist og ostegründer.",
+    "name_variants": [
+      "Synnøve Finden"
+    ],
+    "identity_status": "verified"
+  },
   "claims": [
     {
-      "id": "claim_synnove_finden_meierist",
+      "id": "identity_meierist",
       "claim": "Synnøve Finden utdannet seg til meierist og arbeidet med ost.",
-      "sourceUrl": "https://snl.no/Synn%C3%B8ve_Finden",
-      "status": "verified"
+      "status": "verified",
+      "source_url": "https://snl.no/Synn%C3%B8ve_Finden",
+      "source_location": "biografi og yrke",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-05",
+      "evidence_level": "direct"
     },
     {
-      "id": "claim_synnove_finden_factory",
+      "id": "factory_1928",
       "claim": "Synnøve Finden etablerte ostefabrikken sammen med Pernille Holmen i 1928.",
-      "sourceUrl": "https://www.synnove.no/om-selskapet/",
-      "status": "verified"
+      "status": "verified",
+      "source_url": "https://www.synnove.no/om-selskapet/",
+      "source_location": "selskapshistorie",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-05",
+      "evidence_level": "direct"
     },
     {
-      "id": "claim_synnove_finden_vaalerenga",
+      "id": "vaalerenga_location",
       "claim": "Den tidlige produksjonen er dokumentert i Danmarks gate 41 på Vålerenga.",
-      "sourceUrl": "https://snl.no/Synn%C3%B8ve_Finden",
-      "status": "verified"
+      "status": "verified",
+      "source_url": "https://snl.no/Synn%C3%B8ve_Finden",
+      "source_location": "etablering og tidlig produksjon",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-05",
+      "evidence_level": "direct"
     }
-  ]
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_meierist"
+    ],
+    "kindLabel": [
+      "identity_meierist"
+    ],
+    "year": [
+      "factory_1928"
+    ],
+    "placeId": [
+      "vaalerenga_location"
+    ],
+    "places[vaalerenga]": [
+      "vaalerenga_location"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_meierist",
+          "factory_1928",
+          "vaalerenga_location"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_meierist",
+          "factory_1928"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "vaalerenga_location"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "factory_1928",
+          "vaalerenga_location"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-05",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
 }
