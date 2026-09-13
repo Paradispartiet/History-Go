@@ -16,6 +16,7 @@ const headerMenu = read("js/ui/header-menu.js");
 const socialUi = read("js/social/HGSocialMeetUI.js");
 const spotmeetingUi = read("js/social/HGSpotmeetingUI.js");
 const contract = json("data/categories/place_onsite_contract.json");
+const placeStatusMigration = read("supabase/migrations/009_social_meet_place_status.sql");
 
 test("Events og Møtes vises ikke som globale Utforsk-tabs", () => {
   assert.doesNotMatch(index, /data-leftmode="events"/);
@@ -88,6 +89,16 @@ test("PlaceCard-Møtes går direkte til Folk å møte her og beholder Social Mee
   assert.match(spotmeetingUi, /clearPlaceStatus/);
   assert.match(spotmeetingUi, /discoverCandidates/);
   assert.match(spotmeetingUi, /data-hg-spotmeeting-send/);
+});
+
+test("place-status er midlertidig og endrer ikke public profile freshness", () => {
+  assert.match(placeStatusMigration, /current_place_visible_until/);
+  assert.match(placeStatusMigration, /current_place_consent_version/);
+  assert.match(placeStatusMigration, /social_meet_place_status/);
+  assert.match(placeStatusMigration, /drop trigger if exists set_hg_profiles_updated_at/);
+  const trigger = placeStatusMigration.match(/create trigger set_hg_profiles_updated_at[\s\S]*?execute function public\.set_updated_at\(\);/)?.[0] || "";
+  assert(trigger, "migration recreates hg_profiles freshness trigger");
+  assert.doesNotMatch(trigger, /current_place_id|current_place_visible_until|current_place_consent_version/);
 });
 
 test("Events rendres fra canonical HGEvents i PlaceCard", () => {
