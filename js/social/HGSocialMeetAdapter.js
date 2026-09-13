@@ -71,7 +71,7 @@
       targetUserId: recipientProfileId || '',
       senderProfileId: senderProfileId || '',
       recipientProfileId: recipientProfileId || '',
-      targetDisplayName: row.targetDisplayName || '',
+      targetDisplayName: row.counterpart_display_name || row.counterpartDisplayName || row.targetDisplayName || '',
       context: {
         contextType: row.context_type || row.context?.contextType,
         contextId: row.context_id || row.context?.contextId,
