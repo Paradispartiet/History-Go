@@ -201,6 +201,13 @@
     return labels.slice(0, 2).join(' · ') || 'Deler relevante History GO-interesser';
   }
 
+  async function unpublishMyProfile(){
+    if (backendMode() !== 'fastapi') return { ok:false, reason:'backend_not_enabled' };
+    const resolved = await resolveFastApi();
+    if (!resolved.ok) return resolved;
+    return apiResult(await resolved.client.unpublishProfile(), 'profile');
+  }
+
   async function discoverCandidates(context, options = {}){
     const normalized = normalizeContext(context); if (!normalized.ok) return { ...normalized, suggestions:[] };
     const resolved = await resolveFastApi(); if (!resolved.ok) return { ...resolved, suggestions:[] };
@@ -313,7 +320,7 @@
     };
   }
 
-  const api = { backendMode, scanForbiddenFields, normalizeContext, mapInvite, presetMessages:clone(PRESETS), getMyProfile, upsertMyProfile, discoverCandidates, createInvite, listInvites, acceptInvite, declineInvite, cancelInvite, completeInvite, listCircles, joinCircle, leaveCircle, listActivity, health };
+  const api = { backendMode, scanForbiddenFields, normalizeContext, mapInvite, presetMessages:clone(PRESETS), getMyProfile, upsertMyProfile, unpublishMyProfile, discoverCandidates, createInvite, listInvites, acceptInvite, declineInvite, cancelInvite, completeInvite, listCircles, joinCircle, leaveCircle, listActivity, health };
   root.HG_SocialMeetAdapter = api;
   root.HG_SocialMeetBackend = api;
   if (wantsFastApi()) void ensureFastApiClient();
