@@ -193,7 +193,7 @@ assert.deepEqual(lifeWorldByKey.get('kunst/gallerivanker').life_position_ref, { 
 assert.equal(lifeWorldByKey.get('kunst/gallerivanker').role_scope, 'kunst_gallerivanker');
 assert.deepEqual(lifeWorldByKey.get('by/byflanor').life_position_ref, { badge_id: 'by', id: 'byflanor', label: 'Flanør' });
 assert.equal(lifeWorldByKey.get('by/byflanor').role_scope, 'by_flanor');
-assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 101, career_role_worlds: 85, life_position_role_worlds: 16 });
+assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 102, career_role_worlds: 85, life_position_role_worlds: 17 });
 assert.equal(roleModelManifest.files.length, 293,
   'roleModel-manifestet er authored inventory og skal ikke forveksles med spillerrolle-antallet');
 assert.equal(scenarioPeople.summary.role_model_file_count, 293);
@@ -220,8 +220,8 @@ const expectedCounts = {
   life_circumstance_option_values: 18,
   relationship_stages: 6,
   career_role_worlds: 85,
-  life_position_role_worlds: 16,
-  total_role_worlds: 101,
+  life_position_role_worlds: 17,
+  total_role_worlds: 102,
   role_model_manifest_files: 293,
   canonical_scenario_role_models: 287,
   shadowed_role_models: 6,

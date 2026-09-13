@@ -77,13 +77,13 @@ assert.deepEqual(entry.life_position_ref, { badge_id:'subkultur', id:null, label
 assert.equal(index.roles.filter((x)=>x.subject_type!=='life_position').length, 85);
 assert.equal(index.roles.filter((x)=>x.subject_type==='life_position').length, 16);
 assert.equal(index.roles.length, 101);
-assert.equal(index.status, '101_role_worlds_materialized');
-assert.deepEqual(index.summary, { role_worlds_total:101, career_role_worlds:85, life_position_role_worlds:16 });
+assert.equal(index.status, '102_role_worlds_materialized');
+assert.deepEqual(index.summary, { role_worlds_total: 102, career_role_worlds:85, life_position_role_worlds: 17 });
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('subkultur/gangster'));
 assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 16);
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 16);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 101);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 16);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 17);
 
 const exit = stream.storylets.find((x)=>x.id==='vennen_som_vil_ut');
 assert.match(exit.situation.join(' '), /trekke seg|frivillighet|sosial tvang/i);

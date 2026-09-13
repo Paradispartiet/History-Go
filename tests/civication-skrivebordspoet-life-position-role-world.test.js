@@ -118,13 +118,13 @@ assert.equal(entry.path, worldPath);
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
 assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 16);
 assert.deepEqual(index.summary, {
-  role_worlds_total: 101,
+  role_worlds_total: 102,
   career_role_worlds: 85,
-  life_position_role_worlds: 16
+  life_position_role_worlds: 17
 });
 assert.equal(index.career_role_world_count, 85);
-assert.equal(index.life_position_role_world_count, 16);
-assert.equal(index.status, '101_role_worlds_materialized');
+assert.equal(index.life_position_role_world_count, 17);
+assert.equal(index.status, '102_role_worlds_materialized');
 
 assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds, [
   'sport/supporter',
@@ -142,14 +142,15 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'sport/klubbmenneske',
   'vitenskap/maker',
   'subkultur/gangster',
-  'liv_alternativ/bohem'
+  'liv_alternativ/bohem',
+  'liv_alternativ/nomade'
 ]);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 16);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 101);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 16);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 17);
 
 const readiness = audit.positions.find((row) => row.key === 'litteratur/skrivebordspoet');
 assert.ok(readiness);
@@ -161,7 +162,7 @@ assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.deepEqual(readiness.evidence.livelihood_templates, ['skrivebordspoet_introtekst']);
 assert.ok(!audit.queue.some((row) => row.key === 'litteratur/skrivebordspoet'));
 assert.equal(audit.summary.life_position_role_world_complete, 16);
-assert.equal(audit.summary.completed_life_position_role_worlds, 16);
+assert.equal(audit.summary.completed_life_position_role_worlds, 17);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.first_ready, null);
 
