@@ -43,7 +43,7 @@ assert.ok(world.primary_threads.length >= 7);
 assert.ok(world.recurring_people_archetypes.length >= 5);
 assert.ok(world.private_aftermath.length >= 4);
 assert.ok(world.delayed_consequences.length >= 6);
-assert.equal(index.roles.length, 105);
+assert.equal(index.roles.length, 106);
 assert.equal(index.roles.filter((x)=>x.subject_type==='life_position').length, 21);
 assert.equal(index.status, '106_role_worlds_materialized');
 console.log('civication Liv bosituasjon Boms readiness + Role World ok: 56/56 / 14 anchors / 105 total / 20 life-position worlds');
