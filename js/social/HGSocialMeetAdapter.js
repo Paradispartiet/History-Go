@@ -126,8 +126,11 @@
   }
 
   function fastApi(){
+    if (!wantsFastApi()) {
+      return { ok:false, reason:'backend_not_enabled', health:{ ok:true, enabled:false, reason:'backend_not_enabled' } };
+    }
     const client = root.HG_SocialMeetFastApiClient;
-    const health = client?.health?.() || { ok:false, reason:'fastapi_client_missing' };
+    const health = client?.health?.() || { ok:false, enabled:true, reason:'fastapi_client_missing' };
     if (!client || !health.ok || !health.enabled) {
       return { ok:false, reason:health.reason || 'backend_not_enabled', health };
     }
