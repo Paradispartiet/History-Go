@@ -92,4 +92,4 @@ assert.match(conflict.choices.find((x)=>x.id==='A').label, /Trekk|varsle|roer/i)
 const money = stream.storylets.find((x)=>x.id==='pengene_som_ma_vaere_forklarlige');
 assert.match(money.situation.join(' '), /lovlig|forklare|avtalte oppdraget/i);
 
-console.log('civication Subkultur Gangster Role World ok: 56/56 / 14 anchors / 100 total / 16 life-position worlds');
+console.log('civication Subkultur Gangster Role World ok: 56/56 / 14 anchors / 102 total / 17 life-position worlds');
