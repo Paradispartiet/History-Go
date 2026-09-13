@@ -249,7 +249,7 @@ Safety markers: safety-first, local-only, no GPS/live/followers, and no automati
 
 ## `window.HG_SpotmeetingUI`
 
-`window.HG_SpotmeetingUI` is the canonical user surface for starting a Kunnskapsmøte. From `PlaceCard → Utforsk → Møtes`, the default place-context view is **Folk å møte her**: opt-in discoverable Social Meet profiles ranked against the active Place by explicit knowledge/interests. It never claims physical presence. The UI owns `#hgSpotmeetingSheet`, uses FastAPI candidate discovery when configured and rollout-enabled, keeps TEST_MODE demo candidates isolated, fails closed when production discovery is unavailable, and dispatches `hg:spotmeetingChanged` + `updateProfile` after an invite.
+`window.HG_SpotmeetingUI` is the canonical user surface for starting a Kunnskapsmøte. From `PlaceCard → Utforsk → Møtes`, the default Place view is **Folk her nå**, backed by the explicit `place_status` discovery mode. The same sheet exposes separate **Folk å møte** knowledge/interest matching. `Folk her nå` means profiles that have self-declared this canonical place for a bounded period; it is not GPS verification. The UI owns `#hgSpotmeetingSheet`, renders **Vis meg her i 60 min / Skjul meg**, uses FastAPI discovery when configured and rollout-enabled, keeps TEST_MODE demo candidates isolated from real place status, fails closed when production discovery is unavailable, and dispatches `hg:spotmeetingChanged` + `updateProfile` after an invite.
 
 `window.openSpotMatchList` is a legacy wrapper into `HG_SpotmeetingUI.open(...)`. `window.HG_SpotmeetingPlaceCardDemo` is only a compatibility/demo wrapper. The footer has no Spotmeeting entry; follow-up runs through `window.HG_SocialMeetUI`.
 
@@ -257,15 +257,15 @@ Safety markers: safety-first, local-only, no GPS/live/followers, and no automati
 
 `window.HG_SocialMeetUI` is the canonical Social Meet surface for following up invitations, answers and meeting status. It owns `#hgSocialMeetSheet`, with status tabs read from `window.HG_Spotmeeting`'s inbox.
 
-There is no chat, free text, live location, nearby, followers, feed, distance, last seen or auto-invites.
+There is no chat, free text, GPS/device-derived live location, nearby/proximity scanning, followers, feed, distance, last seen or auto-invites. The only location-adjacent state is explicit, self-declared, expiring `place_status` on the existing Social Meet profile.
 
 Product split:
 
 - **PlaceCard → Utforsk → Møtes** is the canonical meeting entry, rendered in the left Place Sheet hero column immediately below the four Explore collections.
-- **Kunnskapsmøte** (`HG_SpotmeetingUI`) shows **Folk å møte her** for a Place context and starts a concrete preset-only meeting proposal to a selected profile.
+- **Kunnskapsmøte** (`HG_SpotmeetingUI`) shows separate **Folk her nå** and **Folk å møte** entries for a Place context and starts a concrete preset-only meeting proposal to a selected profile.
 - **Social Meet** (`HG_SocialMeetUI`) follows proposals up through pending/accepted/completed status, agreements, learning circles and history.
 - **Profile** keeps settings/privacy/history and may link to Social Meet, but is not the primary entry.
 
 The two runtimes remain separate owners because discovery/invite creation and follow-up have different state/backend responsibilities; only the **navigation and product surface are unified**. PlaceCard Møtes routes directly into `HG_SpotmeetingUI`; `HG_SocialMeetUI.open({ filter, placeId, sourceSurface })` supports the header and the fixed **Mine møter / Social Meet** follow-up inside the Spotmeeting sheet. It must not auto-inject a second Social Meet card elsewhere in PlaceCard.
 
-Status: FastAPI/PostgreSQL backend implementation exists for identity, privacy-safe discovery and invite lifecycle. The browser now reuses the existing AHA/Supabase authenticated session as the bearer-token bridge and exposes `HG_SocialMeetProfileBridge` for explicit server-profile publication/unpublication. Participant-facing production use remains fail-closed until an actual backend deployment URL, active database and rollout/write gates are configured. TEST_MODE remains local/demo only.
+Status: FastAPI/PostgreSQL backend implementation exists for identity, privacy-safe `match` + `place_status` discovery and invite lifecycle. The browser reuses the existing AHA/Supabase authenticated session as the bearer-token bridge and exposes `HG_SocialMeetProfileBridge` for explicit server-profile publication/unpublication. `place_status` additionally requires the separate private rollout gate and `social_meet_place_status_v1` consent. Participant-facing production use remains fail-closed until an actual backend deployment URL, active database and rollout/write gates are configured. TEST_MODE remains local/demo only.
