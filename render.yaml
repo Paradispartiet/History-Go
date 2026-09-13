@@ -9,3 +9,40 @@ services:
     envVars:
       - key: OPENAI_API_KEY
         sync: false
+
+  - type: web
+    name: history-go-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install .
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health/ready
+    autoDeployTrigger: commit
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.14.3"
+      - key: HG_BACKEND_ENVIRONMENT
+        value: production
+      - key: HG_BACKEND_DOCS_ENABLED
+        value: "false"
+      - key: HG_BACKEND_CORS_ALLOWED_ORIGINS
+        value: https://paradispartiet.github.io
+      - key: HG_BACKEND_DATABASE_URL
+        sync: false
+      - key: HG_BACKEND_READINESS_REQUIRE_DATABASE
+        value: "true"
+      - key: HG_BACKEND_SUPABASE_URL
+        value: https://wshmybqyksrwkawqleiz.supabase.co
+      - key: HG_BACKEND_SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: HG_BACKEND_SUPABASE_JWT_AUDIENCE
+        value: authenticated
+      - key: HG_BACKEND_READINESS_REQUIRE_AUTH
+        value: "true"
+      - key: HG_BACKEND_SPOTMEETING_INVITE_WRITES_ENABLED
+        value: "false"
+      - key: HG_BACKEND_SPOTMEETING_DISCOVERY_ENABLED
+        value: "false"
+      - key: HG_BACKEND_SOCIAL_MEET_RETENTION_APPLY_ENABLED
+        value: "false"
