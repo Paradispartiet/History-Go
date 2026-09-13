@@ -1,0 +1,658 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "liv_bosituasjon_uteligger_stream",
+  "type": "leisure",
+  "title": "Uteligger",
+  "sociological_theme": "selvvalgt_liv_uten_fast_bolig",
+  "applies_when": {
+    "any_tags": [
+      "liv_bosituasjon:uteligger"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "valget_uten_fast_bolig",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Din egen presentasjon",
+      "subject": "Et valg om boligform",
+      "situation": [
+        "Du har valgt «Uteligger» som spillerens egen livsposisjon: å leve uten fast bolig.",
+        "Spillet skiller dette uttrykkelig fra ufrivillig bostedsløshet og bruker ikke etiketten om andre.",
+        "Valget sier ingenting i seg selv om arbeid, helse, rus, moral eller kriminalitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold etiketten avgrenset til ditt eget valg.",
+          "effect": 1,
+          "tags": [
+            "valget_uten_fast_bolig_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du lar livsposisjonen være selvdefinert uten å gjøre den til forklaring på andre."
+        },
+        {
+          "id": "B",
+          "label": "Bruk etiketten som forklaring på alle uten fast bolig.",
+          "effect": -1,
+          "tags": [
+            "valget_uten_fast_bolig_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du gjør ulike livssituasjoner til én stereotyp kategori."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_self_definition"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "natten_og_vaeret",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Kveldens værmelding",
+      "subject": "Natten må være forsvarlig",
+      "situation": [
+        "Temperaturen faller og vinden øker før natten.",
+        "Uten fast bolig blir vær, tørre klær og tilgang til ly konkrete rammer for hvor frivillig natten faktisk er.",
+        "Å velge en tryggere løsning endrer ikke verdien av tidligere valg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Endre planen og velg et forsvarlig sted for natten.",
+          "effect": 1,
+          "tags": [
+            "natten_og_vaeret_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du prioriterer sikkerhet og faktisk handlingsrom."
+        },
+        {
+          "id": "B",
+          "label": "Hold fast ved planen bare for å bevise konsekvens.",
+          "effect": -1,
+          "tags": [
+            "natten_og_vaeret_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du gjør belastning til en identitetsprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_weather_check"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "torre_klaer_og_varme",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Utstyret ditt",
+      "subject": "Kroppen trenger marginer",
+      "situation": [
+        "En jakke er våt og noe av utstyret trenger å tørke.",
+        "Lite eierskap betyr at hvert plagg og hver praktisk ting får større betydning.",
+        "Nøysomhet er ikke det samme som å mangle reserve når forholdene blir krevende."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prioriter tørking, varme og en liten materiell reserve.",
+          "effect": 1,
+          "tags": [
+            "torre_klaer_og_varme_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du behandler kroppen og utstyret som reelle forutsetninger for frihet."
+        },
+        {
+          "id": "B",
+          "label": "Gjør minst mulig utstyr til et mål uansett forhold.",
+          "effect": -1,
+          "tags": [
+            "torre_klaer_og_varme_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du gjør knapphet til ideal i stedet for et praktisk valg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_material_margin"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "toalett_vask_og_lading",
+      "message_type": "social",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En praktisk runde",
+      "subject": "Hverdagen trenger infrastruktur",
+      "situation": [
+        "Du trenger toalett, vask, drikkevann og strøm til telefonen.",
+        "Tilgang styres av åpningstider, priser, medlemskap eller lokale regler.",
+        "Selv et selvvalgt liv uten fast bolig er avhengig av fysisk og sosial infrastruktur."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Planlegg rundt tilbud du faktisk har adgang til.",
+          "effect": 1,
+          "tags": [
+            "toalett_vask_og_lading_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du gjør nødvendig infrastruktur synlig i stedet for å late som den ikke finnes."
+        },
+        {
+          "id": "B",
+          "label": "Anta at eget behov automatisk overstyrer vilkårene.",
+          "effect": -1,
+          "tags": [
+            "toalett_vask_og_lading_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du gjør tilgang til et krav på andres ressurser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_infrastructure_access"
+      ],
+      "risk_links": [
+        "bureaucratic_risk",
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tingene_du_ikke_kan_miste",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Sekken din",
+      "subject": "Oppbevaring er også boligpolitikk i miniatyr",
+      "situation": [
+        "ID, telefon, medisiner eller andre viktige ting må oppbevares trygt.",
+        "Når du ikke har en fast dør å låse, blir små tap raskt store problemer.",
+        "Få eiendeler kan bety mer sårbarhet per gjenstand, ikke mindre ansvar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en tydelig plan for det du ikke kan miste.",
+          "effect": 1,
+          "tags": [
+            "tingene_du_ikke_kan_miste_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du reduserer sårbarhet uten å late som eiendeler er uviktige."
+        },
+        {
+          "id": "B",
+          "label": "La alt viktig ligge i samme usikrede løsning.",
+          "effect": -1,
+          "tags": [
+            "tingene_du_ikke_kan_miste_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du gjør ett enkelt tap i stand til å slå ut flere deler av hverdagen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_storage_plan"
+      ],
+      "risk_links": [
+        "bureaucratic_risk",
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "plassen_er_felles",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Et offentlig sted",
+      "subject": "Fellesrom har flere legitime brukere",
+      "situation": [
+        "Du bruker et offentlig eller halv-offentlig sted til å hvile en stund.",
+        "Andre bruker det samme området til ferdsel, arbeid, lek og pauser.",
+        "Tilgang til fellesrom betyr ikke privat råderett, men det betyr heller ikke at du slutter å være en legitim bruker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk stedet slik at både du og andre fortsatt får plass.",
+          "effect": 1,
+          "tags": [
+            "plassen_er_felles_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du kombinerer egen adgang med gjensidighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjør langvarig bruk til et uformelt krav på området.",
+          "effect": -1,
+          "tags": [
+            "plassen_er_felles_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du forveksler legitim bruk med privat eierskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_public_space"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "adresse_uten_dor",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En viktig beskjed",
+      "subject": "Kontakt uten fast adresse",
+      "situation": [
+        "En avtale, søknad eller beskjed krever at du kan nås og finne dokumentene dine.",
+        "Fravær av fast bolig gjør enkelte administrative rutiner mer krevende uten at behovet for dem forsvinner.",
+        "Et system kan være formelt nøytralt og likevel være lettere å bruke når man har en fast adresse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en stabil kontakt- og dokumentløsning som fungerer for deg.",
+          "effect": 1,
+          "tags": [
+            "adresse_uten_dor_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du bygger en administrativ bro uten å gjøre fast bolig til identitetskrav."
+        },
+        {
+          "id": "B",
+          "label": "Behandle alle frister og kontaktkrav som irrelevante.",
+          "effect": -1,
+          "tags": [
+            "adresse_uten_dor_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du lar systemfriksjon vokse til unødvendig risiko."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_admin_anchor"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "dagsbudsjettet",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Pengene du har tilgjengelig",
+      "subject": "Ingen husleie betyr ikke ingen kostnader",
+      "situation": [
+        "Du betaler ikke en vanlig fast husleie akkurat nå.",
+        "Mat, transport, vask, lading, oppbevaring, erstatning av utstyr og enkelte overnattinger kan likevel koste penger.",
+        "Boligfrihet kan endre kostnadsstrukturen uten å oppheve økonomiske begrensninger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg de faktiske kostnadene og behold en liten reserve.",
+          "effect": 1,
+          "tags": [
+            "dagsbudsjettet_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du gjør økonomien synlig nok til å bevare handlingsrom."
+        },
+        {
+          "id": "B",
+          "label": "Anta at fravær av husleie gjør budsjett unødvendig.",
+          "effect": -1,
+          "tags": [
+            "dagsbudsjettet_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du overser de variable kostnadene som fortsatt styrer valgene."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_budget"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arbeid_uten_fast_bolig",
+      "message_type": "class_case",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En arbeidskontakt",
+      "subject": "Boligsituasjon er ikke yrkesstatus",
+      "situation": [
+        "Du har en arbeidsoppgave eller et oppdrag som krever oppmøte og pålitelig kontakt.",
+        "Livsposisjonen sier ikke om du er i arbeid, uten arbeid eller mellom oppdrag.",
+        "Det praktiske spørsmålet er om boligformen skaper forhold du faktisk må planlegge rundt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Planlegg oppmøte og kontakt uten å gjøre boligsituasjonen til hele forklaringen.",
+          "effect": 1,
+          "tags": [
+            "arbeid_uten_fast_bolig_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du holder jobb og boligstatus som ulike livslag."
+        },
+        {
+          "id": "B",
+          "label": "Anta at boligformen automatisk bestemmer arbeidsrollen din.",
+          "effect": -1,
+          "tags": [
+            "arbeid_uten_fast_bolig_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du blander sammen to systemer som kan variere uavhengig av hverandre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_work_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_vil_vite",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En gammel venn",
+      "subject": "Hvor kan jeg nå deg?",
+      "situation": [
+        "En venn vil vite hvordan dere kan holde kontakt uten å kontrollere valgene dine.",
+        "Omsorg kan oppleves som støtte eller som overvåkning avhengig av hvordan den organiseres.",
+        "Et liv uten fast bolig trenger ikke bety et liv uten privatliv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtal en kontaktform og hvilke opplysninger du faktisk vil dele.",
+          "effect": 1,
+          "tags": [
+            "vennen_som_vil_vite_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du gjør støtte mulig uten å gi opp privatliv."
+        },
+        {
+          "id": "B",
+          "label": "La vennen ta ansvar for å finne og følge deg uten klare grenser.",
+          "effect": -1,
+          "tags": [
+            "vennen_som_vil_vite_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du gjør omsorg til et uavklart kontrollarbeid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_contact_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tilbud_om_midlertidig_tak",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Et konkret tilbud",
+      "subject": "Et tak for noen netter",
+      "situation": [
+        "Du får tilbud om midlertidig overnatting eller en kort base.",
+        "Å ta imot tak over hodet noen netter trenger ikke bety at du oppgir den valgte livsposisjonen.",
+        "Samtidig kan et tilbud være anledning til å undersøke om vilkårene eller ønskene dine har endret seg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder tilbudet ut fra behov og vilkår, ikke identitetsbevis.",
+          "effect": 1,
+          "tags": [
+            "tilbud_om_midlertidig_tak_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du lar valget være fleksibelt nok til å romme sikkerhet og endring."
+        },
+        {
+          "id": "B",
+          "label": "Avvis enhver midlertidig base bare for å beskytte etiketten.",
+          "effect": -1,
+          "tags": [
+            "tilbud_om_midlertidig_tak_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du gjør identiteten mer rigid enn selve livsvalget."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_temporary_shelter"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "blikket_fra_fremmede",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Et kort møte",
+      "subject": "Andre fyller inn historien din",
+      "situation": [
+        "En fremmed trekker raske slutninger om hvorfor du ikke har fast bolig.",
+        "Synlige tegn på boligsituasjon kan utløse både medlidenhet, mistenksomhet og romantisering.",
+        "Ingen av reaksjonene kjenner automatisk arbeid, økonomi, helse eller motivene dine."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Korriger bare det du vil korrigere og behold resten privat.",
+          "effect": 1,
+          "tags": [
+            "blikket_fra_fremmede_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du beskytter retten til å definere hvor mye av historien din andre får."
+        },
+        {
+          "id": "B",
+          "label": "La fremmedes stereotype bli målestokken for egen identitet.",
+          "effect": -1,
+          "tags": [
+            "blikket_fra_fremmede_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du lar andres antakelser styre et valg de ikke kjenner."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_stigma_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_liv_uten_fast_bolig",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En annen uten fast bolig",
+      "subject": "Samme ytre situasjon, ulike historier",
+      "situation": [
+        "Du møter en annen person som også mangler fast bolig akkurat nå.",
+        "Grunnene, ressursene, nettverkene og graden av frivillighet kan være helt forskjellige.",
+        "Lik boligstatus gir ikke rett til å definere den andres liv eller tale på deres vegne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Møt den andre som person og spør før du antar likhet.",
+          "effect": 1,
+          "tags": [
+            "to_liv_uten_fast_bolig_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du skiller felles erfaring fra identisk historie."
+        },
+        {
+          "id": "B",
+          "label": "Anta at din egen forklaring også gjelder den andre.",
+          "effect": -1,
+          "tags": [
+            "to_liv_uten_fast_bolig_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du gjør egen livsposisjon til en kategori for andre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_peer_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "retten_til_a_endre_valget",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Din egen oppsummering",
+      "subject": "Et valg kan også avsluttes",
+      "situation": [
+        "Du har sett friheten, arbeidet og sårbarheten i å leve uten fast bolig.",
+        "Et selvvalgt livsvalg er bare meningsfullt dersom du også kan endre det uten å måtte forsvare en tidligere identitet.",
+        "Å søke eller ta imot fast bolig senere gjør ikke dagens erfaringer mindre virkelige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold retten til både å fortsette og å endre kurs.",
+          "effect": 1,
+          "tags": [
+            "retten_til_a_endre_valget_boundary",
+            "uteligger_reflection"
+          ],
+          "feedback": "Du gjør valgfrihet til faktisk mulighet, ikke et permanent krav."
+        },
+        {
+          "id": "B",
+          "label": "Gjør etiketten til et løfte du aldri kan revurdere.",
+          "effect": -1,
+          "tags": [
+            "retten_til_a_endre_valget_pressure",
+            "uteligger_myth"
+          ],
+          "feedback": "Du gjør et livsvalg til en låst rolle."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uteligger_choice_review"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
