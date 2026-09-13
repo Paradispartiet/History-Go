@@ -29,10 +29,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadHGSocialDemoProfile", () => loadScriptOnce("js/social/HGSocialDemoProfile.js"));
     await safeRun("loadHGSocialDemoPanel", () => loadScriptOnce("js/social/HGSocialDemoPanel.js"));
     await safeRun("loadHGSocialMatchGraph", () => loadScriptOnce("js/social/HGSocialMatchGraph.js"));
-    await safeRun("loadHGSocialMeetSupabaseClient", () => loadScriptOnce("js/social/HGSocialMeetSupabaseClient.js"));
-    await safeRun("loadHGSocialMeetAdapter", () => loadScriptOnce("js/social/HGSocialMeetAdapter.js"));
+    await safeRun("loadHGSocialMeetSupabaseClient", () => loadScriptOnce("js/social/HGSocialMeetSupabaseClient.js?v=20260913-social-ready1"));
+    await safeRun("loadHGSocialMeetAdapter", () => loadScriptOnce("js/social/HGSocialMeetAdapter.js?v=20260913-social-ready1"));
     await safeRun("loadHGSpotmeeting", () => loadScriptOnce("js/social/HGSpotmeeting.js"));
-    await safeRun("loadHGSpotmeetingUI", () => loadScriptOnce("js/social/HGSpotmeetingUI.js?v=20260913-meet-people1"));
+    await safeRun("loadHGSpotmeetingUI", () => loadScriptOnce("js/social/HGSpotmeetingUI.js?v=20260913-social-ready1"));
     await safeRun("loadHGSocialMeetUI", () => loadScriptOnce("js/social/HGSocialMeetUI.js?v=20260912-live-surfaces2"));
     await safeRun("loadHGSpotmeetingPlaceCardDemo", () => loadScriptOnce("js/social/HGSpotmeetingPlaceCardDemo.js"));
     await safeRun("loadHGSocialMatchGraphPanel", () => loadScriptOnce("js/social/HGSocialMatchGraphPanel.js"));
@@ -189,6 +189,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // mini-profile.js bare rendrer statistikk. i18n.js finnes allerede fra index.html.
     await safeRun("loadAhaBridge", () => loadScriptOnce("js/aha.js"));
     await safeRun("loadProfileIdentity", () => loadScriptOnce("js/profileIdentity.js"));
+    await safeRun("loadHGSocialMeetProfileBridge", () => loadScriptOnce("js/social/HGSocialMeetProfileBridge.js?v=20260913-social-ready1"));
     await safeRun("loadMiniProfile", () => loadScriptOnce("js/ui/mini-profile.js"));
 
     await safeRun("initMiniProfile", window.initMiniProfile);

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import hashlib
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from uuid import UUID
 
 from app.core.config import Settings
@@ -11,11 +11,14 @@ from app.domains.social_meet.discovery_models import (
     DiscoveryCandidate,
     DiscoveryCandidateProfile,
     DiscoveryFeatureGate,
+    DiscoveryMode,
     RankedDiscoveryCandidate,
 )
 from app.domains.social_meet.discovery_repository import PostgresSocialMeetDiscoveryRepository
 from app.domains.social_meet.models import (
     KnowledgeFingerprint,
+    PlaceStatusState,
+    PlaceStatusUpdateRequest,
     ProfileVisibility,
     SocialMeetProfileRecord,
 )
@@ -23,6 +26,8 @@ from app.domains.social_meet.repository import SocialMeetIdentityRepository
 from app.domains.social_meet.service import SUPPORTED_CONSENT_VERSION, SocialMeetDomainError
 
 _ROLLOUT_SALT = b"history-go-spotmeeting-discovery-v1"
+SUPPORTED_PLACE_STATUS_CONSENT_VERSION = "social_meet_place_status_v1"
+_PLACE_STATUS_FEATURE_KEY = "social_meet_place_status"
 
 
 class SocialMeetCandidateDiscoveryService:
@@ -57,21 +62,92 @@ class SocialMeetCandidateDiscoveryService:
                 detail="Spotmeeting candidate discovery is not enabled for this profile",
             )
 
+        if request.mode is DiscoveryMode.PLACE_STATUS and request.context.context_type.value != "place":
+            raise SocialMeetDomainError(
+                code="invalid_place_status_context",
+                detail="Temporary place status can only be discovered in a place context",
+            )
+        if request.mode is DiscoveryMode.PLACE_STATUS:
+            place_gate = self._discovery_repository.get_feature_gate(_PLACE_STATUS_FEATURE_KEY)
+            if not _gate_allows(place_gate, requester_profile_id):
+                raise SocialMeetDomainError(
+                    code="backend_not_enabled",
+                    detail="Temporary place status is not enabled for this profile",
+                )
+
         limit = min(request.limit, self._settings.spotmeeting_discovery_max_candidates)
-        ranked = self._discovery_repository.rank_context_candidates(
-            requester_profile_id=requester_profile_id,
-            context=request.context,
-            supported_consent_version=SUPPORTED_CONSENT_VERSION,
-            now=generated_at,
-            limit=limit,
-        )
+        if request.mode is DiscoveryMode.PLACE_STATUS:
+            ranked = self._discovery_repository.rank_context_candidates(
+                requester_profile_id=requester_profile_id,
+                context=request.context,
+                supported_consent_version=SUPPORTED_CONSENT_VERSION,
+                place_status_consent_version=SUPPORTED_PLACE_STATUS_CONSENT_VERSION,
+                mode=request.mode,
+                now=generated_at,
+                limit=limit,
+            )
+        else:
+            ranked = self._discovery_repository.rank_context_candidates(
+                requester_profile_id=requester_profile_id,
+                context=request.context,
+                supported_consent_version=SUPPORTED_CONSENT_VERSION,
+                now=generated_at,
+                limit=limit,
+            )
         return ContextCandidateResponse(
+            mode=request.mode,
             context_type=request.context.context_type,
             context_id=request.context.context_id,
             generated_at=generated_at,
             stale_after_seconds=self._settings.spotmeeting_discovery_stale_after_seconds,
             candidates=[_to_candidate(item) for item in ranked],
         )
+
+    def set_place_status(
+        self,
+        auth_user_id: UUID,
+        request: PlaceStatusUpdateRequest,
+        *,
+        now: datetime | None = None,
+    ) -> PlaceStatusState:
+        checked_at = now or datetime.now(UTC)
+        requester = self._identity_repository.get_or_create_for_user(auth_user_id)
+        requester_profile_id = _require_discoverable_requester(requester)
+        gate = self._discovery_repository.get_feature_gate(_PLACE_STATUS_FEATURE_KEY)
+        if not self._settings.spotmeeting_discovery_enabled or not _gate_allows(
+            gate,
+            requester_profile_id,
+        ):
+            raise SocialMeetDomainError(
+                code="backend_not_enabled",
+                detail="Temporary place status is not enabled for this profile",
+            )
+        if request.consent_version != SUPPORTED_PLACE_STATUS_CONSENT_VERSION:
+            raise SocialMeetDomainError(
+                code="unsupported_place_status_consent_version",
+                detail="The supplied place-status consent version is not supported",
+            )
+        if not request.preview_confirmed:
+            raise SocialMeetDomainError(
+                code="place_status_preview_required",
+                detail="The place-status preview must be confirmed before activation",
+            )
+        visible_until = checked_at + timedelta(minutes=request.duration_minutes)
+        saved = self._identity_repository.set_place_status(
+            auth_user_id,
+            place_id=request.place_id,
+            visible_until=visible_until,
+            consent_version=request.consent_version,
+        )
+        return PlaceStatusState(
+            active=True,
+            place_id=saved.current_place_id,
+            visible_until=saved.current_place_visible_until,
+        )
+
+    def clear_place_status(self, auth_user_id: UUID) -> PlaceStatusState:
+        self._identity_repository.clear_place_status(auth_user_id)
+        return PlaceStatusState(active=False)
 
 
 def _require_discoverable_requester(record: SocialMeetProfileRecord) -> UUID:

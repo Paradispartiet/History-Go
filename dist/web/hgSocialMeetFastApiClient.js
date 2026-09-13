@@ -171,6 +171,11 @@
       method: "POST",
       ...jsonBody(payload)
     }),
+    setPlaceStatus: (payload) => request("/social-meet/spotmeeting/discovery/place-status", {
+      method: "PUT",
+      ...jsonBody(payload)
+    }),
+    clearPlaceStatus: () => request("/social-meet/spotmeeting/discovery/place-status", { method: "DELETE" }),
     createInvite: (payload) => request("/social-meet/spotmeeting/invites", {
       method: "POST",
       ...jsonBody(payload)

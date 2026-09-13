@@ -7,6 +7,7 @@
   const STYLE_ID = 'hg-spotmeeting-ui-style';
 
   const PRESET_BY_ACTION = Object.freeze({
+    here: 'compare_place_learning',
     match: 'compare_place_learning',
     place: 'compare_place_learning',
     quiz: 'quiz_together',
@@ -17,6 +18,7 @@
   });
 
   const CONTEXT_TYPE_BY_ACTION = Object.freeze({
+    here: 'place',
     match: 'place',
     place: 'place',
     quiz: 'quiz',
@@ -27,7 +29,8 @@
   });
 
   const ACTION_LABELS = Object.freeze({
-    match: 'Se kunnskapsmatcher',
+    here: 'Folk her nå',
+    match: 'Folk å møte',
     quiz: 'Inviter til quiz',
     observation: 'Inviter til observasjon',
     route: 'Inviter til rute',
@@ -35,6 +38,7 @@
   });
 
   const ACTION_HELPERS = Object.freeze({
+    here: 'Personer som selv har valgt å vise seg på dette stedet en kort stund.',
     match: 'Finn folk som matcher stedets tema og kunnskap.',
     quiz: 'Foreslå å ta en quiz sammen senere.',
     observation: 'Foreslå en felles observasjon knyttet til stedet.',
@@ -42,7 +46,7 @@
     topic: 'Foreslå å møtes rundt et felles tema.'
   });
 
-  const ACTIONS = Object.freeze(['match', 'quiz', 'observation', 'route']);
+  const ACTIONS = Object.freeze(['here', 'match', 'quiz', 'observation', 'route']);
   let currentState = null;
   let renderSequence = 0;
 
@@ -74,6 +78,9 @@
       #${SHEET_ID} .hg-spotmeeting-close{width:36px;height:36px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font-size:20px;line-height:1;cursor:pointer}
       #${SHEET_ID} .hg-spotmeeting-body{display:grid;gap:14px;padding:16px 18px 18px}
       #${SHEET_ID} .hg-spotmeeting-note{margin:0;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.82);font-size:14px;line-height:1.35}
+      #${SHEET_ID} .hg-place-status{display:grid;gap:8px;padding:11px 12px;border-radius:14px;border:1px solid rgba(247,226,163,.22);background:rgba(247,226,163,.07)}
+      #${SHEET_ID} .hg-place-status p{margin:0;color:rgba(255,255,255,.78);font-size:13px;line-height:1.35}
+      #${SHEET_ID} .hg-place-status button{justify-self:start;min-height:36px;padding:0 12px;border-radius:999px;border:1px solid rgba(247,226,163,.42);background:#f7e2a3;color:#241a0d;font-weight:800;cursor:pointer}
       #${SHEET_ID} .hg-spotmeeting-actions{display:grid;gap:8px}
       #${SHEET_ID} .hg-spotmeeting-action{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:#fff;text-align:left;cursor:pointer}
       #${SHEET_ID} .hg-spotmeeting-action strong{display:block;font-size:15px}
@@ -174,11 +181,14 @@
   }
 
   function actionButton(action, selectedAction, context){
-    const isPlaceMatch = action === 'match' && String(context?.contextType || '') === 'place';
-    const label = isPlaceMatch ? 'Folk å møte her' : (ACTION_LABELS[action] || action);
-    const helper = isPlaceMatch
-      ? 'Finn opt-in-profiler som matcher dette stedet. Dette er ikke live-posisjon.'
-      : (ACTION_HELPERS[action] || '');
+    const isPlace = String(context?.contextType || '') === 'place';
+    const isPlaceMatch = action === 'match' && isPlace;
+    const label = isPlaceMatch ? 'Folk å møte' : (ACTION_LABELS[action] || action);
+    const helper = action === 'here' && isPlace
+      ? 'Selvoppgitt, tidsbegrenset stedsstatus. Ingen GPS eller avstand.'
+      : isPlaceMatch
+        ? 'Finn opt-in-profiler som matcher dette stedet ut fra kunnskap og interesser.'
+        : (ACTION_HELPERS[action] || '');
     return `<button class="hg-spotmeeting-action" type="button" data-hg-spotmeeting-action="${escapeHTML(action)}" aria-pressed="${selectedAction === action ? 'true' : 'false'}"><span><strong>${escapeHTML(label)}</strong><small>${escapeHTML(helper)}</small></span><span aria-hidden="true">›</span></button>`;
   }
 
@@ -277,16 +287,62 @@
     };
   }
 
-  function renderSuggestionCards(suggestions, contextForAction, presetMessageId, label, { demoOnly = false } = {}){
+  function renderSuggestionCards(suggestions, contextForAction, presetMessageId, label, { demoOnly = false, placeStatus = false } = {}){
     const note = demoOnly
       ? 'TEST_MODE: forhåndsmelding, lokalt og privat. Ingen fritekst.'
-      : 'Dette er opt-in kunnskaps- og interessematcher, ikke personer som nødvendigvis står her nå. Sikkerhet revalideres når du sender.';
+      : placeStatus
+        ? 'Disse profilene har selv valgt å vise seg på dette History GO-stedet akkurat nå. Statusen utløper automatisk og er ikke GPS-verifisert.'
+        : 'Dette er opt-in kunnskaps- og interessematcher. Sikkerhet revalideres når du sender.';
     return `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="ready">${escapeHTML(label)}</p><div class="hg-spotmeeting-candidates">${suggestions.slice(0, 4).map(candidate => {
       const duplicate = demoOnly ? getDuplicateInvite(candidate.targetUserId, contextForAction, presetMessageId) : null;
       const disabled = duplicate ? ' disabled' : '';
       const status = duplicate ? 'Allerede sendt' : 'Send forslag';
       return `<article class="hg-spotmeeting-candidate"><div><strong>${escapeHTML(candidate.displayName || candidate.targetUserId || 'Kandidat')}</strong><p>${escapeHTML(candidate.reason || 'Deler kunnskap, ruter eller begreper')}</p></div><button type="button" data-hg-spotmeeting-send="1" data-hg-spotmeeting-target="${escapeHTML(candidate.targetUserId)}" data-hg-spotmeeting-preset="${escapeHTML(presetMessageId)}"${disabled}>${status}</button></article>`;
     }).join('')}</div><p class="hg-spotmeeting-status">${escapeHTML(note)}</p>${socialMeetFollowUpButton(contextForAction, 'Åpne Social Meet')}`;
+  }
+
+  async function renderOwnPlaceStatus(context){
+    const sheet = ensureSheet();
+    const mount = sheet.querySelector('[data-hg-place-status]');
+    if (!mount || String(context?.contextType || '') !== 'place') return;
+    if (backendMode() !== 'fastapi' || typeof root.HG_SocialMeetBackend?.getMyProfile !== 'function') {
+      mount.innerHTML = '<p>Stedssynlighet blir tilgjengelig når Social Meet-serveren er aktiv.</p>';
+      return;
+    }
+    let result;
+    try { result = await root.HG_SocialMeetBackend.getMyProfile(); }
+    catch { result = { ok:false, reason:'backend_unavailable' }; }
+    if (!result?.ok) {
+      mount.innerHTML = '<p>Kunne ikke hente din stedsstatus akkurat nå.</p>';
+      return;
+    }
+    const profile = result.profile || {};
+    const placeId = String(profile.currentPlaceId || profile.current_place_id || '').trim();
+    const visibleUntilRaw = profile.currentPlaceVisibleUntil || profile.current_place_visible_until || null;
+    const visibleUntil = visibleUntilRaw ? new Date(visibleUntilRaw) : null;
+    const active = Boolean(placeId && visibleUntil && Number.isFinite(visibleUntil.getTime()) && visibleUntil.getTime() > Date.now());
+    const samePlace = active && placeId === String(context.contextId || '');
+    if (samePlace) {
+      const time = visibleUntil.toLocaleTimeString('nb-NO', { hour:'2-digit', minute:'2-digit' });
+      mount.innerHTML = `<p><strong>Du vises her nå.</strong> Statusen skjules automatisk ca. ${escapeHTML(time)}.</p><button type="button" data-hg-place-status-clear>Skjul meg</button>`;
+      mount.querySelector('[data-hg-place-status-clear]')?.addEventListener('click', async event => {
+        event.currentTarget.disabled = true;
+        const cleared = await root.HG_SocialMeetBackend.clearPlaceStatus?.();
+        if (!cleared?.ok) root.showToast?.('Kunne ikke skjule stedsstatusen akkurat nå.');
+        await renderOwnPlaceStatus(context);
+        if (currentState?.action === 'here') void renderCandidates(context, 'here');
+      });
+      return;
+    }
+    const prefix = active ? 'Du viser deg midlertidig på et annet sted. ' : '';
+    mount.innerHTML = `<p><strong>Vis at du er her?</strong> ${escapeHTML(prefix)}Hvis du velger dette, kan andre Social Meet-brukere se profilen din på dette stedet i 60 minutter. Dette er selvoppgitt og deler ikke GPS.</p><button type="button" data-hg-place-status-set>Vis meg her i 60 min</button>`;
+    mount.querySelector('[data-hg-place-status-set]')?.addEventListener('click', async event => {
+      event.currentTarget.disabled = true;
+      const saved = await root.HG_SocialMeetBackend.setPlaceStatus?.(context.contextId, 60);
+      if (!saved?.ok) root.showToast?.('Kunne ikke aktivere stedsstatusen akkurat nå.');
+      await renderOwnPlaceStatus(context);
+      if (currentState?.action === 'here') void renderCandidates(context, 'here');
+    });
   }
 
   async function renderCandidates(context, action){
@@ -303,7 +359,7 @@
     const presetMessageId = PRESET_BY_ACTION[action] || PRESET_BY_ACTION.match;
     const label = presetLabel(presetMessageId);
 
-    if (isTestMode()) {
+    if (isTestMode() && action !== 'here') {
       const result = root.HG_Spotmeeting.getSpotmeetingSuggestions(contextForAction);
       const suggestions = Array.isArray(result?.suggestions) ? result.suggestions : [];
       if (!result?.ok) {
@@ -319,16 +375,19 @@
     }
 
     if (!canTryBackendDiscovery()) {
-      target.innerHTML = `${renderStatus('Ekte Spotmeeting er ikke aktivert for denne klienten ennå.', 'backendDisabled')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
+      const readiness = root.HG_SocialMeetProfileBridge?.statusSummary?.();
+      const message = readiness?.label || 'Ekte personmatching er ikke koblet til server i denne versjonen ennå.';
+      target.innerHTML = `${renderStatus(message, 'backendDisabled')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
       return;
     }
 
     const sequence = ++renderSequence;
-    target.innerHTML = renderStatus('Henter trygge kunnskapsmatcher …', 'loading');
+    target.innerHTML = renderStatus(action === 'here' ? 'Henter folk som har valgt å vise seg her …' : 'Henter trygge kunnskapsmatcher …', 'loading');
     let result;
     try {
       result = await root.HG_SocialMeetBackend.discoverCandidates(contextForAction, {
-        signals: buildDiscoverySignals(contextForAction),
+        mode: action === 'here' ? 'place_status' : 'match',
+        signals: action === 'here' ? {} : buildDiscoverySignals(contextForAction),
         limit: 8
       });
     } catch {
@@ -338,18 +397,27 @@
 
     const suggestions = Array.isArray(result?.suggestions) ? result.suggestions : [];
     if (!result?.ok) {
-      const disabled = ['backend_not_enabled', 'profile_not_published', 'not_authenticated'].includes(String(result?.reason || ''));
-      const message = disabled
-        ? 'Kunnskapsmatcher er ikke tilgjengelige for profilen din ennå.'
-        : 'Kunne ikke hente kunnskapsmatcher akkurat nå.';
+      const reason = String(result?.reason || '');
+      const message = reason === 'not_authenticated' || reason === 'supabase_auth_unavailable'
+        ? 'Logg inn med AHA for å finne folk å møte.'
+        : reason === 'profile_not_published'
+          ? 'Social Meet-profilen din må være oppdagbar før du kan finne andre matcher.'
+          : reason === 'backend_not_enabled'
+            ? 'Personmatching er ikke aktivert på serveren ennå.'
+            : reason === 'network_error' || reason === 'backend_unavailable'
+              ? 'Social Meet-serveren svarer ikke akkurat nå.'
+              : action === 'here'
+                ? 'Kunne ikke hente stedsstatus akkurat nå.'
+                : 'Kunne ikke hente kunnskapsmatcher akkurat nå.';
+      const disabled = ['backend_not_enabled','profile_not_published','not_authenticated','supabase_auth_unavailable'].includes(reason);
       target.innerHTML = `${renderStatus(message, disabled ? 'backendDisabled' : 'error')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
       return;
     }
     if (!suggestions.length) {
-      target.innerHTML = `${renderStatus('Ingen trygge kunnskapsmatcher akkurat nå.', 'noCandidates')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
+      target.innerHTML = `${renderStatus(action === 'here' ? 'Ingen andre har valgt å vise seg her akkurat nå.' : 'Ingen trygge kunnskapsmatcher akkurat nå.', 'noCandidates')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
       return;
     }
-    target.innerHTML = renderSuggestionCards(suggestions, contextForAction, presetMessageId, label);
+    target.innerHTML = renderSuggestionCards(suggestions, contextForAction, presetMessageId, action === 'here' ? 'Folk her nå' : label, { placeStatus: action === 'here' });
   }
 
   function render(context, selectedAction = 'match'){
@@ -358,9 +426,11 @@
     const fromPlaceCard = String(context?.sourceSurface || '') === 'placeCardOnSite';
     const heading = fromPlaceCard ? 'Møtes' : 'Kunnskapsmøte';
     const note = placeEntry
-      ? 'Finn folk som frivillig har gjort Social Meet-profilen sin oppdagbar og som matcher dette stedet. Dette viser ikke hvem som fysisk er her nå.'
-      : 'Basert på tema og kunnskap, ikke live-posisjon. Kun forhåndsvalg.';
-    sheet.innerHTML = `<section class="hg-spotmeeting-panel"><header class="hg-spotmeeting-head"><div><h2>${escapeHTML(heading)}</h2><p class="hg-spotmeeting-context">${escapeHTML(context.title || 'Sted')}</p></div><button class="hg-spotmeeting-close" type="button" data-hg-spotmeeting-close="1" aria-label="Lukk">×</button></header><div class="hg-spotmeeting-body"><p class="hg-spotmeeting-note">${escapeHTML(note)}</p><div class="hg-spotmeeting-actions" aria-label="Velg inngang til kunnskapsmøte">${ACTIONS.map(action => actionButton(action, selectedAction, context)).join('')}</div>${socialMeetFollowUpButton(context, 'Mine møter / Social Meet')}<div data-hg-spotmeeting-candidates>${renderStatus('Henter folk å møte …', 'ready')}</div></div></section>`;
+      ? 'Velg mellom selvoppgitt, tidsbegrenset stedsstatus og vanlige kunnskapsmatcher. Stedsstatus bruker bare dette History GO-stedet — ikke GPS, avstand eller bakgrunnssporing.'
+      : 'Basert på tema og kunnskap. Kun forhåndsvalg.';
+    const visibleActions = placeEntry ? ACTIONS : ACTIONS.filter(action => action !== 'here');
+    sheet.innerHTML = `<section class="hg-spotmeeting-panel"><header class="hg-spotmeeting-head"><div><h2>${escapeHTML(heading)}</h2><p class="hg-spotmeeting-context">${escapeHTML(context.title || 'Sted')}</p></div><button class="hg-spotmeeting-close" type="button" data-hg-spotmeeting-close="1" aria-label="Lukk">×</button></header><div class="hg-spotmeeting-body"><p class="hg-spotmeeting-note">${escapeHTML(note)}</p>${placeEntry ? '<div class="hg-place-status" data-hg-place-status><p>Henter din stedsstatus …</p></div>' : ''}<div class="hg-spotmeeting-actions" aria-label="Velg inngang til kunnskapsmøte">${visibleActions.map(action => actionButton(action, selectedAction, context)).join('')}</div>${socialMeetFollowUpButton(context, 'Mine møter / Social Meet')}<div data-hg-spotmeeting-candidates>${renderStatus('Henter folk å møte …', 'ready')}</div></div></section>`;
+    if (placeEntry) void renderOwnPlaceStatus(context);
     void renderCandidates(context, selectedAction);
   }
 

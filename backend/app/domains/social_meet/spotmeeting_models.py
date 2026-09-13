@@ -117,6 +117,7 @@ class SpotmeetingInviteView(ApiModel):
     invite_id: UUID
     sender_profile_id: UUID
     recipient_profile_id: UUID
+    counterpart_display_name: str = ""
     context: SpotmeetingContext
     preset_message_id: SpotmeetingPresetId
     state: SpotmeetingInviteState
@@ -154,3 +155,5 @@ class SpotmeetingInviteRecord:
     version: int
     sync_version: int
     idempotency_key: str | None
+    sender_display_name: str = ""
+    recipient_display_name: str = ""

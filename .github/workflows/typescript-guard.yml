@@ -240,6 +240,8 @@ jobs:
           node --test tests/explore-events-social-meet.test.mjs tests/place-onsite-category-policy.test.mjs tests/torggata-phase9-onsite.test.mjs
           node tests/hg-social-meet-ui-backend.test.js
           node tests/hg-social-meet-status-actions.test.js
+          node tests/hg-social-meet-adapter.test.js
+          node tests/social-meet-profile-bridge.test.js
 
       - name: Test hidden developer mode
         if: needs.scope.outputs.web == 'true'

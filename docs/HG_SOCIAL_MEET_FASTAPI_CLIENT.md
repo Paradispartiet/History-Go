@@ -74,7 +74,7 @@ server-owned domain logic
 
 The token is never returned through the Social Meet adapter API or persisted by the new client.
 
-`HGSocialMeetSupabaseClient.js` therefore remains required as an authentication/session bridge during this phase, but migrated Social Meet invite/discovery writes no longer go directly from the browser to PostgreSQL.
+`HGSocialMeetSupabaseClient.js` therefore remains required as an authentication/session bridge during this phase. When no dedicated Social Meet Supabase client is configured it reuses `HistoryGoAHAAuth.getSession()`, so History Go has one browser login/session owner rather than a duplicate Social Meet auth client. Migrated Social Meet invite/discovery writes still go only through FastAPI, never directly from the browser to PostgreSQL.
 
 ## Migrated production operations
 
@@ -155,7 +155,9 @@ The migration is covered by:
 - TypeScript web typecheck;
 - committed esbuild bundle sync check;
 - existing Spotmeeting browser smoke test;
-- `tests/social-meet-fastapi-adapter.test.js`.
+- `tests/social-meet-fastapi-adapter.test.js`;
+- `tests/hg-social-meet-adapter.test.js` for the AHA-session auth bridge;
+- `tests/social-meet-profile-bridge.test.js` for explicit discoverability consent and privacy-safe server profile payloads.
 
 The focused FastAPI frontend test verifies:
 

@@ -86,8 +86,10 @@ class SpotmeetingInviteService:
         result = self._invite_repository.create_invite_atomic(
             sender_auth_user_id=auth_user_id,
             sender_profile_id=sender.profile_id,
+            sender_display_name=sender.display_name,
             recipient_auth_user_id=recipient.auth_user_id,
             recipient_profile_id=recipient.profile_id,
+            recipient_display_name=recipient.display_name,
             request=request,
             supported_consent_version=SUPPORTED_CONSENT_VERSION,
             now=checked_at,
@@ -284,6 +286,13 @@ def _to_view(record: SpotmeetingInviteRecord, auth_user_id: UUID) -> Spotmeeting
     is_sender = auth_user_id == record.sender_auth_user_id
     is_recipient = auth_user_id == record.recipient_auth_user_id
     is_participant = is_sender or is_recipient
+    counterpart_display_name = (
+        record.recipient_display_name
+        if is_sender
+        else record.sender_display_name
+        if is_recipient
+        else ""
+    )
     actions = SpotmeetingActorActions(
         can_accept=is_recipient and record.state is SpotmeetingInviteState.PENDING,
         can_decline=is_recipient and record.state is SpotmeetingInviteState.PENDING,
@@ -299,6 +308,7 @@ def _to_view(record: SpotmeetingInviteRecord, auth_user_id: UUID) -> Spotmeeting
         invite_id=record.invite_id,
         sender_profile_id=record.sender_profile_id,
         recipient_profile_id=record.recipient_profile_id,
+        counterpart_display_name=counterpart_display_name,
         context=SpotmeetingContext(
             context_type=record.context_type,
             context_id=record.context_id,

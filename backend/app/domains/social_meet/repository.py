@@ -31,6 +31,9 @@ _PROFILE_COLUMNS = """
     profile_visibility,
     consent_version,
     consented_at,
+    current_place_id,
+    current_place_visible_until,
+    current_place_consent_version,
     updated_at
 """
 
@@ -49,6 +52,17 @@ class SocialMeetIdentityRepository(Protocol):
     def get_profile_by_public_id(self, profile_id: UUID) -> SocialMeetProfileRecord | None: ...
 
     def get_discoverable_profile(self, profile_id: UUID) -> SocialMeetProfileRecord | None: ...
+
+    def set_place_status(
+        self,
+        auth_user_id: UUID,
+        *,
+        place_id: str,
+        visible_until: datetime,
+        consent_version: str,
+    ) -> SocialMeetProfileRecord: ...
+
+    def clear_place_status(self, auth_user_id: UUID) -> SocialMeetProfileRecord: ...
 
     def unpublish(self, auth_user_id: UUID) -> SocialMeetProfileRecord: ...
 
@@ -187,6 +201,64 @@ class PostgresSocialMeetIdentityRepository:
             )
         return _map_record(row) if row is not None else None
 
+    def set_place_status(
+        self,
+        auth_user_id: UUID,
+        *,
+        place_id: str,
+        visible_until: datetime,
+        consent_version: str,
+    ) -> SocialMeetProfileRecord:
+        self.get_or_create_for_user(auth_user_id)
+        with self._database.engine.begin() as connection:
+            row = (
+                connection.execute(
+                    text(
+                        f"""
+                    update public.hg_profiles
+                    set
+                      current_place_id = :place_id,
+                      current_place_visible_until = :visible_until,
+                      current_place_consent_version = :consent_version
+                    where user_id = :user_id
+                    returning {_PROFILE_COLUMNS}
+                    """
+                    ),
+                    {
+                        "user_id": auth_user_id,
+                        "place_id": place_id,
+                        "visible_until": visible_until,
+                        "consent_version": consent_version,
+                    },
+                )
+                .mappings()
+                .one()
+            )
+        return _map_record(row)
+
+    def clear_place_status(self, auth_user_id: UUID) -> SocialMeetProfileRecord:
+        self.get_or_create_for_user(auth_user_id)
+        with self._database.engine.begin() as connection:
+            row = (
+                connection.execute(
+                    text(
+                        f"""
+                    update public.hg_profiles
+                    set
+                      current_place_id = null,
+                      current_place_visible_until = null,
+                      current_place_consent_version = null
+                    where user_id = :user_id
+                    returning {_PROFILE_COLUMNS}
+                    """
+                    ),
+                    {"user_id": auth_user_id},
+                )
+                .mappings()
+                .one()
+            )
+        return _map_record(row)
+
     def unpublish(self, auth_user_id: UUID) -> SocialMeetProfileRecord:
         self.get_or_create_for_user(auth_user_id)
         with self._database.engine.begin() as connection:
@@ -195,7 +267,11 @@ class PostgresSocialMeetIdentityRepository:
                     text(
                         f"""
                     update public.hg_profiles
-                    set profile_visibility = 'private'
+                    set
+                      profile_visibility = 'private',
+                      current_place_id = null,
+                      current_place_visible_until = null,
+                      current_place_consent_version = null
                     where user_id = :user_id
                     returning {_PROFILE_COLUMNS}
                     """
@@ -231,6 +307,9 @@ def _map_record(row: RowMapping) -> SocialMeetProfileRecord:
         profile_visibility=ProfileVisibility(str(row["profile_visibility"])),
         consent_version=_optional_string(row.get("consent_version")),
         consented_at=cast(datetime | None, row.get("consented_at")),
+        current_place_id=_optional_string(row.get("current_place_id")),
+        current_place_visible_until=cast(datetime | None, row.get("current_place_visible_until")),
+        current_place_consent_version=_optional_string(row.get("current_place_consent_version")),
         updated_at=cast(datetime, row["updated_at"]),
     )
 
