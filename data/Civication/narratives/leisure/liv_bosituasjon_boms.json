@@ -194,6 +194,188 @@
         "economic_risk"
       ],
       "links": []
+    },
+    {
+      "id": "sofaen_hos_en_venn",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En nær venn",
+      "subject": "Du kan sove her noen netter",
+      "situation": [
+        "En venn tilbyr en midlertidig base.",
+        "Hjemmet er fortsatt vennens private rom.",
+        "Et frivillig løst liv blir skjevt dersom andre stadig må bære bolig- og lagringskostnaden."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtal varighet og praktiske grenser.",
+          "effect": 1,
+          "tags": [
+            "sofaen_hos_en_venn_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du tar imot hjelp uten å gjøre vennskap til permanent logistikk."
+        },
+        {
+          "id": "B",
+          "label": "La hele varigheten forbli uavklart.",
+          "effect": -1,
+          "tags": [
+            "sofaen_hos_en_venn_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du legger alt grensearbeid på vennen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_couch_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vaeret_bestemmer",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Værmeldingen",
+      "subject": "Planen møter forholdene",
+      "situation": [
+        "Forholdene blir dårligere enn utstyret og planen din passer til.",
+        "Et liv uten fast base gjør kroppen mer direkte avhengig av varme og tørre ting.",
+        "Å endre plan er ikke et nederlag for identiteten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg en tryggere løsning når forholdene krever det.",
+          "effect": 1,
+          "tags": [
+            "vaeret_bestemmer_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du prioriterer kroppen framfor å bevise identitet."
+        },
+        {
+          "id": "B",
+          "label": "Hold fast ved planen bare for å bevise konsekvens.",
+          "effect": -1,
+          "tags": [
+            "vaeret_bestemmer_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør belastning til troverdighetsprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_weather_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_tilfeldige_motet",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En ny bekjent",
+      "subject": "Et møte uten skjult gjeld",
+      "situation": [
+        "En tilfeldig samtale blir til et godt møte.",
+        "Den løse rytmen gir rom for mennesker du ellers ikke ville møtt.",
+        "Tilfeldig sosialitet fungerer best når ingen behandles som en ressurs for den andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La møtet stå på egne ben.",
+          "effect": 1,
+          "tags": [
+            "det_tilfeldige_motet_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du verdsetter åpenheten uten å gjøre relasjonen instrumentell."
+        },
+        {
+          "id": "B",
+          "label": "Vurder først hva relasjonen kan gi deg.",
+          "effect": -1,
+          "tags": [
+            "det_tilfeldige_motet_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør sosial åpenhet til en byttehandel."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_random_meeting"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "post_og_papirer",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En viktig beskjed",
+      "subject": "Et løst liv har også frister",
+      "situation": [
+        "En avtale krever at du kan nås og finne dokumentene dine.",
+        "Få faste holdepunkter kan gjøre kontakt og oppbevaring mer krevende.",
+        "Lite institusjonsbinding betyr ikke at avtaler og frister forsvinner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en pålitelig løsning for kontakt og dokumenter.",
+          "effect": 1,
+          "tags": [
+            "post_og_papirer_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du beholder friheten uten å gjøre frakobling til et mål."
+        },
+        {
+          "id": "B",
+          "label": "Behandle all administrasjon som noe som alltid kan utsettes.",
+          "effect": -1,
+          "tags": [
+            "post_og_papirer_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du bygger unødvendig risiko inn i hverdagen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_admin_anchor"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
     }
   ]
 }
