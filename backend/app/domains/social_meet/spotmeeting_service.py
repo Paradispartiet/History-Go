@@ -76,6 +76,9 @@ class SpotmeetingInviteService:
         if recipient is None or recipient.profile_id is None:
             raise _recipient_unavailable()
 
+        assert sender.display_name is not None
+        assert recipient.display_name is not None
+
         self._abuse_service.ensure_invite_creation_allowed(
             auth_user_id,
             request.recipient_profile_id,
