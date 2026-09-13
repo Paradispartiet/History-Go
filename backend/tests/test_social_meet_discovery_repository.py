@@ -9,6 +9,7 @@ from app.core.database import Database
 from app.domains.social_meet.discovery_models import (
     DiscoveryContextSignals,
     DiscoveryMatchReason,
+    DiscoveryMode,
 )
 from app.domains.social_meet.discovery_repository import PostgresSocialMeetDiscoveryRepository
 from app.domains.social_meet.spotmeeting_models import SpotmeetingContextType
@@ -139,6 +140,52 @@ def test_rank_query_uses_explicit_context_signals_and_server_limit() -> None:
     assert params["decline_start"] < NOW
 
 
+def test_place_status_mode_filters_current_place_without_knowledge_ranking() -> None:
+    candidate_id = uuid4()
+    database, connection = _database_with_results(
+        [
+            _mapped_all(
+                [
+                    _ranked_row(
+                        candidate_id=candidate_id,
+                        current_place_status=True,
+                        place_status_only=True,
+                        compatibility_score=1,
+                    )
+                ]
+            )
+        ]
+    )
+    repository = PostgresSocialMeetDiscoveryRepository(database)
+
+    records = repository.rank_context_candidates(
+        requester_profile_id=uuid4(),
+        context=_context(),
+        supported_consent_version="social_meet_identity_v1",
+        place_status_consent_version="social_meet_place_status_v1",
+        mode=DiscoveryMode.PLACE_STATUS,
+        now=NOW,
+        limit=20,
+    )
+
+    assert records[0].profile.profile_id == candidate_id
+    assert records[0].score == 1
+    assert records[0].match_reasons == (DiscoveryMatchReason.PLACE_STATUS,)
+    params = connection.execute.call_args.args[1]
+    assert params["place_status_only"] is True
+    assert params["place_status_consent_version"] == "social_meet_place_status_v1"
+    assert params["now"] == NOW
+    statement = str(connection.execute.call_args.args[0]).lower()
+    assert "candidate.current_place_id = :context_id" in statement
+    assert "candidate.current_place_visible_until > :now" in statement
+    assert "hg_social_meet_blocks" in statement
+    assert "hg_social_meet_reports" in statement
+    assert "hg_social_meet_profile_restrictions" in statement
+    assert "latitude" not in statement
+    assert "longitude" not in statement
+    assert "distance" not in statement
+
+
 def test_ranked_row_maps_snake_case_fingerprint_and_public_profile_fields() -> None:
     candidate_id = uuid4()
     database, _ = _database_with_results(
@@ -199,6 +246,8 @@ def _ranked_row(
     shared_theme: bool = False,
     shared_era: bool = False,
     shared_learning_goal: bool = False,
+    current_place_status: bool = False,
+    place_status_only: bool = False,
     compatibility_score: int,
 ) -> dict[str, object]:
     return {
@@ -222,6 +271,8 @@ def _ranked_row(
         "shared_theme": shared_theme,
         "shared_era": shared_era,
         "shared_learning_goal": shared_learning_goal,
+        "current_place_status": current_place_status,
+        "place_status_only": place_status_only,
         "compatibility_score": compatibility_score,
     }
 
