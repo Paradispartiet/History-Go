@@ -84,7 +84,7 @@ assert.equal(entry.status, 'role_world_complete');
 assert.equal(index.roles.filter((x) => x.subject_type !== 'life_position').length, 85);
 assert.equal(index.roles.filter((x) => x.subject_type === 'life_position').length, 16);
 assert.equal(index.roles.length, 101);
-assert.equal(index.status, '100_role_worlds_materialized');
+assert.equal(index.status, '101_role_worlds_materialized');
 assert.deepEqual(index.summary, { role_worlds_total: 101, career_role_worlds: 85, life_position_role_worlds: 16 });
 
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('vitenskap/maker'));
