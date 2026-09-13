@@ -467,6 +467,52 @@
         "reputation_risk"
       ],
       "links": []
+    },
+    {
+      "id": "vennen_som_bekymrer_seg",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En gammel venn",
+      "subject": "Er dette fortsatt det du ønsker?",
+      "situation": [
+        "En venn spør om livsstilen fortsatt oppleves valgt eller om vilkårene har endret seg.",
+        "Frivillighet kan endre seg over tid uten at tidligere valg blir falske.",
+        "Identitet trenger ikke forsvares ved å skjule praktiske problemer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom det du fortsatt velger og det du vil endre.",
+          "effect": 1,
+          "tags": [
+            "vennen_som_bekymrer_seg_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du lar valgfrihet undersøkes ærlig."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar identiteten ved å benekte alle problemer.",
+          "effect": -1,
+          "tags": [
+            "vennen_som_bekymrer_seg_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør etiketten avhengig av å skjule endrede vilkår."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_choice_review"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "psyche_risk"
+      ],
+      "links": []
     }
   ]
 }
