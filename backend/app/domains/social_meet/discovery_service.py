@@ -62,7 +62,10 @@ class SocialMeetCandidateDiscoveryService:
                 detail="Spotmeeting candidate discovery is not enabled for this profile",
             )
 
-        if request.mode is DiscoveryMode.PLACE_STATUS and request.context.context_type.value != "place":
+        if (
+            request.mode is DiscoveryMode.PLACE_STATUS
+            and request.context.context_type.value != "place"
+        ):
             raise SocialMeetDomainError(
                 code="invalid_place_status_context",
                 detail="Temporary place status can only be discovered in a place context",
