@@ -92,6 +92,7 @@ async function run(){
   });
   localDom.window.HG_SocialMeetAdapter = {backendMode:()=> 'local',health:()=>({ok:true,mode:'local'})};
   localDom.window.eval(script);
+  localDom.window.HG_SocialMeetProfileBridge.render();
   assert(localDom.window.document.body.textContent.includes('Ekte personmatching er ikke koblet til server ennå.'));
   localDom.window.close();
 
