@@ -82,8 +82,8 @@ assert.deepEqual(audit.summary.classifications, {
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.selectable_life_positions, 199);
-assert.equal(audit.summary.completed_life_position_role_worlds, 14);
-assert.equal(audit.summary.life_position_role_world_complete, 14);
+assert.equal(audit.summary.completed_life_position_role_worlds, 15);
+assert.equal(audit.summary.life_position_role_world_complete, 15);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.positions_with_exact_governed_sources, 14);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 14);
