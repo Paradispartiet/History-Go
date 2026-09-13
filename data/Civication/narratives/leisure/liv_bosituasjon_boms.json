@@ -601,6 +601,52 @@
       ],
       "risk_links": [],
       "links": []
+    },
+    {
+      "id": "frihet_med_grenser",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Din egen oppsummering",
+      "subject": "Et løst liv med ansvar",
+      "situation": [
+        "Du ser både friheten og arbeidet i et omflakkende liv.",
+        "Etiketten er din egen og skal ikke brukes til å beskrive andre.",
+        "Frihet kan kombineres med avtaler, økonomisk oversikt og respekt for delte rom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold friheten og de tydelige grensene samtidig.",
+          "effect": 1,
+          "tags": [
+            "frihet_med_grenser_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du gjør livsposisjonen fleksibel og ansvarlig."
+        },
+        {
+          "id": "B",
+          "label": "Gjør fravær av alle grenser til selve idealet.",
+          "effect": -1,
+          "tags": [
+            "frihet_med_grenser_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør identiteten unødvendig rigid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_integrated_identity"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "economic_risk"
+      ],
+      "links": []
     }
   ]
 }
