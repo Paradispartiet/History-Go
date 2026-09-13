@@ -29,5 +29,5 @@ assert.equal(audit.summary.life_position_role_world_complete, 17);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.first_ready, null);
-assert.equal(audit.queue[0].key, 'liv_alternativ/nomade');
+assert.equal(audit.queue[0].key, 'liv_bosituasjon/boms');
 console.log('civication Liv alternativ Bohem readiness ok: governed depth 14 / no livelihood invention / no pending-ready');
