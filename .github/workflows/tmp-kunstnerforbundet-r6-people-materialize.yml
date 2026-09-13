@@ -1,4 +1,4 @@
-name: TEMP Kunstnerforbundet R6 People diagnostic
+name: TEMP Kunstnerforbundet R6 People diagnostic report
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - agent/kunstnerforbundet-people-r6-20260913
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   diagnose:
@@ -18,12 +18,18 @@ jobs:
           ref: agent/kunstnerforbundet-people-r6-20260913
           fetch-depth: 0
 
-      - name: Compare People claims profile_file paths with green R5 baseline
+      - name: Persist exact People validator diagnosis
         shell: bash
         run: |
           set -euo pipefail
+          report='reports/tmp-kunstnerforbundet-r6-people-diagnostic.txt'
+          if [[ -f "$report" ]]; then
+            echo "Diagnostic report already exists; no second write."
+            cat "$report"
+            exit 0
+          fi
           git worktree add --detach /tmp/r5 1dcb688e8a9122972ff6d0ed52462ecb44d41e49
-          python - <<'PY'
+          python - <<'PY' > /tmp/scan.txt
           import json
           from pathlib import Path
 
@@ -45,7 +51,7 @@ jobs:
                   text = '' if raw is None else str(raw).strip()
                   resolved = root / text
                   if not text:
-                      offenders.append((rel, 'empty_profile_file', text, resolved.relative_to(root).as_posix() if resolved != root else '.'))
+                      offenders.append((rel, 'empty_profile_file', text, '.'))
                   elif not resolved.exists():
                       offenders.append((rel, 'missing_profile_file', text, text))
                   elif resolved.is_dir():
@@ -61,17 +67,32 @@ jobs:
           current = Path('data/people/claims/kunst/oslo/kunstnerforbundet/henrik_sorensen.claims.json')
           doc = json.loads(current.read_text())
           profile = Path(str(doc.get('profile_file', '')).strip())
-          print(f'[R6_NEW] claims={current} profile_file={profile} exists={profile.exists()} is_file={profile.is_file()}')
-          assert profile.is_file(), 'Henrik Sørensen profile_file must resolve to a file'
+          print(f'[R6_NEW] claims={current.as_posix()} profile_file={profile.as_posix()} exists={profile.exists()} is_file={profile.is_file()}')
           PY
 
-      - name: Prove baseline audit behavior
-        shell: bash
-        run: |
           set +e
-          cd /tmp/r5
-          node tools/audit-people-profile-canonical.mjs > /tmp/r5-audit.log 2>&1
-          code=$?
-          cat /tmp/r5-audit.log
-          echo "R5_BASE_AUDIT_EXIT=$code"
-          exit 0
+          (cd /tmp/r5 && node tools/audit-people-profile-canonical.mjs) > /tmp/r5-audit.log 2>&1
+          r5_code=$?
+          node tools/audit-people-profile-canonical.mjs > /tmp/r6-audit.log 2>&1
+          r6_code=$?
+          set -e
+
+          {
+            echo 'KUNSTNERFORBUNDET R6 PEOPLE VALIDATOR DIAGNOSTIC'
+            echo 'R5_BASE=1dcb688e8a9122972ff6d0ed52462ecb44d41e49'
+            echo
+            cat /tmp/scan.txt
+            echo
+            echo "R5_BASE_AUDIT_EXIT=$r5_code"
+            cat /tmp/r5-audit.log
+            echo
+            echo "R6_CURRENT_AUDIT_EXIT=$r6_code"
+            cat /tmp/r6-audit.log
+          } > "$report"
+
+          cat "$report"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$report"
+          git commit -m 'Persist Kunstnerforbundet R6 People validator diagnosis'
+          git push origin HEAD:agent/kunstnerforbundet-people-r6-20260913
