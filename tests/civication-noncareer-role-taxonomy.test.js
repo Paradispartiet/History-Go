@@ -176,7 +176,7 @@ assert.ok(roleWorldIndex.roles.every((role) => role.status === 'role_world_compl
 const careerRoleWorlds = roleWorldIndex.roles.filter((role) => role.subject_type !== 'life_position');
 const lifePositionWorlds = roleWorldIndex.roles.filter((role) => role.subject_type === 'life_position');
 assert.equal(careerRoleWorlds.length, 85, 'karriereverdener skal fortsatt være nøyaktig 85');
-assert.equal(lifePositionWorlds.length, 13, 'tretten canonical life-position worlds skal være materialisert, inkludert Flanør og Scenekunst-Scenehenger');
+assert.equal(lifePositionWorlds.length, 14, 'tretten canonical life-position worlds skal være materialisert, inkludert Flanør og Scenekunst-Scenehenger');
 const lifeWorldByKey = new Map(lifePositionWorlds.map((row) => [row.life_position_key, row]));
 assert.deepEqual(lifeWorldByKey.get('sport/supporter').life_position_ref, { badge_id: 'sport', id: 'supporter', label: 'Supporter' });
 assert.equal(lifeWorldByKey.get('sport/supporter').role_scope, 'sport_supporter');
