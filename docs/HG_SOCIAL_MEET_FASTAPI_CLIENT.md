@@ -82,7 +82,8 @@ The adapter now routes these operations through FastAPI:
 
 - current Social Meet profile state;
 - Social Meet profile upsert/publication fields;
-- Spotmeeting candidate discovery;
+- Spotmeeting candidate discovery (`match` and `place_status`);
+- self-controlled temporary place-status set/clear;
 - durable invite creation;
 - participant invite inbox;
 - accept/decline/cancel/complete lifecycle transitions.
@@ -100,14 +101,16 @@ The existing Spotmeeting sheet derives only coarse, explicit History GO context 
 - quiz question-family tags;
 - quiz/profile learning-angle tags.
 
+For `match`, the client sends only those coarse knowledge signals. For `place_status`, discovery sends the canonical Place context id and the explicit mode; activating the user's own status sends only the selected canonical `placeId`, duration, consent version and preview confirmation.
+
 The client does not send:
 
 - GPS or precise coordinates;
+- device-derived location samples;
 - nearby/proximity/distance;
-- live location or presence;
 - last seen/online state;
 - followers/popularity/feed signals;
-- public visit/check-in history;
+- public visit/check-in history or retained place trails;
 - passive movement or behavioral history;
 - free-text user-to-user messages.
 
@@ -163,6 +166,8 @@ The focused FastAPI frontend test verifies:
 
 - production adapter mode uses FastAPI;
 - discovery maps public `profileId` values only;
+- `place_status` is distinct from knowledge matching and uses canonical place ids only;
+- place-status mutation is explicit, bounded and clearable;
 - invite payloads include the complete server-owned context and idempotency key;
 - the typed client bundle lazy-loads once;
 - a production server failure cannot create a local invite.
