@@ -1,0 +1,1225 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_byvandrer",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "by",
+    "id": "byvandrer",
+    "label": "Byvandrer"
+  },
+  "title": "Byvandrer — ruter, forbindelser, barrierer, omveier og hverdagskart",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bygge praktisk kunnskap om forbindelser gjennom byen uten å gjøre egen rute, egen kropp eller mengden vandring til universell norm eller uformell bymyndighet",
+    "description": "Byvandrer-verdenen undersøker målrettet bevegelse mellom steder: ruter, krysningspunkter, omveier, tilgjengelighet, vær, åpningstider, midlertidige stengninger og hukommelsen om en by som stadig endres. Den er eksplisitt forskjellig fra Flanør, som handler om formålsløs oppmerksomhet og byblikk, og Nabolagskjenner, som handler om lokal sosial kapital og tilhørighet. Byvandrer lærer forbindelser på tvers av byen, men blir ikke planlegger, transportekspert, lokal myndighet eller talsperson for alle bybrukere. Ingen ny runtime opprettes."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "class_power",
+    "public_attention",
+    "invisible_work",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "precarity",
+    "alienation"
+  ],
+  "social_environments": [
+    "hverdagsruter mellom arbeid, hjem, møteplasser og offentlige funksjoner der praktisk forbindelse betyr mer enn ren kartavstand",
+    "midlertidige omveier rundt byggearbeid, arrangementer og drift der byens rutenett endres mens det brukes",
+    "kryssinger, broer, trapper, passasjer og innganger der tilgjengelighet og adgang blir konkret",
+    "digitale og kroppslige kart som kan korrigere hverandre uten at noen av dem blir absolutt fasit",
+    "gjennomfartsområder der spilleren må skille rutekunnskap fra sosialt eierskap til nabolaget",
+    "tidsavhengige forbindelser der vær, mørke, folkemengder eller åpningstider endrer en ellers kjent rute"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "rutepartner",
+      "social_function": "viser hvordan to personer kan kjenne samme forbindelse ulikt ut fra tempo, vane og mål",
+      "class_position": "jevnaldrende bybruker med egen rutine",
+      "status": "ingen formell myndighet; sosial korreksjon gjennom delt erfaring",
+      "power_over_player": "kan foreslå andre ruter og korrigere spillerens antakelser",
+      "wants": "en praktisk rute som fungerer for begge",
+      "conceals": "at egen vane også gjør enkelte alternativer usynlige",
+      "speech_style": "konkret, hverdagslig og opptatt av faktiske veivalg",
+      "teaches_player": "at rutekunnskap blir bedre når den tåler sammenligning"
+    },
+    {
+      "id": "besokende",
+      "social_function": "gjør veivisning og usikkerhet synlig fordi personen ikke kjenner byens forbindelser fra før",
+      "class_position": "midlertidig bruker uten etablert lokalkunnskap",
+      "status": "lav situert status i akkurat denne navigasjonssituasjonen",
+      "power_over_player": "kan stille spørsmål som avslører hvilke deler av forklaringen spilleren tar for gitt",
+      "wants": "en forståelig vei med tydelige alternativer",
+      "conceals": "hvilke behov eller preferanser som ennå ikke er sagt høyt",
+      "speech_style": "spørrende, praktisk og lite interessert i lokal prestisje",
+      "teaches_player": "at god veivisning ikke krever kontroll over mottakeren"
+    },
+    {
+      "id": "driftsarbeider",
+      "social_function": "synliggjør at sperringer, skilt og omlegginger produseres gjennom faktisk drift og vedlikehold",
+      "class_position": "arbeider med avgrenset ansvar i en konkret situasjon",
+      "status": "situert operativ myndighet over den aktuelle sperringen, ikke over spillerens liv",
+      "power_over_player": "kan forklare stenging eller henvise til skiltet alternativ",
+      "wants": "at folk respekterer sikring og midlertidig omlegging",
+      "conceals": "at arbeidet ofte vurderes av forbipasserende uten at de ser hele driftsbehovet",
+      "speech_style": "kort, saklig og orientert mot sikker ferdsel",
+      "teaches_player": "at en stengt forbindelse kan ha en institusjonell grunn uten at det gir spilleren planfaglig innsikt"
+    },
+    {
+      "id": "lokal_beboer",
+      "social_function": "holder grensen mellom gjennomfartskunnskap og faktisk nabolagsliv tydelig",
+      "class_position": "person med hverdagsrelasjon til et område spilleren ofte passerer",
+      "status": "situert lokal kunnskap uten automatisk offentlig myndighet",
+      "power_over_player": "kan korrigere spillerens påstander om stedet og peke på annen bruk av samme rute",
+      "wants": "at gjennomfart ikke blir behandlet som eierskap eller total kunnskap",
+      "conceals": "at også lokale perspektiver er partielle og kan være uenige",
+      "speech_style": "direkte, stedsspesifikk og skeptisk til brede generaliseringer",
+      "teaches_player": "at å kunne veien ikke er det samme som å kjenne hele nabolaget"
+    },
+    {
+      "id": "tilgjengelighetsbevisst_medvandrer",
+      "social_function": "gjør forskjellen mellom geometrisk forbindelse og faktisk brukbar rute konkret",
+      "class_position": "bybruker som aktivt legger merke til trinn, underlag, innganger og alternative forbindelser",
+      "status": "ingen formell fagmyndighet med mindre annet er eksplisitt etablert",
+      "power_over_player": "kan peke på terskler spilleren overser og etterspørre tydeligere alternativer",
+      "wants": "at ruteinformasjon beskriver faktiske hindringer presist",
+      "conceals": "at én persons erfaring aldri representerer alle tilgjengelighetsbehov",
+      "speech_style": "presis, løsningsorientert og lite imponert av vage ord som enkel eller nær",
+      "teaches_player": "at tilgjengelighet må observeres og beskrives, ikke antas"
+    },
+    {
+      "id": "kartentusiast",
+      "social_function": "skaper friksjon mellom digitale kart, ruteminner og fysisk observasjon",
+      "class_position": "kunnskapsorientert bybruker uten institusjonell kartmyndighet",
+      "status": "uformell status basert på interesse og systematikk",
+      "power_over_player": "kan foreslå kartlag og alternative forbindelser, men ikke avgjøre hva som er offentlig eller universelt best",
+      "wants": "at kartdata og feltobservasjon korrigerer hverandre",
+      "conceals": "at også kartinteresse kan bli overdreven tro på datalag",
+      "speech_style": "analytisk, nysgjerrig og rask til å sammenligne ruter",
+      "teaches_player": "at kart er modeller av byen, ikke byen selv"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "route_plurality",
+      "meaning": "forholdet mellom én kjent rute og behovet for flere praktiske alternativer gjennom byen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "connectivity_vs_barrier",
+      "meaning": "forholdet mellom kartmessig nærhet og faktisk friksjon skapt av kryssinger, sperringer og terreng",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_vs_conditional_passage",
+      "meaning": "forholdet mellom offentlig ferdsel og snarveier som avhenger av privat eller tidsbegrenset adgang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "habit_vs_city_change",
+      "meaning": "forholdet mellom kroppslig rutehukommelse og en by som stadig bygges om eller stenges midlertidig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "map_vs_embodied_knowledge",
+      "meaning": "forholdet mellom digitale kart, egen rutine og det som faktisk kan observeres på stedet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "accessibility_vs_assumption",
+      "meaning": "forholdet mellom at en forbindelse finnes og at den faktisk kan brukes av mennesker med ulike behov",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "time_weather_vs_route",
+      "meaning": "forholdet mellom samme fysiske rute og hvordan tid på døgnet, vær og årstid endrer brukbarheten",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "wayfinding_vs_gatekeeping",
+      "meaning": "forholdet mellom å hjelpe andre med veien og å gjøre egen rutekunnskap til norm eller portvaktmakt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "route_vs_neighborhood_knowledge",
+      "meaning": "forholdet mellom å passere ofte gjennom et område og å faktisk kjenne dets sosiale liv",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "movement_vs_authority",
+      "meaning": "forholdet mellom omfattende byerfaring og grensen mot planfaglig, transportfaglig eller offentlig myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "convenience_vs_control",
+      "meaning": "forholdet mellom praktiske gjennomganger og hvem som kan stenge, regulere eller endre dem",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "crowd_flow_vs_entitlement",
+      "meaning": "forholdet mellom individuell rutine og byrom som midlertidig brukes av mange med andre mål",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du viser hvordan du vanligvis kommer deg mellom to steder du bruker ofte. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "route_plurality",
+          "movement_vs_authority",
+          "map_vs_embodied_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#den_forste_forbindelsen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du viser hvordan du vanligvis kommer deg mellom to steder du bruker ofte. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "route_plurality",
+          "movement_vs_authority",
+          "map_vs_embodied_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#den_forste_forbindelsen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du viser hvordan du vanligvis kommer deg mellom to steder du bruker ofte. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "route_plurality",
+          "movement_vs_authority",
+          "map_vs_embodied_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#den_forste_forbindelsen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du viser hvordan du vanligvis kommer deg mellom to steder du bruker ofte. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "route_plurality",
+          "movement_vs_authority",
+          "map_vs_embodied_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#den_forste_forbindelsen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: En kjent snarvei går gjennom en passasje som ser åpen ut, men har skilt og porter som skaper tvil om hva som faktisk er offentlig ferdselsrom. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "public_vs_conditional_passage",
+          "convenience_vs_control",
+          "route_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#snarveien_med_porten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: En kjent snarvei går gjennom en passasje som ser åpen ut, men har skilt og porter som skaper tvil om hva som faktisk er offentlig ferdselsrom. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "public_vs_conditional_passage",
+          "convenience_vs_control",
+          "route_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#snarveien_med_porten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: En kjent snarvei går gjennom en passasje som ser åpen ut, men har skilt og porter som skaper tvil om hva som faktisk er offentlig ferdselsrom. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "public_vs_conditional_passage",
+          "convenience_vs_control",
+          "route_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#snarveien_med_porten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: En kjent snarvei går gjennom en passasje som ser åpen ut, men har skilt og porter som skaper tvil om hva som faktisk er offentlig ferdselsrom. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "public_vs_conditional_passage",
+          "convenience_vs_control",
+          "route_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#snarveien_med_porten"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: En gate eller gangforbindelse er midlertidig stengt, og den vanlige ruten brytes. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "habit_vs_city_change",
+          "connectivity_vs_barrier",
+          "map_vs_embodied_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#omveien_som_dukker_opp"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: En gate eller gangforbindelse er midlertidig stengt, og den vanlige ruten brytes. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "habit_vs_city_change",
+          "connectivity_vs_barrier",
+          "map_vs_embodied_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#omveien_som_dukker_opp"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: En gate eller gangforbindelse er midlertidig stengt, og den vanlige ruten brytes. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "habit_vs_city_change",
+          "connectivity_vs_barrier",
+          "map_vs_embodied_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#omveien_som_dukker_opp"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: En gate eller gangforbindelse er midlertidig stengt, og den vanlige ruten brytes. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "habit_vs_city_change",
+          "connectivity_vs_barrier",
+          "map_vs_embodied_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#omveien_som_dukker_opp"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: En tilsynelatende sammenhengende rute viser seg å ha trapper, bratt parti eller annen fysisk terskel. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "accessibility_vs_assumption",
+          "connectivity_vs_barrier",
+          "movement_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#trappen_som_bryter_kartet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: En tilsynelatende sammenhengende rute viser seg å ha trapper, bratt parti eller annen fysisk terskel. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "accessibility_vs_assumption",
+          "connectivity_vs_barrier",
+          "movement_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#trappen_som_bryter_kartet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: En tilsynelatende sammenhengende rute viser seg å ha trapper, bratt parti eller annen fysisk terskel. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "accessibility_vs_assumption",
+          "connectivity_vs_barrier",
+          "movement_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#trappen_som_bryter_kartet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: En tilsynelatende sammenhengende rute viser seg å ha trapper, bratt parti eller annen fysisk terskel. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "accessibility_vs_assumption",
+          "connectivity_vs_barrier",
+          "movement_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#trappen_som_bryter_kartet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Kartappen foreslår en rask rute som på papiret ser bedre ut enn den du kjenner. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "map_vs_embodied_knowledge",
+          "habit_vs_city_change",
+          "route_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#kartappen_og_beina"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Kartappen foreslår en rask rute som på papiret ser bedre ut enn den du kjenner. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "map_vs_embodied_knowledge",
+          "habit_vs_city_change",
+          "route_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#kartappen_og_beina"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Kartappen foreslår en rask rute som på papiret ser bedre ut enn den du kjenner. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "map_vs_embodied_knowledge",
+          "habit_vs_city_change",
+          "route_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#kartappen_og_beina"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Kartappen foreslår en rask rute som på papiret ser bedre ut enn den du kjenner. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "map_vs_embodied_knowledge",
+          "habit_vs_city_change",
+          "route_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#kartappen_og_beina"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: En forbindelse du bruker uten å tenke på dagtid føles mindre oversiktlig om kvelden. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "time_weather_vs_route",
+          "route_plurality",
+          "accessibility_vs_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#den_morke_forbindelsen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: En forbindelse du bruker uten å tenke på dagtid føles mindre oversiktlig om kvelden. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "time_weather_vs_route",
+          "route_plurality",
+          "accessibility_vs_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#den_morke_forbindelsen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: En forbindelse du bruker uten å tenke på dagtid føles mindre oversiktlig om kvelden. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "time_weather_vs_route",
+          "route_plurality",
+          "accessibility_vs_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#den_morke_forbindelsen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: En forbindelse du bruker uten å tenke på dagtid føles mindre oversiktlig om kvelden. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "time_weather_vs_route",
+          "route_plurality",
+          "accessibility_vs_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#den_morke_forbindelsen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Kraftig regn gjør en vanlig forbindelse mindre praktisk og flytter fottrafikken mot andre gater og overganger. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "time_weather_vs_route",
+          "accessibility_vs_assumption",
+          "habit_vs_city_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#regnet_flytter_ruten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Kraftig regn gjør en vanlig forbindelse mindre praktisk og flytter fottrafikken mot andre gater og overganger. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "time_weather_vs_route",
+          "accessibility_vs_assumption",
+          "habit_vs_city_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#regnet_flytter_ruten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Kraftig regn gjør en vanlig forbindelse mindre praktisk og flytter fottrafikken mot andre gater og overganger. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "time_weather_vs_route",
+          "accessibility_vs_assumption",
+          "habit_vs_city_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#regnet_flytter_ruten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Kraftig regn gjør en vanlig forbindelse mindre praktisk og flytter fottrafikken mot andre gater og overganger. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "time_weather_vs_route",
+          "accessibility_vs_assumption",
+          "habit_vs_city_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#regnet_flytter_ruten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: To steder ligger nær hverandre, men jernbane, stor vei, vann eller få krysningspunkter gjør forbindelsen lengre enn kartavstanden antyder. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "connectivity_vs_barrier",
+          "movement_vs_authority",
+          "route_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#barrieren_mellom_to_nabolag"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: To steder ligger nær hverandre, men jernbane, stor vei, vann eller få krysningspunkter gjør forbindelsen lengre enn kartavstanden antyder. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "connectivity_vs_barrier",
+          "movement_vs_authority",
+          "route_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#barrieren_mellom_to_nabolag"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: To steder ligger nær hverandre, men jernbane, stor vei, vann eller få krysningspunkter gjør forbindelsen lengre enn kartavstanden antyder. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "connectivity_vs_barrier",
+          "movement_vs_authority",
+          "route_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#barrieren_mellom_to_nabolag"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: To steder ligger nær hverandre, men jernbane, stor vei, vann eller få krysningspunkter gjør forbindelsen lengre enn kartavstanden antyder. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "connectivity_vs_barrier",
+          "movement_vs_authority",
+          "route_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#barrieren_mellom_to_nabolag"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: En besøkende spør hvordan de kommer seg til et sted du kjenner godt. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "wayfinding_vs_gatekeeping",
+          "movement_vs_authority",
+          "accessibility_vs_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#den_som_spor_om_veien"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: En besøkende spør hvordan de kommer seg til et sted du kjenner godt. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "wayfinding_vs_gatekeeping",
+          "movement_vs_authority",
+          "accessibility_vs_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#den_som_spor_om_veien"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: En besøkende spør hvordan de kommer seg til et sted du kjenner godt. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "wayfinding_vs_gatekeeping",
+          "movement_vs_authority",
+          "accessibility_vs_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#den_som_spor_om_veien"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: En besøkende spør hvordan de kommer seg til et sted du kjenner godt. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "wayfinding_vs_gatekeeping",
+          "movement_vs_authority",
+          "accessibility_vs_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#den_som_spor_om_veien"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: En rute du ofte bruker går gjennom et kommersielt eller institusjonelt bygg som stenger på kvelden. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "public_vs_conditional_passage",
+          "convenience_vs_control",
+          "time_weather_vs_route"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#passasjen_som_stenger"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: En rute du ofte bruker går gjennom et kommersielt eller institusjonelt bygg som stenger på kvelden. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "public_vs_conditional_passage",
+          "convenience_vs_control",
+          "time_weather_vs_route"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#passasjen_som_stenger"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: En rute du ofte bruker går gjennom et kommersielt eller institusjonelt bygg som stenger på kvelden. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "public_vs_conditional_passage",
+          "convenience_vs_control",
+          "time_weather_vs_route"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#passasjen_som_stenger"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: En rute du ofte bruker går gjennom et kommersielt eller institusjonelt bygg som stenger på kvelden. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "public_vs_conditional_passage",
+          "convenience_vs_control",
+          "time_weather_vs_route"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#passasjen_som_stenger"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Et arrangement, demonstrasjon, kamp eller festival fyller en vanlig forbindelse med langt flere mennesker enn normalt. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "crowd_flow_vs_entitlement",
+          "route_plurality",
+          "connectivity_vs_barrier"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#folkemengden_endrer_flyten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Et arrangement, demonstrasjon, kamp eller festival fyller en vanlig forbindelse med langt flere mennesker enn normalt. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "crowd_flow_vs_entitlement",
+          "route_plurality",
+          "connectivity_vs_barrier"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#folkemengden_endrer_flyten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Et arrangement, demonstrasjon, kamp eller festival fyller en vanlig forbindelse med langt flere mennesker enn normalt. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "crowd_flow_vs_entitlement",
+          "route_plurality",
+          "connectivity_vs_barrier"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#folkemengden_endrer_flyten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Et arrangement, demonstrasjon, kamp eller festival fyller en vanlig forbindelse med langt flere mennesker enn normalt. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "crowd_flow_vs_entitlement",
+          "route_plurality",
+          "connectivity_vs_barrier"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#folkemengden_endrer_flyten"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Du bruker ofte en gjennomgående rute i et nabolag der du ellers har få relasjoner. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "route_vs_neighborhood_knowledge",
+          "wayfinding_vs_gatekeeping",
+          "movement_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#ruten_gjennom_andres_nabolag"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Du bruker ofte en gjennomgående rute i et nabolag der du ellers har få relasjoner. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "route_vs_neighborhood_knowledge",
+          "wayfinding_vs_gatekeeping",
+          "movement_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#ruten_gjennom_andres_nabolag"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Du bruker ofte en gjennomgående rute i et nabolag der du ellers har få relasjoner. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "route_vs_neighborhood_knowledge",
+          "wayfinding_vs_gatekeeping",
+          "movement_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#ruten_gjennom_andres_nabolag"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Du bruker ofte en gjennomgående rute i et nabolag der du ellers har få relasjoner. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "route_vs_neighborhood_knowledge",
+          "wayfinding_vs_gatekeeping",
+          "movement_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#ruten_gjennom_andres_nabolag"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: En forbindelse du lærte for lenge siden er endret av nybygg, nye overganger eller andre innganger. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "habit_vs_city_change",
+          "route_vs_neighborhood_knowledge",
+          "map_vs_embodied_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#byen_som_bryter_hukommelsen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: En forbindelse du lærte for lenge siden er endret av nybygg, nye overganger eller andre innganger. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "habit_vs_city_change",
+          "route_vs_neighborhood_knowledge",
+          "map_vs_embodied_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#byen_som_bryter_hukommelsen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: En forbindelse du lærte for lenge siden er endret av nybygg, nye overganger eller andre innganger. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "habit_vs_city_change",
+          "route_vs_neighborhood_knowledge",
+          "map_vs_embodied_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#byen_som_bryter_hukommelsen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: En forbindelse du lærte for lenge siden er endret av nybygg, nye overganger eller andre innganger. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "habit_vs_city_change",
+          "route_vs_neighborhood_knowledge",
+          "map_vs_embodied_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#byen_som_bryter_hukommelsen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Etter to uker ser du byen mindre som enkeltsteder og mer som forbindelser, terskler, overganger og alternative veier mellom dem. Morgenen gjør ruten, terskelen eller forbindelsen lesbar før dagens bevegelse setter seg.",
+        "thread_ids": [
+          "movement_vs_authority",
+          "route_plurality",
+          "connectivity_vs_barrier",
+          "habit_vs_city_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#forbindelsene_du_kan_tegne"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Etter to uker ser du byen mindre som enkeltsteder og mer som forbindelser, terskler, overganger og alternative veier mellom dem. Midt på dagen blir ulike bruksmåter og forventninger synlige mellom mennesker som deler samme forbindelse.",
+        "thread_ids": [
+          "movement_vs_authority",
+          "route_plurality",
+          "connectivity_vs_barrier",
+          "habit_vs_city_change",
+          "crowd_flow_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#forbindelsene_du_kan_tegne"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Etter to uker ser du byen mindre som enkeltsteder og mer som forbindelser, terskler, overganger og alternative veier mellom dem. Ettermiddagen gjør omvei, adgang, tempo eller veivalg til et konkret valg.",
+        "thread_ids": [
+          "movement_vs_authority",
+          "route_plurality",
+          "connectivity_vs_barrier",
+          "habit_vs_city_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#forbindelsene_du_kan_tegne"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Etter to uker ser du byen mindre som enkeltsteder og mer som forbindelser, terskler, overganger og alternative veier mellom dem. Kvelden viser hva valget gjør med orientering, tillit, trygghet, vane eller senere rutevalg.",
+        "thread_ids": [
+          "movement_vs_authority",
+          "route_plurality",
+          "connectivity_vs_barrier",
+          "habit_vs_city_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_byvandrer.json#forbindelsene_du_kan_tegne"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "route_plurality",
+      "relationship": "forholdet mellom én kjent rute og behovet for flere praktiske alternativer gjennom byen",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning",
+        "2/lunch"
+      ]
+    },
+    {
+      "id": "connectivity_vs_barrier",
+      "relationship": "forholdet mellom kartmessig nærhet og faktisk friksjon skapt av kryssinger, sperringer og terreng",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    },
+    {
+      "id": "public_vs_conditional_passage",
+      "relationship": "forholdet mellom offentlig ferdsel og snarveier som avhenger av privat eller tidsbegrenset adgang",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "habit_vs_city_change",
+      "relationship": "forholdet mellom kroppslig rutehukommelse og en by som stadig bygges om eller stenges midlertidig",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "5/morning",
+        "5/lunch"
+      ]
+    },
+    {
+      "id": "map_vs_embodied_knowledge",
+      "relationship": "forholdet mellom digitale kart, egen rutine og det som faktisk kan observeres på stedet",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "3/morning",
+        "3/lunch"
+      ]
+    },
+    {
+      "id": "accessibility_vs_assumption",
+      "relationship": "forholdet mellom at en forbindelse finnes og at den faktisk kan brukes av mennesker med ulike behov",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "6/morning",
+        "6/lunch"
+      ]
+    },
+    {
+      "id": "time_weather_vs_route",
+      "relationship": "forholdet mellom samme fysiske rute og hvordan tid på døgnet, vær og årstid endrer brukbarheten",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning",
+        "7/lunch"
+      ]
+    },
+    {
+      "id": "wayfinding_vs_gatekeeping",
+      "relationship": "forholdet mellom å hjelpe andre med veien og å gjøre egen rutekunnskap til norm eller portvaktmakt",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "12/morning",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "route_vs_neighborhood_knowledge",
+      "relationship": "forholdet mellom å passere ofte gjennom et område og å faktisk kjenne dets sosiale liv",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "movement_vs_authority",
+      "relationship": "forholdet mellom omfattende byerfaring og grensen mot planfaglig, transportfaglig eller offentlig myndighet",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    },
+    {
+      "id": "convenience_vs_control",
+      "relationship": "forholdet mellom praktiske gjennomganger og hvem som kan stenge, regulere eller endre dem",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "crowd_flow_vs_entitlement",
+      "relationship": "forholdet mellom individuell rutine og byrom som midlertidig brukes av mange med andre mål",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "14/lunch"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "omveien_som_ble_et_alternativ",
+      "description": "En midlertidig stenging kan etterlate en ny forbindelse som senere blir et reelt alternativ i spillerens hverdagskart.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_byvandrer.json#omveien_som_dukker_opp",
+        "data/Civication/narratives/leisure/by_byvandrer.json#forbindelsene_du_kan_tegne"
+      ]
+    },
+    {
+      "id": "terskelen_som_ble_synlig",
+      "description": "Når spilleren først har sett hvordan en liten fysisk terskel bryter en rute, blir det vanskeligere å kalle forbindelser universelt enkle.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_byvandrer.json#trappen_som_bryter_kartet"
+      ]
+    },
+    {
+      "id": "kartet_som_ble_korrigert",
+      "description": "Forskjellen mellom app, hukommelse og feltobservasjon kan bli en varig vane for mer presis rutekunnskap.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_byvandrer.json#kartappen_og_beina",
+        "data/Civication/narratives/leisure/by_byvandrer.json#byen_som_bryter_hukommelsen"
+      ]
+    },
+    {
+      "id": "veivisningen_uten_portvakt",
+      "description": "Å gi alternativer i stedet for én fasit kan gjøre spillerens rutekunnskap sosialt nyttig uten å skape avhengighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_byvandrer.json#den_som_spor_om_veien"
+      ]
+    },
+    {
+      "id": "gjennomfarten_som_ikke_ble_eierskap",
+      "description": "Hyppig bruk av en rute kan forbli presis kunnskap om forbindelsen uten å bli påstand om å kjenne hele området.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_byvandrer.json#ruten_gjennom_andres_nabolag"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "snarvei_blir_adgangsgrense",
+      "setup_ref": "2/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "omvei_blir_nytt_rutenett",
+      "setup_ref": "3/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "tilgjengelighet_blir_rutepraksis",
+      "setup_ref": "4/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "kartkonflikt_blir_korrigerbar_kunnskap",
+      "setup_ref": "5/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "kveldsrute_blir_tidsavhengig_kunnskap",
+      "setup_ref": "6/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "gjennomfart_blir_grense_mot_lokalkunnskap",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/by_byvandrer.json#den_forste_forbindelsen",
+      "data/Civication/narratives/leisure/by_byvandrer.json#snarveien_med_porten",
+      "data/Civication/narratives/leisure/by_byvandrer.json#omveien_som_dukker_opp",
+      "data/Civication/narratives/leisure/by_byvandrer.json#trappen_som_bryter_kartet",
+      "data/Civication/narratives/leisure/by_byvandrer.json#kartappen_og_beina",
+      "data/Civication/narratives/leisure/by_byvandrer.json#den_morke_forbindelsen",
+      "data/Civication/narratives/leisure/by_byvandrer.json#regnet_flytter_ruten",
+      "data/Civication/narratives/leisure/by_byvandrer.json#barrieren_mellom_to_nabolag",
+      "data/Civication/narratives/leisure/by_byvandrer.json#den_som_spor_om_veien",
+      "data/Civication/narratives/leisure/by_byvandrer.json#passasjen_som_stenger",
+      "data/Civication/narratives/leisure/by_byvandrer.json#folkemengden_endrer_flyten",
+      "data/Civication/narratives/leisure/by_byvandrer.json#ruten_gjennom_andres_nabolag",
+      "data/Civication/narratives/leisure/by_byvandrer.json#byen_som_bryter_hukommelsen",
+      "data/Civication/narratives/leisure/by_byvandrer.json#forbindelsene_du_kan_tegne"
+    ]
+  }
+}
