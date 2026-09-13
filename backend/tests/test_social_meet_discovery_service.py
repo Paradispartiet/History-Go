@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import UTC, datetime
 from uuid import UUID, uuid4
 
@@ -48,25 +49,21 @@ class FakeIdentityRepository:
         consent_version: str,
     ) -> SocialMeetProfileRecord:
         assert auth_user_id == self.requester.auth_user_id
-        self.requester = SocialMeetProfileRecord(
-            **{
-                **self.requester.__dict__,
-                "current_place_id": place_id,
-                "current_place_visible_until": visible_until,
-                "current_place_consent_version": consent_version,
-            }
+        self.requester = replace(
+            self.requester,
+            current_place_id=place_id,
+            current_place_visible_until=visible_until,
+            current_place_consent_version=consent_version,
         )
         return self.requester
 
     def clear_place_status(self, auth_user_id: UUID) -> SocialMeetProfileRecord:
         assert auth_user_id == self.requester.auth_user_id
-        self.requester = SocialMeetProfileRecord(
-            **{
-                **self.requester.__dict__,
-                "current_place_id": None,
-                "current_place_visible_until": None,
-                "current_place_consent_version": None,
-            }
+        self.requester = replace(
+            self.requester,
+            current_place_id=None,
+            current_place_visible_until=None,
+            current_place_consent_version=None,
         )
         return self.requester
 
