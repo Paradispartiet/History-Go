@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadHGSocialMeetSupabaseClient", () => loadScriptOnce("js/social/HGSocialMeetSupabaseClient.js"));
     await safeRun("loadHGSocialMeetAdapter", () => loadScriptOnce("js/social/HGSocialMeetAdapter.js"));
     await safeRun("loadHGSpotmeeting", () => loadScriptOnce("js/social/HGSpotmeeting.js"));
-    await safeRun("loadHGSpotmeetingUI", () => loadScriptOnce("js/social/HGSpotmeetingUI.js"));
+    await safeRun("loadHGSpotmeetingUI", () => loadScriptOnce("js/social/HGSpotmeetingUI.js?v=20260913-meet-people1"));
     await safeRun("loadHGSocialMeetUI", () => loadScriptOnce("js/social/HGSocialMeetUI.js?v=20260912-live-surfaces2"));
     await safeRun("loadHGSpotmeetingPlaceCardDemo", () => loadScriptOnce("js/social/HGSpotmeetingPlaceCardDemo.js"));
     await safeRun("loadHGSocialMatchGraphPanel", () => loadScriptOnce("js/social/HGSocialMatchGraphPanel.js"));
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // entry-handleren må derfor være lastet før brukeren kan klikke dem.
     await safeRun("loadWonderkammerEntry", () => loadScriptOnce("js/ui/wonderkammer-entry.js"));
     await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js?v=20260912-live-surfaces2"));
-    await safeRun("loadPlaceOnsiteSurface", () => loadScriptOnce("js/ui/place-onsite-surface.js?v=20260912-live-surfaces2"));
+    await safeRun("loadPlaceOnsiteSurface", () => loadScriptOnce("js/ui/place-onsite-surface.js?v=20260913-meet-people1"));
     await safeRun("loadMicroPlaceCard", () => loadScriptOnce("js/ui/micro-place-card.js"));
     await safeRun("loadPlacePopupV2", () => loadScriptOnce("js/ui/place-popup-v2.js"));
     await safeRun("loadPlacePopupTabs", () => loadScriptOnce("js/ui/place-popup-tabs.js"));

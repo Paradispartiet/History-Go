@@ -150,18 +150,6 @@
     }).join("")}</div>`;
   }
 
-  function renderMeetHub(place) {
-    const placeId = text(place?.id);
-    return `<div class="pc-onsite-meet-hub">
-      <button type="button" class="pc-onsite-meet-choice" data-hg-meet-hub-action="propose" data-place-id="${esc(placeId)}">
-        <span aria-hidden="true">🧠</span><span><strong>Foreslå kunnskapsmøte</strong><small>Start et møte rundt dette stedet.</small></span>
-      </button>
-      <button type="button" class="pc-onsite-meet-choice" data-hg-meet-hub-action="manage" data-place-id="${esc(placeId)}">
-        <span aria-hidden="true">🤝</span><span><strong>Mine møter / Social Meet</strong><small>Se forslag, avtaler og historikk.</small></span>
-      </button>
-    </div>`;
-  }
-
   function button(actionId, placeId, count = 0) {
     const def = policy.actions?.[actionId] || {};
     const countHtml = actionId === "events" && count > 0
@@ -214,20 +202,6 @@
     global.showToast?.(events.length ? `${events.length} event${events.length === 1 ? "" : "s"} registrert her.` : "Ingen kommende events registrert her.");
   }
 
-  function openMeetHub(placeId) {
-    const place = currentPlace();
-    if (typeof global.showPlaceCardRoundPopup === "function") {
-      return global.showPlaceCardRoundPopup({
-        title: "Møtes",
-        subtitle: text(place?.name || place?.title),
-        html: renderMeetHub(place),
-        place,
-        kind: "meet"
-      });
-    }
-    return openSocialMeet(placeId);
-  }
-
   function openSocialMeet(placeId) {
     if (typeof global.HG_SocialMeetUI?.open === "function") {
       return global.HG_SocialMeetUI.open({
@@ -257,19 +231,6 @@
   function handleClick(event) {
     const target = event.target instanceof Element ? event.target : null;
 
-    const meetHubAction = target?.closest?.("[data-hg-meet-hub-action]");
-    if (meetHubAction instanceof HTMLElement) {
-      event.preventDefault();
-      event.stopPropagation();
-      event.stopImmediatePropagation();
-      const action = text(meetHubAction.dataset.hgMeetHubAction);
-      const placeId = text(meetHubAction.dataset.placeId || currentPlace()?.id);
-      if (!placeId) return;
-      if (action === "propose") return openKnowledgeMeet(placeId);
-      if (action === "manage") return openSocialMeet(placeId);
-      return;
-    }
-
     const surface = target?.closest?.(`[${SURFACE_ATTR}]`);
     if (!surface) return;
     const buttonEl = target.closest("[data-hg-onsite-action]");
@@ -281,7 +242,7 @@
     const placeId = text(buttonEl.dataset.placeId || currentPlace()?.id);
     if (!placeId) return;
     if (action === "events") return void openEvents(placeId);
-    if (action === "meet") return openMeetHub(placeId);
+    if (action === "meet") return openKnowledgeMeet(placeId);
     if (action === "play") return openPlay();
   }
 
@@ -324,7 +285,6 @@
     renderSurface,
     renderPlayProfile,
     renderEventContent,
-    renderMeetHub,
     resolvedPolicy,
     visibleActions,
     eventsForPlace

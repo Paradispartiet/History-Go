@@ -32,16 +32,17 @@ Tillatte `contextType`-verdier:
 
 ## Lifecycle
 
-1. Brukeren åpner Spotmeeting manuelt.
-2. Systemet validerer context og privacy-felter.
-3. Discovery kan foreslå kvalifiserte profiler når FastAPI og rollout-gatene er aktivert, eller seedede demo-profiler i eksplisitt TEST_MODE.
-4. Brukeren velger én servereid preset-melding.
-5. En invite opprettes som `pending` gjennom den autoritative datagrensen.
-6. Mottakeren kan godta eller avslå.
-7. Avsenderen kan avbryte.
-8. Enten deltaker kan avbryte en akseptert invite etter policy.
-9. En akseptert invite kan markeres `completed` én gang; gjentatt completion er idempotent.
-10. Block, moderation restriction, expiry, cooldown eller annen safety-state skal stoppe handlingen når policyen krever det.
+1. Brukeren åpner **PlaceCard → Utforsk → Møtes** eller en annen eksplisitt Spotmeeting-inngang.
+2. For Place-context åpner UI-et direkte på **Folk å møte her**; dette er opt-in kunnskaps-/interessematcher, ikke fysisk tilstedeværelse.
+3. Systemet validerer context og privacy-felter.
+4. Discovery kan foreslå kvalifiserte profiler når FastAPI og rollout-gatene er aktivert, eller seedede demo-profiler i eksplisitt TEST_MODE.
+5. Brukeren velger én kandidat og sender én servereid preset-melding.
+6. En invite opprettes som `pending` gjennom den autoritative datagrensen.
+7. Mottakeren kan godta eller avslå.
+8. Avsenderen kan avbryte.
+9. Enten deltaker kan avbryte en akseptert invite etter policy.
+10. En akseptert invite kan markeres `completed` én gang; gjentatt completion er idempotent.
+11. Block, moderation restriction, expiry, cooldown eller annen safety-state skal stoppe handlingen når policyen krever det.
 
 Serverens lifecycle omfatter også tekniske/safety-stater som `expired`, `reported` og `blocked`. Produktets primære deltakerstater er:
 
@@ -65,7 +66,7 @@ Spotmeeting skal alltid være:
 - block-/report-aware;
 - privat og participant-scoped.
 
-Spotmeeting skal aldri bruke eller eksponere GPS, live location, last seen, nearby users, distance-to-person, followers/feed, offentlig visit history, passive tracking eller fri chat.
+Spotmeeting skal aldri bruke eller eksponere GPS, live location, last seen, nearby users, distance-to-person, followers/feed, offentlig visit history, passive tracking eller fri chat. Derfor skal UI-et bruke formuleringen **Folk å møte her**, ikke «folk som er her nå», med mindre produktets privacy-arkitektur en dag endres eksplisitt.
 
 ## Implemented boundaries
 

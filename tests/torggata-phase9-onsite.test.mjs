@@ -92,18 +92,13 @@ test("Torggata PlaceCard viser Events og Møtes og begge er klikkbare", async ()
   assert.match(popups.at(-1)?.html || "", /Ingen kommende events/);
 
   w.document.querySelector('[data-hg-onsite-action="meet"]').click();
-  assert.equal(popups.at(-1)?.kind, "meet");
-  assert.match(popups.at(-1)?.html || "", /Foreslå kunnskapsmøte/);
-  assert.match(popups.at(-1)?.html || "", /Mine møter \/ Social Meet/);
-
-  w.document.querySelector('[data-hg-meet-hub-action="manage"]').click();
-  assert.equal(socialCalls.length, 1);
-  assert.equal(socialCalls[0].filter, "place");
-  assert.equal(socialCalls[0].placeId, "torggata");
-
-  w.document.querySelector('[data-hg-meet-hub-action="propose"]').click();
   assert.equal(proposeCalls.length, 1);
+  assert.equal(proposeCalls[0].contextType, "place");
   assert.equal(proposeCalls[0].contextId, "torggata");
+  assert.equal(proposeCalls[0].sourceSurface, "placeCardOnSite");
+  assert.equal(proposeCalls[0].preferredAction, "match");
+  assert.equal(socialCalls.length, 0, "Møtes goes to candidate discovery before Social Meet follow-up");
+  assert.equal(popups.at(-1)?.kind, "events", "Møtes no longer opens the intermediate hub popup");
 
   dom.window.close();
 });
