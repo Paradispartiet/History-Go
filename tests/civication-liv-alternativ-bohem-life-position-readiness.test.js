@@ -37,6 +37,7 @@ console.log(JSON.stringify({
   position_diffs: positionDiffs
 }, null, 2));
 console.log('BOHEM_GENERATOR_DEBUG_END');
+process.stderr.write('BOHEM_GENERATOR_PROBE_VISIBLE\\n');
 
 const audit = after;
 const streamPath = 'data/Civication/narratives/leisure/liv_alternativ_bohem.json';
@@ -64,3 +65,4 @@ assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.first_ready, null);
 assert.equal(audit.queue[0].key, 'liv_alternativ/nomade');
 console.log('civication Liv alternativ Bohem readiness ok: governed depth 14 / no livelihood invention / no pending-ready');
+throw new Error('BOHEM_GENERATOR_PROBE_FAIL');
