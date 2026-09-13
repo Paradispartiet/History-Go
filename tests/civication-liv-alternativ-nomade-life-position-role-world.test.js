@@ -76,7 +76,7 @@ assert.equal(entry.status,'role_world_complete');
 assert.deepEqual(entry.life_position_ref,{badge_id:'liv_alternativ',id:'nomade',label:'Nomade'});
 assert.equal(index.roles.filter(x=>x.subject_type!=='life_position').length,85);
 assert.equal(index.roles.filter(x=>x.subject_type==='life_position').length, 21);
-assert.equal(index.roles.length,105);
+assert.equal(index.roles.length,106);
 assert.equal(index.status,'106_role_worlds_materialized');
 assert.deepEqual(index.summary,{role_worlds_total: 106,career_role_worlds:85,life_position_role_worlds: 21});
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('liv_alternativ/nomade'));
