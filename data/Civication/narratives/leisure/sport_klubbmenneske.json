@@ -1,0 +1,688 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "sport_klubbmenneske_stream",
+  "type": "leisure",
+  "title": "Klubbmenneske",
+  "sociological_theme": "klubbtilhorighet_dugnad_usynlig_arbeid_gjensidighet_og_grensen_mot_trener_ledelses_og_sikkerhetsmyndighet",
+  "applies_when": {
+    "any_tags": [
+      "sport:klubbmenneske"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "dugnadslista_og_de_samme_navnene",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Dugnadsansvarlig",
+      "subject": "Vi mangler to på lørdag",
+      "situation": [
+        "Dugnadslista viser de samme fem-seks navnene på nesten alle vaktene, mens flere andre er aktive rundt trening og kamp uten å ta praktiske skift.",
+        "Du kjenner flere av dem godt nok til å vite at arbeidstid, omsorgsansvar og økonomi gjør kapasiteten svært ulik.",
+        "Klubbmenneske-status gir sosial tyngde i miljøet, men ikke rett til å behandle frivillighet som en ubegrenset plikt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta ett av skiftene og foreslå en mer forutsigbar turnus som synliggjør både kapasitet og faktisk arbeidsmengde.",
+          "effect": 1,
+          "tags": [
+            "dugnad",
+            "reciprocity",
+            "capacity"
+          ],
+          "feedback": "Du bidrar selv og gjør den usynlige arbeidsfordelingen til et felles organisatorisk spørsmål."
+        },
+        {
+          "id": "B",
+          "label": "Skriv i klubbchatten at de som aldri møter på dugnad ikke kan kalle seg ordentlige klubbfolk.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "shame"
+          ],
+          "feedback": "Du bruker tilhørighet som sosial sanksjon og overser at kapasiteten til frivillig arbeid er ulik."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_dugnad_reciprocity"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nokkelen_til_klubbhuset",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Klubbhusansvarlig",
+      "subject": "Kan du låse etterpå?",
+      "situation": [
+        "Du får låne nøkkel til klubbhuset for å rydde etter et arrangement og blir bedt om å levere den tilbake samme kveld.",
+        "En bekjent spør om du kan beholde nøkkelen til neste uke siden du 'uansett alltid er der'.",
+        "Å være et kjent ansikt i klubben er ikke det samme som å ha permanent adgangs- eller eiendomsansvar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lever nøkkelen tilbake som avtalt og be klubbhusansvarlig ordne eventuell fast tilgang formelt.",
+          "effect": 1,
+          "tags": [
+            "access_boundary",
+            "trust",
+            "role_clarity"
+          ],
+          "feedback": "Du beskytter tilliten ved å holde uformell tilhørighet adskilt fra formell adgang."
+        },
+        {
+          "id": "B",
+          "label": "Behold nøkkelen noen dager siden alle vet at du er til å stole på.",
+          "effect": -1,
+          "tags": [
+            "access_overreach",
+            "entitlement",
+            "trust_risk"
+          ],
+          "feedback": "Du gjør sosial tillit om til en adgangsrett som aldri ble gitt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "clubhouse_access_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utstyrsrommet_og_manglene",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Materialforvalter",
+      "subject": "Det mangler utstyr igjen",
+      "situation": [
+        "Etter en travel uke mangler det baller, vester og et førstehjelpsskrin fra den hyllen de vanligvis ligger på.",
+        "Folk peker på hverandre, men ingen har full oversikt over hvem som brukte hva.",
+        "Du kjenner klubbens rutiner godt, men du har ikke trener-, innkjøps- eller disiplinærmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hjelp med opptelling og sporbar liste, og la ansvarlige roller ta eventuell oppfølging.",
+          "effect": 1,
+          "tags": [
+            "invisible_work",
+            "role_boundary",
+            "documentation"
+          ],
+          "feedback": "Du gjør praktisk kunnskap nyttig uten å overta myndighet over spillere eller lag."
+        },
+        {
+          "id": "B",
+          "label": "Konfronter laget du tror tok utstyret og krev at de erstatter det.",
+          "effect": -1,
+          "tags": [
+            "authority_inflation",
+            "conflict",
+            "assumption"
+          ],
+          "feedback": "Du gjør en mistanke til sanksjon uten mandat eller sikker dokumentasjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "equipment_traceability"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kioskvakten_og_avstemmingen",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Kioskansvarlig",
+      "subject": "Kassa går ikke helt opp",
+      "situation": [
+        "Etter kioskvakten mangler et lite beløp i avstemmingen.",
+        "Det har vært travelt, flere har byttet på kassa, og noen varer ble gitt bort til frivillige etter stengetid.",
+        "Du har ansvar for ditt skift, men ikke myndighet til å skjule avvik eller peke ut en skyldig uten grunnlag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rapporter avviket, noter hva du faktisk vet og skill gratisvarer fra usikker kontanthåndtering.",
+          "effect": 1,
+          "tags": [
+            "money",
+            "accountability",
+            "documentation"
+          ],
+          "feedback": "Du behandler klubbøkonomi som felles tillit, ikke som noe man glatter over for å unngå ubehag."
+        },
+        {
+          "id": "B",
+          "label": "Legg inn egne penger så regnskapet stemmer og si ingenting.",
+          "effect": -1,
+          "tags": [
+            "concealment",
+            "money",
+            "process_risk"
+          ],
+          "feedback": "Du skjuler et systemproblem og gjør senere avvik vanskeligere å forstå."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_kiosk_accountability"
+      ],
+      "risk_links": [
+        "economy_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_nye_familien_i_klubben",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Et nytt klubbmedlem",
+      "subject": "Hvordan fungerer egentlig alt her?",
+      "situation": [
+        "En ny familie prøver å forstå kamper, dugnader, klubbchat og hvilke arrangementer som faktisk forventes.",
+        "De etablerte medlemmene bruker forkortelser og gamle historier som alle andre later som de forstår.",
+        "Du kan mye av den uformelle klubbkulturen, men tilhørighet bør ikke være en opptaksprøve i intern kunnskap."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar kodene, presenter dem for noen og gjør det tydelig hva som er frivillig, forventet og formelt avtalt.",
+          "effect": 1,
+          "tags": [
+            "welcome",
+            "knowledge_sharing",
+            "belonging"
+          ],
+          "feedback": "Du bruker intern kunnskap som vertskap fremfor portvakt."
+        },
+        {
+          "id": "B",
+          "label": "Si at de lærer det etter hvert hvis de bare møter opp nok.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "exclusion",
+            "status"
+          ],
+          "feedback": "Du gjør usikkerhet til en terskel og beskytter gammel status mer enn fellesskapet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_newcomer_welcome"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "garderoben_etter_siste_kamp",
+      "message_type": "task",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Vaktmester",
+      "subject": "Kan noen ta siste runde?",
+      "situation": [
+        "Etter siste kamp står søppel, flasker og våte klær igjen i garderobeområdet.",
+        "Du har allerede gjort flere praktiske oppgaver denne uka, men vet at oppryddingen ellers blir liggende til neste morgen.",
+        "Klubbfellesskap bygger på arbeid som sjelden får applaus, men bærekraft krever at samme person ikke alltid redder alt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta en avgrenset siste runde og registrer samtidig at oppryddingen må inn i den faste turnusen.",
+          "effect": 1,
+          "tags": [
+            "invisible_work",
+            "boundary",
+            "reciprocity"
+          ],
+          "feedback": "Du hjelper nå uten å gjøre permanent overansvar til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Gjør alt selv og si at det er enklest slik enn å mase på folk.",
+          "effect": -1,
+          "tags": [
+            "overfunctioning",
+            "burnout",
+            "invisible_work"
+          ],
+          "feedback": "Du holder driften oppe, men gjør skjev arbeidsdeling vanskeligere å endre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_invisible_work_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "cuphelgen_og_turnuslista",
+      "message_type": "event",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Cupkoordinator",
+      "subject": "Tre vakter står tomme",
+      "situation": [
+        "Cuphelgen krever parkering, kiosk, bord, opprydding og informasjonsvakt i tillegg til det sportslige.",
+        "Koordinatoren ber deg finne folk fordi du kjenner 'alle'.",
+        "Nettverket ditt kan hjelpe, men du har ikke rett til å disponere andres helg eller love vakter på deres vegne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør konkret hvem som har kapasitet, med tydelige tider og oppgaver, og la folk svare selv.",
+          "effect": 1,
+          "tags": [
+            "coordination",
+            "consent",
+            "network"
+          ],
+          "feedback": "Du bruker relasjoner til rekruttering uten å gjøre nærhet til forpliktelse."
+        },
+        {
+          "id": "B",
+          "label": "Fordel vaktene på folk du vet vanligvis stiller opp og informer dem etterpå.",
+          "effect": -1,
+          "tags": [
+            "social_pressure",
+            "consent_violation",
+            "coordination"
+          ],
+          "feedback": "Du lar klubbstatus bli en uformell rett til andres tid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "cup_shift_consent"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "beskjeden_fra_treneren",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En trener",
+      "subject": "Kan du bare si fra til gruppa?",
+      "situation": [
+        "En trener ber deg videreformidle at treningen flyttes og legger til en kommentar om at noen må skjerpe oppmøtet.",
+        "Du er tett på miljøet og har flere i gruppa på melding, men du er verken trener eller lagleder.",
+        "Praktisk informasjonsdeling kan være nyttig, mens vurderinger av spillere og disiplinærbudskap tilhører ansvarlige roller."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Videreformidle bare den praktiske endringen og be trener eller lagleder eie resten av budskapet.",
+          "effect": 1,
+          "tags": [
+            "role_boundary",
+            "communication",
+            "authority"
+          ],
+          "feedback": "Du hjelper med logistikk uten å låne trenerens myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Send hele beskjeden i ditt navn siden folk ofte lytter til deg.",
+          "effect": -1,
+          "tags": [
+            "authority_inflation",
+            "discipline",
+            "role_confusion"
+          ],
+          "feedback": "Du gjør sosial kapital om til trenerautoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_training_authority_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "foreldremotet_uten_verv",
+      "message_type": "conversation",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En forelder",
+      "subject": "Hva mener klubben egentlig?",
+      "situation": [
+        "På et åpent foreldremøte blir du spurt hva klubben 'egentlig har bestemt' om treningstider og laginndeling.",
+        "Du kjenner mange og har hørt flere diskusjoner, men sitter ikke i styret og eier ingen vedtak.",
+        "Et kjent klubbansikt kan fort bli tolket som talsperson selv når rollen bare er sosial og frivillig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill tydelig mellom det du har hørt, det som er vedtatt og hvem som faktisk kan svare på vegne av klubben.",
+          "effect": 1,
+          "tags": [
+            "representation_boundary",
+            "transparency",
+            "governance"
+          ],
+          "feedback": "Du beskytter både egen og klubbens troverdighet ved å ikke late som nettverk er mandat."
+        },
+        {
+          "id": "B",
+          "label": "Gi din beste oppsummering som om den var klubbens standpunkt for å roe rommet.",
+          "effect": -1,
+          "tags": [
+            "representation_overreach",
+            "governance",
+            "misinformation"
+          ],
+          "feedback": "Du fyller et informasjonsvakuum med autoritet du ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_representation_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sponsorbanneret_og_lovnaden",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En lokal næringsdrivende",
+      "subject": "Kan vi få logoen opp til helga?",
+      "situation": [
+        "En lokal bedrift spør om du kan sørge for bannerplass under helgens arrangement mot et lite bidrag.",
+        "Du vet omtrent hvor bannerne pleier å henge, men avtaler om sponsorplass, profilering og pris håndteres av andre.",
+        "Klubbmenneske-kjennskap kan koble folk sammen uten å gjøre deg til kommersiell representant."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Koble bedriften til riktig klubbkontakt og ikke love pris eller plassering.",
+          "effect": 1,
+          "tags": [
+            "network",
+            "commercial_boundary",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker nettverket som bro, ikke som fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Lov en ledig plass og si at detaljene kan ordnes senere.",
+          "effect": -1,
+          "tags": [
+            "commercial_overreach",
+            "reputation_risk",
+            "promise"
+          ],
+          "feedback": "Du skaper en forpliktelse klubben aldri har godkjent."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_sponsor_boundary"
+      ],
+      "risk_links": [
+        "economy_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_betalte_arrangementsvakten",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Idrettsklubben",
+      "subject": "Ekstravakt rundt arrangementet",
+      "situation": [
+        "Klubben tilbyr et lite honorar for kiosk, materiell, skilting og opprydding under et større arrangement.",
+        "Oppdraget gir ingen trenerrolle, sikkerhetsmyndighet, medisinsk ansvar eller rett til å ta beslutninger om kampgjennomføring.",
+        "Et betalt skift kan springe ut av klubbkjennskap uten å gjøre livsposisjonen til en profesjonell sportsrolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta skiftet og hold deg til kiosk, materiell, skilting og opprydding slik oppdraget er avtalt.",
+          "effect": 1,
+          "tags": [
+            "livelihood",
+            "scope_boundary",
+            "invisible_work"
+          ],
+          "feedback": "Du lar betaling gjøre arbeidet økonomisk reelt uten å blåse opp mandatet."
+        },
+        {
+          "id": "B",
+          "label": "Ta også ansvar for publikums- eller sikkerhetsavgjørelser hvis det blir hektisk.",
+          "effect": -1,
+          "tags": [
+            "scope_creep",
+            "safety_overreach",
+            "authority"
+          ],
+          "feedback": "Du lar tidspress utvide et avgrenset praktisk skift til ansvar du ikke har fått."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_paid_shift_scope"
+      ],
+      "risk_links": [
+        "livelihood_risk",
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "halltiden_som_kolliderer",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "To lagledere",
+      "subject": "Hvem har egentlig hallen?",
+      "situation": [
+        "To grupper mener de har krav på samme halltid etter en sen endring i planen.",
+        "Begge kjenner deg og ber deg bekrefte hva som 'pleier å gjelde'.",
+        "Du kjenner historikken, men kan ikke omfordele kommunal eller klubbdisponert halltid på egen hånd."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del historikken du kjenner, finn den faktiske planen og send konflikten til den som disponerer halltid.",
+          "effect": 1,
+          "tags": [
+            "conflict_mediation",
+            "role_boundary",
+            "documentation"
+          ],
+          "feedback": "Du bidrar med kontekst uten å late som sedvane er vedtak."
+        },
+        {
+          "id": "B",
+          "label": "Avgjør hvem som bør få tiden denne gangen basert på hvem som trenger den mest.",
+          "effect": -1,
+          "tags": [
+            "authority_overreach",
+            "resource_conflict",
+            "favoritism"
+          ],
+          "feedback": "Du tar en fordelingsbeslutning uten mandat og gjør din egen status til regel."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_halltime_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ryktet_i_klubbchatten",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Klubbchatten",
+      "subject": "Har du hørt hva som skjedde?",
+      "situation": [
+        "Et rykte om intern konflikt begynner å gå i klubbchatten etter et møte du ikke selv var på.",
+        "Fordi du kjenner mange, blir du raskt spurt om hvem som har rett.",
+        "Klubbmiljøet husker hvem som forsterker historier, og sosial informasjon kan bli makt lenge etter at saken er glemt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hva du faktisk vet, la ubekreftede detaljer ligge og oppfordre til at saken tas med dem den gjelder.",
+          "effect": 1,
+          "tags": [
+            "privacy",
+            "rumor_control",
+            "trust"
+          ],
+          "feedback": "Du beskytter tillit ved å la usikkerhet være usikkerhet."
+        },
+        {
+          "id": "B",
+          "label": "Del den versjonen du har hørt flest ganger siden den sannsynligvis er nærmest sannheten.",
+          "effect": -1,
+          "tags": [
+            "rumor",
+            "reputation",
+            "social_power"
+          ],
+          "feedback": "Du gjør repetisjon til bevis og forsterker klubbens uformelle ryktesystem."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_rumor_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_slags_klubbmenneske",
+      "message_type": "relationship",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En gammel klubbvenn",
+      "subject": "Du er jo alltid her",
+      "situation": [
+        "Ved sesongslutt blir det tydelig hvor mye av uka som har vært styrt av nøkler, vakter, meldinger, rydding og små tjenester.",
+        "Noen oppgaver har gitt sterk tilhørighet, andre har blitt forventet bare fordi du pleier å stille.",
+        "Klubbmenneske-livet er bærekraftig først når fellesskap, ansvar, grenser og privatliv kan eksistere samtidig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg hvilke oppgaver og relasjoner du faktisk vil bære videre, og gjør resten til tydelige turnuser eller formelle ansvar.",
+          "effect": 1,
+          "tags": [
+            "sustainable_identity",
+            "boundary",
+            "belonging"
+          ],
+          "feedback": "Du lar tilhørighet være et valgt fellesskap, ikke en ubegrenset vaktordning."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å si ja til alt fordi klubben ellers kanskje faller fra hverandre.",
+          "effect": -1,
+          "tags": [
+            "overfunctioning",
+            "burnout",
+            "identity_pressure"
+          ],
+          "feedback": "Du gjør egen uunnværlighet til både status og belastning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_sustainable_identity"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
