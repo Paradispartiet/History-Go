@@ -17,21 +17,68 @@
     return { enabled: Boolean(enabled), url, anonKey, hasCredentials: Boolean(url && anonKey) };
   }
 
+  function ahaAuthBridge(){
+    if (typeof root.HistoryGoAHAAuth?.getSession !== 'function') return null;
+    return {
+      auth: {
+        getSession: async () => {
+          try {
+            const session = await root.HistoryGoAHAAuth.getSession();
+            return { data: { session: session || null }, error: null };
+          } catch (error) {
+            return { data: { session: null }, error };
+          }
+        },
+        getUser: async () => {
+          try {
+            const session = await root.HistoryGoAHAAuth.getSession();
+            return { data: { user: session?.user || null }, error: null };
+          } catch (error) {
+            return { data: { user: null }, error };
+          }
+        }
+      }
+    };
+  }
+
   function getClient(){
     const config = readConfig();
-    if (!config.enabled) return { ok:false, reason:'supabase_not_enabled', config };
-    if (!config.hasCredentials) return { ok:false, reason:'missing_supabase_config', config };
-    if (!root.supabase?.createClient) return { ok:false, reason:'supabase_sdk_missing', config };
-    if (!root.__HG_SOCIAL_MEET_SUPABASE_CLIENT__) {
-      root.__HG_SOCIAL_MEET_SUPABASE_CLIENT__ = root.supabase.createClient(config.url, config.anonKey);
+    if (config.enabled) {
+      if (!config.hasCredentials) return { ok:false, reason:'missing_supabase_config', config };
+      if (!root.supabase?.createClient) return { ok:false, reason:'supabase_sdk_missing', config };
+      if (!root.__HG_SOCIAL_MEET_SUPABASE_CLIENT__) {
+        root.__HG_SOCIAL_MEET_SUPABASE_CLIENT__ = root.supabase.createClient(config.url, config.anonKey);
+      }
+      return { ok:true, client: root.__HG_SOCIAL_MEET_SUPABASE_CLIENT__, config, authSource:'social-meet-supabase' };
     }
-    return { ok:true, client: root.__HG_SOCIAL_MEET_SUPABASE_CLIENT__, config };
+
+    const ahaClient = ahaAuthBridge();
+    if (ahaClient) {
+      return {
+        ok:true,
+        client:ahaClient,
+        config:{ ...config, enabled:false },
+        authSource:'aha'
+      };
+    }
+
+    return { ok:false, reason:'supabase_not_enabled', config };
   }
 
   function health(){
     const config = readConfig();
     const sdkLoaded = Boolean(root.supabase?.createClient);
-    return { ok: !config.enabled || (config.hasCredentials && sdkLoaded), enabled: config.enabled, hasCredentials: config.hasCredentials, sdkLoaded, reason: !config.enabled ? 'supabase_not_enabled' : (!config.hasCredentials ? 'missing_supabase_config' : (!sdkLoaded ? 'supabase_sdk_missing' : null)) };
+    const ahaAvailable = typeof root.HistoryGoAHAAuth?.getSession === 'function';
+    const explicitOk = config.enabled && config.hasCredentials && sdkLoaded;
+    return {
+      ok: explicitOk || ahaAvailable || !config.enabled,
+      enabled: config.enabled,
+      hasCredentials: config.hasCredentials,
+      sdkLoaded,
+      ahaAuthAvailable: ahaAvailable,
+      authSource: explicitOk ? 'social-meet-supabase' : (ahaAvailable ? 'aha' : 'none'),
+      reason: explicitOk || ahaAvailable ? null : (!config.enabled ? 'supabase_not_enabled' : (!config.hasCredentials ? 'missing_supabase_config' : 'supabase_sdk_missing'))
+    };
   }
 
   root.HG_SocialMeetSupabaseClient = { readConfig, getClient, health };
