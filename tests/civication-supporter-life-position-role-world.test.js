@@ -58,10 +58,10 @@ assert.ok(supporterEntry, 'Supporter Role World must be indexed');
 assert.equal(supporterEntry.subject_type, 'life_position');
 assert.deepEqual(supporterEntry.life_position_ref, world.life_position_ref);
 assert.equal(index.roles.filter((entry) => entry.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((entry) => entry.subject_type === 'life_position').length, 20);
-assert.equal(index.summary.role_worlds_total, 105);
+assert.equal(index.roles.filter((entry) => entry.subject_type === 'life_position').length, 21);
+assert.equal(index.summary.role_worlds_total, 106);
 assert.equal(index.summary.career_role_worlds, 85);
-assert.equal(index.summary.life_position_role_worlds, 20);
+assert.equal(index.summary.life_position_role_worlds, 21);
 
 const manifest = readJson('data/Civication/narratives/manifest.json');
 const narrativeSource = fs.readFileSync(
