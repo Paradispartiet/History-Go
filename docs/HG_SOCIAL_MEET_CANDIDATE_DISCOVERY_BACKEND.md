@@ -4,7 +4,7 @@ Status: **implemented behind fail-closed rollout controls; production discovery 
 
 ## Purpose
 
-This slice moves Spotmeeting candidate discovery behind the canonical Python/FastAPI backend without creating a location network, social graph or parallel profile model.
+This slice moves Spotmeeting candidate discovery behind the canonical Python/FastAPI backend without creating a GPS/proximity network, social graph or parallel profile model. It now also supports a narrowly scoped, self-declared, expiring Place status on the existing profile row.
 
 The discovery source of truth remains the existing Social Meet state:
 
@@ -14,7 +14,7 @@ The discovery source of truth remains the existing Social Meet state:
 - `hg_social_meet_profile_restrictions` for active moderation restrictions;
 - `hg_spotmeeting_invites` for active-invite and recent-decline suppression.
 
-No discovery exposure history, nearby-user table, presence state, popularity score or behavioral activity profile is introduced.
+No discovery exposure history, nearby-user table, popularity score or behavioral activity profile is introduced. Temporary place status is stored only as one current canonical place id + hard expiry + consent version on `hg_profiles`; replacing or hiding it does not append history.
 
 ## API
 
@@ -22,7 +22,7 @@ No discovery exposure history, nearby-user table, presence state, popularity sco
 POST /api/v1/social-meet/spotmeeting/discovery/context-candidates
 ```
 
-The request contains only an explicit History GO context and coarse knowledge signals:
+The request contains an explicit History GO context, a discovery `mode` (`match` by default or `place_status` for Place contexts), and coarse knowledge signals:
 
 - context type and canonical context ID;
 - theme tags;
@@ -59,19 +59,19 @@ Private suppression reasons are never returned to the requester.
 
 Ranking happens in PostgreSQL after eligibility/suppression filtering.
 
-Only explicit compatibility inputs are used:
+In `match` mode, only explicit compatibility inputs are used:
 
 - candidate interest in the current canonical context;
 - current context theme/era/topic/route/quiz/learning-goal overlap;
 - shared explicit preferred themes, favorite eras and learning goals.
 
-Internal compatibility scores are never returned by the API. Public responses expose only safe reason categories such as `contextTheme` or `sharedLearningGoal`.
+Internal compatibility scores are never returned by the API. Public responses expose only safe reason categories. In `place_status` mode, knowledge compatibility does not rank candidates: eligibility is the same safety-filtered public profile plus matching current place id, unexpired status and `social_meet_place_status_v1` consent.
 
 The ranking contract permanently excludes:
 
 - GPS or precise location;
 - nearby/proximity/distance;
-- live presence, online state or last seen;
+- device-derived live presence, online state or last seen;
 - followers, popularity or social-graph signals;
 - public visit/check-in history;
 - passive behavior or movement history;
@@ -90,9 +90,12 @@ The database flag supports:
 - deterministic percentage rollout;
 - immediate fail-closed disablement.
 
-Migration:
+Migrations:
 
 - `supabase/migrations/007_social_meet_candidate_discovery.sql`
+- `supabase/migrations/009_social_meet_place_status.sql`
+
+Place status additionally requires the private `social_meet_place_status` feature flag. It uses the same allowlist/percentage gate model and is disabled by default.
 
 The feature-flag table is private to the server role. Browser roles receive no direct access.
 
@@ -100,7 +103,7 @@ The feature-flag table is private to the server role. Browser roles receive no d
 
 A discovery result is an advisory snapshot, never an authorization to contact another participant.
 
-Responses include `generatedAt` and `staleAfterSeconds` only to tell the client when to refresh the suggestion list. These timestamps must never be interpreted as participant presence or availability.
+Responses include `generatedAt` and `staleAfterSeconds` only to tell the client when to refresh the suggestion list. In `match` mode they must never be interpreted as participant presence or availability. In `place_status` mode the only status fact is the user's explicit, still-unexpired choice to show the profile for that canonical place; no device location is inferred.
 
 When the user later creates an invite, the durable Spotmeeting create path independently revalidates current state before insert:
 
