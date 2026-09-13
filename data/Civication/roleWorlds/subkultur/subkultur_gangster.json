@@ -1,0 +1,1190 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_gangster",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "subkultur",
+    "id": null,
+    "label": "Gangster"
+  },
+  "title": "Gangster",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å forhandle status, lojalitet og tilhørighet i et miljø der rykte og hardhet kan gli over i sosial tvang eller forventning om ulovlig handling",
+    "description": "Gangster-verdenen behandler Gangster som en valgt subkulturell livsposisjon, ikke som en kriminell profesjon. Den undersøker hvordan stil, natteliv, nettverk, tjenester, gjeld, rykter og lojalitet kan skape sterk tilhørighet samtidig som samme mekanismer kan bli press, frykt og krav om å bevise autentisitet. Spilleren kan ha høy status i miljøet, hjelpe til på lovlige undergrunnsarrangementer og navigere konflikter, men verden gir ingen operasjonelle kriminalitetsferdigheter, ulovlig inntektsaktivitet eller mandat til vold, sikkerhet, adgangskontroll eller skjult mellommannsarbeid."
+  },
+  "theme_ids": [
+    "class_power",
+    "status_anxiety",
+    "shame_reputation",
+    "social_mask",
+    "night_work",
+    "loyalty_up_down",
+    "public_private_leakage",
+    "precarity"
+  ],
+  "social_environments": [
+    "den lille undergrunnskvelden der gjesteliste, stil, praktisk arbeid og sosial rang møtes",
+    "miljøchatten der rykter, lojalitet og hendelser får et nytt liv etter at kvelden er over",
+    "den private samlingen der små tjenester kan bli sosial gjeld uten at noen har skrevet ned avtalen",
+    "gata utenfor arrangementet der status og publikum kan gjøre en konflikt større eller hjelpe den å kjølne",
+    "hjemmet og nabolaget der natteliv, besøk og symboler må sameksistere med mennesker utenfor miljøet",
+    "samtalen med en venn som vil ut og dermed tester om tilhørigheten faktisk er frivillig",
+    "den lovlige flyer- og riggjobben som gir liten sideinntekt uten å bli kriminell økonomi eller uformell myndighet",
+    "møtet med en yngre deltaker som viser at spillerens image også lærer andre hva miljøet belønner"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "gammel_kjenning",
+      "social_function": "bærer historien om gjensidige tjenester og gjør lojalitet til en levende sosial konto",
+      "class_position": "likemann med lang fartstid i miljøet og mange tette bånd",
+      "status": "høy relasjonell status gjennom nettverk og hukommelse",
+      "power_over_player": "kan styrke eller svekke spillerens rykte gjennom hvem som oppfattes som lojal",
+      "wants": "at relasjoner skal kjennes gjensidige og at folk stiller opp når det gjelder",
+      "conceals": "at egne forventninger noen ganger går lenger enn det som faktisk ble avtalt",
+      "speech_style": "fortrolig, indirekte og full av referanser til det man har gjort for hverandre",
+      "teaches_player": "at lojalitet uten eksplisitte grenser lett blir sosial gjeld"
+    },
+    {
+      "id": "arrangor_i_undergrunnen",
+      "social_function": "eier rammen rundt lovlige småarrangementer og skiller praktisk hjelp fra adgangs- eller sikkerhetsmyndighet",
+      "class_position": "liten arrangør med begrensede ressurser og lokalt nettverk",
+      "status": "moderat formell autoritet under arrangementet",
+      "power_over_player": "kan tilby små oppdrag, sette gjesteliste og avgrense oppgaver",
+      "wants": "at kvelden gjennomføres uten kaos og uten at venner gjør småroller til privat makt",
+      "conceals": "at ressursknapphet gjør det fristende å lene seg for tungt på lojale bekjente",
+      "speech_style": "rask, praktisk og tydelig når noe faktisk er avtalt",
+      "teaches_player": "at nettverk ikke erstatter rolle- og ansvarsgrenser"
+    },
+    {
+      "id": "venn_som_vil_ut",
+      "social_function": "gjør kostnaden ved sosial binding og retten til å forlate miljøet konkret",
+      "class_position": "nær venn med lavere status og færre trygge forbindelser",
+      "status": "høy privat betydning men sårbar posisjon i gruppen",
+      "power_over_player": "kan utfordre om spillerens lojalitet gjelder personen eller miljøets forventninger",
+      "wants": "å kunne trekke seg tilbake uten ydmykelse, rykter eller sosial gjeld",
+      "conceals": "at beslutningen om å gå også innebærer sorg over tap av identitet og fellesskap",
+      "speech_style": "lavmælt, direkte og mer personlig enn miljøets vanlige statusprat",
+      "teaches_player": "at frivillig exit er en prøve på om fellesskapet faktisk er frivillig"
+    },
+    {
+      "id": "statusbygger",
+      "social_function": "representerer fristelsen til å gjøre rykte, antydninger og konflikter til sosial kapital",
+      "class_position": "synlig deltaker med høy investering i image og rang",
+      "status": "høy symbolsk status men ustabil tillit",
+      "power_over_player": "kan gjøre spillerens valg til tegn på mot, svakhet eller tilhørighet",
+      "wants": "at miljøet skal oppfatte hardhet og tilgang som bevis på betydning",
+      "conceals": "at statusen avhenger av at andre fortsetter å tro på fortellingen",
+      "speech_style": "selvsikker, ertende og rask til å rangere handlinger",
+      "teaches_player": "at status som må bevises gjennom stadig sterkere signaler blir en felle"
+    },
+    {
+      "id": "yngre_bekjent",
+      "social_function": "viser hvordan spillerens image kan bli modell for andre",
+      "class_position": "yngre eller nyere deltaker med lite egen status",
+      "status": "lav intern status og høy observasjonsavhengighet",
+      "power_over_player": "gjør konsekvensen av selvpresentasjon synlig ved å kopiere det som belønnes",
+      "wants": "å finne en vei til respekt og tilhørighet",
+      "conceals": "at usikkerhet gjør skarpe statusregler attraktive fordi de virker enkle",
+      "speech_style": "nysgjerrig, beundrende og opptatt av konkrete tegn på respekt",
+      "teaches_player": "at sosial kapital også er pedagogikk"
+    },
+    {
+      "id": "naer_person_utenfor_miljoet",
+      "social_function": "viser hvordan gangsteridentiteten leses av folk som ikke deler miljøets interne koder",
+      "class_position": "partner, familie, nabo eller nær venn uten intern subkulturstatus",
+      "status": "høy privat betydning men ingen miljømakt",
+      "power_over_player": "kan sette grenser for tid, hjem, rykte og hvor mye konflikt som får lekke inn i privatlivet",
+      "wants": "at spilleren skal ha et fellesskap uten at alle andre relasjoner må leve med samme lojalitetsregler",
+      "conceals": "at vedkommende både kan være fascinert og urolig av spillerens status",
+      "speech_style": "hverdagslig, konkret og lite imponert av miljøets interne symboler",
+      "teaches_player": "at identitetens kostnader blir tydelige når de må forklares utenfor gruppen"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "loyalty_autonomy",
+      "meaning": "om lojalitet kan eksistere sammen med retten til å si nei, be om klarhet og forlate miljøet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reputation_truth",
+      "meaning": "om status bygges på handlinger spilleren faktisk kan stå inne for eller på antydninger og lånte forbindelser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "coercion_boundary",
+      "meaning": "om frykt, sosial straff og lojalitetspress får definere tilhørighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "conflict_temperature",
+      "meaning": "om spilleren bidrar til deeskalering eller gjør konflikter til scene for status og sidevalg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_private_leakage",
+      "meaning": "hvor mye miljøets rykter, støy, symboler og konflikter flyter inn i hjem, naboer og andre relasjoner",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "lawful_livelihood_boundary",
+      "meaning": "om små honorarer for lovlig praktisk arbeid forblir avgrensede og forklarlige uten uformell makt eller uklare penger",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "mentoring_effect",
+      "meaning": "om høyere status brukes til å avromantisere frykt og press eller til å lære dem videre",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "identity_flexibility",
+      "meaning": "om gangsteridentiteten kan være stil og tilhørighet uten å kreve stadig farligere bevis på autentisitet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Gjestelisten gjør tilgang og små tjenester til en test på om status kan holdes adskilt fra mandat. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "access_status",
+          "loyalty_reciprocity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#gjestelisten_og_tjenesten"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Gjestelisten gjør tilgang og små tjenester til en test på om status kan holdes adskilt fra mandat. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "access_status",
+          "loyalty_reciprocity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#gjestelisten_og_tjenesten"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Gjestelisten gjør tilgang og små tjenester til en test på om status kan holdes adskilt fra mandat. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "access_status",
+          "loyalty_reciprocity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#gjestelisten_og_tjenesten"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Gjestelisten gjør tilgang og små tjenester til en test på om status kan holdes adskilt fra mandat. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "access_status",
+          "loyalty_reciprocity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#gjestelisten_og_tjenesten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: En gammel tjeneste blir sosial gjeld og tester om lojalitet kan tåle tydelige grenser. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "loyalty_reciprocity",
+          "boundary_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#gjelden_som_kalles_tjeneste"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: En gammel tjeneste blir sosial gjeld og tester om lojalitet kan tåle tydelige grenser. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "loyalty_reciprocity",
+          "boundary_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#gjelden_som_kalles_tjeneste"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: En gammel tjeneste blir sosial gjeld og tester om lojalitet kan tåle tydelige grenser. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "loyalty_reciprocity",
+          "boundary_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#gjelden_som_kalles_tjeneste"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: En gammel tjeneste blir sosial gjeld og tester om lojalitet kan tåle tydelige grenser. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "loyalty_reciprocity",
+          "boundary_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#gjelden_som_kalles_tjeneste"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Et rykte om forbindelser viser hvordan lånt status kan vokse raskere enn faktisk tillit. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "reputation_truth",
+          "status_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#ryktet_om_hvem_du_kjenner"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Et rykte om forbindelser viser hvordan lånt status kan vokse raskere enn faktisk tillit. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "reputation_truth",
+          "status_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#ryktet_om_hvem_du_kjenner"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Et rykte om forbindelser viser hvordan lånt status kan vokse raskere enn faktisk tillit. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "reputation_truth",
+          "status_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#ryktet_om_hvem_du_kjenner"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Et rykte om forbindelser viser hvordan lånt status kan vokse raskere enn faktisk tillit. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "reputation_truth",
+          "status_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#ryktet_om_hvem_du_kjenner"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: En venn som vil ut gjør frivillighet og retten til exit til selve lojalitetstesten. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "exit_voluntariness",
+          "care_loyalty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#vennen_som_vil_ut"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: En venn som vil ut gjør frivillighet og retten til exit til selve lojalitetstesten. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "exit_voluntariness",
+          "care_loyalty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#vennen_som_vil_ut"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: En venn som vil ut gjør frivillighet og retten til exit til selve lojalitetstesten. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "exit_voluntariness",
+          "care_loyalty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#vennen_som_vil_ut"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: En venn som vil ut gjør frivillighet og retten til exit til selve lojalitetstesten. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "exit_voluntariness",
+          "care_loyalty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#vennen_som_vil_ut"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: En lovlig flyer- og riggjobb viser forskjellen mellom praktisk sidearbeid og uformell kontroll over et arrangement. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "lawful_livelihood",
+          "mandate_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#undergrunnskvelden_og_flyerne"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: En lovlig flyer- og riggjobb viser forskjellen mellom praktisk sidearbeid og uformell kontroll over et arrangement. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "lawful_livelihood",
+          "mandate_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#undergrunnskvelden_og_flyerne"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: En lovlig flyer- og riggjobb viser forskjellen mellom praktisk sidearbeid og uformell kontroll over et arrangement. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "lawful_livelihood",
+          "mandate_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#undergrunnskvelden_og_flyerne"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: En lovlig flyer- og riggjobb viser forskjellen mellom praktisk sidearbeid og uformell kontroll over et arrangement. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "lawful_livelihood",
+          "mandate_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#undergrunnskvelden_og_flyerne"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Klær og symboler viser hvordan subkulturell stil kan bli lest som et offentlig løfte om en identitet. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "identity_signals",
+          "public_private"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#jakken_og_signalene"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Klær og symboler viser hvordan subkulturell stil kan bli lest som et offentlig løfte om en identitet. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "identity_signals",
+          "public_private"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#jakken_og_signalene"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Klær og symboler viser hvordan subkulturell stil kan bli lest som et offentlig løfte om en identitet. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "identity_signals",
+          "public_private"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#jakken_og_signalene"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Klær og symboler viser hvordan subkulturell stil kan bli lest som et offentlig løfte om en identitet. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "identity_signals",
+          "public_private"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#jakken_og_signalene"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Presset om å ta side gjør deeskalering vanskelig når nøytralitet blir behandlet som svik. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "conflict_deescalation",
+          "loyalty_reciprocity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#presset_om_a_ta_side"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Presset om å ta side gjør deeskalering vanskelig når nøytralitet blir behandlet som svik. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "conflict_deescalation",
+          "loyalty_reciprocity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#presset_om_a_ta_side"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Presset om å ta side gjør deeskalering vanskelig når nøytralitet blir behandlet som svik. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "conflict_deescalation",
+          "loyalty_reciprocity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#presset_om_a_ta_side"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Presset om å ta side gjør deeskalering vanskelig når nøytralitet blir behandlet som svik. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "conflict_deescalation",
+          "loyalty_reciprocity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#presset_om_a_ta_side"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Betaling for lovlig småarbeid tester om penger kan være tydelige nok til at spilleren kan stå for hva de gjelder. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "lawful_livelihood",
+          "money_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#pengene_som_ma_vaere_forklarlige"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Betaling for lovlig småarbeid tester om penger kan være tydelige nok til at spilleren kan stå for hva de gjelder. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "lawful_livelihood",
+          "money_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#pengene_som_ma_vaere_forklarlige"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Betaling for lovlig småarbeid tester om penger kan være tydelige nok til at spilleren kan stå for hva de gjelder. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "lawful_livelihood",
+          "money_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#pengene_som_ma_vaere_forklarlige"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Betaling for lovlig småarbeid tester om penger kan være tydelige nok til at spilleren kan stå for hva de gjelder. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "lawful_livelihood",
+          "money_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#pengene_som_ma_vaere_forklarlige"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: En nabo gjør det synlig at privat tilhørighet også produserer offentlig støy, rykte og ansvar. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "public_private",
+          "community_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#naboen_som_spor"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: En nabo gjør det synlig at privat tilhørighet også produserer offentlig støy, rykte og ansvar. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "public_private",
+          "community_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#naboen_som_spor"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: En nabo gjør det synlig at privat tilhørighet også produserer offentlig støy, rykte og ansvar. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "public_private",
+          "community_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#naboen_som_spor"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: En nabo gjør det synlig at privat tilhørighet også produserer offentlig støy, rykte og ansvar. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "public_private",
+          "community_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#naboen_som_spor"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: En forespørsel om å låne telefonen tester om vennskap krever at spilleren blir ukjent mellomledd for andre. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "boundary_autonomy",
+          "intermediary_trust"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#telefonen_som_ikke_bor_bli_mellomledd"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: En forespørsel om å låne telefonen tester om vennskap krever at spilleren blir ukjent mellomledd for andre. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "boundary_autonomy",
+          "intermediary_trust"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#telefonen_som_ikke_bor_bli_mellomledd"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: En forespørsel om å låne telefonen tester om vennskap krever at spilleren blir ukjent mellomledd for andre. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "boundary_autonomy",
+          "intermediary_trust"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#telefonen_som_ikke_bor_bli_mellomledd"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: En forespørsel om å låne telefonen tester om vennskap krever at spilleren blir ukjent mellomledd for andre. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "boundary_autonomy",
+          "intermediary_trust"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#telefonen_som_ikke_bor_bli_mellomledd"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: En yngre beundrer gjør spillerens status til et mulig forbilde og tvinger fram forskjellen mellom respekt og frykt. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "care_loyalty",
+          "status_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#den_yngre_som_ser_opp_til_deg"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: En yngre beundrer gjør spillerens status til et mulig forbilde og tvinger fram forskjellen mellom respekt og frykt. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "care_loyalty",
+          "status_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#den_yngre_som_ser_opp_til_deg"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: En yngre beundrer gjør spillerens status til et mulig forbilde og tvinger fram forskjellen mellom respekt og frykt. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "care_loyalty",
+          "status_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#den_yngre_som_ser_opp_til_deg"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En yngre beundrer gjør spillerens status til et mulig forbilde og tvinger fram forskjellen mellom respekt og frykt. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "care_loyalty",
+          "status_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#den_yngre_som_ser_opp_til_deg"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: En opphetet kveld viser hvordan tilskuere, allianser og ansikt kan forlenge en konflikt som kunne vært dempet. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "conflict_deescalation",
+          "reputation_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#kvelden_som_gar_for_langt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: En opphetet kveld viser hvordan tilskuere, allianser og ansikt kan forlenge en konflikt som kunne vært dempet. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "conflict_deescalation",
+          "reputation_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#kvelden_som_gar_for_langt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: En opphetet kveld viser hvordan tilskuere, allianser og ansikt kan forlenge en konflikt som kunne vært dempet. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "conflict_deescalation",
+          "reputation_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#kvelden_som_gar_for_langt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: En opphetet kveld viser hvordan tilskuere, allianser og ansikt kan forlenge en konflikt som kunne vært dempet. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "conflict_deescalation",
+          "reputation_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#kvelden_som_gar_for_langt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Ryktene dagen etter gjør sannhet, selvpresentasjon og kollektiv hukommelse til samme sosiale kamp. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "reputation_truth",
+          "community_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#ryktene_etterpaa"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Ryktene dagen etter gjør sannhet, selvpresentasjon og kollektiv hukommelse til samme sosiale kamp. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "reputation_truth",
+          "community_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#ryktene_etterpaa"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Ryktene dagen etter gjør sannhet, selvpresentasjon og kollektiv hukommelse til samme sosiale kamp. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "reputation_truth",
+          "community_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#ryktene_etterpaa"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Ryktene dagen etter gjør sannhet, selvpresentasjon og kollektiv hukommelse til samme sosiale kamp. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "reputation_truth",
+          "community_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#ryktene_etterpaa"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Sesongslutt samler identiteten: tilhørighet og stil med frivillige grenser, eller stadig hardere forventninger som må bevises. Morgenen etablerer dagens sosiale usikkerhet før status, lojalitet eller forventning blir omsatt i handling.",
+        "thread_ids": [
+          "identity_signals",
+          "boundary_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#sesongslutt_hva_slags_gangster"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Sesongslutt samler identiteten: tilhørighet og stil med frivillige grenser, eller stadig hardere forventninger som må bevises. Midt på dagen gjør andre i miljøet synlig hvem som eier forventningen, hvem som har makt til å si nei og hva ryktet gjør med relasjonen.",
+        "thread_ids": [
+          "identity_signals",
+          "boundary_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#sesongslutt_hva_slags_gangster"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Sesongslutt samler identiteten: tilhørighet og stil med frivillige grenser, eller stadig hardere forventninger som må bevises. Ettermiddagen gjør grensen mellom frivillig tilhørighet og press til et konkret valg uten å gi spilleren operasjonell kriminalitetskompetanse.",
+        "thread_ids": [
+          "identity_signals",
+          "boundary_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#sesongslutt_hva_slags_gangster"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Sesongslutt samler identiteten: tilhørighet og stil med frivillige grenser, eller stadig hardere forventninger som må bevises. Kvelden viser hva valget etterlater i relasjoner, omdømme, privat kapasitet, lovlig sideinntekt eller muligheten til å trekke seg ut.",
+        "thread_ids": [
+          "identity_signals",
+          "boundary_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_gangster.json#sesongslutt_hva_slags_gangster"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "access_status",
+      "description": "Tilgang og gjestelister tester om nettverk blir sosial kapital eller uautorisert mandat.",
+      "beat_refs": [
+        "1/morning",
+        "1/afternoon",
+        "3/lunch",
+        "5/afternoon",
+        "9/lunch",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "loyalty_reciprocity",
+      "description": "Gjensidighet utvikler seg fra vennskap til sosial gjeld og tilbake til tydelige avtaler.",
+      "beat_refs": [
+        "1/evening",
+        "2/morning",
+        "2/afternoon",
+        "4/lunch",
+        "7/afternoon",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "boundary_autonomy",
+      "description": "Retten til å si nei, spørre og gå ut av en situasjon bærer hele sesongens autonomikonflikt.",
+      "beat_refs": [
+        "2/evening",
+        "4/afternoon",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "reputation_truth",
+      "description": "Rykter og selvpresentasjon avgjør om status kan overleve presis sannhet.",
+      "beat_refs": [
+        "3/morning",
+        "3/afternoon",
+        "7/lunch",
+        "12/evening",
+        "13/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "status_performance",
+      "description": "Hardhet, symboler og publikumsreaksjoner konkurrerer med pålitelighet om hva som teller som respekt.",
+      "beat_refs": [
+        "3/evening",
+        "6/lunch",
+        "6/afternoon",
+        "11/morning",
+        "11/afternoon",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "exit_voluntariness",
+      "description": "Miljøet prøves på om medlemskap og nærhet fortsatt er frivillig når noen vil trekke seg unna.",
+      "beat_refs": [
+        "4/morning",
+        "4/afternoon",
+        "4/evening",
+        "7/morning",
+        "10/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "care_loyalty",
+      "description": "Omsorg utfordrer en lojalitetskultur som ellers belønner hardhet og stilltiende forventninger.",
+      "beat_refs": [
+        "4/lunch",
+        "9/afternoon",
+        "11/lunch",
+        "11/evening",
+        "12/afternoon",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "lawful_livelihood",
+      "description": "Den lille flyer- og riggjobben gir en lovlig økonomisk flate uten å gjøre Gangster til ulovlig inntektsrolle.",
+      "beat_refs": [
+        "5/morning",
+        "5/afternoon",
+        "5/evening",
+        "8/morning",
+        "8/afternoon",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "mandate_boundary",
+      "description": "Praktisk hjelp og nettverk må ikke gli over i falsk sikkerhets-, adgangs- eller arrangørmyndighet.",
+      "beat_refs": [
+        "1/afternoon",
+        "5/lunch",
+        "5/afternoon",
+        "8/lunch",
+        "9/morning",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "identity_signals",
+      "description": "Klær, symboler og ordet Gangster blir forhandlet mellom selvvalgt stil og andres forventninger.",
+      "beat_refs": [
+        "6/morning",
+        "6/afternoon",
+        "6/evening",
+        "11/morning",
+        "13/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "public_private",
+      "description": "Naboer og nære relasjoner viser hva miljøets rykte og natteliv koster utenfor gruppen.",
+      "beat_refs": [
+        "6/evening",
+        "9/morning",
+        "9/afternoon",
+        "9/evening",
+        "12/lunch",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "conflict_deescalation",
+      "description": "Sidepress og opphetede situasjoner utvikles gjennom valg om avstand, ansvarlige arrangører og ryktehåndtering.",
+      "beat_refs": [
+        "7/morning",
+        "7/afternoon",
+        "12/morning",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "money_clarity",
+      "description": "Små honorarer og tjenester må være forklarlige nok til at betaling ikke blir ny sosial gjeld.",
+      "beat_refs": [
+        "2/lunch",
+        "5/evening",
+        "8/morning",
+        "8/afternoon",
+        "8/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "intermediary_trust",
+      "description": "Tilgang til telefon, navn og nettverk testes mot kravet om å kunne stå for det man formidler.",
+      "beat_refs": [
+        "3/lunch",
+        "10/morning",
+        "10/afternoon",
+        "10/evening",
+        "13/afternoon",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "community_memory",
+      "description": "Miljøchatten og sesongslutt viser hvordan konflikter og rykter blir stående som kollektiv hukommelse.",
+      "beat_refs": [
+        "7/evening",
+        "11/evening",
+        "12/evening",
+        "13/morning",
+        "13/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "tjenester_blir_gjeld",
+      "description": "Små tjenester kan over tid bli en forventning om blank lojalitet hvis spilleren ikke gjør grensene eksplisitte.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/subkultur_gangster.json#gjestelisten_og_tjenesten",
+        "data/Civication/narratives/leisure/subkultur_gangster.json#gjelden_som_kalles_tjeneste",
+        "data/Civication/narratives/leisure/subkultur_gangster.json#sesongslutt_hva_slags_gangster"
+      ]
+    },
+    {
+      "id": "rykte_blir_forpliktelse",
+      "description": "Et oppblåst rykte kan skape konkrete forventninger om tilgang, sidevalg og hardhet spilleren ikke faktisk eier.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/subkultur_gangster.json#ryktet_om_hvem_du_kjenner",
+        "data/Civication/narratives/leisure/subkultur_gangster.json#jakken_og_signalene",
+        "data/Civication/narratives/leisure/subkultur_gangster.json#ryktene_etterpaa"
+      ]
+    },
+    {
+      "id": "exit_blir_lojalitetstest",
+      "description": "Hvordan spilleren behandler en venn som vil ut blir et varig mål på om miljøet tåler frivillig tilhørighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/subkultur_gangster.json#vennen_som_vil_ut",
+        "data/Civication/narratives/leisure/subkultur_gangster.json#presset_om_a_ta_side",
+        "data/Civication/narratives/leisure/subkultur_gangster.json#sesongslutt_hva_slags_gangster"
+      ]
+    },
+    {
+      "id": "småjobb_blir_mandat",
+      "description": "Lovlig praktisk arbeid kan skape uformell makt hvis honorar og adgang behandles som eierskap til arrangementet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/subkultur_gangster.json#undergrunnskvelden_og_flyerne",
+        "data/Civication/narratives/leisure/subkultur_gangster.json#pengene_som_ma_vaere_forklarlige"
+      ]
+    },
+    {
+      "id": "konflikt_blir_statusminne",
+      "description": "Hvordan spilleren oppfører seg rundt en opphetet kveld blir husket både av yngre deltakere og i miljøets rykter.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/subkultur_gangster.json#den_yngre_som_ser_opp_til_deg",
+        "data/Civication/narratives/leisure/subkultur_gangster.json#kvelden_som_gar_for_langt",
+        "data/Civication/narratives/leisure/subkultur_gangster.json#ryktene_etterpaa"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "gjesteliste_blir_statusgjeld",
+      "setup_ref": "1/afternoon",
+      "return_ref": "7/lunch",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "tjenestegjeld_blir_exitpress",
+      "setup_ref": "2/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "relationship",
+        "psyche"
+      ]
+    },
+    {
+      "id": "rykte_blir_sideforventning",
+      "setup_ref": "3/afternoon",
+      "return_ref": "7/afternoon",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "småjobb_blir_mandatforventning",
+      "setup_ref": "5/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "livelihood",
+        "reputation"
+      ]
+    },
+    {
+      "id": "status_blir_forbilde",
+      "setup_ref": "6/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "deeskalering_blir_hukommelse",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/subkultur_gangster.json#gjestelisten_og_tjenesten",
+      "data/Civication/narratives/leisure/subkultur_gangster.json#gjelden_som_kalles_tjeneste",
+      "data/Civication/narratives/leisure/subkultur_gangster.json#ryktet_om_hvem_du_kjenner",
+      "data/Civication/narratives/leisure/subkultur_gangster.json#vennen_som_vil_ut",
+      "data/Civication/narratives/leisure/subkultur_gangster.json#undergrunnskvelden_og_flyerne",
+      "data/Civication/narratives/leisure/subkultur_gangster.json#jakken_og_signalene",
+      "data/Civication/narratives/leisure/subkultur_gangster.json#presset_om_a_ta_side",
+      "data/Civication/narratives/leisure/subkultur_gangster.json#pengene_som_ma_vaere_forklarlige",
+      "data/Civication/narratives/leisure/subkultur_gangster.json#naboen_som_spor",
+      "data/Civication/narratives/leisure/subkultur_gangster.json#telefonen_som_ikke_bor_bli_mellomledd",
+      "data/Civication/narratives/leisure/subkultur_gangster.json#den_yngre_som_ser_opp_til_deg",
+      "data/Civication/narratives/leisure/subkultur_gangster.json#kvelden_som_gar_for_langt",
+      "data/Civication/narratives/leisure/subkultur_gangster.json#ryktene_etterpaa",
+      "data/Civication/narratives/leisure/subkultur_gangster.json#sesongslutt_hva_slags_gangster"
+    ]
+  }
+}

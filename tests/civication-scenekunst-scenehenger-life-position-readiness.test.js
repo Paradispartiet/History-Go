@@ -77,16 +77,16 @@ assert.deepEqual(music.evidence.exact_source_refs, [musicStreamPath]);
 assert.ok(!music.evidence.exact_source_refs.includes(streamPath));
 
 assert.deepEqual(audit.summary.classifications, {
-  ready: 14,
-  needs_authored_depth: 145,
+  ready: 15,
+  needs_authored_depth: 144,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.selectable_life_positions, 199);
-assert.equal(audit.summary.completed_life_position_role_worlds, 14);
-assert.equal(audit.summary.life_position_role_world_complete, 14);
+assert.equal(audit.summary.completed_life_position_role_worlds, 15);
+assert.equal(audit.summary.life_position_role_world_complete, 15);
 assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 14);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 14);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 15);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 15);
 assert.equal(audit.first_ready, null);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);

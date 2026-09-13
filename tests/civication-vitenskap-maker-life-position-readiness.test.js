@@ -22,8 +22,8 @@ assert.equal(row.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(row.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(row.evidence.livelihood_templates, ['maker_liten_prototype']);
 assert.ok(!audit.queue.some((item) => item.key === 'vitenskap/maker'));
-assert.equal(audit.summary.completed_life_position_role_worlds, 14);
-assert.equal(audit.summary.life_position_role_world_complete, 14);
+assert.equal(audit.summary.completed_life_position_role_worlds, 15);
+assert.equal(audit.summary.life_position_role_world_complete, 15);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.first_ready, null);
 
