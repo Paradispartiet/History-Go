@@ -17,7 +17,7 @@ Identity is required before backend Spotmeeting because the backend must be able
 - apply block/report decisions consistently before suggestions or delivery;
 - rate-limit abuse by account and public profile ID;
 - support deletion, export, retention, and moderation workflows;
-- avoid unsafe substitutes such as GPS, live location, nearby detection, public visit history, last-seen status, follower graphs, feeds, free chat, or passive tracking.
+- avoid unsafe substitutes such as GPS/device-derived live location, nearby detection, public visit history, last-seen status, follower graphs, feeds, free chat, or passive tracking.
 
 ## 2. Non-goals and hard exclusions
 
@@ -26,17 +26,27 @@ This contract defines only stable IDs and opt-in profile fields. It does not def
 Social Meet identity and Spotmeeting discovery must never add, store, expose, infer, rank by, or API-return:
 
 - GPS coordinates;
-- live location;
-- nearby user discovery;
+- device-derived live location;
+- nearby/proximity scanning;
 - distance-to-person;
-- last seen, online, presence, or availability status;
+- last seen, online, or device-derived presence/availability status;
 - followers, following, follower counts, popularity counts, or social graph ranking;
 - public activity feed;
 - free chat, free-text invite messages, or open direct messaging;
-- public visit history, recently visited places, check-ins, or passive place trails;
+- public visit history, recently visited places, retained check-in history, or passive place trails;
 - background movement, passive tracking, sensor-derived proximity, or co-presence inference;
 - raw quiz answer logs, raw route history, raw observation history, or exact timestamped learning behavior as public profile fields;
 - private email, phone number, auth provider subject, legal name, birth date, precise age, payment data, device identifiers, IP address, or moderation notes in public profile responses.
+
+### Narrow exception: explicit temporary place status
+
+Social Meet may store one **self-declared, temporary** canonical History GO place status on the
+existing private profile row. This is not a public-profile field and is not device-derived location.
+It requires separate versioned consent (`social_meet_place_status_v1`), a hard expiry, explicit
+activation, immediate hide control, and the existing authenticated discovery + block/report/
+moderation boundary. Replacing a place overwrites the old value; the system must not append or
+publish visit history. GPS, coordinates, proximity, distance and passive/background detection remain
+forbidden.
 
 ## 3. Minimal current-user identity model
 

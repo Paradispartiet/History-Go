@@ -63,6 +63,8 @@ type FastApiClientApi = {
   unpublishProfile: () => Promise<ApiResult<unknown>>;
   listPresets: () => Promise<ApiResult<unknown>>;
   discoverCandidates: (payload: unknown) => Promise<ApiResult<unknown>>;
+  setPlaceStatus: (payload: unknown) => Promise<ApiResult<unknown>>;
+  clearPlaceStatus: () => Promise<ApiResult<unknown>>;
   createInvite: (payload: unknown) => Promise<ApiResult<unknown>>;
   listInbox: (options?: Record<string, unknown>) => Promise<ApiResult<unknown>>;
   syncInvites: (options?: Record<string, unknown>) => Promise<ApiResult<unknown>>;
@@ -272,6 +274,13 @@ const api: FastApiClientApi = {
       method: "POST",
       ...jsonBody(payload)
     }),
+  setPlaceStatus: (payload) =>
+    request("/social-meet/spotmeeting/discovery/place-status", {
+      method: "PUT",
+      ...jsonBody(payload)
+    }),
+  clearPlaceStatus: () =>
+    request("/social-meet/spotmeeting/discovery/place-status", { method: "DELETE" }),
   createInvite: (payload) =>
     request("/social-meet/spotmeeting/invites", {
       method: "POST",

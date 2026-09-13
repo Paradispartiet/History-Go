@@ -99,6 +99,26 @@ class ProfileUpsertRequest(ApiModel):
         return _normalize_list(value, max_item_length=120)
 
 
+class PlaceStatusUpdateRequest(ApiModel):
+    place_id: str = Field(min_length=1, max_length=180)
+    duration_minutes: int = Field(default=60, ge=15, le=120)
+    consent_version: str = Field(min_length=1, max_length=80)
+    preview_confirmed: bool = False
+
+    @field_validator("place_id", "consent_version", mode="before")
+    @classmethod
+    def normalize_place_status_strings(cls, value: object) -> object:
+        if not isinstance(value, str):
+            return value
+        return value.strip()
+
+
+class PlaceStatusState(ApiModel):
+    active: bool
+    place_id: str | None = None
+    visible_until: datetime | None = None
+
+
 class CurrentSocialMeetState(ApiModel):
     user_id: UUID
     profile_id: UUID | None
@@ -106,6 +126,9 @@ class CurrentSocialMeetState(ApiModel):
     consent_version: str | None
     consented_at: datetime | None
     can_publish_profile: bool
+    current_place_id: str | None = None
+    current_place_visible_until: datetime | None = None
+    current_place_consent_version: str | None = None
 
 
 class PublicSocialMeetProfile(ApiModel):
@@ -141,6 +164,9 @@ class SocialMeetProfileRecord:
     consent_version: str | None
     consented_at: datetime | None
     updated_at: datetime
+    current_place_id: str | None = None
+    current_place_visible_until: datetime | None = None
+    current_place_consent_version: str | None = None
 
 
 def _normalize_list(values: list[object], *, max_item_length: int) -> object:

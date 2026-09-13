@@ -74,7 +74,7 @@ server-owned domain logic
 
 The token is never returned through the Social Meet adapter API or persisted by the new client.
 
-`HGSocialMeetSupabaseClient.js` therefore remains required as an authentication/session bridge during this phase, but migrated Social Meet invite/discovery writes no longer go directly from the browser to PostgreSQL.
+`HGSocialMeetSupabaseClient.js` therefore remains required as an authentication/session bridge during this phase. When no dedicated Social Meet Supabase client is configured it reuses `HistoryGoAHAAuth.getSession()`, so History Go has one browser login/session owner rather than a duplicate Social Meet auth client. Migrated Social Meet invite/discovery writes still go only through FastAPI, never directly from the browser to PostgreSQL.
 
 ## Migrated production operations
 
@@ -82,7 +82,8 @@ The adapter now routes these operations through FastAPI:
 
 - current Social Meet profile state;
 - Social Meet profile upsert/publication fields;
-- Spotmeeting candidate discovery;
+- Spotmeeting candidate discovery (`match` and `place_status`);
+- self-controlled temporary place-status set/clear;
 - durable invite creation;
 - participant invite inbox;
 - accept/decline/cancel/complete lifecycle transitions.
@@ -100,14 +101,16 @@ The existing Spotmeeting sheet derives only coarse, explicit History GO context 
 - quiz question-family tags;
 - quiz/profile learning-angle tags.
 
+For `match`, the client sends only those coarse knowledge signals. For `place_status`, discovery sends the canonical Place context id and the explicit mode; activating the user's own status sends only the selected canonical `placeId`, duration, consent version and preview confirmation.
+
 The client does not send:
 
 - GPS or precise coordinates;
+- device-derived location samples;
 - nearby/proximity/distance;
-- live location or presence;
 - last seen/online state;
 - followers/popularity/feed signals;
-- public visit/check-in history;
+- public visit/check-in history or retained place trails;
 - passive movement or behavioral history;
 - free-text user-to-user messages.
 
@@ -155,12 +158,16 @@ The migration is covered by:
 - TypeScript web typecheck;
 - committed esbuild bundle sync check;
 - existing Spotmeeting browser smoke test;
-- `tests/social-meet-fastapi-adapter.test.js`.
+- `tests/social-meet-fastapi-adapter.test.js`;
+- `tests/hg-social-meet-adapter.test.js` for the AHA-session auth bridge;
+- `tests/social-meet-profile-bridge.test.js` for explicit discoverability consent and privacy-safe server profile payloads.
 
 The focused FastAPI frontend test verifies:
 
 - production adapter mode uses FastAPI;
 - discovery maps public `profileId` values only;
+- `place_status` is distinct from knowledge matching and uses canonical place ids only;
+- place-status mutation is explicit, bounded and clearable;
 - invite payloads include the complete server-owned context and idempotency key;
 - the typed client bundle lazy-loads once;
 - a production server failure cannot create a local invite.

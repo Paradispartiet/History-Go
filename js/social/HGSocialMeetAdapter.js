@@ -14,15 +14,27 @@
   const FORBIDDEN_LOOKUP = new Set(FORBIDDEN.map(x => x.toLowerCase()));
   const MATCH_REASON_LABELS = Object.freeze({
     contextInterestPlace:'Har valgt dette stedet som interesse',
+    context_interest_place:'Har valgt dette stedet som interesse',
     contextTheme:'Matcher temaet her',
+    context_theme:'Matcher temaet her',
     contextEra:'Deler interesse for epoken',
+    context_era:'Deler interesse for epoken',
     contextTopic:'Matcher kunnskapstemaet',
+    context_topic:'Matcher kunnskapstemaet',
     contextRouteCategory:'Matcher rutetemaet',
+    context_route_category:'Matcher rutetemaet',
     contextQuizTopic:'Matcher quiztemaet',
+    context_quiz_topic:'Matcher quiztemaet',
     contextLearningGoal:'Har relevant læringsmål',
+    context_learning_goal:'Har relevant læringsmål',
+    placeStatus:'Har valgt å vise seg på dette stedet nå',
+    place_status:'Har valgt å vise seg på dette stedet nå',
     sharedTheme:'Dere deler tema-interesser',
+    shared_theme:'Dere deler tema-interesser',
     sharedEra:'Dere deler epoke-interesser',
-    sharedLearningGoal:'Dere deler læringsmål'
+    shared_era:'Dere deler epoke-interesser',
+    sharedLearningGoal:'Dere deler læringsmål',
+    shared_learning_goal:'Dere deler læringsmål'
   });
   let fastApiLoadPromise = null;
 
@@ -71,7 +83,7 @@
       targetUserId: recipientProfileId || '',
       senderProfileId: senderProfileId || '',
       recipientProfileId: recipientProfileId || '',
-      targetDisplayName: row.targetDisplayName || '',
+      targetDisplayName: row.counterpart_display_name || row.counterpartDisplayName || row.targetDisplayName || '',
       context: {
         contextType: row.context_type || row.context?.contextType,
         contextId: row.context_id || row.context?.contextId,
@@ -126,8 +138,11 @@
   }
 
   function fastApi(){
+    if (!wantsFastApi()) {
+      return { ok:false, reason:'backend_not_enabled', health:{ ok:true, enabled:false, reason:'backend_not_enabled' } };
+    }
     const client = root.HG_SocialMeetFastApiClient;
-    const health = client?.health?.() || { ok:false, reason:'fastapi_client_missing' };
+    const health = client?.health?.() || { ok:false, enabled:true, reason:'fastapi_client_missing' };
     if (!client || !health.ok || !health.enabled) {
       return { ok:false, reason:health.reason || 'backend_not_enabled', health };
     }
@@ -201,6 +216,13 @@
     return labels.slice(0, 2).join(' · ') || 'Deler relevante History GO-interesser';
   }
 
+  async function unpublishMyProfile(){
+    if (backendMode() !== 'fastapi') return { ok:false, reason:'backend_not_enabled' };
+    const resolved = await resolveFastApi();
+    if (!resolved.ok) return resolved;
+    return apiResult(await resolved.client.unpublishProfile(), 'profile');
+  }
+
   async function discoverCandidates(context, options = {}){
     const normalized = normalizeContext(context); if (!normalized.ok) return { ...normalized, suggestions:[] };
     const resolved = await resolveFastApi(); if (!resolved.ok) return { ...resolved, suggestions:[] };
@@ -216,6 +238,7 @@
         quizTopicTags: list(signals.quizTopicTags || signals.quiz_topic_tags),
         learningGoalTags: list(signals.learningGoalTags || signals.learning_goal_tags)
       },
+      mode: String(options?.mode || 'match'),
       limit: Number(options?.limit || 10)
     };
     const result = await resolved.client.discoverCandidates(payload);
@@ -242,6 +265,26 @@
       staleAfterSeconds:data.staleAfterSeconds || data.stale_after_seconds,
       backend:'fastapi'
     };
+  }
+
+  async function setPlaceStatus(placeId, durationMinutes = 60){
+    const id = str(placeId);
+    if (!id) return { ok:false, reason:'missing_place_id' };
+    const resolved = await resolveFastApi();
+    if (!resolved.ok) return resolved;
+    const result = await resolved.client.setPlaceStatus({
+      placeId:id,
+      durationMinutes:Number(durationMinutes || 60),
+      consentVersion:'social_meet_place_status_v1',
+      previewConfirmed:true
+    });
+    return apiResult(result, 'placeStatus');
+  }
+
+  async function clearPlaceStatus(){
+    const resolved = await resolveFastApi();
+    if (!resolved.ok) return resolved;
+    return apiResult(await resolved.client.clearPlaceStatus(), 'placeStatus');
   }
 
   function createIdempotencyKey(){
@@ -313,7 +356,7 @@
     };
   }
 
-  const api = { backendMode, scanForbiddenFields, normalizeContext, mapInvite, presetMessages:clone(PRESETS), getMyProfile, upsertMyProfile, discoverCandidates, createInvite, listInvites, acceptInvite, declineInvite, cancelInvite, completeInvite, listCircles, joinCircle, leaveCircle, listActivity, health };
+  const api = { backendMode, scanForbiddenFields, normalizeContext, mapInvite, presetMessages:clone(PRESETS), getMyProfile, upsertMyProfile, unpublishMyProfile, discoverCandidates, setPlaceStatus, clearPlaceStatus, createInvite, listInvites, acceptInvite, declineInvite, cancelInvite, completeInvite, listCircles, joinCircle, leaveCircle, listActivity, health };
   root.HG_SocialMeetAdapter = api;
   root.HG_SocialMeetBackend = api;
   if (wantsFastApi()) void ensureFastApiClient();

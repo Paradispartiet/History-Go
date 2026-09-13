@@ -7,7 +7,7 @@ HG Spotmeeting er produktnavnet for frivillige, privacy-safe møteforespørsler 
 
 ## Definition
 
-En spotmeeting er en manuelt startet forespørsel om å møtes rundt et History GO-sted, en rute, quiz, observasjon, sirkel eller et tema. Candidate discovery og matchforklaringer skal bygge på eksplisitte, grove kunnskaps- og interessesignaler, aldri på hvor noen befinner seg nå.
+En spotmeeting er en manuelt startet forespørsel om å møtes rundt et History GO-sted, en rute, quiz, observasjon, sirkel eller et tema. Candidate discovery har to eksplisitte Place-modi: kunnskaps-/interessematch og frivillig, selvoppgitt, tidsbegrenset place-status. Place-status er aldri GPS-verifisert og skal ikke påvirke kunnskapsrangeringen.
 
 ## Allowed contexts
 
@@ -33,9 +33,10 @@ Tillatte `contextType`-verdier:
 ## Lifecycle
 
 1. Brukeren åpner **PlaceCard → Utforsk → Møtes** eller en annen eksplisitt Spotmeeting-inngang.
-2. For Place-context åpner UI-et direkte på **Folk å møte her**; dette er opt-in kunnskaps-/interessematcher, ikke fysisk tilstedeværelse.
-3. Systemet validerer context og privacy-felter.
-4. Discovery kan foreslå kvalifiserte profiler når FastAPI og rollout-gatene er aktivert, eller seedede demo-profiler i eksplisitt TEST_MODE.
+2. For Place-context åpner UI-et direkte på **Folk her nå** og tilbyr separat **Folk å møte**.
+3. **Folk her nå** viser bare profiler som selv har aktivert place-status for det canonicale stedet og hvis status ikke er utløpt. Brukeren kan aktivere **Vis meg her i 60 min** eller **Skjul meg**.
+4. Systemet validerer context, samtykke, rollout og privacy-felter. Kunnskapsmatch og place-status har separate discovery modes.
+5. Discovery kan foreslå kvalifiserte profiler når FastAPI og rollout-gatene er aktivert, eller seedede demo-profiler for kunnskapsmatch i eksplisitt TEST_MODE.
 5. Brukeren velger én kandidat og sender én servereid preset-melding.
 6. En invite opprettes som `pending` gjennom den autoritative datagrensen.
 7. Mottakeren kan godta eller avslå.
@@ -66,7 +67,7 @@ Spotmeeting skal alltid være:
 - block-/report-aware;
 - privat og participant-scoped.
 
-Spotmeeting skal aldri bruke eller eksponere GPS, live location, last seen, nearby users, distance-to-person, followers/feed, offentlig visit history, passive tracking eller fri chat. Derfor skal UI-et bruke formuleringen **Folk å møte her**, ikke «folk som er her nå», med mindre produktets privacy-arkitektur en dag endres eksplisitt.
+Spotmeeting skal aldri bruke eller eksponere GPS/device-derived live location, last seen, nearby/proximity scans, distance-to-person, followers/feed, offentlig visit history, passive tracking eller fri chat. Den eneste stedsstatusen som kan vises er brukerens eksplisitte, selvoppgitte canonicale History GO-place med hard utløpstid og separat samtykke. **Folk her nå** betyr derfor «profiler som har valgt å vise seg her nå», ikke GPS-verifisert fysisk tilstedeværelse.
 
 ## Implemented boundaries
 
@@ -77,7 +78,8 @@ History GO har implementert:
 - moderation queue, restrictions og appeals;
 - abuse controls, rate limits, duplicate suppression og cooldowns;
 - durable server-owned invite creation, lifecycle, inbox og sync;
-- privacy-safe candidate discovery;
+- privacy-safe candidate discovery med separate `match`- og `place_status`-modi;
+- selvkontrollert, utløpende place-status på eksisterende `hg_profiles`-rad;
 - typed FastAPI client og browser-adapter;
 - retention, holds og privacy-safe observability.
 
@@ -110,4 +112,4 @@ Gjeldende implementasjonsstatus leses fra:
 
 ## Non-goals
 
-Spotmeeting innfører ikke datingmekanikk, åpne meldinger, public feeds, follower graphs, presence maps, location ranking eller automatisk kontakt.
+Spotmeeting innfører ikke datingmekanikk, åpne meldinger, public feeds, follower graphs, GPS-/proximity-kart, location ranking, passiv stedsdeteksjon eller automatisk kontakt.

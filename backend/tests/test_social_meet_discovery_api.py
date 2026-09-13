@@ -18,7 +18,11 @@ from app.domains.social_meet.discovery_models import (
     DiscoveryCandidateProfile,
     DiscoveryMatchReason,
 )
-from app.domains.social_meet.models import KnowledgeFingerprint
+from app.domains.social_meet.models import (
+    KnowledgeFingerprint,
+    PlaceStatusState,
+    PlaceStatusUpdateRequest,
+)
 from app.domains.social_meet.service import SocialMeetDomainError
 from app.domains.social_meet.spotmeeting_models import SpotmeetingContextType
 from app.main import create_app
@@ -31,6 +35,8 @@ class StubDiscoveryService:
         self.user_id = user_id
         self.calls = 0
         self.error: SocialMeetDomainError | None = None
+        self.place_status_calls = 0
+        self.clear_place_status_calls = 0
 
     def find_context_candidates(
         self,
@@ -64,6 +70,24 @@ class StubDiscoveryService:
             ],
         )
 
+    def set_place_status(
+        self,
+        auth_user_id: UUID,
+        request: PlaceStatusUpdateRequest,
+    ) -> PlaceStatusState:
+        assert auth_user_id == self.user_id
+        self.place_status_calls += 1
+        return PlaceStatusState(
+            active=True,
+            place_id=request.place_id,
+            visible_until=NOW,
+        )
+
+    def clear_place_status(self, auth_user_id: UUID) -> PlaceStatusState:
+        assert auth_user_id == self.user_id
+        self.clear_place_status_calls += 1
+        return PlaceStatusState(active=False)
+
 
 def test_context_candidate_endpoint_returns_participant_safe_projection() -> None:
     client, _ = _client()
@@ -85,6 +109,48 @@ def test_context_candidate_endpoint_returns_participant_safe_projection() -> Non
     assert "lastseen" not in serialized
     assert "online" not in serialized
     assert "distance" not in serialized
+
+
+def test_place_status_endpoint_is_explicit_and_self_scoped() -> None:
+    client, service = _client()
+
+    response = client.put(
+        "/api/v1/social-meet/spotmeeting/discovery/place-status",
+        json={
+            "placeId": "akershus_festning",
+            "durationMinutes": 60,
+            "consentVersion": "social_meet_place_status_v1",
+            "previewConfirmed": True,
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json()["active"] is True
+    assert response.json()["placeId"] == "akershus_festning"
+    assert service.place_status_calls == 1
+
+    hidden = client.delete("/api/v1/social-meet/spotmeeting/discovery/place-status")
+    assert hidden.status_code == 200
+    assert hidden.json()["active"] is False
+    assert service.clear_place_status_calls == 1
+
+
+def test_place_status_rejects_coordinate_fields_before_service() -> None:
+    client, service = _client()
+    response = client.put(
+        "/api/v1/social-meet/spotmeeting/discovery/place-status",
+        json={
+            "placeId": "akershus_festning",
+            "durationMinutes": 60,
+            "consentVersion": "social_meet_place_status_v1",
+            "previewConfirmed": True,
+            "gps": {"latitude": 59.9, "longitude": 10.7},
+        },
+    )
+
+    assert response.status_code == 422
+    assert response.json()["detail"]["code"] == "forbidden_place_status_field"
+    assert service.place_status_calls == 0
 
 
 def test_nested_location_presence_and_history_fields_fail_before_domain_execution() -> None:

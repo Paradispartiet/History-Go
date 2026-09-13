@@ -222,7 +222,7 @@
         title: text(place?.name || place?.title || placeId),
         reason: "Kunnskapsmøte rundt dette stedet",
         sourceSurface: "placeCardOnSite",
-        preferredAction: "match"
+        preferredAction: "here"
       });
     }
     global.showToast?.("Kunnskapsmøte er ikke lastet ennå");
