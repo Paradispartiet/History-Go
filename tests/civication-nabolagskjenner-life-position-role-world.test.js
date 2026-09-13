@@ -166,7 +166,8 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'scenekunst/scenehenger',
   'sport/klubbmenneske',
   'vitenskap/maker',
-  'subkultur/gangster'
+  'subkultur/gangster',
+  'liv_alternativ/bohem'
 ]);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
