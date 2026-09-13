@@ -74,13 +74,13 @@ class PostgresSpotmeetingInviteRepository:
         *,
         sender_auth_user_id: UUID,
         sender_profile_id: UUID,
-        sender_display_name: str,
         recipient_auth_user_id: UUID,
         recipient_profile_id: UUID,
-        recipient_display_name: str,
         request: CreateSpotmeetingInviteRequest,
         supported_consent_version: str,
         now: datetime,
+        sender_display_name: str = "",
+        recipient_display_name: str = "",
     ) -> InviteCreateResult:
         try:
             with self._database.engine.connect() as connection:
