@@ -371,6 +371,9 @@ class PostgresSocialMeetSafetyRepository:
                       profile_visibility = 'deleted',
                       consent_version = null,
                       consented_at = null,
+                      current_place_id = null,
+                      current_place_visible_until = null,
+                      current_place_consent_version = null,
                       deleted_at = :deleted_at
                     where user_id = :auth_user_id
                     returning profile_id

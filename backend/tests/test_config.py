@@ -22,3 +22,18 @@ def test_database_configuration_does_not_expose_secret_value() -> None:
 
     assert settings.database_configured is True
     assert "secret" not in repr(settings.database_url)
+
+
+def test_cors_origins_are_normalized_and_deduplicated() -> None:
+    settings = Settings(
+        environment="test",
+        cors_allowed_origins=(
+            " https://paradispartiet.github.io/, http://localhost:8000, "
+            "https://paradispartiet.github.io "
+        ),
+    )
+
+    assert settings.cors_origins == [
+        "https://paradispartiet.github.io",
+        "http://localhost:8000",
+    ]

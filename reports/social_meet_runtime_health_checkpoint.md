@@ -48,3 +48,28 @@ Privacy checks are expected to pass when forbidden fields are rejected and no de
 - `npm run test:social-meet-spotmeeting-smoke`
 - `node tests/hg-runtime-health.test.js`
 - `node tests/hg-runtime-smoke-runner.test.js`
+
+
+## 2026-09-13 production-readiness audit
+
+The PlaceCard meeting entry now has an explicit distinction between **people to meet** and physical presence:
+
+- `PlaceCard → Utforsk → Møtes` opens context candidate discovery.
+- Candidates are opt-in knowledge/interest matches for the active Place.
+- The product does **not** expose who is physically at the Place, GPS, distance, presence, online/last-seen state or public visit history.
+- A meeting proposal is preset-only; accepted/declined/completed lifecycle remains server-owned when FastAPI is active.
+
+Production audit found two frontend integration gaps and closed them in code:
+
+1. `HGSocialMeetSupabaseClient` can now reuse the existing AHA/Supabase authenticated session as the FastAPI bearer-token source instead of requiring duplicate Social Meet auth configuration.
+2. `HGSocialMeetProfileBridge` now provides explicit discoverable-profile publication/unpublication with `social_meet_identity_v1` consent, visible preview confirmation and privacy-safe knowledge signals.
+
+The UI also reports distinct failure states for missing login, unpublished profile, disabled server rollout and unavailable network/backend.
+
+This does **not** activate production multi-user Social Meet by itself. Real users remain unavailable until all external prerequisites exist:
+
+- an active PostgreSQL/Supabase database with Social Meet migrations;
+- a deployed FastAPI URL supplied to the browser;
+- server discovery/write feature gates enabled according to rollout policy.
+
+Fail-closed behavior is therefore intentional until infrastructure activation.

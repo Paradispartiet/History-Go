@@ -198,6 +198,19 @@ def test_inbox_expires_stale_records_and_advances_monotonic_cursor() -> None:
     assert page.invites[0].sync_version == repository.record.sync_version
 
 
+def test_inbox_exposes_only_the_counterpart_public_display_name() -> None:
+    service, repository, _, _, sender, recipient = _service()
+
+    sender_page = service.list_inbox(sender.auth_user_id, now=NOW)
+    recipient_page = service.list_inbox(recipient.auth_user_id, now=NOW)
+
+    assert sender_page.invites[0].counterpart_display_name == "Bjørn"
+    assert recipient_page.invites[0].counterpart_display_name == "Ada"
+    serialized = str(sender_page.invites[0].model_dump()).lower()
+    assert str(repository.record.sender_auth_user_id).lower() not in serialized
+    assert str(repository.record.recipient_auth_user_id).lower() not in serialized
+
+
 def test_recipient_accepts_pending_invite_and_interaction_is_revalidated() -> None:
     service, repository, _, guard, _, recipient = _service()
 
@@ -322,14 +335,16 @@ def _service() -> tuple[
     SocialMeetProfileRecord,
     SocialMeetProfileRecord,
 ]:
-    sender = _profile()
-    recipient = _profile()
+    sender = _profile("Ada")
+    recipient = _profile("Bjørn")
     repository = FakeInviteRepository(
         _record(
             sender_auth_user_id=sender.auth_user_id,
             recipient_auth_user_id=recipient.auth_user_id,
             sender_profile_id=_profile_id(sender),
             recipient_profile_id=_profile_id(recipient),
+            sender_display_name=sender.display_name,
+            recipient_display_name=recipient.display_name,
         )
     )
     abuse = FakeAbuseService()
@@ -343,12 +358,12 @@ def _service() -> tuple[
     return service, repository, abuse, guard, sender, recipient
 
 
-def _profile() -> SocialMeetProfileRecord:
+def _profile(display_name: str = "Ada") -> SocialMeetProfileRecord:
     return SocialMeetProfileRecord(
         auth_user_id=uuid4(),
         social_user_id=uuid4(),
         profile_id=uuid4(),
-        display_name="Ada",
+        display_name=display_name,
         avatar_ref=None,
         short_bio=None,
         preferred_themes=(),
@@ -393,6 +408,8 @@ def _record(
     state: SpotmeetingInviteState = SpotmeetingInviteState.PENDING,
     version: int = 1,
     sync_version: int = 7,
+    sender_display_name: str = "Ada",
+    recipient_display_name: str = "Bjørn",
 ) -> SpotmeetingInviteRecord:
     return SpotmeetingInviteRecord(
         invite_id=invite_id or uuid4(),
@@ -413,6 +430,8 @@ def _record(
         version=version,
         sync_version=sync_version,
         idempotency_key="retry-key-0001",
+        sender_display_name=sender_display_name,
+        recipient_display_name=recipient_display_name,
     )
 
 

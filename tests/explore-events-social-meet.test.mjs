@@ -16,6 +16,7 @@ const headerMenu = read("js/ui/header-menu.js");
 const socialUi = read("js/social/HGSocialMeetUI.js");
 const spotmeetingUi = read("js/social/HGSpotmeetingUI.js");
 const contract = json("data/categories/place_onsite_contract.json");
+const placeStatusMigration = read("supabase/migrations/009_social_meet_place_status.sql");
 
 test("Events og Møtes vises ikke som globale Utforsk-tabs", () => {
   assert.doesNotMatch(index, /data-leftmode="events"/);
@@ -29,9 +30,12 @@ test("Events og Møtes vises ikke som globale Utforsk-tabs", () => {
 
 test("index laster de faktiske Events-, Social Meet- og PlaceCard-runtimene", () => {
   assert.match(app, /loadHGSocialMeetUI[\s\S]*js\/social\/HGSocialMeetUI\.js\?v=20260912-live-surfaces2/);
-  assert.match(app, /loadHGSpotmeetingUI[\s\S]*js\/social\/HGSpotmeetingUI\.js\?v=20260913-meet-people1/);
+  assert.match(app, /loadHGSocialMeetSupabaseClient[\s\S]*HGSocialMeetSupabaseClient\.js\?v=20260913-social-ready1/);
+  assert.match(app, /loadHGSocialMeetAdapter[\s\S]*HGSocialMeetAdapter\.js\?v=20260913-place-status1/);
+  assert.match(app, /loadHGSocialMeetProfileBridge[\s\S]*HGSocialMeetProfileBridge\.js\?v=20260913-place-status1/);
+  assert.match(app, /loadHGSpotmeetingUI[\s\S]*js\/social\/HGSpotmeetingUI\.js\?v=20260913-place-status1/);
   assert.match(app, /loadEventsRuntime[\s\S]*js\/events\/events_loader\.js\?v=20260912-live-surfaces2/);
-  assert.match(app, /loadPlaceOnsiteSurface[\s\S]*js\/ui\/place-onsite-surface\.js\?v=20260913-meet-people1/);
+  assert.match(app, /loadPlaceOnsiteSurface[\s\S]*js\/ui\/place-onsite-surface\.js\?v=20260913-place-status1/);
   assert.match(app, /loadPlaceCard[\s\S]*js\/ui\/place-card\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /dist\/web\/leftPanelMode\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /dist\/web\/left-panel\.js\?v=20260912-live-surfaces2/);
@@ -39,7 +43,7 @@ test("index laster de faktiske Events-, Social Meet- og PlaceCard-runtimene", ()
   assert.match(index, /js\/config\.js\?v=20260912-onsite-under-explore1/);
   assert.match(index, /css\/place-onsite-surface\.css\?v=20260912-live-surfaces2/);
   assert.match(index, /js\/ui\/header-menu\.js\?v=20260912-onsite-under-explore1/);
-  assert.match(index, /js\/app\.js\?v=20260913-meet-people1/);
+  assert.match(index, /js\/app\.js\?v=20260913-place-status1/);
 });
 
 test("header-Møtes åpner Social Meet direkte og er ikke avhengig av Utforsk", () => {
@@ -75,12 +79,26 @@ test("PlaceCard-Møtes går direkte til Folk å møte her og beholder Social Mee
   assert.match(onsite, /sourceSurface:\s*"placeCardOnSite"/);
   assert.doesNotMatch(onsite, /data-hg-meet-hub-action/);
 
-  assert.match(spotmeetingUi, /Folk å møte her/);
-  assert.match(spotmeetingUi, /frivillig har gjort Social Meet-profilen sin oppdagbar/);
-  assert.match(spotmeetingUi, /Dette viser ikke hvem som fysisk er her nå/);
+  assert.match(onsite, /preferredAction:\s*"here"/);
+  assert.match(spotmeetingUi, /Folk her nå/);
+  assert.match(spotmeetingUi, /Folk å møte/);
+  assert.match(spotmeetingUi, /Vis meg her i 60 min/);
+  assert.match(spotmeetingUi, /place_status/);
+  assert.match(spotmeetingUi, /selvoppgitt/i);
   assert.match(spotmeetingUi, /Mine møter \/ Social Meet/);
+  assert.match(spotmeetingUi, /clearPlaceStatus/);
   assert.match(spotmeetingUi, /discoverCandidates/);
   assert.match(spotmeetingUi, /data-hg-spotmeeting-send/);
+});
+
+test("place-status er midlertidig og endrer ikke public profile freshness", () => {
+  assert.match(placeStatusMigration, /current_place_visible_until/);
+  assert.match(placeStatusMigration, /current_place_consent_version/);
+  assert.match(placeStatusMigration, /social_meet_place_status/);
+  assert.match(placeStatusMigration, /drop trigger if exists set_hg_profiles_updated_at/);
+  const trigger = placeStatusMigration.match(/create trigger set_hg_profiles_updated_at[\s\S]*?execute function public\.set_updated_at\(\);/)?.[0] || "";
+  assert(trigger, "migration recreates hg_profiles freshness trigger");
+  assert.doesNotMatch(trigger, /current_place_id|current_place_visible_until|current_place_consent_version/);
 });
 
 test("Events rendres fra canonical HGEvents i PlaceCard", () => {
