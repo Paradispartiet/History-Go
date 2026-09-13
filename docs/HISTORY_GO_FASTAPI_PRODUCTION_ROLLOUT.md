@@ -42,7 +42,7 @@ PostgreSQL also starts with these private feature flags disabled:
 - `spotmeeting_discovery`;
 - `social_meet_place_status`.
 
-A successful health check therefore proves infrastructure, not participant rollout.
+A successful health check therefore proves infrastructure, not participant rollout. Until the Render service exists, GitHub Pages intentionally fails closed against the configured production FastAPI URL and must not fall back to fake/local production candidates.
 
 ## Production database baseline
 
@@ -81,8 +81,8 @@ Do not print or commit the credential.
 5. Verify CORS from `https://paradispartiet.github.io`.
 6. Enable `HG_BACKEND_SPOTMEETING_INVITE_WRITES_ENABLED` and
    `HG_BACKEND_SPOTMEETING_DISCOVERY_ENABLED` on the server.
-7. Configure the History GO frontend with the exact deployed backend URL and FastAPI mode.
-8. Smoke-test authenticated profile publication and retrieval.
+7. Confirm the deployed service owns the canonical URL `https://history-go-backend.onrender.com`. The GitHub Pages production runtime is already configured to use this URL and FastAPI mode; localhost/test remain local unless explicitly configured otherwise.
+8. Smoke-test authenticated profile publication and retrieval from GitHub Pages.
 9. Enable the private PostgreSQL `spotmeeting_discovery` feature flag.
 10. Smoke-test knowledge matching and the preset-only invite lifecycle with real test accounts.
 11. Enable `social_meet_place_status`.
