@@ -192,7 +192,7 @@ assert.match(roleMailDoc, /Mail er delivery/);
 assert.doesNotMatch(roleMailDoc, /Dette er autoritativ jobbmailflyt/);
 
 assert.equal(index.career_role_world_count, 85);
-assert.equal(index.life_position_role_world_count, 14);
+assert.equal(index.life_position_role_world_count, 15);
 assert.equal(index.roles.length, 100);
 const completeWorlds = index.roles.filter((entry) => entry.status === 'role_world_complete');
 assert.ok(completeWorlds.length >= 5, 'The completed six-world reference wave must remain intact');
