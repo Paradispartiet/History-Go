@@ -1,0 +1,658 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "liv_lovsbane_kriminell_stream",
+  "type": "leisure",
+  "title": "Kriminell",
+  "sociological_theme": "selvvalgt_kriminell_livsbane_og_konsekvenser",
+  "applies_when": {
+    "any_tags": [
+      "liv_lovsbane:kriminell"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "etiketten_er_et_valg",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Din egen presentasjon",
+      "subject": "En selvvalgt fortellingsbane",
+      "situation": [
+        "Du har valgt «Kriminell» som spillerens egen livsbane i fortellingen.",
+        "Valget gir ikke automatisk penger, ferdigheter, skyld, dom eller strafferettslig status.",
+        "Andre mennesker skal ikke få samme etikett bare fordi de kjenner deg, har gjort en feil eller befinner seg i et utsatt miljø."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold etiketten avgrenset til ditt eget narrative valg.",
+          "effect": 1,
+          "tags": [
+            "etiketten_er_et_valg_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du skiller selvvalgt fortelling fra juridiske og sosiale kategorier."
+        },
+        {
+          "id": "B",
+          "label": "La etiketten forklare både deg og menneskene rundt deg.",
+          "effect": -1,
+          "tags": [
+            "etiketten_er_et_valg_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du gjør en spillerposisjon til en stereotype."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_self_definition"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lojalitet_uten_blindhet",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En nær alliert",
+      "subject": "Lojalitet har grenser",
+      "situation": [
+        "En person du stoler på forventer støtte i en konfliktfylt situasjon.",
+        "Lojalitet kan gi tilhørighet, men kan også bli brukt til å presse mennesker til handlinger de ikke ønsker.",
+        "Et nært forhold gir ingen automatisk rett til å bestemme over andres grenser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hva du faktisk er villig til å stå inne for.",
+          "effect": 1,
+          "tags": [
+            "lojalitet_uten_blindhet_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du lar relasjonen ha grenser selv under press."
+        },
+        {
+          "id": "B",
+          "label": "Gjør lojalitet til et krav om ubetinget lydighet.",
+          "effect": -1,
+          "tags": [
+            "lojalitet_uten_blindhet_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du gjør tilhørighet avhengig av at egne grenser forsvinner."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_loyalty_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pengene_har_en_pris",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Dagsøkonomien",
+      "subject": "Rask gevinst er ikke gratis handlingsrom",
+      "situation": [
+        "Du vurderer økonomiske valg i en livsbane med høyere sosial og juridisk risiko.",
+        "Uforutsigbarhet, tapte relasjoner, beslaglagt tid og behov for å håndtere konsekvenser kan også være kostnader.",
+        "Livsposisjonen gir aldri spillet en snarvei til penger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Regn konsekvenser og usikkerhet som reelle kostnader.",
+          "effect": 1,
+          "tags": [
+            "pengene_har_en_pris_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du behandler økonomi som mer enn en kortsiktig gevinst."
+        },
+        {
+          "id": "B",
+          "label": "Tell bare det som kommer inn her og nå.",
+          "effect": -1,
+          "tags": [
+            "pengene_har_en_pris_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du gjør langsiktig risiko økonomisk usynlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_economic_cost"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hemmeligheten_i_forholdet",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En partner eller nær venn",
+      "subject": "Hva må den andre få vite?",
+      "situation": [
+        "En nær relasjon påvirkes av at deler av livet ditt holdes skjult.",
+        "Privatliv er legitimt, men risiko som direkte berører andre kan skape en egen informasjonsmakt.",
+        "Hemmelighet kan beskytte et selvbilde samtidig som den flytter usikkerhet over på noen andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill privatliv fra informasjon den andre trenger for egne valg.",
+          "effect": 1,
+          "tags": [
+            "hemmeligheten_i_forholdet_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du tar den andres handlingsrom på alvor."
+        },
+        {
+          "id": "B",
+          "label": "La den andre bære risiko uten å vite at den finnes.",
+          "effect": -1,
+          "tags": [
+            "hemmeligheten_i_forholdet_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du bruker hemmelighold til å kontrollere den andres valgmuligheter."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_relationship_disclosure"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ryktet_gar_foran_deg",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Et nytt sosialt miljø",
+      "subject": "Omdømme blir sosial kapital og sosial gjeld",
+      "situation": [
+        "Noen har hørt historier om deg før dere møtes.",
+        "Et rykte kan gi status i ett miljø og stenge dører i et annet.",
+        "Omdømme er situert: det samme signalet betyr ikke det samme for venner, arbeidsgivere, naboer eller myndigheter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La konkrete handlinger og relasjoner veie tyngre enn rollen.",
+          "effect": 1,
+          "tags": [
+            "ryktet_gar_foran_deg_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du lar omdømme være situert i stedet for globalt."
+        },
+        {
+          "id": "B",
+          "label": "Gjør frykt eller notoritet til hovedmålet i alle miljøer.",
+          "effect": -1,
+          "tags": [
+            "ryktet_gar_foran_deg_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du gjør én type status kostbar i andre relasjoner."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_situated_reputation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konflikten_som_eskalerer",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En spent situasjon",
+      "subject": "Press gjør ikke eskalering uunngåelig",
+      "situation": [
+        "En konflikt blir mer intens, og menneskene rundt deg forventer et tydelig svar.",
+        "Rollen kan skape et sosialt press om å vise hardhet selv når konsekvensene blir større.",
+        "Å trekke seg, avgrense eller søke en mindre skadelig løsning er fortsatt et valg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg de-eskalering og behold kontroll over egne grenser.",
+          "effect": 1,
+          "tags": [
+            "konflikten_som_eskalerer_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du nekter å gjøre rollen til en automatisk eskaleringsmaskin."
+        },
+        {
+          "id": "B",
+          "label": "La forventningen om hardhet bestemme svaret.",
+          "effect": -1,
+          "tags": [
+            "konflikten_som_eskalerer_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du lar omdømme styre over vurderingen av skade."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_deescalation"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_som_ble_rammet",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Et etterspill",
+      "subject": "Konsekvenser finnes også utenfor din egen sirkel",
+      "situation": [
+        "En handling i miljøet har fått konkrete følger for et menneske utenfor gruppen.",
+        "Fortellingen blir fattig dersom konsekvenser bare måles som din risiko, ditt tap eller ditt omdømme.",
+        "Ansvar innebærer å se den som faktisk ble rammet som et eget subjekt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La den andres skade telle i hvordan du vurderer situasjonen.",
+          "effect": 1,
+          "tags": [
+            "den_som_ble_rammet_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du flytter blikket fra egen risiko til faktisk konsekvens."
+        },
+        {
+          "id": "B",
+          "label": "Mål alt bare etter hva det kostet deg og gruppen din.",
+          "effect": -1,
+          "tags": [
+            "den_som_ble_rammet_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du gjør andre menneskers skade narrativt usynlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_victim_impact"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "myndighetskontakten",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En formell henvendelse",
+      "subject": "Kontakt med myndigheter er ikke et minispill i å slippe unna",
+      "situation": [
+        "Du mottar en formell henvendelse eller må forholde deg til en myndighetsprosess.",
+        "Livsposisjonen gir ingen spesialkunnskap om å unngå kontroll, skjule spor eller omgå regler.",
+        "Det relevante spillet er usikkerhet, rettigheter, plikter, tid, relasjoner og konsekvenser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forhold deg til prosessen uten å gjøre omgåelse til spillets mål.",
+          "effect": 1,
+          "tags": [
+            "myndighetskontakten_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du holder fortellingen på konsekvens- og beslutningsnivå."
+        },
+        {
+          "id": "B",
+          "label": "Gjør hele situasjonen til en konkurranse om å overliste systemet.",
+          "effect": -1,
+          "tags": [
+            "myndighetskontakten_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du lar rollen spise opp vurderingen av faktiske konsekvenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_authority_contact"
+      ],
+      "risk_links": [
+        "bureaucratic_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_trekker_seg",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En gammel venn",
+      "subject": "Jeg vil ikke være del av dette",
+      "situation": [
+        "En venn setter en tydelig grense og ønsker større avstand til denne delen av livet ditt.",
+        "Vennen skylder deg ikke lojalitet til en identitet de ikke har valgt.",
+        "Tap av nærhet kan være en sosial konsekvens uten at vennen blir en fiende."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Respekter grensen og skill avstand fra svik.",
+          "effect": 1,
+          "tags": [
+            "vennen_som_trekker_seg_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du lar den andre eie sitt eget risikonivå."
+        },
+        {
+          "id": "B",
+          "label": "Behandle grensen som illojalitet som må straffes sosialt.",
+          "effect": -1,
+          "tags": [
+            "vennen_som_trekker_seg_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du gjør vennskap avhengig av lydighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_friend_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rollen_og_jobben",
+      "message_type": "class_case",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Arbeidshverdagen",
+      "subject": "Livsbane er ikke yrke",
+      "situation": [
+        "Du skal møte på arbeid eller gjennomføre et lovlig oppdrag som normalt.",
+        "Kriminell-livsposisjonen er employment-independent og gir ingen yrkeskompetanse.",
+        "Spørsmålet er hvordan omdømme, fravær, stress eller konflikt kan lekke inn i arbeidshverdagen uten å bli en ny karrieremotor."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold arbeidsrollen og livsposisjonen adskilt der de faktisk er adskilt.",
+          "effect": 1,
+          "tags": [
+            "rollen_og_jobben_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du unngår å gjøre én identitet til hele personen."
+        },
+        {
+          "id": "B",
+          "label": "La livsposisjonen automatisk definere hvordan all jobb skal spilles.",
+          "effect": -1,
+          "tags": [
+            "rollen_og_jobben_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du blander sammen ulike systemer og relasjoner."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_work_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjeld_av_lojalitet",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En person fra miljøet",
+      "subject": "En tjeneste blir gjort om til krav",
+      "situation": [
+        "Noen viser til tidligere hjelp og forventer at du derfor skylder dem lydighet nå.",
+        "Gjensidighet kan være ekte, men uklar sosial gjeld kan også bli et maktmiddel.",
+        "Takknemlighet opphever ikke retten til å si nei til nye krav."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Anerkjenn hjelpen uten å godta grenseløs gjeld.",
+          "effect": 1,
+          "tags": [
+            "gjeld_av_lojalitet_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du skiller gjensidighet fra kontroll."
+        },
+        {
+          "id": "B",
+          "label": "Aksepter at tidligere hjelp gir den andre permanent krav på deg.",
+          "effect": -1,
+          "tags": [
+            "gjeld_av_lojalitet_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du gjør relasjonen hierarkisk og vanskeligere å forlate."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_social_debt"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_far_baere_risikoen",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En gruppeavgjørelse",
+      "subject": "Risiko fordeles sjelden likt",
+      "situation": [
+        "En beslutning i miljøet påvirker flere mennesker, men konsekvensene vil ikke treffe alle likt.",
+        "Personer med mindre penger, svakere nettverk eller lavere status kan få mindre reelt handlingsrom.",
+        "Risikodeling er også et spørsmål om makt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se hvem som faktisk bærer mest risiko før du kaller valget felles.",
+          "effect": 1,
+          "tags": [
+            "hvem_far_baere_risikoen_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du gjør ulik makt og sårbarhet synlig."
+        },
+        {
+          "id": "B",
+          "label": "Kall beslutningen lik bare fordi alle formelt var til stede.",
+          "effect": -1,
+          "tags": [
+            "hvem_far_baere_risikoen_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du skjuler forskjellen mellom formell og reell frivillighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_risk_distribution"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_yngre_som_ser_opp_til_deg",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En yngre bekjent",
+      "subject": "Status kan bli rekrutteringspress",
+      "situation": [
+        "En yngre person virker fascinert av statusen og historiene rundt deg.",
+        "Asymmetri i erfaring og omdømme gjør påvirkningen større enn en vanlig samtale.",
+        "Å bli beundret gir ikke rett til å trekke andre inn i risiko de ikke forstår."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avromantiser rollen og la den yngre beholde avstand.",
+          "effect": 1,
+          "tags": [
+            "den_yngre_som_ser_opp_til_deg_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du bruker status til å redusere, ikke øke, presset."
+        },
+        {
+          "id": "B",
+          "label": "Bruk beundringen til å gjøre tilhørighet avhengig av risikovilje.",
+          "effect": -1,
+          "tags": [
+            "den_yngre_som_ser_opp_til_deg_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du gjør status til sosialt rekrutteringspress."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_influence_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "retten_til_exit",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Din egen oppsummering",
+      "subject": "En livsbane må kunne avsluttes",
+      "situation": [
+        "Du har sett hvordan omdømme, lojalitet, hemmelighet, økonomi og risiko kan gjøre en selvvalgt rolle vanskeligere å forlate.",
+        "Et valg er mindre frivillig dersom gruppen, ryktet eller egen stolthet gjør exit umulig.",
+        "Å avslutte livsposisjonen trenger ikke bety at tidligere relasjoner eller konsekvenser forsvinner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold retten til å endre kurs og ta konsekvensene med deg.",
+          "effect": 1,
+          "tags": [
+            "retten_til_exit_boundary",
+            "kriminell_reflection"
+          ],
+          "feedback": "Du gjør exit til en reell del av valgfriheten."
+        },
+        {
+          "id": "B",
+          "label": "Gjør rollen permanent fordi omdømmet allerede finnes.",
+          "effect": -1,
+          "tags": [
+            "retten_til_exit_pressure",
+            "kriminell_myth"
+          ],
+          "feedback": "Du lar fortiden bestemme alle framtidige valg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kriminell_exit_option"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    }
+  ]
+}
