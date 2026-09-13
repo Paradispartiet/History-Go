@@ -376,6 +376,52 @@
         "bureaucratic_risk"
       ],
       "links": []
+    },
+    {
+      "id": "jobben_for_en_dag",
+      "message_type": "class_case",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En tilfeldig oppdragsgiver",
+      "subject": "Noen timers arbeid",
+      "situation": [
+        "Du får tilbud om noen timers praktisk arbeid.",
+        "Fleksibiliteten passer rytmen din, men betaling og ansvar må fortsatt være tydelig.",
+        "Omflakkende liv gjør ikke arbeid mindre verdifullt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar oppgave, betaling og varighet.",
+          "effect": 1,
+          "tags": [
+            "jobben_for_en_dag_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du beholder fleksibilitet og tydelige vilkår."
+        },
+        {
+          "id": "B",
+          "label": "Anta at uformelt arbeid ikke trenger klare avtaler.",
+          "effect": -1,
+          "tags": [
+            "jobben_for_en_dag_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du øker risikoen for konflikt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_odd_job_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "reputation_risk"
+      ],
+      "links": []
     }
   ]
 }
