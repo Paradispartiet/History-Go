@@ -12,6 +12,7 @@ Social-produkt og privacy:
 - [`../docs/HG_SOCIAL_README.md`](../docs/HG_SOCIAL_README.md)
 - [`../docs/HG_SOCIAL_PRIVACY_RULES.md`](../docs/HG_SOCIAL_PRIVACY_RULES.md)
 - [`../docs/HG_SPOTMEETING.md`](../docs/HG_SPOTMEETING.md)
+- [`../docs/HISTORY_GO_FASTAPI_PRODUCTION_ROLLOUT.md`](../docs/HISTORY_GO_FASTAPI_PRODUCTION_ROLLOUT.md)
 
 Dette er produksjonsservergrensen for History GO. Backend skal ikke duplisere lokal gameplay-state eller opprette parallelle domene- og datamodeller.
 
@@ -114,7 +115,7 @@ Følgende er fortsatt egne, eksplisitte oppgaver:
 
 ## Permanent privacy boundary
 
-Social Meet-backend skal ikke innføre GPS, live location, nearby/distance, presence/last-seen, followers/feed, offentlig visit history, passiv tracking eller fri chat.
+Social Meet-backend skal ikke innføre GPS/device-derived live location, nearby/proximity/distance, last-seen/online-state, followers/feed, offentlig visit history, passiv tracking eller fri chat. Den eneste tillatte stedsstatusen er brukerens eksplisitte, selvoppgitte og utløpende canonical History GO-place-status med separat samtykke; den er ikke GPS-verifisert og blir ikke historikk.
 
 ## Local setup
 
