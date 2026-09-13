@@ -115,7 +115,7 @@ assert.deepEqual(index.summary, {
 });
 assert.equal(index.career_role_world_count, 85);
 assert.equal(index.life_position_role_world_count, 16);
-assert.equal(index.status, '100_role_worlds_materialized');
+assert.equal(index.status, '101_role_worlds_materialized');
 
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('scenekunst/scenehenger'));
 assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 16);
