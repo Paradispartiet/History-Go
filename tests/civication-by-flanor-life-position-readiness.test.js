@@ -59,14 +59,14 @@ assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, []);
 
 assert.deepEqual(audit.summary.classifications, {
-  ready: 15,
-  needs_authored_depth: 144,
+  ready: 16,
+  needs_authored_depth: 143,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 15);
+assert.equal(audit.summary.completed_life_position_role_worlds, 16);
 assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 15);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 15);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 16);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 16);
 assert.equal(audit.first_ready, null);
 assert.ok(!audit.queue.some((row) => row.key === 'scenekunst/scenehenger'));
 assert.ok((audit.queue || []).every((row) => row.classification !== 'ready'));

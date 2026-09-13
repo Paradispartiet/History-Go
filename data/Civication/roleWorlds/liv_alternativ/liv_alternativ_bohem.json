@@ -1,0 +1,1122 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "liv_alternativ",
+  "role_scope": "liv_alternativ_bohem",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "liv_alternativ",
+    "id": "bohem",
+    "label": "Bohem"
+  },
+  "title": "Bohem — frihet, miljø, prosjekter og ansvar",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å leve tett på kunstmiljø, venner, kvelder og prosjekter uten å romantisere knapphet, gjøre relasjoner til nettverk eller låne profesjonell kunststatus fra miljøet",
+    "description": "Bohem-verdenen undersøker en selvvalgt alternativ livsform der sosial tilhørighet, kulturelle rom, spontane kvelder og egne prosjekter prioriteres høyere enn en ryddig karrierestige. Spilleren møter spleis og ulik økonomi, sofaer og husgrenser, frivillig innsats, nettverkslogikk, kulturell portvakt, uferdige prosjekter og konflikter mellom natteliv og avtaler. Verdenen romantiserer verken økonomisk usikkerhet eller kaos. Bohem er ikke en kunstnerjobb, kuratorrolle, produsentstilling eller annen profesjon: spilleren kan høre til i kunst- og kulturmiljøer uten at livsposisjonen gir faglig autoritet, portefølje, inntekt eller yrkestittel."
+  },
+  "theme_ids": [
+    "precarity",
+    "class_power",
+    "status_anxiety",
+    "social_mask",
+    "night_work",
+    "invisible_work",
+    "consumption",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "professional_culture"
+  ],
+  "social_environments": [
+    "atelierer, små visningsrom og halvferdige prosjektrom der sosial tilhørighet og profesjonell rolle lett blandes",
+    "kjøkkenbord, spleisemiddager og billige møtesteder der økonomiske forskjeller blir synlige uten formelle avtaler",
+    "små kulturarenaer og frivillige arrangementer der vennskap, dugnad og nødvendig arbeid kan gli over i hverandre",
+    "fester, etterarrangementer og sene samtaler der vennskap, status og nettverk forhandles samtidig",
+    "delte hjem, gjestesofaer og midlertidige rom der fleksibilitet møter privatliv, husregler og kostnader",
+    "løse prosjektgrupper og chat-tråder der entusiasme må omsettes til ansvar, kreditering og avslutning"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "gammel_venn_med_fast_rytme",
+      "social_function": "viser friksjonen mellom spontane kvelder og et hverdagsliv med arbeidstid og tidlige forpliktelser",
+      "class_position": "venn med stabil inntekt og strammere tidsrammer enn spilleren",
+      "status": "nær relasjon uten myndighet over spillerens livsvalg",
+      "power_over_player": "kan trekke seg fra planer og synliggjøre når frihetsretorikk blir nedlatende",
+      "wants": "å beholde vennskapet uten å måtte forsvare et mer strukturert liv",
+      "conceals": "at misunnelse og bekymring kan blandes i kritikken av spillerens uforutsigbarhet",
+      "speech_style": "direkte, varm og konkret om klokkeslett, avtaler og praktiske følger",
+      "teaches_player": "at alternative livsvalg ikke blir friere av å gjøre andres rutiner mindre verdifulle"
+    },
+    {
+      "id": "kulturmiljo_vert",
+      "social_function": "åpner rom, inviterer mennesker og setter uformelle regler i atelierer, visninger og små kulturkvelder",
+      "class_position": "kulturell mellomposisjon med sosial kapital og begrensede ressurser",
+      "status": "uformell portvakt i et lokalt miljø, men ikke offentlig eller profesjonell autoritet over spilleren",
+      "power_over_player": "kan gi invitasjoner, synlighet og tilgang til rom, eller la være",
+      "wants": "et levende miljø som faktisk fungerer praktisk og sosialt",
+      "conceals": "at egne smakspreferanser påvirker hvem som oppfattes som interessante og sentrale",
+      "speech_style": "entusiastisk, rask og full av navn, planer og halvferdige ideer",
+      "teaches_player": "at åpne kulturmiljøer også har portvakter, arbeid og statusforskjeller"
+    },
+    {
+      "id": "prosjektvenn",
+      "social_function": "gjør vennskap, dugnad, samarbeid og ansvar vanskelig å skille når små prosjekter vokser",
+      "class_position": "likestilt venn med egne kreative eller sosiale initiativer",
+      "status": "relasjonell nærhet uten rett til spillerens tid eller gratis arbeid",
+      "power_over_player": "kan skape lojalitetspress og påvirke spillerens rykte som pålitelig eller vanskelig",
+      "wants": "hjelp, framdrift og følelsen av at prosjektet bæres av flere",
+      "conceals": "at egen tidsnød gjør det fristende å kalle reelt arbeid for en liten tjeneste",
+      "speech_style": "vennlig, improvisert og ofte formulert som at noe bare tar et øyeblikk",
+      "teaches_player": "at uformelle prosjekter trenger eksplisitte grenser nettopp fordi relasjonene betyr mye"
+    },
+    {
+      "id": "romkamerat_eller_vert",
+      "social_function": "forankrer frihet og midlertidighet i den konkrete belastningen på et delt hjem",
+      "class_position": "person med tilgang til bolig og begrenset privat rom",
+      "status": "har legitim situert myndighet over egne husregler og grenser",
+      "power_over_player": "kan be spilleren flytte, sette sluttdato eller kreve mer forutsigbarhet",
+      "wants": "å hjelpe uten at midlertidigheten blir permanent eller ensidig",
+      "conceals": "at ubehag kan bygge seg lenge før det uttrykkes direkte",
+      "speech_style": "forsiktig først, deretter tydelig om plass, tid og avtaler",
+      "teaches_player": "at selvvalgt fleksibilitet ikke gir rett til å gjøre andres bolig til grenseløs ressurs"
+    },
+    {
+      "id": "profesjonell_kunstner_i_miljoet",
+      "social_function": "gjør skillet mellom sosial tilhørighet og faktisk kunstnerisk yrkesrolle synlig uten å stenge spilleren ute",
+      "class_position": "profesjonell kulturarbeider med dokumenterbare oppdrag, praksis og økonomiske risikoer",
+      "status": "faglig status i eget arbeid, men ingen generell myndighet over hvem som får leve bohemsk",
+      "power_over_player": "kan korrigere lånte profesjonstitler og samtidig invitere til reell deltakelse",
+      "wants": "at bidrag krediteres presist og at profesjonelt arbeid ikke usynliggjøres",
+      "conceals": "at også profesjonelle kan bruke bohemmyten for å pynte på egne privilegier",
+      "speech_style": "presis om arbeid, roller og kreditering, men uformell sosialt",
+      "teaches_player": "at Bohem kan være en ekte livsposisjon uten å etterligne en kunstnerjobb"
+    },
+    {
+      "id": "ny_person_i_miljoet",
+      "social_function": "tester om miljøets åpenhet gjelder når noen mangler de riktige referansene, klærne eller kontaktene",
+      "class_position": "nykommer med mindre kulturell og sosial kapital i gruppa",
+      "status": "lav uformell status, men samme rett til respekt og grenser",
+      "power_over_player": "kan avsløre om spillerens egen trygghet brukes inkluderende eller som portvakt",
+      "wants": "å delta uten å måtte bestå en skjult prøve i smak og nettverk",
+      "conceals": "at usikkerhet kan få dem til å overdrive egen erfaring for å passe inn",
+      "speech_style": "nysgjerrig, litt avventende og mer konkret enn gruppas mest innforståtte språk",
+      "teaches_player": "at anti-konforme miljøer kan produsere sterke normer og hierarkier"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "freedom_vs_precarity",
+      "meaning": "om fleksibilitet og åpen tid gir reelt handlingsrom eller romantiserer økonomisk og praktisk usikkerhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "friendship_vs_network",
+      "meaning": "om relasjoner får være gjensidige vennskap eller behandles som tilgang til rom, status og neste prosjekt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "participation_vs_unpaid_labor",
+      "meaning": "om frivillig bidrag forblir avgrenset deltakelse eller glir over i nødvendig arbeid uten tydelig ansvar og betaling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "nightlife_vs_obligations",
+      "meaning": "om åpne kvelder og spontane møter kan sameksistere med kropp, avtaler og andre menneskers tid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "taste_vs_gatekeeping",
+      "meaning": "om kulturell kunnskap åpner samtaler eller brukes som skjult opptaksprøve til miljøet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "projects_vs_completion",
+      "meaning": "om mange initiativer skaper liv og muligheter eller skyver kostnaden ved uferdige løfter over på andre",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "identity_vs_profession",
+      "meaning": "om Bohem får være en selvvalgt livsposisjon uten å bli falsk kunstner-, kurator- eller produsenttittel",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "home_vs_common_space",
+      "meaning": "om midlertidige og delte rom forhandles gjensidig i stedet for å behandles som grenseløse felleseiendommer",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: En venn inviterer deg til et rom der en liten gruppe viser halvferdige tekster, bilder og ideer uten program eller billettsalg. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "friendship_vs_network"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#invitasjonen_til_det_halvferdige"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: En venn inviterer deg til et rom der en liten gruppe viser halvferdige tekster, bilder og ideer uten program eller billettsalg. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "friendship_vs_network"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#invitasjonen_til_det_halvferdige"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: En venn inviterer deg til et rom der en liten gruppe viser halvferdige tekster, bilder og ideer uten program eller billettsalg. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "friendship_vs_network"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#invitasjonen_til_det_halvferdige"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: En venn inviterer deg til et rom der en liten gruppe viser halvferdige tekster, bilder og ideer uten program eller billettsalg. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "friendship_vs_network"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#invitasjonen_til_det_halvferdige"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: En spontan middag vokser fra fire til ti personer, og ingen har avtalt hvordan mat, drikke og utgifter skal fordeles. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "freedom_vs_precarity",
+          "friendship_vs_network"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#middagen_som_alle_spleiser_pa"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: En spontan middag vokser fra fire til ti personer, og ingen har avtalt hvordan mat, drikke og utgifter skal fordeles. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "freedom_vs_precarity",
+          "friendship_vs_network"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#middagen_som_alle_spleiser_pa"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: En spontan middag vokser fra fire til ti personer, og ingen har avtalt hvordan mat, drikke og utgifter skal fordeles. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "freedom_vs_precarity",
+          "friendship_vs_network"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#middagen_som_alle_spleiser_pa"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: En spontan middag vokser fra fire til ti personer, og ingen har avtalt hvordan mat, drikke og utgifter skal fordeles. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "freedom_vs_precarity",
+          "friendship_vs_network"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#middagen_som_alle_spleiser_pa"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: På en atelierkveld spør en ny bekjent hva du egentlig gjør, og samtalen dreier raskt mot hvem som lager, kuraterer og organiserer. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "taste_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#atelierkvelden_uten_rolle"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: På en atelierkveld spør en ny bekjent hva du egentlig gjør, og samtalen dreier raskt mot hvem som lager, kuraterer og organiserer. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "taste_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#atelierkvelden_uten_rolle"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: På en atelierkveld spør en ny bekjent hva du egentlig gjør, og samtalen dreier raskt mot hvem som lager, kuraterer og organiserer. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "taste_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#atelierkvelden_uten_rolle"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: På en atelierkveld spør en ny bekjent hva du egentlig gjør, og samtalen dreier raskt mot hvem som lager, kuraterer og organiserer. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "taste_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#atelierkvelden_uten_rolle"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: En venn trenger hjelp til å rigge, sende meldinger og rydde etter et lite prosjekt som skal skje om to dager. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "participation_vs_unpaid_labor",
+          "projects_vs_completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#prosjektet_som_trenger_en_tjeneste"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: En venn trenger hjelp til å rigge, sende meldinger og rydde etter et lite prosjekt som skal skje om to dager. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "participation_vs_unpaid_labor",
+          "projects_vs_completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#prosjektet_som_trenger_en_tjeneste"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: En venn trenger hjelp til å rigge, sende meldinger og rydde etter et lite prosjekt som skal skje om to dager. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "participation_vs_unpaid_labor",
+          "projects_vs_completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#prosjektet_som_trenger_en_tjeneste"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: En venn trenger hjelp til å rigge, sende meldinger og rydde etter et lite prosjekt som skal skje om to dager. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "participation_vs_unpaid_labor",
+          "projects_vs_completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#prosjektet_som_trenger_en_tjeneste"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Flere små kjøp fra en lang kveld summerer seg til langt mer enn hvert enkelt valg føltes som. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "freedom_vs_precarity",
+          "nightlife_vs_obligations"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#regningen_etter_kvelden"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Flere små kjøp fra en lang kveld summerer seg til langt mer enn hvert enkelt valg føltes som. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "freedom_vs_precarity",
+          "nightlife_vs_obligations"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#regningen_etter_kvelden"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Flere små kjøp fra en lang kveld summerer seg til langt mer enn hvert enkelt valg føltes som. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "freedom_vs_precarity",
+          "nightlife_vs_obligations"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#regningen_etter_kvelden"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Flere små kjøp fra en lang kveld summerer seg til langt mer enn hvert enkelt valg føltes som. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "freedom_vs_precarity",
+          "nightlife_vs_obligations"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#regningen_etter_kvelden"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: En gammel venn blir med en stund, men forlater kvelden tidlig fordi arbeidsdagen starter neste morgen. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "friendship_vs_network",
+          "nightlife_vs_obligations"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#vennen_med_fast_jobbtid"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: En gammel venn blir med en stund, men forlater kvelden tidlig fordi arbeidsdagen starter neste morgen. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "friendship_vs_network",
+          "nightlife_vs_obligations"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#vennen_med_fast_jobbtid"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: En gammel venn blir med en stund, men forlater kvelden tidlig fordi arbeidsdagen starter neste morgen. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "friendship_vs_network",
+          "nightlife_vs_obligations"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#vennen_med_fast_jobbtid"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: En gammel venn blir med en stund, men forlater kvelden tidlig fordi arbeidsdagen starter neste morgen. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "friendship_vs_network",
+          "nightlife_vs_obligations"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#vennen_med_fast_jobbtid"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Du har hjulpet en liten kveld med ideer, invitasjoner og praktiske oppgaver, og arrangøren vil føre deg opp på plakaten. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "projects_vs_completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#navnet_ditt_pa_plakaten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Du har hjulpet en liten kveld med ideer, invitasjoner og praktiske oppgaver, og arrangøren vil føre deg opp på plakaten. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "projects_vs_completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#navnet_ditt_pa_plakaten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Du har hjulpet en liten kveld med ideer, invitasjoner og praktiske oppgaver, og arrangøren vil føre deg opp på plakaten. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "projects_vs_completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#navnet_ditt_pa_plakaten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Du har hjulpet en liten kveld med ideer, invitasjoner og praktiske oppgaver, og arrangøren vil føre deg opp på plakaten. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "projects_vs_completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#navnet_ditt_pa_plakaten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Du har valgt en løs periode mellom to bosteder og sover noen netter på sofaen hos en venn mens du finner neste løsning. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "home_vs_common_space",
+          "freedom_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#sofaen_som_blir_base"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Du har valgt en løs periode mellom to bosteder og sover noen netter på sofaen hos en venn mens du finner neste løsning. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "home_vs_common_space",
+          "freedom_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#sofaen_som_blir_base"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Du har valgt en løs periode mellom to bosteder og sover noen netter på sofaen hos en venn mens du finner neste løsning. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "home_vs_common_space",
+          "freedom_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#sofaen_som_blir_base"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Du har valgt en løs periode mellom to bosteder og sover noen netter på sofaen hos en venn mens du finner neste løsning. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "home_vs_common_space",
+          "freedom_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#sofaen_som_blir_base"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Et sted du liker har begynt å spørre deg stadig oftere om å stå i døra, bære utstyr og rydde etter arrangementer. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "participation_vs_unpaid_labor",
+          "friendship_vs_network"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#den_ulonnede_hjelpen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Et sted du liker har begynt å spørre deg stadig oftere om å stå i døra, bære utstyr og rydde etter arrangementer. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "participation_vs_unpaid_labor",
+          "friendship_vs_network"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#den_ulonnede_hjelpen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Et sted du liker har begynt å spørre deg stadig oftere om å stå i døra, bære utstyr og rydde etter arrangementer. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "participation_vs_unpaid_labor",
+          "friendship_vs_network"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#den_ulonnede_hjelpen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Et sted du liker har begynt å spørre deg stadig oftere om å stå i døra, bære utstyr og rydde etter arrangementer. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "participation_vs_unpaid_labor",
+          "friendship_vs_network"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#den_ulonnede_hjelpen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: På en fest oppdager du at flere mennesker i rommet kan åpne dører til arrangementer, rom og nye prosjekter. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "friendship_vs_network",
+          "taste_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#festen_som_blir_nettverk"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: På en fest oppdager du at flere mennesker i rommet kan åpne dører til arrangementer, rom og nye prosjekter. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "friendship_vs_network",
+          "taste_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#festen_som_blir_nettverk"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: På en fest oppdager du at flere mennesker i rommet kan åpne dører til arrangementer, rom og nye prosjekter. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "friendship_vs_network",
+          "taste_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#festen_som_blir_nettverk"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: På en fest oppdager du at flere mennesker i rommet kan åpne dører til arrangementer, rom og nye prosjekter. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "friendship_vs_network",
+          "taste_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#festen_som_blir_nettverk"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: En ny person i gruppa innrømmer at de ikke kjenner kunstnerne, referansene eller språket resten av bordet bruker. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "taste_vs_gatekeeping",
+          "identity_vs_profession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#kunstpraten_og_portvakten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: En ny person i gruppa innrømmer at de ikke kjenner kunstnerne, referansene eller språket resten av bordet bruker. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "taste_vs_gatekeeping",
+          "identity_vs_profession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#kunstpraten_og_portvakten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: En ny person i gruppa innrømmer at de ikke kjenner kunstnerne, referansene eller språket resten av bordet bruker. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "taste_vs_gatekeeping",
+          "identity_vs_profession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#kunstpraten_og_portvakten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En ny person i gruppa innrømmer at de ikke kjenner kunstnerne, referansene eller språket resten av bordet bruker. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "taste_vs_gatekeeping",
+          "identity_vs_profession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#kunstpraten_og_portvakten"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Du har fire halvferdige initiativer: en liten zine, en visning, en tekstkveld og et samarbeid som stadig flyttes. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "projects_vs_completion",
+          "participation_vs_unpaid_labor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#prosjektet_som_aldri_blir_ferdig"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Du har fire halvferdige initiativer: en liten zine, en visning, en tekstkveld og et samarbeid som stadig flyttes. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "projects_vs_completion",
+          "participation_vs_unpaid_labor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#prosjektet_som_aldri_blir_ferdig"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Du har fire halvferdige initiativer: en liten zine, en visning, en tekstkveld og et samarbeid som stadig flyttes. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "projects_vs_completion",
+          "participation_vs_unpaid_labor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#prosjektet_som_aldri_blir_ferdig"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Du har fire halvferdige initiativer: en liten zine, en visning, en tekstkveld og et samarbeid som stadig flyttes. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "projects_vs_completion",
+          "participation_vs_unpaid_labor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#prosjektet_som_aldri_blir_ferdig"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: En god kveld fortsetter, men du har lovet å møte noen tidlig neste dag til en avtale som ikke kan flyttes uten konsekvenser. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "nightlife_vs_obligations",
+          "freedom_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#natten_for_forpliktelsen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: En god kveld fortsetter, men du har lovet å møte noen tidlig neste dag til en avtale som ikke kan flyttes uten konsekvenser. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "nightlife_vs_obligations",
+          "freedom_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#natten_for_forpliktelsen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: En god kveld fortsetter, men du har lovet å møte noen tidlig neste dag til en avtale som ikke kan flyttes uten konsekvenser. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "nightlife_vs_obligations",
+          "freedom_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#natten_for_forpliktelsen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: En god kveld fortsetter, men du har lovet å møte noen tidlig neste dag til en avtale som ikke kan flyttes uten konsekvenser. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "nightlife_vs_obligations",
+          "freedom_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#natten_for_forpliktelsen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Etter mange kvelder, små prosjekter, økonomiske valg og vennskap ser du at bohemlivet ikke består av én scene eller én type menneske. Morgenen etablerer hvilke ressurser, relasjoner og uskrevne regler som faktisk ligger bak følelsen av frihet.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "freedom_vs_precarity",
+          "friendship_vs_network",
+          "projects_vs_completion",
+          "home_vs_common_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#hva_slags_bohem"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Etter mange kvelder, små prosjekter, økonomiske valg og vennskap ser du at bohemlivet ikke består av én scene eller én type menneske. Midt på dagen blir klasse, gjensidighet eller status synlig gjennom andre mennesker som lever på andre vilkår.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "freedom_vs_precarity",
+          "friendship_vs_network",
+          "projects_vs_completion",
+          "home_vs_common_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#hva_slags_bohem"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Etter mange kvelder, små prosjekter, økonomiske valg og vennskap ser du at bohemlivet ikke består av én scene eller én type menneske. Ettermiddagen gjør skillet mellom selvvalgt livsform, sosialt press og profesjonell rolle til et konkret valg.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "freedom_vs_precarity",
+          "friendship_vs_network",
+          "projects_vs_completion",
+          "home_vs_common_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#hva_slags_bohem"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Etter mange kvelder, små prosjekter, økonomiske valg og vennskap ser du at bohemlivet ikke består av én scene eller én type menneske. Kvelden viser hvordan valget påvirker økonomi, tillit, selvbilde eller evnen til å møte neste forpliktelse.",
+        "thread_ids": [
+          "identity_vs_profession",
+          "freedom_vs_precarity",
+          "friendship_vs_network",
+          "projects_vs_completion",
+          "home_vs_common_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_alternativ_bohem.json#hva_slags_bohem"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "freedom_vs_precarity",
+      "relationship": "forholdet mellom valgt fleksibilitet og de økonomiske, boligmessige og tidsmessige kostnadene som ikke forsvinner fordi livet er uformelt",
+      "beat_refs": [
+        "2/evening",
+        "5/morning",
+        "5/afternoon",
+        "8/evening",
+        "13/morning",
+        "13/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "friendship_vs_network",
+      "relationship": "forholdet mellom gjensidige vennskap og fristelsen til å gjøre mennesker til adgang, arbeidskraft eller sosial kapital",
+      "beat_refs": [
+        "1/lunch",
+        "2/lunch",
+        "6/evening",
+        "9/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "participation_vs_unpaid_labor",
+      "relationship": "forholdet mellom frivillig deltakelse og utydelig arbeid som miljøet er avhengig av men ingen tar formelt ansvar for",
+      "beat_refs": [
+        "4/morning",
+        "4/afternoon",
+        "9/morning",
+        "9/afternoon",
+        "12/lunch",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "nightlife_vs_obligations",
+      "relationship": "forholdet mellom sen spontanitet, kroppens grenser og løfter som fortsatt gjelder neste dag",
+      "beat_refs": [
+        "5/evening",
+        "6/morning",
+        "6/afternoon",
+        "13/morning",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "taste_vs_gatekeeping",
+      "relationship": "forholdet mellom kulturell trygghet som felles språk og smak som skjult rangering av hvem som får høre til",
+      "beat_refs": [
+        "3/lunch",
+        "3/evening",
+        "10/lunch",
+        "11/morning",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "projects_vs_completion",
+      "relationship": "forholdet mellom initiativrikdom og ansvaret for å avslutte, levere eller rydde opp i løfter som andre har investert i",
+      "beat_refs": [
+        "4/evening",
+        "7/lunch",
+        "7/afternoon",
+        "12/morning",
+        "12/afternoon",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "identity_vs_profession",
+      "relationship": "forholdet mellom Bohem som reell livsposisjon og presset til å låne profesjonstitler fra kunst- og kulturmiljøet",
+      "beat_refs": [
+        "1/evening",
+        "3/afternoon",
+        "7/morning",
+        "7/evening",
+        "11/lunch",
+        "14/morning",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "home_vs_common_space",
+      "relationship": "forholdet mellom midlertidighet, deling og respekten for at andres hjem og rom fortsatt har eiere, grenser og kostnader",
+      "beat_refs": [
+        "2/morning",
+        "2/afternoon",
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "14/lunch"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "friheten_i_kontoutskriften",
+      "description": "Når spontane kvelder og løs økonomi blir konkrete tall må spilleren avgjøre om knapphet er en ramme som skal håndteres eller et identitetsbevis som skal romantiseres.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#middagen_som_alle_spleiser_pa",
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#regningen_etter_kvelden",
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#hva_slags_bohem"
+      ]
+    },
+    {
+      "id": "tittelen_du_ikke_tok",
+      "description": "Å takke nei til en penere profesjonstittel kan koste status i øyeblikket, men gjør det mulig å være del av miljøet uten å forfalske rollen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#atelierkvelden_uten_rolle",
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#navnet_ditt_pa_plakaten",
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#hva_slags_bohem"
+      ]
+    },
+    {
+      "id": "vennskap_uten_faktura_eller_gjeld",
+      "description": "Tydelige grenser rundt tjenester, nettverk og felles innsats viser om vennskapet tåler at ikke all tilgjengelighet er grenseløs.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#prosjektet_som_trenger_en_tjeneste",
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#den_ulonnede_hjelpen",
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#festen_som_blir_nettverk"
+      ]
+    },
+    {
+      "id": "rommet_du_laner",
+      "description": "En midlertidig sofa eller et lånt rom blir en test på om spillerens fleksibilitet også inkluderer respekt for andres privatliv og forutsigbarhet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#sofaen_som_blir_base",
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#vennen_med_fast_jobbtid"
+      ]
+    },
+    {
+      "id": "prosjektet_som_fikk_en_slutt",
+      "description": "Å fullføre, avlyse eller avgrense et initiativ gjør tapet av nye muligheter synlig, men bygger samtidig tillit til at spillerens entusiasme kan bli til noe andre kan planlegge rundt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#prosjektet_som_aldri_blir_ferdig",
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#natten_for_forpliktelsen",
+        "data/Civication/narratives/leisure/liv_alternativ_bohem.json#hva_slags_bohem"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "spleisen_blir_okonomisk_selvinnsikt",
+      "setup_ref": "2/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "economy",
+        "psyche"
+      ]
+    },
+    {
+      "id": "laant_tittel_blir_troverdighetsgrense",
+      "setup_ref": "3/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "tjenesten_blir_arbeidsgrense",
+      "setup_ref": "4/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "economy"
+      ]
+    },
+    {
+      "id": "sofaen_blir_husavtale",
+      "setup_ref": "8/afternoon",
+      "return_ref": "14/lunch",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "nettverket_blir_vennskapstest",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "uferdig_prosjekt_blir_palitelighet",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#invitasjonen_til_det_halvferdige",
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#middagen_som_alle_spleiser_pa",
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#atelierkvelden_uten_rolle",
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#prosjektet_som_trenger_en_tjeneste",
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#regningen_etter_kvelden",
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#vennen_med_fast_jobbtid",
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#navnet_ditt_pa_plakaten",
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#sofaen_som_blir_base",
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#den_ulonnede_hjelpen",
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#festen_som_blir_nettverk",
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#kunstpraten_og_portvakten",
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#prosjektet_som_aldri_blir_ferdig",
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#natten_for_forpliktelsen",
+      "data/Civication/narratives/leisure/liv_alternativ_bohem.json#hva_slags_bohem"
+    ]
+  }
+}
