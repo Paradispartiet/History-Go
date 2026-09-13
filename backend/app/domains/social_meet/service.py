@@ -113,6 +113,12 @@ def _ensure_profile_is_user_manageable(record: SocialMeetProfileRecord) -> None:
 
 
 def _current_state(record: SocialMeetProfileRecord) -> CurrentSocialMeetState:
+    now = datetime.now(UTC)
+    place_status_active = (
+        record.current_place_id is not None
+        and record.current_place_visible_until is not None
+        and record.current_place_visible_until > now
+    )
     return CurrentSocialMeetState(
         user_id=record.social_user_id,
         profile_id=record.profile_id,
@@ -121,6 +127,13 @@ def _current_state(record: SocialMeetProfileRecord) -> CurrentSocialMeetState:
         consented_at=record.consented_at,
         can_publish_profile=record.profile_visibility
         not in {ProfileVisibility.BLOCKED_OR_SUSPENDED, ProfileVisibility.DELETED},
+        current_place_id=record.current_place_id if place_status_active else None,
+        current_place_visible_until=(
+            record.current_place_visible_until if place_status_active else None
+        ),
+        current_place_consent_version=(
+            record.current_place_consent_version if place_status_active else None
+        ),
     )
 
 
