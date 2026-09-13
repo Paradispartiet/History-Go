@@ -1,6 +1,6 @@
 # Kunstnerforbundet — source review v1
 
-Status: **R3 DESCRIPTION + FAGVERK + PLACE IMAGE + REQUIRED GENERATED OUTPUTS MATERIALISERT / FULLPRODUKSJON IKKE LUKKET**  
+Status: **R4 DESCRIPTION + FAGVERK + PLACE IMAGE + REQUIRED GENERATED OUTPUTS + SPRÅKLEKSIKON MATERIALISERT / FULLPRODUKSJON IKKE LUKKET**  
 Place: `kunstnerforbundet`  
 Kategori: `kunst`  
 R2 base: `d37909288fb1bc5214b1c38d5513a1f7b4679604`  
@@ -171,3 +171,23 @@ Changed-place-bildeporten krevde et inspectable lokalt stedbilde. Kunstnerforbun
 Description-packeten er samtidig korrigert mot validator 4.2.1: den ugyldige `metadataSnapshot.placeType`-kopien er fjernet, og 1917- og 2018-claims med `timelineYear` er eksplisitt historiske. Repoets egne generatorer materialiserer deretter epokeindeks, `place-open` og Fagverk-release. READ-FIRST-evidensen registreres med den autoritative preflight-generatoren etter full lesing av de ti påkrevde regel-/badgefilene.
 
 Dette er en CI-påkrevd materialisering av dokumenterte data, ikke filler. Full produksjonslukking krever fortsatt de åpne samlingene, Språkleksikon, canonical quiz, `frontImage` og slutt-QA.
+
+## 11. R4 — Språkleksikon
+
+Språkleksikon-gaten lukkes med canonical stedfil:
+
+`data/leksikon/sprak/places/europe/norway/oslo/kunstnerforbundet.json`
+
+og manifestbinding i:
+
+`data/leksikon/sprak/manifest.json`
+
+Det opprettes ikke et spekulativt dialektlag for dette enkeltstedet. Alle tre oppføringer ligger på `layer: language` og er direkte dokumentert av Kunstnerforbundets egne kilder:
+
+- `kunstnerstyrt` — institusjonsbegrep brukt om Kunstnerforbundets egen styringsmodell;
+- `Atelier Kunstnerforbundet` — institusjonens eget programnavn for atelierordningen i bygården;
+- `Overlyssalen` — institusjonens eget navn på utstillingssalen med historisk dokumentasjon tilbake til arkitektoppdraget i 1918.
+
+Språkmanifestet inngår i `place-open`-payloaden. Etter første exact-head-kjøring krevde derfor `npm run place-open:build` en deterministisk rematerialisering av `data/runtime/place-open/kunstnerforbundet.json`. En egen scope-guard bekreftet at generatoren endret nøyaktig denne ene runtimefilen og ingen andre genererte filer.
+
+R4-scope er dermed språkfil, manifestbinding, det påkrevde genererte `place-open`-payloadet og oppdatering av workcard/source-review. R4 lukker ikke `frontImage`, People, Objects, Brands, Productions/Kunstverk, canonical quiz, øvrige runtime-/sluttindekser eller manuell slutt-QA.

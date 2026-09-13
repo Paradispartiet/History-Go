@@ -3,7 +3,7 @@
   "place_id": "kunstnerforbundet",
   "name": "Kunstnerforbundet",
   "category": "kunst",
-  "status": "description_fagverk_image_and_generated_materialized_r3",
+  "status": "description_fagverk_image_generated_and_sprakleksikon_materialized_r4",
   "canonical_source_file": "data/places/kunst/oslo/places_kunst/kunstnerforbundet.json",
   "canonical_identity": "Kunstnerforbundet som kunstnerstyrt, ikke-kommersiell visnings- og formidlingsinstitusjon i egen bygård i Kjeld Stubs gate 3; skiftende utstillinger og Atelier Kunstnerforbundet er innhold/programlag under stedet, ikke egne Places i denne produksjonen.",
   "primary_badge": "kunst",
@@ -66,6 +66,21 @@
     "registry_file": "data/fagverk/fagverk_registry.json",
     "registry_entry_materialized": true
   },
+  "sprakleksikon": {
+    "status": "PASS",
+    "schema": "data/leksikon/sprak/schema_v2.json",
+    "manifest": "data/leksikon/sprak/manifest.json",
+    "file": "data/leksikon/sprak/places/europe/norway/oslo/kunstnerforbundet.json",
+    "dialect_status": "not_applicable_place_level",
+    "entry_count": 3,
+    "terms": [
+      "kunstnerstyrt",
+      "Atelier Kunstnerforbundet",
+      "Overlyssalen"
+    ],
+    "layer": "language",
+    "verified_at": "2026-09-13"
+  },
   "universal_core": {
     "identity": "PASS_EXISTING",
     "coordinates": "PASS_EXISTING",
@@ -74,10 +89,10 @@
     "description_v4_2": "PASS",
     "fagverk": "PASS",
     "images": "PASS_PLACE_IMAGE_CC_BY_SA_FRONTIMAGE_PENDING",
-    "chronology_epoke": "RESEARCH_HAS_CANDIDATES_NOT_MATERIALIZED",
-    "sprakleksikon": "MISSING",
+    "chronology_epoke": "PASS_MATERIALIZED_R3",
+    "sprakleksikon": "PASS",
     "relations": "AUDIT_PENDING",
-    "runtime_materialization": "PENDING",
+    "runtime_materialization": "PARTIAL_PLACE_OPEN_MATERIALIZED_R4",
     "manual_ui_qa": "PENDING"
   },
   "collections": {
@@ -93,23 +108,16 @@
     "production_context_found": false,
     "canonical_quiz_status": "PENDING"
   },
-  "active_phase": "R3_IMAGE_AND_REQUIRED_GENERATED_MATERIALIZATION",
+  "active_phase": "R4_SPRAKLEKSIKON",
   "active_file_scope": [
-    "data/places/kunst/oslo/places_kunst/kunstnerforbundet.json",
-    "data/places/production/kunstnerforbundet.json",
-    "data/fagverk/fagverk_registry.json",
-    "data/fagverk/fagverk_release.json",
-    "data/epoker/epoke-place-index.json",
+    "data/leksikon/sprak/places/europe/norway/oslo/kunstnerforbundet.json",
+    "data/leksikon/sprak/manifest.json",
     "data/runtime/place-open/kunstnerforbundet.json",
-    "data/places/place_image_backlog_summary.json",
-    "bilder/places/kunstnerforbundet.jpg",
     "reports/place-production/kunstnerforbundet-workcard-current.json",
     "reports/place-production/kunstnerforbundet-source-review-v1.md"
   ],
   "remaining_blockers": [
     "real portrait frontImage",
-    "Språkleksikon file/manifest mapping",
-    "chronology/epoke materialization",
     "People canonical member + image",
     "Objects canonical member(s) + image(s)",
     "Brands canonical member + verified logo",
@@ -119,9 +127,9 @@
     "runtime/generated indexes",
     "exact-head CI and manual UI QA"
   ],
-  "branch": "agent/kunstnerforbundet-place-production-r2-20260913",
-  "branch_base": "d37909288fb1bc5214b1c38d5513a1f7b4679604",
-  "branch_status": "CANDIDATE_READY_FOR_EXACT_HEAD_CI",
+  "branch": "agent/kunstnerforbundet-sprak-r4-20260913",
+  "branch_base": "f721424c87caf120ed20fb38ca82695001e1fcbb",
+  "branch_status": "R4_CANDIDATE_READY_FOR_EXACT_HEAD_CI",
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
     "status": "PASS",
