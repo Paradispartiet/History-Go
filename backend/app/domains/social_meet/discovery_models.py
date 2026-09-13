@@ -113,7 +113,7 @@ class DiscoveryCandidate(ApiModel):
 
 
 class ContextCandidateResponse(ApiModel):
-    mode: DiscoveryMode
+    mode: DiscoveryMode = DiscoveryMode.MATCH
     context_type: SpotmeetingContextType
     context_id: str
     generated_at: datetime
