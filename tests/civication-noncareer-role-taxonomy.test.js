@@ -171,12 +171,12 @@ vm.runInContext(
 assert.equal(relationshipSandbox.window.CivicationRelationshipEngine.STAGE_BY_LEVEL.length, 6,
   'relasjonssystemet skal fortsatt eie seks vennskapsstadier separat fra livsposisjoner');
 
-assert.equal(roleWorldIndex.roles.length, 102, 'Role World-indeksen skal ha 85 karriereverdener + sytten life-position worlds');
+assert.equal(roleWorldIndex.roles.length, 103, 'Role World-indeksen skal ha 85 karriereverdener + atten life-position worlds');
 assert.ok(roleWorldIndex.roles.every((role) => role.status === 'role_world_complete'));
 const careerRoleWorlds = roleWorldIndex.roles.filter((role) => role.subject_type !== 'life_position');
 const lifePositionWorlds = roleWorldIndex.roles.filter((role) => role.subject_type === 'life_position');
 assert.equal(careerRoleWorlds.length, 85, 'karriereverdener skal fortsatt være nøyaktig 85');
-assert.equal(lifePositionWorlds.length, 17, 'sytten canonical life-position worlds skal være materialisert, inkludert Nomade');
+assert.equal(lifePositionWorlds.length, 18, 'atten canonical life-position worlds skal være materialisert, inkludert Boms');
 const lifeWorldByKey = new Map(lifePositionWorlds.map((row) => [row.life_position_key, row]));
 assert.deepEqual(lifeWorldByKey.get('subkultur/gangster').life_position_ref, { badge_id: 'subkultur', id: null, label: 'Gangster' });
 assert.deepEqual(lifeWorldByKey.get('sport/supporter').life_position_ref, { badge_id: 'sport', id: 'supporter', label: 'Supporter' });
@@ -193,7 +193,7 @@ assert.deepEqual(lifeWorldByKey.get('kunst/gallerivanker').life_position_ref, { 
 assert.equal(lifeWorldByKey.get('kunst/gallerivanker').role_scope, 'kunst_gallerivanker');
 assert.deepEqual(lifeWorldByKey.get('by/byflanor').life_position_ref, { badge_id: 'by', id: 'byflanor', label: 'Flanør' });
 assert.equal(lifeWorldByKey.get('by/byflanor').role_scope, 'by_flanor');
-assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 102, career_role_worlds: 85, life_position_role_worlds: 17 });
+assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 103, career_role_worlds: 85, life_position_role_worlds: 18 });
 assert.equal(roleModelManifest.files.length, 293,
   'roleModel-manifestet er authored inventory og skal ikke forveksles med spillerrolle-antallet');
 assert.equal(scenarioPeople.summary.role_model_file_count, 293);
