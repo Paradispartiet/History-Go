@@ -78,10 +78,14 @@ test("PlaceCard-Møtes går direkte til Folk å møte her og beholder Social Mee
   assert.match(onsite, /sourceSurface:\s*"placeCardOnSite"/);
   assert.doesNotMatch(onsite, /data-hg-meet-hub-action/);
 
-  assert.match(spotmeetingUi, /Folk å møte her/);
-  assert.match(spotmeetingUi, /frivillig har gjort Social Meet-profilen sin oppdagbar/);
-  assert.match(spotmeetingUi, /Dette viser ikke hvem som fysisk er her nå/);
+  assert.match(onsite, /preferredAction:\s*"here"/);
+  assert.match(spotmeetingUi, /Folk her nå/);
+  assert.match(spotmeetingUi, /Folk å møte/);
+  assert.match(spotmeetingUi, /Vis meg her i 60 min/);
+  assert.match(spotmeetingUi, /place_status/);
+  assert.match(spotmeetingUi, /selvoppgitt/i);
   assert.match(spotmeetingUi, /Mine møter \/ Social Meet/);
+  assert.match(spotmeetingUi, /clearPlaceStatus/);
   assert.match(spotmeetingUi, /discoverCandidates/);
   assert.match(spotmeetingUi, /data-hg-spotmeeting-send/);
 });
