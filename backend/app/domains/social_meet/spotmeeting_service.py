@@ -287,8 +287,10 @@ def _to_view(record: SpotmeetingInviteRecord, auth_user_id: UUID) -> Spotmeeting
     is_recipient = auth_user_id == record.recipient_auth_user_id
     is_participant = is_sender or is_recipient
     counterpart_display_name = (
-        record.recipient_display_name if is_sender
-        else record.sender_display_name if is_recipient
+        record.recipient_display_name
+        if is_sender
+        else record.sender_display_name
+        if is_recipient
         else ""
     )
     actions = SpotmeetingActorActions(
