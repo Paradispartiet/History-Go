@@ -61,10 +61,10 @@ class PostgresSocialMeetDiscoveryRepository:
         requester_profile_id: UUID,
         context: DiscoveryContextSignals,
         supported_consent_version: str,
-        place_status_consent_version: str,
-        mode: DiscoveryMode,
         now: datetime,
         limit: int,
+        place_status_consent_version: str = "social_meet_place_status_v1",
+        mode: DiscoveryMode = DiscoveryMode.MATCH,
     ) -> list[RankedDiscoveryCandidate]:
         params: dict[str, object] = {
             "requester_profile_id": requester_profile_id,
