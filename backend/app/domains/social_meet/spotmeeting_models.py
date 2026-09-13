@@ -142,8 +142,6 @@ class SpotmeetingInviteRecord:
     recipient_auth_user_id: UUID
     sender_profile_id: UUID
     recipient_profile_id: UUID
-    sender_display_name: str
-    recipient_display_name: str
     context_type: SpotmeetingContextType
     context_id: str
     context_title: str
@@ -157,3 +155,5 @@ class SpotmeetingInviteRecord:
     version: int
     sync_version: int
     idempotency_key: str | None
+    sender_display_name: str = ""
+    recipient_display_name: str = ""
