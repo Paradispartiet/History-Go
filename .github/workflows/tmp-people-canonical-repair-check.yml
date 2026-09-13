@@ -1,0 +1,20 @@
+name: TEMP People canonical repair check
+
+on:
+  push:
+    branches:
+      - agent/repair-people-claims-v1-20260913
+
+permissions:
+  contents: read
+
+jobs:
+  canonical:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run People canonical audit
+        run: node tools/audit-people-profile-canonical.mjs --require-claims
