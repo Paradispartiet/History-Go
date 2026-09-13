@@ -173,8 +173,13 @@
     return sheet;
   }
 
-  function actionButton(action, selectedAction){
-    return `<button class="hg-spotmeeting-action" type="button" data-hg-spotmeeting-action="${escapeHTML(action)}" aria-pressed="${selectedAction === action ? 'true' : 'false'}"><span><strong>${escapeHTML(ACTION_LABELS[action] || action)}</strong><small>${escapeHTML(ACTION_HELPERS[action] || '')}</small></span><span aria-hidden="true">›</span></button>`;
+  function actionButton(action, selectedAction, context){
+    const isPlaceMatch = action === 'match' && String(context?.contextType || '') === 'place';
+    const label = isPlaceMatch ? 'Folk å møte her' : (ACTION_LABELS[action] || action);
+    const helper = isPlaceMatch
+      ? 'Finn opt-in-profiler som matcher dette stedet. Dette er ikke live-posisjon.'
+      : (ACTION_HELPERS[action] || '');
+    return `<button class="hg-spotmeeting-action" type="button" data-hg-spotmeeting-action="${escapeHTML(action)}" aria-pressed="${selectedAction === action ? 'true' : 'false'}"><span><strong>${escapeHTML(label)}</strong><small>${escapeHTML(helper)}</small></span><span aria-hidden="true">›</span></button>`;
   }
 
   function renderStatus(message, kind = 'status'){
@@ -275,7 +280,7 @@
   function renderSuggestionCards(suggestions, contextForAction, presetMessageId, label, { demoOnly = false } = {}){
     const note = demoOnly
       ? 'TEST_MODE: forhåndsmelding, lokalt og privat. Ingen fritekst.'
-      : 'Forslagene er kun kunnskapsmatcher. Tilgjengelighet og sikkerhet revalideres når du sender.';
+      : 'Dette er opt-in kunnskaps- og interessematcher, ikke personer som nødvendigvis står her nå. Sikkerhet revalideres når du sender.';
     return `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="ready">${escapeHTML(label)}</p><div class="hg-spotmeeting-candidates">${suggestions.slice(0, 4).map(candidate => {
       const duplicate = demoOnly ? getDuplicateInvite(candidate.targetUserId, contextForAction, presetMessageId) : null;
       const disabled = duplicate ? ' disabled' : '';
@@ -349,7 +354,13 @@
 
   function render(context, selectedAction = 'match'){
     const sheet = ensureSheet();
-    sheet.innerHTML = `<section class="hg-spotmeeting-panel"><header class="hg-spotmeeting-head"><div><h2>Kunnskapsmøte</h2><p class="hg-spotmeeting-context">${escapeHTML(context.title || 'Sted')}</p></div><button class="hg-spotmeeting-close" type="button" data-hg-spotmeeting-close="1" aria-label="Lukk">×</button></header><div class="hg-spotmeeting-body"><p class="hg-spotmeeting-note">Basert på tema og kunnskap, ikke live-posisjon. Kun forhåndsvalg.</p><div class="hg-spotmeeting-actions" aria-label="Velg inngang til kunnskapsmøte">${ACTIONS.map(action => actionButton(action, selectedAction)).join('')}</div><div data-hg-spotmeeting-candidates>${renderStatus('Velg hvordan du vil starte.', 'ready')}</div></div></section>`;
+    const placeEntry = String(context?.contextType || '') === 'place';
+    const fromPlaceCard = String(context?.sourceSurface || '') === 'placeCardOnSite';
+    const heading = fromPlaceCard ? 'Møtes' : 'Kunnskapsmøte';
+    const note = placeEntry
+      ? 'Finn folk som frivillig har gjort Social Meet-profilen sin oppdagbar og som matcher dette stedet. Dette viser ikke hvem som fysisk er her nå.'
+      : 'Basert på tema og kunnskap, ikke live-posisjon. Kun forhåndsvalg.';
+    sheet.innerHTML = `<section class="hg-spotmeeting-panel"><header class="hg-spotmeeting-head"><div><h2>${escapeHTML(heading)}</h2><p class="hg-spotmeeting-context">${escapeHTML(context.title || 'Sted')}</p></div><button class="hg-spotmeeting-close" type="button" data-hg-spotmeeting-close="1" aria-label="Lukk">×</button></header><div class="hg-spotmeeting-body"><p class="hg-spotmeeting-note">${escapeHTML(note)}</p><div class="hg-spotmeeting-actions" aria-label="Velg inngang til kunnskapsmøte">${ACTIONS.map(action => actionButton(action, selectedAction, context)).join('')}</div>${socialMeetFollowUpButton(context, 'Mine møter / Social Meet')}<div data-hg-spotmeeting-candidates>${renderStatus('Henter folk å møte …', 'ready')}</div></div></section>`;
     void renderCandidates(context, selectedAction);
   }
 
