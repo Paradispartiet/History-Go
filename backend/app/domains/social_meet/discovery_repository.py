@@ -122,7 +122,8 @@ class PostgresSocialMeetDiscoveryRepository:
                             (
                               candidate.current_place_id = :context_id
                               and candidate.current_place_visible_until > :now
-                              and candidate.current_place_consent_version = :place_status_consent_version
+                              and candidate.current_place_consent_version =
+                                :place_status_consent_version
                             ) as current_place_status,
                             (:context_id = any(candidate.interest_places))
                               as context_interest_place,
@@ -186,7 +187,8 @@ class PostgresSocialMeetDiscoveryRepository:
                               or (
                                 candidate.current_place_id = :context_id
                                 and candidate.current_place_visible_until > :now
-                                and candidate.current_place_consent_version = :place_status_consent_version
+                                and candidate.current_place_consent_version =
+                                  :place_status_consent_version
                               )
                             )
                             and not exists (
