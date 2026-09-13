@@ -184,7 +184,14 @@
     const api = adapter();
     if (typeof api?.upsertMyProfile !== 'function') return { ok:false, reason:'profile_api_missing' };
     const result = await api.upsertMyProfile(built.payload);
-    if (result?.ok) persistState(result.profile || result.data || result);
+    if (result?.ok) {
+      persistState(result.profile || result.data || result);
+      root.savePrivacySettings?.(undefined, {
+        publicProfile:true,
+        visibleInMatchLists:true,
+        allowMeetInvites:true
+      });
+    }
     render();
     return result;
   }
@@ -197,7 +204,14 @@
     const api = adapter();
     if (typeof api?.unpublishMyProfile !== 'function') return { ok:false, reason:'unpublish_api_missing' };
     const result = await api.unpublishMyProfile();
-    if (result?.ok) persistState(result.profile || result.data || result);
+    if (result?.ok) {
+      persistState(result.profile || result.data || result);
+      root.savePrivacySettings?.(undefined, {
+        publicProfile:false,
+        visibleInMatchLists:false,
+        allowMeetInvites:false
+      });
+    }
     render();
     return result;
   }
@@ -211,21 +225,33 @@
     const discoverable = visibility === 'discoverable';
     const backend = backendConfigured();
 
+    const preview = buildProfilePayload('discoverable');
+    const profile = preview.ok ? preview.payload : null;
+    const previewBits = profile ? [
+      profile.displayName,
+      profile.preferredThemes.length ? `${profile.preferredThemes.length} kunnskapsfelt` : '',
+      profile.interestPlaces.length ? `${profile.interestPlaces.length} interesse-steder` : ''
+    ].filter(Boolean).join(' · ') : 'Profilen kan ikke publiseres før personvernkontrollen er grønn';
+
     mount.innerHTML = `
-      <section class="profile-section hg-social-meet-server-card" aria-label="Social Meet serverstatus">
+      <div class="hg-social-meet-server-card" aria-label="Social Meet serverstatus">
         <div class="section-head">
           <h2>Folk å møte</h2>
           <span class="section-meta">${backend ? 'Serverkoblet' : 'Ikke serverkoblet'}</span>
         </div>
         <p><strong>${escapeHTML(summary.label)}</strong></p>
         <p class="muted">${escapeHTML(summary.detail)}</p>
+        <div class="hg-social-meet-profile-preview">
+          <strong>Dette blir synlig i matcher</strong>
+          <span>${escapeHTML(previewBits)}</span>
+        </div>
         <p class="muted">History Go viser kun frivillige kunnskaps- og interessematcher — ikke hvem som fysisk er på stedet, GPS, avstand eller sist sett.</p>
         <div class="profile-action-row">
-          ${backend && !discoverable ? '<button type="button" class="collection-action primary" data-hg-social-profile-publish>Gjør profilen oppdagbar</button>' : ''}
+          ${backend && !discoverable ? '<button type="button" class="collection-action primary" data-hg-social-profile-publish>Bekreft og gjør profilen oppdagbar</button>' : ''}
           ${backend && discoverable ? '<button type="button" class="collection-action" data-hg-social-profile-unpublish>Skjul profilen fra matcher</button>' : ''}
           ${backend ? '<button type="button" class="collection-action" data-hg-social-profile-refresh>Oppdater status</button>' : ''}
         </div>
-      </section>
+      </div>
     `;
 
     mount.querySelector?.('[data-hg-social-profile-publish]')?.addEventListener('click', async event => {
