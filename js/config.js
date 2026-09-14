@@ -1,6 +1,16 @@
 window.HG_MAPTILER_KEY = "Yi8j8sLhEo4NyPygVmbN";
 window.HG_NATURTRO_STYLE_ID = "streets-v4";
 
+(function configureProductionSocialMeetBackend() {
+  if (window.location?.hostname !== "paradispartiet.github.io") return;
+  window.HG_SOCIAL_MEET_BACKEND = "fastapi";
+  window.HG_SOCIAL_MEET_API = Object.freeze({
+    enabled: true,
+    backend: "fastapi",
+    baseUrl: "https://history-go-backend.onrender.com"
+  });
+})();
+
 // index.html laster config.js tidlig i <head>, mens den fulle toast-runtime først
 // lastes fra app.js. Behold derfor toast-kall som skjer i mellomtiden i stedet
 // for å la optional window.showToast-kall forsvinne stille.

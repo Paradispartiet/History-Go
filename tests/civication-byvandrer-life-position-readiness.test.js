@@ -1,0 +1,61 @@
+#!/usr/bin/env node
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const ROOT = path.resolve(__dirname, '..');
+const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
+const audit = readJson('data/Civication/lifePositionRoleWorldReadiness.json');
+const streamPath = 'data/Civication/narratives/leisure/by_byvandrer.json';
+const stream = readJson(streamPath);
+const worldPath = 'data/Civication/roleWorlds/by/by_byvandrer.json';
+const world = readJson(worldPath);
+const index = readJson('data/Civication/roleWorlds/index.json');
+const row = audit.positions.find((item)=>item.key==='by/byvandrer');
+assert.ok(row);
+assert.equal(row.id, 'byvandrer');
+assert.equal(row.runtime_source, 'catalog');
+assert.equal(row.kind, 'practice_identity');
+assert.equal(stream.storylets.length, 14);
+assert.equal(stream.applies_when.any_tags[0], 'by:byvandrer');
+assert.equal(row.classification, 'ready');
+assert.equal(row.role_world_status, 'role_world_complete');
+assert.equal(row.role_world_path, worldPath);
+assert.equal(row.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(row.evidence.exact_source_refs, [streamPath]);
+assert.deepEqual(row.evidence.thematic_source_refs, [
+  'data/Civication/lifestory/life/scenes.json',
+  'data/Civication/narratives/leisure/filmklubbmenneske.json'
+]);
+assert.deepEqual(row.evidence.livelihood_templates, []);
+assert.equal(row.evidence.livelihood_ref, null);
+assert.ok(!audit.queue.some((item)=>item.key==='by/byvandrer'));
+assert.equal(audit.summary.classifications.ready, audit.positions.filter((item)=>item.classification==='ready').length);
+assert.equal(audit.summary.classifications.needs_authored_depth, audit.positions.filter((item)=>item.classification==='needs_authored_depth').length);
+assert.equal(audit.summary.completed_life_position_role_worlds, audit.positions.filter((item)=>item.role_world_status==='role_world_complete').length);
+assert.equal(audit.summary.life_position_role_world_complete, audit.positions.filter((item)=>item.role_world_status==='role_world_complete').length);
+assert.equal(audit.summary.positions_with_exact_governed_sources, audit.positions.filter((item)=>item.authored_depth.exact_source_ref_count>0).length);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, audit.positions.filter((item)=>item.authored_depth.max_narrative_depth>=4).length);
+assert.equal(audit.summary.pending_ready_positions, audit.queue.filter((item)=>item.classification==='ready').length);
+
+
+assert.equal(world.subject_type, 'life_position');
+assert.equal(world.status, 'role_world_complete');
+assert.deepEqual(world.life_position_ref, { badge_id:'by', id:'byvandrer', label:'Byvandrer' });
+assert.equal(world.materialization.no_new_runtime, true);
+assert.deepEqual(world.season.day_phases, ['morning','lunch','afternoon','evening']);
+assert.equal(world.season.coverage.length, 56);
+assert.equal(new Set(world.season.coverage.map((x)=>x.day+'/'+x.phase)).size, 56);
+assert.equal(world.materialization.source_refs.length, 14);
+assert.ok(world.primary_threads.length >= 10);
+assert.ok(world.recurring_people_archetypes.length >= 5);
+assert.ok(world.private_aftermath.length >= 4);
+assert.ok(world.delayed_consequences.length >= 6);
+assert.match(world.sociological_core.description, /Flanør/);
+assert.match(world.sociological_core.description, /Nabolagskjenner/);
+assert.match(world.sociological_core.description, /Ingen ny runtime/i);
+assert.equal(index.roles.length, index.summary.role_worlds_total);
+assert.equal(index.roles.filter((x)=>x.subject_type==='life_position').length, index.life_position_role_world_count);
+assert.equal(index.status, index.roles.length + '_role_worlds_materialized');
+assert.equal(index.summary.role_worlds_total, index.roles.length);assert.equal(index.summary.career_role_worlds,index.career_role_world_count);assert.equal(index.summary.life_position_role_worlds,index.life_position_role_world_count);
+console.log('civication Byvandrer readiness + Role World ok: 56/56 / 14 anchors / 111 total / 26 life-position worlds');

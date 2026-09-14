@@ -1,0 +1,1229 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "naeringsliv_frilanser",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "naeringsliv",
+    "id": "frilanser",
+    "label": "Frilanser"
+  },
+  "title": "Frilanser — autonomi, kundemakt, usikker inntekt, nettverk og usynlig arbeid",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bygge reell arbeidsautonomi gjennom oppdrag når inntektsusikkerhet, kundemakt, omdømme, nettverk og usynlig administrasjon samtidig kan gjøre kalenderen mindre fri enn den ser ut",
+    "description": "Frilanser-verdenen undersøker oppdragsarbeid som employment-independent life-position, ikke som automatisk jobbstatus. Ett livelihood-tilbud kan gi en konkret mulighet, men verdenen garanterer aldri oppdrag, lønn, fast ansettelse eller profesjonsmyndighet. Den følger pris og scope, tomme perioder, sen betaling, tilgjengelighetsgrenser, anbefalinger, portefølje, kapasitetskollisjoner, usynlig administrasjon, vennskap som glir mot arbeid og retten til å si nei. Formell jobb, studier og andre aktivitetsstatuser kan sameksistere med Frilanser. Ingen ny runtime opprettes."
+  },
+  "theme_ids": [
+    "precarity",
+    "class_power",
+    "invisible_work",
+    "public_private_leakage",
+    "status_anxiety",
+    "social_mask",
+    "bureaucratic_power",
+    "care_vs_efficiency",
+    "alienation",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "kundeoppdrag der pris, leveranse, frist og omfang må forhandles mellom parter med ulik markedsmakt",
+    "frilansnettverk der anbefalinger, priserfaring og omdømme sirkulerer sammen med konkurranse om oppdrag",
+    "perioder med få eller overlappende oppdrag der kalenderfrihet og økonomisk usikkerhet blir samme struktur",
+    "private relasjoner der arbeidstid, bekymring og uforutsigbar inntekt kan lekke inn i hjem og vennskap",
+    "administrative mellomrom mellom tilbud, leveranse og betaling der mye arbeid er usynlig for kunden",
+    "andre jobber, studier eller aktiviteter som må holdes analytisk adskilt fra Frilanser-livsposisjonen"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "ny_kunde",
+      "social_function": "gjør pris, omfang og gjensidig usikkerhet konkret før relasjonen er etablert",
+      "class_position": "oppdragsgiver som kontrollerer ett mulig oppdrag, men ikke spillerens samlede arbeid",
+      "status": "midlertidig kjøpermakt innen et avgrenset oppdrag",
+      "power_over_player": "kan velge leverandør, forhandle om pris og godkjenne avtalt leveranse",
+      "wants": "lav risiko, tydelig levering og forutsigbar pris",
+      "conceals": "at eget tidspress kan bli presentert som objektiv nødvendighet",
+      "speech_style": "kort, leveranseorientert og opptatt av frist",
+      "teaches_player": "at et tilbud må avgrenses før det blir arbeid"
+    },
+    {
+      "id": "fast_kunde",
+      "social_function": "viser hvordan gjentatte oppdrag kan bygge tillit og samtidig skape forventning om permanent tilgjengelighet",
+      "class_position": "kunde med gjentatte kjøp og derfor større praktisk betydning for inntekten",
+      "status": "relasjonell markedsmakt uten arbeidsgivermyndighet",
+      "power_over_player": "kan gi gjentatte oppdrag, anbefalinger eller trekke dem tilbake",
+      "wants": "rask respons og lite friksjon",
+      "conceals": "at bekvemmelighet for kunden kan bli kostbar beredskap for frilanseren",
+      "speech_style": "uformell, kjent og stadig mer forventningsfull",
+      "teaches_player": "at et godt kundeforhold fortsatt trenger grenser"
+    },
+    {
+      "id": "frilanserkollega",
+      "social_function": "representerer både solidaritet, informasjonsdeling og konkurranse i samme marked",
+      "class_position": "selvstendig oppdragstaker med eget nettverk og egen usikkerhet",
+      "status": "jevnaldrende uten formell myndighet",
+      "power_over_player": "kan dele priserfaring, anbefalinger, kunder og omdømme",
+      "wants": "gjensidig hjelp uten å miste egne muligheter",
+      "conceals": "at anbefalinger også kan styres av egen kapasitet og posisjon",
+      "speech_style": "erfaringsnær, konkret og skeptisk til enkle suksesshistorier",
+      "teaches_player": "at nettverk er sosial kapital, ikke bare vennskap"
+    },
+    {
+      "id": "venn_eller_partner",
+      "social_function": "gjør lekkasjen mellom privatliv, arbeidstid og økonomisk usikkerhet synlig",
+      "class_position": "nær relasjon som ikke er del av kundemarkedet",
+      "status": "privat relasjon med legitim interesse i felles tid og eventuelt delt økonomi",
+      "power_over_player": "kan sette grenser for hvor mye arbeid som får spise av felles tid og avtaler",
+      "wants": "forutsigbarhet, nærvær og ærlighet om belastning",
+      "conceals": "at støtte kan blandes med bekymring eller irritasjon over uforutsigbarhet",
+      "speech_style": "personlig, direkte og opptatt av konkrete avtaler",
+      "teaches_player": "at autonomi på jobb også har private konsekvenser"
+    },
+    {
+      "id": "oppdragsformidler",
+      "social_function": "viser hvordan tilgang til markedet kan filtreres gjennom plattformer, byråer eller sterke nettverksledd",
+      "class_position": "mellomledd med tilgang til kunder og informasjon, men uten eierskap til spillerens identitet",
+      "status": "situert portvakt til enkelte oppdrag",
+      "power_over_player": "kan prioritere hvem som får høre om muligheter og hvilke forventninger som følger med",
+      "wants": "enkel matching og lav administrativ friksjon",
+      "conceals": "at standardisering kan gjøre enkelte typer arbeid og personer lettere å selge enn andre",
+      "speech_style": "effektiv, kategoriserende og opptatt av match",
+      "teaches_player": "at markedsadgang kan være sosialt og institusjonelt filtrert"
+    },
+    {
+      "id": "annen_hovedaktivitet",
+      "social_function": "holder frilansrollen adskilt fra formell jobb, studier eller annen aktivitetsstatus",
+      "class_position": "leder, lærer, kollega eller annen relevant kontakt i spillerens separate hovedaktivitet",
+      "status": "situert myndighet bare innen den separate aktiviteten",
+      "power_over_player": "kan stille krav til avtalt tid og oppgaver i den andre rollen",
+      "wants": "at frilansarbeid ikke skyver kostnader eller fravær over på den andre arenaen",
+      "conceals": "at egne normer kan undervurdere hvor legitimt sideoppdrag er",
+      "speech_style": "rolleavgrenset og konkret om tid og ansvar",
+      "teaches_player": "at life-position kan sameksistere med andre aktiviteter uten å absorbere dem"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "offer_vs_employment",
+      "meaning": "forholdet mellom et avgrenset kundeoppdrag og fristelsen til å gjøre enhver inntektsmulighet til fast arbeid eller aktivitetsstatus",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "price_vs_risk",
+      "meaning": "forholdet mellom pris, omfang og hvem som bærer risiko når leveransen endrer seg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "autonomy_vs_precarity",
+      "meaning": "forholdet mellom fri kalender og ujevn tilgang på inntekt, oppdrag og forhandlingsmakt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "availability_vs_boundary",
+      "meaning": "forholdet mellom fleksibilitet for kunden og spillerens rett til å avgrense arbeidstid og kapasitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "network_vs_debt",
+      "meaning": "forholdet mellom gjensidige anbefalinger og sosial gjeld som kan gjøre nettverket hierarkisk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reputation_vs_direction",
+      "meaning": "forholdet mellom portefølje som tillitssignal og omdømme som kan låse spilleren til tidligere arbeid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "capacity_vs_overcommitment",
+      "meaning": "forholdet mellom flere samtidige kunder og ansvaret for ikke å selge samme tid flere ganger",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "work_role_vs_life_position",
+      "meaning": "forholdet mellom Frilanser som employment-independent life-position og separate jobber, studier eller andre aktivitetsstatuser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "visible_delivery_vs_invisible_work",
+      "meaning": "forholdet mellom synlig leveranse og administrasjon, oppfølging og planlegging som kunden ikke nødvendigvis ser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "friendship_vs_commercial_relation",
+      "meaning": "forholdet mellom vennskap, tjenester og betalte oppdrag når forventninger til tid og kvalitet blir uklare",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "income_pressure_vs_refusal",
+      "meaning": "forholdet mellom inntektsusikkerhet og reell evne til å avslå oppdrag som ikke er bærekraftige",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "freedom_vs_client_power",
+      "meaning": "forholdet mellom fravær av én sjef og makten som kan samles hos kunder, frister, nettverk og omdømme",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: En kunde spør om et avgrenset oppdrag med tydelig leveranse og betaling. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "offer_vs_employment",
+          "work_role_vs_life_position",
+          "autonomy_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#det_forste_oppdraget"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: En kunde spør om et avgrenset oppdrag med tydelig leveranse og betaling. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "offer_vs_employment",
+          "work_role_vs_life_position",
+          "autonomy_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#det_forste_oppdraget"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: En kunde spør om et avgrenset oppdrag med tydelig leveranse og betaling. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "offer_vs_employment",
+          "work_role_vs_life_position",
+          "autonomy_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#det_forste_oppdraget"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: En kunde spør om et avgrenset oppdrag med tydelig leveranse og betaling. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "offer_vs_employment",
+          "work_role_vs_life_position",
+          "autonomy_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#det_forste_oppdraget"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Kunden ber om en pris før alle detaljer er helt avklart. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "price_vs_risk",
+          "income_pressure_vs_refusal",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#prisen_for_tiden"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Kunden ber om en pris før alle detaljer er helt avklart. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "price_vs_risk",
+          "income_pressure_vs_refusal",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#prisen_for_tiden"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Kunden ber om en pris før alle detaljer er helt avklart. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "price_vs_risk",
+          "income_pressure_vs_refusal",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#prisen_for_tiden"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Kunden ber om en pris før alle detaljer er helt avklart. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "price_vs_risk",
+          "income_pressure_vs_refusal",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#prisen_for_tiden"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Etter oppstart kommer flere ønsker som ikke var del av den første leveransen. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "price_vs_risk",
+          "availability_vs_boundary",
+          "visible_delivery_vs_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#oppdraget_vokser"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Etter oppstart kommer flere ønsker som ikke var del av den første leveransen. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "price_vs_risk",
+          "availability_vs_boundary",
+          "visible_delivery_vs_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#oppdraget_vokser"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Etter oppstart kommer flere ønsker som ikke var del av den første leveransen. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "price_vs_risk",
+          "availability_vs_boundary",
+          "visible_delivery_vs_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#oppdraget_vokser"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Etter oppstart kommer flere ønsker som ikke var del av den første leveransen. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "price_vs_risk",
+          "availability_vs_boundary",
+          "visible_delivery_vs_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#oppdraget_vokser"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Denne uken er det færre oppdrag enn du håpet på. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "autonomy_vs_precarity",
+          "income_pressure_vs_refusal",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#den_tomme_uken"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Denne uken er det færre oppdrag enn du håpet på. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "autonomy_vs_precarity",
+          "income_pressure_vs_refusal",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#den_tomme_uken"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Denne uken er det færre oppdrag enn du håpet på. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "autonomy_vs_precarity",
+          "income_pressure_vs_refusal",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#den_tomme_uken"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Denne uken er det færre oppdrag enn du håpet på. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "autonomy_vs_precarity",
+          "income_pressure_vs_refusal",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#den_tomme_uken"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Leveransen er godkjent, men betalingen kommer senere enn du hadde regnet med. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "visible_delivery_vs_invisible_work",
+          "autonomy_vs_precarity",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#fakturaen_som_drojer"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Leveransen er godkjent, men betalingen kommer senere enn du hadde regnet med. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "visible_delivery_vs_invisible_work",
+          "autonomy_vs_precarity",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#fakturaen_som_drojer"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Leveransen er godkjent, men betalingen kommer senere enn du hadde regnet med. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "visible_delivery_vs_invisible_work",
+          "autonomy_vs_precarity",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#fakturaen_som_drojer"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Leveransen er godkjent, men betalingen kommer senere enn du hadde regnet med. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "visible_delivery_vs_invisible_work",
+          "autonomy_vs_precarity",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#fakturaen_som_drojer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: En kunde som bruker deg ofte begynner å sende meldinger sent og forvente raske svar. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "availability_vs_boundary",
+          "freedom_vs_client_power",
+          "reputation_vs_direction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#alltid_tilgjengelig"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: En kunde som bruker deg ofte begynner å sende meldinger sent og forvente raske svar. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "availability_vs_boundary",
+          "freedom_vs_client_power",
+          "reputation_vs_direction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#alltid_tilgjengelig"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: En kunde som bruker deg ofte begynner å sende meldinger sent og forvente raske svar. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "availability_vs_boundary",
+          "freedom_vs_client_power",
+          "reputation_vs_direction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#alltid_tilgjengelig"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: En kunde som bruker deg ofte begynner å sende meldinger sent og forvente raske svar. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "availability_vs_boundary",
+          "freedom_vs_client_power",
+          "reputation_vs_direction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#alltid_tilgjengelig"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: En kollega vurderer å anbefale deg til et oppdrag de selv ikke kan ta. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "network_vs_debt",
+          "reputation_vs_direction",
+          "freedom_vs_client_power",
+          "friendship_vs_commercial_relation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#anbefalingen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: En kollega vurderer å anbefale deg til et oppdrag de selv ikke kan ta. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "network_vs_debt",
+          "reputation_vs_direction",
+          "freedom_vs_client_power",
+          "friendship_vs_commercial_relation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#anbefalingen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: En kollega vurderer å anbefale deg til et oppdrag de selv ikke kan ta. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "network_vs_debt",
+          "reputation_vs_direction",
+          "freedom_vs_client_power",
+          "friendship_vs_commercial_relation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#anbefalingen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: En kollega vurderer å anbefale deg til et oppdrag de selv ikke kan ta. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "network_vs_debt",
+          "reputation_vs_direction",
+          "freedom_vs_client_power",
+          "friendship_vs_commercial_relation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#anbefalingen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: En mulig kunde vurderer deg ut fra tidligere leveranser og hva andre sier om deg. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "reputation_vs_direction",
+          "network_vs_debt",
+          "income_pressure_vs_refusal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#portefoljen_og_ryktet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: En mulig kunde vurderer deg ut fra tidligere leveranser og hva andre sier om deg. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "reputation_vs_direction",
+          "network_vs_debt",
+          "income_pressure_vs_refusal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#portefoljen_og_ryktet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: En mulig kunde vurderer deg ut fra tidligere leveranser og hva andre sier om deg. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "reputation_vs_direction",
+          "network_vs_debt",
+          "income_pressure_vs_refusal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#portefoljen_og_ryktet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: En mulig kunde vurderer deg ut fra tidligere leveranser og hva andre sier om deg. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "reputation_vs_direction",
+          "network_vs_debt",
+          "income_pressure_vs_refusal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#portefoljen_og_ryktet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: To kunder ønsker viktige leveranser innen nesten samme tidsrom. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "capacity_vs_overcommitment",
+          "availability_vs_boundary",
+          "reputation_vs_direction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#to_kunder_samme_dag"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: To kunder ønsker viktige leveranser innen nesten samme tidsrom. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "capacity_vs_overcommitment",
+          "availability_vs_boundary",
+          "reputation_vs_direction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#to_kunder_samme_dag"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: To kunder ønsker viktige leveranser innen nesten samme tidsrom. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "capacity_vs_overcommitment",
+          "availability_vs_boundary",
+          "reputation_vs_direction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#to_kunder_samme_dag"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: To kunder ønsker viktige leveranser innen nesten samme tidsrom. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "capacity_vs_overcommitment",
+          "availability_vs_boundary",
+          "reputation_vs_direction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#to_kunder_samme_dag"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Du har en formell jobb eller annen hovedaktivitet samtidig som du tar enkelte oppdrag. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "work_role_vs_life_position",
+          "capacity_vs_overcommitment",
+          "offer_vs_employment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#frilans_ved_siden_av_jobb"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Du har en formell jobb eller annen hovedaktivitet samtidig som du tar enkelte oppdrag. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "work_role_vs_life_position",
+          "capacity_vs_overcommitment",
+          "offer_vs_employment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#frilans_ved_siden_av_jobb"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Du har en formell jobb eller annen hovedaktivitet samtidig som du tar enkelte oppdrag. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "work_role_vs_life_position",
+          "capacity_vs_overcommitment",
+          "offer_vs_employment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#frilans_ved_siden_av_jobb"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Du har en formell jobb eller annen hovedaktivitet samtidig som du tar enkelte oppdrag. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "work_role_vs_life_position",
+          "capacity_vs_overcommitment",
+          "offer_vs_employment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#frilans_ved_siden_av_jobb"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Oppdraget er levert, men du må fortsatt holde orden på avtaler, dokumentasjon, faktura og egen oversikt. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "visible_delivery_vs_invisible_work",
+          "price_vs_risk",
+          "autonomy_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#administrasjonen_ingen_ser"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Oppdraget er levert, men du må fortsatt holde orden på avtaler, dokumentasjon, faktura og egen oversikt. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "visible_delivery_vs_invisible_work",
+          "price_vs_risk",
+          "autonomy_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#administrasjonen_ingen_ser"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Oppdraget er levert, men du må fortsatt holde orden på avtaler, dokumentasjon, faktura og egen oversikt. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "visible_delivery_vs_invisible_work",
+          "price_vs_risk",
+          "autonomy_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#administrasjonen_ingen_ser"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Oppdraget er levert, men du må fortsatt holde orden på avtaler, dokumentasjon, faktura og egen oversikt. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "visible_delivery_vs_invisible_work",
+          "price_vs_risk",
+          "autonomy_vs_precarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#administrasjonen_ingen_ser"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: En venn ber om hjelp med noe som ligner arbeidet du vanligvis tar betalt for. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "friendship_vs_commercial_relation",
+          "availability_vs_boundary",
+          "network_vs_debt"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#vennen_som_trenger_en_tjeneste"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: En venn ber om hjelp med noe som ligner arbeidet du vanligvis tar betalt for. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "friendship_vs_commercial_relation",
+          "availability_vs_boundary",
+          "network_vs_debt"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#vennen_som_trenger_en_tjeneste"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: En venn ber om hjelp med noe som ligner arbeidet du vanligvis tar betalt for. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "friendship_vs_commercial_relation",
+          "availability_vs_boundary",
+          "network_vs_debt"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#vennen_som_trenger_en_tjeneste"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: En venn ber om hjelp med noe som ligner arbeidet du vanligvis tar betalt for. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "friendship_vs_commercial_relation",
+          "availability_vs_boundary",
+          "network_vs_debt"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#vennen_som_trenger_en_tjeneste"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Et oppdrag betaler greit, men kunden er uklar, tidsfristen er dårlig og arbeidet passer dårlig med retningen du vil ha. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "income_pressure_vs_refusal",
+          "capacity_vs_overcommitment",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#oppdraget_du_bor_si_nei_til"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Et oppdrag betaler greit, men kunden er uklar, tidsfristen er dårlig og arbeidet passer dårlig med retningen du vil ha. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "income_pressure_vs_refusal",
+          "capacity_vs_overcommitment",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#oppdraget_du_bor_si_nei_til"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Et oppdrag betaler greit, men kunden er uklar, tidsfristen er dårlig og arbeidet passer dårlig med retningen du vil ha. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "income_pressure_vs_refusal",
+          "capacity_vs_overcommitment",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#oppdraget_du_bor_si_nei_til"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Et oppdrag betaler greit, men kunden er uklar, tidsfristen er dårlig og arbeidet passer dårlig med retningen du vil ha. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "income_pressure_vs_refusal",
+          "capacity_vs_overcommitment",
+          "freedom_vs_client_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#oppdraget_du_bor_si_nei_til"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Etter to uker har du sett hvordan kunder, nettverk, tomme perioder, pris og administrasjon trekker i ulike retninger. Morgenen synliggjør økonomi, makt og forventninger før dagen fylles av leveranser.",
+        "thread_ids": [
+          "freedom_vs_client_power",
+          "autonomy_vs_precarity",
+          "work_role_vs_life_position"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#friheten_som_ma_bygges"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Etter to uker har du sett hvordan kunder, nettverk, tomme perioder, pris og administrasjon trekker i ulike retninger. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "freedom_vs_client_power",
+          "autonomy_vs_precarity",
+          "work_role_vs_life_position"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#friheten_som_ma_bygges"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Etter to uker har du sett hvordan kunder, nettverk, tomme perioder, pris og administrasjon trekker i ulike retninger. Ettermiddagen gjør pris, kapasitet, grense eller prioritering til et konkret valg.",
+        "thread_ids": [
+          "freedom_vs_client_power",
+          "autonomy_vs_precarity",
+          "work_role_vs_life_position"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#friheten_som_ma_bygges"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Etter to uker har du sett hvordan kunder, nettverk, tomme perioder, pris og administrasjon trekker i ulike retninger. Kvelden viser hva valget gjør med økonomi, tillit, selvbilde, omdømme eller kapasitet senere.",
+        "thread_ids": [
+          "freedom_vs_client_power",
+          "autonomy_vs_precarity",
+          "work_role_vs_life_position"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_frilanser.json#friheten_som_ma_bygges"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "offer_vs_employment",
+      "relationship": "forholdet mellom et avgrenset kundeoppdrag og fristelsen til å gjøre enhver inntektsmulighet til fast arbeid eller aktivitetsstatus",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "price_vs_risk",
+      "relationship": "forholdet mellom pris, omfang og hvem som bærer risiko når leveransen endrer seg",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning",
+        "3/lunch"
+      ]
+    },
+    {
+      "id": "autonomy_vs_precarity",
+      "relationship": "forholdet mellom fri kalender og ujevn tilgang på inntekt, oppdrag og forhandlingsmakt",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    },
+    {
+      "id": "availability_vs_boundary",
+      "relationship": "forholdet mellom fleksibilitet for kunden og spillerens rett til å avgrense arbeidstid og kapasitet",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "6/morning",
+        "6/lunch"
+      ]
+    },
+    {
+      "id": "network_vs_debt",
+      "relationship": "forholdet mellom gjensidige anbefalinger og sosial gjeld som kan gjøre nettverket hierarkisk",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning",
+        "8/lunch"
+      ]
+    },
+    {
+      "id": "reputation_vs_direction",
+      "relationship": "forholdet mellom portefølje som tillitssignal og omdømme som kan låse spilleren til tidligere arbeid",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning",
+        "7/lunch"
+      ]
+    },
+    {
+      "id": "capacity_vs_overcommitment",
+      "relationship": "forholdet mellom flere samtidige kunder og ansvaret for ikke å selge samme tid flere ganger",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "work_role_vs_life_position",
+      "relationship": "forholdet mellom Frilanser som employment-independent life-position og separate jobber, studier eller andre aktivitetsstatuser",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "visible_delivery_vs_invisible_work",
+      "relationship": "forholdet mellom synlig leveranse og administrasjon, oppfølging og planlegging som kunden ikke nødvendigvis ser",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "5/morning",
+        "5/lunch"
+      ]
+    },
+    {
+      "id": "friendship_vs_commercial_relation",
+      "relationship": "forholdet mellom vennskap, tjenester og betalte oppdrag når forventninger til tid og kvalitet blir uklare",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "12/morning",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "income_pressure_vs_refusal",
+      "relationship": "forholdet mellom inntektsusikkerhet og reell evne til å avslå oppdrag som ikke er bærekraftige",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    },
+    {
+      "id": "freedom_vs_client_power",
+      "relationship": "forholdet mellom fravær av én sjef og makten som kan samles hos kunder, frister, nettverk og omdømme",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "grensen_som_ble_profesjonell",
+      "description": "Når omfang og tilgjengelighet avklares, kan et kundeforhold bli mer forutsigbart uten å bli en ansettelse.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_frilanser.json#oppdraget_vokser",
+        "data/Civication/narratives/leisure/naeringsliv_frilanser.json#alltid_tilgjengelig"
+      ]
+    },
+    {
+      "id": "torrperioden_som_ikke_ble_identitet",
+      "description": "En svak uke kan behandles som økonomisk usikkerhet uten at den blir dom over spillerens verdi.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_frilanser.json#den_tomme_uken",
+        "data/Civication/narratives/leisure/naeringsliv_frilanser.json#oppdraget_du_bor_si_nei_til"
+      ]
+    },
+    {
+      "id": "nettverket_uten_gjeldsbok",
+      "description": "Anbefalinger kan bygge gjensidighet uten at sosial støtte blir permanent lydighetsgjeld.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_frilanser.json#anbefalingen",
+        "data/Civication/narratives/leisure/naeringsliv_frilanser.json#portefoljen_og_ryktet"
+      ]
+    },
+    {
+      "id": "vennskapet_som_fikk_en_avtale",
+      "description": "Vennetjeneste og betalt arbeid kan skilles tydelig nok til at relasjonen ikke må bære skjulte forventninger.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_frilanser.json#vennen_som_trenger_en_tjeneste"
+      ]
+    },
+    {
+      "id": "friheten_som_fikk_struktur",
+      "description": "Autonomi blir mer varig når kalender, pris, administrasjon og nei også behandles som deler av frilanslivet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_frilanser.json#administrasjonen_ingen_ser",
+        "data/Civication/narratives/leisure/naeringsliv_frilanser.json#friheten_som_ma_bygges"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "lav_pris_blir_scope_press",
+      "setup_ref": "2/afternoon",
+      "return_ref": "3/evening",
+      "domains": [
+        "economy",
+        "relationship"
+      ]
+    },
+    {
+      "id": "torrperiode_blir_forhandlingspress",
+      "setup_ref": "4/afternoon",
+      "return_ref": "13/afternoon",
+      "domains": [
+        "economy",
+        "psyche"
+      ]
+    },
+    {
+      "id": "sen_betaling_blir_kapasitetsvalg",
+      "setup_ref": "5/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "tilgjengelighet_blir_privattidslekkasje",
+      "setup_ref": "6/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "psyche"
+      ]
+    },
+    {
+      "id": "anbefaling_blir_omdommeretning",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "usynlig_admin_blir_baerekraftig_autonomi",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#det_forste_oppdraget",
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#prisen_for_tiden",
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#oppdraget_vokser",
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#den_tomme_uken",
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#fakturaen_som_drojer",
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#alltid_tilgjengelig",
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#anbefalingen",
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#portefoljen_og_ryktet",
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#to_kunder_samme_dag",
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#frilans_ved_siden_av_jobb",
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#administrasjonen_ingen_ser",
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#vennen_som_trenger_en_tjeneste",
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#oppdraget_du_bor_si_nei_til",
+      "data/Civication/narratives/leisure/naeringsliv_frilanser.json#friheten_som_ma_bygges"
+    ]
+  }
+}

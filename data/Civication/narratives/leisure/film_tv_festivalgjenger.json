@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "film_tv_festivalgjenger_stream",
+  "type": "leisure",
+  "title": "Festivalgjenger",
+  "sociological_theme": "midlertidig_kulturintensitet_tilgang_tid_status_og_publikumsliv",
+  "applies_when": {
+    "any_tags": [
+      "film_tv:festivalgjenger"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "programmet_apner",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Programmet",
+      "subject": "Når alt ser viktig ut samtidig",
+      "situation": [
+        "Festivalprogrammet åpner med flere filmer, samtaler og engangsvisninger enn du realistisk kan rekke.",
+        "Festivalgjenger-rollen handler om å bygge en personlig festivaldag under knapp tid, begrenset kapasitet og ufullstendig informasjon.",
+        "Å være erfaren publikummer gir bedre orientering, men ikke rett til å definere hvilke filmer andre bør prioritere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg noen tydelige prioriteringer og la resten stå åpent.",
+          "effect": 1,
+          "tags": [
+            "programmet_apner_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du gjør knapp tid til et bevisst valg i stedet for en konkurranse om å rekke mest."
+        },
+        {
+          "id": "B",
+          "label": "Lag en maksimal liste og behandle alt du ikke rekker som et nederlag.",
+          "effect": -1,
+          "tags": [
+            "programmet_apner_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du gjør festivalen til prestasjon og mister rom for faktisk opplevelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_priority"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "billetten_og_budsjettet",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Billettslippet",
+      "subject": "Tilgang koster mer enn selve billetten",
+      "situation": [
+        "Et pass virker rimelig per film, men transport, overnatting, mat og gebyrer gjør den totale kostnaden langt større.",
+        "Festivaltilgang er sosialt skjev fordi tid, penger, fleksibilitet og bosted avgjør hvor mye av programmet som faktisk er tilgjengelig.",
+        "Festivalgjenger-erfaring kan gjøre økonomien synlig uten å gjøre egen betalingsevne til norm."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sett et faktisk totalbudsjett og prioriter det du har råd til uten å late som alle har samme handlingsrom.",
+          "effect": 1,
+          "tags": [
+            "billetten_og_budsjettet_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du behandler kulturtilgang som mer enn en billettpris."
+        },
+        {
+          "id": "B",
+          "label": "Kall festivalen billig fordi passet har lav pris per visning.",
+          "effect": -1,
+          "tags": [
+            "billetten_og_budsjettet_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du skjuler de øvrige kostnadene og hvem de stenger ute."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_access_cost"
+      ],
+      "risk_links": [
+        "economy_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_visninger_samtidig",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Timeplanen",
+      "subject": "Når to valg ikke kan kombineres",
+      "situation": [
+        "To filmer du virkelig vil se går samtidig, og begge omtales som muligheter som neppe kommer tilbake med det første.",
+        "Festivalens knapphet skaper verdi, men også frykt for å velge feil og en jakt på optimalisering som kan overskygge selve filmen.",
+        "God festivalrutine betyr å akseptere at et valg også er et tap."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg én film ut fra dine egne grunner og la den andre være et reelt fravalg.",
+          "effect": 1,
+          "tags": [
+            "to_visninger_samtidig_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du gjør begrensning til en del av festivalformen."
+        },
+        {
+          "id": "B",
+          "label": "Bytt plan helt på grunn av andres rangeringer og jag ideen om den perfekte dagen.",
+          "effect": -1,
+          "tags": [
+            "to_visninger_samtidig_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du lar sosialt press overta prioriteringen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_schedule_tradeoff"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "koen_uten_garanti",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Køen",
+      "subject": "Ventetid er også en del av adgangssystemet",
+      "situation": [
+        "En populær visning har lang kø, og det er uklart hvor mange som faktisk kommer inn når dørene åpner.",
+        "Kø fordeler ikke bare plasser; den belønner også dem som kan bruke tid på å vente og tåle usikkerhet.",
+        "Som Festivalgjenger kan du kjenne rutinen, men du får ingen særrett foran andre publikummere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder ventetiden opp mot et alternativ og respekter køordningen.",
+          "effect": 1,
+          "tags": [
+            "koen_uten_garanti_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du bruker erfaring uten å gjøre den til fortrinnsrett."
+        },
+        {
+          "id": "B",
+          "label": "Press deg fram fordi du mener du har bedre grunn til å komme inn enn de foran deg.",
+          "effect": -1,
+          "tags": [
+            "koen_uten_garanti_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du gjør kulturell entusiasme til adgangskrav."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_queue_uncertainty"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "access_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "overnatting_og_transport",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En annen by",
+      "subject": "Festivalen fortsetter utenfor salene",
+      "situation": [
+        "For å delta flere dager må du finne transport, et sted å sove og nok margin mellom arenaene.",
+        "Valgene utenfor programmet avgjør hvilke deler av festivalen som er realistiske, særlig for dem med lite penger, omsorgsansvar eller stramme tidsrammer.",
+        "Festivalgjenger-identiteten blir mer presis når den inkluderer infrastrukturen som gjør deltakelsen mulig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Planlegg marginer og velg løsninger som gjør dagene bærekraftige for deg.",
+          "effect": 1,
+          "tags": [
+            "overnatting_og_transport_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du behandler festivalen som et helt tids- og kostnadsregime."
+        },
+        {
+          "id": "B",
+          "label": "Legg opp dagene som om transport, søvn og mat ikke tar tid.",
+          "effect": -1,
+          "tags": [
+            "overnatting_og_transport_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du gjør kroppen og infrastrukturen til usynlige ressurser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_infrastructure"
+      ],
+      "risk_links": [
+        "economy_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "filmen_alle_snakkar_om",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Foajeen",
+      "subject": "Hype endrer hva du tror du bør føle",
+      "situation": [
+        "Etter en mye omtalt film virker det som alle rundt deg allerede har bestemt at den er festivalens store opplevelse.",
+        "Tett sosial informasjon kan gjøre det vanskelig å skille egen reaksjon fra forventningen om å være på riktig side av smaken.",
+        "Festivalgjengerens oppgave er ikke å være først med riktig dom, men å tåle at egen opplevelse kan avvike."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hva som faktisk traff deg før du låner andres konklusjon.",
+          "effect": 1,
+          "tags": [
+            "filmen_alle_snakkar_om_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du holder egen erfaring åpen uten å avvise andres."
+        },
+        {
+          "id": "B",
+          "label": "Gjenta den dominerende vurderingen for å signalisere at du forstår hva som teller.",
+          "effect": -1,
+          "tags": [
+            "filmen_alle_snakkar_om_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du gjør smak til sosial uniform."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_hype_independence"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporsmalet_til_gjesten",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Samtalen etterpå",
+      "subject": "Publikumsmikrofonen er ikke en privat talerstol",
+      "situation": [
+        "Etter filmen åpnes det for spørsmål til en gjest, og køen ved mikrofonen vokser raskt.",
+        "Slike samtaler kan gi innsikt, men tiden er felles og skillet mellom spørsmål, egen tolkning og selvpresentasjon blir tydelig.",
+        "Å kjenne filmen godt gir ikke publikum rett til å overta samtalen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Still ett avgrenset spørsmål og la svaret stå uten å holde et foredrag tilbake.",
+          "effect": 1,
+          "tags": [
+            "sporsmalet_til_gjesten_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du bruker kunnskap uten å gjøre taletid til status."
+        },
+        {
+          "id": "B",
+          "label": "Bruk spørsmålet til å demonstrere hvor mye du vet før du kommer til poenget.",
+          "effect": -1,
+          "tags": [
+            "sporsmalet_til_gjesten_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du gjør felles tid til personlig prestasjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_qa_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "filmen_som_forsvinner",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En liten sal",
+      "subject": "Noen festivalfilmer blir bare et minne",
+      "situation": [
+        "Du ser en film som foreløpig ikke har vanlig distribusjon, og ingen rundt deg vet om den blir lett tilgjengelig senere.",
+        "Midlertidig tilgang kan gjøre opplevelsen mer intens og skape et ønske om å spre ordet raskt.",
+        "Men én sterk festivalopplevelse er fortsatt situert; du vet ikke hvordan filmen vil møte andre publikum eller sammenhenger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell hva du likte og hva du faktisk vet om videre tilgjengelighet.",
+          "effect": 1,
+          "tags": [
+            "filmen_som_forsvinner_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du deler funnet uten å gjøre knapphet til kvalitetsbevis."
+        },
+        {
+          "id": "B",
+          "label": "Gjør den begrensede tilgjengeligheten til bevis på at filmen er viktigere enn mer tilgjengelige filmer.",
+          "effect": -1,
+          "tags": [
+            "filmen_som_forsvinner_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du forveksler sjelden tilgang med iboende verdi."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_ephemeral_access"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "access_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nattvisningen",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Sen kveld",
+      "subject": "Kroppen setter en grense før programmet gjør det",
+      "situation": [
+        "Du har sett filmer siden formiddagen, men en sen visning frister selv om konsentrasjonen er tydelig dårligere.",
+        "Festivalrytmen belønner utholdenhet symbolsk, mens søvn, mat og pauser ofte behandles som tid som kunne vært brukt på mer innhold.",
+        "Festivalgjenger-erfaring blir bedre når kroppen får være en faktisk begrensning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp når du merker at du ikke lenger klarer å være til stede i det du ser.",
+          "effect": 1,
+          "tags": [
+            "nattvisningen_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du velger oppmerksomhet framfor antall."
+        },
+        {
+          "id": "B",
+          "label": "Gå på enda én visning for å kunne si at du fikk den med deg.",
+          "effect": -1,
+          "tags": [
+            "nattvisningen_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du gjør mengde til status og kroppen til motstander."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_body_limit"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "body_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "avlysningen",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En melding på telefonen",
+      "subject": "Ett bortfall kan flytte hele dagen",
+      "situation": [
+        "En planlagt visning blir avlyst kort tid før start, og flere alternative valg har allerede begynt.",
+        "Festivalens midlertidige struktur gjør små endringer store fordi billetter, avstander og køer er tett koblet.",
+        "Rutine hjelper deg å finne alternativer, men kan ikke fjerne usikkerheten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg et realistisk alternativ eller bruk pausen uten å gjøre dagen mislykket.",
+          "effect": 1,
+          "tags": [
+            "avlysningen_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du lar planen være robust nok til å endres."
+        },
+        {
+          "id": "B",
+          "label": "Bruk resten av dagen på å jage det tapte hullet i timeplanen.",
+          "effect": -1,
+          "tags": [
+            "avlysningen_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du lar ett bortfall styre alt som følger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_disruption"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "economy_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "akkrediteringsdoren",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En avsperret inngang",
+      "subject": "Festivalen har flere adgangslag",
+      "situation": [
+        "En dør leder til et område for akkrediterte gjester og arbeidende bransjefolk, mens du har ordinær publikumsadgang.",
+        "Festivalmiljøet blander publikum, presse, filmskapere og ansatte tett nok til at statusgrenser kan virke uformelle selv når de er reelle.",
+        "Festivalgjenger er en publikumsidentitet; den gir ikke profesjonell akkreditering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk publikumsadgangen du faktisk har og la de andre rollene ha sine egne grenser.",
+          "effect": 1,
+          "tags": [
+            "akkrediteringsdoren_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du holder entusiasme og profesjonell status atskilt."
+        },
+        {
+          "id": "B",
+          "label": "Prøv å følge noen inn fordi du føler deg som en del av miljøet.",
+          "effect": -1,
+          "tags": [
+            "akkrediteringsdoren_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du gjør kulturell nærhet til en rettighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_access_hierarchy"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "de_samme_ansiktene",
+      "message_type": "relationship",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Mellom to saler",
+      "subject": "Et midlertidig miljø kan føles tett veldig fort",
+      "situation": [
+        "Etter flere dager møter du de samme menneskene i køer, foajeer og på vei mellom arenaene, og små samtaler begynner å bygge gjentatt kjennskap.",
+        "Festivalens korte tidsrom kan skape raske bånd fordi mange deler rytme, referanser og tilfeldige gjentakelser.",
+        "Men gjentatt kjennskap er ikke automatisk vennskap, kontaktflate eller varig tilhørighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta kontakt på nytt uten å anta mer nærhet enn dere faktisk har bygget.",
+          "effect": 1,
+          "tags": [
+            "de_samme_ansiktene_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du lar et midlertidig bånd utvikle seg i sitt eget tempo."
+        },
+        {
+          "id": "B",
+          "label": "Oppfør deg som om dere allerede er en fast gruppe fordi dere har møttes flere ganger.",
+          "effect": -1,
+          "tags": [
+            "de_samme_ansiktene_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du gjør tetthet og gjentakelse til sosialt eierskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_temporary_ties"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prispraten",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Siste helg",
+      "subject": "Snakk om vinnere skaper en ny rangering",
+      "situation": [
+        "Mot slutten begynner folk å snakke om hvilke filmer som fortjener priser og hvilke titler man burde ha sett.",
+        "Når festivalen produserer vinnere, omtale og lister, kan personlige opplevelser raskt omskrives som om resultatet var åpenbart hele tiden.",
+        "Festivalgjengerens egen hukommelse trenger ikke følge den endelige rangeringen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold fast ved hva du faktisk opplevde, og skill det fra hva juryer og andre senere belønner.",
+          "effect": 1,
+          "tags": [
+            "prispraten_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du lar institusjonell anerkjennelse være informasjon, ikke fasit."
+        },
+        {
+          "id": "B",
+          "label": "Omskriv egne reaksjoner slik at de passer resultatet og det nye hierarkiet.",
+          "effect": -1,
+          "tags": [
+            "prispraten_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du gjør ettertidens status til erstatning for erfaring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_award_buzz"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "social_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "siste_dag",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "På vei hjem",
+      "subject": "Festivalen slutter før filmkulturen gjør det",
+      "situation": [
+        "Når siste dag er over, sitter du igjen med noen sterke filmer, noen bommerter, mennesker du kanskje møter igjen og en liste over alt du ikke rakk.",
+        "Festivalen komprimerer filmkultur til et midlertidig offentlig rom med høy intensitet, men den er bare én måte å møte film på.",
+        "Festivalgjenger betyr å kunne navigere denne formen uten å gjøre den til målestokken for hvem som er en ekte filminteressert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta med deg erfaringene videre uten å rangere andre etter hvor mye festival de deltar på.",
+          "effect": 1,
+          "tags": [
+            "siste_dag_careful",
+            "festivalgjenger_reflection"
+          ],
+          "feedback": "Du gjør festivaler til én rik praksis blant flere."
+        },
+        {
+          "id": "B",
+          "label": "Bruk festivaldeltakelsen som bevis på at du tar film mer seriøst enn folk som ser på andre måter.",
+          "effect": -1,
+          "tags": [
+            "siste_dag_overreach",
+            "festivalgjenger_status_trap"
+          ],
+          "feedback": "Du gjør tilgang og livsstil til kulturell portvakt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "festivalgjenger_identity_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}

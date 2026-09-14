@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "by_byvandrer_stream",
+  "type": "leisure",
+  "title": "Byvandrer",
+  "sociological_theme": "hverdagsruter_forbindelser_barrierer_og_bevegelseskunnskap",
+  "applies_when": {
+    "any_tags": [
+      "by:byvandrer"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "den_forste_forbindelsen",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En venn",
+      "subject": "En rute er mer enn korteste vei",
+      "situation": [
+        "Du viser hvordan du vanligvis kommer deg mellom to steder du bruker ofte.",
+        "Byvandrer handler om forbindelser gjennom byen: hvilke gater, passasjer, broer og knutepunkter som faktisk henger sammen i hverdagen.",
+        "En kjent rute gir erfaring, men ikke eierskap til byen eller myndighet til å definere hvordan andre bør bevege seg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar ruten som ett mulig hverdagsvalg og hva som gjør den praktisk.",
+          "effect": 1,
+          "tags": [
+            "den_forste_forbindelsen_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du deler erfaringskunnskap uten å gjøre den universell."
+        },
+        {
+          "id": "B",
+          "label": "Presenter din rute som den riktige måten å bevege seg gjennom byen på.",
+          "effect": -1,
+          "tags": [
+            "den_forste_forbindelsen_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du gjør egen vane til norm og overser andre behov."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_route_plurality"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "snarveien_med_porten",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En gårdspassasje",
+      "subject": "Når en snarvei ikke egentlig er offentlig",
+      "situation": [
+        "En kjent snarvei går gjennom en passasje som ser åpen ut, men har skilt og porter som skaper tvil om hva som faktisk er offentlig ferdselsrom.",
+        "Byvandring gjør grensen mellom offentlig, halvoffentlig og privat rom synlig.",
+        "At en vei er praktisk eller mye brukt betyr ikke automatisk at du har rett til å kreve tilgang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg en tydelig offentlig rute når adgangen er uklar.",
+          "effect": 1,
+          "tags": [
+            "snarveien_med_porten_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du lar bekvemmelighet vike for klare grenser."
+        },
+        {
+          "id": "B",
+          "label": "Behandle passasjen som offentlig fordi du alltid har brukt den.",
+          "effect": -1,
+          "tags": [
+            "snarveien_med_porten_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du gjør personlig vane til adgangskrav."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_public_private_passage"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "omveien_som_dukker_opp",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Anleggsområdet",
+      "subject": "Byen endrer ruter mens du bruker dem",
+      "situation": [
+        "En gate eller gangforbindelse er midlertidig stengt, og den vanlige ruten brytes.",
+        "Omveier viser at byens forbindelser er institusjonelt produserte og kan endres raskt av bygging, drift og arrangementer.",
+        "Den korteste nye linjen på kartet er ikke nødvendigvis den mest lesbare eller tilgjengelige i praksis."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Test omveien som et nytt forbindelsesproblem, ikke bare ekstra meter.",
+          "effect": 1,
+          "tags": [
+            "omveien_som_dukker_opp_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du undersøker hvordan endringen faktisk virker i hverdagen."
+        },
+        {
+          "id": "B",
+          "label": "Se stengningen bare som et irritasjonsmoment som må omgås raskest mulig.",
+          "effect": -1,
+          "tags": [
+            "omveien_som_dukker_opp_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du overser hva omleggingen gjør med lesbarhet og tilgang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_detour_change"
+      ],
+      "risk_links": [
+        "bureaucratic_risk",
+        "access_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "trappen_som_bryter_kartet",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En medvandrer",
+      "subject": "Tilgjengelighet avslører hvilke ruter kartet overser",
+      "situation": [
+        "En tilsynelatende sammenhengende rute viser seg å ha trapper, bratt parti eller annen fysisk terskel.",
+        "For noen er dette bare en liten detalj; for andre avgjør den om forbindelsen kan brukes i det hele tatt.",
+        "Byvandrer-kunnskap blir bedre når den skiller mellom at en linje finnes og at en rute faktisk er tilgjengelig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv terskelen og let etter et trinnfritt eller enklere alternativ uten å anta andres behov.",
+          "effect": 1,
+          "tags": [
+            "trappen_som_bryter_kartet_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du gjør tilgjengelighet til en del av rutekunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Kall ruten enkel fordi den er enkel for deg.",
+          "effect": -1,
+          "tags": [
+            "trappen_som_bryter_kartet_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du gjør egen kropp og tempo til usynlig standard."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_accessibility"
+      ],
+      "risk_links": [
+        "access_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kartappen_og_beina",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Telefonkartet",
+      "subject": "Digital navigasjon ser ikke alltid hverdagsbyen",
+      "situation": [
+        "Kartappen foreslår en rask rute som på papiret ser bedre ut enn den du kjenner.",
+        "Digitale kart er nyttige, men kan mangle midlertidige sperringer, innganger, uformelle forbindelser og den praktiske lesbarheten i et sted.",
+        "Samtidig kan egen rutine være utdatert og gjøre nye forbindelser usynlige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign kartforslaget med det du faktisk observerer og oppdater forståelsen din.",
+          "effect": 1,
+          "tags": [
+            "kartappen_og_beina_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du behandler både appen og egen hukommelse som korrigerbare kilder."
+        },
+        {
+          "id": "B",
+          "label": "Stol alltid på enten appen eller hukommelsen uten å sjekke forholdene.",
+          "effect": -1,
+          "tags": [
+            "kartappen_og_beina_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du gjør ett kartlag til fasit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_map_vs_embodied"
+      ],
+      "risk_links": [
+        "bureaucratic_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_morke_forbindelsen",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Kveldsruten",
+      "subject": "Samme rute kan oppleves annerledes senere på dagen",
+      "situation": [
+        "En forbindelse du bruker uten å tenke på dagtid føles mindre oversiktlig om kvelden.",
+        "Belysning, aktivitet, åpne lokaler og andre mennesker kan endre hvordan en rute leses uten at gategeometrien har endret seg.",
+        "Opplevd trygghet er situert; din vurdering kan ikke brukes som fasit for alle andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg den ruten som føles forsvarlig nå og noter hvilke forhold som endret vurderingen.",
+          "effect": 1,
+          "tags": [
+            "den_morke_forbindelsen_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du gjør situasjon og egen opplevelse eksplisitt uten å generalisere."
+        },
+        {
+          "id": "B",
+          "label": "Avfei forskjellen fordi ruten er den samme på kartet.",
+          "effect": -1,
+          "tags": [
+            "den_morke_forbindelsen_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du gjør geometri viktigere enn faktisk brukserfaring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_time_of_day"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "regnet_flytter_ruten",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Været",
+      "subject": "Vær og årstid endrer forbindelser",
+      "situation": [
+        "Kraftig regn gjør en vanlig forbindelse mindre praktisk og flytter fottrafikken mot andre gater og overganger.",
+        "Byens hverdagskart er sesongbundet: underlag, brøyting, skygge, vind og vann påvirker hvilke ruter som faktisk fungerer.",
+        "Det betyr ikke at enhver personlig preferanse er et generelt byproblem, men den er fortsatt relevant erfaring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Tilpass ruten og skill mellom personlig komfort og faktisk tilgjengelighetsproblem.",
+          "effect": 1,
+          "tags": [
+            "regnet_flytter_ruten_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du bruker erfaring presist uten å overdrive den."
+        },
+        {
+          "id": "B",
+          "label": "Gjør dagens værproblem til bevis på at ruten alltid er dårlig.",
+          "effect": -1,
+          "tags": [
+            "regnet_flytter_ruten_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du gjør et midlertidig forhold til en permanent dom."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_weather_route"
+      ],
+      "risk_links": [
+        "access_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "barrieren_mellom_to_nabolag",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Kryssingen",
+      "subject": "Kort avstand kan skjule stor friksjon",
+      "situation": [
+        "To steder ligger nær hverandre, men jernbane, stor vei, vann eller få krysningspunkter gjør forbindelsen lengre enn kartavstanden antyder.",
+        "Barrierer organiserer hvem som enkelt kan bevege seg mellom deler av byen og hvilke steder som oppleves som nær hverandre.",
+        "Byvandrerens erfaring kan synliggjøre slik friksjon uten å bli en planfaglig analyse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hvor barrieren oppstår og hvilke faktiske krysningspunkter som finnes.",
+          "effect": 1,
+          "tags": [
+            "barrieren_mellom_to_nabolag_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du gjør forbindelsesfriksjonen konkret uten å late som du har planmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Konkluder med hvordan området burde bygges om bare fra din egen rute.",
+          "effect": -1,
+          "tags": [
+            "barrieren_mellom_to_nabolag_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du hopper fra erfaring til ekspertmandat."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_barrier_connection"
+      ],
+      "risk_links": [
+        "access_risk",
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_som_spor_om_veien",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En besøkende",
+      "subject": "Rutekunnskap kan hjelpe uten å bli portvaktmakt",
+      "situation": [
+        "En besøkende spør hvordan de kommer seg til et sted du kjenner godt.",
+        "Du kan gi en rask anbefaling, men vet ikke hvilke behov, tempo eller transportvalg personen har.",
+        "God veivisning gjør usikkerhet og alternativer synlige i stedet for å anta at alle beveger seg som deg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi ett eller to alternativer og nevne det viktigste valget mellom dem.",
+          "effect": 1,
+          "tags": [
+            "den_som_spor_om_veien_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du deler lokalkunnskap uten å gjøre mottakeren avhengig av deg."
+        },
+        {
+          "id": "B",
+          "label": "Gi detaljerte instrukser som om din vane er universell.",
+          "effect": -1,
+          "tags": [
+            "den_som_spor_om_veien_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du forveksler kjennskap med kontroll."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_wayfinding_help"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "passasjen_som_stenger",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et kjøpesenter",
+      "subject": "Når en praktisk forbindelse avhenger av åpningstid",
+      "situation": [
+        "En rute du ofte bruker går gjennom et kommersielt eller institusjonelt bygg som stenger på kvelden.",
+        "På dagtid fungerer passasjen nesten som en del av gatenettet; senere forsvinner forbindelsen.",
+        "Dette viser hvordan noen hverdagsruter er avhengige av private åpningstider selv om de oppleves offentlige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ha en offentlig alternativrute og behandle passasjen som tidsavhengig.",
+          "effect": 1,
+          "tags": [
+            "passasjen_som_stenger_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du skiller faktisk byforbindelse fra betinget adgang."
+        },
+        {
+          "id": "B",
+          "label": "Regn passasjen som permanent offentlig fordi den vanligvis er åpen.",
+          "effect": -1,
+          "tags": [
+            "passasjen_som_stenger_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du skjuler den private kontrollen bak egen vane."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_conditional_passage"
+      ],
+      "risk_links": [
+        "bureaucratic_risk",
+        "access_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "folkemengden_endrer_flyten",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et arrangement",
+      "subject": "Midlertidige strømmer kan snu en kjent rute",
+      "situation": [
+        "Et arrangement, demonstrasjon, kamp eller festival fyller en vanlig forbindelse med langt flere mennesker enn normalt.",
+        "Den fysiske ruten finnes fortsatt, men tempo, retning og muligheten til å krysse strømmen endres.",
+        "Byvandrerens ferdighet er å lese situasjonen og finne alternativer, ikke å kreve forrang fordi man kjenner stedet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg en alternativ forbindelse eller tilpass tempoet til situasjonen.",
+          "effect": 1,
+          "tags": [
+            "folkemengden_endrer_flyten_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du behandler byen som et delt rom under midlertidig press."
+        },
+        {
+          "id": "B",
+          "label": "Press deg gjennom fordi dette er din vanlige rute.",
+          "effect": -1,
+          "tags": [
+            "folkemengden_endrer_flyten_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du gjør rutine til fortrinnsrett."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_crowd_flow"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "access_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ruten_gjennom_andres_nabolag",
+      "message_type": "relationship",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En lokal beboer",
+      "subject": "Å kjenne en rute er ikke det samme som å kjenne et område",
+      "situation": [
+        "Du bruker ofte en gjennomgående rute i et nabolag der du ellers har få relasjoner.",
+        "Gjentatt ferdsel kan gi detaljkunnskap om forbindelser og rytmer, men sier lite om hele stedets sosiale liv.",
+        "Byvandrer må derfor tåle skillet mellom å kunne veien og å kunne nabolaget."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold deg til det du faktisk vet om ruten og la lokale perspektiver korrigere resten.",
+          "effect": 1,
+          "tags": [
+            "ruten_gjennom_andres_nabolag_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du skiller forbindelseskunnskap fra sosialt eierskap."
+        },
+        {
+          "id": "B",
+          "label": "Bruk hyppige passeringer som bevis på at du kjenner området fullt ut.",
+          "effect": -1,
+          "tags": [
+            "ruten_gjennom_andres_nabolag_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du gjør bevegelse til falsk lokal autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_route_vs_neighborhood"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "byen_som_bryter_hukommelsen",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En gammel rute",
+      "subject": "Rutehukommelse må kunne oppdateres",
+      "situation": [
+        "En forbindelse du lærte for lenge siden er endret av nybygg, nye overganger eller andre innganger.",
+        "Kroppen husker gamle svinger lenge etter at byen har skiftet form.",
+        "Byvandrerens hverdagskart er derfor et levende arkiv som må korrigeres når stedet endres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prøv den nye forbindelsen og behold den gamle ruten som historie, ikke fasit.",
+          "effect": 1,
+          "tags": [
+            "byen_som_bryter_hukommelsen_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du lar hukommelse og nåtid eksistere uten å blande dem."
+        },
+        {
+          "id": "B",
+          "label": "Insister på at den gamle ruten var den egentlige byen.",
+          "effect": -1,
+          "tags": [
+            "byen_som_bryter_hukommelsen_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du gjør personlig minne til eierskap over endring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_memory_change"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forbindelsene_du_kan_tegne",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "To uker senere",
+      "subject": "Byvandring bygger et nettverk av alternativer, ikke én perfekt rute",
+      "situation": [
+        "Etter to uker ser du byen mindre som enkeltsteder og mer som forbindelser, terskler, overganger og alternative veier mellom dem.",
+        "Kunnskapen er praktisk og kroppslig: den handler om hvordan ruter faktisk virker på ulike tider og under ulike forhold.",
+        "Men den gjør deg fortsatt ikke til planlegger, transportekspert eller talsperson for alle som bruker byen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bygg videre på flere alternative ruter og vær tydelig på hva du vet fra egen bruk.",
+          "effect": 1,
+          "tags": [
+            "forbindelsene_du_kan_tegne_careful",
+            "byvandrer_reflection"
+          ],
+          "feedback": "Du gjør bykunnskap robust uten å gjøre den til ekspertmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Samle nok ruter til å mene at du kan forklare hele byen for andre.",
+          "effect": -1,
+          "tags": [
+            "forbindelsene_du_kan_tegne_overreach",
+            "byvandrer_myth"
+          ],
+          "feedback": "Du gjør mengden erfaring til et mandat den ikke gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "byvandrer_network_without_authority"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "bureaucratic_risk"
+      ],
+      "links": []
+    }
+  ]
+}

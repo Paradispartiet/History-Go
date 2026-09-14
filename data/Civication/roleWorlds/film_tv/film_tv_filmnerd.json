@@ -1,0 +1,1234 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "film_tv_filmnerd",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "film_tv",
+    "id": "filmnerd",
+    "label": "Filmnerd"
+  },
+  "title": "Filmnerd — detaljkunnskap, kilder, produksjonsarbeid og presisjon uten rang",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å utvikle systematisk detaljkunnskap om film og TV uten å gjøre metadata, terminologi, versjoner eller hukommelse til adgangskrav eller sosial myndighet",
+    "description": "Filmnerd-verdenen handler om krediteringer, versjoner, årstall, fagspråk, metadata, kollektivt produksjonsarbeid, restaurering, kildehygiene, format, kunnskapshull, faktadetaljer, anbefalinger og crew-spor. Den er mer systematisk enn Filminteressert og mer kunnskapsorientert enn Filmfantast, men den er fortsatt en privat kunnskapsidentitet: ikke Kjenner-status, Connaisseur-rykte, kritikerjobb, kuratorstilling eller profesjonell fagmyndighet. Ingen ny runtime opprettes."
+  },
+  "theme_ids": [
+    "status_anxiety",
+    "shame_reputation",
+    "social_mask",
+    "class_power",
+    "consumption",
+    "public_private_leakage",
+    "care_vs_efficiency",
+    "local_knowledge_vs_system",
+    "precarity",
+    "alienation"
+  ],
+  "social_environments": [
+    "filmprat der årstall, navn og tekniske begreper kan være både nyttige og sosialt ekskluderende",
+    "egne kataloger, notater og databaser som gjør produksjonsmønstre synlige, men kan bli mål i seg selv",
+    "fysiske og digitale utgaver der versjoner, restaureringer og formatforskjeller møter ulik økonomisk tilgang",
+    "forum, videoer og trivia-kretser der gode historier kan sirkulere raskere enn dokumentasjonen",
+    "filmklubber og samtaler der korrekt faktakunnskap ikke automatisk avgjør tolkningen",
+    "gjensyn og crew-spor som gjør kollektivt arbeid synlig på tvers av filmer og epoker"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "detaljvennen",
+      "social_function": "deler navn, årstall og versjoner med samme entusiasme som spilleren",
+      "class_position": "jevnaldrende kunnskapsentusiast",
+      "status": "uformell kunnskapskapital uten formell myndighet",
+      "power_over_player": "kan normalisere detaljkonkurranse eller gjøre korrigering trygg",
+      "wants": "å finne forbindelser og huske mer",
+      "conceals": "at egen hukommelse også er selektiv og feilbar",
+      "speech_style": "rask, referanserik og villig til å slå opp",
+      "teaches_player": "at presisjon tåler felles korrigering"
+    },
+    {
+      "id": "vanlig_seer",
+      "social_function": "tester om detaljkunnskapen faktisk kan kommuniseres uten å bli en adgangsprøve",
+      "class_position": "publikummer uten særlig interesse for metadata",
+      "status": "lav kunnskapsstatus i nerdesamtalen, men full legitim publikumsposisjon",
+      "power_over_player": "kan avvise overforklaring og gjøre formålet med kunnskapen tydelig",
+      "wants": "et svar som hjelper opplevelsen",
+      "conceals": "at tekniske detaljer kan være interessante når de forklares situert",
+      "speech_style": "konkret, kort og lite imponert av navnelister",
+      "teaches_player": "at nyttig kunnskap møter mottakeren der hen er"
+    },
+    {
+      "id": "arkivorientert_entusiast",
+      "social_function": "gjør kilder, versjoner og dokumentasjon til praktisk metode",
+      "class_position": "erfaren privat entusiast med interesse for filmhistorisk materiale",
+      "status": "uformell metodekompetanse",
+      "power_over_player": "kan utfordre en god historie med spørsmål om proveniens",
+      "wants": "å vite hva som faktisk kan dokumenteres",
+      "conceals": "at også arkiver og kataloger har hull og institusjonelle skjevheter",
+      "speech_style": "rolig, kildeorientert og presis om usikkerhet",
+      "teaches_player": "at manglende dokumentasjon er informasjon, ikke bare irritasjon"
+    },
+    {
+      "id": "formatentusiast",
+      "social_function": "gjør bilde, lyd og fysisk utgave til konkrete kvalitetsforskjeller",
+      "class_position": "publikummer med utstyr og økonomi til flere formatvalg",
+      "status": "teknisk forbrukerkunnskap",
+      "power_over_player": "kan flytte standarden for hva som regnes som god nok visning",
+      "wants": "best mulig presentasjon av verket",
+      "conceals": "hvor mye idealet forutsetter penger, plass og utstyr",
+      "speech_style": "måleorientert, sammenlignende og entusiastisk",
+      "teaches_player": "at teknisk kvalitet er reell, men sosialt situert"
+    },
+    {
+      "id": "produksjonsarbeideren",
+      "social_function": "korrigerer romantiske eller forenklede bilder av hvordan film faktisk blir til",
+      "class_position": "arbeidende fagperson i en av de mindre synlige produksjonsfunksjonene",
+      "status": "situert profesjonell erfaring, ikke generell smakssuverenitet",
+      "power_over_player": "kan gi konkret innsikt i kreditering, arbeidsdeling og produksjonsvilkår",
+      "wants": "at arbeidet beskrives presist og ikke absorberes i én kjent skaper",
+      "conceals": "at egne erfaringer ikke representerer hele bransjen",
+      "speech_style": "praktisk, konkret og lite opptatt av auteurmyter",
+      "teaches_player": "at produksjonskunnskap må knyttes til faktisk arbeidsdeling"
+    },
+    {
+      "id": "tolkningsvennen",
+      "social_function": "viser at en korrekt detalj ikke avslutter meningsuenighet",
+      "class_position": "filminteressert samtalepartner med mindre metadatafokus",
+      "status": "sterk fortolkningsstemme uten detaljprestisje",
+      "power_over_player": "kan holde fast ved en lesning selv etter faktakorrigering",
+      "wants": "å diskutere hva verket gjør og betyr",
+      "conceals": "at hen også kan bruke tolkning for å slippe ubehagelige fakta",
+      "speech_style": "assosiativ, argumenterende og åpen for nyanser",
+      "teaches_player": "at fakta og fortolkning har ulike roller"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "credits_vs_status",
+      "meaning": "forholdet mellom å se flere fagfunksjoner og å bruke krediteringer som statusmarkør",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "version_context_vs_purity",
+      "meaning": "forholdet mellom kunnskap om ulike versjoner og forestillingen om én ren eller sann utgave",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "memory_vs_prestige",
+      "meaning": "forholdet mellom detaljhukommelse, feil og evnen til å korrigere seg uten statusforsvar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "jargon_vs_access",
+      "meaning": "forholdet mellom teknisk presisjon og fagspråk som sosial adgangskontroll",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "metadata_vs_experience",
+      "meaning": "forholdet mellom systematisk registrering og et møte med film som ikke må være perfekt katalogisert",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "collective_authorship_vs_single_genius",
+      "meaning": "forholdet mellom kollektivt produksjonsarbeid og forenklede totalforklaringer om én skaper",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "restoration_vs_objective_truth",
+      "meaning": "forholdet mellom restaureringskunnskap og ideen om at teknisk nyhet automatisk betyr historisk sannhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_hygiene_vs_trivia",
+      "meaning": "forholdet mellom gode produksjonshistorier, kildegrunnlag og fristelsen til å gjøre repetisjon til dokumentasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "format_quality_vs_class_access",
+      "meaning": "forholdet mellom reelle formatforskjeller og økonomi, bolig, utstyr og tilgang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "knowledge_horizon_vs_completion",
+      "meaning": "forholdet mellom voksende kunnskap og umuligheten av å fullføre hele filmhistorien",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "fact_vs_interpretation",
+      "meaning": "forholdet mellom korrekt detaljkunnskap og fortolkninger som fortsatt kan være åpne for uenighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "recommendation_scope_vs_info_dump",
+      "meaning": "forholdet mellom stor kunnskapsmengde og evnen til å svare på hva en konkret person faktisk trenger",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "crew_trace_vs_authority",
+      "meaning": "forholdet mellom å følge produksjonsmønstre over tid og å gjøre slike funn til for tidlige konklusjoner eller uformell myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Krediteringer er kunnskap om arbeid, ikke et poengsystem. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "credits_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#credits_ruller"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Krediteringer er kunnskap om arbeid, ikke et poengsystem. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "credits_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#credits_ruller"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Krediteringer er kunnskap om arbeid, ikke et poengsystem. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "credits_vs_status",
+          "collective_authorship_vs_single_genius",
+          "crew_trace_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#credits_ruller"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Krediteringer er kunnskap om arbeid, ikke et poengsystem. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "credits_vs_status",
+          "collective_authorship_vs_single_genius",
+          "crew_trace_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#credits_ruller"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Director's cut er ikke automatisk fasit. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "version_context_vs_purity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#hvilken_versjon"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Director's cut er ikke automatisk fasit. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "version_context_vs_purity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#hvilken_versjon"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Director's cut er ikke automatisk fasit. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "version_context_vs_purity",
+          "restoration_vs_objective_truth",
+          "format_quality_vs_class_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#hvilken_versjon"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Director's cut er ikke automatisk fasit. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "version_context_vs_purity",
+          "restoration_vs_objective_truth",
+          "format_quality_vs_class_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#hvilken_versjon"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Hukommelse tåler rettelse. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "memory_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#aarstallet_glipper"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Hukommelse tåler rettelse. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "memory_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#aarstallet_glipper"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Hukommelse tåler rettelse. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "memory_vs_prestige",
+          "source_hygiene_vs_trivia",
+          "knowledge_horizon_vs_completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#aarstallet_glipper"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Hukommelse tåler rettelse. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "memory_vs_prestige",
+          "source_hygiene_vs_trivia",
+          "knowledge_horizon_vs_completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#aarstallet_glipper"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Fagspråk kan presisere eller stenge. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "jargon_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#teknisk_ord"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Fagspråk kan presisere eller stenge. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "jargon_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#teknisk_ord"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Fagspråk kan presisere eller stenge. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "jargon_vs_access",
+          "fact_vs_interpretation",
+          "recommendation_scope_vs_info_dump"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#teknisk_ord"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Fagspråk kan presisere eller stenge. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "jargon_vs_access",
+          "fact_vs_interpretation",
+          "recommendation_scope_vs_info_dump"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#teknisk_ord"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Metadata er et kart, ikke selve opplevelsen. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "metadata_vs_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#databasen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Metadata er et kart, ikke selve opplevelsen. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "metadata_vs_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#databasen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Metadata er et kart, ikke selve opplevelsen. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "metadata_vs_experience",
+          "knowledge_horizon_vs_completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#databasen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Metadata er et kart, ikke selve opplevelsen. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "metadata_vs_experience",
+          "knowledge_horizon_vs_completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#databasen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: En film har flere forfattere enn regissøren. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "credits_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#hvem_gjorde_det"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: En film har flere forfattere enn regissøren. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "credits_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#hvem_gjorde_det"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: En film har flere forfattere enn regissøren. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "credits_vs_status",
+          "collective_authorship_vs_single_genius",
+          "crew_trace_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#hvem_gjorde_det"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: En film har flere forfattere enn regissøren. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "credits_vs_status",
+          "collective_authorship_vs_single_genius",
+          "crew_trace_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#hvem_gjorde_det"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Bedre bilde betyr også valg. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "version_context_vs_purity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#restaureringen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Bedre bilde betyr også valg. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "version_context_vs_purity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#restaureringen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Bedre bilde betyr også valg. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "version_context_vs_purity",
+          "collective_authorship_vs_single_genius",
+          "restoration_vs_objective_truth",
+          "format_quality_vs_class_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#restaureringen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Bedre bilde betyr også valg. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "version_context_vs_purity",
+          "collective_authorship_vs_single_genius",
+          "restoration_vs_objective_truth",
+          "format_quality_vs_class_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#restaureringen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Et godt funn trenger en kilde. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "memory_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#kilden_til_trivia"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Et godt funn trenger en kilde. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "memory_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#kilden_til_trivia"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Et godt funn trenger en kilde. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "memory_vs_prestige",
+          "metadata_vs_experience",
+          "source_hygiene_vs_trivia",
+          "fact_vs_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#kilden_til_trivia"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Et godt funn trenger en kilde. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "memory_vs_prestige",
+          "metadata_vs_experience",
+          "source_hygiene_vs_trivia",
+          "fact_vs_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#kilden_til_trivia"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Teknisk kvalitet koster også penger og plass. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "version_context_vs_purity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#formatet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Teknisk kvalitet koster også penger og plass. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "version_context_vs_purity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#formatet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Teknisk kvalitet koster også penger og plass. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "version_context_vs_purity",
+          "restoration_vs_objective_truth",
+          "format_quality_vs_class_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#formatet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Teknisk kvalitet koster også penger og plass. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "version_context_vs_purity",
+          "restoration_vs_objective_truth",
+          "format_quality_vs_class_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#formatet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Kompletthet er et bevegelig mål. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "memory_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#kanonens_hull"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Kompletthet er et bevegelig mål. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "memory_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#kanonens_hull"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Kompletthet er et bevegelig mål. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "memory_vs_prestige",
+          "metadata_vs_experience",
+          "knowledge_horizon_vs_completion",
+          "recommendation_scope_vs_info_dump"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#kanonens_hull"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Kompletthet er et bevegelig mål. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "memory_vs_prestige",
+          "metadata_vs_experience",
+          "knowledge_horizon_vs_completion",
+          "recommendation_scope_vs_info_dump"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#kanonens_hull"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Når korrekt detalj ikke avgjør tolkningen. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "jargon_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#uenighet_om_detaljen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Når korrekt detalj ikke avgjør tolkningen. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "jargon_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#uenighet_om_detaljen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Når korrekt detalj ikke avgjør tolkningen. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "jargon_vs_access",
+          "source_hygiene_vs_trivia",
+          "fact_vs_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#uenighet_om_detaljen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Når korrekt detalj ikke avgjør tolkningen. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "jargon_vs_access",
+          "source_hygiene_vs_trivia",
+          "fact_vs_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#uenighet_om_detaljen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Mer informasjon gir ikke alltid bedre råd. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "jargon_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#anbefalingen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Mer informasjon gir ikke alltid bedre råd. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "jargon_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#anbefalingen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Mer informasjon gir ikke alltid bedre råd. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "jargon_vs_access",
+          "format_quality_vs_class_access",
+          "recommendation_scope_vs_info_dump",
+          "crew_trace_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#anbefalingen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Mer informasjon gir ikke alltid bedre råd. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "jargon_vs_access",
+          "format_quality_vs_class_access",
+          "recommendation_scope_vs_info_dump",
+          "crew_trace_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#anbefalingen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Et navn endrer hva du legger merke til. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "credits_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#bak_kameraet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Et navn endrer hva du legger merke til. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "credits_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#bak_kameraet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Et navn endrer hva du legger merke til. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "credits_vs_status",
+          "metadata_vs_experience",
+          "collective_authorship_vs_single_genius",
+          "restoration_vs_objective_truth",
+          "fact_vs_interpretation",
+          "crew_trace_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#bak_kameraet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Et navn endrer hva du legger merke til. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "credits_vs_status",
+          "metadata_vs_experience",
+          "collective_authorship_vs_single_genius",
+          "restoration_vs_objective_truth",
+          "fact_vs_interpretation",
+          "crew_trace_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#bak_kameraet"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Detaljkunnskap trenger ikke bli hierarki. Morgenen gjør dagens detalj, kilde eller produksjonsspørsmål synlig før konklusjonen er gitt.",
+        "thread_ids": [
+          "credits_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#nerd_uten_rang"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Detaljkunnskap trenger ikke bli hierarki. Midt på dagen møter kunnskapen andre menneskers språk, behov eller uenighet.",
+        "thread_ids": [
+          "credits_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#nerd_uten_rang"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Detaljkunnskap trenger ikke bli hierarki. Ettermiddagen tvinger fram et konkret valg mellom presisjon, status, tilgang eller forbehold.",
+        "thread_ids": [
+          "credits_vs_status",
+          "version_context_vs_purity",
+          "memory_vs_prestige",
+          "jargon_vs_access",
+          "source_hygiene_vs_trivia",
+          "knowledge_horizon_vs_completion",
+          "recommendation_scope_vs_info_dump"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#nerd_uten_rang"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Detaljkunnskap trenger ikke bli hierarki. Kvelden viser hvordan valget påvirker læring, omdømme, relasjoner eller neste undersøkelse.",
+        "thread_ids": [
+          "credits_vs_status",
+          "version_context_vs_purity",
+          "memory_vs_prestige",
+          "jargon_vs_access",
+          "source_hygiene_vs_trivia",
+          "knowledge_horizon_vs_completion",
+          "recommendation_scope_vs_info_dump"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filmnerd.json#nerd_uten_rang"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "credits_vs_status",
+      "relationship": "forholdet mellom å se flere fagfunksjoner og å bruke krediteringer som statusmarkør",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "6/afternoon",
+        "6/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "version_context_vs_purity",
+      "relationship": "forholdet mellom kunnskap om ulike versjoner og forestillingen om én ren eller sann utgave",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "7/afternoon",
+        "7/evening",
+        "9/afternoon",
+        "9/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "memory_vs_prestige",
+      "relationship": "forholdet mellom detaljhukommelse, feil og evnen til å korrigere seg uten statusforsvar",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "8/afternoon",
+        "8/evening",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "jargon_vs_access",
+      "relationship": "forholdet mellom teknisk presisjon og fagspråk som sosial adgangskontroll",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "metadata_vs_experience",
+      "relationship": "forholdet mellom systematisk registrering og et møte med film som ikke må være perfekt katalogisert",
+      "beat_refs": [
+        "5/afternoon",
+        "5/evening",
+        "8/afternoon",
+        "8/evening",
+        "10/afternoon",
+        "10/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "collective_authorship_vs_single_genius",
+      "relationship": "forholdet mellom kollektivt produksjonsarbeid og forenklede totalforklaringer om én skaper",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "restoration_vs_objective_truth",
+      "relationship": "forholdet mellom restaureringskunnskap og ideen om at teknisk nyhet automatisk betyr historisk sannhet",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "7/afternoon",
+        "7/evening",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "source_hygiene_vs_trivia",
+      "relationship": "forholdet mellom gode produksjonshistorier, kildegrunnlag og fristelsen til å gjøre repetisjon til dokumentasjon",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "8/afternoon",
+        "8/evening",
+        "11/afternoon",
+        "11/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "format_quality_vs_class_access",
+      "relationship": "forholdet mellom reelle formatforskjeller og økonomi, bolig, utstyr og tilgang",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "7/afternoon",
+        "7/evening",
+        "9/afternoon",
+        "9/evening",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "knowledge_horizon_vs_completion",
+      "relationship": "forholdet mellom voksende kunnskap og umuligheten av å fullføre hele filmhistorien",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "5/afternoon",
+        "5/evening",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "fact_vs_interpretation",
+      "relationship": "forholdet mellom korrekt detaljkunnskap og fortolkninger som fortsatt kan være åpne for uenighet",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "8/evening",
+        "11/afternoon",
+        "11/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "recommendation_scope_vs_info_dump",
+      "relationship": "forholdet mellom stor kunnskapsmengde og evnen til å svare på hva en konkret person faktisk trenger",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "10/afternoon",
+        "10/evening",
+        "12/afternoon",
+        "12/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "crew_trace_vs_authority",
+      "relationship": "forholdet mellom å følge produksjonsmønstre over tid og å gjøre slike funn til for tidlige konklusjoner eller uformell myndighet",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "6/afternoon",
+        "6/evening",
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "navnene_som_ble_arbeid",
+      "description": "Krediteringer huskes etter hvert som spor etter konkrete arbeidsbidrag, ikke som navnepoeng.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_filmnerd.json#credits_ruller",
+        "data/Civication/narratives/leisure/film_tv_filmnerd.json#hvem_gjorde_det",
+        "data/Civication/narratives/leisure/film_tv_filmnerd.json#bak_kameraet"
+      ]
+    },
+    {
+      "id": "feilen_som_ble_normal",
+      "description": "En feil i årstall eller versjon blir lettere å korrigere uten at kunnskapsidentiteten føles truet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_filmnerd.json#hvilken_versjon",
+        "data/Civication/narratives/leisure/film_tv_filmnerd.json#aarstallet_glipper"
+      ]
+    },
+    {
+      "id": "databasen_som_ble_verktøy",
+      "description": "Notatsystemet brukes til spørsmål spilleren faktisk vil undersøke, ikke til kompletthet som egen verdi.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_filmnerd.json#databasen",
+        "data/Civication/narratives/leisure/film_tv_filmnerd.json#kanonens_hull"
+      ]
+    },
+    {
+      "id": "kilden_som_ble_forbehold",
+      "description": "Usikker produksjonstrivia merkes eksplisitt som usikker i stedet for å bli videreført som bekreftet fakta.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_filmnerd.json#kilden_til_trivia"
+      ]
+    },
+    {
+      "id": "kunnskap_uten_siste_ord",
+      "description": "Andre spør fortsatt spilleren om detaljer, men svarene brukes som bidrag til samtalen snarere enn som mandat til å avgjøre den.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_filmnerd.json#uenighet_om_detaljen",
+        "data/Civication/narratives/leisure/film_tv_filmnerd.json#anbefalingen",
+        "data/Civication/narratives/leisure/film_tv_filmnerd.json#nerd_uten_rang"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "kreditering_blir_crew_spor",
+      "setup_ref": "1/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "versjonsrenhet_blir_kildekontekst",
+      "setup_ref": "2/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "hukommelsesfeil_blir_revisjon",
+      "setup_ref": "3/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "psyche",
+        "reputation"
+      ]
+    },
+    {
+      "id": "metadata_blir_avgrenset_verktøy",
+      "setup_ref": "5/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "trivia_blir_kildehygiene",
+      "setup_ref": "8/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "formatideal_blir_tilgangsforstaelse",
+      "setup_ref": "9/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "economy",
+        "relationship"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#credits_ruller",
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#hvilken_versjon",
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#aarstallet_glipper",
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#teknisk_ord",
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#databasen",
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#hvem_gjorde_det",
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#restaureringen",
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#kilden_til_trivia",
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#formatet",
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#kanonens_hull",
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#uenighet_om_detaljen",
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#anbefalingen",
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#bak_kameraet",
+      "data/Civication/narratives/leisure/film_tv_filmnerd.json#nerd_uten_rang"
+    ]
+  }
+}

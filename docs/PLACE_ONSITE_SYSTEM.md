@@ -15,9 +15,11 @@ I standard Place Sheet ligger de i **venstre hero-kolonne**, direkte under de fi
 `frontImage → Utforsk-rundinger/rektangler → Events / Møtes`
 
 - **PlaceCard → Utforsk → Events** bruker canonical `HGEvents` filtrert på aktivt Place.
-- **PlaceCard → Utforsk → Møtes** samler oppstart og oppfølging:
-  - **Foreslå kunnskapsmøte** → `HG_SpotmeetingUI`.
-  - **Mine møter / Social Meet** → `HG_SocialMeetUI`.
+- **PlaceCard → Utforsk → Møtes** åpner `HG_SpotmeetingUI` direkte på **Folk å møte her**.
+  - Personkortene er opt-in Social Meet-profiler som matcher aktivt Place gjennom eksplisitte kunnskaps-/interessesignaler.
+  - Hvert personkort kan sende et preset-basert møteforslag.
+  - **Mine møter / Social Meet** → `HG_SocialMeetUI` for oppfølging av forslag, avtaler og historikk.
+  - «Folk å møte her» betyr ikke at personene fysisk befinner seg på stedet akkurat nå; History GO bruker ikke live-posisjon/presence.
 - Header-menyens **Møtes / Social Meet** er fortsatt en direkte snarvei til `HG_SocialMeetUI`.
 - Det globale venstre Utforsk-panelet skal ikke ha egne Events-/Møtes-tabs.
 
@@ -30,7 +32,7 @@ Kunnskapsmøte og Social Meet skal **slås sammen på navigasjons-/UX-nivå**, m
 - `HG_SpotmeetingUI` eier opprettelsen av et konkret møteforslag.
 - `HG_SocialMeetUI` eier oppfølging av forslag, avtaler, status og historikk.
 
-Dette bevarer eksisterende state-, backend- og privacy-kontrakter samtidig som spilleren bare trenger å finne én **Møtes**-inngang.
+Dette bevarer eksisterende state-, backend- og privacy-kontrakter samtidig som spilleren bare trenger én **Møtes**-inngang. Mellom-popupen med «Foreslå»/«Mine møter» skal ikke ligge foran personlisten; PlaceCard-Møtes går direkte til kandidatene, mens **Mine møter / Social Meet** ligger som fast oppfølgingshandling i samme sheet.
 
 ## Hva kan fortsatt ligge i PlaceCard/På stedet?
 

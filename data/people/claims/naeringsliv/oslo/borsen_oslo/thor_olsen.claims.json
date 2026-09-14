@@ -27,15 +27,26 @@
       "evidence_level": "direct"
     },
     {
+      "id": "merchant_civic_role",
+      "claim": "Thor Olsen (1786–1868) var kjøpmann og en meget aktiv kommunepolitiker som satt i flere byggekomiteer, blant annet for Børsen.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Thor_Olsens_gate",
+      "source_location": "navneopprinnelse og biografisk omtale",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-14",
+      "evidence_level": "explicit"
+    },
+    {
       "id": "bors_initiative",
-      "claim": "Thor Olsen tok initiativ til at Christiania Børs skulle få en egen bygning.",
+      "claim": "Etter initiativ av kjøpmann Thor Olsen ble det 1826–1828 oppført en egen børsbygning i Grønningen.",
       "status": "verified",
       "source_url": "https://oslobyleksikon.no/side/B%C3%B8rsen",
       "source_location": "avsnittet om byggingen 1826–1828",
       "source_type": "recognized_reference",
       "temporal_status": "historical",
       "verified_at": "2026-09-11",
-      "evidence_level": "direct"
+      "evidence_level": "explicit"
     },
     {
       "id": "image_identity",
@@ -53,10 +64,20 @@
     "name": [
       "canonical_name"
     ],
+    "year": [
+      "bors_initiative"
+    ],
+    "placeId": [
+      "bors_initiative"
+    ],
+    "places[borsen_oslo]": [
+      "bors_initiative"
+    ],
     "desc": [
       "bors_initiative"
     ],
     "popupDesc": [
+      "merchant_civic_role",
       "bors_initiative"
     ],
     "image": [
@@ -82,7 +103,8 @@
       {
         "sentence": 1,
         "claim_ids": [
-          "canonical_name"
+          "canonical_name",
+          "merchant_civic_role"
         ]
       },
       {
@@ -107,10 +129,10 @@
   },
   "completion": {
     "completed_under": "people_profile_v1.0",
-    "claims_verified": "3/3",
+    "claims_verified": "4/4",
     "fact_review": "passed",
     "editorial_review": "passed",
-    "source_verified_at": "2026-09-11",
+    "source_verified_at": "2026-09-14",
     "validator_version": "1.0.0",
     "current_status": "ready_people_v1"
   }

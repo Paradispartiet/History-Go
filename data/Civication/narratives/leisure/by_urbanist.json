@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "by_urbanist_stream",
+  "type": "leisure",
+  "title": "Urbanist",
+  "sociological_theme": "byens_systemer_makt_ressurser_og_dagligliv",
+  "applies_when": {
+    "any_tags": [
+      "by:urbanist"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "byen_som_system",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En samtale på vei hjem",
+      "subject": "Når én endring flytter flere deler av byen",
+      "situation": [
+        "En venn peker på at en husleieøkning, en endret bussrute og en ny dagligvarebutikk diskuteres som tre separate saker.",
+        "Som Urbanist øver du på å se koblinger mellom bolig, transport, handel, arkitektur og politikk uten å redusere alt til én årsak.",
+        "Systemblikket gjør sammenhenger synlige, men gir deg ikke planfaglig autoritet eller rett til å tale på vegne av alle som berøres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hvilke deler som faktisk henger sammen, og marker hva du fortsatt ikke vet.",
+          "effect": 1,
+          "tags": [
+            "byen_som_system_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du bruker systemblikk som en hypotese som kan korrigeres."
+        },
+        {
+          "id": "B",
+          "label": "Forklar hele endringen med én favorittårsak og avfei resten som detaljer.",
+          "effect": -1,
+          "tags": [
+            "byen_som_system_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du gjør kompleksitet til ideologi og mister motstridende mekanismer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_systems_connection"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "boligene_og_regnestykket",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et boligprosjekt",
+      "subject": "Flere boliger sier ikke alene hvem som får bo der",
+      "situation": [
+        "Et foreslått boligprosjekt lover flere boliger, mens naboer diskuterer priser, leie, størrelse og hvem som faktisk kan bli boende.",
+        "Boligtilbud, finansiering, tomteverdi, eierform og husholdningsøkonomi virker sammen, men ikke alltid i samme retning.",
+        "Urbanistrollen kan stille bedre spørsmål om fordelingsvirkninger uten å late som du kan fastsette priser, regulering eller prosjektets utfall."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom antall boliger, pris, eierform og hvem som bærer kostnadene.",
+          "effect": 1,
+          "tags": [
+            "boligene_og_regnestykket_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du gjør boligspørsmålet mer presist uten å love en enkel løsning."
+        },
+        {
+          "id": "B",
+          "label": "Bruk ett tall for nye boliger som bevis på at alle boligproblemer blir løst.",
+          "effect": -1,
+          "tags": [
+            "boligene_og_regnestykket_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du forveksler volum med fordeling og tilgjengelighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_housing_distribution"
+      ],
+      "risk_links": [
+        "economy_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bussfeltet_og_parkeringsplassen",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En handelsgate",
+      "subject": "Gateareal er et fordelingsspørsmål",
+      "situation": [
+        "En gate skal omfordeles mellom buss, sykkel, fortau, varelevering og parkering, og alle parter beskriver sin bruk som nødvendig.",
+        "Transportvalg handler ikke bare om fart, men om plass, tilgjengelighet, handel, sikkerhet og hvem som kan bruke gaten på ulike tider.",
+        "Du kan sammenligne konsekvenser og berørte grupper, men du har ingen myndighet til å prioritere gatearealet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør arealkampen eksplisitt og spør hvilke behov som faktisk konkurrerer på ulike tider.",
+          "effect": 1,
+          "tags": [
+            "bussfeltet_og_parkeringsplassen_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du ser mobilitet som fordeling av knapp plass, ikke som én teknisk fasit."
+        },
+        {
+          "id": "B",
+          "label": "Erklær din foretrukne transportform som moralsk eller teknisk overlegent svar i alle situasjoner.",
+          "effect": -1,
+          "tags": [
+            "bussfeltet_og_parkeringsplassen_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du skjuler avveiningene bak identitet og sikkerhet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_mobility_space"
+      ],
+      "risk_links": [
+        "access_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "butikken_som_forsvinner",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et tomt butikklokale",
+      "subject": "Når lokalt handelsliv endres",
+      "situation": [
+        "En kjent butikk stenger, og forklaringene spenner fra netthandel og husleie til kundestrømmer, kjededrift og endret befolkningssammensetning.",
+        "Et tomt lokale kan være resultat av flere markeder og beslutninger samtidig, ikke bare av at et nabolag har blitt bedre eller dårligere.",
+        "Urbanisten kan følge koblingene mellom handel og byliv uten å gjøre butikkdriverens økonomi til et symbol for hele området."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold flere forklaringer åpne og skill dokumenterte forhold fra antakelser.",
+          "effect": 1,
+          "tags": [
+            "butikken_som_forsvinner_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du lar handel være både økonomi, daglig funksjon og sosialt sted uten å romantisere."
+        },
+        {
+          "id": "B",
+          "label": "Velg den forklaringen som passer fortellingen din om området og bruk butikken som bevis.",
+          "effect": -1,
+          "tags": [
+            "butikken_som_forsvinner_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du gjør én virksomhets skjebne til total diagnose."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_commerce_pressure"
+      ],
+      "risk_links": [
+        "economy_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tetthet_og_dagligliv",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et fortettingsforslag",
+      "subject": "Tetthet fordeler både gevinster og belastninger",
+      "situation": [
+        "Et nytt prosjekt gir flere boliger og kortere avstand til tilbud, men endrer lys, uteareal, trafikk og press på lokale funksjoner.",
+        "Diskusjonen blir fort til for eller mot tetthet, selv om virkningene varierer mellom husholdninger, gateplan og hele byen.",
+        "Systemblikket skal holde både kapasitet og dagliglivets kvalitet i samme vurdering uten å late som én målestokk avgjør alt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hvilke gevinster og belastninger som oppstår på ulike skalaer og for ulike grupper.",
+          "effect": 1,
+          "tags": [
+            "tetthet_og_dagligliv_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du gjør avveiningen synlig uten å gjøre den binær."
+        },
+        {
+          "id": "B",
+          "label": "Reduser saken til at tettere alltid er bedre eller alltid er verre.",
+          "effect": -1,
+          "tags": [
+            "tetthet_og_dagligliv_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du bytter vurdering mot slagord."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_density_distribution"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "access_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "horing_uten_folkemandat",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et åpent møte",
+      "subject": "Å delta er ikke det samme som å representere",
+      "situation": [
+        "På et åpent møte får du ordet etter å ha fulgt saken lenge, mens andre berørte grupper knapt er til stede.",
+        "Offentlig deltakelse kan gi innsikt og påvirkning, men oppmøte er skjevt fordelt og én tydelig stemme er ikke et demokratisk utvalg.",
+        "Urbanistidentiteten gir deg språk for systemer og motsetninger, men ikke mandat til å si hva 'folk flest' mener."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakk fra eget ståsted, vis hvilke interesser du ser, og etterlys stemmer som mangler.",
+          "effect": 1,
+          "tags": [
+            "horing_uten_folkemandat_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du bruker deltakelse uten å gjøre tilstedeværelse til representativitet."
+        },
+        {
+          "id": "B",
+          "label": "Presenter din vurdering som den samlede bydelens syn fordi du har satt deg inn i saken.",
+          "effect": -1,
+          "tags": [
+            "horing_uten_folkemandat_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du gjør kunnskap og oppmøte til et mandat du ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_participation_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "plankartet_og_virkeligheten",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et plandokument",
+      "subject": "Planen er en institusjonell modell av en framtid",
+      "situation": [
+        "Et plandokument viser formål, høyder, forbindelser og illustrasjoner som gjør framtiden tilsynelatende konkret.",
+        "Planer setter rammer og rettigheter, men bygging, økonomi, drift, dispensasjoner og senere valg avgjør hvordan stedet faktisk blir.",
+        "Du kan lese dokumentet som en viktig kilde uten å behandle illustrasjonen som et løfte eller en ferdig by."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom vedtatte rammer, illustrasjoner, usikkerhet og det som fortsatt krever senere beslutninger.",
+          "effect": 1,
+          "tags": [
+            "plankartet_og_virkeligheten_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du leser planen som styringsverktøy uten å forveksle modell og utfall."
+        },
+        {
+          "id": "B",
+          "label": "Bruk illustrasjonen som bevis på nøyaktig hvordan området kommer til å fungere.",
+          "effect": -1,
+          "tags": [
+            "plankartet_og_virkeligheten_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du gjør en styringsmodell til framtidsfasit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_plan_vs_outcome"
+      ],
+      "risk_links": [
+        "bureaucratic_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "eierskap_og_flyttepress",
+      "message_type": "relationship",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En leietaker",
+      "subject": "Byutvikling oppleves ulikt av eiere og leiere",
+      "situation": [
+        "En leietaker liker nye tilbud i området, men er samtidig usikker på om neste husleie gjør det mulig å bli boende.",
+        "Verdistigning kan være trygghet for noen og flyttepress for andre, avhengig av eierskap, kontrakt, inntekt og gjeld.",
+        "Urbanisten må kunne se begge posisjonene uten å redusere mennesker til vinnere og tapere i en ferdig teori."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hvordan eierskap og kontrakt endrer konsekvensen for den enkelte før du generaliserer.",
+          "effect": 1,
+          "tags": [
+            "eierskap_og_flyttepress_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du kobler byendring til klasseposisjon uten å gjøre personen til statistikk."
+        },
+        {
+          "id": "B",
+          "label": "Fortell leietakeren at områdets samlede verdistigning viser at utviklingen er vellykket.",
+          "effect": -1,
+          "tags": [
+            "eierskap_og_flyttepress_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du bruker aggregert verdi til å avvise konkret usikkerhet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_ownership_displacement"
+      ],
+      "risk_links": [
+        "economy_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fasaden_og_bakrommet",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et nytt bybygg",
+      "subject": "Arkitektur fortsetter etter åpningen",
+      "situation": [
+        "Et nytt bygg får mye oppmerksomhet for fasade og form, mens brukere etter noen måneder snakker om drift, renhold, innganger, støy og reparasjoner.",
+        "Design påvirker daglig bruk, men kvalitet produseres også av vedlikehold, bemanning, budsjett og hvordan bygget faktisk brukes.",
+        "Urbanistblikket kan koble estetikk til drift uten å late som du er arkitekt, eiendomsforvalter eller teknisk sakkyndig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se form og drift sammen, og skill observerte brukserfaringer fra tekniske konklusjoner.",
+          "effect": 1,
+          "tags": [
+            "fasaden_og_bakrommet_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du gjør arkitektur til et levd system uten å overta profesjonenes mandat."
+        },
+        {
+          "id": "B",
+          "label": "Døm byggets langsiktige kvalitet bare fra fasaden eller førsteinntrykket.",
+          "effect": -1,
+          "tags": [
+            "fasaden_og_bakrommet_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du gjør synlig design til hele byggets virkelighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_design_maintenance"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "leveringene_for_solen_staar_opp",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En tidlig morgen",
+      "subject": "Bylivet bæres av logistikk som sjelden får oppmerksomhet",
+      "situation": [
+        "Før butikkene åpner fylles gaten av varelevering, renovasjon, håndverkere og ansatte som gjør dagens synlige byliv mulig.",
+        "Logistikk krever plass og tid og kan kollidere med søvn, gange, sykkel, servering og opphold.",
+        "Urbanisten kan se de skjulte avhengighetene uten å anta at én driftsløsning passer alle gater."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hvilke funksjoner som må skje, når de skjer og hvem som bærer ulempene.",
+          "effect": 1,
+          "tags": [
+            "leveringene_for_solen_staar_opp_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du gjør usynlig drift til en del av systemlesningen."
+        },
+        {
+          "id": "B",
+          "label": "Behandle all vare- og driftsaktivitet som støy som bare bør fjernes fra gatebildet.",
+          "effect": -1,
+          "tags": [
+            "leveringene_for_solen_staar_opp_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du ønsker bort funksjoner uten å følge hvor behovet flyttes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_logistics_visibility"
+      ],
+      "risk_links": [
+        "economy_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "treet_sykkelfeltet_og_plassen",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et gateprosjekt",
+      "subject": "Klimatilpasning konkurrerer også om plass",
+      "situation": [
+        "Et gateprosjekt skal håndtere overvann og varme med trær og blågrønne tiltak samtidig som det diskuteres sykkelfelt, varelevering, fortau og parkering.",
+        "Klimatilpasning er nødvendig, men tiltak får lokale fordelingsvirkninger og kan ikke behandles som plassløse tillegg.",
+        "Systemblikket skal vise koblinger mellom klima, mobilitet og daglig bruk uten å gjøre deg til klima- eller transportmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vis hvilke funksjoner som konkurrerer om samme areal, og hvilke gevinster som kommer på ulike tidsskalaer.",
+          "effect": 1,
+          "tags": [
+            "treet_sykkelfeltet_og_plassen_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du gjør klimatiltaket konkret uten å late som avveiningen forsvinner."
+        },
+        {
+          "id": "B",
+          "label": "Bruk klimaargumentet som grunn til å slutte å undersøke andre konsekvenser.",
+          "effect": -1,
+          "tags": [
+            "treet_sykkelfeltet_og_plassen_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du gjør et viktig mål til fritak fra fordelingsvurdering."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_climate_competing_use"
+      ],
+      "risk_links": [
+        "access_risk",
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tallene_som_ikke_er_nabolaget",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et datasett",
+      "subject": "Gjennomsnitt kan skjule hvordan byen fordeles",
+      "situation": [
+        "Et datasett viser bedre gjennomsnittstall for området samtidig som enkelte husholdninger og gater beskriver en helt annen utvikling.",
+        "Statistikk kan avsløre mønstre som enkeltopplevelser ikke ser, men valg av område, periode og måltall bestemmer også hva som blir synlig.",
+        "Urbanisten skal bruke tall og levd erfaring til å korrigere hverandre, ikke rangere dem som sannhet og anekdote."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekk definisjon, skala og periode, og bruk avvikende erfaringer til å stille bedre spørsmål til tallene.",
+          "effect": 1,
+          "tags": [
+            "tallene_som_ikke_er_nabolaget_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du bruker data som måleinstrument med kjente blindsoner."
+        },
+        {
+          "id": "B",
+          "label": "Avfei erfaringer som ikke passer gjennomsnittet fordi datasettet er større.",
+          "effect": -1,
+          "tags": [
+            "tallene_som_ikke_er_nabolaget_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du gjør statistisk styrke til sosial fullstendighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_data_lived"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_samme_planen_i_to_skalaer",
+      "message_type": "relationship",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "To naboer",
+      "subject": "Samme prosjekt kan være gevinst for byen og kostnad i dagliglivet",
+      "situation": [
+        "To naboer diskuterer et prosjekt der den ene vektlegger flere boliger og bedre kollektivgrunnlag, mens den andre mister lys og frykter høyere boutgifter.",
+        "Begge kan beskrive reelle virkninger fordi bysystemer fordeler kostnader og gevinster ulikt mellom individ, kvartal og by.",
+        "Urbanistrollen blir sterkere når den kan holde flere skalaer åpne samtidig uten å gjøre uenighet til uvitenhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill skalaene og be begge beskrive hvilken virkning de faktisk snakker om.",
+          "effect": 1,
+          "tags": [
+            "den_samme_planen_i_to_skalaer_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du gjør motsetningen mer presis uten å late som interessene blir like."
+        },
+        {
+          "id": "B",
+          "label": "Forklar at den ene må ta feil fordi prosjektet samlet sett enten er bra eller dårlig.",
+          "effect": -1,
+          "tags": [
+            "den_samme_planen_i_to_skalaer_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du gjør aggregert vurdering til dom over konkrete erfaringer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_scale_conflict"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "systemkartet_med_blinde_flekker",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "To uker senere",
+      "subject": "Et systemkart er nyttig når det fortsatt kan endres",
+      "situation": [
+        "Etter to uker ser du flere forbindelser mellom bolig, transport, handel, arkitektur, drift, eierskap, klima og politikk.",
+        "Du har også sett at hver forklaring har blindsoner: data mangler erfaringer, erfaringer mangler skala, planer mangler framtidig drift, og offentlige diskusjoner mangler ofte dem som ikke møter opp.",
+        "Urbanist betyr derfor å stille sammenhengende spørsmål og tåle motbevis, ikke å opptre som planlegger, arkitekt, økonom, politiker eller talsperson uten mandat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold systemkartet som en reviderbar modell og merk tydelig hvor kunnskapen eller mandatet stopper.",
+          "effect": 1,
+          "tags": [
+            "systemkartet_med_blinde_flekker_careful",
+            "urbanist_systems_reading"
+          ],
+          "feedback": "Du gjør helhetsblikket mer troverdig ved å bygge inn usikkerhet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk antall sammenhenger du har sett som bevis på at du nå forstår byen bedre enn fagfolk og berørte.",
+          "effect": -1,
+          "tags": [
+            "systemkartet_med_blinde_flekker_overreach",
+            "urbanist_totalizing"
+          ],
+          "feedback": "Du gjør systemspråk til uformell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "urbanist_revisable_system_map"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "bureaucratic_risk"
+      ],
+      "links": []
+    }
+  ]
+}

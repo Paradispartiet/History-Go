@@ -8,13 +8,16 @@ const json = path => JSON.parse(read(path));
 
 const index = read("index.html");
 const app = read("js/app.js");
+const config = read("js/config.js");
 const source = read("js/ui/leftPanelMode.ts");
 const bundle = read("dist/web/leftPanelMode.js");
 const onsite = read("js/ui/place-onsite-surface.js");
 const nearbyCss = read("css/nearby.css");
 const headerMenu = read("js/ui/header-menu.js");
 const socialUi = read("js/social/HGSocialMeetUI.js");
+const spotmeetingUi = read("js/social/HGSpotmeetingUI.js");
 const contract = json("data/categories/place_onsite_contract.json");
+const placeStatusMigration = read("supabase/migrations/009_social_meet_place_status.sql");
 
 test("Events og Møtes vises ikke som globale Utforsk-tabs", () => {
   assert.doesNotMatch(index, /data-leftmode="events"/);
@@ -28,16 +31,27 @@ test("Events og Møtes vises ikke som globale Utforsk-tabs", () => {
 
 test("index laster de faktiske Events-, Social Meet- og PlaceCard-runtimene", () => {
   assert.match(app, /loadHGSocialMeetUI[\s\S]*js\/social\/HGSocialMeetUI\.js\?v=20260912-live-surfaces2/);
+  assert.match(app, /loadHGSocialMeetSupabaseClient[\s\S]*HGSocialMeetSupabaseClient\.js\?v=20260913-social-ready1/);
+  assert.match(app, /loadHGSocialMeetAdapter[\s\S]*HGSocialMeetAdapter\.js\?v=20260913-place-status1/);
+  assert.match(app, /loadHGSocialMeetProfileBridge[\s\S]*HGSocialMeetProfileBridge\.js\?v=20260913-place-status1/);
+  assert.match(app, /loadHGSpotmeetingUI[\s\S]*js\/social\/HGSpotmeetingUI\.js\?v=20260913-place-status1/);
   assert.match(app, /loadEventsRuntime[\s\S]*js\/events\/events_loader\.js\?v=20260912-live-surfaces2/);
-  assert.match(app, /loadPlaceOnsiteSurface[\s\S]*js\/ui\/place-onsite-surface\.js\?v=20260912-live-surfaces2/);
+  assert.match(app, /loadPlaceOnsiteSurface[\s\S]*js\/ui\/place-onsite-surface\.js\?v=20260913-place-status1/);
   assert.match(app, /loadPlaceCard[\s\S]*js\/ui\/place-card\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /dist\/web\/leftPanelMode\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /dist\/web\/left-panel\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /js\/ui\/place-card-status-surface\.js\?v=20260912-onsite-under-explore1/);
-  assert.match(index, /js\/config\.js\?v=20260912-onsite-under-explore1/);
+  assert.match(index, /js\/config\.js\?v=20260913-social-fastapi-prod1/);
   assert.match(index, /css\/place-onsite-surface\.css\?v=20260912-live-surfaces2/);
   assert.match(index, /js\/ui\/header-menu\.js\?v=20260912-onsite-under-explore1/);
-  assert.match(index, /js\/app\.js\?v=20260912-onsite-under-explore1/);
+  assert.match(index, /js\/app\.js\?v=20260913-place-status1/);
+});
+
+test("produksjonsfrontend bruker canonical FastAPI-backend og localhost forblir lokal", () => {
+  assert.match(config, /window\.location\?\.hostname !== "paradispartiet\.github\.io"/);
+  assert.match(config, /window\.HG_SOCIAL_MEET_BACKEND = "fastapi"/);
+  assert.match(config, /baseUrl:\s*"https:\/\/history-go-backend\.onrender\.com"/);
+  assert.match(config, /enabled:\s*true/);
 });
 
 test("header-Møtes åpner Social Meet direkte og er ikke avhengig av Utforsk", () => {
@@ -67,14 +81,32 @@ test("header-Møtes åpner Social Meet direkte og er ikke avhengig av Utforsk", 
   dom.window.close();
 });
 
-test("PlaceCard-Møtes samler oppstart og oppfølging uten å slå sammen domenemotorene", () => {
-  assert.match(onsite, /Foreslå kunnskapsmøte/);
-  assert.match(onsite, /Mine møter \/ Social Meet/);
-  assert.match(onsite, /HG_SpotmeetingUI/);
-  assert.match(onsite, /HG_SocialMeetUI/);
+test("PlaceCard-Møtes går direkte til Folk å møte her og beholder Social Meet som oppfølging", () => {
+  assert.match(onsite, /if \(action === "meet"\) return openKnowledgeMeet\(placeId\)/);
+  assert.match(onsite, /HG_SpotmeetingUI\?\.open/);
   assert.match(onsite, /sourceSurface:\s*"placeCardOnSite"/);
-  assert.match(onsite, /data-hg-meet-hub-action="propose"/);
-  assert.match(onsite, /data-hg-meet-hub-action="manage"/);
+  assert.doesNotMatch(onsite, /data-hg-meet-hub-action/);
+
+  assert.match(onsite, /preferredAction:\s*"here"/);
+  assert.match(spotmeetingUi, /Folk her nå/);
+  assert.match(spotmeetingUi, /Folk å møte/);
+  assert.match(spotmeetingUi, /Vis meg her i 60 min/);
+  assert.match(spotmeetingUi, /place_status/);
+  assert.match(spotmeetingUi, /selvoppgitt/i);
+  assert.match(spotmeetingUi, /Mine møter \/ Social Meet/);
+  assert.match(spotmeetingUi, /clearPlaceStatus/);
+  assert.match(spotmeetingUi, /discoverCandidates/);
+  assert.match(spotmeetingUi, /data-hg-spotmeeting-send/);
+});
+
+test("place-status er midlertidig og endrer ikke public profile freshness", () => {
+  assert.match(placeStatusMigration, /current_place_visible_until/);
+  assert.match(placeStatusMigration, /current_place_consent_version/);
+  assert.match(placeStatusMigration, /social_meet_place_status/);
+  assert.match(placeStatusMigration, /drop trigger if exists set_hg_profiles_updated_at/);
+  const trigger = placeStatusMigration.match(/create trigger set_hg_profiles_updated_at[\s\S]*?execute function public\.set_updated_at\(\);/)?.[0] || "";
+  assert(trigger, "migration recreates hg_profiles freshness trigger");
+  assert.doesNotMatch(trigger, /current_place_id|current_place_visible_until|current_place_consent_version/);
 });
 
 test("Events rendres fra canonical HGEvents i PlaceCard", () => {
@@ -98,10 +130,9 @@ test("PlaceCard har canonicale snarveier til Events og samlet Møtes", () => {
   assert.equal(contract.actions.events.label, "Events");
   assert.equal(contract.actions.meet.label, "Møtes");
   assert.match(onsite, /CORE_SHORTCUTS = \["events", "meet"\]/);
-  assert.match(onsite, /data-hg-meet-hub-action="propose"/);
-  assert.match(onsite, /data-hg-meet-hub-action="manage"/);
-  assert.match(onsite, /HG_SocialMeetUI\?\.open/);
+  assert.doesNotMatch(onsite, /data-hg-meet-hub-action/);
   assert.match(onsite, /HG_SpotmeetingUI\?\.open/);
+  assert.match(spotmeetingUi, /Mine møter \/ Social Meet/);
 
   // Social Meet skal fortsatt ikke injisere en separat automatisk statusflate i PlaceCard.
   assert.doesNotMatch(socialUi, /renderPlaceSummary|insertAdjacentHTML\(['"]beforeend['"],\s*html\)/);

@@ -1,0 +1,1237 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "film_tv_kinogjenger",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "film_tv",
+    "id": "kinogjenger",
+    "label": "Kinogjenger"
+  },
+  "title": "Kinogjenger",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å gjøre kino til en gjentakende offentlig fritidspraksis uten å gjøre billettforbruk, salenormer, premierehype eller antall besøk til sosial rang",
+    "description": "Kinogjenger-verdenen handler om billettøkonomi, setevalg, faktisk starttid, mobil- og lydnormer, snacks, tilgjengelighet, premierehype, gruppekoordinering, utsolgte visninger, sen hjemreise, medlemskap, retten til å gå og samtalen etterpå. Den er mer sted- og visningsorientert enn Filmfantast, mindre kunnskapsorientert enn Filmnerd, uten Filmklubbmenneskets kuraterte fellesskap og uten Festivalgjengerens intensive programreise. Den gir ikke Kjenner- eller Connaisseur-status, kritikerrolle, kinodrift eller profesjonell myndighet. Ingen ny runtime opprettes."
+  },
+  "theme_ids": [
+    "consumption",
+    "class_power",
+    "shame_reputation",
+    "public_attention",
+    "care_vs_efficiency",
+    "local_knowledge_vs_system",
+    "social_mask",
+    "precarity",
+    "body_discipline",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "ordinære kinovisninger der fremmede deler mørke, lyd, seter og uskrevne normer",
+    "foajeer, køer og salkart der pris, tilgjengelighet og praktisk koordinering blir synlig",
+    "gruppechatter og vennegjenger der tid, seter og forventninger må forhandles",
+    "kinoapper og medlemsordninger som gjør vanen målbar gjennom poeng, historikk og fordeler",
+    "senvisninger der transport, trygghet og ulik økonomi fortsetter etter rulleteksten",
+    "samtaler utenfor salen der spoilergrenser, hype og uenighet møter ulike publikumsforventninger"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "kinovennen",
+      "social_function": "fast følge som deler vanen, men ikke alltid smak eller tempo",
+      "class_position": "hverdagslig fritidsdeltaker med varierende økonomi",
+      "status": "peer",
+      "power_over_player": "kan påvirke planer og stemning, men har ingen formell myndighet",
+      "wants": "gode felles kvelder uten at kino blir en prestasjon",
+      "conceals": "at egen entusiasme noen ganger gjør det vanskelig å si nei",
+      "speech_style": "direkte, varm og konkret",
+      "teaches_player": "at felles kino krever koordinering og rom for ulik respons"
+    },
+    {
+      "id": "gruppeplanleggeren",
+      "social_function": "venn som ofte tar ansvar for tidspunkt, booking og seter",
+      "class_position": "uformell organisator i vennegjengen",
+      "status": "peer",
+      "power_over_player": "kontrollerer ofte praktisk informasjon, ikke andres valg",
+      "wants": "at flest mulig faktisk kommer med",
+      "conceals": "at effektivitet kan gli over i kontroll",
+      "speech_style": "rask, logistisk og løsningsorientert",
+      "teaches_player": "at initiativ ikke er det samme som myndighet"
+    },
+    {
+      "id": "kinoverten",
+      "social_function": "ansatt som håndterer billetter, sal og konkrete husregler",
+      "class_position": "servicearbeider i kinoens drift",
+      "status": "institutional_service",
+      "power_over_player": "kan håndheve kinoens regler og praktiske adgang, men har ingen kulturell fasit",
+      "wants": "en trygg og fungerende visning for publikum",
+      "conceals": "hvor mye konfliktarbeid som følger med små normbrudd",
+      "speech_style": "kort, profesjonell og situasjonsnær",
+      "teaches_player": "forskjellen mellom legitim institusjonell regelhåndtering og publikums selvutnevnte politirolle"
+    },
+    {
+      "id": "budsjettgjesten",
+      "social_function": "fast kinointeressert person som velger tider og format etter pris",
+      "class_position": "publikummer med stramt handlingsrom",
+      "status": "peer",
+      "power_over_player": "ingen formell makt, men synliggjør økonomiske forskjeller i gruppen",
+      "wants": "å delta uten å måtte skjule økonomiske grenser",
+      "conceals": "at invitasjoner kan føles som utgifter som må forsvares",
+      "speech_style": "nøktern, humoristisk og prisbevisst",
+      "teaches_player": "at frekvens og premiumvalg ikke måler hvor ekte kinointeressen er"
+    },
+    {
+      "id": "tilgjengelighetsgjesten",
+      "social_function": "publikummer som aktivt leser informasjon om teksting, adkomst eller andre tilgjengelighetstiltak",
+      "class_position": "publikummer som møter ekstra friksjon i standardiserte kinoløp",
+      "status": "peer",
+      "power_over_player": "kan beskrive egne behov, men skal ikke gjøres til representant for alle",
+      "wants": "forutsigbar informasjon og reelle valgmuligheter",
+      "conceals": "hvor slitsomt det er å måtte kontrollere informasjon andre tar for gitt",
+      "speech_style": "presis, rolig og erfaringsbasert",
+      "teaches_player": "å spørre framfor å anta og å behandle tilgang som del av arrangementet"
+    },
+    {
+      "id": "tilfeldig_nabo",
+      "social_function": "ukjent publikummer i samme rad som gjør salens gjensidige avhengighet konkret",
+      "class_position": "anonym deltaker i offentlig fritidsrom",
+      "status": "stranger",
+      "power_over_player": "kan påvirke opplevelsen gjennom nærhet og atferd, men eier ikke rommet",
+      "wants": "å se filmen på sin måte uten unødig konflikt",
+      "conceals": "motiver og behov spilleren ikke kjenner",
+      "speech_style": "kort, situasjonsavhengig og uforutsigbar",
+      "teaches_player": "å sette grenser for handling uten å dikte opp hele mennesket bak handlingen"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "budget_vs_frequency",
+      "meaning": "forholdet mellom billettpris, kinofrekvens og fristelsen til å gjøre forbruk til identitetsbevis",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "seat_preference_vs_shared_space",
+      "meaning": "forholdet mellom egne sete-ritualer og andre publikummeres behov i et delt rom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "schedule_vs_actual_start",
+      "meaning": "forholdet mellom oppgitt starttid, reklame og erfaring som usikker lokalkunnskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "etiquette_vs_policing",
+      "meaning": "forholdet mellom legitime salenormer og fristelsen til å opptre som uformell ordensmakt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "disturbance_vs_conflict",
+      "meaning": "forholdet mellom reell forstyrrelse, korte grenser og sosial eskalering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "ritual_vs_cost",
+      "meaning": "forholdet mellom snacks og andre kinoritualer, pris og ideen om at forbruk viser tilhørighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "accessibility_vs_assumption",
+      "meaning": "forholdet mellom konkret tilgjengelighetsinformasjon og antakelser om andres behov",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "hype_vs_own_response",
+      "meaning": "forholdet mellom premierehype, kollektiv forventning og egen respons",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "group_plan_vs_autonomy",
+      "meaning": "forholdet mellom praktisk gruppekoordinering og retten til egne grenser og preferanser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "scarcity_vs_fomo",
+      "meaning": "forholdet mellom utsolgte visninger, knapphet og forestillingen om at det sjeldne automatisk er mer verdifullt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "late_show_vs_transport",
+      "meaning": "forholdet mellom senvisningens fristelse og ulik tilgang til trygg og rimelig hjemreise",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "loyalty_vs_consumption",
+      "meaning": "forholdet mellom medlemsfordeler, gamifisert lojalitet og unødvendig forbruk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sunk_cost_vs_permission_to_leave",
+      "meaning": "forholdet mellom betalt billett, investert tid og retten til å avslutte en dårlig eller belastende visning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "postfilm_talk_vs_spoiler_boundaries",
+      "meaning": "forholdet mellom etterprat, spoilergrenser, uenighet og vane som mulig statusmarkør",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Kinovanen møter faktisk økonomi. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "budget_vs_frequency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#billetten_foer_morket"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Kinovanen møter faktisk økonomi. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "budget_vs_frequency",
+          "postfilm_talk_vs_spoiler_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#billetten_foer_morket"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Kinovanen møter faktisk økonomi. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "budget_vs_frequency",
+          "seat_preference_vs_shared_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#billetten_foer_morket"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Kinovanen møter faktisk økonomi. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "budget_vs_frequency",
+          "postfilm_talk_vs_spoiler_boundaries",
+          "seat_preference_vs_shared_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#billetten_foer_morket"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Favorittsetet finnes i et delt rom. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "seat_preference_vs_shared_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#setet_i_salen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Favorittsetet finnes i et delt rom. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "seat_preference_vs_shared_space",
+          "budget_vs_frequency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#setet_i_salen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Favorittsetet finnes i et delt rom. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "seat_preference_vs_shared_space",
+          "schedule_vs_actual_start"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#setet_i_salen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Favorittsetet finnes i et delt rom. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "seat_preference_vs_shared_space",
+          "budget_vs_frequency",
+          "schedule_vs_actual_start"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#setet_i_salen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Oppgitt tid er ikke alltid første bilde. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "schedule_vs_actual_start"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#reklamen_og_starttiden"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Oppgitt tid er ikke alltid første bilde. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "schedule_vs_actual_start",
+          "seat_preference_vs_shared_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#reklamen_og_starttiden"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Oppgitt tid er ikke alltid første bilde. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "schedule_vs_actual_start",
+          "etiquette_vs_policing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#reklamen_og_starttiden"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Oppgitt tid er ikke alltid første bilde. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "schedule_vs_actual_start",
+          "seat_preference_vs_shared_space",
+          "etiquette_vs_policing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#reklamen_og_starttiden"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: En norm er ikke en polititittel. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "etiquette_vs_policing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#lyset_fra_telefonen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: En norm er ikke en polititittel. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "etiquette_vs_policing",
+          "schedule_vs_actual_start"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#lyset_fra_telefonen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: En norm er ikke en polititittel. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "etiquette_vs_policing",
+          "disturbance_vs_conflict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#lyset_fra_telefonen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: En norm er ikke en polititittel. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "etiquette_vs_policing",
+          "schedule_vs_actual_start",
+          "disturbance_vs_conflict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#lyset_fra_telefonen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Forstyrrelse kan håndteres uten sosial dom. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "disturbance_vs_conflict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#lyden_fra_raden"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Forstyrrelse kan håndteres uten sosial dom. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "disturbance_vs_conflict",
+          "etiquette_vs_policing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#lyden_fra_raden"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Forstyrrelse kan håndteres uten sosial dom. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "disturbance_vs_conflict",
+          "ritual_vs_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#lyden_fra_raden"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Forstyrrelse kan håndteres uten sosial dom. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "disturbance_vs_conflict",
+          "etiquette_vs_policing",
+          "ritual_vs_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#lyden_fra_raden"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Snacks er ritual, ikke opptaksprøve. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "ritual_vs_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#snacksritualet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Snacks er ritual, ikke opptaksprøve. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "ritual_vs_cost",
+          "disturbance_vs_conflict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#snacksritualet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Snacks er ritual, ikke opptaksprøve. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "ritual_vs_cost",
+          "accessibility_vs_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#snacksritualet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Snacks er ritual, ikke opptaksprøve. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "ritual_vs_cost",
+          "disturbance_vs_conflict",
+          "accessibility_vs_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#snacksritualet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Tilgjengelighet er del av visningen. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "accessibility_vs_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#tilgjengelig_visning"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Tilgjengelighet er del av visningen. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "accessibility_vs_assumption",
+          "ritual_vs_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#tilgjengelig_visning"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Tilgjengelighet er del av visningen. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "accessibility_vs_assumption",
+          "hype_vs_own_response"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#tilgjengelig_visning"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Tilgjengelighet er del av visningen. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "accessibility_vs_assumption",
+          "ritual_vs_cost",
+          "hype_vs_own_response"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#tilgjengelig_visning"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Hype trenger ikke bli egen smak. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "hype_vs_own_response"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#premieren_alle_skal_se"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Hype trenger ikke bli egen smak. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "hype_vs_own_response",
+          "accessibility_vs_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#premieren_alle_skal_se"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Hype trenger ikke bli egen smak. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "hype_vs_own_response",
+          "group_plan_vs_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#premieren_alle_skal_se"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Hype trenger ikke bli egen smak. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "hype_vs_own_response",
+          "accessibility_vs_assumption",
+          "group_plan_vs_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#premieren_alle_skal_se"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Felles kino krever koordinering, ikke kommandolinje. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "group_plan_vs_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#gruppen_og_setene"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Felles kino krever koordinering, ikke kommandolinje. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "group_plan_vs_autonomy",
+          "hype_vs_own_response"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#gruppen_og_setene"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Felles kino krever koordinering, ikke kommandolinje. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "group_plan_vs_autonomy",
+          "scarcity_vs_fomo"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#gruppen_og_setene"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Felles kino krever koordinering, ikke kommandolinje. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "group_plan_vs_autonomy",
+          "hype_vs_own_response",
+          "scarcity_vs_fomo"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#gruppen_og_setene"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Utsolgt er ikke et tap av status. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "scarcity_vs_fomo"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#utsolgt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Utsolgt er ikke et tap av status. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "scarcity_vs_fomo",
+          "group_plan_vs_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#utsolgt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Utsolgt er ikke et tap av status. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "scarcity_vs_fomo",
+          "late_show_vs_transport"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#utsolgt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Utsolgt er ikke et tap av status. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "scarcity_vs_fomo",
+          "group_plan_vs_autonomy",
+          "late_show_vs_transport"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#utsolgt"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Filmen slutter før reisen hjem er løst. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "late_show_vs_transport"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#siste_forestilling"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Filmen slutter før reisen hjem er løst. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "late_show_vs_transport",
+          "scarcity_vs_fomo"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#siste_forestilling"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Filmen slutter før reisen hjem er løst. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "late_show_vs_transport",
+          "loyalty_vs_consumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#siste_forestilling"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Filmen slutter før reisen hjem er løst. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "late_show_vs_transport",
+          "scarcity_vs_fomo",
+          "loyalty_vs_consumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#siste_forestilling"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Lojalitetspoeng er ikke kulturkapital. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "loyalty_vs_consumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#medlemskapet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Lojalitetspoeng er ikke kulturkapital. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "loyalty_vs_consumption",
+          "late_show_vs_transport"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#medlemskapet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Lojalitetspoeng er ikke kulturkapital. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "loyalty_vs_consumption",
+          "sunk_cost_vs_permission_to_leave"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#medlemskapet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Lojalitetspoeng er ikke kulturkapital. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "loyalty_vs_consumption",
+          "late_show_vs_transport",
+          "sunk_cost_vs_permission_to_leave"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#medlemskapet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: En billett er ikke en plikt til å bli. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "sunk_cost_vs_permission_to_leave"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#filmen_du_vil_ga_fra"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: En billett er ikke en plikt til å bli. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "sunk_cost_vs_permission_to_leave",
+          "loyalty_vs_consumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#filmen_du_vil_ga_fra"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: En billett er ikke en plikt til å bli. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "sunk_cost_vs_permission_to_leave",
+          "postfilm_talk_vs_spoiler_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#filmen_du_vil_ga_fra"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: En billett er ikke en plikt til å bli. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "sunk_cost_vs_permission_to_leave",
+          "loyalty_vs_consumption",
+          "postfilm_talk_vs_spoiler_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#filmen_du_vil_ga_fra"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Samtalen etterpå trenger verken fasit eller rang. Morgenen gjør dagens praktiske eller sosiale kinospørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "postfilm_talk_vs_spoiler_boundaries"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#samtalen_utenfor"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Samtalen etterpå trenger verken fasit eller rang. Midt på dagen møter vanen andre menneskers behov, språk, tid eller økonomi.",
+        "thread_ids": [
+          "postfilm_talk_vs_spoiler_boundaries",
+          "sunk_cost_vs_permission_to_leave"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#samtalen_utenfor"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Samtalen etterpå trenger verken fasit eller rang. Ettermiddagen tvinger fram et konkret valg mellom egen vane, fellesskap, tilgang eller status.",
+        "thread_ids": [
+          "postfilm_talk_vs_spoiler_boundaries",
+          "budget_vs_frequency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#samtalen_utenfor"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Samtalen etterpå trenger verken fasit eller rang. Kvelden viser hvordan valget påvirker relasjoner, omdømme, kropp, økonomi eller neste kinotur.",
+        "thread_ids": [
+          "postfilm_talk_vs_spoiler_boundaries",
+          "sunk_cost_vs_permission_to_leave",
+          "budget_vs_frequency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kinogjenger.json#samtalen_utenfor"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "budget_vs_frequency",
+      "relationship": "forholdet mellom billettpris, kinofrekvens og fristelsen til å gjøre forbruk til identitetsbevis",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/lunch",
+        "2/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "seat_preference_vs_shared_space",
+      "relationship": "forholdet mellom egne sete-ritualer og andre publikummeres behov i et delt rom",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/lunch",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "schedule_vs_actual_start",
+      "relationship": "forholdet mellom oppgitt starttid, reklame og erfaring som usikker lokalkunnskap",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/lunch",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "etiquette_vs_policing",
+      "relationship": "forholdet mellom legitime salenormer og fristelsen til å opptre som uformell ordensmakt",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/lunch",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "disturbance_vs_conflict",
+      "relationship": "forholdet mellom reell forstyrrelse, korte grenser og sosial eskalering",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/lunch",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "ritual_vs_cost",
+      "relationship": "forholdet mellom snacks og andre kinoritualer, pris og ideen om at forbruk viser tilhørighet",
+      "beat_refs": [
+        "5/afternoon",
+        "5/evening",
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/lunch",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "accessibility_vs_assumption",
+      "relationship": "forholdet mellom konkret tilgjengelighetsinformasjon og antakelser om andres behov",
+      "beat_refs": [
+        "6/afternoon",
+        "6/evening",
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/lunch",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "hype_vs_own_response",
+      "relationship": "forholdet mellom premierehype, kollektiv forventning og egen respons",
+      "beat_refs": [
+        "7/afternoon",
+        "7/evening",
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/lunch",
+        "9/evening"
+      ]
+    },
+    {
+      "id": "group_plan_vs_autonomy",
+      "relationship": "forholdet mellom praktisk gruppekoordinering og retten til egne grenser og preferanser",
+      "beat_refs": [
+        "8/afternoon",
+        "8/evening",
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/lunch",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "scarcity_vs_fomo",
+      "relationship": "forholdet mellom utsolgte visninger, knapphet og forestillingen om at det sjeldne automatisk er mer verdifullt",
+      "beat_refs": [
+        "9/afternoon",
+        "9/evening",
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/lunch",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "late_show_vs_transport",
+      "relationship": "forholdet mellom senvisningens fristelse og ulik tilgang til trygg og rimelig hjemreise",
+      "beat_refs": [
+        "10/afternoon",
+        "10/evening",
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/lunch",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "loyalty_vs_consumption",
+      "relationship": "forholdet mellom medlemsfordeler, gamifisert lojalitet og unødvendig forbruk",
+      "beat_refs": [
+        "11/afternoon",
+        "11/evening",
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/lunch",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "sunk_cost_vs_permission_to_leave",
+      "relationship": "forholdet mellom betalt billett, investert tid og retten til å avslutte en dårlig eller belastende visning",
+      "beat_refs": [
+        "12/afternoon",
+        "12/evening",
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/lunch",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "postfilm_talk_vs_spoiler_boundaries",
+      "relationship": "forholdet mellom etterprat, spoilergrenser, uenighet og vane som mulig statusmarkør",
+      "beat_refs": [
+        "1/lunch",
+        "1/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "vanen_uten_rang",
+      "description": "Antall besøk blir mindre viktig som mål på om kinovanen er ekte.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#billetten_foer_morket",
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#medlemskapet",
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#samtalen_utenfor"
+      ]
+    },
+    {
+      "id": "salen_som_fellesrom",
+      "description": "Seter, skjermlys og lyd forstås som konkrete fellesromsspørsmål snarere enn bevis på hvem som hører til.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#setet_i_salen",
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#lyset_fra_telefonen",
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#lyden_fra_raden"
+      ]
+    },
+    {
+      "id": "tilgang_blir_planlegging",
+      "description": "Pris, tilgjengelighet og transport flyttes inn i selve planleggingen i stedet for å behandles som private problemer etterpå.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#billetten_foer_morket",
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#tilgjengelig_visning",
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#siste_forestilling"
+      ]
+    },
+    {
+      "id": "hype_blir_bakgrunn",
+      "description": "Premierepress og utsolgt-status får mindre makt over hvilke filmer som faktisk velges og huskes.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#premieren_alle_skal_se",
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#utsolgt",
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#samtalen_utenfor"
+      ]
+    },
+    {
+      "id": "gruppen_taler_mindre_for_deg",
+      "description": "Felles booking og felles kveld blir lettere å skille fra plikten til å sitte, bli eller mene det samme.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#gruppen_og_setene",
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#filmen_du_vil_ga_fra",
+        "data/Civication/narratives/leisure/film_tv_kinogjenger.json#samtalen_utenfor"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "prispress_blir_fleksibel_vane",
+      "setup_ref": "1/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "setekrav_blir_fellesrom",
+      "setup_ref": "2/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "mobilnorm_blir_grense_uten_politirolle",
+      "setup_ref": "4/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "hype_blir_egen_respons",
+      "setup_ref": "8/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "utsolgt_blir_alternativ",
+      "setup_ref": "10/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "senvisning_blir_hele_reisen",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "economy"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#billetten_foer_morket",
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#setet_i_salen",
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#reklamen_og_starttiden",
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#lyset_fra_telefonen",
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#lyden_fra_raden",
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#snacksritualet",
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#tilgjengelig_visning",
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#premieren_alle_skal_se",
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#gruppen_og_setene",
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#utsolgt",
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#siste_forestilling",
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#medlemskapet",
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#filmen_du_vil_ga_fra",
+      "data/Civication/narratives/leisure/film_tv_kinogjenger.json#samtalen_utenfor"
+    ]
+  }
+}

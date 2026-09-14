@@ -1,0 +1,659 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "liv_alternativ_bohem_stream",
+  "type": "leisure",
+  "title": "Bohem",
+  "sociological_theme": "bohemliv_som_tilhorighet_frihet_kulturell_status_ustabil_okonomi_og_grensen_mot_profesjonell_kunstrolle",
+  "applies_when": {
+    "any_tags": [
+      "liv_alternativ:bohem"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "invitasjonen_til_det_halvferdige",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En venn fra miljøet",
+      "subject": "Kom som du er — ingenting er ferdig",
+      "situation": [
+        "En venn inviterer deg til et rom der en liten gruppe viser halvferdige tekster, bilder og ideer uten program eller billettsalg.",
+        "Du kjenner nesten ingen der, og det er uklart om kvelden er sosial, kunstnerisk eller bare et påskudd for å samles.",
+        "Bohemlivet kan gi tilhørighet gjennom åpne miljøer, men tilstedeværelse i et kunstmiljø gjør deg ikke automatisk til profesjonell kunstner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Møt opp som deltaker, vær nysgjerrig og la folk selv definere hva de arbeider med.",
+          "effect": 1,
+          "tags": [
+            "invitasjonen_til_det_halvferdige_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du går inn i miljøet uten å kreve en tittel eller gjøre andres arbeid til din status."
+        },
+        {
+          "id": "B",
+          "label": "Presenter deg som del av kunstscenen og antyd at du selv arbeider profesjonelt med kunst.",
+          "effect": -1,
+          "tags": [
+            "invitasjonen_til_det_halvferdige_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du låner profesjonell status fra rommet i stedet for å la tilhørigheten stå på egne ben."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_open_room"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "middagen_som_alle_spleiser_pa",
+      "message_type": "class_case",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En felles middag",
+      "subject": "Alle tar med noe",
+      "situation": [
+        "En spontan middag vokser fra fire til ti personer, og ingen har avtalt hvordan mat, drikke og utgifter skal fordeles.",
+        "Noen har god råd, andre venter på lønn, og et par personer blir stille når noen foreslår å dele alt helt likt.",
+        "Fellesskap kan være generøst, men uformelle pengeritualer kan skjule store forskjeller i handlingsrom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Foreslå en enkel spleis der folk kan bidra ulikt uten å måtte forklare privatøkonomien sin.",
+          "effect": 1,
+          "tags": [
+            "middagen_som_alle_spleiser_pa_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du beskytter fellesskapet uten å gjøre lik betaling til bevis på like økonomiske vilkår."
+        },
+        {
+          "id": "B",
+          "label": "Insister på lik deling fordi alle som vil være med bør kunne betale det samme.",
+          "effect": -1,
+          "tags": [
+            "middagen_som_alle_spleiser_pa_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du gjør sosial deltakelse avhengig av at alle later som økonomien er lik."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_shared_table"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "atelierkvelden_uten_rolle",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En person du nettopp har møtt",
+      "subject": "Så, hva driver du med?",
+      "situation": [
+        "På en atelierkveld spør en ny bekjent hva du egentlig gjør, og samtalen dreier raskt mot hvem som lager, kuraterer og organiserer.",
+        "Du har prosjekter, interesser og mange forbindelser, men ingen profesjonell kunstrolle som tilsvarer titlene rundt deg.",
+        "Bohem er en selvvalgt livsposisjon, ikke en snarvei til faglig autoritet, portefølje eller yrkestittel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du lever tett på miljøet og har egne prosjekter, men ikke presenter deg som kunstner eller kurator hvis du ikke er det.",
+          "effect": 1,
+          "tags": [
+            "atelierkvelden_uten_rolle_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du skiller sosial tilhørighet fra profesjonell rolle og lar begge være reelle."
+        },
+        {
+          "id": "B",
+          "label": "Velg den mest imponerende kunsttittelen som passer omtrent, så du slipper å virke perifer.",
+          "effect": -1,
+          "tags": [
+            "atelierkvelden_uten_rolle_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du gjør identitet til en falsk profesjonsmarkør og bygger status på en rolle du ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_role_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prosjektet_som_trenger_en_tjeneste",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En prosjektvenn",
+      "subject": "Kan du bare hjelpe litt?",
+      "situation": [
+        "En venn trenger hjelp til å rigge, sende meldinger og rydde etter et lite prosjekt som skal skje om to dager.",
+        "Forespørselen begynner som en liten tjeneste, men listen over oppgaver vokser mens ingen snakker om ansvar, tid eller betaling.",
+        "I uformelle miljøer kan vennskap og prosjektarbeid gli sammen til usynlig arbeid dersom grensene aldri blir sagt høyt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtal konkret hva du hjelper med, hvor lenge, og hva som fortsatt er vennens ansvar.",
+          "effect": 1,
+          "tags": [
+            "prosjektet_som_trenger_en_tjeneste_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du kan bidra generøst uten å gjøre vennskap til en ubegrenset arbeidsavtale."
+        },
+        {
+          "id": "B",
+          "label": "Si ja til alt og regn med at ekte venner ikke trenger å avtale grenser.",
+          "effect": -1,
+          "tags": [
+            "prosjektet_som_trenger_en_tjeneste_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du gjør uklarhet til lojalitetsprøve og lar arbeidsmengden vokse uten eierskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_favor_scope"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "regningen_etter_kvelden",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Kontoutskriften",
+      "subject": "Den spontane kvelden kostet mer enn du trodde",
+      "situation": [
+        "Flere små kjøp fra en lang kveld summerer seg til langt mer enn hvert enkelt valg føltes som.",
+        "Du liker friheten til å bli med videre når noe skjer, men neste ukes faste utgifter er fortsatt de samme.",
+        "Ustabil økonomi kan være del av bohemlivets rytme uten at mangel på oversikt trenger å romantiseres som frihet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sett en grense for de neste dagene og behold spontaniteten innenfor penger du faktisk har.",
+          "effect": 1,
+          "tags": [
+            "regningen_etter_kvelden_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du gjør økonomisk realitet til en ramme for frihet i stedet for et moralsk nederlag."
+        },
+        {
+          "id": "B",
+          "label": "Bestem at penger ordner seg fordi et bohemliv ikke bør styres av budsjett.",
+          "effect": -1,
+          "tags": [
+            "regningen_etter_kvelden_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du gjør usikkerhet til identitetsbevis og skyver kostnaden til framtidige forpliktelser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_money_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_med_fast_jobbtid",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En gammel venn",
+      "subject": "Jeg må faktisk hjem nå",
+      "situation": [
+        "En gammel venn blir med en stund, men forlater kvelden tidlig fordi arbeidsdagen starter neste morgen.",
+        "Noen rundt bordet spøker med at fast arbeid gjør mennesker kjedelige og lite frie.",
+        "Bohemens frihetsideal blir sosialt trangt dersom det bare anerkjenner ett riktig forhold til tid, arbeid og ansvar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forsvar vennens valg og la ulike rytmer være like legitime måter å leve på.",
+          "effect": 1,
+          "tags": [
+            "vennen_med_fast_jobbtid_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du beholder egen livsstil uten å gjøre andres struktur til et mindreverdig valg."
+        },
+        {
+          "id": "B",
+          "label": "Bli med på spøken og antyd at vennen har valgt bort det virkelige livet.",
+          "effect": -1,
+          "tags": [
+            "vennen_med_fast_jobbtid_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du gjør frihet til en statuskonkurranse og setter vennskap opp mot livsrytme."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_rhythm_respect"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "navnet_ditt_pa_plakaten",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En arrangør",
+      "subject": "Hva skal vi skrive under navnet ditt?",
+      "situation": [
+        "Du har hjulpet en liten kveld med ideer, invitasjoner og praktiske oppgaver, og arrangøren vil føre deg opp på plakaten.",
+        "De foreslår en profesjonell tittel fordi den ser ryddigere ut enn den uformelle rollen du faktisk har hatt.",
+        "Synlighet kan være verdifull, men en bohemidentitet gir ikke automatisk kunstner-, kurator- eller produsentstatus."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om en presis betegnelse som «medvirkende» eller beskriv den konkrete hjelpen uten å låne en profesjonstittel.",
+          "effect": 1,
+          "tags": [
+            "navnet_ditt_pa_plakaten_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du lar kreditering være sannferdig og skiller bidrag fra yrkesautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Godta «kurator» eller «kunstner» fordi plakaten uansett bare er markedsføring.",
+          "effect": -1,
+          "tags": [
+            "navnet_ditt_pa_plakaten_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du lar et sosialt bidrag bli dokumentasjon på en profesjonell rolle du ikke faktisk har hatt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_credit_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sofaen_som_blir_base",
+      "message_type": "relationship",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En venn du bor hos noen netter",
+      "subject": "Hvor lenge tenker du å bli?",
+      "situation": [
+        "Du har valgt en løs periode mellom to bosteder og sover noen netter på sofaen hos en venn mens du finner neste løsning.",
+        "Det som føles fleksibelt for deg påvirker vennens privatliv, rutiner og plass mer for hver dag som går.",
+        "Et selvvalgt alternativt liv opphever ikke behovet for samtykke, forutsigbarhet og respekt i andres hjem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtal en tydelig sluttdato, husregler og hva du bidrar med mens du er der.",
+          "effect": 1,
+          "tags": [
+            "sofaen_som_blir_base_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du gjør fleksibiliteten gjensidig i stedet for å la vennskap bære all usikkerheten."
+        },
+        {
+          "id": "B",
+          "label": "La det flyte videre uten å ta praten; hvis det blir et problem kan vennen si fra.",
+          "effect": -1,
+          "tags": [
+            "sofaen_som_blir_base_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du flytter ansvaret for grensen over på personen som allerede deler hjemmet sitt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_guest_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_ulonnede_hjelpen",
+      "message_type": "class_case",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En liten kulturarena",
+      "subject": "Kan du ta en vakt til?",
+      "situation": [
+        "Et sted du liker har begynt å spørre deg stadig oftere om å stå i døra, bære utstyr og rydde etter arrangementer.",
+        "Du får gratis inngang og tilhørighet, men oppgavene ligner mer og mer på arbeid som må gjøres for at stedet skal fungere.",
+        "Frivillig innsats kan være meningsfull, men den bør ikke bli usynlig bemanning bare fordi miljøet er uformelt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør om rollen faktisk er frivillig, hvor mye som forventes, og om noen oppgaver burde være betalt arbeid.",
+          "effect": 1,
+          "tags": [
+            "den_ulonnede_hjelpen_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du beskytter både fellesskapet og skillet mellom frivill deltakelse og jobb."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å ta vaktene uten spørsmål fordi det er prisen for å høre til.",
+          "effect": -1,
+          "tags": [
+            "den_ulonnede_hjelpen_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du lar tilhørighet bli en mekanisme som gjør nødvendig arbeid gratis og vanskelig å avslå."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_unpaid_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "festen_som_blir_nettverk",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En sen fest",
+      "subject": "Alle kjenner noen",
+      "situation": [
+        "På en fest oppdager du at flere mennesker i rommet kan åpne dører til arrangementer, rom og nye prosjekter.",
+        "Du kjenner fristelsen til å styre alle samtaler mot hvem som kan være nyttig senere.",
+        "Bohemske miljøer kan være tette nettverk, men vennskap mister noe når hvert møte behandles som en investering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakk med folk fordi samtalen er interessant, og la eventuelle samarbeid oppstå uten å gjøre alle til kontakter.",
+          "effect": 1,
+          "tags": [
+            "festen_som_blir_nettverk_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du lar nettverket være et resultat av relasjoner i stedet for selve formålet med dem."
+        },
+        {
+          "id": "B",
+          "label": "Prioriter bare menneskene som kan gi deg adgang, synlighet eller neste prosjekt.",
+          "effect": -1,
+          "tags": [
+            "festen_som_blir_nettverk_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du gjør sosial nærhet instrumentell og lar status avgjøre hvem som fortjener oppmerksomhet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_network_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kunstpraten_og_portvakten",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En samtale etter en visning",
+      "subject": "Har du ikke sett den?",
+      "situation": [
+        "En ny person i gruppa innrømmer at de ikke kjenner kunstnerne, referansene eller språket resten av bordet bruker.",
+        "Noen begynner å teste vedkommende med navn og begreper, og stemningen skifter fra samtale til opptaksprøve.",
+        "Kulturell trygghet kan bli en sterk statusressurs selv i miljøer som liker å beskrive seg som åpne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar referanser når det er nyttig og inviter den nye personen inn uten å gjøre kunnskap til rangering.",
+          "effect": 1,
+          "tags": [
+            "kunstpraten_og_portvakten_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du bruker kulturell erfaring til å åpne samtalen i stedet for å vokte den."
+        },
+        {
+          "id": "B",
+          "label": "Bli med på testen; miljøet blir bedre når folk må bevise at de hører til.",
+          "effect": -1,
+          "tags": [
+            "kunstpraten_og_portvakten_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du gjør smak og referanser til sosial portvakt og forsterker en statusorden miljøet hevder å være fri fra."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_gatekeeping_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prosjektet_som_aldri_blir_ferdig",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Notatboka di",
+      "subject": "Fire begynnelser og ingen avslutning",
+      "situation": [
+        "Du har fire halvferdige initiativer: en liten zine, en visning, en tekstkveld og et samarbeid som stadig flyttes.",
+        "Hver idé ga energi da den startet, men mennesker rundt deg har begynt å vente på svar og leveranser.",
+        "Fri prosjektform kan skape mye, men uavsluttede løfter har også en sosial kostnad."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg ett prosjekt å fullføre og avslutt eller utsett de andre med tydelig beskjed til dem som er involvert.",
+          "effect": 1,
+          "tags": [
+            "prosjektet_som_aldri_blir_ferdig_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du gjør kreativ frihet kompatibel med at andre kan stole på avtalene dine."
+        },
+        {
+          "id": "B",
+          "label": "Start et femte prosjekt for å få tilbake energien og la de gamle vente litt til.",
+          "effect": -1,
+          "tags": [
+            "prosjektet_som_aldri_blir_ferdig_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du bruker nyhet som flukt fra forpliktelser andre allerede har investert tid i."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_completion_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "natten_for_forpliktelsen",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Klokka 01:20",
+      "subject": "Bare én time til",
+      "situation": [
+        "En god kveld fortsetter, men du har lovet å møte noen tidlig neste dag til en avtale som ikke kan flyttes uten konsekvenser.",
+        "Du har lyst til å bli fordi de beste samtalene ofte skjer sent, og fordi det føles som om du forlater noe viktig.",
+        "Et liv med åpne kvelder blir først bærekraftig når spontanitet også tåler grenser satt av kroppen og av løfter til andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå hjem mens kvelden fortsatt er god og møt forpliktelsen uthvilt nok til å være til stede.",
+          "effect": 1,
+          "tags": [
+            "natten_for_forpliktelsen_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du velger ikke bort bohemlivet; du gjør plass til at frihet og pålitelighet kan eksistere samtidig."
+        },
+        {
+          "id": "B",
+          "label": "Bli til morgenen og sats på at de andre forstår hvis du ikke fungerer dagen etter.",
+          "effect": -1,
+          "tags": [
+            "natten_for_forpliktelsen_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du lar øyeblikkets intensitet sende kostnaden videre til mennesker som stolte på avtalen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_night_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_bohem",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Din egen oppsummering",
+      "subject": "Frihet uten kostyme",
+      "situation": [
+        "Etter mange kvelder, små prosjekter, økonomiske valg og vennskap ser du at bohemlivet ikke består av én scene eller én type menneske.",
+        "Du har kjent både åpenheten i miljøene og presset til å virke friere, mer kreativ, mer nettverksrik eller mindre bundet enn du egentlig er.",
+        "Spørsmålet er om Bohem skal være et kostyme av status og uorden, eller en selvvalgt livsform med plass til kunstmiljø, mennesker, frihet og ansvar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg et bohemliv som tåler presise titler, økonomiske grenser, gjensidige vennskap og forpliktelser.",
+          "effect": 1,
+          "tags": [
+            "hva_slags_bohem_boundary",
+            "bohem_reflection"
+          ],
+          "feedback": "Du beholder det alternative livet uten å gjøre kaos, knapphet eller lånt profesjonsstatus til krav for å høre til."
+        },
+        {
+          "id": "B",
+          "label": "Bestem at ekte bohemer må være grenseløse, økonomisk uforutsigbare og skeptiske til alle faste rammer.",
+          "effect": -1,
+          "tags": [
+            "hva_slags_bohem_pressure",
+            "bohem_myth"
+          ],
+          "feedback": "Du gjør en levende identitet til en rigid myte som kan skade både deg og menneskene rundt deg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bohem_identity_integrated"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

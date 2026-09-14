@@ -65,7 +65,7 @@ Fanenes innhold følger produksjonsprofil og innholdsplan. Universal core — s�
 
 `Mer`, `Annet` og `Tillegg` er ikke brukerrettede popupfaner. Tidligere restinnhold rutes til canonical eier: Objects/Gjenstander, People, Relaterte steder eller Om etter `docs/PLACE_POPUP_SYSTEM.md`.
 
-I PlaceCard ligger **Events** og den samlede **Møtes**-inngangen i venstre hero-kolonne direkte under Utforsk-rundingene/rektanglene. Events filtrerer canonical `HGEvents` på aktivt Place; Møtes samler Kunnskapsmøte + Social Meet. Det globale venstre Utforsk-panelet har ikke egne Events/Møtes-tabs. Øvrige På stedet-handlinger er ekte lokale stedstypehandlinger som Lek.
+I PlaceCard ligger **Events** og den samlede **Møtes**-inngangen i venstre hero-kolonne direkte under Utforsk-rundingene/rektanglene. Events filtrerer canonical `HGEvents` på aktivt Place. Møtes åpner direkte **Folk å møte her**: opt-in Social Meet-profiler som matcher aktivt Place gjennom kunnskaps-/interessesignaler, med preset-basert møteforslag per person og fast inngang til **Mine møter / Social Meet**. Dette er ikke en liste over fysisk tilstedeværende personer. Det globale venstre Utforsk-panelet har ikke egne Events/Møtes-tabs.
 
 Eiere:
 
@@ -183,7 +183,7 @@ De skal ikke finne på fremdrift som ikke kan spores til eksisterende data/runti
 
 ## 10. Social Meet og Spotmeeting
 
-Social Meet og Spotmeeting skal være kontekstbundne og privacy-sikre. De skal ikke bygge på offentlig live-posisjon, offentlig besøkshistorikk eller fri GPS-discovery av andre brukere.
+Social Meet og Spotmeeting skal være kontekstbundne og privacy-sikre. **Folk å møte her** betyr discoverable profiler som matcher stedet, ikke personer systemet hevder står der nå. De skal ikke bygge på offentlig live-posisjon, offentlig besøkshistorikk eller fri GPS-discovery av andre brukere.
 
 Eiere:
 

@@ -1,7 +1,7 @@
 # Tollboden — kilde- og scope-review
 
-Dato: 2026-09-12  
-Place ID: `tollboden_oslo`  
+Dato: 2026-09-12
+Place ID: `tollboden_oslo`
 Status: **SOURCE REVIEW COMPLETE / klar for materialisering**
 
 ## 1. Scope

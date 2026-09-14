@@ -1,0 +1,649 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "film_tv_filmnerd_stream",
+  "type": "leisure",
+  "title": "Filmnerd",
+  "sociological_theme": "detaljkunnskap_kilder_produksjonsarbeid_og_grensen_mellom_presisjon_og_status",
+  "applies_when": {
+    "any_tags": [
+      "film_tv:filmnerd"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "credits_ruller",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Etter rulleteksten",
+      "subject": "Krediteringer er kunnskap om arbeid, ikke et poengsystem",
+      "situation": [
+        "Du kjenner igjen navn bak foto, klipp, lyd og produksjonsdesign. Filmnerd-kunnskap kan gjøre usynlig arbeid synlig, men blir fort status hvis navn bare brukes som poeng."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Nevn ett konkret bidrag du la merke til og hvorfor det betydde noe.",
+          "effect": 1,
+          "tags": [
+            "credits_ruller_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du kobler navnet til faktisk håndverk."
+        },
+        {
+          "id": "B",
+          "label": "Rams opp flest mulig navn for å vise at du fulgte bedre med.",
+          "effect": -1,
+          "tags": [
+            "credits_ruller_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du gjør krediteringer til hukommelseskonkurranse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_credits_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvilken_versjon",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Filhyllen",
+      "subject": "Director's cut er ikke automatisk fasit",
+      "situation": [
+        "Filmen finnes i flere klipp med ulike scener og lydspor. Versjoner forteller om produksjon, sensur og distribusjon, men én versjon er ikke nødvendigvis den sanne filmen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign hva versjonene faktisk endrer og hvorfor.",
+          "effect": 1,
+          "tags": [
+            "hvilken_versjon_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du bruker detaljkunnskap som kontekst."
+        },
+        {
+          "id": "B",
+          "label": "Erklær den lengste eller sjeldneste versjonen som den eneste legitime.",
+          "effect": -1,
+          "tags": [
+            "hvilken_versjon_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du gjør tilgang til en renhetsprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_version_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "aarstallet_glipper",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En samtale",
+      "subject": "Hukommelse tåler rettelse",
+      "situation": [
+        "Du sier feil produksjonsår på en film du kjenner godt. Når identitet bindes til detaljhukommelse, kan en liten feil føles større enn den er."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rett deg selv og fortsett samtalen.",
+          "effect": 1,
+          "tags": [
+            "aarstallet_glipper_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du beholder kunnskap uten å late som hukommelsen er feilfri."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar årstallet fordi du ikke vil tape ansikt.",
+          "effect": -1,
+          "tags": [
+            "aarstallet_glipper_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du gjør detaljkunnskap til prestisje som ikke tåler revisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_memory_revision"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "teknisk_ord",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Filmpraten",
+      "subject": "Fagspråk kan presisere eller stenge",
+      "situation": [
+        "Du har et presist begrep for en kamerabevegelse mens den andre beskriver effekten med hverdagsspråk. Terminologi hjelper bare hvis den gjør observasjonen tydeligere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk begrepet kort og knytt det til det dere faktisk så.",
+          "effect": 1,
+          "tags": [
+            "teknisk_ord_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du lar terminologien hjelpe observasjonen."
+        },
+        {
+          "id": "B",
+          "label": "Korriger ordvalget før du svarer på poenget.",
+          "effect": -1,
+          "tags": [
+            "teknisk_ord_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du gjør vokabularet til sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_jargon_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "databasen",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Notatene",
+      "subject": "Metadata er et kart, ikke selve opplevelsen",
+      "situation": [
+        "Du lagrer årstall, land, format, crew og versjonsnotater. Systematikk kan gjøre mønstre synlige, men loggen kan også bli viktigere enn filmen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrer det som hjelper deg å finne tilbake til et spørsmål eller mønster.",
+          "effect": 1,
+          "tags": [
+            "databasen_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du bruker systemet som hukommelsesverktøy."
+        },
+        {
+          "id": "B",
+          "label": "Utvid skjemaet til seingen føles ufullstendig uten perfekt data.",
+          "effect": -1,
+          "tags": [
+            "databasen_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du lar katalogen overta oppmerksomheten."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_metadata_limit"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "time_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_gjorde_det",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En diskusjon",
+      "subject": "En film har flere forfattere enn regissøren",
+      "situation": [
+        "Noen tilskriver hele uttrykket til regissøren, mens du kjenner arbeidet til fotografen, klipperen og produksjonsdesigneren. Produksjon er kollektivt arbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Pek på et konkret bidrag uten å late som én ny person forklarer alt.",
+          "effect": 1,
+          "tags": [
+            "hvem_gjorde_det_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du gjør kollektivt arbeid synlig."
+        },
+        {
+          "id": "B",
+          "label": "Svar med en ny navneliste og antyd at den andre ikke forstår produksjon.",
+          "effect": -1,
+          "tags": [
+            "hvem_gjorde_det_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du bruker kunnskap til status."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_collective_authorship"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "restaureringen",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En restaurert visning",
+      "subject": "Bedre bilde betyr også valg",
+      "situation": [
+        "En restaurert utgave avviker fra en eldre kopi i farge, kontrast og lyd. Restaurering bygger på kilder, teknologi og tolkning, ikke bare nøytral oppgradering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva restaureringen bygger på og hvilke valg som er dokumentert.",
+          "effect": 1,
+          "tags": [
+            "restaureringen_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du knytter teknisk kvalitet til historisk metode."
+        },
+        {
+          "id": "B",
+          "label": "Kall den nyeste utgaven objektivt korrekt fordi den ser renest ut.",
+          "effect": -1,
+          "tags": [
+            "restaureringen_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du gjør teknisk forbedring til historisk sannhet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_restoration_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kilden_til_trivia",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et forum",
+      "subject": "Et godt funn trenger en kilde",
+      "situation": [
+        "En produksjonshistorie sirkulerer i forum og videoer, men du finner ingen tydelig kilde. Filmtrivia sprer seg lett fordi gode historier huskes bedre enn forbehold."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del historien med tydelig forbehold eller vent på bedre dokumentasjon.",
+          "effect": 1,
+          "tags": [
+            "kilden_til_trivia_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du skiller interessant fra bekreftet."
+        },
+        {
+          "id": "B",
+          "label": "Gjenta den som fakta fordi mange poster sier det samme.",
+          "effect": -1,
+          "tags": [
+            "kilden_til_trivia_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du forveksler repetisjon med kildegrunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_source_hygiene"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "formatet",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Hjemmevisningen",
+      "subject": "Teknisk kvalitet koster også penger og plass",
+      "situation": [
+        "Du vurderer en dyr fysisk utgave fordi bilde, lyd og ekstramateriale er bedre enn på strømmetjenesten. Utstyr, bolig og økonomi avgjør hvem som kan forfølge slike forskjeller."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder om forskjellen faktisk betyr noe for deg før du kjøper.",
+          "effect": 1,
+          "tags": [
+            "formatet_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du lar teknisk interesse møte egne ressurser."
+        },
+        {
+          "id": "B",
+          "label": "Snakk som om den dyreste utgaven er minimumskravet for å ha sett filmen ordentlig.",
+          "effect": -1,
+          "tags": [
+            "formatet_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du gjør forbruksevne til kvalitetsnorm."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_format_access"
+      ],
+      "risk_links": [
+        "economy_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kanonens_hull",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En liste",
+      "subject": "Kompletthet er et bevegelig mål",
+      "situation": [
+        "Du oppdager enda en regissør, tradisjon eller epoke du nesten ikke kjenner. Jo mer systematisk du lærer, desto tydeligere blir mengden du ikke kjenner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg ett avgrenset spor og la resten forbli åpent.",
+          "effect": 1,
+          "tags": [
+            "kanonens_hull_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du gjør hullet til retning, ikke dom."
+        },
+        {
+          "id": "B",
+          "label": "Lag en stadig større obligatorisk liste som må fullføres før du kan stole på egen kunnskap.",
+          "effect": -1,
+          "tags": [
+            "kanonens_hull_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du gjør læring til permanent restanse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_knowledge_horizon"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenighet_om_detaljen",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En filmklubb",
+      "subject": "Når korrekt detalj ikke avgjør tolkningen",
+      "situation": [
+        "Du korrigerer en faktadetalj, men den andres overordnede tolkning står fortsatt. Fakta avgrenser påstander, men metadata bestemmer ikke automatisk betydning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom det du kan korrigere faktuelt og det dere fortsatt kan være uenige om.",
+          "effect": 1,
+          "tags": [
+            "uenighet_om_detaljen_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du lar presisjon støtte samtalen."
+        },
+        {
+          "id": "B",
+          "label": "Bruk detaljen som bevis på at hele den andres lesning er feil.",
+          "effect": -1,
+          "tags": [
+            "uenighet_om_detaljen_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du gjør faktakunnskap til total autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_fact_vs_interpretation"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "anbefalingen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En melding",
+      "subject": "Mer informasjon gir ikke alltid bedre råd",
+      "situation": [
+        "En venn ber om én film å se, og du kjenner ti nærliggende verk og flere versjoner. God anbefaling krever kunnskap om mottakeren, ikke bare databasen i hodet ditt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva personen ønsker akkurat nå og velg én tydelig anbefaling.",
+          "effect": 1,
+          "tags": [
+            "anbefalingen_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du bruker kunnskapen situert."
+        },
+        {
+          "id": "B",
+          "label": "Send en lang rangert liste med forklaringer på hvorfor de åpenbare valgene er for enkle.",
+          "effect": -1,
+          "tags": [
+            "anbefalingen_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du lar kunnskapsmengden erstatte mottakerens behov."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_recommendation_scope"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bak_kameraet",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et gjensyn",
+      "subject": "Et navn endrer hva du legger merke til",
+      "situation": [
+        "Du ser at samme klipper eller fotograf dukker opp i flere filmer du tidligere knyttet bare til regissøren. Krediteringer kan åpne historier om arbeidsliv og stil."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg ett crew-spor gjennom noen verk og se hva som faktisk går igjen.",
+          "effect": 1,
+          "tags": [
+            "bak_kameraet_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du gjør navnekunnskap til et undersøkbart spørsmål."
+        },
+        {
+          "id": "B",
+          "label": "Bestem at personen har en signatur før du har sett nok.",
+          "effect": -1,
+          "tags": [
+            "bak_kameraet_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du gjør katalogkoblingen til konklusjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_crew_trace"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nerd_uten_rang",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En ny samtale",
+      "subject": "Detaljkunnskap trenger ikke bli hierarki",
+      "situation": [
+        "Folk spør deg ofte om årstall, versjoner og navn fordi du husker mye. Filmnerd er fortsatt en kunnskapsidentitet, ikke Kjenner-status, kritikerjobb eller kuratorstilling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svar presist når du vet, og si tydelig når du ikke vet.",
+          "effect": 1,
+          "tags": [
+            "nerd_uten_rang_careful",
+            "filmnerd_reflection"
+          ],
+          "feedback": "Du lar kunnskap være nyttig og reviserbar."
+        },
+        {
+          "id": "B",
+          "label": "Behandle spørsmålene som bevis på at gruppen har gitt deg faglig myndighet.",
+          "effect": -1,
+          "tags": [
+            "nerd_uten_rang_overreach",
+            "filmnerd_status_trap"
+          ],
+          "feedback": "Du gjør hukommelse til sosial autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmnerd_identity_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}

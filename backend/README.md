@@ -12,6 +12,7 @@ Social-produkt og privacy:
 - [`../docs/HG_SOCIAL_README.md`](../docs/HG_SOCIAL_README.md)
 - [`../docs/HG_SOCIAL_PRIVACY_RULES.md`](../docs/HG_SOCIAL_PRIVACY_RULES.md)
 - [`../docs/HG_SPOTMEETING.md`](../docs/HG_SPOTMEETING.md)
+- [`../docs/HISTORY_GO_FASTAPI_PRODUCTION_ROLLOUT.md`](../docs/HISTORY_GO_FASTAPI_PRODUCTION_ROLLOUT.md)
 
 Dette er produksjonsservergrensen for History GO. Backend skal ikke duplisere lokal gameplay-state eller opprette parallelle domene- og datamodeller.
 
@@ -53,6 +54,7 @@ Backendgrunnlaget omfatter:
 | Invite abuse controls | Servereid policy | `005_social_meet_abuse_indexes.sql`, [`../docs/HG_SOCIAL_MEET_ABUSE_CONTROLS.md`](../docs/HG_SOCIAL_MEET_ABUSE_CONTROLS.md) |
 | Durable Spotmeeting invites | Servereid lifecycle | `006_spotmeeting_invites_server.sql`, [`../docs/HG_SPOTMEETING_INVITE_BACKEND.md`](../docs/HG_SPOTMEETING_INVITE_BACKEND.md) |
 | Candidate discovery | Implementert, rollout-gated | `007_social_meet_candidate_discovery.sql`, [`../docs/HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md`](../docs/HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md) |
+| Temporary place status | Implementert, separat rollout-gate | `009_social_meet_place_status.sql`, [`../docs/HG_SOCIAL_MEET_PLACE_VISIBILITY_PROPOSAL.md`](../docs/HG_SOCIAL_MEET_PLACE_VISIBILITY_PROPOSAL.md) |
 | Retention & observability | Servereid operations-slice | `008_social_meet_retention_observability.sql`, [`../docs/HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md`](../docs/HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md) |
 
 De tre kravkontraktene eier sikkerhets- og produktkravene:
@@ -93,6 +95,7 @@ FastAPI-klienten bruker Supabase-browserøkten kun som tokenbro. Migrerte discov
 Implementert kode gir ikke automatisk produksjonsaktivering.
 
 - Discovery krever deployment-kill-switch og privat database-/cohort-/percentage-rollout.
+- `place_status` krever i tillegg den separate private `social_meet_place_status`-gaten; default er av.
 - Invite writes krever eksplisitt backendkonfigurasjon og serverpolicy.
 - Destruktiv retention krever eget production-apply-flagg og godkjent operativ prosedyre.
 - Manglende eller deaktivert konfigurasjon skal feile lukket.
@@ -112,7 +115,7 @@ Følgende er fortsatt egne, eksplisitte oppgaver:
 
 ## Permanent privacy boundary
 
-Social Meet-backend skal ikke innføre GPS, live location, nearby/distance, presence/last-seen, followers/feed, offentlig visit history, passiv tracking eller fri chat.
+Social Meet-backend skal ikke innføre GPS/device-derived live location, nearby/proximity/distance, last-seen/online-state, followers/feed, offentlig visit history, passiv tracking eller fri chat. Den eneste tillatte stedsstatusen er brukerens eksplisitte, selvoppgitte og utløpende canonical History GO-place-status med separat samtykke; den er ikke GPS-verifisert og blir ikke historikk.
 
 ## Local setup
 
@@ -128,6 +131,26 @@ fastapi dev backend/app/main.py
 ```
 
 OpenAPI er tilgjengelig utenfor production og slås av automatisk når `HG_BACKEND_ENVIRONMENT=production`.
+
+## Vercel deployment boundary
+
+The backend is deployable as a standalone Vercel Python/FastAPI project with **Root Directory = `backend`**.
+`backend/pyproject.toml` declares `app.main:app` as the Vercel entrypoint.
+
+Production browser calls originate from the History Go GitHub Pages origin and are accepted only through the explicit CORS allowlist. The default production origin is `https://paradispartiet.github.io`; additional origins must be configured explicitly through `HG_BACKEND_CORS_ALLOWED_ORIGINS`.
+
+Required production environment configuration includes:
+
+- `HG_BACKEND_ENVIRONMENT=production`;
+- `HG_BACKEND_DATABASE_URL` — server-side PostgreSQL connection only;
+- `HG_BACKEND_SUPABASE_URL` — the canonical AHA Supabase project;
+- `HG_BACKEND_SUPABASE_PUBLISHABLE_KEY` when legacy token verification requires it;
+- `HG_BACKEND_READINESS_REQUIRE_DATABASE=true`;
+- `HG_BACKEND_READINESS_REQUIRE_AUTH=true`;
+- `HG_BACKEND_SPOTMEETING_DISCOVERY_ENABLED=true` only when the private database rollout gates are ready;
+- `HG_BACKEND_SPOTMEETING_INVITE_WRITES_ENABLED=true` only when participant invite writes are intentionally live.
+
+Do not expose database credentials or Supabase secret/service-role keys to the browser.
 
 ## Validation
 

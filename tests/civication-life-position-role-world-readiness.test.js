@@ -25,18 +25,18 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 12,
-  needs_authored_depth: 147,
+  ready: 28,
+  needs_authored_depth: 131,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 11);
-assert.equal(audit.summary.pending_ready_positions, 1);
+assert.equal(audit.summary.completed_life_position_role_worlds, 28);
+assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 12);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 12);
-assert.equal(audit.first_ready?.key, 'scenekunst/scenehenger');
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'scenekunst/scenehenger');
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'scenekunst/scenehenger');
+assert.equal(audit.summary.positions_with_exact_governed_sources, 28);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 28);
+assert.equal(audit.first_ready, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
 
 assert.deepEqual(policy.noncareer_subject_boundary.life_position_readiness.classifications, [
   'ready',
@@ -72,6 +72,15 @@ assert.deepEqual(sofafilosof.evidence.exact_source_refs, [
   'data/Civication/narratives/leisure/sofafilosof.json'
 ]);
 
+const kinogjenger = audit.positions.find((row) => row.key === 'film_tv/kinogjenger');
+assert.ok(kinogjenger);
+assert.equal(kinogjenger.classification, 'ready');
+assert.equal(kinogjenger.role_world_status, 'role_world_complete');
+assert.equal(kinogjenger.role_world_path, 'data/Civication/roleWorlds/film_tv/film_tv_kinogjenger.json');
+assert.equal(kinogjenger.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(kinogjenger.evidence.exact_source_refs, [
+  'data/Civication/narratives/leisure/film_tv_kinogjenger.json'
+]);
 const genericKjenner = audit.positions.find((row) => row.key === 'film_tv/kjenner');
 assert.ok(genericKjenner);
 assert.equal(genericKjenner.classification, 'needs_authored_depth');
@@ -114,4 +123,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 12 ready / 147 authored-depth / 40 not-standalone; 11 complete / Scenekunst Scenehenger pending ready');
+console.log('civication life-position Role World readiness v2 ok: 28 ready / 131 authored-depth / 40 not-standalone; 28 complete / no pending-ready');

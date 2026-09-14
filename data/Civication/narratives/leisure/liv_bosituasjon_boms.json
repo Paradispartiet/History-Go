@@ -1,0 +1,652 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "liv_bosituasjon_boms_stream",
+  "type": "leisure",
+  "title": "Boms",
+  "sociological_theme": "selvvalgt_omflakkende_liv",
+  "applies_when": {
+    "any_tags": [
+      "liv_bosituasjon:boms"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "etiketten_er_din",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Din egen presentasjon",
+      "subject": "Et selvvalgt ord",
+      "situation": [
+        "Du har valgt «Boms» som spilleretikett for et omflakkende og lite institusjonsbundet liv.",
+        "Etiketten skal bare brukes om spillerens eget eksplisitte valg.",
+        "Andre menneskers situasjon beskrives med mer presise ord."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk etiketten bare om deg selv.",
+          "effect": 1,
+          "tags": [
+            "etiketten_er_din_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du skiller egen identitet fra kategorisering av andre."
+        },
+        {
+          "id": "B",
+          "label": "Gjør etiketten til en generell kategori.",
+          "effect": -1,
+          "tags": [
+            "etiketten_er_din_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør en selvvalgt identitet til en stereotype."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_self_label"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "natten_med_grenser",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Et sted å sove",
+      "subject": "Tilgjengelig plass har grenser",
+      "situation": [
+        "Du trenger et forsvarlig sted å sove for natten.",
+        "Forskjellige steder har eiere, brukere og regler.",
+        "Mobilitet gir ikke automatisk råderett over andres rom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg et sted der overnatting faktisk er tillatt.",
+          "effect": 1,
+          "tags": [
+            "natten_med_grenser_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du lar mobiliteten stoppe ved andres grenser."
+        },
+        {
+          "id": "B",
+          "label": "Anta at tilgjengelighet automatisk betyr tillatelse.",
+          "effect": -1,
+          "tags": [
+            "natten_med_grenser_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du skyver grenseansvaret over på andre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_sleep_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_lave_forbruket",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Dagsbudsjettet",
+      "subject": "Lite forbruk er fortsatt økonomi",
+      "situation": [
+        "Du har valgt å klare deg med få ting og lave løpende kostnader.",
+        "Mat, transport, vask og uforutsette utgifter finnes fortsatt.",
+        "Nøysomhet gjør ikke økonomiske begrensninger uvirkelige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prioriter nødvendigheter og behold en liten reserve.",
+          "effect": 1,
+          "tags": [
+            "det_lave_forbruket_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du gjør lavt forbruk til praktisk kontroll."
+        },
+        {
+          "id": "B",
+          "label": "Gjør fravær av planlegging til et frihetsideal.",
+          "effect": -1,
+          "tags": [
+            "det_lave_forbruket_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du reduserer framtidig handlingsrom."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_budget_boundary"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vask_og_verdighet",
+      "message_type": "social",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En praktisk dag",
+      "subject": "Vanlige behov krever infrastruktur",
+      "situation": [
+        "Klær må vaskes og utstyr må tørkes eller lades selv uten fast base.",
+        "Tilgjengelige tilbud har åpningstider, priser og regler.",
+        "Praktiske behov handler om verdighet og infrastruktur."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Planlegg rundt tilbud du faktisk har adgang til.",
+          "effect": 1,
+          "tags": [
+            "vask_og_verdighet_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du løser behov uten å overse andres grenser."
+        },
+        {
+          "id": "B",
+          "label": "Anta at eget behov alltid bør gå foran vilkårene.",
+          "effect": -1,
+          "tags": [
+            "vask_og_verdighet_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør behov til et generelt unntak fra grenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_hygiene_access"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sofaen_hos_en_venn",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En nær venn",
+      "subject": "Du kan sove her noen netter",
+      "situation": [
+        "En venn tilbyr en midlertidig base.",
+        "Hjemmet er fortsatt vennens private rom.",
+        "Et frivillig løst liv blir skjevt dersom andre stadig må bære bolig- og lagringskostnaden."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtal varighet og praktiske grenser.",
+          "effect": 1,
+          "tags": [
+            "sofaen_hos_en_venn_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du tar imot hjelp uten å gjøre vennskap til permanent logistikk."
+        },
+        {
+          "id": "B",
+          "label": "La hele varigheten forbli uavklart.",
+          "effect": -1,
+          "tags": [
+            "sofaen_hos_en_venn_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du legger alt grensearbeid på vennen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_couch_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vaeret_bestemmer",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Værmeldingen",
+      "subject": "Planen møter forholdene",
+      "situation": [
+        "Forholdene blir dårligere enn utstyret og planen din passer til.",
+        "Et liv uten fast base gjør kroppen mer direkte avhengig av varme og tørre ting.",
+        "Å endre plan er ikke et nederlag for identiteten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg en tryggere løsning når forholdene krever det.",
+          "effect": 1,
+          "tags": [
+            "vaeret_bestemmer_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du prioriterer kroppen framfor å bevise identitet."
+        },
+        {
+          "id": "B",
+          "label": "Hold fast ved planen bare for å bevise konsekvens.",
+          "effect": -1,
+          "tags": [
+            "vaeret_bestemmer_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør belastning til troverdighetsprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_weather_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_tilfeldige_motet",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En ny bekjent",
+      "subject": "Et møte uten skjult gjeld",
+      "situation": [
+        "En tilfeldig samtale blir til et godt møte.",
+        "Den løse rytmen gir rom for mennesker du ellers ikke ville møtt.",
+        "Tilfeldig sosialitet fungerer best når ingen behandles som en ressurs for den andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La møtet stå på egne ben.",
+          "effect": 1,
+          "tags": [
+            "det_tilfeldige_motet_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du verdsetter åpenheten uten å gjøre relasjonen instrumentell."
+        },
+        {
+          "id": "B",
+          "label": "Vurder først hva relasjonen kan gi deg.",
+          "effect": -1,
+          "tags": [
+            "det_tilfeldige_motet_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør sosial åpenhet til en byttehandel."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_random_meeting"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "post_og_papirer",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En viktig beskjed",
+      "subject": "Et løst liv har også frister",
+      "situation": [
+        "En avtale krever at du kan nås og finne dokumentene dine.",
+        "Få faste holdepunkter kan gjøre kontakt og oppbevaring mer krevende.",
+        "Lite institusjonsbinding betyr ikke at avtaler og frister forsvinner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en pålitelig løsning for kontakt og dokumenter.",
+          "effect": 1,
+          "tags": [
+            "post_og_papirer_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du beholder friheten uten å gjøre frakobling til et mål."
+        },
+        {
+          "id": "B",
+          "label": "Behandle all administrasjon som noe som alltid kan utsettes.",
+          "effect": -1,
+          "tags": [
+            "post_og_papirer_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du bygger unødvendig risiko inn i hverdagen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_admin_anchor"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "jobben_for_en_dag",
+      "message_type": "class_case",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En tilfeldig oppdragsgiver",
+      "subject": "Noen timers arbeid",
+      "situation": [
+        "Du får tilbud om noen timers praktisk arbeid.",
+        "Fleksibiliteten passer rytmen din, men betaling og ansvar må fortsatt være tydelig.",
+        "Omflakkende liv gjør ikke arbeid mindre verdifullt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar oppgave, betaling og varighet.",
+          "effect": 1,
+          "tags": [
+            "jobben_for_en_dag_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du beholder fleksibilitet og tydelige vilkår."
+        },
+        {
+          "id": "B",
+          "label": "Anta at uformelt arbeid ikke trenger klare avtaler.",
+          "effect": -1,
+          "tags": [
+            "jobben_for_en_dag_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du øker risikoen for konflikt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_odd_job_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "plassen_som_ogsaa_er_andres",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En offentlig plass",
+      "subject": "Åpent rom er delt rom",
+      "situation": [
+        "Du bruker ofte samme offentlige sted til hvile og møter.",
+        "Andre bruker området til ferdsel, arbeid, lek og pauser.",
+        "Fellesrom er verdifulle fordi mange har adgang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk plassen slik at andre fortsatt kan bruke den.",
+          "effect": 1,
+          "tags": [
+            "plassen_som_ogsaa_er_andres_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du behandler fellesrommet som en delt ressurs."
+        },
+        {
+          "id": "B",
+          "label": "La langvarig bruk bli et uformelt krav på området.",
+          "effect": -1,
+          "tags": [
+            "plassen_som_ogsaa_er_andres_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du forveksler adgang med eierskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_public_space_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_bekymrer_seg",
+      "message_type": "relationship",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En gammel venn",
+      "subject": "Er dette fortsatt det du ønsker?",
+      "situation": [
+        "En venn spør om livsstilen fortsatt oppleves valgt eller om vilkårene har endret seg.",
+        "Frivillighet kan endre seg over tid uten at tidligere valg blir falske.",
+        "Identitet trenger ikke forsvares ved å skjule praktiske problemer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom det du fortsatt velger og det du vil endre.",
+          "effect": 1,
+          "tags": [
+            "vennen_som_bekymrer_seg_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du lar valgfrihet undersøkes ærlig."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar identiteten ved å benekte alle problemer.",
+          "effect": -1,
+          "tags": [
+            "vennen_som_bekymrer_seg_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør etiketten avhengig av å skjule endrede vilkår."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_choice_review"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tingene_du_barer",
+      "message_type": "class_case",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Sekken din",
+      "subject": "Få ting krever også ansvar",
+      "situation": [
+        "Sekken har blitt tyngre og enkelte eiendeler ligger hos venner.",
+        "Et lett liv kan ellers flytte lagring og ansvar til mennesker rundt deg.",
+        "Lite eierskap handler også om hvor ting faktisk oppbevares."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sorter, gi bort eller avtal oppbevaring tydelig.",
+          "effect": 1,
+          "tags": [
+            "tingene_du_barer_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du gjør lavt forbruk til en faktisk praksis."
+        },
+        {
+          "id": "B",
+          "label": "La små mengder ligge spredt uten tydelige avtaler.",
+          "effect": -1,
+          "tags": [
+            "tingene_du_barer_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør andres plass til usynlig lager."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_belongings_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "morgenkaffen",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En kafé",
+      "subject": "En rolig time",
+      "situation": [
+        "Du setter av en rolig time til å ordne dagen.",
+        "En fast liten rutine kan være nyttig også i et omflakkende liv.",
+        "Rutinen trenger ikke bli en ny identitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk timen til å skape oversikt.",
+          "effect": 1,
+          "tags": [
+            "morgenkaffen_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du gjør en liten rutine til et praktisk anker."
+        },
+        {
+          "id": "B",
+          "label": "Avvis rutinen bare fordi den føles fast.",
+          "effect": -1,
+          "tags": [
+            "morgenkaffen_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør bevegelse til et krav."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_small_anchor"
+      ],
+      "risk_links": [],
+      "links": []
+    },
+    {
+      "id": "frihet_med_grenser",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Din egen oppsummering",
+      "subject": "Et løst liv med ansvar",
+      "situation": [
+        "Du ser både friheten og arbeidet i et omflakkende liv.",
+        "Etiketten er din egen og skal ikke brukes til å beskrive andre.",
+        "Frihet kan kombineres med avtaler, økonomisk oversikt og respekt for delte rom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold friheten og de tydelige grensene samtidig.",
+          "effect": 1,
+          "tags": [
+            "frihet_med_grenser_boundary",
+            "boms_reflection"
+          ],
+          "feedback": "Du gjør livsposisjonen fleksibel og ansvarlig."
+        },
+        {
+          "id": "B",
+          "label": "Gjør fravær av alle grenser til selve idealet.",
+          "effect": -1,
+          "tags": [
+            "frihet_med_grenser_pressure",
+            "boms_myth"
+          ],
+          "feedback": "Du gjør identiteten unødvendig rigid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "boms_integrated_identity"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "economic_risk"
+      ],
+      "links": []
+    }
+  ]
+}

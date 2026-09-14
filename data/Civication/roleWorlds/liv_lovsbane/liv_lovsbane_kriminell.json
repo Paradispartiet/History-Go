@@ -1,0 +1,1185 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "liv_lovsbane",
+  "role_scope": "liv_lovsbane_kriminell",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "liv_lovsbane",
+    "id": "kriminell",
+    "label": "Kriminell"
+  },
+  "title": "Kriminell — lojalitet, risiko, omdømme, ansvar og exit",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å leve i en selvvalgt kriminell fortellingsbane der lojalitet, status og hemmelighold kan gi tilhørighet samtidig som risiko, makt, skade på andre og sosial gjeld gjør valgfriheten mindre symmetrisk",
+    "description": "Kriminell-verdenen undersøker en eksplisitt selvvalgt life-position som narrativ og sosial bane, ikke som automatisk juridisk status. Den gir aldri gratis penger, operative lovbruddsmetoder, ferdigheter, skyld eller dom. Verdenen fokuserer på situert omdømme, lojalitet og press, hemmelighet i nære relasjoner, ulik risikofordeling, konsekvenser for andre, myndighetskontakt uten omgåelsesmekanikk, lekkasje inn i arbeid og retten til å de-eskalere eller forlate rollen. Ingen ny runtime opprettes."
+  },
+  "theme_ids": [
+    "class_power",
+    "status_anxiety",
+    "social_mask",
+    "bureaucratic_power",
+    "precarity",
+    "alienation",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "invisible_work",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "nære relasjoner der lojalitet, hemmelighet og risiko kan flytte handlingsrom mellom mennesker",
+    "uformelle miljøer der status og rykte er situert og kan bety noe annet innenfor enn utenfor gruppen",
+    "arbeids- og hverdagsarenaer der life-position ikke er en karriererolle, men konsekvenser kan lekke mellom livslag",
+    "konflikt- og etterspillsituasjoner der de-eskalering, ansvar og skade på andre blir synlig uten operative lovbruddsdetaljer",
+    "myndighetskontakt der spilleren møter prosess, tid og usikkerhet uten at spillet lærer omgåelse eller skjuling",
+    "relasjoner til yngre eller mindre mektige personer der status kan bli påvirknings- og rekrutteringspress"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "naer_alliert",
+      "social_function": "tester skillet mellom lojalitet og press i en relasjon med høy intern tillit",
+      "class_position": "person med tilsvarende miljøtilknytning og sosial kapital",
+      "status": "jevnaldrende relasjon uten legitim myndighet over spillerens grenser",
+      "power_over_player": "kan gi eller trekke sosial støtte og påvirke omdømme i miljøet",
+      "wants": "forutsigbar lojalitet når gruppen opplever press",
+      "conceals": "at egne behov noen ganger presenteres som gruppens nødvendighet",
+      "speech_style": "kort, relasjonelt og opptatt av hvem som står med hvem",
+      "teaches_player": "at lojalitet kan være reell uten å bli grenseløs lydighet"
+    },
+    {
+      "id": "gammel_venn",
+      "social_function": "representerer en relasjon som kjenner spilleren fra før life-position og kan sette egne grenser",
+      "class_position": "venn med svakere eller ingen tilknytning til miljøet",
+      "status": "nær relasjon uten plikt til å bære spillerens risiko",
+      "power_over_player": "kan trekke seg, kreve avstand eller definere hva vennskapet kan romme",
+      "wants": "å bevare relasjonen uten å bli del av risikoen",
+      "conceals": "at bekymring også kan inneholde stigma eller frykt",
+      "speech_style": "direkte om konkrete grenser og konsekvenser",
+      "teaches_player": "at avstand ikke automatisk er svik"
+    },
+    {
+      "id": "arbeidskontakt",
+      "social_function": "holder ordinært arbeid analytisk adskilt fra life-position samtidig som omdømme og fravær kan få konsekvenser",
+      "class_position": "kollega, leder eller oppdragsgiver i lovlig arbeid",
+      "status": "situert arbeidsmyndighet innen avtalt rolle",
+      "power_over_player": "kan vurdere oppmøte og arbeidsprestasjon, ikke definere privat identitet",
+      "wants": "forutsigbart arbeid uten at privat risiko flyttes inn i arbeidsplassen",
+      "conceals": "at rykter kan påvirke vurderinger selv uten direkte relevans",
+      "speech_style": "oppgaveorientert og konkret",
+      "teaches_player": "at livsbane og yrkeskompetanse er separate systemer"
+    },
+    {
+      "id": "formell_kontakt",
+      "social_function": "gjør myndighetskontakt og institusjonelle konsekvenser konkrete uten å tilby omgåelsesmekanikk",
+      "class_position": "offentlig eller rettslig funksjon innen avgrenset mandat",
+      "status": "formell situert myndighet etter gjeldende prosess",
+      "power_over_player": "kan kreve bestemte svar, oppmøte eller prosesshandlinger innen mandat",
+      "wants": "at prosessen gjennomføres etter formelle regler",
+      "conceals": "at standardprosesser kan oppleves svært ulike avhengig av ressurser og støtte",
+      "speech_style": "formell, presis og prosedyrenær uten taktiske råd",
+      "teaches_player": "at myndighetskontakt er konsekvens og institusjon, ikke et minispill i å slippe unna"
+    },
+    {
+      "id": "person_som_ble_rammet",
+      "social_function": "flytter blikket fra gruppens interne risiko til konkrete konsekvenser for andre",
+      "class_position": "person utenfor spillerens miljø som bærer en del av konsekvensene",
+      "status": "selvstendig aktør med egen historie og egne krav på sikkerhet og respekt",
+      "power_over_player": "kan avvise kontakt, uttrykke skade og påvirke sosialt etterspill uten å være moralsk rekvisitt",
+      "wants": "at egen erfaring ikke reduseres til spillerens utviklingshistorie",
+      "conceals": "ingenting som spilleren har krav på å få vite",
+      "speech_style": "konkret om egen grense og egen konsekvens",
+      "teaches_player": "at ansvar ikke kan reduseres til egen risiko"
+    },
+    {
+      "id": "yngre_bekjent",
+      "social_function": "synliggjør asymmetrisk påvirkning når status og erfaring gjør spillerens signaler tyngre",
+      "class_position": "person med mindre erfaring og lavere status i miljøet",
+      "status": "selvstendig person som ikke skylder spilleren risikovilje",
+      "power_over_player": "kan speile hvordan spillerens status virker på andre",
+      "wants": "tilhørighet, anerkjennelse eller en tydelig identitet",
+      "conceals": "at beundring kan dekke usikkerhet og begrenset forståelse av konsekvenser",
+      "speech_style": "nysgjerrig, statusorientert og søkende",
+      "teaches_player": "at innflytelse gir ansvar for ikke å gjøre risiko til inngangsbillett"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "self_label_vs_legal_status",
+      "meaning": "om en selvvalgt spilleretikett holdes adskilt fra juridisk skyld, dom og andre statuser som krever egne prosesser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "identity_vs_exit",
+      "meaning": "om spilleren beholder reell mulighet til å endre kurs når rykte, gruppe og stolthet gjør rollen treg å forlate",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "loyalty_vs_coercion",
+      "meaning": "om lojalitet forblir gjensidig eller brukes til å gjøre lydighet til vilkår for tilhørighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "relationships_vs_risk",
+      "meaning": "om risiko bæres av den som velger den eller skyves over på venner, partnere og familie uten deres informerte valg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "short_term_gain_vs_long_term_cost",
+      "meaning": "om kortsiktig status eller gevinst får overskygge økonomisk, sosial og tidsmessig konsekvens",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "situated_reputation_vs_global_identity",
+      "meaning": "om rykte forstås forskjellig mellom miljøer eller gjøres til én global status",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "conflict_vs_deescalation",
+      "meaning": "om press om hardhet gjør eskalering automatisk eller spilleren beholder rom for avgrensning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "responsibility_vs_group_logic",
+      "meaning": "om gruppens interne forklaringer får overskygge skade og konsekvenser for mennesker utenfor gruppen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "risk_distribution",
+      "meaning": "om et formelt felles valg faktisk fordeler risiko likt mellom mennesker med ulik økonomi, nettverk og status",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "authority_contact_vs_role_performance",
+      "meaning": "om myndighetskontakt behandles som reell institusjonell konsekvens framfor arena for omgåelse og identitetsperformance",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "work_role_vs_life_position",
+      "meaning": "om ordinære arbeidsroller forblir egne systemer i stedet for å bli absorbert av life-position",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "status_vs_influence_over_others",
+      "meaning": "om sosial status brukes til å redusere eller øke presset på yngre og mindre mektige personer",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du har valgt «Kriminell» som spillerens egen livsbane i fortellingen. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "self_label_vs_legal_status",
+          "identity_vs_exit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#etiketten_er_et_valg"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du har valgt «Kriminell» som spillerens egen livsbane i fortellingen. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "self_label_vs_legal_status",
+          "identity_vs_exit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#etiketten_er_et_valg"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du har valgt «Kriminell» som spillerens egen livsbane i fortellingen. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "self_label_vs_legal_status",
+          "identity_vs_exit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#etiketten_er_et_valg"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du har valgt «Kriminell» som spillerens egen livsbane i fortellingen. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "self_label_vs_legal_status",
+          "identity_vs_exit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#etiketten_er_et_valg"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: En person du stoler på forventer støtte i en konfliktfylt situasjon. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "loyalty_vs_coercion",
+          "relationships_vs_risk"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#lojalitet_uten_blindhet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: En person du stoler på forventer støtte i en konfliktfylt situasjon. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "loyalty_vs_coercion",
+          "relationships_vs_risk"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#lojalitet_uten_blindhet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: En person du stoler på forventer støtte i en konfliktfylt situasjon. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "loyalty_vs_coercion",
+          "relationships_vs_risk"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#lojalitet_uten_blindhet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: En person du stoler på forventer støtte i en konfliktfylt situasjon. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "loyalty_vs_coercion",
+          "relationships_vs_risk"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#lojalitet_uten_blindhet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Du vurderer økonomiske valg i en livsbane med høyere sosial og juridisk risiko. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "short_term_gain_vs_long_term_cost",
+          "risk_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#pengene_har_en_pris"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Du vurderer økonomiske valg i en livsbane med høyere sosial og juridisk risiko. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "short_term_gain_vs_long_term_cost",
+          "risk_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#pengene_har_en_pris"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Du vurderer økonomiske valg i en livsbane med høyere sosial og juridisk risiko. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "short_term_gain_vs_long_term_cost",
+          "risk_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#pengene_har_en_pris"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Du vurderer økonomiske valg i en livsbane med høyere sosial og juridisk risiko. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "short_term_gain_vs_long_term_cost",
+          "risk_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#pengene_har_en_pris"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: En nær relasjon påvirkes av at deler av livet ditt holdes skjult. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "secrecy_vs_others_agency",
+          "relationships_vs_risk"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#hemmeligheten_i_forholdet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: En nær relasjon påvirkes av at deler av livet ditt holdes skjult. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "secrecy_vs_others_agency",
+          "relationships_vs_risk"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#hemmeligheten_i_forholdet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: En nær relasjon påvirkes av at deler av livet ditt holdes skjult. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "secrecy_vs_others_agency",
+          "relationships_vs_risk"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#hemmeligheten_i_forholdet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: En nær relasjon påvirkes av at deler av livet ditt holdes skjult. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "secrecy_vs_others_agency",
+          "relationships_vs_risk"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#hemmeligheten_i_forholdet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Noen har hørt historier om deg før dere møtes. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "situated_reputation_vs_global_identity",
+          "self_label_vs_legal_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#ryktet_gar_foran_deg"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Noen har hørt historier om deg før dere møtes. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "situated_reputation_vs_global_identity",
+          "self_label_vs_legal_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#ryktet_gar_foran_deg"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Noen har hørt historier om deg før dere møtes. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "situated_reputation_vs_global_identity",
+          "self_label_vs_legal_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#ryktet_gar_foran_deg"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Noen har hørt historier om deg før dere møtes. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "situated_reputation_vs_global_identity",
+          "self_label_vs_legal_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#ryktet_gar_foran_deg"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: En konflikt blir mer intens, og menneskene rundt deg forventer et tydelig svar. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "conflict_vs_deescalation",
+          "situated_reputation_vs_global_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#konflikten_som_eskalerer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: En konflikt blir mer intens, og menneskene rundt deg forventer et tydelig svar. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "conflict_vs_deescalation",
+          "situated_reputation_vs_global_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#konflikten_som_eskalerer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: En konflikt blir mer intens, og menneskene rundt deg forventer et tydelig svar. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "conflict_vs_deescalation",
+          "situated_reputation_vs_global_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#konflikten_som_eskalerer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: En konflikt blir mer intens, og menneskene rundt deg forventer et tydelig svar. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "conflict_vs_deescalation",
+          "situated_reputation_vs_global_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#konflikten_som_eskalerer"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: En handling i miljøet har fått konkrete følger for et menneske utenfor gruppen. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "self_interest_vs_harm_to_others",
+          "responsibility_vs_group_logic"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#den_som_ble_rammet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: En handling i miljøet har fått konkrete følger for et menneske utenfor gruppen. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "self_interest_vs_harm_to_others",
+          "responsibility_vs_group_logic"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#den_som_ble_rammet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: En handling i miljøet har fått konkrete følger for et menneske utenfor gruppen. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "self_interest_vs_harm_to_others",
+          "responsibility_vs_group_logic"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#den_som_ble_rammet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: En handling i miljøet har fått konkrete følger for et menneske utenfor gruppen. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "self_interest_vs_harm_to_others",
+          "responsibility_vs_group_logic"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#den_som_ble_rammet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Du mottar en formell henvendelse eller må forholde deg til en myndighetsprosess. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "authority_contact_vs_role_performance",
+          "identity_vs_exit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#myndighetskontakten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Du mottar en formell henvendelse eller må forholde deg til en myndighetsprosess. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "authority_contact_vs_role_performance",
+          "identity_vs_exit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#myndighetskontakten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Du mottar en formell henvendelse eller må forholde deg til en myndighetsprosess. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "authority_contact_vs_role_performance",
+          "identity_vs_exit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#myndighetskontakten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Du mottar en formell henvendelse eller må forholde deg til en myndighetsprosess. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "authority_contact_vs_role_performance",
+          "identity_vs_exit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#myndighetskontakten"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: En venn setter en tydelig grense og ønsker større avstand til denne delen av livet ditt. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "relationships_vs_risk",
+          "loyalty_vs_coercion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#vennen_som_trekker_seg"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: En venn setter en tydelig grense og ønsker større avstand til denne delen av livet ditt. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "relationships_vs_risk",
+          "loyalty_vs_coercion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#vennen_som_trekker_seg"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: En venn setter en tydelig grense og ønsker større avstand til denne delen av livet ditt. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "relationships_vs_risk",
+          "loyalty_vs_coercion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#vennen_som_trekker_seg"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: En venn setter en tydelig grense og ønsker større avstand til denne delen av livet ditt. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "relationships_vs_risk",
+          "loyalty_vs_coercion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#vennen_som_trekker_seg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Du skal møte på arbeid eller gjennomføre et lovlig oppdrag som normalt. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "work_role_vs_life_position",
+          "situated_reputation_vs_global_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#rollen_og_jobben"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Du skal møte på arbeid eller gjennomføre et lovlig oppdrag som normalt. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "work_role_vs_life_position",
+          "situated_reputation_vs_global_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#rollen_og_jobben"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Du skal møte på arbeid eller gjennomføre et lovlig oppdrag som normalt. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "work_role_vs_life_position",
+          "situated_reputation_vs_global_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#rollen_og_jobben"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Du skal møte på arbeid eller gjennomføre et lovlig oppdrag som normalt. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "work_role_vs_life_position",
+          "situated_reputation_vs_global_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#rollen_og_jobben"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Noen viser til tidligere hjelp og forventer at du derfor skylder dem lydighet nå. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "loyalty_vs_coercion",
+          "risk_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#gjeld_av_lojalitet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Noen viser til tidligere hjelp og forventer at du derfor skylder dem lydighet nå. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "loyalty_vs_coercion",
+          "risk_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#gjeld_av_lojalitet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Noen viser til tidligere hjelp og forventer at du derfor skylder dem lydighet nå. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "loyalty_vs_coercion",
+          "risk_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#gjeld_av_lojalitet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Noen viser til tidligere hjelp og forventer at du derfor skylder dem lydighet nå. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "loyalty_vs_coercion",
+          "risk_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#gjeld_av_lojalitet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: En beslutning i miljøet påvirker flere mennesker, men konsekvensene vil ikke treffe alle likt. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "risk_distribution",
+          "responsibility_vs_group_logic"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#hvem_far_baere_risikoen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: En beslutning i miljøet påvirker flere mennesker, men konsekvensene vil ikke treffe alle likt. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "risk_distribution",
+          "responsibility_vs_group_logic"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#hvem_far_baere_risikoen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: En beslutning i miljøet påvirker flere mennesker, men konsekvensene vil ikke treffe alle likt. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "risk_distribution",
+          "responsibility_vs_group_logic"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#hvem_far_baere_risikoen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: En beslutning i miljøet påvirker flere mennesker, men konsekvensene vil ikke treffe alle likt. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "risk_distribution",
+          "responsibility_vs_group_logic"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#hvem_far_baere_risikoen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: En yngre person virker fascinert av statusen og historiene rundt deg. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "status_vs_influence_over_others",
+          "responsibility_vs_group_logic"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#den_yngre_som_ser_opp_til_deg"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: En yngre person virker fascinert av statusen og historiene rundt deg. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "status_vs_influence_over_others",
+          "responsibility_vs_group_logic"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#den_yngre_som_ser_opp_til_deg"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: En yngre person virker fascinert av statusen og historiene rundt deg. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "status_vs_influence_over_others",
+          "responsibility_vs_group_logic"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#den_yngre_som_ser_opp_til_deg"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: En yngre person virker fascinert av statusen og historiene rundt deg. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "status_vs_influence_over_others",
+          "responsibility_vs_group_logic"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#den_yngre_som_ser_opp_til_deg"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Du har sett hvordan omdømme, lojalitet, hemmelighet, økonomi og risiko kan gjøre en selvvalgt rolle vanskeligere å forlate. Morgenen synliggjør hvilke relasjoner, maktforhold og konsekvenser som allerede ligger i situasjonen.",
+        "thread_ids": [
+          "identity_vs_exit",
+          "self_label_vs_legal_status",
+          "relationships_vs_risk"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#retten_til_exit"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Du har sett hvordan omdømme, lojalitet, hemmelighet, økonomi og risiko kan gjøre en selvvalgt rolle vanskeligere å forlate. Midt på dagen blir ulike interesser, grenser og tolkninger tydelige mellom menneskene som berøres.",
+        "thread_ids": [
+          "identity_vs_exit",
+          "self_label_vs_legal_status",
+          "relationships_vs_risk"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#retten_til_exit"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Du har sett hvordan omdømme, lojalitet, hemmelighet, økonomi og risiko kan gjøre en selvvalgt rolle vanskeligere å forlate. Ettermiddagen gjør ansvar, lojalitet, risiko eller avstand til et konkret valg uten operative kriminalitetsdetaljer.",
+        "thread_ids": [
+          "identity_vs_exit",
+          "self_label_vs_legal_status",
+          "relationships_vs_risk"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#retten_til_exit"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Du har sett hvordan omdømme, lojalitet, hemmelighet, økonomi og risiko kan gjøre en selvvalgt rolle vanskeligere å forlate. Kvelden viser hva valget gjør med tillit, selvbilde, økonomi, omdømme eller muligheten til å endre kurs senere.",
+        "thread_ids": [
+          "identity_vs_exit",
+          "self_label_vs_legal_status",
+          "relationships_vs_risk"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#retten_til_exit"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "self_label_vs_legal_status",
+      "relationship": "forholdet mellom en selvvalgt narrativ etikett og juridiske eller sosiale statuser som ikke kan utledes automatisk av livsposisjonen",
+      "beat_refs": [
+        "1/morning",
+        "1/afternoon",
+        "5/lunch",
+        "8/morning",
+        "10/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "identity_vs_exit",
+      "relationship": "forholdet mellom en identitet som gir tilhørighet eller status og spillerens faktiske mulighet til å ombestemme seg og gå ut av livsbanen",
+      "beat_refs": [
+        "1/evening",
+        "8/afternoon",
+        "11/evening",
+        "13/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "loyalty_vs_coercion",
+      "relationship": "forholdet mellom gjensidig lojalitet og sosialt press som gjør lydighet til vilkår for tilhørighet",
+      "beat_refs": [
+        "2/morning",
+        "2/afternoon",
+        "9/lunch",
+        "11/morning",
+        "11/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "relationships_vs_risk",
+      "relationship": "forholdet mellom nære relasjoner og risiko som kan flyttes til mennesker som ikke har valgt livsposisjonen",
+      "beat_refs": [
+        "2/evening",
+        "4/morning",
+        "4/afternoon",
+        "9/morning",
+        "9/evening",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "short_term_gain_vs_long_term_cost",
+      "relationship": "forholdet mellom kortsiktig gevinst eller status og langsiktige økonomiske, sosiale og tidsmessige kostnader",
+      "beat_refs": [
+        "3/morning",
+        "3/afternoon",
+        "5/evening",
+        "8/lunch",
+        "10/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "situated_reputation_vs_global_identity",
+      "relationship": "forholdet mellom situert omdømme i ulike miljøer og fristelsen til å gjøre én type notoritet til global identitet",
+      "beat_refs": [
+        "5/morning",
+        "5/afternoon",
+        "6/lunch",
+        "6/evening",
+        "10/lunch",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "conflict_vs_deescalation",
+      "relationship": "forholdet mellom forventninger om hardhet og spillerens mulighet til å avgrense eller de-eskalere konflikt",
+      "beat_refs": [
+        "6/morning",
+        "6/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "12/lunch",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "responsibility_vs_group_logic",
+      "relationship": "forholdet mellom gruppens interne forklaringer og ansvar for faktiske konsekvenser for mennesker utenfor gruppen",
+      "beat_refs": [
+        "7/morning",
+        "7/afternoon",
+        "12/morning",
+        "12/afternoon",
+        "13/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "risk_distribution",
+      "relationship": "forholdet mellom formelt felles valg og ulik fordeling av risiko etter penger, nettverk, status og forhandlingsmakt",
+      "beat_refs": [
+        "3/lunch",
+        "7/evening",
+        "11/lunch",
+        "12/morning",
+        "12/evening",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "authority_contact_vs_role_performance",
+      "relationship": "forholdet mellom reell myndighetskontakt og fristelsen til å gjøre prosessen til identitets- eller omgåelsesspill",
+      "beat_refs": [
+        "8/morning",
+        "8/afternoon",
+        "8/evening",
+        "10/morning",
+        "11/evening",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "work_role_vs_life_position",
+      "relationship": "forholdet mellom ordinære arbeidsroller og en separat life-position som ikke gir egen yrkeskompetanse eller karrieremotor",
+      "beat_refs": [
+        "3/evening",
+        "5/lunch",
+        "10/morning",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "status_vs_influence_over_others",
+      "relationship": "forholdet mellom status i et miljø og asymmetrisk påvirkning på yngre eller mer utsatte personer",
+      "beat_refs": [
+        "5/afternoon",
+        "7/lunch",
+        "11/afternoon",
+        "13/morning",
+        "13/afternoon",
+        "13/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "lojaliteten_som_fikk_en_grense",
+      "description": "Når spilleren skiller lojalitet fra lydighet, kan nære relasjoner bestå uten at alle grenser oppheves.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#lojalitet_uten_blindhet",
+        "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#gjeld_av_lojalitet",
+        "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#retten_til_exit"
+      ]
+    },
+    {
+      "id": "vennen_som_fikk_eie_sin_risiko",
+      "description": "En venn kan trekke seg eller sette grenser uten at avstanden automatisk omskrives til svik.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#vennen_som_trekker_seg",
+        "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#hemmeligheten_i_forholdet"
+      ]
+    },
+    {
+      "id": "omdommet_som_ble_situert",
+      "description": "Rykte kan ha verdi i ett miljø og kostnad i et annet uten å bli et globalt omdømmepoeng.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#ryktet_gar_foran_deg",
+        "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#rollen_og_jobben"
+      ]
+    },
+    {
+      "id": "ansvaret_som_naadde_utenfor_gruppen",
+      "description": "Den som ble rammet forblir et selvstendig subjekt og gjør konsekvens større enn spillerens egen risiko.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#den_som_ble_rammet",
+        "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#hvem_far_baere_risikoen"
+      ]
+    },
+    {
+      "id": "exit_som_fortsatt_var_mulig",
+      "description": "Spilleren kan forlate life-position uten at tidligere omdømme, relasjoner eller konsekvenser magisk forsvinner.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#retten_til_exit",
+        "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#myndighetskontakten",
+        "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#den_yngre_som_ser_opp_til_deg"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "lojalitetsgrense_blir_tillit",
+      "setup_ref": "2/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "kortsiktig_gevinst_blir_langsiktig_kostnad",
+      "setup_ref": "3/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "hemmelighet_blir_relationalt_handlingsrom",
+      "setup_ref": "4/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "situert_rykte_blir_arbeidsgrense",
+      "setup_ref": "5/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "reputation",
+        "economy"
+      ]
+    },
+    {
+      "id": "deeskalering_blir_exitrom",
+      "setup_ref": "6/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "ansvar_for_andre_blir_innflytelsesgrense",
+      "setup_ref": "7/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "myndighetskontakt_blir_varig_konsekvens",
+      "setup_ref": "8/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#etiketten_er_et_valg",
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#lojalitet_uten_blindhet",
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#pengene_har_en_pris",
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#hemmeligheten_i_forholdet",
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#ryktet_gar_foran_deg",
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#konflikten_som_eskalerer",
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#den_som_ble_rammet",
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#myndighetskontakten",
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#vennen_som_trekker_seg",
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#rollen_og_jobben",
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#gjeld_av_lojalitet",
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#hvem_far_baere_risikoen",
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#den_yngre_som_ser_opp_til_deg",
+      "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json#retten_til_exit"
+    ]
+  }
+}

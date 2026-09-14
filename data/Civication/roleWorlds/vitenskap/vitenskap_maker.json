@@ -1,0 +1,1157 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_maker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "vitenskap",
+    "id": "maker",
+    "label": "Maker"
+  },
+  "title": "Maker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "praktisk kunnskapsbygging gjennom prototyper og reparasjon uten at erfaring blir uformell profesjons- eller sikkerhetsmyndighet",
+    "description": "Maker-verdenen undersøker hvordan verksted, delte verktøy, prototyper, målinger, feil og åpne filer skaper kunnskap gjennom handling. Den samme kulturen kan produsere statuspress, scope creep, skjult vedlikeholdsarbeid og farlige snarveier når erfaring forveksles med ingeniør-, laboratorie-, elektriker- eller maskinoperatørmyndighet. Spilleren skal kunne bygge, reparere, teste og dele på en sosialt og praktisk meningsfull måte uten at et hobby- eller nettverksprosjekt later som det er sertifisert profesjonelt arbeid."
+  },
+  "theme_ids": [
+    "numerical_control",
+    "local_knowledge_vs_system",
+    "status_anxiety",
+    "shame_reputation",
+    "social_mask",
+    "care_vs_efficiency",
+    "precarity",
+    "invisible_work"
+  ],
+  "social_environments": [
+    "det delte verkstedbordet der materialer, rydding, eierskap og halvferdige ideer blandes",
+    "prototypearbeidet der et enkelt mål fort kan vokse til nye funksjoner og uklare forventninger",
+    "måle- og testøyeblikket der avvik, feilkilder og dokumentasjon konkurrerer med ønsket om å komme videre",
+    "delehylla og verktøysonen der gjenbruk og fellesressurser krever proveniens, vedlikehold og grenser",
+    "nybegynnerbordet der erfaring kan bli vertskap eller gatekeeping",
+    "fil- og verkstedchatten der åpen deling, kreditering og teknisk prestisje blir sosial kapital",
+    "det avgrensede betalte prototypeoppdraget der honorar ikke må forveksles med produkt-, sertifiserings- eller ingeniøransvar",
+    "maskin- og strømgrensen der verkstedets opplæring, kjent spesifikasjon og kvalifisert ansvar skal overstyre improvisasjon",
+    "hjemmet der uferdige prosjekter, bestillinger og neste iterasjon må konkurrere med plass, penger, søvn og andre relasjoner"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "verkstedsvert",
+      "social_function": "eier de praktiske grensene for fellesrom, opplæring og sikker bruk uten å bestemme hva folk skal bygge",
+      "class_position": "lokal verkstedrolle med situert drifts- og sikkerhetsansvar",
+      "status": "høy funksjonell autoritet i det delte rommet",
+      "power_over_player": "kan stoppe bruk av verktøy eller maskiner, kreve opplæring og sette praktiske regler for fellesarealer",
+      "wants": "at folk kan eksperimentere mye uten at rot, snarveier eller uformell kompetanse gjør verkstedet utrygt",
+      "conceals": "at ressursknapphet og sosial nærhet noen ganger gjør det fristende å la kjente brukere få mer slingringsmonn enn nye",
+      "speech_style": "rolig, konkret og eksplisitt om stoppgrenser",
+      "teaches_player": "at et åpent verksted fortsatt trenger tydelig eierskap til sikkerhet og tilgang"
+    },
+    {
+      "id": "erfaren_maker",
+      "social_function": "representerer høy praktisk erfaring uten automatisk profesjonell eller formell myndighet",
+      "class_position": "likemann med stor lokal kunnskap, mange prosjekter bak seg og sterk sosial kapital",
+      "status": "høy uformell status i makergruppen",
+      "power_over_player": "kan påvirke hva som oppfattes som elegant, vanskelig eller verdt å prøve",
+      "wants": "at gruppen bygger mer ambisiøse ting og lærer av hverandres feil",
+      "conceals": "at egen erfaring gjør det lett å undervurdere hvilke sikkerhets- og dokumentasjonsgrenser som faktisk er formelle",
+      "speech_style": "entusiastisk, teknisk og rask til å foreslå en løsning",
+      "teaches_player": "at erfaring er verdifull, men ikke en erstatning for opplæring, kjent spesifikasjon eller profesjonelt ansvar"
+    },
+    {
+      "id": "ny_maker",
+      "social_function": "gjør verkstedets skjulte terskler, språk og statuskoder synlige",
+      "class_position": "ny deltaker med lite utstyr, lav lokal status og høy læringsavhengighet",
+      "status": "lav intern status, men fullverdig deltaker",
+      "power_over_player": "kan speile om spilleren bruker kunnskap til å lære bort eller til å gjøre seg selv nødvendig",
+      "wants": "å få bygge noe selv uten å bli redusert til observatør",
+      "conceals": "at frykten for å virke ukyndig gjør det vanskelig å spørre når noe føles usikkert",
+      "speech_style": "spørrende, konkret og mer selvsikker når eierskapet til prosjektet øker",
+      "teaches_player": "at god veiledning gjør andre mer selvstendige"
+    },
+    {
+      "id": "prosjekteier",
+      "social_function": "gjør scope, forventninger og forskjellen mellom prototype og ferdig produkt tydelig",
+      "class_position": "bekjent eller liten oppdragsgiver med behov, budsjett eller idé, men uten teknisk fagmyndighet",
+      "status": "høy betydning for ett prosjekt fordi vedkommende definerer ønsket resultat og eventuelt betaler",
+      "power_over_player": "kan endre ønsker, tilby betaling og påvirke om prosjektet oppleves vellykket",
+      "wants": "å få ideen fysisk og overbevisende nok til å forstå neste steg",
+      "conceals": "at begeistring for prototypen kan gjøre det fristende å behandle den som mer ferdig og pålitelig enn den er",
+      "speech_style": "løsningsorientert, ivrig og ofte vag om hvor grensen for leveransen egentlig går",
+      "teaches_player": "at tydelig scope beskytter både relasjonen og det praktiske arbeidet"
+    },
+    {
+      "id": "verktøyforvalter",
+      "social_function": "representerer vedlikehold, dokumentasjon og felles ressursansvar",
+      "class_position": "praktisk rolle med ansvar for tilstand og tilgjengelighet på utvalgte fellesverktøy",
+      "status": "moderat til høy situert autoritet rundt fellesressurser",
+      "power_over_player": "kan ta verktøy ut av bruk, be om registrering og avgjøre når kvalifisert service eller utskifting trengs",
+      "wants": "at verktøy er tilgjengelig, dokumentert og trygt nok til at neste person kan stole på tilstanden",
+      "conceals": "at mye vedlikeholdsarbeid er usynlig helt til noe ikke virker",
+      "speech_style": "kort, faktabasert og opptatt av tilstand fremfor skyld",
+      "teaches_player": "at felles verktøy er et sosialt system, ikke bare gjenstander på en hylle"
+    },
+    {
+      "id": "naer_person_hjemme",
+      "social_function": "viser kostnaden når makerprosjekter blir permanente i privat tid og rom",
+      "class_position": "partner, familie eller nær venn uten verkstedstatus",
+      "status": "høy privat betydning",
+      "power_over_player": "kan sette grenser for plass, økonomi og tid og gjøre sunk-cost-logikken synlig",
+      "wants": "at makerinteressen skal få plass uten å spise alle kvelder, flater og løfter",
+      "conceals": "at vedkommende også kan være stolt av spillerens nysgjerrighet og oppfinnsomhet",
+      "speech_style": "direkte, hverdagslig og konkret om hva prosjektet faktisk koster hjemme",
+      "teaches_player": "at en bærekraftig praksis også må kunne avsluttes, parkeres og ryddes bort"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "shared_space_stewardship",
+      "meaning": "om fellesbord, verktøy og materialer forvaltes slik at eksperimentering ikke skyver alt restarbeid over på andre",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "iterative_learning",
+      "meaning": "om målinger, feil og uferdige versjoner blir dokumentert som kunnskap fremfor skjult som mislykket prestasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "scope_boundary",
+      "meaning": "om enkle prosjekter og oppdrag holder tydelige grenser når nye ønsker og tekniske muligheter dukker opp",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "safety_training_boundary",
+      "meaning": "om ukjent strøm, maskiner og verktøy stoppes ved behov for kjent spesifikasjon, formell opplæring eller kvalifisert ansvar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "credit_and_sharing",
+      "meaning": "om åpne filer og samarbeid kan deles uten at opphav, lisens eller faktisk bidrag viskes ut",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "maker_status",
+      "meaning": "om teknisk kompleksitet og synlige prosjekter blir sosial rang eller om miljøet belønner læring og spørsmål",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "private_capacity",
+      "meaning": "hvor mye plass, penger og kveldstid uferdige prosjekter kan ta før praksisen blir uholdbar",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "livelihood_boundary",
+      "meaning": "om et lite prototypehonorar forblir avgrenset makerarbeid uten produkt-, sertifiserings- eller profesjonsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Fellesbordet gjør usynlig arbeid, eierskap og orden til en del av selve makerfellesskapet. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "shared_stewardship",
+          "sustainable_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#verkstedbordet_fullt_igjen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Fellesbordet gjør usynlig arbeid, eierskap og orden til en del av selve makerfellesskapet. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "shared_stewardship",
+          "sustainable_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#verkstedbordet_fullt_igjen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Fellesbordet gjør usynlig arbeid, eierskap og orden til en del av selve makerfellesskapet. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "shared_stewardship",
+          "sustainable_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#verkstedbordet_fullt_igjen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Fellesbordet gjør usynlig arbeid, eierskap og orden til en del av selve makerfellesskapet. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "shared_stewardship",
+          "sustainable_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#verkstedbordet_fullt_igjen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Et enkelt prototypeprosjekt vokser og tester om entusiasme kan holdes adskilt fra grenseløst ansvar. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "scope_iteration",
+          "paid_work_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#prototypebriefet_som_vokser"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Et enkelt prototypeprosjekt vokser og tester om entusiasme kan holdes adskilt fra grenseløst ansvar. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "scope_iteration",
+          "paid_work_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#prototypebriefet_som_vokser"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Et enkelt prototypeprosjekt vokser og tester om entusiasme kan holdes adskilt fra grenseløst ansvar. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "scope_iteration",
+          "paid_work_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#prototypebriefet_som_vokser"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Et enkelt prototypeprosjekt vokser og tester om entusiasme kan holdes adskilt fra grenseløst ansvar. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "scope_iteration",
+          "paid_work_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#prototypebriefet_som_vokser"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Slitt fellesverktøy gjør vedlikehold, dokumentasjon og sikker bruk viktigere enn hvem som får skylden. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "shared_stewardship",
+          "safety_training"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#fellesverktoyet_og_slitasjen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Slitt fellesverktøy gjør vedlikehold, dokumentasjon og sikker bruk viktigere enn hvem som får skylden. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "shared_stewardship",
+          "safety_training"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#fellesverktoyet_og_slitasjen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Slitt fellesverktøy gjør vedlikehold, dokumentasjon og sikker bruk viktigere enn hvem som får skylden. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "shared_stewardship",
+          "safety_training"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#fellesverktoyet_og_slitasjen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Slitt fellesverktøy gjør vedlikehold, dokumentasjon og sikker bruk viktigere enn hvem som får skylden. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "shared_stewardship",
+          "safety_training"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#fellesverktoyet_og_slitasjen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Ulike målinger gjør usikkerhet og sporbar iterasjon til praktisk kunnskapsarbeid. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "measurement_learning",
+          "iteration_failure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#malet_som_ikke_stemmer"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Ulike målinger gjør usikkerhet og sporbar iterasjon til praktisk kunnskapsarbeid. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "measurement_learning",
+          "iteration_failure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#malet_som_ikke_stemmer"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Ulike målinger gjør usikkerhet og sporbar iterasjon til praktisk kunnskapsarbeid. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "measurement_learning",
+          "iteration_failure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#malet_som_ikke_stemmer"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Ulike målinger gjør usikkerhet og sporbar iterasjon til praktisk kunnskapsarbeid. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "measurement_learning",
+          "iteration_failure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#malet_som_ikke_stemmer"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: En mislykket prototype tester om feil kan bevares som læring i stedet for å skjules. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "iteration_failure",
+          "status_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#feilen_som_blir_laring"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: En mislykket prototype tester om feil kan bevares som læring i stedet for å skjules. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "iteration_failure",
+          "status_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#feilen_som_blir_laring"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: En mislykket prototype tester om feil kan bevares som læring i stedet for å skjules. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "iteration_failure",
+          "status_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#feilen_som_blir_laring"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: En mislykket prototype tester om feil kan bevares som læring i stedet for å skjules. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "iteration_failure",
+          "status_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#feilen_som_blir_laring"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Gjenbruk av en ukjent del gjør proveniens og konsekvensbevissthet til en grense for improvisasjon. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "component_provenance",
+          "safety_training"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#reservedelen_fra_skuffen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Gjenbruk av en ukjent del gjør proveniens og konsekvensbevissthet til en grense for improvisasjon. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "component_provenance",
+          "safety_training"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#reservedelen_fra_skuffen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Gjenbruk av en ukjent del gjør proveniens og konsekvensbevissthet til en grense for improvisasjon. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "component_provenance",
+          "safety_training"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#reservedelen_fra_skuffen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Gjenbruk av en ukjent del gjør proveniens og konsekvensbevissthet til en grense for improvisasjon. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "component_provenance",
+          "safety_training"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#reservedelen_fra_skuffen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: En ny deltaker gjør det tydelig om erfaring brukes til vertskap eller til å bygge statusbarrierer. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "onboarding_gatekeeping",
+          "status_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#nybegynneren_ved_bordet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: En ny deltaker gjør det tydelig om erfaring brukes til vertskap eller til å bygge statusbarrierer. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "onboarding_gatekeeping",
+          "status_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#nybegynneren_ved_bordet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: En ny deltaker gjør det tydelig om erfaring brukes til vertskap eller til å bygge statusbarrierer. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "onboarding_gatekeeping",
+          "status_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#nybegynneren_ved_bordet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: En ny deltaker gjør det tydelig om erfaring brukes til vertskap eller til å bygge statusbarrierer. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "onboarding_gatekeeping",
+          "status_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#nybegynneren_ved_bordet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Fildeling og kreditering tester hvordan åpenhet, opphav og samarbeid kan eksistere samtidig. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "credit_sharing",
+          "community_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#deling_av_filer_og_kreditering"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Fildeling og kreditering tester hvordan åpenhet, opphav og samarbeid kan eksistere samtidig. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "credit_sharing",
+          "community_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#deling_av_filer_og_kreditering"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Fildeling og kreditering tester hvordan åpenhet, opphav og samarbeid kan eksistere samtidig. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "credit_sharing",
+          "community_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#deling_av_filer_og_kreditering"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Fildeling og kreditering tester hvordan åpenhet, opphav og samarbeid kan eksistere samtidig. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "credit_sharing",
+          "community_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#deling_av_filer_og_kreditering"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Et lite betalt prototypeoppdrag gjør scope, forventninger og skillet mot profesjonell produktmyndighet konkret. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "paid_work_boundary",
+          "scope_iteration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#det_betalte_prototypeoppdraget"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Et lite betalt prototypeoppdrag gjør scope, forventninger og skillet mot profesjonell produktmyndighet konkret. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "paid_work_boundary",
+          "scope_iteration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#det_betalte_prototypeoppdraget"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Et lite betalt prototypeoppdrag gjør scope, forventninger og skillet mot profesjonell produktmyndighet konkret. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "paid_work_boundary",
+          "scope_iteration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#det_betalte_prototypeoppdraget"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Et lite betalt prototypeoppdrag gjør scope, forventninger og skillet mot profesjonell produktmyndighet konkret. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "paid_work_boundary",
+          "scope_iteration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#det_betalte_prototypeoppdraget"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Et uklart strømkildeoppsett gjør stoppkompetanse viktigere enn ønsket om å teste raskt. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "safety_training",
+          "component_provenance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#batteriet_som_ikke_skal_improviseres"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Et uklart strømkildeoppsett gjør stoppkompetanse viktigere enn ønsket om å teste raskt. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "safety_training",
+          "component_provenance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#batteriet_som_ikke_skal_improviseres"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Et uklart strømkildeoppsett gjør stoppkompetanse viktigere enn ønsket om å teste raskt. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "safety_training",
+          "component_provenance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#batteriet_som_ikke_skal_improviseres"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Et uklart strømkildeoppsett gjør stoppkompetanse viktigere enn ønsket om å teste raskt. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "safety_training",
+          "component_provenance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#batteriet_som_ikke_skal_improviseres"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: En verkstedmaskin gjør formell opplæring og faktisk operatøransvar til en tydelig grense. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "safety_training",
+          "onboarding_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#maskinen_som_krever_opplaering"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: En verkstedmaskin gjør formell opplæring og faktisk operatøransvar til en tydelig grense. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "safety_training",
+          "onboarding_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#maskinen_som_krever_opplaering"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: En verkstedmaskin gjør formell opplæring og faktisk operatøransvar til en tydelig grense. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "safety_training",
+          "onboarding_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#maskinen_som_krever_opplaering"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En verkstedmaskin gjør formell opplæring og faktisk operatøransvar til en tydelig grense. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "safety_training",
+          "onboarding_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#maskinen_som_krever_opplaering"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Et hjemmeprosjekt som spiser tid og plass tester om makerpraksisen kan stoppes uten at læringen mister verdi. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "sustainable_practice",
+          "scope_iteration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#prosjektet_som_aldri_blir_ferdig"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Et hjemmeprosjekt som spiser tid og plass tester om makerpraksisen kan stoppes uten at læringen mister verdi. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "sustainable_practice",
+          "scope_iteration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#prosjektet_som_aldri_blir_ferdig"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Et hjemmeprosjekt som spiser tid og plass tester om makerpraksisen kan stoppes uten at læringen mister verdi. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "sustainable_practice",
+          "scope_iteration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#prosjektet_som_aldri_blir_ferdig"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Et hjemmeprosjekt som spiser tid og plass tester om makerpraksisen kan stoppes uten at læringen mister verdi. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "sustainable_practice",
+          "scope_iteration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#prosjektet_som_aldri_blir_ferdig"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: En statusdiskusjon i verkstedchatten viser hvordan teknisk kompleksitet kan bli sosial rang. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "status_learning",
+          "community_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#verkstedchatten_og_status"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: En statusdiskusjon i verkstedchatten viser hvordan teknisk kompleksitet kan bli sosial rang. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "status_learning",
+          "community_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#verkstedchatten_og_status"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: En statusdiskusjon i verkstedchatten viser hvordan teknisk kompleksitet kan bli sosial rang. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "status_learning",
+          "community_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#verkstedchatten_og_status"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: En statusdiskusjon i verkstedchatten viser hvordan teknisk kompleksitet kan bli sosial rang. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "status_learning",
+          "community_reputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#verkstedchatten_og_status"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Sesongslutten samler læring, sikkerhetsgrenser, deling og retten til å bygge uten å gjøre kompleksitet til hele identiteten. Morgenen etablerer dagens praktiske usikkerhet før verktøy, materialer, forventninger eller status begynner å trekke prosjektet videre.",
+        "thread_ids": [
+          "sustainable_practice",
+          "status_learning",
+          "credit_sharing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#sesongslutt_hva_slags_maker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Sesongslutten samler læring, sikkerhetsgrenser, deling og retten til å bygge uten å gjøre kompleksitet til hele identiteten. Midt på dagen gjør andre i miljøet synlig hva som teller som dyktighet, ansvar, deling og god verkstedkultur.",
+        "thread_ids": [
+          "sustainable_practice",
+          "status_learning",
+          "credit_sharing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#sesongslutt_hva_slags_maker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Sesongslutten samler læring, sikkerhetsgrenser, deling og retten til å bygge uten å gjøre kompleksitet til hele identiteten. Ettermiddagen gjør grensen mellom nysgjerrig praksis og faktisk mandat, sikkerhet eller leveranseansvar til et konkret valg.",
+        "thread_ids": [
+          "sustainable_practice",
+          "status_learning",
+          "credit_sharing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#sesongslutt_hva_slags_maker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Sesongslutten samler læring, sikkerhetsgrenser, deling og retten til å bygge uten å gjøre kompleksitet til hele identiteten. Kvelden viser hva valget etterlater i relasjoner, omdømme, penger, privat kapasitet eller neste iterasjon.",
+        "thread_ids": [
+          "sustainable_practice",
+          "status_learning",
+          "credit_sharing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_maker.json#sesongslutt_hva_slags_maker"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "shared_stewardship",
+      "description": "Fellesrom, verktøy og materialer krever synlig vedlikehold uten at én person eier alt restarbeidet.",
+      "beat_refs": [
+        "1/morning",
+        "1/evening",
+        "3/afternoon",
+        "3/evening",
+        "6/lunch",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "sustainable_practice",
+      "description": "Makerpraksisen må kunne eksistere med privat tid, plass og retten til å parkere uferdige prosjekter.",
+      "beat_refs": [
+        "1/afternoon",
+        "7/evening",
+        "12/morning",
+        "12/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "scope_iteration",
+      "description": "Prototyper utvikles i iterasjoner uten at hvert nytt ønske automatisk blir del av samme forpliktelse.",
+      "beat_refs": [
+        "2/morning",
+        "2/afternoon",
+        "4/evening",
+        "9/lunch",
+        "12/afternoon",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "paid_work_boundary",
+      "description": "Betalt prototypearbeid skal være reelt arbeid med tydelig leveranse uten å bli uavgrenset profesjonelt ansvar.",
+      "beat_refs": [
+        "2/evening",
+        "8/morning",
+        "9/morning",
+        "9/afternoon",
+        "9/evening",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "safety_training",
+      "description": "Maskiner, strøm og fellesverktøy krever stoppkompetanse, opplæring og kjent ansvar fremfor sosial snarvei.",
+      "beat_refs": [
+        "3/morning",
+        "6/afternoon",
+        "10/morning",
+        "10/afternoon",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "measurement_learning",
+      "description": "Målinger og avvik blir kunnskap når de dokumenteres før neste byggesteg.",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "5/morning",
+        "5/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "iteration_failure",
+      "description": "Feil og dårlige versjoner skal kunne beholdes som læring uten at de blir skam eller bortkastet innsats.",
+      "beat_refs": [
+        "4/evening",
+        "5/lunch",
+        "5/afternoon",
+        "8/lunch",
+        "12/lunch",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "component_provenance",
+      "description": "Gjenbruk og ukjente deler må vurderes etter hva som faktisk er kjent om dem og hvilke konsekvenser feil kan få.",
+      "beat_refs": [
+        "6/morning",
+        "6/afternoon",
+        "6/evening",
+        "10/lunch",
+        "10/afternoon",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "onboarding_gatekeeping",
+      "description": "Erfaring skal åpne verkstedet for andre uten å bli en statusbarriere eller uformell erstatning for opplæring.",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "11/lunch",
+        "11/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "status_learning",
+      "description": "Kompleksitet, feil og ekspertise konkurrerer om hva miljøet belønner sosialt.",
+      "beat_refs": [
+        "5/afternoon",
+        "7/evening",
+        "13/morning",
+        "13/afternoon",
+        "13/evening",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "credit_sharing",
+      "description": "Åpen deling må kunne bevare opphav, bidrag og samarbeidsrelasjoner.",
+      "beat_refs": [
+        "8/morning",
+        "8/afternoon",
+        "8/evening",
+        "9/lunch",
+        "13/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "community_reputation",
+      "description": "Hvordan folk deler, forklarer og rangerer hverandre blir stående som sosial hukommelse i makergruppen.",
+      "beat_refs": [
+        "7/evening",
+        "8/lunch",
+        "8/evening",
+        "13/lunch",
+        "13/afternoon",
+        "14/lunch"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "rot_blir_forventningsarbeid",
+      "description": "Hvis spilleren stadig rydder og reparerer fellesrommet kan takknemlighet gradvis bli forventning.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_maker.json#verkstedbordet_fullt_igjen",
+        "data/Civication/narratives/leisure/vitenskap_maker.json#fellesverktoyet_og_slitasjen",
+        "data/Civication/narratives/leisure/vitenskap_maker.json#sesongslutt_hva_slags_maker"
+      ]
+    },
+    {
+      "id": "scope_blir_personlig_gjeld",
+      "description": "Et prosjekt som stadig vokser kan gjøre vennskap eller små oppdrag til en kjede av uuttalte leveranser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_maker.json#prototypebriefet_som_vokser",
+        "data/Civication/narratives/leisure/vitenskap_maker.json#det_betalte_prototypeoppdraget",
+        "data/Civication/narratives/leisure/vitenskap_maker.json#prosjektet_som_aldri_blir_ferdig"
+      ]
+    },
+    {
+      "id": "feil_blir_statusminne",
+      "description": "Hvordan spilleren håndterer mislykkede prototyper kan påvirke om miljøet oppfatter spørsmål og feil som læring eller svakhet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_maker.json#feilen_som_blir_laring",
+        "data/Civication/narratives/leisure/vitenskap_maker.json#verkstedchatten_og_status"
+      ]
+    },
+    {
+      "id": "sikkerhetsgrense_blir_tillitsmal",
+      "description": "Å stoppe ved ukjent strøm eller manglende maskinopplæring kan senere bli et mål på hvor pålitelig spilleren er i fellesverkstedet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_maker.json#batteriet_som_ikke_skal_improviseres",
+        "data/Civication/narratives/leisure/vitenskap_maker.json#maskinen_som_krever_opplaering"
+      ]
+    },
+    {
+      "id": "deling_blir_samarbeidshukommelse",
+      "description": "Kreditering og filpraksis avgjør om fremtidige samarbeid starter med tillit eller mistanke om hvem som eier arbeidet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_maker.json#deling_av_filer_og_kreditering",
+        "data/Civication/narratives/leisure/vitenskap_maker.json#sesongslutt_hva_slags_maker"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "fellesrydning_blir_fast_rolle",
+      "setup_ref": "1/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "scopeglidning_blir_oppdragsgjeld",
+      "setup_ref": "2/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "livelihood",
+        "relationship"
+      ]
+    },
+    {
+      "id": "malefeil_blir_rework_hukommelse",
+      "setup_ref": "4/afternoon",
+      "return_ref": "12/afternoon",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "nybegynnerveiledning_blir_kulturmal",
+      "setup_ref": "7/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "kreditering_blir_samarbeidstillit",
+      "setup_ref": "8/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "sikkerhetsstopp_blir_tillitskapital",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/vitenskap_maker.json#verkstedbordet_fullt_igjen",
+      "data/Civication/narratives/leisure/vitenskap_maker.json#prototypebriefet_som_vokser",
+      "data/Civication/narratives/leisure/vitenskap_maker.json#fellesverktoyet_og_slitasjen",
+      "data/Civication/narratives/leisure/vitenskap_maker.json#malet_som_ikke_stemmer",
+      "data/Civication/narratives/leisure/vitenskap_maker.json#feilen_som_blir_laring",
+      "data/Civication/narratives/leisure/vitenskap_maker.json#reservedelen_fra_skuffen",
+      "data/Civication/narratives/leisure/vitenskap_maker.json#nybegynneren_ved_bordet",
+      "data/Civication/narratives/leisure/vitenskap_maker.json#deling_av_filer_og_kreditering",
+      "data/Civication/narratives/leisure/vitenskap_maker.json#det_betalte_prototypeoppdraget",
+      "data/Civication/narratives/leisure/vitenskap_maker.json#batteriet_som_ikke_skal_improviseres",
+      "data/Civication/narratives/leisure/vitenskap_maker.json#maskinen_som_krever_opplaering",
+      "data/Civication/narratives/leisure/vitenskap_maker.json#prosjektet_som_aldri_blir_ferdig",
+      "data/Civication/narratives/leisure/vitenskap_maker.json#verkstedchatten_og_status",
+      "data/Civication/narratives/leisure/vitenskap_maker.json#sesongslutt_hva_slags_maker"
+    ]
+  }
+}

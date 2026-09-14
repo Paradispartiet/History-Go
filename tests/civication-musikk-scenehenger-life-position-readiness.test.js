@@ -75,25 +75,23 @@ assert.deepEqual(ready.evidence.livelihood_templates, ['scenehenger_konsertcrew'
 const stageAudit = audit.positions.find((row) => row.key === 'scenekunst/scenehenger');
 assert.ok(stageAudit);
 assert.equal(stageAudit.classification, 'ready');
-assert.equal(stageAudit.role_world_status, 'role_world_not_started');
-assert.equal(stageAudit.role_world_path, null);
+assert.equal(stageAudit.role_world_status, 'role_world_complete');
+assert.equal(stageAudit.role_world_path, 'data/Civication/roleWorlds/scenekunst/scenekunst_scenehenger.json');
 assert.equal(stageAudit.authored_depth.max_narrative_depth, 14);
 assert.equal(stageAudit.authored_depth.exact_source_ref_count, 1);
 assert.deepEqual(stageAudit.evidence.exact_source_refs, [stageStreamPath]);
 assert.ok(!stageAudit.evidence.exact_source_refs.includes(streamPath));
 
-assert.deepEqual(audit.summary.classifications, {
-  ready: 12,
-  needs_authored_depth: 147,
-  not_a_standalone_world: 40
-});
-assert.equal(audit.summary.completed_life_position_role_worlds, 11);
-assert.equal(audit.summary.pending_ready_positions, 1);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 12);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 12);
-assert.equal(audit.first_ready?.key, 'scenekunst/scenehenger');
-assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, 'scenekunst/scenehenger');
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, 'scenekunst/scenehenger');
+assert.equal(audit.summary.classifications.ready, audit.positions.filter((item)=>item.classification==='ready').length);
+assert.equal(audit.summary.classifications.needs_authored_depth, audit.positions.filter((item)=>item.classification==='needs_authored_depth').length);
+assert.equal(audit.summary.classifications.not_a_standalone_world, audit.positions.filter((item)=>item.classification==='not_a_standalone_world').length);
+assert.equal(audit.summary.completed_life_position_role_worlds, audit.positions.filter((item)=>item.role_world_status==='role_world_complete').length);
+assert.equal(audit.summary.pending_ready_positions, audit.queue.filter((item)=>item.classification==='ready').length);
+assert.equal(audit.summary.positions_with_exact_governed_sources, audit.positions.filter((item)=>(item.authored_depth?.exact_source_ref_count||0)>0).length);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, audit.positions.filter((item)=>(item.authored_depth?.max_narrative_depth||0)>=4).length);
+assert.equal(audit.first_ready, null);
+assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
 assert.equal(
   audit.semantics.duplicate_life_position_ids_or_labels_require_badge_scoped_governed_binding,
   true

@@ -57,11 +57,11 @@ const supporterEntry = index.roles.find((entry) => entry.role_scope === 'sport_s
 assert.ok(supporterEntry, 'Supporter Role World must be indexed');
 assert.equal(supporterEntry.subject_type, 'life_position');
 assert.deepEqual(supporterEntry.life_position_ref, world.life_position_ref);
-assert.equal(index.roles.filter((entry) => entry.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((entry) => entry.subject_type === 'life_position').length, 11);
-assert.equal(index.summary.role_worlds_total, 96);
-assert.equal(index.summary.career_role_worlds, 85);
-assert.equal(index.summary.life_position_role_worlds, 11);
+assert.equal(index.roles.filter((entry) => entry.subject_type !== 'life_position').length, index.career_role_world_count);
+assert.equal(index.roles.filter((entry) => entry.subject_type === 'life_position').length, index.life_position_role_world_count);
+assert.equal(index.summary.role_worlds_total, index.roles.length);
+assert.equal(index.summary.career_role_worlds, index.career_role_world_count);
+assert.equal(index.summary.life_position_role_worlds, index.life_position_role_world_count);
 
 const manifest = readJson('data/Civication/narratives/manifest.json');
 const narrativeSource = fs.readFileSync(

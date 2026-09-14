@@ -317,9 +317,7 @@ function classify(position, evidence) {
 
 const rows = positions.map((position) => {
   const evidence = sourceEvidence(position);
-  const completedWorld = position.id
-    ? completedLifePositionWorlds.get(positionKey(position)) || null
-    : null;
+  const completedWorld = completedLifePositionWorlds.get(positionKey(position)) || null;
   const classification = classify(position, evidence);
   const mode = semanticMode(position.kind);
   let priority = completedWorld ? 0

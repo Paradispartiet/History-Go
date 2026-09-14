@@ -34,6 +34,8 @@ function fakeFastApiClient(overrides = {}) {
     health: () => ({ ok: true, enabled: true, hasBaseUrl: true, baseUrl: 'https://api.example.test' }),
     getMe: async () => ({ ok: true, status: 200, data: { profileId: 'profile-me' } }),
     upsertProfile: async (payload) => ({ ok: true, status: 200, data: payload }),
+    setPlaceStatus: async (payload) => ({ ok: true, status: 200, data: { active: true, placeId: payload.placeId } }),
+    clearPlaceStatus: async () => ({ ok: true, status: 200, data: { active: false } }),
     discoverCandidates: async () => ({
       ok: true,
       status: 200,
@@ -135,6 +137,69 @@ async function testAdapterUsesPublicProfileIdsAndFastApiPayloads() {
   assert.strictEqual(invite.invite.backend, 'fastapi');
 }
 
+async function testPlaceStatusUsesCanonicalPlaceOnly() {
+  const window = makeWindow();
+  window.HG_SOCIAL_MEET_BACKEND = 'fastapi';
+  window.HG_SOCIAL_MEET_API = { enabled: true, baseUrl: 'https://api.example.test' };
+  let discoveryPayload = null;
+  let statusPayload = null;
+  window.HG_SocialMeetFastApiClient = fakeFastApiClient({
+    discoverCandidates: async (payload) => {
+      discoveryPayload = payload;
+      return {
+        ok: true,
+        status: 200,
+        data: {
+          mode: 'place_status',
+          contextType: 'place',
+          contextId: 'akershus_festning',
+          generatedAt: '2026-09-13T10:00:00Z',
+          staleAfterSeconds: 300,
+          candidates: []
+        }
+      };
+    },
+    setPlaceStatus: async (payload) => {
+      statusPayload = payload;
+      return { ok: true, status: 200, data: { active: true, placeId: payload.placeId } };
+    }
+  });
+
+  runScript(window, 'js/social/HGSocialMeetAdapter.js');
+
+  const status = await window.HG_SocialMeetAdapter.setPlaceStatus('akershus_festning', 60);
+  assert.strictEqual(status.ok, true);
+  assert.deepStrictEqual(JSON.parse(JSON.stringify(statusPayload)), {
+    placeId: 'akershus_festning',
+    durationMinutes: 60,
+    consentVersion: 'social_meet_place_status_v1',
+    previewConfirmed: true
+  });
+  const serializedStatus = JSON.stringify(statusPayload).toLowerCase();
+  for (const forbidden of ['latitude','longitude','gps','distance','coords']) {
+    assert(!serializedStatus.includes(forbidden), 'place status must not contain '+forbidden);
+  }
+
+  const discovery = await window.HG_SocialMeetAdapter.discoverCandidates(
+    {
+      contextType: 'place',
+      contextId: 'akershus_festning',
+      title: 'Akershus festning',
+      reason: 'Folk her nå',
+      sourceSurface: 'placeCardOnSite'
+    },
+    { mode: 'place_status', signals: {}, limit: 8 }
+  );
+  assert.strictEqual(discovery.ok, true);
+  assert.strictEqual(discoveryPayload.mode, 'place_status');
+  assert.strictEqual(discoveryPayload.context.contextId, 'akershus_festning');
+  assert.deepStrictEqual(Array.from(discoveryPayload.context.themeTags), []);
+
+  const cleared = await window.HG_SocialMeetAdapter.clearPlaceStatus();
+  assert.strictEqual(cleared.ok, true);
+  assert.strictEqual(cleared.placeStatus.active, false);
+}
+
 async function testLazyLoadsTypedClientOnce() {
   const window = makeWindow();
   window.HG_SOCIAL_MEET_BACKEND = 'fastapi';
@@ -200,6 +265,7 @@ async function testProductionFailureDoesNotCreateLocalInvite() {
 
 (async () => {
   await testAdapterUsesPublicProfileIdsAndFastApiPayloads();
+  await testPlaceStatusUsesCanonicalPlaceOnly();
   await testLazyLoadsTypedClientOnce();
   await testProductionFailureDoesNotCreateLocalInvite();
   console.log('Social Meet FastAPI adapter tests passed.');
