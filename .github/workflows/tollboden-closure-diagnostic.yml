@@ -156,3 +156,25 @@ jobs:
           NODE
           echo '=== TOLLPAKKHUSET GUARD ==='
           if git diff --name-only | grep -i tollpakkhuset; then echo 'ERROR: Tollpakkhuset touched'; exit 1; else echo 'PASS: Tollpakkhuset untouched'; fi
+      - name: Export exact candidate
+        if: success()
+        run: |
+          git diff --name-only > reports/tollboden-candidate-files.txt
+          git diff --numstat > reports/tollboden-candidate-numstat.txt
+          git diff --shortstat > reports/tollboden-candidate-shortstat.txt
+          git diff --binary > reports/tollboden-candidate.patch
+          tar -czf reports/tollboden-candidate-files.tar.gz -T reports/tollboden-candidate-files.txt
+          sha256sum reports/tollboden-candidate.patch reports/tollboden-candidate-files.tar.gz > reports/tollboden-candidate-sha256.txt
+      - name: Upload exact candidate
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tollboden-green-candidate
+          path: |
+            reports/tollboden-candidate-files.txt
+            reports/tollboden-candidate-numstat.txt
+            reports/tollboden-candidate-shortstat.txt
+            reports/tollboden-candidate.patch
+            reports/tollboden-candidate-files.tar.gz
+            reports/tollboden-candidate-sha256.txt
+          if-no-files-found: error
