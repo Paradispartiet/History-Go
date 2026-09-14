@@ -1,0 +1,1152 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_urbanist",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "by",
+    "id": "urbanist",
+    "label": "Urbanist"
+  },
+  "title": "Urbanist — bolig, transport, handel, arkitektur, drift og politikk som ett levende system",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å se hvordan byens systemer og fordelingsvirkninger henger sammen uten å gjøre helhetsblikk, systemspråk eller høy Badge-score til faglig, politisk eller representativ myndighet",
+    "description": "Urbanist-verdenen undersøker koblinger mellom bolig, transport, handel, arkitektur, eierskap, drift, klima, data og politikk. Den skiller seg fra Byvandrerens praktiske rutekunnskap, Flanørens åpne byblikk og Nabolagskjenners lokale sosiale kapital: Urbanist arbeider med relasjoner mellom systemer og med hvem som får gevinster, kostnader og innflytelse. Rollen gjør spilleren bedre til å stille sammenhengende spørsmål, men gjør ikke spilleren til planlegger, arkitekt, transportekspert, økonom, politiker eller talsperson. Ingen ny runtime opprettes."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "class_power",
+    "bureaucratic_power",
+    "numerical_control",
+    "public_attention",
+    "invisible_work",
+    "care_vs_efficiency",
+    "precarity",
+    "consumption",
+    "alienation"
+  ],
+  "social_environments": [
+    "åpne møter, høringer og lokale diskusjoner der oppmøte, taletid og representativitet ikke er det samme",
+    "boligprosjekter og nabolagsendringer der pris, eierform, tetthet og tjenester virker sammen",
+    "handelsgater og knutepunkter der transport, varelevering, opphold og lokal økonomi konkurrerer om plass",
+    "plandokumenter, illustrasjoner og datasett som modellerer byen, men ikke alene avgjør hvordan den blir levd",
+    "bygg og offentlige rom der arkitektur, drift, renhold, vedlikehold og budsjett møtes etter åpningen",
+    "klima- og gateprosjekter der langsiktige gevinster og kortsiktige fordelingsvirkninger må ses samtidig"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "leietaker_i_endring",
+      "social_function": "gjør boligpolitikk og områdeforbedring konkret gjennom risikoen for høyere kostnader og flyttepress",
+      "class_position": "leietaker med begrenset kontroll over framtidig boutgift",
+      "status": "situert erfaring med boligmarkedets konsekvenser, uten representasjonsmandat",
+      "power_over_player": "kan avvise aggregert framgang som ikke beskriver egen situasjon",
+      "wants": "forutsigbar bolig og reell mulighet til å bli boende",
+      "conceals": "at egne preferanser også kan kollidere med andres behov for flere boliger",
+      "speech_style": "konkret, kostnadsbevisst og skeptisk til abstrakte gevinster",
+      "teaches_player": "at samme byendring kan fordele trygghet og usikkerhet ulikt"
+    },
+    {
+      "id": "butikkdriver",
+      "social_function": "kobler gatebruk, kundestrømmer, husleie, logistikk og lokal møteplassfunksjon",
+      "class_position": "liten næringsdrivende med bundet kapital og avhengighet av stedet",
+      "status": "lokal økonomisk aktør uten offentlig planmyndighet",
+      "power_over_player": "kan vise hvilke endringer som påvirker drift, men kan også forsvare egen interesse",
+      "wants": "forutsigbare kostnader, tilgang for kunder og fungerende vareflyt",
+      "conceals": "at det som er godt for egen omsetning ikke nødvendigvis er best for alle brukere",
+      "speech_style": "praktisk, regnskapsnær og opptatt av konsekvenser på gateplan",
+      "teaches_player": "at lokalt handelsliv både er økonomi og sosial infrastruktur"
+    },
+    {
+      "id": "mobilitetsbruker",
+      "social_function": "gjør arealkampen mellom gange, kollektiv, sykkel, bil og varelevering personlig uten å gjøre én modus universell",
+      "class_position": "daglig bybruker med tids-, omsorgs- eller tilgjengelighetsbehov",
+      "status": "situert brukerkompetanse, ikke transportfaglig autoritet",
+      "power_over_player": "kan utfordre antakelser om hva som er en enkel eller rimelig reise",
+      "wants": "en forutsigbar forbindelse som fungerer med egne behov",
+      "conceals": "at egen reisemåte også legger beslag på knapp plass eller kapasitet",
+      "speech_style": "tidskonkret, erfaringsbasert og rask til å peke på praktiske terskler",
+      "teaches_player": "at mobilitetspolitikk fordeler plass, tid og tilgang"
+    },
+    {
+      "id": "kommunal_planlegger",
+      "social_function": "holder forskjellen mellom offentlig prosess, faglig vurdering, politisk vedtak og spillerens interesse tydelig",
+      "class_position": "profesjonell offentlig saksaktør med avgrenset mandat",
+      "status": "formell prosess- og fagrolle innen egen sak, ikke allmenn sannhetsautoritet",
+      "power_over_player": "kan forklare dokumentstatus, prosess og hvilke beslutninger som faktisk er tatt",
+      "wants": "at innspill forholder seg til sakens rammer og at forskjellen mellom forslag og vedtak forstås",
+      "conceals": "at også faglige prosesser preges av prioriteringer, mandat og institusjonelle begrensninger",
+      "speech_style": "presis, prosessorientert og tydelig på hva som er forslag, kunnskap og beslutning",
+      "teaches_player": "at systemspråk ikke gir spilleren samme mandat som en formell rolle"
+    },
+    {
+      "id": "utbyggerrepresentant",
+      "social_function": "synliggjør finansiering, tomteverdi, gjennomførbarhet og eierinteresser i byutvikling",
+      "class_position": "kapital- og prosjektaktør med økonomisk interesse i gjennomføring",
+      "status": "ressurssterk forhandlingspart uten demokratisk mandat",
+      "power_over_player": "kan sette fram tall og gjennomføringsargumenter som andre aktører må forholde seg til",
+      "wants": "et prosjekt som kan finansieres, godkjennes og realiseres",
+      "conceals": "hvor mye av prosjektfortellingen som også er strategisk interessekommunikasjon",
+      "speech_style": "tallorientert, løsningsrettet og opptatt av gjennomførbarhet",
+      "teaches_player": "at økonomiske rammer er reelle uten å være politisk nøytrale"
+    },
+    {
+      "id": "nabolagsaktivist",
+      "social_function": "viser både verdien og grensen i sterk lokal mobilisering",
+      "class_position": "engasjert beboer eller bruker med tid og nettverk til å delta",
+      "status": "høy synlighet i lokal offentlighet uten automatisk representativitet",
+      "power_over_player": "kan mobilisere informasjon, møter og motargumenter og utfordre hvem spilleren overser",
+      "wants": "at lokale konsekvenser tas alvorlig og at beslutninger ikke skyves gjennom uten motstand",
+      "conceals": "at aktive nettverk kan være sosialt skjeve og ha egne blinde flekker",
+      "speech_style": "energisk, detaljert og tydelig på tap som ellers kan forsvinne i totalsummer",
+      "teaches_player": "at deltakelse kan være viktig uten å være det samme som folkemandat"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "systems_connection_vs_single_cause",
+      "meaning": "forholdet mellom å se koblinger på tvers og fristelsen til å forklare byen med én årsak",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "housing_supply_vs_affordability",
+      "meaning": "forholdet mellom boligvolum, eierform, pris og hvem som faktisk kan bli boende",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "mobility_vs_space_allocation",
+      "meaning": "forholdet mellom transportbehov og fordelingen av knapp gateplass mellom ulike brukere",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "local_commerce_vs_rent_pressure",
+      "meaning": "forholdet mellom lokalt handelsliv, husleie, kundestrømmer og større markedsendringer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "density_vs_amenity_distribution",
+      "meaning": "forholdet mellom kapasitet, nærhet og hvordan lys, uteareal, trafikk og tjenester fordeles",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "participation_vs_representation",
+      "meaning": "forholdet mellom å delta aktivt og å ha legitimt mandat til å representere andre",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "plan_document_vs_lived_outcome",
+      "meaning": "forholdet mellom institusjonelle planer og hvordan økonomi, drift og senere valg faktisk former stedet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "ownership_vs_displacement",
+      "meaning": "forholdet mellom verdistigning, eierskap, leieforhold og ulikt flyttepress",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "design_vs_maintenance",
+      "meaning": "forholdet mellom synlig arkitektur og den mindre synlige driften som produserer langsiktig brukskvalitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "logistics_vs_visible_city",
+      "meaning": "forholdet mellom synlig byliv og vareflyt, renovasjon og drift som gjør det mulig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "climate_adaptation_vs_competing_use",
+      "meaning": "forholdet mellom klimatilpasning og andre legitime krav til samme gate- og byrom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "data_vs_lived_experience",
+      "meaning": "forholdet mellom aggregert statistikk og erfaringer som kan avdekke skala- og måleblindsoner",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "knowledge_vs_authority",
+      "meaning": "forholdet mellom et utviklet systemblikk og grensen mot profesjonell, politisk eller representativ myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: En venn peker på at en husleieøkning, en endret bussrute og en ny dagligvarebutikk diskuteres som tre separate saker. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "systems_connection_vs_single_cause"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#byen_som_system"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: En venn peker på at en husleieøkning, en endret bussrute og en ny dagligvarebutikk diskuteres som tre separate saker. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "systems_connection_vs_single_cause"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#byen_som_system"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: En venn peker på at en husleieøkning, en endret bussrute og en ny dagligvarebutikk diskuteres som tre separate saker. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "systems_connection_vs_single_cause",
+          "knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#byen_som_system"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: En venn peker på at en husleieøkning, en endret bussrute og en ny dagligvarebutikk diskuteres som tre separate saker. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "systems_connection_vs_single_cause"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#byen_som_system"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Et foreslått boligprosjekt lover flere boliger, mens naboer diskuterer priser, leie, størrelse og hvem som faktisk kan bli boende. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "housing_supply_vs_affordability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#boligene_og_regnestykket"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Et foreslått boligprosjekt lover flere boliger, mens naboer diskuterer priser, leie, størrelse og hvem som faktisk kan bli boende. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "housing_supply_vs_affordability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#boligene_og_regnestykket"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Et foreslått boligprosjekt lover flere boliger, mens naboer diskuterer priser, leie, størrelse og hvem som faktisk kan bli boende. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "housing_supply_vs_affordability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#boligene_og_regnestykket"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Et foreslått boligprosjekt lover flere boliger, mens naboer diskuterer priser, leie, størrelse og hvem som faktisk kan bli boende. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "housing_supply_vs_affordability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#boligene_og_regnestykket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: En gate skal omfordeles mellom buss, sykkel, fortau, varelevering og parkering, og alle parter beskriver sin bruk som nødvendig. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "mobility_vs_space_allocation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#bussfeltet_og_parkeringsplassen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: En gate skal omfordeles mellom buss, sykkel, fortau, varelevering og parkering, og alle parter beskriver sin bruk som nødvendig. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "mobility_vs_space_allocation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#bussfeltet_og_parkeringsplassen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: En gate skal omfordeles mellom buss, sykkel, fortau, varelevering og parkering, og alle parter beskriver sin bruk som nødvendig. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "mobility_vs_space_allocation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#bussfeltet_og_parkeringsplassen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: En gate skal omfordeles mellom buss, sykkel, fortau, varelevering og parkering, og alle parter beskriver sin bruk som nødvendig. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "mobility_vs_space_allocation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#bussfeltet_og_parkeringsplassen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: En kjent butikk stenger, og forklaringene spenner fra netthandel og husleie til kundestrømmer, kjededrift og endret befolkningssammensetning. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "local_commerce_vs_rent_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#butikken_som_forsvinner"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: En kjent butikk stenger, og forklaringene spenner fra netthandel og husleie til kundestrømmer, kjededrift og endret befolkningssammensetning. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "local_commerce_vs_rent_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#butikken_som_forsvinner"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: En kjent butikk stenger, og forklaringene spenner fra netthandel og husleie til kundestrømmer, kjededrift og endret befolkningssammensetning. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "local_commerce_vs_rent_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#butikken_som_forsvinner"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: En kjent butikk stenger, og forklaringene spenner fra netthandel og husleie til kundestrømmer, kjededrift og endret befolkningssammensetning. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "local_commerce_vs_rent_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#butikken_som_forsvinner"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Et nytt prosjekt gir flere boliger og kortere avstand til tilbud, men endrer lys, uteareal, trafikk og press på lokale funksjoner. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "density_vs_amenity_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#tetthet_og_dagligliv"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Et nytt prosjekt gir flere boliger og kortere avstand til tilbud, men endrer lys, uteareal, trafikk og press på lokale funksjoner. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "density_vs_amenity_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#tetthet_og_dagligliv"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Et nytt prosjekt gir flere boliger og kortere avstand til tilbud, men endrer lys, uteareal, trafikk og press på lokale funksjoner. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "density_vs_amenity_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#tetthet_og_dagligliv"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Et nytt prosjekt gir flere boliger og kortere avstand til tilbud, men endrer lys, uteareal, trafikk og press på lokale funksjoner. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "density_vs_amenity_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#tetthet_og_dagligliv"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: På et åpent møte får du ordet etter å ha fulgt saken lenge, mens andre berørte grupper knapt er til stede. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "participation_vs_representation",
+          "knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#horing_uten_folkemandat"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: På et åpent møte får du ordet etter å ha fulgt saken lenge, mens andre berørte grupper knapt er til stede. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "participation_vs_representation",
+          "knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#horing_uten_folkemandat"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: På et åpent møte får du ordet etter å ha fulgt saken lenge, mens andre berørte grupper knapt er til stede. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "participation_vs_representation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#horing_uten_folkemandat"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: På et åpent møte får du ordet etter å ha fulgt saken lenge, mens andre berørte grupper knapt er til stede. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "participation_vs_representation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#horing_uten_folkemandat"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Et plandokument viser formål, høyder, forbindelser og illustrasjoner som gjør framtiden tilsynelatende konkret. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "plan_document_vs_lived_outcome"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#plankartet_og_virkeligheten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Et plandokument viser formål, høyder, forbindelser og illustrasjoner som gjør framtiden tilsynelatende konkret. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "plan_document_vs_lived_outcome"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#plankartet_og_virkeligheten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Et plandokument viser formål, høyder, forbindelser og illustrasjoner som gjør framtiden tilsynelatende konkret. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "plan_document_vs_lived_outcome",
+          "knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#plankartet_og_virkeligheten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Et plandokument viser formål, høyder, forbindelser og illustrasjoner som gjør framtiden tilsynelatende konkret. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "plan_document_vs_lived_outcome"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#plankartet_og_virkeligheten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: En leietaker liker nye tilbud i området, men er samtidig usikker på om neste husleie gjør det mulig å bli boende. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "ownership_vs_displacement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#eierskap_og_flyttepress"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: En leietaker liker nye tilbud i området, men er samtidig usikker på om neste husleie gjør det mulig å bli boende. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "ownership_vs_displacement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#eierskap_og_flyttepress"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: En leietaker liker nye tilbud i området, men er samtidig usikker på om neste husleie gjør det mulig å bli boende. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "ownership_vs_displacement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#eierskap_og_flyttepress"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: En leietaker liker nye tilbud i området, men er samtidig usikker på om neste husleie gjør det mulig å bli boende. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "ownership_vs_displacement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#eierskap_og_flyttepress"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Et nytt bygg får mye oppmerksomhet for fasade og form, mens brukere etter noen måneder snakker om drift, renhold, innganger, støy og reparasjoner. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "design_vs_maintenance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#fasaden_og_bakrommet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Et nytt bygg får mye oppmerksomhet for fasade og form, mens brukere etter noen måneder snakker om drift, renhold, innganger, støy og reparasjoner. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "design_vs_maintenance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#fasaden_og_bakrommet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Et nytt bygg får mye oppmerksomhet for fasade og form, mens brukere etter noen måneder snakker om drift, renhold, innganger, støy og reparasjoner. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "design_vs_maintenance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#fasaden_og_bakrommet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Et nytt bygg får mye oppmerksomhet for fasade og form, mens brukere etter noen måneder snakker om drift, renhold, innganger, støy og reparasjoner. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "design_vs_maintenance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#fasaden_og_bakrommet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Før butikkene åpner fylles gaten av varelevering, renovasjon, håndverkere og ansatte som gjør dagens synlige byliv mulig. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "logistics_vs_visible_city"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#leveringene_for_solen_staar_opp"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Før butikkene åpner fylles gaten av varelevering, renovasjon, håndverkere og ansatte som gjør dagens synlige byliv mulig. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "logistics_vs_visible_city"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#leveringene_for_solen_staar_opp"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Før butikkene åpner fylles gaten av varelevering, renovasjon, håndverkere og ansatte som gjør dagens synlige byliv mulig. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "logistics_vs_visible_city"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#leveringene_for_solen_staar_opp"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Før butikkene åpner fylles gaten av varelevering, renovasjon, håndverkere og ansatte som gjør dagens synlige byliv mulig. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "logistics_vs_visible_city"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#leveringene_for_solen_staar_opp"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Et gateprosjekt skal håndtere overvann og varme med trær og blågrønne tiltak samtidig som det diskuteres sykkelfelt, varelevering, fortau og parkering. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "climate_adaptation_vs_competing_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#treet_sykkelfeltet_og_plassen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Et gateprosjekt skal håndtere overvann og varme med trær og blågrønne tiltak samtidig som det diskuteres sykkelfelt, varelevering, fortau og parkering. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "climate_adaptation_vs_competing_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#treet_sykkelfeltet_og_plassen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Et gateprosjekt skal håndtere overvann og varme med trær og blågrønne tiltak samtidig som det diskuteres sykkelfelt, varelevering, fortau og parkering. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "climate_adaptation_vs_competing_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#treet_sykkelfeltet_og_plassen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Et gateprosjekt skal håndtere overvann og varme med trær og blågrønne tiltak samtidig som det diskuteres sykkelfelt, varelevering, fortau og parkering. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "climate_adaptation_vs_competing_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#treet_sykkelfeltet_og_plassen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Et datasett viser bedre gjennomsnittstall for området samtidig som enkelte husholdninger og gater beskriver en helt annen utvikling. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "data_vs_lived_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#tallene_som_ikke_er_nabolaget"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Et datasett viser bedre gjennomsnittstall for området samtidig som enkelte husholdninger og gater beskriver en helt annen utvikling. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "data_vs_lived_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#tallene_som_ikke_er_nabolaget"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Et datasett viser bedre gjennomsnittstall for området samtidig som enkelte husholdninger og gater beskriver en helt annen utvikling. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "data_vs_lived_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#tallene_som_ikke_er_nabolaget"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Et datasett viser bedre gjennomsnittstall for området samtidig som enkelte husholdninger og gater beskriver en helt annen utvikling. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "data_vs_lived_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#tallene_som_ikke_er_nabolaget"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: To naboer diskuterer et prosjekt der den ene vektlegger flere boliger og bedre kollektivgrunnlag, mens den andre mister lys og frykter høyere boutgifter. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "systems_connection_vs_single_cause",
+          "density_vs_amenity_distribution",
+          "design_vs_maintenance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#den_samme_planen_i_to_skalaer"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: To naboer diskuterer et prosjekt der den ene vektlegger flere boliger og bedre kollektivgrunnlag, mens den andre mister lys og frykter høyere boutgifter. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "housing_supply_vs_affordability",
+          "participation_vs_representation",
+          "logistics_vs_visible_city",
+          "knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#den_samme_planen_i_to_skalaer"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: To naboer diskuterer et prosjekt der den ene vektlegger flere boliger og bedre kollektivgrunnlag, mens den andre mister lys og frykter høyere boutgifter. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "mobility_vs_space_allocation",
+          "plan_document_vs_lived_outcome",
+          "climate_adaptation_vs_competing_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#den_samme_planen_i_to_skalaer"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: To naboer diskuterer et prosjekt der den ene vektlegger flere boliger og bedre kollektivgrunnlag, mens den andre mister lys og frykter høyere boutgifter. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "local_commerce_vs_rent_pressure",
+          "ownership_vs_displacement",
+          "data_vs_lived_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#den_samme_planen_i_to_skalaer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Etter to uker ser du flere forbindelser mellom bolig, transport, handel, arkitektur, drift, eierskap, klima og politikk. Morgenen åpner saken som et systemproblem og gjør de første avhengighetene synlige.",
+        "thread_ids": [
+          "local_commerce_vs_rent_pressure",
+          "plan_document_vs_lived_outcome",
+          "data_vs_lived_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#systemkartet_med_blinde_flekker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Etter to uker ser du flere forbindelser mellom bolig, transport, handel, arkitektur, drift, eierskap, klima og politikk. Midt på dagen bringer et annet ståsted inn kostnader eller gevinster som første forklaring ikke fanget.",
+        "thread_ids": [
+          "mobility_vs_space_allocation",
+          "density_vs_amenity_distribution",
+          "climate_adaptation_vs_competing_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#systemkartet_med_blinde_flekker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Etter to uker ser du flere forbindelser mellom bolig, transport, handel, arkitektur, drift, eierskap, klima og politikk. Ettermiddagen tvinger fram et konkret valg om hva du vil vektlegge, undersøke eller holde åpent.",
+        "thread_ids": [
+          "housing_supply_vs_affordability",
+          "ownership_vs_displacement",
+          "logistics_vs_visible_city"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#systemkartet_med_blinde_flekker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Etter to uker ser du flere forbindelser mellom bolig, transport, handel, arkitektur, drift, eierskap, klima og politikk. Kvelden viser hva systemblikket gjør med sikkerhet, tillit, omdømme eller senere vurderinger.",
+        "thread_ids": [
+          "systems_connection_vs_single_cause",
+          "participation_vs_representation",
+          "design_vs_maintenance",
+          "knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/by_urbanist.json#systemkartet_med_blinde_flekker"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "systems_connection_vs_single_cause",
+      "relationship": "forholdet mellom å se koblinger på tvers og fristelsen til å forklare byen med én årsak",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "13/morning",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "housing_supply_vs_affordability",
+      "relationship": "forholdet mellom boligvolum, eierform, pris og hvem som faktisk kan bli boende",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "13/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "mobility_vs_space_allocation",
+      "relationship": "forholdet mellom transportbehov og fordelingen av knapp gateplass mellom ulike brukere",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "13/afternoon",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "local_commerce_vs_rent_pressure",
+      "relationship": "forholdet mellom lokalt handelsliv, husleie, kundestrømmer og større markedsendringer",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "density_vs_amenity_distribution",
+      "relationship": "forholdet mellom kapasitet, nærhet og hvordan lys, uteareal, trafikk og tjenester fordeles",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "13/morning",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "participation_vs_representation",
+      "relationship": "forholdet mellom å delta aktivt og å ha legitimt mandat til å representere andre",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "13/lunch",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "plan_document_vs_lived_outcome",
+      "relationship": "forholdet mellom institusjonelle planer og hvordan økonomi, drift og senere valg faktisk former stedet",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "13/afternoon",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "ownership_vs_displacement",
+      "relationship": "forholdet mellom verdistigning, eierskap, leieforhold og ulikt flyttepress",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "13/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "design_vs_maintenance",
+      "relationship": "forholdet mellom synlig arkitektur og den mindre synlige driften som produserer langsiktig brukskvalitet",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/morning",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "logistics_vs_visible_city",
+      "relationship": "forholdet mellom synlig byliv og vareflyt, renovasjon og drift som gjør det mulig",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "13/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "climate_adaptation_vs_competing_use",
+      "relationship": "forholdet mellom klimatilpasning og andre legitime krav til samme gate- og byrom",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "13/afternoon",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "data_vs_lived_experience",
+      "relationship": "forholdet mellom aggregert statistikk og erfaringer som kan avdekke skala- og måleblindsoner",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "knowledge_vs_authority",
+      "relationship": "forholdet mellom et utviklet systemblikk og grensen mot profesjonell, politisk eller representativ myndighet",
+      "beat_refs": [
+        "1/afternoon",
+        "6/morning",
+        "6/lunch",
+        "7/afternoon",
+        "13/lunch",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "kartet_med_flere_arsaker",
+      "description": "Spilleren slutter å bruke én favorittårsak som standardforklaring og merker hvilke koblinger som er dokumentert, antatt eller fortsatt åpne.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_urbanist.json#byen_som_system",
+        "data/Civication/narratives/leisure/by_urbanist.json#systemkartet_med_blinde_flekker"
+      ]
+    },
+    {
+      "id": "horingen_uten_mandat",
+      "description": "Et godt innlegg kan senere huskes som presist nettopp fordi spilleren avgrenset hvem hen kunne snakke for.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_urbanist.json#horing_uten_folkemandat"
+      ]
+    },
+    {
+      "id": "butikken_og_boligene_i_samme_regnestykke",
+      "description": "Handel, bolig og transport blir vanskeligere å diskutere som separate siloer etter at spilleren har sett hvordan kostnader og strømmer krysser hverandre.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_urbanist.json#boligene_og_regnestykket",
+        "data/Civication/narratives/leisure/by_urbanist.json#butikken_som_forsvinner"
+      ]
+    },
+    {
+      "id": "vedlikeholdet_bak_ikonet",
+      "description": "Et sterkt førsteinntrykk av arkitektur blir senere korrigert av drift, renhold, logistikk og faktisk bruk.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_urbanist.json#fasaden_og_bakrommet",
+        "data/Civication/narratives/leisure/by_urbanist.json#leveringene_for_solen_staar_opp"
+      ]
+    },
+    {
+      "id": "tallene_med_blinde_flekker",
+      "description": "Spilleren beholder respekt for data samtidig som skala, definisjon og avvikende erfaringer blir faste kontrollspørsmål.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/by_urbanist.json#tallene_som_ikke_er_nabolaget",
+        "data/Civication/narratives/leisure/by_urbanist.json#den_samme_planen_i_to_skalaer"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "boligvolum_blir_fordelingssporsmal",
+      "setup_ref": "2/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "gateareal_blir_klimatilpasning",
+      "setup_ref": "3/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "butikkstenging_blir_logistikksporsmal",
+      "setup_ref": "4/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "economy",
+        "reputation"
+      ]
+    },
+    {
+      "id": "horing_blir_mandatgrense",
+      "setup_ref": "6/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "plankart_blir_levd_utfall",
+      "setup_ref": "7/afternoon",
+      "return_ref": "13/afternoon",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "fasade_blir_drift",
+      "setup_ref": "9/afternoon",
+      "return_ref": "14/morning",
+      "domains": [
+        "narrative",
+        "relationship"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/by_urbanist.json#byen_som_system",
+      "data/Civication/narratives/leisure/by_urbanist.json#boligene_og_regnestykket",
+      "data/Civication/narratives/leisure/by_urbanist.json#bussfeltet_og_parkeringsplassen",
+      "data/Civication/narratives/leisure/by_urbanist.json#butikken_som_forsvinner",
+      "data/Civication/narratives/leisure/by_urbanist.json#tetthet_og_dagligliv",
+      "data/Civication/narratives/leisure/by_urbanist.json#horing_uten_folkemandat",
+      "data/Civication/narratives/leisure/by_urbanist.json#plankartet_og_virkeligheten",
+      "data/Civication/narratives/leisure/by_urbanist.json#eierskap_og_flyttepress",
+      "data/Civication/narratives/leisure/by_urbanist.json#fasaden_og_bakrommet",
+      "data/Civication/narratives/leisure/by_urbanist.json#leveringene_for_solen_staar_opp",
+      "data/Civication/narratives/leisure/by_urbanist.json#treet_sykkelfeltet_og_plassen",
+      "data/Civication/narratives/leisure/by_urbanist.json#tallene_som_ikke_er_nabolaget",
+      "data/Civication/narratives/leisure/by_urbanist.json#den_samme_planen_i_to_skalaer",
+      "data/Civication/narratives/leisure/by_urbanist.json#systemkartet_med_blinde_flekker"
+    ]
+  }
+}
