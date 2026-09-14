@@ -1,0 +1,1233 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "film_tv_filminteressert",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "film_tv",
+    "id": "filminteressert",
+    "label": "Filminteressert"
+  },
+  "title": "Filminteressert — nysgjerrighet, smak, læring og uformelle adgangskrav",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å utvikle en egen og åpen interesse for film og TV uten å gjøre kunnskapshull, kanon, anmeldelser, bredde eller andres språk til adgangskrav for å høre til",
+    "description": "Filminteressert-verdenen handler om den tidlige, hverdagslige identiteten som oppstår når spilleren begynner å følge filmer, serier, navn, sjangre og samtaler mer aktivt. Den undersøker kunnskapshull, markedsføring, rangeringer, vaner, gjenkjennelse, tilgjengelighet, felles seing, retten til å stoppe, kanonpress, lånt språk og gatekeeping. Den er mindre intensiv og mindre identitetsbundet enn Filmfantast, mindre systematisert enn Filmnerd, og ikke det samme som Kinogjenger, Seriesluker, Filmklubbmenneske, Festivalgjenger, Kjenner eller Connaisseur. Interesse gir ingen profesjonell myndighet og oppretter ingen ny runtime."
+  },
+  "theme_ids": [
+    "status_anxiety",
+    "shame_reputation",
+    "social_mask",
+    "class_power",
+    "consumption",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "alienation",
+    "local_knowledge_vs_system",
+    "precarity"
+  ],
+  "social_environments": [
+    "hverdagslige samtaler der anbefalinger og populære titler lett blir uformelt pensum",
+    "strømmetjenester, kino og andre tilgangsflater der pris, katalog og synlighet former hva som faktisk kan oppdages",
+    "venne- og familierom der felles seing ikke nødvendigvis gir samme reaksjon",
+    "nettbaserte rangeringer, omtaler og markedsføring som setter forventninger før møtet med verket",
+    "små læringsøyeblikk der navn, sjangre og historiske spor blir gjenkjennelige uten at spilleren blir ekspert",
+    "samtaler om bredde, kanon og smak der interesse kan bli gjort til status eller medlemskap"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "venn_med_favorittliste",
+      "social_function": "gjør anbefalinger varme og konkrete, men kan umerkelig gjøre dem til plikt",
+      "class_position": "jevnaldrende seer med tydelige favoritter",
+      "status": "ingen formell autoritet; sosial tyngde gjennom entusiasme",
+      "power_over_player": "kan påvirke hva spilleren føler at hen burde ha sett",
+      "wants": "å dele noe som betyr mye",
+      "conceals": "at skuffelse over et nei kan bli til press",
+      "speech_style": "entusiastisk, personlig og full av konkrete titler",
+      "teaches_player": "at anbefaling er invitasjon, ikke pensum"
+    },
+    {
+      "id": "nysgjerrig_nybegynner",
+      "social_function": "speiler kunnskapshull uten skam og gjør det legitimt å spørre",
+      "class_position": "publikummer med fersk eller smal erfaring",
+      "status": "lav kulturell selvsikkerhet, men full legitim interesse",
+      "power_over_player": "kan avdekke om spilleren allerede har begynt å gatekeepe",
+      "wants": "å finne innganger som faktisk virker",
+      "conceals": "at frykten for å virke dum ofte er sterkere enn mangel på interesse",
+      "speech_style": "direkte, spørrende og lite opptatt av status",
+      "teaches_player": "at interesse kan begynne hvor som helst"
+    },
+    {
+      "id": "anmelderleseren",
+      "social_function": "bringer tall, omtaler og kritikerspråk inn i samtalen før opplevelsen har satt seg",
+      "class_position": "vanlig publikummer som leser mye før hen ser",
+      "status": "uformell informasjonsfordel",
+      "power_over_player": "kan ramme inn forventningen og språket rundt verket",
+      "wants": "å unngå dårlige valg og forstå konsensus",
+      "conceals": "at forhåndskunnskap kan gjøre det vanskeligere å oppdage egen reaksjon",
+      "speech_style": "refererende, sammenlignende og trygg på vurderingsspråk",
+      "teaches_player": "at informasjon hjelper, men også kan bli en forhåndsdom"
+    },
+    {
+      "id": "tilgangsbegrenset_venn",
+      "social_function": "gjør pris, katalog, tid og teknisk tilgang synlig som del av smaken",
+      "class_position": "publikummer med begrenset abonnement, tid eller lokal tilgang",
+      "status": "fullverdig interessert uten bred tilgang",
+      "power_over_player": "kan punktere antakelsen om at alle har hatt samme muligheter til å se det samme",
+      "wants": "å delta i samtalen uten å måtte kjøpe seg til hele referansegrunnlaget",
+      "conceals": "at tilgangshull ofte presenteres som smakshull",
+      "speech_style": "praktisk og presis om hva som faktisk var mulig å se",
+      "teaches_player": "at tilgjengelighet former kulturkunnskap"
+    },
+    {
+      "id": "kanonvennen",
+      "social_function": "representerer ideen om at bestemte verk må sees før interessen teller",
+      "class_position": "engasjert publikummer med historisk orientert smak",
+      "status": "uformell kulturell kapital",
+      "power_over_player": "kan gjøre oppdagelse til en rangert pensumliste",
+      "wants": "å dele verk hen mener åpner viktige sammenhenger",
+      "conceals": "at listen også kan fungere som adgangskontroll",
+      "speech_style": "systematisk, referanserik og ofte velment normativ",
+      "teaches_player": "at kanon kan være kart uten å være medlemskort"
+    },
+    {
+      "id": "samtalepartner_med_annen_reaksjon",
+      "social_function": "viser at nærhet og felles opplevelse ikke krever lik dom",
+      "class_position": "venn, partner eller kollega med annen smak",
+      "status": "relasjonell tyngde, ingen kulturell myndighet",
+      "power_over_player": "kan utfordre behovet for enighet og gjøre uenighet emosjonell",
+      "wants": "å kunne være nær uten å late som reaksjonene er like",
+      "conceals": "at enkelte favoritter føles personlige nok til at kritikk kan svi",
+      "speech_style": "personlig, rolig og konkret om egen opplevelse",
+      "teaches_player": "at ulik smak kan tåles uten rangering"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "curiosity_vs_homework",
+      "meaning": "forholdet mellom egen nysgjerrighet og presset om å gjøre populære filmer eller serier til lekser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "knowledge_gaps_vs_shame",
+      "meaning": "forholdet mellom kunnskapshull og skammen som kan oppstå når filmkultur behandles som pensum",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "marketing_vs_first_impression",
+      "meaning": "forholdet mellom markedsføringens forhåndsramme og spillerens egen første opplevelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "ratings_vs_own_attention",
+      "meaning": "forholdet mellom tall, anmeldelser og evnen til å møte verket før rangeringen får definere det",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "habit_vs_judgment",
+      "meaning": "forholdet mellom vaner, komfort og utviklingen av en faktisk egen smak",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "recognition_vs_expertise",
+      "meaning": "forholdet mellom gjenkjennelse av navn, former og referanser og påstanden om ekspertise",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "access_vs_interest",
+      "meaning": "forholdet mellom tilgjengelighet, pris og hva spilleren faktisk får mulighet til å utforske",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "shared_viewing_vs_same_reaction",
+      "meaning": "forholdet mellom nærhet i felles seing og forventningen om å reagere likt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "completion_vs_permission_to_stop",
+      "meaning": "forholdet mellom fullføring som norm og retten til å avslutte et møte som ikke fungerer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "discovery_vs_canon",
+      "meaning": "forholdet mellom nye funn og forestillingen om at interesse først må bevises gjennom en kanon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "borrowed_words_vs_own_response",
+      "meaning": "forholdet mellom kritiske begreper som hjelpemiddel og risikoen for at andres språk erstatter egen reaksjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "screen_person_vs_fixed_type",
+      "meaning": "forholdet mellom gjenkjennelige skuespillere/skapere og fristelsen til å låse dem til én rolle eller identitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "breadth_vs_gatekeeping",
+      "meaning": "forholdet mellom bredde i det man ser og tendensen til å gjøre den bredden til medlemskort eller rang",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Når det populære føles som lekse. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "curiosity_vs_homework"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#alle_snakkar_om_den"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Når det populære føles som lekse. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "curiosity_vs_homework"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#alle_snakkar_om_den"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Når det populære føles som lekse. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "curiosity_vs_homework",
+          "completion_vs_permission_to_stop",
+          "breadth_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#alle_snakkar_om_den"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Når det populære føles som lekse. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "curiosity_vs_homework",
+          "completion_vs_permission_to_stop",
+          "breadth_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#alle_snakkar_om_den"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Et hull i kunnskapen er ikke en karakterbrist. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "curiosity_vs_homework"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#klassikeren_du_ikke_har_sett"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Et hull i kunnskapen er ikke en karakterbrist. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "curiosity_vs_homework"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#klassikeren_du_ikke_har_sett"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Et hull i kunnskapen er ikke en karakterbrist. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "curiosity_vs_homework",
+          "knowledge_gaps_vs_shame",
+          "discovery_vs_canon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#klassikeren_du_ikke_har_sett"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Et hull i kunnskapen er ikke en karakterbrist. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "curiosity_vs_homework",
+          "knowledge_gaps_vs_shame",
+          "discovery_vs_canon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#klassikeren_du_ikke_har_sett"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Når markedsføringen velger tonen først. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "marketing_vs_first_impression"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#traileren"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Når markedsføringen velger tonen først. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "marketing_vs_first_impression"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#traileren"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Når markedsføringen velger tonen først. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "marketing_vs_first_impression"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#traileren"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Når markedsføringen velger tonen først. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "marketing_vs_first_impression"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#traileren"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Et gjennomsnitt kan komme inn i rommet før filmen. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "marketing_vs_first_impression"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#tallet_ved_siden_av_tittelen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Et gjennomsnitt kan komme inn i rommet før filmen. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "marketing_vs_first_impression"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#tallet_ved_siden_av_tittelen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Et gjennomsnitt kan komme inn i rommet før filmen. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "marketing_vs_first_impression",
+          "ratings_vs_own_attention",
+          "borrowed_words_vs_own_response"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#tallet_ved_siden_av_tittelen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Et gjennomsnitt kan komme inn i rommet før filmen. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "marketing_vs_first_impression",
+          "ratings_vs_own_attention",
+          "borrowed_words_vs_own_response"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#tallet_ved_siden_av_tittelen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Smak kan være vane før den er dom. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "ratings_vs_own_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#sjangeren_du_styrer_unna"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Smak kan være vane før den er dom. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "ratings_vs_own_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#sjangeren_du_styrer_unna"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Smak kan være vane før den er dom. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "ratings_vs_own_attention",
+          "habit_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#sjangeren_du_styrer_unna"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Smak kan være vane før den er dom. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "ratings_vs_own_attention",
+          "habit_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#sjangeren_du_styrer_unna"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Gjenkjennelse er starten på et spor, ikke ekspertise. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "knowledge_gaps_vs_shame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#navnet_du_kjenner_igjen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Gjenkjennelse er starten på et spor, ikke ekspertise. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "knowledge_gaps_vs_shame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#navnet_du_kjenner_igjen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Gjenkjennelse er starten på et spor, ikke ekspertise. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "knowledge_gaps_vs_shame",
+          "recognition_vs_expertise",
+          "borrowed_words_vs_own_response",
+          "screen_person_vs_fixed_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#navnet_du_kjenner_igjen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Gjenkjennelse er starten på et spor, ikke ekspertise. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "knowledge_gaps_vs_shame",
+          "recognition_vs_expertise",
+          "borrowed_words_vs_own_response",
+          "screen_person_vs_fixed_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#navnet_du_kjenner_igjen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Tilgjengelighet er en del av opplevelsen. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "access_vs_interest"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#tekstingen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Tilgjengelighet er en del av opplevelsen. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "access_vs_interest"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#tekstingen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Tilgjengelighet er en del av opplevelsen. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "access_vs_interest"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#tekstingen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Tilgjengelighet er en del av opplevelsen. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "access_vs_interest"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#tekstingen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Nærhet krever ikke samme reaksjon. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "shared_viewing_vs_same_reaction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#vennen_som_elsket_den"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Nærhet krever ikke samme reaksjon. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "shared_viewing_vs_same_reaction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#vennen_som_elsket_den"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Nærhet krever ikke samme reaksjon. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "shared_viewing_vs_same_reaction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#vennen_som_elsket_den"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Nærhet krever ikke samme reaksjon. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "shared_viewing_vs_same_reaction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#vennen_som_elsket_den"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Det er lov å ikke fullføre et møte. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "habit_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#halvveis"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Det er lov å ikke fullføre et møte. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "habit_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#halvveis"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Det er lov å ikke fullføre et møte. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "habit_vs_judgment",
+          "access_vs_interest",
+          "completion_vs_permission_to_stop"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#halvveis"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Det er lov å ikke fullføre et møte. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "habit_vs_judgment",
+          "access_vs_interest",
+          "completion_vs_permission_to_stop"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#halvveis"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Nye funn trenger ikke starte med en kanonliste. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "knowledge_gaps_vs_shame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#et_nytt_filmland"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Nye funn trenger ikke starte med en kanonliste. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "knowledge_gaps_vs_shame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#et_nytt_filmland"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Nye funn trenger ikke starte med en kanonliste. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "knowledge_gaps_vs_shame",
+          "habit_vs_judgment",
+          "access_vs_interest",
+          "completion_vs_permission_to_stop",
+          "discovery_vs_canon",
+          "breadth_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#et_nytt_filmland"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Nye funn trenger ikke starte med en kanonliste. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "knowledge_gaps_vs_shame",
+          "habit_vs_judgment",
+          "access_vs_interest",
+          "completion_vs_permission_to_stop",
+          "discovery_vs_canon",
+          "breadth_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#et_nytt_filmland"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Andres ord kan hjelpe uten å erstatte dine. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "marketing_vs_first_impression"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#omtalen_etterpa"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Andres ord kan hjelpe uten å erstatte dine. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "marketing_vs_first_impression"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#omtalen_etterpa"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Andres ord kan hjelpe uten å erstatte dine. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "marketing_vs_first_impression",
+          "ratings_vs_own_attention",
+          "recognition_vs_expertise",
+          "shared_viewing_vs_same_reaction",
+          "borrowed_words_vs_own_response",
+          "screen_person_vs_fixed_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#omtalen_etterpa"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Andres ord kan hjelpe uten å erstatte dine. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "marketing_vs_first_impression",
+          "ratings_vs_own_attention",
+          "recognition_vs_expertise",
+          "shared_viewing_vs_same_reaction",
+          "borrowed_words_vs_own_response",
+          "screen_person_vs_fixed_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#omtalen_etterpa"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: En person på skjermen er ikke én rolle for alltid. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "recognition_vs_expertise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#skuespilleren_i_en_annen_rolle"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: En person på skjermen er ikke én rolle for alltid. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "recognition_vs_expertise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#skuespilleren_i_en_annen_rolle"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: En person på skjermen er ikke én rolle for alltid. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "recognition_vs_expertise",
+          "screen_person_vs_fixed_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#skuespilleren_i_en_annen_rolle"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: En person på skjermen er ikke én rolle for alltid. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "recognition_vs_expertise",
+          "screen_person_vs_fixed_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#skuespilleren_i_en_annen_rolle"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Bredde er ikke et medlemskort. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "curiosity_vs_homework"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#har_du_sett_alt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Bredde er ikke et medlemskort. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "curiosity_vs_homework"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#har_du_sett_alt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Bredde er ikke et medlemskort. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "curiosity_vs_homework",
+          "knowledge_gaps_vs_shame",
+          "ratings_vs_own_attention",
+          "recognition_vs_expertise",
+          "shared_viewing_vs_same_reaction",
+          "discovery_vs_canon",
+          "breadth_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#har_du_sett_alt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Bredde er ikke et medlemskort. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "curiosity_vs_homework",
+          "knowledge_gaps_vs_shame",
+          "ratings_vs_own_attention",
+          "recognition_vs_expertise",
+          "shared_viewing_vs_same_reaction",
+          "discovery_vs_canon",
+          "breadth_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#har_du_sett_alt"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Interesse kan være tydelig uten å være rang. Morgenen gjør dagens forventning, tilgang eller forhåndsinntrykk synlig før spilleren har landet sin egen reaksjon.",
+        "thread_ids": [
+          "curiosity_vs_homework"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#din_egen_interesse"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Interesse kan være tydelig uten å være rang. Midt på dagen møter interessen andre menneskers språk, anbefalinger eller sosiale normer.",
+        "thread_ids": [
+          "curiosity_vs_homework"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#din_egen_interesse"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Interesse kan være tydelig uten å være rang. Ettermiddagen tvinger fram et konkret valg om oppmerksomhet, grense, nysgjerrighet eller fravalg.",
+        "thread_ids": [
+          "curiosity_vs_homework",
+          "marketing_vs_first_impression",
+          "habit_vs_judgment",
+          "access_vs_interest",
+          "shared_viewing_vs_same_reaction",
+          "completion_vs_permission_to_stop",
+          "discovery_vs_canon",
+          "borrowed_words_vs_own_response",
+          "screen_person_vs_fixed_type",
+          "breadth_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#din_egen_interesse"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Interesse kan være tydelig uten å være rang. Kvelden viser hvordan valget endrer smak, trygghet, relasjoner, tid eller neste møte med film og TV.",
+        "thread_ids": [
+          "curiosity_vs_homework",
+          "marketing_vs_first_impression",
+          "habit_vs_judgment",
+          "access_vs_interest",
+          "shared_viewing_vs_same_reaction",
+          "completion_vs_permission_to_stop",
+          "discovery_vs_canon",
+          "borrowed_words_vs_own_response",
+          "screen_person_vs_fixed_type",
+          "breadth_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_filminteressert.json#din_egen_interesse"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "curiosity_vs_homework",
+      "relationship": "forholdet mellom egen nysgjerrighet og presset om å gjøre populære filmer eller serier til lekser",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "knowledge_gaps_vs_shame",
+      "relationship": "forholdet mellom kunnskapshull og skammen som kan oppstå når filmkultur behandles som pensum",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon",
+        "10/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "marketing_vs_first_impression",
+      "relationship": "forholdet mellom markedsføringens forhåndsramme og spillerens egen første opplevelse",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening",
+        "11/afternoon",
+        "11/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "ratings_vs_own_attention",
+      "relationship": "forholdet mellom tall, anmeldelser og evnen til å møte verket før rangeringen får definere det",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening",
+        "11/afternoon",
+        "11/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "habit_vs_judgment",
+      "relationship": "forholdet mellom vaner, komfort og utviklingen av en faktisk egen smak",
+      "beat_refs": [
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "recognition_vs_expertise",
+      "relationship": "forholdet mellom gjenkjennelse av navn, former og referanser og påstanden om ekspertise",
+      "beat_refs": [
+        "6/afternoon",
+        "6/evening",
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "access_vs_interest",
+      "relationship": "forholdet mellom tilgjengelighet, pris og hva spilleren faktisk får mulighet til å utforske",
+      "beat_refs": [
+        "7/afternoon",
+        "7/evening",
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "shared_viewing_vs_same_reaction",
+      "relationship": "forholdet mellom nærhet i felles seing og forventningen om å reagere likt",
+      "beat_refs": [
+        "8/afternoon",
+        "8/evening",
+        "11/afternoon",
+        "11/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "completion_vs_permission_to_stop",
+      "relationship": "forholdet mellom fullføring som norm og retten til å avslutte et møte som ikke fungerer",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "discovery_vs_canon",
+      "relationship": "forholdet mellom nye funn og forestillingen om at interesse først må bevises gjennom en kanon",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "10/afternoon",
+        "10/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "borrowed_words_vs_own_response",
+      "relationship": "forholdet mellom kritiske begreper som hjelpemiddel og risikoen for at andres språk erstatter egen reaksjon",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "6/afternoon",
+        "6/evening",
+        "11/afternoon",
+        "11/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "screen_person_vs_fixed_type",
+      "relationship": "forholdet mellom gjenkjennelige skuespillere/skapere og fristelsen til å låse dem til én rolle eller identitet",
+      "beat_refs": [
+        "6/afternoon",
+        "6/evening",
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "breadth_vs_gatekeeping",
+      "relationship": "forholdet mellom bredde i det man ser og tendensen til å gjøre den bredden til medlemskort eller rang",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "10/afternoon",
+        "10/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "listen_som_ble_invitasjon",
+      "description": "Spilleren bruker etter hvert anbefalingslister som mulige veier, ikke som bevis på hva en ekte filminteressert må ha sett.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_filminteressert.json#alle_snakkar_om_den",
+        "data/Civication/narratives/leisure/film_tv_filminteressert.json#et_nytt_filmland"
+      ]
+    },
+    {
+      "id": "kunnskapshullet_som_ble_sporsmal",
+      "description": "Det som tidligere ble skjult som uvitenhet blir lettere å formulere som et konkret spørsmål eller et nytt spor.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_filminteressert.json#klassikeren_du_ikke_har_sett",
+        "data/Civication/narratives/leisure/film_tv_filminteressert.json#navnet_du_kjenner_igjen"
+      ]
+    },
+    {
+      "id": "egen_reaksjon_for_rangering",
+      "description": "Spilleren blir mer bevisst på å registrere sin egen reaksjon før tall, anmeldelser og konsensus får definere språket.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_filminteressert.json#traileren",
+        "data/Civication/narratives/leisure/film_tv_filminteressert.json#tallet_ved_siden_av_tittelen",
+        "data/Civication/narratives/leisure/film_tv_filminteressert.json#omtalen_etterpa"
+      ]
+    },
+    {
+      "id": "retten_til_a_stoppe",
+      "description": "Å avslutte en film eller serie som ikke fungerer blir et legitimt fravalg, ikke et tegn på manglende seriøsitet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_filminteressert.json#halvveis"
+      ]
+    },
+    {
+      "id": "bredde_uten_medlemskort",
+      "description": "Større erfaring gir flere mulige forbindelser, men brukes ikke som rangering av hvem som får delta i samtalen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_filminteressert.json#har_du_sett_alt",
+        "data/Civication/narratives/leisure/film_tv_filminteressert.json#din_egen_interesse"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "pensumpress_blir_friere_nysgjerrighet",
+      "setup_ref": "1/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "kunnskapshull_blir_spor",
+      "setup_ref": "2/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "markedsforing_blir_egen_dom",
+      "setup_ref": "3/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "tilgangsbegrensning_blir_sosial_forstaelse",
+      "setup_ref": "7/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "economy",
+        "relationship"
+      ]
+    },
+    {
+      "id": "uenighet_blir_relational_toleranse",
+      "setup_ref": "8/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "fullforingspress_blir_tillatt_fravalg",
+      "setup_ref": "9/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "psyche",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#alle_snakkar_om_den",
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#klassikeren_du_ikke_har_sett",
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#traileren",
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#tallet_ved_siden_av_tittelen",
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#sjangeren_du_styrer_unna",
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#navnet_du_kjenner_igjen",
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#tekstingen",
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#vennen_som_elsket_den",
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#halvveis",
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#et_nytt_filmland",
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#omtalen_etterpa",
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#skuespilleren_i_en_annen_rolle",
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#har_du_sett_alt",
+      "data/Civication/narratives/leisure/film_tv_filminteressert.json#din_egen_interesse"
+    ]
+  }
+}
