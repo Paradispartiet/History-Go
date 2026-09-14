@@ -68,8 +68,8 @@ assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['sofafilosof_samtalekveld']);
 assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 26,
-  needs_authored_depth: 133,
+  ready: 27,
+  needs_authored_depth: 132,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.completed_life_position_role_worlds, 27);
