@@ -39,7 +39,7 @@ jobs:
           const crypto = require('crypto');
           const fagPath = 'data/fag/fag_manifest.json';
           const fag = JSON.parse(fs.readFileSync(fagPath, 'utf8'));
-          let n = fag.categories?.naeringsliv;
+          let n = fag.naeringsliv;
           if (!n && Array.isArray(fag.categories)) n = fag.categories.find(x => x.categoryId === 'naeringsliv' || x.id === 'naeringsliv');
           if (!n) throw new Error('naeringsliv missing');
           n.quizProduction ??= {}; n.quizProduction.targets ??= {};
