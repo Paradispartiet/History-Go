@@ -160,7 +160,7 @@ assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 27);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 112);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 26);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 27);
 
 const readiness = audit.positions.find((row) => row.key === 'litteratur/skrivebordspoet');
 assert.ok(readiness);
