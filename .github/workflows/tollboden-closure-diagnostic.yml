@@ -6,10 +6,12 @@ on:
       - agent/tollboden-closure-diagnostic-20260914
 
 permissions:
-  contents: read
+  contents: write
 
 env:
   SOURCE_HEAD: c21e6d557c4a6cf22fe09b1f4c976afab6d64897
+  TARGET_BRANCH: agent/tollboden-production-20260912
+  EXPECTED_PATCH_SHA: 77409bef49c364fabb7eb549516c7e9058d605b2ffbdf8b1d0de61ad7429682b
 
 jobs:
   reconstruct:
@@ -17,22 +19,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ env.SOURCE_HEAD }}
+          ref: ${{ env.TARGET_BRANCH }}
           fetch-depth: 0
+      - name: Lock actual PR head
+        run: |
+          set -euo pipefail
+          local_head="$(git rev-parse HEAD)"
+          remote_head="$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')"
+          echo "local=$local_head"
+          echo "remote=$remote_head"
+          test "$local_head" = "$SOURCE_HEAD"
+          test "$remote_head" = "$SOURCE_HEAD"
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
       - run: npm ci
-      - name: Restore Tollboden closure inputs only
-        run: |
-          git fetch origin "$SOURCE_HEAD"
-          git checkout "$SOURCE_HEAD" -- \
-            data/quiz/naeringsliv/tollboden_oslo_sets.json \
-            data/quiz/production_briefs/naeringsliv/tollboden_oslo.json \
-            data/quiz/production_context/naeringsliv/tollboden_oslo.json \
-            reports/place-production/tollboden-materialization-state.json \
-            reports/place-production/tollboden-workcard-current.json
       - name: Register and close Tollboden quiz deterministically
         run: |
           node <<'NODE'
@@ -102,80 +104,76 @@ jobs:
           fs.writeFileSync(qp, JSON.stringify(quiz,null,2)+'\n');
           fs.writeFileSync(bp,JSON.stringify(brief,null,2)+'\n');
           const counts=qs.reduce((a,q)=>(a[q.answerIndex]++,a),[0,0,0]);
-          console.log('to1='+[...to1].join(',')); console.log('to2='+[...to2].join(',')); console.log('counts='+counts.join('/'));
+          console.log('to1='+[...to1].join(','));
+          console.log('to2='+[...to2].join(','));
+          console.log('counts='+counts.join('/'));
           if(counts.join('/')!=='7/7/7') throw new Error('bad balance');
           NODE
       - name: Rebuild Tollboden production context
         run: node scripts/build-quiz-production-context.mjs --category naeringsliv --target tollboden_oslo --output data/quiz/production_context/naeringsliv/tollboden_oslo.json
       - name: Materialize canonical Knowledge
         run: npm run knowledge:canonical:write
-      - name: Run closure audits independently
+      - name: Run closure gates
         run: |
-          set +e
-          OUT=reports/tollboden-closure-gates.txt
-          : > "$OUT"
-          failed=0
-          run_gate() {
-            label="$1"
-            shift
-            echo "=== $label ===" | tee -a "$OUT"
-            "$@" 2>&1 | tee -a "$OUT"
-            rc=${PIPESTATUS[0]}
-            echo "EXIT=$rc" | tee -a "$OUT"
-            echo | tee -a "$OUT"
-            if [ "$rc" -ne 0 ]; then failed=1; fi
-          }
-          run_gate audit_quiz_manifest_v2 npm run audit:quiz-manifest:v2
-          run_gate audit_quiz_production_context npm run audit:quiz-production-context
-          run_gate audit_quiz_progression npm run audit:quiz-progression
-          run_gate audit_quiz_theory_binding npm run audit:quiz-theory-binding
-          run_gate test_quiz_production npm run test:quiz-production
-          run_gate knowledge_canonical_check npm run knowledge:canonical:check
-          if [ -f reports/quiz_manifest_v2_audit_report.json ]; then
-            echo '=== quiz_manifest_v2_audit_report.json ===' | tee -a "$OUT"
-            cat reports/quiz_manifest_v2_audit_report.json | tee -a "$OUT"
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-production
+          npm run knowledge:canonical:check
+      - name: Verify exact green candidate
+        run: |
+          set -euo pipefail
+          cat > /tmp/expected-files <<'EOF'
+          data/fag/fag_manifest.json
+          data/knowledge/knowledge_units.generated.json
+          data/quiz/manifest.json
+          data/quiz/naeringsliv/tollboden_oslo_sets.json
+          data/quiz/production_briefs/naeringsliv/tollboden_oslo.json
+          data/quiz/production_context/naeringsliv/tollboden_oslo.json
+          reports/knowledge-id-backfill.json
+          reports/quiz_manifest_v2_audit_report.json
+          EOF
+          git diff --name-only > /tmp/actual-files
+          diff -u /tmp/expected-files /tmp/actual-files
+          shortstat="$(git diff --shortstat | xargs)"
+          echo "$shortstat"
+          test "$shortstat" = "8 files changed, 2576 insertions(+), 129 deletions(-)"
+          patch_sha="$(git diff --binary | sha256sum | awk '{print $1}')"
+          echo "patch_sha=$patch_sha"
+          test "$patch_sha" = "$EXPECTED_PATCH_SHA"
+          if grep -i 'tollpakkhuset' /tmp/actual-files; then
+            echo 'ERROR: Tollpakkhuset source file touched'
+            exit 1
           fi
-          exit "$failed"
-      - name: Upload closure diagnostics
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: tollboden-closure-diagnostics
-          path: |
-            reports/tollboden-closure-gates.txt
-            reports/quiz_manifest_v2_audit_report.json
-          if-no-files-found: warn
-      - name: Report exact candidate diff
-        if: always()
-        run: |
-          echo '=== CHANGED FILES ==='; git diff --name-only
-          echo '=== NUMSTAT ==='; git diff --numstat
-          echo '=== SHORTSTAT ==='; git diff --shortstat
-          echo '=== TOLLBODEN KNOWLEDGE LINKS ==='
           node - <<'NODE'
-          const q=require('./data/quiz/naeringsliv/tollboden_oslo_sets.json'); const qs=q.sets.flatMap(s=>s.questions); console.log(`${qs.filter(x=>x.knowledge_link_status==='linked' && Array.isArray(x.knowledge_unit_ids) && x.knowledge_unit_ids.length).length}/${qs.length}`);
+          const q=require('./data/quiz/naeringsliv/tollboden_oslo_sets.json');
+          const qs=q.sets.flatMap(s=>s.questions);
+          const counts=qs.reduce((a,x)=>(a[x.answerIndex]++,a),[0,0,0]);
+          if (counts.join('/') !== '7/7/7') throw new Error(`bad answer balance ${counts.join('/')}`);
+          const frozen=['tollboden_oslo_quiz_01','tollboden_oslo_quiz_02','tollboden_oslo_quiz_03','tollboden_oslo_quiz_12'];
+          console.log(`Tollboden questions=${qs.length}; balance=${counts.join('/')}; frozen=${frozen.join(',')}`);
           NODE
-          echo '=== TOLLPAKKHUSET GUARD ==='
-          if git diff --name-only | grep -i tollpakkhuset; then echo 'ERROR: Tollpakkhuset touched'; exit 1; else echo 'PASS: Tollpakkhuset untouched'; fi
-      - name: Export exact candidate
-        if: success()
+      - name: Publish exact candidate to PR branch
         run: |
-          git diff --name-only > reports/tollboden-candidate-files.txt
-          git diff --numstat > reports/tollboden-candidate-numstat.txt
-          git diff --shortstat > reports/tollboden-candidate-shortstat.txt
-          git diff --binary > reports/tollboden-candidate.patch
-          tar -czf reports/tollboden-candidate-files.tar.gz -T reports/tollboden-candidate-files.txt
-          sha256sum reports/tollboden-candidate.patch reports/tollboden-candidate-files.tar.gz > reports/tollboden-candidate-sha256.txt
-      - name: Upload exact candidate
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: tollboden-green-candidate
-          path: |
-            reports/tollboden-candidate-files.txt
-            reports/tollboden-candidate-numstat.txt
-            reports/tollboden-candidate-shortstat.txt
-            reports/tollboden-candidate.patch
-            reports/tollboden-candidate-files.tar.gz
-            reports/tollboden-candidate-sha256.txt
-          if-no-files-found: error
+          set -euo pipefail
+          remote_head="$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')"
+          echo "remote_before_push=$remote_head"
+          test "$remote_head" = "$SOURCE_HEAD"
+          git config user.name 'Paradispartiet'
+          git config user.email 'paradispartiet@gmail.com'
+          git add -- \
+            data/fag/fag_manifest.json \
+            data/knowledge/knowledge_units.generated.json \
+            data/quiz/manifest.json \
+            data/quiz/naeringsliv/tollboden_oslo_sets.json \
+            data/quiz/production_briefs/naeringsliv/tollboden_oslo.json \
+            data/quiz/production_context/naeringsliv/tollboden_oslo.json \
+            reports/knowledge-id-backfill.json \
+            reports/quiz_manifest_v2_audit_report.json
+          git diff --cached --name-only > /tmp/staged-files
+          diff -u /tmp/expected-files /tmp/staged-files
+          git commit -m 'fix(tollboden): close quiz and Knowledge contracts'
+          new_head="$(git rev-parse HEAD)"
+          echo "new_head=$new_head"
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
