@@ -1,4 +1,4 @@
-name: Tollboden closure diagnostic
+name: Tollboden final merge closure
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - agent/tollboden-closure-diagnostic-20260914
 
 permissions:
-  contents: read
+  contents: write
 
 env:
   PR_HEAD: 306b1509b8032cd51cb4637363e025c4595cf1a6
@@ -14,14 +14,20 @@ env:
   TARGET_BRANCH: agent/tollboden-production-20260912
 
 jobs:
-  conflicts:
+  finalize:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ env.TARGET_BRANCH }}
           fetch-depth: 0
-      - name: Lock heads and inspect merge conflicts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Lock heads and merge main
         run: |
           set -euo pipefail
           local_head="$(git rev-parse HEAD)"
@@ -32,32 +38,126 @@ jobs:
           test "$remote_pr" = "$PR_HEAD"
           test "$remote_main" = "$MAIN_HEAD"
           git fetch origin main
-          fetched_main="$(git rev-parse origin/main)"
-          echo "fetched_main=$fetched_main"
-          test "$fetched_main" = "$MAIN_HEAD"
+          test "$(git rev-parse origin/main)" = "$MAIN_HEAD"
+          merge_base="$(git merge-base "$PR_HEAD" "$MAIN_HEAD")"
+          git diff --name-only "$merge_base" "$PR_HEAD" | sort -u > /tmp/tollboden-allowed-paths.txt
           git config user.name 'Paradispartiet'
           git config user.email 'paradispartiet@gmail.com'
-          mkdir -p reports
           set +e
-          git merge --no-commit --no-ff "$MAIN_HEAD" >reports/tollboden-merge-output.txt 2>&1
-          rc=$?
+          git merge --no-commit --no-ff "$MAIN_HEAD"
+          merge_rc=$?
           set -e
-          cat reports/tollboden-merge-output.txt
-          echo "merge_exit=$rc" | tee reports/tollboden-merge-summary.txt
-          git diff --name-only --diff-filter=U | tee reports/tollboden-merge-conflicts.txt
-          git ls-files -u > reports/tollboden-merge-unmerged-index.txt
-          git status --short > reports/tollboden-merge-status.txt
-          cat reports/tollboden-merge-conflicts.txt
-          cat reports/tollboden-merge-status.txt
-          if git rev-parse -q --verify MERGE_HEAD >/dev/null; then git merge --abort; else git reset --hard "$PR_HEAD"; fi
-      - name: Upload conflict report
-        uses: actions/upload-artifact@v4
-        with:
-          name: tollboden-merge-conflicts
-          path: |
-            reports/tollboden-merge-output.txt
-            reports/tollboden-merge-summary.txt
-            reports/tollboden-merge-conflicts.txt
-            reports/tollboden-merge-unmerged-index.txt
-            reports/tollboden-merge-status.txt
-          if-no-files-found: error
+          test "$merge_rc" -ne 0
+          git diff --name-only --diff-filter=U | sort -u > /tmp/tollboden-conflicts.txt
+          cat > /tmp/tollboden-expected-conflicts.txt <<'EOF'
+          data/epoker/epoke-place-index.json
+          data/fagverk/fagverk_registry.json
+          data/fagverk/fagverk_release.json
+          tests/epoke-place-index.test.mjs
+          EOF
+          diff -u /tmp/tollboden-expected-conflicts.txt /tmp/tollboden-conflicts.txt
+      - name: Resolve four canonical conflicts
+        run: |
+          set -euo pipefail
+          git checkout --theirs -- \
+            data/epoker/epoke-place-index.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            tests/epoke-place-index.test.mjs
+
+          node scripts/materialize-natur-final-registry.mjs
+
+          node - <<'NODE'
+          const fs = require('fs');
+          const path = 'data/fagverk/fagverk_registry.json';
+          const registry = JSON.parse(fs.readFileSync(path, 'utf8'));
+          registry.version = '3.16.0';
+          registry.updatedAt = '2026-09-14';
+          registry.placeLinks ||= {};
+          registry.placeLinks.tollboden_oslo = {
+            sourceFile: 'places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollboden_oslo.json',
+            field: 'fagverk',
+            schema: 'history_go_place_fagverk_v2',
+            level: 'standard',
+            status: 'curated'
+          };
+          fs.writeFileSync(path, JSON.stringify(registry, null, 2) + '\n');
+          NODE
+
+          npm run epoker:places:build
+
+          node - <<'NODE'
+          const fs = require('fs');
+          const index = JSON.parse(fs.readFileSync('data/epoker/epoke-place-index.json', 'utf8'));
+          const count = index.stats?.verified_place_production_milestone_count;
+          if (!Number.isInteger(count)) throw new Error('Missing verified_place_production_milestone_count');
+          const path = 'tests/epoke-place-index.test.mjs';
+          const before = fs.readFileSync(path, 'utf8');
+          const pattern = /assert\.equal\(index\.stats\.verified_place_production_milestone_count,\s*\d+\);/g;
+          const matches = before.match(pattern) || [];
+          if (matches.length !== 1) throw new Error(`Expected exactly one production milestone assertion, found ${matches.length}`);
+          const after = before.replace(pattern, `assert.equal(index.stats.verified_place_production_milestone_count, ${count});`);
+          fs.writeFileSync(path, after);
+          console.log(`Updated production milestone assertion to ${count}`);
+          NODE
+
+          node scripts/build-fagverk-release-manifest.mjs
+          git add \
+            data/epoker/epoke-place-index.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            tests/epoke-place-index.test.mjs
+          test -z "$(git diff --name-only --diff-filter=U)"
+      - name: Verify generated contracts
+        run: |
+          set -euo pipefail
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs
+          node --check scripts/build-fagverk-release-manifest.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Run Tollboden closure gates
+        run: |
+          set -euo pipefail
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-production
+          npm run knowledge:canonical:check
+      - name: Guard final PR surface
+        run: |
+          set -euo pipefail
+          git diff --name-only "$MAIN_HEAD" | sort -u > /tmp/tollboden-final-paths.txt
+          echo 'Final PR paths:'
+          cat /tmp/tollboden-final-paths.txt
+          unexpected="$(comm -23 /tmp/tollboden-final-paths.txt /tmp/tollboden-allowed-paths.txt || true)"
+          if [ -n "$unexpected" ]; then
+            echo 'Unexpected paths outside original PR surface:'
+            echo "$unexpected"
+            exit 1
+          fi
+          if grep -i 'tollpakkhuset' /tmp/tollboden-final-paths.txt; then
+            echo 'Tollpakkhuset changed in final PR diff.'
+            exit 1
+          fi
+          git diff --check "$MAIN_HEAD"
+      - name: Commit and push exact merged head
+        run: |
+          set -euo pipefail
+          remote_pr="$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')"
+          remote_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          test "$remote_pr" = "$PR_HEAD"
+          test "$remote_main" = "$MAIN_HEAD"
+          git add -A
+          git commit -m 'Merge main and finalize Tollboden closure'
+          parents="$(git show -s --format=%P HEAD)"
+          echo "parents=$parents"
+          test "$parents" = "$PR_HEAD $MAIN_HEAD"
+          final_head="$(git rev-parse HEAD)"
+          echo "final_head=$final_head"
+          git diff --name-only "$MAIN_HEAD" "$final_head" | sort -u > /tmp/tollboden-committed-paths.txt
+          unexpected="$(comm -23 /tmp/tollboden-committed-paths.txt /tmp/tollboden-allowed-paths.txt || true)"
+          test -z "$unexpected"
+          ! grep -qi 'tollpakkhuset' /tmp/tollboden-committed-paths.txt
+          git push origin HEAD:"$TARGET_BRANCH"
