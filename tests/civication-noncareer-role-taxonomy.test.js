@@ -171,7 +171,7 @@ vm.runInContext(
 assert.equal(relationshipSandbox.window.CivicationRelationshipEngine.STAGE_BY_LEVEL.length, 6,
   'relasjonssystemet skal fortsatt eie seks vennskapsstadier separat fra livsposisjoner');
 
-assert.equal(roleWorldIndex.roles.length, 110, 'Role World-indeksen skal ha 85 karriereverdener + tjuefem life-position worlds');
+assert.equal(roleWorldIndex.roles.length, 111, 'Role World-indeksen skal ha 85 karriereverdener + tjuefem life-position worlds');
 assert.ok(roleWorldIndex.roles.every((role) => role.status === 'role_world_complete'));
 const careerRoleWorlds = roleWorldIndex.roles.filter((role) => role.subject_type !== 'life_position');
 const lifePositionWorlds = roleWorldIndex.roles.filter((role) => role.subject_type === 'life_position');
@@ -203,7 +203,7 @@ assert.deepEqual(lifeWorldByKey.get('film_tv/festivalgjenger').life_position_ref
 assert.equal(lifeWorldByKey.get('film_tv/festivalgjenger').role_scope, 'film_tv_festivalgjenger');
 assert.deepEqual(lifeWorldByKey.get('film_tv/filmfantast').life_position_ref, { badge_id: 'film_tv', id: 'filmfantast', label: 'Filmfantast' });
 assert.equal(lifeWorldByKey.get('film_tv/filmfantast').role_scope, 'film_tv_filmfantast');
-assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 110, career_role_worlds: 85, life_position_role_worlds: 25 });
+assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 111, career_role_worlds: 85, life_position_role_worlds: 26 });
 assert.equal(roleModelManifest.files.length, 293,
   'roleModel-manifestet er authored inventory og skal ikke forveksles med spillerrolle-antallet');
 assert.equal(scenarioPeople.summary.role_model_file_count, 293);
@@ -230,8 +230,8 @@ const expectedCounts = {
   life_circumstance_option_values: 18,
   relationship_stages: 6,
   career_role_worlds: 85,
-  life_position_role_worlds: 25,
-  total_role_worlds: 110,
+  life_position_role_worlds: 26,
+  total_role_worlds: 111,
   role_model_manifest_files: 293,
   canonical_scenario_role_models: 287,
   shadowed_role_models: 6,

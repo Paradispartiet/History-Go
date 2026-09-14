@@ -22,8 +22,8 @@ assert.equal(row.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(row.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(row.evidence.livelihood_templates, ['klubbmenneske_arrangementsvakt']);
 assert.ok(!audit.queue.some((item) => item.key === 'sport/klubbmenneske'));
-assert.equal(audit.summary.completed_life_position_role_worlds, 25);
-assert.equal(audit.summary.life_position_role_world_complete, 25);
+assert.equal(audit.summary.completed_life_position_role_worlds, 26);
+assert.equal(audit.summary.life_position_role_world_complete, 26);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.first_ready, null);
 
