@@ -81,9 +81,9 @@ assert.equal(index.status, '112_role_worlds_materialized');
 assert.deepEqual(index.summary, { role_worlds_total: 111, career_role_worlds:85, life_position_role_worlds: 26 });
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('subkultur/gangster'));
 assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 26);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 26);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 27);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 111);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 26);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 27);
 
 const exit = stream.storylets.find((x)=>x.id==='vennen_som_vil_ut');
 assert.match(exit.situation.join(' '), /trekke seg|frivillighet|sosial tvang/i);
