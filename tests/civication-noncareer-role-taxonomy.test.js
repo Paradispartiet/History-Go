@@ -205,7 +205,7 @@ assert.deepEqual(lifeWorldByKey.get('film_tv/filmfantast').life_position_ref, { 
 assert.deepEqual(lifeWorldByKey.get('film_tv/filminteressert').life_position_ref, { badge_id: 'film_tv', id: 'filminteressert', label: 'Filminteressert' });
 assert.equal(lifeWorldByKey.get('film_tv/filminteressert').role_scope, 'film_tv_filminteressert');
 assert.equal(lifeWorldByKey.get('film_tv/filmfantast').role_scope, 'film_tv_filmfantast');
-assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 111, career_role_worlds: 85, life_position_role_worlds: 26 });
+assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 112, career_role_worlds: 85, life_position_role_worlds: 27 });
 assert.equal(roleModelManifest.files.length, 293,
   'roleModel-manifestet er authored inventory og skal ikke forveksles med spillerrolle-antallet');
 assert.equal(scenarioPeople.summary.role_model_file_count, 293);
