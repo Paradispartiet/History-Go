@@ -28,7 +28,7 @@ Full PlaceCard følger standard Næringsliv-profil: `people` · `objects` · `br
 ## Kilder og hva de bærer
 
 1. Norges Bank, «History of Norges Bank»: hovedsetet flyttet til Kristiania 1. januar 1897; nytt hovedkvarter på Bankplassen åpnet i 1906 for 80 ansatte, inkludert seddeltrykkeriets arbeidere; Bankplassen 4 var bankens kontorer 1906–1986.
-2. Norges Bank, «Norges Bank’s Printing Works – 190 years»: seddeltrykkeriet flyttet til Oslo i 1907 og lå i første etasje i den nye 1906-bygningen; mange ansatte flyttet fra Trondheim; trykkeriet flyttet til separat bygg i 1934 etter økt aktivitet.
+2. Norges Bank, «Norges Bank’s Printing Works – 190 years»: seddeltrykkeriet flyttet til Oslo i 1907 og lå på gateplan i den nye 1906-bygningen; mange ansatte flyttet fra Trondheim; trykkeriet flyttet til separat bygg i 1934 etter økt aktivitet.
 3. Norges Bank, «Banknotes 1901–1945 (Series II)»: fra 1907 ble alle sedlene i serie II trykt i Norge på papir fra Alvøen.
 4. Oppdag Kvadraturen, «Bankplassen 4 – Christiania Theater og Norges Bank»: stedsidentitet, teaterlaget og overgangen til bankbygg.
 5. Oppdag Kvadraturen, «Stil og arkitektur – Bankplassen»: bankbygningens arkitektur og skulpturgruppen «Fred og arbeid»/«Arbeid og fred» ved hovedinngangen.
@@ -59,3 +59,7 @@ Full PlaceCard følger standard Næringsliv-profil: `people` · `objects` · `br
 ## Profilbeslutning
 
 `standard`. Stedet har tilstrekkelig kildedybde til fire ekte samlinger, 3×7 source-ledet quiz, chronology, lesespor, språk og standard Fagverk uten filler. Før fullføring skal alle binærbilder verifiseres, generator-eide indekser rematerialiseres, og exact-head porter være grønne.
+
+## Closure-materialisering
+
+Generator-eide scenario-People-, epoke-, lesespor- og place-open-indekser er rematerialisert med repoets egne byggere. Canonical READ-FIRST-evidens er registrert med `place-production-rule-preflight.mjs record`, og workcarden validerer med ferske regelhashes. Denne noten dokumenterer materialiseringen; final exact-head CI og interaktiv slutt-QA forblir egne merge-porter.
