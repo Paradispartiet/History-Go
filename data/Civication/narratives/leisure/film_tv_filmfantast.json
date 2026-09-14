@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "film_tv_filmfantast_stream",
+  "type": "leisure",
+  "title": "Filmfantast",
+  "sociological_theme": "sterk_kulturinteresse_tid_oppmerksomhet_forbruk_relajoner_og_identitet",
+  "applies_when": {
+    "any_tags": [
+      "film_tv:filmfantast"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "lista_som_aldri_blir_tom",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En fri kveld",
+      "subject": "Når lyst blir til en oppgave",
+      "situation": [
+        "Du har samlet flere titler enn du rekker på lenge, og den frie kvelden begynner med å velge hva som skal bort fra lista.",
+        "Sterk entusiasme kan gi retning til fritiden, men også gjøre valgfri tid til en produksjonsplan med etterslep.",
+        "Filmfantast betyr at film og serier betyr mye for deg, ikke at alt du har merket må fullføres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg én ting fordi du vil se den nå, og la resten bli stående uten skyld.",
+          "effect": 1,
+          "tags": [
+            "lista_som_aldri_blir_tom_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du gjør nysgjerrighet viktigere enn gjennomføringstall."
+        },
+        {
+          "id": "B",
+          "label": "Velg ut fra hva som gir best følelse av å ha ryddet unna mest.",
+          "effect": -1,
+          "tags": [
+            "lista_som_aldri_blir_tom_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du gjør fritid til restanse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_watchlist_pressure"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "favoritten_som_skuffer",
+      "message_type": "relationship",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En ny film fra en du liker",
+      "subject": "Lojalitet tåler at smaken endrer seg",
+      "situation": [
+        "En filmskaper du lenge har fulgt lager noe du ikke får særlig mye ut av, mens andre rundt deg er begeistret.",
+        "Når verk blir knyttet til personlig identitet kan en svak reaksjon føles som om du svikter både tidligere smak og et bilde av deg selv.",
+        "En Filmfantast kan ha sterke favorittforhold uten å skylde dem ubetinget støtte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hva som ikke fungerte for deg uten å omskrive det du likte før.",
+          "effect": 1,
+          "tags": [
+            "favoritten_som_skuffer_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du lar smak være historisk og bevegelig."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar filmen fordi du allerede har investert identitet i personen bak den.",
+          "effect": -1,
+          "tags": [
+            "favoritten_som_skuffer_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du gjør lojalitet til plikt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_favorite_revision"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_delte_skjermen",
+      "message_type": "conflict",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En kveld med en nær person",
+      "subject": "Felles tid krever mer enn din egen liste",
+      "situation": [
+        "Du har gledet deg til en bestemt film, men personen du skal være sammen med ønsker noe helt annet.",
+        "Når entusiasmen er sterk, kan egne prioriteringer føles mer gjennomtenkte og derfor mer legitime enn andres tilfeldige ønsker.",
+        "Felles skjermtid er fortsatt en relasjonell avtale, ikke et privat kurateringsmandat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn et valg begge faktisk kan leve med, eller skill den felles kvelden fra din egen filmtid.",
+          "effect": 1,
+          "tags": [
+            "den_delte_skjermen_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du beholder både entusiasme og gjensidighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk kunnskapen din til å presse gjennom det du allerede hadde bestemt.",
+          "effect": -1,
+          "tags": [
+            "den_delte_skjermen_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du gjør nærhet til en arena for smaksmakt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_shared_choice"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjensynet",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En gammel favoritt",
+      "subject": "Å se igjen kan være både omsorg og stillstand",
+      "situation": [
+        "Du vurderer å se en film du kjenner svært godt i stedet for noe ukjent.",
+        "Gjensyn kan gi ro, ny forståelse og kontinuitet, men kan også bli en måte å unngå risikoen i nye møter.",
+        "Filmfantastrollen trenger ikke velge mellom nostalgi og nysgjerrighet som faste verdier."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg gjensynet bevisst hvis det er det du trenger, og behold plass til noe ukjent senere.",
+          "effect": 1,
+          "tags": [
+            "gjensynet_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du lar repetisjon være et valg, ikke en automatikk."
+        },
+        {
+          "id": "B",
+          "label": "Bruk bare gamle sikre valg fordi nye titler kan skuffe.",
+          "effect": -1,
+          "tags": [
+            "gjensynet_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du gjør trygg smak til lukket krets."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_rewatch_novelty"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "alienation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "abonnementene",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Kontoutskriften",
+      "subject": "Mye tilgang blir fort mange små kostnader",
+      "situation": [
+        "Flere tjenester har hver sin eksklusive film eller serie du gjerne vil følge, og summen av månedlige trekk har blitt merkbar.",
+        "Kulturell entusiasme møter en markedsstruktur der tilgang er splittet opp og friksjon ofte løses ved å betale enda en liten sum.",
+        "Filmfantast betyr ikke at privatøkonomien må tilpasses alle tilgjengelige titler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold bare de tjenestene du faktisk bruker nå, og la noe være utilgjengelig en stund.",
+          "effect": 1,
+          "tags": [
+            "abonnementene_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du setter økonomisk ramme rundt entusiasmen."
+        },
+        {
+          "id": "B",
+          "label": "La hvert enkelt lite beløp være unntaket fordi akkurat den tittelen føles nødvendig.",
+          "effect": -1,
+          "tags": [
+            "abonnementene_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du lar fragmentert tilgang styre budsjettet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_subscription_cost"
+      ],
+      "risk_links": [
+        "economy_risk",
+        "consumption_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "telefonen_i_handa",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Midt i filmen",
+      "subject": "Oppmerksomhet er også en praksis",
+      "situation": [
+        "Du merker at hånden stadig går til telefonen mens filmen fortsetter, selv om du egentlig ønsker å følge med.",
+        "Entusiasme måles lett i hva man har sett, mens kvaliteten på oppmerksomheten er vanskeligere å vise fram.",
+        "Filmfantastrollen blir mer meningsfull når selve møtet med verket får være viktigere enn antallet titler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg bort telefonen eller stopp filmen hvis du egentlig vil gjøre noe annet.",
+          "effect": 1,
+          "tags": [
+            "telefonen_i_handa_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du beskytter oppmerksomheten uten å gjøre konsentrasjon til moralsk prestasjon."
+        },
+        {
+          "id": "B",
+          "label": "La filmen gå mens du gjør flere ting, bare for å kunne regne den som sett.",
+          "effect": -1,
+          "tags": [
+            "telefonen_i_handa_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du gjør gjennomføring viktigere enn erfaring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_attention"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "body_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tre_timer_og_tidlig_mote",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En sen hverdagskveld",
+      "subject": "Lang spilletid møter resten av livet",
+      "situation": [
+        "En film du vil se varer langt ut over det tidspunktet du burde legge deg før en krevende morgen.",
+        "Sterk interesse gjør det lett å behandle søvn, arbeid, omsorg eller andre forpliktelser som forstyrrelser rundt den egentlige fritiden.",
+        "Filmfantastidentiteten er bærekraftig bare hvis den kan sameksistere med resten av hverdagen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Flytt filmen til et tidspunkt der du kan møte den uten å låne tid fra morgendagen.",
+          "effect": 1,
+          "tags": [
+            "tre_timer_og_tidlig_mote_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du lar entusiasmen ha grenser som gjør den mulig over tid."
+        },
+        {
+          "id": "B",
+          "label": "Start likevel og regn konsekvensene som prisen for å være ordentlig interessert.",
+          "effect": -1,
+          "tags": [
+            "tre_timer_og_tidlig_mote_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du gjør utmattelse til identitetsbevis."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_time_boundary"
+      ],
+      "risk_links": [
+        "body_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "spoilergrensa",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En meldingstråd",
+      "subject": "Entusiasme gir ikke rett til andres tempo",
+      "situation": [
+        "Du har nettopp sett noe som gjorde sterkt inntrykk og vil diskutere en viktig vending med en venn som ikke har kommet dit ennå.",
+        "Når man er oppslukt av et verk, kan samtalebehovet føles mer presserende enn andres ønske om å oppdage ting selv.",
+        "Filmfantastrollen må kunne dele begeistring uten å gjøre andre til publikum for sitt eget øyeblikk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hvor langt vennen har kommet før du går inn i detaljer.",
+          "effect": 1,
+          "tags": [
+            "spoilergrensa_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du lar entusiasme møte samtykke."
+        },
+        {
+          "id": "B",
+          "label": "Fortell nok til å få fram hvorfor scenen er genial, selv om du røper poenget.",
+          "effect": -1,
+          "tags": [
+            "spoilergrensa_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du prioriterer din reaksjon over den andres opplevelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_spoiler_consent"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_spor",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En venn ber om råd",
+      "subject": "Å kunne mye du liker er ikke det samme som å vite hva andre vil like",
+      "situation": [
+        "En venn ber deg foreslå noe å se, men beskriver ønsker som ligger langt fra det du selv pleier å velge.",
+        "Sterk personlig smak kan bli sosial kapital fordi andre vet at du følger med, men rådet fungerer bare hvis mottakeren faktisk står i sentrum.",
+        "Filmfantast er fortsatt en entusiasmeidentitet, ikke en ekspertrolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva vennen er ute etter og foreslå noe ut fra det, ikke ut fra hva som imponerer deg.",
+          "effect": 1,
+          "tags": [
+            "vennen_som_spor_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du bruker erfaring som hjelp uten å gjøre den til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Gi den tittelen du selv mener alle burde ha sett og forklar hvorfor motstanden deres er feil.",
+          "effect": -1,
+          "tags": [
+            "vennen_som_spor_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du gjør råd til rangering."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_advice_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hylla",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En ny utgivelse",
+      "subject": "Samlingen kan bli et speil som alltid mangler noe",
+      "situation": [
+        "En fysisk utgave av en film du liker kommer i en dyr variant med bok, ny restaurering og ekstra materiale.",
+        "Objekter kan forlenge forholdet til verk og bevare tilgang, men markedet gjør også identitet om til stadig nye kjøpsanledninger.",
+        "Filmfantastrollen trenger ikke bevises gjennom hvor mye som står i hylla."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kjøp den bare hvis selve utgaven har verdi for deg innenfor budsjettet.",
+          "effect": 1,
+          "tags": [
+            "hylla_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du skiller glede ved eierskap fra behovet for å demonstrere tilhørighet."
+        },
+        {
+          "id": "B",
+          "label": "Kjøp den fordi samlingen ellers vil føles ufullstendig.",
+          "effect": -1,
+          "tags": [
+            "hylla_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du lar mangel produsere identitet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_collection_identity"
+      ],
+      "risk_links": [
+        "economy_risk",
+        "consumption_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "plattformens_neste",
+      "message_type": "event",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Etter rulleteksten",
+      "subject": "Neste valg kommer ofte ferdig foreslått",
+      "situation": [
+        "Når rulleteksten starter, fylles skjermen straks av neste forslag og en nedtelling som gjør videre seing til standardvalget.",
+        "Plattformer reduserer friksjon og gjør oppdagelse lett, men de former også rytme og rekkefølge gjennom det som ligger nærmest hånden.",
+        "Filmfantastrollen blir friere når bekvemmelighet ikke forveksles med egen prioritering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp et øyeblikk og bestem selv om du vil fortsette, bytte eller avslutte.",
+          "effect": 1,
+          "tags": [
+            "plattformens_neste_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du gjør automatisering til tilbud, ikke ordre."
+        },
+        {
+          "id": "B",
+          "label": "La nedtellingen velge fordi systemet sannsynligvis kjenner smaken din best.",
+          "effect": -1,
+          "tags": [
+            "plattformens_neste_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du gir bort beslutningen til minste motstand."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_platform_nudge"
+      ],
+      "risk_links": [
+        "consumption_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "komfortfilmen",
+      "message_type": "relationship",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En tung dag",
+      "subject": "Film kan regulere følelser uten å løse alt",
+      "situation": [
+        "Etter en vanskelig dag får du lyst til å forsvinne inn i noe velkjent som alltid roer deg.",
+        "Kulturelle vaner kan være reell trøst og struktur, samtidig som de kan brukes til å utsette samtaler eller oppgaver som fortsatt venter.",
+        "Filmfantastrollen blir ikke mindre ekte av å bruke film som komfort, men komfort er ikke det samme som løsning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk filmen som pause hvis du trenger det, og bestem når du skal vende tilbake til det som fortsatt krever handling.",
+          "effect": 1,
+          "tags": [
+            "komfortfilmen_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du lar kultur være omsorg uten å gjøre den til skjulested."
+        },
+        {
+          "id": "B",
+          "label": "Se videre helt til problemet føles langt nok unna til at du slipper å forholde deg til det.",
+          "effect": -1,
+          "tags": [
+            "komfortfilmen_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du gjør trøst til unngåelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_comfort_avoidance"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hele_serien",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En lang fortelling",
+      "subject": "Fullføring kan leve videre etter at gleden er borte",
+      "situation": [
+        "Du har brukt mange timer på en serie som ikke lenger interesserer deg særlig, men det gjenstår fortsatt mye.",
+        "Når tid allerede er investert, kan det føles sløsende å stoppe selv om videre seing bare øker kostnaden.",
+        "Filmfantast trenger ikke fullføre alt for å ha tatt det på alvor."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp hvis du ikke lenger får noe ut av det, selv om du allerede har brukt mye tid.",
+          "effect": 1,
+          "tags": [
+            "hele_serien_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du lar tidligere investering være fortid, ikke ordre."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett til siste episode fordi ellers teller ikke timene du allerede har brukt.",
+          "effect": -1,
+          "tags": [
+            "hele_serien_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du gjør sunk cost til fritidsregel."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_completionism"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "body_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_du_er_blitt",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En samtale om interesser",
+      "subject": "En sterk interesse er en del av identiteten, ikke en rangering av mennesker",
+      "situation": [
+        "Etter lang tid har film og serier blitt en av de tydeligste interessene dine og noe andre forbinder deg med.",
+        "Det kan gi språk, minner, ritualer og relasjoner, men også fristelsen til å bruke mengde og smak som mål på hvem som bryr seg nok.",
+        "Filmfantast betyr at denne kulturformen har stor plass i livet ditt, ikke at den gir høyere verdi enn andres måter å bruke fritid på."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell hva interessen gir deg uten å bruke den som test på andres seriøsitet.",
+          "effect": 1,
+          "tags": [
+            "det_du_er_blitt_careful",
+            "filmfantast_sustainable_enthusiasm"
+          ],
+          "feedback": "Du beholder identiteten uten å gjøre den til hierarki."
+        },
+        {
+          "id": "B",
+          "label": "Mål ekte interesse i hvor mye folk har sett og hvor krevende valgene deres er.",
+          "effect": -1,
+          "tags": [
+            "det_du_er_blitt_overreach",
+            "filmfantast_identity_pressure"
+          ],
+          "feedback": "Du gjør entusiasme til portvakt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filmfantast_identity_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
