@@ -1,0 +1,27 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "adolf_schirmer",
+  "profile_file": "data/people/naeringsliv/oslo/tollboden/adolf_schirmer.json",
+  "identity": {
+    "canonical_identity": "Den norske arkitekten Adolf Schirmer (1850–1930), som tegnet Tollboden i Tollbugata 1A.",
+    "name_variants": ["Adolf Schirmer"],
+    "not": ["arkitekten Heinrich Ernst Schirmer (1814–1887)"],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {"id":"identity_life_profession","claim":"Adolf Schirmer var norsk arkitekt, født 1. oktober 1850 og død 11. august 1930.","status":"verified","source_url":"https://nbl.snl.no/Adolf_Schirmer","source_location":"faktaboks og ingress","source_type":"recognized_reference","temporal_status":"historical","verified_at":"2026-09-12","evidence_level":"direct"},
+    {"id":"tollboden_work","claim":"Adolf Schirmer tegnet administrasjonsbygningen Tollboden i Kristiania, ferdigstilt i 1896.","status":"verified","source_url":"https://riksantikvaren.no/eksempelsamling/nytt-trappelop-forlenger-opprinnelig-trapp-i-tollboden/","source_location":"Om bygningen","source_type":"official","temporal_status":"historical","verified_at":"2026-09-12","evidence_level":"direct"},
+    {"id":"state_role","claim":"Schirmer var statens bygningsinspektør og departementets konsulent i byggesaker i perioden 1887–1920.","status":"verified","source_url":"https://nbl.snl.no/Adolf_Schirmer","source_location":"biografi og yrkesopplysninger","source_type":"recognized_reference","temporal_status":"historical","verified_at":"2026-09-12","evidence_level":"direct"},
+    {"id":"education","claim":"Schirmer fikk utdannelse ved Bauakademie i Berlin og École des Beaux-Arts i Paris.","status":"verified","source_url":"https://snl.no/Adolf_Schirmer","source_location":"utdannelse","source_type":"recognized_reference","temporal_status":"historical","verified_at":"2026-09-12","evidence_level":"direct"},
+    {"id":"image_identity","claim":"Commons-filen identifiserer portrettmotivet som arkitekt Adolf Schirmer.","status":"verified","source_url":"https://commons.wikimedia.org/wiki/File:Adolf_Schirmer.jpg","source_location":"filbeskrivelse og metadata","source_type":"archive","temporal_status":"historical","verified_at":"2026-09-12","evidence_level":"direct"}
+  ],
+  "field_claim_map": {
+    "name":["identity_life_profession"],"kindLabel":["identity_life_profession"],"birth_date":["identity_life_profession"],"death_date":["identity_life_profession"],"active_place":["tollboden_work"],"education[0]":["education"],"education[1]":["education"],"placeId":["tollboden_work"],"places[tollboden_oslo]":["tollboden_work"],"year":["tollboden_work"],"works[id=tollboden_kristiania_1891_1896].title":["tollboden_work"],"works[id=tollboden_kristiania_1891_1896].year":["tollboden_work"],"works[id=tollboden_kristiania_1891_1896].material":["tollboden_work"],"works[id=tollboden_kristiania_1891_1896].role":["tollboden_work"],"works[id=tollboden_kristiania_1891_1896].place":["tollboden_work"],"works[id=tollboden_kristiania_1891_1896].summary":["tollboden_work"],"image":["image_identity"],"imageMeta":["image_identity"]
+  },
+  "sentence_claim_map": {
+    "desc":[{"sentence":1,"claim_ids":["tollboden_work"]}],
+    "popupDesc":[{"sentence":1,"claim_ids":["identity_life_profession","state_role"]},{"sentence":2,"claim_ids":["tollboden_work"]},{"sentence":3,"claim_ids":["tollboden_work"]}]
+  },
+  "completion": {"completed_under":"people_profile_v1.0","claims_verified":"5/5","fact_review":"passed","editorial_review":"passed","source_verified_at":"2026-09-12","validator_version":"1.0.0","current_status":"ready_people_v1"}
+}

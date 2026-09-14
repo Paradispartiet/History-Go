@@ -1,0 +1,623 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "naeringsliv",
+  "targetId": "tollboden_oslo",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1958,
+    "selection_sha256": "3538918ded1066b3f061c9d4242220266780d15704df0876f9da6ba0ccd922a5",
+    "category_id": "naeringsliv",
+    "target_id": "tollboden_oslo"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "bytes": 33041,
+      "sha256": "d9ceba9645ed472e0448e274cac37ff09bb2de84c54abe44d99d59c7a260f2fd",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "bytes": 383560,
+      "sha256": "6c7c48150ebdb77d07177d015bbfe104d0eb5d206c6a9104f4bc52a7e0ee0bbe",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "bytes": 305981,
+      "sha256": "40a00fa3910248b779763d7746760140509741410aa046d4f694c367e7c6e345",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "bytes": 89971,
+      "sha256": "a109a5e6eaab0f96fdb0b14aa8139a35714b67473efa860a3f1a8448a204cad3",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "bytes": 17470,
+      "sha256": "f6c4a94ebfa99cff3042ae3398ab92d633150d8fc6f4bd16d7b71679540c9585",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/naeringsliv/tollboden_oslo.json",
+      "bytes": 13199,
+      "sha256": "f37ec9d946956e4efa25c268d420e11bfb911541ca1383d8f821f70e171d7f1d"
+    },
+    "target": {
+      "path": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollboden_oslo.json",
+      "bytes": 20413,
+      "sha256": "6937fe0d9cb08b969b7695ba11456e1c5bab70f727d901f9d32d9852049e952f"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1084,
+      "selection_sha256": "5de5cbd27f33d460e392d231ea738aab6af9694d462a868ccffa1bed24085d6e"
+    },
+    "relations": [],
+    "stories": []
+  },
+  "planned_quiz_file": "data/quiz/naeringsliv/tollboden_oslo_sets.json",
+  "source_registry": {
+    "place_record": {
+      "url": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollboden_oslo.json",
+      "source_type": "canonical_place_record",
+      "review_status": "reviewed",
+      "review_note": "Canonical identitet, geometri og stedsavgrensning."
+    },
+    "riks_plan": {
+      "url": "https://riksantikvaren.no/content/uploads/2019/10/tollbugata1a252coslotollbod.pdf",
+      "source_type": "heritage_management_plan",
+      "review_status": "reviewed",
+      "review_note": "Byggeperiode, Schirmer, romprogram, pengeskaprom, transittvarerom og senere brukslag."
+    },
+    "riks_fred": {
+      "url": "https://riksantikvaren.no/content/uploads/2019/10/8.tollbugata1aoslo3.pdf",
+      "source_type": "heritage_protection_record",
+      "review_status": "reviewed",
+      "review_note": "Skillet mellom administrasjonsbygget og Stenpakkhuset, vern og tollhistorisk verdi."
+    },
+    "riks_stair": {
+      "url": "https://riksantikvaren.no/eksempelsamling/nytt-trappelop-forlenger-opprinnelig-trapp-i-tollboden/",
+      "source_type": "heritage_reuse_case",
+      "review_status": "reviewed",
+      "review_note": "1896, Adolf Schirmer, tollbruk til 2016 og senere trappe-/loftstilpasning."
+    },
+    "riks_entry": {
+      "url": "https://riksantikvaren.no/eksempelsamling/nytt-inngangsparti/",
+      "source_type": "heritage_reuse_case",
+      "review_status": "reviewed",
+      "review_note": "Nytt bindeledd og tekniske funksjoner lagt utenfor de fredede hovedvolumene."
+    },
+    "riks_hq": {
+      "url": "https://riksantikvaren.no/eksempelsamling/to-fredede-bygninger-blir-til-tolldirektorates-hovedkontor/",
+      "source_type": "heritage_reuse_case",
+      "review_status": "reviewed",
+      "review_note": "Rehabilitering, aktiverte loft, nye planløsninger og fortsatt lesbare historiske hovedbygg."
+    },
+    "nbl": {
+      "url": "https://nbl.snl.no/Adolf_Schirmer",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Adolf Schirmer-identitet, statlig rolle og Tollboden som verk."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/naeringsliv",
+      "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollboden_oslo.json"
+    ],
+    "active_before": {
+      "finding": "Ingen aktiv canonical kildeledet 3x7-pakke for Tollboden var registrert før denne produksjonen."
+    },
+    "decisions": [
+      "Materialiser én canonical narrow 3x7-pakke.",
+      "Bevar de første fjorten spørsmålene som direkte stedskunnskap.",
+      "Legg metodebinding først i siste sett.",
+      "Ikke gjenbruk Tollpakkhusets veie-, lager- eller heisstoff."
+    ],
+    "knowledge_migration": "Alle 21 spørsmål skal få stabile claim- og Knowledge-identiteter ved endelig quizmaterialisering."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Tre læringsjobber dekker bygg og administrativ funksjon, tidslag og ombruk, samt avsluttende analyse av tolladministrasjon som offentlig kontrollnode uten perifert filler-stoff."
+  },
+  "held_back_candidates": [
+    "Å bruke femte tollbod som vurderingsfakta uten eksplisitt kildebevis.",
+    "Å flytte Tollpakkhusets veieboder, vareheiser eller pakkhusporter over til Tollboden.",
+    "Å beskrive en publikumsekspedisjon dokumentert i 2008 som en pågående 2026-tjeneste.",
+    "Å slå Tollboden, Tollpakkhuset og Tollbukaia sammen til ett fysisk sted."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 6,
+      "emner": 38,
+      "topic_hooks": 60,
+      "methods": 27
+    },
+    "candidate_emner": [
+      {
+        "id": "em_naering_arbeid_verdiskaping",
+        "title": "Arbeid og verdiskaping",
+        "score": 100
+      },
+      {
+        "id": "em_naering_havn_transport",
+        "title": "Havn og transport",
+        "score": 100
+      },
+      {
+        "id": "em_naering_logistikk_verdikjeder",
+        "title": "Logistikk og verdikjeder",
+        "score": 100
+      },
+      {
+        "id": "em_naering_risiko_regulering",
+        "title": "Risiko og regulering",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "arbeid_som_verdiskaping",
+        "title": "Arbeid som verdiskaping",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "automatisering_arbeid",
+        "title": "Automatisering og arbeid",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "forsikring_og_sikkerhet",
+        "title": "Forsikring og sikkerhet",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "handelens_arbeid",
+        "title": "Handelens arbeid",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "havn_og_varestrommer",
+        "title": "Havn og varestrømmer",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "lager_og_distribusjon",
+        "title": "Lager og distribusjon",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "profesjon_kompetanse",
+        "title": "Profesjon og kompetanse",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "regulering_og_ansvar",
+        "title": "Regulering og ansvar",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "ressursbruk",
+        "title": "Ressursbruk",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "transport_og_arbeid",
+        "title": "Transport og arbeid",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "verdikjede_spor",
+        "title": "Verdikjedens spor",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "kapital_eierskap_finans",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_havn_transport",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_risiko_regulering"
+    ],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping",
+      "regulering_og_ansvar"
+    ],
+    "method_ids": [
+      "met_naering_infrastrukturanalyse",
+      "met_naering_arbeidslivsanalyse",
+      "met_naering_byhistorisk_naeringsanalyse"
+    ],
+    "thinker_ids": [
+      "karl_polanyi"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_tollboden_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Tollboden ble oppført 1891–1896 og sto ferdig i 1896.",
+      "source_ids": [
+        "riks_plan",
+        "riks_stair"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Adolf Schirmer tegnet Tollboden.",
+      "source_ids": [
+        "riks_plan",
+        "riks_stair",
+        "nbl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bygningen ble oppført som administrasjonsbygg for Tollvesenet.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_risiko_regulering"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Tollboden og Stenpakkhuset er to separate bygg med forskjellige funksjoner.",
+      "source_ids": [
+        "riks_fred"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det opprinnelige romprogrammet omfattet blant annet kontorer, bibliotek og arkiv.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bygningen hadde avmurte ildfaste rom for pengeskap.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_risiko_regulering"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kjelleren hadde også transittvarerom.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Riksantikvaren beskriver Tollboden som et representativt offentlig formålsbygg.",
+      "source_ids": [
+        "riks_fred",
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "I 1979 ble deler av bygningen ombygd blant annet for kantine og Oslo Byskriverembete.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Rundt 1990–2000 ble Tollboden modernisert.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "I 2008 var en ny publikumsekspedisjon under innredning.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_risiko_regulering"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Riksantikvarens rehabiliteringsomtale sier at tollbygningene var i tollbruk frem til 2016.",
+      "source_ids": [
+        "riks_stair",
+        "riks_entry",
+        "riks_hq"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Et nytt bindeledd ble brukt til tekniske funksjoner for å redusere inngrep i de fredede byggene.",
+      "source_ids": [
+        "riks_entry",
+        "riks_hq"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Senere rehabilitering aktiverte loft og nye planløsninger mens de historiske hovedvolumene fortsatt skulle være lesbare.",
+      "source_ids": [
+        "riks_hq",
+        "riks_stair"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Infrastrukturanalyse kan skille mellom administrative kontrollnoder, lagerledd og transportledd i samme havnesystem.",
+      "source_ids": [
+        "riks_plan",
+        "riks_fred"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder",
+      "method_id": "met_naering_infrastrukturanalyse"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Tollboden dokumenterer administrativ kontroll av handel, mens Tollpakkhuset dokumenterer fysisk lager- og varebehandling.",
+      "source_ids": [
+        "riks_plan",
+        "riks_fred"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_risiko_regulering",
+      "method_id": "met_naering_infrastrukturanalyse"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Romprogrammet kan brukes som kilde til hvordan offentlig kontrollarbeid var organisert, men ikke alene til å måle arbeidsproduktivitet.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping",
+      "method_id": "met_naering_arbeidslivsanalyse"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Pengeskaprommene viser at sikring av verdier og dokumenter var en konkret del av den administrative infrastrukturen.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_risiko_regulering"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "At tekniske funksjoner flyttes til et nytt bindeledd er et eksempel på ombruk der nye krav løses uten å viske ut den historiske hovedbygningen.",
+      "source_ids": [
+        "riks_entry",
+        "riks_hq"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport",
+      "method_id": "met_naering_byhistorisk_naeringsanalyse"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "En kilde som dokumenterer publikumsekspedisjon i 2008 beviser ikke at samme tjeneste fortsatt drives i bygget i 2026.",
+      "source_ids": [
+        "riks_plan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_risiko_regulering"
+    },
+    {
+      "claim_id": "claim_tollboden_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Tollboden kan analyseres som en administrativ kontrollnode i havneøkonomien uten å slå den sammen med lagerbygningen eller kaien.",
+      "source_ids": [
+        "riks_plan",
+        "riks_fred"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder",
+      "method_id": "met_naering_infrastrukturanalyse"
+    }
+  ],
+  "story_units": [],
+  "set_plan": [
+    {
+      "set_id": "naeringsliv_tollboden_oslo_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_tollboden_quiz_01",
+        "claim_tollboden_quiz_02",
+        "claim_tollboden_quiz_03",
+        "claim_tollboden_quiz_04",
+        "claim_tollboden_quiz_05",
+        "claim_tollboden_quiz_06",
+        "claim_tollboden_quiz_07"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_tollboden_oslo_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_tollboden_quiz_08",
+        "claim_tollboden_quiz_09",
+        "claim_tollboden_quiz_10",
+        "claim_tollboden_quiz_11",
+        "claim_tollboden_quiz_12",
+        "claim_tollboden_quiz_13",
+        "claim_tollboden_quiz_14"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_tollboden_oslo_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_tollboden_quiz_15",
+        "claim_tollboden_quiz_16",
+        "claim_tollboden_quiz_17",
+        "claim_tollboden_quiz_18",
+        "claim_tollboden_quiz_19",
+        "claim_tollboden_quiz_20",
+        "claim_tollboden_quiz_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 10,
+      "context": 6,
+      "concept_theory": 5
+    },
+    "ratios": {
+      "fact": 0.476,
+      "context": 0.286,
+      "concept_theory": 0.238
+    }
+  }
+}
