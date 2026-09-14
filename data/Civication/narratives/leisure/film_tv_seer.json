@@ -1,0 +1,649 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "film_tv_seer_stream",
+  "type": "leisure",
+  "title": "Seer",
+  "sociological_theme": "oppmerksomhet_hverdagsrytme_plattformvalg_og_delt_seing",
+  "applies_when": {
+    "any_tags": [
+      "film_tv:seer"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "skjermen_du_faktisk_ser_pa",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Kvelden",
+      "subject": "Når noe er på, men du ikke egentlig ser",
+      "situation": [
+        "En film eller episode går mens meldinger og småoppgaver stadig trekker oppmerksomheten bort."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bestem om du faktisk vil se nå. Legg bort det som forstyrrer, eller slå av til du har plass.",
+          "effect": 1,
+          "tags": [
+            "skjermen_du_faktisk_ser_pa_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Du gjør seing til et valg i stedet for bakgrunnsstøy."
+        },
+        {
+          "id": "B",
+          "label": "La avspillingen gå mens du hopper mellom andre ting.",
+          "effect": -1,
+          "tags": [
+            "skjermen_du_faktisk_ser_pa_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Du mister forskjellen mellom å ha noe på og å se."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_attention_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "autoplay_en_til",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Autoplay",
+      "subject": "Neste episode starter før du har bestemt deg",
+      "situation": [
+        "Plattformen teller ned til neste episode selv om kvelden allerede er senere enn du hadde tenkt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp nedtellingen og velg aktivt om du har tid og lyst til mer.",
+          "effect": 1,
+          "tags": [
+            "autoplay_en_til_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Du lar teknologien tilby neste steg uten å bestemme rytmen."
+        },
+        {
+          "id": "B",
+          "label": "La neste episode starte bare fordi det er enklere enn å ta stilling.",
+          "effect": -1,
+          "tags": [
+            "autoplay_en_til_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Friksjonsfri avspilling får styre tiden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_autoplay_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "telefonen_i_handa",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Varslene",
+      "subject": "Delt oppmerksomhet endrer det du får med deg",
+      "situation": [
+        "En rolig scene gjør det fristende å sjekke telefonen. Når du ser opp igjen har samtalen flyttet seg videre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg telefonen bort til et naturlig stopp, eller pause hvis du må svare.",
+          "effect": 1,
+          "tags": [
+            "telefonen_i_handa_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Du beskytter sammenhengen i det du har valgt å se."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å veksle mellom skjermene og regn med at resten ordner seg.",
+          "effect": -1,
+          "tags": [
+            "telefonen_i_handa_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Oppmerksomheten blir fragmentert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_second_screen_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "felleskvelden",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Sofaen",
+      "subject": "Felles seing er også en liten forhandling",
+      "situation": [
+        "To personer vil se noe sammen, men den ene ønsker film og den andre en kort episode før en tidlig morgen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn et valg eller en lengde begge faktisk kan stå inne for.",
+          "effect": 1,
+          "tags": [
+            "felleskvelden_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Du behandler felles seing som koordinering."
+        },
+        {
+          "id": "B",
+          "label": "Press gjennom ditt valg fordi du allerede hadde gledet deg mest.",
+          "effect": -1,
+          "tags": [
+            "felleskvelden_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Fritidsfellesskapet blir en kamp om kontroll over kvelden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_shared_viewing_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "spoilerin_i_chatten",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Gruppechatten",
+      "subject": "Det du har sett er ikke gammel informasjon for alle",
+      "situation": [
+        "Du har nettopp sett en viktig vending og vil kommentere den i en chat der folk kan være på ulike steder i serien."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hvor langt folk har kommet eller marker tydelig før du omtaler handlingen.",
+          "effect": 1,
+          "tags": [
+            "spoilerin_i_chatten_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Du gjør ulike seertempo kompatible."
+        },
+        {
+          "id": "B",
+          "label": "Skriv detaljene rett ut fordi episoden har vært tilgjengelig en stund.",
+          "effect": -1,
+          "tags": [
+            "spoilerin_i_chatten_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Ditt eget tempo blir standard for alle."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_spoiler_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kinoturen_som_krever_tid",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Kinokvelden",
+      "subject": "Kino er et bevisst tidsvalg",
+      "situation": [
+        "En film du vil se går på kino, men forestillingen krever reise, fast starttid og en hel kveld uten pauseknapp."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg kinoturen hvis du faktisk vil gi filmen den tiden og oppmerksomheten.",
+          "effect": 1,
+          "tags": [
+            "kinoturen_som_krever_tid_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Du bruker kino som en bestemt måte å se på."
+        },
+        {
+          "id": "B",
+          "label": "Bestill mest fordi du føler at en ekte seer burde være der.",
+          "effect": -1,
+          "tags": [
+            "kinoturen_som_krever_tid_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Seeridentiteten blir en plikt som konkurrerer med resten av livet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_cinema_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "abonnementet_som_styrer_valget",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Tjenestene",
+      "subject": "Tilgang former hva som føles synlig",
+      "situation": [
+        "Du blar i tjenestene du allerede har, mens førstevalget ditt ligger et annet sted eller krever enkeltleie."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg bevisst mellom tilgjengelig utvalg, enkeltleie eller å vente.",
+          "effect": 1,
+          "tags": [
+            "abonnementet_som_styrer_valget_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Du ser hvordan økonomi og distribusjon snevrer inn valgene."
+        },
+        {
+          "id": "B",
+          "label": "Velg automatisk fra forsiden og tenk at resten ikke finnes.",
+          "effect": -1,
+          "tags": [
+            "abonnementet_som_styrer_valget_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Abonnementet får definere hele horisonten."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_access_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "komfortepisoden",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Gjensynet",
+      "subject": "Å se noe igjen kan være et faktisk valg",
+      "situation": [
+        "Etter en tung dag vurderer du noe du kjenner godt, selv om listen er full av ting du ikke har sett."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg gjensynet hvis det er det du ønsker nå.",
+          "effect": 1,
+          "tags": [
+            "komfortepisoden_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Du lar kjent materiale ha verdi som rytme og gjenkjennelse."
+        },
+        {
+          "id": "B",
+          "label": "Tving deg gjennom noe nytt bare for å kunne krysse det av.",
+          "effect": -1,
+          "tags": [
+            "komfortepisoden_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Seing blir produksjon av gjennomførte titler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_rewatch_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ser_du_ferdig",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Halvveis",
+      "subject": "Å stoppe er også en seerbeslutning",
+      "situation": [
+        "Du er halvveis i noe som ikke fanger deg, men føler at tiden du allerede har brukt gjør at du bør fullføre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør om du fortsatt er nysgjerrig. Hvis ikke, stopp.",
+          "effect": 1,
+          "tags": [
+            "ser_du_ferdig_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Du vurderer videre oppmerksomhet på nytt."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett bare fordi du allerede har kommet så langt.",
+          "effect": -1,
+          "tags": [
+            "ser_du_ferdig_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Tidligere tidsbruk får styre mer fritid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_stop_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "skjermtid_for_sent",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Leggetiden",
+      "subject": "En episode kan flytte mer enn bare én halvtime",
+      "situation": [
+        "Det er sent, men neste episode virker kort nok til å starte selv om morgendagen kommer tidlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder hele konsekvensen for leggetid og morgendagen før du starter.",
+          "effect": 1,
+          "tags": [
+            "skjermtid_for_sent_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Seing inngår i kroppens og hverdagens rytme."
+        },
+        {
+          "id": "B",
+          "label": "Start fordi episoden isolert sett ikke er så lang.",
+          "effect": -1,
+          "tags": [
+            "skjermtid_for_sent_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Du regner bort tiden etterpå."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_sleep_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vent_pa_meg",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Medseeren",
+      "subject": "Et felles prosjekt har to tempo",
+      "situation": [
+        "Du og en annen følger samme serie sammen, men du har ledig tid nå og fristes til å se videre alene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtal om serien faktisk er et felles løp, og vent hvis dere begge har behandlet den slik.",
+          "effect": 1,
+          "tags": [
+            "vent_pa_meg_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Du beskytter den delte opplevelsen."
+        },
+        {
+          "id": "B",
+          "label": "Se videre alene og lat senere som du ikke vet hva som kommer.",
+          "effect": -1,
+          "tags": [
+            "vent_pa_meg_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Tempoet bevares på bekostning av tillit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_pacing_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forsiden_velger",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Startskjermen",
+      "subject": "Forsiden er et forslag med interesser bak",
+      "situation": [
+        "Plattformen fyller skjermen med store bilder, topplister og titler som starter før du har bestemt hva du kom for."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp før du klikker og bestem hva slags lengde eller stemning du faktisk ønsker.",
+          "effect": 1,
+          "tags": [
+            "forsiden_velger_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Du bruker grensesnittet som katalog uten å la det erstatte eget valg."
+        },
+        {
+          "id": "B",
+          "label": "Ta den første store anbefalingen fordi den allerede er gjort enkel og synlig.",
+          "effect": -1,
+          "tags": [
+            "forsiden_velger_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Plassering og friksjon blir usynlige premisser for fritidsvalget."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_interface_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "koen_som_vokser",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Se-listen",
+      "subject": "En liste over muligheter er ikke en oppgaveliste",
+      "situation": [
+        "Listen over ting du vil se har blitt så lang at nye tips føles som gjeld i stedet for muligheter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rydd listen eller la ting falle ut. Behold det du fortsatt er nysgjerrig på.",
+          "effect": 1,
+          "tags": [
+            "koen_som_vokser_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Listen støtter lyst i stedet for dårlig samvittighet."
+        },
+        {
+          "id": "B",
+          "label": "Behold alt og behandle hver tittel som noe du må gjennomføre.",
+          "effect": -1,
+          "tags": [
+            "koen_som_vokser_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Fritidsinteresse blir vedlikeholdsetterslep."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_queue_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "seer_som_vane",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Din egen rytme",
+      "subject": "Seeridentiteten ligger i hvordan du gir noe oppmerksomhet",
+      "situation": [
+        "Film og serier har fått en faktisk plass i hverdagen din. Det betyr ikke at alt må ses, fullføres eller analyseres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La Seer være en enkel praksis: velg når du vil se, gi det plass når du gjør det, og avslutt når resten av livet trenger tiden.",
+          "effect": 1,
+          "tags": [
+            "seer_som_vane_deliberate",
+            "seer_attention"
+          ],
+          "feedback": "Du gjør seing til en bevisst del av hverdagen uten prestisjehierarki."
+        },
+        {
+          "id": "B",
+          "label": "Mål identiteten i timer, ferdige titler og hvor ofte skjermen står på.",
+          "effect": -1,
+          "tags": [
+            "seer_som_vane_drift",
+            "seer_autopilot"
+          ],
+          "feedback": "Mengde blir bevis på at du er en ekte seer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seer_identity_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
