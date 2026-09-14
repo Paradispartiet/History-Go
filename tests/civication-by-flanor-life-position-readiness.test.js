@@ -67,7 +67,7 @@ assert.equal(audit.summary.positions_with_exact_governed_sources, audit.position
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, audit.positions.filter((item)=>item.authored_depth.max_narrative_depth>=4).length);
 
 assert.ok(!audit.queue.some((row) => row.key === 'scenekunst/scenehenger'));
-assert.deepEqual((audit.queue || []).filter((row) => row.classification === 'ready').map((row) => row.key), ['film_tv/seriesluker']);
+assert.ok((audit.queue || []).every((row) => row.classification !== 'ready'));
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
 
