@@ -12,13 +12,169 @@
   "title": "Seer — oppmerksomhet, rytme, tilgang og delt skjermtid",
   "status": "role_world_complete",
   "sociological_core": {
-    "main_problem": "",
-    "description": ""
+    "main_problem": "å gi film og serier en reell plass i hverdagen uten at autoplay, plattformgrensesnitt, mengdepress eller andre menneskers tempo overtar styringen av oppmerksomhet og fritid",
+    "description": "Seer-verdenen er den tidligste selvstendige Film & TV-publikumsidentiteten: film og serier er blitt en faktisk del av hverdagen, men rollen krever verken bred kulturkunnskap, detaljpresisjon eller et fast kinoliv. Den handler om oppmerksomhet, autoplay, andre skjermer, felles seing, spoilere, kino som ett av flere visningsrom, abonnementstilgang, gjensyn, å stoppe underveis, søvn, delt serietempo, plattformforsider og se-lister. Seer ligger bevisst under Filminteressert, som begynner å velge og følge feltet mer bevisst; under Filmfantast og Filmnerd, som organiserer mer identitet og kunnskap rundt feltet; og under Kjenner, som analyserer og gir begrunnede råd. Den skiller seg også fra Kinogjenger ved at kino bare er én mulig visningsform, og fra Seriesluker ved at mengde og fortløpende serieforbruk ikke er kjernen. Ingen ny runtime opprettes."
   },
-  "theme_ids": [],
-  "social_environments": [],
-  "recurring_people_archetypes": [],
-  "slow_axes": [],
+  "theme_ids": [
+    "consumption",
+    "body_discipline",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "alienation",
+    "social_mask",
+    "class_power",
+    "precarity",
+    "status_anxiety",
+    "shame_reputation"
+  ],
+  "social_environments": [
+    "stue og privat skjermtid der spilleren må velge mellom faktisk oppmerksomhet og bakgrunnsavspilling",
+    "husholdninger og vennskap der to personer må koordinere lengde, tempo og hva som skal sees sammen",
+    "strømmegrensesnitt der autoplay, topplister og fremhevede flater gjør noen valg lettere enn andre",
+    "kino som planlagt visningsrom med fast starttid, reise og høyere tidsforpliktelse enn hjemmevisning",
+    "gruppechatter og samtaler der spoilere og ulikt seertempo krever eksplisitte grenser",
+    "hverdagsrytmer der skjermtid konkurrerer med søvn, småoppgaver, økonomi og andre fritidsbehov"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "medseer",
+      "social_function": "gjør seing til et felles prosjekt der tempo og valg må forhandles",
+      "class_position": "jevnaldrende seer med egen smak og kalender",
+      "status": "likestilt deltaker uten vetorett over spilleren",
+      "power_over_player": "kan trekke seg fra fellesopplevelsen eller endre hva som faktisk lar seg se sammen",
+      "wants": "en kveld som fungerer for begge",
+      "conceals": "at kompromiss noen ganger føles som å miste sitt eget valg",
+      "speech_style": "praktisk, kort og opptatt av tid",
+      "teaches_player": "at delt seing trenger tydelige forventninger"
+    },
+    {
+      "id": "tipseren",
+      "social_function": "fører nye titler inn i spillerens horisont uten å eie beslutningen",
+      "class_position": "venn eller kollega som ser andre ting enn spilleren",
+      "status": "uformell kilde til tips",
+      "power_over_player": "kan skape sosialt press gjennom entusiasme",
+      "wants": "å dele noe hen likte",
+      "conceals": "at tipset også kan være et ønske om senere samtale",
+      "speech_style": "entusiastisk og rask til å si du må se denne",
+      "teaches_player": "at et tips kan tas imot uten å bli plikt"
+    },
+    {
+      "id": "spoiler_rask_venn",
+      "social_function": "gjør forskjeller i seertempo sosialt synlige",
+      "class_position": "aktiv deltaker i gruppechat og samtaler",
+      "status": "likestilt, men ofte foran i publiseringstempo",
+      "power_over_player": "kan redusere opplevelsen ved å avsløre handling før andre er klare",
+      "wants": "å snakke om det nyeste med en gang",
+      "conceals": "at hens eget tempo ikke er nøytralt",
+      "speech_style": "rask, direkte og hendelsesdrevet",
+      "teaches_player": "at publikum deler rom uten å dele klokke"
+    },
+    {
+      "id": "husstandsmedlem",
+      "social_function": "representerer andre krav til lyd, skjerm, leggetid og felles rom",
+      "class_position": "person som deler hjem eller kveld med spilleren",
+      "status": "praktisk medbestemmer over felles rom",
+      "power_over_player": "kan begrense når og hvordan innhold passer inn i huset",
+      "wants": "at skjermbruken fungerer med resten av hverdagen",
+      "conceals": "at irritasjon ofte handler om rytme mer enn innhold",
+      "speech_style": "konkret og hverdagslig",
+      "teaches_player": "at privat mediebruk fortsatt har sosiale rammer"
+    },
+    {
+      "id": "kinovenn",
+      "social_function": "gjør kino til en planlagt sosial visningsform snarere enn et kvalitetsstempel",
+      "class_position": "venn med varierende tid og budsjett",
+      "status": "likestilt ledsager",
+      "power_over_player": "kan gjøre en forestilling mulig eller upraktisk",
+      "wants": "en tur som er verdt tiden og logistikken",
+      "conceals": "at kino noen ganger velges mer for samvær enn for filmen",
+      "speech_style": "planleggende og situasjonsorientert",
+      "teaches_player": "at visningsstedet er del av beslutningen"
+    },
+    {
+      "id": "plattformpartner",
+      "social_function": "synliggjør hvordan abonnement og husholdningsvalg former tilgang",
+      "class_position": "person i samme husholdning eller økonomiske hverdag",
+      "status": "medpåvirker av hvilke tjenester som beholdes",
+      "power_over_player": "kan endre hvilke kataloger som faktisk er tilgjengelige",
+      "wants": "at kostnaden gir mening for flere enn én person",
+      "conceals": "at favorittjenesten kan være vane mer enn behov",
+      "speech_style": "praktisk og kostnadsbevisst",
+      "teaches_player": "at tilgang er sosial og økonomisk infrastruktur"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "attention_vs_background",
+      "meaning": "forholdet mellom å velge faktisk oppmerksomhet og å la innhold stå på som bakgrunn",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "autoplay_vs_intent",
+      "meaning": "forholdet mellom plattformens friksjonsfrie neste steg og spillerens egen tidsbeslutning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "second_screen_vs_continuity",
+      "meaning": "forholdet mellom delt skjermoppmerksomhet og sammenheng i det som blir sett",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "shared_viewing_vs_control",
+      "meaning": "forholdet mellom felles seing som koordinering og kampen om å styre kvelden",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "spoiler_tempo_vs_respect",
+      "meaning": "forholdet mellom eget seertempo og respekt for at andre ligger et annet sted i fortellingen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cinema_commitment_vs_obligation",
+      "meaning": "forholdet mellom kino som valgt oppmerksomhetsform og kino som identitetsplikt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "access_vs_catalog_horizon",
+      "meaning": "forholdet mellom faktisk tilgang, betaling og det utvalget som oppleves synlig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rewatch_vs_completion_pressure",
+      "meaning": "forholdet mellom verdien av gjensyn og presset om stadig å konsumere noe nytt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sunk_cost_vs_stopping",
+      "meaning": "forholdet mellom brukt tid og retten til å stoppe når interessen er borte",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "screen_time_vs_body_rhythm",
+      "meaning": "forholdet mellom skjermtid, søvn og hverdagens rytme",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "shared_pacing_vs_private_progress",
+      "meaning": "forholdet mellom et felles serieløp og fristelsen til å gå videre alene",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "interface_vs_self_choice",
+      "meaning": "forholdet mellom plattformens rangering og spillerens egen beslutning om hva som passer nå",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "watchlist_vs_obligation",
+      "meaning": "forholdet mellom en se-liste som hukommelse og en se-liste som produserer gjeld",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "viewer_identity_vs_quantity",
+      "meaning": "forholdet mellom Seer som oppmerksomhetspraksis og ideen om at mengde beviser identiteten",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
   "season": {
     "days": 14,
     "day_phases": [
@@ -29,7 +185,78 @@
     ],
     "coverage": []
   },
-  "primary_threads": [],
+  "primary_threads": [
+    {
+      "id": "attention_vs_background",
+      "relationship": "forholdet mellom å velge faktisk oppmerksomhet og å la innhold stå på som bakgrunn",
+      "beat_refs": []
+    },
+    {
+      "id": "autoplay_vs_intent",
+      "relationship": "forholdet mellom plattformens friksjonsfrie neste steg og spillerens egen tidsbeslutning",
+      "beat_refs": []
+    },
+    {
+      "id": "second_screen_vs_continuity",
+      "relationship": "forholdet mellom delt skjermoppmerksomhet og sammenheng i det som blir sett",
+      "beat_refs": []
+    },
+    {
+      "id": "shared_viewing_vs_control",
+      "relationship": "forholdet mellom felles seing som koordinering og kampen om å styre kvelden",
+      "beat_refs": []
+    },
+    {
+      "id": "spoiler_tempo_vs_respect",
+      "relationship": "forholdet mellom eget seertempo og respekt for at andre ligger et annet sted i fortellingen",
+      "beat_refs": []
+    },
+    {
+      "id": "cinema_commitment_vs_obligation",
+      "relationship": "forholdet mellom kino som valgt oppmerksomhetsform og kino som identitetsplikt",
+      "beat_refs": []
+    },
+    {
+      "id": "access_vs_catalog_horizon",
+      "relationship": "forholdet mellom faktisk tilgang, betaling og det utvalget som oppleves synlig",
+      "beat_refs": []
+    },
+    {
+      "id": "rewatch_vs_completion_pressure",
+      "relationship": "forholdet mellom verdien av gjensyn og presset om stadig å konsumere noe nytt",
+      "beat_refs": []
+    },
+    {
+      "id": "sunk_cost_vs_stopping",
+      "relationship": "forholdet mellom brukt tid og retten til å stoppe når interessen er borte",
+      "beat_refs": []
+    },
+    {
+      "id": "screen_time_vs_body_rhythm",
+      "relationship": "forholdet mellom skjermtid, søvn og hverdagens rytme",
+      "beat_refs": []
+    },
+    {
+      "id": "shared_pacing_vs_private_progress",
+      "relationship": "forholdet mellom et felles serieløp og fristelsen til å gå videre alene",
+      "beat_refs": []
+    },
+    {
+      "id": "interface_vs_self_choice",
+      "relationship": "forholdet mellom plattformens rangering og spillerens egen beslutning om hva som passer nå",
+      "beat_refs": []
+    },
+    {
+      "id": "watchlist_vs_obligation",
+      "relationship": "forholdet mellom en se-liste som hukommelse og en se-liste som produserer gjeld",
+      "beat_refs": []
+    },
+    {
+      "id": "viewer_identity_vs_quantity",
+      "relationship": "forholdet mellom Seer som oppmerksomhetspraksis og ideen om at mengde beviser identiteten",
+      "beat_refs": []
+    }
+  ],
   "private_aftermath": [],
   "delayed_consequences": [],
   "materialization": {
