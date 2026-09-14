@@ -1,26 +1,110 @@
 {
   "schema": "history_go_people_claims_v1",
-  "personId": "rasmus_winderen",
-  "placeId": "vinderen",
-  "verifiedAt": "2026-09-07",
+  "version": "1.0.0",
+  "person_id": "rasmus_winderen",
+  "profile_file": "data/people/by/oslo/vinderen/rasmus_winderen.json",
+  "identity": {
+    "canonical_identity": "Rasmus Winderen, gårdbruker på Vinderen og ordfører i Aker.",
+    "name_variants": [
+      "Rasmus Winderen",
+      "Rasmus Larsen Winderen"
+    ],
+    "identity_status": "verified"
+  },
   "claims": [
     {
-      "id": "claim_rasmus_winderen_owner",
+      "id": "owner_vinderen_1822_1854",
       "claim": "Rasmus Winderen eide Vinderen gård fra 1822 til 1854.",
-      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Rasmus_Winderens_vei",
-      "status": "verified"
+      "status": "verified",
+      "source_url": "https://lokalhistoriewiki.no/wiki/Rasmus_Winderens_vei",
+      "source_location": "biografi og gårdstilknytning",
+      "source_type": "editorial",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-07",
+      "evidence_level": "direct"
     },
     {
-      "id": "claim_rasmus_winderen_mayor",
+      "id": "aker_mayor_1844_1847",
       "claim": "Rasmus Winderen var ordfører i Aker 1844–1847.",
-      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Rasmus_Winderens_vei",
-      "status": "verified"
+      "status": "verified",
+      "source_url": "https://lokalhistoriewiki.no/wiki/Rasmus_Winderens_vei",
+      "source_location": "biografi og politiske verv",
+      "source_type": "editorial",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-07",
+      "evidence_level": "direct"
     },
     {
-      "id": "claim_rasmus_winderen_place",
-      "claim": "Rasmus Winderen er direkte knyttet til Vinderen gård og navnehistorien på stedet.",
-      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Vinderen_%28Oslo_gnr_39/1%29",
-      "status": "verified"
+      "id": "vinderen_place_link",
+      "claim": "Rasmus Winderen er direkte knyttet til Vinderen gård og stedets navnehistorie.",
+      "status": "verified",
+      "source_url": "https://lokalhistoriewiki.no/wiki/Vinderen_%28Oslo_gnr_39/1%29",
+      "source_location": "gårdshistorie og navnetilknytning",
+      "source_type": "editorial",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-07",
+      "evidence_level": "direct"
     }
-  ]
+  ],
+  "field_claim_map": {
+    "name": [
+      "owner_vinderen_1822_1854"
+    ],
+    "kindLabel": [
+      "owner_vinderen_1822_1854",
+      "aker_mayor_1844_1847"
+    ],
+    "year": [
+      "owner_vinderen_1822_1854"
+    ],
+    "placeId": [
+      "vinderen_place_link"
+    ],
+    "places[vinderen]": [
+      "vinderen_place_link"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "owner_vinderen_1822_1854",
+          "aker_mayor_1844_1847"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "owner_vinderen_1822_1854",
+          "aker_mayor_1844_1847",
+          "vinderen_place_link"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "owner_vinderen_1822_1854",
+          "aker_mayor_1844_1847"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "vinderen_place_link"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-07",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
 }
