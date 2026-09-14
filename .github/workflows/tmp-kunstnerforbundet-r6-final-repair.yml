@@ -84,11 +84,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/build-epoke-place-index.mjs --check
-          node scripts/audit-epoke-place-index.mjs
-          node scripts/audit-epoke-historical-coverage.mjs
-          node --test tests/epoke-place-index.test.mjs
-          node scripts/generate-place-image-backlog.mjs --verify-summary
+          npm run epoker:places:check
+          npm run typecheck:web
+          node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs tests/fagverk-history-period-deeplink.test.mjs tests/place-card-meta-surfaces.test.mjs
+          node scripts/audit-place-images.mjs --mode=changed
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
 
       - name: Commit only two repairs and remove temporary workflow
         shell: bash
