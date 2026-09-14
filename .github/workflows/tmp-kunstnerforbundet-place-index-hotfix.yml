@@ -1,0 +1,62 @@
+name: TEMP Kunstnerforbundet place-index hotfix
+
+on:
+  push:
+    branches:
+      - agent/kunstnerforbundet-place-index-hotfix-20260914
+    paths:
+      - .github/workflows/tmp-kunstnerforbundet-place-index-hotfix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/kunstnerforbundet-place-index-hotfix-20260914
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical places index
+        run: npm run places:index:build
+      - name: Fail closed on generator scope
+        run: |
+          set -euo pipefail
+          changed="$(git status --porcelain | awk '{print $2}')"
+          test "$changed" = "data/places/places_index.json"
+      - name: Verify repaired Kunstnerforbundet projection
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs = require('fs');
+          const rows = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const row = rows.find((x) => x.id === 'kunstnerforbundet');
+          if (!row) throw new Error('kunstnerforbundet missing from places_index');
+          const desc = 'Kunstnerforbundet ble opprettet i 1910 som en kunstnerstyrt visnings- og formidlingsinstitusjon. Siden 1917 har institusjonen holdt til i egen bygård i Kjeld Stubs gate 3, der utstillingsrom, salgs- og formidlingsfunksjoner og atelierprogram er samlet under samme organisasjon.';
+          if (row.desc !== desc) throw new Error(`unexpected desc: ${row.desc}`);
+          if (row.image !== 'bilder/places/kunstnerforbundet.jpg') throw new Error(`unexpected image: ${row.image}`);
+          NODE
+      - name: Reproduce composed canonical integrity gates
+        run: |
+          npm run places:index:check
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Commit only generated index and remove runner
+        run: |
+          set -euo pipefail
+          rm .github/workflows/tmp-kunstnerforbundet-place-index-hotfix.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/places_index.json .github/workflows/tmp-kunstnerforbundet-place-index-hotfix.yml
+          mapfile -t staged < <(git diff --cached --name-only | sort)
+          test "${#staged[@]}" -eq 2
+          test "${staged[0]}" = ".github/workflows/tmp-kunstnerforbundet-place-index-hotfix.yml"
+          test "${staged[1]}" = "data/places/places_index.json"
+          git commit -m 'Sync Kunstnerforbundet generated place index'
+          git push origin HEAD:agent/kunstnerforbundet-place-index-hotfix-20260914
