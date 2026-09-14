@@ -89,7 +89,7 @@ assert.deepEqual(index.summary, { role_worlds_total:112, career_role_worlds: 85,
 
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('vitenskap/maker'));
 assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 27);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 26);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 27);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 111);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 27);
 
