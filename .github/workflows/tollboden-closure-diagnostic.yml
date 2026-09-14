@@ -150,25 +150,30 @@ jobs:
       - name: Guard final PR surface
         run: |
           set -euo pipefail
+          mkdir -p reports/tollboden-final-surface
           git add -A
-          git diff --cached --name-only "$MAIN_HEAD" | sort -u > /tmp/tollboden-final-paths.txt
-          echo 'Allowed original PR paths:'
-          cat /tmp/tollboden-allowed-paths.txt
-          echo 'Final staged PR paths:'
-          cat /tmp/tollboden-final-paths.txt
-          echo 'Status:'
-          git status --short
-          unexpected="$(comm -23 /tmp/tollboden-final-paths.txt /tmp/tollboden-allowed-paths.txt || true)"
-          if [ -n "$unexpected" ]; then
+          cp /tmp/tollboden-allowed-paths.txt reports/tollboden-final-surface/allowed-paths.txt
+          git diff --cached --name-only "$MAIN_HEAD" | sort -u | tee reports/tollboden-final-surface/final-paths.txt
+          git status --short | tee reports/tollboden-final-surface/status.txt
+          comm -23 reports/tollboden-final-surface/final-paths.txt reports/tollboden-final-surface/allowed-paths.txt | tee reports/tollboden-final-surface/unexpected-paths.txt
+          git diff --cached --stat "$MAIN_HEAD" > reports/tollboden-final-surface/diff-stat.txt
+          if [ -s reports/tollboden-final-surface/unexpected-paths.txt ]; then
             echo 'Unexpected paths outside original PR surface:'
-            echo "$unexpected"
+            cat reports/tollboden-final-surface/unexpected-paths.txt
             exit 1
           fi
-          if grep -i 'tollpakkhuset' /tmp/tollboden-final-paths.txt; then
+          if grep -i 'tollpakkhuset' reports/tollboden-final-surface/final-paths.txt; then
             echo 'Tollpakkhuset changed in final PR diff.'
             exit 1
           fi
           git diff --cached --check "$MAIN_HEAD"
+      - name: Upload final surface diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tollboden-final-surface
+          path: reports/tollboden-final-surface
+          if-no-files-found: warn
       - name: Commit and push exact merged head
         run: |
           set -euo pipefail
@@ -176,6 +181,8 @@ jobs:
           remote_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
           test "$remote_pr" = "$PR_HEAD"
           test "$remote_main" = "$MAIN_HEAD"
+          git reset HEAD -- reports/tollboden-final-surface || true
+          rm -rf reports/tollboden-final-surface
           git commit -m 'Merge main and finalize Tollboden closure'
           parents="$(git show -s --format=%P HEAD)"
           echo "parents=$parents"
