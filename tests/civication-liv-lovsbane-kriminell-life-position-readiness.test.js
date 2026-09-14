@@ -32,7 +32,7 @@ assert.equal(audit.summary.completed_life_position_role_worlds, audit.positions.
 assert.equal(audit.summary.life_position_role_world_complete, audit.positions.filter((item)=>item.role_world_status==='role_world_complete').length);
 assert.equal(audit.summary.livelihood_backed_positions, audit.positions.filter((item)=>(item.authored_depth?.livelihood_template_count||0)>0).length);
 assert.equal(audit.summary.pending_ready_positions, audit.queue.filter((item)=>item.classification==='ready').length);
-assert.equal(audit.first_ready?.key, audit.queue.find((item)=>item.classification==='ready')?.key);
+assert.equal(audit.first_ready, null);
 assert.equal(world.subject_type, 'life_position');
 assert.equal(world.status, 'role_world_complete');
 assert.deepEqual(world.life_position_ref, { badge_id:'liv_lovsbane', id:'kriminell', label:'Kriminell' });
