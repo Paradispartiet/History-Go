@@ -1,0 +1,116 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "henrik_sorensen",
+  "profile_file": "data/people/kunst/oslo/henrik_sorensen.json",
+  "identity": {
+    "canonical_identity": "Henrik Sørensen (1882–1962), norsk maler.",
+    "name_variants": [
+      "Henrik Sørensen",
+      "Henrik Ingvar Sørensen"
+    ],
+    "not": [
+      "andre personer med navnet Henrik Sørensen"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_lifespan_profession",
+      "claim": "Henrik Sørensen levde 1882–1962 og var norsk maler.",
+      "status": "verified",
+      "source_url": "https://nkl.snl.no/Henrik_S%C3%B8rensen",
+      "source_location": "faktaboks og biografisk innledning",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-14",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "kunstnerforbundet_origin_1910",
+      "claim": "Henrik Sørensen var blant kunstnerne i møtet i Kviteseid som lå bak initiativet til Kunstnerforbundet før den første utstillingen 11. desember 1910.",
+      "status": "verified",
+      "source_url": "https://kunstnerforbundet.no/utstillinger/964/jubileumsutstillingen-hundre",
+      "source_location": "historikkavsnittet om møtet i Kviteseid og første utstilling 11. desember 1910",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-14",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "kunstnerforbundet_exhibition_policy",
+      "claim": "Henrik Sørensen fikk senere en styrende rolle i utstillingspolitikken ved Kunstnerforbundet i Oslo.",
+      "status": "verified",
+      "source_url": "https://nbl.snl.no/Henrik_S%C3%B8rensen",
+      "source_location": "biografiavsnittet om Sørensens innflytelse i norsk kunstliv og Kunstnerforbundet",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-14",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_lifespan_profession"
+    ],
+    "kindLabel": [
+      "identity_lifespan_profession",
+      "kunstnerforbundet_origin_1910"
+    ],
+    "birth_date": [
+      "identity_lifespan_profession"
+    ],
+    "death_date": [
+      "identity_lifespan_profession"
+    ],
+    "year": [
+      "kunstnerforbundet_origin_1910"
+    ],
+    "placeId": [
+      "kunstnerforbundet_origin_1910"
+    ],
+    "places[kunstnerforbundet]": [
+      "kunstnerforbundet_origin_1910"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_lifespan_profession",
+          "kunstnerforbundet_origin_1910"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_lifespan_profession"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "kunstnerforbundet_origin_1910"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "kunstnerforbundet_exhibition_policy"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-14",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
