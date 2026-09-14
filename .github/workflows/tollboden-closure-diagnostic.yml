@@ -81,8 +81,6 @@ jobs:
             fi
           done
 
-          node scripts/materialize-natur-final-registry.mjs
-
           node - <<'NODE'
           const fs = require('fs');
           const path = 'data/fagverk/fagverk_registry.json';
@@ -152,9 +150,14 @@ jobs:
       - name: Guard final PR surface
         run: |
           set -euo pipefail
-          git diff --name-only "$MAIN_HEAD" | sort -u > /tmp/tollboden-final-paths.txt
-          echo 'Final PR paths:'
+          git add -A
+          git diff --cached --name-only "$MAIN_HEAD" | sort -u > /tmp/tollboden-final-paths.txt
+          echo 'Allowed original PR paths:'
+          cat /tmp/tollboden-allowed-paths.txt
+          echo 'Final staged PR paths:'
           cat /tmp/tollboden-final-paths.txt
+          echo 'Status:'
+          git status --short
           unexpected="$(comm -23 /tmp/tollboden-final-paths.txt /tmp/tollboden-allowed-paths.txt || true)"
           if [ -n "$unexpected" ]; then
             echo 'Unexpected paths outside original PR surface:'
@@ -165,7 +168,7 @@ jobs:
             echo 'Tollpakkhuset changed in final PR diff.'
             exit 1
           fi
-          git diff --check "$MAIN_HEAD"
+          git diff --cached --check "$MAIN_HEAD"
       - name: Commit and push exact merged head
         run: |
           set -euo pipefail
@@ -173,7 +176,6 @@ jobs:
           remote_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
           test "$remote_pr" = "$PR_HEAD"
           test "$remote_main" = "$MAIN_HEAD"
-          git add -A
           git commit -m 'Merge main and finalize Tollboden closure'
           parents="$(git show -s --format=%P HEAD)"
           echo "parents=$parents"
