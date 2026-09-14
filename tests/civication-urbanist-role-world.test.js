@@ -18,8 +18,8 @@ for(const t of world.primary_threads) assert.ok(t.beat_refs.length>=5&&t.beat_re
 assert.ok(world.primary_threads.some((x)=>x.id==='knowledge_vs_authority'));
 assert.equal(row.role_world_status,'role_world_complete');
 assert.equal(row.authored_depth.max_narrative_depth,14);
-assert.equal(audit.summary.completed_life_position_role_worlds,24);
-assert.equal(audit.queue[0].key,'film_tv/filmfantast');
-assert.equal(index.roles.length,109);
-assert.equal(index.life_position_role_world_count,24);
+assert.equal(audit.summary.completed_life_position_role_worlds,26);
+assert.equal(audit.queue[0].key,'film_tv/filmnerd');
+assert.equal(index.roles.length,111);
+assert.equal(index.life_position_role_world_count,26);
 console.log('Urbanist Role World gate ok');

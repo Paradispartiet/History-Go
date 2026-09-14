@@ -1,26 +1,104 @@
 {
   "schema": "history_go_people_claims_v1",
-  "personId": "eilif_peterssen",
-  "placeId": "ullern",
-  "verifiedAt": "2026-09-07",
+  "version": "1.0.0",
+  "person_id": "eilif_peterssen",
+  "profile_file": "data/people/by/oslo/ullern/eilif_peterssen.json",
+  "identity": {
+    "canonical_identity": "Eilif Peterssen (1852–1928), norsk maler.",
+    "name_variants": [
+      "Eilif Peterssen"
+    ],
+    "identity_status": "verified"
+  },
   "claims": [
     {
-      "id": "claim_eilif_peterssen_ullern_01",
+      "id": "identity_profession",
+      "claim": "Eilif Peterssen var en sentral norsk maler på slutten av 1800-tallet.",
+      "status": "verified",
+      "source_url": "https://snl.no/Eilif_Peterssen",
+      "source_location": "innledning og biografi",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-07",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "ullern_apsis_1908_1909",
       "claim": "Eilif Peterssen utførte apsisutsmykningen «Kristi himmelfart» i Ullern kirke i 1908–1909.",
-      "sourceUrl": "https://snl.no/Eilif_Peterssen",
-      "status": "verified"
+      "status": "verified",
+      "source_url": "https://snl.no/Eilif_Peterssen",
+      "source_location": "verk og kirkekunst",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-07",
+      "evidence_level": "direct"
     },
     {
-      "id": "claim_eilif_peterssen_ullern_02",
+      "id": "ullern_alterbaldakin",
       "claim": "Maleriet er tilpasset alterbaldakinen i Ullern kirke.",
-      "sourceUrl": "https://snl.no/Ullern_kirke",
-      "status": "verified"
-    },
-    {
-      "id": "claim_eilif_peterssen_ullern_03",
-      "claim": "Peterssen var norsk maler født i 1852 og død i 1928.",
-      "sourceUrl": "https://snl.no/Eilif_Peterssen",
-      "status": "verified"
+      "status": "verified",
+      "source_url": "https://snl.no/Ullern_kirke",
+      "source_location": "kirkens interiør og utsmykning",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-07",
+      "evidence_level": "direct"
     }
-  ]
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_profession"
+    ],
+    "kindLabel": [
+      "identity_profession"
+    ],
+    "year": [
+      "ullern_apsis_1908_1909"
+    ],
+    "placeId": [
+      "ullern_apsis_1908_1909"
+    ],
+    "places[ullern]": [
+      "ullern_apsis_1908_1909"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "ullern_apsis_1908_1909"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_profession"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "ullern_apsis_1908_1909"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "ullern_apsis_1908_1909"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-07",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
 }

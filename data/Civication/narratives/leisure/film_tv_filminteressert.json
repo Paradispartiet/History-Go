@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "film_tv_filminteressert_stream",
+  "type": "leisure",
+  "title": "Filminteressert",
+  "sociological_theme": "nysgjerrighet_smak_laring_og_uformelle_adgangskrav_i_hverdagslig_filmkultur",
+  "applies_when": {
+    "any_tags": [
+      "film_tv:filminteressert"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "alle_snakkar_om_den",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Når det populære føles som lekse",
+      "situation": [
+        "En ny film er overalt i samtaler og omtaler, og du merker at du vurderer å se den mest for å slippe å føle deg bakpå.",
+        "Filminteressert-rollen begynner når du velger mer bevisst, men bevissthet betyr ikke at hvert kulturelt øyeblikk må følges.",
+        "Nysgjerrighet blir lettere å bevare når du kan skille egen lyst fra sosialt tempo."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se den hvis du faktisk er nysgjerrig, ikke bare for å kunne henge med i samtalen.",
+          "effect": 1,
+          "tags": [
+            "alle_snakkar_om_den_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du lar interessen styres av oppmerksomhet, ikke av frykt for å være sist."
+        },
+        {
+          "id": "B",
+          "label": "Prioriter den automatisk fordi alle andre allerede har sett den.",
+          "effect": -1,
+          "tags": [
+            "alle_snakkar_om_den_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du gjør interesse til sosial beredskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_popular_pressure"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "klassikeren_du_ikke_har_sett",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En venn",
+      "subject": "Et hull i kunnskapen er ikke en karakterbrist",
+      "situation": [
+        "Noen blir oppriktig overrasket over at du aldri har sett en svært kjent eldre film.",
+        "Interesse vokser ofte gjennom hull, tilfeldigheter og sene oppdagelser; ingen begynner med komplett bakgrunn.",
+        "Når hobbyen blir sosial, kan manglende kjennskap likevel kjennes som et lite statusfall."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du ikke har sett den, og spør hva vennen faktisk liker ved den.",
+          "effect": 1,
+          "tags": [
+            "klassikeren_du_ikke_har_sett_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du gjør et kunnskapshull til en åpning for nysgjerrighet."
+        },
+        {
+          "id": "B",
+          "label": "Lat som du kjenner filmen godt nok til å unngå å virke uvitende.",
+          "effect": -1,
+          "tags": [
+            "klassikeren_du_ikke_har_sett_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du gjør hobbyen til et rollespill om kompetanse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_beginner_shame"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "traileren",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Før du velger",
+      "subject": "Når markedsføringen velger tonen først",
+      "situation": [
+        "En trailer gjør en film fristende, men du merker også at den viser mer av handlingen enn du egentlig ønsket å vite.",
+        "Forhåndsmateriale hjelper publikum å velge, samtidig som det former forventninger før verket får møte deg på egne premisser.",
+        "Filminteresse innebærer også å velge hvor mye informasjon du vil ha før du begynner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp traileren når du har nok til å vite om du er nysgjerrig.",
+          "effect": 1,
+          "tags": [
+            "traileren_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du bruker markedsføringen som informasjon uten å gi den hele førsteinntrykket."
+        },
+        {
+          "id": "B",
+          "label": "Se alle klipp og forhåndssaker fordi mer informasjon alltid må gi et bedre valg.",
+          "effect": -1,
+          "tags": [
+            "traileren_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du forveksler informasjonsmengde med friere valg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_promo_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "attention_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tallet_ved_siden_av_tittelen",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En omtaleside",
+      "subject": "Et gjennomsnitt kan komme inn i rommet før filmen",
+      "situation": [
+        "Før du starter ser du en tydelig poengscore fra publikum og kritikere ved siden av tittelen.",
+        "Tall kan gi orientering, men de kan også bli en forventningsmaskin som gjør en positiv eller negativ reaksjon mer sannsynlig før du har sett noe selv.",
+        "Som Filminteressert trenger du ikke ignorere andres vurderinger, bare vite når de begynner å styre din egen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vent med poengscore og lengre omtaler til etter at du har dannet et førsteinntrykk.",
+          "effect": 1,
+          "tags": [
+            "tallet_ved_siden_av_tittelen_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du gir din egen reaksjon et lite forsprang."
+        },
+        {
+          "id": "B",
+          "label": "La tallet avgjøre om filmen er verdt tiden din før du vet hvorfor folk reagerte som de gjorde.",
+          "effect": -1,
+          "tags": [
+            "tallet_ved_siden_av_tittelen_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du bruker en samlet score som erstatning for egen nysgjerrighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_score_priming"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sjangeren_du_styrer_unna",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Valget",
+      "subject": "Smak kan være vane før den er dom",
+      "situation": [
+        "Du får et godt tips om en film fra en sjanger du vanligvis hopper over uten å tenke så mye.",
+        "Smak utvikles både gjennom gjenkjennelse og gjennom møter som utfordrer det du vanligvis velger.",
+        "Å prøve noe nytt trenger ikke bli et prosjekt om å bevise åpenhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prøv filmen hvis premisset vekker interesse, og la ett møte være nettopp ett møte.",
+          "effect": 1,
+          "tags": [
+            "sjangeren_du_styrer_unna_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du utvider erfaringen uten å gjøre åpenhet til prestasjon."
+        },
+        {
+          "id": "B",
+          "label": "Bestem på forhånd at hele sjangeren ikke er for deg fordi tidligere valg har vært nok.",
+          "effect": -1,
+          "tags": [
+            "sjangeren_du_styrer_unna_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du gjør vane til en fast identitetsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_genre_habit"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "navnet_du_kjenner_igjen",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Rulleteksten",
+      "subject": "Gjenkjennelse er starten på et spor, ikke ekspertise",
+      "situation": [
+        "Du kjenner igjen navnet på en regissør fra en annen film og blir nysgjerrig på hva som går igjen.",
+        "Å følge folk bak verkene kan gjøre interessen rikere fordi valg, samarbeid og endringer blir synlige over tid.",
+        "Men å kjenne et navn eller noen få verk er ikke det samme som å ha oversikt over hele arbeidet deres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg nysgjerrigheten videre uten å presentere deg som ekspert på personen.",
+          "effect": 1,
+          "tags": [
+            "navnet_du_kjenner_igjen_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du lar kunnskap vokse proporsjonalt med det du faktisk har sett."
+        },
+        {
+          "id": "B",
+          "label": "Bruk gjenkjennelsen som tegn på at du allerede forstår hele uttrykket deres.",
+          "effect": -1,
+          "tags": [
+            "navnet_du_kjenner_igjen_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du gjør et første spor til lånt autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_creator_curiosity"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "social_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tekstingen",
+      "message_type": "class_case",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Avspillingen",
+      "subject": "Tilgjengelighet er en del av opplevelsen",
+      "situation": [
+        "Du velger mellom originalspråk med tekst, dubbing eller en tekstvariant som er lettere å følge.",
+        "Språk, lesetempo, hørsel, konsentrasjon og vane påvirker hvordan et verk faktisk blir tilgjengelig for ulike mennesker.",
+        "Det finnes ingen moralsk premie for å velge den løsningen som gjør opplevelsen vanskeligst."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg den språk- og tekstløsningen som lar deg følge verket best akkurat nå.",
+          "effect": 1,
+          "tags": [
+            "tekstingen_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du gjør tilgjengelighet til en legitim del av hvordan film møtes."
+        },
+        {
+          "id": "B",
+          "label": "Velg det mest krevende alternativet for å kunne si at du så den på den riktige måten.",
+          "effect": -1,
+          "tags": [
+            "tekstingen_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du gjør praktisk tilgang til en renhetsprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_language_access"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "access_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_elsket_den",
+      "message_type": "relationship",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Etterpå",
+      "subject": "Nærhet krever ikke samme reaksjon",
+      "situation": [
+        "En venn du stoler på elsket filmen, mens du selv satt igjen ganske kald.",
+        "Delte kulturvaner kan gjøre smak til et lite relasjonelt språk, og derfor kan forskjeller kjennes mer personlige enn de trenger å være.",
+        "Filminteresse blir sosialt robust når mennesker kan dele opplevelser uten å kreve identiske dommer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell hva som ikke traff deg uten å gjøre vennens reaksjon naiv eller feil.",
+          "effect": 1,
+          "tags": [
+            "vennen_som_elsket_den_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du holder både egen og andres opplevelse i rommet."
+        },
+        {
+          "id": "B",
+          "label": "Lån vennens begeistring fordi det føles enklere enn å stå for din egen reaksjon.",
+          "effect": -1,
+          "tags": [
+            "vennen_som_elsket_den_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du bytter ærlighet mot sosial friksjonsfrihet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_shared_taste"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "halvveis",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Etter en stund",
+      "subject": "Det er lov å ikke fullføre et møte",
+      "situation": [
+        "Du har sett en god stund, men merker at filmen ikke griper deg og at du mest fortsetter fordi du allerede har investert tid.",
+        "Kulturelle verk kan være krevende på produktive måter, men utholdenhet er ikke automatisk et mål på respekt eller modenhet.",
+        "En begynnende interesse tåler at noen forsøk blir avbrutt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder om nysgjerrigheten fortsatt finnes; hvis ikke, stopp uten å gjøre det til nederlag.",
+          "effect": 1,
+          "tags": [
+            "halvveis_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du skiller åpenhet fra plikt."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett uansett fordi det å gi seg ville bevise at du ikke er interessert nok.",
+          "effect": -1,
+          "tags": [
+            "halvveis_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du gjør fullføring til identitetstest."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_stop_permission"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "et_nytt_filmland",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et nytt spor",
+      "subject": "Nye funn trenger ikke starte med en kanonliste",
+      "situation": [
+        "Du oppdager en film fra et land og en tradisjon du nesten ikke kjenner, og får lyst til å se mer.",
+        "Et nytt spor kan åpne historie, språk og uttrykk, men det kan også bli redusert til en rask sjekkliste over det man tror er representativt.",
+        "Filminteresse kan begynne med ett konkret verk før den prøver å generalisere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn ett nytt verk eller én skaper fordi noe ved den første filmen faktisk gjorde deg nysgjerrig.",
+          "effect": 1,
+          "tags": [
+            "et_nytt_filmland_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du lar nye funn vokse fra erfaring i stedet for fra plikt til oversikt."
+        },
+        {
+          "id": "B",
+          "label": "Lag straks en liste som skal bevise at du nå kjenner hele tradisjonen.",
+          "effect": -1,
+          "tags": [
+            "et_nytt_filmland_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du gjør oppdagelse til akkumulering av kulturelle bevis."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_new_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "omtalen_etterpa",
+      "message_type": "reflection",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Etter filmen",
+      "subject": "Andres ord kan hjelpe uten å erstatte dine",
+      "situation": [
+        "Etterpå leser du en lengre omtale som setter ord på detaljer du selv bare merket som en vag følelse.",
+        "Kritikk og samtale kan utvide opplevelsen ved å gi begreper, kontekst og andre blikk.",
+        "Men gode formuleringer kan også bli så overbevisende at du glemmer hva du faktisk tenkte før du leste dem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter først din egen reaksjon med noen enkle ord, og les deretter hva andre så.",
+          "effect": 1,
+          "tags": [
+            "omtalen_etterpa_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du bruker kritikk som samtalepartner i stedet for fasit."
+        },
+        {
+          "id": "B",
+          "label": "Bytt ut din første reaksjon med den mest velformulerte teksten du finner.",
+          "effect": -1,
+          "tags": [
+            "omtalen_etterpa_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du lar andres språk overta din egen erfaring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_criticism_language"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "social_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "skuespilleren_i_en_annen_rolle",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et nytt verk",
+      "subject": "En person på skjermen er ikke én rolle for alltid",
+      "situation": [
+        "Du møter en skuespiller du kjenner fra én type rolle i noe helt annet og merker hvor mye forventningen fra tidligere arbeid påvirker deg.",
+        "Publikum bygger mentale bilder av mennesker gjennom roller, omtale og gjentakelse, selv om profesjonelle liv er langt mer sammensatte.",
+        "Å følge folk bak verk betyr også å tåle at de ikke gjentar det som først gjorde dem kjente for deg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se den nye rollen som et eget arbeid før du sammenligner den med det du kjenner fra før.",
+          "effect": 1,
+          "tags": [
+            "skuespilleren_i_en_annen_rolle_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du gir personen rom til å være mer enn din første referanse."
+        },
+        {
+          "id": "B",
+          "label": "Avvis rollen fordi den ikke passer bildet du allerede har av skuespilleren.",
+          "effect": -1,
+          "tags": [
+            "skuespilleren_i_en_annen_rolle_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du gjør din egen gjenkjennelse til en ramme personen må bli i."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_persona_expectation"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "har_du_sett_alt",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En samtale",
+      "subject": "Bredde er ikke et medlemskort",
+      "situation": [
+        "En ivrig samtalepartner ramser opp filmer og navn raskere enn du rekker å følge og spør til slutt om du i det hele tatt er særlig filminteressert.",
+        "Hobbyfelt kan utvikle uformelle prøver der mengde og hukommelse brukes som tegn på hvem som hører til.",
+        "Filminteressert er en praksis av nysgjerrighet og oppmerksomhet, ikke et pensum med adgangskrav."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hva du faktisk følger med på og spør om det du ikke kjenner uten å godta testen som premiss.",
+          "effect": 1,
+          "tags": [
+            "har_du_sett_alt_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du lar interesse være virkelig uten å spille allviter."
+        },
+        {
+          "id": "B",
+          "label": "Begynn å ramse opp egne titler for å vinne retten til å bli regnet med.",
+          "effect": -1,
+          "tags": [
+            "har_du_sett_alt_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du aksepterer mengde som sosial inngangsbillett."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_credential_pressure"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "din_egen_interesse",
+      "message_type": "milestone",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et roligere øyeblikk",
+      "subject": "Interesse kan være tydelig uten å være rang",
+      "situation": [
+        "Etter en stund merker du at du velger mer bevisst, følger enkelte skapere, prøver nye uttrykk og snakker mer presist om hva som treffer deg.",
+        "Det er nok til at film og serier har blitt en faktisk hobbyidentitet, men ikke en profesjon, ekspertstatus eller konkurranse om kulturell kapital.",
+        "Neste steg trenger ikke være å gjøre hobbyen mer intens; den kan også bare bli mer personlig og åpen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv interessen gjennom hva du er nysgjerrig på, ikke gjennom hvem du mener står under deg.",
+          "effect": 1,
+          "tags": [
+            "din_egen_interesse_open",
+            "filminteressert_curiosity"
+          ],
+          "feedback": "Du gjør hobbyen til en praksis, ikke et hierarki."
+        },
+        {
+          "id": "B",
+          "label": "Bruk merkelappen som bevis på at du tar film mer seriøst enn mindre aktive seere.",
+          "effect": -1,
+          "tags": [
+            "din_egen_interesse_status_trap",
+            "filminteressert_gatekeeping"
+          ],
+          "feedback": "Du gjør interesse til rangering av mennesker."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filminteressert_identity_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}

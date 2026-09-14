@@ -116,15 +116,15 @@ assert.equal(entry.status, 'role_world_complete');
 assert.equal(entry.path, worldPath);
 
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 24);
+assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 26);
 assert.deepEqual(index.summary, {
-  role_worlds_total: 109,
+  role_worlds_total: 111,
   career_role_worlds: 85,
-  life_position_role_worlds: 24
+  life_position_role_worlds: 26
 });
 assert.equal(index.career_role_world_count, 85);
-assert.equal(index.life_position_role_world_count, 24);
-assert.equal(index.status, '109_role_worlds_materialized');
+assert.equal(index.life_position_role_world_count, 26);
+assert.equal(index.status, '111_role_worlds_materialized');
 
 assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds, [
   'sport/supporter',
@@ -150,14 +150,16 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'naeringsliv/frilanser',
   'by/byvandrer',
   'by/urbanist',
-  'film_tv/festivalgjenger'
+  'film_tv/festivalgjenger',
+  'film_tv/filmfantast',
+  'film_tv/filminteressert'
 ]);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 24);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 109);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 26);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 111);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 24);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 26);
 
 const readiness = audit.positions.find((row) => row.key === 'litteratur/skrivebordspoet');
 assert.ok(readiness);
@@ -168,8 +170,8 @@ assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.deepEqual(readiness.evidence.livelihood_templates, ['skrivebordspoet_introtekst']);
 assert.ok(!audit.queue.some((row) => row.key === 'litteratur/skrivebordspoet'));
-assert.equal(audit.summary.life_position_role_world_complete, 24);
-assert.equal(audit.summary.completed_life_position_role_worlds, 24);
+assert.equal(audit.summary.life_position_role_world_complete, 26);
+assert.equal(audit.summary.completed_life_position_role_worlds, 26);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.first_ready, null);
 
