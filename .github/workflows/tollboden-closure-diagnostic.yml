@@ -155,6 +155,7 @@ jobs:
             exit 1
           fi
           rm -f reports/knowledge-contract-audit.json
+          sed -i '3s/[[:space:]]\+$//;4s/[[:space:]]\+$//' reports/place-production/tollboden-source-review-v1.md
           mkdir -p reports/tollboden-final-surface
           git add -A
           cp /tmp/tollboden-allowed-paths.txt reports/tollboden-final-surface/allowed-paths.txt
