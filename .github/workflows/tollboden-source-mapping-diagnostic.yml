@@ -1,0 +1,23 @@
+name: Tollboden source mapping diagnostic
+
+on:
+  push:
+    branches:
+      - agent/tollboden-closure-diagnostic-20260914
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect Knowledge place-source contract
+        run: |
+          echo '=== knowledge generator mapping branches ==='
+          grep -n -B 12 -A 30 -E 'source_mapping|sourceMapping|place.*source|build-quiz-manifest|quiz.manifest' scripts/knowledge-canonical-data.mts || true
+          echo '=== Tollpakkhuset source mapping references ==='
+          grep -R -n -I --exclude='*.webp' --exclude='*.png' --exclude='*.jpg' --exclude='*.jpeg' 'tollpakkhuset' data/knowledge data/quiz data/places scripts 2>/dev/null | head -n 300 || true
+          echo '=== likely mapping files ==='
+          find data -type f \( -iname '*source*' -o -iname '*mapping*' -o -iname '*manifest*' \) | sort | head -n 300
