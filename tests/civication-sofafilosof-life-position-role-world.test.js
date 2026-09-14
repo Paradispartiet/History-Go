@@ -117,8 +117,8 @@ assert.deepEqual(entry.life_position_ref, world.life_position_ref);
 assert.equal(entry.status, 'role_world_complete');
 assert.equal(entry.path, worldPath);
 
-assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 27);
+assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, index.career_role_world_count);
+assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, index.life_position_role_world_count);
 assert.equal(index.summary.role_worlds_total, index.roles.length);
 assert.equal(index.summary.career_role_worlds, index.career_role_world_count);
 assert.equal(index.summary.life_position_role_worlds, index.life_position_role_world_count);
