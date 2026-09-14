@@ -1,0 +1,27 @@
+name: TEMP Klassekampen rule preflight
+
+on:
+  push:
+    branches:
+      - agent/klassekampen-place-production-20260914
+
+permissions:
+  contents: read
+
+jobs:
+  record-preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Record exact-head rule preflight
+        run: |
+          node scripts/place-production-rule-preflight.mjs record \
+            --workcard reports/place-production/klassekampen-workcard-current.json \
+            --place-id klassekampen_redaksjon \
+            --category media
+          echo '---WORKCARD-BEGIN---'
+          cat reports/place-production/klassekampen-workcard-current.json
+          echo '---WORKCARD-END---'
