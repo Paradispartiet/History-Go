@@ -6,174 +6,51 @@ on:
       - agent/tollboden-closure-diagnostic-20260914
 
 permissions:
-  contents: write
+  contents: read
 
 env:
-  SOURCE_HEAD: c21e6d557c4a6cf22fe09b1f4c976afab6d64897
+  PR_HEAD: 306b1509b8032cd51cb4637363e025c4595cf1a6
+  MAIN_HEAD: a539c2c4d62b021dc04466e4f5cd13ece06f377e
   TARGET_BRANCH: agent/tollboden-production-20260912
-  EXPECTED_PATCH_SHA: 77409bef49c364fabb7eb549516c7e9058d605b2ffbdf8b1d0de61ad7429682b
 
 jobs:
-  reconstruct:
+  conflicts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ env.TARGET_BRANCH }}
           fetch-depth: 0
-      - name: Lock actual PR head
+      - name: Lock heads and inspect merge conflicts
         run: |
           set -euo pipefail
           local_head="$(git rev-parse HEAD)"
-          remote_head="$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')"
-          echo "local=$local_head"
-          echo "remote=$remote_head"
-          test "$local_head" = "$SOURCE_HEAD"
-          test "$remote_head" = "$SOURCE_HEAD"
-      - uses: actions/setup-node@v4
+          remote_pr="$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')"
+          remote_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          printf 'local_pr=%s\nremote_pr=%s\nremote_main=%s\n' "$local_head" "$remote_pr" "$remote_main"
+          test "$local_head" = "$PR_HEAD"
+          test "$remote_pr" = "$PR_HEAD"
+          test "$remote_main" = "$MAIN_HEAD"
+          mkdir -p reports
+          set +e
+          git merge --no-commit --no-ff "$MAIN_HEAD" >/tmp/merge.out 2>&1
+          rc=$?
+          set -e
+          cat /tmp/merge.out
+          echo "merge_exit=$rc" | tee reports/tollboden-merge-summary.txt
+          git diff --name-only --diff-filter=U | tee reports/tollboden-merge-conflicts.txt
+          git ls-files -u > reports/tollboden-merge-unmerged-index.txt
+          git status --short > reports/tollboden-merge-status.txt
+          cat reports/tollboden-merge-conflicts.txt
+          cat reports/tollboden-merge-status.txt
+          if git rev-parse -q --verify MERGE_HEAD >/dev/null; then git merge --abort; else git reset --hard "$PR_HEAD"; fi
+      - name: Upload conflict report
+        uses: actions/upload-artifact@v4
         with:
-          node-version: 20
-          cache: npm
-      - run: npm ci
-      - name: Register and close Tollboden quiz deterministically
-        run: |
-          node <<'NODE'
-          const fs = require('fs');
-          const crypto = require('crypto');
-          const fagPath = 'data/fag/fag_manifest.json';
-          const fag = JSON.parse(fs.readFileSync(fagPath, 'utf8'));
-          let n = fag.naeringsliv;
-          if (!n && Array.isArray(fag.categories)) n = fag.categories.find(x => x.categoryId === 'naeringsliv' || x.id === 'naeringsliv');
-          if (!n) throw new Error('naeringsliv missing');
-          n.quizProduction ??= {}; n.quizProduction.targets ??= {};
-          n.quizProduction.targets.tollboden_oslo = {
-            source_brief: '../quiz/production_briefs/naeringsliv/tollboden_oslo.json',
-            context_artifact: '../quiz/production_context/naeringsliv/tollboden_oslo.json',
-            quiz_file: '../quiz/naeringsliv/tollboden_oslo_sets.json'
-          };
-          fs.writeFileSync(fagPath, JSON.stringify(fag, null, 2) + '\n');
-
-          const manifestPath = 'data/quiz/manifest.json';
-          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-          manifest.sets = manifest.sets.filter(x => x.targetId !== 'tollboden_oslo');
-          manifest.sets.push({targetId:'tollboden_oslo', file:'data/quiz/naeringsliv/tollboden_oslo_sets.json'});
-          manifest.sets.sort((a,b)=>(a.targetId||'').localeCompare(b.targetId||'') || (a.file||'').localeCompare(b.file||''));
-          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
-
-          const qp = 'data/quiz/naeringsliv/tollboden_oslo_sets.json';
-          const quiz = JSON.parse(fs.readFileSync(qp, 'utf8'));
-          quiz.sources ??= {};
-          quiz.sources.place_record = 'data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollboden_oslo.json';
-          const qs = quiz.sets.flatMap(s => s.questions);
-          const frozen = new Set(['tollboden_oslo_quiz_01','tollboden_oslo_quiz_02','tollboden_oslo_quiz_03','tollboden_oslo_quiz_12']);
-          const c = qs.filter(q => !frozen.has(q.id) && q.answerIndex === 0);
-          if (c.length !== 17) throw new Error(`expected 17 candidates, got ${c.length}`);
-          c.sort((a,b)=>crypto.createHash('sha256').update(`tollboden_oslo:${a.id}`).digest('hex').localeCompare(crypto.createHash('sha256').update(`tollboden_oslo:${b.id}`).digest('hex')) || a.id.localeCompare(b.id));
-          const to1 = new Set(c.slice(0,4).map(q=>q.id));
-          const to2 = new Set(c.slice(4,10).map(q=>q.id));
-          for (const q of qs) {
-            const target = to1.has(q.id) ? 1 : to2.has(q.id) ? 2 : q.answerIndex;
-            if (target !== q.answerIndex) {
-              [q.options[q.answerIndex], q.options[target]] = [q.options[target], q.options[q.answerIndex]];
-              q.answerIndex = target;
-            }
-          }
-          const guidanceBasis = [
-            'data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json',
-            'data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json'
-          ];
-          for (const id of ['tollboden_oslo_quiz_15','tollboden_oslo_quiz_16','tollboden_oslo_quiz_17','tollboden_oslo_quiz_19','tollboden_oslo_quiz_21']) {
-            const q = qs.find(x => x.id === id);
-            if (!q?.method_id) throw new Error(`${id} missing method_id`);
-            q.guidance_basis = [...guidanceBasis];
-          }
-          const q16 = qs.find(q=>q.id==='tollboden_oslo_quiz_16');
-          q16.topic_hook_id = 'regulering_og_ansvar';
-          q16.thinker_id = 'karl_polanyi';
-          q16.theory_ref = {topic_hook_id:'regulering_og_ansvar', thinker_id:'karl_polanyi', why_it_helps:'Polanyis perspektiv på marked, samfunn og regulering gjør Tollbodens administrative kontroll til et konkret eksempel på at handel og vareflyt er institusjonelt regulert.'};
-          quiz.production_context.topic_hook_ids = [...new Set([...(quiz.production_context.topic_hook_ids||[]),'regulering_og_ansvar'])];
-          quiz.production_context.thinker_ids = [...new Set([...(quiz.production_context.thinker_ids||[]),'karl_polanyi'])];
-
-          const bp='data/quiz/production_briefs/naeringsliv/tollboden_oslo.json';
-          const brief=JSON.parse(fs.readFileSync(bp,'utf8'));
-          brief.selected_curriculum.topic_hook_ids=[...new Set([...(brief.selected_curriculum.topic_hook_ids||[]),'regulering_og_ansvar'])];
-          brief.selected_curriculum.thinker_ids=[...new Set([...(brief.selected_curriculum.thinker_ids||[]),'karl_polanyi'])];
-          for (const field of ['existing_quiz_audit','profile_decision','held_back_candidates']) {
-            quiz.production_context[field] = structuredClone(brief[field]);
-          }
-          fs.writeFileSync(qp, JSON.stringify(quiz,null,2)+'\n');
-          fs.writeFileSync(bp,JSON.stringify(brief,null,2)+'\n');
-          const counts=qs.reduce((a,q)=>(a[q.answerIndex]++,a),[0,0,0]);
-          console.log('to1='+[...to1].join(','));
-          console.log('to2='+[...to2].join(','));
-          console.log('counts='+counts.join('/'));
-          if(counts.join('/')!=='7/7/7') throw new Error('bad balance');
-          NODE
-      - name: Rebuild Tollboden production context
-        run: node scripts/build-quiz-production-context.mjs --category naeringsliv --target tollboden_oslo --output data/quiz/production_context/naeringsliv/tollboden_oslo.json
-      - name: Materialize canonical Knowledge
-        run: npm run knowledge:canonical:write
-      - name: Run closure gates
-        run: |
-          npm run audit:quiz-manifest:v2
-          npm run audit:quiz-production-context
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
-          npm run test:quiz-production
-          npm run knowledge:canonical:check
-      - name: Verify exact green candidate
-        run: |
-          set -euo pipefail
-          cat > /tmp/expected-files <<'EOF'
-          data/fag/fag_manifest.json
-          data/knowledge/knowledge_units.generated.json
-          data/quiz/manifest.json
-          data/quiz/naeringsliv/tollboden_oslo_sets.json
-          data/quiz/production_briefs/naeringsliv/tollboden_oslo.json
-          data/quiz/production_context/naeringsliv/tollboden_oslo.json
-          reports/knowledge-id-backfill.json
-          reports/quiz_manifest_v2_audit_report.json
-          EOF
-          git diff --name-only > /tmp/actual-files
-          diff -u /tmp/expected-files /tmp/actual-files
-          shortstat="$(git diff --shortstat | xargs)"
-          echo "$shortstat"
-          test "$shortstat" = "8 files changed, 2576 insertions(+), 129 deletions(-)"
-          patch_sha="$(git diff --binary | sha256sum | awk '{print $1}')"
-          echo "patch_sha=$patch_sha"
-          test "$patch_sha" = "$EXPECTED_PATCH_SHA"
-          if grep -i 'tollpakkhuset' /tmp/actual-files; then
-            echo 'ERROR: Tollpakkhuset source file touched'
-            exit 1
-          fi
-          node - <<'NODE'
-          const q=require('./data/quiz/naeringsliv/tollboden_oslo_sets.json');
-          const qs=q.sets.flatMap(s=>s.questions);
-          const counts=qs.reduce((a,x)=>(a[x.answerIndex]++,a),[0,0,0]);
-          if (counts.join('/') !== '7/7/7') throw new Error(`bad answer balance ${counts.join('/')}`);
-          const frozen=['tollboden_oslo_quiz_01','tollboden_oslo_quiz_02','tollboden_oslo_quiz_03','tollboden_oslo_quiz_12'];
-          console.log(`Tollboden questions=${qs.length}; balance=${counts.join('/')}; frozen=${frozen.join(',')}`);
-          NODE
-      - name: Publish exact candidate to PR branch
-        run: |
-          set -euo pipefail
-          remote_head="$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')"
-          echo "remote_before_push=$remote_head"
-          test "$remote_head" = "$SOURCE_HEAD"
-          git config user.name 'Paradispartiet'
-          git config user.email 'paradispartiet@gmail.com'
-          git add -- \
-            data/fag/fag_manifest.json \
-            data/knowledge/knowledge_units.generated.json \
-            data/quiz/manifest.json \
-            data/quiz/naeringsliv/tollboden_oslo_sets.json \
-            data/quiz/production_briefs/naeringsliv/tollboden_oslo.json \
-            data/quiz/production_context/naeringsliv/tollboden_oslo.json \
-            reports/knowledge-id-backfill.json \
-            reports/quiz_manifest_v2_audit_report.json
-          git diff --cached --name-only > /tmp/staged-files
-          diff -u /tmp/expected-files /tmp/staged-files
-          git commit -m 'fix(tollboden): close quiz and Knowledge contracts'
-          new_head="$(git rev-parse HEAD)"
-          echo "new_head=$new_head"
-          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+          name: tollboden-merge-conflicts
+          path: |
+            reports/tollboden-merge-summary.txt
+            reports/tollboden-merge-conflicts.txt
+            reports/tollboden-merge-unmerged-index.txt
+            reports/tollboden-merge-status.txt
+          if-no-files-found: error
