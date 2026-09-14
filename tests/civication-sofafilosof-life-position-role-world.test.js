@@ -118,7 +118,7 @@ assert.equal(entry.status, 'role_world_complete');
 assert.equal(entry.path, worldPath);
 
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 23);
+assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 24);
 assert.deepEqual(index.summary, {
   role_worlds_total: 109,
   career_role_worlds: 85,
