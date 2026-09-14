@@ -114,4 +114,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 25 ready / 134 authored-depth / 40 not-standalone; 25 complete / no pending-ready');
+console.log('civication life-position Role World readiness v2 ok: 26 ready / 133 authored-depth / 40 not-standalone; 26 complete / no pending-ready');
