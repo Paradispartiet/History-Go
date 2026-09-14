@@ -96,14 +96,42 @@ jobs:
         run: node scripts/build-quiz-production-context.mjs --category naeringsliv --target tollboden_oslo --output data/quiz/production_context/naeringsliv/tollboden_oslo.json
       - name: Materialize canonical Knowledge
         run: npm run knowledge:canonical:write
-      - name: Run closure audits
+      - name: Run closure audits independently
         run: |
-          npm run audit:quiz-manifest:v2
-          npm run audit:quiz-production-context
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
-          npm run test:quiz-production
-          npm run knowledge:canonical:check
+          set +e
+          OUT=reports/tollboden-closure-gates.txt
+          : > "$OUT"
+          failed=0
+          run_gate() {
+            label="$1"
+            shift
+            echo "=== $label ===" | tee -a "$OUT"
+            "$@" 2>&1 | tee -a "$OUT"
+            rc=${PIPESTATUS[0]}
+            echo "EXIT=$rc" | tee -a "$OUT"
+            echo | tee -a "$OUT"
+            if [ "$rc" -ne 0 ]; then failed=1; fi
+          }
+          run_gate audit_quiz_manifest_v2 npm run audit:quiz-manifest:v2
+          run_gate audit_quiz_production_context npm run audit:quiz-production-context
+          run_gate audit_quiz_progression npm run audit:quiz-progression
+          run_gate audit_quiz_theory_binding npm run audit:quiz-theory-binding
+          run_gate test_quiz_production npm run test:quiz-production
+          run_gate knowledge_canonical_check npm run knowledge:canonical:check
+          if [ -f reports/quiz_manifest_v2_audit_report.json ]; then
+            echo '=== quiz_manifest_v2_audit_report.json ===' | tee -a "$OUT"
+            cat reports/quiz_manifest_v2_audit_report.json | tee -a "$OUT"
+          fi
+          exit "$failed"
+      - name: Upload closure diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tollboden-closure-diagnostics
+          path: |
+            reports/tollboden-closure-gates.txt
+            reports/quiz_manifest_v2_audit_report.json
+          if-no-files-found: warn
       - name: Report exact candidate diff
         if: always()
         run: |
