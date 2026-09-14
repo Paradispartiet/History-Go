@@ -52,7 +52,7 @@ assert.match(world.sociological_core.description,/Nabolagskjenner/);
 assert.match(world.sociological_core.description,/planlegger/);
 assert.match(world.sociological_core.description,/Ingen ny runtime/i);
 assert.equal(index.roles.length,112);
-assert.equal(index.roles.filter((x)=>x.subject_type==='life_position').length,26);
+assert.equal(index.roles.filter((x)=>x.subject_type==='life_position').length,27);
 assert.equal(index.status,'112_role_worlds_materialized');
 assert.deepEqual(index.summary,{role_worlds_total:112,career_role_worlds:85,life_position_role_worlds:27});
 console.log('civication Urbanist readiness + Role World ok: 56/56 / 14 anchors / 111 total / 26 life-position worlds');
