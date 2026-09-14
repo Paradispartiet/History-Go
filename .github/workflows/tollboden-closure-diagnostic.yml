@@ -150,6 +150,11 @@ jobs:
       - name: Guard final PR surface
         run: |
           set -euo pipefail
+          if git cat-file -e "$MAIN_HEAD:reports/knowledge-contract-audit.json" 2>/dev/null; then
+            echo 'knowledge-contract audit report unexpectedly exists on main; refusing cleanup.'
+            exit 1
+          fi
+          rm -f reports/knowledge-contract-audit.json
           mkdir -p reports/tollboden-final-surface
           git add -A
           cp /tmp/tollboden-allowed-paths.txt reports/tollboden-final-surface/allowed-paths.txt
