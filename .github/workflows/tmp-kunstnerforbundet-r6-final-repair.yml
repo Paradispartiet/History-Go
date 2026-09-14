@@ -51,28 +51,32 @@ jobs:
 
           const summaryPath = 'data/places/place_image_backlog_summary.json';
           const doc = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
-          const expected = {
+          const expectedSummary = {
             validLocal: 112,
+            validRemote: 52,
+            optionalMissing: 79,
             missing: 1280,
+            invalidLocalPath: 10,
             remaining: 1290,
-            kunstValid: 5,
-            kunstMissing: 57,
-            kunstRemaining: 57,
           };
-          if (doc.summary.validLocal !== expected.validLocal ||
-              doc.summary.missing !== expected.missing ||
-              doc.summary.remaining !== expected.remaining ||
-              doc.byCategory?.kunst?.valid !== expected.kunstValid ||
-              doc.byCategory?.kunst?.missing !== expected.kunstMissing ||
-              doc.byCategory?.kunst?.remaining !== expected.kunstRemaining) {
-            throw new Error(`Backlog baseline drifted: ${JSON.stringify({summary: doc.summary, kunst: doc.byCategory?.kunst})}`);
+          const expectedKunst = {
+            total: 65,
+            valid: 5,
+            optional: 2,
+            missing: 58,
+            invalid: 0,
+          };
+          for (const [key, value] of Object.entries(expectedSummary)) {
+            if (doc.summary?.[key] !== value) throw new Error(`Backlog summary ${key} drifted: expected ${value}, got ${doc.summary?.[key]}`);
+          }
+          for (const [key, value] of Object.entries(expectedKunst)) {
+            if (doc.byCategory?.kunst?.[key] !== value) throw new Error(`Kunst backlog ${key} drifted: expected ${value}, got ${doc.byCategory?.kunst?.[key]}`);
           }
           doc.summary.validLocal = 113;
           doc.summary.missing = 1279;
           doc.summary.remaining = 1289;
           doc.byCategory.kunst.valid = 6;
-          doc.byCategory.kunst.missing = 56;
-          doc.byCategory.kunst.remaining = 56;
+          doc.byCategory.kunst.missing = 57;
           fs.writeFileSync(summaryPath, `${JSON.stringify(doc, null, 2)}\n`);
           NODE
 
@@ -95,7 +99,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add tests/epoke-place-index.test.mjs data/places/place_image_backlog_summary.json .github/workflows/tmp-kunstnerforbundet-r6-final-repair.yml
           mapfile -t changed < <(git diff --cached --name-only | sort)
-          expected=(data/places/place_image_backlog_summary.json tests/epoke-place-index.test.mjs)
+          expected=(.github/workflows/tmp-kunstnerforbundet-r6-final-repair.yml data/places/place_image_backlog_summary.json tests/epoke-place-index.test.mjs)
           if [[ "${changed[*]}" != "${expected[*]}" ]]; then
             printf 'Unexpected staged paths:\n%s\n' "${changed[*]}"
             exit 1
