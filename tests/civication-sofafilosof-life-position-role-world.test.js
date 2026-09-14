@@ -154,12 +154,13 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_ro
   'by/urbanist',
   'film_tv/festivalgjenger',
   'film_tv/filmfantast',
-  'film_tv/filminteressert'
+  'film_tv/filminteressert',
+  'film_tv/filmnerd'
 ]);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 26);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 111);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 27);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 112);
 
 const readiness = audit.positions.find((row) => row.key === 'filosofi/sofafilosof');
 assert.ok(readiness);
