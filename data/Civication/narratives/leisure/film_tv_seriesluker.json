@@ -14,5 +14,321 @@
     "personal",
     "people"
   ],
-  "storylets": []
+  "storylets": [
+    {
+      "id": "bare_en_episode_til",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Autoplay",
+      "subject": "Cliffhangeren er laget for å gjøre neste valg vanskelig",
+      "situation": [
+        "Episoden slutter på et punkt som nesten krever svar, og neste starter automatisk før du har bestemt om kvelden faktisk har plass til mer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp avspillingen og velg på nytt om du vil se videre nå.",
+          "effect": 1,
+          "tags": [
+            "bare_en_episode_til_deliberate",
+            "seriesluker_reflection"
+          ],
+          "feedback": "Du lar cliffhangeren skape lyst uten å overta tidsplanen."
+        },
+        {
+          "id": "B",
+          "label": "La neste episode starte fordi det føles umulig å stoppe akkurat her.",
+          "effect": -1,
+          "tags": [
+            "bare_en_episode_til_drift",
+            "seriesluker_completion_trap"
+          ],
+          "feedback": "Fortellingens rytme blir styrende for resten av kvelden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seriesluker_cliffhanger_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongen_som_ma_fullfores",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Sesongfinalen",
+      "subject": "Nær slutten kan fullføring bli et eget press",
+      "situation": [
+        "Du har to episoder igjen av en sesong som har mistet noe av grepet på deg, men det føles feil å ikke fullføre når du er så nær."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder om nysgjerrigheten fortsatt finnes, ikke bare hvor nær du er slutten.",
+          "effect": 1,
+          "tags": [
+            "sesongen_som_ma_fullfores_deliberate",
+            "seriesluker_reflection"
+          ],
+          "feedback": "Du skiller fortellingslyst fra fullføringsplikt."
+        },
+        {
+          "id": "B",
+          "label": "Se ferdig bare for å kunne si at sesongen er tatt.",
+          "effect": -1,
+          "tags": [
+            "sesongen_som_ma_fullfores_drift",
+            "seriesluker_completion_trap"
+          ],
+          "feedback": "Mengde og fullføring blir viktigere enn opplevelsen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seriesluker_completion_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "parallelle_serier",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Se-listen",
+      "subject": "Flere fortellinger konkurrerer om samme hukommelse",
+      "situation": [
+        "Du følger flere serier samtidig, med ulike verdener, figurer og utgivelsesdager. Du merker at én av dem mest blir vedlikehold."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La én serie hvile eller falle ut hvis den bare holdes i gang av vane.",
+          "effect": 1,
+          "tags": [
+            "parallelle_serier_deliberate",
+            "seriesluker_reflection"
+          ],
+          "feedback": "Du beskytter plass for de seriene du faktisk følger med på."
+        },
+        {
+          "id": "B",
+          "label": "Hold alle aktive fordi det føles som tap å slippe en.",
+          "effect": -1,
+          "tags": [
+            "parallelle_serier_drift",
+            "seriesluker_completion_trap"
+          ],
+          "feedback": "Serielisten blir et vedlikeholdsarbeid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seriesluker_parallel_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ukentlig_eller_alt_pa_en_gang",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Utgivelsen",
+      "subject": "Distribusjonsrytmen endrer måten serien lever i hverdagen",
+      "situation": [
+        "En serie slipper én episode i uka, mens en annen legger hele sesongen ut samtidig. Du kjenner at de to rytmene drar oppmerksomheten i ulike retninger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg en rytme som passer deg, også om det betyr å vente og samle episoder.",
+          "effect": 1,
+          "tags": [
+            "ukentlig_eller_alt_pa_en_gang_deliberate",
+            "seriesluker_reflection"
+          ],
+          "feedback": "Du gjør publiseringsmodellen til informasjon, ikke kommando."
+        },
+        {
+          "id": "B",
+          "label": "Følg alltid plattformens tempo for å unngå å havne bakpå.",
+          "effect": -1,
+          "tags": [
+            "ukentlig_eller_alt_pa_en_gang_drift",
+            "seriesluker_completion_trap"
+          ],
+          "feedback": "Utgivelsesstrategien får definere din fritidsrytme."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seriesluker_release_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "finalen_alle_snakkar_om",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "En finale kan bli sosialt hastverk",
+      "situation": [
+        "En stor seriefinale er overalt i samtaler og medier. Du er ikke helt ajour, men kjenner presset for å se raskt før du blir spoilet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Planlegg når du faktisk vil se og beskytt deg mot spoilere uten å gjøre andres tempo til ditt.",
+          "effect": 1,
+          "tags": [
+            "finalen_alle_snakkar_om_deliberate",
+            "seriesluker_reflection"
+          ],
+          "feedback": "Du beholder kontroll over eget seertempo."
+        },
+        {
+          "id": "B",
+          "label": "Press inn flere episoder på rad bare for å kunne delta dagen etter.",
+          "effect": -1,
+          "tags": [
+            "finalen_alle_snakkar_om_drift",
+            "seriesluker_completion_trap"
+          ],
+          "feedback": "Sosial beredskap overtar for seerlyst."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seriesluker_finale_pressure_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "husker_du_hvem_det_var",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Oppsummeringen",
+      "subject": "Lange serier krever mer hukommelse enn de later som",
+      "situation": [
+        "En ny sesong begynner etter lang pause, og du husker stemningen bedre enn detaljene i hvem som gjorde hva."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk en kort oppsummering eller aksepter noen hull i stedet for å late som du husker alt.",
+          "effect": 1,
+          "tags": [
+            "husker_du_hvem_det_var_deliberate",
+            "seriesluker_reflection"
+          ],
+          "feedback": "Du lar fortellingen fortsette uten å gjøre hukommelse til prestasjon."
+        },
+        {
+          "id": "B",
+          "label": "Gjett deg gjennom detaljene og skjul at du har glemt sammenhenger.",
+          "effect": -1,
+          "tags": [
+            "husker_du_hvem_det_var_drift",
+            "seriesluker_completion_trap"
+          ],
+          "feedback": "Seriekunnskap blir et statusforsvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seriesluker_memory_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongen_som_burde_sluttet",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Etterpraten",
+      "subject": "Å like en serie betyr ikke å like alle sesongene",
+      "situation": [
+        "En serie du har fulgt lenge fortsetter etter et punkt der du selv synes historien hadde en god avslutning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La senere sesonger stå som et nytt valg, ikke som automatisk medlemsavgift.",
+          "effect": 1,
+          "tags": [
+            "sesongen_som_burde_sluttet_deliberate",
+            "seriesluker_reflection"
+          ],
+          "feedback": "Du skiller lojalitet til det du likte fra plikt til resten."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett uansett fordi du allerede har investert år i serien.",
+          "effect": -1,
+          "tags": [
+            "sesongen_som_burde_sluttet_drift",
+            "seriesluker_completion_trap"
+          ],
+          "feedback": "Tidligere lojalitet binder framtidig oppmerksomhet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seriesluker_late_season_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
 }
