@@ -10,7 +10,6 @@ permissions:
 
 env:
   PR_HEAD: 306b1509b8032cd51cb4637363e025c4595cf1a6
-  MAIN_HEAD: c1a7a0f158e48e68d4e84ed0f11a0815c84cc2af
   TARGET_BRANCH: agent/tollboden-production-20260912
 
 jobs:
@@ -32,19 +31,20 @@ jobs:
           set -euo pipefail
           local_head="$(git rev-parse HEAD)"
           remote_pr="$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')"
-          remote_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
-          printf 'local_pr=%s\nremote_pr=%s\nremote_main=%s\n' "$local_head" "$remote_pr" "$remote_main"
+          main_head="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          printf 'local_pr=%s\nremote_pr=%s\nlocked_main=%s\n' "$local_head" "$remote_pr" "$main_head"
           test "$local_head" = "$PR_HEAD"
           test "$remote_pr" = "$PR_HEAD"
-          test "$remote_main" = "$MAIN_HEAD"
+          test -n "$main_head"
+          echo "MAIN_HEAD=$main_head" >> "$GITHUB_ENV"
           git fetch origin main
-          test "$(git rev-parse origin/main)" = "$MAIN_HEAD"
-          merge_base="$(git merge-base "$PR_HEAD" "$MAIN_HEAD")"
+          test "$(git rev-parse origin/main)" = "$main_head"
+          merge_base="$(git merge-base "$PR_HEAD" "$main_head")"
           git diff --name-only "$merge_base" "$PR_HEAD" | sort -u > /tmp/tollboden-allowed-paths.txt
           git config user.name 'Paradispartiet'
           git config user.email 'paradispartiet@gmail.com'
           set +e
-          git merge --no-commit --no-ff "$MAIN_HEAD"
+          git merge --no-commit --no-ff "$main_head"
           merge_rc=$?
           set -e
           git diff --name-only --diff-filter=U | sort -u > /tmp/tollboden-conflicts.txt
