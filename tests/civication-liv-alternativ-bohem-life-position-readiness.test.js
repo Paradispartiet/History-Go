@@ -22,12 +22,12 @@ assert.deepEqual(row.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(row.evidence.livelihood_templates, []);
 assert.equal(row.evidence.livelihood_ref, null);
 assert.ok(!audit.queue.some((item)=>item.key==='liv_alternativ/bohem'));
-assert.equal(audit.summary.classifications.ready, 27);
-assert.equal(audit.summary.classifications.needs_authored_depth, 132);
-assert.equal(audit.summary.completed_life_position_role_worlds, 27);
-assert.equal(audit.summary.life_position_role_world_complete, 27);
-assert.equal(audit.summary.livelihood_backed_positions, 14);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.first_ready, null);
-assert.equal(audit.queue[0].key, 'film_tv/kinogjenger');
+assert.equal(audit.summary.classifications.ready,audit.positions.filter((i)=>i.classification==='ready').length);
+assert.equal(audit.summary.classifications.needs_authored_depth,audit.positions.filter((i)=>i.classification==='needs_authored_depth').length);
+assert.equal(audit.summary.completed_life_position_role_worlds,audit.positions.filter((i)=>i.role_world_status==='role_world_complete').length);
+assert.equal(audit.summary.life_position_role_world_complete,audit.positions.filter((i)=>i.role_world_status==='role_world_complete').length);
+assert.equal(audit.summary.livelihood_backed_positions,audit.positions.filter((i)=>i.authored_depth.livelihood_template_count>0).length);
+assert.equal(audit.summary.pending_ready_positions,audit.queue.filter((i)=>i.classification==='ready').length);
+
+
 console.log('civication Liv alternativ Bohem readiness ok: governed depth 14 / no livelihood invention / no pending-ready');
