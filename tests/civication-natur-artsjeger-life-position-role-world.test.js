@@ -107,24 +107,24 @@ assert.equal(entry.status, 'role_world_complete');
 assert.equal(entry.path, worldPath);
 
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 26);
+assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 27);
 assert.deepEqual(index.summary, {
-  role_worlds_total: 111,
+  role_worlds_total:112,
   career_role_worlds: 85,
-  life_position_role_worlds: 26
+  life_position_role_worlds:27
 });
 assert.equal(index.career_role_world_count, 85);
-assert.equal(index.life_position_role_world_count, 26);
-assert.equal(index.status, '111_role_worlds_materialized');
+assert.equal(index.life_position_role_world_count, 27);
+assert.equal(index.status, '112_role_worlds_materialized');
 
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('natur/artsjeger'));
-assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 26);
+assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 27);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 26);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 111);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 27);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, 112);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 26);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 27);
 
 const readiness = audit.positions.find((row) => row.key === 'natur/artsjeger');
 assert.ok(readiness);
@@ -135,8 +135,8 @@ assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.deepEqual(readiness.evidence.livelihood_templates, ['artsjeger_feltregistrering']);
 assert.ok(!audit.queue.some((row) => row.key === 'natur/artsjeger'));
-assert.equal(audit.summary.life_position_role_world_complete, 26);
-assert.equal(audit.summary.completed_life_position_role_worlds, 26);
+assert.equal(audit.summary.life_position_role_world_complete, 27);
+assert.equal(audit.summary.completed_life_position_role_worlds, 27);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.first_ready, null);
 

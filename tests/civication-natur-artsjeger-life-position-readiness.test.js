@@ -69,14 +69,14 @@ assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['artsjeger_feltregistrering']);
 
 assert.deepEqual(audit.summary.classifications, {
-  ready: 26,
-  needs_authored_depth: 133,
+  ready: 27,
+  needs_authored_depth: 132,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 26);
+assert.equal(audit.summary.completed_life_position_role_worlds, 27);
 assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 26);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 26);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 27);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 27);
 assert.equal(audit.first_ready, null);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
