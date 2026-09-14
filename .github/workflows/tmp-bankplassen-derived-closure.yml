@@ -34,7 +34,7 @@ jobs:
           set -euo pipefail
           git status --short
           changed="$(git status --porcelain | sed 's/^...//' | sort)"
-          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(data/runtime/lesespor-all\.json|data/epoker/epoke-place-index\.json|data/Civication/scenarioPeople/generated/[^/]+\.json|data/Civication/scenarioPeople_index\.json)$' || true)"
+          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(data/runtime/lesespor-all\.json|data/runtime/place-open/norges_bank_bankplassen_4\.json|data/epoker/epoke-place-index\.json|data/Civication/scenarioPeople/generated/[^/]+\.json|data/Civication/scenarioPeople_index\.json)$' || true)"
           if [ -n "$unexpected" ]; then
             echo "Unexpected generator-owned changes:" >&2
             printf '%s\n' "$unexpected" >&2
@@ -44,7 +44,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git add data/runtime/lesespor-all.json data/epoker/epoke-place-index.json data/Civication/scenarioPeople/generated data/Civication/scenarioPeople_index.json
+          git add data/runtime/lesespor-all.json data/runtime/place-open/norges_bank_bankplassen_4.json data/epoker/epoke-place-index.json data/Civication/scenarioPeople/generated data/Civication/scenarioPeople_index.json
           if git diff --cached --quiet; then
             echo "No generated changes"
             exit 0
