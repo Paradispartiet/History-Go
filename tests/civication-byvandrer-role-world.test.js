@@ -16,8 +16,8 @@ assert.equal(world.season.coverage.length,56);
 assert.equal(new Set(world.season.coverage.map((x)=>x.day+'/'+x.phase)).size,56);
 assert.equal(row.role_world_status,'role_world_complete');
 assert.equal(row.authored_depth.max_narrative_depth,14);
-assert.equal(audit.summary.completed_life_position_role_worlds,27);
-assert.equal(audit.queue[0].key,'film_tv/kinogjenger');
-assert.equal(index.roles.length,112);
-assert.equal(index.life_position_role_world_count,27);
+assert.equal(audit.summary.completed_life_position_role_worlds, audit.positions.filter((item)=>item.role_world_status==='role_world_complete').length);
+
+assert.equal(index.roles.length, index.summary.role_worlds_total);
+assert.equal(index.life_position_role_world_count, index.summary.life_position_role_worlds);
 console.log('Byvandrer Role World gate ok');

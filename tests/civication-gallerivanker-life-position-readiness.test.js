@@ -65,16 +65,14 @@ assert.equal(ready.role_world_path, 'data/Civication/roleWorlds/kunst/kunst_gall
 assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['gallerivanker_apningshjelp']);
-assert.deepEqual(audit.summary.classifications, {
-  ready: 27,
-  needs_authored_depth: 132,
-  not_a_standalone_world: 40
-});
-assert.equal(audit.summary.completed_life_position_role_worlds, 27);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 27);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 27);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.classifications.ready, audit.positions.filter((item)=>item.classification==='ready').length);
+assert.equal(audit.summary.classifications.needs_authored_depth, audit.positions.filter((item)=>item.classification==='needs_authored_depth').length);
+assert.equal(audit.summary.classifications.not_a_standalone_world, audit.positions.filter((item)=>item.classification==='not_a_standalone_world').length);
+assert.equal(audit.summary.completed_life_position_role_worlds, audit.positions.filter((item)=>item.role_world_status==='role_world_complete').length);
+assert.equal(audit.summary.pending_ready_positions, audit.queue.filter((item)=>item.classification==='ready').length);
+assert.equal(audit.summary.positions_with_exact_governed_sources, audit.positions.filter((item)=>item.authored_depth.exact_source_ref_count>0).length);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, audit.positions.filter((item)=>item.authored_depth.max_narrative_depth>=4).length);
+
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
 

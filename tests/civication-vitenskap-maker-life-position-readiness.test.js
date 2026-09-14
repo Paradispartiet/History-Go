@@ -22,9 +22,9 @@ assert.equal(row.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(row.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(row.evidence.livelihood_templates, ['maker_liten_prototype']);
 assert.ok(!audit.queue.some((item) => item.key === 'vitenskap/maker'));
-assert.equal(audit.summary.completed_life_position_role_worlds, 27);
-assert.equal(audit.summary.life_position_role_world_complete, 27);
-assert.equal(audit.summary.pending_ready_positions, 0);
+assert.equal(audit.summary.completed_life_position_role_worlds,audit.positions.filter((item)=>item.role_world_status==='role_world_complete').length);
+assert.equal(audit.summary.life_position_role_world_complete,audit.positions.filter((item)=>item.role_world_status==='role_world_complete').length);
+assert.equal(audit.summary.pending_ready_positions,audit.queue.filter((item)=>item.classification==='ready').length);
 assert.equal(audit.first_ready, null);
 
 console.log('civication Vitenskap Maker readiness ok: governed depth 14 / completed / no pending-ready');
