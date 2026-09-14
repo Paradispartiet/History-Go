@@ -23,24 +23,42 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - name: Repair exact v4.2 classifications
+      - name: Repair exact v4.2 semantics
         shell: bash
         run: |
           node <<'NODE'
           const fs = require('node:fs');
-          const path = 'data/places/production/norges_bank_bankplassen_4.json';
-          const packet = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const crypto = require('node:crypto');
+          const sourcePath = 'data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/norges_bank_bankplassen_4.json';
+          let sourceRaw = fs.readFileSync(sourcePath, 'utf8');
+          const replacements = [
+            ['Seddeltrykkeriet flyttet til Oslo i 1907 og lå i første etasje i Bankplassen 4.', 'Seddeltrykkeriet flyttet til Oslo i 1907 og lå på gateplan i Bankplassen 4.'],
+            ['Den stående 1906-bygningen og de eldre Christiania Theater-sporene må derfor leses som ulike tidslag på samme tomt.', 'Den stående 1906-bygningen og de eldre Christiania Theater-sporene er ulike tidslag på samme tomt.'],
+            ['Stedet viser dermed flere former for økonomisk infrastruktur på samme adresse:', 'Stedet viser flere former for økonomisk infrastruktur på samme adresse:']
+          ];
+          for (const [from, to] of replacements) {
+            if (!sourceRaw.includes(from)) throw new Error(`Missing expected source text: ${from}`);
+            sourceRaw = sourceRaw.replace(from, to);
+          }
+          fs.writeFileSync(sourcePath, sourceRaw);
+          const source = JSON.parse(sourceRaw);
+
+          const packetPath = 'data/places/production/norges_bank_bankplassen_4.json';
+          const packet = JSON.parse(fs.readFileSync(packetPath, 'utf8'));
           const byId = new Map(packet.claims.map((claim) => [claim.id, claim]));
-          Object.assign(byId.get('claim_nb_b4_printing'), { claimKind: 'strong', evidenceMode: 'explicit' });
-          Object.assign(byId.get('claim_nb_b4_theater'), { claimKind: 'strong', evidenceMode: 'explicit' });
+          Object.assign(byId.get('claim_nb_b4_printing'), { claimKind: 'ordinary', evidenceMode: 'explicit' });
+          Object.assign(byId.get('claim_nb_b4_theater'), { claimKind: 'fact', evidenceMode: 'direct' });
           Object.assign(byId.get('claim_nb_b4_reuse'), { sourceType: 'reputable_secondary' });
           const staffing = packet.quizReadiness.questions.find((q) => q.claimIds?.includes('claim_nb_b4_workforce'));
           staffing.question = 'Hva var den planlagte bemanningen i den nye bankbygningen?';
           staffing.type = 'hva';
-          fs.writeFileSync(path, JSON.stringify(packet, null, 2) + '\n');
+          packet.textHashes.popupDesc = crypto.createHash('sha256').update(source.popupDesc, 'utf8').digest('hex');
+          fs.writeFileSync(packetPath, JSON.stringify(packet, null, 2) + '\n');
           NODE
       - name: Record canonical READ-FIRST evidence
         run: node scripts/place-production-rule-preflight.mjs record --workcard reports/place-production/norges_bank_bankplassen_4-workcard-current.json --place-id norges_bank_bankplassen_4 --category naeringsliv
+      - name: Refresh Bankplassen runtime payload
+        run: npm run place-open:build
       - name: Validate repaired contracts
         shell: bash
         run: |
@@ -48,6 +66,7 @@ jobs:
           node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/norges_bank_bankplassen_4-workcard-current.json
           node scripts/validate-place-description-production-v4_2_policy.mjs --all --report reports/place-description-validation-v4_2.json
           node scripts/audit-fagverk-place-pages.mjs
+          npm run place-open:check
       - name: Keep only permanent closure files and remove runner
         shell: bash
         run: |
@@ -56,7 +75,7 @@ jobs:
           rm .github/workflows/tmp-bankplassen-derived-closure.yml
           git status --short
           changed="$(git status --porcelain | sed 's/^...//' | sort)"
-          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(\.github/workflows/tmp-bankplassen-derived-closure\.yml|data/places/production/norges_bank_bankplassen_4\.json|reports/place-production/norges_bank_bankplassen_4-workcard-current\.json)$' || true)"
+          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(\.github/workflows/tmp-bankplassen-derived-closure\.yml|data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/norges_bank_bankplassen_4\.json|data/places/production/norges_bank_bankplassen_4\.json|data/runtime/place-open/norges_bank_bankplassen_4\.json|reports/place-production/norges_bank_bankplassen_4-workcard-current\.json)$' || true)"
           if [ -n "$unexpected" ]; then
             echo "Unexpected closure changes:" >&2
             printf '%s\n' "$unexpected" >&2
@@ -66,7 +85,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git add data/places/production/norges_bank_bankplassen_4.json reports/place-production/norges_bank_bankplassen_4-workcard-current.json .github/workflows/tmp-bankplassen-derived-closure.yml
+          git add data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/norges_bank_bankplassen_4.json data/places/production/norges_bank_bankplassen_4.json data/runtime/place-open/norges_bank_bankplassen_4.json reports/place-production/norges_bank_bankplassen_4-workcard-current.json .github/workflows/tmp-bankplassen-derived-closure.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "fix: close Bankplassen validation contracts"
