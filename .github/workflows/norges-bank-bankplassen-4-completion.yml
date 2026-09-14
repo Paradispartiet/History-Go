@@ -415,7 +415,12 @@ jobs:
           if (questions.length !== 21) throw new Error(`Expected 21 questions, got ${questions.length}`);
           const balance = [0,1,2].map(index => questions.filter(q => q.answerIndex === index).length);
           if (JSON.stringify(balance) !== JSON.stringify([7,7,7])) throw new Error(`Expected 7/7/7 answer balance, got ${JSON.stringify(balance)}`);
-          if (questions.some(q => q.knowledge_link_status !== 'linked' || !q.knowledge_id)) throw new Error('Quiz Knowledge closure incomplete');
+          if (questions.some(q => q.knowledge_link_status !== 'linked'
+            || !q.primary_knowledge_unit_id
+            || !Array.isArray(q.knowledge_unit_ids)
+            || !q.knowledge_unit_ids.includes(q.primary_knowledge_unit_id))) {
+            throw new Error('Quiz Knowledge closure incomplete');
+          }
           console.log('Bankplassen 4 exact collection + 21-question + Knowledge closure PASS');
           NODE
 
