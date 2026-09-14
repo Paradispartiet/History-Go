@@ -83,8 +83,8 @@ assert.deepEqual(stageAudit.evidence.exact_source_refs, [stageStreamPath]);
 assert.ok(!stageAudit.evidence.exact_source_refs.includes(streamPath));
 
 assert.deepEqual(audit.summary.classifications, {
-  ready: 26,
-  needs_authored_depth: 133,
+  ready: 27,
+  needs_authored_depth: 132,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.completed_life_position_role_worlds, 27);
