@@ -75,18 +75,30 @@ jobs:
               q.answerIndex = target;
             }
           }
+          const guidanceBasis = [
+            'data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json',
+            'data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json'
+          ];
+          for (const id of ['tollboden_oslo_quiz_15','tollboden_oslo_quiz_16','tollboden_oslo_quiz_17','tollboden_oslo_quiz_19','tollboden_oslo_quiz_21']) {
+            const q = qs.find(x => x.id === id);
+            if (!q?.method_id) throw new Error(`${id} missing method_id`);
+            q.guidance_basis = [...guidanceBasis];
+          }
           const q16 = qs.find(q=>q.id==='tollboden_oslo_quiz_16');
           q16.topic_hook_id = 'regulering_og_ansvar';
           q16.thinker_id = 'karl_polanyi';
           q16.theory_ref = {topic_hook_id:'regulering_og_ansvar', thinker_id:'karl_polanyi', why_it_helps:'Polanyis perspektiv på marked, samfunn og regulering gjør Tollbodens administrative kontroll til et konkret eksempel på at handel og vareflyt er institusjonelt regulert.'};
           quiz.production_context.topic_hook_ids = [...new Set([...(quiz.production_context.topic_hook_ids||[]),'regulering_og_ansvar'])];
           quiz.production_context.thinker_ids = [...new Set([...(quiz.production_context.thinker_ids||[]),'karl_polanyi'])];
-          fs.writeFileSync(qp, JSON.stringify(quiz,null,2)+'\n');
 
           const bp='data/quiz/production_briefs/naeringsliv/tollboden_oslo.json';
           const brief=JSON.parse(fs.readFileSync(bp,'utf8'));
           brief.selected_curriculum.topic_hook_ids=[...new Set([...(brief.selected_curriculum.topic_hook_ids||[]),'regulering_og_ansvar'])];
           brief.selected_curriculum.thinker_ids=[...new Set([...(brief.selected_curriculum.thinker_ids||[]),'karl_polanyi'])];
+          for (const field of ['existing_quiz_audit','profile_decision','held_back_candidates']) {
+            quiz.production_context[field] = structuredClone(brief[field]);
+          }
+          fs.writeFileSync(qp, JSON.stringify(quiz,null,2)+'\n');
           fs.writeFileSync(bp,JSON.stringify(brief,null,2)+'\n');
           const counts=qs.reduce((a,q)=>(a[q.answerIndex]++,a),[0,0,0]);
           console.log('to1='+[...to1].join(',')); console.log('to2='+[...to2].join(',')); console.log('counts='+counts.join('/'));
