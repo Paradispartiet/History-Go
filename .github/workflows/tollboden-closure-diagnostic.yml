@@ -1,4 +1,4 @@
-name: Tollboden final merge closure
+name: Tollboden image backlog diagnostic
 
 on:
   push:
@@ -6,197 +6,70 @@ on:
       - agent/tollboden-closure-diagnostic-20260914
 
 permissions:
-  contents: write
+  contents: read
 
 env:
-  PR_HEAD: 306b1509b8032cd51cb4637363e025c4595cf1a6
+  PR_HEAD: 431256cf6d154f46021a6cca2dc217a132b97ad3
   TARGET_BRANCH: agent/tollboden-production-20260912
 
 jobs:
-  finalize:
+  materialize:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ env.TARGET_BRANCH }}
+          ref: ${{ env.PR_HEAD }}
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '20'
           cache: npm
-      - name: Install dependencies
-        run: npm ci
-      - name: Lock heads and merge main
+      - run: npm ci
+      - name: Lock exact PR head
         run: |
           set -euo pipefail
-          local_head="$(git rev-parse HEAD)"
-          remote_pr="$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')"
-          main_head="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
-          printf 'local_pr=%s\nremote_pr=%s\nlocked_main=%s\n' "$local_head" "$remote_pr" "$main_head"
-          test "$local_head" = "$PR_HEAD"
-          test "$remote_pr" = "$PR_HEAD"
-          test -n "$main_head"
-          echo "MAIN_HEAD=$main_head" >> "$GITHUB_ENV"
-          git fetch origin main
-          test "$(git rev-parse origin/main)" = "$main_head"
-          merge_base="$(git merge-base "$PR_HEAD" "$main_head")"
-          git diff --name-only "$merge_base" "$PR_HEAD" | sort -u > /tmp/tollboden-allowed-paths.txt
-          git config user.name 'Paradispartiet'
-          git config user.email 'paradispartiet@gmail.com'
-          set +e
-          git merge --no-commit --no-ff "$main_head"
-          merge_rc=$?
-          set -e
-          git diff --name-only --diff-filter=U | sort -u > /tmp/tollboden-conflicts.txt
-          echo "merge_exit=$merge_rc"
-          echo 'Conflicts:'
-          cat /tmp/tollboden-conflicts.txt
-          cat > /tmp/tollboden-conflict-allowlist.txt <<'EOF'
-          data/epoker/epoke-place-index.json
-          data/fagverk/fagverk_registry.json
-          data/fagverk/fagverk_release.json
-          tests/epoke-place-index.test.mjs
-          EOF
-          unexpected_conflicts="$(comm -23 /tmp/tollboden-conflicts.txt /tmp/tollboden-conflict-allowlist.txt || true)"
-          if [ -n "$unexpected_conflicts" ]; then
-            echo 'Unexpected merge conflicts:'
-            echo "$unexpected_conflicts"
-            exit 1
-          fi
-          if [ "$merge_rc" -ne 0 ] && [ ! -s /tmp/tollboden-conflicts.txt ]; then
-            echo 'Merge failed without ordinary file conflicts.'
-            exit 1
-          fi
-      - name: Resolve canonical conflicts and rematerialize
+          test "$(git rev-parse HEAD)" = "$PR_HEAD"
+          test "$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')" = "$PR_HEAD"
+      - name: Build authoritative image audit and summary
         run: |
           set -euo pipefail
-          for f in \
-            data/epoker/epoke-place-index.json \
-            data/fagverk/fagverk_registry.json \
-            data/fagverk/fagverk_release.json \
-            tests/epoke-place-index.test.mjs
-          do
-            if git diff --name-only --diff-filter=U | grep -Fxq "$f"; then
-              git checkout --theirs -- "$f"
-            fi
-          done
-
+          mkdir -p reports/tollboden-image-backlog
+          node scripts/audit-place-images.mjs --mode=all --report=reports/tollboden-image-backlog/place-image-audit.json
           node - <<'NODE'
           const fs = require('fs');
-          const path = 'data/fagverk/fagverk_registry.json';
-          const registry = JSON.parse(fs.readFileSync(path, 'utf8'));
-          const desired = {
-            sourceFile: 'places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollboden_oslo.json',
-            field: 'fagverk',
-            schema: 'history_go_place_fagverk_v2',
-            level: 'standard',
-            status: 'curated'
+          const reportPath = 'reports/tollboden-image-backlog/place-image-audit.json';
+          const sourcePath = 'data/places/place_image_backlog_summary.json';
+          const outPath = 'reports/tollboden-image-backlog/place_image_backlog_summary.generated.json';
+          const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+          const source = JSON.parse(fs.readFileSync(sourcePath, 'utf8'));
+          const generated = {
+            ...source,
+            generatedAt: '2026-09-14',
+            generatedFromCommit: process.env.PR_HEAD,
+            totalPlaces: report.totalPlaces,
+            summary: {
+              validLocal: report.summary.local,
+              validRemote: report.summary.remote,
+              optionalMissing: report.summary.optional,
+              missing: report.summary.missing,
+              invalidLocalPath: report.summary.invalid,
+              remaining: report.summary.missing + report.summary.invalid
+            },
+            byCategory: Object.fromEntries(Object.entries(report.byCategory).map(([category, row]) => [category, {
+              total: row.total,
+              valid: row.local + row.remote,
+              optional: row.optional,
+              missing: row.missing,
+              invalid: row.invalid
+            }]))
           };
-          registry.placeLinks ||= {};
-          if (registry.placeLinks.tollboden_oslo && JSON.stringify(registry.placeLinks.tollboden_oslo) !== JSON.stringify(desired)) {
-            throw new Error('Existing tollboden_oslo placeLink conflicts with canonical row');
-          }
-          registry.placeLinks.tollboden_oslo = desired;
-          const version = String(registry.version || '0.0.0').split('.').map(Number);
-          if (version.length !== 3 || version.some(Number.isNaN)) throw new Error(`Invalid registry version: ${registry.version}`);
-          if (version[0] < 3 || (version[0] === 3 && version[1] < 16)) registry.version = '3.16.0';
-          if (!registry.updatedAt || registry.updatedAt < '2026-09-14') registry.updatedAt = '2026-09-14';
-          fs.writeFileSync(path, JSON.stringify(registry, null, 2) + '\n');
+          fs.writeFileSync(outPath, JSON.stringify(generated, null, 2) + '\n');
+          console.log(JSON.stringify({totalPlaces: generated.totalPlaces, summary: generated.summary, byCategory: generated.byCategory.naeringsliv}, null, 2));
           NODE
-
-          npm run epoker:places:build
-
-          node - <<'NODE'
-          const fs = require('fs');
-          const index = JSON.parse(fs.readFileSync('data/epoker/epoke-place-index.json', 'utf8'));
-          const count = index.stats?.verified_place_production_milestone_count;
-          if (!Number.isInteger(count)) throw new Error('Missing verified_place_production_milestone_count');
-          const path = 'tests/epoke-place-index.test.mjs';
-          const before = fs.readFileSync(path, 'utf8');
-          const pattern = /assert\.equal\(index\.stats\.verified_place_production_milestone_count,\s*\d+\);/g;
-          const matches = before.match(pattern) || [];
-          if (matches.length > 1) throw new Error(`Expected at most one production milestone assertion, found ${matches.length}`);
-          const after = matches.length === 1
-            ? before.replace(pattern, `assert.equal(index.stats.verified_place_production_milestone_count, ${count});`)
-            : before;
-          fs.writeFileSync(path, after);
-          console.log(`Production milestone count is ${count}; assertion matches=${matches.length}`);
-          NODE
-
-          node scripts/build-fagverk-release-manifest.mjs
-          git add \
-            data/epoker/epoke-place-index.json \
-            data/fagverk/fagverk_registry.json \
-            data/fagverk/fagverk_release.json \
-            tests/epoke-place-index.test.mjs
-          test -z "$(git diff --name-only --diff-filter=U)"
-      - name: Verify generated contracts
-        run: |
-          set -euo pipefail
-          npm run epoker:places:check
-          node --test tests/epoke-place-index.test.mjs
-          node --check scripts/build-fagverk-release-manifest.mjs
-          node --test tests/fagverk-release-manifest.test.mjs
-          node scripts/build-fagverk-release-manifest.mjs --check
-      - name: Run Tollboden closure gates
-        run: |
-          set -euo pipefail
-          npm run audit:quiz-manifest:v2
-          npm run audit:quiz-production-context
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
-          npm run test:quiz-production
-          npm run knowledge:canonical:check
-      - name: Guard final PR surface
-        run: |
-          set -euo pipefail
-          if git cat-file -e "$MAIN_HEAD:reports/knowledge-contract-audit.json" 2>/dev/null; then
-            echo 'knowledge-contract audit report unexpectedly exists on main; refusing cleanup.'
-            exit 1
-          fi
-          rm -f reports/knowledge-contract-audit.json
-          sed -i '3s/[[:space:]]\+$//;4s/[[:space:]]\+$//' reports/place-production/tollboden-source-review-v1.md
-          mkdir -p reports/tollboden-final-surface
-          git add -A
-          cp /tmp/tollboden-allowed-paths.txt reports/tollboden-final-surface/allowed-paths.txt
-          git diff --cached --name-only "$MAIN_HEAD" | sort -u | tee reports/tollboden-final-surface/final-paths.txt
-          git status --short | tee reports/tollboden-final-surface/status.txt
-          comm -23 reports/tollboden-final-surface/final-paths.txt reports/tollboden-final-surface/allowed-paths.txt | tee reports/tollboden-final-surface/unexpected-paths.txt
-          git diff --cached --stat "$MAIN_HEAD" > reports/tollboden-final-surface/diff-stat.txt
-          if [ -s reports/tollboden-final-surface/unexpected-paths.txt ]; then
-            echo 'Unexpected paths outside original PR surface:'
-            cat reports/tollboden-final-surface/unexpected-paths.txt
-            exit 1
-          fi
-          if grep -i 'tollpakkhuset' reports/tollboden-final-surface/final-paths.txt; then
-            echo 'Tollpakkhuset changed in final PR diff.'
-            exit 1
-          fi
-          git diff --cached --check "$MAIN_HEAD" 2>&1 | tee reports/tollboden-final-surface/diff-check.txt
-      - name: Upload final surface diagnostic
-        if: always()
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=reports/tollboden-image-backlog/place_image_backlog_summary.generated.json
+      - name: Upload exact generated summary
         uses: actions/upload-artifact@v4
         with:
-          name: tollboden-final-surface
-          path: reports/tollboden-final-surface
-          if-no-files-found: warn
-      - name: Commit and push exact merged head
-        run: |
-          set -euo pipefail
-          remote_pr="$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')"
-          remote_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
-          test "$remote_pr" = "$PR_HEAD"
-          test "$remote_main" = "$MAIN_HEAD"
-          git reset HEAD -- reports/tollboden-final-surface || true
-          rm -rf reports/tollboden-final-surface
-          git commit -m 'Merge main and finalize Tollboden closure'
-          parents="$(git show -s --format=%P HEAD)"
-          echo "parents=$parents"
-          test "$parents" = "$PR_HEAD $MAIN_HEAD"
-          final_head="$(git rev-parse HEAD)"
-          echo "final_head=$final_head"
-          git diff --name-only "$MAIN_HEAD" "$final_head" | sort -u > /tmp/tollboden-committed-paths.txt
-          unexpected="$(comm -23 /tmp/tollboden-committed-paths.txt /tmp/tollboden-allowed-paths.txt || true)"
-          test -z "$unexpected"
-          ! grep -qi 'tollpakkhuset' /tmp/tollboden-committed-paths.txt
-          git push origin HEAD:"$TARGET_BRANCH"
+          name: tollboden-image-backlog-summary
+          path: reports/tollboden-image-backlog
+          if-no-files-found: error
