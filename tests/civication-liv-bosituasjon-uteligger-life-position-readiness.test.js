@@ -49,7 +49,7 @@ assert.ok(world.delayed_consequences.length >= 6);
 assert.match(world.sociological_core.description, /ufrivillig bostedsløshet/);
 assert.match(world.sociological_core.description, /ingen ny runtime/);
 assert.equal(index.roles.length, 109);
-assert.equal(index.roles.filter((x)=>x.subject_type==='life_position').length, 23);
+assert.equal(index.roles.filter((x)=>x.subject_type==='life_position').length, 24);
 assert.equal(index.status, '109_role_worlds_materialized');
 assert.deepEqual(index.summary, { role_worlds_total: 109, career_role_worlds:85, life_position_role_worlds: 24 });
 console.log('civication Liv bosituasjon Uteligger readiness + Role World ok: 56/56 / 14 anchors / 109 total / 24 life-position worlds');
