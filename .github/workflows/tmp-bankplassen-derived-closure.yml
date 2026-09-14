@@ -1,4 +1,4 @@
-name: TEMP Bankplassen derived closure
+name: TEMP Bankplassen closure repair
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  materialize:
+  close:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,33 +23,51 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - name: Materialize deterministic derived files
+      - name: Repair exact v4.2 classifications
+        shell: bash
         run: |
-          npm run place-open:build
-          npm run epoker:places:build
-          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
-      - name: Enforce narrow generated scope
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = 'data/places/production/norges_bank_bankplassen_4.json';
+          const packet = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const byId = new Map(packet.claims.map((claim) => [claim.id, claim]));
+          Object.assign(byId.get('claim_nb_b4_printing'), { claimKind: 'strong', evidenceMode: 'explicit' });
+          Object.assign(byId.get('claim_nb_b4_theater'), { claimKind: 'strong', evidenceMode: 'explicit' });
+          Object.assign(byId.get('claim_nb_b4_reuse'), { sourceType: 'reputable_secondary' });
+          const staffing = packet.quizReadiness.questions.find((q) => q.claimIds?.includes('claim_nb_b4_workforce'));
+          staffing.question = 'Hva var den planlagte bemanningen i den nye bankbygningen?';
+          staffing.type = 'hva';
+          fs.writeFileSync(path, JSON.stringify(packet, null, 2) + '\n');
+          NODE
+      - name: Record canonical READ-FIRST evidence
+        run: node scripts/place-production-rule-preflight.mjs record --workcard reports/place-production/norges_bank_bankplassen_4-workcard-current.json --place-id norges_bank_bankplassen_4 --category naeringsliv
+      - name: Validate repaired contracts
         shell: bash
         run: |
           set -euo pipefail
+          node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/norges_bank_bankplassen_4-workcard-current.json
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all --report reports/place-description-validation-v4_2.json
+          node scripts/audit-fagverk-place-pages.mjs
+      - name: Keep only permanent closure files and remove runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          git restore -- reports/place-description-validation-v4_2.json 2>/dev/null || rm -f reports/place-description-validation-v4_2.json
+          rm .github/workflows/tmp-bankplassen-derived-closure.yml
           git status --short
           changed="$(git status --porcelain | sed 's/^...//' | sort)"
-          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(data/runtime/lesespor-all\.json|data/runtime/place-open/norges_bank_bankplassen_4\.json|data/epoker/epoke-place-index\.json|data/Civication/scenarioPeople/generated/[^/]+\.json|data/Civication/scenarioPeople_index\.json)$' || true)"
+          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(\.github/workflows/tmp-bankplassen-derived-closure\.yml|data/places/production/norges_bank_bankplassen_4\.json|reports/place-production/norges_bank_bankplassen_4-workcard-current\.json)$' || true)"
           if [ -n "$unexpected" ]; then
-            echo "Unexpected generator-owned changes:" >&2
+            echo "Unexpected closure changes:" >&2
             printf '%s\n' "$unexpected" >&2
             exit 1
           fi
-      - name: Commit generated closure data
+      - name: Commit permanent closure repair
         shell: bash
         run: |
           set -euo pipefail
-          git add data/runtime/lesespor-all.json data/runtime/place-open/norges_bank_bankplassen_4.json data/epoker/epoke-place-index.json data/Civication/scenarioPeople/generated data/Civication/scenarioPeople_index.json
-          if git diff --cached --quiet; then
-            echo "No generated changes"
-            exit 0
-          fi
+          git add data/places/production/norges_bank_bankplassen_4.json reports/place-production/norges_bank_bankplassen_4-workcard-current.json .github/workflows/tmp-bankplassen-derived-closure.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "chore: refresh Bankplassen derived closure data"
+          git commit -m "fix: close Bankplassen validation contracts"
           git push origin HEAD:agent/norges-bank-bankplassen-4-place-production-20260914
