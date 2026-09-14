@@ -35,6 +35,8 @@ jobs:
           fetched_main="$(git rev-parse origin/main)"
           echo "fetched_main=$fetched_main"
           test "$fetched_main" = "$MAIN_HEAD"
+          git config user.name 'Paradispartiet'
+          git config user.email 'paradispartiet@gmail.com'
           mkdir -p reports
           set +e
           git merge --no-commit --no-ff "$MAIN_HEAD" >reports/tollboden-merge-output.txt 2>&1
