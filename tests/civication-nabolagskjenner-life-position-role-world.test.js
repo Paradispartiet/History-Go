@@ -144,12 +144,12 @@ assert.equal(entry.path, worldPath);
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
 assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 27);
 assert.deepEqual(index.summary, {
-  role_worlds_total: 111,
+  role_worlds_total:112,
   career_role_worlds: 85,
-  life_position_role_worlds: 26
+  life_position_role_worlds:27
 });
 assert.equal(index.career_role_world_count, 85);
-assert.equal(index.life_position_role_world_count, 26);
+assert.equal(index.life_position_role_world_count, 27);
 
 assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds, [
   'sport/supporter',
@@ -192,7 +192,7 @@ assert.equal(readiness.role_world_path, worldPath);
 assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.ok(!audit.queue.some((row) => row.key === 'by/nabolagskjenner'));
-assert.equal(audit.summary., 27);
+assert.equal(audit.summary.life_position_role_world_complete, 27);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.first_ready, null);
 
