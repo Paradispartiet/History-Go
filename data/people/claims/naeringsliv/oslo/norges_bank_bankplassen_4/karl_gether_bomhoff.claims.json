@@ -1,0 +1,107 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "karl_gether_bomhoff",
+  "profile_file": "data/people/naeringsliv/oslo/norges_bank_bankplassen_4/karl_gether_bomhoff.json",
+  "identity": {
+    "canonical_identity": "Karl Gether Bomhoff (1842–1925), Norges Banks faste direksjonsformann 1893–1920.",
+    "name_variants": ["Karl Gether Bomhoff"],
+    "not": [],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_life_profession",
+      "claim": "Karl Gether Bomhoff ble født 6. august 1842, døde 23. september 1925 og var blant annet bankleder, farmasøyt og politiker.",
+      "status": "verified",
+      "source_url": "https://snl.no/Karl_Gether_Bomhoff",
+      "source_location": "faktaboks og artikkel",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-14",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "norges_bank_leadership",
+      "claim": "Norges Bank oppgir Bomhoff som fast formann for direksjonen fra 1893 til 1920.",
+      "status": "verified",
+      "source_url": "https://www.norges-bank.no/en/topics/about/history/Chairs-of-Norges-Banks-Executive-Board-/",
+      "source_location": "liste over chairmen/governors",
+      "source_type": "primary_official",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-14",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "move_and_bankplassen_4",
+      "claim": "Bomhoff fortsatte som bankens faste leder gjennom flyttingen av hovedsetet til Kristiania i 1897 og da det nye hovedkvarteret på Bankplassen ble tatt i bruk i 1906.",
+      "status": "verified",
+      "source_url": "https://www.norges-bank.no/en/topics/about/History/history-of-norges-bank/",
+      "source_location": "1897, 1906 tidslinje sammenholdt med offisiell lederliste",
+      "source_type": "primary_official",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-14",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "opposed_relocation",
+      "claim": "Bomhoff var den sterkeste motstanderen av å flytte Norges Banks hovedsete fra Trondheim til Kristiania og begrunnet motstanden med sentralbankens uavhengighet.",
+      "status": "verified",
+      "source_url": "https://www.norges-bank.no/en/news-events/news/Speeches/2008/Gjedrem-2008-09-16/",
+      "source_location": "Monetary policy from a historical perspective, avsnitt om 1896-flyttingen",
+      "source_type": "primary_official_historical_interpretation",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-14",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image_identity",
+      "claim": "Wikidata knytter Commons-filen Karl Gether Bomhoff (PO-013562 01 1).jpg til Karl Gether Bomhoff (1842–1925).",
+      "status": "verified",
+      "source_url": "https://www.wikidata.org/wiki/Q3436189",
+      "source_location": "image statement",
+      "source_type": "structured_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-14",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": ["identity_life_profession"],
+    "kindLabel": ["norges_bank_leadership"],
+    "birth_date": ["identity_life_profession"],
+    "death_date": ["identity_life_profession"],
+    "active_place": ["move_and_bankplassen_4"],
+    "placeId": ["move_and_bankplassen_4"],
+    "places[norges_bank_bankplassen_4]": ["move_and_bankplassen_4"],
+    "year": ["move_and_bankplassen_4"],
+    "works[id=norges_bank_bankplassen_4_ledelse_1906].title": ["norges_bank_leadership", "move_and_bankplassen_4"],
+    "works[id=norges_bank_bankplassen_4_ledelse_1906].year": ["move_and_bankplassen_4"],
+    "works[id=norges_bank_bankplassen_4_ledelse_1906].role": ["norges_bank_leadership"],
+    "works[id=norges_bank_bankplassen_4_ledelse_1906].place": ["move_and_bankplassen_4"],
+    "works[id=norges_bank_bankplassen_4_ledelse_1906].summary": ["move_and_bankplassen_4"],
+    "image": ["image_identity"],
+    "cardImage": ["image_identity"],
+    "imageMeta": ["image_identity"]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {"sentence": 1, "claim_ids": ["norges_bank_leadership", "move_and_bankplassen_4"]}
+    ],
+    "popupDesc": [
+      {"sentence": 1, "claim_ids": ["identity_life_profession"]},
+      {"sentence": 2, "claim_ids": ["norges_bank_leadership"]},
+      {"sentence": 3, "claim_ids": ["opposed_relocation", "move_and_bankplassen_4"]},
+      {"sentence": 4, "claim_ids": ["move_and_bankplassen_4"]}
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "5/5",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-14",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
