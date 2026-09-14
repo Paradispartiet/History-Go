@@ -38,6 +38,22 @@ jobs:
           const fs = require('fs');
           const crypto = require('crypto');
 
+          const fagPath = 'data/fag/fag_manifest.json';
+          const fag = JSON.parse(fs.readFileSync(fagPath, 'utf8'));
+          let naeringsliv = fag.categories?.naeringsliv;
+          if (!naeringsliv && Array.isArray(fag.categories)) {
+            naeringsliv = fag.categories.find(x => x.categoryId === 'naeringsliv' || x.id === 'naeringsliv');
+          }
+          if (!naeringsliv) throw new Error('naeringsliv missing from data/fag/fag_manifest.json');
+          naeringsliv.quizProduction ??= {};
+          naeringsliv.quizProduction.targets ??= {};
+          naeringsliv.quizProduction.targets.tollboden_oslo = {
+            source_brief: '../quiz/production_briefs/naeringsliv/tollboden_oslo.json',
+            context_artifact: '../quiz/production_context/naeringsliv/tollboden_oslo.json',
+            quiz_file: '../quiz/naeringsliv/tollboden_oslo_sets.json'
+          };
+          fs.writeFileSync(fagPath, JSON.stringify(fag, null, 2) + '\n');
+
           const manifestPath = 'data/quiz/manifest.json';
           const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
           manifest.sets = manifest.sets.filter(x => x.targetId !== 'tollboden_oslo');
