@@ -78,11 +78,17 @@ assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, audi
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
 
-const genericKjenner = audit.positions.find((row) => row.key === 'film_tv/kjenner');
-assert.ok(genericKjenner);
-assert.equal(genericKjenner.classification, 'needs_authored_depth');
-assert.equal(genericKjenner.authored_depth.exact_source_ref_count, 0);
-assert.equal(genericKjenner.authored_depth.max_narrative_depth, 0);
+const independentKjenner = audit.positions.find((row) => row.key === 'film_tv/kjenner');
+assert.ok(independentKjenner);
+assert.equal(independentKjenner.classification, 'ready');
+assert.equal(independentKjenner.role_world_status, 'role_world_complete');
+assert.equal(independentKjenner.authored_depth.exact_source_ref_count, 1);
+assert.equal(independentKjenner.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(independentKjenner.evidence.exact_source_refs, [
+  'data/Civication/narratives/leisure/film_tv_kjenner.json'
+]);
+assert.ok(!independentKjenner.evidence.exact_source_refs.includes(streamPath),
+  'Film/TV Kjenner must not inherit Filmklubbmenneske provenance');
 
 const narrativeSource = fs.readFileSync(
   path.join(ROOT, 'js/Civication/systems/civicationNarrativeSceneSource.js'),

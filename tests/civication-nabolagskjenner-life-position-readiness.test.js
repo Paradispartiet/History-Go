@@ -34,11 +34,17 @@ assert.equal(ready.role_world_path, 'data/Civication/roleWorlds/by/by_nabolagskj
 assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 
-const falsePositive = audit.positions.find((row) => row.key === 'film_tv/kjenner');
-assert.ok(falsePositive);
-assert.equal(falsePositive.classification, 'needs_authored_depth');
-assert.equal(falsePositive.authored_depth.exact_source_ref_count, 0);
-assert.equal(falsePositive.authored_depth.max_narrative_depth, 0);
+const independentKjenner = audit.positions.find((row) => row.key === 'film_tv/kjenner');
+assert.ok(independentKjenner);
+assert.equal(independentKjenner.classification, 'ready');
+assert.equal(independentKjenner.role_world_status, 'role_world_complete');
+assert.equal(independentKjenner.authored_depth.exact_source_ref_count, 1);
+assert.equal(independentKjenner.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(independentKjenner.evidence.exact_source_refs, [
+  'data/Civication/narratives/leisure/film_tv_kjenner.json'
+]);
+assert.ok(!independentKjenner.evidence.exact_source_refs.includes(streamPath),
+  'generic Kjenner must not inherit Nabolagskjenner provenance');
 
 const narrativeSource = fs.readFileSync(
   path.join(ROOT, 'js/Civication/systems/civicationNarrativeSceneSource.js'),

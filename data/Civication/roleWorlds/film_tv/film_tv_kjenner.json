@@ -1,0 +1,1232 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "film_tv_kjenner",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "film_tv",
+    "id": "kjenner",
+    "label": "Kjenner"
+  },
+  "title": "Kjenner — analyse, anbefalinger, kontekst og kunnskap uten fasit",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bruke bred film- og TV-kunnskap til bedre analyse og mer treffsikre anbefalinger uten at erfaring, fagspråk, kanon eller sosial tillit blir gjort om til rang eller uformell autoritet",
+    "description": "Kjenner-verdenen handler om overgangen fra å vite mye til å bli en person andre faktisk spør om råd. Den undersøker anbefalingstilpasning, sjanger, formspråk, epoker, målgruppe, kunnskapshull, skillet mellom tolkning og fakta, konsensus, uenighet, praktiske begrensninger, kontekst, kanon og ryktet som følger av å bli lyttet til. Den skiller seg fra Filminteresserts åpne oppdagelse, Filmfantasts intense kulturidentitet og Filmnerds detalj- og kildepresisjon. Den er også tydelig under Connaisseur som reputation_status: Kjenner er en kunnskapspraksis, ikke et mandat, og gir ingen profesjonell autoritet. Ingen ny runtime opprettes."
+  },
+  "theme_ids": [
+    "status_anxiety",
+    "shame_reputation",
+    "social_mask",
+    "class_power",
+    "local_knowledge_vs_system",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "alienation",
+    "precarity",
+    "consumption"
+  ],
+  "social_environments": [
+    "venne- og familiesamtaler der spilleren blir spurt om hva noen faktisk bør se i en konkret situasjon",
+    "filmprat der sjanger, formspråk og epoke brukes til å forklare reaksjoner uten å gjøre samtalen til eksamen",
+    "felles programvalg der ulike tidsressurser, abonnement, språk og toleranse for krevende verk må tas på alvor",
+    "samtaler mellom erfarne seere der gode tolkninger kan være uenige uten at noen får automatisk siste ord",
+    "kanon- og filmhistorieprat der etablerte ankerpunkter må sameksistere med blindsoner og alternative tradisjoner",
+    "hverdagslige anbefalingsnettverk der sosial tillit kan vokse til et rykte som lett forveksles med autoritet"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "venn_som_ber_om_rad",
+      "social_function": "gjør Kjenner-rollen konkret ved å be om et faktisk valg tilpasset tid, humør og tilgang",
+      "class_position": "jevnaldrende seer med egen smak og begrenset tid",
+      "status": "likestilt relasjon som frivillig ber om råd",
+      "power_over_player": "kan ignorere rådet og avsløre om spilleren tåler at anbefaling ikke er ordre",
+      "wants": "noe som passer situasjonen uten lang lekse",
+      "conceals": "at hen tidvis ber om råd for å slippe selve valgarbeidet",
+      "speech_style": "konkret, uformell og opptatt av hva som fungerer i kveld",
+      "teaches_player": "at anbefaling må begynne med mottakeren"
+    },
+    {
+      "id": "detaljsterk_venn",
+      "social_function": "presser på skillet mellom Kjennerens syntese og Filmnerd-lignende detaljpresisjon",
+      "class_position": "erfaren seer med sterk hukommelse for credits, årstall og versjoner",
+      "status": "uformell kunnskapspeer uten formell myndighet",
+      "power_over_player": "kan korrigere fakta og gjøre kunnskapshull synlige",
+      "wants": "at påstander skal være presise nok til å tåle spørsmål",
+      "conceals": "at egne detaljkunnskaper også har hull",
+      "speech_style": "presis, referanserik og rask til å be om kilde",
+      "teaches_player": "at syntese blir bedre når fakta kan korrigeres"
+    },
+    {
+      "id": "ny_seer_med_kort_tid",
+      "social_function": "gjør ressurser og forkunnskap synlige i anbefalinger",
+      "class_position": "nysgjerrig publikummer med lite tid eller smal tilgang",
+      "status": "full autonomi over egen seing, lavere erfaringsnivå",
+      "power_over_player": "kan avvise prestisjevalget og teste om rådet faktisk er mottakerorientert",
+      "wants": "en inngang som er mulig å gjennomføre og forstå",
+      "conceals": "at frykten for å virke uvitende kan gjøre det vanskelig å si nei",
+      "speech_style": "direkte, praktisk og villig til å spørre om det grunnleggende",
+      "teaches_player": "at kulturell kunnskap må ta hensyn til reell tilgang"
+    },
+    {
+      "id": "kritikerleseren",
+      "social_function": "bringer konsensus, anmeldelser og ferdig vurderingsspråk inn i rommet",
+      "class_position": "publikummer som følger kritikk tett",
+      "status": "informasjonsrik peer uten fasitmyndighet",
+      "power_over_player": "kan gjøre konsensus vanskelig å ignorere og trigge statusforsvar",
+      "wants": "å forstå hvordan egne reaksjoner står mot offentlig diskusjon",
+      "conceals": "at ferdig kritikerspråk noen ganger kommer før egen reaksjon",
+      "speech_style": "sammenlignende, sitatnær og trygg på vurderingsskalaer",
+      "teaches_player": "at konsensus er informasjon, ikke ordre"
+    },
+    {
+      "id": "sjangerentusiasten",
+      "social_function": "tester hvor elastiske kategoriene er når et verk bryter reglene",
+      "class_position": "erfaren fan med dyp lokal kunnskap om én tradisjon",
+      "status": "situert ekspertise i en avgrenset sjanger",
+      "power_over_player": "kan utfordre brede generaliseringer med konkrete unntak",
+      "wants": "at sjangeren omtales presist uten å reduseres til klisjé",
+      "conceals": "at egen kjærlighet til feltet kan gjøre grensene for stramme",
+      "speech_style": "entusiastisk, spesifikk og full av interne sammenligninger",
+      "teaches_player": "at lokal dybde kan korrigere bred oversikt"
+    },
+    {
+      "id": "uenig_samtalepartner",
+      "social_function": "viser at to kunnskapsrike mennesker kan lese samme verk ulikt uten at én må tape status",
+      "class_position": "jevnaldrende kulturbruker med annen historisk eller estetisk inngang",
+      "status": "likestilt analytisk stemme",
+      "power_over_player": "kan tvinge fram begrunnelser og avsløre når rang erstatter argument",
+      "wants": "å bli møtt på premisser og eksempler, ikke på meritter",
+      "conceals": "at også hen kan bli defensiv når favoritter utfordres",
+      "speech_style": "rolig, argumenterende og konkret om scener",
+      "teaches_player": "at uenighet er data om ulike premisser"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "recommendation_fit_vs_status",
+      "meaning": "forholdet mellom å tilpasse råd til mottakeren og fristelsen til å bruke anbefalinger som demonstrasjon av egen smak",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "genre_map_vs_boxing",
+      "meaning": "forholdet mellom sjanger som orienteringskart og sjanger som en rigid boks som låser verket",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "formal_language_vs_verdict",
+      "meaning": "forholdet mellom formspråk som presist analyseverktøy og terminologi som sosial dom over andres reaksjoner",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "historical_context_vs_presentism",
+      "meaning": "forholdet mellom historisk kontekst, dagens blikk og fristelsen til enten å ignorere tiden eller bruke den som full frikjennelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "audience_fit_vs_hierarchy",
+      "meaning": "forholdet mellom hvem et verk passer for i en situasjon og ideen om at krevende smak gir høyere kulturell verdi",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "knowledge_gap_vs_facework",
+      "meaning": "forholdet mellom reelle kunnskapshull og presset om å late som man vet for å bevare Kjenner-rollen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "interpretation_vs_fact",
+      "meaning": "forholdet mellom argumentert tolkning, observerbare trekk og produksjonsfakta",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "consensus_vs_own_taste",
+      "meaning": "forholdet mellom kritisk eller sosial konsensus og retten til en begrunnet egen reaksjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "disagreement_vs_rank",
+      "meaning": "forholdet mellom analytisk uenighet og fristelsen til å avgjøre den med kulturell kapital",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "constraints_vs_prestige",
+      "meaning": "forholdet mellom tid, tilgang og kapasitet hos mottakeren og prestisjen i det man selv helst vil anbefale",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "context_vs_overexplaining",
+      "meaning": "forholdet mellom nyttig forkunnskap og risikoen for å regissere andres første møte med verket",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "canon_vs_plurality",
+      "meaning": "forholdet mellom kanon som historisk orientering og kanon som adgangskontroll som skjuler andre tradisjoner",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reputation_vs_authority",
+      "meaning": "forholdet mellom å bli stolt på som Kjenner og fristelsen til å gjøre tillit om til uformell myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "knowledge_vs_humility",
+      "meaning": "forholdet mellom voksende kunnskap og evnen til å beholde spørsmål, revisjon og andres autonome reaksjoner",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: En god anbefaling begynner med den som skal se. Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "recommendation_fit_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#anbefalingen_som_maa_passe"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: En god anbefaling begynner med den som skal se. Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "recommendation_fit_vs_status",
+          "knowledge_vs_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#anbefalingen_som_maa_passe"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: En god anbefaling begynner med den som skal se. Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "recommendation_fit_vs_status",
+          "genre_map_vs_boxing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#anbefalingen_som_maa_passe"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: En god anbefaling begynner med den som skal se. Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "recommendation_fit_vs_status",
+          "knowledge_vs_humility",
+          "genre_map_vs_boxing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#anbefalingen_som_maa_passe"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Sjanger er kart, ikke fengsel. Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "genre_map_vs_boxing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#sjangeren_uten_boks"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Sjanger er kart, ikke fengsel. Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "genre_map_vs_boxing",
+          "recommendation_fit_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#sjangeren_uten_boks"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Sjanger er kart, ikke fengsel. Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "genre_map_vs_boxing",
+          "formal_language_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#sjangeren_uten_boks"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Sjanger er kart, ikke fengsel. Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "genre_map_vs_boxing",
+          "recommendation_fit_vs_status",
+          "formal_language_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#sjangeren_uten_boks"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Fagspråk kan åpne blikket uten å lukke samtalen. Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "formal_language_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#formspraket_som_blir_domm"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Fagspråk kan åpne blikket uten å lukke samtalen. Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "formal_language_vs_verdict",
+          "genre_map_vs_boxing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#formspraket_som_blir_domm"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Fagspråk kan åpne blikket uten å lukke samtalen. Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "formal_language_vs_verdict",
+          "historical_context_vs_presentism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#formspraket_som_blir_domm"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Fagspråk kan åpne blikket uten å lukke samtalen. Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "formal_language_vs_verdict",
+          "genre_map_vs_boxing",
+          "historical_context_vs_presentism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#formspraket_som_blir_domm"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Historisk kontekst forklarer uten å frikjenne. Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "historical_context_vs_presentism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#epoken_uten_fasit"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Historisk kontekst forklarer uten å frikjenne. Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "historical_context_vs_presentism",
+          "formal_language_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#epoken_uten_fasit"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Historisk kontekst forklarer uten å frikjenne. Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "historical_context_vs_presentism",
+          "audience_fit_vs_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#epoken_uten_fasit"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Historisk kontekst forklarer uten å frikjenne. Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "historical_context_vs_presentism",
+          "formal_language_vs_verdict",
+          "audience_fit_vs_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#epoken_uten_fasit"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Målgruppe er ikke et kvalitetshierarki. Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "audience_fit_vs_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#hvem_er_denne_filmen_for"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Målgruppe er ikke et kvalitetshierarki. Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "audience_fit_vs_hierarchy",
+          "historical_context_vs_presentism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#hvem_er_denne_filmen_for"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Målgruppe er ikke et kvalitetshierarki. Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "audience_fit_vs_hierarchy",
+          "knowledge_gap_vs_facework"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#hvem_er_denne_filmen_for"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Målgruppe er ikke et kvalitetshierarki. Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "audience_fit_vs_hierarchy",
+          "historical_context_vs_presentism",
+          "knowledge_gap_vs_facework"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#hvem_er_denne_filmen_for"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Å kunne mye inkluderer å kunne si «det vet jeg ikke». Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "knowledge_gap_vs_facework"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#da_referansen_glapp"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Å kunne mye inkluderer å kunne si «det vet jeg ikke». Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "knowledge_gap_vs_facework",
+          "audience_fit_vs_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#da_referansen_glapp"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Å kunne mye inkluderer å kunne si «det vet jeg ikke». Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "knowledge_gap_vs_facework",
+          "interpretation_vs_fact"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#da_referansen_glapp"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Å kunne mye inkluderer å kunne si «det vet jeg ikke». Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "knowledge_gap_vs_facework",
+          "audience_fit_vs_hierarchy",
+          "interpretation_vs_fact"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#da_referansen_glapp"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: En sterk tolkning er fortsatt en tolkning. Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "interpretation_vs_fact"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#tolkning_eller_faktum"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: En sterk tolkning er fortsatt en tolkning. Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "interpretation_vs_fact",
+          "knowledge_gap_vs_facework"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#tolkning_eller_faktum"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: En sterk tolkning er fortsatt en tolkning. Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "interpretation_vs_fact",
+          "consensus_vs_own_taste"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#tolkning_eller_faktum"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: En sterk tolkning er fortsatt en tolkning. Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "interpretation_vs_fact",
+          "knowledge_gap_vs_facework",
+          "consensus_vs_own_taste"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#tolkning_eller_faktum"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Konsensus trenger ikke eie smaken din. Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "consensus_vs_own_taste"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#den_upopulaere_favoritten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Konsensus trenger ikke eie smaken din. Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "consensus_vs_own_taste",
+          "interpretation_vs_fact"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#den_upopulaere_favoritten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Konsensus trenger ikke eie smaken din. Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "consensus_vs_own_taste",
+          "disagreement_vs_rank"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#den_upopulaere_favoritten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Konsensus trenger ikke eie smaken din. Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "consensus_vs_own_taste",
+          "interpretation_vs_fact",
+          "disagreement_vs_rank"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#den_upopulaere_favoritten"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Uenighet kan øke forståelsen i stedet for rangeringen. Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "disagreement_vs_rank"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#uenigheten_ved_bordet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Uenighet kan øke forståelsen i stedet for rangeringen. Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "disagreement_vs_rank",
+          "consensus_vs_own_taste"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#uenigheten_ved_bordet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Uenighet kan øke forståelsen i stedet for rangeringen. Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "disagreement_vs_rank",
+          "constraints_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#uenigheten_ved_bordet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Uenighet kan øke forståelsen i stedet for rangeringen. Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "disagreement_vs_rank",
+          "consensus_vs_own_taste",
+          "constraints_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#uenigheten_ved_bordet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Riktig verk i feil situasjon er fortsatt et dårlig råd. Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "constraints_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#anbefaling_med_begrensning"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Riktig verk i feil situasjon er fortsatt et dårlig råd. Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "constraints_vs_prestige",
+          "disagreement_vs_rank"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#anbefaling_med_begrensning"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Riktig verk i feil situasjon er fortsatt et dårlig råd. Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "constraints_vs_prestige",
+          "context_vs_overexplaining"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#anbefaling_med_begrensning"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Riktig verk i feil situasjon er fortsatt et dårlig råd. Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "constraints_vs_prestige",
+          "disagreement_vs_rank",
+          "context_vs_overexplaining"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#anbefaling_med_begrensning"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Kontekst skal åpne verket uten å se det på vegne av andre. Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "context_vs_overexplaining"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#verket_som_trenger_kontekst"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Kontekst skal åpne verket uten å se det på vegne av andre. Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "context_vs_overexplaining",
+          "constraints_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#verket_som_trenger_kontekst"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Kontekst skal åpne verket uten å se det på vegne av andre. Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "context_vs_overexplaining",
+          "canon_vs_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#verket_som_trenger_kontekst"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Kontekst skal åpne verket uten å se det på vegne av andre. Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "context_vs_overexplaining",
+          "constraints_vs_prestige",
+          "canon_vs_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#verket_som_trenger_kontekst"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Kanon kan være kart uten å være grense. Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "canon_vs_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#kanonen_som_ikke_er_hele_kartet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Kanon kan være kart uten å være grense. Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "canon_vs_plurality",
+          "context_vs_overexplaining"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#kanonen_som_ikke_er_hele_kartet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Kanon kan være kart uten å være grense. Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "canon_vs_plurality",
+          "reputation_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#kanonen_som_ikke_er_hele_kartet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Kanon kan være kart uten å være grense. Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "canon_vs_plurality",
+          "context_vs_overexplaining",
+          "reputation_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#kanonen_som_ikke_er_hele_kartet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Å bli spurt oftere gir ansvar, ikke mandat. Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "reputation_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#noen_spor_deg_igjen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Å bli spurt oftere gir ansvar, ikke mandat. Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "reputation_vs_authority",
+          "canon_vs_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#noen_spor_deg_igjen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Å bli spurt oftere gir ansvar, ikke mandat. Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "reputation_vs_authority",
+          "knowledge_vs_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#noen_spor_deg_igjen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Å bli spurt oftere gir ansvar, ikke mandat. Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "reputation_vs_authority",
+          "canon_vs_plurality",
+          "knowledge_vs_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#noen_spor_deg_igjen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Kunnskap kan vokse uten å bli en trone. Morgenen gjør dagens kunnskaps- eller anbefalingsspørsmål synlig før noen fasit er gitt.",
+        "thread_ids": [
+          "knowledge_vs_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#kjenner_uten_fasit"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Kunnskap kan vokse uten å bli en trone. Midt på dagen møter Kjenner-blikket en annen persons behov, språk, erfaring eller motargument.",
+        "thread_ids": [
+          "knowledge_vs_humility",
+          "reputation_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#kjenner_uten_fasit"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Kunnskap kan vokse uten å bli en trone. Ettermiddagen krever et konkret valg mellom presisjon, tilpasning, status eller åpenhet.",
+        "thread_ids": [
+          "knowledge_vs_humility",
+          "recommendation_fit_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#kjenner_uten_fasit"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Kunnskap kan vokse uten å bli en trone. Kvelden viser hvordan valget påvirker tillit, omdømme, egen smak eller neste samtale.",
+        "thread_ids": [
+          "knowledge_vs_humility",
+          "reputation_vs_authority",
+          "recommendation_fit_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/film_tv_kjenner.json#kjenner_uten_fasit"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "recommendation_fit_vs_status",
+      "relationship": "forholdet mellom å tilpasse råd til mottakeren og fristelsen til å bruke anbefalinger som demonstrasjon av egen smak",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "14/lunch",
+        "14/evening",
+        "2/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "genre_map_vs_boxing",
+      "relationship": "forholdet mellom sjanger som orienteringskart og sjanger som en rigid boks som låser verket",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "1/lunch",
+        "1/evening",
+        "3/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "formal_language_vs_verdict",
+      "relationship": "forholdet mellom formspråk som presist analyseverktøy og terminologi som sosial dom over andres reaksjoner",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "2/lunch",
+        "2/evening",
+        "4/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "historical_context_vs_presentism",
+      "relationship": "forholdet mellom historisk kontekst, dagens blikk og fristelsen til enten å ignorere tiden eller bruke den som full frikjennelse",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "3/lunch",
+        "3/evening",
+        "5/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "audience_fit_vs_hierarchy",
+      "relationship": "forholdet mellom hvem et verk passer for i en situasjon og ideen om at krevende smak gir høyere kulturell verdi",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "4/lunch",
+        "4/evening",
+        "6/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "knowledge_gap_vs_facework",
+      "relationship": "forholdet mellom reelle kunnskapshull og presset om å late som man vet for å bevare Kjenner-rollen",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "5/lunch",
+        "5/evening",
+        "7/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "interpretation_vs_fact",
+      "relationship": "forholdet mellom argumentert tolkning, observerbare trekk og produksjonsfakta",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "6/lunch",
+        "6/evening",
+        "8/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "consensus_vs_own_taste",
+      "relationship": "forholdet mellom kritisk eller sosial konsensus og retten til en begrunnet egen reaksjon",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "7/lunch",
+        "7/evening",
+        "9/afternoon",
+        "9/evening"
+      ]
+    },
+    {
+      "id": "disagreement_vs_rank",
+      "relationship": "forholdet mellom analytisk uenighet og fristelsen til å avgjøre den med kulturell kapital",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "8/lunch",
+        "8/evening",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "constraints_vs_prestige",
+      "relationship": "forholdet mellom tid, tilgang og kapasitet hos mottakeren og prestisjen i det man selv helst vil anbefale",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "9/lunch",
+        "9/evening",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "context_vs_overexplaining",
+      "relationship": "forholdet mellom nyttig forkunnskap og risikoen for å regissere andres første møte med verket",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "10/lunch",
+        "10/evening",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "canon_vs_plurality",
+      "relationship": "forholdet mellom kanon som historisk orientering og kanon som adgangskontroll som skjuler andre tradisjoner",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "11/lunch",
+        "11/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "reputation_vs_authority",
+      "relationship": "forholdet mellom å bli stolt på som Kjenner og fristelsen til å gjøre tillit om til uformell myndighet",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "12/lunch",
+        "12/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "knowledge_vs_humility",
+      "relationship": "forholdet mellom voksende kunnskap og evnen til å beholde spørsmål, revisjon og andres autonome reaksjoner",
+      "beat_refs": [
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening",
+        "13/lunch",
+        "13/evening",
+        "1/afternoon",
+        "1/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "anbefalingen_som_ble_sporsmal",
+      "description": "Før spilleren anbefaler noe, kommer spørsmål om tid, humør og tilgang oftere først.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_kjenner.json#anbefalingen_som_maa_passe",
+        "data/Civication/narratives/leisure/film_tv_kjenner.json#anbefaling_med_begrensning"
+      ]
+    },
+    {
+      "id": "spraket_som_ble_linse",
+      "description": "Fagbegreper brukes mer selektivt som linser for konkrete observasjoner, ikke som mål på hvem som forstår mest.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_kjenner.json#sjangeren_uten_boks",
+        "data/Civication/narratives/leisure/film_tv_kjenner.json#formspraket_som_blir_domm"
+      ]
+    },
+    {
+      "id": "uenigheten_som_ble_nysgjerrighet",
+      "description": "Sterk uenighet utløser oftere spørsmål om premisser og scener enn sammenligning av kulturell CV.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_kjenner.json#tolkning_eller_faktum",
+        "data/Civication/narratives/leisure/film_tv_kjenner.json#uenigheten_ved_bordet"
+      ]
+    },
+    {
+      "id": "kanonen_som_ble_kart",
+      "description": "Historiske ankerverk beholdes, men står sammen med flere tradisjoner, formater og mulige innganger.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_kjenner.json#epoken_uten_fasit",
+        "data/Civication/narratives/leisure/film_tv_kjenner.json#kanonen_som_ikke_er_hele_kartet"
+      ]
+    },
+    {
+      "id": "ryktet_som_ikke_ble_autoritet",
+      "description": "At flere spør om råd gjør begrunnelsene mer ansvarlige, men gir ikke spilleren rett til å definere andres smak.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/film_tv_kjenner.json#noen_spor_deg_igjen",
+        "data/Civication/narratives/leisure/film_tv_kjenner.json#kjenner_uten_fasit"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "tilpasset_rad_blir_tillit",
+      "setup_ref": "1/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "fagsprak_blir_felles_sprak",
+      "setup_ref": "3/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "innrommet_hull_blir_presisjon",
+      "setup_ref": "6/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "reputation",
+        "psyche"
+      ]
+    },
+    {
+      "id": "egen_smak_blir_bedre_uenighet",
+      "setup_ref": "8/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "psyche",
+        "relationship"
+      ]
+    },
+    {
+      "id": "uenighet_blir_nytt_spor",
+      "setup_ref": "9/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "kontekst_blir_ansvarlig_anbefaling",
+      "setup_ref": "11/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#anbefalingen_som_maa_passe",
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#sjangeren_uten_boks",
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#formspraket_som_blir_domm",
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#epoken_uten_fasit",
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#hvem_er_denne_filmen_for",
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#da_referansen_glapp",
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#tolkning_eller_faktum",
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#den_upopulaere_favoritten",
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#uenigheten_ved_bordet",
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#anbefaling_med_begrensning",
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#verket_som_trenger_kontekst",
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#kanonen_som_ikke_er_hele_kartet",
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#noen_spor_deg_igjen",
+      "data/Civication/narratives/leisure/film_tv_kjenner.json#kjenner_uten_fasit"
+    ]
+  }
+}
