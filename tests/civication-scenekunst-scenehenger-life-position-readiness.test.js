@@ -85,7 +85,7 @@ assert.equal(audit.summary.life_position_role_world_complete, audit.positions.fi
 assert.equal(audit.summary.pending_ready_positions, audit.queue.filter((item)=>item.classification==='ready').length);
 assert.equal(audit.summary.positions_with_exact_governed_sources, audit.positions.filter((item)=>(item.authored_depth?.exact_source_ref_count||0)>0).length);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, audit.positions.filter((item)=>(item.authored_depth?.max_narrative_depth||0)>=4).length);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.first_ready?.key, audit.queue.find((item)=>item.classification==='ready')?.key);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
 
