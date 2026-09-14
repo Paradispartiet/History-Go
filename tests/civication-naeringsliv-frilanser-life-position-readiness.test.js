@@ -39,7 +39,7 @@ assert.equal(audit.summary.livelihood_backed_positions, audit.positions.filter((
 assert.equal(audit.summary.positions_with_exact_governed_sources, audit.positions.filter((item)=>(item.authored_depth?.exact_source_ref_count||0)>0).length);
 assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, audit.positions.filter((item)=>(item.authored_depth?.max_narrative_depth||0)>=4).length);
 assert.equal(audit.summary.pending_ready_positions, audit.queue.filter((item)=>item.classification==='ready').length);
-assert.equal(audit.first_ready?.key, audit.queue.find((item)=>item.classification==='ready')?.key);
+assert.equal(audit.first_ready, null);
 assert.equal(world.subject_type, 'life_position');
 assert.equal(world.status, 'role_world_complete');
 assert.deepEqual(world.life_position_ref, { badge_id:'naeringsliv', id:'frilanser', label:'Frilanser' });
