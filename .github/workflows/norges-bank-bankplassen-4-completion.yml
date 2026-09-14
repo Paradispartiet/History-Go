@@ -40,6 +40,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Capture fresh-main quiz context baseline
+        run: |
+          node scripts/audit-quiz-production-context.mjs > /tmp/quiz-context-baseline.json || true
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const report = JSON.parse(fs.readFileSync('/tmp/quiz-context-baseline.json', 'utf8'));
+          if (!Array.isArray(report.failures)) throw new Error('Fresh-main quiz context baseline is malformed');
+          console.log(`Captured ${report.failures.length} fresh-main quiz context failure(s)`);
+          NODE
+
       - name: Download verified source assets
         run: |
           curl -L --fail --retry 3 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Norges_Bank.jpg' -o /tmp/norges-bank-place.jpg
@@ -358,7 +368,21 @@ jobs:
           npm run audit:knowledge
           node scripts/audit-naeringsliv-place-production.mjs --all
           node scripts/audit-quiz-manifest-v2.mjs
-          node scripts/audit-quiz-production-context.mjs
+          node scripts/audit-quiz-production-context.mjs > /tmp/quiz-context-current.json || true
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const baseline = JSON.parse(fs.readFileSync('/tmp/quiz-context-baseline.json', 'utf8'));
+          const current = JSON.parse(fs.readFileSync('/tmp/quiz-context-current.json', 'utf8'));
+          const key = failure => JSON.stringify(failure);
+          const baselineFailures = new Set((baseline.failures || []).map(key));
+          const newFailures = (current.failures || []).filter(failure => !baselineFailures.has(key(failure)));
+          const targetFile = 'data/quiz/naeringsliv/norges_bank_bankplassen_4_sets.json';
+          if (!(current.checked || []).some(item => item.file === targetFile && item.targetId === 'norges_bank_bankplassen_4')) {
+            throw new Error('Bankplassen 4 was not checked by the quiz production context audit');
+          }
+          if (newFailures.length) throw new Error(`New quiz production context failures: ${JSON.stringify(newFailures)}`);
+          console.log(`Quiz production context PASS relative to fresh main; ${baselineFailures.size} unchanged upstream failure(s)`);
+          NODE
           node scripts/audit-quiz-progression.mjs
           node scripts/audit-quiz-theory-binding.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
