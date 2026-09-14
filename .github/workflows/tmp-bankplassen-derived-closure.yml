@@ -1,0 +1,55 @@
+name: TEMP Bankplassen derived closure
+
+on:
+  push:
+    branches:
+      - agent/norges-bank-bankplassen-4-place-production-20260914
+    paths:
+      - .github/workflows/tmp-bankplassen-derived-closure.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/norges-bank-bankplassen-4-place-production-20260914
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Materialize deterministic derived files
+        run: |
+          npm run place-open:build
+          npm run epoker:places:build
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+      - name: Enforce narrow generated scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          changed="$(git status --porcelain | sed 's/^...//' | sort)"
+          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(data/runtime/lesespor-all\.json|data/epoker/epoke-place-index\.json|data/Civication/scenarioPeople/generated/[^/]+\.json|data/Civication/scenarioPeople_index\.json)$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected generator-owned changes:" >&2
+            printf '%s\n' "$unexpected" >&2
+            exit 1
+          fi
+      - name: Commit generated closure data
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/runtime/lesespor-all.json data/epoker/epoke-place-index.json data/Civication/scenarioPeople/generated data/Civication/scenarioPeople_index.json
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh Bankplassen derived closure data"
+          git push origin HEAD:agent/norges-bank-bankplassen-4-place-production-20260914
