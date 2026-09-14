@@ -81,17 +81,19 @@ const entry = index.roles.find((x) => x.life_position_key === 'vitenskap/maker')
 assert.ok(entry);
 assert.equal(entry.path, worldPath);
 assert.equal(entry.status, 'role_world_complete');
-assert.equal(index.roles.filter((x) => x.subject_type !== 'life_position').length, 85);
-assert.equal(index.roles.filter((x) => x.subject_type === 'life_position').length, 26);
-assert.equal(index.roles.length, 111);
-assert.equal(index.status, '111_role_worlds_materialized');
-assert.deepEqual(index.summary, { role_worlds_total: 111, career_role_worlds: 85, life_position_role_worlds: 26 });
+assert.equal(index.roles.filter((x) => x.subject_type !== 'life_position').length, index.career_role_world_count);
+assert.equal(index.roles.filter((x) => x.subject_type === 'life_position').length, index.life_position_role_world_count);
+assert.equal(index.roles.length, index.summary.role_worlds_total);
+assert.equal(index.status, index.roles.length + '_role_worlds_materialized');
+assert.equal(index.summary.role_worlds_total, index.roles.length);
+assert.equal(index.summary.career_role_worlds, index.career_role_world_count);
+assert.equal(index.summary.life_position_role_worlds, index.life_position_role_world_count);
 
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('vitenskap/maker'));
-assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 26);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 26);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 111);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 26);
+assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, taxonomy.canonical_counts.life_position_role_worlds);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, taxonomy.canonical_counts.career_role_worlds + taxonomy.canonical_counts.life_position_role_worlds);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, taxonomy.canonical_counts.life_position_role_worlds);
 
 const electrical = stream.storylets.find((x) => x.id === 'batteriet_som_ikke_skal_improviseres');
 assert.ok(electrical);

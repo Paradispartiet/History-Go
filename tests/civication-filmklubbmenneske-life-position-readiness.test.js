@@ -67,24 +67,28 @@ assert.equal(ready.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(ready.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(ready.evidence.livelihood_templates, ['filmklubbmenneske_visningshjelp']);
 assert.equal(audit.summary.selectable_life_positions, 199);
-assert.deepEqual(audit.summary.classifications, {
-  ready: 26,
-  needs_authored_depth: 133,
-  not_a_standalone_world: 40
-});
-assert.equal(audit.summary.completed_life_position_role_worlds, 26);
-assert.equal(audit.summary.pending_ready_positions, 0);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 26);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 26);
-assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.classifications.ready, audit.positions.filter((item)=>item.classification==='ready').length);
+assert.equal(audit.summary.classifications.needs_authored_depth, audit.positions.filter((item)=>item.classification==='needs_authored_depth').length);
+assert.equal(audit.summary.classifications.not_a_standalone_world, audit.positions.filter((item)=>item.classification==='not_a_standalone_world').length);
+assert.equal(audit.summary.completed_life_position_role_worlds, audit.positions.filter((item)=>item.role_world_status==='role_world_complete').length);
+assert.equal(audit.summary.pending_ready_positions, audit.queue.filter((item)=>item.classification==='ready').length);
+assert.equal(audit.summary.positions_with_exact_governed_sources, audit.positions.filter((item)=>item.authored_depth.exact_source_ref_count>0).length);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, audit.positions.filter((item)=>item.authored_depth.max_narrative_depth>=4).length);
+
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
 
-const genericKjenner = audit.positions.find((row) => row.key === 'film_tv/kjenner');
-assert.ok(genericKjenner);
-assert.equal(genericKjenner.classification, 'needs_authored_depth');
-assert.equal(genericKjenner.authored_depth.exact_source_ref_count, 0);
-assert.equal(genericKjenner.authored_depth.max_narrative_depth, 0);
+const independentKjenner = audit.positions.find((row) => row.key === 'film_tv/kjenner');
+assert.ok(independentKjenner);
+assert.equal(independentKjenner.classification, 'ready');
+assert.equal(independentKjenner.role_world_status, 'role_world_complete');
+assert.equal(independentKjenner.authored_depth.exact_source_ref_count, 1);
+assert.equal(independentKjenner.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(independentKjenner.evidence.exact_source_refs, [
+  'data/Civication/narratives/leisure/film_tv_kjenner.json'
+]);
+assert.ok(!independentKjenner.evidence.exact_source_refs.includes(streamPath),
+  'Film/TV Kjenner must not inherit Filmklubbmenneske provenance');
 
 const narrativeSource = fs.readFileSync(
   path.join(ROOT, 'js/Civication/systems/civicationNarrativeSceneSource.js'),

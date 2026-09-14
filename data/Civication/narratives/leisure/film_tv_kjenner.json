@@ -1,0 +1,649 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "film_tv_kjenner_stream",
+  "type": "leisure",
+  "title": "Kjenner",
+  "sociological_theme": "kunnskap_analyse_anbefalinger_status_og_epistemisk_ydmykhet_i_filmkultur",
+  "applies_when": {
+    "any_tags": [
+      "film_tv:kjenner"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "anbefalingen_som_maa_passe",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Vennen som spør",
+      "subject": "En god anbefaling begynner med den som skal se",
+      "situation": [
+        "En venn spør hva hen bør se i kveld. Du har flere favoritter klare, men vet ennå ikke hvor mye tid hen har, hva slags stemning hen vil ha eller hvilke tjenester hen faktisk har tilgang til."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør om tid, humør og tilgang før du foreslår et lite utvalg og sier hvorfor det kan passe.",
+          "effect": 1,
+          "tags": [
+            "anbefalingen_som_maa_passe_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du bruker kunnskapen som tilpasning, ikke som demonstrasjon."
+        },
+        {
+          "id": "B",
+          "label": "Gi en prestisjetung favoritt med én gang og gjør motvilje til tegn på dårlig smak.",
+          "effect": -1,
+          "tags": [
+            "anbefalingen_som_maa_passe_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du gjør anbefalingen til en test av mottakerens kulturelle kapital."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_recommendation_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sjangeren_uten_boks",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Sjangerpraten",
+      "subject": "Sjanger er kart, ikke fengsel",
+      "situation": [
+        "Samtalen dreier inn på en film som blander melodrama, thriller og svart komedie. Noen vil ha én etikett for å vite om filmen er «for dem»."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk sjangerord som orientering, men forklar blandingen og la filmen få være mer enn én boks.",
+          "effect": 1,
+          "tags": [
+            "sjangeren_uten_boks_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du gjør kategorier nyttige uten å late som de uttømmer verket."
+        },
+        {
+          "id": "B",
+          "label": "Insister på én korrekt sjanger og avvis alle andre beskrivelser som amatørmessige.",
+          "effect": -1,
+          "tags": [
+            "sjangeren_uten_boks_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du forveksler et analytisk verktøy med en fasit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_genre_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "formspraket_som_blir_domm",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Analysen",
+      "subject": "Fagspråk kan åpne blikket uten å lukke samtalen",
+      "situation": [
+        "Du legger merke til klipp, kamerabevegelse, lyd og rytme som forklarer hvorfor en scene virker. En venn sier bare at scenen gjorde hen urolig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv ett konkret grep og koble det til vennens reaksjon uten å bruke terminologi som rangering.",
+          "effect": 1,
+          "tags": [
+            "formspraket_som_blir_domm_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du lar formspråk forklare noe av virkningen uten å erstatte opplevelsen."
+        },
+        {
+          "id": "B",
+          "label": "Rett på ordene deres og gjør tekniske begreper til bevis på hvem som forstår filmen.",
+          "effect": -1,
+          "tags": [
+            "formspraket_som_blir_domm_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du gjør kunnskap til sosial avstand."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_form_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "epoken_uten_fasit",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Den eldre filmen",
+      "subject": "Historisk kontekst forklarer uten å frikjenne",
+      "situation": [
+        "Dere ser et eldre verk med normer og framstillinger som oppleves fremmede eller problematiske i dag. Noen avfeier det som utdatert; andre mener epoken forklarer alt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Plasser verket i sin tid og diskuter samtidig hva dagens publikum faktisk møter i bildene.",
+          "effect": 1,
+          "tags": [
+            "epoken_uten_fasit_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du bruker kontekst til å komplisere vurderingen, ikke til å avskaffe den."
+        },
+        {
+          "id": "B",
+          "label": "Bruk årstallet som full frikjennelse og avvis dagens reaksjoner som historieløse.",
+          "effect": -1,
+          "tags": [
+            "epoken_uten_fasit_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du gjør kontekst til et skjold mot kritikk."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_history_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_er_denne_filmen_for",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Programvalget",
+      "subject": "Målgruppe er ikke et kvalitetshierarki",
+      "situation": [
+        "En gruppe skal velge noe å se sammen. Ett forslag er smalt og krevende, et annet lett og populært, og praten glir raskt over i hva som «egentlig» er best."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom kvalitet, formål og hvem som faktisk skal se sammen akkurat nå.",
+          "effect": 1,
+          "tags": [
+            "hvem_er_denne_filmen_for_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du bruker erfaring til å matche situasjonen i stedet for å rangere mennesker."
+        },
+        {
+          "id": "B",
+          "label": "Velg det mest prestisjetunge og si at gruppen trenger å utfordres om de vil tas alvorlig.",
+          "effect": -1,
+          "tags": [
+            "hvem_er_denne_filmen_for_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du gjør programvalg til smakspoliti."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_audience_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "da_referansen_glapp",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Kunnskapshullet",
+      "subject": "Å kunne mye inkluderer å kunne si «det vet jeg ikke»",
+      "situation": [
+        "I en samtale blir du spurt om en referanse, et årstall eller en filmskaper du burde kjenne, men du er usikker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du er usikker, avgrens det du faktisk vet og la spørsmålet stå åpent.",
+          "effect": 1,
+          "tags": [
+            "da_referansen_glapp_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du beskytter kunnskapen ved å markere grensen for den."
+        },
+        {
+          "id": "B",
+          "label": "Gjett selvsikkert for å bevare rollen som den som alltid vet.",
+          "effect": -1,
+          "tags": [
+            "da_referansen_glapp_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du prioriterer ansikt foran presisjon og gjør ryktet skjørt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_gap_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tolkning_eller_faktum",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Etterpraten",
+      "subject": "En sterk tolkning er fortsatt en tolkning",
+      "situation": [
+        "Du ser et mønster i symbolbruk og fortelling som henger godt sammen, men filmen sier aldri eksplisitt at dette er den eneste lesningen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Presenter lesningen som argumentert tolkning og skill den fra produksjonsfakta og det som faktisk vises.",
+          "effect": 1,
+          "tags": [
+            "tolkning_eller_faktum_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du gjør analysen etterprøvbar uten å gjøre den absolutt."
+        },
+        {
+          "id": "B",
+          "label": "Presenter tolkningen som skjult fasit og bruk andres uenighet som bevis på at de har oversett filmen.",
+          "effect": -1,
+          "tags": [
+            "tolkning_eller_faktum_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du gjør fortolkning til autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_interpretation_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_upopulaere_favoritten",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Rangeringen",
+      "subject": "Konsensus trenger ikke eie smaken din",
+      "situation": [
+        "En film du liker står lavt hos kritikere eller venner, mens et høyt rangert verk ikke traff deg. Du kjenner presset til å justere språket ditt mot konsensus."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hva som virker for deg og hva som ikke gjør det, uten å late som egen smak er universell.",
+          "effect": 1,
+          "tags": [
+            "den_upopulaere_favoritten_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du tåler både erfaring og konsensus uten å underordne den ene den andre."
+        },
+        {
+          "id": "B",
+          "label": "Bytt mening offentlig for å beskytte Kjenner-statusen, og hån dem som liker «feil» film.",
+          "effect": -1,
+          "tags": [
+            "den_upopulaere_favoritten_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du lar status styre smaken og gjør uenighet personlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_taste_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_ved_bordet",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Uenighet kan øke forståelsen i stedet for rangeringen",
+      "situation": [
+        "En annen erfaren seer leser en film helt annerledes enn deg og har gode grunner. Begge blir lyttet til av resten av gruppen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om eksemplene deres, sammenlign premissene og la to lesninger stå dersom materialet bærer begge.",
+          "effect": 1,
+          "tags": [
+            "uenigheten_ved_bordet_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du bruker uenighet til å finne forskjellen i blikk, ikke til å kåre vinner."
+        },
+        {
+          "id": "B",
+          "label": "Flytt diskusjonen fra filmen til CV-en av hva hver av dere har sett.",
+          "effect": -1,
+          "tags": [
+            "uenigheten_ved_bordet_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du erstatter argument med kulturell rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_disagreement_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "anbefaling_med_begrensning",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Den korte kvelden",
+      "subject": "Riktig verk i feil situasjon er fortsatt et dårlig råd",
+      "situation": [
+        "Noen vil ha én film før en tidlig morgen og har bare én strømmetjeneste. Du kjenner et mesterverk som varer tre timer, men også flere kortere alternativer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Tilpass anbefalingen til tid og tilgang, og spar mesterverket til en situasjon der det faktisk får plass.",
+          "effect": 1,
+          "tags": [
+            "anbefaling_med_begrensning_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du lar mottakerens liv være del av anbefalingen."
+        },
+        {
+          "id": "B",
+          "label": "Si at seriøse seere lager tid og anbefal bare det mest krevende valget.",
+          "effect": -1,
+          "tags": [
+            "anbefaling_med_begrensning_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du gjør ressurser og kapasitet til moralsk test."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_constraint_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verket_som_trenger_kontekst",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Introduksjonen",
+      "subject": "Kontekst skal åpne verket uten å se det på vegne av andre",
+      "situation": [
+        "Du vet at noen få opplysninger om produksjon, epoke eller bevegelse kan hjelpe før visningen, men du kjenner også vendepunkter og tolkningsspor som kan farge første møte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi bare den konteksten som gjør inngangen tydeligere, og spør før du går inn i spoilere eller tolkning.",
+          "effect": 1,
+          "tags": [
+            "verket_som_trenger_kontekst_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du gir et stillas uten å ta fra andre første blikk."
+        },
+        {
+          "id": "B",
+          "label": "Hold et langt foredrag som forklarer hva alle bør legge merke til og hvordan filmen skal forstås.",
+          "effect": -1,
+          "tags": [
+            "verket_som_trenger_kontekst_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du gjør forkunnskap til regi av andres opplevelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_context_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kanonen_som_ikke_er_hele_kartet",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Kanonlisten",
+      "subject": "Kanon kan være kart uten å være grense",
+      "situation": [
+        "En venn vil lære mer om filmhistorie og ber om en startliste. Den vanlige kanonen er enkel å gjengi, men du vet at den også har geografiske, økonomiske og institusjonelle blindsoner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk noen kanoniske ankerpunkter og legg inn flere veier som viser andre tradisjoner, formater og perspektiver.",
+          "effect": 1,
+          "tags": [
+            "kanonen_som_ikke_er_hele_kartet_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du gjør kanon til navigasjon i stedet for medlemskap."
+        },
+        {
+          "id": "B",
+          "label": "Gi én fast liste og si at de må gjennom den før egne interesser teller.",
+          "effect": -1,
+          "tags": [
+            "kanonen_som_ikke_er_hele_kartet_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du gjør kunnskapshistorie til adgangskontroll."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_canon_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "noen_spor_deg_igjen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Ryktet",
+      "subject": "Å bli spurt oftere gir ansvar, ikke mandat",
+      "situation": [
+        "Folk har begynt å sende deg meldinger før de velger film, og en bekjent presenterer deg som «fasiten» i gruppen. Det er hyggelig å bli stolt på."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta tilliten på alvor, men gjør usikkerhet, preferanser og mottakerens behov synlige i rådene.",
+          "effect": 1,
+          "tags": [
+            "noen_spor_deg_igjen_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du lar ryktet bli en forpliktelse til bedre begrunnelser, ikke større myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta rollen som smakdommer og gi kategoriske råd uten å spørre hvem rådet er til.",
+          "effect": -1,
+          "tags": [
+            "noen_spor_deg_igjen_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du gjør sosial tillit om til uformell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_reputation_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kjenner_uten_fasit",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Din egen rolle",
+      "subject": "Kunnskap kan vokse uten å bli en trone",
+      "situation": [
+        "Etter mange samtaler, visninger og anbefalinger vet du tydelig mer enn før. Samtidig møter du stadig verk, tradisjoner og erfaringer du ikke kjenner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold Kjenner-identiteten som praksis: se nøye, begrunn, spør, korriger og la andre ha egne reaksjoner.",
+          "effect": 1,
+          "tags": [
+            "kjenner_uten_fasit_careful",
+            "kjenner_reflection"
+          ],
+          "feedback": "Du gjør kunnskap til en åpen metode i stedet for et hierarki."
+        },
+        {
+          "id": "B",
+          "label": "Definer Kjenner som den som har siste ord og bruk bredden du har sett til å rangere andre.",
+          "effect": -1,
+          "tags": [
+            "kjenner_uten_fasit_overreach",
+            "kjenner_status_trap"
+          ],
+          "feedback": "Du låser en levende kunnskapsidentitet til status."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kjenner_identity_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}

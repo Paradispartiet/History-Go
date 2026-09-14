@@ -1,0 +1,649 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "film_tv_kinogjenger_stream",
+  "type": "leisure",
+  "title": "Kinogjenger",
+  "sociological_theme": "kino_som_offentlig_hverdagspraksis_mellom_tilgang_ritual_fellesskap_og_sosiale_normer",
+  "applies_when": {
+    "any_tags": [
+      "film_tv:kinogjenger"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "billetten_foer_morket",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Billettkjøpet",
+      "subject": "Kinovanen møter faktisk økonomi",
+      "situation": [
+        "Du vil på kino igjen denne uka, men billettpris, gebyrer og resten av måneden setter en grense. Kinogjenger-identitet handler om å møte filmen i salen, ikke om å bevise hvor ofte du har råd til å gå."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg en visning eller pris som passer budsjettet, og la frekvensen være fleksibel.",
+          "effect": 1,
+          "tags": [
+            "billetten_foer_morket_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du lar kino være en vane uten å gjøre pengebruk til medlemskort."
+        },
+        {
+          "id": "B",
+          "label": "Kjøp den dyreste visningen for å bevise at du er en ekte kinogjenger.",
+          "effect": -1,
+          "tags": [
+            "billetten_foer_morket_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du gjør forbruk til rang og presser økonomien for en identitetsmarkør."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_budget_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "setet_i_salen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Salkartet",
+      "subject": "Favorittsetet finnes i et delt rom",
+      "situation": [
+        "Du har en klar preferanse for rad og avstand til lerretet, men salen har ulike behov: noen trenger trinnfri tilgang, andre sitter samlet, og enkelte plasser er reservert av praktiske grunner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg blant de ledige plassene uten å gjøre egen preferanse til en rett over andre.",
+          "effect": 1,
+          "tags": [
+            "setet_i_salen_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du beholder ritualet og respekterer at salen er felles."
+        },
+        {
+          "id": "B",
+          "label": "Be andre flytte seg fordi du alltid sitter akkurat der.",
+          "effect": -1,
+          "tags": [
+            "setet_i_salen_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du gjør en vane til uformell eiendomsrett."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_shared_seating"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "reklamen_og_starttiden",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Foajeen",
+      "subject": "Oppgitt tid er ikke alltid første bilde",
+      "situation": [
+        "Billetten sier 19:00, men reklame, trailere og praktisk avvik gjør den faktiske filmstarten mindre presis. Du skal møte en venn som tolker tidspunktet bokstavelig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar når dere vil være på plass og bygg inn usikkerhet uten å late som du kjenner fasiten.",
+          "effect": 1,
+          "tags": [
+            "reklamen_og_starttiden_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du bruker erfaring som koordinering, ikke som makt."
+        },
+        {
+          "id": "B",
+          "label": "Si at du vet nøyaktig når filmen starter og klandre vennen hvis det avviker.",
+          "effect": -1,
+          "tags": [
+            "reklamen_og_starttiden_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du gjør lokalkunnskap til sikkerhet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_start_time_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lyset_fra_telefonen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Raden bak",
+      "subject": "En norm er ikke en polititittel",
+      "situation": [
+        "Et lyst telefonskjermglimt dukker opp under filmen. Det forstyrrer deg, men du kjenner ikke grunnen eller personen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vent et øyeblikk, be rolig hvis det fortsetter, eller bruk kinovert ved behov.",
+          "effect": 1,
+          "tags": [
+            "lyset_fra_telefonen_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du beskytter fellesrommet uten å gjøre deg selv til ordensmakt."
+        },
+        {
+          "id": "B",
+          "label": "Lys tilbake, skjell ut personen eller gjør hendelsen offentlig med én gang.",
+          "effect": -1,
+          "tags": [
+            "lyset_fra_telefonen_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du lar en legitim norm bli status og eskalering."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_phone_norm"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lyden_fra_raden",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Midt i filmen",
+      "subject": "Forstyrrelse kan håndteres uten sosial dom",
+      "situation": [
+        "To personer snakker gjentatte ganger. Irritasjonen er reell, men du vet ikke om situasjonen er midlertidig, språkstøtte eller ren uoppmerksomhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi en kort, konkret beskjed eller hent en kinovert hvis det fortsetter.",
+          "effect": 1,
+          "tags": [
+            "lyden_fra_raden_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du skiller mellom problemet og en dom over menneskene."
+        },
+        {
+          "id": "B",
+          "label": "Bestem at de ikke hører hjemme på kino og start en lang konfrontasjon.",
+          "effect": -1,
+          "tags": [
+            "lyden_fra_raden_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du gjør etikette til adgangskontroll."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_disturbance_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "snacksritualet",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Kiosken",
+      "subject": "Snacks er ritual, ikke opptaksprøve",
+      "situation": [
+        "Popcorn og drikke er en del av kinoritualet for deg, men prisene er høye og vennen din vil ikke kjøpe noe."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kjøp hvis du vil og la andres budsjett eller preferanse være deres sak.",
+          "effect": 1,
+          "tags": [
+            "snacksritualet_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du beholder ritualet uten å gjøre forbruk til fellesskapskrav."
+        },
+        {
+          "id": "B",
+          "label": "Insister på at ordentlig kino krever full kioskpakke.",
+          "effect": -1,
+          "tags": [
+            "snacksritualet_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du gjør en dyr vane til sosial norm."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_snack_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tilgjengelig_visning",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Programmet",
+      "subject": "Tilgjengelighet er del av visningen",
+      "situation": [
+        "En venn trenger teksting, teleslynge, ledsagerplass eller en sal med enkel adkomst. Den visningen du helst ville valgt passer dårlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Planlegg ut fra den faktiske tilgjengelighetsinformasjonen og spør hva som trengs.",
+          "effect": 1,
+          "tags": [
+            "tilgjengelig_visning_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du gjør fellesskapet mulig uten å anta behov på vegne av andre."
+        },
+        {
+          "id": "B",
+          "label": "Velg favorittvisningen din og si at det sikkert ordner seg i salen.",
+          "effect": -1,
+          "tags": [
+            "tilgjengelig_visning_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du behandler tilgang som et tillegg andre får løse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_accessibility_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "premieren_alle_skal_se",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Premierekvelden",
+      "subject": "Hype trenger ikke bli egen smak",
+      "situation": [
+        "Filmen fyller feeden, anmeldelsene og samtalene før du har sett den. Gruppen forventer at dette blir årets store kinoøyeblikk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå hvis du vil, men la egen respons få være åpen også etter all forventningen.",
+          "effect": 1,
+          "tags": [
+            "premieren_alle_skal_se_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du skiller felles begivenhet fra plikt til begeistring."
+        },
+        {
+          "id": "B",
+          "label": "Bestem på forhånd at du må elske filmen for å være med i samtalen.",
+          "effect": -1,
+          "tags": [
+            "premieren_alle_skal_se_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du lar offentlig forventning overta egen erfaring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_hype_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gruppen_og_setene",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Gruppechatten",
+      "subject": "Felles kino krever koordinering, ikke kommandolinje",
+      "situation": [
+        "Seks personer vil gå sammen, men noen kan bare én tid, én vil sitte ytterst og én kommer sent. Du har startet planleggingen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør begrensningene synlige og finn en løsning som flest faktisk kan leve med.",
+          "effect": 1,
+          "tags": [
+            "gruppen_og_setene_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du bruker planlegging som omsorg, ikke som kontroll."
+        },
+        {
+          "id": "B",
+          "label": "Bestill etter egen preferanse og fortell resten hva de får tilpasse seg.",
+          "effect": -1,
+          "tags": [
+            "gruppen_og_setene_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du forveksler initiativ med myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_group_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utsolgt",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Programoversikten",
+      "subject": "Utsolgt er ikke et tap av status",
+      "situation": [
+        "Kveldens populære visning er full. Det finnes en senere forestilling og en mindre omtalt film med mange ledige plasser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg ut fra tid, økonomi og nysgjerrighet i stedet for å jage knappheten.",
+          "effect": 1,
+          "tags": [
+            "utsolgt_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du lar programmet være større enn den mest ettertraktede billetten."
+        },
+        {
+          "id": "B",
+          "label": "Betal hva som helst eller bruk resten av kvelden på å bevise at du nesten kom inn.",
+          "effect": -1,
+          "tags": [
+            "utsolgt_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du gjør knapphet til verdi i seg selv."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_scarcity_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "siste_forestilling",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Senvisningen",
+      "subject": "Filmen slutter før reisen hjem er løst",
+      "situation": [
+        "Den siste visningen frister, men filmen slutter etter at kollektivtilbudet blir dårligere. En venn har en annen vei hjem enn deg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekk faktisk transport og sikkerhet før dere bestemmer dere, også for den som har lengst vei.",
+          "effect": 1,
+          "tags": [
+            "siste_forestilling_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du lar logistikk være del av kinoopplevelsen."
+        },
+        {
+          "id": "B",
+          "label": "Bestill først og anta at alle finner en løsning etter rulleteksten.",
+          "effect": -1,
+          "tags": [
+            "siste_forestilling_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du skyver kostnad og risiko over på den som har dårligst alternativ."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_late_show_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "medlemskapet",
+      "message_type": "info",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Kinoappen",
+      "subject": "Lojalitetspoeng er ikke kulturkapital",
+      "situation": [
+        "Appen viser nivå, poeng, rabatter og hvor mange besøk du har igjen til neste fordel. Tallene gjør vanen synlig og frister til én tur til."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk fordeler når de faktisk passer, men la poengene være rabattverktøy.",
+          "effect": 1,
+          "tags": [
+            "medlemskapet_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du holder medlemskapet underordnet livet ditt."
+        },
+        {
+          "id": "B",
+          "label": "Legg inn ekstra besøk bare for å holde nivået og vise hvor mye du går.",
+          "effect": -1,
+          "tags": [
+            "medlemskapet_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du lar lojalitetsdesign definere identiteten."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_membership_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "filmen_du_vil_ga_fra",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Halvveis",
+      "subject": "En billett er ikke en plikt til å bli",
+      "situation": [
+        "Du har betalt, planlagt og gledet deg, men filmen fungerer ikke for deg og kroppen er sliten. Vennen din vil gjerne bli."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar rolig og gå alene hvis du trenger det, uten å gjøre vennens valg feil.",
+          "effect": 1,
+          "tags": [
+            "filmen_du_vil_ga_fra_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du skiller sunk cost, egen grense og den andres opplevelse."
+        },
+        {
+          "id": "B",
+          "label": "Bli bare for å kunne si at du fullførte, og gjør misnøyen til hele kveldens tema.",
+          "effect": -1,
+          "tags": [
+            "filmen_du_vil_ga_fra_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du lar investert tid kreve mer tid og mer sosial plass."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_leave_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samtalen_utenfor",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Utenfor kinoen",
+      "subject": "Samtalen etterpå trenger verken fasit eller rang",
+      "situation": [
+        "Dere kommer ut med forskjellige reaksjoner. Noen vil snakke om slutten med en gang, én har ikke sett filmen vennene sammenligner med, og folk fra neste visning står i nærheten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør om spoilergrense, si hva du selv opplevde og la uenighet stå uten å kåre den mest ekte kinogjengeren.",
+          "effect": 1,
+          "tags": [
+            "samtalen_utenfor_careful",
+            "kinogjenger_reflection"
+          ],
+          "feedback": "Du gjør etterpraten til fellesskap uten eksamen."
+        },
+        {
+          "id": "B",
+          "label": "Snakk høyt om slutten og bruk antall kinobesøk som bevis på at din lesning veier mest.",
+          "effect": -1,
+          "tags": [
+            "samtalen_utenfor_overreach",
+            "kinogjenger_status_trap"
+          ],
+          "feedback": "Du gjør både spoilere og vane til sosial makt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kinogjenger_postfilm_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
