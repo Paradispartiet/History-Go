@@ -31,12 +31,16 @@ jobs:
           test "$local_head" = "$PR_HEAD"
           test "$remote_pr" = "$PR_HEAD"
           test "$remote_main" = "$MAIN_HEAD"
+          git fetch origin main
+          fetched_main="$(git rev-parse origin/main)"
+          echo "fetched_main=$fetched_main"
+          test "$fetched_main" = "$MAIN_HEAD"
           mkdir -p reports
           set +e
-          git merge --no-commit --no-ff "$MAIN_HEAD" >/tmp/merge.out 2>&1
+          git merge --no-commit --no-ff "$MAIN_HEAD" >reports/tollboden-merge-output.txt 2>&1
           rc=$?
           set -e
-          cat /tmp/merge.out
+          cat reports/tollboden-merge-output.txt
           echo "merge_exit=$rc" | tee reports/tollboden-merge-summary.txt
           git diff --name-only --diff-filter=U | tee reports/tollboden-merge-conflicts.txt
           git ls-files -u > reports/tollboden-merge-unmerged-index.txt
@@ -49,6 +53,7 @@ jobs:
         with:
           name: tollboden-merge-conflicts
           path: |
+            reports/tollboden-merge-output.txt
             reports/tollboden-merge-summary.txt
             reports/tollboden-merge-conflicts.txt
             reports/tollboden-merge-unmerged-index.txt
