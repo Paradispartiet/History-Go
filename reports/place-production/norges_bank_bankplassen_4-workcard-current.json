@@ -1,0 +1,87 @@
+{
+  "schema": "history_go_place_workcard_v2",
+  "placeId": "norges_bank_bankplassen_4",
+  "place_id": "norges_bank_bankplassen_4",
+  "name": "Norges Bank – Bankplassen 4",
+  "canonicalSource": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/norges_bank_bankplassen_4.json",
+  "primaryCategory": "naeringsliv",
+  "category": "naeringsliv",
+  "productionProfile": "standard",
+  "coordinateStatus": "PASS — eksisterende Geonorge-adressepunkt beholdes; ingen koordinatendring",
+  "fagverkStatus": "PENDING — standard history_go_place_fagverk_v2 skal materialiseres i samme produksjonsløp",
+  "placeCardCollections": ["people", "objects", "brands", "productions"],
+  "collectionStatus": {
+    "people": {"status": "PLANNED", "members": ["karl_gether_bomhoff"]},
+    "objects": {"status": "PLANNED", "members": ["norges_bank_bankplassen_4_arbeid_og_fred"]},
+    "brands": {"status": "PLANNED", "members": ["norges_bank"]},
+    "productions": {"status": "PLANNED", "members": ["norges_bank_bankplassen_4_seddeltrykking_1907_1934"]}
+  },
+  "quizStatus": "PENDING — source-ledet standard 3x7; første 14 direkte stedskunnskap, siste 7 analyse/metode",
+  "storyStatus": "REUSE — eksisterende Christiania Theater- og Campbellerne-Wonderkammer-lag gjenbrukes; ingen duplikatstory",
+  "chronologyStatus": "PLANNED — 1897, 1906, 1907, 1934, 1986, 1990/2017 museumslag og 2026 eiendomsforvaltning avgrenses kildebåret",
+  "languageStatus": "PENDING — stedsspesifikke fagord for sentralbank, seddeltrykkeri, hovedsete og banknote-/betalingsinfrastruktur",
+  "imageStatus": "PENDING — alle medlemmer og front/quizcard må få verifisert åpen lisens/public-domain før PASS",
+  "beforeAfter": "PENDING REVIEW — bare dersom et lisensiert motivpar med tilstrekkelig kameravinkel-/motivmatch kan dokumenteres",
+  "news": "BEGRUNNET N/A — 2026-kilden brukes til nåtidsavgrensning, ikke kunstig nyhetsmodul",
+  "readings": "PLANNED — Norges Bank historie, trykkerihistorie og Oppdag Kvadraturen",
+  "rejected": [
+    "ny Christiania Theater-markør",
+    "sammenslåing med Bankplassen 3 eller Bankplassen 2",
+    "påstand om at bygningen fortsatt er Norges Banks hovedkontor",
+    "påstand om bestemt operativ forsvarsbruk bare fordi Forsvarsbygg overtok forvaltningsansvaret i 2026",
+    "fillerpersoner eller fillerproductions uten direkte stedsevidens",
+    "genererte historiske logoer/sedler som erstatning for autentisk dokumentasjon"
+  ],
+  "sources": [
+    "https://www.norges-bank.no/en/topics/about/History/history-of-norges-bank/",
+    "https://www.norges-bank.no/globalassets/upload/english/publications/economic-bulletin/2007-03/printing-works.pdf?v=09032017122215",
+    "https://www.norges-bank.no/tema/Sedler-og-mynter/utgaatte-sedler-mynter/Sedler-Utgave-II/",
+    "https://www.oppdagkvadraturen.no/stoppesteder/bankplassen-4-christiania-theater-og-norges-bank",
+    "https://www.oppdagkvadraturen.no/stoppesteder/stil-og-arkitektur-bankplassen",
+    "https://snl.no/Bankplassen_-_Oslo",
+    "https://www.norges-bank.no/en/news-events/publications/Annual-Report/2025-annual-report/web-report-2025-annual-report/",
+    "https://www.wikidata.org/wiki/Q3436189"
+  ],
+  "quality_score": {
+    "factuality": 4,
+    "pedagogy": 4,
+    "collections": 1,
+    "images": 0,
+    "runtime": 0,
+    "editorial": 3,
+    "total": 12
+  },
+  "phase": "PREFLIGHT COMPLETE — materialisering neste",
+  "verifiedAt": "2026-09-14",
+  "status": "preflight_complete",
+  "source_review": "reports/place-production/norges_bank_bankplassen_4-source-review-v1.md",
+  "production_report": "data/places/naeringsliv-production/norges_bank_bankplassen_4.json",
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "PASS_WITH_HASH_REFRESH_PENDING_MATERIALIZER",
+    "place_id": "norges_bank_bankplassen_4",
+    "category": "naeringsliv",
+    "recorded_at": "2026-09-14T09:55:00Z",
+    "rule": "Canonical checklist, reference, production profiles, PlaceCard contract, object rules, brand rules, badge routing and Næringsliv badge were read before content materialization. The materializer must replace this record with current SHA-256 hashes before closure.",
+    "files": [
+      {"path": "docs/PLACE_PRODUCTION_CHECKLIST.md"},
+      {"path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md"},
+      {"path": "docs/PLACE_PRODUCTION_PROFILES.md"},
+      {"path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"},
+      {"path": "data/places/README_place_rounds.md"},
+      {"path": "data/badges/index.json"},
+      {"path": "data/badges/place_production_routing_v1.json"},
+      {"path": "docs/PLACE_OBJECTS_CANONICAL.md"},
+      {"path": "data/brands/brand_rules_v1_1.json"},
+      {"path": "data/badges/naeringsliv.json"}
+    ],
+    "contract_snapshot": {
+      "full_place_collection_count": 4,
+      "candidate_collections": ["people", "objects", "brands", "productions"],
+      "category_expression": "productions",
+      "related_is_placecard_collection": false,
+      "no_filler": true,
+      "routing_order": ["universal_canonical_core", "primary_badge_family", "active_underbadge_ids", "place_specific_source_review", "confirmed_production_profile", "final_content_plan"]
+    }
+  }
+}
