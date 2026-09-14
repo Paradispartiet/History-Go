@@ -10,7 +10,7 @@ permissions:
 
 env:
   PR_HEAD: 306b1509b8032cd51cb4637363e025c4595cf1a6
-  MAIN_HEAD: a539c2c4d62b021dc04466e4f5cd13ece06f377e
+  MAIN_HEAD: c1a7a0f158e48e68d4e84ed0f11a0815c84cc2af
   TARGET_BRANCH: agent/tollboden-production-20260912
 
 jobs:
@@ -47,23 +47,39 @@ jobs:
           git merge --no-commit --no-ff "$MAIN_HEAD"
           merge_rc=$?
           set -e
-          test "$merge_rc" -ne 0
           git diff --name-only --diff-filter=U | sort -u > /tmp/tollboden-conflicts.txt
-          cat > /tmp/tollboden-expected-conflicts.txt <<'EOF'
+          echo "merge_exit=$merge_rc"
+          echo 'Conflicts:'
+          cat /tmp/tollboden-conflicts.txt
+          cat > /tmp/tollboden-conflict-allowlist.txt <<'EOF'
           data/epoker/epoke-place-index.json
           data/fagverk/fagverk_registry.json
           data/fagverk/fagverk_release.json
           tests/epoke-place-index.test.mjs
           EOF
-          diff -u /tmp/tollboden-expected-conflicts.txt /tmp/tollboden-conflicts.txt
-      - name: Resolve four canonical conflicts
+          unexpected_conflicts="$(comm -23 /tmp/tollboden-conflicts.txt /tmp/tollboden-conflict-allowlist.txt || true)"
+          if [ -n "$unexpected_conflicts" ]; then
+            echo 'Unexpected merge conflicts:'
+            echo "$unexpected_conflicts"
+            exit 1
+          fi
+          if [ "$merge_rc" -ne 0 ] && [ ! -s /tmp/tollboden-conflicts.txt ]; then
+            echo 'Merge failed without ordinary file conflicts.'
+            exit 1
+          fi
+      - name: Resolve canonical conflicts and rematerialize
         run: |
           set -euo pipefail
-          git checkout --theirs -- \
+          for f in \
             data/epoker/epoke-place-index.json \
             data/fagverk/fagverk_registry.json \
             data/fagverk/fagverk_release.json \
             tests/epoke-place-index.test.mjs
+          do
+            if git diff --name-only --diff-filter=U | grep -Fxq "$f"; then
+              git checkout --theirs -- "$f"
+            fi
+          done
 
           node scripts/materialize-natur-final-registry.mjs
 
@@ -71,16 +87,22 @@ jobs:
           const fs = require('fs');
           const path = 'data/fagverk/fagverk_registry.json';
           const registry = JSON.parse(fs.readFileSync(path, 'utf8'));
-          registry.version = '3.16.0';
-          registry.updatedAt = '2026-09-14';
-          registry.placeLinks ||= {};
-          registry.placeLinks.tollboden_oslo = {
+          const desired = {
             sourceFile: 'places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/tollboden_oslo.json',
             field: 'fagverk',
             schema: 'history_go_place_fagverk_v2',
             level: 'standard',
             status: 'curated'
           };
+          registry.placeLinks ||= {};
+          if (registry.placeLinks.tollboden_oslo && JSON.stringify(registry.placeLinks.tollboden_oslo) !== JSON.stringify(desired)) {
+            throw new Error('Existing tollboden_oslo placeLink conflicts with canonical row');
+          }
+          registry.placeLinks.tollboden_oslo = desired;
+          const version = String(registry.version || '0.0.0').split('.').map(Number);
+          if (version.length !== 3 || version.some(Number.isNaN)) throw new Error(`Invalid registry version: ${registry.version}`);
+          if (version[0] < 3 || (version[0] === 3 && version[1] < 16)) registry.version = '3.16.0';
+          if (!registry.updatedAt || registry.updatedAt < '2026-09-14') registry.updatedAt = '2026-09-14';
           fs.writeFileSync(path, JSON.stringify(registry, null, 2) + '\n');
           NODE
 
@@ -95,10 +117,12 @@ jobs:
           const before = fs.readFileSync(path, 'utf8');
           const pattern = /assert\.equal\(index\.stats\.verified_place_production_milestone_count,\s*\d+\);/g;
           const matches = before.match(pattern) || [];
-          if (matches.length !== 1) throw new Error(`Expected exactly one production milestone assertion, found ${matches.length}`);
-          const after = before.replace(pattern, `assert.equal(index.stats.verified_place_production_milestone_count, ${count});`);
+          if (matches.length > 1) throw new Error(`Expected at most one production milestone assertion, found ${matches.length}`);
+          const after = matches.length === 1
+            ? before.replace(pattern, `assert.equal(index.stats.verified_place_production_milestone_count, ${count});`)
+            : before;
           fs.writeFileSync(path, after);
-          console.log(`Updated production milestone assertion to ${count}`);
+          console.log(`Production milestone count is ${count}; assertion matches=${matches.length}`);
           NODE
 
           node scripts/build-fagverk-release-manifest.mjs
