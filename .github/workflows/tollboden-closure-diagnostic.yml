@@ -171,7 +171,7 @@ jobs:
             echo 'Tollpakkhuset changed in final PR diff.'
             exit 1
           fi
-          git diff --cached --check "$MAIN_HEAD"
+          git diff --cached --check "$MAIN_HEAD" 2>&1 | tee reports/tollboden-final-surface/diff-check.txt
       - name: Upload final surface diagnostic
         if: always()
         uses: actions/upload-artifact@v4
