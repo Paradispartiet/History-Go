@@ -47,7 +47,7 @@
       "source_type": "recognized_reference",
       "temporal_status": "historical",
       "verified_at": "2026-09-11",
-      "evidence_level": "direct"
+      "evidence_level": "explicit"
     },
     {
       "id": "not_bridge_builder",
@@ -59,6 +59,17 @@
       "temporal_status": "historical",
       "verified_at": "2026-09-11",
       "evidence_level": "direct"
+    },
+    {
+      "id": "mangelsgarden_ownership",
+      "claim": "Fra 1732 og noen år fremover eide Fredrik Ferdinand Hausmann Ankerløkken og landstedet som senere ble Prinds Christian Augusts Minde.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Hausmanns_gate",
+      "source_location": "navneopprinnelsen",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-14",
+      "evidence_level": "explicit"
     }
   ],
   "field_claim_map": {
@@ -73,6 +84,15 @@
     ],
     "death_date": [
       "identity_lifespan"
+    ],
+    "year": [
+      "mangelsgarden_ownership"
+    ],
+    "placeId": [
+      "mangelsgarden_ownership"
+    ],
+    "places[prinds_christian_augusts_minde]": [
+      "mangelsgarden_ownership"
     ],
     "places[hausmannsbrua]": [
       "hausmannsbrua_name_relation"
@@ -99,7 +119,8 @@
         "sentence": 1,
         "claim_ids": [
           "identity_lifespan",
-          "hausmanns_gate_name"
+          "hausmanns_gate_name",
+          "mangelsgarden_ownership"
         ]
       },
       {
@@ -119,10 +140,10 @@
   },
   "completion": {
     "completed_under": "people_profile_v1.0",
-    "claims_verified": "4/4",
+    "claims_verified": "5/5",
     "fact_review": "passed",
     "editorial_review": "passed",
-    "source_verified_at": "2026-09-11",
+    "source_verified_at": "2026-09-14",
     "validator_version": "1.0.0",
     "current_status": "ready_people_v1"
   }
