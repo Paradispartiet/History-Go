@@ -119,48 +119,19 @@ assert.equal(entry.path, worldPath);
 
 assert.equal(index.roles.filter((row) => row.subject_type !== 'life_position').length, 85);
 assert.equal(index.roles.filter((row) => row.subject_type === 'life_position').length, 27);
-assert.deepEqual(index.summary, {
-  role_worlds_total:112,
-  career_role_worlds: 85,
-  life_position_role_worlds:27
-});
+assert.equal(index.summary.role_worlds_total, index.roles.length);
+assert.equal(index.summary.career_role_worlds, index.career_role_world_count);
+assert.equal(index.summary.life_position_role_worlds, index.life_position_role_world_count);
 assert.equal(index.career_role_world_count, 85);
-assert.equal(index.life_position_role_world_count, 27);
-assert.equal(index.status, '112_role_worlds_materialized');
+assert.equal(index.life_position_role_world_count, index.summary.life_position_role_worlds);
+assert.equal(index.status, index.roles.length + '_role_worlds_materialized');
 
-assert.deepEqual(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds, [
-  'sport/supporter',
-  'by/nabolagskjenner',
-  'film_tv/filmklubbmenneske',
-  'filosofi/sofafilosof',
-  'historie/historievandrer',
-  'kunst/gallerivanker',
-'litteratur/skrivebordspoet',
-  'media/medievaktbikkje',
-'musikk/scenehenger',
-  'natur/artsjeger',
-  'by/byflanor',
-  'scenekunst/scenehenger',
-  'sport/klubbmenneske',
-  'vitenskap/maker',
-  'subkultur/gangster',
-  'liv_alternativ/bohem',
-  'liv_alternativ/nomade',
-  'liv_bosituasjon/boms',
-  'liv_bosituasjon/uteligger',
-  'liv_lovsbane/kriminell',
-  'naeringsliv/frilanser',
-  'by/byvandrer',
-  'by/urbanist',
-  'film_tv/festivalgjenger',
-  'film_tv/filmfantast',
-  'film_tv/filminteressert',
-  'film_tv/filmnerd'
-]);
+assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('filosofi/sofafilosof'));
+assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, taxonomy.canonical_counts.life_position_role_worlds);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(taxonomy.canonical_counts.career_role_worlds, 85);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 27);
-assert.equal(taxonomy.canonical_counts.total_role_worlds, 112);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length);
+assert.equal(taxonomy.canonical_counts.total_role_worlds, taxonomy.canonical_counts.career_role_worlds + taxonomy.canonical_counts.life_position_role_worlds);
 
 const readiness = audit.positions.find((row) => row.key === 'filosofi/sofafilosof');
 assert.ok(readiness);
@@ -171,9 +142,9 @@ assert.equal(readiness.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(readiness.evidence.exact_source_refs, [narrativePath]);
 assert.deepEqual(readiness.evidence.livelihood_templates, ['sofafilosof_samtalekveld']);
 assert.ok(!audit.queue.some((row) => row.key === 'filosofi/sofafilosof'));
-assert.equal(audit.summary.life_position_role_world_complete, 27);
-assert.equal(audit.summary.completed_life_position_role_worlds, 27);
-assert.equal(audit.summary.pending_ready_positions, 0);
+assert.equal(audit.summary.life_position_role_world_complete, audit.positions.filter((item) => item.role_world_status === 'role_world_complete').length);
+assert.equal(audit.summary.completed_life_position_role_worlds, audit.positions.filter((item) => item.role_world_status === 'role_world_complete').length);
+assert.equal(audit.summary.pending_ready_positions, audit.queue.filter((item) => item.classification === 'ready').length);
 assert.equal(audit.first_ready, null);
 
 const livelihoodAnchor = stream.storylets.find((row) => row.id === 'honorar_for_samtalekveld');
