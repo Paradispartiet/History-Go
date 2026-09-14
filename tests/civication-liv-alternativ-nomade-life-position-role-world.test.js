@@ -80,10 +80,10 @@ assert.equal(index.roles.length, 112);
 assert.equal(index.status,'112_role_worlds_materialized');
 assert.deepEqual(index.summary,{role_worlds_total:112,career_role_worlds:85,life_position_role_worlds:27});
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes('liv_alternativ/nomade'));
-assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 26);
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 26);
+assert.equal(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.length, 27);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds, 27);
 assert.equal(taxonomy.canonical_counts.total_role_worlds, 111);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 26);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds, 27);
 
 const first=stream.storylets.find(x=>x.id==='avreisen_uten_rolle');
 assert.match(first.situation.join(' '), /ikke automatisk arbeidsledighet, bostedsløshet, ferie eller profesjon/i);
