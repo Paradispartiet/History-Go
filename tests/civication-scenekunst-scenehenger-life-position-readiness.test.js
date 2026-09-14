@@ -77,8 +77,8 @@ assert.deepEqual(music.evidence.exact_source_refs, [musicStreamPath]);
 assert.ok(!music.evidence.exact_source_refs.includes(streamPath));
 
 assert.deepEqual(audit.summary.classifications, {
-  ready: 26,
-  needs_authored_depth: 133,
+  ready: 27,
+  needs_authored_depth: 132,
   not_a_standalone_world: 40
 });
 assert.equal(audit.summary.selectable_life_positions, 199);
