@@ -1,0 +1,1181 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "media",
+  "role_scope": "media_kommentarfeltveteran",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "media",
+    "id": "kommentarfeltveteran",
+    "label": "Kommentarfeltveteran"
+  },
+  "title": "Kommentarfeltveteran",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bruke lang erfaring fra offentlige kommentarfelt til mer presis og ansvarlig deltakelse uten at rytmekunnskap, synlighet, konfliktvana eller sosial gjenkjennelse blir journalistisk, redaksjonell, faktasjekkende eller modererende myndighet",
+    "description": "Kommentarfeltveteran-verdenen undersøker reaktivitet, tone og ironi, offentlig persona, kildekjeder, gamle motparter, likerklikk, skjermbilder, nykommerterskler, moderering, private meldinger, gamle arkivspor, gjentakende strider, korreksjon og ydmykelse samt grensen mellom praksiskunnskap og institusjonell makt. Rollen gir ingen journalist-, redaktør-, moderator-, faktasjekker-, kildeansvarlig- eller plattformmyndighet, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "public_attention",
+    "shame_reputation",
+    "social_mask",
+    "public_private_leakage",
+    "professional_culture",
+    "care_vs_efficiency",
+    "class_power",
+    "alienation"
+  ],
+  "social_environments": [
+    "åpne kommentarfelt under nyhetssaker",
+    "forumtråder med faste brukere",
+    "varslinger og svarrekker",
+    "private meldinger etter offentlige ordskifter",
+    "skjermbilder i vennechatter",
+    "arkiverte tråder",
+    "modererte diskusjonsrom",
+    "sosiale medier med synlige reaksjonstall",
+    "kommentarfelt rundt gjentakende konfliktsaker",
+    "mobilbruk sent på kvelden",
+    "tråder med nye deltakere",
+    "diskusjoner der kilder forsvinner i svarrekkene"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "den_faste_motparten",
+      "social_function": "gjør gammel konflikt og forventningsstyrt lesning synlig",
+      "class_position": "annen fast deltaker uten formelt mandat",
+      "status": "høy gjenkjennelighet i trådene",
+      "power_over_player": "kan trigge spilleren gjennom historikk og gjentakelse",
+      "wants": "å vinne poeng uten å miste ansikt",
+      "conceals": "at rollen også binder egen adferd",
+      "speech_style": "kort, spiss og referanserik",
+      "teaches_player": "at relasjonshistorie ikke er hele nåteksten"
+    },
+    {
+      "id": "nykommeren",
+      "social_function": "viser hvordan uformelle normer oppleves fra utsiden",
+      "class_position": "ny deltaker med lav miljøstatus",
+      "status": "lav status og høy eksponering",
+      "power_over_player": "kan endre gruppedynamikken uten å kjenne kodene",
+      "wants": "å forstå rommet uten å bli gjort til prøveklut",
+      "conceals": "usikkerheten bak en hard formulering",
+      "speech_style": "direkte og litt famlende",
+      "teaches_player": "at veteraner også produserer terskler"
+    },
+    {
+      "id": "den_rolige_korrigereren",
+      "social_function": "gjør saklig korreksjon uten statuskamp konkret",
+      "class_position": "erfaren deltaker uten plattformmyndighet",
+      "status": "moderat sosial tillit",
+      "power_over_player": "kan flytte tonen ved å være presis",
+      "wants": "å rette fakta uten å gjøre personer til tapere",
+      "conceals": "hvor ofte vedkommende lar være å poste",
+      "speech_style": "nøktern og kildeorientert",
+      "teaches_player": "at presisjon kan være mindre synlig enn seier"
+    },
+    {
+      "id": "moderatoren",
+      "social_function": "representerer faktisk plattform- eller forumansvar",
+      "class_position": "person med delegert modereringsmyndighet",
+      "status": "formell situert myndighet",
+      "power_over_player": "kan skjule, slette eller sanksjonere etter regler",
+      "wants": "å håndheve regler konsistent nok til at rommet fungerer",
+      "conceals": "hvor mye tvil og kontekst hver avgjørelse kan kreve",
+      "speech_style": "kort, prosedyreorientert og upersonlig",
+      "teaches_player": "at moderatoravgjørelser ikke kan deduseres sikkert uten logg og mandat"
+    },
+    {
+      "id": "den_stille_leseren",
+      "social_function": "representerer flertallet som leser uten å delta",
+      "class_position": "publikummer uten synlig rolle i tråden",
+      "status": "lav synlighet men høy samlet betydning",
+      "power_over_player": "kan endre hva offentligheten faktisk tar med seg uten å reagere synlig",
+      "wants": "å forstå saken uten å bli dratt inn i konflikt",
+      "conceals": "hvor mye tonen påvirker om de fortsetter å lese",
+      "speech_style": "observerende og sporadisk",
+      "teaches_player": "at det synlige publikum ikke er hele publikum"
+    },
+    {
+      "id": "vennen_som_sender_skjermbilder",
+      "social_function": "kobler offentlig tekst til private nettverk",
+      "class_position": "venn uten redaksjonelt eller modererende mandat",
+      "status": "høy relasjonell nærhet",
+      "power_over_player": "kan dra tråder inn i privat gruppepress og deling",
+      "wants": "å dele det som virker viktig eller absurd",
+      "conceals": "hvor ofte utsnittet mangler kontekst",
+      "speech_style": "rask, fortrolig og vurderende",
+      "teaches_player": "at privat deling fortsatt påvirker offentlig omdømme"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "entry_vs_reactivity",
+      "meaning": "deltakelse mot reaktiv innlåsing",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "tone_vs_intent",
+      "meaning": "intensjon mot hvordan tekst faktisk leses",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "identity_vs_performance",
+      "meaning": "stabil identitet mot forventet persona",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_chain_vs_repetition",
+      "meaning": "etterprøvbarhet mot sosial repetisjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "history_vs_present_text",
+      "meaning": "relasjonshistorie mot ny tekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "metrics_vs_judgment",
+      "meaning": "synlige reaksjoner mot selvstendig vurdering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "context_vs_capture",
+      "meaning": "kontekst mot skjermbildeøkonomi",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "norms_vs_gatekeeping",
+      "meaning": "uformelle normer mot sosial portvakt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observation_vs_moderator_authority",
+      "meaning": "erfaring mot moderatorautoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_vs_private_boundary",
+      "meaning": "offentlig uenighet mot privat grense",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "archive_vs_change",
+      "meaning": "arkivspor mot reell endring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "pattern_vs_stereotype",
+      "meaning": "mønstergjenkjenning mot stereotypisering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "correction_vs_humiliation",
+      "meaning": "korreksjon mot sosial ydmykelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "practice_vs_authority",
+      "meaning": "erfaring mot profesjonell eller plattformbasert myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: En kommentar under en nyhetssak treffer deg akkurat nok til at du begynner å formulere et svar før du egentlig har lest hele tråden. Situasjonen etableres.",
+        "thread_ids": [
+          "entry_vs_reactivity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#forste_svar_som_lokker_deg_inn"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: En kommentar under en nyhetssak treffer deg akkurat nok til at du begynner å formulere et svar før du egentlig har lest hele tråden. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "entry_vs_reactivity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#forste_svar_som_lokker_deg_inn"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: En kommentar under en nyhetssak treffer deg akkurat nok til at du begynner å formulere et svar før du egentlig har lest hele tråden. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "entry_vs_reactivity",
+          "archive_vs_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#forste_svar_som_lokker_deg_inn"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: En kommentar under en nyhetssak treffer deg akkurat nok til at du begynner å formulere et svar før du egentlig har lest hele tråden. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "entry_vs_reactivity",
+          "metrics_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#forste_svar_som_lokker_deg_inn"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Du skriver en kort spydighet som føles åpenbart ironisk for deg, men ser at andre leser den som et direkte angrep. Situasjonen etableres.",
+        "thread_ids": [
+          "tone_vs_intent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_lille_spydigheten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Du skriver en kort spydighet som føles åpenbart ironisk for deg, men ser at andre leser den som et direkte angrep. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "tone_vs_intent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_lille_spydigheten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Du skriver en kort spydighet som føles åpenbart ironisk for deg, men ser at andre leser den som et direkte angrep. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "tone_vs_intent",
+          "pattern_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_lille_spydigheten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Du skriver en kort spydighet som føles åpenbart ironisk for deg, men ser at andre leser den som et direkte angrep. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "tone_vs_intent",
+          "context_vs_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_lille_spydigheten"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Du merker at du skriver annerledes fordi noen i tråden kjenner navnet ditt fra før. Situasjonen etableres.",
+        "thread_ids": [
+          "identity_vs_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#hvem_er_du_i_denne_traden"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Du merker at du skriver annerledes fordi noen i tråden kjenner navnet ditt fra før. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "identity_vs_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#hvem_er_du_i_denne_traden"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Du merker at du skriver annerledes fordi noen i tråden kjenner navnet ditt fra før. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "identity_vs_performance",
+          "correction_vs_humiliation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#hvem_er_du_i_denne_traden"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Du merker at du skriver annerledes fordi noen i tråden kjenner navnet ditt fra før. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "identity_vs_performance",
+          "norms_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#hvem_er_du_i_denne_traden"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: En påstand blir gjentatt av flere uten at noen lenger viser til hvor den kom fra. Situasjonen etableres.",
+        "thread_ids": [
+          "source_chain_vs_repetition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#sitatet_som_mangler_lenken"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: En påstand blir gjentatt av flere uten at noen lenger viser til hvor den kom fra. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "source_chain_vs_repetition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#sitatet_som_mangler_lenken"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: En påstand blir gjentatt av flere uten at noen lenger viser til hvor den kom fra. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "source_chain_vs_repetition",
+          "practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#sitatet_som_mangler_lenken"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: En påstand blir gjentatt av flere uten at noen lenger viser til hvor den kom fra. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "source_chain_vs_repetition",
+          "observation_vs_moderator_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#sitatet_som_mangler_lenken"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: En bruker du har kranglet med mange ganger dukker opp under en helt ny sak. Situasjonen etableres.",
+        "thread_ids": [
+          "history_vs_present_text"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_som_alltid_dukker_opp"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: En bruker du har kranglet med mange ganger dukker opp under en helt ny sak. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "history_vs_present_text"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_som_alltid_dukker_opp"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: En bruker du har kranglet med mange ganger dukker opp under en helt ny sak. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "entry_vs_reactivity",
+          "history_vs_present_text"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_som_alltid_dukker_opp"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: En bruker du har kranglet med mange ganger dukker opp under en helt ny sak. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "history_vs_present_text",
+          "public_vs_private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_som_alltid_dukker_opp"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Kommentaren din får mange likerklikk, mens et mer nyansert svar lenger ned nesten ikke blir sett. Situasjonen etableres.",
+        "thread_ids": [
+          "metrics_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#når_likes_blir_resultattavle"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Kommentaren din får mange likerklikk, mens et mer nyansert svar lenger ned nesten ikke blir sett. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "metrics_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#når_likes_blir_resultattavle"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Kommentaren din får mange likerklikk, mens et mer nyansert svar lenger ned nesten ikke blir sett. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "tone_vs_intent",
+          "metrics_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#når_likes_blir_resultattavle"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Kommentaren din får mange likerklikk, mens et mer nyansert svar lenger ned nesten ikke blir sett. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "metrics_vs_judgment",
+          "archive_vs_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#når_likes_blir_resultattavle"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: En venn sender deg et skjermbilde av en kommentar uten resten av tråden. Situasjonen etableres.",
+        "thread_ids": [
+          "context_vs_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#skjermbildet_uten_kontekst"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: En venn sender deg et skjermbilde av en kommentar uten resten av tråden. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "context_vs_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#skjermbildet_uten_kontekst"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: En venn sender deg et skjermbilde av en kommentar uten resten av tråden. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "identity_vs_performance",
+          "context_vs_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#skjermbildet_uten_kontekst"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: En venn sender deg et skjermbilde av en kommentar uten resten av tråden. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "context_vs_capture",
+          "pattern_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#skjermbildet_uten_kontekst"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: En ny deltaker formulerer seg klønete og blir raskt møtt med sarkasme fra flere faste brukere. Situasjonen etableres.",
+        "thread_ids": [
+          "norms_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_nye_brukeren_som_bommer"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: En ny deltaker formulerer seg klønete og blir raskt møtt med sarkasme fra flere faste brukere. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "norms_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_nye_brukeren_som_bommer"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: En ny deltaker formulerer seg klønete og blir raskt møtt med sarkasme fra flere faste brukere. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "source_chain_vs_repetition",
+          "norms_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_nye_brukeren_som_bommer"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: En ny deltaker formulerer seg klønete og blir raskt møtt med sarkasme fra flere faste brukere. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "norms_vs_gatekeeping",
+          "correction_vs_humiliation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_nye_brukeren_som_bommer"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: En kommentar forsvinner, og flere begynner å spekulere i hvem som rapporterte den og hvorfor moderatoren grep inn. Situasjonen etableres.",
+        "thread_ids": [
+          "observation_vs_moderator_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#moderasjonen_som_ikke_er_din"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: En kommentar forsvinner, og flere begynner å spekulere i hvem som rapporterte den og hvorfor moderatoren grep inn. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "observation_vs_moderator_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#moderasjonen_som_ikke_er_din"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: En kommentar forsvinner, og flere begynner å spekulere i hvem som rapporterte den og hvorfor moderatoren grep inn. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "history_vs_present_text",
+          "observation_vs_moderator_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#moderasjonen_som_ikke_er_din"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: En kommentar forsvinner, og flere begynner å spekulere i hvem som rapporterte den og hvorfor moderatoren grep inn. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "observation_vs_moderator_authority",
+          "practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#moderasjonen_som_ikke_er_din"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Etter en hard ordveksling får du en privat melding fra personen du nettopp diskuterte med. Situasjonen etableres.",
+        "thread_ids": [
+          "public_vs_private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#privatmeldingen_etter_offentlig_krangel"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Etter en hard ordveksling får du en privat melding fra personen du nettopp diskuterte med. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "public_vs_private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#privatmeldingen_etter_offentlig_krangel"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Etter en hard ordveksling får du en privat melding fra personen du nettopp diskuterte med. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "metrics_vs_judgment",
+          "public_vs_private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#privatmeldingen_etter_offentlig_krangel"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Etter en hard ordveksling får du en privat melding fra personen du nettopp diskuterte med. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "entry_vs_reactivity",
+          "public_vs_private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#privatmeldingen_etter_offentlig_krangel"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Noen finner frem en kommentar du skrev for flere år siden og bruker den som bevis på hva du mener i dag. Situasjonen etableres.",
+        "thread_ids": [
+          "archive_vs_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_gamle_kommentaren_som_hentes_frem"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Noen finner frem en kommentar du skrev for flere år siden og bruker den som bevis på hva du mener i dag. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "archive_vs_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_gamle_kommentaren_som_hentes_frem"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Noen finner frem en kommentar du skrev for flere år siden og bruker den som bevis på hva du mener i dag. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "context_vs_capture",
+          "archive_vs_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_gamle_kommentaren_som_hentes_frem"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Noen finner frem en kommentar du skrev for flere år siden og bruker den som bevis på hva du mener i dag. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "tone_vs_intent",
+          "archive_vs_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_gamle_kommentaren_som_hentes_frem"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: En kjent strid kommer tilbake i ny versjon, og du kan nesten forutsi argumentene før du åpner tråden. Situasjonen etableres.",
+        "thread_ids": [
+          "pattern_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_samme_saken_for_tiende_gang"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: En kjent strid kommer tilbake i ny versjon, og du kan nesten forutsi argumentene før du åpner tråden. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "pattern_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_samme_saken_for_tiende_gang"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: En kjent strid kommer tilbake i ny versjon, og du kan nesten forutsi argumentene før du åpner tråden. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "norms_vs_gatekeeping",
+          "pattern_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_samme_saken_for_tiende_gang"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: En kjent strid kommer tilbake i ny versjon, og du kan nesten forutsi argumentene før du åpner tråden. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "identity_vs_performance",
+          "pattern_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_samme_saken_for_tiende_gang"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Du oppdager en faktisk feil og retter den, men formuleringen gjør at hele tråden flytter seg fra saken til hvem som ydmyket hvem. Situasjonen etableres.",
+        "thread_ids": [
+          "correction_vs_humiliation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#nar_du_har_rett_men_gjor_det_verre"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Du oppdager en faktisk feil og retter den, men formuleringen gjør at hele tråden flytter seg fra saken til hvem som ydmyket hvem. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "correction_vs_humiliation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#nar_du_har_rett_men_gjor_det_verre"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Du oppdager en faktisk feil og retter den, men formuleringen gjør at hele tråden flytter seg fra saken til hvem som ydmyket hvem. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "observation_vs_moderator_authority",
+          "correction_vs_humiliation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#nar_du_har_rett_men_gjor_det_verre"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Du oppdager en faktisk feil og retter den, men formuleringen gjør at hele tråden flytter seg fra saken til hvem som ydmyket hvem. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "source_chain_vs_repetition",
+          "correction_vs_humiliation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#nar_du_har_rett_men_gjor_det_verre"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Du kjenner rytmen, språkbruken, de faste figurene og de vanligste fellene bedre enn mange andre. Situasjonen etableres.",
+        "thread_ids": [
+          "practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#hva_slags_kommentarfeltveteran"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Du kjenner rytmen, språkbruken, de faste figurene og de vanligste fellene bedre enn mange andre. Andre deltakere og offentlighet gjør mønsteret sosialt konkret.",
+        "thread_ids": [
+          "practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#hva_slags_kommentarfeltveteran"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Du kjenner rytmen, språkbruken, de faste figurene og de vanligste fellene bedre enn mange andre. Spilleren må velge praksis under press.",
+        "thread_ids": [
+          "public_vs_private_boundary",
+          "practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#hva_slags_kommentarfeltveteran"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Du kjenner rytmen, språkbruken, de faste figurene og de vanligste fellene bedre enn mange andre. Valget får relasjonell, omdømmemessig eller privat etterklang.",
+        "thread_ids": [
+          "history_vs_present_text",
+          "practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#hva_slags_kommentarfeltveteran"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "entry_vs_reactivity",
+      "relationship": "deltakelse mot reaktiv innlåsing",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "5/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "tone_vs_intent",
+      "relationship": "intensjon mot hvordan tekst faktisk leses",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "identity_vs_performance",
+      "relationship": "stabil identitet mot forventet persona",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "source_chain_vs_repetition",
+      "relationship": "etterprøvbarhet mot sosial repetisjon",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "history_vs_present_text",
+      "relationship": "relasjonshistorie mot ny tekst",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "metrics_vs_judgment",
+      "relationship": "synlige reaksjoner mot selvstendig vurdering",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "context_vs_capture",
+      "relationship": "kontekst mot skjermbildeøkonomi",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "norms_vs_gatekeeping",
+      "relationship": "uformelle normer mot sosial portvakt",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "12/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "observation_vs_moderator_authority",
+      "relationship": "erfaring mot moderatorautoritet",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "public_vs_private_boundary",
+      "relationship": "offentlig uenighet mot privat grense",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "archive_vs_change",
+      "relationship": "arkivspor mot reell endring",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "1/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "pattern_vs_stereotype",
+      "relationship": "mønstergjenkjenning mot stereotypisering",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "2/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "correction_vs_humiliation",
+      "relationship": "korreksjon mot sosial ydmykelse",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "3/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "practice_vs_authority",
+      "relationship": "erfaring mot profesjonell eller plattformbasert myndighet",
+      "beat_refs": [
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening",
+        "4/afternoon",
+        "9/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "reaksjonen_blir_mer_valgt",
+      "description": "Varslinger og stikk utløser sjeldnere automatisk deltakelse.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#forste_svar_som_lokker_deg_inn",
+        "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_samme_saken_for_tiende_gang"
+      ]
+    },
+    {
+      "id": "personaen_blir_mindre_styrende",
+      "description": "Gamle konflikter og forventet stil får mindre makt over nye svar.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#hvem_er_du_i_denne_traden",
+        "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_som_alltid_dukker_opp"
+      ]
+    },
+    {
+      "id": "kontekst_blir_en_vane",
+      "description": "Påstander, skjermbilder og gamle kommentarer vurderes oftere med kilde og tidskontekst.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#sitatet_som_mangler_lenken",
+        "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#skjermbildet_uten_kontekst",
+        "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_gamle_kommentaren_som_hentes_frem"
+      ]
+    },
+    {
+      "id": "konflikten_mister_resultattavlen",
+      "description": "Likerklikk, ydmykelse og publikumspoeng blir mindre styrende for korreksjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#når_likes_blir_resultattavle",
+        "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#nar_du_har_rett_men_gjor_det_verre"
+      ]
+    },
+    {
+      "id": "rollen_blir_avgrenset",
+      "description": "Erfaringen forblir deltakerkompetanse uten å bli moderator-, journalist- eller redaktørmyndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#moderasjonen_som_ikke_er_din",
+        "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#hva_slags_kommentarfeltveteran"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "reaktiviteten_moter_monteret",
+      "setup_ref": "1/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "identity",
+        "stress"
+      ]
+    },
+    {
+      "id": "ironien_moter_arkivet",
+      "setup_ref": "2/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "reputation",
+        "identity"
+      ]
+    },
+    {
+      "id": "kildekjeden_moter_skjermbildet",
+      "setup_ref": "4/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "responsibility",
+        "reputation"
+      ]
+    },
+    {
+      "id": "motparten_moter_nykommeren",
+      "setup_ref": "5/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "relationship",
+        "identity"
+      ]
+    },
+    {
+      "id": "moderasjonen_moter_privaten",
+      "setup_ref": "9/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "authority",
+        "relationship"
+      ]
+    },
+    {
+      "id": "korreksjonen_moter_rollegrensen",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "responsibility",
+        "identity"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#forste_svar_som_lokker_deg_inn",
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_lille_spydigheten",
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#hvem_er_du_i_denne_traden",
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#sitatet_som_mangler_lenken",
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_som_alltid_dukker_opp",
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#når_likes_blir_resultattavle",
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#skjermbildet_uten_kontekst",
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_nye_brukeren_som_bommer",
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#moderasjonen_som_ikke_er_din",
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#privatmeldingen_etter_offentlig_krangel",
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_gamle_kommentaren_som_hentes_frem",
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#den_samme_saken_for_tiende_gang",
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#nar_du_har_rett_men_gjor_det_verre",
+      "data/Civication/narratives/leisure/media_kommentarfeltveteran.json#hva_slags_kommentarfeltveteran"
+    ]
+  }
+}
