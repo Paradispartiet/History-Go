@@ -48,13 +48,14 @@ jobs:
 
           const summaryPath = 'data/places/place_image_backlog_summary.json';
           const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
-          const expected = { totalPlaces: 1533, validLocal: 114, validRemote: 52, optionalMissing: 79, missing: 1278, invalidLocalPath: 10, remaining: 1288 };
-          for (const [key, value] of Object.entries(expected)) {
-            if (summary[key] !== value) throw new Error(`Unexpected ${key}: ${summary[key]} !== ${value}`);
+          if (summary.totalPlaces !== 1533) throw new Error(`Unexpected totalPlaces: ${summary.totalPlaces} !== 1533`);
+          const expectedSummary = { validLocal: 114, validRemote: 52, optionalMissing: 79, missing: 1278, invalidLocalPath: 10, remaining: 1288 };
+          for (const [key, value] of Object.entries(expectedSummary)) {
+            if (summary.summary?.[key] !== value) throw new Error(`Unexpected summary.${key}: ${summary.summary?.[key]} !== ${value}`);
           }
-          summary.validLocal = 115;
-          summary.missing = 1277;
-          summary.remaining = 1287;
+          summary.summary.validLocal = 115;
+          summary.summary.missing = 1277;
+          summary.summary.remaining = 1287;
           fs.writeFileSync(summaryPath, `${JSON.stringify(summary, null, 2)}\n`);
           NODE
       - name: Verify narrow closure
