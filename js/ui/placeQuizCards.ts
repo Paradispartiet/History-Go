@@ -45,13 +45,15 @@ export type PlaceQuizCardsController = {
 const QUIZ_CARD_MANIFESTS = Object.freeze([
   "by/manifest.json",
   "historie/manifest.json",
-  "litteratur/manifest.json"
+  "litteratur/manifest.json",
+  "scenekunst/manifest.json"
 ]);
 
 const FALLBACK_COLLECTIONS = Object.freeze([
   "by/topp10_by_kort_batch1.json",
   "historie/topp10_historie_sted_kort_batch1.json",
-  "litteratur/topp10_lit_kort.json"
+  "litteratur/topp10_lit_kort.json",
+  "scenekunst/dramatikkens_hus_quizkort_v1.json"
 ]);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -172,7 +174,9 @@ function renderQuizCard(cardData: QuizCardData): string {
       ? "Historiequiz"
       : categoryId === "litteratur"
         ? "Litteraturquiz"
-        : "Quizkort";
+        : categoryId === "scenekunst"
+          ? "Scenekunstquiz"
+          : "Quizkort";
   const subtitle = escapeHTML(
     cardData.subtitle || `${questions.length} spørsmål · fasit nederst`
   );

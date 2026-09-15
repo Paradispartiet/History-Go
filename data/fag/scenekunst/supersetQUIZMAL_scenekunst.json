@@ -8,8 +8,10 @@
     "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
     "template_registry": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json",
-    "authority": "category_content_only",
-    "may_override_global_rules": false
+    "authority": "category_content_and_orchestration",
+    "may_override_global_rules": false,
+    "package_schema": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+    "subject_manifest": "data/fag/fag_manifest.json"
   },
   "required_emne_prefix": "em_scenekunst_",
   "content_priorities": [
@@ -34,5 +36,213 @@
     "scenekunsthistorisk og teatervitenskapelig faglitteratur",
     "anmeldelser og dokumenterte forestillingsopptak"
   ],
-  "good_concept_question_example": "Hva kalles den tenkte grensen mellom scenen og publikum som en forestilling kan bryte?"
+  "good_concept_question_example": "Hva kalles den tenkte grensen mellom scenen og publikum som en forestilling kan bryte?",
+  "input_roles": {
+    "pensum": "læringsmål, scenekunstfaglige domener og progresjon",
+    "emner": "scenekunstfaglige problem, begreper og teorimuligheter",
+    "fagkart": "hooks, tenkere, verk, institusjoner og sammenligninger",
+    "methods": "forestillings-, dramaturgi-, prøveprosess-, institusjons-, produksjons- og resepsjonsanalyse",
+    "supersetQuizMal": "adaptiv profil, relativ progresjon og kontrollrekkefølge",
+    "quizStandard": "felles produksjons- og innholdsregler",
+    "quizQuestionSchema": "teknisk feltkontrakt",
+    "theoryObjects": "canonicale teoriobjekter, forskere/teoretikere, verk, emnebindinger og faglige begrensninger"
+  },
+  "category_rules": [
+    "Start med dokumentert scenekunst, institusjon, arbeidsprosess eller forestilling – ikke med emneetiketten.",
+    "Skill prøver, arbeidsvisninger og utviklingsprosesser fra ferdige forestillinger når kildene gjør det.",
+    "Bruk bare emne_id som finnes i scenekunstens emnefil.",
+    "Teori og metode må være forankret i en konkret hendelse, produksjon, arbeidsprosess, institusjon eller dokumentasjon.",
+    "Kategori-profilen styrer faglig utvalg, men ikke globale quizregler."
+  ],
+  "adaptive_profiles": {
+    "narrow": {
+      "sets": 3,
+      "questions_per_set": 7,
+      "use_when": "avgrenset scenekunststed, produksjon eller objekt med få sterke og uavhengige påstander"
+    },
+    "normal": {
+      "sets": 4,
+      "questions_per_set": 7,
+      "use_when": "sted med solid institusjons-, produksjons- eller forestillingshistorie og minst ett faglig bruledd"
+    },
+    "rich": {
+      "sets_min": 5,
+      "sets_max": 8,
+      "questions_per_set": 7,
+      "use_when": "sted med flere produksjoner, kunstneriske roller, tidslag, metoder eller dokumenterte teorimuligheter"
+    },
+    "major": {
+      "sets_min": 8,
+      "sets_max": 10,
+      "questions_per_set": 7,
+      "use_when": "sentral scenekunstinstitusjon med bred dokumentasjon som bærer flere selvstendige progresjonsløp"
+    }
+  },
+  "profile_selection": {
+    "default": "normal",
+    "evidence_order": [
+      "uavhengige kildebelagte påstander",
+      "relevante scenekunstkilder og dokumentasjon",
+      "produksjons-, rolle- og institusjonsbredde",
+      "stedlig forankrede emner",
+      "metode- og teorimuligheter med konkret hendelses-, verk- eller institusjonsanker"
+    ],
+    "never_pad_to_reach_profile": true,
+    "reduce_profile_when_evidence_is_thin": true
+  },
+  "relative_progression": {
+    "phase_sequences": {
+      "3": [
+        "opening",
+        "bridge",
+        "final"
+      ],
+      "4": [
+        "opening",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "5": [
+        "opening",
+        "middle",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "6": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "7": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "8": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "9": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "10": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ]
+    },
+    "phase_requirements": {
+      "opening": {
+        "focus": [
+          "sted",
+          "institusjon",
+          "forestilling",
+          "kunstnerisk rolle",
+          "konkrete fakta"
+        ],
+        "minimum_fact_share": 0.5
+      },
+      "middle": {
+        "focus": [
+          "dramaturgi",
+          "prøveprosess",
+          "scenisk form",
+          "teknikk",
+          "historie",
+          "synlige eller dokumenterte spor"
+        ]
+      },
+      "bridge": {
+        "focus": [
+          "kontekst",
+          "produksjonsvilkår",
+          "institusjon",
+          "resepsjon",
+          "første fagbegrep"
+        ],
+        "requires_method_or_context": true
+      },
+      "final": {
+        "focus": [
+          "emne",
+          "metode",
+          "teori",
+          "tenker",
+          "verk",
+          "dokumentasjon",
+          "sammenligning",
+          "syntese"
+        ],
+        "requires_theory_binding": true
+      }
+    },
+    "short_quiz_rule": "Tre og fire sett skal også nå metode-, emne- og teorilaget i siste del.",
+    "absolute_theory_set_numbers_forbidden": true
+  },
+  "question_families": {
+    "fact": {
+      "role": "dokumentert sted, institusjon, kunstner, rolle, forestilling, datering, arbeidsprosess, teknisk forhold eller synlig spor",
+      "normal_share_min": 0.5,
+      "normal_share_max": 0.6
+    },
+    "context": {
+      "role": "dramaturgisk, historisk, institusjonell, produksjonsmessig eller resepsjonsmessig sammenheng",
+      "normal_share_min": 0.2,
+      "normal_share_max": 0.3
+    },
+    "concept_theory": {
+      "role": "stedbundet emne, metode, teori, tenker, verk eller fagbegrep",
+      "normal_share_min": 0.15,
+      "normal_share_max": 0.25
+    }
+  },
+  "selection_rules": [
+    "Eksplisitte emne_ids er kandidater, men må passe dokumentert scenekunst, arbeidsprosess eller institusjonspåstand.",
+    "Et teorihook må ha konkret hendelses-, verk-, sted- eller institusjonsanker.",
+    "En metode velges bare når spilleren faktisk kan analysere forestilling, dramaturgi, prøveprosess, scenografi, produksjonsvilkår, institusjon eller resepsjon.",
+    "Tenkere roteres når flere er like relevante.",
+    "Ingen fil regnes som synlig brukt bare fordi den ble lastet."
+  ],
+  "control_order": [
+    "resolver_og_full_innlasting",
+    "kilde_og_paastandsbank",
+    "pensum_og_emneval",
+    "hook_metode_tenker_verk",
+    "adaptiv_profil",
+    "relativ_settplan",
+    "sporsmaalskvalitet_og_balanse",
+    "produksjonskontekst",
+    "teoribinding",
+    "knowledge_sync"
+  ]
 }
