@@ -1,0 +1,105 @@
+name: TEMP Bankplassen final closure
+
+on:
+  push:
+    branches:
+      - agent/norges-bank-bankplassen-4-place-production-20260914
+    paths:
+      - .github/workflows/tmp-bankplassen-final-closure.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/norges-bank-bankplassen-4-place-production-20260914
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild Bankplassen quiz production context only
+        run: >-
+          npm run quiz:context --
+          --category naeringsliv
+          --target norges_bank_bankplassen_4
+          --output data/quiz/production_context/naeringsliv/norges_bank_bankplassen_4.json
+      - name: Refresh proven exact baselines
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+
+          const testPath = 'tests/epoke-place-index.test.mjs';
+          let testText = fs.readFileSync(testPath, 'utf8');
+          const oldNeedle = 'assert.equal(index.stats.verified_place_production_milestone_count, 558);';
+          const newNeedle = 'assert.equal(index.stats.verified_place_production_milestone_count, 562);';
+          if ((testText.match(new RegExp(oldNeedle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length !== 1) {
+            throw new Error('Expected exactly one 558 verified-place-production baseline');
+          }
+          testText = testText.replace(oldNeedle, newNeedle);
+          fs.writeFileSync(testPath, testText);
+
+          const summaryPath = 'data/places/place_image_backlog_summary.json';
+          const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+          const expected = { totalPlaces: 1533, validLocal: 114, validRemote: 52, optionalMissing: 79, missing: 1278, invalidLocalPath: 10, remaining: 1288 };
+          for (const [key, value] of Object.entries(expected)) {
+            if (summary[key] !== value) throw new Error(`Unexpected ${key}: ${summary[key]} !== ${value}`);
+          }
+          summary.validLocal = 115;
+          summary.missing = 1277;
+          summary.remaining = 1287;
+          fs.writeFileSync(summaryPath, `${JSON.stringify(summary, null, 2)}\n`);
+          NODE
+      - name: Verify narrow closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { buildQuizProductionContext } from './scripts/quiz-production-lib.mjs';
+          const path = 'data/quiz/production_context/naeringsliv/norges_bank_bankplassen_4.json';
+          const actual = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const expected = await buildQuizProductionContext({ root: process.cwd(), categoryId: 'naeringsliv', targetId: 'norges_bank_bankplassen_4' });
+          if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error('Bankplassen context is not deterministic');
+          console.log('Bankplassen quiz production context deterministic ✅');
+          NODE
+      - name: Enforce exact changed scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          changed="$(git status --porcelain | sed 's/^...//' | sort)"
+          expected="$(printf '%s\n' \
+            'data/places/place_image_backlog_summary.json' \
+            'data/quiz/production_context/naeringsliv/norges_bank_bankplassen_4.json' \
+            'reports/place-image-audit.json' \
+            'tests/epoke-place-index.test.mjs' | sort)"
+          if [ "$changed" != "$expected" ]; then
+            echo 'Unexpected generated scope' >&2
+            echo 'Changed:' >&2; printf '%s\n' "$changed" >&2
+            echo 'Expected:' >&2; printf '%s\n' "$expected" >&2
+            exit 1
+          fi
+      - name: Commit final closure data
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add \
+            data/places/place_image_backlog_summary.json \
+            data/quiz/production_context/naeringsliv/norges_bank_bankplassen_4.json \
+            reports/place-image-audit.json \
+            tests/epoke-place-index.test.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: close Bankplassen deterministic baselines'
+          git push origin HEAD:agent/norges-bank-bankplassen-4-place-production-20260914
