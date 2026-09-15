@@ -71,9 +71,8 @@ jobs:
           crop_save(fetch("Tunnel of Light.JPG"),"bilder/kort/objects/nydalen_tunnel_of_light.webp",(900,600))
           crop_save(fetch("RK 165570 - Industrianlegg - Nydalen Compagnie Bomullsspinneri nedre spinneri 1847 IMG 6420.JPG"),"bilder/kort/structures/nydalen_nedre_spinneri.webp",(900,600))
 
-          svg=fetch("Snøhetta logo.svg")
-          png=cairosvg.svg2png(bytestring=svg,output_width=1200)
-          logo=Image.open(BytesIO(png)).convert("RGBA")
+          logo_data=fetch("Snøhetta logo.svg")
+          logo=Image.open(BytesIO(logo_data)).convert("RGBA")
           canvas=Image.new("RGBA",(900,520),(255,255,255,0))
           logo.thumbnail((760,300),Image.Resampling.LANCZOS)
           canvas.alpha_composite(logo,((900-logo.width)//2,(520-logo.height)//2))
