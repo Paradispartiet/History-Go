@@ -171,12 +171,12 @@ vm.runInContext(
 assert.equal(relationshipSandbox.window.CivicationRelationshipEngine.STAGE_BY_LEVEL.length, 6,
   'relasjonssystemet skal fortsatt eie seks vennskapsstadier separat fra livsposisjoner');
 
-assert.equal(roleWorldIndex.roles.length, 118, 'Role World-indeksen skal ha 85 karriereverdener + trettitre life-position worlds');
+assert.equal(roleWorldIndex.roles.length, 119, 'Role World-indeksen skal ha 85 karriereverdener + trettifire life-position worlds');
 assert.ok(roleWorldIndex.roles.every((role) => role.status === 'role_world_complete'));
 const careerRoleWorlds = roleWorldIndex.roles.filter((role) => role.subject_type !== 'life_position');
 const lifePositionWorlds = roleWorldIndex.roles.filter((role) => role.subject_type === 'life_position');
 assert.equal(careerRoleWorlds.length, 85, 'karriereverdener skal fortsatt være nøyaktig 85');
-assert.equal(lifePositionWorlds.length, 33, 'trettitre canonical life-position worlds skal være materialisert, inkludert Livsgrubler');
+assert.equal(lifePositionWorlds.length, 34, 'trettifire canonical life-position worlds skal være materialisert, inkludert Evidensleser');
 const lifeWorldByKey = new Map(lifePositionWorlds.map((row) => [row.life_position_key, row]));
 assert.deepEqual(lifeWorldByKey.get('subkultur/gangster').life_position_ref, { badge_id: 'subkultur', id: null, label: 'Gangster' });
 assert.deepEqual(lifeWorldByKey.get('sport/supporter').life_position_ref, { badge_id: 'sport', id: 'supporter', label: 'Supporter' });
@@ -217,7 +217,9 @@ assert.deepEqual(lifeWorldByKey.get('filosofi/lesesirkelmenneske').life_position
 assert.equal(lifeWorldByKey.get('filosofi/lesesirkelmenneske').role_scope, 'filosofi_lesesirkelmenneske');
 assert.deepEqual(lifeWorldByKey.get('filosofi/livsgrubler').life_position_ref, { badge_id: 'filosofi', id: 'livsgrubler', label: 'Livsgrubler' });
 assert.equal(lifeWorldByKey.get('filosofi/livsgrubler').role_scope, 'filosofi_livsgrubler');
-assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 118, career_role_worlds: 85, life_position_role_worlds: 33 });
+assert.deepEqual(lifeWorldByKey.get('helse/evidensleser').life_position_ref, { badge_id: 'helse', id: 'evidensleser', label: 'Evidensleser' });
+assert.equal(lifeWorldByKey.get('helse/evidensleser').role_scope, 'helse_evidensleser');
+assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 119, career_role_worlds: 85, life_position_role_worlds: 34 });
 assert.equal(roleModelManifest.files.length, 293,
   'roleModel-manifestet er authored inventory og skal ikke forveksles med spillerrolle-antallet');
 assert.equal(scenarioPeople.summary.role_model_file_count, 293);
@@ -244,8 +246,8 @@ const expectedCounts = {
   life_circumstance_option_values: 18,
   relationship_stages: 6,
   career_role_worlds: 85,
-  life_position_role_worlds: 33,
-  total_role_worlds: 118,
+  life_position_role_worlds: 34,
+  total_role_worlds: 119,
   role_model_manifest_files: 293,
   canonical_scenario_role_models: 287,
   shadowed_role_models: 6,
@@ -264,4 +266,4 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.allowed_subject_classes,
   ['career_role', 'life_position']);
 assert.equal(taxonomy.role_world_rollout_boundary.mass_materialization_allowed, false);
 
-console.log('civication non-career role taxonomy ok: 199 selectable life positions / 85 career Role Worlds + 33 life-position worlds / layers remain separate');
+console.log('civication non-career role taxonomy ok: 199 selectable life positions / 85 career Role Worlds + 34 life-position worlds / layers remain separate');
