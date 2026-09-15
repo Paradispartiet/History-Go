@@ -1,0 +1,1175 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "helse",
+  "role_scope": "helse_folkehelseblikk",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "helse",
+    "id": "folkehelseblikk",
+    "label": "Folkehelseblikk"
+  },
+  "title": "Folkehelseblikk",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å forstå helseforskjeller som samspill mellom individuelle liv, levekår, fordeling og institusjonelle systemvalg uten å redusere mennesker til statistiske grupper eller gjøre befolkningsperspektivet til klinisk autoritet",
+    "description": "Folkehelseblikk-verdenen undersøker hvordan bolig, arbeid, transport, nærmiljø, tilgang, forebygging og ressursfordeling former helse på befolkningsnivå. Spilleren lærer å se gjennomsnitt sammen med fordeling, universelle tiltak sammen med ulike barrierer og systemmål sammen med levd erfaring. Rollen gir ingen diagnostisk, klinisk eller behandlende myndighet og materialiseres gjennom eksisterende narrative flater uten ny runtime."
+  },
+  "theme_ids": [
+    "class_power",
+    "bureaucratic_power",
+    "numerical_control",
+    "care_vs_efficiency",
+    "local_knowledge_vs_system",
+    "public_attention",
+    "status_anxiety",
+    "shame_reputation"
+  ],
+  "social_environments": [
+    "nabolaget der transport, bolig, møteplasser og uteområder fordeler hverdagsmuligheter ulikt",
+    "gruppechatten der individuelle råd kolliderer med ulike arbeidstider, omsorgsoppgaver og økonomiske rammer",
+    "lokalmøtet der statistiske områdemål møter beboernes erfaringer og kunnskap om stedet",
+    "budsjettmøtet der begrensede ressurser må fordeles mellom behov som ikke er like store eller like synlige",
+    "den offentlige debatten der gjennomsnittstall kan skjule ulikhet og målrettede tiltak kan skape stigma",
+    "etterkantssamtalen der man må vurdere om et forebyggende tiltak faktisk nådde dem som hadde størst barrierer"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "pendlernabo",
+      "social_function": "gjør transporttid, arbeidstid og praktiske hverdagsrammer synlige i diskusjoner om helsevalg",
+      "class_position": "lønnsmottaker med lite kontroll over arbeidstid og lang reisevei",
+      "status": "middels lokal status, men lav definisjonsmakt i formelle helse- og plansamtaler",
+      "power_over_player": "kan avsløre når spillerens generelle råd forutsetter mer tid og fleksibilitet enn mange faktisk har",
+      "wants": "at tiltak og råd skal ta høyde for hvordan hverdagen faktisk er organisert",
+      "conceals": "hvor ofte egen tidsmangel blir tolket som dårlig motivasjon av andre",
+      "speech_style": "konkret, tidsorientert og rask til å teste om en løsning fungerer mandag morgen",
+      "teaches_player": "at handlingsrom må analyseres før atferd forklares som prioritering"
+    },
+    {
+      "id": "omsorgsforelder",
+      "social_function": "viser hvordan tid, penger, barn og omsorgsansvar gjør samme tilbud ulikt tilgjengelig",
+      "class_position": "husholdning med stram tidsøkonomi og begrenset fleksibilitet",
+      "status": "lav formell status, men høy erfaringskompetanse på praktiske barrierer",
+      "power_over_player": "kan gjøre det tydelig når et universelt tilbud i praksis krever ressurser noen ikke har",
+      "wants": "løsninger som kan brukes uten at hele familiens logistikk må bygges om",
+      "conceals": "hvor ofte manglende deltakelse egentlig er et spørsmål om kapasitet fremfor vilje",
+      "speech_style": "praktisk, detaljert og opptatt av åpningstider, reise og faktisk gjennomføring",
+      "teaches_player": "at formell tilgang ikke er det samme som reell tilgang"
+    },
+    {
+      "id": "statistikkvenn",
+      "social_function": "holder fast i måling, sammenligning og usikkerhet når samtalen blir anekdotisk",
+      "class_position": "ressurssterk kunnskapsbruker med høy tallkompetanse, men uten klinisk rolle",
+      "status": "høy når diskusjonen krever oversikt og dokumentasjon",
+      "power_over_player": "kan korrigere for sterke enkelthistorier, men også trekke oppmerksomhet bort fra lokal kontekst",
+      "wants": "at prioriteringer skal kunne begrunnes med etterprøvbare befolkningsdata",
+      "conceals": "hvor lett gode indikatorer kan bli behandlet som komplette beskrivelser av levd liv",
+      "speech_style": "presis, sammenlignende og opptatt av nevner, fordeling og tidsserie",
+      "teaches_player": "at gode tall blir bedre når man også vet hva de ikke måler"
+    },
+    {
+      "id": "lokal_arrangor",
+      "social_function": "kobler formelle tiltak til lokale nettverk, steder og tillit",
+      "class_position": "uformell mellomposisjon med mye sosial kapital i nærmiljøet og lite formell beslutningsmakt",
+      "status": "høy lokalt fordi personen vet hvem som faktisk møter opp og hvorfor",
+      "power_over_player": "kan avgjøre om et sentralt utformet tiltak oppleves relevant eller fremmed",
+      "wants": "at beboere skal bli deltakere i utformingen, ikke bare målgruppe for kommunikasjon",
+      "conceals": "hvor mye ekstra ubetalt arbeid som kreves for å reparere dårlig tilpassede systemløsninger",
+      "speech_style": "nettverksorientert, stedsspesifikk og skeptisk til generelle kategorier",
+      "teaches_player": "at implementering er sosialt arbeid, ikke bare distribusjon"
+    },
+    {
+      "id": "systemplanlegger",
+      "social_function": "må oversette mange behov til regler, budsjetter, indikatorer og gjennomførbare tiltak",
+      "class_position": "formell administrativ posisjon med større systemmakt enn lokal nærhet",
+      "status": "høy i institusjonen fordi personen kan fordele ressurser og definere kriterier",
+      "power_over_player": "kan gjøre enkelte behov målbare og prioriterbare mens andre faller utenfor styringsspråket",
+      "wants": "tiltak som kan finansieres, skaleres og evalueres på en etterprøvbar måte",
+      "conceals": "hvor ofte styrbarhet påvirker hvilke problemer som blir ansett som viktigst",
+      "speech_style": "saklig, kriteriebasert og orientert mot rammer, kapasitet og indikatorer",
+      "teaches_player": "at systemvalg alltid inneholder prioriteringer selv når de presenteres teknisk"
+    },
+    {
+      "id": "forebyggingsskeptiker",
+      "social_function": "krever synlige og raske bevis for tiltak som ofte virker over lang tid",
+      "class_position": "deltaker med liten tålmodighet for diffuse gevinster og sterk preferanse for konkrete resultater",
+      "status": "middels offentlig status fordi kritikken er enkel å forstå og vanskelig å avvise raskt",
+      "power_over_player": "kan presse analysen mot kortsiktige mål og enkeltstående hendelser",
+      "wants": "at ressurser ikke skal bindes i tiltak som ingen kan forklare effekten av",
+      "conceals": "hvor vanskelig det er å verdsette problemer som aldri oppstår fordi forebygging faktisk virket",
+      "speech_style": "direkte, kostnadsorientert og rask til å spørre hva man konkret fikk igjen",
+      "teaches_player": "at forebygging må kunne evalueres uten å late som alle gevinster er umiddelbart synlige"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "conditions_vs_blame",
+      "meaning": "levekår mot individualisert skyld",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "population_vs_individual",
+      "meaning": "befolkningsmønster mot individuell forklaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "average_vs_distribution",
+      "meaning": "gjennomsnitt mot fordeling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "prevention_vs_visibility",
+      "meaning": "forebygging mot krav om synlige hendelser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "universal_vs_targeted",
+      "meaning": "universell tilgang mot målrettet støtte",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "access_vs_information",
+      "meaning": "praktisk tilgang mot ren informasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "measurement_vs_lived_experience",
+      "meaning": "systemmål mot levd erfaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "short_vs_long_horizon",
+      "meaning": "kort rapportperiode mot lang forebyggingshorisont",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "system_choice_vs_personal_choice",
+      "meaning": "systemvalg mot personlig valg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "resource_vs_need",
+      "meaning": "lik fordeling mot ulikt behov",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "stigma_vs_support",
+      "meaning": "målrettet støtte mot sosial merking",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "local_context_vs_standardization",
+      "meaning": "lokal kunnskap mot standardisert kategori",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "participation_vs_topdown",
+      "meaning": "lokal deltakelse mot ovenfra-definert løsning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "equity_vs_equal_treatment",
+      "meaning": "reell mulighet mot identisk tilbud",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: et godt råd virker ulikt når hverdagen er ulik.",
+        "thread_ids": [
+          "conditions_vs_blame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#bussruten_og_radet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: et godt råd virker ulikt når hverdagen er ulik.",
+        "thread_ids": [
+          "conditions_vs_blame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#bussruten_og_radet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: et godt råd virker ulikt når hverdagen er ulik.",
+        "thread_ids": [
+          "conditions_vs_blame",
+          "stigma_vs_support"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#bussruten_og_radet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: et godt råd virker ulikt når hverdagen er ulik.",
+        "thread_ids": [
+          "conditions_vs_blame",
+          "access_vs_information"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#bussruten_og_radet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: miljøet fordeler belastning før noen rekker å velge.",
+        "thread_ids": [
+          "population_vs_individual"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#varmen_i_kvartalet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 2, lunch: miljøet fordeler belastning før noen rekker å velge.",
+        "thread_ids": [
+          "population_vs_individual"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#varmen_i_kvartalet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: miljøet fordeler belastning før noen rekker å velge.",
+        "thread_ids": [
+          "population_vs_individual",
+          "local_context_vs_standardization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#varmen_i_kvartalet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 2, evening: miljøet fordeler belastning før noen rekker å velge.",
+        "thread_ids": [
+          "population_vs_individual",
+          "measurement_vs_lived_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#varmen_i_kvartalet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: informasjon er ikke det samme som tilgang.",
+        "thread_ids": [
+          "average_vs_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#kampanjen_som_ikke_nar_alle"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: informasjon er ikke det samme som tilgang.",
+        "thread_ids": [
+          "average_vs_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#kampanjen_som_ikke_nar_alle"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: informasjon er ikke det samme som tilgang.",
+        "thread_ids": [
+          "average_vs_distribution",
+          "participation_vs_topdown"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#kampanjen_som_ikke_nar_alle"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: informasjon er ikke det samme som tilgang.",
+        "thread_ids": [
+          "average_vs_distribution",
+          "short_vs_long_horizon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#kampanjen_som_ikke_nar_alle"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: et bedre gjennomsnitt kan skjule en dårligere fordeling.",
+        "thread_ids": [
+          "prevention_vs_visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#gjennomsnittet_skjuler_forskjellen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 4, lunch: et bedre gjennomsnitt kan skjule en dårligere fordeling.",
+        "thread_ids": [
+          "prevention_vs_visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#gjennomsnittet_skjuler_forskjellen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: et bedre gjennomsnitt kan skjule en dårligere fordeling.",
+        "thread_ids": [
+          "prevention_vs_visibility",
+          "equity_vs_equal_treatment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#gjennomsnittet_skjuler_forskjellen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 4, evening: et bedre gjennomsnitt kan skjule en dårligere fordeling.",
+        "thread_ids": [
+          "prevention_vs_visibility",
+          "system_choice_vs_personal_choice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#gjennomsnittet_skjuler_forskjellen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: forebygging blir ofte minst synlig når den virker.",
+        "thread_ids": [
+          "universal_vs_targeted"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#det_usynlige_forebyggingsarbeidet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: forebygging blir ofte minst synlig når den virker.",
+        "thread_ids": [
+          "universal_vs_targeted"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#det_usynlige_forebyggingsarbeidet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: forebygging blir ofte minst synlig når den virker.",
+        "thread_ids": [
+          "conditions_vs_blame",
+          "universal_vs_targeted"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#det_usynlige_forebyggingsarbeidet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: forebygging blir ofte minst synlig når den virker.",
+        "thread_ids": [
+          "universal_vs_targeted",
+          "resource_vs_need"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#det_usynlige_forebyggingsarbeidet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: lik behandling kan gi ulikt resultat når utgangspunktet er ulikt.",
+        "thread_ids": [
+          "access_vs_information"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#likt_tilbud_ulikt_utgangspunkt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 6, lunch: lik behandling kan gi ulikt resultat når utgangspunktet er ulikt.",
+        "thread_ids": [
+          "access_vs_information"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#likt_tilbud_ulikt_utgangspunkt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: lik behandling kan gi ulikt resultat når utgangspunktet er ulikt.",
+        "thread_ids": [
+          "population_vs_individual",
+          "access_vs_information"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#likt_tilbud_ulikt_utgangspunkt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 6, evening: lik behandling kan gi ulikt resultat når utgangspunktet er ulikt.",
+        "thread_ids": [
+          "access_vs_information",
+          "stigma_vs_support"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#likt_tilbud_ulikt_utgangspunkt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 7, morning: et områdekart trenger lokal kunnskap.",
+        "thread_ids": [
+          "measurement_vs_lived_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#kartet_og_nabolaget"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: et områdekart trenger lokal kunnskap.",
+        "thread_ids": [
+          "measurement_vs_lived_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#kartet_og_nabolaget"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: et områdekart trenger lokal kunnskap.",
+        "thread_ids": [
+          "average_vs_distribution",
+          "measurement_vs_lived_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#kartet_og_nabolaget"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: et områdekart trenger lokal kunnskap.",
+        "thread_ids": [
+          "measurement_vs_lived_experience",
+          "local_context_vs_standardization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#kartet_og_nabolaget"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: ressurser fordeles gjennom systemvalg.",
+        "thread_ids": [
+          "short_vs_long_horizon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#budsjettet_mellom_behov"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 8, lunch: ressurser fordeles gjennom systemvalg.",
+        "thread_ids": [
+          "short_vs_long_horizon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#budsjettet_mellom_behov"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: ressurser fordeles gjennom systemvalg.",
+        "thread_ids": [
+          "prevention_vs_visibility",
+          "short_vs_long_horizon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#budsjettet_mellom_behov"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 8, evening: ressurser fordeles gjennom systemvalg.",
+        "thread_ids": [
+          "short_vs_long_horizon",
+          "participation_vs_topdown"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#budsjettet_mellom_behov"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: helse formes også utenfor helsetjenesten.",
+        "thread_ids": [
+          "system_choice_vs_personal_choice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#skolen_jobben_og_boligen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: helse formes også utenfor helsetjenesten.",
+        "thread_ids": [
+          "system_choice_vs_personal_choice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#skolen_jobben_og_boligen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: helse formes også utenfor helsetjenesten.",
+        "thread_ids": [
+          "universal_vs_targeted",
+          "system_choice_vs_personal_choice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#skolen_jobben_og_boligen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: helse formes også utenfor helsetjenesten.",
+        "thread_ids": [
+          "system_choice_vs_personal_choice",
+          "equity_vs_equal_treatment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#skolen_jobben_og_boligen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: forebygging har ofte et annet tidsperspektiv enn politikken.",
+        "thread_ids": [
+          "resource_vs_need"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#det_lange_tidsspennet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 10, lunch: forebygging har ofte et annet tidsperspektiv enn politikken.",
+        "thread_ids": [
+          "resource_vs_need"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#det_lange_tidsspennet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: forebygging har ofte et annet tidsperspektiv enn politikken.",
+        "thread_ids": [
+          "access_vs_information",
+          "resource_vs_need"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#det_lange_tidsspennet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 10, evening: forebygging har ofte et annet tidsperspektiv enn politikken.",
+        "thread_ids": [
+          "conditions_vs_blame",
+          "resource_vs_need"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#det_lange_tidsspennet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: en indikator er nyttig uten å være hele erfaringen.",
+        "thread_ids": [
+          "stigma_vs_support"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#indikatoren_og_hverdagen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: en indikator er nyttig uten å være hele erfaringen.",
+        "thread_ids": [
+          "stigma_vs_support"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#indikatoren_og_hverdagen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: en indikator er nyttig uten å være hele erfaringen.",
+        "thread_ids": [
+          "measurement_vs_lived_experience",
+          "stigma_vs_support"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#indikatoren_og_hverdagen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: en indikator er nyttig uten å være hele erfaringen.",
+        "thread_ids": [
+          "population_vs_individual",
+          "stigma_vs_support"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#indikatoren_og_hverdagen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: universelle og målrettede tiltak løser ulike fordelingsproblemer.",
+        "thread_ids": [
+          "local_context_vs_standardization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#universelt_eller_malrettet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 12, lunch: universelle og målrettede tiltak løser ulike fordelingsproblemer.",
+        "thread_ids": [
+          "local_context_vs_standardization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#universelt_eller_malrettet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: universelle og målrettede tiltak løser ulike fordelingsproblemer.",
+        "thread_ids": [
+          "short_vs_long_horizon",
+          "local_context_vs_standardization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#universelt_eller_malrettet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: universelle og målrettede tiltak løser ulike fordelingsproblemer.",
+        "thread_ids": [
+          "average_vs_distribution",
+          "local_context_vs_standardization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#universelt_eller_malrettet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: et tiltak kan hjelpe og samtidig skape stigma.",
+        "thread_ids": [
+          "participation_vs_topdown"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#tiltaket_som_merker_folk"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: et tiltak kan hjelpe og samtidig skape stigma.",
+        "thread_ids": [
+          "participation_vs_topdown"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#tiltaket_som_merker_folk"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: et tiltak kan hjelpe og samtidig skape stigma.",
+        "thread_ids": [
+          "system_choice_vs_personal_choice",
+          "participation_vs_topdown"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#tiltaket_som_merker_folk"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: et tiltak kan hjelpe og samtidig skape stigma.",
+        "thread_ids": [
+          "prevention_vs_visibility",
+          "participation_vs_topdown"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#tiltaket_som_merker_folk"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: et folkehelseblikk flytter spørsmålet fra skyld til mønster og rammer.",
+        "thread_ids": [
+          "equity_vs_equal_treatment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#folkehelseblikk_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 14, lunch: et folkehelseblikk flytter spørsmålet fra skyld til mønster og rammer.",
+        "thread_ids": [
+          "equity_vs_equal_treatment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#folkehelseblikk_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: et folkehelseblikk flytter spørsmålet fra skyld til mønster og rammer.",
+        "thread_ids": [
+          "resource_vs_need",
+          "equity_vs_equal_treatment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#folkehelseblikk_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 14, evening: et folkehelseblikk flytter spørsmålet fra skyld til mønster og rammer.",
+        "thread_ids": [
+          "universal_vs_targeted",
+          "equity_vs_equal_treatment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_folkehelseblikk.json#folkehelseblikk_som_praksis"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "conditions_vs_blame",
+      "relationship": "levekår mot individualisert skyld",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "5/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "population_vs_individual",
+      "relationship": "befolkningsmønster mot individuell forklaring",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "average_vs_distribution",
+      "relationship": "gjennomsnitt mot fordeling",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "prevention_vs_visibility",
+      "relationship": "forebygging mot krav om synlige hendelser",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "universal_vs_targeted",
+      "relationship": "universell tilgang mot målrettet støtte",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "access_vs_information",
+      "relationship": "praktisk tilgang mot ren informasjon",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "measurement_vs_lived_experience",
+      "relationship": "systemmål mot levd erfaring",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "short_vs_long_horizon",
+      "relationship": "kort rapportperiode mot lang forebyggingshorisont",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "12/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "system_choice_vs_personal_choice",
+      "relationship": "systemvalg mot personlig valg",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "resource_vs_need",
+      "relationship": "lik fordeling mot ulikt behov",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "stigma_vs_support",
+      "relationship": "målrettet støtte mot sosial merking",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "1/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "local_context_vs_standardization",
+      "relationship": "lokal kunnskap mot standardisert kategori",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "2/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "participation_vs_topdown",
+      "relationship": "lokal deltakelse mot ovenfra-definert løsning",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "3/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "equity_vs_equal_treatment",
+      "relationship": "reell mulighet mot identisk tilbud",
+      "beat_refs": [
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening",
+        "4/afternoon",
+        "9/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "rad_ble_til_rammer",
+      "description": "Du begynner å spørre hvilke hverdagsbetingelser et generelt råd forutsetter.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_folkehelseblikk.json#bussruten_og_radet",
+        "data/Civication/narratives/leisure/helse_folkehelseblikk.json#kampanjen_som_ikke_nar_alle"
+      ]
+    },
+    {
+      "id": "gjennomsnitt_ble_til_fordeling",
+      "description": "Et forbedret totalmål føles ikke lenger komplett før du har sett hvem som faktisk fikk gevinsten.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_folkehelseblikk.json#gjennomsnittet_skjuler_forskjellen",
+        "data/Civication/narratives/leisure/helse_folkehelseblikk.json#likt_tilbud_ulikt_utgangspunkt"
+      ]
+    },
+    {
+      "id": "forebygging_fikk_tid",
+      "description": "Du skiller tydeligere mellom fravær av synlig hendelse og fravær av verdi.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_folkehelseblikk.json#det_usynlige_forebyggingsarbeidet",
+        "data/Civication/narratives/leisure/helse_folkehelseblikk.json#det_lange_tidsspennet"
+      ]
+    },
+    {
+      "id": "kartet_fikk_stemme",
+      "description": "Området blir mindre av en kategori og mer et sted der data og lokal kunnskap må møtes.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_folkehelseblikk.json#kartet_og_nabolaget",
+        "data/Civication/narratives/leisure/helse_folkehelseblikk.json#indikatoren_og_hverdagen"
+      ]
+    },
+    {
+      "id": "rettferdighet_ble_til_design",
+      "description": "Du ser likhet, målretting, stigma og behov som konkrete designvalg i stedet for slagord.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_folkehelseblikk.json#universelt_eller_malrettet",
+        "data/Civication/narratives/leisure/helse_folkehelseblikk.json#tiltaket_som_merker_folk",
+        "data/Civication/narratives/leisure/helse_folkehelseblikk.json#folkehelseblikk_som_praksis"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "rad_moter_hverdag",
+      "setup_ref": "1/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "relationships",
+        "knowledge"
+      ]
+    },
+    {
+      "id": "tilgang_moter_deltakelse",
+      "setup_ref": "3/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "community",
+        "reputation"
+      ]
+    },
+    {
+      "id": "gjennomsnitt_moter_fordeling",
+      "setup_ref": "4/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "knowledge",
+        "governance"
+      ]
+    },
+    {
+      "id": "forebygging_moter_tid",
+      "setup_ref": "5/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "governance",
+        "judgment"
+      ]
+    },
+    {
+      "id": "lokalkunnskap_moter_system",
+      "setup_ref": "7/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "community",
+        "knowledge"
+      ]
+    },
+    {
+      "id": "stotte_moter_stigma",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "community"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#bussruten_og_radet",
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#varmen_i_kvartalet",
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#kampanjen_som_ikke_nar_alle",
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#gjennomsnittet_skjuler_forskjellen",
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#det_usynlige_forebyggingsarbeidet",
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#likt_tilbud_ulikt_utgangspunkt",
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#kartet_og_nabolaget",
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#budsjettet_mellom_behov",
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#skolen_jobben_og_boligen",
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#det_lange_tidsspennet",
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#indikatoren_og_hverdagen",
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#universelt_eller_malrettet",
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#tiltaket_som_merker_folk",
+      "data/Civication/narratives/leisure/helse_folkehelseblikk.json#folkehelseblikk_som_praksis"
+    ]
+  }
+}

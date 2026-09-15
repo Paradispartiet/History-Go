@@ -1,0 +1,705 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "helse_folkehelseblikk_stream",
+  "type": "leisure",
+  "title": "Folkehelseblikk",
+  "sociological_theme": "levekar_forebygging_systemvalg_fordeling_og_befolkningsperspektiv",
+  "applies_when": {
+    "any_tags": [
+      "helse:folkehelseblikk"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "leisure",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "bussruten_og_radet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Nabolaget",
+      "subject": "Et godt råd virker ulikt når hverdagen er ulik",
+      "situation": [
+        "En samtale om helse ender raskt i et enkelt råd om å bevege seg mer i hverdagen.",
+        "En nabo peker på at arbeidstid, transport, omsorgsansvar og avstand til trygge uteområder gjør samme råd svært forskjellig å følge.",
+        "Et folkehelseblikk spør derfor ikke bare hva individet velger, men hvilke rammer valget skjer innenfor."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta både rådet og hverdagsbetingelsene med når du forklarer hvorfor atferd varierer.",
+          "effect": 1,
+          "tags": [
+            "conditions_vs_blame_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "Forklar forskjellen først og fremst med at noen mennesker bare prioriterer helse dårligere.",
+          "effect": -1,
+          "tags": [
+            "conditions_vs_blame_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_conditions_seen"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "varmen_i_kvartalet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Miljøet fordeler belastning før noen rekker å velge",
+      "situation": [
+        "En varm uke rammer et tett område hardere enn et grønnere område med skygge og bedre lufting.",
+        "Diskusjonen handler først om hvem som burde ha planlagt dagen sin bedre.",
+        "Forskjellen viser hvordan fysiske omgivelser kan fordele risiko og handlingsrom på befolkningsnivå."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se på boligmiljø, skygge, tilgang til kjølige rom og hvem som faktisk kan endre dagsrytmen.",
+          "effect": 1,
+          "tags": [
+            "environment_distribution_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "Behandle varmen som det samme problemet for alle fordi temperaturen måles likt.",
+          "effect": -1,
+          "tags": [
+            "environment_distribution_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_environment"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kampanjen_som_ikke_nar_alle",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Tallene",
+      "subject": "Informasjon er ikke det samme som tilgang",
+      "situation": [
+        "En forebyggingskampanje er tydelig, men deltakelsen varierer sterkt mellom grupper.",
+        "Noen konkluderer med at de som ikke deltar, må ha oversett eller avvist budskapet.",
+        "Folkehelsearbeid må også spørre om tid, språk, kostnader, tillit og praktisk tilgang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk barrierene mellom informasjon og faktisk mulighet til å delta.",
+          "effect": 1,
+          "tags": [
+            "access_vs_information_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "Mål kampanjen bare på hvor mange som har sett budskapet.",
+          "effect": -1,
+          "tags": [
+            "access_vs_information_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_access"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjennomsnittet_skjuler_forskjellen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Møtebordet",
+      "subject": "Et bedre gjennomsnitt kan skjule en dårligere fordeling",
+      "situation": [
+        "Et nytt tall viser at et helseutfall har bedret seg i befolkningen samlet.",
+        "Når tallene deles opp, ser du at gevinsten er mye mindre i enkelte grupper.",
+        "Folkehelse handler derfor både om nivå og om hvordan belastning og gevinst fordeles."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vis både gjennomsnittet og fordelingen før du beskriver utviklingen som en suksess.",
+          "effect": 1,
+          "tags": [
+            "average_vs_distribution_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "Bruk bare totalgjennomsnittet fordi det er enklest å sammenligne over tid.",
+          "effect": -1,
+          "tags": [
+            "average_vs_distribution_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_distribution"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_usynlige_forebyggingsarbeidet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Nabolaget",
+      "subject": "Forebygging blir ofte minst synlig når den virker",
+      "situation": [
+        "En ordning har som mål å redusere problemer før de oppstår.",
+        "Når ingenting dramatisk skjer, blir det vanskelig å peke på én konkret hendelse som beviser verdien.",
+        "Forebygging konkurrerer derfor ofte med tiltak som gir raskere og mer synlige resultater."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder tiltaket over tid og bruk relevante befolkningsmål i stedet for bare synlige enkelthendelser.",
+          "effect": 1,
+          "tags": [
+            "prevention_visibility_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "Avslutt tiltaket fordi fraværet av dramatiske hendelser gjør effekten umulig å se.",
+          "effect": -1,
+          "tags": [
+            "prevention_visibility_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_prevention_time"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "likt_tilbud_ulikt_utgangspunkt",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Lik behandling kan gi ulikt resultat når utgangspunktet er ulikt",
+      "situation": [
+        "Et tilbud gis likt til alle, og det ser derfor rettferdig ut på papiret.",
+        "Noen grupper har likevel langt høyere terskler for å bruke tilbudet.",
+        "Et folkehelseblikk skiller mellom at alle får det samme og at alle faktisk får rimelig mulighet til å dra nytte av det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder om utformingen må justeres etter behov og barrierer uten å gjøre grupper til stereotyper.",
+          "effect": 1,
+          "tags": [
+            "equity_vs_equal_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "Kall ordningen rettferdig bare fordi alle formelt får identisk tilbud.",
+          "effect": -1,
+          "tags": [
+            "equity_vs_equal_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_equity"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kartet_og_nabolaget",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Tallene",
+      "subject": "Et områdekart trenger lokal kunnskap",
+      "situation": [
+        "Et kart peker ut et område som statistisk utsatt.",
+        "Lokale beboere sier at kartet blander svært ulike gater, møteplasser og hverdagsmønstre.",
+        "Tall kan vise et mønster uten å forklare hele stedet som produserer det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk statistikken sammen med lokal kunnskap og vær tydelig på skalaen i dataene.",
+          "effect": 1,
+          "tags": [
+            "local_context_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "La kartets kategori bli hele forklaringen på hvordan området fungerer.",
+          "effect": -1,
+          "tags": [
+            "local_context_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_local_context"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "budsjettet_mellom_behov",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Møtebordet",
+      "subject": "Ressurser fordeles gjennom systemvalg",
+      "situation": [
+        "Et begrenset budsjett skal fordeles mellom flere forebyggende tiltak.",
+        "Alle tiltakene kan forsvares, men behov, rekkevidde og effekt er ulikt fordelt.",
+        "Folkehelseblikket gjør prioriteringen synlig som et systemvalg, ikke som en naturgitt konsekvens."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør kriteriene for behov, effekt og fordeling eksplisitte før prioriteringen.",
+          "effect": 1,
+          "tags": [
+            "resource_vs_need_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "Fordel likt mellom tiltakene for å unngå å diskutere forskjeller i behov.",
+          "effect": -1,
+          "tags": [
+            "resource_vs_need_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_resource_choice"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "skolen_jobben_og_boligen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Nabolaget",
+      "subject": "Helse formes også utenfor helsetjenesten",
+      "situation": [
+        "En diskusjon om helse holder seg først til behandling og individuelle vaner.",
+        "Så kommer spørsmål om skolemiljø, arbeid, bolig, økonomi og transport inn i bildet.",
+        "Et folkehelseblikk følger hvordan slike systemer påvirker muligheter og belastninger lenge før noen oppsøker behandling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta med levekår og institusjoner når du forklarer befolkningsforskjeller.",
+          "effect": 1,
+          "tags": [
+            "system_choice_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "Avgrens helse til det som skjer i møtet mellom pasient og helsetjeneste.",
+          "effect": -1,
+          "tags": [
+            "system_choice_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_systems"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_lange_tidsspennet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Forebygging har ofte et annet tidsperspektiv enn politikken",
+      "situation": [
+        "Et tiltak krever flere år før hovedgevinsten kan vurderes skikkelig.",
+        "Samtidig etterspørres resultater innen neste rapportperiode.",
+        "Kortsiktig styring og langsiktig forebygging kan derfor måle verdi på helt ulike tidsskalaer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom tidlige prosessmål og den langsiktige effekten tiltaket faktisk er laget for.",
+          "effect": 1,
+          "tags": [
+            "short_vs_long_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "Døm tiltaket på de raskeste tallene selv om hovedvirkningen kommer senere.",
+          "effect": -1,
+          "tags": [
+            "short_vs_long_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_time_horizon"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "indikatoren_og_hverdagen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Tallene",
+      "subject": "En indikator er nyttig uten å være hele erfaringen",
+      "situation": [
+        "Et systemmål ser stabilt ut, men mennesker i området beskriver en tydelig forverring i hverdagen.",
+        "Det er fristende enten å avvise erfaringene eller å kaste bort indikatoren.",
+        "Folkehelseblikket må kunne holde måling og levd erfaring sammen uten å late som de er samme type kunnskap."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk hvorfor indikatoren og erfaringene peker ulikt og hva hver av dem faktisk måler.",
+          "effect": 1,
+          "tags": [
+            "measurement_vs_lived_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "Velg den kilden som best passer historien du allerede ønsker å fortelle.",
+          "effect": -1,
+          "tags": [
+            "measurement_vs_lived_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_measurement"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "universelt_eller_malrettet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Møtebordet",
+      "subject": "Universelle og målrettede tiltak løser ulike fordelingsproblemer",
+      "situation": [
+        "Et nytt forebyggende tiltak kan tilbys alle eller prioriteres sterkere mot grupper med høyere belastning.",
+        "Det finnes ikke én automatisk løsning som alltid er mest rettferdig.",
+        "Valget påvirker både rekkevidde, stigma, ressursbruk og hvor mye ulikhet tiltaket faktisk reduserer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder en kombinasjon der bred tilgang kan suppleres med ekstra støtte etter behov.",
+          "effect": 1,
+          "tags": [
+            "universal_vs_targeted_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "Velg prinsipp bare ut fra om ordningen høres mest lik eller mest målrettet ut.",
+          "effect": -1,
+          "tags": [
+            "universal_vs_targeted_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_targeting"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tiltaket_som_merker_folk",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Nabolaget",
+      "subject": "Et tiltak kan hjelpe og samtidig skape stigma",
+      "situation": [
+        "Et støtteprogram er utviklet for en gruppe med tydelig høyere belastning.",
+        "Navn, kommunikasjon og rekruttering gjør samtidig deltakerne svært synlige som en problemgruppe.",
+        "Folkehelsearbeid må vurdere både nytte og den sosiale betydningen tiltaket produserer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Redesign tiltaket slik at støtte kan gis uten unødvendig merking og identitetskostnad.",
+          "effect": 1,
+          "tags": [
+            "stigma_vs_support_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "Se bort fra stigma fordi hensikten med tiltaket er god.",
+          "effect": -1,
+          "tags": [
+            "stigma_vs_support_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_stigma"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "folkehelseblikk_som_praksis",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Et folkehelseblikk flytter spørsmålet fra skyld til mønster og rammer",
+      "situation": [
+        "Etter flere runder med levekår, forebygging og systemvalg merker du at spørsmålene dine har endret seg.",
+        "Du ser oftere etter hvem som har handlingsrom, hvem som møter barrierer, hvordan gevinster fordeles og hvilke valg institusjoner gjør.",
+        "Folkehelseblikket avslutter ikke individuell betydning, men setter individet inn i befolkning, sted og system."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold en vane for å skille individuelle valg fra strukturelle rammer og se hvordan de virker sammen.",
+          "effect": 1,
+          "tags": [
+            "population_practice_deliberate",
+            "public_health_perspective",
+            "structural_context"
+          ],
+          "feedback": "Du holder individ, fordeling og systembetingelser i samme analyse."
+        },
+        {
+          "id": "B",
+          "label": "Bytt én enkel forklaring med en annen og la systemet forklare alt uten individuell variasjon.",
+          "effect": -1,
+          "tags": [
+            "population_practice_drift",
+            "individualization_pressure",
+            "distribution_blindness"
+          ],
+          "feedback": "Forklaringen blir enklere enn fordelingen av handlingsrom og belastning tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "folkehelseblikk_integrated"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
