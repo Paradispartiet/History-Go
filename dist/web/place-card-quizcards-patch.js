@@ -177,12 +177,14 @@
   var QUIZ_CARD_MANIFESTS = Object.freeze([
     "by/manifest.json",
     "historie/manifest.json",
-    "litteratur/manifest.json"
+    "litteratur/manifest.json",
+    "scenekunst/manifest.json"
   ]);
   var FALLBACK_COLLECTIONS = Object.freeze([
     "by/topp10_by_kort_batch1.json",
     "historie/topp10_historie_sted_kort_batch1.json",
-    "litteratur/topp10_lit_kort.json"
+    "litteratur/topp10_lit_kort.json",
+    "scenekunst/dramatikkens_hus_quizkort_v1.json"
   ]);
   function isRecord(value) {
     return Boolean(value && typeof value === "object");
@@ -252,7 +254,7 @@
     ).join(" \xB7 ");
     const title = escapeHTML(cardData.title || "Quizkort");
     const categoryId = normalizeKey(cardData.categoryId);
-    const kicker = categoryId === "by" ? "Byquiz" : categoryId === "historie" ? "Historiequiz" : categoryId === "litteratur" ? "Litteraturquiz" : "Quizkort";
+    const kicker = categoryId === "by" ? "Byquiz" : categoryId === "historie" ? "Historiequiz" : categoryId === "litteratur" ? "Litteraturquiz" : categoryId === "scenekunst" ? "Scenekunstquiz" : "Quizkort";
     const subtitle = escapeHTML(
       cardData.subtitle || `${questions.length} sp\xF8rsm\xE5l \xB7 fasit nederst`
     );

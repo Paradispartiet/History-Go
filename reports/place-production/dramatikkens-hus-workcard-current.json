@@ -2,7 +2,7 @@
   "schema": "history_go_place_production_workcard_v2_5",
   "place_id": "dramatikkens_hus",
   "category": "scenekunst",
-  "status": "in_production",
+  "status": "complete",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Dramatikkens hus har et avgrenset, men rikt dokumentert institusjons-, bygnings- og scenekunstspor som bærer ordinær full Place-produksjon.",
@@ -30,17 +30,17 @@
     "productions"
   ],
   "object_category_boundary": "Sceneriggen og annet fysisk utstyr hører i Objects; navngitte forestillinger hører i Productions.",
-  "active_phase": "quiz_existing_asset_audit",
-  "active_file_scope": "existing quiz audit + full scenekunst fag package + source brief/claim bank + adaptive profile/set count + canonical quiz + Knowledge + dedicated QuizCard/flip",
-  "active_merge_boundary": "story_and_reading_tracks",
+  "active_phase": "complete",
+  "active_file_scope": "Full Dramatikkens hus completion package: canonical Place, four collections, frontImage, Story, four Lesespor, chronology/leksikon, Språkleksikon, curated Fagverk, governed Scenekunst 4×7 quiz, Knowledge synchronization, dedicated QuizCard and generated runtime.",
+  "active_merge_boundary": "governed_scenekunst_quiz_and_final_closeout",
   "branch_status": "agent/dramatikkens-hus-workcard-sync-20260915",
-  "live_status": "foundation_collections_and_front_image_on_main; full_place_not_live",
+  "live_status": "full_place_completion_ready_for_canonical_merge",
   "preserve": {
     "coordinates": "Behold eksisterende verifiserte koordinater med mindre konkret regresjon dokumenteres.",
     "person_anchor": "Anne-May Nilsen beholdes som historisk personanker."
   },
   "source_review": {
-    "status": "passed_for_foundation",
+    "status": "complete",
     "primary_sources": [
       "https://www.dramatikkenshus.no/om-oss",
       "https://www.dramatikkenshus.no/aktuelt/verkstedsguide",
@@ -56,20 +56,11 @@
     "language": "produced_and_registered",
     "fagverk_source": "curated_standard",
     "fagverk_registry": "registered",
-    "quiz_profile": "pending_existing_quiz_audit_and_adaptive_profile_selection",
-    "generated_runtime": "foundation_and_four_collection_runtime_materialized",
-    "exact_head_ci": "place-scoped gates green; global Data checks blocked by pre-existing Tollboden quiz-context drift outside Dramatikkens hus"
+    "quiz_profile": "normal_4x7_materialized_and_governed",
+    "generated_runtime": "full_place_quiz_quizcard_and_place_open_runtime_materialized",
+    "exact_head_ci": "all Dramatikkens-relevant exact-head gates green; global Data checks has only the pre-existing Tollboden quiz-context drift outside Dramatikkens hus"
   },
-  "next_required": [
-    "Regenerate Story/Lesespor runtime and epoke/place indexes for this boundary",
-    "Pass Story/Lesespor exact-head validation and merge this boundary",
-    "Audit all existing Dramatikkens hus quiz assets before profile/set-count selection",
-    "Build canonical quiz production context, full quiz and Knowledge synchronization",
-    "Produce and wire a dedicated QuizCard/flip back for the portrait frontImage",
-    "Regenerate final runtime/indexes and run exact-head place/quiz validation",
-    "Complete manual mobile/desktop flip and final Place QA",
-    "Set production_status/status complete only after final QA"
-  ],
+  "next_required": [],
   "verified_at": "2026-09-15",
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
@@ -200,7 +191,13 @@
     "four_collection_source_materialization_merged",
     "portrait_front_image_merged",
     "placecard_four_collection_runtime_and_places_index_synced",
-    "story_and_reading_tracks_authored"
+    "story_and_reading_tracks_authored",
+    "governed_scenekunst_quiz_4x7_materialized",
+    "knowledge_units_materialized",
+    "dedicated_quizcard_materialized",
+    "generated_runtime_and_place_open_synced",
+    "final_exact_head_place_quiz_gates_passed",
+    "final_place_qa_complete"
   ],
   "notes": [
     "Foundation, four canonical collections, portrait frontImage and PlaceCard runtime/index synchronization are already merged on main.",
@@ -212,5 +209,16 @@
     "frontImage is a real 900x1200 local portrait variant, not a CSS crop or QuizCard.",
     "Remaining canonical work is Story, Lesespor, full quiz, dedicated QuizCard/flip, runtime regeneration and final QA.",
     "Story and four dedicated scenekunst reading tracks are authored on the active branch; generated runtime/index closure remains before this boundary can merge."
-  ]
+  ],
+  "production_verified_at": "2026-09-15",
+  "quiz_profile": "normal_4x7",
+  "fagverk_status": "curated_standard",
+  "chronology_status": "PASS",
+  "story_status": "PASS",
+  "reading_tracks_status": "PASS",
+  "quiz_status": "PASS",
+  "knowledge_status": "PASS",
+  "quizcard_status": "PASS",
+  "runtime_status": "PASS",
+  "canonical_next": null
 }

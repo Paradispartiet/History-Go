@@ -756,12 +756,14 @@ function setPlaceCardQuizImage(card, quizImgEl, place) {
 const PLACE_CARD_QUIZ_CARD_MANIFEST_PATHS = Object.freeze([
   "data/quizcards/by/manifest.json",
   "data/quizcards/historie/manifest.json",
-  "data/quizcards/litteratur/manifest.json"
+  "data/quizcards/litteratur/manifest.json",
+  "data/quizcards/scenekunst/manifest.json"
 ]);
 const PLACE_CARD_QUIZ_CARD_FALLBACK_COLLECTIONS = Object.freeze([
   "by/topp10_by_kort_batch1.json",
   "historie/topp10_historie_sted_kort_batch1.json",
-  "litteratur/topp10_lit_kort.json"
+  "litteratur/topp10_lit_kort.json",
+  "scenekunst/dramatikkens_hus_quizkort_v1.json"
 ]);
 
 let placeCardQuizCollectionsPromise = null;
@@ -889,7 +891,9 @@ function renderPlaceCardQuizData(cardData) {
       ? "Historiequiz"
       : categoryId === "litteratur"
         ? tUI("ui.place.litteratureQuiz", "Litteraturquiz")
-        : "Quizkort";
+        : categoryId === "scenekunst"
+          ? "Scenekunstquiz"
+          : "Quizkort";
 
   const questions = Array.isArray(cardData?.questions) ? cardData.questions : [];
   const optionLetters = ["A", "B", "C", "D", "E", "F"];

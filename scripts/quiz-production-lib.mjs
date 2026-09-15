@@ -375,6 +375,7 @@ export function curriculumIndexes(records) {
   const emner = records.emner?.data || [];
   const fagkart = records.fagkart?.data || {};
   const methods = records.methods?.data || {};
+  const theoryObjects = records.theoryObjects?.data || {};
 
   const modules = asArray(pensum.modules).length
     ? asArray(pensum.modules)
@@ -389,8 +390,23 @@ export function curriculumIndexes(records) {
 
   for (const category of asArray(fagkart.categories)) {
     for (const hook of asArray(category.topic_hooks)) {
-      hooks.push({ ...hook, category_id: category.id });
+      hooks.push({ ...hook, category_id: category.id, theory_source: "fagkart_topic_hook" });
     }
+  }
+  for (const theoryObject of asArray(theoryObjects.theory_objects)) {
+    hooks.push({
+      id: theoryObject.id,
+      title: theoryObject.label,
+      emne_ids: asArray(theoryObject.emne_ids),
+      theory_source: "theory_object",
+      theory_object: theoryObject,
+      canon: {
+        thinkers: asArray(theoryObject.thinkers).map((thinker) => ({
+          ...thinker,
+          id: thinker.id || normalizeSearch(thinker.name).replace(/\s+/gu, "_")
+        }))
+      }
+    });
   }
 
   return {

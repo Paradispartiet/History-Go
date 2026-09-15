@@ -761,7 +761,33 @@
     "supersetQuizMal": "scenekunst/supersetQUIZMAL_scenekunst.json",
     "status": "active_foundation",
     "quizStandard": "../quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
-    "quizQuestionSchema": "../quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    "quizQuestionSchema": "../quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "quizPackageSchema": "../quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+    "quizProduction": {
+      "status": "pilot",
+      "required_inputs": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "theoryObjects",
+        "methods",
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "context_builder": "scripts/build-quiz-production-context.mjs",
+      "profile_system": "adaptive_relative_superset",
+      "package_schema": "quizPackageSchema",
+      "context_artifact_root": "data/quiz/production_context",
+      "targets": {
+        "dramatikkens_hus": {
+          "source_brief": "../quiz/production_briefs/scenekunst/dramatikkens_hus.json",
+          "context_artifact": "../quiz/production_context/scenekunst/dramatikkens_hus.json",
+          "quiz_file": "../quiz/scenekunst/dramatikkens_hus_sets.json"
+        }
+      }
+    },
+    "theoryObjects": "scenekunst/theory_objects_scenekunst_canonical_v1.json"
   },
   "sport": {
     "pensum": "sport/sportpensum_canonical_v4_5.json",

@@ -1,0 +1,460 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "scenekunst",
+  "targetId": "dramatikkens_hus",
+  "profile_hint": "normal",
+  "reviewed_at": "2026-09-15",
+  "review_note": "Offisiell institusjonshistorie, verkstedsguide, kalender, støtteinformasjon og rigg-dokumentasjon bærer en normal 4×7-pakke om mandat, arbeidsprosess, produksjonsvilkår og scenekunstfaglig metode.",
+  "scope": {
+    "place": "Dramatikkens hus",
+    "production_profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "total_questions": 28,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "official": {
+      "url": "https://www.dramatikkenshus.no/om-oss",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Mandat, historikk, lokaler og kapasitet."
+    },
+    "workshop": {
+      "url": "https://www.dramatikkenshus.no/aktuelt/verkstedsguide",
+      "source_type": "official_method_guide",
+      "review_status": "reviewed",
+      "review_note": "Verkstedets roller, formål og skillet mellom arbeidsvisning og ferdig oppsetning."
+    },
+    "rig": {
+      "url": "https://www.dramatikkenshus.no/aktuelt/ny-rigg-flytter-inn-i-hallen",
+      "source_type": "official_technical_update",
+      "review_status": "reviewed",
+      "review_note": "Sceneriggen i Hallen, tidligere bruk og finansiering."
+    },
+    "funding": {
+      "url": "https://www.dramatikkenshus.no/sok-tilskudd",
+      "source_type": "official_support_information",
+      "review_status": "reviewed",
+      "review_note": "Institusjonens støttefunksjon og ressurser for dramatikkutvikling."
+    },
+    "calendar": {
+      "url": "https://www.dramatikkenshus.no/kalender/verksted",
+      "source_type": "official_calendar",
+      "review_status": "reviewed",
+      "review_note": "Verksted og arbeidsvisning som egen aktivitetskategori."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_scenekunst_01_institusjon_historie_infrastruktur",
+      "kur_scenekunst_02_dramaturgi_utover_scenetekst",
+      "kur_scenekunst_03_regi_proveprosess_design",
+      "kur_scenekunst_05_publikum_performance_etikk"
+    ],
+    "emne_ids": [
+      "em_scenekunst_teaterinstitusjon_repertoar",
+      "em_scenekunst_regi_proveprosess_samarbeid",
+      "em_scenekunst_produksjon_arbeid_finansiering",
+      "em_scenekunst_scenografi_lys_lyd_kostyme",
+      "em_scenekunst_arkiv_dokumentasjon_rekonstruksjon",
+      "em_scenekunst_scenetekst_adaptasjon_devising",
+      "em_scenekunst_performance_teori_liveness"
+    ],
+    "topic_hook_ids": [
+      "theory_scenekunst_liveness_mediatization"
+    ],
+    "method_ids": [
+      "met_scenekunst_institusjonsanalyse",
+      "met_scenekunst_proveprosessanalyse",
+      "met_scenekunst_sceneteknisk_dramaturgianalyse",
+      "met_scenekunst_produksjonsanalyse",
+      "met_scenekunst_historisk_kildekritikk",
+      "met_scenekunst_scenetekst_devisinganalyse",
+      "met_scenekunst_forestillingsanalyse"
+    ],
+    "thinker_ids": [
+      "philip_auslander"
+    ],
+    "works": [
+      "Liveness: Performance in a Mediatized Culture"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/scenekunst/dramatikkens_hus_sets.json",
+      "data/quiz/scenekunst/folketeateret_sets.json",
+      "data/quiz/quiz_scenekunst_from_populaerkultur.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen legacy- eller canonical quiz for Dramatikkens hus."
+    },
+    "decisions": [
+      "Behold Folketeateret 1×5 som separat legacy-pakke.",
+      "Produser Dramatikkens hus som første fullt governed scenekunst-pilot med normal 4×7.",
+      "Hold metode og teori til finaldelen."
+    ],
+    "knowledge_migration": "Ingen eldre Dramatikkens-spørsmål å migrere; alle 28 får stabile Scenekunst Knowledge-ID-er."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire læringsjobber dekker institusjonshistorie, verkstedpraksis, produksjonsvilkår/sceneteknikk og metode/teori uten å gjøre huset til et ordinært repertoarteater."
+  },
+  "held_back_candidates": [
+    "Premierehistorikk ved andre teatre som om den tilhørte samme fysiske sted.",
+    "Arbeidsvisninger som ferdige forestillinger.",
+    "Teknisk kapasitet eller tilskuddsnivå som mål på kunstnerisk kvalitet.",
+    "Udokumenterte påstander om publikumsopplevelse eller kunstnerisk intensjon."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Dramatikkens hus holder til i Tøyenbekken 34.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_teaterinstitusjon_repertoar"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Dramatikkens hus har nasjonalt ansvar for utvikling av ny norsk og samisk dramatikk.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_teaterinstitusjon_repertoar"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Dagens institusjon er etterfølgeren til Det Åpne Teater.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_teaterinstitusjon_repertoar"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det Åpne Teater ble etablert som stiftelse i 1986.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_teaterinstitusjon_repertoar"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det Åpne Teater flyttet inn i Tøyenbekken 34 i 1987.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_teaterinstitusjon_repertoar"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bygningen i Tøyenbekken 34 hadde tidligere vært et sveiseverksted.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_teaterinstitusjon_repertoar"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Stiftelsen kjøpte bygningen i 1994 etter rehabilitering og med offentlig støtte.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_teaterinstitusjon_repertoar"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "I 2010 skiftet strategien fra produksjon av forestillinger til utvikling av dramatikk, og institusjonen tok navnet Dramatikkens hus.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_teaterinstitusjon_repertoar"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Verkstedsguiden understreker at et verksted ikke er prøvetid for en ferdig oppsetning.",
+      "source_ids": [
+        "workshop"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_regi_proveprosess_samarbeid"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "I et verksted kan blant andre skuespillere, verkstedleder, dramaturg og teknikere delta.",
+      "source_ids": [
+        "workshop"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_regi_proveprosess_samarbeid"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Et verksted kan avsluttes med en offentlig eller lukket arbeidsvisning.",
+      "source_ids": [
+        "workshop"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_regi_proveprosess_samarbeid"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hallen er rundt 300 kvadratmeter og har 140 sitteplasser.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_scenografi_lys_lyd_kostyme"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Prøvesalen er rundt 70 kvadratmeter og har inntil 70 sitteplasser.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_scenografi_lys_lyd_kostyme"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sceneriggen som kom til Hallen i 2025 hadde tidligere vært brukt av Nationaltheatret i Kanonhallen.",
+      "source_ids": [
+        "rig"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_scenografi_lys_lyd_kostyme"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Arbeidsvisning dokumenterer et utviklingsstadium og må skilles fra en ferdig forestilling.",
+      "source_ids": [
+        "workshop",
+        "calendar"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_regi_proveprosess_samarbeid"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Institusjonens mandat må sammenholdes med dokumentert aktivitet; et utviklingshus kan ikke leses som et ordinært repertoarteater.",
+      "source_ids": [
+        "official",
+        "calendar"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_teaterinstitusjon_repertoar"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Verkstedet utvikler scenetekst gjennom samarbeid mellom flere kunstneriske og tekniske roller.",
+      "source_ids": [
+        "workshop"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_regi_proveprosess_samarbeid"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Strategiskiftet i 2010 endret institusjonen fra en aktør som også produserte forestillinger til et hus med hovedvekt på utvikling av dramatikk.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_teaterinstitusjon_repertoar"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Den nye riggen endrer tekniske arbeidsmuligheter, men teknisk kapasitet er ikke i seg selv bevis på kunstnerisk kvalitet.",
+      "source_ids": [
+        "rig"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_scenografi_lys_lyd_kostyme"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Tilskudd, rom, fagpersoner og teknisk infrastruktur er produksjonsvilkår, ikke estetiske kvalitetsmål.",
+      "source_ids": [
+        "funding",
+        "rig"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_produksjon_arbeid_finansiering"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hallen og Prøvesalen gir ulike skalaer for arbeid og visning uten å bestemme hvilken estetikk som må brukes.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_scenografi_lys_lyd_kostyme"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sceneinstitusjonsanalyse skiller mandat, historikk, organisering og faktisk aktivitet.",
+      "source_ids": [
+        "official",
+        "calendar"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_teaterinstitusjon_repertoar"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Prøveprosessanalyse kan spore dokumenterte endringer, roller og samarbeid gjennom et verksted.",
+      "source_ids": [
+        "workshop"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_regi_proveprosess_samarbeid"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sceneteknisk dramaturgianalyse undersøker hvordan tekniske systemer inngår i romlig og tidslig scenisk organisering.",
+      "source_ids": [
+        "rig"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_scenografi_lys_lyd_kostyme"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Produksjonsanalyse undersøker hvordan ressurser, arbeidsdeling, tid og finansiering gjør scenisk utviklingsarbeid mulig.",
+      "source_ids": [
+        "funding",
+        "rig"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_produksjon_arbeid_finansiering"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Scenekunsthistorisk kildekritikk krever at institusjonens egen historikk behandles som en kilde med formål og begrensninger.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_arkiv_dokumentasjon_rekonstruksjon"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Scenetekst-, adaptasjons- og devisinganalyse kan brukes til å sammenligne tekstversjoner med dokumenterte endringer i verkstedprosessen.",
+      "source_ids": [
+        "workshop"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_scenetekst_adaptasjon_devising"
+    },
+    {
+      "claim_id": "claim_dramatikkens_hus_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Auslanders liveness-perspektiv kan brukes til å undersøke forholdet mellom en arbeidsvisning som live hendelse og senere dokumentasjon uten å gjøre dokumentasjonen identisk med hendelsen.",
+      "source_ids": [
+        "workshop",
+        "calendar"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_scenekunst_performance_teori_liveness"
+    }
+  ]
+}
