@@ -36,18 +36,30 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          command -v convert
+          python -m pip install --disable-pip-version-check 'pillow>=11,<12'
           mkdir -p bilder/kort/people bilder/kort/objects bilder/kort/brands bilder/kort/productions bilder/places
-          convert /tmp/kristin.jpg -auto-orient -resize '800x800^' -gravity center -extent 800x800 -strip -quality 84 bilder/kort/people/kristin_auestad_danielsen.webp
-          convert /tmp/det-aapne.jpg -auto-orient -crop '1300x900+120+500' +repage -resize '900x520^' -gravity center -extent 900x520 -strip -quality 84 bilder/kort/brands/det_aapne_teater.webp
-          convert /tmp/rigg.webp -auto-orient -resize '900x520^' -gravity center -extent 900x520 -strip -quality 84 bilder/kort/objects/dramatikkens_hus_scenerigg_hallen.webp
-          convert /tmp/hunervred.webp -auto-orient -resize '900x520^' -gravity center -extent 900x520 -strip -quality 84 bilder/kort/productions/dramatikkens_hus_hun_er_vred_arg_sint.webp
-          convert /tmp/front.jpg -auto-orient -resize '900x1200^' -gravity center -extent 900x1200 -strip -quality 84 bilder/places/dramatikkens_hus_front_portrait.webp
-          identify bilder/kort/people/kristin_auestad_danielsen.webp
-          identify bilder/kort/brands/det_aapne_teater.webp
-          identify bilder/kort/objects/dramatikkens_hus_scenerigg_hallen.webp
-          identify bilder/kort/productions/dramatikkens_hus_hun_er_vred_arg_sint.webp
-          identify bilder/places/dramatikkens_hus_front_portrait.webp
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageOps
+
+          def load(path):
+              return ImageOps.exif_transpose(Image.open(path)).convert("RGB")
+
+          def fit_save(src, dest, size, *, crop=None, centering=(0.5,0.5), quality=84):
+              im=load(src)
+              if crop is not None:
+                  im=im.crop(crop)
+              out=ImageOps.fit(im,size,method=Image.Resampling.LANCZOS,centering=centering)
+              Path(dest).parent.mkdir(parents=True,exist_ok=True)
+              out.save(dest,"WEBP",quality=quality,method=6)
+              print(dest, out.size, Path(dest).stat().st_size)
+
+          fit_save("/tmp/kristin.jpg","bilder/kort/people/kristin_auestad_danielsen.webp",(800,800),centering=(0.52,0.48))
+          fit_save("/tmp/det-aapne.jpg","bilder/kort/brands/det_aapne_teater.webp",(900,520),crop=(120,500,1420,1400),centering=(0.45,0.42))
+          fit_save("/tmp/rigg.webp","bilder/kort/objects/dramatikkens_hus_scenerigg_hallen.webp",(900,520))
+          fit_save("/tmp/hunervred.webp","bilder/kort/productions/dramatikkens_hus_hun_er_vred_arg_sint.webp",(900,520))
+          fit_save("/tmp/front.jpg","bilder/places/dramatikkens_hus_front_portrait.webp",(900,1200),centering=(0.5,0.5))
+          PY
 
       - name: Commit only normalized assets and remove one-shot workflow
         shell: bash
