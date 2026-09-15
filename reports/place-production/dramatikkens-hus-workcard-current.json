@@ -30,8 +30,8 @@
     "productions"
   ],
   "object_category_boundary": "Sceneriggen og annet fysisk utstyr hører i Objects; navngitte forestillinger hører i Productions.",
-  "active_phase": "foundation_review_and_collection_research",
-  "active_file_scope": "place source, production evidence, leksikon, Språkleksikon, Fagverk binding, then collections/Story/Lesespor/Quiz/QuizCard/images",
+  "active_phase": "foundation_exact_head_validation",
+  "active_file_scope": "foundation sources + production evidence + leksikon + Språkleksikon + Fagverk + generated epoch/place-open",
   "active_merge_boundary": "foundation/evidence",
   "branch_status": "PR",
   "live_status": "not_live",
@@ -51,16 +51,18 @@
   },
   "foundation_status": {
     "description": "produced",
-    "chronology": "produced_8_anchors",
-    "leksikon": "produced",
+    "chronology": "produced_8_anchors_and_materialized",
+    "leksikon": "produced_and_runtime_materialized",
     "language": "produced_and_registered",
     "fagverk_source": "curated_standard",
     "fagverk_registry": "registered",
-    "quiz_profile": "undecided_after_full_source_bank"
+    "quiz_profile": "undecided_after_full_source_bank",
+    "generated_runtime": "materialized",
+    "exact_head_ci": "pending"
   },
   "next_required": [
-    "Close Fagverk registry binding",
-    "Materialize four image-ready collections",
+    "Pass exact-head foundation CI and merge this boundary",
+    "Materialize four image-ready collections: People, Objects, Brands, Productions",
     "Produce genuine Story and Lesespor",
     "Audit existing quiz and select adaptive profile",
     "Produce full quiz and dedicated QuizCard",
