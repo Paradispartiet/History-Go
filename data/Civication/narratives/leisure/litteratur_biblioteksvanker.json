@@ -1,0 +1,705 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "litteratur_biblioteksvanker_stream",
+  "type": "leisure",
+  "title": "Biblioteksvanker",
+  "sociological_theme": "bibliotek_som_offentlig_hverdagssted_tilgang_personvern_tilfeldige_funn_og_grenser_mot_bibliotekfaglig_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "litteratur:biblioteksvanker"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "leisure",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "plassen_med_stikkontakten",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesesalen",
+      "subject": "En fast vane gjør ikke plassen privat",
+      "situation": [
+        "Du kommer til biblioteket og ser at plassen ved stikkontakten er ledig, selv om flere andre tydelig leter etter strøm og arbeidsplass.",
+        "Du sitter ofte akkurat der og kjenner rytmen i rommet godt nok til at plassen nesten føles som din.",
+        "Et offentlig bibliotek blir et hverdagssted nettopp fordi mange kan bruke de samme knappe ressursene uten å eie dem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta plassen hvis du trenger den, men bruke bare det arealet du faktisk trenger og gi rom når andre mangler tilgang.",
+          "effect": 1,
+          "tags": [
+            "shared_space",
+            "access",
+            "public_infrastructure"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Legge veske og jakke utover nabostolen også, siden du kom først og skal sitte lenge.",
+          "effect": -1,
+          "tags": [
+            "resource_capture",
+            "entitlement",
+            "status"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_shared_space"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "boken_du_finner_ved_en_feil",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Hyllene",
+      "subject": "Tilfeldige funn er en annen form for orientering",
+      "situation": [
+        "Du leter etter én bestemt bok, men ender opp med en helt annen fordi den står ved siden av i hylla.",
+        "Du kunne ha søkt deg rett fram digitalt, men nærheten mellom bøker gjorde selve avsporingen verdifull.",
+        "Biblioteksvanking handler også om å la klassifikasjon, fysisk plassering og tilfeldighet åpne spor du ikke planla."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Notere hva som faktisk førte deg til funnet og utforske videre uten å late som systemet eller tilfeldigheten alene garanterer relevans.",
+          "effect": 1,
+          "tags": [
+            "serendipity",
+            "catalogue_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Konkludere med at fysisk browsing alltid gir bedre og friere funn enn katalogsøk og anbefalingssystemer.",
+          "effect": -1,
+          "tags": [
+            "romanticization",
+            "system_overclaim",
+            "taste_status"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_serendipity"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sokeloggen_ved_skranken",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Utlånssonen",
+      "subject": "Det du leser er også privat informasjon",
+      "situation": [
+        "En bekjent står ved selvbetjeningen og har flere titler på skjermen som tydelig handler om et personlig tema.",
+        "Du kjenner personen og kunne lett starte en samtale om bøkene.",
+        "Bibliotekets åpne rom gjør lesing synlig på glimt, men synlighet gir ikke automatisk sosial tillatelse til å spørre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La informasjonen passere med mindre personen selv tar opp temaet.",
+          "effect": 1,
+          "tags": [
+            "reading_privacy",
+            "public_private_leakage",
+            "care"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Nevne at du så titlene fordi det kan være en naturlig inngang til en interessant samtale.",
+          "effect": -1,
+          "tags": [
+            "privacy_drift",
+            "curiosity",
+            "social_pressure"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_reading_privacy"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stillheten_og_barnestemmen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Mellom sonene",
+      "subject": "Biblioteket er flere rom samtidig",
+      "situation": [
+        "Du prøver å lese mens barn og voksne snakker høyt i en nærliggende sone.",
+        "Du vet at biblioteket har både stilleområder og områder der samtale og aktivitet er meningen.",
+        "En erfaren Biblioteksvanker kjenner sonene, men får ikke dermed definere hele huset som lesesal."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Flytte til en roligere sone eller spørre personalet om hvor stillhet faktisk forventes før du korrigerer andre.",
+          "effect": 1,
+          "tags": [
+            "shared_norms",
+            "public_space",
+            "access"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Be gruppen dempe seg fordi bibliotek først og fremst skal være et stille sted for lesing.",
+          "effect": -1,
+          "tags": [
+            "norm_overreach",
+            "gatekeeping",
+            "status"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_noise_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporsmalet_til_bibliotekaren",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Informasjonsskranken",
+      "subject": "Hjelp er ikke personlig forskningsassistanse",
+      "situation": [
+        "Du arbeider med et tema og vet at bibliotekaren sannsynligvis kan hjelpe deg til bedre søkeord og kilder.",
+        "Køen er kort nå, men forespørselen din kan bli omfattende hvis dere først begynner.",
+        "Bibliotekfaglig hjelp er en ressurs, men ikke en ubegrenset personlig tjeneste."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avgrense spørsmålet, forklare hva du allerede har prøvd og følge henvisninger videre selv.",
+          "effect": 1,
+          "tags": [
+            "staff_boundary",
+            "research_help",
+            "reciprocity"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Legge fram hele prosjektet og la bibliotekaren finne de viktigste kildene siden det er nettopp deres kompetanse.",
+          "effect": -1,
+          "tags": [
+            "service_entitlement",
+            "professional_capture",
+            "care_offloading"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_staff_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "notatene_i_den_gamle_boken",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Et eldre eksemplar",
+      "subject": "En bok i samlingen er ikke et arbeidsmateriale du kan forbedre",
+      "situation": [
+        "Du finner blyantnotater i margen på en eldre bok og får lyst til å legge inn en liten korrigering ved en åpenbar feil.",
+        "Du vet ikke om notatene er gamle brukermerker, del av eksemplarets historie eller bare slitasje.",
+        "Som låner kan du observere et materials tilstand uten å bli konservator eller samlingsforvalter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La boka være urørt og varsle personalet hvis du mener tilstanden eller feilen bør vurderes.",
+          "effect": 1,
+          "tags": [
+            "material_boundary",
+            "conservation_boundary",
+            "care"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Skrive en diskret blyantkorrigering siden den kan hjelpe neste leser og lett kan viskes ut.",
+          "effect": -1,
+          "tags": [
+            "handling_overreach",
+            "collection_entitlement",
+            "shortcut"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_material_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ventelisten_pa_den_populare_boken",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Reservasjonssystemet",
+      "subject": "Rettferdig kø er også sosial infrastruktur",
+      "situation": [
+        "En ettertraktet bok har lang venteliste, og en venn tilbyr å låne sitt eksemplar videre til deg før personen leverer det.",
+        "Det virker uskyldig fordi boka uansett er ute av hylla.",
+        "Reservasjonssystemet fordeler en knapp ressurs mellom mange som ikke kjenner hverandre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La vennen levere boka som avtalt og stille deg i den samme køen som andre.",
+          "effect": 1,
+          "tags": [
+            "queue_fairness",
+            "shared_resources",
+            "institutional_trust"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta boka noen dager først og be vennen levere litt senere siden ingen konkret person blir synlig rammet.",
+          "effect": -1,
+          "tags": [
+            "queue_bypass",
+            "entitlement",
+            "invisible_cost"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_hold_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arrangementet_som_tar_over_rommet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Programkvelden",
+      "subject": "Programmering åpner noe og fortrenger noe annet",
+      "situation": [
+        "Biblioteket arrangerer forfattersamtale i et område du vanligvis bruker til arbeid, og flere bord er sperret av.",
+        "Du liker programmet, men ser også brukere som ikke kom for arrangementet og nå mister plass.",
+        "Biblioteket er både kulturarena og hverdagsinfrastruktur, og de to funksjonene konkurrerer noen ganger om samme rom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Akseptere at huset har flere funksjoner og finne alternativ plass, samtidig som du kan gi saklig tilbakemelding hvis mønsteret skaper varige tilgangsproblemer.",
+          "effect": 1,
+          "tags": [
+            "programming",
+            "shared_space",
+            "institutional_tradeoff"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Klage på at arrangementet misbruker bibliotekplassen fordi faste brukere bør ha prioritet foran engangspublikum.",
+          "effect": -1,
+          "tags": [
+            "regular_user_privilege",
+            "gatekeeping",
+            "status"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_program_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gratis_internett_og_lading",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Digitalsonen",
+      "subject": "Biblioteket bærer mer enn bøker",
+      "situation": [
+        "Flere bruker bibliotekets nett, printer, strømuttak og datamaskiner uten å låne noe.",
+        "En bekjent omtaler dem som folk som bare 'henger' og tar plass fra leserne.",
+        "Offentlige bibliotek fungerer også som digital og praktisk infrastruktur for mennesker med svært ulike ressurser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle digital tilgang og opphold som legitime biblioteksfunksjoner så lenge de følger husets regler.",
+          "effect": 1,
+          "tags": [
+            "digital_access",
+            "class_power",
+            "public_infrastructure"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Mene at bok- og studiebruk bør få prioritet fordi det er bibliotekets egentlige kjerne.",
+          "effect": -1,
+          "tags": [
+            "deservingness",
+            "class_gatekeeping",
+            "status"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_digital_access"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_av_den_fulle_lesesalen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Balkongen",
+      "subject": "Et offentlig rom er ikke et anonymt motiv",
+      "situation": [
+        "Fra balkongen ser lesesalen flott ut, og du vil ta et bilde av rommet slik du pleier å oppleve det.",
+        "Flere mennesker er gjenkjennelige ved bordene, noen med dokumenter og skjermer foran seg.",
+        "Arkitektur og stemning kan dokumenteres uten å gjøre andres lese- eller arbeidsliv til ditt innhold."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vente på et utsnitt uten identifiserbare personer eller fotografere på en måte som ikke eksponerer deres aktivitet.",
+          "effect": 1,
+          "tags": [
+            "photo_boundary",
+            "reading_privacy",
+            "public_private_leakage"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta bildet raskt fordi dette er et offentlig rom og ingen er hovedmotivet.",
+          "effect": -1,
+          "tags": [
+            "privacy_drift",
+            "publicity_assumption",
+            "aesthetic_priority"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_photo_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gaven_til_samlingen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Innleveringsskranken",
+      "subject": "Å eie bøker gjør deg ikke til samlingsutvikler",
+      "situation": [
+        "Du rydder hjemme og har flere gode bøker du mener biblioteket burde ha.",
+        "Når personalet sier at de ikke kan love å ta dem inn, blir du overrasket fordi titlene mangler i hylla.",
+        "Biblioteksamlinger formes av plass, innkjøp, etterspørsel, tilstand og faglige prioriteringer du som bruker ikke ser fullt ut."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spørre om gavepraksisen og akseptere at biblioteket kan takke nei eller håndtere materialet på andre måter.",
+          "effect": 1,
+          "tags": [
+            "collection_boundary",
+            "professional_culture",
+            "institutional_process"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Insistere på at bøkene bør tas inn fordi du kjenner både litteraturen og hva lokale lesere mangler.",
+          "effect": -1,
+          "tags": [
+            "collection_authority_claim",
+            "taste_status",
+            "entitlement"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_collection_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stengningen_og_den_siste_timen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Ved utgangen",
+      "subject": "For noen er åpningstid mer enn bekvemmelighet",
+      "situation": [
+        "Det nærmer seg stenging, og du ser hvor ulikt folk reagerer: noen pakker sammen rolig, andre virker som om de mister dagens viktigste oppholdssted.",
+        "Du har selv irritert deg over korte åpningstider, men for deg finnes andre steder å gå.",
+        "Bibliotekets tid, varme, toaletter, strøm og ro har ulik verdi avhengig av hvilke alternativer brukerne har."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La den forskjellen informere hvordan du snakker om tilgang og prioriteringer uten å spekulere i enkeltpersoners liv.",
+          "effect": 1,
+          "tags": [
+            "opening_hours",
+            "class_power",
+            "care"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Tolke situasjonen som bevis på hvem som 'egentlig trenger' biblioteket og argumentere for at deres behov bør gå foran andres.",
+          "effect": -1,
+          "tags": [
+            "paternalism",
+            "deservingness",
+            "status"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_time_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "anbefalingen_som_blir_fasit",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Mellom hyllene",
+      "subject": "Lesererfaring er ikke litterær autoritet",
+      "situation": [
+        "En ny bruker spør hva hen bør lese innen et felt du kjenner svært godt.",
+        "Du har sterke favoritter og vet hvilke bøker som ofte diskuteres, men kjenner lite til personens behov eller lesebakgrunn.",
+        "Biblioteksvanking kan gi bred leseerfaring uten å gjøre deg til bibliotekar, kritiker eller faglig selektør."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spørre hva personen er ute etter og gi noen begrunnede forslag som personlige anbefalinger, ikke som fasit.",
+          "effect": 1,
+          "tags": [
+            "recommendation_boundary",
+            "plural_voice",
+            "epistemic_humility"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gi en rangert liste over de viktigste bøkene og advare mot titler du mener er bortkastet tid.",
+          "effect": -1,
+          "tags": [
+            "taste_hierarchy",
+            "authority_claim",
+            "gatekeeping"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_recommendation_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_biblioteksvanker",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Den vante inngangen",
+      "subject": "Fortrolighet kan bli omsorg eller eierskap",
+      "situation": [
+        "Etter mange besøk kjenner du soner, rytmer, ansatte, hyllesystemer og de små reglene som gjør huset lesbart.",
+        "Erfaringen gir situert kunnskap om stedet, men ikke bibliotekar-, arkivar-, konservator-, katalog-, samlings- eller forskningsmyndighet.",
+        "Spørsmålet er om fortroligheten din gjør et delt offentlig rom lettere å bruke eller om den gjør deg mer tilbøyelig til å behandle det som ditt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke erfaringen til å orientere andre, respektere personvern og dele plass uten å låne profesjonell autoritet.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "public_infrastructure",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker biblioteket som delt offentlig infrastruktur uten å gjøre vane, kunnskap eller nærhet til institusjonen om til særrett eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La langvarig bruk gi vurderingene dine større tyngde når du mener biblioteket prioriterer feil.",
+          "effect": -1,
+          "tags": [
+            "regular_user_status",
+            "authority_pressure",
+            "entitlement"
+          ],
+          "feedback": "Du gjør hverdagsfortrolighet til mer eierskap, rang eller autoritet enn rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bibliotek_practice_reflection"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}

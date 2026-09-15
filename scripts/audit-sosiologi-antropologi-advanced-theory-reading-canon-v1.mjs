@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { audit as auditDomainBindings } from './audit-sosiologi-antropologi-advanced-theory-domain-bindings-v1.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CANON_PATH = 'data/fag/politikk/sosiologi_antropologi/advanced_theory_reading_canon_v1.json';
@@ -42,6 +43,7 @@ export function audit() {
   const theoryUnits = works.flatMap((work) => work.theory_units ?? []);
   const theoryIds = theoryUnits.map((unit) => unit.id);
   const priority = canon.materialization_plan?.priority_order ?? [];
+  const domainBindings = auditDomainBindings();
 
   const gates = {
     schema: canon.schema === 'history_go_sosiologi_antropologi_advanced_theory_reading_canon_v1',
@@ -63,6 +65,7 @@ export function audit() {
     no_parallel_subject: canon.governance?.creates_parallel_subject === false,
     existing_goffman_binding_preserved: canon.governance?.existing_goffman_source_id === 'sat04-goffman-presentation',
     existing_bourdieu_binding_preserved: canon.governance?.existing_bourdieu_source_id === 'sat05-bourdieu-practice',
+    domain_bindings_complete: domainBindings.passed === true,
   };
 
   return {
@@ -78,7 +81,10 @@ export function audit() {
       crossSubjectLinks: works.reduce((sum, work) => sum + (work.cross_subject_links?.length ?? 0), 0),
       gaps: works.filter((work) => work.existing_coverage === 'gap').length,
       existingOrExtendingCoverage: works.filter((work) => work.existing_coverage !== 'gap').length,
+      boundWorks: domainBindings.counts.works,
+      boundTheoryUnits: domainBindings.counts.theories,
     },
+    domainBindings,
     gates,
     passed: Object.values(gates).every(Boolean),
   };

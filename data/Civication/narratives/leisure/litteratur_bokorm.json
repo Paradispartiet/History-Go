@@ -1,0 +1,689 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "litteratur_bokorm_stream",
+  "type": "leisure",
+  "title": "Bokorm",
+  "sociological_theme": "lesing_som_hobby_oppmerksomhet_bokstabel_forbruk_eierskap_status_og_grensen_mot_litteraer_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "litteratur:bokorm"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "bokstabelen_som_anklager",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "leisure"
+      ],
+      "from": "Nattbordet",
+      "subject": "Alle bøkene du ikke har lest",
+      "situation": [
+        "Du har flere bøker liggende på nattbordet enn du realistisk kan lese denne måneden, og hver uleste rygg begynner å føles som en liten påminnelse om noe du ikke har fullført.",
+        "Det som startet som nysgjerrighet har fått et element av plikt: kjøpte bøker, lånte bøker og anbefalinger konkurrerer om samme begrensede fritid.",
+        "Bokorm-identiteten handler om et rikt leseliv, ikke om å bevise verdi gjennom å fullføre alt du har skaffet deg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge én bok å lese nå og la resten være muligheter, ikke gjeld.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "self_compassion",
+            "role_clarity"
+          ],
+          "feedback": "Bokstabelen blir et bibliotek av muligheter i stedet for en resultatliste."
+        },
+        {
+          "id": "B",
+          "label": "Lage en streng plan for å komme ajour før du tillater deg å starte noe nytt.",
+          "effect": -1,
+          "tags": [
+            "completion_pressure",
+            "status_anxiety",
+            "scarcity_mindset"
+          ],
+          "feedback": "Lesingen blir organisert som restanse mer enn som interesse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_stack_boundary"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_boka_du_egentlig_ikke_liker",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Side 137",
+      "subject": "Må du fullføre?",
+      "situation": [
+        "Du har lest godt over hundre sider av en bok du fortsatt ikke liker, men tanken på å legge den bort føles som nederlag.",
+        "Du vet at smak kan endre seg underveis, samtidig som fritiden er knapp og ingen institusjon har gitt deg plikt til å fullføre akkurat denne boka.",
+        "Å avslutte en bok kan være et valg om oppmerksomhet, ikke en dom over egen utholdenhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legge boka bort uten å gjøre det til en moralsk feil, og velge noe du faktisk vil lese.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "autonomy",
+            "taste"
+          ],
+          "feedback": "Du beskytter lesetiden uten å late som alle bøker må fullføres for å telle."
+        },
+        {
+          "id": "B",
+          "label": "Tvinge deg gjennom resten fordi ekte bokormer fullfører det de begynner på.",
+          "effect": -1,
+          "tags": [
+            "identity_pressure",
+            "completionism",
+            "self_punishment"
+          ],
+          "feedback": "Identiteten blir et krav om prestasjon fremfor en praksis du faktisk ønsker."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_abandonment_permission"
+      ],
+      "risk_links": [
+        "stress_risk",
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lesing_som_prokrastinering",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Sofaen",
+      "subject": "Bare ett kapittel til",
+      "situation": [
+        "Du skulle ha gjort en kjedelig, men nødvendig oppgave, og oppdager at du har lest i nesten to timer i stedet.",
+        "Lesing kan være hvile og konsentrasjon, men kan også bli en sosialt pen måte å unngå noe du ikke vil møte.",
+        "Det som er kulturelt verdsatt er ikke automatisk godt i enhver situasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legge inn bokmerket og gjøre den nødvendige oppgaven før du fortsetter.",
+          "effect": 1,
+          "tags": [
+            "self_regulation",
+            "time_boundary",
+            "role_clarity"
+          ],
+          "feedback": "Lesingen får beholde verdien sin uten å bli unnskyldning for alt annet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette litt til fordi lesing tross alt er bedre tidsbruk enn de fleste andre avsporinger.",
+          "effect": -1,
+          "tags": [
+            "avoidance",
+            "moral_licensing",
+            "time_drift"
+          ],
+          "feedback": "Du bruker lesingens status som skjold mot å vurdere hva du faktisk unngår."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_avoidance_boundary"
+      ],
+      "risk_links": [
+        "stress_risk",
+        "responsibility_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_lante_boka_med_brettet_rygg",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En venns bok",
+      "subject": "Det er bare en bok",
+      "situation": [
+        "En venn har lånt deg en bok de er glad i, og du merker at ryggen allerede har fått en knekk i veska di.",
+        "Du selv er lite høytidelig om egne bøker, men eierskap og materialgrenser kan bety noe annet for den som lånte den bort.",
+        "Leseglede gir ingen særrett over andres ting."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si fra om skaden og tilby å erstatte boka hvis vennen ønsker det.",
+          "effect": 1,
+          "tags": [
+            "care",
+            "property_boundary",
+            "accountability"
+          ],
+          "feedback": "Du behandler forskjellen i bokvaner som et eierskapsspørsmål, ikke som smak."
+        },
+        {
+          "id": "B",
+          "label": "Ikke gjøre noe nummer av det; bøker er til for å brukes.",
+          "effect": -1,
+          "tags": [
+            "entitlement",
+            "property_drift",
+            "taste_overreach"
+          ],
+          "feedback": "Din egen holdning til bøker blir gjort til regel for en annens eiendom."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_borrowed_book_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "anbefalingen_som_ble_et_press",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Meldingen fra en venn",
+      "subject": "Har du lest den ennå?",
+      "situation": [
+        "Du anbefalte en roman entusiastisk til en venn, og nå merker du at du spør litt for ofte om de har begynt.",
+        "Anbefalingen var ment som deling av begeistring, men begynner å ligne på et lite krav om at de skal bruke fritiden sin slik du foreslo.",
+        "God smak, sterk entusiasme og lang leseliste gir ingen myndighet over andres oppmerksomhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La anbefalingen være et tilbud og slutte å følge den opp med forventning.",
+          "effect": 1,
+          "tags": [
+            "autonomy",
+            "recommendation_boundary",
+            "care"
+          ],
+          "feedback": "Du lar begeistring være generøs i stedet for styrende."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette å minne litt på den fordi du vet at boka passer dem.",
+          "effect": -1,
+          "tags": [
+            "taste_pressure",
+            "paternalism",
+            "social_pressure"
+          ],
+          "feedback": "Du gjør kjennskap til vennens smak til rett til å disponere tiden deres."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_recommendation_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "telefonen_ved_siden_av_boka",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home",
+        "leisure"
+      ],
+      "from": "Lesestolen",
+      "subject": "Konsentrasjonen sprekker",
+      "situation": [
+        "Du har satt av en time til å lese, men telefonen ligger ved siden av deg og hver varsling river deg ut av teksten.",
+        "Du blir irritert på deg selv og begynner å tolke svak konsentrasjon som tegn på at du ikke lenger er en ordentlig leser.",
+        "Oppmerksomhet er en situert ressurs, ikke et moralsk karaktertrekk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Endre miljøet: legge telefonen bort og lese kortere bolker uten å dømme egen identitet.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "environment_design",
+            "self_compassion"
+          ],
+          "feedback": "Du behandler konsentrasjon som noe som kan støttes praktisk."
+        },
+        {
+          "id": "B",
+          "label": "Tvinge deg gjennom samme oppsett til du beviser at du fortsatt kan konsentrere deg.",
+          "effect": -1,
+          "tags": [
+            "self_punishment",
+            "identity_pressure",
+            "attention_failure"
+          ],
+          "feedback": "Lesetiden blir en test av karakter i stedet for en praksis."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_attention_boundary"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bokkjopet_som_belønning",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "economic",
+        "leisure"
+      ],
+      "from": "Bokhandelen",
+      "subject": "Én til skader vel ikke",
+      "situation": [
+        "Du går inn i bokhandelen uten plan og finner tre bøker du oppriktig har lyst på, selv om økonomien denne uka er stram.",
+        "Bøker føles annerledes enn annet forbruk fordi de forbindes med læring, identitet og fremtidig verdi.",
+        "Kulturell verdi opphever ikke økonomiske grenser eller behovet for å prioritere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge én eller ingen, og la ønskelista ta vare på resten.",
+          "effect": 1,
+          "tags": [
+            "economic_room",
+            "consumption_boundary",
+            "autonomy"
+          ],
+          "feedback": "Du kan ønske deg bøker uten å gjøre kjøpet til bevis på hvem du er."
+        },
+        {
+          "id": "B",
+          "label": "Kjøpe alle tre fordi penger brukt på bøker egentlig er en investering.",
+          "effect": -1,
+          "tags": [
+            "moral_licensing",
+            "consumption",
+            "economic_pressure"
+          ],
+          "feedback": "Du gir bokkjøpet særstatus som kan skjule helt ordinært økonomisk press."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_consumption_boundary"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_klassikeren_du_ikke_forstar",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "En kanonisert bok",
+      "subject": "Hva er det alle andre ser?",
+      "situation": [
+        "Du leser en høyt ansett klassiker og opplever mest avstand, men blir usikker fordi du vet hvor viktig boka regnes som.",
+        "Det er lett å forveksle kanonstatus med krav om en bestemt personlig reaksjon.",
+        "Historisk eller litterær betydning kan være reell uten at din umiddelbare leseopplevelse må være beundring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skille mellom bokas historiske betydning og din egen opplevelse, og være nysgjerrig på begge.",
+          "effect": 1,
+          "tags": [
+            "epistemic_humility",
+            "canon_boundary",
+            "taste"
+          ],
+          "feedback": "Du kan lære om verket uten å late som du føler noe annet enn du gjør."
+        },
+        {
+          "id": "B",
+          "label": "Anta at problemet ligger i at du ikke leser godt nok ennå.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "canon_deference",
+            "self_erasure"
+          ],
+          "feedback": "Kanonens status blir gjort til dom over leseren."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_canon_boundary"
+      ],
+      "risk_links": [
+        "identity_risk",
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "notatene_som_blir_et_prosjekt",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Margene",
+      "subject": "Må alt huskes?",
+      "situation": [
+        "Du har begynt å understreke, føre sitater og skrive notater til nesten alt du leser, og merker at en roman nå tar tre ganger så lang tid.",
+        "Notatene hjelper hukommelsen, men du har også begynt å føle at lesing uten spor er bortkastet.",
+        "En lesepraksis kan være grundig uten at hvert møte med en tekst må omformes til dokumentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge når notater faktisk hjelper, og tillate ren lesing når det er det du vil.",
+          "effect": 1,
+          "tags": [
+            "practice_boundary",
+            "memory",
+            "autonomy"
+          ],
+          "feedback": "Du beholder verktøyet uten å gjøre dokumentasjon til adgangskrav for lesing."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette systematisk; ellers mister du jo alt det viktige senere.",
+          "effect": -1,
+          "tags": [
+            "optimization_pressure",
+            "completionism",
+            "instrumentalization"
+          ],
+          "feedback": "Lesingens verdi blir gjort avhengig av hvor mye som kan arkiveres."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_notes_boundary"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "boka_som_alle_snakkar_om",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalen rundt deg",
+      "subject": "Må du mene noe?",
+      "situation": [
+        "En ny bok diskuteres overalt i miljøet ditt, og du merker at du blir spurt om hva du synes selv om du ikke har lest den.",
+        "Som Bokorm antar andre iblant at du har oversikt eller en informert mening om alt som utgis.",
+        "Å lese mye gir erfaring, men ikke generell kritiker-, ekspert- eller representasjonsmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si tydelig at du ikke har lest boka og derfor ikke har en vurdering av den.",
+          "effect": 1,
+          "tags": [
+            "epistemic_humility",
+            "role_clarity",
+            "source_boundary"
+          ],
+          "feedback": "Du beskytter forskjellen mellom leseridentitet og faglig autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Gi et forsiktig inntrykk basert på anmeldelser og det du har hørt.",
+          "effect": -1,
+          "tags": [
+            "authority_claim",
+            "secondhand_opinion",
+            "status_performance"
+          ],
+          "feedback": "Du lar forventningen om Bokorm-kompetanse presse deg inn i en mening du ikke eier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_authority_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_som_vil_låne_fem_boker",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "home"
+      ],
+      "from": "Bokhylla",
+      "subject": "Kan jeg låne disse?",
+      "situation": [
+        "En venn ser bokhylla di og spør om å få låne fem bøker på én gang.",
+        "Du liker å dele, men flere tidligere utlån har blitt borte i måneder, og noen bøker har personlig eller økonomisk verdi for deg.",
+        "Et hjem med mange bøker er ikke et offentlig bibliotek, og vennskap opphever ikke retten til å sette materielle grenser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Låne ut bare det du faktisk er komfortabel med og være tydelig på hvilke bøker du vil ha tilbake.",
+          "effect": 1,
+          "tags": [
+            "property_boundary",
+            "care",
+            "role_clarity"
+          ],
+          "feedback": "Deling blir frivillig i stedet for en plikt knyttet til identiteten din."
+        },
+        {
+          "id": "B",
+          "label": "Si ja til alle fem fordi det virker smålig å være streng med bøker.",
+          "effect": -1,
+          "tags": [
+            "people_pleasing",
+            "property_drift",
+            "identity_pressure"
+          ],
+          "feedback": "Du lar forventningen om den generøse Bokormen overstyre egne grenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_lending_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "resource_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lesing_i_sosialt_selskap",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En helg med andre",
+      "subject": "Bare ti sider",
+      "situation": [
+        "Du er på besøk hos venner og tar frem boka i en rolig halvtime, men en av dem spøker med at du alltid forsvinner inn i bøker når folk er samlet.",
+        "Lesing kan være legitim alenetid, samtidig som den også kan signalisere avstand hvis ingen vet hva du trenger.",
+        "Privat konsentrasjon og sosial tilstedeværelse må forhandles, ikke rangeres moralsk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du trenger litt alenetid og avtale når du kommer tilbake til fellesskapet.",
+          "effect": 1,
+          "tags": [
+            "communication",
+            "private_time",
+            "relationship_boundary"
+          ],
+          "feedback": "Du gjør behovet forståelig uten å late som lesing alltid skal vinne over samvær."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette å lese; nære venner bør vite at dette bare er sånn du er.",
+          "effect": -1,
+          "tags": [
+            "withdrawal",
+            "identity_shield",
+            "relationship_drift"
+          ],
+          "feedback": "Identiteten brukes som ferdig forklaring i stedet for å forhandle situasjonen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_social_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "leselisten_som_blir_status",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En delt leseliste",
+      "subject": "Hvor mange har du lest?",
+      "situation": [
+        "En vennegjeng deler årets leselister, og tallene begynner raskt å bli sammenlignet.",
+        "Du har lest mange bøker, men merker at du begynner å velge kortere titler fordi det gjør det lettere å holde tritt med andres antall.",
+        "Kvantitet kan være morsom dokumentasjon, men blir fort et statusmål som former selve lesevalgene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle antallet som privat statistikk og velge neste bok uavhengig av tempo og lengde.",
+          "effect": 1,
+          "tags": [
+            "status_boundary",
+            "intrinsic_motivation",
+            "autonomy"
+          ],
+          "feedback": "Målingen får være informasjon uten å bli styrende rangering."
+        },
+        {
+          "id": "B",
+          "label": "Sette et høyere mål for resten av året så du ikke havner bak.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "quantification",
+            "performance_pressure"
+          ],
+          "feedback": "Lesingen begynner å optimaliseres for plassering i en uformell konkurranse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_metric_boundary"
+      ],
+      "risk_links": [
+        "status_risk",
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_bokorm",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Den åpne boka",
+      "subject": "Hva slags leseliv vil du ha?",
+      "situation": [
+        "Etter uker med bokstabler, avbrutte bøker, lån, anbefalinger, notater, kanonpress, økonomi og sosial tid ser du at lesing griper inn i flere deler av livet.",
+        "Bokorm er en valgt hobbyidentitet og praksis, ikke en produktivitetsmåling eller en snarvei til litterær rang.",
+        "Du kan lese mye og dypt uten å få automatisk kritiker-, redaktør-, lærer-, bibliotekar-, forfatter- eller institusjonell myndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta med deg en fast regel videre: beskytt oppmerksomhet, økonomi, eierskap og relasjoner, og la lesingen få være en praksis fremfor en rang.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "role_clarity",
+            "intrinsic_motivation"
+          ],
+          "feedback": "Identiteten blir mer robust fordi den ikke må bevises gjennom antall, fullføring eller autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Bestemme at du må lese mer systematisk og synlig for å fortjene Bokorm-navnet ordentlig.",
+          "effect": -1,
+          "tags": [
+            "status_identity",
+            "performance_pressure",
+            "professional_capture"
+          ],
+          "feedback": "Hobbyen glir tilbake til et statusprosjekt som må dokumenteres og forsvares."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookworm_season_reflection"
+      ],
+      "risk_links": [
+        "status_risk",
+        "stress_risk"
+      ],
+      "links": []
+    }
+  ]
+}

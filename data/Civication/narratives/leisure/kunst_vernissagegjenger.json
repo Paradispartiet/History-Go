@@ -1,0 +1,705 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "kunst_vernissagegjenger_stream",
+  "type": "leisure",
+  "title": "Vernissagegjenger",
+  "sociological_theme": "kunstapninger_invitasjoner_nettverk_status_sosial_kode_privacy_og_grenser_mot_profesjonell_kunstautoritet",
+  "applies_when": {
+    "any_tags": [
+      "kunst:vernissagegjenger"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "leisure",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "invitasjonen_som_ikke_kan_deles",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Innboksen",
+      "subject": "En invitasjon er ikke alltid en åpen lenke",
+      "situation": [
+        "Du får en invitasjon til en liten åpning med begrenset kapasitet, og en bekjent ber deg videresende den.",
+        "Det står ikke tydelig om invitasjonen er personlig eller om den kan deles videre.",
+        "Vernissagekultur fungerer ofte gjennom halvoffentlige grenser som blir tydelige først når noen står i døra."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spørre arrangøren eller bekjenten om rammen før du videresender, og forklare usikkerheten ærlig.",
+          "effect": 1,
+          "tags": [
+            "invitation_boundary",
+            "access",
+            "social_code"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Sende den videre fordi slike invitasjoner vanligvis sirkulerer uformelt uansett.",
+          "effect": -1,
+          "tags": [
+            "entitlement",
+            "guest_list_drift",
+            "status"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_invitation_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ankommer_alene",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Utenfor åpningen",
+      "subject": "Å kjenne kodene er også sosial kapital",
+      "situation": [
+        "Du kommer alene til en åpning der mange allerede står i små grupper og hilser på tvers av rommet.",
+        "Du kjenner flere ansikter, men ingen av samtalene har en tydelig inngang.",
+        "En erfaren Vernissagegjenger kan senke terskelen for andre nettopp fordi de uskrevne kodene ikke lenger føles naturlige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finne en konkret, åpen inngang til samtale og også gjøre plass hvis du ser en annen som står alene.",
+          "effect": 1,
+          "tags": [
+            "social_code",
+            "inclusion",
+            "cultural_capital"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Stille deg med de mest sentrale du kjenner slik at resten av rommet ser at du hører til.",
+          "effect": -1,
+          "tags": [
+            "status_display",
+            "network_position",
+            "exclusion"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_arrival_code"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "navnet_som_apner_rommet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En samtale ved inngangen",
+      "subject": "Navnekunnskap kan være bro eller portvakt",
+      "situation": [
+        "En ny person spør hvem som organiserer utstillingen, og du kjenner både kuratoren og flere av kunstnerne.",
+        "Du merker hvor lett et enkelt svar kan bli en liste over hvem du kjenner personlig.",
+        "På åpninger fungerer navn som orientering, men også som sosial rangering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svare konkret på spørsmålet og bruke navn bare når de faktisk hjelper personen å forstå sammenhengen.",
+          "effect": 1,
+          "tags": [
+            "network_literacy",
+            "status_awareness",
+            "orientation"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Legge til noen personlige forbindelser for å vise at du kjenner feltet fra innsiden.",
+          "effect": -1,
+          "tags": [
+            "name_dropping",
+            "status_anxiety",
+            "gatekeeping"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_name_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kunstneren_mellom_ti_samtaler",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Ved verket",
+      "subject": "Oppmerksomhet gir ikke krav på tid",
+      "situation": [
+        "Kunstneren blir stoppet av stadig nye mennesker og forsøker samtidig å hilse på familie og samarbeidspartnere.",
+        "Du har et spørsmål du gjerne vil stille mens du har sjansen.",
+        "Å være til stede på åpningen gir tilgang til et offentlig møte, ikke krav på en lang eller privat kunstnersamtale."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spørre kort om tidspunktet passer, og akseptere et nei eller et senere svar uten å presse videre.",
+          "effect": 1,
+          "tags": [
+            "artist_boundary",
+            "attention",
+            "respect"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Holde kunstneren i samtalen nå siden dette er nettopp kvelden publikum skal få møte personen.",
+          "effect": -1,
+          "tags": [
+            "attention_claim",
+            "artist_pressure",
+            "entitlement"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_artist_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_fra_rommet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Midt i åpningen",
+      "subject": "Dokumentasjon kan lekke private relasjoner",
+      "situation": [
+        "Du tar et bilde av den fulle åpningen der flere mennesker, samtaler og én tydelig privat melding på en telefon kommer med.",
+        "Bildet fanger stemningen perfekt og du vil poste det mens kvelden fortsatt pågår.",
+        "Vernissagen er offentligere enn en privat fest, men menneskene i rommet er ikke automatisk rekvisitter i din egen dokumentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge et utsnitt som dokumenterer rommet uten unødvendig privat eksponering, eller vente og spørre hvis noen er tydelige hovedpersoner.",
+          "effect": 1,
+          "tags": [
+            "photo_boundary",
+            "public_private_leakage",
+            "care"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Poste bildet fordi alle visste at de var på en offentlig kunståpning.",
+          "effect": -1,
+          "tags": [
+            "privacy_drift",
+            "publicity_assumption",
+            "status"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_photo_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sladderen_om_hvem_som_ikke_ble_invitert",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Bakrommet",
+      "subject": "Sladder organiserer feltet lenge før den blir offentlig",
+      "situation": [
+        "En samtale glir over i hvem som ikke ble invitert, hvem som har mistet en gallerikontakt og hvem som visstnok er ute av en gruppe.",
+        "Du kjenner én av personene det snakkes om og vet at deler av historien er usikker.",
+        "Åpningsmiljøets uformelle informasjon kan ha stor sosial effekt selv når ingen tar ansvar for den."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Markere hva du faktisk vet og la være å sende usikre personopplysninger videre som etablert informasjon.",
+          "effect": 1,
+          "tags": [
+            "gossip_boundary",
+            "reputation",
+            "source_care"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bidra med det du har hørt fra andre fordi alle i gruppen allerede kjenner miljøet og skjønner at det er uformelt.",
+          "effect": -1,
+          "tags": [
+            "rumor_spread",
+            "reputation_risk",
+            "social_pressure"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_gossip_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "introduksjonen_som_skylder_noe",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Et hjørne av rommet",
+      "subject": "En introduksjon er ikke en gjeldskontrakt",
+      "situation": [
+        "En bekjent ber deg introdusere dem til en person du kjenner litt, fordi kontakten kan være nyttig senere.",
+        "Du kan faktisk gjøre introduksjonen, men er usikker på om den andre personen ønsker å bli brukt som nettverksressurs akkurat nå.",
+        "Vernissagen gjør relasjoner synlige, men synlighet er ikke det samme som tilgjengelighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spørre begge om introduksjonen passer og gjøre den uten å love noe på vegne av noen.",
+          "effect": 1,
+          "tags": [
+            "network_reciprocity",
+            "consent",
+            "relationship_boundary"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjøre introduksjonen direkte fordi hele poenget med slike kvelder er å knytte kontakter.",
+          "effect": -1,
+          "tags": [
+            "network_extraction",
+            "social_debt",
+            "entitlement"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_introduction_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arbeidet_bak_serveringen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Etter første rusj",
+      "subject": "Prestisjen bæres av praktiske skift",
+      "situation": [
+        "Glass, garderobe, avfall og publikumsflyt håndteres av mennesker som nesten ingen av gjestene presenterer med navn.",
+        "De synlige kunstsamtalene er avhengige av arbeid som raskt blir usynlig når det fungerer.",
+        "Vernissagekulturen får et tydelig klasse- og arbeidshierarki når noen alltid er vertskap mens andre bare er gjester."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle de praktiske arbeiderne som del av arrangementet, rydde etter deg og kreditere arbeidet når det er relevant.",
+          "effect": 1,
+          "tags": [
+            "invisible_work",
+            "class_power",
+            "care"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Tenke at profesjonelt vertskap nettopp betyr at gjestene ikke trenger å forholde seg til alt det praktiske.",
+          "effect": -1,
+          "tags": [
+            "service_invisibility",
+            "status_hierarchy",
+            "distance"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_invisible_work"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nykommeren_som_spor_hva_man_gjor",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Ved garderoben",
+      "subject": "Uskrevne regler kan forklares uten opptaksprøve",
+      "situation": [
+        "En førstegangsbesøkende spør om man må kjøpe noe, hvor lenge man bør bli og om det er frekt å bare se og gå.",
+        "For deg er rutinene blitt så selvsagte at spørsmålene virker enkle.",
+        "Åpningskulturens sosiale terskel blir lavere når erfaring brukes til orientering i stedet for rang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklare praktisk hva som faktisk gjelder og at det ikke finnes krav om riktig nettverk eller språk for å være der.",
+          "effect": 1,
+          "tags": [
+            "welcoming",
+            "social_code",
+            "access"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gi noen tips om hvem personen bør hilse på og hva man helst ikke bør gjøre hvis man vil passe inn.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_training",
+            "cultural_capital"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_newcomer_access"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samleren_og_prisen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Nær et verk",
+      "subject": "Nærhet til markedet er ikke markedsmyndighet",
+      "situation": [
+        "En kjent samler snakker høyt om at en kunstner er «på vei opp», og en venn spør deg om det betyr at verket er et smart kjøp.",
+        "Du kjenner miljøet og har hørt flere snakke om kunstneren, men du er verken selger, takstperson eller investeringsrådgiver.",
+        "Vernissagekunnskap kan være sosialt presis og økonomisk upålitelig samtidig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skille mellom hva du har observert i miljøet og hva du ikke kan si om pris, verdi eller framtidig avkastning.",
+          "effect": 1,
+          "tags": [
+            "market_boundary",
+            "status",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Si at interessen virker reell og at dette sannsynligvis er et godt tidspunkt å kjøpe hvis vennen allerede liker verket.",
+          "effect": -1,
+          "tags": [
+            "financial_advice",
+            "market_overreach",
+            "status"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_market_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kritikken_som_blir_persondom",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "På vei ut",
+      "subject": "Smak trenger ikke bli sosial rangering",
+      "situation": [
+        "På vei ut blir samtalen hard: noen kaller utstillingen tom hype, andre mener kritikerne bare ikke forstår feltet.",
+        "Uenigheten går raskt fra verk og kuratering til hvem som har god nok smak.",
+        "Vernissagegjengerens sosiale erfaring kan enten gjøre kritikken mer konkret eller gjøre smak til medlemsbevis."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakke om konkrete verk, valg og argumenter uten å rangere menneskene etter hvor sofistikerte de er.",
+          "effect": 1,
+          "tags": [
+            "criticism",
+            "plural_voice",
+            "status_awareness"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Påpeke at noe av motstanden åpenbart kommer fra folk som ikke kjenner miljøet godt nok.",
+          "effect": -1,
+          "tags": [
+            "taste_hierarchy",
+            "gatekeeping",
+            "status"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_taste_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "etterfesten_og_den_private_adressen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "På vei videre",
+      "subject": "Samtalen fortsetter, men rommet skifter karakter",
+      "situation": [
+        "Etter åpningen går noen videre til en privat adresse, og du får stedet i en gruppechat.",
+        "En annen gjest vil bli med og ber deg sende adressen.",
+        "Overgangen fra offentlig arrangement til privat samling endrer samtykke- og adgangsgrensen selv om mange av de samme menneskene er med."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekke med verten eller den som inviterte før du deler adressen videre.",
+          "effect": 1,
+          "tags": [
+            "private_boundary",
+            "invitation",
+            "public_private_leakage"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Sende adressen siden personen allerede var del av åpningen og kjenner flere som skal dit.",
+          "effect": -1,
+          "tags": [
+            "address_sharing",
+            "entitlement",
+            "social_pressure"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_afterparty_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kan_du_hjelpe_til_pa_apningen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En arrangør",
+      "subject": "Et enkelt skift skaper ikke en fagrolle",
+      "situation": [
+        "Et lite visningssted spør om du kan ta et betalt skift med garderobe, publikumsflyt og rydding på en kommende åpning.",
+        "Du vil være bak disken og få mer intern tilgang enn vanlig, men oppgavene gir ingen kuratorisk, salgs-, proveniens- eller kunstnerisk myndighet.",
+        "Her møtes sosial livsposisjon og levevei uten at de bør bli samme rolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta skiftet med tydelig praktisk scope og sende faglige eller salgsrelaterte spørsmål videre til riktig person.",
+          "effect": 1,
+          "tags": [
+            "bounded_gig",
+            "livelihood_boundary",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke skiftet til å presentere deg som del av stedets faglige team siden gjestene uansett vil oppfatte deg som representant.",
+          "effect": -1,
+          "tags": [
+            "career_confusion",
+            "authority_overreach",
+            "status"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_shift_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_vernissagegjenger",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Den siste åpningen",
+      "subject": "Nettverk kan være infrastruktur eller rang",
+      "situation": [
+        "Etter mange åpninger vet du når folk kommer, hvem som kjenner hvem og hvilke koder som avgjør om et rom oppleves åpent.",
+        "Erfaringen gir sosial kompetanse, men ikke automatisk kurator-, gallerist-, kunsthandler-, kritiker- eller institusjonell myndighet.",
+        "Spørsmålet er om nettverket ditt gjør rommet mer lesbart og gjensidig eller bare gjør din egen posisjon mer synlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke erfaringen til å senke terskler, respektere private grenser og holde sosial kjennskap adskilt fra faglig og økonomisk autoritet.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "network_care",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaringen din til å gjøre åpningskulturen mer gjensidig og lesbar uten å gjøre sosial tilgang om til profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjøre nettverket mer strategisk slik at synlighet og tilgang gradvis gir vurderingene dine større tyngde.",
+          "effect": -1,
+          "tags": [
+            "status_identity",
+            "network_power",
+            "authority_pressure"
+          ],
+          "feedback": "Du sikrer posisjon eller tempo, men lar nettverk, status eller privat nærhet få mer makt enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vernissage_practice_reflection"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}

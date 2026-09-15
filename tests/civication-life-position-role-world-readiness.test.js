@@ -25,15 +25,15 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 41,
-  needs_authored_depth: 118,
+  ready: 46,
+  needs_authored_depth: 113,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 41);
+assert.equal(audit.summary.completed_life_position_role_worlds, 46);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 41);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 41);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 46);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 46);
 assert.equal(audit.first_ready, null);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
@@ -262,6 +262,61 @@ assert.deepEqual(gatekunstjeger.evidence.exact_source_refs, [
 ]);
 assert.ok(!(audit.queue || []).some((row) => row.key === 'kunst/gatekunstjeger'));
 
+const vernissagegjenger = audit.positions.find((row) => row.key === 'kunst/vernissagegjenger');
+assert.ok(vernissagegjenger);
+assert.equal(vernissagegjenger.classification, 'ready');
+assert.equal(vernissagegjenger.role_world_status, 'role_world_complete');
+assert.equal(vernissagegjenger.role_world_path, 'data/Civication/roleWorlds/kunst/kunst_vernissagegjenger.json');
+assert.equal(vernissagegjenger.priority_score, 405);
+assert.equal(vernissagegjenger.authored_depth.exact_source_ref_count, 1);
+assert.equal(vernissagegjenger.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(vernissagegjenger.evidence.exact_source_refs, ['data/Civication/narratives/leisure/kunst_vernissagegjenger.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'kunst/vernissagegjenger'));
+
+const biblioteksvanker = audit.positions.find((row) => row.key === 'litteratur/biblioteksvanker');
+assert.ok(biblioteksvanker);
+assert.equal(biblioteksvanker.classification, 'ready');
+assert.equal(biblioteksvanker.role_world_status, 'role_world_complete');
+assert.equal(biblioteksvanker.role_world_path, 'data/Civication/roleWorlds/litteratur/litteratur_biblioteksvanker.json');
+assert.equal(biblioteksvanker.priority_score, 405);
+assert.equal(biblioteksvanker.authored_depth.exact_source_ref_count, 1);
+assert.equal(biblioteksvanker.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(biblioteksvanker.evidence.exact_source_refs, ['data/Civication/narratives/leisure/litteratur_biblioteksvanker.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'litteratur/biblioteksvanker'));
+
+const bokklubbmenneske = audit.positions.find((row) => row.key === 'litteratur/bokklubbmenneske');
+assert.ok(bokklubbmenneske);
+assert.equal(bokklubbmenneske.classification, 'ready');
+assert.equal(bokklubbmenneske.role_world_status, 'role_world_complete');
+assert.equal(bokklubbmenneske.role_world_path, 'data/Civication/roleWorlds/litteratur/litteratur_bokklubbmenneske.json');
+assert.equal(bokklubbmenneske.priority_score, 405);
+assert.equal(bokklubbmenneske.authored_depth.exact_source_ref_count, 1);
+assert.equal(bokklubbmenneske.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(bokklubbmenneske.evidence.exact_source_refs, ['data/Civication/narratives/leisure/litteratur_bokklubbmenneske.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'litteratur/bokklubbmenneske'));
+
+const bokorm = audit.positions.find((row) => row.key === 'litteratur/bokorm');
+assert.ok(bokorm);
+assert.equal(bokorm.classification, 'ready');
+assert.equal(bokorm.role_world_status, 'role_world_complete');
+assert.equal(bokorm.role_world_path, 'data/Civication/roleWorlds/litteratur/litteratur_bokorm.json');
+assert.equal(bokorm.priority_score, 405);
+assert.equal(bokorm.authored_depth.exact_source_ref_count, 1);
+assert.equal(bokorm.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(bokorm.evidence.exact_source_refs, ['data/Civication/narratives/leisure/litteratur_bokorm.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'litteratur/bokorm'));
+
+const smaforlagsnerd = audit.positions.find((row) => row.key === 'litteratur/smaforlagsnerd');
+assert.ok(smaforlagsnerd);
+assert.equal(smaforlagsnerd.classification, 'ready');
+assert.equal(smaforlagsnerd.role_world_status, 'role_world_complete');
+assert.equal(smaforlagsnerd.role_world_path, 'data/Civication/roleWorlds/litteratur/litteratur_smaforlagsnerd.json');
+assert.equal(smaforlagsnerd.priority_score, 405);
+assert.equal(smaforlagsnerd.authored_depth.exact_source_ref_count, 1);
+assert.equal(smaforlagsnerd.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(smaforlagsnerd.evidence.exact_source_refs, ['data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'litteratur/smaforlagsnerd'));
+
 assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjenner','film_tv/filmklubbmenneske'].includes(row.key)),
   'completed life-position worlds must leave the readiness queue');
 assert.ok((audit.queue || []).every((row) => row.classification !== 'not_a_standalone_world'));
@@ -273,4 +328,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 41 ready / 118 authored-depth / 40 not-standalone; 41 complete / no pending-ready');
+console.log('civication life-position Role World readiness v2 ok: 46 ready / 113 authored-depth / 40 not-standalone; 46 complete / no pending-ready');

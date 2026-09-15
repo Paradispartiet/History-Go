@@ -1,0 +1,694 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "litteratur_smaforlagsnerd_stream",
+  "type": "leisure",
+  "title": "Småforlagsnerd",
+  "sociological_theme": "smaforlag_tidsskrift_opplesning_nisjedistribusjon_kulturell_status_okonomi_tilgang_og_grensen_mot_redaksjonell_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "litteratur:smaforlagsnerd"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "utgivelsen_som_ingen_har_stilt_ut",
+      "from": "Den nederste hylla",
+      "subject": "Boka som ikke fikk frontplass",
+      "situation": [
+        "Du finner en ny utgivelse fra et lite forlag, men den står nederst i en sidehylle mens de store lanseringene fyller bordene ved inngangen.",
+        "Du liker å følge bøker som ikke automatisk får distribusjon, presse og synlighet, men merker hvor lett liten synlighet kan bli tolket som et kvalitetsstempel i motsatt retning.",
+        "Småforlagsnerd-identiteten handler om oppmerksomhet og nysgjerrighet, ikke om å anta at det oversette alltid er bedre enn det synlige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lese omtale og utdrag før du bestemmer deg, og skille svak distribusjon fra automatisk høy kvalitet.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "distribution",
+            "role_clarity"
+          ],
+          "feedback": "Du lar begrenset synlighet være et vilkår å undersøke, ikke et kvalitetsbevis."
+        },
+        {
+          "id": "B",
+          "label": "Kjøpe boka først og fremst fordi den virker oversett og dermed mer autentisk.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "romanticization",
+            "shortcut"
+          ],
+          "feedback": "Det marginale blir et statussignal i stedet for en invitasjon til faktisk lesing."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_visibility_boundary"
+      ],
+      "risk_links": [
+        "status_risk",
+        "identity_risk"
+      ],
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    },
+    {
+      "id": "tidsskriftet_du_bare_kjenner_pa_navnet",
+      "from": "Tidsskrifthyllen",
+      "subject": "Navnet du bruker som referanse",
+      "situation": [
+        "Et litterært tidsskrift dukker opp i samtalen, og du merker at du kjenner navnet, miljøet og ryktet bedre enn du kjenner de faktiske tekstene.",
+        "I små litterære miljøer kan kjennskap til titler, redaktører og lanseringer fungere som sosial valuta selv når lesingen er tynn.",
+        "Kunnskapsidentiteten blir mer troverdig når du skiller mellom det du faktisk har lest og det du bare vet eksisterer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du kjenner tidsskriftet, men ikke nummeret, og spørre hva de faktisk likte i det.",
+          "effect": 1,
+          "tags": [
+            "epistemic_humility",
+            "reading",
+            "conversation"
+          ],
+          "feedback": "Du beholder nysgjerrigheten uten å låne autoritet fra navnekunnskap."
+        },
+        {
+          "id": "B",
+          "label": "Snakke som om du kjenner profilen i detalj fordi du har fulgt miljøet lenge.",
+          "effect": -1,
+          "tags": [
+            "borrowed_authority",
+            "reputation",
+            "status"
+          ],
+          "feedback": "Sceneorientering glir over i en påstått lesekunnskap du ikke har."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_firsthand_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "identity_risk"
+      ],
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    },
+    {
+      "id": "opplesningen_med_tolvt_tilhorere",
+      "from": "Det lille rommet",
+      "subject": "Når tolv mennesker er hele publikum",
+      "situation": [
+        "Du er på en opplesning der det sitter tolv personer i rommet, inkludert flere som kjenner hverandre fra før.",
+        "Den lille skalaen gjør arrangementet intenst og nærværende, men kan også vekke en trang til å måle verdi gjennom hvor hemmelig eller eksklusivt det føles.",
+        "Et lite publikum kan være økonomisk sårbart og kunstnerisk sterkt samtidig; størrelsen alene avgjør ingen av delene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Være til stede i teksten og samtalen uten å gjøre publikumstallet til bevis på eksklusivitet.",
+          "effect": 1,
+          "tags": [
+            "presence",
+            "public_attention",
+            "care"
+          ],
+          "feedback": "Du lar nærheten være konkret uten å romantisere litenhet."
+        },
+        {
+          "id": "B",
+          "label": "Fortelle andre at dette er den typen arrangement man må være på før alle andre oppdager det.",
+          "effect": -1,
+          "tags": [
+            "insider_status",
+            "scarcity",
+            "reputation"
+          ],
+          "feedback": "Arrangementet blir materiale for egen posisjonering."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_room_scale_boundary"
+      ],
+      "risk_links": [
+        "status_risk",
+        "reputation_risk"
+      ],
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    },
+    {
+      "id": "frakten_som_koster_nesten_som_boka",
+      "from": "Nettbutikken",
+      "subject": "Støtte har også en pris",
+      "situation": [
+        "Du vil bestille en bok direkte fra et lite forlag, men frakten gjør at totalprisen blir langt høyere enn du hadde tenkt.",
+        "Direktekjøp kan gi mer av inntekten til den lille aktøren, men økonomien din blir ikke mindre virkelig av den grunn.",
+        "Å følge småforlag er ikke en moralsk plikt til å kjøpe alt du heier på."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekke bibliotek, lokal bokhandel eller samkjøp og støtte innenfor det du faktisk har råd til.",
+          "effect": 1,
+          "tags": [
+            "economic_room",
+            "support",
+            "resource_awareness"
+          ],
+          "feedback": "Støtte blir en praksis med grenser, ikke en lojalitetstest."
+        },
+        {
+          "id": "B",
+          "label": "Bestille likevel fordi det føles feil å ikke støtte et lite forlag direkte.",
+          "effect": -1,
+          "tags": [
+            "economic_pressure",
+            "loyalty",
+            "scarcity_mindset"
+          ],
+          "feedback": "Kulturell sympati blir gjort om til privat betalingsplikt."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_budget_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "stress_risk"
+      ],
+      "time_slot": [
+        "home",
+        "leisure"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    },
+    {
+      "id": "forlaget_som_driver_pa_fritiden",
+      "from": "Samtalen etterpå",
+      "subject": "Arbeidet bak den lille katalogen",
+      "situation": [
+        "En forlagsredaktør forteller at mye av arbeidet skjer på kvelder og helger ved siden av annen inntekt.",
+        "Det er lett å romantisere entusiasmen som gjør små utgivelser mulig, men redigering, søknader, logistikk, honorarer og distribusjon er fortsatt arbeid.",
+        "Småforlagsnerden kan se og verdsette innsatsen uten å gjøre underbetaling og usynlig arbeid til en estetikk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Anerkjenne arbeidsmengden og spørre hvordan prosjektet faktisk bæres økonomisk uten å forutsette at lidenskap løser alt.",
+          "effect": 1,
+          "tags": [
+            "invisible_work",
+            "precarity",
+            "care"
+          ],
+          "feedback": "Du ser både entusiasmen og kostnaden den kan skjule."
+        },
+        {
+          "id": "B",
+          "label": "Si at det er nettopp denne kompromissløse dugnadsånden som gjør småforlag ekte.",
+          "effect": -1,
+          "tags": [
+            "romanticization",
+            "precarity",
+            "status"
+          ],
+          "feedback": "Sårbare arbeidsvilkår blir omgjort til kvalitetsmerke."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_labor_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "responsibility_risk"
+      ],
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    },
+    {
+      "id": "den_nye_stemmen_du_vil_oppdage_forst",
+      "from": "Lanseringslista",
+      "subject": "Først ute",
+      "situation": [
+        "Du får tips om en debutant fra et lite forlag og kjenner den umiddelbare lysten til å oppdage stemmen før den blir bredt kjent.",
+        "Nysgjerrighet kan drive lesing, men ønsket om å være tidlig ute kan også gjøre forfatteren til råstoff for egen smakstatus.",
+        "Det er forskjell på å gi oppmerksomhet tidlig og å kreve eierskap til oppdagelsen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lese teksten på egne premisser og anbefale den uten å gjøre hvor tidlig du var ute til hovedpoenget.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "reader_identity",
+            "public_attention"
+          ],
+          "feedback": "Oppdagelsen forblir knyttet til teksten, ikke til rangeringen av lesere."
+        },
+        {
+          "id": "B",
+          "label": "Markere tydelig at du fulgte forfatteren før omtaler og priser kom.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "discovery_claim",
+            "reputation"
+          ],
+          "feedback": "Forfatterens arbeid blir bevis på din egen forutseende smak."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_discovery_boundary"
+      ],
+      "risk_links": [
+        "status_risk",
+        "reputation_risk"
+      ],
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    },
+    {
+      "id": "forhandsbestillingen_som_blir_lojalitetstest",
+      "from": "Nyhetsbrevet",
+      "subject": "Bestill nå hvis du mener alvor",
+      "situation": [
+        "Et lite forlag åpner forhåndssalg for en bok som skal finansiere deler av trykkingen, og du kjenner flere i miljøet som deler lenken.",
+        "Forhåndsbestilling kan være reell støtte, men sosial nærhet kan gjøre et frivillig kjøp til en test på om du er en god nok støttespiller.",
+        "Lojalitet til et litterært miljø gir ikke andre krav på privatøkonomien din."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bestille bare hvis boka og økonomien passer, og ellers dele informasjon uten å late som du har kjøpt.",
+          "effect": 1,
+          "tags": [
+            "loyalty_boundary",
+            "economic_room",
+            "honesty"
+          ],
+          "feedback": "Du støtter uten å gjøre kjøpet til medlemskontingent."
+        },
+        {
+          "id": "B",
+          "label": "Bestille for å unngå at folk i miljøet tolker deg som mindre engasjert.",
+          "effect": -1,
+          "tags": [
+            "social_pressure",
+            "economic_pressure",
+            "status"
+          ],
+          "feedback": "Frivillig støtte blir styrt av frykt for sosial avlesning."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_preorder_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "relationship_risk"
+      ],
+      "time_slot": [
+        "home",
+        "people",
+        "leisure"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    },
+    {
+      "id": "forfatteren_som_star_rett_ved_siden_av",
+      "from": "Etter opplesningen",
+      "subject": "Kort avstand er ikke nær relasjon",
+      "situation": [
+        "Etter en opplesning står forfatteren ved siden av deg mens publikum snakker sammen, og samtalen blir uformell.",
+        "Små scener gjør avstanden mellom leser og forfatter mindre, men fysisk nærhet gir ikke automatisk vennskap, tilgang eller rett til mer personlig informasjon.",
+        "Sceneorientering må tåle at relasjoner fortsatt har grenser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakke om teksten eller arrangementet og la forfatteren selv styre hvor personlig samtalen blir.",
+          "effect": 1,
+          "tags": [
+            "relationship_boundary",
+            "public_private_leakage",
+            "care"
+          ],
+          "feedback": "Du behandler tilgjengelighet som situasjon, ikke som privat adgang."
+        },
+        {
+          "id": "B",
+          "label": "Bruke det uformelle rommet til å spørre om upubliserte manus og interne planer.",
+          "effect": -1,
+          "tags": [
+            "insider_access",
+            "boundary_crossing",
+            "status"
+          ],
+          "feedback": "Den korte sosiale avstanden blir feilaktig gjort til profesjonell tilgang."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_proximity_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    },
+    {
+      "id": "anmeldelsen_som_aldri_kommer",
+      "from": "Etter lanseringen",
+      "subject": "Stillheten rundt boka",
+      "situation": [
+        "En utgivelse du likte får nesten ingen omtale, mens større bøker fra større forlag fyller kulturflatene.",
+        "Ulik tilgang til anmeldere og offentlig oppmerksomhet kan være reell, men manglende omtale sier heller ikke alene hva kritikken ville ha vært.",
+        "Du kan reagere på oppmerksomhetsstrukturer uten å utnevne deg selv til erstatningskritiker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Anbefale konkret det du faktisk likte og skille egen lesning fra påstander om hva pressen burde mene.",
+          "effect": 1,
+          "tags": [
+            "public_attention",
+            "reader_voice",
+            "role_clarity"
+          ],
+          "feedback": "Du kan bidra til synlighet uten å låne kritikerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Slå fast at boka er oversett av feige kritikere og at miljøet vet bedre.",
+          "effect": -1,
+          "tags": [
+            "borrowed_authority",
+            "resentment",
+            "reputation"
+          ],
+          "feedback": "Strukturkritikk glir over i en dom du ikke har grunnlag for."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_attention_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "identity_risk"
+      ],
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    },
+    {
+      "id": "messen_med_for_mange_bord",
+      "from": "Småforlagsmessa",
+      "subject": "Alt virker viktig samtidig",
+      "situation": [
+        "På en småforlagsmesse står det flere bord enn du rekker å undersøke, med tidsskrifter, chapbooks, oversettelser og små opplag.",
+        "Overfloden kan være inspirerende, men også gjøre samling, kjøp og kunnskapsmarkering til et kappløp du aldri blir ferdig med.",
+        "Kuratering er også å tåle at du går glipp av noe."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge noen få bord du faktisk vil snakke med og la resten forbli uoppdaget denne gangen.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "curation",
+            "economic_room"
+          ],
+          "feedback": "Du gjør begrenset oppmerksomhet til et redskap i stedet for et nederlag."
+        },
+        {
+          "id": "B",
+          "label": "Kjøpe litt fra flest mulig bord for å være sikker på at du ikke mangler noe viktig.",
+          "effect": -1,
+          "tags": [
+            "accumulation",
+            "status_anxiety",
+            "economic_pressure"
+          ],
+          "feedback": "Nysgjerrigheten blir organisert som beholdning."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_curation_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "stress_risk"
+      ],
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    },
+    {
+      "id": "vennen_som_ber_om_innsiderinfo",
+      "from": "Meldingen",
+      "subject": "Du kjenner jo disse miljøene",
+      "situation": [
+        "En venn spør hvilke småforlag som kommer til å bli viktige neste år, hvem som vurderer manus, og hvilke redaktører man bør kjenne.",
+        "Du har fulgt arrangementer, kataloger og mennesker lenge nok til at orienteringen din kan høres ut som profesjonell innsiderkunnskap.",
+        "Å kjenne et miljø er ikke det samme som å eie redaksjonelle beslutninger, kontrakter eller andres private planer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dele offentlig kjent informasjon og være tydelig på hva du ikke vet eller ikke har mandat til å formidle.",
+          "effect": 1,
+          "tags": [
+            "authority_boundary",
+            "knowledge",
+            "privacy"
+          ],
+          "feedback": "Miljøkunnskap forblir kunnskap, ikke påstått myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gi bastante råd om hvem som 'egentlig bestemmer' og hva som kommer til å skje.",
+          "effect": -1,
+          "tags": [
+            "insider_status",
+            "borrowed_authority",
+            "reputation"
+          ],
+          "feedback": "Du gjør sosial orientering om til en rolle du ikke har."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_authority_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "time_slot": [
+        "people",
+        "home"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    },
+    {
+      "id": "det_utsolgte_lille_opplaget",
+      "from": "Nettbutikken",
+      "subject": "Utsolgt på én kveld",
+      "situation": [
+        "En liten utgivelse blir utsolgt raskt fordi opplaget var beskjedent, og sekundærmarkedet begynner nesten med en gang.",
+        "Knapphet kan gjøre boka interessant, men et lite opplag er også et produksjonsvalg og en økonomisk risiko, ikke automatisk et tegn på varig betydning.",
+        "Småforlagsnerden må kunne la en utsolgt bok være utsolgt uten at jakten blir identitetsbevis."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sette boka på en rolig ønskeliste og se etter bibliotek, nytrykk eller lån senere.",
+          "effect": 1,
+          "tags": [
+            "scarcity_boundary",
+            "patience",
+            "resource_awareness"
+          ],
+          "feedback": "Knappheten får være praktisk uten å bli sosial rang."
+        },
+        {
+          "id": "B",
+          "label": "Betale mye mer brukt fordi det føles viktig å eie førsteopplaget.",
+          "effect": -1,
+          "tags": [
+            "scarcity",
+            "status_anxiety",
+            "economic_pressure"
+          ],
+          "feedback": "Objektets knapphet blir gjort til bevis på egen posisjon."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_scarcity_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "status_risk"
+      ],
+      "time_slot": [
+        "home",
+        "leisure"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    },
+    {
+      "id": "kritikken_av_den_lille_scenen",
+      "from": "Samtalen på vei hjem",
+      "subject": "Når du ikke likte det",
+      "situation": [
+        "Du har vært på en opplesning eller lest en utgivelse fra et miljø du vanligvis støtter, og denne gangen fungerte det ikke for deg.",
+        "Små miljøer kan gjøre kritikk sosialt vanskelig fordi produsenter, forfattere og publikum ofte møtes igjen, men nærhet opphever ikke forskjellen mellom omsorg og ukritisk lojalitet.",
+        "Det går an å være presis om egen reaksjon uten å gjøre én opplevelse til dom over hele scenen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si konkret hva som ikke traff deg, skille smak fra fakta og unngå å bruke nærheten som grunn til enten taushet eller hardhet.",
+          "effect": 1,
+          "tags": [
+            "critique",
+            "care",
+            "reputation"
+          ],
+          "feedback": "Kritikk og relasjonell omtanke kan eksistere samtidig."
+        },
+        {
+          "id": "B",
+          "label": "Enten late som alt var godt, eller overkompensere med ekstra hard kritikk for å vise uavhengighet.",
+          "effect": -1,
+          "tags": [
+            "social_mask",
+            "status",
+            "shame_reputation"
+          ],
+          "feedback": "Miljøpresset får styre formen mer enn den faktiske vurderingen."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_critique_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    },
+    {
+      "id": "hva_slags_smaforlagsnerd",
+      "from": "Din egen notatbok",
+      "subject": "Miljøkunnskap uten forlagsrolle",
+      "situation": [
+        "Etter mange lanseringer, tidsskrifter, små messer og samtaler kjenner du både kataloger, personer og vanlige mønstre bedre enn de fleste rundt deg.",
+        "Den kunnskapen kan være reell og verdifull som leser- og miljøkompetanse, men den gir ikke redaktør-, forlegger-, innkjøper-, agent-, rettighets- eller juryrolle.",
+        "Spørsmålet er om identiteten din tåler å være kunnskapsrik uten å late som du har institusjonell myndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde rollen som oppmerksom leser og miljøkjenner, og navngi profesjonelle grenser når de blir relevante.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "knowledge_identity",
+            "authority_boundary"
+          ],
+          "feedback": "Småforlagsnerd blir en tydelig livsposisjon uten profesjonell rolleinflasjon."
+        },
+        {
+          "id": "B",
+          "label": "La lang fartstid i miljøet fungere som uformell fullmakt til å uttale deg på vegne av forlag, redaktører og feltet.",
+          "effect": -1,
+          "tags": [
+            "borrowed_authority",
+            "status",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapsidentiteten glir over i institusjonell myndighet du ikke har."
+        }
+      ],
+      "adds_flags": [
+        "smallpress_role_boundary"
+      ],
+      "risk_links": [
+        "identity_risk",
+        "reputation_risk"
+      ],
+      "time_slot": [
+        "personal",
+        "home",
+        "leisure"
+      ],
+      "message_type": "story",
+      "opens_streams": [],
+      "links": []
+    }
+  ]
+}
