@@ -1,0 +1,65 @@
+name: Dramatikkens hus collection assets once
+
+on:
+  push:
+    branches:
+      - agent/dramatikkens-hus-collections-20260915
+    paths:
+      - .github/workflows/dramatikkens-hus-assets-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/dramatikkens-hus-collections-20260915
+          fetch-depth: 0
+
+      - name: Download reviewed source assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          ua='HistoryGoPlaceProduction/1.0 (https://github.com/Paradispartiet/History-Go)'
+          curl -L --fail --retry 3 -A "$ua" -o /tmp/kristin.jpg 'https://upload.wikimedia.org/wikipedia/commons/6/6f/20131218_oej5AuestDanielsenWik3.jpg'
+          curl -L --fail --retry 3 -A "$ua" -o /tmp/det-aapne.jpg 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Det_%C3%85pne_Teater1.JPG'
+          curl -L --fail --retry 3 -A "$ua" -o /tmp/rigg.webp 'https://dramatikkens-hus.imgix.net/riggsak2.jpg?auto=compress%2Cformat&crop=focalpoint&fit=crop&fm=webp&fp-x=0.5&fp-y=0.5&h=715&w=1200'
+          curl -L --fail --retry 3 -A "$ua" -o /tmp/hunervred.webp 'https://dramatikkens-hus.imgix.net/hunervred-bergen.png?auto=compress%2Cformat&crop=focalpoint&fit=crop&fm=webp&fp-x=0.5&fp-y=0.5&h=715&w=1200'
+          curl -L --fail --retry 3 -A "$ua" -o /tmp/front.jpg 'https://upload.wikimedia.org/wikipedia/commons/e/ec/T%C3%B8yenbekken_34_Dramatikkens_hus.jpg'
+          file /tmp/kristin.jpg /tmp/det-aapne.jpg /tmp/rigg.webp /tmp/hunervred.webp /tmp/front.jpg
+
+      - name: Normalize reviewed assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v convert
+          mkdir -p bilder/kort/people bilder/kort/objects bilder/kort/brands bilder/kort/productions bilder/places
+          convert /tmp/kristin.jpg -auto-orient -resize '800x800^' -gravity center -extent 800x800 -strip -quality 84 bilder/kort/people/kristin_auestad_danielsen.webp
+          convert /tmp/det-aapne.jpg -auto-orient -crop '1300x900+120+500' +repage -resize '900x520^' -gravity center -extent 900x520 -strip -quality 84 bilder/kort/brands/det_aapne_teater.webp
+          convert /tmp/rigg.webp -auto-orient -resize '900x520^' -gravity center -extent 900x520 -strip -quality 84 bilder/kort/objects/dramatikkens_hus_scenerigg_hallen.webp
+          convert /tmp/hunervred.webp -auto-orient -resize '900x520^' -gravity center -extent 900x520 -strip -quality 84 bilder/kort/productions/dramatikkens_hus_hun_er_vred_arg_sint.webp
+          convert /tmp/front.jpg -auto-orient -resize '900x1200^' -gravity center -extent 900x1200 -strip -quality 84 bilder/places/dramatikkens_hus_front_portrait.webp
+          identify bilder/kort/people/kristin_auestad_danielsen.webp
+          identify bilder/kort/brands/det_aapne_teater.webp
+          identify bilder/kort/objects/dramatikkens_hus_scenerigg_hallen.webp
+          identify bilder/kort/productions/dramatikkens_hus_hun_er_vred_arg_sint.webp
+          identify bilder/places/dramatikkens_hus_front_portrait.webp
+
+      - name: Commit only normalized assets and remove one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/kort/people/kristin_auestad_danielsen.webp
+          git add bilder/kort/brands/det_aapne_teater.webp
+          git add bilder/kort/objects/dramatikkens_hus_scenerigg_hallen.webp
+          git add bilder/kort/productions/dramatikkens_hus_hun_er_vred_arg_sint.webp
+          git add bilder/places/dramatikkens_hus_front_portrait.webp
+          git rm .github/workflows/dramatikkens-hus-assets-once.yml
+          git commit -m 'Add Dramatikkens hus reviewed collection assets'
+          git push origin HEAD:agent/dramatikkens-hus-collections-20260915
