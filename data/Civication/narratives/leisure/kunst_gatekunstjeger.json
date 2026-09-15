@@ -1,0 +1,705 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "kunst_gatekunstjeger_stream",
+  "type": "leisure",
+  "title": "Gatekunstjeger",
+  "sociological_theme": "forgjengelig_gatekunst_dokumentasjon_attribusjon_sted_personvern_rettigheter_og_lokal_kontekst",
+  "applies_when": {
+    "any_tags": [
+      "kunst:gatekunstjeger"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "leisure",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "veggen_som_kan_vaere_borte",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En undergang",
+      "subject": "Bildet må tas før veggen endrer seg",
+      "situation": [
+        "Du finner et nytt motiv på en vegg som ofte males over, og lyset er godt akkurat nå.",
+        "Det er fristende å tenke at selve fotografiet er nok dokumentasjon når sporet kan forsvinne i morgen.",
+        "For en Gatekunstjeger er tidspunkt, sted, utsnitt og hva som faktisk var synlig del av kilden, ikke bare pynt rundt bildet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta bildet og noter dato, omtrentlig sted, veggkontekst og hva du faktisk observerte uten å fylle inn ukjent opphav.",
+          "effect": 1,
+          "tags": [
+            "ephemerality",
+            "documentation",
+            "source_care"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta et tett og pent bilde først og regne med at sted og tidspunkt kan rekonstrueres senere hvis det blir viktig.",
+          "effect": -1,
+          "tags": [
+            "context_loss",
+            "aesthetic_capture",
+            "memory_guess"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_ephemeral_capture"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "signaturen_uten_sikker_avsender",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En murvegg",
+      "subject": "En signatur er et spor, ikke en bekreftet identitet",
+      "situation": [
+        "Et verk har en tag som ligner navnet til en kunstner du har sett andre steder.",
+        "En venn ber deg skrive kunstnernavnet i posten fordi likheten virker åpenbar.",
+        "Pseudonymer, crews, etterligninger og lånte signaturer gjør attribusjon usikker selv når mønsteret føles kjent."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskrive signaturen som et observerbart spor og markere attribusjonen som ubekreftet til du har bedre dokumentasjon.",
+          "effect": 1,
+          "tags": [
+            "attribution",
+            "epistemic_humility",
+            "source_care"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Navngi kunstneren fordi stil, signatur og magefølelse samlet gjør det svært sannsynlig.",
+          "effect": -1,
+          "tags": [
+            "attribution_overclaim",
+            "status",
+            "guessing"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_attribution_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forbipasserende_i_bildet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Et gatehjørne",
+      "subject": "Offentlig rom er ikke et tomt bakteppe",
+      "situation": [
+        "Mens du fotograferer en vegg, kommer en person tydelig med i forgrunnen og ansiktet blir et sterkt element i bildet.",
+        "Motivet på veggen kan dokumenteres uten personen, men det krever et nytt opptak eller beskjæring.",
+        "Gatekunst står i offentlig rom, men dokumentasjon av verket trenger ikke gjøre tilfeldige mennesker til del av din publisering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta et nytt bilde eller beskjære slik at dokumentasjonen ikke unødvendig eksponerer den forbipasserende.",
+          "effect": 1,
+          "tags": [
+            "bystander_privacy",
+            "documentation",
+            "care"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke det første bildet fordi personen befant seg i offentlig rom og komposisjonen ble bedre.",
+          "effect": -1,
+          "tags": [
+            "privacy_drift",
+            "aesthetic_priority",
+            "public_space"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_bystander_privacy"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verket_bak_gjerdet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En bakgård",
+      "subject": "Synlig betyr ikke tilgjengelig",
+      "situation": [
+        "Du ser et interessant arbeid på en vegg bak et lukket gjerde og kan få et bedre bilde hvis du går noen meter inn.",
+        "Det finnes ingen invitasjon eller tydelig offentlig adgang, selv om andre spor tyder på at folk har vært der.",
+        "Å dokumentere gatekunst gir ingen særrett til å gå inn på privat eller avstengt område."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fotografere fra lovlig tilgjengelig sted eller finne eier/ansvarlig hvis du trenger nærmere tilgang.",
+          "effect": 1,
+          "tags": [
+            "access_boundary",
+            "property",
+            "documentation"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gå raskt inn så lenge du ikke berører noe og bare skal ta et bilde.",
+          "effect": -1,
+          "tags": [
+            "trespass_normalization",
+            "entitlement",
+            "shortcut"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_access_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "geotaggen_og_det_saarbare_stedet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Kartappen",
+      "subject": "Et presist sted kan også være en belastning",
+      "situation": [
+        "Et lite arbeid ligger på et sårbart sted der veggen allerede er slitt og nabolaget har hatt mye uønsket trafikk.",
+        "En presis geotag vil gjøre sporet lett å finne, men også øke trafikken til et sted som ikke er rigget for oppmerksomhet.",
+        "Dokumentasjon kan gjøre et sted mer synlig enn både verk, beboere og fysisk miljø tåler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurdere om omtrentlig lokasjon eller forsinket deling dokumenterer godt nok uten å gjøre stedet unødvendig sårbart.",
+          "effect": 1,
+          "tags": [
+            "location_stewardship",
+            "public_attention",
+            "care"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Publisere eksakt posisjon fordi et offentlig verk bør kunne finnes av alle som vil se det.",
+          "effect": -1,
+          "tags": [
+            "geotag_pressure",
+            "visibility",
+            "context_loss"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_location_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "overmalingen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Den samme veggen en uke senere",
+      "subject": "At et verk forsvinner er også historie",
+      "situation": [
+        "Du kommer tilbake og ser at arbeidet er malt over med en ensfarget flate.",
+        "En annen samler bilder omtaler dette som at noen har «ødelagt» verket, men du vet ikke hvem som eier veggen eller hvorfor den ble malt.",
+        "Gatekunstens forgjengelighet gjør endring dokumenterbar uten at du automatisk kan avgjøre hvem som hadde rett til å bevare eller fjerne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dokumentere før-og-etter og skille observasjonen fra påstander om eierskap, intensjon eller rettmessighet.",
+          "effect": 1,
+          "tags": [
+            "removal",
+            "ownership_boundary",
+            "temporal_context"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Kalle det vandalisme mot kunsten fordi overmalingen utslettet et arbeid som hadde offentlig verdi.",
+          "effect": -1,
+          "tags": [
+            "ownership_overclaim",
+            "moral_certainty",
+            "reputation"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_removal_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nabolaget_husker_noe_annet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En benk ved veggen",
+      "subject": "Lokalkunnskap endrer hva bildet betyr",
+      "situation": [
+        "En beboer forteller at veggen har hatt flere lag med arbeider knyttet til lokale konflikter og minnemarkeringer.",
+        "Historien gir bildet ditt en annen betydning enn den du først leste ut fra motivet alene.",
+        "Gatekunstjakt blir rikere når lokal erfaring brukes som situert kilde og ikke bare som kul bakgrunn til samlingen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Notere hvem som ga konteksten, skille minnet fra det du selv så og lete etter flere spor som kan støtte tidslinjen.",
+          "effect": 1,
+          "tags": [
+            "local_knowledge",
+            "oral_context",
+            "source_care"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjengi historien som veggens etablerte bakgrunn fordi en mangeårig beboer kjenner stedet best.",
+          "effect": -1,
+          "tags": [
+            "local_myth_as_fact",
+            "context_overclaim",
+            "collector_gaze"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_local_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "veggen_som_blir_merkevare",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En kafé med ny profil",
+      "subject": "Når gateuttrykk blir salgsflate",
+      "situation": [
+        "En virksomhet bruker et kjent lokalt veggmotiv i grafikken sin og omtaler uttrykket som «bydelens autentiske stil».",
+        "Du kjenner motivets historie bedre enn de fleste rundt bordet, men vet ikke hvilke avtaler som finnes med opphavsperson eller gårdeier.",
+        "Gatekunstens kulturelle verdi kan kommersialiseres uten at en Gatekunstjeger får fullmakt til å avgjøre rettigheter eller autentisitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Peke på konteksten og spørsmålene om kreditering uten å påstå at du kjenner avtalene eller hvem som juridisk kan bestemme.",
+          "effect": 1,
+          "tags": [
+            "commercialization",
+            "credit",
+            "rights_boundary"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Slå fast at virksomheten approprierer verket ulovlig fordi du kjenner historien og ikke har hørt om noen avtale.",
+          "effect": -1,
+          "tags": [
+            "legal_overclaim",
+            "authenticity_authority",
+            "status"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_commercial_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "flaket_som_losner",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En værutsatt mur",
+      "subject": "Omsorg betyr noen ganger å la være å røre",
+      "situation": [
+        "Et malt lag løsner fra en eldre vegg, og du ser et fragment du kunne ha løftet opp før det blåser bort.",
+        "Fragmentet kan være del av et verk, eldre maling eller bare murpuss, og du har ingen konservatorfaglig vurdering.",
+        "Å ville bevare et spor gir ikke rett til å løsne, flytte eller samle materiale fra veggen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fotografere tilstanden og eventuelt varsle ansvarlig aktør uten å berøre eller diagnostisere materialet.",
+          "effect": 1,
+          "tags": [
+            "conservation_boundary",
+            "observation",
+            "material_care"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Løfte opp det løse fragmentet og oppbevare det tørt fordi alternativet sannsynligvis er at det forsvinner.",
+          "effect": -1,
+          "tags": [
+            "handling_overreach",
+            "collection_entitlement",
+            "material_risk"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_conservation_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_som_tar_av",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En sosial plattform",
+      "subject": "Et populært bilde trenger fortsatt kilde",
+      "situation": [
+        "Et gammelt bilde du tok av et nå forsvunnet arbeid blir delt mye etter at en større konto finner det.",
+        "Teksten din fra den gang mangler sikker attribusjon og presis datering, men nye delinger gjentar en bestemt kunstner og årstall.",
+        "Viralt tempo kan gjøre usikre metadata mer bastante for hver gjenfortelling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppdatere posten med hva som er dokumentert, hva som er usikkert og hvor den nye attribusjonen eventuelt kommer fra.",
+          "effect": 1,
+          "tags": [
+            "virality",
+            "source_care",
+            "public_attention"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La delingene gå fordi andre kontoer allerede har etablert navn og årstall, og rekkevidden gjør bildet nyttig uansett.",
+          "effect": -1,
+          "tags": [
+            "metadata_drift",
+            "repetition_as_proof",
+            "status"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_viral_source"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kartet_over_sporene",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Ditt eget bildearkiv",
+      "subject": "Et kart viser også hva du selv har valgt å se",
+      "situation": [
+        "Du lager et kart over dokumenterte verk og ser tydelige klynger i noen bydeler mens andre nesten er tomme.",
+        "Det er lett å lese kartet som et bilde av hvor gatekunsten finnes, men rutene dine, trygghet, transport og preferanser har styrt hva som ble fotografert.",
+        "Et privat arkiv er en samling av observasjoner, ikke en fullstendig registrering av byens gatekunst."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Merke kartet som din dokumenterte rute og synliggjøre hull, tidsrom og utvalgsbias før du trekker større konklusjoner.",
+          "effect": 1,
+          "tags": [
+            "mapping",
+            "selection_bias",
+            "epistemic_humility"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Presentere kartet som en oversikt over hvor gatekunsten faktisk er konsentrert fordi du har samlet mange nok bilder.",
+          "effect": -1,
+          "tags": [
+            "coverage_overclaim",
+            "collector_bias",
+            "numerical_control"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_mapping_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verket_som_kan_vaere_ulovlig",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En venn i chatten",
+      "subject": "Dokumentasjon gjør deg ikke til etterforsker",
+      "situation": [
+        "En venn spør om et nytt arbeid ser lovlig bestilt ut eller om noen burde varsles.",
+        "Du kan se plassering, materiale og spor rundt veggen, men du kjenner ingen avtale mellom utøver, gårdeier eller myndigheter.",
+        "Gatekunstjegerrollen handler om å observere og dokumentere, ikke å avgjøre lovlighet eller fungere som politi eller saksbehandler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du ikke kan fastslå lovligheten fra bildet og holde dokumentasjonen til det som faktisk kan observeres.",
+          "effect": 1,
+          "tags": [
+            "legal_boundary",
+            "documentation",
+            "role_clarity"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Tolke tegnene rundt veggen og gi en sannsynlig dom om at arbeidet er ulovlig siden det ser uautorisert ut.",
+          "effect": -1,
+          "tags": [
+            "enforcement_overreach",
+            "legal_guessing",
+            "authority_claim"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_enforcement_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_eier_bildet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En forespørsel i innboksen",
+      "subject": "Fotografiet og motivet har ulike rettighetsspørsmål",
+      "situation": [
+        "En liten publikasjon vil bruke fotografiet ditt av et verk og spør om de også dermed kan bruke motivet fritt.",
+        "Du kan avklare hva du selv tillater for fotografiet, men det gjør deg ikke til rettighetshaver for selve kunstverket.",
+        "Dokumentasjon kan ha flere lag av opphav, samtykke og bruk som ikke kollapser til én enkel tillatelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklare bare rettighetene du faktisk kontrollerer og be publikasjonen håndtere eventuelle rettigheter til selve verket separat.",
+          "effect": 1,
+          "tags": [
+            "photography_rights",
+            "rights_boundary",
+            "source_care"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gi tillatelse til hele bruken fordi du tok bildet i offentlig rom og dermed eier filen de vil publisere.",
+          "effect": -1,
+          "tags": [
+            "rights_overreach",
+            "copyright_confusion",
+            "entitlement"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_photo_rights"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_gatekunstjeger",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En vegg du har fulgt lenge",
+      "subject": "Å følge spor gir kunnskap, ikke sertifisering",
+      "situation": [
+        "Etter mange runder kjenner du vegger, overmalinger, signaturer og lokale fortellinger som ikke finnes samlet noe annet sted.",
+        "Erfaringen gjør deg til en sterk observatør, men ikke automatisk til kunsthistoriker, autentisator, kurator, konservator, rettighetshaver eller offentlig registrator.",
+        "Spørsmålet er om samlingen din gjør forsvinnende spor mer etterprøvbare eller bare gjør din egen oversikt til fasit."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde en praksis der attribusjon graderes, steder kontekstualiseres, rettigheter respekteres og usikkerhet følger materialet videre.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "role_clarity",
+            "traceability"
+          ],
+          "feedback": "Du dokumenterer sporet mer presist uten å gjøre observasjon, nærhet eller entusiasme om til eierskap eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke erfaringen til å gi samlingen din status som den mest pålitelige fasiten når andre er uenige om verk og opphav.",
+          "effect": -1,
+          "tags": [
+            "authority_identity",
+            "collector_status",
+            "overclaim"
+          ],
+          "feedback": "Du får en enklere eller mer slående historie, men lar sikkerhet, samtykke eller kontekst bære mindre enn påstanden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatekunst_practice_reflection"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
