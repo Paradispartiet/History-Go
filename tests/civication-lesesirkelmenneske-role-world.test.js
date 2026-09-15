@@ -3,14 +3,14 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const ROOT=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(ROOT,p),'utf8'));
 const audit=read('data/Civication/lifePositionRoleWorldReadiness.json');
-const stream=read('data/Civication/narratives/leisure/film_tv_seriesluker.json');
-const world=read('data/Civication/roleWorlds/film_tv/film_tv_seriesluker.json');
+const stream=read('data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json');
+const world=read('data/Civication/roleWorlds/filosofi/filosofi_lesesirkelmenneske.json');
 const index=read('data/Civication/roleWorlds/index.json');
-const row=audit.positions.find(x=>x.key==='film_tv/seriesluker');
+const row=audit.positions.find(x=>x.key==='filosofi/lesesirkelmenneske');
 assert.ok(row);
 assert.equal(world.status,'role_world_complete');
 assert.equal(world.subject_type,'life_position');
-assert.deepEqual(world.life_position_ref,{badge_id:'film_tv',id:'seriesluker',label:'Seriesluker'});
+assert.deepEqual(world.life_position_ref,{badge_id:'filosofi',id:'lesesirkelmenneske',label:'Lesesirkelmenneske'});
 assert.equal(stream.storylets.length,14);
 assert.equal(world.season.coverage.length,56);
 assert.equal(new Set(world.season.coverage.map(x=>x.day+'/'+x.phase)).size,56);
@@ -29,13 +29,13 @@ for(const beat of world.season.coverage){
 }
 assert.equal(row.classification,'ready');
 assert.equal(row.role_world_status,'role_world_complete');
-assert.equal(row.role_world_path,'data/Civication/roleWorlds/film_tv/film_tv_seriesluker.json');
+assert.equal(row.role_world_path,'data/Civication/roleWorlds/filosofi/filosofi_lesesirkelmenneske.json');
 assert.equal(row.authored_depth.max_narrative_depth,14);
-assert.ok(!audit.queue.some(x=>x.key==='film_tv/seriesluker'));
+assert.ok(!audit.queue.some(x=>x.key==='filosofi/lesesirkelmenneske'));
 assert.equal(audit.summary.pending_ready_positions,0);
 assert.equal(audit.summary.completed_life_position_role_worlds,32);
 assert.equal(index.roles.length,117);
 assert.equal(index.life_position_role_world_count,32);
-for(const id of ['autoplay_vs_choice','season_length_vs_investment','finale_closure_vs_deferral','shared_pace_vs_progress','quitting_vs_completion','series_identity_vs_quantity'])assert.ok(world.primary_threads.some(x=>x.id===id),id);
-for(const id of ['medseer_som_vil_vente','ferdig_forst','recap_brukeren','plattformhopperen','finalediskutanten','venn_som_sluttet'])assert.ok(world.recurring_people_archetypes.some(x=>x.id===id),id);
-console.log('Seriesluker Role World gate ok');
+for(const id of ['preparation_vs_bluff','interpretation_vs_status','turntaking_vs_domination','curation_vs_prestige','revision_vs_face','community_vs_quantity']) assert.ok(world.primary_threads.some(x=>x.id===id),id);
+for(const id of ['sirkelvert','nykommer','tekstnaer_leser','kanonforsvarer','travelt_medlem','tolkningsutfordrer']) assert.ok(world.recurring_people_archetypes.some(x=>x.id===id),id);
+console.log('Lesesirkelmenneske Role World gate ok');

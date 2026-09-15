@@ -1,0 +1,705 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "filosofi_lesesirkelmenneske_stream",
+  "type": "leisure",
+  "title": "Lesesirkelmenneske",
+  "sociological_theme": "kollektiv_lesing_tolkning_uenighet_kildeomsorg_og_tilhoring",
+  "applies_when": {
+    "any_tags": [
+      "filosofi:lesesirkelmenneske"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "people",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "teksten_du_ikke_ble_ferdig_med",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Lesesirkelen",
+      "subject": "Når du ikke ble ferdig",
+      "situation": [
+        "Møtet nærmer seg, men du har bare lest deler av teksten.",
+        "Du vet likevel nok til å ha tanker, men ikke nok til å late som du kjenner helheten.",
+        "Gruppa må kunne romme både forberedelse og ærlighet uten at statusen flytter seg til den som skjuler mest."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si tydelig hvor langt du kom, og bidra fra det du faktisk leste.",
+          "effect": 1,
+          "tags": [
+            "teksten_du_ikke_ble_ferdig_med_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Du gjør lesingen presis uten å late som."
+        },
+        {
+          "id": "B",
+          "label": "Snakk som om du leste alt, og håp at ingen spør om detaljene.",
+          "effect": -1,
+          "tags": [
+            "teksten_du_ikke_ble_ferdig_med_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Deltakelsen får et skjult kunnskapsgap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_incomplete_reading"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tolkningen_som_ble_utfordret",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Et medlem",
+      "subject": "Når teksten ikke bekrefter deg",
+      "situation": [
+        "Du kom inn med en sikker tolkning av et avsnitt.",
+        "En annen deltaker peker på formuleringer som gjør bildet mindre enkelt.",
+        "Lesesirkelen fungerer bare hvis tolkningen kan endres uten at uenighet blir tap av ansikt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prøv å gjengi den andres lesning før du justerer din egen.",
+          "effect": 1,
+          "tags": [
+            "tolkningen_som_ble_utfordret_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar teksten få motstand."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar førsteinntrykket hardere fordi du allerede har sagt det høyt.",
+          "effect": -1,
+          "tags": [
+            "tolkningen_som_ble_utfordret_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Tolkning blir statuskamp."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_revision"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_stille_deltakeren",
+      "message_type": "people",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Møtet",
+      "subject": "Hvem får lese høyt i rommet",
+      "situation": [
+        "To personer snakker raskt og lenge, mens en tredje nesten ikke kommer inn.",
+        "Det er uklart om stillheten betyr enighet, usikkerhet eller manglende plass.",
+        "Gruppa trenger en praksis for deltakelse, ikke bare gode intensjoner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Inviter den stille deltakeren inn uten å presse fram et svar.",
+          "effect": 1,
+          "tags": [
+            "den_stille_deltakeren_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Du gjør rommet mer tilgjengelig."
+        },
+        {
+          "id": "B",
+          "label": "La samtalen gå fordi de mest aktive uansett har mest å si.",
+          "effect": -1,
+          "tags": [
+            "den_stille_deltakeren_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Taletid blir tolket som innsikt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_turntaking"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sitatet_uten_side",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Notatene",
+      "subject": "En god påstand trenger tekststed",
+      "situation": [
+        "Du husker et poeng fra teksten, men finner ikke formuleringen igjen.",
+        "Det er fristende å sitere fritt fordi meningen føles åpenbar.",
+        "Lesesirkelen skiller mellom minne, parafrase og faktisk tekstbelegg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kall det en parafrase og finn tekststedet før du bygger videre.",
+          "effect": 1,
+          "tags": [
+            "sitatet_uten_side_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Usikkerheten blir synlig og nyttig."
+        },
+        {
+          "id": "B",
+          "label": "Presenter minnet som sitat for å holde argumentet sterkt.",
+          "effect": -1,
+          "tags": [
+            "sitatet_uten_side_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Autoritet lånes fra en formulering du ikke har verifisert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_source_care"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nykommeren",
+      "message_type": "people",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Første møte",
+      "subject": "Gruppa har allerede en historie",
+      "situation": [
+        "En ny deltaker møter referanser til gamle bøker, interne vitser og tidligere uenigheter.",
+        "De faste medlemmene vet hva ordene betyr uten å forklare dem.",
+        "Fellesskap kan bli portvakt selv uten at noen mener det slik."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi kort kontekst og spør hva den nye deltakeren trenger for å komme inn.",
+          "effect": 1,
+          "tags": [
+            "nykommeren_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Du gjør gruppas historie delbar."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett som vanlig fordi alle etter hvert lærer kodene.",
+          "effect": -1,
+          "tags": [
+            "nykommeren_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Tilhørighet blir en prøveperiode."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_newcomer"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "boka_alle_hater",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Kveldens tekst",
+      "subject": "Uenighet om kvalitet",
+      "situation": [
+        "Flere misliker teksten, men av ulike grunner.",
+        "Noen kritiserer språk, andre argumentasjon, andre hele prosjektet.",
+        "Sirkelen trenger forskjellen mellom smak, analyse og moralsk dom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill grunnene fra hverandre før gruppa blir enige om at boka er dårlig.",
+          "effect": 1,
+          "tags": [
+            "boka_alle_hater_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Uenigheten blir mer presis."
+        },
+        {
+          "id": "B",
+          "label": "La den sterkeste reaksjonen definere resten av samtalen.",
+          "effect": -1,
+          "tags": [
+            "boka_alle_hater_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Konsensus erstatter lesning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_disagreement"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_personlige_lesningen",
+      "message_type": "people",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "En venn",
+      "subject": "Når teksten treffer privat",
+      "situation": [
+        "Et tema i teksten minner en deltaker om noe vanskelig i eget liv.",
+        "Gruppa merker det, men vet ikke om personen vil snakke om det.",
+        "Tolkning gir ikke automatisk rett til private forklaringer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La deltakeren selv avgjøre om koblingen skal bli del av samtalen.",
+          "effect": 1,
+          "tags": [
+            "den_personlige_lesningen_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Du skiller tekst fra samtykke."
+        },
+        {
+          "id": "B",
+          "label": "Spør detaljert fordi erfaringen kan gjøre teksten mer levende.",
+          "effect": -1,
+          "tags": [
+            "den_personlige_lesningen_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Privatliv blir lesemateriale."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bokvalget",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Programmet",
+      "subject": "Hvem bestemmer hva som teller",
+      "situation": [
+        "Neste tekst skal velges, og forslagene spenner fra klassiker til kort essay og nyere sakprosa.",
+        "Noen valg gir høyere prestisje i gruppa enn andre.",
+        "Programmet former hvem som føler seg hjemme og hvem som trenger forkunnskaper."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg ut fra formål, tilgjengelighet og nysgjerrighet, ikke bare kanonstatus.",
+          "effect": 1,
+          "tags": [
+            "bokvalget_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Kuratering blir begrunnet."
+        },
+        {
+          "id": "B",
+          "label": "Velg den tyngste teksten fordi den signaliserer alvor.",
+          "effect": -1,
+          "tags": [
+            "bokvalget_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Prestisje blir programkriterium."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_programming"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "møtet_som_ble_seminar",
+      "message_type": "people",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Verten",
+      "subject": "Når analyse blir foredrag",
+      "situation": [
+        "En deltaker har forberedt mange notater og tar raskt rollen som den som forklarer teksten.",
+        "De andre begynner å stille spørsmål til personen i stedet for til hverandre.",
+        "Lesesirkelen kan gli over i uformell undervisning uten at noen avtalte det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bryt opp monologen og send spørsmål tilbake til gruppa.",
+          "effect": 1,
+          "tags": [
+            "møtet_som_ble_seminar_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Samtalen forblir kollektiv."
+        },
+        {
+          "id": "B",
+          "label": "La eksperten fortsette fordi det er effektivt og lærerikt.",
+          "effect": -1,
+          "tags": [
+            "møtet_som_ble_seminar_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Fellesskapet blir publikum."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_facilitation"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenighet_om_forfatteren",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Gruppa",
+      "subject": "Tekst er ikke identisk med forfatter",
+      "situation": [
+        "Diskusjonen går fra det som står i teksten til antakelser om hva forfatteren må ha ment.",
+        "Biografi og intensjon blir brukt som snarveier.",
+        "Sirkelen må skille dokumentert kontekst fra spekulasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker hva teksten viser, hva kildene viser, og hva som bare er tolkning.",
+          "effect": 1,
+          "tags": [
+            "uenighet_om_forfatteren_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Dere får flere nivåer i analysen."
+        },
+        {
+          "id": "B",
+          "label": "Bruk forfatterens antatte intensjon som fasit.",
+          "effect": -1,
+          "tags": [
+            "uenighet_om_forfatteren_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Tolkning forkles som biografi."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_context"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pausen_mellom_motene",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Hverdagen",
+      "subject": "Lesesirkelen skal passe inn i livet",
+      "situation": [
+        "Neste møte er tett på jobb, familie og andre forpliktelser.",
+        "Noen foreslår å doble sidetallet fordi forrige bok gikk lett.",
+        "Mengde kan bli en statusmarkør som presser ut dem med mindre tid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtal et omfang som gjør faktisk deltakelse mulig.",
+          "effect": 1,
+          "tags": [
+            "pausen_mellom_motene_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Rytmen beskytter fellesskapet."
+        },
+        {
+          "id": "B",
+          "label": "Øk tempoet for å holde nivået oppe.",
+          "effect": -1,
+          "tags": [
+            "pausen_mellom_motene_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Tidstilgang blir skjult medlemskriterium."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_pacing"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "krangelen_i_chatten",
+      "message_type": "people",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Gruppechatten",
+      "subject": "Tekstuenighet uten møteleder",
+      "situation": [
+        "En tolkning blir misforstått i chatten og svarene blir kortere og skarpere.",
+        "Ingen ser tonefall, og hvert svar produserer et nytt svar.",
+        "Skriftlig uenighet trenger andre bremser enn samtalen rundt bordet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppsummer uenigheten og flytt den vanskelige delen til neste møte.",
+          "effect": 1,
+          "tags": [
+            "krangelen_i_chatten_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Du beskytter både relasjon og sak."
+        },
+        {
+          "id": "B",
+          "label": "Svar raskere og mer detaljert til den andre gir seg.",
+          "effect": -1,
+          "tags": [
+            "krangelen_i_chatten_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Chatten blir en kamp om siste ord."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_chat_conflict"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_gode_revisjonen",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Etter møtet",
+      "subject": "Å endre mening er også deltakelse",
+      "situation": [
+        "Du oppdager etter møtet at et poeng du avviste faktisk passer bedre med teksten enn din egen lesning.",
+        "Ingen krever at du tar det opp igjen.",
+        "I et miljø med mye argumentasjon kan revisjon føles som tap selv når den er læring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta det med neste gang og forklar hva som endret seg.",
+          "effect": 1,
+          "tags": [
+            "den_gode_revisjonen_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Revisjon blir synlig praksis."
+        },
+        {
+          "id": "B",
+          "label": "La saken ligge for å beholde inntrykket av konsistens.",
+          "effect": -1,
+          "tags": [
+            "den_gode_revisjonen_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Status blir viktigere enn læring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_repair"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lesesirkel_som_praksis",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "people",
+        "personal"
+      ],
+      "from": "Sirkelen",
+      "subject": "Fellesskapet er mer enn å ha lest",
+      "situation": [
+        "Gruppa har møttes lenge nok til at møtene er blitt en vane.",
+        "Det viktigste er ikke bare hvilke tekster dere har krysset av, men hvordan dere leser sammen.",
+        "Lesesirkelmennesket må balansere forberedelse, nysgjerrighet, kildeomsorg, vertskap og uenighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold fast på en praksis der tekstbelegg og andre stemmer kan endre din egen lesning.",
+          "effect": 1,
+          "tags": [
+            "lesesirkel_som_praksis_deliberate",
+            "reading_circle_dialogue",
+            "epistemic_humility"
+          ],
+          "feedback": "Du gjør fellesskapet lærende."
+        },
+        {
+          "id": "B",
+          "label": "Mål seriøsitet i antall sider, vanskelige bøker og hvor sjelden du blir motsagt.",
+          "effect": -1,
+          "tags": [
+            "lesesirkel_som_praksis_drift",
+            "reading_circle_status",
+            "interpretive_overreach"
+          ],
+          "feedback": "Mengde og status erstatter lesing."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lesesirkel_identity"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
