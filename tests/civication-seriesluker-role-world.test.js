@@ -33,9 +33,9 @@ assert.equal(row.role_world_path,'data/Civication/roleWorlds/film_tv/film_tv_ser
 assert.equal(row.authored_depth.max_narrative_depth,14);
 assert.ok(!audit.queue.some(x=>x.key==='film_tv/seriesluker'));
 assert.equal(audit.summary.pending_ready_positions,0);
-assert.equal(audit.summary.completed_life_position_role_worlds,31);
-assert.equal(index.roles.length,116);
-assert.equal(index.life_position_role_world_count,31);
+assert.equal(audit.summary.completed_life_position_role_worlds,32);
+assert.equal(index.roles.length,117);
+assert.equal(index.life_position_role_world_count,32);
 for(const id of ['autoplay_vs_choice','season_length_vs_investment','finale_closure_vs_deferral','shared_pace_vs_progress','quitting_vs_completion','series_identity_vs_quantity'])assert.ok(world.primary_threads.some(x=>x.id===id),id);
 for(const id of ['medseer_som_vil_vente','ferdig_forst','recap_brukeren','plattformhopperen','finalediskutanten','venn_som_sluttet'])assert.ok(world.recurring_people_archetypes.some(x=>x.id===id),id);
 console.log('Seriesluker Role World gate ok');
