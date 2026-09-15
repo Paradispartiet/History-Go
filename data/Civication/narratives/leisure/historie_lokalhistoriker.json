@@ -1,0 +1,705 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "historie_lokalhistoriker_stream",
+  "type": "leisure",
+  "title": "Lokalhistoriker",
+  "sociological_theme": "sted_minne_muntlige_kilder_mikrohistorie_og_sporbar_lokal_kunnskap",
+  "applies_when": {
+    "any_tags": [
+      "historie:lokalhistoriker"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "leisure",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "muntlig_kilde_og_minne",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Kjøkkenbordet",
+      "subject": "Et minne er en kilde, ikke en tidsmaskin",
+      "situation": [
+        "En eldre nabo forteller detaljert om hvordan kvartalet var før ombyggingen, og historien gir mening av flere lokale spor.",
+        "Fortellingen er levende, men noen datoer og rekkefølger flyter sammen med ting naboen har hørt senere.",
+        "Lokalhistorie blir sterkere når muntlige minner behandles som situerte kilder som kan sammenholdes med andre spor."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hvem som forteller, når samtalen skjer og hva som er sikkert, usikkert og mulig å kontrollere mot andre kilder.",
+          "effect": 1,
+          "tags": [
+            "oral_memory_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "Skriv ned fortellingen som en ferdig fasit fordi personen selv var til stede.",
+          "effect": -1,
+          "tags": [
+            "oral_memory_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_oral_memory"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "huset_med_to_aarstall",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Gatehjørnet",
+      "subject": "Et hus kan ha flere historiske begynnelser",
+      "situation": [
+        "Et gammelt hus omtales lokalt som oppført i ett år, mens bygningsregisteret viser et annet.",
+        "Den ene datoen kan gjelde grunnmur, den andre påbygging, gjenreisning eller formell registrering.",
+        "Mikrohistorie krever at dateringer knyttes til hvilken fase av stedet de faktisk beskriver."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom byggefasene og dokumenter hva hvert årstall viser til før du velger formulering.",
+          "effect": 1,
+          "tags": [
+            "building_layers_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "Velg det eldste årstallet fordi det gir stedet lengst mulig historie.",
+          "effect": -1,
+          "tags": [
+            "building_layers_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_building_layers"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gatenavnet_som_forsvant",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Kartbordet",
+      "subject": "Stedsnavn flytter makt og hukommelse",
+      "situation": [
+        "Du finner et gammelt gatenavn som ikke lenger brukes, og flere lokale historier er knyttet til nettopp dette navnet.",
+        "Et navneskifte kan skjule eldre orienteringspunkter og samtidig uttrykke politiske, administrative eller kulturelle prioriteringer.",
+        "Å følge navnet gjennom kart, adresser og samtidige kilder gjør endringen historisk synlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg navnet gjennom flere tidspunkt og forklar når og hvorfor referansen endrer seg.",
+          "effect": 1,
+          "tags": [
+            "place_name_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk dagens gatenavn bakover i tid som om stedet alltid har hett det samme.",
+          "effect": -1,
+          "tags": [
+            "place_name_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_place_name"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fotografiet_uten_tekst",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Fotoalbumet",
+      "subject": "Et fotografi trenger kontekst før det trenger bildetekst",
+      "situation": [
+        "Et lokalt fotografi viser en bygning, en folkemengde og et skilt, men albumet mangler datering og navn.",
+        "Flere i miljøet mener de kjenner stedet igjen, men detaljene peker i litt ulike retninger.",
+        "Visuelle kilder kan være presise samtidig som identifikasjon og datering krever kontrollspor."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk skilt, bygningsdetaljer, klær og andre bilder til å bygge en eksplisitt og etterprøvbar identifikasjon.",
+          "effect": 1,
+          "tags": [
+            "photo_context_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "Sett navn og årstall ut fra det flertallet i kommentarfeltet mener bildet må vise.",
+          "effect": -1,
+          "tags": [
+            "photo_context_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_photo_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "familien_som_eier_fortellingen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Stua",
+      "subject": "Nærhet gir kunnskap — og interesser",
+      "situation": [
+        "En familie har bevart brev og historier om en lokal konflikt og opplever sin versjon som en del av identiteten.",
+        "Materialet er verdifullt, men familien har også sterke grunner til å framheve enkelte handlinger og tie om andre.",
+        "Lokalhistorie må romme både nærheten som gjør kilder mulige og interessene som former dem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv familiens perspektiv tydelig og søk samtidige eller uavhengige kilder før du generaliserer.",
+          "effect": 1,
+          "tags": [
+            "family_memory_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle familiens eierskap til materialet som eierskap til den historiske sannheten.",
+          "effect": -1,
+          "tags": [
+            "family_memory_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_family_memory"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "jubileumsskriftet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Historielaget",
+      "subject": "Et jubileumsskrift feirer og dokumenterer samtidig",
+      "situation": [
+        "Et jubileumsskrift inneholder navn, bilder og hendelser som ikke finnes samlet andre steder.",
+        "Samtidig er teksten skrevet for å markere en institusjon, bedrift eller forening og velger derfor ofte en samlende fortelling.",
+        "Formål og sjanger må være en del av kildekritikken, også når detaljene er nyttige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk opplysningene, men noter feiringsformålet og kontroller konfliktfylte eller selvrosende påstander særskilt.",
+          "effect": 1,
+          "tags": [
+            "commemorative_source_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle jubileumsskriftet som nøytral oversikt fordi det er trykt og detaljrikt.",
+          "effect": -1,
+          "tags": [
+            "commemorative_source_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_jubilee_source"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kartet_og_terrenget",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Nabolagsrunden",
+      "subject": "Kartet viser grenser; folk lever også på tvers av dem",
+      "situation": [
+        "Et historisk kart tegner tydelige grenser mellom eiendommer og bydeler, mens muntlige kilder beskriver et nabolag som strakte seg annerledes.",
+        "Administrative grenser og levd stedstilhørighet kan eksistere samtidig uten å være det samme.",
+        "Lokalhistorie blir rikere når kartets autoritet holdes sammen med praksis i gatene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill kartets formelle geografi fra den sosiale geografien og dokumenter begge.",
+          "effect": 1,
+          "tags": [
+            "map_lived_space_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "La den trykte kartlinjen avgjøre hvordan alle samtidige innbyggere må ha forstått nabolaget.",
+          "effect": -1,
+          "tags": [
+            "map_lived_space_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_map_lived_space"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_lokale_myten",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Kafébordet",
+      "subject": "En god historie kan være historisk viktig uten å være bokstavelig sann",
+      "situation": [
+        "En fortelling om en kjent hendelse blir gjentatt av mange og fungerer som en lokal identitetsmarkør.",
+        "Når du leter etter samtidige kilder, finner du ingen støtte for den mest dramatiske detaljen.",
+        "Myten kan fortsatt fortelle noe om lokalt minne, men det er noe annet enn å dokumentere selve hendelsen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill tydelig mellom hva som kan dokumenteres om hendelsen og hva myten viser om senere lokal identitet.",
+          "effect": 1,
+          "tags": [
+            "local_myth_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "Behold den dramatiske detaljen som faktum fordi den er for god til å miste.",
+          "effect": -1,
+          "tags": [
+            "local_myth_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_local_myth"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kommunen_og_arkivet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Kommunearkivet",
+      "subject": "Det som finnes i kommunens mapper er ikke hele lokalsamfunnet",
+      "situation": [
+        "Kommunale dokumenter gir presise vedtak, adresser og saksforløp for en lokal endring.",
+        "Men de viser først og fremst hva forvaltningen registrerte, og langt mindre av hverdagen til dem som ble berørt.",
+        "Institusjonelle kilder er sterke når deres blikk og begrensninger er eksplisitte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk saksdokumentene til forløpet de faktisk dokumenterer og suppler med kilder fra dem som levde gjennom endringen.",
+          "effect": 1,
+          "tags": [
+            "municipal_record_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "La kommunens arkiv bli hele historien fordi dokumentene er mest formelle.",
+          "effect": -1,
+          "tags": [
+            "municipal_record_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_municipal_record"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "graven_og_navnet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Kirkegården",
+      "subject": "Et navn må knyttes før en biografi kan bygges",
+      "situation": [
+        "En gravstein passer til et navn du har sett i en adressebok, og både alder og sted virker plausible.",
+        "Det finnes likevel flere personer med nesten samme navn i perioden.",
+        "Lokalhistorisk identifikasjon må bygge forbindelser mellom kilder, ikke bare sannsynlighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Koble navn, alder, adresse, familie og andre spor før du slår fast at kildene gjelder samme person.",
+          "effect": 1,
+          "tags": [
+            "identity_linkage_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "Slå sammen personene fordi kombinasjonen av navn og sted føles overbevisende.",
+          "effect": -1,
+          "tags": [
+            "identity_linkage_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_identity_linkage"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "foreningen_som_husker",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Foreningslokalet",
+      "subject": "Organisert minne velger også hva som blir stående",
+      "situation": [
+        "En lokal forening har samlet bilder, referater og gjenstander gjennom flere tiår.",
+        "Samlingen gir unik kontinuitet, men speiler også hvem som satt i styret, hva som ble ansett som viktig og hvilke miljøer som deltok.",
+        "Kollektiv hukommelse er både ressurs og seleksjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dokumenter hvem som samlet materialet og se etter grupper eller perioder som er svakt representert.",
+          "effect": 1,
+          "tags": [
+            "association_memory_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "Anta at foreningsarkivet viser lokalsamfunnet proporsjonalt fordi samlingen er omfattende.",
+          "effect": -1,
+          "tags": [
+            "association_memory_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_association_memory"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konflikt_i_lokalmiljoet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Folkemøtet",
+      "subject": "Lokalhistorie kan være part i en pågående konflikt",
+      "situation": [
+        "En historisk tolkning brukes i en aktuell strid om vern, utbygging eller stedets identitet.",
+        "Begge sider leter etter fortiden som kan styrke dagens standpunkt.",
+        "Når historien får politisk verdi, blir åpenhet om utvalg, usikkerhet og motkilder ekstra viktig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vis hvilke kilder og valg tolkningen bygger på, og skill historisk dokumentasjon fra dagens politiske konklusjon.",
+          "effect": 1,
+          "tags": [
+            "local_conflict_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "Velg bare de historiske sporene som hjelper den siden du allerede sympatiserer med.",
+          "effect": -1,
+          "tags": [
+            "local_conflict_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_local_conflict"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kildepakken_til_neste",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Notatboka",
+      "subject": "Lokal kunnskap må kunne overleveres",
+      "situation": [
+        "Du har samlet bilder, kart, intervjunotater og lenker om et lite område over lang tid.",
+        "Mye gir mening for deg fordi du husker hvor filene kom fra, men en annen leser ville slite med å rekonstruere arbeidet.",
+        "Sporbar organisering gjør privat lokalhistorisk arbeid til kunnskap andre faktisk kan kontrollere og bygge videre på."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en enkel kildeliste med dato, opphav, plassering og hva hvert spor brukes til.",
+          "effect": 1,
+          "tags": [
+            "traceability_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "Stol på filnavn og egen hukommelse fordi materialet bare er ment som dine notater.",
+          "effect": -1,
+          "tags": [
+            "traceability_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_traceability"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lokalhistoriker_som_praksis",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Nabolaget",
+      "subject": "Målet er sporbar stedskunnskap, ikke å eie den lokale fortiden",
+      "situation": [
+        "Etter mange undersøkelser kjenner du steder, navn og konflikter som få andre har fulgt like tett.",
+        "Den kunnskapen kan gi høy status lokalt og en fristelse til å bli den som avgjør hva historien egentlig er.",
+        "Lokalhistoriker-praksis er sterkest når nærhet kombineres med kildekritikk, deling, usikkerhet og plass til nye funn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler kunnskapen som dokumenterte forbindelser andre kan etterprøve, korrigere og utvide.",
+          "effect": 1,
+          "tags": [
+            "local_history_practice_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør lokal kunnskap mer etterprøvbar uten å miste nærheten til stedet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk erfaringen din som grunn til å avvise motkilder fra folk som kjenner stedet dårligere.",
+          "effect": -1,
+          "tags": [
+            "local_history_practice_drift",
+            "context_loss",
+            "local_history_overreach"
+          ],
+          "feedback": "Nærhet og fortellingskraft får mer sikkerhet enn dokumentasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lokalhistoriker_practice_integrated"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}

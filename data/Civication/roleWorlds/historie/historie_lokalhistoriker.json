@@ -1,0 +1,1174 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_lokalhistoriker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "historie",
+    "id": "lokalhistoriker",
+    "label": "Lokalhistoriker"
+  },
+  "title": "Lokalhistoriker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bygge stednær historie av minner, kart, fotografier, foreningsmateriale og offentlige kilder uten å gjøre lokal nærhet om til ubegrunnet sikkerhet eller eierskap til fortiden",
+    "description": "Lokalhistoriker-verdenen følger en historieinteresse som arbeider tett på konkrete steder, mennesker og lokale minnefellesskap. Spilleren lærer å kombinere muntlige kilder, mikrohistorie, kart, bilder, slekts- og kommunale spor med tydelig kildekritikk, interessebevissthet og sporbar dokumentasjon. Rollen gir ingen profesjonell historiker- eller arkivmyndighet, ingen særrett til å definere lokalsamfunnets fortid, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "public_attention",
+    "professional_culture",
+    "shame_reputation",
+    "bureaucratic_power",
+    "invisible_work",
+    "social_mask",
+    "class_power"
+  ],
+  "social_environments": [
+    "historielaget der frivillig kunnskap, kanon og lokale prioriteringer møtes",
+    "nabolagsrunden der bygninger, gatenavn og minner må kobles til daterbare spor",
+    "kjøkkenbordet der muntlige kilder gir detaljer som sjelden finnes i formelle arkiver",
+    "lokalbiblioteket der småtrykk, aviser og eldre publikasjoner binder sammen fragmenter",
+    "kommunearkivet der vedtak og saksforløp er presise, men institusjonens blikk er begrenset",
+    "folkemøtet der fortiden blir argument i aktuelle konflikter om vern, utvikling og identitet"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "historielagsveteranen",
+      "social_function": "bærer langvarig lokal organisasjons- og stedskunnskap",
+      "class_position": "frivillig kunnskapsforvalter med høy symbolsk kapital i historielaget",
+      "status": "høy lokalt når kontinuitet og navn er viktig",
+      "power_over_player": "kan åpne private samlinger og etablere hvilke fortellinger som oppfattes som lokale standarder",
+      "wants": "at stedets historie skal bli tatt på alvor og ført videre",
+      "conceals": "hvor mye kanon som er formet av tidligere styres prioriteringer",
+      "speech_style": "navnesterk, kronologisk og full av lokale referanser",
+      "teaches_player": "at lang erfaring er en kilde som også må kontekstualiseres"
+    },
+    {
+      "id": "naboen_med_minne",
+      "social_function": "gir muntlige erfaringer fra hverdagsliv, steder og mennesker",
+      "class_position": "lokal deltaker med erfaringsbasert kunnskap uten formell historiefaglig autoritet",
+      "status": "høy når få andre husker miljøet direkte",
+      "power_over_player": "kan gjøre enkelte tolkninger levende og sosialt overbevisende",
+      "wants": "at egne og andres erfaringer ikke skal forsvinne",
+      "conceals": "hvordan senere fortellinger og fellesskap har påvirket minnet",
+      "speech_style": "konkret, episodisk og knyttet til personer og steder",
+      "teaches_player": "å bruke muntlige kilder som situerte vitnesbyrd"
+    },
+    {
+      "id": "kommunearkivaren",
+      "social_function": "kobler lokale spørsmål til formelle saksserier, registre og adgangsregler",
+      "class_position": "institusjonell kunnskapsforvalter med ansvar for offentlig dokumentasjon",
+      "status": "høy når administrative forløp og proveniens skal spores",
+      "power_over_player": "kan synliggjøre både dokumenterte forløp og grensene for hva kommunen faktisk registrerte",
+      "wants": "at kilder brukes presist og kan finnes igjen",
+      "conceals": "hvor mye hverdagsliv som aldri ble en kommunal sak",
+      "speech_style": "presis, serieorientert og opptatt av saksnummer, periode og arkivskaper",
+      "teaches_player": "at institusjonelle kilder har et bestemt blikk"
+    },
+    {
+      "id": "slektsgranskeren",
+      "social_function": "kobler personer gjennom navn, familie, adresser og livsløp",
+      "class_position": "erfaren amatør med høy teknisk kildekompetanse på individnivå",
+      "status": "høy når identiteter og familieforbindelser skal verifiseres",
+      "power_over_player": "kan både løse og forsterke identitetskoblinger avhengig av hvor strengt kildene holdes fra hverandre",
+      "wants": "å bygge sammenhengende og dokumenterte personforløp",
+      "conceals": "hvor fristende det er å velge den mest elegante forbindelsen",
+      "speech_style": "detaljert, navneorientert og kildehenvisende",
+      "teaches_player": "at samme navn ikke er samme person uten forbindende evidens"
+    },
+    {
+      "id": "utbyggeren",
+      "social_function": "gjør lokalhistorie relevant i konflikter om vern, ombruk og utbygging",
+      "class_position": "ressurssterk aktør med økonomisk og institusjonell kapasitet til å forme stedet",
+      "status": "høy i beslutningsprosesser, omstridt i lokale minnefellesskap",
+      "power_over_player": "kan løfte enkelte historiske lag og nedtone andre gjennom prosjektfortellinger og dokumentasjon",
+      "wants": "å gjøre en framtidig endring legitim og forståelig",
+      "conceals": "hvordan historisk utvalg kan være strategisk",
+      "speech_style": "framtidsorientert, profesjonell og opptatt av helhet, verdi og gjennomførbarhet",
+      "teaches_player": "at fortiden ofte brukes i nåtidige interessekonflikter"
+    },
+    {
+      "id": "lokalbibliotekaren",
+      "social_function": "binder sammen trykte lokalhistorier, aviser, småskrifter og publikums spørsmål",
+      "class_position": "offentlig kunnskapsarbeider mellom samling og lokalsamfunn",
+      "status": "stabil fordi personen kjenner mange kildeveier uten å eie én fortelling",
+      "power_over_player": "kan synliggjøre glemte kilder og alternative innganger",
+      "wants": "at lokal kunnskap skal være tilgjengelig, etterprøvbar og flerfoldig",
+      "conceals": "hvor mye viktig materiale som finnes i svakt katalogiserte småtrykk",
+      "speech_style": "orienterende, søkende og god til å foreslå neste kilde",
+      "teaches_player": "at lokal historie ofte bygges gjennom mange små kildetyper"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "oral_memory_vs_corroboration",
+      "meaning": "muntlig minne mot uavhengig kontroll",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "building_date_vs_layers",
+      "meaning": "ett byggeår mot historiske lag",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "place_name_vs_change",
+      "meaning": "stedsnavn mot historisk endring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "photo_vs_context",
+      "meaning": "fotografisk inntrykk mot dokumentert kontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "family_memory_vs_ownership",
+      "meaning": "familienærhet mot eierskap til fortellingen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "commemorative_source_vs_critique",
+      "meaning": "jubileumskilde mot sjangerkritikk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "map_vs_lived_space",
+      "meaning": "formell geografi mot levd sted",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "local_myth_vs_evidence",
+      "meaning": "lokal myte mot dokumentert hendelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "municipal_record_vs_absence",
+      "meaning": "forvaltningsspor mot fraværende hverdagsstemmer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "identity_linkage_vs_guessing",
+      "meaning": "identitetskobling mot gjetning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "association_memory_vs_selection",
+      "meaning": "organisert minne mot seleksjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "local_conflict_vs_neutrality",
+      "meaning": "lokal konflikt mot skjult partsvalg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "traceability_vs_retelling",
+      "meaning": "sporbar kilderekke mot hukommelsesbasert gjenfortelling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "local_history_practice_vs_authority",
+      "meaning": "lokalhistorisk praksis mot eierskap til fortiden",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: et minne er en kilde, ikke en tidsmaskin.",
+        "thread_ids": [
+          "oral_memory_vs_corroboration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#muntlig_kilde_og_minne"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: et minne er en kilde, ikke en tidsmaskin.",
+        "thread_ids": [
+          "oral_memory_vs_corroboration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#muntlig_kilde_og_minne"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: et minne er en kilde, ikke en tidsmaskin.",
+        "thread_ids": [
+          "oral_memory_vs_corroboration",
+          "association_memory_vs_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#muntlig_kilde_og_minne"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: et minne er en kilde, ikke en tidsmaskin.",
+        "thread_ids": [
+          "oral_memory_vs_corroboration",
+          "commemorative_source_vs_critique"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#muntlig_kilde_og_minne"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: et hus kan ha flere historiske begynnelser.",
+        "thread_ids": [
+          "building_date_vs_layers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#huset_med_to_aarstall"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: et hus kan ha flere historiske begynnelser.",
+        "thread_ids": [
+          "building_date_vs_layers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#huset_med_to_aarstall"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: et hus kan ha flere historiske begynnelser.",
+        "thread_ids": [
+          "building_date_vs_layers",
+          "local_conflict_vs_neutrality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#huset_med_to_aarstall"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 2, evening: et hus kan ha flere historiske begynnelser.",
+        "thread_ids": [
+          "building_date_vs_layers",
+          "map_vs_lived_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#huset_med_to_aarstall"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: stedsnavn flytter makt og hukommelse.",
+        "thread_ids": [
+          "place_name_vs_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#gatenavnet_som_forsvant"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: stedsnavn flytter makt og hukommelse.",
+        "thread_ids": [
+          "place_name_vs_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#gatenavnet_som_forsvant"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: stedsnavn flytter makt og hukommelse.",
+        "thread_ids": [
+          "place_name_vs_change",
+          "traceability_vs_retelling"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#gatenavnet_som_forsvant"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: stedsnavn flytter makt og hukommelse.",
+        "thread_ids": [
+          "place_name_vs_change",
+          "local_myth_vs_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#gatenavnet_som_forsvant"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: et fotografi trenger kontekst før det trenger bildetekst.",
+        "thread_ids": [
+          "photo_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#fotografiet_uten_tekst"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 4, lunch: et fotografi trenger kontekst før det trenger bildetekst.",
+        "thread_ids": [
+          "photo_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#fotografiet_uten_tekst"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: et fotografi trenger kontekst før det trenger bildetekst.",
+        "thread_ids": [
+          "photo_vs_context",
+          "local_history_practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#fotografiet_uten_tekst"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 4, evening: et fotografi trenger kontekst før det trenger bildetekst.",
+        "thread_ids": [
+          "photo_vs_context",
+          "municipal_record_vs_absence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#fotografiet_uten_tekst"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: nærhet gir kunnskap — og interesser.",
+        "thread_ids": [
+          "family_memory_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#familien_som_eier_fortellingen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: nærhet gir kunnskap — og interesser.",
+        "thread_ids": [
+          "family_memory_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#familien_som_eier_fortellingen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: nærhet gir kunnskap — og interesser.",
+        "thread_ids": [
+          "oral_memory_vs_corroboration",
+          "family_memory_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#familien_som_eier_fortellingen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: nærhet gir kunnskap — og interesser.",
+        "thread_ids": [
+          "family_memory_vs_ownership",
+          "identity_linkage_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#familien_som_eier_fortellingen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: et jubileumsskrift feirer og dokumenterer samtidig.",
+        "thread_ids": [
+          "commemorative_source_vs_critique"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#jubileumsskriftet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 6, lunch: et jubileumsskrift feirer og dokumenterer samtidig.",
+        "thread_ids": [
+          "commemorative_source_vs_critique"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#jubileumsskriftet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: et jubileumsskrift feirer og dokumenterer samtidig.",
+        "thread_ids": [
+          "building_date_vs_layers",
+          "commemorative_source_vs_critique"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#jubileumsskriftet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 6, evening: et jubileumsskrift feirer og dokumenterer samtidig.",
+        "thread_ids": [
+          "commemorative_source_vs_critique",
+          "association_memory_vs_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#jubileumsskriftet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 7, morning: kartet viser grenser; folk lever også på tvers av dem.",
+        "thread_ids": [
+          "map_vs_lived_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kartet_og_terrenget"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: kartet viser grenser; folk lever også på tvers av dem.",
+        "thread_ids": [
+          "map_vs_lived_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kartet_og_terrenget"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: kartet viser grenser; folk lever også på tvers av dem.",
+        "thread_ids": [
+          "place_name_vs_change",
+          "map_vs_lived_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kartet_og_terrenget"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: kartet viser grenser; folk lever også på tvers av dem.",
+        "thread_ids": [
+          "map_vs_lived_space",
+          "local_conflict_vs_neutrality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kartet_og_terrenget"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: en god historie kan være historisk viktig uten å være bokstavelig sann.",
+        "thread_ids": [
+          "local_myth_vs_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#den_lokale_myten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 8, lunch: en god historie kan være historisk viktig uten å være bokstavelig sann.",
+        "thread_ids": [
+          "local_myth_vs_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#den_lokale_myten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: en god historie kan være historisk viktig uten å være bokstavelig sann.",
+        "thread_ids": [
+          "photo_vs_context",
+          "local_myth_vs_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#den_lokale_myten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 8, evening: en god historie kan være historisk viktig uten å være bokstavelig sann.",
+        "thread_ids": [
+          "local_myth_vs_evidence",
+          "traceability_vs_retelling"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#den_lokale_myten"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: det som finnes i kommunens mapper er ikke hele lokalsamfunnet.",
+        "thread_ids": [
+          "municipal_record_vs_absence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kommunen_og_arkivet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: det som finnes i kommunens mapper er ikke hele lokalsamfunnet.",
+        "thread_ids": [
+          "municipal_record_vs_absence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kommunen_og_arkivet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: det som finnes i kommunens mapper er ikke hele lokalsamfunnet.",
+        "thread_ids": [
+          "family_memory_vs_ownership",
+          "municipal_record_vs_absence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kommunen_og_arkivet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: det som finnes i kommunens mapper er ikke hele lokalsamfunnet.",
+        "thread_ids": [
+          "municipal_record_vs_absence",
+          "local_history_practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kommunen_og_arkivet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: et navn må knyttes før en biografi kan bygges.",
+        "thread_ids": [
+          "identity_linkage_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#graven_og_navnet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: et navn må knyttes før en biografi kan bygges.",
+        "thread_ids": [
+          "identity_linkage_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#graven_og_navnet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: et navn må knyttes før en biografi kan bygges.",
+        "thread_ids": [
+          "commemorative_source_vs_critique",
+          "identity_linkage_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#graven_og_navnet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 10, evening: et navn må knyttes før en biografi kan bygges.",
+        "thread_ids": [
+          "oral_memory_vs_corroboration",
+          "identity_linkage_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#graven_og_navnet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: organisert minne velger også hva som blir stående.",
+        "thread_ids": [
+          "association_memory_vs_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#foreningen_som_husker"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: organisert minne velger også hva som blir stående.",
+        "thread_ids": [
+          "association_memory_vs_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#foreningen_som_husker"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: organisert minne velger også hva som blir stående.",
+        "thread_ids": [
+          "map_vs_lived_space",
+          "association_memory_vs_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#foreningen_som_husker"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: organisert minne velger også hva som blir stående.",
+        "thread_ids": [
+          "building_date_vs_layers",
+          "association_memory_vs_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#foreningen_som_husker"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: lokalhistorie kan være part i en pågående konflikt.",
+        "thread_ids": [
+          "local_conflict_vs_neutrality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#konflikt_i_lokalmiljoet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 12, lunch: lokalhistorie kan være part i en pågående konflikt.",
+        "thread_ids": [
+          "local_conflict_vs_neutrality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#konflikt_i_lokalmiljoet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: lokalhistorie kan være part i en pågående konflikt.",
+        "thread_ids": [
+          "local_myth_vs_evidence",
+          "local_conflict_vs_neutrality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#konflikt_i_lokalmiljoet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: lokalhistorie kan være part i en pågående konflikt.",
+        "thread_ids": [
+          "place_name_vs_change",
+          "local_conflict_vs_neutrality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#konflikt_i_lokalmiljoet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: lokal kunnskap må kunne overleveres.",
+        "thread_ids": [
+          "traceability_vs_retelling"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kildepakken_til_neste"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: lokal kunnskap må kunne overleveres.",
+        "thread_ids": [
+          "traceability_vs_retelling"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kildepakken_til_neste"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: lokal kunnskap må kunne overleveres.",
+        "thread_ids": [
+          "municipal_record_vs_absence",
+          "traceability_vs_retelling"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kildepakken_til_neste"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: lokal kunnskap må kunne overleveres.",
+        "thread_ids": [
+          "photo_vs_context",
+          "traceability_vs_retelling"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kildepakken_til_neste"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: målet er sporbar stedskunnskap, ikke å eie den lokale fortiden.",
+        "thread_ids": [
+          "local_history_practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#lokalhistoriker_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 14, lunch: målet er sporbar stedskunnskap, ikke å eie den lokale fortiden.",
+        "thread_ids": [
+          "local_history_practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#lokalhistoriker_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: målet er sporbar stedskunnskap, ikke å eie den lokale fortiden.",
+        "thread_ids": [
+          "identity_linkage_vs_guessing",
+          "local_history_practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#lokalhistoriker_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 14, evening: målet er sporbar stedskunnskap, ikke å eie den lokale fortiden.",
+        "thread_ids": [
+          "family_memory_vs_ownership",
+          "local_history_practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_lokalhistoriker.json#lokalhistoriker_som_praksis"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "oral_memory_vs_corroboration",
+      "relationship": "muntlig minne mot uavhengig kontroll",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "5/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "building_date_vs_layers",
+      "relationship": "ett byggeår mot historiske lag",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "place_name_vs_change",
+      "relationship": "stedsnavn mot historisk endring",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "photo_vs_context",
+      "relationship": "fotografisk inntrykk mot dokumentert kontekst",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "family_memory_vs_ownership",
+      "relationship": "familienærhet mot eierskap til fortellingen",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "commemorative_source_vs_critique",
+      "relationship": "jubileumskilde mot sjangerkritikk",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "map_vs_lived_space",
+      "relationship": "formell geografi mot levd sted",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "local_myth_vs_evidence",
+      "relationship": "lokal myte mot dokumentert hendelse",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "12/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "municipal_record_vs_absence",
+      "relationship": "forvaltningsspor mot fraværende hverdagsstemmer",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "identity_linkage_vs_guessing",
+      "relationship": "identitetskobling mot gjetning",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "association_memory_vs_selection",
+      "relationship": "organisert minne mot seleksjon",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "1/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "local_conflict_vs_neutrality",
+      "relationship": "lokal konflikt mot skjult partsvalg",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "2/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "traceability_vs_retelling",
+      "relationship": "sporbar kilderekke mot hukommelsesbasert gjenfortelling",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "3/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "local_history_practice_vs_authority",
+      "relationship": "lokalhistorisk praksis mot eierskap til fortiden",
+      "beat_refs": [
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening",
+        "4/afternoon",
+        "9/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "minnet_faar_kildestatus",
+      "description": "Muntlige minner blir verken avvist eller opphøyd; du noterer forteller, tidspunkt, usikkerhet og kontrollspor.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_lokalhistoriker.json#muntlig_kilde_og_minne",
+        "data/Civication/narratives/leisure/historie_lokalhistoriker.json#familien_som_eier_fortellingen"
+      ]
+    },
+    {
+      "id": "stedet_faar_flere_lag",
+      "description": "Du slutter å lete etter ett riktig årstall eller ett riktig navn når kildene viser flere historiske faser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_lokalhistoriker.json#huset_med_to_aarstall",
+        "data/Civication/narratives/leisure/historie_lokalhistoriker.json#gatenavnet_som_forsvant"
+      ]
+    },
+    {
+      "id": "myten_blir_dobbel_kilde",
+      "description": "Lokale myter får verdi som spor etter kollektiv hukommelse uten automatisk å bli behandlet som dokumenterte hendelser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_lokalhistoriker.json#den_lokale_myten",
+        "data/Civication/narratives/leisure/historie_lokalhistoriker.json#foreningen_som_husker"
+      ]
+    },
+    {
+      "id": "konflikten_faar_kildekart",
+      "description": "Når historie brukes i en nåtidig strid, blir du mer eksplisitt om hvem som hevder hva og hvilke kilder som støtter hvert ledd.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kommunen_og_arkivet",
+        "data/Civication/narratives/leisure/historie_lokalhistoriker.json#konflikt_i_lokalmiljoet"
+      ]
+    },
+    {
+      "id": "notatene_blir_overleverbare",
+      "description": "Private notater får kildelister og kontekst slik at andre kan etterprøve og bygge videre på arbeidet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kildepakken_til_neste",
+        "data/Civication/narratives/leisure/historie_lokalhistoriker.json#lokalhistoriker_som_praksis"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "minnet_moter_arkivet",
+      "setup_ref": "1/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "knowledge",
+        "relationships"
+      ]
+    },
+    {
+      "id": "byggearet_moter_nytt_lag",
+      "setup_ref": "2/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "knowledge",
+        "judgment"
+      ]
+    },
+    {
+      "id": "fotografiet_blir_identifisert",
+      "setup_ref": "4/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "knowledge",
+        "reputation"
+      ]
+    },
+    {
+      "id": "myten_moter_motkilde",
+      "setup_ref": "8/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "reputation",
+        "identity"
+      ]
+    },
+    {
+      "id": "navnet_moter_ny_person",
+      "setup_ref": "10/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "knowledge",
+        "identity"
+      ]
+    },
+    {
+      "id": "kildepakken_blir_brukt",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "knowledge",
+        "relationships"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#muntlig_kilde_og_minne",
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#huset_med_to_aarstall",
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#gatenavnet_som_forsvant",
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#fotografiet_uten_tekst",
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#familien_som_eier_fortellingen",
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#jubileumsskriftet",
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kartet_og_terrenget",
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#den_lokale_myten",
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kommunen_og_arkivet",
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#graven_og_navnet",
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#foreningen_som_husker",
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#konflikt_i_lokalmiljoet",
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#kildepakken_til_neste",
+      "data/Civication/narratives/leisure/historie_lokalhistoriker.json#lokalhistoriker_som_praksis"
+    ]
+  }
+}
