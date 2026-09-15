@@ -38,3 +38,4 @@ for(const id of ['nabolagsbeboeren','kunstneren_med_pseudonym','bildearkivaren',
 assert.match(world.sociological_core.description,/ingen kunsthistoriker-, autentisator-, kurator-, konservator-/i);
 assert.match(world.sociological_core.description,/ingen ny runtime/i);
 console.log('Gatekunstjeger Role World gate ok');
+
