@@ -1,0 +1,678 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "media_kommentarfeltveteran_stream",
+  "type": "leisure",
+  "title": "Kommentarfeltveteran",
+  "sociological_theme": "offentlig_kommentering_debatt_konflikt_tone_rykte_kilder_moderering_og_grensen_mot_redaksjonell_eller_plattformmyndighet",
+  "applies_when": {
+    "any_tags": [
+      "media:kommentarfeltveteran"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "forste_svar_som_lokker_deg_inn",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Varslingen",
+      "subject": "Det lille stikket",
+      "situation": [
+        "En kommentar under en nyhetssak treffer deg akkurat nok til at du begynner å formulere et svar før du egentlig har lest hele tråden.",
+        "Du kjenner rytmen: ett svar blir fort til tre, og snart handler oppmerksomheten mer om reaksjonene enn om saken.",
+        "Kommentarfeltveteran betyr å kjenne mekanikken godt nok til å velge om du faktisk vil inn i den."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lese ferdig saken og tråden før du bestemmer om noe bør besvares.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Svare umiddelbart mens formuleringen fortsatt er skarp.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "attention_boundary"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_lille_spydigheten",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kommentarfeltet",
+      "subject": "Setningen som kan leses på to måter",
+      "situation": [
+        "Du skriver en kort spydighet som føles åpenbart ironisk for deg, men ser at andre leser den som et direkte angrep.",
+        "I tekst uten tonefall kan små markører få stor effekt, særlig når publikum ikke kjenner deg.",
+        "Erfaring i kommentarfelt er også erfaring med hvor lite kontroll du har over andres lesning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Omskrive poenget slik at kritikken står uten personstikket.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La spydigheten stå og forklare at folk må tåle ironi.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tone_vs_intent"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_er_du_i_denne_traden",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Profilen",
+      "subject": "Navnet ved siden av kommentaren",
+      "situation": [
+        "Du merker at du skriver annerledes fordi noen i tråden kjenner navnet ditt fra før.",
+        "Et vedvarende kommentarfeltliv skaper et rykte som følger nye innlegg, også når saken er en annen.",
+        "Identitet i offentlig tekst er både det du sier nå og sporene etter det du har sagt tidligere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skrive det du kan stå for også når gamle motparter leser med.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Spisse formuleringen for å leve opp til rollen andre forventer av deg.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "identity_vs_performance"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sitatet_som_mangler_lenken",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Tråden",
+      "subject": "Påstanden alle gjentar",
+      "situation": [
+        "En påstand blir gjentatt av flere uten at noen lenger viser til hvor den kom fra.",
+        "Du har sett denne typen kjedereaksjon før: repetisjon gjør noe sosialt troverdig lenge før det er etterprøvd.",
+        "Kommentarfelterfaring gir ingen kildeautoritet, men kan brukes til å bremse en dårlig informasjonskjede."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om kilde og markere hva som faktisk er kjent.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjenta påstanden med forbehold fordi så mange andre allerede har nevnt den.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "source_chain_vs_repetition"
+      ],
+      "risk_links": [
+        "responsibility_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_som_alltid_dukker_opp",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Tråden",
+      "subject": "Den gamle motparten",
+      "situation": [
+        "En bruker du har kranglet med mange ganger dukker opp under en helt ny sak.",
+        "Historikken mellom dere gjør at du leser teksten som del av en lang konflikt, selv før innholdet er vurdert.",
+        "Veteranstatus kan gjøre mønstre synlige, men også gjøre det vanskelig å la en ny ytring være ny."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svare på det som faktisk står i denne kommentaren.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Trekke inn den gamle historikken for å vise alle hvilket mønster personen har.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "history_vs_present_text"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "når_likes_blir_resultattavle",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Varslingene",
+      "subject": "Tallet ved siden av svaret",
+      "situation": [
+        "Kommentaren din får mange likerklikk, mens et mer nyansert svar lenger ned nesten ikke blir sett.",
+        "Responsmålene er raske og synlige, men sier lite om hva som var sant, nyttig eller rettferdig.",
+        "Den erfarne kommentatoren vet hvor lett applaus kan bli en egen belønning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La poenget stå uten å jage flere reaksjoner.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Følge opp med en enda skarpere variant fordi publikum tydelig liker stilen.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "metrics_vs_judgment"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "skjermbildet_uten_kontekst",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Meldingen",
+      "subject": "Se hva denne personen skrev",
+      "situation": [
+        "En venn sender deg et skjermbilde av en kommentar uten resten av tråden.",
+        "Skjermbilder gjør deling lett, men river ofte tekst løs fra tidspunkt, svarrekkefølge og senere korrigeringer.",
+        "Du kan kjenne igjen mønsteret uten å anta at utsnittet er hele hendelsen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om lenke eller mer kontekst før du reagerer offentlig.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Dele skjermbildet videre fordi formuleringen er ille nok alene.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "context_vs_capture"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_nye_brukeren_som_bommer",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kommentarfeltet",
+      "subject": "Førsteinnlegget som går galt",
+      "situation": [
+        "En ny deltaker formulerer seg klønete og blir raskt møtt med sarkasme fra flere faste brukere.",
+        "Du kjenner kodene og ser både hvorfor folk reagerer og hvor fort et miljø kan gjøre terskelen høy for nye stemmer.",
+        "Kommentarfeltkultur består også av uformelle normer ingen har skrevet ned."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Korrigere poenget uten å gjøre nykommeren til underholdning.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bli med på latteren fordi personen åpenbart burde vite bedre.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "norms_vs_gatekeeping"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "moderasjonen_som_ikke_er_din",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Den slettede kommentaren",
+      "subject": "Hvorfor tok de den bort?",
+      "situation": [
+        "En kommentar forsvinner, og flere begynner å spekulere i hvem som rapporterte den og hvorfor moderatoren grep inn.",
+        "Du kan kjenne mønstre i hva som vanligvis utløser inngrep, men du ser ikke moderatorloggen eller beslutningsgrunnlaget.",
+        "Kommentarfeltveteran er ikke moderatorstatus."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skille mellom det du observerte og det bare moderatorene kan vite.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Forklare sikkert hvorfor kommentaren ble slettet basert på erfaringen din.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observation_vs_moderator_authority"
+      ],
+      "risk_links": [
+        "responsibility_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "privatmeldingen_etter_offentlig_krangel",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Innboksen",
+      "subject": "Kan vi ta dette privat?",
+      "situation": [
+        "Etter en hard ordveksling får du en privat melding fra personen du nettopp diskuterte med.",
+        "Overgangen fra offentlig scene til privat kanal kan roe ned, men kan også flytte press og ubehag ut av synsfeltet til andre.",
+        "Erfaring betyr å respektere at privat kontakt krever et nytt samtykke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svare kort hvis du ønsker dialog, eller avslå tydelig uten å fortsette striden.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke privatkanalen til å fortsette kampen uten publikum.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "public_vs_private_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_gamle_kommentaren_som_hentes_frem",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Arkivet",
+      "subject": "Tre år senere",
+      "situation": [
+        "Noen finner frem en kommentar du skrev for flere år siden og bruker den som bevis på hva du mener i dag.",
+        "Gamle ytringer er reelle spor, men mennesker kan endre syn, språk og kunnskapsgrunnlag.",
+        "Et kommentarfeltarkiv gjør tid synlig på en måte muntlige samtaler sjelden gjør."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklare hva du skrev da og hva du mener nå uten å late som teksten ikke finnes.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Forsøke å avvise hele saken som irrelevant fordi kommentaren er gammel.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "archive_vs_change"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_samme_saken_for_tiende_gang",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Forsiden",
+      "subject": "Striden vender tilbake",
+      "situation": [
+        "En kjent strid kommer tilbake i ny versjon, og du kan nesten forutsi argumentene før du åpner tråden.",
+        "Erfaring kan gi mønstergjenkjenning, men også friste deg til å svare på stereotypen i stedet for personen foran deg.",
+        "Det å ha sett noe før gjør ikke alle nye bidrag identiske."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lese hva som faktisk er nytt før du velger gamle argumenter.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Hoppe direkte til standardmotargumentet fordi du vet hvordan dette ender.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pattern_vs_stereotype"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nar_du_har_rett_men_gjor_det_verre",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Svarfeltet",
+      "subject": "Korreksjonen som eskalerer",
+      "situation": [
+        "Du oppdager en faktisk feil og retter den, men formuleringen gjør at hele tråden flytter seg fra saken til hvem som ydmyket hvem.",
+        "Å ha rett i et punkt gir ikke kontroll over den sosiale virkningen av måten det leveres på.",
+        "Kommentarfeltkompetanse er også å skille korreksjon fra seier."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rette feilen presist uten å legge til et personangrep.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke feilen til å markere at motparten ikke burde uttale seg.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "correction_vs_humiliation"
+      ],
+      "risk_links": [
+        "shame_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_kommentarfeltveteran",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Egen historikk",
+      "subject": "Rollen du har bygget",
+      "situation": [
+        "Du kjenner rytmen, språkbruken, de faste figurene og de vanligste fellene bedre enn mange andre.",
+        "Det er reell praksiskunnskap, men den gir ingen journalist-, redaktør-, moderator-, faktasjekker- eller plattformmyndighet.",
+        "Spørsmålet er om erfaringen din gjør deg roligere og mer presis, eller bare vanskeligere å overraske."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde rollen som erfaren deltaker med tydelige myndighetsgrenser.",
+          "effect": 1,
+          "tags": [
+            "role_clarity",
+            "restraint",
+            "public_discourse"
+          ],
+          "feedback": "Du bruker erfaringen til å redusere friksjon uten å låne myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La lang fartstid fungere som uformell autoritet over hva som er sant og hvem som hører til.",
+          "effect": -1,
+          "tags": [
+            "escalation",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Erfaringen blir brukt til å forsterke konflikt eller sosial rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "practice_vs_authority"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    }
+  ]
+}

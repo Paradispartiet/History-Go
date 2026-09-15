@@ -1,11 +1,11 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 46 ready / 113 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 47 ready / 112 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 14
-**Exact governed-source matches:** 46
-**Multi-scene narrative foundations:** 46
-**Completed life-position Role Worlds:** 46
+**Exact governed-source matches:** 47
+**Multi-scene narrative foundations:** 47
+**Completed life-position Role Worlds:** 47
 **Pending ready positions:** 0
 
 ## Decision
@@ -18,36 +18,36 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `media/kommentarfeltveteran` | needs_authored_depth | 0 | 0 | 0 |
-| 2 | `media/nyhetsjunkie` | needs_authored_depth | 0 | 0 | 0 |
-| 3 | `media/podkastsluker` | needs_authored_depth | 0 | 0 | 0 |
-| 4 | `musikk/konsertgjenger` | needs_authored_depth | 0 | 0 | 0 |
-| 5 | `musikk/musikknerd` | needs_authored_depth | 0 | 0 | 0 |
-| 6 | `musikk/plategraver` | needs_authored_depth | 0 | 0 | 0 |
-| 7 | `naeringsliv/grunderdrommer` | needs_authored_depth | 0 | 0 | 0 |
-| 8 | `naeringsliv/pendler` | needs_authored_depth | 0 | 0 | 0 |
-| 9 | `naeringsliv/smasparer` | needs_authored_depth | 0 | 0 | 0 |
-| 10 | `natur/fuglekikker` | needs_authored_depth | 0 | 0 | 0 |
-| 11 | `natur/sanker` | needs_authored_depth | 0 | 0 | 0 |
-| 12 | `natur/turgaer` | needs_authored_depth | 0 | 0 | 0 |
-| 13 | `politikk/grasrotbygger` | needs_authored_depth | 0 | 0 | 0 |
-| 14 | `politikk/kampanjemenneske` | needs_authored_depth | 0 | 0 | 0 |
-| 15 | `politikk/motesliter` | needs_authored_depth | 0 | 0 | 0 |
-| 16 | `politikk/organisasjonsmenneske` | needs_authored_depth | 0 | 0 | 0 |
-| 17 | `psykologi/monsterjeger` | needs_authored_depth | 0 | 0 | 0 |
-| 18 | `psykologi/psykologientusiast` | needs_authored_depth | 0 | 0 | 0 |
-| 19 | `psykologi/relasjonsbygger` | needs_authored_depth | 0 | 0 | 0 |
-| 20 | `psykologi/selvgransker` | needs_authored_depth | 0 | 0 | 0 |
-| 21 | `psykologi/vaneeksperimentor` | needs_authored_depth | 0 | 0 | 0 |
-| 22 | `religion/dialogbygger` | needs_authored_depth | 0 | 0 | 0 |
-| 23 | `religion/livssynsutforsker` | needs_authored_depth | 0 | 0 | 0 |
-| 24 | `religion/pilegrim` | needs_authored_depth | 0 | 0 | 0 |
-| 25 | `religion/trosstedsvandrer` | needs_authored_depth | 0 | 0 | 0 |
-| 26 | `scenekunst/improentusiast` | needs_authored_depth | 0 | 0 | 0 |
-| 27 | `scenekunst/premieregjenger` | needs_authored_depth | 0 | 0 | 0 |
-| 28 | `scenekunst/teatergjenganger` | needs_authored_depth | 0 | 0 | 0 |
-| 29 | `sport/sondagsutover` | needs_authored_depth | 0 | 0 | 0 |
-| 30 | `sport/tribunesliter` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `media/nyhetsjunkie` | needs_authored_depth | 0 | 0 | 0 |
+| 2 | `media/podkastsluker` | needs_authored_depth | 0 | 0 | 0 |
+| 3 | `musikk/konsertgjenger` | needs_authored_depth | 0 | 0 | 0 |
+| 4 | `musikk/musikknerd` | needs_authored_depth | 0 | 0 | 0 |
+| 5 | `musikk/plategraver` | needs_authored_depth | 0 | 0 | 0 |
+| 6 | `naeringsliv/grunderdrommer` | needs_authored_depth | 0 | 0 | 0 |
+| 7 | `naeringsliv/pendler` | needs_authored_depth | 0 | 0 | 0 |
+| 8 | `naeringsliv/smasparer` | needs_authored_depth | 0 | 0 | 0 |
+| 9 | `natur/fuglekikker` | needs_authored_depth | 0 | 0 | 0 |
+| 10 | `natur/sanker` | needs_authored_depth | 0 | 0 | 0 |
+| 11 | `natur/turgaer` | needs_authored_depth | 0 | 0 | 0 |
+| 12 | `politikk/grasrotbygger` | needs_authored_depth | 0 | 0 | 0 |
+| 13 | `politikk/kampanjemenneske` | needs_authored_depth | 0 | 0 | 0 |
+| 14 | `politikk/motesliter` | needs_authored_depth | 0 | 0 | 0 |
+| 15 | `politikk/organisasjonsmenneske` | needs_authored_depth | 0 | 0 | 0 |
+| 16 | `psykologi/monsterjeger` | needs_authored_depth | 0 | 0 | 0 |
+| 17 | `psykologi/psykologientusiast` | needs_authored_depth | 0 | 0 | 0 |
+| 18 | `psykologi/relasjonsbygger` | needs_authored_depth | 0 | 0 | 0 |
+| 19 | `psykologi/selvgransker` | needs_authored_depth | 0 | 0 | 0 |
+| 20 | `psykologi/vaneeksperimentor` | needs_authored_depth | 0 | 0 | 0 |
+| 21 | `religion/dialogbygger` | needs_authored_depth | 0 | 0 | 0 |
+| 22 | `religion/livssynsutforsker` | needs_authored_depth | 0 | 0 | 0 |
+| 23 | `religion/pilegrim` | needs_authored_depth | 0 | 0 | 0 |
+| 24 | `religion/trosstedsvandrer` | needs_authored_depth | 0 | 0 | 0 |
+| 25 | `scenekunst/improentusiast` | needs_authored_depth | 0 | 0 | 0 |
+| 26 | `scenekunst/premieregjenger` | needs_authored_depth | 0 | 0 | 0 |
+| 27 | `scenekunst/teatergjenganger` | needs_authored_depth | 0 | 0 | 0 |
+| 28 | `sport/sondagsutover` | needs_authored_depth | 0 | 0 | 0 |
+| 29 | `sport/tribunesliter` | needs_authored_depth | 0 | 0 | 0 |
+| 30 | `utdanning/didaktisk_tenker` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 
