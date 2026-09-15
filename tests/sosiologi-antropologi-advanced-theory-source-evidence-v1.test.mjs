@@ -39,14 +39,15 @@ test('advanced theory source evidence remains fail-closed until 60/60 fulltext v
 test('advanced theory materializer derives a fail-closed release gate from source evidence', async () => {
   const canon = read('data/fag/politikk/sosiologi_antropologi/advanced_theory_reading_canon_v1.json');
   const evidence = read('data/fag/politikk/sosiologi_antropologi/advanced_theory_source_evidence_v1.json');
+  const fulltextCount = evidence.evidence_units.filter((row) => row.verification_status === 'fulltext_verified').length;
   const { evaluateSourceEvidence } = await import('../scripts/materialize-sosiologi-antropologi-advanced-theory-fulltext-refresh-v1.mjs');
   const gate = evaluateSourceEvidence(canon, evidence);
 
   assert.deepEqual(gate.counts, {
     mapping_supported: 60,
-    fulltext_verified: 14,
-    runtime_releasable: 0,
+    fulltext_verified: fulltextCount,
+    runtime_releasable: fulltextCount === 60 ? 60 : 0,
   });
-  assert.equal(gate.runtime_release_gate_open, false);
+  assert.equal(gate.runtime_release_gate_open, fulltextCount === 60);
   assert.equal(gate.rowsByUnitKey.size, 60);
 });
