@@ -1,0 +1,198 @@
+name: TEMP Klassekampen Phase 1 materialization
+
+on:
+  push:
+    branches:
+      - agent/klassekampen-phase-1-20260915
+    paths:
+      - .github/workflows/tmp-klassekampen-phase1-materialize.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact phase branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/klassekampen-phase-1-20260915
+          fetch-depth: 0
+
+      - name: Verify locked ancestry
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor 458ab1e5ddea12c6035593bd3ee661a30084f549 HEAD
+          test "$(git rev-parse 458ab1e5ddea12c6035593bd3ee661a30084f549)" = "458ab1e5ddea12c6035593bd3ee661a30084f549"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Materialize canonical Phase 1 sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('node:fs');
+          const zlib = require('node:zlib');
+          const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const writeJson = (p, v) => fs.writeFileSync(p, `${JSON.stringify(v, null, 2)}\n`);
+          const decode = (v) => JSON.parse(zlib.gunzipSync(Buffer.from(v, 'base64')).toString('utf8'));
+
+          const PLACE_PATCH = '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';
+          const PRODUCTION = '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';
+          const SPRAK = 'H4sIAHYmqWoC/31TS24bMQy9ijDr+Be0AZweIUC7yLIIBI5Fj2VppIHIMWoYAXKH5gpe9QjZOTfJSUrJdjJJi8CbMfnI9x5J7arOwwK1NdV15TwQoYO2w6ATGnC0jqG6qNiyRwHcdul579QGjboZYEevWMzoDSa7tGg0sNRcTi+vRtP5aPZVUsaCxwVrYuCeJBsia+g6bxdQe9RHMR436AVNfb3O6CKuRSmWILYhy5Xin/KtS1jDxtKqJx2XSwzsbbNCphTbgj9hXkVqg+SGGZcsW+e0i20r5ZCGSWMby+Dfta7uBBA4WcwydtUn09MzPUzkYWJqBX7zIbrt8oS7vvbWQa6kAJucaRGCDY0kv0sAWXXPe2WgwUAq+75QyHl4iZVVs/nVfKx+JCM4B0EZ9EgSP/w5qjg8qdjkf8J7ePqmVphUnXonoFxCsVUonTN14RnowTAWNR62mESLh9D0IiKv6bzMRZ+SjEVCixgYf+X13zIa6iIxBtWs0RshPIn//wmN1clmK/TkrM8G6ue9QbVMUFRKNSaUhOqZ09Y5iZ0NHo1lkxktpIQdJOAyKiUrVeHYfshefNelnyybZYrT+cvD79n8y7R4tsHJOXOsrneVsyFvu1yq5D57OPeyVmjKpWb20z4J8pURMOuYTFmwsWiNTM7y8bYo9mlxui0PtTyGPMiYUIWYyKHy6Mi6GNTLw+N7JyK7WJW+fcp1K+aOricTCn4c4mQI1qPycETnG82HZo9KWBgc/9Nv6Dk3PuPu7+T3F3cMkoRXBAAA';
+
+          const placePath = 'data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json';
+          const place = readJson(placePath);
+          if (place.id !== 'klassekampen_redaksjon') throw new Error('Unexpected Klassekampen place id');
+          const actualIdentity = JSON.stringify({lat: place.lat, lon: place.lon, sourceObjectId: place.sourceObjectId});
+          const lockedIdentity = JSON.stringify({lat: 59.91335273517942, lon: 10.759577592129606, sourceObjectId: 'geonorge-adresser-v1:0301:12446:4'});
+          if (actualIdentity !== lockedIdentity) throw new Error('Locked Grønland 4 coordinate identity drifted');
+          Object.assign(place, decode(PLACE_PATCH));
+          writeJson(placePath, place);
+
+          const production = decode(PRODUCTION);
+          writeJson('data/places/production/klassekampen_redaksjon.json', production);
+
+          const sprakPath = 'data/leksikon/sprak/places/europe/norway/oslo/klassekampen_redaksjon.json';
+          writeJson(sprakPath, decode(SPRAK));
+
+          const sprakManifestPath = 'data/leksikon/sprak/manifest.json';
+          const sprakManifest = readJson(sprakManifestPath);
+          sprakManifest.place_files ||= {};
+          if (sprakManifest.place_files.klassekampen_redaksjon && sprakManifest.place_files.klassekampen_redaksjon !== sprakPath) {
+            throw new Error('Conflicting Klassekampen Språkleksikon manifest row');
+          }
+          sprakManifest.place_files.klassekampen_redaksjon = sprakPath;
+          writeJson(sprakManifestPath, sprakManifest);
+
+          const registryPath = 'data/fagverk/fagverk_registry.json';
+          const registry = readJson(registryPath);
+          registry.placeLinks ||= {};
+          const expectedRegistryRow = {
+            sourceFile: 'places/media/oslo/places_oslo_media/klassekampen_redaksjon.json',
+            field: 'fagverk',
+            schema: 'history_go_place_fagverk_v2',
+            level: 'standard',
+            status: 'curated'
+          };
+          if (registry.placeLinks.klassekampen_redaksjon && JSON.stringify(registry.placeLinks.klassekampen_redaksjon) !== JSON.stringify(expectedRegistryRow)) {
+            throw new Error('Conflicting Klassekampen Fagverk registry row');
+          }
+          registry.placeLinks.klassekampen_redaksjon = expectedRegistryRow;
+          writeJson(registryPath, registry);
+          NODE
+
+      - name: Regenerate owner-controlled outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run places:index:build
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run epoker:places:build
+
+      - name: Validate Phase 1 contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run places:index:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs
+          npm run leksikon:ids:check
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all
+          node <<'NODE'
+          const fs = require('node:fs');
+          const assert = require('node:assert/strict');
+          const manifest = JSON.parse(fs.readFileSync('data/leksikon/sprak/manifest.json', 'utf8'));
+          const entry = JSON.parse(fs.readFileSync('data/leksikon/sprak/places/europe/norway/oslo/klassekampen_redaksjon.json', 'utf8'));
+          assert.equal(manifest.place_files.klassekampen_redaksjon, 'data/leksikon/sprak/places/europe/norway/oslo/klassekampen_redaksjon.json');
+          assert.equal(entry.place_id, 'klassekampen_redaksjon');
+          assert.ok(Array.isArray(entry.entries) && entry.entries.length >= 1);
+          for (const row of entry.entries) {
+            assert.ok(row.id && row.term && row.type && row.meaning);
+            for (const source of row.sources || []) assert.match(source.url, /^https:\/\//);
+          }
+          const production = JSON.parse(fs.readFileSync('data/places/production/klassekampen_redaksjon.json', 'utf8'));
+          assert.equal(production.claims.length, 12);
+          assert.deepEqual(production.claims.filter(c => c.timelineYear).map(c => c.timelineYear).sort((a,b)=>a-b), [1969,1969,1973,1977,1991,1996,2002,2018]);
+          NODE
+
+      - name: Record Phase 1 checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('node:fs');
+          const workcardPath = 'reports/place-production/klassekampen-workcard-current.json';
+          const workcard = JSON.parse(fs.readFileSync(workcardPath, 'utf8'));
+          workcard.phase = 'PHASE 1 COMPLETE — SOURCE-BOUND PLACE / FAGVERK / SPRÅKLEKSIKON / CHRONOLOGY';
+          workcard.activePhase = 'Fase 1 — complete; Fase 2 not started';
+          workcard.activeFileScope = [
+            'data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json',
+            'data/places/production/klassekampen_redaksjon.json',
+            'data/leksikon/sprak/places/europe/norway/oslo/klassekampen_redaksjon.json',
+            'data/leksikon/sprak/manifest.json',
+            'data/fagverk/fagverk_registry.json',
+            'data/fagverk/fagverk_release.json',
+            'data/places/places_index.json',
+            'data/epoker/epoke-place-index.json'
+          ];
+          workcard.contentChangesStarted = true;
+          workcard.verifiedAt = '2026-09-15';
+          workcard.status = 'phase_1_complete';
+          workcard.fagverkStatus = 'PASS — Place-owned Fagverk v2 materialized and registered; release manifest regenerated through its owner builder';
+          workcard.sprakleksikonStatus = 'PASS — canonical Klassekampen place-language file materialized and bound through the Språkleksikon manifest';
+          workcard.chronologyStatus = 'PASS — 1969, 1973, 1977, 1991, 1996, 2002 and 2018 are source-bound in the canonical production package; epoke output regenerated by its owner script; no Grønland 4 move-in year invented';
+          if (Array.isArray(workcard.blockingGates)) workcard.blockingGates = workcard.blockingGates.filter((gate) => !String(gate).startsWith('Phase 1 source-bound'));
+          fs.writeFileSync(workcardPath, `${JSON.stringify(workcard, null, 2)}\n`);
+
+          const reviewPath = 'reports/place-production/klassekampen-source-review-v1.md';
+          let review = fs.readFileSync(reviewPath, 'utf8');
+          const marker = '## Fase 1-materialisering — 2026-09-15';
+          if (!review.includes(marker)) {
+            review = review.replace(/\s*$/, '') + `\n\n${marker}\n\nFase 1 er materialisert fail-closed fra låst base \`458ab1e5ddea12c6035593bd3ee661a30084f549\`.\n\n- Canonical Place har de fire bekreftede Media-underbadgene, kildebundet \`desc\`/\`popupDesc\`, Place-eid Fagverk v2 og inspectable \`externalLinks\`.\n- \`data/places/production/klassekampen_redaksjon.json\` er canonical v4.2-produksjonspakke med 12 verifiserte claims og eksplisitt setningsdekning.\n- Språkleksikonet har ett avgrenset stedsspor for publikasjonsnavnet «Klassekampen»; dagens avis skilles fra det generelle uttrykket og den separate 1909–1940-avisen.\n- Chronology er kildebundet til 1969, 1973, 1977, 1991, 1996, 2002 og 2018. Grønland 4 behandles bare som dokumentert nåværende redaksjonsadresse; ingen innflyttingsdato er konstruert.\n- \`data/epoker/epoke-place-index.json\`, \`data/places/places_index.json\` og Fagverk-release er regenerert med sine eierkommandoer og kontrollert i sync.\n- Ingen People-, Object-, Brand-, Production-/Kunstverk-collection, bilde/frontImage, quiz, QuizCard eller \`place-open\`-runtime er materialisert i denne fasen.\n\nNeste gate er Fase 2.\n`;
+          }
+          fs.writeFileSync(reviewPath, review);
+          NODE
+
+      - name: Enforce exact Phase 1 write surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          bad=0
+          while IFS= read -r line; do
+            path="${line:3}"
+            case "$path" in
+              data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json|data/places/production/klassekampen_redaksjon.json|data/leksikon/sprak/places/europe/norway/oslo/klassekampen_redaksjon.json|data/leksikon/sprak/manifest.json|data/fagverk/fagverk_registry.json|data/fagverk/fagverk_release.json|data/places/places_index.json|data/epoker/epoke-place-index.json|reports/place-production/klassekampen-source-review-v1.md|reports/place-production/klassekampen-workcard-current.json|.github/workflows/tmp-klassekampen-phase1-materialize.yml)
+                ;;
+              *)
+                echo "UNEXPECTED_PHASE1_PATH $path"
+                bad=1
+                ;;
+            esac
+          done < <(git status --porcelain)
+          git status --short
+          test "$bad" -eq 0
+
+      - name: Commit Phase 1 and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/tmp-klassekampen-phase1-materialize.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json data/places/production/klassekampen_redaksjon.json data/leksikon/sprak/places/europe/norway/oslo/klassekampen_redaksjon.json data/leksikon/sprak/manifest.json data/fagverk/fagverk_registry.json data/fagverk/fagverk_release.json data/places/places_index.json data/epoker/epoke-place-index.json reports/place-production/klassekampen-source-review-v1.md reports/place-production/klassekampen-workcard-current.json .github/workflows/tmp-klassekampen-phase1-materialize.yml
+          git diff --cached --name-only
+          git commit -m 'Materialize Klassekampen Phase 1 sources and chronology'
+          git push origin HEAD:agent/klassekampen-phase-1-20260915
