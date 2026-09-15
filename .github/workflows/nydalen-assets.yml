@@ -30,16 +30,26 @@ jobs:
           from io import BytesIO
           from urllib.parse import quote
           import requests
+          import time
           from PIL import Image, ImageDraw, ImageFont, ImageEnhance
           import cairosvg
 
           UA={"User-Agent":"History-Go asset materialization/1.0 (educational project)"}
           def commons(name):
-              return "https://commons.wikimedia.org/wiki/Special:Redirect/file/" + quote(name, safe="")
+              return "https://commons.wikimedia.org/wiki/Special:Redirect/file/" + quote(name, safe="") + "?width=1800"
           def fetch(name):
-              r=requests.get(commons(name),headers=UA,timeout=60)
+              url=commons(name)
+              for attempt in range(6):
+                  r=requests.get(url,headers=UA,timeout=60)
+                  if r.status_code == 200:
+                      time.sleep(2.0)
+                      return r.content
+                  if r.status_code == 429:
+                      delay=float(r.headers.get("Retry-After") or min(30, 3*(2**attempt)))
+                      time.sleep(delay)
+                      continue
+                  r.raise_for_status()
               r.raise_for_status()
-              return r.content
           def crop_save(data,path,size):
               im=Image.open(BytesIO(data)).convert("RGB")
               tw,th=size; tr=tw/th; r=im.width/im.height
