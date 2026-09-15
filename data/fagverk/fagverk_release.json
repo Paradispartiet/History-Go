@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.16.0",
     "updated_at": "2026-09-15",
-    "content_sha256": "710c6b0f4c9c138b503fc985d933f47cf41eccfc2e8c60b4b9dc4185bf2588ba"
+    "content_sha256": "3c8d27c72f0311ec4242ba97410c32011bf9ca34a9df0fcb8222d165419a9786"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "426fb68d27df781b5c41e0a5711cfedd01756503ee4f79f6ec4a82e9939afcc7"
+    "content_sha256": "c852e90f6b71c943e12082c6d780a96ff16d5adce9f72b8b5977ce715d3c8b58"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 190,
     "module_file_count": 497,
-    "package_file_count": 444,
+    "package_file_count": 447,
     "chapter_referenced_file_count": 934,
-    "referenced_file_count": 1307,
+    "referenced_file_count": 1310,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -76,9 +76,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 96,
+      "package_file_count": 99,
       "required_package_file_count": 4,
-      "optional_package_file_count": 92,
+      "optional_package_file_count": 95,
       "package_files": [
         {
           "path": "data/fag/by/emner_by.json",
@@ -271,6 +271,18 @@
           ],
           "exists": true,
           "content_sha256": "8bce3082cd29f6d8d739ce22251ec7e9526cac6a10c33d5b482609d16e8e64df"
+        },
+        {
+          "path": "data/quiz/by/nydalen_sets_merged.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.nydalen.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "b223a43979e9476a80ab251115468b837c4c19090fd5d5aa7be3c70e131cd1e4"
         },
         {
           "path": "data/quiz/by/olaf_ryes_plass_sets.json",
@@ -621,6 +633,18 @@
           "content_sha256": "d595c650483dfba61e6a9a728454def73f8d41bfc1ce4b831df0445d8ee28e9a"
         },
         {
+          "path": "data/quiz/production_briefs/by/nydalen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.nydalen.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "e135b68f5cae82843b058a31c8933b33ccef33dc36218d3f92f566bf1b34a12d"
+        },
+        {
           "path": "data/quiz/production_briefs/by/olaf_ryes_plass.json",
           "required": false,
           "fields": [
@@ -969,6 +993,18 @@
           "content_sha256": "a85fbd438691c98a047f5dc30c74fa88274bfe66b455269d012e88fb30895522"
         },
         {
+          "path": "data/quiz/production_context/by/nydalen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.nydalen.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "9510ddd196e2a403ca71e641adb3e245e7576473185b05769bb1ebd7bb7507a4"
+        },
+        {
           "path": "data/quiz/production_context/by/olaf_ryes_plass.json",
           "required": false,
           "fields": [
@@ -1233,20 +1269,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "3e26cf3113e430238c89e2a927219eed33860885e97b3dac9baf121e63bb3bfd",
+      "package_content_sha256": "937b7227bc3eb4f3b06f50a819f158151cab554577b999028860348c0a3d556c",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 102,
       "chapter_content_sha256": "38e5be5259e0aa3d733f4ddeeb46df87769c935ad9dd76cd175f8bb645ee79fa",
-      "referenced_file_count": 198,
+      "referenced_file_count": 201,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "097981e32c40054f3fd8aac7d110d42898b3dfa4c7f4de0424d28d5b171453f5",
-      "content_sha256": "be9ed448964cb78cadcfee9cb4757d92677eea0f570673aa0f5cb54ae3ca68bb",
+      "structure_sha256": "bfd684b6573b59bac1cbdac5a8ffdccd04616db578068bc60c70da42fbed7e27",
+      "content_sha256": "fedb83ceeabc69e8bebbfea656e103091af30cd8c2146f34de7ad92932563ed5",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -5390,7 +5426,7 @@
             "quizProduction.targets.tollboden_oslo.context_artifact"
           ],
           "exists": true,
-          "content_sha256": "d10596cbb228a6c0e38dc2f33b7081c30156e679f4b33ca3ad1c9ca249486343"
+          "content_sha256": "b292a930189a541b226ef787b368f25f8665ff5dbd83e59e6f2f2943f69b7424"
         },
         {
           "path": "data/quiz/production_context/naeringsliv/tollpakkhuset.json",
@@ -5453,7 +5489,7 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "ef50c93a9f8af75e9a3f0bdf3a134280bcdcd37d3d6f2c81f71b7d48da74775d",
+      "package_content_sha256": "cd8cae94d6234b483392893ef152c4391a0a6dab30d9400c5c192bcdcb5f3f07",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
@@ -5466,7 +5502,7 @@
       "missing_chapter_files": [],
       "missing_files": [],
       "structure_sha256": "f0d9430a6efa99990821377aab6cf36fbd3963c9fad0b76e59cc3782bc902342",
-      "content_sha256": "f5a162dae48b1ce974486ab5069ddd9b2ae7c0dc8558f57800142fe59ed2662b",
+      "content_sha256": "99570778b0ca9d92fb28bd1e68a39f88f01c5e4fca263b3648fc3ef5af4f7b4d",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -8041,5 +8077,5 @@
       ]
     }
   },
-  "release_sha256": "c6a20584f8452995f14b3bf2f7fae2b3dd49003f4af7111416a9855a00e3bbad"
+  "release_sha256": "166d33b29ec928884147d8fb5d8543942eaad79beabef7c7f082c71412ee8cef"
 }
