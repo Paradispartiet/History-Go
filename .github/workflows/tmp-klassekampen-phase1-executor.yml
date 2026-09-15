@@ -1,0 +1,106 @@
+name: TEMP Klassekampen Phase 1 executor
+
+on:
+  push:
+    branches:
+      - agent/klassekampen-phase-1-20260915
+    paths:
+      - .github/workflows/tmp-klassekampen-phase1-executor.yml
+
+permissions:
+  contents: write
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact phase branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/klassekampen-phase-1-20260915
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Execute locked Phase 1 materializer blocks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+
+          source = Path('.github/workflows/tmp-klassekampen-phase1-materialize.yml')
+          lines = source.read_text().splitlines()
+          targets = [
+              'Verify locked ancestry',
+              'Materialize canonical Phase 1 sources',
+              'Regenerate owner-controlled outputs',
+              'Validate Phase 1 contracts',
+              'Record Phase 1 checkpoint',
+              'Enforce exact Phase 1 write surface',
+          ]
+
+          def extract_run(name):
+              marker = f'      - name: {name}'
+              matches = [i for i, line in enumerate(lines) if line == marker]
+              if len(matches) != 1:
+                  raise SystemExit(f'{name}: expected exactly one step marker, found {len(matches)}')
+              i = matches[0] + 1
+              while i < len(lines) and lines[i].strip() != 'run: |':
+                  if lines[i].startswith('      - name: '):
+                      raise SystemExit(f'{name}: run block not found')
+                  i += 1
+              if i >= len(lines):
+                  raise SystemExit(f'{name}: run block not found')
+              run_indent = len(lines[i]) - len(lines[i].lstrip())
+              block = []
+              i += 1
+              while i < len(lines):
+                  line = lines[i]
+                  indent = len(line) - len(line.lstrip()) if line.strip() else 10**9
+                  if line.strip() and indent <= run_indent:
+                      break
+                  cut = run_indent + 2
+                  block.append(line[cut:] if len(line) >= cut else '')
+                  i += 1
+              script = '\n'.join(block).rstrip() + '\n'
+              if not script.strip():
+                  raise SystemExit(f'{name}: empty run block')
+              return script
+
+          for name in targets:
+              print(f'=== {name} ===', flush=True)
+              subprocess.run(['bash', '-lc', extract_run(name)], check=True)
+          PY
+
+      - name: Commit validated Phase 1 sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json \
+            data/places/production/klassekampen_redaksjon.json \
+            data/leksikon/sprak/places/europe/norway/oslo/klassekampen_redaksjon.json \
+            data/leksikon/sprak/manifest.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            data/places/places_index.json \
+            data/epoker/epoke-place-index.json \
+            reports/place-production/klassekampen-source-review-v1.md \
+            reports/place-production/klassekampen-workcard-current.json
+          git diff --cached --check
+          git diff --cached --name-only
+          test -n "$(git diff --cached --name-only)"
+          git commit -m 'Materialize Klassekampen Phase 1 sources and chronology'
+          git push origin HEAD:agent/klassekampen-phase-1-20260915
