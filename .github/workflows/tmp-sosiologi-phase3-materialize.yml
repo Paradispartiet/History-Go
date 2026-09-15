@@ -10,10 +10,17 @@ on:
       - 'tests/sosiologi-antropologi-advanced-theory-*.test.mjs'
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: tmp-sosiologi-phase3-materialize-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
