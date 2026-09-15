@@ -1,0 +1,36 @@
+name: Dramatikkens hus Fagverk release materialize
+
+on:
+  push:
+    branches:
+      - agent/dramatikkens-hus-full-production-20260914
+    paths:
+      - '.github/workflows/dramatikkens-hus-fagverk-release.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: ${{ github.event.head_commit.message == 'Add temporary Dramatikkens Fagverk materializer' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: agent/dramatikkens-hus-full-production-20260914
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Build and commit canonical Fagverk release
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          git diff --check
+          rm .github/workflows/dramatikkens-hus-fagverk-release.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fagverk/fagverk_release.json .github/workflows/dramatikkens-hus-fagverk-release.yml
+          git commit -m "Materialize Dramatikkens hus Fagverk release"
+          git push origin HEAD:agent/dramatikkens-hus-full-production-20260914
