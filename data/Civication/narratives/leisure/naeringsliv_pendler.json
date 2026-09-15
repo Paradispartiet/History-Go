@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "naeringsliv_pendler_stream",
+  "type": "leisure",
+  "title": "Pendler",
+  "sociological_theme": "reisetid_forsinkelser_transportavhengighet_hjem_jobb_grenser_omsorg_og_ulik_kontroll_over_tid",
+  "applies_when": {
+    "any_tags": [
+      "naeringsliv:pendler"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "forste_forsinkelse",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Plattformen",
+      "subject": "Fem minutter blir tjue",
+      "situation": [
+        "Toget eller bussen er forsinket, og du vet ikke om fem minutter betyr fem eller tjue.",
+        "Pendling gjør deler av arbeidsdagen avhengig av systemer du ikke kontrollerer.",
+        "Forsinkelsen er reell, men det er nyttig å skille mellom det du kan varsle om og det du ikke kan styre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Varsle konkret om usikkerheten og oppdatere når du vet mer.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke hele reisen på å late som du kan kontrollere ankomsttiden.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "delay_vs_control"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kaffen_pa_vei",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Kiosken",
+      "subject": "Rutinen som markerer arbeidsdag",
+      "situation": [
+        "En liten kaffe eller frokost på veien har blitt en fast del av morgenrutinen.",
+        "Pendlerutgifter består ofte av små gjentatte kjøp i tillegg til selve billetten.",
+        "Rutinen kan ha verdi, men blir mer håndterbar når kostnad og funksjon er synlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde rutinen bevisst og vite hva den faktisk koster over tid.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle alle småkjøp som usynlige fordi de skjer på vei til jobb.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "routine_vs_cost"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "setet_og_arbeidet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Vogna",
+      "subject": "Skal reisetid bli arbeidstid?",
+      "situation": [
+        "Du har plass til å svare på e-post, lese dokumenter eller planlegge dagen på reisen.",
+        "Noen kan bruke reisetid produktivt, mens andre står, bytter transport eller trenger pausen.",
+        "At du kan jobbe på toget betyr ikke automatisk at all reisetid tilhører arbeidsgiver."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge bevisst når reisen er arbeid og når den er overgangstid.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "La tilgjengelighet på telefon gjøre hele reisen til uavtalt arbeidstid.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "commute_vs_work"
+      ],
+      "risk_links": [
+        "boundary_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_samme_medpassasjeren",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Vogna",
+      "subject": "Fremmede blir kjente ansikter",
+      "situation": [
+        "Du ser de samme menneskene på samme avgang flere dager i uka.",
+        "Pendling skaper svake bånd: gjenkjennelse uten nødvendigvis samtale eller relasjon.",
+        "Nærhet i rutinen gir ikke automatisk rett til kontakt, men kan likevel skape en følelse av lokalt fellesskap."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Respektere avstanden og la gjenkjennelsen være nok med mindre kontakt oppstår naturlig.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Tolke gjentatt nærhet som invitasjon til å kreve sosial kontakt.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "anonymity_vs_familiarity"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "byttet_som_alltid_er_for_kort",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Knute­punktet",
+      "subject": "Tre minutter på papiret",
+      "situation": [
+        "Ruteplanen sier at byttet skal gå, men små avvik gjør forbindelsen skjør.",
+        "Formelle rutetider måles annerledes enn den levde tiden det tar å gå, finne spor og håndtere kø.",
+        "Pendleren lærer systemets praktiske friksjon uten å bli transportplanlegger eller myndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Planlegge med margin når konsekvensen av et mistet bytte er stor.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle teoretisk rutetid som garanti og skylde på deg selv når systemet glipper.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "schedule_vs_lived_time"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hjemmekontordagen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Hjemmet",
+      "subject": "En dag uten reisen",
+      "situation": [
+        "En dag med hjemmekontor frigjør tiden du ellers bruker på reise.",
+        "Muligheten til å kutte pendling er ulikt fordelt mellom yrker, stillinger og arbeidsgivere.",
+        "Fleksibilitet kan være et privilegium uten at den gjør andre pendlere mindre flinke til å organisere livet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se den sparte tiden som faktisk handlingsrom og erkjenne at ikke alle har samme mulighet.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjøre hjemmekontor til moralsk målestokk for hvordan alle burde løse pendlingen.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "commute_vs_flexibility"
+      ],
+      "risk_links": [
+        "class_power"
+      ],
+      "links": []
+    },
+    {
+      "id": "barnehagefristen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Klokka",
+      "subject": "Forsinkelsen har en privat mottaker",
+      "situation": [
+        "En transportforsinkelse kolliderer med henting, omsorg eller en annen avtale som ikke kan skyves fritt.",
+        "Pendling kobler arbeidslivets klokke til private omsorgsforpliktelser.",
+        "Konsekvensen av ti minutter er forskjellig avhengig av hvem som venter og hvilket sikkerhetsnett du har."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Varsle tidlig og bruke avtalte reserver uten å late som tidskonflikten er trivial.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Skyve ansvaret over på den som venter fordi transporten teknisk sett var årsaken.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "commute_vs_care"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "morgentoget_er_fullt",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Vogna",
+      "subject": "Ingen sitteplass i dag",
+      "situation": [
+        "Avgangen er full, og den planlagte rolige reisen blir ståplass i tett vogn.",
+        "Kapasitet påvirker kropp, konsentrasjon og hvor mye reisetid som faktisk kan brukes til annet.",
+        "Samme rutetabell kan gi svært forskjellig belastning fra dag til dag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Justere forventningen til reisen og spare krevende arbeid til et bedre tidspunkt.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Kreve samme produktivitet av deg selv uansett hvor belastende reisen faktisk er.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "capacity_vs_body"
+      ],
+      "risk_links": [
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "manedskortet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Appen",
+      "subject": "Fast kostnad, usikker nytte",
+      "situation": [
+        "Du vurderer månedskort, enkeltbilletter og hvor mange reisedager du egentlig får neste måned.",
+        "Pendlerøkonomi formes av faste kostnader, fleksibilitet og uforutsigbare arbeidsdager.",
+        "Det finnes ikke én riktig billettstrategi uavhengig av faktisk bruk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Regne på eget reisemønster og velge etter sannsynlig bruk.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Kjøpe det dyreste alternativet automatisk fordi det føles mest seriøst.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fixed_cost_vs_usage"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forsinkelsespraten_pa_jobben",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Kontoret",
+      "subject": "Alle har en pendlingshistorie",
+      "situation": [
+        "Kollegaer sammenligner forsinkelser, avstander og hvor tidlig de måtte dra hjemmefra.",
+        "Pendlingshistorier kan skape fellesskap, men også bli konkurranse om hvem som ofrer mest.",
+        "Reisetid er struktur og livssituasjon, ikke et automatisk mål på arbeidsmoral."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dele erfaring uten å gjøre avstand eller oppofrelse til status.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke lang reise som bevis på at du er mer dedikert enn andre.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "story_vs_blame"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_sene_avgangen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Stasjonen",
+      "subject": "Arbeidsdagen slutter før reisen gjør det",
+      "situation": [
+        "Arbeidet er ferdig, men du har fortsatt en lang reise før du er hjemme.",
+        "Pendling kan gjøre at kroppen opplever arbeidsdagen som lengre enn den formelle arbeidstiden.",
+        "Overgangstiden kan være nødvendig restitusjon, ikke bare ubrukt kapasitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La deler av hjemreisen være avkobling uten produktivitetskrav.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fylle hele reisen med mer arbeid fordi dagen ellers føles ineffektiv.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "workday_vs_recovery"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "alternativ_rute",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Kartet",
+      "subject": "Når hovedlinjen stopper",
+      "situation": [
+        "En driftsstans gjør at du må velge mellom buss, gange, omvei eller å bli stående.",
+        "Erfarne pendlere bygger lokal kunnskap om alternative ruter og bytter.",
+        "Denne kunnskapen er situert erfaring, ikke profesjonell transportfaglig myndighet eller garanti."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke lokalkunnskapen som ett praktisk alternativ og sjekke aktuell informasjon.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Presentere egen omvei som sikker løsning for alle andre uansett situasjon.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "resilience_vs_complexity"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "flytte_naermere",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Kjokkenbordet",
+      "subject": "Hvor mye er en kortere reise verdt?",
+      "situation": [
+        "Du begynner å regne på om kortere pendling ville rettferdiggjøre dyrere bolig, annen jobb eller færre aktiviteter.",
+        "Reisetid påvirker boligvalg, økonomi, relasjoner og hverdagsrytme, men inngår bare som én faktor blant mange.",
+        "Et pendlingsproblem kan være viktig uten at hele livet bør reorganiseres rundt det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurdere reisetid sammen med økonomi, relasjoner og hva du faktisk vil bevare.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjøre kortest mulig reise til eneste mål og undervurdere resten av livet.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "distance_vs_life_choice"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_pendler",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Overgangen",
+      "subject": "Reiseerfaring uten transportmyndighet",
+      "situation": [
+        "Du kjenner avganger, bytter, forsinkelsesmønstre, billettløsninger og hvordan reisen påvirker dagen.",
+        "Det er reell hverdags- og systemkunnskap, men gjør deg ikke automatisk til transportplanlegger, arbeidsgiver, ruteansvarlig eller ekspert på andres mobilitet.",
+        "Pendlerrollen handler om å navigere en gjentatt overgang mellom hjem og arbeid, ikke om å eie systemet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde Pendler som hverdagsidentitet med tydelige grenser mot transport- og arbeidsgivermyndighet.",
+          "effect": 1,
+          "tags": [
+            "commute_practice",
+            "role_clarity",
+            "time_awareness"
+          ],
+          "feedback": "Du gjør reisetid, usikkerhet og grenser konkrete uten å låne transport- eller arbeidsgivermyndighet."
+        },
+        {
+          "id": "B",
+          "label": "La egen rutine fungere som fullmakt til å bestemme hvordan alle andre burde reise og arbeide.",
+          "effect": -1,
+          "tags": [
+            "commute_pressure",
+            "role_inflation",
+            "status_comparison"
+          ],
+          "feedback": "Pendlingen glir over i selvpress, moralsk rangering eller ubegrunnet myndighet over andres reisevalg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "practice_vs_transport_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
