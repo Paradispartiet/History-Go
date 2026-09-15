@@ -496,7 +496,17 @@ if (checkMode) {
       if (a !== b) diffs.push({path:p,expected:a,actual:b});
     };
     walkDiff(output,actual);
-    console.error('READINESS_DIFF', JSON.stringify(diffs,null,2));
+    const actualByKey = new Map((actual.positions || []).map((row) => [row.key, row]));
+    const changedRows = (output.positions || [])
+      .filter((row) => JSON.stringify(row) !== JSON.stringify(actualByKey.get(row.key)))
+      .map((row) => ({ key: row.key, expected: row, actual: actualByKey.get(row.key) || null }));
+    console.error('READINESS_ROW_DIFF', JSON.stringify({
+      changed_rows: changedRows,
+      summary_expected: output.summary,
+      summary_actual: actual.summary,
+      queue_expected: output.queue,
+      queue_actual: actual.queue
+    }));
     throw new Error(`${OUTPUT} is stale; run with --write.`);
   }
   if (readText(REPORT)!==reportText) throw new Error(`${REPORT} is stale; run with --write.`);
