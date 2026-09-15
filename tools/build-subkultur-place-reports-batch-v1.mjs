@@ -508,30 +508,110 @@ const CASES = [
   },
   {
     placeId: 'torggata_blad',
-    verifiedAt: '2026-08-04',
+    verifiedAt: '2026-09-15',
     placeFile: 'data/places/subkultur/oslo/places_subkultur/torggata_blad.json',
     anchorType: 'independent_media_or_shop',
     start: '2007',
     emneIds: ['em_sub_fanziner_plakater', 'em_sub_dokumentasjon_arkiv'],
     methodId: 'met_sub_mediearkeologisk_analyse',
-    milieuUrl: 'https://torggatablad.no/om-tb/',
-    milieuLocation: 'Torggata Blad, Om TB; selvdefinisjon, redaksjonell profil og forum for en sammensatt bidragsyterkrets',
-    outsideUrl: 'https://www.tidsskriftforeningen.no/nyhet/2023/tidsskriftdagen/tidsskriftdagen-2023/174103',
-    outsideLocation: 'Norsk Tidsskriftforening, program om Torggata Blad som politisk motkulturelt tidsskrift og redaksjonell praksis, 13. oktober 2023',
-    identity: 'Torggata Blad er et uavhengig papir- og nettidsskrift med systemkritisk profil og en skiftende krets av bidragsytere.',
-    relationship: 'Tidsskriftet produserer en alternativ offentlig stemme utenfor de store mediehusene, men er samtidig del av støtte-, medlems- og distribusjonsordninger for kulturtidsskrift.',
-    claim: 'Vedvarende redaksjonell produksjon og bidragsyterforum gjør Torggata Blad til en uavhengig mediepraksis; kontoradressen alene er ikke et offentlig subkultursted.',
-    practices: ['redigering og utgivelse på papir og nett', 'systemkritisk tekst, satire, tegning og kulturstoff', 'bidragsytersamarbeid og offentlig debatt'],
-    organization: 'Egenpresentasjonen beskriver forumet og den redaksjonelle stemmen; Tidsskriftforeningen plasserer publikasjonen eksplisitt i en motkulturell tidsskrifttradisjon.',
-    expressions: 'Satire, grafisk form, irregulær stemme og systemkritikk er redaksjonelle praksiser, ikke bare visuell stil.',
-    access: 'Publikasjonen er lesbar og kan kjøpes eller abonneres på, mens redaksjonelle valg og bidragsopptak ikke er grenseløst åpne.',
-    regulation: 'Redaktøransvar, økonomi, støtteordninger, opphavsrett og publiseringsetikk regulerer den uavhengige praksisen.',
-    negotiation: 'Kildene viser en motkulturell posisjon i offentligheten, men dokumenterer ikke én konkret pågående konflikt med myndighet eller marked.',
-    institutionalization: 'Et uavhengig blad fra 2007 er blitt medlem av tidsskriftfeltets organisasjoner og støtteinfrastruktur uten å oppgi systemkritisk profil.',
-    stigmaRisk: '«Rar» og «kompromissløs» kan bli romantiserende merkevare; rapporten skiller publikasjonens egen stemme fra alle bidragsyteres syn og fra selve adressen.',
-    current: 'Torggata Blad publiserer fortsatt nettinnhold og beskriver seg som et uavhengig forum for ulike bidragsytere.',
+    milieuUrl: 'https://torggatablad.no/bror-en-helt-unik-skrifttype/',
+    milieuLocation: 'Torggata Blad – egen historikk og 2026-presentasjon',
+    milieuTemporal: 'mixed',
+    milieuProvenance: 'Publikasjonens egen publiserte historikk.',
+    milieuLimit: 'Egenpresentasjon må balanseres med uavhengige/offentlige kilder.',
+    outsideUrl: 'https://www.oslo.kommune.no/get-file/1126231/0de193bea6cc858d37b88441beb1abedcae567f4dc4a8c2f33a4085ce7794457',
+    outsideLocation: 'Oslo kommune, Kulturetaten, mediestøtte 2021',
+    outsideSourceType: 'official',
     outsideTemporal: 'historical',
-    outsideLimit: 'Tidsskriftforeningen dokumenterer feltposisjon og motkulturell selvforståelse, men ikke alle interne redaksjonelle prosesser.'
+    outsideProvenance: 'Offentlig saksframstilling med egen vurdering av publikasjonen.',
+    outsideLimit: 'Vurderer publikasjonen opp mot én støtteordning.',
+    additionalSources: [
+      {
+        id: 'source_torggata_blad_history',
+        url: 'https://torggatablad.no/wp-content/uploads/2020/04/torggatablad_nr02_07_web.pdf',
+        sourceLocation: 'Torggata Blad nr. 2, 2007; redaksjon i Hausmannsgate 19, 6. etasje',
+        sourceType: 'participant_archive',
+        perspective: 'milieu',
+        verifiedAt: '2026-09-15',
+        temporalCoverage: 'historical',
+        provenance: 'Samtidig papirutgave.',
+        limitations: 'Dokumenterer 2007, ikke dagens lokalisering.'
+      },
+      {
+        id: 'source_torggata_blad_current_base',
+        url: 'https://bradyogvadstein.no/',
+        sourceLocation: 'Brady & Vadstein – prosjektbeskrivelse og dagens Sagene-base',
+        sourceType: 'community_primary',
+        perspective: 'milieu',
+        verifiedAt: '2026-09-15',
+        temporalCoverage: 'mixed',
+        provenance: 'Hovedpådrivernes prosjektpresentasjon.',
+        limitations: 'Selvpresentasjon brukt sammen med offentlig kilde.'
+      }
+    ],
+    identity: 'Torggata Blad er et uavhengig papir- og nettidsskrift med systemkritisk profil og en skiftende krets av bidragsytere.',
+    canonicalIdentity: 'Torggata Blad er en uavhengig papir- og nettpublikasjon grunnlagt i 2007, med dokumentert historisk redaksjon i Hausmannsgate 19 og senere virksomhet i andre formater og på andre adresser.',
+    relationship: 'Tidsskriftet produserer en alternativ offentlig stemme utenfor de store mediehusene, men er samtidig del av støtte-, medlems- og distribusjonsordninger for kulturtidsskrift.',
+    placeObjectDistinction: 'Place-et er det historiske redaksjons- og publiseringsstedet i Hausmannsgate 19. Fysiske papireksemplarer er Objects; Torggata Blad som vedvarende publikasjon og kunst-/medieprosjekt er Production/Brand og kan fortsette etter relokalisering.',
+    identitySourceIds: ['source_torggata_blad_milieu', 'source_torggata_blad_outside'],
+    claim: 'Vedvarende selvorganisert publisering, skiftende bidragsytere og bevisst arbeid med papir, nett og kollektive uttrykk gjør Torggata Blad til en dokumentert uavhengig mediepraksis. Det canonicale Place-et er den historiske redaksjonen i Hausmannsgate 19, ikke publikasjonens nåværende base.',
+    practices: ['redigering, layout og utgivelse på papir og nett', 'systemkritisk tekst, satire, tegning og kulturstoff', 'kollektiv publisering med skiftende bidragsytere', 'papirutgaver som medieobjekt og kunstnerisk uttrykk'],
+    participantActorName: 'Bror Wyller og den tidlige redaksjonen',
+    participantActorRole: 'Initierte og produserte de tidlige papirutgavene fra det dokumenterte redaksjonsstedet.',
+    participantActorPower: 'Grunnlegger og tidlig redaksjonell kjerne, men ikke identisk med alle senere bidragsytere.',
+    participantActorSourceIds: ['source_torggata_blad_milieu', 'source_torggata_blad_history'],
+    operatorActorName: 'Paul Brady, Hege Vadstein og den skiftende bidragsyterkretsen',
+    operatorActorRole: 'Viderefører kollektiv publisering på papir, nett og i kunstprosjekter.',
+    operatorActorPower: 'Brady og Vadstein beskrives som hovedpådrivere; en større krets deltar med ulike motiver.',
+    operatorActorSourceIds: ['source_torggata_blad_current_base', 'source_torggata_blad_outside'],
+    belongingAndParticipation: 'Kildene beskriver en bred krets av bidragsytere med ulike bakgrunner; publikasjonen skal derfor ikke framstilles som ett homogent miljø.',
+    organization: 'Den tidlige kjernen bestod av Wyller, Brady og Vadstein; senere beskrives Brady og Vadstein som hovedpådrivere i en større, skiftende krets.',
+    expressions: 'Satire, grafisk form, irregulær stemme og systemkritikk er redaksjonelle praksiser, ikke bare visuell stil.',
+    practicesSourceIds: ['source_torggata_blad_milieu', 'source_torggata_blad_current_base', 'source_torggata_blad_history'],
+    access: 'Historisk produksjon var knyttet til redaksjonsrommet i Hausmannsgate 19; lesing og distribusjon var bredere. Dagens prosjekt er ikke bundet til det gamle lokalet.',
+    regulation: 'Redaksjonelle valg, selskapsform, støtteordninger, opphavsrett og publiseringsetikk gir formelle rammer rundt den uavhengige praksisen.',
+    controlSourceIds: ['source_torggata_blad_outside', 'source_torggata_blad_current_base'],
+    conflictStatus: 'documented',
+    negotiation: 'Oslo kommunes 2021-vurdering viser en institusjonell terskel: publikasjonen oppfylte ikke støtteordningens frekvens- og lokalinnholdskrav.',
+    conflictSourceIds: ['source_torggata_blad_outside'],
+    institutionalization: 'Publikasjonen har fortsatt etter den historiske Hausmannsgate-redaksjonen og beskrives nå gjennom Brady & Vadsteins Sagene-base.',
+    displacementSourceIds: ['source_torggata_blad_current_base'],
+    spaceSourceIds: ['source_torggata_blad_history', 'source_torggata_blad_outside', 'source_torggata_blad_current_base'],
+    stigmaRisk: '«Rar» og «kompromissløs» kan bli romantiserende merkevare; rapporten skiller publikasjonens egen stemme fra alle bidragsyteres syn og fra selve adressen.',
+    methodObservation: 'Analysen sammenholder papirutgaver, mastheader, nettversjon, offentlig institusjonell beskrivelse og dagens prosjektbase.',
+    alternativeExplanations: ['Formatendringer kan skyldes praktiske og økonomiske forhold og beviser ikke alene ideologisk utvikling.', 'Endret adresse betyr ikke at publikasjonen eller bidragsyterfellesskapet opphørte.'],
+    reflexivity: 'Rapporten skiller publikasjon, historisk redaksjonsrom, fysisk bladeksemplar, brand og skiftende bidragsytere.',
+    uncertainty: 'Kildene dokumenterer offentlig publisering og navngitte aktører bedre enn interne beslutningsprosesser.',
+    methodSourceIds: ['source_torggata_blad_milieu', 'source_torggata_blad_outside', 'source_torggata_blad_history', 'source_torggata_blad_current_base'],
+    changeScopeRationale: 'Fra dokumentert grunnleggelse og redaksjonssted til siste kontrollerte aktive publisering.',
+    startingPoint: 'Papirutgivelse fra 2007 med tidlig redaksjon i Hausmannsgate 19.',
+    changeOrTurningPoint: 'Nettversjon fra 2012, senere retur til papir og fortsatt kollektiv kunst-/mediepraksis.',
+    current: 'Torggata Blad publiserer fortsatt i 2026, men Brady & Vadstein oppgir dagens arbeidssted på Sagene; Hausmannsgate-markøren er historisk.',
+    currentOrEndPoint: 'Publikasjonen er aktiv, mens dagens Brady & Vadstein-base ligger på Sagene.',
+    continuities: ['uavhengig publisering', 'skiftende bidragsytere', 'papir og nett som parallelle uttrykk'],
+    changeSourceIds: ['source_torggata_blad_milieu', 'source_torggata_blad_current_base', 'source_torggata_blad_outside'],
+    presentStatus: 'relocated',
+    presentHistoricalRelationship: 'Publikasjonen viderefører den uavhengige mediepraksisen etter at den dokumenterte 2007–2008-redaksjonen i Hausmannsgate 19 ikke lenger er dagens base.',
+    presentSourceIds: ['source_torggata_blad_milieu', 'source_torggata_blad_current_base'],
+    quizOpening: {
+      status: 'PASS',
+      quizTargetId: 'torggata_blad',
+      firstTwoSetsQuestionCount: 14,
+      sourceBrief: 'data/quiz/production_briefs/subkultur/torggata_blad.json',
+      productionContext: 'data/quiz/production_context/subkultur/torggata_blad.json',
+      requiredInputs: ['pensum', 'emner', 'fagkart', 'methods', 'supersetQuizMal', 'quizStandard', 'quizQuestionSchema']
+    },
+    chronologyStories: {
+      status: 'PASS',
+      chronologyReviewed: true,
+      storiesReviewed: true,
+      rationale: 'Den canonicale Place-kronologien er kildegjennomgått. Eksisterende Story er kontrollert, men holdes utenfor denne fullproduksjonens runtime-diff for å unngå unødvendig global shard-regenerering.'
+    },
+    review: {
+      reviewer: 'Subkultur-fagverkredaksjon',
+      reviewedAt: '2026-09-15',
+      notes: 'Full Place-produksjon: identitet, stemmebalanse, rommakt, mediearkeologi, relokalisering, quiz og kronologi kontrollert.'
+    }
   },
   {
     placeId: 'arena_bekkestua',
@@ -1274,7 +1354,7 @@ function report(config) {
   const outside = `source_${config.placeId}_outside`;
   const caseId = `case_${config.placeId}_environment`;
   const additionalSources = config.additionalSources ?? [];
-  const identitySourceIds = [milieu, outside, ...additionalSources.map((source) => source.id)];
+  const identitySourceIds = config.identitySourceIds ?? [milieu, outside, ...additionalSources.map((source) => source.id)];
   const quizOpening = config.quizOpening ?? { status: 'N/A', rationale: 'Ingen stedquiz produseres eller revideres i denne rapporten.' };
   const chronologyStories = config.chronologyStories ?? { status: 'N/A', chronologyReviewed: true, storiesReviewed: true, rationale: 'Materialet krever ingen ny chronology-post eller selvstendig Story i denne endringen.' };
   return {
@@ -1325,24 +1405,24 @@ function report(config) {
       id: caseId,
       claim: config.claim,
       actors: [
-        { name: config.participantActorName ?? 'Deltakere, arrangører og skapere', roleOrInterest: config.participantActorRole ?? 'Bygger aktivitet, uttrykk og gjentatt sosial bruk.', positionOrPower: config.participantActorPower ?? 'Former miljøet i praksis, men kontrollerer ikke nødvendigvis lokalet eller alle adgangsvilkår.', sourceIds: [milieu, outside] },
-        { name: config.operatorActorName ?? 'Driftsorganisasjon, vertskap og eksterne rammesettere', roleOrInterest: config.operatorActorRole ?? 'Styrer program, lokaler, økonomi og formelle vilkår.', positionOrPower: config.operatorActorPower ?? 'Har større kontroll over kapasitet, booking, medlemskap eller arrangementssted.', sourceIds: [milieu, outside] }
+        { name: config.participantActorName ?? 'Deltakere, arrangører og skapere', roleOrInterest: config.participantActorRole ?? 'Bygger aktivitet, uttrykk og gjentatt sosial bruk.', positionOrPower: config.participantActorPower ?? 'Former miljøet i praksis, men kontrollerer ikke nødvendigvis lokalet eller alle adgangsvilkår.', sourceIds: config.participantActorSourceIds ?? [milieu, outside] },
+        { name: config.operatorActorName ?? 'Driftsorganisasjon, vertskap og eksterne rammesettere', roleOrInterest: config.operatorActorRole ?? 'Styrer program, lokaler, økonomi og formelle vilkår.', positionOrPower: config.operatorActorPower ?? 'Har større kontroll over kapasitet, booking, medlemskap eller arrangementssted.', sourceIds: config.operatorActorSourceIds ?? [milieu, outside] }
       ],
       practicesAndCommunity: {
         practices: config.practices,
-        belongingAndParticipation: 'Gjentatt deltakelse skaper gjenkjennelse og sosial læring, men adgang og tilhørighet er ikke lik for alle.',
+        belongingAndParticipation: config.belongingAndParticipation ?? 'Gjentatt deltakelse skaper gjenkjennelse og sosial læring, men adgang og tilhørighet er ikke lik for alle.',
         organizationOrGovernance: config.organization,
         codesOrExpressions: { status: 'documented', statement: config.expressions, sourceIds: [milieu, outside] },
-        sourceIds: [milieu, outside]
+        sourceIds: config.practicesSourceIds ?? [milieu, outside]
       },
       spaceAndPower: {
         accessAndTerritory: config.access,
-        controlOrRegulation: { status: 'documented', statement: config.regulation, sourceIds: [milieu, outside] },
+        controlOrRegulation: { status: 'documented', statement: config.regulation, sourceIds: config.controlSourceIds ?? [milieu, outside] },
         conflictOrNegotiation: config.conflictStatus === 'documented'
-          ? { status: 'documented', statement: config.negotiation, sourceIds: [milieu, outside] }
-          : { status: 'not_documented', rationale: config.negotiation, sourceIds: [milieu, outside] },
-        displacementOrInstitutionalization: { status: 'documented', statement: config.institutionalization, sourceIds: [milieu, outside] },
-        sourceIds: [milieu, outside]
+          ? { status: 'documented', statement: config.negotiation, sourceIds: config.conflictSourceIds ?? [milieu, outside] }
+          : { status: 'not_documented', rationale: config.negotiation, sourceIds: config.conflictSourceIds ?? [milieu, outside] },
+        displacementOrInstitutionalization: { status: 'documented', statement: config.institutionalization, sourceIds: config.displacementSourceIds ?? [milieu, outside] },
+        sourceIds: config.spaceSourceIds ?? [milieu, outside]
       },
       representationAndEthics: {
         selfDefinition: { status: 'documented', statement: config.identity, sourceIds: [milieu] },
@@ -1354,28 +1434,28 @@ function report(config) {
       },
       methodAndInference: {
         methodId: config.methodId,
-        observationOrEvidence: 'Analysen kombinerer organisasjonsform, gjentatt program, deltakelsespraksis og adgang til stedet.',
-        alternativeExplanations: ['Popularitet kan skyldes beliggenhet, markedsføring eller lav pris uten at alle brukere inngår i ett miljø.'],
+        observationOrEvidence: config.methodObservation ?? 'Analysen kombinerer organisasjonsform, gjentatt program, deltakelsespraksis og adgang til stedet.',
+        alternativeExplanations: config.alternativeExplanations ?? ['Popularitet kan skyldes beliggenhet, markedsføring eller lav pris uten at alle brukere inngår i ett miljø.'],
         inferenceStatus: 'associational',
-        reflexivity: 'Rapporten antar ikke at alle besøkende deler samme identitet, normer eller grad av tilhørighet.',
-        uncertainty: 'Kildene dokumenterer offentlig program og selvforståelse bedre enn uformelle relasjoner og interne uenigheter.',
-        sourceIds: [milieu, outside]
+        reflexivity: config.reflexivity ?? 'Rapporten antar ikke at alle besøkende deler samme identitet, normer eller grad av tilhørighet.',
+        uncertainty: config.uncertainty ?? 'Kildene dokumenterer offentlig program og selvforståelse bedre enn uformelle relasjoner og interne uenigheter.',
+        sourceIds: config.methodSourceIds ?? [milieu, outside]
       },
       changeOverTime: {
-        scope: { start: config.start, end: '2026', precision: 'period', rationale: 'Perioden følger oppstart og siste kontrollerte publiserte aktivitet.' },
-        startingPoint: `Miljø- eller driftsformen er dokumentert fra ${config.start}.`,
-        changeOrTurningPoint: config.institutionalization,
-        currentOrEndPoint: config.current,
-        continuities: config.practices.slice(0, 2),
-        sourceIds: [milieu, outside]
+        scope: { start: config.start, end: '2026', precision: 'period', rationale: config.changeScopeRationale ?? 'Perioden følger oppstart og siste kontrollerte publiserte aktivitet.' },
+        startingPoint: config.startingPoint ?? `Miljø- eller driftsformen er dokumentert fra ${config.start}.`,
+        changeOrTurningPoint: config.changeOrTurningPoint ?? config.institutionalization,
+        currentOrEndPoint: config.currentOrEndPoint ?? config.current,
+        continuities: config.continuities ?? config.practices.slice(0, 2),
+        sourceIds: config.changeSourceIds ?? [milieu, outside]
       }
     }],
     presentFunction: {
       status: config.presentStatus ?? 'active',
       statement: config.current,
-      historicalRelationship: 'Nåværende eller siste dokumenterte drift viderefører deler av miljøfunksjonen, men organisering og adgang kan ha endret seg.',
+      historicalRelationship: config.presentHistoricalRelationship ?? 'Nåværende eller siste dokumenterte drift viderefører deler av miljøfunksjonen, men organisering og adgang kan ha endret seg.',
       checkedAt: config.verifiedAt ?? '2026-08-03',
-      sourceIds: config.presentUsesOutside ? [outside] : [milieu]
+      sourceIds: config.presentSourceIds ?? (config.presentUsesOutside ? [outside] : [milieu])
     },
     quizOpening,
     chronologyStories,
