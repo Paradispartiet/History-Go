@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { audit, REQUIRED_WORK_IDS } from '../scripts/audit-sosiologi-antropologi-advanced-theory-reading-canon-v1.mjs';
+import { buildOverlays } from '../scripts/materialize-sosiologi-antropologi-advanced-theory-fulltext-refresh-v1.mjs';
 
 test('Sosiologi og antropologi har et eksplisitt avansert teorikanon med komplette domenebindinger uten å late som fulltekst er materialisert', () => {
   const report = audit();
@@ -20,4 +22,28 @@ test('Sosiologi og antropologi har et eksplisitt avansert teorikanon med komplet
   assert.ok(Object.values(report.domainBindings.gates).every(Boolean));
   assert.ok(Object.values(report.gates).every(Boolean));
   assert.equal(report.passed, true);
+});
+
+test('advanced theory maintenance materializer covers the real canon without adding domains or dropping source guardrails', () => {
+  const canon = JSON.parse(fs.readFileSync('data/fag/politikk/sosiologi_antropologi/advanced_theory_reading_canon_v1.json', 'utf8'));
+  const contract = JSON.parse(fs.readFileSync('data/fag/politikk/sosiologi_antropologi/advanced_theory_fulltext_refresh_v1.json', 'utf8'));
+  const overlays = buildOverlays(canon, contract);
+  const works = overlays.flatMap((overlay) => overlay.works);
+  const units = works.flatMap((work) => work.theory_units);
+  assert.equal(overlays.length, 7);
+  assert.equal(works.length, 20);
+  assert.equal(units.length, 60);
+  assert.deepEqual(overlays.map((overlay) => overlay.domain_id).sort(), [
+    'antropologisk_teori',
+    'digitalisering_vitenskap_teknologi_samfunn',
+    'institusjoner_organisasjoner_arbeid_velferd',
+    'normer_identitet_hverdagsliv',
+    'sosiologisk_teori',
+    'sted_by_migrasjon_transnasjonalitet',
+    'ulikhet_klasse_kjonn_rasialisering'
+  ]);
+  assert.equal(works.every((work) => typeof work.source_url === 'string' && work.source_url.startsWith('https://')), true);
+  assert.equal(units.every((unit) => unit.summary && unit.analytic_question && unit.misuse_guardrail), true);
+  assert.equal(new Set(works.map((work) => work.id)).size, 20);
+  assert.equal(new Set(units.map((unit) => unit.id)).size, 60);
 });
