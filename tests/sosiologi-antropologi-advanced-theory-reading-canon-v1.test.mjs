@@ -47,3 +47,27 @@ test('advanced theory maintenance materializer covers the real canon without add
   assert.equal(new Set(works.map((work) => work.id)).size, 20);
   assert.equal(new Set(units.map((unit) => unit.id)).size, 60);
 });
+
+test('phase 3 materializes paragraphs, claim trace and assessment while keeping runtime claims pending', async () => {
+  const materializer = await import('../scripts/materialize-sosiologi-antropologi-advanced-theory-fulltext-refresh-v1.mjs');
+  assert.equal(typeof materializer.buildDomainPackages, 'function', 'phase 3 domain package builder must exist');
+  const canon = JSON.parse(fs.readFileSync('data/fag/politikk/sosiologi_antropologi/advanced_theory_reading_canon_v1.json', 'utf8'));
+  const contract = JSON.parse(fs.readFileSync('data/fag/politikk/sosiologi_antropologi/advanced_theory_fulltext_refresh_v1.json', 'utf8'));
+  const production = JSON.parse(fs.readFileSync('data/fag/politikk/sosiologi_antropologi/production_registry_v1.json', 'utf8'));
+  const overlays = materializer.buildOverlays(canon, contract);
+  const packages = materializer.buildDomainPackages(overlays, production);
+  assert.equal(packages.length, 7);
+  assert.equal(packages.reduce((sum, pkg) => sum + pkg.module.sections.length, 0), 20);
+  assert.equal(packages.reduce((sum, pkg) => sum + pkg.module.sections.flatMap((section) => section.paragraphs).length, 0), 60);
+  assert.equal(packages.reduce((sum, pkg) => sum + pkg.claims.claims.length, 0), 60);
+  assert.equal(packages.reduce((sum, pkg) => sum + pkg.assessment.questions.length, 0), 60);
+  assert.equal(packages.every((pkg) => pkg.claims.status === 'fulltext_verification_pending'), true);
+  assert.equal(packages.every((pkg) => pkg.assessment.status === 'claim_verification_pending'), true);
+  assert.equal(packages.every((pkg) => typeof pkg.target.chapter === 'string' && pkg.target.chapter.endsWith('.json')), true);
+  const claims = packages.flatMap((pkg) => pkg.claims.claims);
+  const claimIds = claims.map((claim) => claim.id);
+  assert.equal(new Set(claimIds).size, 60);
+  assert.equal(claims.every((claim) => claim.status === 'planned_requires_fulltext_verification'), true);
+  const questions = packages.flatMap((pkg) => pkg.assessment.questions);
+  assert.equal(questions.every((question) => claimIds.includes(question.claim_id)), true);
+});
