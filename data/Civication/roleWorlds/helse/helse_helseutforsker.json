@@ -1,0 +1,1174 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "helse",
+  "role_scope": "helse_helseutforsker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "helse",
+    "id": "helseutforsker",
+    "label": "Helseutforsker"
+  },
+  "title": "Helseutforsker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bygge bred forståelse av kropp, helse og helsetjenester uten å gjøre generell læring til individuell diagnose, behandling eller uformell klinisk myndighet",
+    "description": "Helseutforsker-verdenen følger en kunnskapsidentitet i hverdagen: spilleren lærer om anatomi, normalvariasjon, risiko, målinger, screening, behandling og helsetjenester, men må stadig holde kildekritikk og autoritetsskranke synlige. Verden gir ingen diagnosemyndighet, behandlerrolle eller individuell medisinsk rådgivning og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "numerical_control",
+    "public_attention",
+    "care_vs_efficiency",
+    "local_knowledge_vs_system",
+    "social_mask",
+    "status_anxiety",
+    "shame_reputation"
+  ],
+  "social_environments": [
+    "lesestunden der generelle beskrivelser av kropp og sykdom lett kan gli over i personlige konklusjoner",
+    "vennesamtalen der økt helsekunnskap skaper forventning om raske råd om konkrete mennesker",
+    "helseinformasjonsstrømmen der fagord, grafer og autoritativ tone konkurrerer om troverdighet",
+    "hverdagen med klokker, apper og målinger som gjør kroppslige tall tilgjengelige uten klinisk kontekst",
+    "samtalen om helsetjenesten der systemforståelse må holdes adskilt fra profesjonell behandlingsmyndighet",
+    "etterkantssituasjonen der en tidligere forklaring må revideres når bedre kunnskap endrer forståelsen"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "spørrelysten_venn",
+      "social_function": "ber spilleren oversette helsebegreper til vanlig språk og presser noen ganger læring over i personlig rådgivning",
+      "class_position": "ressurssterk hverdagsbruker uten medisinsk profesjonsrolle",
+      "status": "middels sosial status, men høy tillit i vennegruppen",
+      "power_over_player": "kan gjøre det sosialt vanskelig å si at et konkret spørsmål krever kvalifisert individuell vurdering",
+      "wants": "et klart og praktisk svar med en gang",
+      "conceals": "hvor mye trygghet personen søker fra spilleren snarere enn generell kunnskap",
+      "speech_style": "direkte, personlig og rask til å spørre hva noe betyr for meg",
+      "teaches_player": "at omsorg også kan være å markere grensen for egen myndighet"
+    },
+    {
+      "id": "fagtekstformidleren",
+      "social_function": "gjør medisinsk kunnskap tilgjengelig, men velger hvilke forbehold og detaljer som får plass",
+      "class_position": "kunnskapsformidler med høy kulturell kapital, men ikke nødvendigvis behandlingsansvar",
+      "status": "høy når komplekse temaer kan forklares enkelt",
+      "power_over_player": "kan etablere begreper og forklaringsrammer spilleren senere bruker ukritisk",
+      "wants": "at komplisert kunnskap skal bli forståelig uten å bli feil",
+      "conceals": "hvor vanskelig det er å forenkle uten at grensene for kunnskapen forsvinner",
+      "speech_style": "pedagogisk, strukturert og presis på definisjoner",
+      "teaches_player": "at en god forklaring må bevare viktige forbehold"
+    },
+    {
+      "id": "måleentusiasten",
+      "social_function": "samler kroppstall fra apper og sensorer og elsker trender, grafer og sammenligninger",
+      "class_position": "teknologivant forbruker med høy tilgang til selvsporing",
+      "status": "moderat, men øker når tallene gir inntrykk av kontroll",
+      "power_over_player": "kan presse spilleren til å tolke forbrukermålinger som mer medisinsk presise enn de er",
+      "wants": "å gjøre kroppen målbar og forbedringsbar",
+      "conceals": "hvor mye usikkerhet som ligger mellom sensorverdi og medisinsk betydning",
+      "speech_style": "tallrik, entusiastisk og orientert mot avvik og rekorder",
+      "teaches_player": "at måling uten kontekst lett blir overtolkning"
+    },
+    {
+      "id": "erfaringsstemmen",
+      "social_function": "bringer levd erfaring inn i samtaler som ellers blir dominert av abstrakte modeller og fagbegreper",
+      "class_position": "person med sterk erfaringskunnskap, men uten krav på universell representativitet",
+      "status": "varierende; høy når noen faktisk lytter, lav når erfaring avvises som anekdote",
+      "power_over_player": "kan utfordre modeller som mangler hverdagskonsekvenser",
+      "wants": "at erfaringen skal tas alvorlig uten å bli redusert til et datapunkt",
+      "conceals": "at én erfaring ikke alltid kan avgjøre hvordan andre vil oppleve samme fenomen",
+      "speech_style": "konkret, situert og opptatt av hva som skjer i hverdagen",
+      "teaches_player": "å respektere erfaringskunnskap uten å generalisere den grenseløst"
+    },
+    {
+      "id": "autoritetssikre_debattant",
+      "social_function": "bruker medisinske ord og sikre formuleringer som retorisk styrke i diskusjoner",
+      "class_position": "offentlig eller sosial deltaker med mer selvsikkerhet enn faglig mandat",
+      "status": "høy i raske diskusjoner fordi personen sjelden viser tvil",
+      "power_over_player": "kan gjøre tydelige kunnskapsgrenser til et tegn på svakhet",
+      "wants": "en konklusjon som avslutter diskusjonen",
+      "conceals": "hvor ofte sikkerheten bæres av språk og identitet snarere enn relevant ekspertise",
+      "speech_style": "kategorisk, jargonpreget og rask til å rangere kilder",
+      "teaches_player": "at autoritativ tone ikke erstatter kildekritikk"
+    },
+    {
+      "id": "grensebevisst_fagperson",
+      "social_function": "viser hvordan profesjonell kunnskap kombineres med eksplisitte grenser for hva som kan vurderes uten kontekst",
+      "class_position": "kvalifisert helsepersonell med formell profesjonsmyndighet i riktig setting",
+      "status": "høy, men bevisst avgrenset til relevant kompetanse og situasjon",
+      "power_over_player": "kan korrigere når spilleren gjør læringskunnskap om til individuell medisinsk vurdering",
+      "wants": "at generell helseforståelse skal øke uten at profesjonsgrenser viskes ut",
+      "conceals": "hvor krevende det er å kommunisere usikkerhet til mennesker som ønsker et ja-nei-svar",
+      "speech_style": "rolig, avgrenset og tydelig på hva som krever individuell vurdering",
+      "teaches_player": "at faglig autoritet også består i å vite når man ikke kan konkludere"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "anatomy_vs_diagnosis",
+      "meaning": "anatomi mot individuell diagnose",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "anecdote_vs_generalization",
+      "meaning": "erfaring mot generalisering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "variation_vs_pathology",
+      "meaning": "normalvariasjon mot sykdomsspråk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "mechanism_vs_outcome",
+      "meaning": "mekanisme mot dokumentert utfall",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "measurement_vs_meaning",
+      "meaning": "måling mot medisinsk betydning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reference_range_vs_judgment",
+      "meaning": "referanseområde mot klinisk vurdering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "risk_vs_certainty",
+      "meaning": "risiko mot sikker prognose",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "learning_vs_treatment_authority",
+      "meaning": "læring mot behandlingsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "system_knowledge_vs_clinical_role",
+      "meaning": "systemkunnskap mot klinisk rolle",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "jargon_vs_grounding",
+      "meaning": "fagterminologi mot kildegrunnlag",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "screening_vs_diagnosis",
+      "meaning": "screening mot diagnose",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "experience_vs_domain_knowledge",
+      "meaning": "levd erfaring mot fagkunnskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "revision_vs_identity",
+      "meaning": "revisjon mot identitetsforsvar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "health_learning_vs_authority",
+      "meaning": "helseutforskning mot autoritetsovertramp",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: anatomi er et kart, ikke en personlig diagnose.",
+        "thread_ids": [
+          "anatomy_vs_diagnosis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#kroppen_som_kart"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: anatomi er et kart, ikke en personlig diagnose.",
+        "thread_ids": [
+          "anatomy_vs_diagnosis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#kroppen_som_kart"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: anatomi er et kart, ikke en personlig diagnose.",
+        "thread_ids": [
+          "anatomy_vs_diagnosis",
+          "screening_vs_diagnosis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#kroppen_som_kart"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: anatomi er et kart, ikke en personlig diagnose.",
+        "thread_ids": [
+          "anatomy_vs_diagnosis",
+          "reference_range_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#kroppen_som_kart"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: en erfaring kan være relevant uten å bli universell.",
+        "thread_ids": [
+          "anecdote_vs_generalization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#symptomhistorien_pa_nettet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: en erfaring kan være relevant uten å bli universell.",
+        "thread_ids": [
+          "anecdote_vs_generalization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#symptomhistorien_pa_nettet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: en erfaring kan være relevant uten å bli universell.",
+        "thread_ids": [
+          "anecdote_vs_generalization",
+          "experience_vs_domain_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#symptomhistorien_pa_nettet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 2, evening: en erfaring kan være relevant uten å bli universell.",
+        "thread_ids": [
+          "anecdote_vs_generalization",
+          "risk_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#symptomhistorien_pa_nettet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: forskjell er ikke automatisk sykdom.",
+        "thread_ids": [
+          "variation_vs_pathology"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#normalvariasjonen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: forskjell er ikke automatisk sykdom.",
+        "thread_ids": [
+          "variation_vs_pathology"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#normalvariasjonen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: forskjell er ikke automatisk sykdom.",
+        "thread_ids": [
+          "variation_vs_pathology",
+          "revision_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#normalvariasjonen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: forskjell er ikke automatisk sykdom.",
+        "thread_ids": [
+          "variation_vs_pathology",
+          "learning_vs_treatment_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#normalvariasjonen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: en plausibel mekanisme er ikke hele utfallet.",
+        "thread_ids": [
+          "mechanism_vs_outcome"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#mekanismen_og_mennesket"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 4, lunch: en plausibel mekanisme er ikke hele utfallet.",
+        "thread_ids": [
+          "mechanism_vs_outcome"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#mekanismen_og_mennesket"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: en plausibel mekanisme er ikke hele utfallet.",
+        "thread_ids": [
+          "mechanism_vs_outcome",
+          "health_learning_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#mekanismen_og_mennesket"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 4, evening: en plausibel mekanisme er ikke hele utfallet.",
+        "thread_ids": [
+          "mechanism_vs_outcome",
+          "system_knowledge_vs_clinical_role"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#mekanismen_og_mennesket"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: en måling trenger kontekst.",
+        "thread_ids": [
+          "measurement_vs_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#tallet_fra_klokka"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: en måling trenger kontekst.",
+        "thread_ids": [
+          "measurement_vs_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#tallet_fra_klokka"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: en måling trenger kontekst.",
+        "thread_ids": [
+          "anatomy_vs_diagnosis",
+          "measurement_vs_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#tallet_fra_klokka"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: en måling trenger kontekst.",
+        "thread_ids": [
+          "measurement_vs_meaning",
+          "jargon_vs_grounding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#tallet_fra_klokka"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: et referanseområde er ikke en dom.",
+        "thread_ids": [
+          "reference_range_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#referanseomradet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 6, lunch: et referanseområde er ikke en dom.",
+        "thread_ids": [
+          "reference_range_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#referanseomradet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: et referanseområde er ikke en dom.",
+        "thread_ids": [
+          "anecdote_vs_generalization",
+          "reference_range_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#referanseomradet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 6, evening: et referanseområde er ikke en dom.",
+        "thread_ids": [
+          "reference_range_vs_judgment",
+          "screening_vs_diagnosis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#referanseomradet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 7, morning: risiko er sannsynlighet, ikke skjebne.",
+        "thread_ids": [
+          "risk_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#risikofaktoren"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: risiko er sannsynlighet, ikke skjebne.",
+        "thread_ids": [
+          "risk_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#risikofaktoren"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: risiko er sannsynlighet, ikke skjebne.",
+        "thread_ids": [
+          "variation_vs_pathology",
+          "risk_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#risikofaktoren"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: risiko er sannsynlighet, ikke skjebne.",
+        "thread_ids": [
+          "risk_vs_certainty",
+          "experience_vs_domain_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#risikofaktoren"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: å forstå behandling er ikke det samme som å foreskrive.",
+        "thread_ids": [
+          "learning_vs_treatment_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#behandlingsartikkelen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 8, lunch: å forstå behandling er ikke det samme som å foreskrive.",
+        "thread_ids": [
+          "learning_vs_treatment_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#behandlingsartikkelen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: å forstå behandling er ikke det samme som å foreskrive.",
+        "thread_ids": [
+          "mechanism_vs_outcome",
+          "learning_vs_treatment_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#behandlingsartikkelen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 8, evening: å forstå behandling er ikke det samme som å foreskrive.",
+        "thread_ids": [
+          "learning_vs_treatment_authority",
+          "revision_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#behandlingsartikkelen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: systemforståelse er en del av helsekunnskap.",
+        "thread_ids": [
+          "system_knowledge_vs_clinical_role"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#helsetjenestens_rute"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: systemforståelse er en del av helsekunnskap.",
+        "thread_ids": [
+          "system_knowledge_vs_clinical_role"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#helsetjenestens_rute"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: systemforståelse er en del av helsekunnskap.",
+        "thread_ids": [
+          "measurement_vs_meaning",
+          "system_knowledge_vs_clinical_role"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#helsetjenestens_rute"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: systemforståelse er en del av helsekunnskap.",
+        "thread_ids": [
+          "system_knowledge_vs_clinical_role",
+          "health_learning_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#helsetjenestens_rute"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: medisinske ord kan skjule hvor lite som faktisk er avklart.",
+        "thread_ids": [
+          "jargon_vs_grounding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#ordet_som_horres_sikkert_ut"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: medisinske ord kan skjule hvor lite som faktisk er avklart.",
+        "thread_ids": [
+          "jargon_vs_grounding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#ordet_som_horres_sikkert_ut"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: medisinske ord kan skjule hvor lite som faktisk er avklart.",
+        "thread_ids": [
+          "reference_range_vs_judgment",
+          "jargon_vs_grounding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#ordet_som_horres_sikkert_ut"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 10, evening: medisinske ord kan skjule hvor lite som faktisk er avklart.",
+        "thread_ids": [
+          "anatomy_vs_diagnosis",
+          "jargon_vs_grounding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#ordet_som_horres_sikkert_ut"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: å lete etter risiko er ikke det samme som å stille diagnose.",
+        "thread_ids": [
+          "screening_vs_diagnosis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#screening_eller_diagnose"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: å lete etter risiko er ikke det samme som å stille diagnose.",
+        "thread_ids": [
+          "screening_vs_diagnosis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#screening_eller_diagnose"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: å lete etter risiko er ikke det samme som å stille diagnose.",
+        "thread_ids": [
+          "risk_vs_certainty",
+          "screening_vs_diagnosis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#screening_eller_diagnose"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: å lete etter risiko er ikke det samme som å stille diagnose.",
+        "thread_ids": [
+          "anecdote_vs_generalization",
+          "screening_vs_diagnosis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#screening_eller_diagnose"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: levd erfaring og fagkunnskap svarer på ulike spørsmål.",
+        "thread_ids": [
+          "experience_vs_domain_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#pasienterfaring_og_fagkunnskap"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 12, lunch: levd erfaring og fagkunnskap svarer på ulike spørsmål.",
+        "thread_ids": [
+          "experience_vs_domain_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#pasienterfaring_og_fagkunnskap"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: levd erfaring og fagkunnskap svarer på ulike spørsmål.",
+        "thread_ids": [
+          "learning_vs_treatment_authority",
+          "experience_vs_domain_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#pasienterfaring_og_fagkunnskap"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: levd erfaring og fagkunnskap svarer på ulike spørsmål.",
+        "thread_ids": [
+          "variation_vs_pathology",
+          "experience_vs_domain_knowledge"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#pasienterfaring_og_fagkunnskap"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: god læring tåler at forståelsen revideres.",
+        "thread_ids": [
+          "revision_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#når_kilden_endrer_seg"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: god læring tåler at forståelsen revideres.",
+        "thread_ids": [
+          "revision_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#når_kilden_endrer_seg"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: god læring tåler at forståelsen revideres.",
+        "thread_ids": [
+          "system_knowledge_vs_clinical_role",
+          "revision_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#når_kilden_endrer_seg"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: god læring tåler at forståelsen revideres.",
+        "thread_ids": [
+          "mechanism_vs_outcome",
+          "revision_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#når_kilden_endrer_seg"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: målet er forståelse med tydelige grenser.",
+        "thread_ids": [
+          "health_learning_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#helseutforsker_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 14, lunch: målet er forståelse med tydelige grenser.",
+        "thread_ids": [
+          "health_learning_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#helseutforsker_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: målet er forståelse med tydelige grenser.",
+        "thread_ids": [
+          "jargon_vs_grounding",
+          "health_learning_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#helseutforsker_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 14, evening: målet er forståelse med tydelige grenser.",
+        "thread_ids": [
+          "measurement_vs_meaning",
+          "health_learning_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_helseutforsker.json#helseutforsker_som_praksis"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "anatomy_vs_diagnosis",
+      "relationship": "anatomi mot individuell diagnose",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "5/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "anecdote_vs_generalization",
+      "relationship": "erfaring mot generalisering",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "variation_vs_pathology",
+      "relationship": "normalvariasjon mot sykdomsspråk",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "mechanism_vs_outcome",
+      "relationship": "mekanisme mot dokumentert utfall",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "measurement_vs_meaning",
+      "relationship": "måling mot medisinsk betydning",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "reference_range_vs_judgment",
+      "relationship": "referanseområde mot klinisk vurdering",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "risk_vs_certainty",
+      "relationship": "risiko mot sikker prognose",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "learning_vs_treatment_authority",
+      "relationship": "læring mot behandlingsmyndighet",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "12/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "system_knowledge_vs_clinical_role",
+      "relationship": "systemkunnskap mot klinisk rolle",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "jargon_vs_grounding",
+      "relationship": "fagterminologi mot kildegrunnlag",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "screening_vs_diagnosis",
+      "relationship": "screening mot diagnose",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "1/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "experience_vs_domain_knowledge",
+      "relationship": "levd erfaring mot fagkunnskap",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "2/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "revision_vs_identity",
+      "relationship": "revisjon mot identitetsforsvar",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "3/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "health_learning_vs_authority",
+      "relationship": "helseutforskning mot autoritetsovertramp",
+      "beat_refs": [
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening",
+        "4/afternoon",
+        "9/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "mer_begrep_mindre_overmot",
+      "description": "Et større begrepsapparat gjør deg mer presis om hva du faktisk vet og hva du ikke kan avgjøre.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_helseutforsker.json#kroppen_som_kart",
+        "data/Civication/narratives/leisure/helse_helseutforsker.json#helseutforsker_som_praksis"
+      ]
+    },
+    {
+      "id": "målingen_får_kontekst",
+      "description": "Du slutter å behandle kroppstall som selvforklarende og spør oftere hva som faktisk ble målt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_helseutforsker.json#tallet_fra_klokka",
+        "data/Civication/narratives/leisure/helse_helseutforsker.json#referanseomradet"
+      ]
+    },
+    {
+      "id": "vennskap_uten_uformell_klinikk",
+      "description": "Du blir bedre til å være hjelpsom uten å gjøre vennskapet til en uformell behandlingssituasjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_helseutforsker.json#behandlingsartikkelen",
+        "data/Civication/narratives/leisure/helse_helseutforsker.json#screening_eller_diagnose"
+      ]
+    },
+    {
+      "id": "erfaring_og_fagtekst",
+      "description": "Du holder levd erfaring og generell fagkunnskap sammen uten å la den ene utslette den andre.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_helseutforsker.json#symptomhistorien_pa_nettet",
+        "data/Civication/narratives/leisure/helse_helseutforsker.json#pasienterfaring_og_fagkunnskap"
+      ]
+    },
+    {
+      "id": "revisjon_blir_styrke",
+      "description": "Å endre en forklaring når kunnskapsgrunnlaget blir bedre blir en del av identiteten som utforsker.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_helseutforsker.json#ordet_som_horres_sikkert_ut",
+        "data/Civication/narratives/leisure/helse_helseutforsker.json#når_kilden_endrer_seg"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "anatomi_moter_grense",
+      "setup_ref": "1/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "knowledge",
+        "identity"
+      ]
+    },
+    {
+      "id": "anekdoten_får_skala",
+      "setup_ref": "2/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "knowledge",
+        "relationships"
+      ]
+    },
+    {
+      "id": "målingen_blir_tolkning",
+      "setup_ref": "5/lunch",
+      "return_ref": "10/evening",
+      "domains": [
+        "knowledge",
+        "psyche"
+      ]
+    },
+    {
+      "id": "risiko_uten_skjebne",
+      "setup_ref": "7/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "knowledge",
+        "judgment"
+      ]
+    },
+    {
+      "id": "autoritetsskranken_returnerer",
+      "setup_ref": "8/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationships",
+        "identity"
+      ]
+    },
+    {
+      "id": "revisjon_blir_praksis",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/lunch",
+      "domains": [
+        "reputation",
+        "knowledge"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#kroppen_som_kart",
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#symptomhistorien_pa_nettet",
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#normalvariasjonen",
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#mekanismen_og_mennesket",
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#tallet_fra_klokka",
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#referanseomradet",
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#risikofaktoren",
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#behandlingsartikkelen",
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#helsetjenestens_rute",
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#ordet_som_horres_sikkert_ut",
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#screening_eller_diagnose",
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#pasienterfaring_og_fagkunnskap",
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#når_kilden_endrer_seg",
+      "data/Civication/narratives/leisure/helse_helseutforsker.json#helseutforsker_som_praksis"
+    ]
+  }
+}

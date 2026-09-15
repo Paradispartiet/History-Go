@@ -1,0 +1,705 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "helse_helseutforsker_stream",
+  "type": "leisure",
+  "title": "Helseutforsker",
+  "sociological_theme": "kropp_og_helse_kildekritikk_autoritetsskranke_og_kunnskapsgrenser",
+  "applies_when": {
+    "any_tags": [
+      "helse:helseutforsker"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "leisure",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "kroppen_som_kart",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesestunden",
+      "subject": "Anatomi er et kart, ikke en personlig diagnose",
+      "situation": [
+        "Du leser om hvordan et organsystem vanligvis fungerer og kjenner igjen enkelte ord fra egen hverdag.",
+        "Det er fristende å gå direkte fra generell anatomi til en konklusjon om hva som skjer i én bestemt kropp.",
+        "Helseutforskning begynner med å skille generell kunnskap om kropp og helse fra individuell vurdering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk anatomien til å forstå begrepene, men stopp før du gjør den til en personlig konklusjon.",
+          "effect": 1,
+          "tags": [
+            "anatomy_boundary_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den generelle beskrivelsen som om den avgjør hva som foregår i en bestemt person.",
+          "effect": -1,
+          "tags": [
+            "anatomy_boundary_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_anatomy_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "symptomhistorien_pa_nettet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "En erfaring kan være relevant uten å bli universell",
+      "situation": [
+        "En sterk personlig historie om helse deles bredt og oppleves umiddelbart troverdig.",
+        "Historien sier mye om én erfaring, men mindre om hvor vanlig samme forløp er eller hva som forklarer det.",
+        "Kildekritikk betyr også å vite hva en fortelling kan belyse og hva den ikke kan generalisere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta erfaringen på alvor som erfaring og se etter bredere kunnskap før du trekker generelle konklusjoner.",
+          "effect": 1,
+          "tags": [
+            "anecdote_scope_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La den mest levende historien bestemme hva som må være sant for de fleste.",
+          "effect": -1,
+          "tags": [
+            "anecdote_scope_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_anecdote_scope"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "normalvariasjonen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Helsebiblioteket",
+      "subject": "Forskjell er ikke automatisk sykdom",
+      "situation": [
+        "En oversikt viser stor variasjon i en kroppsfunksjon mellom friske mennesker.",
+        "Noen tolker alle avvik fra gjennomsnittet som tegn på at noe nødvendigvis er galt.",
+        "Å lære om helse krever plass til normalvariasjon før kategorier om sykdom tas i bruk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom variasjon, referanseområder og kliniske vurderinger før du bruker sykdomsspråk.",
+          "effect": 1,
+          "tags": [
+            "variation_pathology_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle alt som ligger langt fra gjennomsnittet som sykdom i seg selv.",
+          "effect": -1,
+          "tags": [
+            "variation_pathology_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_normal_variation"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "mekanismen_og_mennesket",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Hverdagen",
+      "subject": "En plausibel mekanisme er ikke hele utfallet",
+      "situation": [
+        "Du leser en god forklaring på hvordan en biologisk mekanisme kan påvirke kroppen.",
+        "Forklaringen er elegant nok til at den lett høres ut som ferdig bevis for hva som skjer i praksis.",
+        "Mekanismekunnskap er viktig, men må skilles fra dokumentasjon av faktiske helseutfall."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk mekanismen som forklaring og hypotese, men spør også hva som er vist i faktiske utfall.",
+          "effect": 1,
+          "tags": [
+            "mechanism_outcome_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle en plausibel mekanisme som tilstrekkelig bevis for hele effekten.",
+          "effect": -1,
+          "tags": [
+            "mechanism_outcome_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_mechanism_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tallet_fra_klokka",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesestunden",
+      "subject": "En måling trenger kontekst",
+      "situation": [
+        "En klokke eller app viser et tall som ser uvanlig ut sammenlignet med gårsdagen.",
+        "Teknologien gjør målingen konkret, men sier ikke automatisk hva variasjonen betyr medisinsk.",
+        "Helseutforskeren kan lære om målemetoder uten å gjøre forbrukerteknologi til en klinisk vurdering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se på måleusikkerhet, trend og hva sensoren faktisk måler før du tolker tallet.",
+          "effect": 1,
+          "tags": [
+            "measurement_context_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle ett enkelt avvik som en sikker medisinsk konklusjon.",
+          "effect": -1,
+          "tags": [
+            "measurement_context_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_measurement_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "referanseomradet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Et referanseområde er ikke en dom",
+      "situation": [
+        "Du lærer hvordan laboratorietall ofte sammenlignes med referanseområder.",
+        "Det er lett å lese grensen som en skarp overgang mellom frisk og syk.",
+        "I praksis påvirkes tolkning av metode, sammenheng, andre opplysninger og hvorfor prøven ble tatt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forstå hva et referanseområde beskriver og la individuell tolkning høre hjemme hos kvalifisert helsepersonell.",
+          "effect": 1,
+          "tags": [
+            "reference_range_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk grensen alene til å avgjøre om en person er frisk eller syk.",
+          "effect": -1,
+          "tags": [
+            "reference_range_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_reference_range"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "risikofaktoren",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Helsebiblioteket",
+      "subject": "Risiko er sannsynlighet, ikke skjebne",
+      "situation": [
+        "Et forhold omtales som en risikofaktor for et helseutfall.",
+        "Samtalen glir raskt over i at enhver person med faktoren derfor kommer til å få utfallet.",
+        "Risikokunnskap handler om sannsynlighet i grupper, ikke sikker spådom om enkeltpersoner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold risikobegrepet probabilistisk og skill gruppedata fra individuell skjebne.",
+          "effect": 1,
+          "tags": [
+            "risk_probability_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjør risikofaktoren om til en sikker prognose for enkeltpersoner.",
+          "effect": -1,
+          "tags": [
+            "risk_probability_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_risk_probability"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "behandlingsartikkelen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Hverdagen",
+      "subject": "Å forstå behandling er ikke det samme som å foreskrive",
+      "situation": [
+        "Du leser en oversikt over hvordan en behandling virker og hvilke typer effekt som er undersøkt.",
+        "En bekjent spør straks om dette betyr at behandlingen er riktig for deres konkrete situasjon.",
+        "Autoritetsskranken går mellom generell læring og individuell behandlingsbeslutning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar det generelle du har lært, og marker at individuell behandling må vurderes av kvalifisert helsepersonell.",
+          "effect": 1,
+          "tags": [
+            "treatment_authority_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjør kunnskapen om behandlingen om til et personlig råd om hva bekjenten bør gjøre.",
+          "effect": -1,
+          "tags": [
+            "treatment_authority_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_treatment_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "helsetjenestens_rute",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesestunden",
+      "subject": "Systemforståelse er en del av helsekunnskap",
+      "situation": [
+        "Du prøver å forstå hvorfor mennesker møter ulike deler av helsetjenesten på ulike tidspunkt.",
+        "Det viser seg at fastlege, legevakt, spesialist, kommune og andre tjenester har forskjellige roller.",
+        "Å utforske helse handler også om å forstå institusjoner uten å late som man selv har deres faglige mandat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hvilke oppgaver ulike deler av tjenesten har, og skill systemkunnskap fra klinisk vurdering.",
+          "effect": 1,
+          "tags": [
+            "service_role_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Anta at alle deler av helsetjenesten gjør omtrent det samme og kan brukes om hverandre.",
+          "effect": -1,
+          "tags": [
+            "service_role_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_service_roles"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ordet_som_horres_sikkert_ut",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Medisinske ord kan skjule hvor lite som faktisk er avklart",
+      "situation": [
+        "En forklaring bruker mange fagord og høres derfor svært autoritativ ut.",
+        "Når du bryter den ned, er flere påstander fortsatt uklare eller uten tydelig kildegrunnlag.",
+        "Kildekritikk i helse krever at terminologi ikke får erstatte begrunnelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oversett fagordene til konkrete påstander og spør hvilket grunnlag hver av dem har.",
+          "effect": 1,
+          "tags": [
+            "jargon_evidence_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta mengden medisinsk terminologi som et tegn på at forklaringen må være riktig.",
+          "effect": -1,
+          "tags": [
+            "jargon_evidence_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_jargon_check"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "screening_eller_diagnose",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Helsebiblioteket",
+      "subject": "Å lete etter risiko er ikke det samme som å stille diagnose",
+      "situation": [
+        "Du leser om et screeningverktøy som brukes for å fange opp personer som kan trenge videre vurdering.",
+        "Noen omtaler et positivt utslag som om diagnosen dermed allerede er fastslått.",
+        "Screening, utredning og diagnose er forskjellige trinn med forskjellige formål."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold screening som et første sorteringsverktøy og skill det tydelig fra diagnostisk vurdering.",
+          "effect": 1,
+          "tags": [
+            "screening_diagnosis_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle et positivt screeningsvar som en ferdig diagnose.",
+          "effect": -1,
+          "tags": [
+            "screening_diagnosis_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_screening_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pasienterfaring_og_fagkunnskap",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Hverdagen",
+      "subject": "Levd erfaring og fagkunnskap svarer på ulike spørsmål",
+      "situation": [
+        "En person beskriver hvordan et helseproblem oppleves i hverdagen, mens en fagtekst beskriver mekanismer og behandlingsforløp.",
+        "Det er fristende å la den ene kunnskapstypen avvise den andre.",
+        "Helseutforskning blir bedre når erfaring og fagkunnskap holdes sammen uten å gjøre dem identiske."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk erfaringen til å forstå levd liv og fagkunnskapen til dens egne spørsmål, og marker forskjellen.",
+          "effect": 1,
+          "tags": [
+            "experience_knowledge_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Velg én kunnskapstype som alltid viktigere uansett hvilket spørsmål som stilles.",
+          "effect": -1,
+          "tags": [
+            "experience_knowledge_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_experience_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "når_kilden_endrer_seg",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesestunden",
+      "subject": "God læring tåler at forståelsen revideres",
+      "situation": [
+        "En forklaring du tidligere brukte viser seg å være for enkel etter at du leser en bedre oppdatert kilde.",
+        "Det er ubehagelig å endre språk når du allerede har forklart temaet sikkert til andre.",
+        "Kildekritikk er også en praksis for å revidere egen forståelse når grunnlaget blir bedre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppdater forklaringen og gjør tydelig hva du nå forstår annerledes.",
+          "effect": 1,
+          "tags": [
+            "revision_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Hold fast ved den gamle forklaringen fordi den er lettere å fortelle og allerede er delt.",
+          "effect": -1,
+          "tags": [
+            "revision_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_revision"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "helseutforsker_som_praksis",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Målet er forståelse med tydelige grenser",
+      "situation": [
+        "Etter mange runder med kroppskunnskap, målinger, risiko og helsetjenester har du fått et større begrepsapparat.",
+        "Samtidig ser du tydeligere hvor generell kunnskap slutter og individuell medisinsk vurdering begynner.",
+        "Helseutforskeren avslutter ikke med behandlerautoritet, men med bedre spørsmål, bedre kildekritikk og en sterkere autoritetsskranke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold vanen med å lære bredt, sjekke kilder og markere tydelig når spørsmålet krever kvalifisert individuell vurdering.",
+          "effect": 1,
+          "tags": [
+            "health_learning_deliberate",
+            "knowledge_identity",
+            "source_criticism"
+          ],
+          "feedback": "Du lærer mer uten å overskride grensen mellom generell kunnskap og individuell medisinsk myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La økt kunnskap gradvis bli en grunn til å opptre som uformell diagnostiker for andre.",
+          "effect": -1,
+          "tags": [
+            "health_learning_drift",
+            "authority_overreach",
+            "health_overinterpretation"
+          ],
+          "feedback": "Kunnskapen brukes med større sikkerhet eller myndighet enn grunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "helseutforsker_practice_integrated"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
