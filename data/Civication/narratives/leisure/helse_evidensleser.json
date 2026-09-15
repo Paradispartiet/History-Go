@@ -1,0 +1,705 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "helse_evidensleser_stream",
+  "type": "leisure",
+  "title": "Evidensleser",
+  "sociological_theme": "studiedesign_usikkerhet_kildekonflikt_og_kalibrert_kunnskapsvurdering",
+  "applies_when": {
+    "any_tags": [
+      "helse:evidensleser"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "leisure",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "overskriften_for_studien",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesestunden",
+      "subject": "Overskriften lover mer enn studiedesignet",
+      "situation": [
+        "En lenke i strømmen sier at en ny studie endelig har bevist en tydelig helseeffekt.",
+        "Når du leser videre, ser du at overskriften oppsummerer resultatet langt sikrere enn forskningsopplegget alene kan bære.",
+        "Evidenslesing begynner med å skille hva studien faktisk undersøkte fra hva andre sier at den beviser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Les metode og hovedutfall før du avgjør hva du mener studien støtter.",
+          "effect": 1,
+          "tags": [
+            "overskrift_design_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "Bruk overskriften som konklusjon fordi den er tydeligere enn metodebeskrivelsen.",
+          "effect": -1,
+          "tags": [
+            "overskrift_design_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_checked_design"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_ble_studert",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Gruppechatten",
+      "subject": "Utvalget setter grenser for generalisering",
+      "situation": [
+        "En studie har et tydelig resultat, men deltakerne kommer fra en smal gruppe.",
+        "Diskusjonen rundt deg hopper raskt fra disse deltakerne til påstander om alle.",
+        "Hvem som faktisk ble undersøkt er en del av evidensen, ikke en fotnote."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv først hvem utvalget faktisk representerer, og hold resten åpent.",
+          "effect": 1,
+          "tags": [
+            "sample_scope_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "Generaliser til alle fordi resultatet var tydelig i gruppen som deltok.",
+          "effect": -1,
+          "tags": [
+            "sample_scope_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_sample_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prosent_uten_nevner",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Nyhetsstrømmen",
+      "subject": "Et prosenttall trenger en nevner",
+      "situation": [
+        "En graf fremhever en stor relativ forskjell mellom to grupper.",
+        "De faktiske antallene er små, og grunnrisikoen er ikke nevnt i innlegget som deles.",
+        "Tall kan være korrekte og likevel gi et skjevt inntrykk når målestokken mangler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn absolutte tall eller grunnnivå før du vurderer hvor stor forskjellen faktisk er.",
+          "effect": 1,
+          "tags": [
+            "absolute_context_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den største prosenten alene fordi den er lettest å kommunisere.",
+          "effect": -1,
+          "tags": [
+            "absolute_context_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_denominator_checked"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sammenheng_eller_arsak",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Sammenheng er ikke automatisk årsak",
+      "situation": [
+        "To forhold varierer sammen i et datasett som diskuteres i vennegjengen.",
+        "Noen omtaler mønsteret som om den ene faktoren nødvendigvis skaper den andre.",
+        "Studiedesign avgjør hvor mye et observert mønster kan si om årsak."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom observasjon og årsakspåstand før du formulerer en konklusjon.",
+          "effect": 1,
+          "tags": [
+            "causation_boundary_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "Kall mønsteret årsak fordi retningen virker intuitiv.",
+          "effect": -1,
+          "tags": [
+            "causation_boundary_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_causation_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lite_utvalg_stor_sikkerhet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesestunden",
+      "subject": "Et lite materiale kan gi bred usikkerhet",
+      "situation": [
+        "Et lite forsøk peker i en interessant retning, og resultatet blir omtalt som avgjørende.",
+        "Du ser at estimatet kan flytte seg mye når datagrunnlaget er begrenset.",
+        "Presisjon handler ikke bare om hvor pent et tall ser ut, men om hvor mye usikkerhet som følger det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler funnet som foreløpig og ta usikkerheten med i vurderingen.",
+          "effect": 1,
+          "tags": [
+            "precision_uncertainty_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "Velg det mest presise enkelttallet og utelat spennvidden rundt det.",
+          "effect": -1,
+          "tags": [
+            "precision_uncertainty_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_uncertainty_named"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "enkeltstudien_i_gruppechatten",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Gruppechatten",
+      "subject": "Én studie er ikke hele kunnskapsbildet",
+      "situation": [
+        "En venn sender én studie som passer perfekt med det vennen allerede mener.",
+        "Studien kan være relevant uten at den alene oppsummerer all tilgjengelig kunnskap.",
+        "Evidensleseren må kunne ta et funn på alvor uten å gjøre det til hele feltet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Plasser studien i et større kunnskapsbilde og spør hva som finnes av sammenfallende eller motstridende funn.",
+          "effect": 1,
+          "tags": [
+            "single_study_context_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "Behandle studien som siste ord fordi den støtter posisjonen du allerede liker.",
+          "effect": -1,
+          "tags": [
+            "single_study_context_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_body_of_evidence"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_kilder_i_konflikt",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Nyhetsstrømmen",
+      "subject": "Kildekonflikt krever vurdering, ikke avstemning",
+      "situation": [
+        "To troverdige kilder oppsummerer samme spørsmål ulikt.",
+        "Fristelsen er å telle én mot én eller velge den formuleringen som passer best.",
+        "En kildekonflikt kan skyldes ulike spørsmål, datagrunnlag, tidspunkt eller kvalitetskrav."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign hva kildene faktisk bygger på og hvilket spørsmål hver av dem besvarer.",
+          "effect": 1,
+          "tags": [
+            "source_conflict_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "Velg kilden med den sikreste tonen og la resten falle bort.",
+          "effect": -1,
+          "tags": [
+            "source_conflict_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_source_conflict"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "surrogat_eller_utfall",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Et mål kan være nært eller fjernt fra det som betyr noe",
+      "situation": [
+        "Et resultat ser lovende ut fordi en målbar markør har endret seg.",
+        "Samtalen glir raskt over i antakelser om et bredere utfall som studien ikke målte direkte.",
+        "Å lese evidens betyr også å spørre hva utfallet faktisk representerer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold markøren og det bredere utfallet adskilt til sammenhengen er dokumentert.",
+          "effect": 1,
+          "tags": [
+            "outcome_distance_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "Behandle enhver endring i markøren som bevis for hele sluttutfallet.",
+          "effect": -1,
+          "tags": [
+            "outcome_distance_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_outcome_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "undergruppen_som_skinner",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesestunden",
+      "subject": "Et spennende undergruppefunn trenger varsomhet",
+      "situation": [
+        "Helhetsresultatet er uklart, men én liten undergruppe har et slående utslag.",
+        "Det er fristende å gjøre nettopp denne delen til hovedfortellingen.",
+        "Jo flere mulige delgrupper som undersøkes, desto viktigere blir det å vite hva som var planlagt på forhånd."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekk om undergruppen var forhåndsdefinert og behandle funnet som mer usikkert hvis den ikke var det.",
+          "effect": 1,
+          "tags": [
+            "subgroup_caution_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "Løft undergruppen frem som hovedkonklusjon fordi den har det sterkeste utslaget.",
+          "effect": -1,
+          "tags": [
+            "subgroup_caution_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_subgroup_caution"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "publisert_men_ikke_gjentatt",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Gruppechatten",
+      "subject": "Publisering er et startpunkt, ikke en garanti",
+      "situation": [
+        "Et publisert resultat har fått mye oppmerksomhet, men få uavhengige forsøk har undersøkt det samme.",
+        "Noen tolker selve publiseringen som et kvalitetsstempel som avslutter diskusjonen.",
+        "Robust kunnskap styrkes når funn tåler nye data, nye miljøer og kritisk etterprøving."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se etter uavhengig etterprøving og vær tydelig på hva som fortsatt er ubekreftet.",
+          "effect": 1,
+          "tags": [
+            "replication_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "Bruk publiseringsstatusen som erstatning for senere etterprøving.",
+          "effect": -1,
+          "tags": [
+            "replication_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_replication_checked"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fagperson_utenfor_feltet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Nyhetsstrømmen",
+      "subject": "Ekspertise har også faglige grenser",
+      "situation": [
+        "En høyt utdannet fagperson uttaler seg svært sikkert om et spørsmål utenfor sitt primære fagområde.",
+        "Statusen gjør utsagnet lett å dele videre uten å undersøke argumentet eller datagrunnlaget.",
+        "Evidenslesing respekterer ekspertise uten å gjøre autoritet grenseløs."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder relevant fagområde, begrunnelse og kilder i tillegg til personens tittel.",
+          "effect": 1,
+          "tags": [
+            "expertise_scope_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "La tittelen avgjøre spørsmålet selv når fagområdet ligger langt unna.",
+          "effect": -1,
+          "tags": [
+            "expertise_scope_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_expertise_scope"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "usikkerhet_nar_noe_ma_avgjores",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Usikkerhet kan navngis uten å bli handlingsstopp",
+      "situation": [
+        "Du må ta stilling til hvordan du omtaler et spørsmål selv om kunnskapen ikke er fullstendig.",
+        "To ytterpunkter frister: late som alt er sikkert, eller hevde at ingenting kan sies.",
+        "God evidenslesing gjør graden av usikkerhet eksplisitt og skiller den fra total uvitenhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hva kunnskapen støtter nå, hva som er usikkert, og hva som kan endre vurderingen.",
+          "effect": 1,
+          "tags": [
+            "uncertainty_action_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "Velg enten full sikkerhet eller full avvisning fordi mellomposisjonen føles ubehagelig.",
+          "effect": -1,
+          "tags": [
+            "uncertainty_action_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_uncertainty_action"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rettelsen_i_etterkant",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesestunden",
+      "subject": "En rettelse tester identiteten din som leser",
+      "situation": [
+        "En påstand du tidligere delte blir senere svekket av bedre data eller en korrigering.",
+        "Det er sosialt lettere å tie enn å markere at forståelsen har endret seg.",
+        "Evidenskompetanse blir synlig når ny informasjon får lov til å endre det du sier offentlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rett opp det du tidligere sa og forklar kort hva som endret vurderingen.",
+          "effect": 1,
+          "tags": [
+            "correction_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "La den gamle påstanden stå fordi en rettelse kan se ut som svakhet.",
+          "effect": -1,
+          "tags": [
+            "correction_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_correction_practice"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "evidensleser_som_praksis",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Gruppechatten",
+      "subject": "Målet er bedre kalibrering, ikke permanent sikkerhet",
+      "situation": [
+        "Etter mange runder med studiedesign, usikkerhet og kildekonflikt merker du at lesemåten har endret seg.",
+        "Du spør oftere hva som ble målt, hvem som ble undersøkt, hvor sikkert funnet er og hva det ikke kan avgjøre.",
+        "Evidensleseren avslutter ikke med en fasit, men med en mer kalibrert måte å holde påstander opp mot grunnlaget deres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold en eksplisitt vane for å skille funn, tolkning, usikkerhet og egne konklusjoner.",
+          "effect": 1,
+          "tags": [
+            "evidence_practice_deliberate",
+            "evidence_literacy",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar styrken i konklusjonen følge styrken i grunnlaget."
+        },
+        {
+          "id": "B",
+          "label": "Gjør evidenslesing til et identitetsmerke der du alltid må være den mest skeptiske i rommet.",
+          "effect": -1,
+          "tags": [
+            "evidence_practice_drift",
+            "certainty_pressure",
+            "evidence_overreach"
+          ],
+          "feedback": "Konklusjonen blir sikrere enn datagrunnlaget gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "evidensleser_practice_integrated"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
