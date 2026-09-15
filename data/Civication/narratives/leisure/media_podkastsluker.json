@@ -1,0 +1,706 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "media_podkastsluker_stream",
+  "type": "leisure",
+  "title": "Podkastsluker",
+  "sociological_theme": "podkast_rutine_ny_serie_backlog_parasosialitet_ekspertgjester_reklame_abonnement_dokumentar_fandom_og_grensen_mot_produksjonsmyndighet",
+  "applies_when": {
+    "any_tags": [
+      "media:podkastsluker"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "morgenepisoden",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Kjøkkenet",
+      "subject": "Stemmer før dagen begynner",
+      "situation": [
+        "Du setter på en podkast før frokosten er ferdig, nesten før du har valgt hva du vil høre.",
+        "Podkast har blitt en rutine som fyller overgangene i dagen og gjør stillhet uvant.",
+        "Podkastsluker betyr sterk lytteinteresse, ikke plikt til å fylle hvert tomrom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge episoden bevisst eller la morgenen være stille.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Trykke på neste episode automatisk fordi stillhet kjennes bortkastet.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "routine_vs_choice"
+      ],
+      "risk_links": [
+        "attention_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "backloggen_som_vokser",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Køen",
+      "subject": "Alt du skal høre senere",
+      "situation": [
+        "Abonnementene dine har bygget en kø som er lengre enn tiden du faktisk har.",
+        "En backlog kan være nyttig hukommelse, men blir lett en oppgaveliste som aldri kan fullføres.",
+        "Lytteinteresse trenger ikke måles i hvor mye du rekker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fjerne episoder du ikke lenger vil prioritere.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Spille dem av raskere bare for å få køen ned.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "curation_vs_completion"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_nye_serien_alle_anbefaler",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Feed-en",
+      "subject": "Ny serie, gammel kalender",
+      "situation": [
+        "Flere anbefaler en ny serie samtidig som du allerede følger mange andre.",
+        "Nyhet og sosial entusiasme kan gjøre hvert nytt format til noe du føler du bør være med på.",
+        "Å prøve noe nytt er ikke det samme som å binde seg til hele serien."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Teste én episode og beholde bare det som faktisk passer.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Abonnere med en gang for å unngå å gå glipp av samtalen.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "novelty_vs_commitment"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verten_som_foles_som_en_venn",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Øretelefonene",
+      "subject": "En kjent stemme",
+      "situation": [
+        "Du har hørt den samme verten i hundrevis av timer og kjenner rytmen, historiene og humoren.",
+        "Langvarig lytting kan skape ekte gjenkjennelse, men relasjonen er fortsatt asymmetrisk.",
+        "Parasosial nærhet er ikke privat vennskap eller personlig tilgang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Nyte gjenkjennelsen uten å anta personlig relasjon.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Skrive som om verten kjenner deg tilbake fordi du har fulgt lenge.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "familiarity_vs_relationship"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjesten_med_den_sikre_stemmen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Intervjuet",
+      "subject": "Eksperten i studio",
+      "situation": [
+        "En gjest snakker overbevisende om et felt du ikke kjenner godt.",
+        "Langformat kan gi mer nyanse enn et kort sitat, men formatet gjør ikke alle påstander etterprøvde.",
+        "Podkastlytteren kan være nysgjerrig uten å gjøre vertens gjestevalg til kvalitetsstempel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekke sentrale påstander mot andre kilder.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta episoden som tilstrekkelig dokumentasjon fordi samtalen var grundig.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "longform_vs_verification"
+      ],
+      "risk_links": [
+        "responsibility_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "reklamen_som_blir_del_av_samtalen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Mellomsegmentet",
+      "subject": "Anbefalingen med rabattkode",
+      "situation": [
+        "Verten går sømløst fra personlig prat til en sponsorlesning.",
+        "Personlig tone kan gjøre reklame mindre tydelig følelsesmessig selv når merking finnes.",
+        "Lytteren må kunne skille tillit til stemmen fra tillit til produktet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle sponsorsegmentet som reklame og vurdere produktet separat.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Tolke anbefalingen som ekstra troverdig fordi verten virker oppriktig.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trust_vs_advertising"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "premiumfeeden",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Abonnementet",
+      "subject": "Ekstraepisodene",
+      "situation": [
+        "Et program du liker flytter mer innhold bak betaling.",
+        "Direkte støtte kan finansiere produksjon, men mange små abonnementer kan bli en stor fast kostnad.",
+        "Kulturell støtte er fortsatt et valg innen privatøkonomien."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde de abonnementene du faktisk bruker og har råd til.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Tegne abonnement for å bevise lojalitet selv om du sjelden hører bonusinnholdet.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "support_vs_budget"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_ganger_hastighet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Spilleren",
+      "subject": "Mer innhold per time",
+      "situation": [
+        "Du hører stadig mer på økt hastighet for å rekke flere episoder.",
+        "Hastighet kan være praktisk, men kan også gjøre lytting til gjennomstrømning i stedet for oppmerksomhet.",
+        "Effektivitet er ikke automatisk det samme som utbytte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge hastighet etter innhold og situasjon.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Øke farten videre for å holde tritt med alle abonnementene.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "speed_vs_attention"
+      ],
+      "risk_links": [
+        "attention_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_sanne_historien_som_blir_underholdning",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Dokumentarserien",
+      "subject": "Virkelige mennesker i episodene",
+      "situation": [
+        "En dokumentarpodkast forteller om konflikt, kriminalitet eller sorg med dramatisk struktur.",
+        "God fortelling kan gi innsikt, men virkelige personer bærer konsekvensene også etter at episoden er ferdig.",
+        "Lytteren kan vurdere dramaturgi uten å gjøre menneskers liv til ren sjanger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Holde både fortelling og berørte mennesker i blikket.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Diskutere personene som figurer fordi serien er så godt fortalt.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "storytelling_vs_personhood"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_interne_vitsen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Vennegjengen",
+      "subject": "Du måtte vært lytter",
+      "situation": [
+        "Du og en venn bruker referanser fra en podkast som andre rundt bordet ikke kjenner.",
+        "Felles referanser kan skape fellesskap, men også en liten inngangsport som gjør andre til publikum.",
+        "Fandom er mest sosialt når koder kan åpnes, ikke bare markere medlemskap."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklare referansen kort og inkludere de andre.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette med interne referanser fordi det er morsommere for de innvidde.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "belonging_vs_gatekeeping"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "episoden_som_endrer_mening",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Turen",
+      "subject": "Et argument som blir igjen",
+      "situation": [
+        "En lang samtale får deg til å revurdere et syn du har hatt lenge.",
+        "Podkastformatet kan gi tid til argumenter og erfaringer som korte formater ikke rommer.",
+        "Samtidig er én god samtale et utgangspunkt for videre tenkning, ikke en fullstendig kunnskapsrevisjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La argumentet stå åpent og undersøke mer før du konkluderer.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bytte standpunkt helt fordi samtalen føltes overbevisende og helhetlig.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "persuasion_vs_inquiry"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verten_som_blir_avslort",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Feed-en",
+      "subject": "Gamle episoder i nytt lys",
+      "situation": [
+        "En vert du har likt blir kritisert for forhold utenfor programmet.",
+        "Det kan endre hvordan du hører eldre episoder, men du har ikke automatisk tilgang til hele saken gjennom fandom.",
+        "Lytterens skuffelse er reell uten å bli etterforskning eller domsmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skille bekreftede opplysninger fra reaksjonen din som lytter.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke alle gamle episoder som bevis på at du egentlig visste hvordan personen var.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fandom_vs_judgment"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "anbefalingen_du_gir_videre",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Meldingen",
+      "subject": "Hør denne",
+      "situation": [
+        "Du vil sende en episode til noen fordi den forklarte et tema godt for deg.",
+        "En anbefaling låner litt av din troverdighet til programmet, særlig når mottakeren ikke kjenner formatet.",
+        "Det er forskjell på å anbefale en samtale og å garantere alle påstandene i den."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hva du fikk ut av episoden og hvor du selv er usikker.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Presentere episoden som fasiten fordi du stoler på verten.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "recommendation_vs_authority"
+      ],
+      "risk_links": [
+        "responsibility_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_podkastsluker",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Biblioteket",
+      "subject": "Mange timer uten programlederrolle",
+      "situation": [
+        "Du kjenner formater, verter, serier og sjangre og kan ofte anbefale noe som passer andre.",
+        "Det er reell lytte- og formatkompetanse, men gir ingen programleder-, produsent-, redaktør-, booking- eller publiseringsmyndighet.",
+        "Spørsmålet er om mengden lytting gir bedre kuratering eller bare større beholdning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde rollen som erfaren lytter med tydelige profesjonelle grenser.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "listening"
+          ],
+          "feedback": "Du bruker lytteerfaringen som kuratering og forståelse uten å låne produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "La mange lyttetimer fungere som fullmakt til å uttale deg på vegne av podkastfeltet.",
+          "effect": -1,
+          "tags": [
+            "overconsumption",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Lyttevanen blir gjort til plikt, status eller autoritet utover det formatet gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "practice_vs_production_authority"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    }
+  ]
+}
