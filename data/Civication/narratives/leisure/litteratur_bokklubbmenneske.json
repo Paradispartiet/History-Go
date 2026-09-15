@@ -1,0 +1,693 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "litteratur_bokklubbmenneske_stream",
+  "type": "leisure",
+  "title": "Bokklubbmenneske",
+  "sociological_theme": "sosial_lesing_utvalgsmakt_smak_taletid_fortrolighet_vertsarbeid_og_grensen_mot_litteraer_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "litteratur:bokklubbmenneske"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "boka_du_ikke_rakk_a_lese",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Bokklubbchatten",
+      "subject": "Du er ikke ferdig",
+      "situation": [
+        "Det er bokklubb i kveld, men du har bare lest halve boka og kjenner skammen komme før noen har spurt.",
+        "I gruppa finnes en uskrevne forestilling om at det gode medlemmet møter forberedt, selv om arbeid, omsorg og energi varierer fra uke til uke.",
+        "Bokklubbmenneske er en sosial lesepraksis, ikke en prestasjonstest, og ærlighet om kapasitet trenger ikke bety at du mister tilhørighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du ikke ble ferdig, og delta i samtalen uten å late som du har lest resten.",
+          "effect": 1,
+          "tags": [
+            "honesty",
+            "belonging",
+            "role_clarity"
+          ],
+          "feedback": "Du beskytter både samtalen og egen plass i gruppa uten å gjøre fullført lesing til adgangskrav."
+        },
+        {
+          "id": "B",
+          "label": "Late som du har lest ferdig og styre unna detaljer som kan avsløre deg.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "performance_pressure",
+            "trust_risk"
+          ],
+          "feedback": "Du beholder fasaden, men gjør medlemskapet mer avhengig av prestasjon enn av faktisk fellesskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_capacity_honesty"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_velger_neste_bok",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Runden rundt bordet",
+      "subject": "Hvem får velge?",
+      "situation": [
+        "Når neste bok skal velges, foreslår den samme lille kjernen igjen titler de allerede kjenner feltet rundt.",
+        "De andre forslagene blir ikke direkte avvist, men omtales som for lette, for smale eller ikke helt bokklubbaktige.",
+        "Utvalg skaper makt over hva gruppa bruker tid på, uten at smak eller erfaring gir noen formell redaksjonell myndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Foreslå en synlig rotasjon der alle får eie et valg uten å måtte forsvare smaken som mer legitim.",
+          "effect": 1,
+          "tags": [
+            "selection_fairness",
+            "taste_pluralism",
+            "shared_power"
+          ],
+          "feedback": "Bokvalget blir en delt ressurs, ikke en skjult rangering av hvem som har riktig smak."
+        },
+        {
+          "id": "B",
+          "label": "Støtte den erfarne kjernen fordi de tross alt vet hvilke bøker som gir best samtale.",
+          "effect": -1,
+          "tags": [
+            "taste_hierarchy",
+            "status_deference",
+            "gatekeeping"
+          ],
+          "feedback": "Du gjør uformell litterær sikkerhet til varig utvalgsmakt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_selection_rotation"
+      ],
+      "risk_links": [
+        "status_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_som_alltid_snakkar_forst",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalen",
+      "subject": "Første tolkning fyller rommet",
+      "situation": [
+        "En av deltakerne svarer først på nesten alle spørsmål og legger en sikker tolkning på bordet før andre rekker å formulere sin.",
+        "Ingen avbryter direkte, men flere begynner å bygge sine innlegg som små tillegg til den første stemmen.",
+        "En bokklubb kan få hierarki av taletid lenge før noen formelt har fått rollen som leder eller ekspert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Invitere inn en stemme som ikke har kommet til, og gjøre plass uten å kåre en ny fasit.",
+          "effect": 1,
+          "tags": [
+            "airtime_fairness",
+            "plural_voice",
+            "facilitation"
+          ],
+          "feedback": "Samtalen får flere innganger uten at du gjør deg selv til lærer eller ordstyrer med permanent mandat."
+        },
+        {
+          "id": "B",
+          "label": "La den sikreste stemmen drive samtalen fordi det er mer effektivt og faglig.",
+          "effect": -1,
+          "tags": [
+            "dominance",
+            "expertise_performance",
+            "silencing"
+          ],
+          "feedback": "Effektiviteten kjøpes med et smalere rom for usikre, langsomme eller annerledes lesninger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_airtime_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "romanen_som_ligner_for_mye",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "En gjenkjennelse",
+      "subject": "Boka treffer privat",
+      "situation": [
+        "Romanen handler om en familiekrise som ligner sterkt på noe et medlem tidligere har fortalt deg i fortrolighet.",
+        "Du ser at flere i gruppa nærmer seg temaet generelt, mens personen selv blir stille.",
+        "Litterær samtale kan åpne privat erfaring, men teksten gir ingen rett til å trekke andres liv inn i rommet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Holde den private historien ute og la personen selv bestemme om erfaringen skal kobles til boka.",
+          "effect": 1,
+          "tags": [
+            "confidentiality",
+            "care",
+            "consent"
+          ],
+          "feedback": "Du skiller mellom det teksten inviterer til og det en venn tidligere har betrodd deg."
+        },
+        {
+          "id": "B",
+          "label": "Nevne likheten forsiktig for å få en ærligere og dypere samtale.",
+          "effect": -1,
+          "tags": [
+            "public_private_leakage",
+            "consent_breach",
+            "depth_pressure"
+          ],
+          "feedback": "Du bruker en annens fortrolighet som samtaleressurs uten at personen har valgt det."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_confidentiality_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "chatten_etter_motet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Gruppetråden",
+      "subject": "Når analysen blir personanalyse",
+      "situation": [
+        "Etter møtet fortsetter praten i chatten, og en kommentar om boka glir over i spekulasjoner om hvorfor et annet medlem reagerte så sterkt.",
+        "Den det gjelder er ikke aktiv i tråden akkurat da, og tonen blir friere jo flere som legger til små observasjoner.",
+        "Et sosialt lesefellesskap kan raskt gjøre tolkningsvanen til en vane for å tolke mennesker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dra samtalen tilbake til boka og foreslå at personlige reaksjoner får eies av den som faktisk hadde dem.",
+          "effect": 1,
+          "tags": [
+            "privacy",
+            "care",
+            "group_norms"
+          ],
+          "feedback": "Du beskytter skillet mellom litterær fortolkning og gruppas rett til å forklare hverandre."
+        },
+        {
+          "id": "B",
+          "label": "Bli med på analysen så lenge ingen skriver noe direkte stygt.",
+          "effect": -1,
+          "tags": [
+            "gossip",
+            "privacy_drift",
+            "group_pressure"
+          ],
+          "feedback": "Grensen flyttes fra samtykke til bare fravær av eksplisitt ondskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_chat_privacy"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vertskapet_som_ingen_ser",
+      "message_type": "task",
+      "time_slot": [
+        "people",
+        "home",
+        "leisure"
+      ],
+      "from": "Kjøkkenbordet",
+      "subject": "Hvem gjør kvelden mulig?",
+      "situation": [
+        "Den samme personen har ryddet, laget mat, funnet glass, minnet alle på datoen og rydder fortsatt mens diskusjonen fortsetter.",
+        "Gruppa omtaler vertskapet som hyggelig og uformelt, men arbeidet er reelt og gjentakende.",
+        "Fellesskap kan se spontant ut fordi noen gjør det usynlige arbeidet som får resten til å føles lett."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stoppe opp og fordele praktiske oppgaver og kommende vertskap tydeligere.",
+          "effect": 1,
+          "tags": [
+            "invisible_work",
+            "reciprocity",
+            "shared_labor"
+          ],
+          "feedback": "Det sosiale overskuddet blir mindre avhengig av at én person alltid absorberer kostnaden."
+        },
+        {
+          "id": "B",
+          "label": "Takke varmt og anta at verten sier fra hvis det blir for mye.",
+          "effect": -1,
+          "tags": [
+            "care_offloading",
+            "invisible_work",
+            "default_labor"
+          ],
+          "feedback": "Takknemlighet erstatter ikke fordeling når det samme arbeidet stadig lander hos én."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_hosting_labor"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "resource_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "boka_som_koster_for_mye",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Neste måneds tittel",
+      "subject": "Alle kan vel kjøpe den?",
+      "situation": [
+        "Et foreslått nyutgitt verk er dyrt, ventelista på biblioteket er lang og ikke alle bruker samme digitale tjenester.",
+        "Noen i gruppa sier at én bok i måneden er en liten kostnad hvis man virkelig prioriterer lesingen.",
+        "Pris, tilgang og tid er materielle vilkår for deltakelse, ikke mål på hvor seriøst noen tar litteratur."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge en tittel med flere realistiske tilgangsveier eller gi lengre tid før møtet.",
+          "effect": 1,
+          "tags": [
+            "class_power",
+            "access",
+            "shared_resources"
+          ],
+          "feedback": "Gruppa beholder ambisjonen uten å gjøre kjøpekraft til skjult medlemskrav."
+        },
+        {
+          "id": "B",
+          "label": "Beholde boka og si at alle får finne sin egen løsning denne gangen.",
+          "effect": -1,
+          "tags": [
+            "class_gatekeeping",
+            "deservingness",
+            "resource_capture"
+          ],
+          "feedback": "Et praktisk valg blir en test på hvem som har råd og fleksibilitet nok til å bli med."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_access_boundary"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenighet_uten_dom",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "To helt forskjellige lesninger",
+      "subject": "Kan noen ha lest feil?",
+      "situation": [
+        "Du likte boka sterkt, mens et annet medlem beskriver den som manipulerende og sentimental.",
+        "Samtalen begynner å handle mindre om hva dere så i teksten og mer om hvem som har mest raffinert smak.",
+        "Bokklubben trenger uenighet for å være levende, men uenighet gir ingen av dere kritiker-, lærer- eller redaktørmyndighet over den andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om konkrete steder i teksten og la vurderingene stå ved siden av hverandre uten rangering av personen.",
+          "effect": 1,
+          "tags": [
+            "epistemic_humility",
+            "taste_pluralism",
+            "disagreement"
+          ],
+          "feedback": "Uenigheten blir mer presis uten å bli en sosial dom over leseren."
+        },
+        {
+          "id": "B",
+          "label": "Forsvare boka ved å forklare hva den andre sannsynligvis har oversett.",
+          "effect": -1,
+          "tags": [
+            "taste_hierarchy",
+            "authority_claim",
+            "status"
+          ],
+          "feedback": "Du gjør egen lesning til målestokk for den andres kompetanse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_disagreement_norm"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forfatteren_som_noen_kjenner",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Et navn i nettverket",
+      "subject": "Jeg kjenner henne litt",
+      "situation": [
+        "En deltaker forteller at de kjenner forfatteren perifert og begynner å bruke små anekdoter som forklaring på romanens motiv og personer.",
+        "Opplysningene gjør gruppa nysgjerrig, men det er uklart hva som faktisk er offentlig, relevant eller korrekt.",
+        "Sosial nærhet til en forfatter gir ikke innsideautoritet over verket eller rett til å gjøre privat kjennskap til tolkningsbevis."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skille tydelig mellom teksten, offentlig informasjon og det som bare er privat nettverkskunnskap.",
+          "effect": 1,
+          "tags": [
+            "source_boundary",
+            "privacy",
+            "role_clarity"
+          ],
+          "feedback": "Gruppa kan være nysgjerrig uten å gjøre bekjentskap til litterær dokumentasjon."
+        },
+        {
+          "id": "B",
+          "label": "Bruke anekdotene fordi de gir et sjeldent innblikk gruppa ellers ikke ville fått.",
+          "effect": -1,
+          "tags": [
+            "network_status",
+            "public_private_leakage",
+            "authority_claim"
+          ],
+          "feedback": "Nettverksnærhet blir gjort til kilde og status uten samtykke eller kontroll."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_network_boundary"
+      ],
+      "risk_links": [
+        "privacy_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gruppen_som_blir_for_lukket",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En ny deltaker",
+      "subject": "Vi har vår måte å gjøre det på",
+      "situation": [
+        "En ny person kommer med et annet tempo, andre referanser og spørsmål gruppa sluttet å stille for lenge siden.",
+        "De faste medlemmene har interne vitser, gamle konflikter og en rytme som føles naturlig nettopp fordi de kjenner den.",
+        "Et sterkt fellesskap kan bli en inngangsbarriere når fortrolighet forveksles med eierskap til rommet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklare de viktigste normene, åpne referansene og tåle at rytmen endres litt mens den nye finner plass.",
+          "effect": 1,
+          "tags": [
+            "newcomer_access",
+            "care",
+            "shared_norms"
+          ],
+          "feedback": "Fortrolighet brukes som ressurs for inkludering i stedet for som bevis på rang."
+        },
+        {
+          "id": "B",
+          "label": "La den nye observere noen ganger først; de fleste skjønner jo kulturen etter hvert.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "insider_status",
+            "norm_overreach"
+          ],
+          "feedback": "Det som er usynlig for de etablerte blir en prøve den nye må bestå alene."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_newcomer_access"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "temaet_som_ble_for_personlig",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Spørsmålet i runden",
+      "subject": "Må alle dele?",
+      "situation": [
+        "En samtale om romanens sorgtema ender med at flere deler egne erfaringer, og forventningen om samme åpenhet vandrer rundt bordet.",
+        "En deltaker svarer kort og får straks et oppfølgingsspørsmål om hva boka vekket i dem personlig.",
+        "Et trygt fellesskap kan invitere til nærhet uten å gjøre selvavsløring til medlemsplikt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Normalisere at man kan snakke om teksten uten å dele eget liv, og gå videre uten å presse.",
+          "effect": 1,
+          "tags": [
+            "consent",
+            "emotional_safety",
+            "care"
+          ],
+          "feedback": "Du beskytter frivilligheten i både lesing og personlig åpenhet."
+        },
+        {
+          "id": "B",
+          "label": "Oppmuntre personen litt til fordi alle andre allerede har vært sårbare.",
+          "effect": -1,
+          "tags": [
+            "disclosure_pressure",
+            "reciprocity_pressure",
+            "public_private_leakage"
+          ],
+          "feedback": "Gjensidighet blir gjort til krav om like mye privat materiale fra alle."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_disclosure_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "avlysningen_som_blir_et_signal",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Tre avbud på rad",
+      "subject": "Er du egentlig med?",
+      "situation": [
+        "Et medlem har avlyst tre møter på rad og skriver nå at de heller ikke rekker neste bok.",
+        "Noen foreslår å fjerne dem fra gruppa fordi stabilt oppmøte er nødvendig for at bokklubben skal føles forpliktende.",
+        "Kontinuitet betyr noe, men livsfaser, omsorg og kapasitet kan variere uten at fravær automatisk betyr manglende lojalitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva slags tilknytning som faktisk fungerer nå, og avtal en fleksibel plass uten skyld.",
+          "effect": 1,
+          "tags": [
+            "belonging",
+            "capacity",
+            "care"
+          ],
+          "feedback": "Medlemskapet kan være tydelig uten at midlertidig lav kapasitet blir moralsk dom."
+        },
+        {
+          "id": "B",
+          "label": "Støtte en strengere oppmøtenorm for å beskytte gruppa mot halvveis deltakelse.",
+          "effect": -1,
+          "tags": [
+            "attendance_pressure",
+            "deservingness",
+            "exclusion"
+          ],
+          "feedback": "Forpliktelse blir målt gjennom tilgjengelighet mer enn gjennom relasjon og faktisk interesse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_attendance_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kan_du_lede_neste_samtale",
+      "message_type": "task",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En forespørsel",
+      "subject": "Kan du fasilitere?",
+      "situation": [
+        "Etter en god diskusjon spør gruppa om du kan forberede noen spørsmål og holde litt struktur på neste møte.",
+        "Oppgaven gir deg midlertidig kontroll over rekkefølge og innganger, men ingen særrett til å avgjøre hva boka betyr.",
+        "Å fasilitere en samtale er en avgrenset sosial funksjon, ikke en oppgradering til litteraturkritiker, lærer, redaktør eller faglig autoritet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta oppgaven med tydelige rammer: spørsmål, taletid og overganger, men ingen fasit på tolkningen.",
+          "effect": 1,
+          "tags": [
+            "facilitation",
+            "bounded_authority",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker mandatet til å holde rommet åpent, ikke til å eie lesningen."
+        },
+        {
+          "id": "B",
+          "label": "Forberede en hovedtolkning først, så gruppa har et faglig utgangspunkt å arbeide fra.",
+          "effect": -1,
+          "tags": [
+            "authority_claim",
+            "taste_hierarchy",
+            "professional_capture"
+          ],
+          "feedback": "Midlertidig fasilitering glir over i ubegrunnet faglig rang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_facilitation_boundary"
+      ],
+      "risk_links": [
+        "status_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_bokklubbmenneske",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Den neste boka",
+      "subject": "Hva slags fellesskap bygger du?",
+      "situation": [
+        "Etter måneder med bokvalg, uenighet, vertskap, avbud, private temaer og nye deltakere ser du at bokklubben er mer enn summen av bøkene.",
+        "Lesingen har blitt en sosial praksis med reelle grenser rundt tilgang, taletid, fortrolighet, arbeid og status.",
+        "Bokklubbmenneske er fortsatt en livsposisjon: den gir tilhørighet og erfaring, men ingen automatisk kritiker-, redaktør-, lærer-, forfatter- eller institusjonell myndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta med deg en fast regel videre: del utvalg og taletid, beskytt fortrolighet og skill fasilitering fra faglig autoritet.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "shared_power",
+            "role_clarity"
+          ],
+          "feedback": "Bokklubben blir et sted for plural lesing og sosial hukommelse uten å late som den er en institusjon."
+        },
+        {
+          "id": "B",
+          "label": "Bestemme at gruppa fungerer best når de mest litterært sikre setter standarden og de andre følger rytmen.",
+          "effect": -1,
+          "tags": [
+            "status_hierarchy",
+            "gatekeeping",
+            "professional_capture"
+          ],
+          "feedback": "Fellesskapet blir gradvis en uformell rangordning forkledd som kvalitetssikring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bookclub_season_reflection"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "status_risk"
+      ],
+      "links": []
+    }
+  ]
+}
