@@ -1,0 +1,1179 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "kunst",
+  "role_scope": "kunst_vernissagegjenger",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "kunst",
+    "id": "vernissagegjenger",
+    "label": "Vernissagegjenger"
+  },
+  "title": "Vernissagegjenger",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å navigere kunståpningenes invitasjoner, nettverk, sladder, synlighet og status uten å gjøre sosial tilgang til eierskap, økonomisk rådgivning eller lånt faglig autoritet",
+    "description": "Vernissagegjenger-verdenen følger en sosial livsposisjon rundt kunståpninger: invitasjoner, ankomstkoder, introduksjoner, navnekunnskap, kunstnergrenser, fotografering, omdømme, usynlig arrangementsarbeid, nykommerterskler, markedssnakk, kritikk og overgangen fra offentlig åpning til privat etterrom. Rollen gir ingen kurator-, gallerist-, kunsthandler-, kritiker-, proveniens-, salgs- eller institusjonell myndighet. Et avgrenset betalt arrangementsskift endrer heller ikke dette, og verden introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "class_power",
+    "status_anxiety",
+    "shame_reputation",
+    "public_private_leakage",
+    "public_attention",
+    "invisible_work",
+    "care_vs_efficiency"
+  ],
+  "social_environments": [
+    "inngangen der invitasjoner, gjestelister og uskrevne regler avgjør hvem som føler seg velkommen",
+    "det fulle åpningsrommet der grupper, navn og blikk gjør nettverk til synlig sosial kapital",
+    "kunstnersamtalen der offentlig oppmerksomhet møter personens rett til tid og grenser",
+    "bakrommet der rykter og uformell informasjon kan flytte omdømme raskere enn noen tar ansvar",
+    "garderoben og serveringssonen der usynlig arbeid bærer arrangementets prestisje",
+    "markedssamtalen der pris, samlerinteresse og sosial hype lett forveksles med økonomisk kunnskap",
+    "veien videre etter åpningen der det offentlige arrangementet glir over i private adresser og nye adgangsgrenser",
+    "det avgrensede ekstraskiftet der praktisk arrangementsarbeid ikke blir en snarvei til kunstfaglig myndighet"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "nettverksgjengangeren",
+      "social_function": "gjør navn, invitasjoner og sosial gjenkjennelse til synlig kapital",
+      "class_position": "ressurssterk gjenganger med stort uformelt nettverk uten formell myndighet",
+      "status": "høy uformell status fordi personen kjenner mange og blir gjenkjent raskt",
+      "power_over_player": "kan åpne introduksjoner eller gjøre sosial tilhørighet til opptaksprøve",
+      "wants": "å være sentral uten å miste oversikt over hvem som beveger seg hvor",
+      "conceals": "hvor avhengig statusen er av at andre fortsatt oppfatter nettverket som verdifullt",
+      "speech_style": "rask, navnetett og oppdatert på hvem som kommer videre",
+      "teaches_player": "at nettverk kan fungere som både infrastruktur og rang"
+    },
+    {
+      "id": "kunstneren_pa_apning",
+      "social_function": "gjør kunstnerens tid, oppmerksomhet og private grenser konkrete",
+      "class_position": "opphaver med høy symbolsk synlighet under arrangementet",
+      "status": "høy i rommet, men samtidig utsatt for kontinuerlige krav på kontakt",
+      "power_over_player": "kan åpne eller lukke samtaler og definere hva som er privat eller offentlig fra egen side",
+      "wants": "å møte publikum uten å bli sosial ressurs for alle samtidig",
+      "conceals": "hvor utmattende offentlig tilgjengelighet kan være",
+      "speech_style": "kort eller varm avhengig av kapasitet, men tydelig når grensen er nådd",
+      "teaches_player": "at offentlig synlighet ikke betyr ubegrenset tilgjengelighet"
+    },
+    {
+      "id": "forstegangsbesokende",
+      "social_function": "gjør de uskrevne reglene synlige ved å spørre om dem",
+      "class_position": "ny deltaker med lav intern kunstfeltkapital",
+      "status": "lav eller uavklart i nettverket",
+      "power_over_player": "avslører om erfaring brukes som vertskap eller gatekeeping",
+      "wants": "å delta uten å måtte bevise riktig smak, språk eller kontakter",
+      "conceals": "hvor lett usikkerhet blir til tilbaketrekning i et ellers åpent rom",
+      "speech_style": "praktisk, forsiktig og spørsmålsdrevet",
+      "teaches_player": "at sosial tilgjengelighet må produseres aktivt"
+    },
+    {
+      "id": "arrangementsverten",
+      "social_function": "holder gjesteliste, publikumsflyt og praktiske grenser sammen",
+      "class_position": "frontlinjearbeider eller arrangør med situert arrangementsmyndighet",
+      "status": "høy i praktiske spørsmål, ikke automatisk kuratorisk eller salgsfaglig",
+      "power_over_player": "kan avklare adgang, kapasitet og hvem som håndterer andre spørsmål",
+      "wants": "at åpningen fungerer uten konflikter, overfylte rom eller feilrepresentasjon",
+      "conceals": "hvor mye improvisasjon som ligger bak et tilsynelatende uformelt arrangement",
+      "speech_style": "vennlig, tydelig og praktisk",
+      "teaches_player": "at vertskap og faglig kunstmyndighet er ulike roller"
+    },
+    {
+      "id": "samleren",
+      "social_function": "gjør pris, status og forventninger om framtidig verdi synlige",
+      "class_position": "kapitalsterk deltaker med markedsmakt, men uten rett til å definere kunsthistorisk verdi alene",
+      "status": "høy fordi kjøpekraft og relasjoner påvirker feltet",
+      "power_over_player": "kan gjøre markedsprat sosialt overbevisende og presse spilleren til å gi økonomiske vurderinger",
+      "wants": "å oppdage arbeid tidlig og forstå hvor oppmerksomheten beveger seg",
+      "conceals": "hvor usikkert eget markedsspråk også kan være",
+      "speech_style": "selvsikker, komparativ og opptatt av priser, navn og momentum",
+      "teaches_player": "at markedsnærhet ikke er det samme som investeringskunnskap"
+    },
+    {
+      "id": "den_praktiske_koordinatoren",
+      "social_function": "tilbyr og avgrenser et lite betalt arrangementsskift",
+      "class_position": "lokal oppdragsgiver med kontroll over praktiske oppgaver på én åpning",
+      "status": "funksjonell status gjennom logistikk, ikke kunstfaglig mandat",
+      "power_over_player": "kan tilby arbeid og definere oppgaver, men ikke gjøre spilleren til kurator, selger eller institusjonell representant",
+      "wants": "at arrangementet flyter trygt og ryddig",
+      "conceals": "hvor lett intern tilgang kan oppleves som høyere faglig status enn oppdraget faktisk gir",
+      "speech_style": "kort, praktisk og tydelig på scope",
+      "teaches_player": "at betaling og bakromstilgang ikke skaper profesjonell kunstautoritet"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "invitation_vs_entitlement",
+      "meaning": "invitasjon mot selvskrevet adgang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "arrival_vs_status_display",
+      "meaning": "sosial inngang mot statusmarkering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "network_literacy_vs_name_dropping",
+      "meaning": "nettverksorientering mot navnedropping",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "artist_attention_vs_boundary",
+      "meaning": "publikumsoppmerksomhet mot kunstnerens tidsgrense",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "event_documentation_vs_privacy",
+      "meaning": "arrangementsdokumentasjon mot privat eksponering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "informal_information_vs_gossip",
+      "meaning": "uformell informasjon mot omdømmesladder",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "introduction_vs_network_extraction",
+      "meaning": "introduksjon mot nettverksutvinning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "prestige_vs_invisible_work",
+      "meaning": "prestisje mot usynlig arrangementsarbeid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "open_event_vs_social_gatekeeping",
+      "meaning": "åpent arrangement mot sosial portvakt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "market_proximity_vs_financial_authority",
+      "meaning": "markedsnærhet mot økonomisk autoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "criticism_vs_taste_hierarchy",
+      "meaning": "kritikk mot smakshierarki",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_event_vs_private_afterparty",
+      "meaning": "offentlig åpning mot privat etterrom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "bounded_shift_vs_professional_role",
+      "meaning": "avgrenset arrangementsjobb mot profesjonell kunstrolle",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "vernissage_practice_vs_institutional_authority",
+      "meaning": "vernissagepraksis mot institusjonell autoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: en invitasjon er ikke alltid en åpen lenke.",
+        "thread_ids": [
+          "invitation_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#invitasjonen_som_ikke_kan_deles"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: en invitasjon er ikke alltid en åpen lenke.",
+        "thread_ids": [
+          "invitation_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#invitasjonen_som_ikke_kan_deles"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: en invitasjon er ikke alltid en åpen lenke.",
+        "thread_ids": [
+          "invitation_vs_entitlement",
+          "criticism_vs_taste_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#invitasjonen_som_ikke_kan_deles"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: en invitasjon er ikke alltid en åpen lenke.",
+        "thread_ids": [
+          "invitation_vs_entitlement",
+          "informal_information_vs_gossip"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#invitasjonen_som_ikke_kan_deles"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 2, morning: å kjenne kodene er også sosial kapital.",
+        "thread_ids": [
+          "arrival_vs_status_display"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#ankommer_alene"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: å kjenne kodene er også sosial kapital.",
+        "thread_ids": [
+          "arrival_vs_status_display"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#ankommer_alene"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: å kjenne kodene er også sosial kapital.",
+        "thread_ids": [
+          "arrival_vs_status_display",
+          "public_event_vs_private_afterparty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#ankommer_alene"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 2, evening: å kjenne kodene er også sosial kapital.",
+        "thread_ids": [
+          "arrival_vs_status_display",
+          "introduction_vs_network_extraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#ankommer_alene"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: navnekunnskap kan være bro eller portvakt.",
+        "thread_ids": [
+          "network_literacy_vs_name_dropping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#navnet_som_apner_rommet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: navnekunnskap kan være bro eller portvakt.",
+        "thread_ids": [
+          "network_literacy_vs_name_dropping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#navnet_som_apner_rommet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: navnekunnskap kan være bro eller portvakt.",
+        "thread_ids": [
+          "network_literacy_vs_name_dropping",
+          "bounded_shift_vs_professional_role"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#navnet_som_apner_rommet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: navnekunnskap kan være bro eller portvakt.",
+        "thread_ids": [
+          "network_literacy_vs_name_dropping",
+          "prestige_vs_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#navnet_som_apner_rommet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 4, morning: oppmerksomhet gir ikke krav på tid.",
+        "thread_ids": [
+          "artist_attention_vs_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kunstneren_mellom_ti_samtaler"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 4, lunch: oppmerksomhet gir ikke krav på tid.",
+        "thread_ids": [
+          "artist_attention_vs_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kunstneren_mellom_ti_samtaler"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: oppmerksomhet gir ikke krav på tid.",
+        "thread_ids": [
+          "artist_attention_vs_boundary",
+          "vernissage_practice_vs_institutional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kunstneren_mellom_ti_samtaler"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 4, evening: oppmerksomhet gir ikke krav på tid.",
+        "thread_ids": [
+          "artist_attention_vs_boundary",
+          "open_event_vs_social_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kunstneren_mellom_ti_samtaler"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: dokumentasjon kan lekke private relasjoner.",
+        "thread_ids": [
+          "event_documentation_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#bildet_fra_rommet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 5, lunch: dokumentasjon kan lekke private relasjoner.",
+        "thread_ids": [
+          "event_documentation_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#bildet_fra_rommet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: dokumentasjon kan lekke private relasjoner.",
+        "thread_ids": [
+          "event_documentation_vs_privacy",
+          "invitation_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#bildet_fra_rommet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: dokumentasjon kan lekke private relasjoner.",
+        "thread_ids": [
+          "event_documentation_vs_privacy",
+          "market_proximity_vs_financial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#bildet_fra_rommet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 6, morning: sladder organiserer feltet lenge før den blir offentlig.",
+        "thread_ids": [
+          "informal_information_vs_gossip"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#sladderen_om_hvem_som_ikke_ble_invitert"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: sladder organiserer feltet lenge før den blir offentlig.",
+        "thread_ids": [
+          "informal_information_vs_gossip"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#sladderen_om_hvem_som_ikke_ble_invitert"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: sladder organiserer feltet lenge før den blir offentlig.",
+        "thread_ids": [
+          "informal_information_vs_gossip",
+          "arrival_vs_status_display"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#sladderen_om_hvem_som_ikke_ble_invitert"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 6, evening: sladder organiserer feltet lenge før den blir offentlig.",
+        "thread_ids": [
+          "informal_information_vs_gossip",
+          "criticism_vs_taste_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#sladderen_om_hvem_som_ikke_ble_invitert"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: en introduksjon er ikke en gjeldskontrakt.",
+        "thread_ids": [
+          "introduction_vs_network_extraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#introduksjonen_som_skylder_noe"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 7, lunch: en introduksjon er ikke en gjeldskontrakt.",
+        "thread_ids": [
+          "introduction_vs_network_extraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#introduksjonen_som_skylder_noe"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: en introduksjon er ikke en gjeldskontrakt.",
+        "thread_ids": [
+          "introduction_vs_network_extraction",
+          "network_literacy_vs_name_dropping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#introduksjonen_som_skylder_noe"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: en introduksjon er ikke en gjeldskontrakt.",
+        "thread_ids": [
+          "introduction_vs_network_extraction",
+          "public_event_vs_private_afterparty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#introduksjonen_som_skylder_noe"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 8, morning: prestisjen bæres av praktiske skift.",
+        "thread_ids": [
+          "prestige_vs_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#arbeidet_bak_serveringen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 8, lunch: prestisjen bæres av praktiske skift.",
+        "thread_ids": [
+          "prestige_vs_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#arbeidet_bak_serveringen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: prestisjen bæres av praktiske skift.",
+        "thread_ids": [
+          "prestige_vs_invisible_work",
+          "artist_attention_vs_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#arbeidet_bak_serveringen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 8, evening: prestisjen bæres av praktiske skift.",
+        "thread_ids": [
+          "prestige_vs_invisible_work",
+          "bounded_shift_vs_professional_role"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#arbeidet_bak_serveringen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: uskrevne regler kan forklares uten opptaksprøve.",
+        "thread_ids": [
+          "open_event_vs_social_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#nykommeren_som_spor_hva_man_gjor"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: uskrevne regler kan forklares uten opptaksprøve.",
+        "thread_ids": [
+          "open_event_vs_social_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#nykommeren_som_spor_hva_man_gjor"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: uskrevne regler kan forklares uten opptaksprøve.",
+        "thread_ids": [
+          "open_event_vs_social_gatekeeping",
+          "event_documentation_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#nykommeren_som_spor_hva_man_gjor"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: uskrevne regler kan forklares uten opptaksprøve.",
+        "thread_ids": [
+          "open_event_vs_social_gatekeeping",
+          "vernissage_practice_vs_institutional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#nykommeren_som_spor_hva_man_gjor"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 10, morning: nærhet til markedet er ikke markedsmyndighet.",
+        "thread_ids": [
+          "market_proximity_vs_financial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#samleren_og_prisen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: nærhet til markedet er ikke markedsmyndighet.",
+        "thread_ids": [
+          "market_proximity_vs_financial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#samleren_og_prisen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: nærhet til markedet er ikke markedsmyndighet.",
+        "thread_ids": [
+          "market_proximity_vs_financial_authority",
+          "informal_information_vs_gossip"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#samleren_og_prisen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 10, evening: nærhet til markedet er ikke markedsmyndighet.",
+        "thread_ids": [
+          "market_proximity_vs_financial_authority",
+          "invitation_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#samleren_og_prisen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: smak trenger ikke bli sosial rangering.",
+        "thread_ids": [
+          "criticism_vs_taste_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kritikken_som_blir_persondom"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 11, lunch: smak trenger ikke bli sosial rangering.",
+        "thread_ids": [
+          "criticism_vs_taste_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kritikken_som_blir_persondom"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: smak trenger ikke bli sosial rangering.",
+        "thread_ids": [
+          "criticism_vs_taste_hierarchy",
+          "introduction_vs_network_extraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kritikken_som_blir_persondom"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: smak trenger ikke bli sosial rangering.",
+        "thread_ids": [
+          "criticism_vs_taste_hierarchy",
+          "arrival_vs_status_display"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kritikken_som_blir_persondom"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 12, morning: samtalen fortsetter, men rommet skifter karakter.",
+        "thread_ids": [
+          "public_event_vs_private_afterparty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#etterfesten_og_den_private_adressen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: samtalen fortsetter, men rommet skifter karakter.",
+        "thread_ids": [
+          "public_event_vs_private_afterparty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#etterfesten_og_den_private_adressen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: samtalen fortsetter, men rommet skifter karakter.",
+        "thread_ids": [
+          "public_event_vs_private_afterparty",
+          "prestige_vs_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#etterfesten_og_den_private_adressen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: samtalen fortsetter, men rommet skifter karakter.",
+        "thread_ids": [
+          "public_event_vs_private_afterparty",
+          "network_literacy_vs_name_dropping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#etterfesten_og_den_private_adressen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: et enkelt skift skaper ikke en fagrolle.",
+        "thread_ids": [
+          "bounded_shift_vs_professional_role"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kan_du_hjelpe_til_pa_apningen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 13, lunch: et enkelt skift skaper ikke en fagrolle.",
+        "thread_ids": [
+          "bounded_shift_vs_professional_role"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kan_du_hjelpe_til_pa_apningen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: et enkelt skift skaper ikke en fagrolle.",
+        "thread_ids": [
+          "bounded_shift_vs_professional_role",
+          "open_event_vs_social_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kan_du_hjelpe_til_pa_apningen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: et enkelt skift skaper ikke en fagrolle.",
+        "thread_ids": [
+          "bounded_shift_vs_professional_role",
+          "artist_attention_vs_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kan_du_hjelpe_til_pa_apningen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 14, morning: nettverk kan være infrastruktur eller rang.",
+        "thread_ids": [
+          "vernissage_practice_vs_institutional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#hva_slags_vernissagegjenger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: nettverk kan være infrastruktur eller rang.",
+        "thread_ids": [
+          "vernissage_practice_vs_institutional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#hva_slags_vernissagegjenger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: nettverk kan være infrastruktur eller rang.",
+        "thread_ids": [
+          "vernissage_practice_vs_institutional_authority",
+          "market_proximity_vs_financial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#hva_slags_vernissagegjenger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 14, evening: nettverk kan være infrastruktur eller rang.",
+        "thread_ids": [
+          "vernissage_practice_vs_institutional_authority",
+          "event_documentation_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#hva_slags_vernissagegjenger"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "invitation_vs_entitlement",
+      "relationship": "invitasjon mot selvskrevet adgang",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "5/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "arrival_vs_status_display",
+      "relationship": "sosial inngang mot statusmarkering",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "network_literacy_vs_name_dropping",
+      "relationship": "nettverksorientering mot navnedropping",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "artist_attention_vs_boundary",
+      "relationship": "publikumsoppmerksomhet mot kunstnerens tidsgrense",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "event_documentation_vs_privacy",
+      "relationship": "arrangementsdokumentasjon mot privat eksponering",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "informal_information_vs_gossip",
+      "relationship": "uformell informasjon mot omdømmesladder",
+      "beat_refs": [
+        "1/evening",
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon"
+      ]
+    },
+    {
+      "id": "introduction_vs_network_extraction",
+      "relationship": "introduksjon mot nettverksutvinning",
+      "beat_refs": [
+        "2/evening",
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon"
+      ]
+    },
+    {
+      "id": "prestige_vs_invisible_work",
+      "relationship": "prestisje mot usynlig arrangementsarbeid",
+      "beat_refs": [
+        "3/evening",
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "12/afternoon"
+      ]
+    },
+    {
+      "id": "open_event_vs_social_gatekeeping",
+      "relationship": "åpent arrangement mot sosial portvakt",
+      "beat_refs": [
+        "4/evening",
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "market_proximity_vs_financial_authority",
+      "relationship": "markedsnærhet mot økonomisk autoritet",
+      "beat_refs": [
+        "5/evening",
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "criticism_vs_taste_hierarchy",
+      "relationship": "kritikk mot smakshierarki",
+      "beat_refs": [
+        "1/afternoon",
+        "6/evening",
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "public_event_vs_private_afterparty",
+      "relationship": "offentlig åpning mot privat etterrom",
+      "beat_refs": [
+        "2/afternoon",
+        "7/evening",
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "bounded_shift_vs_professional_role",
+      "relationship": "avgrenset arrangementsjobb mot profesjonell kunstrolle",
+      "beat_refs": [
+        "3/afternoon",
+        "8/evening",
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "vernissage_practice_vs_institutional_authority",
+      "relationship": "vernissagepraksis mot institusjonell autoritet",
+      "beat_refs": [
+        "4/afternoon",
+        "9/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "invitasjonen_faar_grenser",
+      "description": "Du blir mer presis på når en åpning faktisk er offentlig, personlig invitert eller allerede på vei over i privat rom.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#invitasjonen_som_ikke_kan_deles",
+        "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#etterfesten_og_den_private_adressen"
+      ]
+    },
+    {
+      "id": "nettverket_blir_mindre_ekstraktivt",
+      "description": "Navn og introduksjoner brukes mer som orientering enn som bevis på rang eller sosial gjeld.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#navnet_som_apner_rommet",
+        "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#introduksjonen_som_skylder_noe",
+        "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#hva_slags_vernissagegjenger"
+      ]
+    },
+    {
+      "id": "oppmerksomheten_faar_personvern",
+      "description": "Kunstnere, gjester og private detaljer behandles med tydeligere grenser i samtale og dokumentasjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kunstneren_mellom_ti_samtaler",
+        "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#bildet_fra_rommet",
+        "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#sladderen_om_hvem_som_ikke_ble_invitert"
+      ]
+    },
+    {
+      "id": "arrangementet_faar_synlig_arbeid",
+      "description": "Garderobe, servering, rydding og publikumsflyt blir sett som arbeid som bærer prestisjen i rommet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#arbeidet_bak_serveringen",
+        "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kan_du_hjelpe_til_pa_apningen"
+      ]
+    },
+    {
+      "id": "status_blir_skilt_fra_autoritet",
+      "description": "Smak, samlerprat og sosial erfaring gir ikke automatisk økonomisk, kritisk eller institusjonell myndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#samleren_og_prisen",
+        "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kritikken_som_blir_persondom",
+        "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#hva_slags_vernissagegjenger"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "invitasjonen_moter_dora",
+      "setup_ref": "1/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "navnet_moter_nykommeren",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "bildet_moter_sladderen",
+      "setup_ref": "5/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "introduksjonen_moter_gjelden",
+      "setup_ref": "7/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "psyche"
+      ]
+    },
+    {
+      "id": "markedssnakken_moter_vennen",
+      "setup_ref": "10/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "economy",
+        "relationship"
+      ]
+    },
+    {
+      "id": "ekstraskiftet_moter_rollegrensen",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "livelihood",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#invitasjonen_som_ikke_kan_deles",
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#ankommer_alene",
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#navnet_som_apner_rommet",
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kunstneren_mellom_ti_samtaler",
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#bildet_fra_rommet",
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#sladderen_om_hvem_som_ikke_ble_invitert",
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#introduksjonen_som_skylder_noe",
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#arbeidet_bak_serveringen",
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#nykommeren_som_spor_hva_man_gjor",
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#samleren_og_prisen",
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kritikken_som_blir_persondom",
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#etterfesten_og_den_private_adressen",
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#kan_du_hjelpe_til_pa_apningen",
+      "data/Civication/narratives/leisure/kunst_vernissagegjenger.json#hva_slags_vernissagegjenger"
+    ]
+  }
+}
