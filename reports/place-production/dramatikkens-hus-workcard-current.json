@@ -13,14 +13,14 @@
   ],
   "badge_router_status": "passed",
   "content_plan": {
-    "people": "PRODUSER – Anne-May Nilsen beholdes som historisk anker; bildeport må lukkes med rettighetsklar direkte person.",
-    "objects": "PRODUSER – sceneriggen i Hallen er dokumentert fysisk hovedkandidat.",
-    "brands": "PRODUSER – Dramatikkens hus er place-first; Det Åpne Teater undersøkes som historisk legacy-identitet etter Brand-kontrakten.",
-    "category_expression": "PRODUSER – productions/Forestillinger; bare faktiske forestillinger, aldri arbeidsvisninger feilmerket som premiere/forestilling.",
-    "stories": "PRODUSER dersom Det Åpne Teater → Dramatikkens hus-banen består narrativ motor-testen.",
+    "people": "PRODUCED – Anne-May Nilsen er bevart som historisk anker; Kristin Auestad Danielsen er materialisert som bildeklart, direkte husdramatikerspor.",
+    "objects": "PRODUCED – sceneriggen i Hallen er materialisert som dokumentert signaturobjekt.",
+    "brands": "PRODUCED – historiske Det Åpne Teater er materialisert som legacy-identitet; Dramatikkens hus forblir place-first.",
+    "category_expression": "PRODUCED – Productions bruker bare eksplisitt dokumentert Forestilling; arbeidsvisninger er holdt utenfor.",
+    "stories": "PRODUCED – episode-v1 Story materialiserer Det Åpne Teater → Dramatikkens hus som dokumentert institusjonelt vendepunkt i 2010.",
     "for_na": "RESEARCH – historisk og nåværende motiv må ha sammenlignbart standpunkt.",
     "news": "RESEARCH – ferske institusjonelle saker vurderes separat fra varig canonical innhold.",
-    "lesespor": "PRODUSER – åpne, direkte lesbare institusjons- og scenekunstkilder.",
+    "lesespor": "PRODUCED – fire åpne scenekunst-Lesespor dekker historikk, verksted, husdramatikerprogram og scenerigg.",
     "language": "PRODUCED – dramatiker, scenetekst, dramaturg, verksted, arbeidsvisning, husdramatiker."
   },
   "collection_ids": [
@@ -30,11 +30,11 @@
     "productions"
   ],
   "object_category_boundary": "Sceneriggen og annet fysisk utstyr hører i Objects; navngitte forestillinger hører i Productions.",
-  "active_phase": "four_collection_materialization",
-  "active_file_scope": "People + Objects + Brands + Productions + standing frontImage + canonical PlaceCard v2 profile",
-  "active_merge_boundary": "collections_and_placecard_media",
-  "branch_status": "pushed",
-  "live_status": "not_live",
+  "active_phase": "quiz_existing_asset_audit",
+  "active_file_scope": "existing quiz audit + full scenekunst fag package + source brief/claim bank + adaptive profile/set count + canonical quiz + Knowledge + dedicated QuizCard/flip",
+  "active_merge_boundary": "story_and_reading_tracks",
+  "branch_status": "agent/dramatikkens-hus-workcard-sync-20260915",
+  "live_status": "foundation_collections_and_front_image_on_main; full_place_not_live",
   "preserve": {
     "coordinates": "Behold eksisterende verifiserte koordinater med mindre konkret regresjon dokumenteres.",
     "person_anchor": "Anne-May Nilsen beholdes som historisk personanker."
@@ -56,17 +56,19 @@
     "language": "produced_and_registered",
     "fagverk_source": "curated_standard",
     "fagverk_registry": "registered",
-    "quiz_profile": "undecided_after_full_source_bank",
-    "generated_runtime": "materialized",
-    "exact_head_ci": "pending"
+    "quiz_profile": "pending_existing_quiz_audit_and_adaptive_profile_selection",
+    "generated_runtime": "foundation_and_four_collection_runtime_materialized",
+    "exact_head_ci": "place-scoped gates green; global Data checks blocked by pre-existing Tollboden quiz-context drift outside Dramatikkens hus"
   },
   "next_required": [
-    "Regenerate place-open/index runtime and validate exact four PlaceCard collection previews",
-    "Pass collection exact-head CI and merge this boundary",
-    "Produce genuine Story and Lesespor",
-    "Audit existing quiz and select adaptive profile",
-    "Produce full quiz and dedicated QuizCard",
-    "Complete manual mobile/desktop flip and final Place QA"
+    "Regenerate Story/Lesespor runtime and epoke/place indexes for this boundary",
+    "Pass Story/Lesespor exact-head validation and merge this boundary",
+    "Audit all existing Dramatikkens hus quiz assets before profile/set-count selection",
+    "Build canonical quiz production context, full quiz and Knowledge synchronization",
+    "Produce and wire a dedicated QuizCard/flip back for the portrait frontImage",
+    "Regenerate final runtime/indexes and run exact-head place/quiz validation",
+    "Complete manual mobile/desktop flip and final Place QA",
+    "Set production_status/status complete only after final QA"
   ],
   "verified_at": "2026-09-15",
   "rule_preflight": {
@@ -181,7 +183,7 @@
     "source": "Wikimedia Commons / Jan-Tore Egge / CC BY-SA 4.0"
   },
   "place_card_status": {
-    "status": "READY_FOR_INTEGRATION_VALIDATION",
+    "status": "MATERIALIZED_ON_MAIN",
     "schema": "history_go_place_card_profile_v2",
     "collection_ids": [
       "people",
@@ -195,14 +197,20 @@
   },
   "completed_phases": [
     "foundation_evidence_merged",
-    "four_collection_source_materialization"
+    "four_collection_source_materialization_merged",
+    "portrait_front_image_merged",
+    "placecard_four_collection_runtime_and_places_index_synced",
+    "story_and_reading_tracks_authored"
   ],
   "notes": [
-    "Collections boundary uses exactly People · Objects · Brands · Productions.",
+    "Foundation, four canonical collections, portrait frontImage and PlaceCard runtime/index synchronization are already merged on main.",
+    "Collections boundary is exactly People · Objects · Brands · Productions.",
     "People preview is Kristin Auestad Danielsen; Anne-May Nilsen remains preserved as the historical person anchor.",
     "Objects uses one signature-object exception for Hallen-riggen; no filler object was added.",
     "Det Åpne Teater is the historical Brand identity; Dramatikkens hus is not duplicated as a Brand.",
     "Productions contains an explicit Forestilling guest performance and does not reclassify arbeidsvisninger.",
-    "frontImage is a real 900x1200 local portrait variant, not a CSS crop or QuizCard."
+    "frontImage is a real 900x1200 local portrait variant, not a CSS crop or QuizCard.",
+    "Remaining canonical work is Story, Lesespor, full quiz, dedicated QuizCard/flip, runtime regeneration and final QA.",
+    "Story and four dedicated scenekunst reading tracks are authored on the active branch; generated runtime/index closure remains before this boundary can merge."
   ]
 }
