@@ -1,0 +1,1184 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "media",
+  "role_scope": "media_nyhetsjunkie",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "media",
+    "id": "nyhetsjunkie",
+    "label": "Nyhetsjunkie"
+  },
+  "title": "Nyhetsjunkie",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å følge nyheter tett nok til å være godt orientert uten at kontinuerlig oppdatering, varsler, ryktetempo, synlige tall eller informasjonsstatus gjør hverdagen reaktiv eller leserrollen til lånt redaksjonell myndighet",
+    "description": "Nyhetsjunkie-verdenen undersøker morgenvarsler, liveblogger, kildesammenligning, ubekreftede rykter, repetitiv publisering, tall og metode, overmetning, sosial kunnskapsstatus, rettelser, varslingsmengde, ekspertuttalelser, søvn, oppmerksomhetssykluser og grensen mellom intensiv nyhetslesing og profesjonelt mediearbeid. Rollen gir ingen journalist-, redaktør-, faktasjekker-, moderator-, kildeansvarlig- eller publiseringsmyndighet, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "public_attention",
+    "numerical_control",
+    "shame_reputation",
+    "professional_culture",
+    "care_vs_efficiency",
+    "alienation",
+    "public_private_leakage",
+    "status_anxiety"
+  ],
+  "social_environments": [
+    "morgenens pushvarsler",
+    "liveblogger under hendelser",
+    "forsider fra flere redaksjoner",
+    "meldingsapper med ubekreftede påstander",
+    "nyhetsfeed med repeterte vinkler",
+    "grafikker og statistikkbokser",
+    "kveldens tunge nyhetsstrøm",
+    "samtaler med venner som følger mindre",
+    "oppdaterte artikler med rettelser",
+    "varslingsinnstillinger",
+    "ekspertintervjuer",
+    "telefonen ved sengetid",
+    "saker som faller ut av forsiden"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "den_rolige_vennen",
+      "social_function": "gjør ulikt nyhetskonsum synlig uten å være uinformert",
+      "class_position": "venn med lavere nyhetsfrekvens",
+      "status": "høy relasjonell betydning, lav mediestatus",
+      "power_over_player": "kan utfordre spillerens idé om hva alle bør vite",
+      "wants": "å være orientert nok uten å leve i strømmen",
+      "conceals": "at mindre frekvens noen ganger gir bedre hukommelse",
+      "speech_style": "rolig og spørsmålsorientert",
+      "teaches_player": "at nyhetsfrekvens ikke er moralsk rang"
+    },
+    {
+      "id": "den_hurtige_deleren",
+      "social_function": "gjør tidlig deling og ryktepress konkret",
+      "class_position": "annen intensiv nyhetsbruker uten redaksjonelt mandat",
+      "status": "høy synlighet i vennegruppen",
+      "power_over_player": "kan forsterke tempo og FOMO",
+      "wants": "å være først med det viktige",
+      "conceals": "hvor ofte kilden kommer etter påstanden",
+      "speech_style": "kort, rask og varslingsdrevet",
+      "teaches_player": "at førsthet og bekreftelse er forskjellige verdier"
+    },
+    {
+      "id": "journalisten",
+      "social_function": "representerer faktisk innhenting og publiseringsansvar",
+      "class_position": "profesjonell journalist med redaksjonelle plikter",
+      "status": "formell yrkesstatus",
+      "power_over_player": "kan forklare publisert metode, men skylder ikke spilleren interne beslutninger",
+      "wants": "å rapportere under tidspress uten å love mer sikkerhet enn kildene gir",
+      "conceals": "hvor mye arbeid som ligger bak korte oppdateringer",
+      "speech_style": "presis og kildebevisst",
+      "teaches_player": "at leserkompetanse ikke gir journalistrolle"
+    },
+    {
+      "id": "fageksperten",
+      "social_function": "gjør avgrenset ekspertise og usikkerhet konkret",
+      "class_position": "fagperson med domeneautoritet, ikke generell sannhetsmyndighet",
+      "status": "høy fagstatus innen avgrenset område",
+      "power_over_player": "kan gi forklaring som må tolkes innen fagfeltets grenser",
+      "wants": "å bli gjengitt presist",
+      "conceals": "hvor ofte forbehold forsvinner i korte formater",
+      "speech_style": "nyansert og avgrensende",
+      "teaches_player": "at ekspertstatus er spesifikk"
+    },
+    {
+      "id": "redaktoren",
+      "social_function": "representerer faktisk prioritering og publiseringsmyndighet",
+      "class_position": "redaksjonell leder med mandat over egen flate",
+      "status": "høy institusjonell myndighet",
+      "power_over_player": "kan prioritere, endre og korrigere publisering",
+      "wants": "å fordele begrenset oppmerksomhet under skiftende nyhetsverdi",
+      "conceals": "at forsiden alltid er et valg under knapphet",
+      "speech_style": "kort, prioriterende og ansvarsbærende",
+      "teaches_player": "at forsidefravær ikke kan leses direkte som motiv"
+    },
+    {
+      "id": "den_stille_leseren",
+      "social_function": "representerer publikum som orienterer seg uten kontinuerlig reaksjon",
+      "class_position": "leser uten offentlig medieidentitet",
+      "status": "lav synlighet",
+      "power_over_player": "kan vise at nyhetsbruk også kan være langsom og selektiv",
+      "wants": "å forstå nok til å handle eller samtale når det trengs",
+      "conceals": "hvor lite av feeden som faktisk er nødvendig",
+      "speech_style": "selektiv og ettertenksom",
+      "teaches_player": "at mindre volum ikke nødvendigvis betyr mindre forståelse"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "morning_boundary",
+      "meaning": "morgenorientering mot reaktiv beredskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "live_updates_vs_understanding",
+      "meaning": "liveoppdatering mot samlet forståelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_comparison_vs_motive",
+      "meaning": "kildesammenligning mot motivspekulasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rumor_vs_verification",
+      "meaning": "rykte mot bekreftelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "recency_vs_substance",
+      "meaning": "nyhetspuls mot faktisk substans",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "numbers_vs_context",
+      "meaning": "tall mot metode og kontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "care_vs_overload",
+      "meaning": "omsorg og interesse mot overmetning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "knowledge_vs_status",
+      "meaning": "kunnskap mot sosial rang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "correction_vs_attachment",
+      "meaning": "rettelse mot tilknytning til første versjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "notification_load_vs_priority",
+      "meaning": "varslingsmengde mot prioritering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "expertise_vs_total_authority",
+      "meaning": "ekspertise mot total autoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sleep_vs_continuous_monitoring",
+      "meaning": "søvn mot kontinuerlig overvåking",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "attention_cycle_vs_significance",
+      "meaning": "oppmerksomhetssyklus mot varig betydning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "practice_vs_editorial_authority",
+      "meaning": "intensiv lesing mot redaksjonell myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du leser pushvarslene før du står opp og merker at kroppen allerede er i beredskap. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "morning_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#morgenvarselet_for_du_star_opp"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du leser pushvarslene før du står opp og merker at kroppen allerede er i beredskap. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "morning_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#morgenvarselet_for_du_star_opp"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du leser pushvarslene før du står opp og merker at kroppen allerede er i beredskap. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "morning_boundary",
+          "expertise_vs_total_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#morgenvarselet_for_du_star_opp"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du leser pushvarslene før du står opp og merker at kroppen allerede er i beredskap. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "morning_boundary",
+          "numbers_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#morgenvarselet_for_du_star_opp"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: En hendelse utvikler seg gjennom korte oppdateringer, og du oppdaterer siden oftere enn innholdet faktisk endrer seg. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "live_updates_vs_understanding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#livebloggen_som_aldri_blir_ferdig"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: En hendelse utvikler seg gjennom korte oppdateringer, og du oppdaterer siden oftere enn innholdet faktisk endrer seg. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "live_updates_vs_understanding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#livebloggen_som_aldri_blir_ferdig"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: En hendelse utvikler seg gjennom korte oppdateringer, og du oppdaterer siden oftere enn innholdet faktisk endrer seg. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "live_updates_vs_understanding",
+          "sleep_vs_continuous_monitoring"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#livebloggen_som_aldri_blir_ferdig"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: En hendelse utvikler seg gjennom korte oppdateringer, og du oppdaterer siden oftere enn innholdet faktisk endrer seg. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "live_updates_vs_understanding",
+          "care_vs_overload"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#livebloggen_som_aldri_blir_ferdig"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: To redaksjoner beskriver samme hendelse med ulikt fokus og ulik sikkerhet. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "source_comparison_vs_motive"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#to_kilder_samme_hendelse"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: To redaksjoner beskriver samme hendelse med ulikt fokus og ulik sikkerhet. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "source_comparison_vs_motive"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#to_kilder_samme_hendelse"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: To redaksjoner beskriver samme hendelse med ulikt fokus og ulik sikkerhet. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "source_comparison_vs_motive",
+          "attention_cycle_vs_significance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#to_kilder_samme_hendelse"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: To redaksjoner beskriver samme hendelse med ulikt fokus og ulik sikkerhet. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "source_comparison_vs_motive",
+          "knowledge_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#to_kilder_samme_hendelse"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Et rykte om en dramatisk utvikling sprer seg før etablerte kilder har bekreftet det. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "rumor_vs_verification"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#ryktet_for_bekreftelsen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Et rykte om en dramatisk utvikling sprer seg før etablerte kilder har bekreftet det. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "rumor_vs_verification"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#ryktet_for_bekreftelsen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Et rykte om en dramatisk utvikling sprer seg før etablerte kilder har bekreftet det. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "rumor_vs_verification",
+          "practice_vs_editorial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#ryktet_for_bekreftelsen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Et rykte om en dramatisk utvikling sprer seg før etablerte kilder har bekreftet det. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "rumor_vs_verification",
+          "correction_vs_attachment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#ryktet_for_bekreftelsen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Du ser den samme saken igjen med en ny overskrift, et nytt sitat og lite faktisk nytt innhold. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "recency_vs_substance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#nyheten_som_gjor_ingenting_nytt"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Du ser den samme saken igjen med en ny overskrift, et nytt sitat og lite faktisk nytt innhold. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "recency_vs_substance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#nyheten_som_gjor_ingenting_nytt"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Du ser den samme saken igjen med en ny overskrift, et nytt sitat og lite faktisk nytt innhold. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "morning_boundary",
+          "recency_vs_substance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#nyheten_som_gjor_ingenting_nytt"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Du ser den samme saken igjen med en ny overskrift, et nytt sitat og lite faktisk nytt innhold. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "recency_vs_substance",
+          "notification_load_vs_priority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#nyheten_som_gjor_ingenting_nytt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: En grafikk viser nye tall uten at usikkerhet, målemetode eller sammenligningsgrunnlag er tydelig i første blikk. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "numbers_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#tallene_som_ser_sikrere_ut_enn_de_er"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: En grafikk viser nye tall uten at usikkerhet, målemetode eller sammenligningsgrunnlag er tydelig i første blikk. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "numbers_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#tallene_som_ser_sikrere_ut_enn_de_er"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: En grafikk viser nye tall uten at usikkerhet, målemetode eller sammenligningsgrunnlag er tydelig i første blikk. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "live_updates_vs_understanding",
+          "numbers_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#tallene_som_ser_sikrere_ut_enn_de_er"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: En grafikk viser nye tall uten at usikkerhet, målemetode eller sammenligningsgrunnlag er tydelig i første blikk. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "numbers_vs_context",
+          "expertise_vs_total_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#tallene_som_ser_sikrere_ut_enn_de_er"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Du merker at du unngår en sak du egentlig synes er viktig fordi du allerede er overfylt av lignende hendelser. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "care_vs_overload"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#saken_du_ikke_orker_mer"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Du merker at du unngår en sak du egentlig synes er viktig fordi du allerede er overfylt av lignende hendelser. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "care_vs_overload"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#saken_du_ikke_orker_mer"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Du merker at du unngår en sak du egentlig synes er viktig fordi du allerede er overfylt av lignende hendelser. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "source_comparison_vs_motive",
+          "care_vs_overload"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#saken_du_ikke_orker_mer"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Du merker at du unngår en sak du egentlig synes er viktig fordi du allerede er overfylt av lignende hendelser. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "care_vs_overload",
+          "sleep_vs_continuous_monitoring"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#saken_du_ikke_orker_mer"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: En venn har ikke sett dagens store sak, og du kjenner et lite rykk av overraskelse. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "knowledge_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#vennen_som_ikke_har_sett_det"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: En venn har ikke sett dagens store sak, og du kjenner et lite rykk av overraskelse. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "knowledge_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#vennen_som_ikke_har_sett_det"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: En venn har ikke sett dagens store sak, og du kjenner et lite rykk av overraskelse. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "rumor_vs_verification",
+          "knowledge_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#vennen_som_ikke_har_sett_det"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: En venn har ikke sett dagens store sak, og du kjenner et lite rykk av overraskelse. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "knowledge_vs_status",
+          "attention_cycle_vs_significance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#vennen_som_ikke_har_sett_det"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: En opplysning du delte tidligere blir korrigert i en senere versjon. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "correction_vs_attachment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#rettelsen_som_kommer_senere"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: En opplysning du delte tidligere blir korrigert i en senere versjon. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "correction_vs_attachment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#rettelsen_som_kommer_senere"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: En opplysning du delte tidligere blir korrigert i en senere versjon. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "recency_vs_substance",
+          "correction_vs_attachment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#rettelsen_som_kommer_senere"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: En opplysning du delte tidligere blir korrigert i en senere versjon. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "correction_vs_attachment",
+          "practice_vs_editorial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#rettelsen_som_kommer_senere"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Du har varsler fra flere redaksjoner, podkaster og nisjekilder, og nesten alt kommer som om det haster. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "notification_load_vs_priority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#varsler_fra_alt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Du har varsler fra flere redaksjoner, podkaster og nisjekilder, og nesten alt kommer som om det haster. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "notification_load_vs_priority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#varsler_fra_alt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Du har varsler fra flere redaksjoner, podkaster og nisjekilder, og nesten alt kommer som om det haster. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "numbers_vs_context",
+          "notification_load_vs_priority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#varsler_fra_alt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Du har varsler fra flere redaksjoner, podkaster og nisjekilder, og nesten alt kommer som om det haster. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "morning_boundary",
+          "notification_load_vs_priority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#varsler_fra_alt"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: En ekspertuttalelse blir sitert bredt, men du kjenner ikke fagfeltet godt nok til å vurdere hvor representativ den er. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "expertise_vs_total_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#kommentaren_fra_eksperten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: En ekspertuttalelse blir sitert bredt, men du kjenner ikke fagfeltet godt nok til å vurdere hvor representativ den er. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "expertise_vs_total_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#kommentaren_fra_eksperten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: En ekspertuttalelse blir sitert bredt, men du kjenner ikke fagfeltet godt nok til å vurdere hvor representativ den er. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "care_vs_overload",
+          "expertise_vs_total_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#kommentaren_fra_eksperten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En ekspertuttalelse blir sitert bredt, men du kjenner ikke fagfeltet godt nok til å vurdere hvor representativ den er. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "live_updates_vs_understanding",
+          "expertise_vs_total_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#kommentaren_fra_eksperten"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Du sjekker en pågående sak rett før du skal sove og finner en ny detalj som holder tankene i gang. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "sleep_vs_continuous_monitoring"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#nattens_siste_sjekk"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Du sjekker en pågående sak rett før du skal sove og finner en ny detalj som holder tankene i gang. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "sleep_vs_continuous_monitoring"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#nattens_siste_sjekk"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Du sjekker en pågående sak rett før du skal sove og finner en ny detalj som holder tankene i gang. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "knowledge_vs_status",
+          "sleep_vs_continuous_monitoring"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#nattens_siste_sjekk"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Du sjekker en pågående sak rett før du skal sove og finner en ny detalj som holder tankene i gang. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "source_comparison_vs_motive",
+          "sleep_vs_continuous_monitoring"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#nattens_siste_sjekk"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: En sak som dominerte flere dager faller brått ut av førstesidene uten at problemet nødvendigvis er løst. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "attention_cycle_vs_significance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#den_store_saken_som_forsvinner"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: En sak som dominerte flere dager faller brått ut av førstesidene uten at problemet nødvendigvis er løst. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "attention_cycle_vs_significance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#den_store_saken_som_forsvinner"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: En sak som dominerte flere dager faller brått ut av førstesidene uten at problemet nødvendigvis er løst. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "correction_vs_attachment",
+          "attention_cycle_vs_significance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#den_store_saken_som_forsvinner"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: En sak som dominerte flere dager faller brått ut av førstesidene uten at problemet nødvendigvis er løst. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "rumor_vs_verification",
+          "attention_cycle_vs_significance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#den_store_saken_som_forsvinner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Du kjenner mange kilder, følger utviklinger tett og oppdager ofte mønstre før andre rundt deg. Dagens informasjonsbehov etableres.",
+        "thread_ids": [
+          "practice_vs_editorial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#hva_slags_nyhetsjunkie"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Du kjenner mange kilder, følger utviklinger tett og oppdager ofte mønstre før andre rundt deg. Andre mennesker, kilder eller formater gjør nyhetsvanen sosialt konkret.",
+        "thread_ids": [
+          "practice_vs_editorial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#hva_slags_nyhetsjunkie"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Du kjenner mange kilder, følger utviklinger tett og oppdager ofte mønstre før andre rundt deg. Spilleren må velge hvordan tempo, kilde og oppmerksomhet håndteres.",
+        "thread_ids": [
+          "notification_load_vs_priority",
+          "practice_vs_editorial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#hva_slags_nyhetsjunkie"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Du kjenner mange kilder, følger utviklinger tett og oppdager ofte mønstre før andre rundt deg. Valget får privat, relasjonell eller omdømmemessig etterklang.",
+        "thread_ids": [
+          "recency_vs_substance",
+          "practice_vs_editorial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_nyhetsjunkie.json#hva_slags_nyhetsjunkie"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "morning_boundary",
+      "relationship": "morgenorientering mot reaktiv beredskap",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "5/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "live_updates_vs_understanding",
+      "relationship": "liveoppdatering mot samlet forståelse",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "source_comparison_vs_motive",
+      "relationship": "kildesammenligning mot motivspekulasjon",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "rumor_vs_verification",
+      "relationship": "rykte mot bekreftelse",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "recency_vs_substance",
+      "relationship": "nyhetspuls mot faktisk substans",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "numbers_vs_context",
+      "relationship": "tall mot metode og kontekst",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "care_vs_overload",
+      "relationship": "omsorg og interesse mot overmetning",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "knowledge_vs_status",
+      "relationship": "kunnskap mot sosial rang",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "12/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "correction_vs_attachment",
+      "relationship": "rettelse mot tilknytning til første versjon",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "notification_load_vs_priority",
+      "relationship": "varslingsmengde mot prioritering",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "expertise_vs_total_authority",
+      "relationship": "ekspertise mot total autoritet",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "1/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "sleep_vs_continuous_monitoring",
+      "relationship": "søvn mot kontinuerlig overvåking",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "2/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "attention_cycle_vs_significance",
+      "relationship": "oppmerksomhetssyklus mot varig betydning",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "3/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "practice_vs_editorial_authority",
+      "relationship": "intensiv lesing mot redaksjonell myndighet",
+      "beat_refs": [
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening",
+        "4/afternoon",
+        "9/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "morgenstrommen_faar_grense",
+      "description": "Dagen starter sjeldnere med automatisk alarmberedskap fra pushvarsler.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_nyhetsjunkie.json#morgenvarselet_for_du_star_opp",
+        "data/Civication/narratives/leisure/media_nyhetsjunkie.json#varsler_fra_alt"
+      ]
+    },
+    {
+      "id": "tempo_blir_skilt_fra_forstaelse",
+      "description": "Liveoppdatering, repetisjon og førsthet blir mindre likestilt med faktisk forståelse.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_nyhetsjunkie.json#livebloggen_som_aldri_blir_ferdig",
+        "data/Civication/narratives/leisure/media_nyhetsjunkie.json#nyheten_som_gjor_ingenting_nytt",
+        "data/Civication/narratives/leisure/media_nyhetsjunkie.json#ryktet_for_bekreftelsen"
+      ]
+    },
+    {
+      "id": "kildebruk_blir_mer_presis",
+      "description": "Kilder, tall, ekspertuttalelser og rettelser håndteres med tydeligere usikkerhet og kontekst.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_nyhetsjunkie.json#to_kilder_samme_hendelse",
+        "data/Civication/narratives/leisure/media_nyhetsjunkie.json#tallene_som_ser_sikrere_ut_enn_de_er",
+        "data/Civication/narratives/leisure/media_nyhetsjunkie.json#rettelsen_som_kommer_senere",
+        "data/Civication/narratives/leisure/media_nyhetsjunkie.json#kommentaren_fra_eksperten"
+      ]
+    },
+    {
+      "id": "overmetning_blir_legitim_grense",
+      "description": "Pause, søvn og selektiv lesing blir behandlet som kapasitetsstyring fremfor moralsk svikt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_nyhetsjunkie.json#saken_du_ikke_orker_mer",
+        "data/Civication/narratives/leisure/media_nyhetsjunkie.json#nattens_siste_sjekk"
+      ]
+    },
+    {
+      "id": "rollen_blir_avgrenset_fra_redaksjon",
+      "description": "Intensiv nyhetsbruk forblir leserkompetanse uten å bli journalistisk eller redaksjonell fullmakt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_nyhetsjunkie.json#den_store_saken_som_forsvinner",
+        "data/Civication/narratives/leisure/media_nyhetsjunkie.json#hva_slags_nyhetsjunkie"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "morgenvarselet_moter_varslingsmengden",
+      "setup_ref": "1/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "stress",
+        "identity"
+      ]
+    },
+    {
+      "id": "livebloggen_moter_overmetningen",
+      "setup_ref": "2/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "stress",
+        "responsibility"
+      ]
+    },
+    {
+      "id": "kildevalget_moter_rettelsen",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "reputation",
+        "responsibility"
+      ]
+    },
+    {
+      "id": "ryktet_moter_eksperten",
+      "setup_ref": "4/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "responsibility",
+        "authority"
+      ]
+    },
+    {
+      "id": "statusen_moter_sovnen",
+      "setup_ref": "8/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "stress"
+      ]
+    },
+    {
+      "id": "oppmerksomhetssyklusen_moter_rollegrensen",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "identity",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#morgenvarselet_for_du_star_opp",
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#livebloggen_som_aldri_blir_ferdig",
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#to_kilder_samme_hendelse",
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#ryktet_for_bekreftelsen",
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#nyheten_som_gjor_ingenting_nytt",
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#tallene_som_ser_sikrere_ut_enn_de_er",
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#saken_du_ikke_orker_mer",
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#vennen_som_ikke_har_sett_det",
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#rettelsen_som_kommer_senere",
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#varsler_fra_alt",
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#kommentaren_fra_eksperten",
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#nattens_siste_sjekk",
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#den_store_saken_som_forsvinner",
+      "data/Civication/narratives/leisure/media_nyhetsjunkie.json#hva_slags_nyhetsjunkie"
+    ]
+  }
+}

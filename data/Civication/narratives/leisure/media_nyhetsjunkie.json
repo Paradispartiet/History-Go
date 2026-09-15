@@ -1,0 +1,706 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "media_nyhetsjunkie_stream",
+  "type": "leisure",
+  "title": "Nyhetsjunkie",
+  "sociological_theme": "nyheter_hverdag_overmetning_varsler_liveoppdateringer_kilder_rykter_tall_rettelser_og_grensen_mot_redaksjonell_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "media:nyhetsjunkie"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "morgenvarselet_for_du_star_opp",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Telefonen",
+      "subject": "Første oppdatering før dagen har begynt",
+      "situation": [
+        "Du leser pushvarslene før du står opp og merker at kroppen allerede er i beredskap.",
+        "Nyheter kan gi orientering, men hyppigheten gjør at oppmerksomheten starter dagen i reaksjonsmodus.",
+        "Nyhetsjunkie-identiteten handler om sterk interesse, ikke om plikt til å være oppdatert hvert minutt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legge bort telefonen til du faktisk er våken og velge et tidspunkt for oversikt.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Åpne alle varslene med én gang i tilfelle noe viktig har skjedd.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "morning_boundary"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "livebloggen_som_aldri_blir_ferdig",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Livebloggen",
+      "subject": "Neste oppdatering",
+      "situation": [
+        "En hendelse utvikler seg gjennom korte oppdateringer, og du oppdaterer siden oftere enn innholdet faktisk endrer seg.",
+        "Liveformatet gjør usikkerhet synlig, men kan også få hvert lite datapunkt til å kjennes avgjørende.",
+        "Å følge tett er ikke det samme som å få mer mening ut av hvert minutt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta en pause og komme tilbake når det finnes en samlet oppdatering.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette å oppdatere fordi neste linje kan endre alt.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "live_updates_vs_understanding"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_kilder_samme_hendelse",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Forsiden",
+      "subject": "Ulike overskrifter",
+      "situation": [
+        "To redaksjoner beskriver samme hendelse med ulikt fokus og ulik sikkerhet.",
+        "Forskjellen kan skyldes kilder, tempo, redaksjonelle prioriteringer eller hva som faktisk er bekreftet.",
+        "Som leser kan du sammenligne uten å late som du kjenner redaksjonenes interne beslutninger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lese begge og skille mellom bekreftede fakta og vinkling.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bestemme at den ene redaksjonen skjuler noe fordi overskriften er annerledes.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "source_comparison_vs_motive"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ryktet_for_bekreftelsen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Meldingsappen",
+      "subject": "Det sirkulerer allerede",
+      "situation": [
+        "Et rykte om en dramatisk utvikling sprer seg før etablerte kilder har bekreftet det.",
+        "Du kjenner fristelsen til å være tidlig ute, særlig når alle andre allerede deler.",
+        "Nyhetsinteresse gir ingen unntak fra skillet mellom mulig, sannsynlig og bekreftet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vente på bekreftelse eller merke ryktet tydelig som ubekreftet.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Dele videre med et spørsmålstegn fordi det sikkert kommer snart uansett.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "rumor_vs_verification"
+      ],
+      "risk_links": [
+        "responsibility_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nyheten_som_gjor_ingenting_nytt",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Feed-en",
+      "subject": "Samme sak i ny innpakning",
+      "situation": [
+        "Du ser den samme saken igjen med en ny overskrift, et nytt sitat og lite faktisk nytt innhold.",
+        "Publiseringsstrømmen gjør repetisjon vanskelig å skille fra utvikling når du bare skanner.",
+        "Å være orientert krever noen ganger å ikke klikke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekke om det faktisk finnes nye fakta før du åpner.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Klikke fordi ny overskrift betyr at noe må ha skjedd.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "recency_vs_substance"
+      ],
+      "risk_links": [
+        "attention_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tallene_som_ser_sikrere_ut_enn_de_er",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Grafikken",
+      "subject": "Det siste tallet",
+      "situation": [
+        "En grafikk viser nye tall uten at usikkerhet, målemetode eller sammenligningsgrunnlag er tydelig i første blikk.",
+        "Nyhetsformatet belønner korte tall som kan leses raskt, mens forbehold ofte ligger lenger nede.",
+        "Leserkompetanse er å tåle at et tall kan være viktig og samtidig begrenset."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lese metode og kontekst før du bruker tallet som konklusjon.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Dele grafikken fordi tallet i seg selv virker entydig.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "numbers_vs_context"
+      ],
+      "risk_links": [
+        "responsibility_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "saken_du_ikke_orker_mer",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Kvelden",
+      "subject": "Enda en tung overskrift",
+      "situation": [
+        "Du merker at du unngår en sak du egentlig synes er viktig fordi du allerede er overfylt av lignende hendelser.",
+        "Overmetning kan gjøre både empati og forståelse flatere selv når interessen er ekte.",
+        "Å ta pause fra dekning er ikke det samme som å slutte å bry seg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge en samlet oppsummering senere og beskytte kapasiteten nå.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Tvinge deg gjennom flere artikler for å bevise at du følger med.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "care_vs_overload"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_ikke_har_sett_det",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalen",
+      "subject": "Har du ikke fått med deg dette?",
+      "situation": [
+        "En venn har ikke sett dagens store sak, og du kjenner et lite rykk av overraskelse.",
+        "Når du selv følger strømmen tett kan normalnivået ditt for kunnskap se universelt ut.",
+        "Nyhetsvaner er ikke en rangering av hvem som er ansvarlig eller opplyst."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortelle kort hva som har skjedd uten å gjøre manglende oppdatering til karakterbrist.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke situasjonen til å markere hvor lite vennen følger med.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "knowledge_vs_status"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rettelsen_som_kommer_senere",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Oppdateringen",
+      "subject": "Første versjon var feil",
+      "situation": [
+        "En opplysning du delte tidligere blir korrigert i en senere versjon.",
+        "Tempo gjør feil mulig også hos seriøse kilder, og rettelser er en del av nyhetsarbeidet.",
+        "Som leser må du kunne oppdatere din egen påstand når kilden gjør det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rette det du delte og lenke til den nye informasjonen.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La den gamle posten stå fordi de fleste allerede har sett den.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "correction_vs_attachment"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "varsler_fra_alt",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Innstillinger",
+      "subject": "Alt er viktig",
+      "situation": [
+        "Du har varsler fra flere redaksjoner, podkaster og nisjekilder, og nesten alt kommer som om det haster.",
+        "Varslingssystemer konkurrerer om samme oppmerksomhet selv når sakene har ulik betydning.",
+        "Å skru av varsler kan være en redaksjonell beslutning om din egen hverdag, ikke uvitenhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde bare noen få varsler du faktisk trenger i sanntid.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La alle stå på fordi du ikke vil risikere å gå glipp av noe.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "notification_load_vs_priority"
+      ],
+      "risk_links": [
+        "attention_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kommentaren_fra_eksperten",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Artikkelen",
+      "subject": "Eksperten sa",
+      "situation": [
+        "En ekspertuttalelse blir sitert bredt, men du kjenner ikke fagfeltet godt nok til å vurdere hvor representativ den er.",
+        "En autoritativ tittel kan hjelpe orientering uten å gjøre ett sitat til hele kunnskapsbildet.",
+        "Nyhetsjunkie er leserrolle, ikke fagfellevurderer eller redaksjonell kildeansvarlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se etter flere kilder og hva eksperten faktisk uttaler seg om.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke tittelen som nok grunn til å avvise alle motforestillinger.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "expertise_vs_total_authority"
+      ],
+      "risk_links": [
+        "responsibility_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nattens_siste_sjekk",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Sengen",
+      "subject": "Bare én oppdatering til",
+      "situation": [
+        "Du sjekker en pågående sak rett før du skal sove og finner en ny detalj som holder tankene i gang.",
+        "Nyhetsstrømmen har ingen naturlig slutt på dagen, men kroppen din har det.",
+        "Å avslutte følgerutinen er en praktisk grense, ikke fornektelse av virkeligheten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stoppe for kvelden og lese samlet status neste dag.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette å følge fordi saken kan utvikle seg mens du sover.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sleep_vs_continuous_monitoring"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_store_saken_som_forsvinner",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Forsiden",
+      "subject": "Fra alt til nesten ingenting",
+      "situation": [
+        "En sak som dominerte flere dager faller brått ut av førstesidene uten at problemet nødvendigvis er løst.",
+        "Nyhetsverdi og samfunnsmessig betydning følger ikke alltid samme tidskurve.",
+        "Som leser kan du huske en sak uten å anta at fravær fra forsiden betyr konspirasjon eller full løsning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lagre en kilde og følge opp senere hvis temaet fortsatt er viktig for deg.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Tolke fraværet som bevis på at redaksjonene bevisst vil at folk skal glemme.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "attention_cycle_vs_significance"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_nyhetsjunkie",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "home",
+        "people",
+        "leisure"
+      ],
+      "from": "Egen mediehverdag",
+      "subject": "Å vite mye uten å bli redaksjon",
+      "situation": [
+        "Du kjenner mange kilder, følger utviklinger tett og oppdager ofte mønstre før andre rundt deg.",
+        "Det er reell leserkompetanse, men gir ingen journalist-, redaktør-, faktasjekker-, moderator- eller kildeansvarlig myndighet.",
+        "Spørsmålet er om vanen gir deg bedre orientering eller bare høyere tempo."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde rollen som intensiv leser med tydelige grenser for tempo og myndighet.",
+          "effect": 1,
+          "tags": [
+            "attention",
+            "role_clarity",
+            "source_awareness"
+          ],
+          "feedback": "Du bruker nyhetsinteressen som orientering uten å gjøre tempo til plikt eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La mengden nyheter du konsumerer fungere som fullmakt til å avgjøre hva redaksjoner og eksperter egentlig gjør.",
+          "effect": -1,
+          "tags": [
+            "overload",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Strømmen får styre oppmerksomhet eller autoritet mer enn informasjonen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "practice_vs_editorial_authority"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    }
+  ]
+}
