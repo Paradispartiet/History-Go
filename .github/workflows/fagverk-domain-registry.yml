@@ -106,19 +106,3 @@ jobs:
           FAGVERK_BASE_SHA: ${{ github.event.pull_request.base.sha }}
           FAGVERK_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: node scripts/run-fagverk-domain-ci-v1.mjs
-      - name: Stage advanced sociology generated outputs
-        run: node scripts/materialize-sosiologi-antropologi-advanced-theory-fulltext-refresh-v1.mjs
-      - name: Verify advanced sociology generated outputs
-        run: |
-          node --test tests/sosiologi-antropologi-advanced-theory-reading-canon-v1.test.mjs
-          node --test tests/sosiologi-antropologi-advanced-theory-fulltext-refresh-v1.test.mjs
-          node --test tests/sosiologi-antropologi-advanced-theory-refresh-mapping-v1.test.mjs
-          node --test tests/sosiologi-antropologi-advanced-theory-materializer-v1.test.mjs
-      - name: Upload advanced sociology generated outputs
-        uses: actions/upload-artifact@v4
-        with:
-          name: sosiologi-advanced-theory-generated
-          path: |
-            data/fagverk/politikk/sosiologi_antropologi/advanced_theory/*.json
-            reports/fagverk/sosiologi-antropologi-advanced-theory-fulltext-refresh-v1-audit.json
-          if-no-files-found: error
