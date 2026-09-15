@@ -1,0 +1,86 @@
+{
+  "schema": "history_go_place_workcard_v2",
+  "place_id": "nydalen",
+  "category": "by",
+  "status": "in_progress",
+  "production_profile": "standard",
+  "profile_status": "confirmed",
+  "profile_reason": "Nydalen er et kildebåret område-Place med industrihistorie, ombruk, byplanlegging, kollektivinfrastruktur og nyere bybygging som bærer full standardprofil.",
+  "underbadge_ids": [
+    "byplanlegging",
+    "infrastruktur"
+  ],
+  "content_plan": {
+    "people": "PRODUSERT — Adam Severin Hiorth, Oluf Onsum og Oluf Nicolai Roll med direkte Nydalen-kobling og verifiserte portretter.",
+    "objects": "PRODUSERT MED HISTORISK STATUS — Tunnel of Light er dokumentert signaturobjekt fra T-baneåpningen i 2003 og er eksplisitt merket som erstattet i 2016; brukes ikke som nåtidsobjekt.",
+    "brands": "PRODUSERT — Snøhetta via dokumentert rolle som arkitekt for Vertikal Nydalen og verifisert lokal logoasset.",
+    "category_expression": "PRODUSERT — Structures / Nedre spinneri fra 1847 med dokumentert Commons-bilde.",
+    "stories": "GJENBRUK — eksisterende canonical Nydalen-story beholdes.",
+    "for_na": "GJENBRUK — eksisterende før/nå-lag om industri → åpen kunnskapsbydel.",
+    "lesespor": "PRODUSERT — fire link-only lesespor.",
+    "language": "PRODUSERT — stedsspesifikt Språkleksikon.",
+    "fagverk": "PRODUSERT — full/curated place-eid Fagverk v2.",
+    "quiz": "PRODUSERT — rich 5×7 med reviewed source brief og canonical relativ progresjon.",
+    "quizcard": "GJENBRUK/REVIDERT — eksisterende bilder/QuizCards/Nydalen.PNG med kildebårne topp-10-spørsmål."
+  },
+  "collection_ids": [
+    "people",
+    "objects",
+    "brands",
+    "structures"
+  ],
+  "object_category_boundary": "People eier industripersonene; Objects eier den avgrensede historiske installasjonen; Brands eier Snøhetta-identiteten; Structures eier Nedre spinneri. Tunnel of Light er tidsavgrenset som erstattet i 2016 og dupliseres ikke som Structure.",
+  "active_phase": "CI_REPAIR_AND_FINAL_QA",
+  "active_file_scope": "Nydalen canonical Place, People/Brand wiring, Objects/Structures, Fagverk, quiz/QuizCard, språk, lesespor, production packet og deterministiske runtime-/epoke-/Civication-/release-artefakter.",
+  "null_measurement": {
+    "measured_at_commit": "94ec1b578eea8ca246d5a3d5e9541ccddf6e3e3c",
+    "existing_place": true,
+    "existing_quiz": "legacy_5x6_plus_existing_top10_quizcard",
+    "existing_story": true,
+    "existing_fagverk": false,
+    "existing_language": false,
+    "existing_lesespor": 0,
+    "existing_collections": "legacy_non_v2",
+    "collision_check": "No competing active Nydalen full-production PR was found before agent/nydalen-full-place-production-20260915; PR #5969 is the single canonical continuation."
+  },
+  "source_review": {
+    "reviewed": [
+      "https://oslobyleksikon.no/side/Nydalen",
+      "https://oslobyleksikon.no/side/Nydalens_Compagnie",
+      "https://oslobyleksikon.no/side/Christiania_Spigerverk",
+      "https://magasin.oslo.kommune.no/byplan/nydalens-omforming",
+      "https://www.snohetta.com/projects/vertikal-nydalen",
+      "https://kj-a.no/nydalen-metro-station/",
+      "https://kj-a.no/nydalen-metro-station-2016/"
+    ],
+    "rejected_inferences": [
+      "sosial sammensetning eller gentrifisering utledet direkte fra nybygg",
+      "boligpris- eller omsetningseffekt uten egne data",
+      "Tunnel of Light som fortsatt eksisterende installasjon etter 2016"
+    ]
+  },
+  "quiz_profile": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "existing_revised": true
+  },
+  "quizcard_status": {
+    "status": "PASS_REUSED_REVISED",
+    "asset": "bilder/QuizCards/Nydalen.PNG",
+    "manual_flip_qa": "required_on_final_PR_head"
+  },
+  "fagverk_status": {
+    "level": "full",
+    "status": "curated"
+  },
+  "language_status": "PASS",
+  "chronology_status": "PASS",
+  "stories_status": "PASS_EXISTING",
+  "lesespor_status": "PASS_4",
+  "collection_status": "PASS_4_OF_4_IMAGE_READY_PENDING_FINAL_QA",
+  "production_verified_at": "2026-09-15",
+  "quality_gate": "pending_exact_head_ci",
+  "branch_status": "PR",
+  "live_status": "not_live_until_merge"
+}
