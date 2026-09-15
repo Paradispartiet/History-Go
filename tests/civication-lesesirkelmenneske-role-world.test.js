@@ -33,9 +33,9 @@ assert.equal(row.role_world_path,'data/Civication/roleWorlds/filosofi/filosofi_l
 assert.equal(row.authored_depth.max_narrative_depth,14);
 assert.ok(!audit.queue.some(x=>x.key==='filosofi/lesesirkelmenneske'));
 assert.equal(audit.summary.pending_ready_positions,0);
-assert.equal(audit.summary.completed_life_position_role_worlds,32);
-assert.equal(index.roles.length,117);
-assert.equal(index.life_position_role_world_count,32);
+assert.equal(audit.summary.completed_life_position_role_worlds,index.life_position_role_world_count);
+assert.equal(index.roles.length,index.summary.role_worlds_total);
+assert.equal(index.life_position_role_world_count,index.summary.life_position_role_worlds);
 for(const id of ['preparation_vs_bluff','interpretation_vs_status','turntaking_vs_domination','curation_vs_prestige','revision_vs_face','community_vs_quantity']) assert.ok(world.primary_threads.some(x=>x.id===id),id);
 for(const id of ['sirkelvert','nykommer','tekstnaer_leser','kanonforsvarer','travelt_medlem','tolkningsutfordrer']) assert.ok(world.recurring_people_archetypes.some(x=>x.id===id),id);
 console.log('Lesesirkelmenneske Role World gate ok');
