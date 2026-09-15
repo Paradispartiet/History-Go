@@ -1,0 +1,401 @@
+{
+  "schema": "history_go_sosiologi_antropologi_advanced_theory_reading_canon_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-15",
+  "status": "canonical_source_and_theory_mapping_complete_fulltext_materialization_pending",
+  "subject_id": "politikk",
+  "canonical_subcategory_id": "sosiologi_antropologi",
+  "purpose": "Kanonisk videreutvidelse av History Go Fagverk med sentrale sosiologiske og tverrfaglige verk. Filen registrerer verk, teorier, analytiske spørsmål, misbruksvern og bindinger til eksisterende domener uten å duplisere ferdig materialiserte kapitler.",
+  "governance": {
+    "extends_existing_domain_architecture": true,
+    "creates_parallel_subject": false,
+    "publication_ready_claims": false,
+    "fulltext_materialization_required_for_runtime_claims": true,
+    "existing_goffman_source_id": "sat04-goffman-presentation",
+    "existing_bourdieu_source_id": "sat05-bourdieu-practice",
+    "theory_is_not_authority_proof": true,
+    "book_presence_is_not_empirical_verification": true,
+    "scope_conditions_required": true,
+    "contested_theories_require_explicit_caveats": true
+  },
+  "expected_work_count": 20,
+  "allowed_domain_ids": [
+    "sosiologisk_teori",
+    "antropologisk_teori",
+    "metode_etnografi_sammenligning",
+    "normer_identitet_hverdagsliv",
+    "ulikhet_klasse_kjonn_rasialisering",
+    "familie_slektskap_omsorg_livslop",
+    "institusjoner_organisasjoner_arbeid_velferd",
+    "kultur_religion_ritual_materialitet",
+    "sted_by_migrasjon_transnasjonalitet",
+    "makt_politikk_kollektiv_handling",
+    "digitalisering_vitenskap_teknologi_samfunn",
+    "anvendt_offentlig_etikk_avkolonisering"
+  ],
+  "allowed_cross_subject_ids": [
+    "by",
+    "historie",
+    "kunst",
+    "litteratur",
+    "musikk",
+    "naeringsliv",
+    "natur",
+    "politikk",
+    "popkultur",
+    "psykologi",
+    "sport",
+    "subkultur",
+    "vitenskap"
+  ],
+  "works": [
+    {
+      "id": "adv01-bourdieu-distinction",
+      "author": "Pierre Bourdieu",
+      "title": "Distinction: A Social Critique of the Judgement of Taste",
+      "first_published": 1979,
+      "source_url": "https://www.harvard.com/book/9780674212770",
+      "source_type": "scholarly-primary-monograph",
+      "existing_coverage": "extends_existing_bourdieu_practice_source",
+      "primary_domain_ids": ["sosiologisk_teori", "ulikhet_klasse_kjonn_rasialisering", "kultur_religion_ritual_materialitet"],
+      "cross_subject_links": ["kunst", "litteratur", "musikk", "naeringsliv"],
+      "theory_units": [
+        {"id": "adv01-taste-distinction", "name": "Smak og distinksjon", "summary": "Smak analyseres som sosial praksis knyttet til klasseposisjon og symbolske grenser.", "analytic_question": "Hvordan brukes smak til å markere sosial avstand og legitimitet?", "misuse_guardrail": "Ikke bruk smak som mekanisk klasseindikator for enkeltpersoner."},
+        {"id": "adv01-cultural-capital", "name": "Kulturell kapital", "summary": "Kunnskap, disposisjoner og legitime kulturformer kan fungere som ressurser når et felt anerkjenner dem.", "analytic_question": "Hvilke kulturformer belønnes i denne institusjonen?", "misuse_guardrail": "En egenskap er ikke kapital i enhver arena."},
+        {"id": "adv01-classificatory-struggle", "name": "Klassifikasjonskamp", "summary": "Grupper konkurrerer om retten til å definere legitimt og illegitimt.", "analytic_question": "Hvem har definisjonsmakt over rangeringene?", "misuse_guardrail": "Ikke generaliser direkte fra Bourdieus franske datagrunnlag."}
+      ]
+    },
+    {
+      "id": "adv02-goffman-presentation",
+      "author": "Erving Goffman",
+      "title": "The Presentation of Self in Everyday Life",
+      "first_published": 1956,
+      "source_url": "https://www.penguin.co.uk/books/13511/the-presentation-of-self-in-everyday-life-by-erving-goffman/9780241547991",
+      "source_type": "scholarly-primary-classic",
+      "existing_coverage": "already_bound_as_sat04_goffman_presentation",
+      "primary_domain_ids": ["sosiologisk_teori", "normer_identitet_hverdagsliv", "institusjoner_organisasjoner_arbeid_velferd"],
+      "cross_subject_links": ["psykologi", "politikk"],
+      "theory_units": [
+        {"id": "adv02-dramaturgy", "name": "Dramaturgisk analyse", "summary": "Sosiale møter kan analyseres som opptredener med publikum og situasjonsdefinisjoner.", "analytic_question": "Hvilken opptreden forsøker aktørene å opprettholde?", "misuse_guardrail": "Frontstage og backstage betyr ikke falskt versus ekte selv."},
+        {"id": "adv02-impression-management", "name": "Inntrykksstyring", "summary": "Aktører påvirker hvordan andre fortolker situasjonen gjennom uttrykk og informasjonskontroll.", "analytic_question": "Hva fremheves, skjules eller repareres i møtet?", "misuse_guardrail": "Ikke reduser all samhandling til bevisst manipulasjon."},
+        {"id": "adv02-teams", "name": "Opptredende team", "summary": "Flere aktører kan samarbeide om å opprettholde samme situasjonsdefinisjon.", "analytic_question": "Hvordan fordeles roller i det opptredende teamet?", "misuse_guardrail": "Team er en situasjonell relasjon, ikke en personkategori."}
+      ]
+    },
+    {
+      "id": "adv03-elias-civilizing-process",
+      "author": "Norbert Elias",
+      "title": "The Civilizing Process",
+      "first_published": 1939,
+      "source_url": "https://www.wiley-vch.de/en/areas-interest/humanities-social-sciences/the-civilizing-process-978-0-631-22161-6",
+      "source_type": "scholarly-primary-classic",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["sosiologisk_teori", "normer_identitet_hverdagsliv", "makt_politikk_kollektiv_handling"],
+      "cross_subject_links": ["historie", "psykologi"],
+      "theory_units": [
+        {"id": "adv03-sociogenesis-psychogenesis", "name": "Sosiogenese og psykogenese", "summary": "Langsiktige sosiale avhengigheter kobles til endringer i selvkontroll og følelsesregulering.", "analytic_question": "Hvordan endres disposisjoner når avhengighetskjeder endres?", "misuse_guardrail": "Ikke fremstille prosessen som lineær moralsk fremgang."},
+        {"id": "adv03-monopoly-formation", "name": "Statsdannelse og monopol", "summary": "Konsentrasjon av skatte- og voldsmonopol endrer maktbalanser og atferdskrav.", "analytic_question": "Hvordan påvirker monopolisering hverdagslige avhengighetsforhold?", "misuse_guardrail": "Ikke anta samme resultat i alle historiske kontekster."},
+        {"id": "adv03-interdependence", "name": "Interdependens og figurasjoner", "summary": "Samfunn forstås som dynamiske nett av gjensidig avhengige aktører.", "analytic_question": "Hvilke gjensidige avhengigheter binder aktørene sammen?", "misuse_guardrail": "Ikke bruk figurasjon som synonym for ethvert nettverk."}
+      ]
+    },
+    {
+      "id": "adv04-foucault-discipline-punish",
+      "author": "Michel Foucault",
+      "title": "Discipline and Punish: The Birth of the Prison",
+      "first_published": 1975,
+      "source_url": "https://www.penguin.co.uk/books/13651/discipline-and-punish-by-foucault-michel/9780141991337",
+      "source_type": "scholarly-primary-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["sosiologisk_teori", "institusjoner_organisasjoner_arbeid_velferd", "makt_politikk_kollektiv_handling"],
+      "cross_subject_links": ["historie", "politikk", "psykologi"],
+      "theory_units": [
+        {"id": "adv04-discipline", "name": "Disiplinær makt", "summary": "Makt virker gjennom ordninger av tid, rom, kropp, trening og inspeksjon.", "analytic_question": "Hvordan organiseres kropp, tid og synlighet for å forme atferd?", "misuse_guardrail": "Ikke anta at enhver regel er samme disiplinære mekanisme."},
+        {"id": "adv04-normalization", "name": "Normalisering og eksamen", "summary": "Måling, rangering og dokumentasjon kan produsere korrigerende normer.", "analytic_question": "Hvilke normer skapes av klassifikasjon og evaluering?", "misuse_guardrail": "Ikke gjør normalisering til en allforklaring."},
+        {"id": "adv04-panopticism", "name": "Panoptisisme", "summary": "Asymmetrisk synlighet kan bidra til selvregulering når observasjon er mulig, men usikker.", "analytic_question": "Hvordan fordeles synlighet og kontroll?", "misuse_guardrail": "Panoptikonet er en analytisk modell, ikke all overvåkning."}
+      ]
+    },
+    {
+      "id": "adv05-scott-seeing-state",
+      "author": "James C. Scott",
+      "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
+      "first_published": 1998,
+      "source_url": "https://yalebooks.yale.edu/book/9780300078152/seeing-like-a-state/",
+      "source_type": "scholarly-primary-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["institusjoner_organisasjoner_arbeid_velferd", "makt_politikk_kollektiv_handling", "anvendt_offentlig_etikk_avkolonisering"],
+      "cross_subject_links": ["politikk", "by", "historie", "natur"],
+      "theory_units": [
+        {"id": "adv05-legibility", "name": "Statlig lesbarhet", "summary": "Standarder, kart og kategorier gjør komplekse forhold administrativt lesbare.", "analytic_question": "Hva forenkles for å kunne telle, styre eller sammenligne?", "misuse_guardrail": "Forenkling er ikke automatisk feil."},
+        {"id": "adv05-high-modernism", "name": "Høymodernistisk planlegging", "summary": "Sterk teknisk styringsoptimisme kan bli farlig når lokal kunnskap og tilbakemelding fortrenges.", "analytic_question": "Hvilken lokal praksis mangler i modellen?", "misuse_guardrail": "Ikke bruk begrepet som generell kritikk av ekspertise."},
+        {"id": "adv05-metis", "name": "Praktisk lokalkunnskap", "summary": "Situert erfaring kan inneholde informasjon standardiserte modeller overser.", "analytic_question": "Hvilken kunnskap finnes i praksis?", "misuse_guardrail": "Lokalkunnskap er heller ikke ufeilbarlig."}
+      ]
+    },
+    {
+      "id": "adv06-anderson-imagined-communities",
+      "author": "Benedict Anderson",
+      "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
+      "first_published": 1983,
+      "source_url": "https://www.versobooks.com/books/60-imagined-communities",
+      "source_type": "scholarly-primary-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["sosiologisk_teori", "kultur_religion_ritual_materialitet", "makt_politikk_kollektiv_handling"],
+      "cross_subject_links": ["historie", "politikk", "litteratur", "popkultur"],
+      "theory_units": [
+        {"id": "adv06-imagined-community", "name": "Forestilte fellesskap", "summary": "Nasjonen er forestilt fordi medlemmer opplever et felles vi uten å møte de fleste andre.", "analytic_question": "Gjennom hvilke medier og ritualer blir fellesskapet forestilt?", "misuse_guardrail": "Forestilte betyr ikke falske eller uvirkelige."},
+        {"id": "adv06-print-capitalism", "name": "Trykkapitalisme", "summary": "Trykte markeder og standardiserte språk bidrar til nye former for kollektiv identifikasjon.", "analytic_question": "Hvordan kobles medieteknologi, språk og marked?", "misuse_guardrail": "Ikke gjør trykk til eneste årsak til nasjonalisme."},
+        {"id": "adv06-homogeneous-time", "name": "Homogen, tom tid", "summary": "Moderne medier og kalendere muliggjør forestillingen om samtidige liv i samme historiske tid.", "analytic_question": "Hvordan skapes opplevelsen av samtidighet?", "misuse_guardrail": "Begrepet er historisk-analytisk, ikke universell tidspsykologi."}
+      ]
+    },
+    {
+      "id": "adv07-hirschman-exit-voice-loyalty",
+      "author": "Albert O. Hirschman",
+      "title": "Exit, Voice, and Loyalty: Responses to Decline in Firms, Organizations, and States",
+      "first_published": 1970,
+      "source_url": "https://www.harvard.com/book/9780674276604",
+      "source_type": "scholarly-primary-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["institusjoner_organisasjoner_arbeid_velferd", "makt_politikk_kollektiv_handling"],
+      "cross_subject_links": ["naeringsliv", "politikk"],
+      "theory_units": [
+        {"id": "adv07-exit", "name": "Exit", "summary": "Misnøye kan møtes ved å forlate organisasjonen eller relasjonen.", "analytic_question": "Hvem har reell mulighet til å forlate?", "misuse_guardrail": "Exit er ikke kostnadsfritt eller likt tilgjengelig."},
+        {"id": "adv07-voice", "name": "Voice", "summary": "Misnøye kan uttrykkes gjennom klage, protest, forhandling eller deltakelse.", "analytic_question": "Hvilke voice-kanaler finnes, og blir de hørt?", "misuse_guardrail": "Voice er kapasitet og institusjonell kanal, ikke bare mening."},
+        {"id": "adv07-loyalty", "name": "Loyalty", "summary": "Lojalitet kan forsinke exit og gi voice tid, men kan også dempe kritikk.", "analytic_question": "Hvordan endrer lojalitet forholdet mellom exit og voice?", "misuse_guardrail": "Ikke behandle lojalitet som entydig dyd."}
+      ]
+    },
+    {
+      "id": "adv08-ostrom-governing-commons",
+      "author": "Elinor Ostrom",
+      "title": "Governing the Commons: The Evolution of Institutions for Collective Action",
+      "first_published": 1990,
+      "source_url": "https://www.cambridge.org/core/books/governing-the-commons/7AB7AE11BADA84409C34815CC288CD79",
+      "source_type": "scholarly-primary-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["institusjoner_organisasjoner_arbeid_velferd", "makt_politikk_kollektiv_handling", "anvendt_offentlig_etikk_avkolonisering"],
+      "cross_subject_links": ["politikk", "naeringsliv", "natur"],
+      "theory_units": [
+        {"id": "adv08-common-pool-resources", "name": "Fellesressurser", "summary": "Vanskelig eksklusjon og rivaliserende bruk krever institusjonell analyse utover stat/marked-dikotomien.", "analytic_question": "Hvilke grenser og uttaksregler finnes rundt ressursen?", "misuse_guardrail": "Ikke forveksle fellesressurs med ethvert kollektivt gode."},
+        {"id": "adv08-design-principles", "name": "Institusjonelle designprinsipper", "summary": "Langvarige ordninger viser gjentakende trekk i regler, overvåkning, sanksjoner og konfliktløsning.", "analytic_question": "Hvordan håndteres grenser, regler og konflikter?", "misuse_guardrail": "Prinsippene er ikke en mekanisk oppskrift."},
+        {"id": "adv08-institutional-diversity", "name": "Institusjonelt mangfold", "summary": "Selvorganisering, offentlig regulering og marked kan kombineres på flere nivåer.", "analytic_question": "Hvilken institusjonskombinasjon passer problemet og skalaen?", "misuse_guardrail": "Ikke gjør selvorganisering til automatisk alternativ til staten."}
+      ]
+    },
+    {
+      "id": "adv09-graeber-debt",
+      "author": "David Graeber",
+      "title": "Debt: The First 5,000 Years",
+      "first_published": 2011,
+      "source_url": "https://davidgraeber.org/books/debt-the-first-5000-years/",
+      "source_type": "scholarly-critical-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["antropologisk_teori", "institusjoner_organisasjoner_arbeid_velferd", "kultur_religion_ritual_materialitet"],
+      "cross_subject_links": ["historie", "naeringsliv", "politikk"],
+      "theory_units": [
+        {"id": "adv09-credit-before-coin", "name": "Kreditt og gjeld før mynt", "summary": "Graeber utfordrer barterfortellingen og fremhever eldre kreditt- og gjeldsordninger.", "analytic_question": "Hvilke kredittformer finnes før eller ved siden av kontantutveksling?", "misuse_guardrail": "Den brede historiske tesen må prøves mot periode-spesifikk litteratur."},
+        {"id": "adv09-moral-economy-debt", "name": "Gjeldens moralske språk", "summary": "Gjeld analyseres som økonomisk relasjon og moralsk forpliktelse.", "analytic_question": "Når blir en økonomisk fordring også et moralsk krav?", "misuse_guardrail": "Ikke likestill økonomisk gjeld og moralsk skyld universelt."},
+        {"id": "adv09-debt-power", "name": "Gjeld, stat og makt", "summary": "Gjeldsordninger knyttes til lov, håndheving, vold og politisk konflikt.", "analytic_question": "Hvem håndhever gjelden, og hvordan fordeles risiko og makt?", "misuse_guardrail": "Makrohistorisk periodisering er ikke automatisk konsensus."}
+      ]
+    },
+    {
+      "id": "adv10-piketty-capital-ideology",
+      "author": "Thomas Piketty",
+      "title": "Capital and Ideology",
+      "first_published": 2019,
+      "source_url": "https://www.hup.harvard.edu/catalog.php?isbn=9780674980822",
+      "source_type": "scholarly-primary-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["ulikhet_klasse_kjonn_rasialisering", "makt_politikk_kollektiv_handling", "institusjoner_organisasjoner_arbeid_velferd"],
+      "cross_subject_links": ["naeringsliv", "politikk", "historie"],
+      "theory_units": [
+        {"id": "adv10-inequality-regimes", "name": "Ulikhetsregimer", "summary": "Historiske ordninger for eiendom, status, skatt og makt sammenlignes med sine legitimeringer.", "analytic_question": "Hvilke institusjoner og begrunnelser holder ulikhetsordenen sammen?", "misuse_guardrail": "Ikke reduser all ulikhet til én variabel."},
+        {"id": "adv10-ideological-legitimation", "name": "Ideologisk legitimering", "summary": "Fordeling ledsages av fortellinger om rettferdighet, eiendom og fortjeneste.", "analytic_question": "Hvordan begrunnes fordelingen som legitim?", "misuse_guardrail": "Skill normativ uenighet fra empirisk dokumentasjon."},
+        {"id": "adv10-political-cleavages", "name": "Politiske konfliktlinjer", "summary": "Partier og velgerkoalisjoner endrer sosial sammensetning over tid.", "analytic_question": "Hvordan kobles utdanning, inntekt, eiendom og politiske koalisjoner?", "misuse_guardrail": "Gruppemønstre predikerer ikke enkeltpersoners valg."}
+      ]
+    },
+    {
+      "id": "adv11-rosa-social-acceleration",
+      "author": "Hartmut Rosa",
+      "title": "Social Acceleration: A New Theory of Modernity",
+      "first_published": 2005,
+      "source_url": "https://www.jstor.org/stable/10.7312/rosa14834",
+      "source_type": "scholarly-primary-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["sosiologisk_teori", "normer_identitet_hverdagsliv", "institusjoner_organisasjoner_arbeid_velferd"],
+      "cross_subject_links": ["psykologi", "vitenskap", "naeringsliv"],
+      "theory_units": [
+        {"id": "adv11-technological-acceleration", "name": "Teknologisk akselerasjon", "summary": "Transport, kommunikasjon og produksjon kan utføres raskere og endre forventninger.", "analytic_question": "Hva blir faktisk raskere, og hvilke nye krav oppstår?", "misuse_guardrail": "Høyere hastighet betyr ikke automatisk mer fritid."},
+        {"id": "adv11-social-change", "name": "Akselerasjon av sosial endring", "summary": "Institusjoner og forventninger kan få kortere stabilitetsperioder.", "analytic_question": "Hvor lenge er normer og forventninger stabile?", "misuse_guardrail": "Akselerasjon må vises empirisk."},
+        {"id": "adv11-pace-of-life", "name": "Akselerert livstempo", "summary": "Flere handlinger og opplevelser kan presses inn i samme tidsrom.", "analytic_question": "Hvordan endres tidspress og handlingsmengde?", "misuse_guardrail": "Skill subjektivt tidspress fra målbar aktivitetshastighet."}
+      ]
+    },
+    {
+      "id": "adv12-zuboff-surveillance-capitalism",
+      "author": "Shoshana Zuboff",
+      "title": "The Age of Surveillance Capitalism",
+      "first_published": 2019,
+      "source_url": "https://www.hachettebookgroup.com/titles/shoshana-zuboff/the-age-of-surveillance-capitalism/9781610395700/",
+      "source_type": "scholarly-critical-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["digitalisering_vitenskap_teknologi_samfunn", "makt_politikk_kollektiv_handling", "institusjoner_organisasjoner_arbeid_velferd"],
+      "cross_subject_links": ["naeringsliv", "politikk", "psykologi", "vitenskap"],
+      "theory_units": [
+        {"id": "adv12-behavioral-surplus", "name": "Atferdsoverskudd", "summary": "Data utover tjenestens umiddelbare behov beskrives som råstoff for kommersiell analyse.", "analytic_question": "Hvilke data samles inn utover brukerens tjenestebehov?", "misuse_guardrail": "Begrepet er Zuboffs teoretiske ramme, ikke nøytral industristandard."},
+        {"id": "adv12-prediction-products", "name": "Prediksjonsprodukter", "summary": "Atferdsdata bearbeides til modeller som forsøker å forutsi framtidig handling.", "analytic_question": "Hvem produserer prediksjoner om hvem, og for hvilke beslutninger?", "misuse_guardrail": "Ikke anta at alle datamodeller inngår i samme forretningsmodell."},
+        {"id": "adv12-instrumentarian-power", "name": "Instrumentær makt", "summary": "Digitale infrastrukturer kan søke å forme atferd uten direkte tvang.", "analytic_question": "Hvordan påvirker systemdesign handlingsrom?", "misuse_guardrail": "Teorien er omstridt og krever konkret teknisk og økonomisk evidens."}
+      ]
+    },
+    {
+      "id": "adv13-jacobs-death-life",
+      "author": "Jane Jacobs",
+      "title": "The Death and Life of Great American Cities",
+      "first_published": 1961,
+      "source_url": "https://www.penguinrandomhouse.com/books/86058/the-death-and-life-of-great-american-cities-by-jane-jacobs/",
+      "source_type": "urban-theory-primary-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["sted_by_migrasjon_transnasjonalitet", "institusjoner_organisasjoner_arbeid_velferd"],
+      "cross_subject_links": ["by", "politikk", "naeringsliv"],
+      "theory_units": [
+        {"id": "adv13-eyes-street", "name": "Eyes on the street", "summary": "Kontinuerlig tilstedeværelse og gatenære innganger kan bidra til uformell sosial observasjon.", "analytic_question": "Hvem er til stede gjennom døgnet, og hvordan vender bygningene seg mot gaten?", "misuse_guardrail": "Synlighet garanterer ikke sikkerhet."},
+        {"id": "adv13-mixed-uses", "name": "Blandede primærfunksjoner", "summary": "Ulike funksjoner på ulike tider kan støtte jevn aktivitet og mangfold.", "analytic_question": "Hvilke funksjoner trekker ulike brukere gjennom dagen?", "misuse_guardrail": "Blandet bruk alene garanterer ikke inkludering."},
+        {"id": "adv13-urban-grain", "name": "Små kvartaler og urban kornstruktur", "summary": "Korte blokker, flere ruter og variert bygningsalder kan støtte mangfoldig byliv.", "analytic_question": "Hvordan påvirker gatenett og bygningsstruktur mulige aktiviteter?", "misuse_guardrail": "Nordamerikanske observasjoner må kontekstualiseres."}
+      ]
+    },
+    {
+      "id": "adv14-sennett-uses-disorder",
+      "author": "Richard Sennett",
+      "title": "The Uses of Disorder: Personal Identity and City Life",
+      "first_published": 1970,
+      "source_url": "https://www.penguinrandomhouse.com/books/678760/the-uses-of-disorder-by-richard-sennett/",
+      "source_type": "scholarly-normative-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["sted_by_migrasjon_transnasjonalitet", "normer_identitet_hverdagsliv", "anvendt_offentlig_etikk_avkolonisering"],
+      "cross_subject_links": ["by", "psykologi", "politikk"],
+      "theory_units": [
+        {"id": "adv14-disorder-difference", "name": "Uorden og forskjell", "summary": "Byen forsvares som arena for uforutsigbarhet og forskjell fremfor total homogenitet.", "analytic_question": "Hvilke rom gjør møte med forskjell mulig?", "misuse_guardrail": "Dette er delvis normativ teori, ikke universell effekt."},
+        {"id": "adv14-purified-identity", "name": "Renset identitet", "summary": "Boken kritiserer trygghetssøk gjennom overdreven sosial homogenitet og forutsigbarhet.", "analytic_question": "Hvordan organiseres kontakt med eller avstand til forskjell?", "misuse_guardrail": "Ikke anta at all avgrensning er patologisk."},
+        {"id": "adv14-urban-maturity", "name": "Urban erfaring og modenhet", "summary": "Kompleks byerfaring knyttes normativt til toleranse for tvetydighet og forskjell.", "analytic_question": "Hvordan utfordrer bymøter forenklede bilder av andre?", "misuse_guardrail": "Ikke bruk dette som psykologisk diagnose."}
+      ]
+    },
+    {
+      "id": "adv15-latour-reassembling-social",
+      "author": "Bruno Latour",
+      "title": "Reassembling the Social: An Introduction to Actor-Network-Theory",
+      "first_published": 2005,
+      "source_url": "https://academic.oup.com/book/52349",
+      "source_type": "scholarly-primary-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["sosiologisk_teori", "digitalisering_vitenskap_teknologi_samfunn", "metode_etnografi_sammenligning"],
+      "cross_subject_links": ["vitenskap", "by"],
+      "theory_units": [
+        {"id": "adv15-trace-associations", "name": "Spor assosiasjoner", "summary": "Forbindelser undersøkes empirisk fremfor å bruke 'det sosiale' som ferdig forklaring.", "analytic_question": "Hvilke forbindelser må etableres for at fenomenet skal holde sammen?", "misuse_guardrail": "Strukturer avvises ikke; de må spores som stabiliserte relasjoner."},
+        {"id": "adv15-mediators", "name": "Mediatorer og intermediærer", "summary": "Noen ledd transporterer relativt stabilt, mens andre transformerer det som passerer.", "analytic_question": "Hvilke ledd endrer betydning, handling eller effekt?", "misuse_guardrail": "Skillet må begrunnes empirisk."},
+        {"id": "adv15-nonhuman-actants", "name": "Menneskelige og ikke-menneskelige aktanter", "summary": "Teknologier, dokumenter og materialitet kan muliggjøre og begrense handling.", "analytic_question": "Hva gjør objekter og infrastrukturer mulig eller vanskelig?", "misuse_guardrail": "Ikke tilskriv objekter menneskelig intensjon."}
+      ]
+    },
+    {
+      "id": "adv16-geertz-interpretation-cultures",
+      "author": "Clifford Geertz",
+      "title": "The Interpretation of Cultures",
+      "first_published": 1973,
+      "source_url": "https://books.google.com/books/about/The_Interpretation_Of_Cultures.html?id=Vn74xQEACAAJ",
+      "source_type": "scholarly-primary-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["antropologisk_teori", "metode_etnografi_sammenligning", "kultur_religion_ritual_materialitet"],
+      "cross_subject_links": ["historie", "litteratur", "politikk"],
+      "theory_units": [
+        {"id": "adv16-thick-description", "name": "Tykk beskrivelse", "summary": "Handling fortolkes i den symbolske og situasjonelle konteksten som gjør den meningsfull.", "analytic_question": "Hvilke lokale koder gjør handlingen forståelig?", "misuse_guardrail": "Detaljrik beskrivelse alene er ikke tykk beskrivelse."},
+        {"id": "adv16-webs-significance", "name": "Kultur som betydningsvev", "summary": "Kultur forstås som offentlige symbolske mønstre mennesker bruker til fortolkning.", "analytic_question": "Hvilke symboler og fortolkningsrammer brukes lokalt?", "misuse_guardrail": "Ikke reifiser kultur som én kraft som styrer alle likt."},
+        {"id": "adv16-interpretive-anthropology", "name": "Fortolkende antropologi", "summary": "Analysen søker kildebundne fortolkninger av mening fremfor bare universelle lovmessigheter.", "analytic_question": "Hva er evidensen for fortolkningen, og hvilke alternativer finnes?", "misuse_guardrail": "Fortolkning fritar ikke fra kildekritikk."}
+      ]
+    },
+    {
+      "id": "adv17-polanyi-great-transformation",
+      "author": "Karl Polanyi",
+      "title": "The Great Transformation: The Political and Economic Origins of Our Time",
+      "first_published": 1944,
+      "source_url": "https://www.beacon.org/The-Great-Transformation-P2237.aspx",
+      "source_type": "scholarly-primary-classic",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["sosiologisk_teori", "institusjoner_organisasjoner_arbeid_velferd", "makt_politikk_kollektiv_handling"],
+      "cross_subject_links": ["historie", "naeringsliv", "politikk"],
+      "theory_units": [
+        {"id": "adv17-embeddedness", "name": "Økonomiens innleiring", "summary": "Økonomiske relasjoner forstås som historisk innvevd i sosiale og politiske institusjoner.", "analytic_question": "Hvilke institusjoner og normer gjør markedet mulig?", "misuse_guardrail": "Ikke anta et enkelt skille mellom innleiret og autonom økonomi."},
+        {"id": "adv17-fictitious-commodities", "name": "Fiktive varer", "summary": "Arbeid, jord og penger behandles som varer selv om de ikke er produsert for salg som ordinære varer.", "analytic_question": "Hva skjer når arbeidskraft, natur eller penger underlegges varelogikk?", "misuse_guardrail": "Begrepet må kobles til konkrete institusjoner."},
+        {"id": "adv17-double-movement", "name": "Dobbelbevegelsen", "summary": "Markedsutvidelse ledsages av politiske og sosiale forsøk på beskyttelse mot virkninger.", "analytic_question": "Hva utvider markedslogikken, og hva søker å begrense den?", "misuse_guardrail": "Ikke gjør all regulering til én samlet motbevegelse."}
+      ]
+    },
+    {
+      "id": "adv18-arendt-human-condition",
+      "author": "Hannah Arendt",
+      "title": "The Human Condition",
+      "first_published": 1958,
+      "source_url": "https://press.uchicago.edu/ucp/books/book/chicago/H/bo29137972",
+      "source_type": "political-theory-primary-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["sosiologisk_teori", "makt_politikk_kollektiv_handling", "anvendt_offentlig_etikk_avkolonisering"],
+      "cross_subject_links": ["politikk", "historie", "vitenskap"],
+      "theory_units": [
+        {"id": "adv18-labor-work-action", "name": "Labor, work og action", "summary": "Arendt skiller livsopprettholdelse, fremstilling av en varig verden og politisk handling.", "analytic_question": "Hvilken aktivitet står i sentrum, og hva produserer den?", "misuse_guardrail": "Dette er normativ politisk teori, ikke yrkesklassifikasjon."},
+        {"id": "adv18-plurality", "name": "Pluralitet", "summary": "Politisk handling forutsetter både felles verden og reell forskjellighet mellom aktører.", "analytic_question": "Hvordan organiseres et offentlig rom der ulike aktører kan opptre?", "misuse_guardrail": "Pluralitet er ikke synonym for demografisk variasjon."},
+        {"id": "adv18-natality", "name": "Natalitet og begynnelse", "summary": "Handling knyttes til kapasiteten for å begynne noe nytt i en felles verden.", "analytic_question": "Hvor finnes rom for nye initiativ?", "misuse_guardrail": "Ikke presenter begrepet som målbar psykologisk egenskap."}
+      ]
+    },
+    {
+      "id": "adv19-kahneman-thinking-fast-slow",
+      "author": "Daniel Kahneman",
+      "title": "Thinking, Fast and Slow",
+      "first_published": 2011,
+      "source_url": "https://us.macmillan.com/books/9780374275631/thinkingfastandslow/",
+      "source_type": "research-synthesis-popular-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["normer_identitet_hverdagsliv", "metode_etnografi_sammenligning", "anvendt_offentlig_etikk_avkolonisering"],
+      "cross_subject_links": ["psykologi", "naeringsliv", "politikk"],
+      "theory_units": [
+        {"id": "adv19-system1-system2", "name": "System 1 og System 2", "summary": "To-system-språket modellerer raske automatiske og mer anstrengende kontrollerte prosesser.", "analytic_question": "Hva skjer raskt og automatisk, og når mobiliseres kontrollert refleksjon?", "misuse_guardrail": "Systemene er modeller, ikke to anatomiske hjerner eller persontyper."},
+        {"id": "adv19-heuristics-biases", "name": "Heuristikker og skjevheter", "summary": "Tilgjengelighet, representativitet og forankring kan gi systematiske vurderingsfeil.", "analytic_question": "Hvilken informasjon er lett tilgjengelig, og hvilket anker brukes?", "misuse_guardrail": "Ikke diagnostiser enkeltpersoner; effekter varierer med kontekst."},
+        {"id": "adv19-prospect-theory", "name": "Prospektteori", "summary": "Valg under risiko påvirkes av referansepunkt, tapsaversjon og asymmetrisk følsomhet.", "analytic_question": "Hva er referansepunktet, og hvordan presenteres gevinst og tap?", "misuse_guardrail": "Eldre priming-eksempler i boka skal ikke materialiseres uten moderne evidenskontroll."}
+      ]
+    },
+    {
+      "id": "adv20-haidt-righteous-mind",
+      "author": "Jonathan Haidt",
+      "title": "The Righteous Mind: Why Good People Are Divided by Politics and Religion",
+      "first_published": 2012,
+      "source_url": "https://www.penguinrandomhouse.com/books/73535/the-righteous-mind-by-jonathan-haidt/",
+      "source_type": "research-synthesis-popular-monograph",
+      "existing_coverage": "gap",
+      "primary_domain_ids": ["normer_identitet_hverdagsliv", "kultur_religion_ritual_materialitet", "makt_politikk_kollektiv_handling"],
+      "cross_subject_links": ["psykologi", "politikk", "historie"],
+      "theory_units": [
+        {"id": "adv20-social-intuitionist", "name": "Sosial-intuisjonistisk moralmodell", "summary": "Raske moralske intuisjoner og sosial påvirkning fremheves, mens eksplisitt resonnering ofte kommer senere.", "analytic_question": "Hva utløser første moralske reaksjon, og hvordan endres den sosialt?", "misuse_guardrail": "Intuisjon utelukker ikke refleksjon eller læring."},
+        {"id": "adv20-moral-foundations", "name": "Moral Foundations Theory", "summary": "Teorien modellerer flere moralske hensyn som omsorg, rettferdighet, lojalitet, autoritet, renhet og frihet.", "analytic_question": "Hvilke moralske hensyn aktiveres i argumentasjonen?", "misuse_guardrail": "Fundamentene er forskningshypoteser med kultur- og måledebatt, ikke personbokser."},
+        {"id": "adv20-groupishness", "name": "Kooperasjon og gruppetilhørighet", "summary": "Moralpsykologi kan støtte både samarbeid innad og konflikt mellom grupper.", "analytic_question": "Når styrker felles normer samarbeid, og når øker de grensedragning?", "misuse_guardrail": "Ikke utled politisk ideologi eller moralsk verdi fra gruppetilhørighet alene."}
+      ]
+    }
+  ],
+  "materialization_plan": {
+    "phase_1": "Kanonisk verk- og teorikart er registrert i dette dokumentet.",
+    "phase_2": "Hvert verk sekundærbindes til eksisterende domene-source-brief uten duplisering av kapitler.",
+    "phase_3": "Nye claim-id-er, avsnitt og assessment-items materialiseres gjennom domenets eksisterende materializer og audit.",
+    "phase_4": "Runtime- og release-status endres først når fulltekst, claim-trace og tester er grønne.",
+    "priority_order": [
+      "adv01-bourdieu-distinction",
+      "adv03-elias-civilizing-process",
+      "adv04-foucault-discipline-punish",
+      "adv05-scott-seeing-state",
+      "adv08-ostrom-governing-commons",
+      "adv15-latour-reassembling-social",
+      "adv13-jacobs-death-life",
+      "adv17-polanyi-great-transformation",
+      "adv06-anderson-imagined-communities",
+      "adv07-hirschman-exit-voice-loyalty",
+      "adv09-graeber-debt",
+      "adv10-piketty-capital-ideology",
+      "adv11-rosa-social-acceleration",
+      "adv12-zuboff-surveillance-capitalism",
+      "adv16-geertz-interpretation-cultures",
+      "adv18-arendt-human-condition",
+      "adv19-kahneman-thinking-fast-slow",
+      "adv20-haidt-righteous-mind",
+      "adv14-sennett-uses-disorder",
+      "adv02-goffman-presentation"
+    ]
+  }
+}
