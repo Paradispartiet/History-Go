@@ -25,15 +25,15 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 47,
-  needs_authored_depth: 112,
+  ready: 48,
+  needs_authored_depth: 111,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 47);
+assert.equal(audit.summary.completed_life_position_role_worlds, 48);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 47);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 47);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 48);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 48);
 assert.equal(audit.first_ready, null);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
@@ -328,6 +328,17 @@ assert.equal(kommentarfeltveteran.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(kommentarfeltveteran.evidence.exact_source_refs, ['data/Civication/narratives/leisure/media_kommentarfeltveteran.json']);
 assert.ok(!(audit.queue || []).some((row) => row.key === 'media/kommentarfeltveteran'));
 
+const nyhetsjunkie = audit.positions.find((row) => row.key === 'media/nyhetsjunkie');
+assert.ok(nyhetsjunkie);
+assert.equal(nyhetsjunkie.classification, 'ready');
+assert.equal(nyhetsjunkie.role_world_status, 'role_world_complete');
+assert.equal(nyhetsjunkie.role_world_path, 'data/Civication/roleWorlds/media/media_nyhetsjunkie.json');
+assert.equal(nyhetsjunkie.priority_score, 405);
+assert.equal(nyhetsjunkie.authored_depth.exact_source_ref_count, 1);
+assert.equal(nyhetsjunkie.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(nyhetsjunkie.evidence.exact_source_refs, ['data/Civication/narratives/leisure/media_nyhetsjunkie.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'media/nyhetsjunkie'));
+
 assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjenner','film_tv/filmklubbmenneske'].includes(row.key)),
   'completed life-position worlds must leave the readiness queue');
 assert.ok((audit.queue || []).every((row) => row.classification !== 'not_a_standalone_world'));
@@ -339,4 +350,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 47 ready / 112 authored-depth / 40 not-standalone; 47 complete / no pending-ready');
+console.log('civication life-position Role World readiness v2 ok: 48 ready / 111 authored-depth / 40 not-standalone; 48 complete / no pending-ready');
