@@ -1,0 +1,522 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "targetId": "nydalen",
+  "categoryId": "by",
+  "profile_hint": "rich",
+  "reviewed_at": "2026-09-15",
+  "review_note": "Legacy 5×6 og eksisterende QuizCard er auditert. Fakta er kontrollert mot Oslo byleksikon, Oslo kommune, Sporveien og Snøhetta; interne profilpåstander og udokumenterte effektpåstander er fjernet.",
+  "sources": {
+    "nydalen": {
+      "url": "https://oslobyleksikon.no/side/Nydalen",
+      "source_type": "external_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for navn, bydel, førindustrielt landskap, industri, Gjøvikbanen, T-bane, BI, Ring 3, Park Vest og dagens hovedfunksjoner."
+    },
+    "compagnie": {
+      "url": "https://oslobyleksikon.no/side/Nydalens_Compagnie",
+      "source_type": "external_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for etableringen i 1845, første spinneri i 1847, Adam Severin Hiorth og avslutningen av tekstilproduksjonen."
+    },
+    "spiger": {
+      "url": "https://oslobyleksikon.no/side/Christiania_Spigerverk",
+      "source_type": "external_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for etablering i 1853, Oluf Onsum, opprinnelig produksjon og jern-/stålindustriens utvikling."
+    },
+    "kommune": {
+      "url": "https://magasin.oslo.kommune.no/byplan/nydalens-omforming",
+      "source_type": "official_planning_history",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for rehabilitering 1986–88, planarbeid, kommunedelplan 1990, Nydalen Park og planprinsippene for elvekorridor og industriell identitet."
+    },
+    "sporveien": {
+      "url": "https://www.sporveien.no/globalassets/kunst-pa-t-banen/kunst-pa-t-banen.pdf",
+      "source_type": "official_transport_documentation",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Nydalen T-banestasjon, Kristin Jarmund og Tunnel of Light med Per Åge Lyså."
+    },
+    "snohetta": {
+      "url": "https://www.snohetta.com/projects/vertikal-nydalen",
+      "source_type": "first_party_architecture",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Vertikal Nydalen, Snøhetta, Avantor, funksjonsblanding, offentlig bilfritt torg og ferdigstillelse i 2024."
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "claim_nydalen_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Nydalen ligger i bydel Nordre Aker.",
+      "source_ids": [
+        "nydalen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Nydalen ligger langs Akerselva, og elva ble senere en hovedressurs for industrien.",
+      "source_ids": [
+        "nydalen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_industri_havn_logistikk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir Nydalen som kortform av Nygårdsdalen.",
+      "source_ids": [
+        "nydalen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Før den store industrialiseringen var området i stor grad skogkledd, med enkelte sagbruk og gårdene Lillo og Nygård.",
+      "source_ids": [
+        "nydalen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Adam Severin Hiorth tok initiativ til Nydalens Bomuldsspinderi i 1845.",
+      "source_ids": [
+        "compagnie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_industri_havn_logistikk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den første spinneribygningen kom i drift i 1847, to år etter etableringen av virksomheten.",
+      "source_ids": [
+        "compagnie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Adam Severin Hiorth var initiativtaker til Nydalens Bomuldsspinderi og ledet virksomheten i startfasen.",
+      "source_ids": [
+        "compagnie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_08",
+      "order": 8,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christiania Spiger- og Valseværk ble etablert i 1853.",
+      "source_ids": [
+        "spiger"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_industri_havn_logistikk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_09",
+      "order": 9,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oluf Onsum var initiativtaker og medeier ved etableringen av Christiania Spiger- og Valseværk.",
+      "source_ids": [
+        "spiger"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_industri_havn_logistikk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_10",
+      "order": 10,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Virksomheten ble anlagt for produksjon av spiker og smigods før den senere utviklet seg videre innen jern og stål.",
+      "source_ids": [
+        "spiger"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_industri_havn_logistikk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_11",
+      "order": 11,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir at produksjonen ved Nydalens Compagnie var helt avsluttet i 1963.",
+      "source_ids": [
+        "compagnie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_12",
+      "order": 12,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Nydalen har vært stoppested på Gjøvikbanen siden 1947.",
+      "source_ids": [
+        "nydalen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_13",
+      "order": 13,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Akerselvas fall ga kraft til virksomhetene som vokste fram langs elva.",
+      "source_ids": [
+        "nydalen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_industri_havn_logistikk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_14",
+      "order": 14,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Nydalens Compagnie representerte tekstilindustrien, mens Christiania Spigerverk utviklet jern- og senere stålproduksjon.",
+      "source_ids": [
+        "nydalen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_industri_havn_logistikk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo kommune beskriver rehabilitering av eldre teglbygg i 1986–88 som en tidlig del av omformingen.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo kommune beskriver at planarbeidet som ledet til kommunedelplanen ble satt i gang i 1988.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Kommunedelplanen for Nydalens omforming ble vedtatt i 1990.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Nydalen Park åpnet langs elva i 1990.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Nydalen T-banestasjon åpnet i 2003 og ble en ny del av områdets transportinfrastruktur.",
+      "source_ids": [
+        "nydalen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Kristin Jarmund var arkitekt for Nydalen T-banestasjon.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Sporveien dokumenterer Tunnel of Light som et samarbeid mellom Kristin Jarmund og Per Åge Lyså.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_22",
+      "order": 22,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Handelshøyskolen BI etablerte seg i Nydalen i 2005.",
+      "source_ids": [
+        "nydalen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_23",
+      "order": 23,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon knytter 2006 til den nye Ring 3-forbindelsen gjennom området.",
+      "source_ids": [
+        "nydalen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_24",
+      "order": 24,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir at Park Vest åpnet i 2017.",
+      "source_ids": [
+        "nydalen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_25",
+      "order": 25,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver Avantor AS som den største eiendomsbesitteren og -utvikleren i Nydalen.",
+      "source_ids": [
+        "nydalen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_26",
+      "order": 26,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Kommunens planhistorie framhever åpen elvekorridor, offentlige grøntarealer og bevaring av industriell identitet som sentrale prinsipper.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_27",
+      "order": 27,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Rehabiliteringen dokumenterer at omformingen også bygde på ombruk av eksisterende industribygg.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_28",
+      "order": 28,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Snøhetta beskriver Vertikal Nydalen som et blandet bygg med boliger, kontorer og servering.",
+      "source_ids": [
+        "snohetta"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Snøhetta er arkitekt for Vertikal Nydalen.",
+      "source_ids": [
+        "snohetta"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "observation",
+      "statement": "Snøhetta beskriver prosjektet som del av et offentlig, bilfritt byrom rundt bygget.",
+      "source_ids": [
+        "snohetta"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "observation",
+      "statement": "I felt kan du registrere materialer, bygg, elveløp og overgangene mellom eldre og nyere bylag.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Synlige spor kan dokumentere fysisk form, men sosial sammensetning, prisutvikling og økonomiske virkninger krever egne data.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept",
+      "statement": "Ombruk beskriver videre bruk av eksisterende bygningsstruktur med nye funksjoner, slik kommunens rehabiliteringshistorie viser.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Åpningen dokumenterer ny infrastruktur og tilgjengelighet; konkrete atferds- eller priseffekter krever andre data.",
+      "source_ids": [
+        "nydalen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_nydalen_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "analysis",
+      "statement": "Kildene viser en lang utvikling fra elvebasert industri til planlagt transformasjon, kollektivinfrastruktur og blandede byfunksjoner.",
+      "source_ids": [
+        "kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    }
+  ],
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/nydalen_sets_merged.json",
+      "data/quizcards/by/topp10_by_kort_batch4.json",
+      "data/quiz/manifest.json",
+      "data/places/by/oslo/places/nydalen.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/by/nydalen_sets_merged.json",
+      "set_count": 5,
+      "question_count": 30,
+      "finding": "Legacy 5×6-pakke og et separat Topp 10-QuizCard fantes. Pakken manglet canonical v3.4 source brief/context, hadde systematisk answerIndex=0 og flere interne/spekulative spørsmål."
+    },
+    "decisions": [
+      "Behold de kildebårne historiske hovedsporene, men materialiser hele aktive pakken på nytt som rich 5×7.",
+      "Fjern spørsmål om 'repoets stedsprofil', udokumenterte gentrifiseringsvirkninger, tilfeldig Botsparken-sammenligning og den vilkårlige 2000-dateringen.",
+      "Legg til fem nye, ikke-dupliserte spørsmål slik at hvert sett har sju spørsmål.",
+      "Gjenbruk eksisterende Nydalen QuizCard som overflate, men erstatt svake kortspørsmål med canonical kildebårne spørsmål."
+    ],
+    "knowledge_migration": "Legacy 5×6 brukes som redaksjonelt input. Alle 35 aktive spørsmål får claim_id mot reviewed source brief; Knowledge kan regenereres deterministisk fra den aktive pakken."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Nydalen har fem selvstendige kildebårne læringsjobber: sted/tekstilhistorie, Spigerverket og industrisamfunnet, planlagt ombruk og kollektivinfrastruktur, dagens institusjoner/byrom samt feltbasert syntese av gamle og nye bylag."
+  },
+  "held_back_candidates": [
+    "Eksakte effekter på boligpriser, publikumsprofil eller beboersammensetning – ikke dokumentert av de gjennomgåtte stedskildene.",
+    "Botsparken som generisk kontrast – tilfører ikke kildebåret Nydalen-kunnskap.",
+    "Påstander om at T-banen alene forårsaket bestemte sosiale eller økonomiske endringer.",
+    "Isolert 'år 2000' som stedets registrerte hovedår – mangler historisk begrunnelse."
+  ],
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_03_infrastruktur_og_bevegelse",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_transformasjon_ombruk",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_infrastruktur_mobilitet",
+      "em_by_industri_havn_logistikk"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_for_etter",
+      "met_policy_lesning"
+    ],
+    "thinker_ids": [],
+    "works": []
+  }
+}

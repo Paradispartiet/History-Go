@@ -1,52 +1,160 @@
 {
   "targetId": "nydalen",
   "categoryId": "by",
-  "source_quiz_file": null,
-  "generator_version": "v5_1_external_priority_chat_merged_normal_place_5x6",
-  "size_class": "normal_place",
+  "source_quiz_file": "nydalen_sets_merged.json",
+  "generator_version": "5-canonical-nydalen-rich-5x7-audited",
+  "size_class": "rich",
   "generated_from": [
-    "SET_MAL_README_v4_3 (1).md",
-    "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-    "supersetQUIZMAL (10).json",
-    "data/places/by/oslo/places_by.json",
     "data/fag/by/pensum_by.json",
+    "data/fag/by/emner_by.json",
+    "data/fag/by/fagkart_by.json",
+    "data/fag/by/methods_by.json",
+    "data/fag/by/supersetQUIZMAL_by.json",
+    "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+    "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "data/quiz/production_briefs/by/nydalen.json",
     "https://oslobyleksikon.no/side/Nydalen",
-    "https://lokalhistoriewiki.no/Nydalen_%28Oslo%29",
-    "https://lokalhistoriewiki.no/wiki/Nydalens_Compagnie",
-    "https://oslobyleksikon.no/side/Christiania_Spigerverk"
+    "https://oslobyleksikon.no/side/Nydalens_Compagnie",
+    "https://oslobyleksikon.no/side/Christiania_Spigerverk",
+    "https://magasin.oslo.kommune.no/byplan/nydalens-omforming",
+    "https://www.sporveien.no/globalassets/kunst-pa-t-banen/kunst-pa-t-banen.pdf",
+    "https://www.snohetta.com/projects/vertikal-nydalen"
   ],
   "merge_notes": {
-    "existing_quiz_status": "No standard set-file found at data/quiz/by/nydalen_sets.json, and searches for nydalen quiz_id, targetId and placeId in data/quiz returned no hits.",
-    "kept": "No existing questions to keep.",
-    "corrected": "No existing target questions to correct.",
-    "added": "Five complete sets with six questions each, using normal_place size."
+    "existing_quiz_status": "Legacy 5×6 / 30 questions and existing Topp 10 QuizCard audited before profile choice.",
+    "kept": "Kildebårne identitets-, industri-, transport- og institusjonsspor beholdt som læringsgrunnlag.",
+    "corrected": "Interne/spekulative spørsmål fjernet; answer positions fordelt; alle aktive spørsmål får reviewed claim_id.",
+    "added": "Fem kildebårne spørsmål lagt til for rich 5×7 / 35."
   },
   "profile_snapshot": {
     "place_type": "omrade",
-    "subtype": "elvenaer_kunnskaps_og_kontortransformasjon",
+    "subtype": "akerselva_industri_til_blandet_by",
     "signature_features": [
-      "industriområde omgjort til kontor, utdanning og bolig",
-      "ligger langs Akerselva",
-      "ny identitet bygget på kunnskaps- og næringsmiljø"
+      "industrimiljø langs Akerselva",
+      "planlagt ombruk og elvekorridor",
+      "T-bane, utdanning, boliger, kontorer og nyere byrom"
     ],
     "primary_angles": [
       "historie",
-      "konflikt_forandring",
-      "institusjon",
-      "teknikk"
+      "transformasjon",
+      "infrastruktur",
+      "materialitet"
+    ],
+    "question_families": [
+      "direkte_fakta",
+      "tidslag",
+      "ombruk",
+      "infrastruktur",
+      "feltlesning"
+    ],
+    "avoid_angles": [
+      "udokumentert_gentrifisering",
+      "generisk_ny_bydel"
     ],
     "must_include": [
-      "skiftet fra industri til kunnskapsbydel",
-      "forholdet mellom elv, næring og ny identitet"
-    ]
+      "forholdet mellom elv og industri",
+      "planlagt omforming fra 1980-/1990-tallet",
+      "fysiske møter mellom gamle og nye bylag"
+    ],
+    "contrast_targets": [],
+    "notes": "Skal spørres source-first som industristed i dokumentert transformasjon, uten å gjøre synlige nybygg til bevis for sosial eller økonomisk effekt."
+  },
+  "sources": {
+    "nydalen": "https://oslobyleksikon.no/side/Nydalen",
+    "compagnie": "https://oslobyleksikon.no/side/Nydalens_Compagnie",
+    "spiger": "https://oslobyleksikon.no/side/Christiania_Spigerverk",
+    "kommune": "https://magasin.oslo.kommune.no/byplan/nydalens-omforming",
+    "sporveien": "https://www.sporveien.no/globalassets/kunst-pa-t-banen/kunst-pa-t-banen.pdf",
+    "snohetta": "https://www.snohetta.com/projects/vertikal-nydalen"
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "rich_5x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/by/nydalen.json",
+    "context_artifact": "data/quiz/production_context/by/nydalen.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_03_infrastruktur_og_bevegelse",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_transformasjon_ombruk",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_infrastruktur_mobilitet",
+      "em_by_industri_havn_logistikk"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_for_etter",
+      "met_policy_lesning"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "source_review_status": "reviewed",
+    "theory_start_phase": "none",
+    "method_start_phase": "bridge",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/by/nydalen_sets_merged.json",
+        "data/quizcards/by/topp10_by_kort_batch4.json",
+        "data/quiz/manifest.json",
+        "data/places/by/oslo/places/nydalen.json"
+      ],
+      "active_before": {
+        "file": "data/quiz/by/nydalen_sets_merged.json",
+        "set_count": 5,
+        "question_count": 30,
+        "finding": "Legacy 5×6-pakke og et separat Topp 10-QuizCard fantes. Pakken manglet canonical v3.4 source brief/context, hadde systematisk answerIndex=0 og flere interne/spekulative spørsmål."
+      },
+      "decisions": [
+        "Behold de kildebårne historiske hovedsporene, men materialiser hele aktive pakken på nytt som rich 5×7.",
+        "Fjern spørsmål om 'repoets stedsprofil', udokumenterte gentrifiseringsvirkninger, tilfeldig Botsparken-sammenligning og den vilkårlige 2000-dateringen.",
+        "Legg til fem nye, ikke-dupliserte spørsmål slik at hvert sett har sju spørsmål.",
+        "Gjenbruk eksisterende Nydalen QuizCard som overflate, men erstatt svake kortspørsmål med canonical kildebårne spørsmål."
+      ],
+      "knowledge_migration": "Legacy 5×6 brukes som redaksjonelt input. Alle 35 aktive spørsmål får claim_id mot reviewed source brief; Knowledge kan regenereres deterministisk fra den aktive pakken."
+    },
+    "profile_decision": {
+      "profile": "rich",
+      "set_count": 5,
+      "questions_per_set": 7,
+      "justification": "Nydalen har fem selvstendige kildebårne læringsjobber: sted/tekstilhistorie, Spigerverket og industrisamfunnet, planlagt ombruk og kollektivinfrastruktur, dagens institusjoner/byrom samt feltbasert syntese av gamle og nye bylag."
+    },
+    "held_back_candidates": [
+      "Eksakte effekter på boligpriser, publikumsprofil eller beboersammensetning – ikke dokumentert av de gjennomgåtte stedskildene.",
+      "Botsparken som generisk kontrast – tilfører ikke kildebåret Nydalen-kunnskap.",
+      "Påstander om at T-banen alene forårsaket bestemte sosiale eller økonomiske endringer.",
+      "Isolert 'år 2000' som stedets registrerte hovedår – mangler historisk begrunnelse."
+    ],
+    "normal_opening_questions": 14
   },
   "sets": [
     {
       "set_id": "by_nydalen_set_1",
       "level": 1,
       "order": 1,
-      "xp": 50,
+      "xp": 10,
       "mode": "history_intro_story",
+      "phase": "opening",
       "questions": [
         {
           "id": "nydalen_quiz_1",
@@ -59,15 +167,13 @@
           "question_scope": "place",
           "question": "I hvilken bydel ligger Nydalen?",
           "options": [
+            "Bydel Sagene",
             "Bydel Nordre Aker",
-            "Bydel Ullern",
-            "Bydel Gamle Oslo"
+            "Bydel Bjerke"
           ],
           "answer": "Bydel Nordre Aker",
-          "answerIndex": 0,
-          "dimension": "plassering",
-          "topic": "bydel",
-          "knowledge": "Oslo byleksikon og Lokalhistoriewiki beskriver Nydalen som liggende i bydel Nordre Aker.",
+          "answerIndex": 1,
+          "knowledge": "Nydalen ligger i bydel Nordre Aker.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
@@ -77,39 +183,26 @@
           "epoke_domain": "by",
           "emne_id": "em_by_transformasjon_ombruk",
           "related_emner": [],
-          "core_concepts": [
-            "Nordre Aker",
-            "Nydalen",
-            "Akerselva"
-          ],
-          "concept_focus": [
-            "Nordre Aker",
-            "Nydalen"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
             "nydalen",
-            "nordre_aker",
-            "plassering"
+            "transformasjon_ombruk"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen",
-            "https://lokalhistoriewiki.no/Nydalen_%28Oslo%29"
+            "https://oslobyleksikon.no/side/Nydalen"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Nydalen ligger i bydel Nordre Aker.",
+          "claim_id": "claim_nydalen_quiz_01",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
@@ -123,15 +216,13 @@
           "question_scope": "place",
           "question": "Hvilket dalføre ligger Nydalen i?",
           "options": [
+            "Alnas dalføre",
             "Akerselvas dalføre",
-            "Lysakerelvas dalføre",
-            "Alnas dalføre"
+            "Lysakerelvas dalføre"
           ],
           "answer": "Akerselvas dalføre",
-          "answerIndex": 0,
-          "dimension": "landskap",
-          "topic": "Akerselva",
-          "knowledge": "Oslo byleksikon beskriver Nydalen som liggende i Akerselvas dalføre sørover fra Brekke til Lillo.",
+          "answerIndex": 1,
+          "knowledge": "Nydalen ligger langs Akerselva, og elva ble senere en hovedressurs for industrien.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
@@ -139,41 +230,28 @@
           "year": null,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_landemerker_utsyn_orientering",
+          "emne_id": "em_by_industri_havn_logistikk",
           "related_emner": [],
-          "core_concepts": [
-            "Akerselva",
-            "Brekke",
-            "Lillo"
-          ],
-          "concept_focus": [
-            "Akerselva",
-            "Brekke"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "akerselva",
-            "dalføre",
-            "nydalen"
+            "nydalen",
+            "industri_havn_logistikk"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen",
-            "https://lokalhistoriewiki.no/Nydalen_%28Oslo%29"
+            "https://oslobyleksikon.no/side/Nydalen"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Nydalen ligger langs Akerselva, og elva ble senere en hovedressurs for industrien.",
+          "claim_id": "claim_nydalen_quiz_02",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
@@ -187,15 +265,13 @@
           "question_scope": "place",
           "question": "Hva er Nydalen kortform av?",
           "options": [
+            "Nydalsmarka",
             "Nygårdsdalen",
-            "Nattmannsdalen",
-            "Norgesdalen"
+            "Nordre dal"
           ],
           "answer": "Nygårdsdalen",
-          "answerIndex": 0,
-          "dimension": "navnehistorie",
-          "topic": "Nygårdsdalen",
-          "knowledge": "Oslo byleksikon beskriver Nydalen som kortform av Nygårdsdalen, etter gården Nygård.",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon oppgir Nydalen som kortform av Nygårdsdalen.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
@@ -205,39 +281,26 @@
           "epoke_domain": "by",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "related_emner": [],
-          "core_concepts": [
-            "Nygårdsdalen",
-            "Nygård",
-            "navn"
-          ],
-          "concept_focus": [
-            "Nygårdsdalen",
-            "Nygård"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "nygårdsdalen",
-            "nygård",
-            "navn"
+            "nydalen",
+            "historiske_lag_i_hverdagsrom"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen",
-            "https://lokalhistoriewiki.no/Nydalen_%28Oslo%29"
+            "https://oslobyleksikon.no/side/Nydalen"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Oslo byleksikon oppgir Nydalen som kortform av Nygårdsdalen.",
+          "claim_id": "claim_nydalen_quiz_03",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
@@ -249,19 +312,17 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hva ble Nydalen kalt i middelalderen?",
+          "question": "Hva preget Nydalen fram til midten av 1800-tallet?",
           "options": [
-            "Fallandadalen",
-            "Vågeby",
-            "Vindern"
+            "Tett murgårdsbebyggelse og trikk",
+            "Skog, enkelte sagbruk og gårdene Lillo og Nygård",
+            "Hovedsakelig havn og skipsverft"
           ],
-          "answer": "Fallandadalen",
-          "answerIndex": 0,
-          "dimension": "navnehistorie",
-          "topic": "Fallandadalen",
-          "knowledge": "Oslo byleksikon og Lokalhistoriewiki oppgir at Nydalen i middelalderen ble kalt Fallandadalen, dalen med fossefallene.",
+          "answer": "Skog, enkelte sagbruk og gårdene Lillo og Nygård",
+          "answerIndex": 1,
+          "knowledge": "Før den store industrialiseringen var området i stor grad skogkledd, med enkelte sagbruk og gårdene Lillo og Nygård.",
           "trivia": [],
-          "difficulty": 2,
+          "difficulty": 1,
           "question_type": "fact",
           "question_layer": "history_intro_story",
           "year": null,
@@ -269,39 +330,26 @@
           "epoke_domain": "by",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "related_emner": [],
-          "core_concepts": [
-            "Fallandadalen",
-            "fossefall",
-            "middelalder"
-          ],
-          "concept_focus": [
-            "Fallandadalen",
-            "fossefall"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "fallandadalen",
-            "middelalder",
-            "fossefall"
+            "nydalen",
+            "historiske_lag_i_hverdagsrom"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen",
-            "https://lokalhistoriewiki.no/Nydalen_%28Oslo%29"
+            "https://oslobyleksikon.no/side/Nydalen"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Før den store industrialiseringen var området i stor grad skogkledd, med enkelte sagbruk og gårdene Lillo og Nygård.",
+          "claim_id": "claim_nydalen_quiz_04",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
@@ -313,58 +361,44 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hva var Nydalen tidligere først og fremst?",
+          "question": "Hvilken tekstilbedrift ble etablert i Nydalen i 1845?",
           "options": [
-            "Fabrikk- og boligstrøk",
-            "Skøytebane i sentrum",
-            "Vestkantens villaområde"
+            "Nydalens Bomuldsspinderi",
+            "Hjula Væveri",
+            "Christiania Seildugsfabrik"
           ],
-          "answer": "Fabrikk- og boligstrøk",
+          "answer": "Nydalens Bomuldsspinderi",
           "answerIndex": 0,
-          "dimension": "historie",
-          "topic": "industriområde",
-          "knowledge": "Oslo byleksikon beskriver Nydalen som tidligere fabrikk- og boligstrøk, nå hovedsakelig boliger, tjenesteytende næringer og utdanningsinstitusjoner.",
+          "knowledge": "Adam Severin Hiorth tok initiativ til Nydalens Bomuldsspinderi i 1845.",
           "trivia": [],
-          "difficulty": 1,
+          "difficulty": 2,
           "question_type": "fact",
           "question_layer": "history_intro_story",
-          "year": null,
+          "year": 1845,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_transformasjon_ombruk",
+          "emne_id": "em_by_industri_havn_logistikk",
           "related_emner": [],
-          "core_concepts": [
-            "fabrikkstrøk",
-            "boligstrøk",
-            "ny bruk"
-          ],
-          "concept_focus": [
-            "fabrikkstrøk",
-            "boligstrøk"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "fabrikk",
-            "bolig",
-            "transformasjon"
+            "nydalen",
+            "industri_havn_logistikk"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen"
+            "https://oslobyleksikon.no/side/Nydalens_Compagnie"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Adam Severin Hiorth tok initiativ til Nydalens Bomuldsspinderi i 1845.",
+          "claim_id": "claim_nydalen_quiz_05",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
@@ -376,60 +410,93 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hvilken karakter gir repoets stedsprofil Nydalen?",
+          "question": "Når kom den første spinneribygningen i Nydalen i drift?",
           "options": [
-            "Industriområde omgjort til kontor, utdanning og bolig",
-            "Liten park ved fengselet",
-            "Historisk skøytebane på Karl Johan"
+            "1847",
+            "1853",
+            "1864"
           ],
-          "answer": "Industriområde omgjort til kontor, utdanning og bolig",
+          "answer": "1847",
           "answerIndex": 0,
-          "dimension": "byanalyse",
-          "topic": "repoets stedsprofil",
-          "knowledge": "Repoets stedsprofil sier at Nydalen skal spørres som arbeids- og utdanningstransformasjon, ikke bare som ny bydel.",
+          "knowledge": "Den første spinneribygningen kom i drift i 1847, to år etter etableringen av virksomheten.",
           "trivia": [],
-          "difficulty": 1,
+          "difficulty": 2,
           "question_type": "fact",
           "question_layer": "history_intro_story",
-          "year": null,
+          "year": 1847,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_transformasjon_ombruk",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "related_emner": [],
-          "core_concepts": [
-            "industriområde",
-            "kontor",
-            "utdanning",
-            "bolig"
-          ],
-          "concept_focus": [
-            "industriområde",
-            "kontor"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "industri",
-            "utdanning",
-            "kontor"
+            "nydalen",
+            "historiske_lag_i_hverdagsrom"
           ],
           "required_tags": [],
           "source": [
-            "data/places/by/oslo/places_by.json",
-            "https://oslobyleksikon.no/side/Nydalen"
+            "https://oslobyleksikon.no/side/Nydalens_Compagnie"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "mixed_external_and_place_profile_claim",
+          "source_origin": "external",
+          "claim_basis": "Den første spinneribygningen kom i drift i 1847, to år etter etableringen av virksomheten.",
+          "claim_id": "claim_nydalen_quiz_06",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "nydalen_quiz_7",
+          "quiz_id": "by_nydalen_set_1_q7",
+          "categoryId": "by",
+          "placeId": "nydalen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "nydalen",
+          "question_scope": "place",
+          "question": "Hvem tok initiativ til Nydalens Bomuldsspinderi?",
+          "options": [
+            "Oluf Onsum",
+            "Adam Severin Hiorth",
+            "Kristin Jarmund"
+          ],
+          "answer": "Adam Severin Hiorth",
+          "answerIndex": 1,
+          "knowledge": "Adam Severin Hiorth var initiativtaker til Nydalens Bomuldsspinderi og ledet virksomheten i startfasen.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1845,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "nydalen",
+            "historiske_lag_i_hverdagsrom"
+          ],
+          "required_tags": [],
+          "source": [
+            "https://oslobyleksikon.no/side/Nydalens_Compagnie"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Adam Severin Hiorth var initiativtaker til Nydalens Bomuldsspinderi og ledet virksomheten i startfasen.",
+          "claim_id": "claim_nydalen_quiz_07",
+          "guidance_basis": [
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         }
       ]
@@ -438,11 +505,12 @@
       "set_id": "by_nydalen_set_2",
       "level": 2,
       "order": 2,
-      "xp": 60,
-      "mode": "local_history_buildings_events",
+      "xp": 15,
+      "mode": "history_intro_story",
+      "phase": "opening",
       "questions": [
         {
-          "id": "nydalen_quiz_7",
+          "id": "nydalen_quiz_8",
           "quiz_id": "by_nydalen_set_2_q1",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -450,64 +518,48 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hva fantes i Nydalen fram til midten av 1800-tallet ifølge Oslo byleksikon?",
+          "question": "Når ble Christiania Spiger- og Valseværk etablert i Nydalen?",
           "options": [
-            "Skog, enkelte sagbruk og gårdene Lillo og Nygård",
-            "Høyhus, kjøpesentre og T-bane",
-            "Bare offentlige banker"
+            "1847",
+            "1853",
+            "1890"
           ],
-          "answer": "Skog, enkelte sagbruk og gårdene Lillo og Nygård",
-          "answerIndex": 0,
-          "dimension": "førindustriell_historie",
-          "topic": "før industrien",
-          "knowledge": "Oslo byleksikon skriver at dalen stort sett var skogbevokst med enkelte sagbruk og gårdene Lillo og Nygård til midten av 1800-tallet.",
+          "answer": "1853",
+          "answerIndex": 1,
+          "knowledge": "Christiania Spiger- og Valseværk ble etablert i 1853.",
           "trivia": [],
-          "difficulty": 2,
+          "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "local_history_buildings_events",
-          "year": 1850,
+          "question_layer": "history_intro_story",
+          "year": 1853,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "emne_id": "em_by_industri_havn_logistikk",
           "related_emner": [],
-          "core_concepts": [
-            "skog",
-            "sagbruk",
-            "Lillo",
-            "Nygård"
-          ],
-          "concept_focus": [
-            "skog",
-            "sagbruk"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "skog",
-            "sagbruk",
-            "lillo"
+            "nydalen",
+            "industri_havn_logistikk"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen",
-            "https://lokalhistoriewiki.no/Nydalen_%28Oslo%29"
+            "https://oslobyleksikon.no/side/Christiania_Spigerverk"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Christiania Spiger- og Valseværk ble etablert i 1853.",
+          "claim_id": "claim_nydalen_quiz_08",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
-          "id": "nydalen_quiz_8",
+          "id": "nydalen_quiz_9",
           "quiz_id": "by_nydalen_set_2_q2",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -515,63 +567,48 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hvilken bedrift åpnet Hans Nielsen Hauge i området i 1811 ifølge Lokalhistoriewiki?",
+          "question": "Hvem var initiativtaker og medeier da Christiania Spigerverk ble anlagt?",
           "options": [
-            "Bakke mølle",
-            "Norges Bank",
-            "Christiania Theater"
+            "Oluf Onsum",
+            "Adam Severin Hiorth",
+            "Oluf Nicolai Roll"
           ],
-          "answer": "Bakke mølle",
+          "answer": "Oluf Onsum",
           "answerIndex": 0,
-          "dimension": "industrihistorie",
-          "topic": "Bakke mølle",
-          "knowledge": "Lokalhistoriewiki oppgir at Hans Nielsen Hauges bedrift Bakke mølle åpnet i 1811.",
+          "knowledge": "Oluf Onsum var initiativtaker og medeier ved etableringen av Christiania Spiger- og Valseværk.",
           "trivia": [],
-          "difficulty": 2,
+          "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "local_history_buildings_events",
-          "year": 1811,
+          "question_layer": "history_intro_story",
+          "year": 1853,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "emne_id": "em_by_industri_havn_logistikk",
           "related_emner": [],
-          "core_concepts": [
-            "Bakke mølle",
-            "Hans Nielsen Hauge",
-            "1811"
-          ],
-          "concept_focus": [
-            "Bakke mølle",
-            "Hans Nielsen Hauge"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "bakke_mølle",
-            "1811",
-            "hauge"
+            "nydalen",
+            "industri_havn_logistikk"
           ],
           "required_tags": [],
           "source": [
-            "https://lokalhistoriewiki.no/Nydalen_%28Oslo%29",
-            "https://oslobyleksikon.no/side/Nydalen"
+            "https://oslobyleksikon.no/side/Christiania_Spigerverk"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Oluf Onsum var initiativtaker og medeier ved etableringen av Christiania Spiger- og Valseværk.",
+          "claim_id": "claim_nydalen_quiz_09",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
-          "id": "nydalen_quiz_9",
+          "id": "nydalen_quiz_10",
           "quiz_id": "by_nydalen_set_2_q3",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -579,64 +616,48 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hvilken tekstilbedrift startet den store utviklingen i Nydalen i 1845–46?",
+          "question": "Hva produserte Christiania Spigerverk i starten?",
           "options": [
-            "Nydalens Compagnie",
-            "Christiania Spigerverk",
-            "Engebret Café"
+            "Jernbanevogner og lokomotiver",
+            "Spiker og smigods",
+            "Tekstiler og tauverk"
           ],
-          "answer": "Nydalens Compagnie",
-          "answerIndex": 0,
-          "dimension": "industrihistorie",
-          "topic": "Nydalens Compagnie",
-          "knowledge": "Oslo byleksikon og Lokalhistoriewiki beskriver Nydalens Compagnie, anlagt/grunnlagt 1845–46, som starten på stor industriutvikling i området.",
+          "answer": "Spiker og smigods",
+          "answerIndex": 1,
+          "knowledge": "Virksomheten ble anlagt for produksjon av spiker og smigods før den senere utviklet seg videre innen jern og stål.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "local_history_buildings_events",
-          "year": 1845,
+          "question_layer": "history_intro_story",
+          "year": 1853,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "emne_id": "em_by_industri_havn_logistikk",
           "related_emner": [],
-          "core_concepts": [
-            "Nydalens Compagnie",
-            "1845–46",
-            "tekstilindustri"
-          ],
-          "concept_focus": [
-            "Nydalens Compagnie",
-            "1845–46"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "nydalens_compagnie",
-            "1845",
-            "tekstil"
+            "nydalen",
+            "industri_havn_logistikk"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen",
-            "https://lokalhistoriewiki.no/Nydalen_%28Oslo%29",
-            "https://lokalhistoriewiki.no/wiki/Nydalens_Compagnie"
+            "https://oslobyleksikon.no/side/Christiania_Spigerverk"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Virksomheten ble anlagt for produksjon av spiker og smigods før den senere utviklet seg videre innen jern og stål.",
+          "claim_id": "claim_nydalen_quiz_10",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
-          "id": "nydalen_quiz_10",
+          "id": "nydalen_quiz_11",
           "quiz_id": "by_nydalen_set_2_q4",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -644,199 +665,49 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hva het Nydalens Compagnie opprinnelig?",
+          "question": "Når var tekstilproduksjonen ved Nydalens Compagnie helt avsluttet?",
           "options": [
-            "Nydalens Bomuldsspinderi",
-            "Christiania Spiger- og Valseværk",
-            "Nydalen Park"
-          ],
-          "answer": "Nydalens Bomuldsspinderi",
-          "answerIndex": 0,
-          "dimension": "industrihistorie",
-          "topic": "bomullsspinneri",
-          "knowledge": "Lokalhistoriewiki oppgir at Nydalens Compagnie ble opprettet som bomullsspinneri under navnet Nydalens Bomuldsspinderi.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "local_history_buildings_events",
-          "year": 1845,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-          "related_emner": [],
-          "core_concepts": [
-            "Nydalens Bomuldsspinderi",
-            "bomullsspinneri",
-            "tekstil"
-          ],
-          "concept_focus": [
-            "Nydalens Bomuldsspinderi",
-            "bomullsspinneri"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "bomuldsspinderi",
-            "tekstil",
-            "1845"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Nydalens_Compagnie"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "nydalen_quiz_11",
-          "quiz_id": "by_nydalen_set_2_q5",
-          "categoryId": "by",
-          "placeId": "nydalen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "nydalen",
-          "question_scope": "place",
-          "question": "Når ble Christiania Spigerverk anlagt i Nydalen?",
-          "options": [
-            "1853",
             "1947",
-            "2003"
+            "1963",
+            "1989"
           ],
-          "answer": "1853",
-          "answerIndex": 0,
-          "dimension": "industrihistorie",
-          "topic": "Christiania Spigerverk",
-          "knowledge": "Oslo byleksikon oppgir at Christiania Spigerverk ble anlagt ved Akerselva i Nydalen i 1853.",
+          "answer": "1963",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon oppgir at produksjonen ved Nydalens Compagnie var helt avsluttet i 1963.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "local_history_buildings_events",
-          "year": 1853,
+          "question_layer": "history_intro_story",
+          "year": 1963,
           "epoke_id": null,
           "epoke_domain": "by",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "related_emner": [],
-          "core_concepts": [
-            "Christiania Spigerverk",
-            "1853",
-            "Akerselva"
-          ],
-          "concept_focus": [
-            "Christiania Spigerverk",
-            "1853"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "spigerverk",
-            "1853",
-            "akerselva"
+            "nydalen",
+            "historiske_lag_i_hverdagsrom"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen",
-            "https://oslobyleksikon.no/side/Christiania_Spigerverk"
+            "https://oslobyleksikon.no/side/Nydalens_Compagnie"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Oslo byleksikon oppgir at produksjonen ved Nydalens Compagnie var helt avsluttet i 1963.",
+          "claim_id": "claim_nydalen_quiz_11",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
           "id": "nydalen_quiz_12",
-          "quiz_id": "by_nydalen_set_2_q6",
-          "categoryId": "by",
-          "placeId": "nydalen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "nydalen",
-          "question_scope": "place",
-          "question": "Hva produserte Christiania Spigerverk opprinnelig?",
-          "options": [
-            "Spiker og smigods",
-            "Sjokolade og kjeks",
-            "Kunst og bøker"
-          ],
-          "answer": "Spiker og smigods",
-          "answerIndex": 0,
-          "dimension": "industrihistorie",
-          "topic": "spiker og smigods",
-          "knowledge": "Oslo byleksikon beskriver Christiania Spigerverk som anlagt for fabrikasjon av spiker og smigods.",
-          "trivia": [],
-          "difficulty": 1,
-          "question_type": "fact",
-          "question_layer": "local_history_buildings_events",
-          "year": 1853,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-          "related_emner": [],
-          "core_concepts": [
-            "spiker",
-            "smigods",
-            "jernindustri"
-          ],
-          "concept_focus": [
-            "spiker",
-            "smigods"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "spiker",
-            "smigods",
-            "industri"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://oslobyleksikon.no/side/Christiania_Spigerverk"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        }
-      ]
-    },
-    {
-      "set_id": "by_nydalen_set_3",
-      "level": 3,
-      "order": 3,
-      "xp": 70,
-      "mode": "humor_curiosities_life",
-      "questions": [
-        {
-          "id": "nydalen_quiz_13",
-          "quiz_id": "by_nydalen_set_3_q1",
+          "quiz_id": "by_nydalen_set_2_q5",
           "categoryId": "by",
           "placeId": "nydalen",
           "personId": "",
@@ -845,60 +716,203 @@
           "question_scope": "place",
           "question": "Når ble Nydalen stoppested på Gjøvikbanen?",
           "options": [
+            "1903",
             "1947",
-            "1845",
-            "2006"
+            "2003"
           ],
           "answer": "1947",
-          "answerIndex": 0,
-          "dimension": "transporthistorie",
-          "topic": "Gjøvikbanen",
-          "knowledge": "Oslo byleksikon oppgir at Nydalen har vært stoppested på Gjøvikbanen siden 1947.",
+          "answerIndex": 1,
+          "knowledge": "Nydalen har vært stoppested på Gjøvikbanen siden 1947.",
           "trivia": [],
-          "difficulty": 1,
+          "difficulty": 2,
           "question_type": "fact",
-          "question_layer": "humor_curiosities_life",
+          "question_layer": "history_intro_story",
           "year": 1947,
           "epoke_id": null,
           "epoke_domain": "by",
           "emne_id": "em_by_infrastruktur_mobilitet",
           "related_emner": [],
-          "core_concepts": [
-            "Gjøvikbanen",
-            "1947",
-            "stoppested"
-          ],
-          "concept_focus": [
-            "Gjøvikbanen",
-            "1947"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "gjøvikbanen",
-            "1947",
-            "stoppested"
+            "nydalen",
+            "infrastruktur_mobilitet"
           ],
           "required_tags": [],
           "source": [
             "https://oslobyleksikon.no/side/Nydalen"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Nydalen har vært stoppested på Gjøvikbanen siden 1947.",
+          "claim_id": "claim_nydalen_quiz_12",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "nydalen_quiz_13",
+          "quiz_id": "by_nydalen_set_2_q6",
+          "categoryId": "by",
+          "placeId": "nydalen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "nydalen",
+          "question_scope": "place",
+          "question": "Hvorfor var Akerselva viktig for den tidlige industrien i Nydalen?",
+          "options": [
+            "Elva ga vannkraft til fabrikkene",
+            "Elva var Oslos viktigste sjøhavn",
+            "Elva gjorde jernbane unødvendig"
+          ],
+          "answer": "Elva ga vannkraft til fabrikkene",
+          "answerIndex": 0,
+          "knowledge": "Akerselvas fall ga kraft til virksomhetene som vokste fram langs elva.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "context",
+          "question_layer": "history_intro_story",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_industri_havn_logistikk",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "nydalen",
+            "industri_havn_logistikk"
+          ],
+          "required_tags": [],
+          "source": [
+            "https://oslobyleksikon.no/side/Nydalen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Akerselvas fall ga kraft til virksomhetene som vokste fram langs elva.",
+          "claim_id": "claim_nydalen_quiz_13",
+          "guidance_basis": [
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
           "id": "nydalen_quiz_14",
+          "quiz_id": "by_nydalen_set_2_q7",
+          "categoryId": "by",
+          "placeId": "nydalen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "nydalen",
+          "question_scope": "place",
+          "question": "Hvilke to industrigrenene ble særlig viktige i Nydalen på 1800-tallet?",
+          "options": [
+            "Skipsbygging og fiske",
+            "Tekstil og jern-/stålindustri",
+            "Trykkeri og tobakk"
+          ],
+          "answer": "Tekstil og jern-/stålindustri",
+          "answerIndex": 1,
+          "knowledge": "Nydalens Compagnie representerte tekstilindustrien, mens Christiania Spigerverk utviklet jern- og senere stålproduksjon.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "context",
+          "question_layer": "history_intro_story",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_industri_havn_logistikk",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "nydalen",
+            "industri_havn_logistikk"
+          ],
+          "required_tags": [],
+          "source": [
+            "https://oslobyleksikon.no/side/Nydalen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Nydalens Compagnie representerte tekstilindustrien, mens Christiania Spigerverk utviklet jern- og senere stålproduksjon.",
+          "claim_id": "claim_nydalen_quiz_14",
+          "guidance_basis": [
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "by_nydalen_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 20,
+      "mode": "local_history_buildings_events",
+      "phase": "bridge",
+      "questions": [
+        {
+          "id": "nydalen_quiz_15",
+          "quiz_id": "by_nydalen_set_3_q1",
+          "categoryId": "by",
+          "placeId": "nydalen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "nydalen",
+          "question_scope": "place",
+          "question": "Hva skjedde med flere eldre teglbygg i Nydalen i 1986–88?",
+          "options": [
+            "De ble rehabilitert for videre bruk",
+            "De ble alle revet samtidig",
+            "De ble flyttet til Folkemuseet"
+          ],
+          "answer": "De ble rehabilitert for videre bruk",
+          "answerIndex": 0,
+          "knowledge": "Oslo kommune beskriver rehabilitering av eldre teglbygg i 1986–88 som en tidlig del av omformingen.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1986,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "nydalen",
+            "transformasjon_ombruk"
+          ],
+          "required_tags": [],
+          "source": [
+            "https://magasin.oslo.kommune.no/byplan/nydalens-omforming"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo kommune beskriver rehabilitering av eldre teglbygg i 1986–88 som en tidlig del av omformingen.",
+          "claim_id": "claim_nydalen_quiz_15",
+          "guidance_basis": [
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "nydalen_quiz_16",
           "quiz_id": "by_nydalen_set_3_q2",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -906,62 +920,48 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Når åpnet T-banelinje til Nydalen ifølge Oslo byleksikon?",
+          "question": "Når startet arbeidet med kommunedelplanen som skulle styre omformingen av Nydalen?",
           "options": [
-            "2003",
-            "1947",
-            "1845"
+            "1988",
+            "1998",
+            "2008"
           ],
-          "answer": "2003",
+          "answer": "1988",
           "answerIndex": 0,
-          "dimension": "transporthistorie",
-          "topic": "T-bane",
-          "knowledge": "Oslo byleksikon oppgir at T-banelinje ble åpnet til Nydalen i 2003.",
+          "knowledge": "Oslo kommune beskriver at planarbeidet som ledet til kommunedelplanen ble satt i gang i 1988.",
           "trivia": [],
-          "difficulty": 1,
+          "difficulty": 2,
           "question_type": "fact",
-          "question_layer": "humor_curiosities_life",
-          "year": 2003,
+          "question_layer": "local_history_buildings_events",
+          "year": 1988,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_infrastruktur_mobilitet",
+          "emne_id": "em_by_transformasjon_ombruk",
           "related_emner": [],
-          "core_concepts": [
-            "T-bane",
-            "2003",
-            "Nydalen stasjon"
-          ],
-          "concept_focus": [
-            "T-bane",
-            "2003"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "t_bane",
-            "2003",
-            "nydalen"
+            "nydalen",
+            "transformasjon_ombruk"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen"
+            "https://magasin.oslo.kommune.no/byplan/nydalens-omforming"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Oslo kommune beskriver at planarbeidet som ledet til kommunedelplanen ble satt i gang i 1988.",
+          "claim_id": "claim_nydalen_quiz_16",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
-          "id": "nydalen_quiz_15",
+          "id": "nydalen_quiz_17",
           "quiz_id": "by_nydalen_set_3_q3",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -969,62 +969,48 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Når ble T-baneringen fullført?",
+          "question": "Når ble kommunedelplanen for Nydalens omforming vedtatt?",
           "options": [
-            "2006",
-            "2003",
-            "2017"
+            "1986",
+            "1990",
+            "2003"
           ],
-          "answer": "2006",
-          "answerIndex": 0,
-          "dimension": "transporthistorie",
-          "topic": "T-baneringen",
-          "knowledge": "Oslo byleksikon oppgir at T-baneringen ble fullført i 2006.",
+          "answer": "1990",
+          "answerIndex": 1,
+          "knowledge": "Kommunedelplanen for Nydalens omforming ble vedtatt i 1990.",
           "trivia": [],
-          "difficulty": 1,
+          "difficulty": 2,
           "question_type": "fact",
-          "question_layer": "humor_curiosities_life",
-          "year": 2006,
+          "question_layer": "local_history_buildings_events",
+          "year": 1990,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_infrastruktur_mobilitet",
+          "emne_id": "em_by_transformasjon_ombruk",
           "related_emner": [],
-          "core_concepts": [
-            "T-baneringen",
-            "2006",
-            "kollektiv"
-          ],
-          "concept_focus": [
-            "T-baneringen",
-            "2006"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "t_baneringen",
-            "2006",
-            "kollektiv"
+            "nydalen",
+            "transformasjon_ombruk"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen"
+            "https://magasin.oslo.kommune.no/byplan/nydalens-omforming"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Kommunedelplanen for Nydalens omforming ble vedtatt i 1990.",
+          "claim_id": "claim_nydalen_quiz_17",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
-          "id": "nydalen_quiz_16",
+          "id": "nydalen_quiz_18",
           "quiz_id": "by_nydalen_set_3_q4",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1032,62 +1018,48 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hvem tegnet Nydalen T-banestasjon ifølge Oslo byleksikon?",
+          "question": "Hva åpnet langs Akerselva i Nydalen i 1990?",
           "options": [
-            "Kristin Jarmund",
-            "Christian H. Grosch",
-            "Heinrich Ernst Schirmer"
+            "Park Vest",
+            "Nydalen Park",
+            "Stensparken"
           ],
-          "answer": "Kristin Jarmund",
-          "answerIndex": 0,
-          "dimension": "arkitektur",
-          "topic": "T-banestasjon",
-          "knowledge": "Oslo byleksikon omtaler Kristin Jarmund som arkitekt bak Nydalen T-banestasjon.",
+          "answer": "Nydalen Park",
+          "answerIndex": 1,
+          "knowledge": "Nydalen Park åpnet langs elva i 1990.",
           "trivia": [],
           "difficulty": 2,
           "question_type": "fact",
-          "question_layer": "humor_curiosities_life",
-          "year": 2003,
+          "question_layer": "local_history_buildings_events",
+          "year": 1990,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_bygningstyper_og_typologier",
+          "emne_id": "em_by_transformasjon_ombruk",
           "related_emner": [],
-          "core_concepts": [
-            "Kristin Jarmund",
-            "T-banestasjon",
-            "arkitektur"
-          ],
-          "concept_focus": [
-            "Kristin Jarmund",
-            "T-banestasjon"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "kristin_jarmund",
-            "t_bane",
-            "arkitektur"
+            "nydalen",
+            "transformasjon_ombruk"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen"
+            "https://magasin.oslo.kommune.no/byplan/nydalens-omforming"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Nydalen Park åpnet langs elva i 1990.",
+          "claim_id": "claim_nydalen_quiz_18",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
-          "id": "nydalen_quiz_17",
+          "id": "nydalen_quiz_19",
           "quiz_id": "by_nydalen_set_3_q5",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1095,62 +1067,48 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hva ligger i Torgbygget ved Gullhaug torg ifølge Oslo byleksikon?",
+          "question": "Når åpnet Nydalen T-banestasjon?",
           "options": [
-            "Butikker, kontorer, nedgang til T-banen og hotell",
-            "Fengselsceller og luftegård",
-            "Kun private villaer"
+            "1990",
+            "2003",
+            "2006"
           ],
-          "answer": "Butikker, kontorer, nedgang til T-banen og hotell",
-          "answerIndex": 0,
-          "dimension": "byfunksjon",
-          "topic": "Torgbygget",
-          "knowledge": "Oslo byleksikon beskriver Torgbygget ved Gullhaug torg med butikker, kontorer, nedgang til T-banen og hotell.",
+          "answer": "2003",
+          "answerIndex": 1,
+          "knowledge": "Nydalen T-banestasjon åpnet i 2003 og ble en ny del av områdets transportinfrastruktur.",
           "trivia": [],
           "difficulty": 2,
           "question_type": "fact",
-          "question_layer": "humor_curiosities_life",
-          "year": null,
+          "question_layer": "local_history_buildings_events",
+          "year": 2003,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_kommersielle_gater",
+          "emne_id": "em_by_infrastruktur_mobilitet",
           "related_emner": [],
-          "core_concepts": [
-            "Torgbygget",
-            "Gullhaug torg",
-            "T-bane"
-          ],
-          "concept_focus": [
-            "Torgbygget",
-            "Gullhaug torg"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "gullhaug_torg",
-            "torgbygget",
-            "t_bane"
+            "nydalen",
+            "infrastruktur_mobilitet"
           ],
           "required_tags": [],
           "source": [
             "https://oslobyleksikon.no/side/Nydalen"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Nydalen T-banestasjon åpnet i 2003 og ble en ny del av områdets transportinfrastruktur.",
+          "claim_id": "claim_nydalen_quiz_19",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
-          "id": "nydalen_quiz_18",
+          "id": "nydalen_quiz_20",
           "quiz_id": "by_nydalen_set_3_q6",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1158,59 +1116,93 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hvilken hovedrolle har Akerselva i Nydalens historie?",
+          "question": "Hvem tegnet Nydalen T-banestasjon?",
           "options": [
-            "Elva ga kraft til industrien som vokste opp langs den",
-            "Elva gjorde området til flyplass",
-            "Elva fjernet all industrivirksomhet"
+            "Kristin Jarmund",
+            "Sverre Fehn",
+            "Lund Hagem"
           ],
-          "answer": "Elva ga kraft til industrien som vokste opp langs den",
+          "answer": "Kristin Jarmund",
           "answerIndex": 0,
-          "dimension": "landskap_og_teknikk",
-          "topic": "vannkraft",
-          "knowledge": "Lokalhistoriewiki beskriver hvordan Akerselva ga kraft til industrien som vokste opp i Nydalen.",
+          "knowledge": "Kristin Jarmund var arkitekt for Nydalen T-banestasjon.",
           "trivia": [],
-          "difficulty": 1,
+          "difficulty": 2,
           "question_type": "fact",
-          "question_layer": "humor_curiosities_life",
-          "year": null,
+          "question_layer": "local_history_buildings_events",
+          "year": 2003,
           "epoke_id": null,
           "epoke_domain": "by",
           "emne_id": "em_by_infrastruktur_mobilitet",
           "related_emner": [],
-          "core_concepts": [
-            "Akerselva",
-            "kraft",
-            "industri"
-          ],
-          "concept_focus": [
-            "Akerselva",
-            "kraft"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "akerselva",
-            "kraft",
-            "industri"
+            "nydalen",
+            "infrastruktur_mobilitet"
           ],
           "required_tags": [],
           "source": [
-            "https://lokalhistoriewiki.no/Nydalen_%28Oslo%29",
-            "https://oslobyleksikon.no/side/Nydalen"
+            "https://www.sporveien.no/globalassets/kunst-pa-t-banen/kunst-pa-t-banen.pdf"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Kristin Jarmund var arkitekt for Nydalen T-banestasjon.",
+          "claim_id": "claim_nydalen_quiz_20",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "nydalen_quiz_21",
+          "quiz_id": "by_nydalen_set_3_q7",
+          "categoryId": "by",
+          "placeId": "nydalen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "nydalen",
+          "question_scope": "place",
+          "question": "Hvem utviklet lysinstallasjonen Tunnel of Light sammen i Nydalen stasjon?",
+          "options": [
+            "Kristin Jarmund og Per Åge Lyså",
+            "Snøhetta og Bård Breivik",
+            "LPO og Kristian Blystad"
+          ],
+          "answer": "Kristin Jarmund og Per Åge Lyså",
+          "answerIndex": 0,
+          "knowledge": "Sporveien dokumenterer Tunnel of Light som et samarbeid mellom Kristin Jarmund og Per Åge Lyså.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 2003,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "nydalen",
+            "infrastruktur_mobilitet"
+          ],
+          "required_tags": [],
+          "source": [
+            "https://www.sporveien.no/globalassets/kunst-pa-t-banen/kunst-pa-t-banen.pdf"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sporveien dokumenterer Tunnel of Light som et samarbeid mellom Kristin Jarmund og Per Åge Lyså.",
+          "claim_id": "claim_nydalen_quiz_21",
+          "guidance_basis": [
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         }
       ]
@@ -1219,11 +1211,12 @@
       "set_id": "by_nydalen_set_4",
       "level": 4,
       "order": 4,
-      "xp": 80,
+      "xp": 25,
       "mode": "place_facts_architecture",
+      "phase": "middle",
       "questions": [
         {
-          "id": "nydalen_quiz_19",
+          "id": "nydalen_quiz_22",
           "quiz_id": "by_nydalen_set_4_q1",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1231,62 +1224,48 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hvilket selskap beskriver Oslo byleksikon som største eiendomsbesitter og -utvikler i Nydalen?",
+          "question": "Hvilken stor utdanningsinstitusjon etablerte seg i Nydalen i 2005?",
           "options": [
-            "Avantor AS",
-            "Narvesen",
-            "Oslo Sporveier"
+            "Handelshøyskolen BI",
+            "Arkitektur- og designhøgskolen i Oslo",
+            "Universitetet i Oslo"
           ],
-          "answer": "Avantor AS",
+          "answer": "Handelshøyskolen BI",
           "answerIndex": 0,
-          "dimension": "eiendomsutvikling",
-          "topic": "Avantor",
-          "knowledge": "Oslo byleksikon beskriver Avantor AS som største eiendomsbesitter og -utvikler i Nydalen.",
+          "knowledge": "Handelshøyskolen BI etablerte seg i Nydalen i 2005.",
           "trivia": [],
           "difficulty": 2,
           "question_type": "fact",
           "question_layer": "place_facts_architecture",
-          "year": 1990,
+          "year": 2005,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_gentrifisering_eiendom",
+          "emne_id": "em_by_transformasjon_ombruk",
           "related_emner": [],
-          "core_concepts": [
-            "Avantor",
-            "eiendomsutvikling",
-            "transformasjon"
-          ],
-          "concept_focus": [
-            "Avantor",
-            "eiendomsutvikling"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "avantor",
-            "eiendom",
-            "transformasjon"
+            "nydalen",
+            "transformasjon_ombruk"
           ],
           "required_tags": [],
           "source": [
             "https://oslobyleksikon.no/side/Nydalen"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Handelshøyskolen BI etablerte seg i Nydalen i 2005.",
+          "claim_id": "claim_nydalen_quiz_22",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
-          "id": "nydalen_quiz_20",
+          "id": "nydalen_quiz_23",
           "quiz_id": "by_nydalen_set_4_q2",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1294,62 +1273,48 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hva ble etablert i de gamle bygningene til Nydalens Compagnie?",
+          "question": "Hvilken større veiforbindelse gjennom Nydalen ble ferdigstilt i 2006?",
           "options": [
-            "Nydalen Park",
-            "Spikersuppa",
-            "Rodeløkkens Kolonihager"
+            "E18-tunnelen",
+            "Ring 3-forbindelsen",
+            "E6 over Manglerud"
           ],
-          "answer": "Nydalen Park",
-          "answerIndex": 0,
-          "dimension": "transformasjon",
-          "topic": "Nydalen Park",
-          "knowledge": "Oslo byleksikon oppgir at det i gamle bygninger etter Nydalens Compagnie ble opprettet en næringspark, Nydalen Park.",
+          "answer": "Ring 3-forbindelsen",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon knytter 2006 til den nye Ring 3-forbindelsen gjennom området.",
           "trivia": [],
-          "difficulty": 1,
+          "difficulty": 2,
           "question_type": "fact",
           "question_layer": "place_facts_architecture",
-          "year": 1990,
+          "year": 2006,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_transformasjon_ombruk",
+          "emne_id": "em_by_infrastruktur_mobilitet",
           "related_emner": [],
-          "core_concepts": [
-            "Nydalen Park",
-            "Nydalens Compagnie",
-            "ombruk"
-          ],
-          "concept_focus": [
-            "Nydalen Park",
-            "Nydalens Compagnie"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "nydalen_park",
-            "ombruk",
-            "industri"
+            "nydalen",
+            "infrastruktur_mobilitet"
           ],
           "required_tags": [],
           "source": [
             "https://oslobyleksikon.no/side/Nydalen"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Oslo byleksikon knytter 2006 til den nye Ring 3-forbindelsen gjennom området.",
+          "claim_id": "claim_nydalen_quiz_23",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
-          "id": "nydalen_quiz_21",
+          "id": "nydalen_quiz_24",
           "quiz_id": "by_nydalen_set_4_q3",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1357,63 +1322,48 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hvilken stor utdanningsinstitusjon ligger i Nydalen ifølge Oslo byleksikon og Lokalhistoriewiki?",
+          "question": "Når åpnet Park Vest i Nydalen?",
           "options": [
-            "Handelshøyskolen BI",
-            "Universitetet i Oslo Blindern",
-            "Kunsthøgskolen i Bergen"
+            "2005",
+            "2010",
+            "2017"
           ],
-          "answer": "Handelshøyskolen BI",
-          "answerIndex": 0,
-          "dimension": "institusjon",
-          "topic": "BI",
-          "knowledge": "Oslo byleksikon og Lokalhistoriewiki beskriver Handelshøyskolen BI som en sentral utdanningsinstitusjon i Nydalen.",
+          "answer": "2017",
+          "answerIndex": 2,
+          "knowledge": "Oslo byleksikon oppgir at Park Vest åpnet i 2017.",
           "trivia": [],
-          "difficulty": 1,
+          "difficulty": 2,
           "question_type": "fact",
           "question_layer": "place_facts_architecture",
-          "year": 2000,
+          "year": 2017,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_institusjoner_kulturformidling",
+          "emne_id": "em_by_transformasjon_ombruk",
           "related_emner": [],
-          "core_concepts": [
-            "Handelshøyskolen BI",
-            "utdanning",
-            "kunnskapsmiljø"
-          ],
-          "concept_focus": [
-            "Handelshøyskolen BI",
-            "utdanning"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "bi",
-            "utdanning",
-            "nydalen"
+            "nydalen",
+            "transformasjon_ombruk"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen",
-            "https://lokalhistoriewiki.no/Nydalen_%28Oslo%29"
+            "https://oslobyleksikon.no/side/Nydalen"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Oslo byleksikon oppgir at Park Vest åpnet i 2017.",
+          "claim_id": "claim_nydalen_quiz_24",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
-          "id": "nydalen_quiz_22",
+          "id": "nydalen_quiz_25",
           "quiz_id": "by_nydalen_set_4_q4",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1421,80 +1371,15 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hvilken videregående skole i Nydalen ble ferdig i 2010?",
+          "question": "Hvilket selskap beskriver Oslo byleksikon som den største eiendomsbesitteren og -utvikleren i Nydalen?",
           "options": [
-            "Nydalen videregående skole",
-            "Ullern videregående skole",
-            "Vålerenga skole"
+            "Avantor AS",
+            "OBOS",
+            "Entra"
           ],
-          "answer": "Nydalen videregående skole",
+          "answer": "Avantor AS",
           "answerIndex": 0,
-          "dimension": "institusjon",
-          "topic": "Nydalen vgs",
-          "knowledge": "Oslo byleksikon oppgir at Nydalen videregående skole var ferdig i 2010.",
-          "trivia": [],
-          "difficulty": 1,
-          "question_type": "fact",
-          "question_layer": "place_facts_architecture",
-          "year": 2010,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_institusjoner_kulturformidling",
-          "related_emner": [],
-          "core_concepts": [
-            "Nydalen videregående skole",
-            "2010",
-            "utdanning"
-          ],
-          "concept_focus": [
-            "Nydalen videregående skole",
-            "2010"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "nydalen_vgs",
-            "2010",
-            "skole"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://oslobyleksikon.no/side/Nydalen"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "nydalen_quiz_23",
-          "quiz_id": "by_nydalen_set_4_q5",
-          "categoryId": "by",
-          "placeId": "nydalen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "nydalen",
-          "question_scope": "place",
-          "question": "Hvilken sikkerhetsinstitusjon nevner Oslo byleksikon i Nydalen?",
-          "options": [
-            "Politiets sikkerhetstjeneste",
-            "Norges Bank",
-            "Riksarkivet"
-          ],
-          "answer": "Politiets sikkerhetstjeneste",
-          "answerIndex": 0,
-          "dimension": "institusjon",
-          "topic": "PST",
-          "knowledge": "Oslo byleksikon nevner Politiets sikkerhetstjeneste som en av institusjonene i Nydalen.",
+          "knowledge": "Oslo byleksikon beskriver Avantor AS som den største eiendomsbesitteren og -utvikleren i Nydalen.",
           "trivia": [],
           "difficulty": 2,
           "question_type": "fact",
@@ -1502,44 +1387,81 @@
           "year": null,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_institusjoner_kulturformidling",
+          "emne_id": "em_by_transformasjon_ombruk",
           "related_emner": [],
-          "core_concepts": [
-            "PST",
-            "institusjon",
-            "Nydalen"
-          ],
-          "concept_focus": [
-            "PST",
-            "institusjon"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "pst",
-            "institusjon",
-            "nydalen"
+            "nydalen",
+            "transformasjon_ombruk"
           ],
           "required_tags": [],
           "source": [
             "https://oslobyleksikon.no/side/Nydalen"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Oslo byleksikon beskriver Avantor AS som den største eiendomsbesitteren og -utvikleren i Nydalen.",
+          "claim_id": "claim_nydalen_quiz_25",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
-          "id": "nydalen_quiz_24",
+          "id": "nydalen_quiz_26",
+          "quiz_id": "by_nydalen_set_4_q5",
+          "categoryId": "by",
+          "placeId": "nydalen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "nydalen",
+          "question_scope": "place",
+          "question": "Hva la kommunedelplanen særlig vekt på langs Akerselva?",
+          "options": [
+            "Ny motorvei helt inntil elva",
+            "Åpen elvekorridor, offentlige grøntarealer og industriell identitet",
+            "Full tilbakeføring til fabrikkproduksjon"
+          ],
+          "answer": "Åpen elvekorridor, offentlige grøntarealer og industriell identitet",
+          "answerIndex": 1,
+          "knowledge": "Kommunens planhistorie framhever åpen elvekorridor, offentlige grøntarealer og bevaring av industriell identitet som sentrale prinsipper.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "context",
+          "question_layer": "place_facts_architecture",
+          "year": 1990,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "nydalen",
+            "transformasjon_ombruk"
+          ],
+          "required_tags": [],
+          "source": [
+            "https://magasin.oslo.kommune.no/byplan/nydalens-omforming"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kommunens planhistorie framhever åpen elvekorridor, offentlige grøntarealer og bevaring av industriell identitet som sentrale prinsipper.",
+          "claim_id": "claim_nydalen_quiz_26",
+          "guidance_basis": [
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "nydalen_quiz_27",
           "quiz_id": "by_nydalen_set_4_q6",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1547,58 +1469,94 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Når åpnet Park Vest i Nydalen ifølge Oslo byleksikon?",
+          "question": "Hva viser rehabiliteringen av teglbyggene fra 1986–88 om omformingen?",
           "options": [
-            "2017",
-            "2003",
-            "1947"
+            "At deler av industrimiljøet ble brukt videre i stedet for å bli fjernet",
+            "At all eldre bebyggelse ble revet før nybygging",
+            "At området ble fredet mot enhver ny bruk"
           ],
-          "answer": "2017",
+          "answer": "At deler av industrimiljøet ble brukt videre i stedet for å bli fjernet",
           "answerIndex": 0,
-          "dimension": "byrom",
-          "topic": "Park Vest",
-          "knowledge": "Oslo byleksikon oppgir at Park Vest åpnet i Nydalen i 2017.",
+          "knowledge": "Rehabiliteringen dokumenterer at omformingen også bygde på ombruk av eksisterende industribygg.",
           "trivia": [],
-          "difficulty": 1,
-          "question_type": "fact",
+          "difficulty": 2,
+          "question_type": "context",
           "question_layer": "place_facts_architecture",
-          "year": 2017,
+          "year": 1986,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_vegetasjon_parker_grontdrag",
+          "emne_id": "em_by_transformasjon_ombruk",
           "related_emner": [],
-          "core_concepts": [
-            "Park Vest",
-            "2017",
-            "grønt byrom"
-          ],
-          "concept_focus": [
-            "Park Vest",
-            "2017"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "park_vest",
-            "2017",
-            "byrom"
+            "nydalen",
+            "transformasjon_ombruk"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen"
+            "https://magasin.oslo.kommune.no/byplan/nydalens-omforming"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Rehabiliteringen dokumenterer at omformingen også bygde på ombruk av eksisterende industribygg.",
+          "claim_id": "claim_nydalen_quiz_27",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ],
+          "method_id": "met_for_etter"
+        },
+        {
+          "id": "nydalen_quiz_28",
+          "quiz_id": "by_nydalen_set_4_q7",
+          "categoryId": "by",
+          "placeId": "nydalen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "nydalen",
+          "question_scope": "place",
+          "question": "Hvilke funksjoner samler Vertikal Nydalen ifølge Snøhetta?",
+          "options": [
+            "Boliger, kontorer og servering",
+            "Sykehus, stadion og rådhus",
+            "Havn, lager og jernbaneverksted"
+          ],
+          "answer": "Boliger, kontorer og servering",
+          "answerIndex": 0,
+          "knowledge": "Snøhetta beskriver Vertikal Nydalen som et blandet bygg med boliger, kontorer og servering.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 2024,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "nydalen",
+            "transformasjon_ombruk"
+          ],
+          "required_tags": [],
+          "source": [
+            "https://www.snohetta.com/projects/vertikal-nydalen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Snøhetta beskriver Vertikal Nydalen som et blandet bygg med boliger, kontorer og servering.",
+          "claim_id": "claim_nydalen_quiz_28",
+          "guidance_basis": [
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         }
       ]
@@ -1607,11 +1565,12 @@
       "set_id": "by_nydalen_set_5",
       "level": 5,
       "order": 5,
-      "xp": 90,
+      "xp": 30,
       "mode": "place_concrete_advanced",
+      "phase": "final",
       "questions": [
         {
-          "id": "nydalen_quiz_25",
+          "id": "nydalen_quiz_29",
           "quiz_id": "by_nydalen_set_5_q1",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1619,62 +1578,48 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hva markerte slutten på industrihistorien i Nydalen ifølge Oslo byleksikon?",
+          "question": "Hvem prosjekterte Vertikal Nydalen?",
           "options": [
-            "At trådstiftproduksjonen ble flyttet til Sverige",
-            "At Holmenkollbanen åpnet i 1898",
-            "At Bankplassen fikk beplantning"
+            "Snøhetta",
+            "Kristin Jarmund Arkitekter",
+            "Lund Hagem"
           ],
-          "answer": "At trådstiftproduksjonen ble flyttet til Sverige",
+          "answer": "Snøhetta",
           "answerIndex": 0,
-          "dimension": "transformasjon",
-          "topic": "slutten på industrien",
-          "knowledge": "Oslo byleksikon skriver at flyttingen av trådstiftproduksjonen til Sverige markerte slutten på industrihistorien i Nydalen.",
+          "knowledge": "Snøhetta er arkitekt for Vertikal Nydalen.",
           "trivia": [],
-          "difficulty": 2,
+          "difficulty": 3,
           "question_type": "fact",
           "question_layer": "place_concrete_advanced",
-          "year": null,
+          "year": 2024,
           "epoke_id": null,
           "epoke_domain": "by",
           "emne_id": "em_by_transformasjon_ombruk",
           "related_emner": [],
-          "core_concepts": [
-            "trådstiftproduksjon",
-            "Sverige",
-            "industrihistorie"
-          ],
-          "concept_focus": [
-            "trådstiftproduksjon",
-            "Sverige"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "trådstift",
-            "sverige",
-            "industri"
+            "nydalen",
+            "transformasjon_ombruk"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen"
+            "https://www.snohetta.com/projects/vertikal-nydalen"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Snøhetta er arkitekt for Vertikal Nydalen.",
+          "claim_id": "claim_nydalen_quiz_29",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
-          "id": "nydalen_quiz_26",
+          "id": "nydalen_quiz_30",
           "quiz_id": "by_nydalen_set_5_q2",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1682,62 +1627,48 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hvilket bygg fra 2023 beskriver Oslo byleksikon ved Gullhaug torg?",
+          "question": "Hva kjennetegner uterommet rundt Vertikal Nydalen i Snøhettas prosjektbeskrivelse?",
           "options": [
-            "Vertikal Nydalen",
-            "Conditorigården",
-            "Botsfengselet"
+            "Et offentlig og bilfritt torgmiljø",
+            "En lukket industrikai",
+            "Et privat parkeringsanlegg uten fotgjengere"
           ],
-          "answer": "Vertikal Nydalen",
+          "answer": "Et offentlig og bilfritt torgmiljø",
           "answerIndex": 0,
-          "dimension": "arkitektur",
-          "topic": "Vertikal Nydalen",
-          "knowledge": "Oslo byleksikon omtaler Vertikal Nydalen, tegnet av Snøhetta, oppført i 2023 ved Gullhaug torg.",
+          "knowledge": "Snøhetta beskriver prosjektet som del av et offentlig, bilfritt byrom rundt bygget.",
           "trivia": [],
-          "difficulty": 1,
-          "question_type": "fact",
+          "difficulty": 3,
+          "question_type": "observation",
           "question_layer": "place_concrete_advanced",
-          "year": 2023,
+          "year": 2024,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_bygningstyper_og_typologier",
+          "emne_id": "em_by_transformasjon_ombruk",
           "related_emner": [],
-          "core_concepts": [
-            "Vertikal Nydalen",
-            "Snøhetta",
-            "Gullhaug torg"
-          ],
-          "concept_focus": [
-            "Vertikal Nydalen",
-            "Snøhetta"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "vertikal_nydalen",
-            "snøhetta",
-            "2023"
+            "nydalen",
+            "transformasjon_ombruk"
           ],
           "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Nydalen"
+            "https://www.snohetta.com/projects/vertikal-nydalen"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
+          "claim_basis": "Snøhetta beskriver prosjektet som del av et offentlig, bilfritt byrom rundt bygget.",
+          "claim_id": "claim_nydalen_quiz_30",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         },
         {
-          "id": "nydalen_quiz_27",
+          "id": "nydalen_quiz_31",
           "quiz_id": "by_nydalen_set_5_q3",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1745,63 +1676,49 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hvilken kontrast er sentral i repoets stedsprofil for Nydalen?",
+          "question": "Hva kan du dokumentere direkte ved å gå langs Akerselva gjennom Nydalen?",
           "options": [
-            "Industrihistorie mot kunnskaps- og næringsmiljø",
-            "Villaområde mot hageby",
-            "Skøytebane mot bankplass"
+            "At alle beboere har samme inntekt",
+            "At eldre industribygg, elverom og nyere bebyggelse ligger tett på hverandre",
+            "At planvedtak automatisk økte boligprisene"
           ],
-          "answer": "Industrihistorie mot kunnskaps- og næringsmiljø",
-          "answerIndex": 0,
-          "dimension": "byanalyse",
-          "topic": "transformasjonskontrast",
-          "knowledge": "Repoets stedsprofil sier at Nydalen står mellom industrihistorie og kunnskapsøkonomi, lokal forankring og mer generisk samtidsbyutvikling.",
+          "answer": "At eldre industribygg, elverom og nyere bebyggelse ligger tett på hverandre",
+          "answerIndex": 1,
+          "knowledge": "I felt kan du registrere materialer, bygg, elveløp og overgangene mellom eldre og nyere bylag.",
           "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
+          "difficulty": 3,
+          "question_type": "observation",
           "question_layer": "place_concrete_advanced",
           "year": null,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_transformasjon_ombruk",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "related_emner": [],
-          "core_concepts": [
-            "industrihistorie",
-            "kunnskapsøkonomi",
-            "næring"
-          ],
-          "concept_focus": [
-            "industrihistorie",
-            "kunnskapsøkonomi"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "industri",
-            "kunnskap",
-            "næring"
+            "nydalen",
+            "historiske_lag_i_hverdagsrom"
           ],
           "required_tags": [],
           "source": [
-            "data/places/by/oslo/places_by.json",
-            "https://oslobyleksikon.no/side/Nydalen"
+            "https://magasin.oslo.kommune.no/byplan/nydalens-omforming"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "mixed_external_and_place_profile_claim",
+          "source_origin": "external",
+          "claim_basis": "I felt kan du registrere materialer, bygg, elveløp og overgangene mellom eldre og nyere bylag.",
+          "claim_id": "claim_nydalen_quiz_31",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ],
+          "method_id": "met_feltobservasjon"
         },
         {
-          "id": "nydalen_quiz_28",
+          "id": "nydalen_quiz_32",
           "quiz_id": "by_nydalen_set_5_q4",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1809,62 +1726,49 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hvilken sosial-geografisk problemstilling følger av Nydalens transformasjon?",
+          "question": "Hva kan ikke fastslås sikkert bare ved å se på dagens gatebilde i Nydalen?",
           "options": [
-            "Ny infrastruktur og næring kan endre prisnivå, publikumsprofil og symbolsk verdi",
-            "Alle gamle industriområder blir automatisk uendret",
-            "Transformasjon gjør alltid områder billigere"
+            "At Akerselva går gjennom området",
+            "At det finnes eldre teglbygg",
+            "Hvilke sosiale og økonomiske virkninger omformingen har hatt"
           ],
-          "answer": "Ny infrastruktur og næring kan endre prisnivå, publikumsprofil og symbolsk verdi",
-          "answerIndex": 0,
-          "dimension": "sosial_geografi",
-          "topic": "eiendom og status",
-          "knowledge": "Repoets stedsprofil framhever at transformasjon kan endre prisnivå, publikumsprofil og symbolsk verdi.",
+          "answer": "Hvilke sosiale og økonomiske virkninger omformingen har hatt",
+          "answerIndex": 2,
+          "knowledge": "Synlige spor kan dokumentere fysisk form, men sosial sammensetning, prisutvikling og økonomiske virkninger krever egne data.",
           "trivia": [],
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "analysis",
           "question_layer": "place_concrete_advanced",
           "year": null,
           "epoke_id": null,
           "epoke_domain": "by",
-          "emne_id": "em_by_gentrifisering_eiendom",
+          "emne_id": "em_by_transformasjon_ombruk",
           "related_emner": [],
-          "core_concepts": [
-            "prisnivå",
-            "publikumsprofil",
-            "symbolsk verdi"
-          ],
-          "concept_focus": [
-            "prisnivå",
-            "publikumsprofil"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "prisnivå",
-            "publikum",
-            "status"
+            "nydalen",
+            "transformasjon_ombruk"
           ],
           "required_tags": [],
           "source": [
-            "data/places/by/oslo/places_by.json"
+            "https://magasin.oslo.kommune.no/byplan/nydalens-omforming"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "mixed_external_and_place_profile_claim",
+          "source_origin": "external",
+          "claim_basis": "Synlige spor kan dokumentere fysisk form, men sosial sammensetning, prisutvikling og økonomiske virkninger krever egne data.",
+          "claim_id": "claim_nydalen_quiz_32",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ],
+          "method_id": "met_feltobservasjon"
         },
         {
-          "id": "nydalen_quiz_29",
+          "id": "nydalen_quiz_33",
           "quiz_id": "by_nydalen_set_5_q5",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1872,62 +1776,49 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hvilken kontrast skiller Nydalen fra Botsparken i repoets sammenligningslogikk?",
+          "question": "Hva betyr ombruk i Nydalen når begrepet brukes om eldre industribygg?",
           "options": [
-            "Stor transformasjonsbydel langs elva mot liten institusjonsnær park",
-            "To like skøytebaner",
-            "To like villaområder"
+            "At eksisterende bygg får nye funksjoner i stedet for å bli erstattet",
+            "At alle bygg kopieres som kulisser",
+            "At industri alltid starter på nytt"
           ],
-          "answer": "Stor transformasjonsbydel langs elva mot liten institusjonsnær park",
+          "answer": "At eksisterende bygg får nye funksjoner i stedet for å bli erstattet",
           "answerIndex": 0,
-          "dimension": "kontrast",
-          "topic": "Nydalen og Botsparken",
-          "knowledge": "Nydalen leses som ombygd industri- og kunnskapsområde langs Akerselva, mens Botsparken leses som liten grønn lomme ved en institusjon.",
+          "knowledge": "Ombruk beskriver videre bruk av eksisterende bygningsstruktur med nye funksjoner, slik kommunens rehabiliteringshistorie viser.",
           "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
+          "difficulty": 3,
+          "question_type": "concept",
           "question_layer": "place_concrete_advanced",
           "year": null,
           "epoke_id": null,
           "epoke_domain": "by",
           "emne_id": "em_by_transformasjon_ombruk",
           "related_emner": [],
-          "core_concepts": [
-            "Nydalen",
-            "Botsparken",
-            "kontrast"
-          ],
-          "concept_focus": [
-            "Nydalen",
-            "Botsparken"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "botsparken",
-            "kontrast",
-            "elv"
+            "nydalen",
+            "transformasjon_ombruk"
           ],
           "required_tags": [],
           "source": [
-            "data/places/by/oslo/places_by.json"
+            "https://magasin.oslo.kommune.no/byplan/nydalens-omforming"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "mixed_external_and_place_profile_claim",
+          "source_origin": "external",
+          "claim_basis": "Ombruk beskriver videre bruk av eksisterende bygningsstruktur med nye funksjoner, slik kommunens rehabiliteringshistorie viser.",
+          "claim_id": "claim_nydalen_quiz_33",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ],
+          "method_id": "met_feltobservasjon"
         },
         {
-          "id": "nydalen_quiz_30",
+          "id": "nydalen_quiz_34",
           "quiz_id": "by_nydalen_set_5_q6",
           "categoryId": "by",
           "placeId": "nydalen",
@@ -1935,61 +1826,94 @@
           "natureId": "",
           "targetId": "nydalen",
           "question_scope": "place",
-          "question": "Hvilken samlet analyse passer best for Nydalen?",
+          "question": "Hva dokumenterer T-baneåpningen i 2003 først og fremst?",
           "options": [
-            "Et tidligere industriområde der elv, produksjon, eiendom, utdanning og ny infrastruktur må leses sammen",
-            "En liten skøytebane der vinterbruk forklarer alt",
-            "Et rent villaområde der Holmenkollbanen forklarer alt"
+            "At alle pendlere sluttet å bruke bil",
+            "En ny fysisk kollektivforbindelse til området",
+            "At boligprisene steg med en bestemt prosent"
           ],
-          "answer": "Et tidligere industriområde der elv, produksjon, eiendom, utdanning og ny infrastruktur må leses sammen",
-          "answerIndex": 0,
-          "dimension": "syntese",
-          "topic": "samlet stedlesning",
-          "knowledge": "Nydalen bør leses som et tidligere industriområde der Akerselva, fabrikker, eiendomsutvikling, BI, T-bane, kontorer, boliger og ny byidentitet virker sammen.",
+          "answer": "En ny fysisk kollektivforbindelse til området",
+          "answerIndex": 1,
+          "knowledge": "Åpningen dokumenterer ny infrastruktur og tilgjengelighet; konkrete atferds- eller priseffekter krever andre data.",
           "trivia": [],
           "difficulty": 3,
-          "question_type": "fact",
+          "question_type": "analysis",
+          "question_layer": "place_concrete_advanced",
+          "year": 2003,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "nydalen",
+            "infrastruktur_mobilitet"
+          ],
+          "required_tags": [],
+          "source": [
+            "https://oslobyleksikon.no/side/Nydalen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Åpningen dokumenterer ny infrastruktur og tilgjengelighet; konkrete atferds- eller priseffekter krever andre data.",
+          "claim_id": "claim_nydalen_quiz_34",
+          "guidance_basis": [
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+            "data/fag/by/pensum_by.json",
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ],
+          "method_id": "met_policy_lesning"
+        },
+        {
+          "id": "nydalen_quiz_35",
+          "quiz_id": "by_nydalen_set_5_q7",
+          "categoryId": "by",
+          "placeId": "nydalen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "nydalen",
+          "question_scope": "place",
+          "question": "Hvilken oppsummering beskriver Nydalens utvikling best?",
+          "options": [
+            "Fra vannkraftbasert industri via planlagt ombruk og ny infrastruktur til et blandet byområde",
+            "Fra kongelig park direkte til havneområde",
+            "Fra middelalderfestning til flyplass"
+          ],
+          "answer": "Fra vannkraftbasert industri via planlagt ombruk og ny infrastruktur til et blandet byområde",
+          "answerIndex": 0,
+          "knowledge": "Kildene viser en lang utvikling fra elvebasert industri til planlagt transformasjon, kollektivinfrastruktur og blandede byfunksjoner.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "analysis",
           "question_layer": "place_concrete_advanced",
           "year": null,
           "epoke_id": null,
           "epoke_domain": "by",
           "emne_id": "em_by_transformasjon_ombruk",
           "related_emner": [],
-          "core_concepts": [
-            "Akerselva",
-            "industri",
-            "utdanning",
-            "eiendom"
-          ],
-          "concept_focus": [
-            "Akerselva",
-            "industri"
-          ],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "akerselva",
-            "eiendom",
-            "utdanning"
+            "nydalen",
+            "transformasjon_ombruk"
           ],
           "required_tags": [],
           "source": [
-            "data/places/by/oslo/places_by.json",
-            "https://oslobyleksikon.no/side/Nydalen",
-            "https://lokalhistoriewiki.no/Nydalen_%28Oslo%29"
+            "https://magasin.oslo.kommune.no/byplan/nydalens-omforming"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "mixed_external_and_place_profile_claim",
+          "source_origin": "external",
+          "claim_basis": "Kildene viser en lang utvikling fra elvebasert industri til planlagt transformasjon, kollektivinfrastruktur og blandede byfunksjoner.",
+          "claim_id": "claim_nydalen_quiz_35",
           "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
             "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
+            "data/fag/by/emner_by.json",
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
           ]
         }
       ]

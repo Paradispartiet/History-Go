@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "by",
+  "targetId": "nydalen",
+  "generated_at": "2026-09-15",
+  "source_brief": "data/quiz/production_briefs/by/nydalen.json",
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Nydalen har fem selvstendige kildebårne læringsjobber: sted/tekstilhistorie, Spigerverket og industrisamfunnet, planlagt ombruk og kollektivinfrastruktur, dagens institusjoner/byrom samt feltbasert syntese av gamle og nye bylag."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_03_infrastruktur_og_bevegelse",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_transformasjon_ombruk",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_infrastruktur_mobilitet",
+      "em_by_industri_havn_logistikk"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_for_etter",
+      "met_policy_lesning"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/nydalen_sets_merged.json",
+      "data/quizcards/by/topp10_by_kort_batch4.json",
+      "data/quiz/manifest.json",
+      "data/places/by/oslo/places/nydalen.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/by/nydalen_sets_merged.json",
+      "set_count": 5,
+      "question_count": 30,
+      "finding": "Legacy 5×6-pakke og et separat Topp 10-QuizCard fantes. Pakken manglet canonical v3.4 source brief/context, hadde systematisk answerIndex=0 og flere interne/spekulative spørsmål."
+    },
+    "decisions": [
+      "Behold de kildebårne historiske hovedsporene, men materialiser hele aktive pakken på nytt som rich 5×7.",
+      "Fjern spørsmål om 'repoets stedsprofil', udokumenterte gentrifiseringsvirkninger, tilfeldig Botsparken-sammenligning og den vilkårlige 2000-dateringen.",
+      "Legg til fem nye, ikke-dupliserte spørsmål slik at hvert sett har sju spørsmål.",
+      "Gjenbruk eksisterende Nydalen QuizCard som overflate, men erstatt svake kortspørsmål med canonical kildebårne spørsmål."
+    ],
+    "knowledge_migration": "Legacy 5×6 brukes som redaksjonelt input. Alle 35 aktive spørsmål får claim_id mot reviewed source brief; Knowledge kan regenereres deterministisk fra den aktive pakken."
+  },
+  "source_inventory": [
+    {
+      "id": "nydalen",
+      "url": "https://oslobyleksikon.no/side/Nydalen",
+      "source_type": "external_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for navn, bydel, førindustrielt landskap, industri, Gjøvikbanen, T-bane, BI, Ring 3, Park Vest og dagens hovedfunksjoner."
+    },
+    {
+      "id": "compagnie",
+      "url": "https://oslobyleksikon.no/side/Nydalens_Compagnie",
+      "source_type": "external_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for etableringen i 1845, første spinneri i 1847, Adam Severin Hiorth og avslutningen av tekstilproduksjonen."
+    },
+    {
+      "id": "spiger",
+      "url": "https://oslobyleksikon.no/side/Christiania_Spigerverk",
+      "source_type": "external_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for etablering i 1853, Oluf Onsum, opprinnelig produksjon og jern-/stålindustriens utvikling."
+    },
+    {
+      "id": "kommune",
+      "url": "https://magasin.oslo.kommune.no/byplan/nydalens-omforming",
+      "source_type": "official_planning_history",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for rehabilitering 1986–88, planarbeid, kommunedelplan 1990, Nydalen Park og planprinsippene for elvekorridor og industriell identitet."
+    },
+    {
+      "id": "sporveien",
+      "url": "https://www.sporveien.no/globalassets/kunst-pa-t-banen/kunst-pa-t-banen.pdf",
+      "source_type": "official_transport_documentation",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Nydalen T-banestasjon, Kristin Jarmund og Tunnel of Light med Per Åge Lyså."
+    },
+    {
+      "id": "snohetta",
+      "url": "https://www.snohetta.com/projects/vertikal-nydalen",
+      "source_type": "first_party_architecture",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Vertikal Nydalen, Snøhetta, Avantor, funksjonsblanding, offentlig bilfritt torg og ferdigstillelse i 2024."
+    }
+  ],
+  "status": "materialized_from_reviewed_source_brief"
+}
