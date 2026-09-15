@@ -1,0 +1,1181 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "litteratur_biblioteksvanker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "litteratur",
+    "id": "biblioteksvanker",
+    "label": "Biblioteksvanker"
+  },
+  "title": "Biblioteksvanker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bruke biblioteket som delt hverdagssted, kunnskapsinfrastruktur og tilfeldig oppdagelsesrom uten å gjøre fortrolighet til særrett eller lånt bibliotekfaglig myndighet",
+    "description": "Biblioteksvanker-verdenen følger en livsposisjon der biblioteket er et faktisk oppholdssted, ikke bare en utlånstjeneste. Spilleren møter knappe sitteplasser, tilfeldig hyllefunn, lesepersonvern, soner og lyd, bibliotekfaglig hjelp, materialgrenser, reservasjonssystemer, programkvelder, digital tilgang, fotografering, gaver, åpningstider og personlige leseanbefalinger. Rollen gir ingen bibliotekar-, arkivar-, konservator-, katalog-, samlings-, forsknings- eller institusjonell myndighet, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "class_power",
+    "public_private_leakage",
+    "bureaucratic_power",
+    "invisible_work",
+    "care_vs_efficiency",
+    "local_knowledge_vs_system",
+    "status_anxiety"
+  ],
+  "social_environments": [
+    "lesesalen der bord, stikkontakter, ro og plass er knappe offentlige ressurser",
+    "hyllene der fysisk klassifikasjon og tilfeldighet skaper funn som katalogsøk ikke planla",
+    "utlånssonen der lesing og søkehistorikk kan bli synlig uten å bli offentlig samtalestoff",
+    "informasjonsskranken der profesjonell hjelp må avgrenses fra ubegrenset personlig research",
+    "reservasjonssystemet der upersonlige køregler fordeler populære titler mellom fremmede",
+    "programområdet der kulturarrangementer og daglig opphold konkurrerer om det samme huset",
+    "digitalsonen der internett, strøm, printer og datamaskiner gjør biblioteket til praktisk infrastruktur",
+    "stengningen der åpningstid og fysisk oppholdssted har svært ulik verdi avhengig av brukernes alternativer"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "bibliotekaren",
+      "social_function": "hjelper med søk, samling og bruk av bibliotekets tjenester innenfor profesjonelle grenser",
+      "class_position": "offentlig kunnskapsarbeider med avgrenset bibliotekfaglig mandat",
+      "status": "høy i spørsmål om katalog, tjenester og lokale rutiner, ikke personlig autoritet over hva brukeren bør mene",
+      "power_over_player": "kan åpne søkestrategier, forklare systemer og avgrense hva personalet kan gjøre",
+      "wants": "at brukere finner fram og at fellesressursene fungerer for mange",
+      "conceals": "hvor mye prioritering og usynlig vedlikehold som ligger bak et tilsynelatende enkelt møte",
+      "speech_style": "presis, hjelpsom og opptatt av å avgrense spørsmålet",
+      "teaches_player": "at profesjonell hjelp fungerer best når brukeren også bærer sin del av arbeidet"
+    },
+    {
+      "id": "den_andre_faste_brukeren",
+      "social_function": "gjør knappe plasser, rutiner og uformelle territorier synlige",
+      "class_position": "jevnlig bruker uten formell særrett",
+      "status": "situert status gjennom gjenkjennelse og vane",
+      "power_over_player": "kan gjøre rommet inkluderende eller gjøre faste vaner til uformell eiendomsrett",
+      "wants": "forutsigbar ro og tilgang til de samme ressursene som andre",
+      "conceals": "hvor lett egen rutine oppleves som mer legitim enn andres bruk",
+      "speech_style": "kort, stedskjent og oppmerksom på små endringer",
+      "teaches_player": "at regelmessig bruk ikke skaper eierskap"
+    },
+    {
+      "id": "forstegangsbrukeren",
+      "social_function": "gjør katalog, soner, kort og selvbetjening fremmede igjen",
+      "class_position": "ny bruker med lav institusjonskunnskap",
+      "status": "lav i lokale koder, men med samme grunnleggende adgang",
+      "power_over_player": "avslører om spillerens erfaring brukes til orientering eller portvakt",
+      "wants": "å finne fram uten å føle at en enkel feil avslører at hen ikke hører til",
+      "conceals": "hvor kostbart det kan føles å stille spørsmål alle andre ser ut til å kjenne svaret på",
+      "speech_style": "praktisk, konkret og spørsmålsdrevet",
+      "teaches_player": "at offentlige tjenester må være lesbare også for dem som ikke kjenner systemet"
+    },
+    {
+      "id": "programverten",
+      "social_function": "holder arrangement, publikum og rombruk sammen under programkvelder",
+      "class_position": "arrangementsansvarlig med lokalt mandat for programmet",
+      "status": "høy i praktiske spørsmål om kveldens gjennomføring",
+      "power_over_player": "kan reservere areal og forklare hvorfor ordinær bruk midlertidig endres",
+      "wants": "at arrangementet fungerer uten å gjøre resten av biblioteket ubrukelig",
+      "conceals": "hvor mange kompromisser som ligger bak plassering og kapasitet",
+      "speech_style": "vennlig, tidsbevisst og praktisk",
+      "teaches_player": "at kulturprogram og hverdagsinfrastruktur må forhandles i samme bygg"
+    },
+    {
+      "id": "den_digitale_brukeren",
+      "social_function": "synliggjør bibliotekets rolle som internett-, strøm-, printer- og arbeidsinfrastruktur",
+      "class_position": "bruker som først og fremst trenger praktiske digitale tjenester",
+      "status": "ofte lav symbolsk status i et rom som forbindes med bøker og studier",
+      "power_over_player": "utfordrer spillerens forestilling om hvem biblioteket primært er til for",
+      "wants": "stabil tilgang til utstyr og nett uten å måtte legitimere behovet sosialt",
+      "conceals": "hvor mye små tekniske barrierer kan stenge andre samfunnstjenester ute",
+      "speech_style": "oppgaveorientert og konkret",
+      "teaches_player": "at bibliotektilgang også handler om materielle og digitale ressurser"
+    },
+    {
+      "id": "lesevennen",
+      "social_function": "ber om anbefalinger og gjør skillet mellom personlig erfaring og profesjonell seleksjon tydelig",
+      "class_position": "jevnaldrende leser med annen smak og bakgrunn",
+      "status": "relasjonell, ikke institusjonell",
+      "power_over_player": "kan belønne sikre smaksdommer eller invitere til mer pluralistisk anbefaling",
+      "wants": "å finne noe relevant uten å måtte adoptere spillerens smakshierarki",
+      "conceals": "hvor annerledes samme bok kan fungere med en annen leserhistorie",
+      "speech_style": "nysgjerrig, sammenlignende og personlig",
+      "teaches_player": "at anbefaling blir bedre når den begynner med mottakerens behov"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "shared_space_vs_private_claim",
+      "meaning": "delt bibliotekplass mot privat plasskrav",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "serendipity_vs_system_overclaim",
+      "meaning": "tilfeldig funn mot romantisering av ett søkesystem",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reading_visibility_vs_privacy",
+      "meaning": "synlig lesing mot privatliv",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "quiet_norm_vs_plural_use",
+      "meaning": "stillhetsnorm mot bibliotekets mange bruksmåter",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "staff_help_vs_service_entitlement",
+      "meaning": "bibliotekfaglig hjelp mot personlig tjenestekrav",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "material_observation_vs_conservation",
+      "meaning": "materialobservasjon mot uoppnevnt konservering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reservation_queue_vs_personal_bypass",
+      "meaning": "reservasjonskø mot privat omgåelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "programming_vs_everyday_access",
+      "meaning": "kulturprogram mot hverdagsadgang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "digital_access_vs_deservingness",
+      "meaning": "digital infrastruktur mot verdighetsrangering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "room_documentation_vs_patron_privacy",
+      "meaning": "romdokumentasjon mot brukerpersonvern",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "donation_vs_collection_authority",
+      "meaning": "gavevilje mot samlingsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "opening_hours_vs_unequal_alternatives",
+      "meaning": "åpningstid mot ulik tilgang til alternativer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reader_recommendation_vs_professional_selection",
+      "meaning": "leseranbefaling mot profesjonell seleksjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "library_habit_vs_professional_authority",
+      "meaning": "biblioteksvanking mot bibliotekfaglig autoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: en fast vane gjør ikke plassen privat.",
+        "thread_ids": [
+          "shared_space_vs_private_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#plassen_med_stikkontakten"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: en fast vane gjør ikke plassen privat.",
+        "thread_ids": [
+          "shared_space_vs_private_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#plassen_med_stikkontakten"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: en fast vane gjør ikke plassen privat.",
+        "thread_ids": [
+          "shared_space_vs_private_claim",
+          "donation_vs_collection_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#plassen_med_stikkontakten"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: en fast vane gjør ikke plassen privat.",
+        "thread_ids": [
+          "shared_space_vs_private_claim",
+          "material_observation_vs_conservation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#plassen_med_stikkontakten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 2, morning: tilfeldige funn er en annen form for orientering.",
+        "thread_ids": [
+          "serendipity_vs_system_overclaim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#boken_du_finner_ved_en_feil"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: tilfeldige funn er en annen form for orientering.",
+        "thread_ids": [
+          "serendipity_vs_system_overclaim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#boken_du_finner_ved_en_feil"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: tilfeldige funn er en annen form for orientering.",
+        "thread_ids": [
+          "serendipity_vs_system_overclaim",
+          "opening_hours_vs_unequal_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#boken_du_finner_ved_en_feil"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 2, evening: tilfeldige funn er en annen form for orientering.",
+        "thread_ids": [
+          "serendipity_vs_system_overclaim",
+          "reservation_queue_vs_personal_bypass"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#boken_du_finner_ved_en_feil"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: det du leser er også privat informasjon.",
+        "thread_ids": [
+          "reading_visibility_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#sokeloggen_ved_skranken"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: det du leser er også privat informasjon.",
+        "thread_ids": [
+          "reading_visibility_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#sokeloggen_ved_skranken"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: det du leser er også privat informasjon.",
+        "thread_ids": [
+          "reading_visibility_vs_privacy",
+          "reader_recommendation_vs_professional_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#sokeloggen_ved_skranken"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: det du leser er også privat informasjon.",
+        "thread_ids": [
+          "reading_visibility_vs_privacy",
+          "programming_vs_everyday_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#sokeloggen_ved_skranken"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 4, morning: biblioteket er flere rom samtidig.",
+        "thread_ids": [
+          "quiet_norm_vs_plural_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#stillheten_og_barnestemmen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 4, lunch: biblioteket er flere rom samtidig.",
+        "thread_ids": [
+          "quiet_norm_vs_plural_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#stillheten_og_barnestemmen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: biblioteket er flere rom samtidig.",
+        "thread_ids": [
+          "quiet_norm_vs_plural_use",
+          "library_habit_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#stillheten_og_barnestemmen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 4, evening: biblioteket er flere rom samtidig.",
+        "thread_ids": [
+          "quiet_norm_vs_plural_use",
+          "digital_access_vs_deservingness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#stillheten_og_barnestemmen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: hjelp er ikke personlig forskningsassistanse.",
+        "thread_ids": [
+          "staff_help_vs_service_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#sporsmalet_til_bibliotekaren"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 5, lunch: hjelp er ikke personlig forskningsassistanse.",
+        "thread_ids": [
+          "staff_help_vs_service_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#sporsmalet_til_bibliotekaren"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: hjelp er ikke personlig forskningsassistanse.",
+        "thread_ids": [
+          "staff_help_vs_service_entitlement",
+          "shared_space_vs_private_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#sporsmalet_til_bibliotekaren"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: hjelp er ikke personlig forskningsassistanse.",
+        "thread_ids": [
+          "staff_help_vs_service_entitlement",
+          "room_documentation_vs_patron_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#sporsmalet_til_bibliotekaren"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 6, morning: en bok i samlingen er ikke et arbeidsmateriale du kan forbedre.",
+        "thread_ids": [
+          "material_observation_vs_conservation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#notatene_i_den_gamle_boken"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: en bok i samlingen er ikke et arbeidsmateriale du kan forbedre.",
+        "thread_ids": [
+          "material_observation_vs_conservation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#notatene_i_den_gamle_boken"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: en bok i samlingen er ikke et arbeidsmateriale du kan forbedre.",
+        "thread_ids": [
+          "material_observation_vs_conservation",
+          "serendipity_vs_system_overclaim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#notatene_i_den_gamle_boken"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 6, evening: en bok i samlingen er ikke et arbeidsmateriale du kan forbedre.",
+        "thread_ids": [
+          "material_observation_vs_conservation",
+          "donation_vs_collection_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#notatene_i_den_gamle_boken"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: rettferdig kø er også sosial infrastruktur.",
+        "thread_ids": [
+          "reservation_queue_vs_personal_bypass"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#ventelisten_pa_den_populare_boken"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 7, lunch: rettferdig kø er også sosial infrastruktur.",
+        "thread_ids": [
+          "reservation_queue_vs_personal_bypass"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#ventelisten_pa_den_populare_boken"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: rettferdig kø er også sosial infrastruktur.",
+        "thread_ids": [
+          "reservation_queue_vs_personal_bypass",
+          "reading_visibility_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#ventelisten_pa_den_populare_boken"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: rettferdig kø er også sosial infrastruktur.",
+        "thread_ids": [
+          "reservation_queue_vs_personal_bypass",
+          "opening_hours_vs_unequal_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#ventelisten_pa_den_populare_boken"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 8, morning: programmering åpner noe og fortrenger noe annet.",
+        "thread_ids": [
+          "programming_vs_everyday_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#arrangementet_som_tar_over_rommet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 8, lunch: programmering åpner noe og fortrenger noe annet.",
+        "thread_ids": [
+          "programming_vs_everyday_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#arrangementet_som_tar_over_rommet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: programmering åpner noe og fortrenger noe annet.",
+        "thread_ids": [
+          "programming_vs_everyday_access",
+          "quiet_norm_vs_plural_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#arrangementet_som_tar_over_rommet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 8, evening: programmering åpner noe og fortrenger noe annet.",
+        "thread_ids": [
+          "programming_vs_everyday_access",
+          "reader_recommendation_vs_professional_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#arrangementet_som_tar_over_rommet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: biblioteket bærer mer enn bøker.",
+        "thread_ids": [
+          "digital_access_vs_deservingness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#gratis_internett_og_lading"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: biblioteket bærer mer enn bøker.",
+        "thread_ids": [
+          "digital_access_vs_deservingness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#gratis_internett_og_lading"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: biblioteket bærer mer enn bøker.",
+        "thread_ids": [
+          "digital_access_vs_deservingness",
+          "staff_help_vs_service_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#gratis_internett_og_lading"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: biblioteket bærer mer enn bøker.",
+        "thread_ids": [
+          "digital_access_vs_deservingness",
+          "library_habit_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#gratis_internett_og_lading"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 10, morning: et offentlig rom er ikke et anonymt motiv.",
+        "thread_ids": [
+          "room_documentation_vs_patron_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#bildet_av_den_fulle_lesesalen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: et offentlig rom er ikke et anonymt motiv.",
+        "thread_ids": [
+          "room_documentation_vs_patron_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#bildet_av_den_fulle_lesesalen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: et offentlig rom er ikke et anonymt motiv.",
+        "thread_ids": [
+          "room_documentation_vs_patron_privacy",
+          "material_observation_vs_conservation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#bildet_av_den_fulle_lesesalen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 10, evening: et offentlig rom er ikke et anonymt motiv.",
+        "thread_ids": [
+          "room_documentation_vs_patron_privacy",
+          "shared_space_vs_private_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#bildet_av_den_fulle_lesesalen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: å eie bøker gjør deg ikke til samlingsutvikler.",
+        "thread_ids": [
+          "donation_vs_collection_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#gaven_til_samlingen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 11, lunch: å eie bøker gjør deg ikke til samlingsutvikler.",
+        "thread_ids": [
+          "donation_vs_collection_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#gaven_til_samlingen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: å eie bøker gjør deg ikke til samlingsutvikler.",
+        "thread_ids": [
+          "donation_vs_collection_authority",
+          "reservation_queue_vs_personal_bypass"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#gaven_til_samlingen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: å eie bøker gjør deg ikke til samlingsutvikler.",
+        "thread_ids": [
+          "donation_vs_collection_authority",
+          "serendipity_vs_system_overclaim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#gaven_til_samlingen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 12, morning: for noen er åpningstid mer enn bekvemmelighet.",
+        "thread_ids": [
+          "opening_hours_vs_unequal_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#stengningen_og_den_siste_timen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: for noen er åpningstid mer enn bekvemmelighet.",
+        "thread_ids": [
+          "opening_hours_vs_unequal_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#stengningen_og_den_siste_timen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: for noen er åpningstid mer enn bekvemmelighet.",
+        "thread_ids": [
+          "opening_hours_vs_unequal_alternatives",
+          "programming_vs_everyday_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#stengningen_og_den_siste_timen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: for noen er åpningstid mer enn bekvemmelighet.",
+        "thread_ids": [
+          "opening_hours_vs_unequal_alternatives",
+          "reading_visibility_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#stengningen_og_den_siste_timen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: lesererfaring er ikke litterær autoritet.",
+        "thread_ids": [
+          "reader_recommendation_vs_professional_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#anbefalingen_som_blir_fasit"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 13, lunch: lesererfaring er ikke litterær autoritet.",
+        "thread_ids": [
+          "reader_recommendation_vs_professional_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#anbefalingen_som_blir_fasit"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: lesererfaring er ikke litterær autoritet.",
+        "thread_ids": [
+          "reader_recommendation_vs_professional_selection",
+          "digital_access_vs_deservingness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#anbefalingen_som_blir_fasit"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: lesererfaring er ikke litterær autoritet.",
+        "thread_ids": [
+          "reader_recommendation_vs_professional_selection",
+          "quiet_norm_vs_plural_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#anbefalingen_som_blir_fasit"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 14, morning: fortrolighet kan bli omsorg eller eierskap.",
+        "thread_ids": [
+          "library_habit_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#hva_slags_biblioteksvanker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: fortrolighet kan bli omsorg eller eierskap.",
+        "thread_ids": [
+          "library_habit_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#hva_slags_biblioteksvanker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: fortrolighet kan bli omsorg eller eierskap.",
+        "thread_ids": [
+          "library_habit_vs_professional_authority",
+          "room_documentation_vs_patron_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#hva_slags_biblioteksvanker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 14, evening: fortrolighet kan bli omsorg eller eierskap.",
+        "thread_ids": [
+          "library_habit_vs_professional_authority",
+          "staff_help_vs_service_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#hva_slags_biblioteksvanker"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "shared_space_vs_private_claim",
+      "relationship": "delt bibliotekplass mot privat plasskrav",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "5/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "serendipity_vs_system_overclaim",
+      "relationship": "tilfeldig funn mot romantisering av ett søkesystem",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "reading_visibility_vs_privacy",
+      "relationship": "synlig lesing mot privatliv",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "quiet_norm_vs_plural_use",
+      "relationship": "stillhetsnorm mot bibliotekets mange bruksmåter",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "staff_help_vs_service_entitlement",
+      "relationship": "bibliotekfaglig hjelp mot personlig tjenestekrav",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "material_observation_vs_conservation",
+      "relationship": "materialobservasjon mot uoppnevnt konservering",
+      "beat_refs": [
+        "1/evening",
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon"
+      ]
+    },
+    {
+      "id": "reservation_queue_vs_personal_bypass",
+      "relationship": "reservasjonskø mot privat omgåelse",
+      "beat_refs": [
+        "2/evening",
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon"
+      ]
+    },
+    {
+      "id": "programming_vs_everyday_access",
+      "relationship": "kulturprogram mot hverdagsadgang",
+      "beat_refs": [
+        "3/evening",
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "12/afternoon"
+      ]
+    },
+    {
+      "id": "digital_access_vs_deservingness",
+      "relationship": "digital infrastruktur mot verdighetsrangering",
+      "beat_refs": [
+        "4/evening",
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "room_documentation_vs_patron_privacy",
+      "relationship": "romdokumentasjon mot brukerpersonvern",
+      "beat_refs": [
+        "5/evening",
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "donation_vs_collection_authority",
+      "relationship": "gavevilje mot samlingsmyndighet",
+      "beat_refs": [
+        "1/afternoon",
+        "6/evening",
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "opening_hours_vs_unequal_alternatives",
+      "relationship": "åpningstid mot ulik tilgang til alternativer",
+      "beat_refs": [
+        "2/afternoon",
+        "7/evening",
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "reader_recommendation_vs_professional_selection",
+      "relationship": "leseranbefaling mot profesjonell seleksjon",
+      "beat_refs": [
+        "3/afternoon",
+        "8/evening",
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "library_habit_vs_professional_authority",
+      "relationship": "biblioteksvanking mot bibliotekfaglig autoritet",
+      "beat_refs": [
+        "4/afternoon",
+        "9/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "plassen_blir_delt",
+      "description": "Fast bruk blir mindre territoriell når du skiller vane fra særrett til bord, strøm og ro.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#plassen_med_stikkontakten",
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#stillheten_og_barnestemmen",
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#arrangementet_som_tar_over_rommet"
+      ]
+    },
+    {
+      "id": "lesingen_faar_personvern",
+      "description": "Utlån, skjermer, bilder og synlige titler behandles som informasjon som ikke automatisk blir sosialt tilgjengelig.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#sokeloggen_ved_skranken",
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#bildet_av_den_fulle_lesesalen"
+      ]
+    },
+    {
+      "id": "systemene_blir_forstaatt_uten_a_bli_fasit",
+      "description": "Hyllefunn, katalog, reservasjon og bibliotekfaglig hjelp brukes med tydeligere forståelse av hva hvert system faktisk gjør.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#boken_du_finner_ved_en_feil",
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#sporsmalet_til_bibliotekaren",
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#ventelisten_pa_den_populare_boken"
+      ]
+    },
+    {
+      "id": "biblioteket_blir_sett_som_infrastruktur",
+      "description": "Digital tilgang, åpningstid og programbruk blir forstått som fordelingsspørsmål, ikke bare som service til den enkelte leseren.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#arrangementet_som_tar_over_rommet",
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#gratis_internett_og_lading",
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#stengningen_og_den_siste_timen"
+      ]
+    },
+    {
+      "id": "fortrolighet_blir_skilt_fra_fagmyndighet",
+      "description": "Materialhåndtering, samlingsvalg og anbefalinger får tydeligere grenser mellom erfaren bruker og profesjonell rolle.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#notatene_i_den_gamle_boken",
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#gaven_til_samlingen",
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#anbefalingen_som_blir_fasit",
+        "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#hva_slags_biblioteksvanker"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "fastplassen_moter_programkvelden",
+      "setup_ref": "1/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "tilfeldigfunnet_moter_anbefalingen",
+      "setup_ref": "2/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "narrative",
+        "relationship"
+      ]
+    },
+    {
+      "id": "personvernet_moter_fotografiet",
+      "setup_ref": "3/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "hjelpen_moter_egen_research",
+      "setup_ref": "5/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "reservasjonen_moter_tilgangen",
+      "setup_ref": "7/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "economy"
+      ]
+    },
+    {
+      "id": "samlingsonsket_moter_rollegrensen",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#plassen_med_stikkontakten",
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#boken_du_finner_ved_en_feil",
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#sokeloggen_ved_skranken",
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#stillheten_og_barnestemmen",
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#sporsmalet_til_bibliotekaren",
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#notatene_i_den_gamle_boken",
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#ventelisten_pa_den_populare_boken",
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#arrangementet_som_tar_over_rommet",
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#gratis_internett_og_lading",
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#bildet_av_den_fulle_lesesalen",
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#gaven_til_samlingen",
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#stengningen_og_den_siste_timen",
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#anbefalingen_som_blir_fasit",
+      "data/Civication/narratives/leisure/litteratur_biblioteksvanker.json#hva_slags_biblioteksvanker"
+    ]
+  }
+}
