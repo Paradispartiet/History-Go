@@ -7,6 +7,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P = {
   canon: 'data/fag/politikk/sosiologi_antropologi/advanced_theory_reading_canon_v1.json',
   contract: 'data/fag/politikk/sosiologi_antropologi/advanced_theory_fulltext_refresh_v1.json',
+  evidence: 'data/fag/politikk/sosiologi_antropologi/advanced_theory_source_evidence_v1.json',
   production: 'data/fag/politikk/sosiologi_antropologi/production_registry_v1.json',
   outputRoot: 'data/fagverk/politikk/sosiologi_antropologi/advanced_theory',
   report: 'reports/fagverk/sosiologi-antropologi-advanced-theory-fulltext-refresh-v1-audit.json',
@@ -22,6 +23,54 @@ const uniq = (xs) => new Set(xs).size === xs.length;
 const chapterIdFromPath = (file) => path.basename(file, '.json');
 const claimId = (unitId) => `advclaim-${unitId}`;
 const questionId = (unitId) => `advq-${unitId}`;
+const evidenceKey = (workId, unitId) => `${workId}:${unitId}`;
+
+export function evaluateSourceEvidence(canon, evidence) {
+  const canonicalRows = (canon?.works ?? []).flatMap((work) =>
+    (work.theory_units ?? []).map((unit) => ({ work_id: work.id, theory_unit_id: unit.id }))
+  );
+  const canonicalKeys = canonicalRows.map((row) => evidenceKey(row.work_id, row.theory_unit_id));
+  const rows = Array.isArray(evidence?.evidence_units) ? evidence.evidence_units : [];
+  const rowKeys = rows.map((row) => evidenceKey(row.work_id, row.theory_unit_id));
+
+  if (canonicalKeys.length !== 60) throw new Error(`Advanced theory canon must contain 60 theory units, got ${canonicalKeys.length}`);
+  if (rows.length !== canonicalKeys.length) throw new Error(`Advanced theory source evidence must cover all ${canonicalKeys.length} theory units`);
+  if (!uniq(rowKeys)) throw new Error('Duplicate advanced theory source evidence row');
+  if ([...rowKeys].sort().join('\n') !== [...canonicalKeys].sort().join('\n')) {
+    throw new Error('Advanced theory source evidence does not match canonical theory-unit set');
+  }
+  if (!rows.every((row) => ['mapping_supported', 'fulltext_verified'].includes(row.verification_status))) {
+    throw new Error('Unsupported advanced theory source verification status');
+  }
+  if (!rows.every((row) => row.locator && row.evidence_url?.startsWith('https://') && row.evidence_kind)) {
+    throw new Error('Advanced theory source evidence requires locator, https URL and evidence kind');
+  }
+
+  const fulltext = rows.filter((row) => row.verification_status === 'fulltext_verified');
+  if (!fulltext.every((row) => row.evidence_kind.includes('full') || row.evidence_kind.includes('inspectable_text'))) {
+    throw new Error('Fulltext-verified advanced theory evidence must identify inspectable full text');
+  }
+
+  const runtimeReleasable = fulltext.length === canonicalKeys.length ? canonicalKeys.length : 0;
+  const counts = {
+    mapping_supported: rows.length,
+    fulltext_verified: fulltext.length,
+    runtime_releasable: runtimeReleasable,
+  };
+  const expectedStatus = fulltext.length === canonicalKeys.length ? 'source_verification_complete' : 'source_verification_in_progress';
+  if (evidence?.status !== expectedStatus) throw new Error(`Advanced theory source evidence status mismatch: ${evidence?.status}`);
+  if (evidence?.counts?.mapping_supported !== counts.mapping_supported ||
+      evidence?.counts?.fulltext_verified !== counts.fulltext_verified ||
+      evidence?.counts?.runtime_releasable !== counts.runtime_releasable) {
+    throw new Error('Advanced theory source evidence counts are not derived from evidence rows');
+  }
+
+  return {
+    counts,
+    runtime_release_gate_open: runtimeReleasable === canonicalKeys.length,
+    rowsByUnitKey: new Map(rows.map((row) => [evidenceKey(row.work_id, row.theory_unit_id), row])),
+  };
+}
 
 export function buildOverlays(canon, contract) {
   const works = Array.isArray(canon?.works) ? canon.works : [];
@@ -74,6 +123,7 @@ export function buildOverlays(canon, contract) {
     status: 'advanced_theory_mapping_ready_fulltext_verification_pending',
     source_canon: contract.canon_file,
     refresh_contract: 'data/fag/politikk/sosiologi_antropologi/advanced_theory_fulltext_refresh_v1.json',
+    source_evidence: P.evidence,
     works: domainWorks,
     counts: {
       works: domainWorks.length,
@@ -82,7 +132,7 @@ export function buildOverlays(canon, contract) {
   }));
 }
 
-export function buildDomainPackages(overlays, production) {
+export function buildDomainPackages(overlays, production, evidenceGate = null) {
   const materializedByDomain = new Map((production?.materialized ?? []).map((row) => [row.domain_id, row]));
   return overlays.map((overlay) => {
     const owner = materializedByDomain.get(overlay.domain_id);
@@ -129,13 +179,23 @@ export function buildDomainPackages(overlays, production) {
       chapter_id: target.chapter_id,
       status: 'fulltext_verification_pending',
       sources,
-      claims: overlay.works.flatMap((work) => work.theory_units.map((unit) => ({
-        id: claimId(unit.id),
-        claim: `${unit.name}: ${unit.summary}`,
-        source_ids: [work.id],
-        classification: 'canonical_theory_summary_pending_fulltext_verification',
-        status: 'planned_requires_fulltext_verification',
-      }))),
+      claims: overlay.works.flatMap((work) => work.theory_units.map((unit) => {
+        const evidence = evidenceGate?.rowsByUnitKey.get(evidenceKey(work.id, unit.id)) ?? null;
+        if (evidenceGate && !evidence) throw new Error(`Missing source evidence for ${work.id}:${unit.id}`);
+        return {
+          id: claimId(unit.id),
+          claim: `${unit.name}: ${unit.summary}`,
+          source_ids: [work.id],
+          classification: 'canonical_theory_summary_pending_fulltext_verification',
+          status: 'planned_requires_fulltext_verification',
+          source_evidence: evidence ? {
+            verification_status: evidence.verification_status,
+            locator: evidence.locator,
+            evidence_url: evidence.evidence_url,
+            evidence_kind: evidence.evidence_kind,
+          } : null,
+        };
+      })),
     };
     const assessment = {
       schema: 'history_go_fagverk_assessment_v1',
@@ -180,9 +240,11 @@ export function buildDomainPackages(overlays, production) {
 export function materialize() {
   const canon = read(P.canon);
   const contract = read(P.contract);
+  const evidence = read(P.evidence);
   const production = read(P.production);
+  const evidenceGate = evaluateSourceEvidence(canon, evidence);
   const overlays = buildOverlays(canon, contract);
-  const packages = buildDomainPackages(overlays, production);
+  const packages = buildDomainPackages(overlays, production, evidenceGate);
   const packageByDomain = new Map(packages.map((pkg) => [pkg.domain_id, pkg]));
   const workCount = overlays.reduce((sum, overlay) => sum + overlay.counts.works, 0);
   const theoryCount = overlays.reduce((sum, overlay) => sum + overlay.counts.theory_units, 0);
@@ -216,13 +278,21 @@ export function materialize() {
   const allQuestions = packages.flatMap((pkg) => pkg.assessment.questions);
   const report = {
     schema: 'history_go_sosiologi_antropologi_advanced_theory_fulltext_refresh_audit_v1',
-    version: '1.0.0',
+    version: '1.1.0',
     updated_at: '2026-09-15',
     status: 'pass_phase3_runtime_pending',
     subject_id: contract.subject_id,
     canonical_subcategory_id: contract.canonical_subcategory_id,
     runtime_ready: false,
-    next_gate: 'fulltext_source_verification_and_phase4_runtime_release',
+    next_gate: evidenceGate.runtime_release_gate_open ? 'phase4_runtime_release' : 'fulltext_source_verification_and_phase4_runtime_release',
+    source_evidence: {
+      file: P.evidence,
+      status: evidence.status,
+      mapping_supported: evidenceGate.counts.mapping_supported,
+      fulltext_verified: evidenceGate.counts.fulltext_verified,
+      runtime_releasable: evidenceGate.counts.runtime_releasable,
+      runtime_release_gate_open: evidenceGate.runtime_release_gate_open,
+    },
     counts: {
       domains: overlays.length,
       works: workCount,
@@ -231,6 +301,9 @@ export function materialize() {
       paragraphs: paragraphCount,
       claims: claimCount,
       assessment_items: assessmentCount,
+      source_evidence_rows: evidenceGate.counts.mapping_supported,
+      fulltext_verified_units: evidenceGate.counts.fulltext_verified,
+      runtime_releasable_units: evidenceGate.counts.runtime_releasable,
     },
     gates: {
       existing_domains_only: contract.policy?.existing_domains_only === true,
@@ -241,6 +314,11 @@ export function materialize() {
       every_primary_domain_has_materialized_owner: packages.every((pkg) => typeof pkg.target.chapter === 'string' && pkg.target.chapter.endsWith('.json')),
       phase3_paragraph_claim_trace_complete: paragraphCount === theoryCount && claimCount === theoryCount && uniq(allClaims.map((claim) => claim.id)),
       phase3_assessment_trace_complete: assessmentCount === theoryCount && allQuestions.every((question) => allClaims.some((claim) => claim.id === question.claim_id)),
+      source_evidence_census_complete: evidenceGate.counts.mapping_supported === theoryCount,
+      source_evidence_claim_trace_complete: allClaims.every((claim) => claim.source_evidence?.locator && claim.source_evidence?.evidence_url?.startsWith('https://')),
+      runtime_release_gate_respects_60_of_60: evidenceGate.runtime_release_gate_open
+        ? evidenceGate.counts.fulltext_verified === theoryCount && evidenceGate.counts.runtime_releasable === theoryCount
+        : evidenceGate.counts.fulltext_verified < theoryCount && evidenceGate.counts.runtime_releasable === 0,
       runtime_claims_remain_pending: allClaims.every((claim) => claim.status === 'planned_requires_fulltext_verification'),
     },
   };
@@ -251,5 +329,5 @@ export function materialize() {
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const report = materialize();
-  console.log(`Advanced theory phase 3: ${report.counts.domains} domains, ${report.counts.works} works, ${report.counts.theory_units} theory units, runtime=${report.runtime_ready}.`);
+  console.log(`Advanced theory phase 3: ${report.counts.domains} domains, ${report.counts.works} works, ${report.counts.theory_units} theory units, fulltext=${report.counts.fulltext_verified_units}/${report.counts.theory_units}, runtime=${report.runtime_ready}.`);
 }
