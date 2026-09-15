@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PATHS = Object.freeze({
@@ -33,6 +34,10 @@ export function auditSubkulturQuizKnowledge() {
   const legacyAudit = readJson(PATHS.legacyAudit);
   const quizManifest = readJson(PATHS.quizManifest);
   const knowledgeManifest = readJson(PATHS.knowledgeManifest);
+  execFileSync(process.execPath, ['--experimental-strip-types', 'scripts/knowledge-canonical-data.mts', '--audit-only'], {
+    cwd: ROOT,
+    stdio: 'pipe'
+  });
   const knowledgeAudit = readJson(PATHS.knowledgeAudit);
   const fagManifest = readJson(PATHS.fagManifest);
   const inventory = readJson(PATHS.inventory);
