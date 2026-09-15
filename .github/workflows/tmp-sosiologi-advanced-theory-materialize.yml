@@ -1,0 +1,37 @@
+name: TEMP Sosiologi advanced theory materialize
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/tmp-sosiologi-advanced-theory-materialize.yml'
+      - 'data/fag/politikk/sosiologi_antropologi/advanced_theory_*.json'
+      - 'scripts/materialize-sosiologi-antropologi-advanced-theory-fulltext-refresh-v1.mjs'
+      - 'tests/sosiologi-antropologi-advanced-theory-*.test.mjs'
+
+permissions:
+  contents: read
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Materialize advanced theory overlays
+        run: node scripts/materialize-sosiologi-antropologi-advanced-theory-fulltext-refresh-v1.mjs
+      - name: Verify advanced theory tests
+        run: |
+          node --test tests/sosiologi-antropologi-advanced-theory-reading-canon-v1.test.mjs
+          node --test tests/sosiologi-antropologi-advanced-theory-fulltext-refresh-v1.test.mjs
+          node --test tests/sosiologi-antropologi-advanced-theory-refresh-mapping-v1.test.mjs
+          node --test tests/sosiologi-antropologi-advanced-theory-materializer-v1.test.mjs
+      - name: Upload generated advanced theory outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: sosiologi-advanced-theory-generated
+          path: |
+            data/fagverk/politikk/sosiologi_antropologi/advanced_theory/*.json
+            reports/fagverk/sosiologi-antropologi-advanced-theory-fulltext-refresh-v1-audit.json
+          if-no-files-found: error
