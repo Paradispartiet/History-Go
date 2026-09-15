@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "naeringsliv_grunderdrommer_stream",
+  "type": "leisure",
+  "title": "Gründerdrømmer",
+  "sociological_theme": "ideer_validering_nettverk_medgrunderforventninger_runway_prototyper_tidlige_signaler_privatrisko_og_grensen_mot_formelt_selskap_og_ledermyndighet",
+  "applies_when": {
+    "any_tags": [
+      "naeringsliv:grunderdrommer"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "ideen_som_alle_burde_trenge",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Notatboka",
+      "subject": "Alle burde jo trenge dette",
+      "situation": [
+        "Du får en idé som føles så åpenbar at det er vanskelig å forstå hvorfor ingen allerede har bygget den.",
+        "En forretningsidé er foreløpig en hypotese om et problem, en bruker og en mulig løsning, ikke bevis på etterspørsel.",
+        "Gründerdrømmen blir mer robust når begeistring tåler at andre ikke kjenner igjen behovet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formulere hvilket konkret problem ideen faktisk skal løse og hvem som merker det.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Tolke egen begeistring som bevis på at markedet bare ikke har forstått ideen ennå.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "idea_vs_problem"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_spor_hvem_som_betaler",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Vennen",
+      "subject": "Men hvem betaler?",
+      "situation": [
+        "Du forklarer ideen til en venn som liker konseptet, men spør hvem som faktisk vil betale for det.",
+        "Sympati, interesse og betalingsvilje er forskjellige signaler.",
+        "Tidlig validering handler om å tåle spørsmål uten å gjøre samtalen til en eksamen i lojalitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke spørsmålet til å skille bruker, kunde og betalingsmodell.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Avvise spørsmålet som negativitet fordi vennen ikke deler visjonen fullt ut.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "validation_vs_attachment"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nettverkskvelden_der_alle_blir_leads",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Nettverkskvelden",
+      "subject": "Kontakt eller menneske?",
+      "situation": [
+        "På en gründerkveld møter du folk med ulike fag, selskaper og behov, og begynner raskt å se mulige introduksjoner overalt.",
+        "Nettverk kan gi kunnskap og relasjoner, men mennesker er ikke automatisk leads, investorer eller distribusjonskanaler.",
+        "Instrumentell omgang skaper ofte kortsiktig fart og langsiktig mistillit."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ha faktiske samtaler og be om konkrete introduksjoner bare når det passer begge parter.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Samle kontakter aggressivt og følge opp alle som om møtet allerede var en salgsåpning.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "network_vs_instrumentalization"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "medgrunder_samtalen_for_det_finnes_et_selskap",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Kafébordet",
+      "subject": "Skal vi gjøre dette sammen?",
+      "situation": [
+        "En bekjent med komplementære ferdigheter blir entusiastisk og dere begynner å snakke som om dere er medgründere.",
+        "Felles entusiasme sier lite om tidsbruk, risiko, beslutninger, eierskap og hva som skjer hvis én mister interessen.",
+        "Rolleavklaring før selskap er like viktig som kjemi."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakke eksplisitt om bidrag, tid, risiko og hva som ennå ikke er avtalt.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Begynne å omtale dere som et etablert team og utsette de vanskelige avklaringene.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "cofounder_vs_projection"
+      ],
+      "risk_links": [
+        "responsibility_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "runway_arket_uten_inntekt",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Regnearket",
+      "subject": "Ni måneder igjen — kanskje",
+      "situation": [
+        "Du lager et regneark som viser hvor lenge sparepengene kan vare hvis du reduserer utgifter og jobber mer med ideen.",
+        "Runway er en modell basert på antakelser om kostnader, inntekter og privat økonomi.",
+        "Et pent tall kan gjøre usikkerhet synlig, men kan også skjule hvor mye som bygger på optimistiske forutsetninger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skrive inn konservative scenarier og tydelig skille privat buffer fra virksomhetsmidler som ikke finnes ennå.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke best-case-banen som om den var en plan og omtale den som finansiert tid.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "runway_vs_fantasy"
+      ],
+      "risk_links": [
+        "numerical_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prototypen_som_spiser_helga",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Skrivebordet",
+      "subject": "Bare én funksjon til",
+      "situation": [
+        "Du bygger en enkel prototype gjennom helga og merker at hver test åpner tre nye ting du vil forbedre.",
+        "Prototyper skal redusere usikkerhet, ikke nødvendigvis ligne et ferdig produkt.",
+        "Perfeksjon før reell feedback kan gjøre arbeidsmengde til erstatning for læring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stoppe ved en testbar versjon og definere hva du faktisk vil lære av den.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette å bygge fordi mer arbeid føles tryggere enn å vise noe uferdig.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "prototype_vs_perfection"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "navnet_logoen_og_domenet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Nettleseren",
+      "subject": "Selskapet har nesten et navn",
+      "situation": [
+        "Du finner et navn du liker og bruker timer på domener, logo, farger og presentasjonsmaler.",
+        "Navn og uttrykk kan gjøre ideen konkret, men de beviser verken produkt, selskap eller marked.",
+        "Symbolsk fremdrift er særlig fristende når de vanskelige spørsmålene fortsatt er åpne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge en foreløpig identitet og gå tilbake til brukerproblem og test.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle branding som hovedarbeidet fordi det får prosjektet til å se mer virkelig ut.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "brand_vs_work"
+      ],
+      "risk_links": [
+        "attention_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pitchen_som_tar_over_samtalen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Bekjenten",
+      "subject": "Du nevnte jobb — jeg har en idé",
+      "situation": [
+        "En bekjent forteller om et problem på jobben sin, og du kjenner igjen noe som ligner problemet ideen din prøver å løse.",
+        "Relevant innsikt kan oppstå i vanlige samtaler, men den andre personen har ikke automatisk meldt seg som kundeintervju eller salgsmøte.",
+        "Gründerdrømmen må tåle at relasjoner ikke alltid skal konverteres til prosjektarbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spørre om de vil snakke mer om problemet en annen gang og respektere et nei.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Kapre samtalen og levere hele pitchen før du sjekker om personen ønsker det.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pitch_vs_relationship"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "guruen_med_den_enkle_oppskriften",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Podkasten",
+      "subject": "Gjør bare dette i 90 dager",
+      "situation": [
+        "En kjent gründerprofil beskriver en enkel oppskrift som skal skille vinnere fra folk som bare snakker.",
+        "Råd kan destillere erfaring, men overlevelsesbias, bransje, kapital, timing og personlige forutsetninger varierer.",
+        "Autoritet i en historie er ikke det samme som en garanti for din situasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Teste rådet mot egen kontekst og beholde det som én mulig hypotese.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Kopiere oppskriften som universell sannhet fordi avsenderen har bygget et kjent selskap.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "advice_vs_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ventelisten_med_atti_navn",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Skjemaet",
+      "subject": "Åtti på venteliste",
+      "situation": [
+        "Et enkelt skjema får åtti registreringer etter at du deler ideen i noen relevante kanaler.",
+        "En venteliste kan være et godt interesse-signal, men sier ikke alene hvem som vil bruke, betale eller bli værende.",
+        "Små tall kan gi retning uten å bære mer sikkerhet enn datakilden tillater."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følge opp et utvalg og lære hva registreringen faktisk betydde.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Presentere åtti registreringer som dokumentert produkt-marked-tilpasning.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "metrics_vs_story"
+      ],
+      "risk_links": [
+        "numerical_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sparepengene_som_blir_startkapital_i_hodet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Bankappen",
+      "subject": "Kan jeg bare satse?",
+      "situation": [
+        "Du begynner å regne på hvor mye av private sparepenger du kan bruke på prototyper, reiser og tjenester.",
+        "Personlig risiko kan være en del av entreprenørskap, men sparepenger har også funksjoner som bolig, omsorg, buffer og gjeldsbetjening.",
+        "Gründeridentitet gir ingen plikt til maksimal økonomisk eksponering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sette en tydelig tapsgrense som ikke forutsetter fremtidig finansiering.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle hele bufferen som startkapital fordi ekte gründere må satse alt.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scarcity_vs_risk"
+      ],
+      "risk_links": [
+        "financial_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "middagen_som_blir_styremote",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Hjemmet",
+      "subject": "Kan vi snakke om noe annet?",
+      "situation": [
+        "Du tar opp ideen under middag for tredje gang på kort tid, og en nær person sier at prosjektet har begynt å fylle alle samtaler.",
+        "Tidlig idéarbeid har få formelle grenser og kan derfor lekke inn i hjem, søvn og relasjoner.",
+        "Omsorgsarbeid og privat tid er ikke ubrukt kapasitet som automatisk tilhører prosjektet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtale tydelige tidsrom for prosjektprat og la resten av kvelden være privat.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Insistere på at de nærmeste må tåle det fordi dette er en avgjørende fase.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "home_vs_startup_leakage"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "frykten_for_at_noen_stjeler_ideen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Dokumentet",
+      "subject": "Ikke fortell det til noen",
+      "situation": [
+        "Du nøler med å vise ideen fordi du er redd for at noen med mer kapital eller kompetanse skal kopiere den.",
+        "Noen opplysninger bør beskyttes, men total hemmeligholdelse kan gjøre validering og samarbeid umulig.",
+        "Verdien ligger ofte i læring, gjennomføring, relasjoner og timing, ikke bare den første formuleringen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dele nok til å få relevant feedback og være konkret om hva som faktisk er sensitivt.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Holde alt skjult og tolke spørsmål som tegn på at andre vil ta prosjektet.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "secrecy_vs_feedback"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_grunderdrommer",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Notatboka",
+      "subject": "Drøm uten selskapsfullmakt",
+      "situation": [
+        "Du har ideer, prototyper, nettverk, regneark og stadig sterkere forestilling om at dette kan bli noe.",
+        "Det er en reell livspraksis å utforske forretningsideer, men det oppretter ikke automatisk selskap, jobb, eierandel, styreverv, finansiering, investorstatus eller ledermyndighet.",
+        "Spørsmålet er om gründerdrømmen brukes til å lære og bygge eller til å låne status fra et selskap som ennå ikke finnes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde identiteten som utforskende Gründerdrømmer og la formelle roller kreve egne faktiske hendelser og avtaler.",
+          "effect": 1,
+          "tags": [
+            "venture_learning",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker gründerdrømmen til læring, avgrensede eksperimenter og tydelige avtaler uten å låne formell selskapsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Omtale deg som finansiert gründer og daglig leder fordi planene og ambisjonen føles reelle.",
+          "effect": -1,
+          "tags": [
+            "startup_status",
+            "boundary_leakage",
+            "role_inflation"
+          ],
+          "feedback": "Idéarbeidet glir over i status, press eller påstander om selskap, finansiering eller myndighet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dream_vs_company_authority"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    }
+  ]
+}

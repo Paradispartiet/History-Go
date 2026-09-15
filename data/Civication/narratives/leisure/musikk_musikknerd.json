@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "musikk_musikknerd_stream",
+  "type": "leisure",
+  "title": "Musikknerd",
+  "sociological_theme": "katalog_lytting_kaninhull_krediteringer_versjoner_sjanger_metadata_produksjonsdetaljer_og_grensen_mot_profesjonell_musikkmyndighet",
+  "applies_when": {
+    "any_tags": [
+      "musikk:musikknerd"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "krediteringen_som_endrer_lata",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Spilleren",
+      "subject": "Hvem gjorde egentlig dette?",
+      "situation": [
+        "Du oppdager at en musiker eller produsent du kjenner fra et annet prosjekt står i krediteringen på en låt du har hørt mange ganger.",
+        "Krediteringer kan åpne nye forbindelser mellom verk, miljøer og arbeidsprosesser som ikke høres direkte i artistnavnet.",
+        "Musikkunnskap blir rikere når den synliggjør flere bidrag uten å gjøre metadata til hele musikken."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følge krediteringen som et nytt spor og høre låten på nytt.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke oppdagelsen som bevis på at du nå vet hva låten egentlig handler om.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "credits_vs_total_explanation"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "versjonen_med_nesten_samme_navn",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Katalogen",
+      "subject": "Original, remaster eller ny miks?",
+      "situation": [
+        "Du finner flere utgaver av samme album med nesten identiske titler og ulike årstall.",
+        "Remaster, remix, deluxe og reissue kan bety forskjellige inngrep, men katalogvisningen gjør forskjellene lette å blande.",
+        "Å skille versjoner krever presis metadata, ikke bare et nyere dato-stempel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekke hvilken versjon du faktisk hører før du sammenligner.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Anta at den nyeste utgaven alltid er den teknisk riktige.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "versioning_vs_recency"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sjangeretiketten_som_blir_for_trang",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalen",
+      "subject": "Er dette egentlig den sjangeren?",
+      "situation": [
+        "En venn bruker en bred sjangeretikett om et album du selv ville plassert mye smalere.",
+        "Sjangre hjelper orientering, men er historiske og sosiale kategorier som overlapper.",
+        "Detaljkunnskap blir fort gatekeeping hvis etiketter brukes som adgangskontroll."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklare hva du hører uten å gjøre etiketten til medlemsprøve.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Rette vennen hardt fordi feil sjangerbetegnelse avslører manglende kunnskap.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "taxonomy_vs_gatekeeping"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "metadatafeilen_i_streamen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Biblioteket",
+      "subject": "Feil år, feil person",
+      "situation": [
+        "En strømmetjeneste viser en kreditering eller utgivelsesdato som ikke stemmer med andre kilder.",
+        "Musikkmetadata flyter gjennom mange databaser og kan inneholde sammenslåinger, dubletter og enkle feil.",
+        "Å oppdage avvik gir grunn til å undersøke, ikke automatisk myndighet til å fastslå den endelige katalogposten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenligne flere pålitelige kilder før du konkluderer.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle den første feilen som bevis på at hele tjenestens metadata er ubrukelig.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "metadata_vs_certainty"
+      ],
+      "risk_links": [
+        "responsibility_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "produksjonsdetaljen_du_tror_du_horer",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Øretelefonene",
+      "subject": "Den kompressoren der",
+      "situation": [
+        "Du mener å kjenne igjen en bestemt produksjonsteknikk eller et instrument i miksen.",
+        "Erfaring kan gjøre øret mer presist, men mange lyder kan skapes på flere måter.",
+        "Lytting alene gir ikke tilgang til studioets faktiske signalvei eller utstyrslogg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskrive hva du hører og markere hva som er tolkning.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fastslå hvilket utstyr som ble brukt fordi klangen minner deg om det.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "listening_vs_production_fact"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_usynlige_sessionmusikeren",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Krediteringene",
+      "subject": "Navnet som går igjen",
+      "situation": [
+        "Et navn du knapt har lagt merke til dukker opp på flere plater du liker.",
+        "Sessionmusikere, arrangører og teknikere kan binde kataloger sammen uten å være frontfigurer.",
+        "Musikknerding kan gjøre usynlig arbeid synlig uten å gjøre bakgrunnsrollen til en ny kjendiskonkurranse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følge arbeidet på tvers av utgivelser og legge merke til funksjonen personen faktisk hadde.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Begynne å rangere artister etter hvor mange skjulte forbindelser du kan avsløre.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "invisible_work_vs_status"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "masteringen_som_blir_konkurranse",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Lyttegruppen",
+      "subject": "Hvilken utgave låter best?",
+      "situation": [
+        "Flere sammenligner to mastere av samme album og er uenige om dynamikk, nivå og tonalitet.",
+        "Målbare forskjeller kan finnes samtidig som preferanser påvirkes av volum, avspilling og rom.",
+        "Teknisk språk blir misvisende hvis en preferanse presenteres som universell fasit."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Nivåmatche så godt du kan og beskrive hva du faktisk foretrekker.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Erklære én master objektivt best fordi den ser bedre ut i analysen.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "measurement_vs_preference"
+      ],
+      "risk_links": [
+        "numerical_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "produsentmyten",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Dokumentaren",
+      "subject": "Alt skyldes én person",
+      "situation": [
+        "En dokumentar forteller en sterk historie om at én produsent alene formet et helt albums uttrykk.",
+        "Fortellinger trenger tydelige aktører, mens studioarbeid ofte fordeles mellom artister, teknikere, arrangører og mange beslutninger.",
+        "En god myte kan være pedagogisk uten å være full arbeidsbeskrivelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke historien som inngang og sjekke krediteringer og flere kilder.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjenta fortellingen som full forklaring fordi den er så overbevisende.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "narrative_vs_collaboration"
+      ],
+      "risk_links": [
+        "responsibility_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "statistikken_over_egen_lytting",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Årsoppsummeringen",
+      "subject": "Topplisten din",
+      "situation": [
+        "Årsoppsummeringen viser hvilke artister, sjangre og låter du har spilt mest.",
+        "Tallene kan minne deg om vaner, men de teller avspillinger, ikke nødvendigvis betydning, oppmerksomhet eller kunnskap.",
+        "Musikksmak blir fattigere hvis lyttetid behandles som eksamensresultat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke tallene som et spor tilbake til minner og vaner.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke topplisten til å bevise hvor seriøs musikkinteressen din er.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "metrics_vs_meaning"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "albumrekkefolgen_du_alltid_diskuterer",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Albumet",
+      "subject": "Hvorfor ligger denne låten her?",
+      "situation": [
+        "Du diskuterer hvorfor en låt ligger akkurat der den gjør i albumrekkefølgen.",
+        "Sekvensering kan skape dramaturgi, kontrast og praktiske overganger, men motivet bak hvert valg er ikke alltid dokumentert.",
+        "Nærlesning er mest presis når den skiller effekt fra påstått intensjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskrive hva rekkefølgen gjør med lyttingen uten å late som du kjenner motivet.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fastslå artistens hensikt fordi plasseringen virker åpenbar.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "effect_vs_intention"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kaninhullet_som_spiser_kvelden",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Nettleseren",
+      "subject": "Én kreditering til",
+      "situation": [
+        "Du skulle bare sjekke én produsent, men har åpnet et dusin faner med diskografier, intervjuer og katalogspor.",
+        "Kaninhull er en del av gleden, men oppmerksomhet og søvn er fortsatt begrensede ressurser.",
+        "Fordypning er ikke mer ekte fordi den mangler sluttpunkt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lagre sporene og avslutte når du faktisk er sliten.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette til alt er kartlagt fordi det føles feil å stoppe midt i sammenhengen.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "depth_vs_attention_boundary"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "anbefalingen_som_blir_forelesning",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Vennen",
+      "subject": "Hva burde jeg høre?",
+      "situation": [
+        "En venn ber om ett albumtips, og du ser straks ti mulige innganger, sideprosjekter og historiske forløpere.",
+        "Kunnskap kan gjøre anbefalinger bedre, men også overvelde den som bare ba om et sted å starte.",
+        "Kuratering handler om mottakerens behov, ikke om å vise hele kartet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi ett tydelig forslag og forklare kort hvorfor det passer.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Levere hele slektstreet for å vise hvor mye som egentlig må forstås først.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "curation_vs_display"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_om_hvem_som_var_forst",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Forumet",
+      "subject": "Denne lyden fantes tidligere",
+      "situation": [
+        "En diskusjon handler om hvem som først brukte et uttrykk eller etablerte en stil.",
+        "Musikkhistorie består ofte av parallelle miljøer, gradvise endringer og senere etiketter.",
+        "Jakten på én opphavsperson kan gjøre nettverk og forløpere usynlige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lete etter dokumenterte forbindelser og tåle at opprinnelsen kan være delt.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Kåre én vinner fordi historien blir enklere og mer ryddig da.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "origin_story_vs_network"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_musikknerd",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Biblioteket",
+      "subject": "Kunnskap uten studiofullmakt",
+      "situation": [
+        "Du kjenner kataloger, krediteringer, versjoner, sjangerhistorier og produksjonsdetaljer bedre enn mange rundt deg.",
+        "Det er reell lytte- og katalogkompetanse, men gir ingen produsent-, tekniker-, artist-, label-, rettighets-, kritiker- eller arkivmyndighet.",
+        "Spørsmålet er om kunnskapen gjør lyttingen større eller bare hierarkiet skarpere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde rollen som nysgjerrig kunnskapslytter med tydelige myndighetsgrenser.",
+          "effect": 1,
+          "tags": [
+            "music_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du bruker detaljkunnskap til rikere lytting uten å gjøre den til sosial eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La detaljkunnskapen fungere som fullmakt til å avgjøre hva som er korrekt smak og profesjonell sannhet.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_pressure",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskapen blir brukt som fasit, rangering eller lånt profesjonell autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "practice_vs_music_authority"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    }
+  ]
+}

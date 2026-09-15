@@ -25,7 +25,8 @@ assert.equal(row.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(row.evidence.exact_source_refs, [streamPath]);
 assert.deepEqual(row.evidence.thematic_source_refs, [
   'data/Civication/lifestory/life/scenes.json',
-  'data/Civication/narratives/leisure/filmklubbmenneske.json'
+  'data/Civication/narratives/leisure/filmklubbmenneske.json',
+  'data/Civication/narratives/leisure/naeringsliv_pendler.json'
 ]);
 assert.deepEqual(row.evidence.livelihood_templates, []);
 assert.equal(row.evidence.livelihood_ref, null);
