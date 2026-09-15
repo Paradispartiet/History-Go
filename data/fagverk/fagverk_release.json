@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.16.0",
     "updated_at": "2026-09-14",
-    "content_sha256": "5755b1ee2b309f7aaa0aab76b936dc9c9fa123392bd2e97bfb2e9b1f50b45a3d"
+    "content_sha256": "60c72bead2e48d85e66f29462734bbd172772686a33b304b672759a80a120f21"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "2829587c90732a9aafd5112c0275cdccb72dd407a9c0c7c3d2993d0153c93852"
+    "content_sha256": "b4fc8e1cd1ba088e8c91b74ced715e3516aa69f89a5146362ccbd6434d81495f"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 190,
     "module_file_count": 497,
-    "package_file_count": 444,
+    "package_file_count": 447,
     "chapter_referenced_file_count": 934,
-    "referenced_file_count": 1307,
+    "referenced_file_count": 1310,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -4752,9 +4752,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 58,
+      "package_file_count": 61,
       "required_package_file_count": 4,
-      "optional_package_file_count": 54,
+      "optional_package_file_count": 57,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -5009,6 +5009,18 @@
           "content_sha256": "757e59ec0acad2fafc55e0bf8c8c604d9ce47e066ccebebd4530fcb101307656"
         },
         {
+          "path": "data/quiz/naeringsliv/norges_bank_bankplassen_4_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.norges_bank_bankplassen_4.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "f0a0601a8f067a52d0635ba3e834c92e6c3776dab443f7769b03e3c58a798bdc"
+        },
+        {
           "path": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
           "required": false,
           "fields": [
@@ -5163,6 +5175,18 @@
           ],
           "exists": true,
           "content_sha256": "fdd387cb996720ecf46f71f813cec9732773a7248a81a60f97567d17076013ad"
+        },
+        {
+          "path": "data/quiz/production_briefs/naeringsliv/norges_bank_bankplassen_4.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.norges_bank_bankplassen_4.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "cf1dd59f42684b116ec99934a868fb294399ba31a8c75876da2952b9902d65a2"
         },
         {
           "path": "data/quiz/production_briefs/naeringsliv/oslo_posthus.json",
@@ -5321,6 +5345,18 @@
           "content_sha256": "23e0d06ae571d6d1433d865321619b15f850d3318a94a9ec546c52992ba5baf7"
         },
         {
+          "path": "data/quiz/production_context/naeringsliv/norges_bank_bankplassen_4.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.norges_bank_bankplassen_4.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "cc9e3d27e945232a3f0aba24f2b25f6def68e4b31c25325cb6a97b0803545dea"
+        },
+        {
           "path": "data/quiz/production_context/naeringsliv/oslo_posthus.json",
           "required": false,
           "fields": [
@@ -5453,20 +5489,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "ef50c93a9f8af75e9a3f0bdf3a134280bcdcd37d3d6f2c81f71b7d48da74775d",
+      "package_content_sha256": "c31e2c777570138913b90b3df63b0b31827b3cf1d3a84ce0ccf2079f492c9717",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 130,
+      "referenced_file_count": 133,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "f0d9430a6efa99990821377aab6cf36fbd3963c9fad0b76e59cc3782bc902342",
-      "content_sha256": "f5a162dae48b1ce974486ab5069ddd9b2ae7c0dc8558f57800142fe59ed2662b",
+      "structure_sha256": "67d1d3962328fe80812c45ca7891c8097825c7b9fc5c598eafa771ff3ebe0db9",
+      "content_sha256": "68e41a99c4d2f5e19a33b1be922720d11e0ff677f3b1deb7e1f90074ee9c9bcf",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -8041,5 +8077,5 @@
       ]
     }
   },
-  "release_sha256": "b38df96ce2948ea2d5ee668209a890b9f00f425652570e2251fd287211ffcd6e"
+  "release_sha256": "26f9aa7f2162d0368945dc46fc5e2931ce3160dd4f58a683cf612d4df142c651"
 }
