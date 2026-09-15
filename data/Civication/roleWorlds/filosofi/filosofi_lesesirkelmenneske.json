@@ -1,0 +1,1230 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_lesesirkelmenneske",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "filosofi",
+    "id": "lesesirkelmenneske",
+    "label": "Lesesirkelmenneske"
+  },
+  "title": "Lesesirkelmenneske",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å gjøre kollektiv lesing til et faktisk lærende fellesskap uten at forberedelse, kanon, taletid eller tolkningssikkerhet blir skjulte rangsystemer",
+    "description": "Lesesirkelmenneske-verdenen handler om å møte opp, lese, tolke og la andre endre det man trodde var ferdig. Kjernen er tekstbelegg, uenighet, revisjon, taletid, nykommerterskel, programvalg, kildeomsorg og realistisk tempo. Den skiller seg fra Sofafilosof ved å være organisert rundt avtalte tekster og gjentatte møter, ikke spontan hverdagsfilosofering, og fra akademisk filosofi ved at fellesskapet ikke gir formell ekspertmyndighet."
+  },
+  "theme_ids": [
+    "status_anxiety",
+    "shame_reputation",
+    "social_mask",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "class_power",
+    "emotional_labor",
+    "public_attention"
+  ],
+  "social_environments": [
+    "lesesirkelmøtet rundt en avtalt tekst",
+    "gruppechatten mellom møtene",
+    "hjemmelesing med ulik tid og forberedelse",
+    "programvalg og planlegging av neste tekst",
+    "møter der nye deltakere møter en etablert kultur",
+    "etterklangen etter uenighet og revisjon"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "sirkelvert",
+      "social_function": "holder møteform og taletid uten å eie tolkningen",
+      "class_position": "frivillig eller roterende vert",
+      "status": "praktisk høy, faglig uformell",
+      "power_over_player": "kan fordele ordet og sette rammen",
+      "wants": "et møte der flere faktisk deltar",
+      "conceals": "at vertskap lett blir skjult styring",
+      "speech_style": "rolig og inviterende",
+      "teaches_player": "at struktur kan åpne rom uten å skape fasit"
+    },
+    {
+      "id": "nykommer",
+      "social_function": "gjør gruppas uskrevne normer synlige",
+      "class_position": "ny deltaker uten intern status",
+      "status": "lav eller uavklart",
+      "power_over_player": "kan avsløre om miljøet faktisk er åpent",
+      "wants": "å delta uten å bestå en kulturell opptaksprøve",
+      "conceals": "hvor usikker terskelen føles",
+      "speech_style": "spørrende og konkret",
+      "teaches_player": "at tilgjengelighet må bygges i praksis"
+    },
+    {
+      "id": "tekstnaer_leser",
+      "social_function": "holder gruppa nær formuleringene når tolkningene løper",
+      "class_position": "jevnaldrende deltaker",
+      "status": "respektert for presisjon",
+      "power_over_player": "kan be om tekststed og avgrense påstander",
+      "wants": "at uenighet skal kunne etterprøves i teksten",
+      "conceals": "at presisjon også kan bli status",
+      "speech_style": "kort og tekstnær",
+      "teaches_player": "at kildeomsorg også gjelder skjønnlitterær og filosofisk lesing"
+    },
+    {
+      "id": "kanonforsvarer",
+      "social_function": "presser programmet mot tyngre og mer prestisjefylte tekster",
+      "class_position": "belest deltaker med høy kulturell kapital",
+      "status": "høy uformell",
+      "power_over_player": "kan gjøre enkelte valg mer legitime enn andre",
+      "wants": "at sirkelen skal oppleves seriøs og krevende",
+      "conceals": "hvor mye status som ligger i selve vanskelighetsgraden",
+      "speech_style": "referansetett og sikker",
+      "teaches_player": "at kanonvalg også er sosial sortering"
+    },
+    {
+      "id": "travelt_medlem",
+      "social_function": "gjør tidsressurser og realistisk leseomfang synlig",
+      "class_position": "deltaker med begrenset fritid",
+      "status": "likestilt, men lett presset",
+      "power_over_player": "kan trekke seg hvis tempoet blir urealistisk",
+      "wants": "å være med uten å late som fritid er ubegrenset",
+      "conceals": "skyld over å komme uforberedt",
+      "speech_style": "praktisk og ærlig",
+      "teaches_player": "at rytme er en inkluderingsmekanisme"
+    },
+    {
+      "id": "tolkningsutfordrer",
+      "social_function": "gir reell motstand mot etablerte lesninger uten å kreve en ny fasit",
+      "class_position": "jevnaldrende deltaker",
+      "status": "middels til høy",
+      "power_over_player": "kan destabilisere sikkerhet og prestisje",
+      "wants": "at gruppa skal tåle tolkninger som endres underveis",
+      "conceals": "at også motstand kan bli identitet",
+      "speech_style": "nysgjerrig og presis",
+      "teaches_player": "at revisjon er del av lesing, ikke et nederlag"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "preparation_vs_bluff",
+      "meaning": "forberedelse mot kunnskapsbløff",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "interpretation_vs_status",
+      "meaning": "tolkning mot statusforsvar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "turntaking_vs_domination",
+      "meaning": "taletid mot dominans",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_care_vs_memory",
+      "meaning": "tekstbelegg mot minne som autoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "access_vs_gatekeeping",
+      "meaning": "tilgang mot portvakt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "disagreement_vs_consensus",
+      "meaning": "uenighet mot enkel konsensus",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "privacy_vs_extraction",
+      "meaning": "privat erfaring mot fortolkningspress",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "curation_vs_prestige",
+      "meaning": "programvalg mot prestisje",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "facilitation_vs_lecture",
+      "meaning": "fasilitering mot uformelt foredrag",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "context_vs_speculation",
+      "meaning": "kontekst mot spekulasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "pace_vs_exclusion",
+      "meaning": "leserytme mot ekskludering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "chat_repair_vs_escalation",
+      "meaning": "chatreparasjon mot eskalering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "revision_vs_face",
+      "meaning": "revisjon mot ansiktstap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "community_vs_quantity",
+      "meaning": "fellesskap mot mengdemåling",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: ufullført lesing.",
+        "thread_ids": [
+          "preparation_vs_bluff"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#teksten_du_ikke_ble_ferdig_med"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: ufullført lesing.",
+        "thread_ids": [
+          "preparation_vs_bluff",
+          "community_vs_quantity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#teksten_du_ikke_ble_ferdig_med"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: ufullført lesing.",
+        "thread_ids": [
+          "preparation_vs_bluff",
+          "interpretation_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#teksten_du_ikke_ble_ferdig_med"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: ufullført lesing.",
+        "thread_ids": [
+          "preparation_vs_bluff",
+          "community_vs_quantity",
+          "interpretation_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#teksten_du_ikke_ble_ferdig_med"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: revisjon av tolkning.",
+        "thread_ids": [
+          "interpretation_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#tolkningen_som_ble_utfordret"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: revisjon av tolkning.",
+        "thread_ids": [
+          "interpretation_vs_status",
+          "preparation_vs_bluff"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#tolkningen_som_ble_utfordret"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: revisjon av tolkning.",
+        "thread_ids": [
+          "interpretation_vs_status",
+          "turntaking_vs_domination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#tolkningen_som_ble_utfordret"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: revisjon av tolkning.",
+        "thread_ids": [
+          "interpretation_vs_status",
+          "preparation_vs_bluff",
+          "turntaking_vs_domination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#tolkningen_som_ble_utfordret"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: taletid.",
+        "thread_ids": [
+          "turntaking_vs_domination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_stille_deltakeren"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: taletid.",
+        "thread_ids": [
+          "turntaking_vs_domination",
+          "interpretation_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_stille_deltakeren"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: taletid.",
+        "thread_ids": [
+          "turntaking_vs_domination",
+          "source_care_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_stille_deltakeren"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: taletid.",
+        "thread_ids": [
+          "turntaking_vs_domination",
+          "interpretation_vs_status",
+          "source_care_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_stille_deltakeren"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: kildeomsorg.",
+        "thread_ids": [
+          "source_care_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#sitatet_uten_side"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: kildeomsorg.",
+        "thread_ids": [
+          "source_care_vs_memory",
+          "turntaking_vs_domination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#sitatet_uten_side"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: kildeomsorg.",
+        "thread_ids": [
+          "source_care_vs_memory",
+          "access_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#sitatet_uten_side"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: kildeomsorg.",
+        "thread_ids": [
+          "source_care_vs_memory",
+          "turntaking_vs_domination",
+          "access_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#sitatet_uten_side"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: nykommerterskel.",
+        "thread_ids": [
+          "access_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#nykommeren"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: nykommerterskel.",
+        "thread_ids": [
+          "access_vs_gatekeeping",
+          "source_care_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#nykommeren"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: nykommerterskel.",
+        "thread_ids": [
+          "access_vs_gatekeeping",
+          "disagreement_vs_consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#nykommeren"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: nykommerterskel.",
+        "thread_ids": [
+          "access_vs_gatekeeping",
+          "source_care_vs_memory",
+          "disagreement_vs_consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#nykommeren"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: uenighet om kvalitet.",
+        "thread_ids": [
+          "disagreement_vs_consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#boka_alle_hater"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: uenighet om kvalitet.",
+        "thread_ids": [
+          "disagreement_vs_consensus",
+          "access_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#boka_alle_hater"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: uenighet om kvalitet.",
+        "thread_ids": [
+          "disagreement_vs_consensus",
+          "privacy_vs_extraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#boka_alle_hater"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: uenighet om kvalitet.",
+        "thread_ids": [
+          "disagreement_vs_consensus",
+          "access_vs_gatekeeping",
+          "privacy_vs_extraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#boka_alle_hater"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: privat grense.",
+        "thread_ids": [
+          "privacy_vs_extraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_personlige_lesningen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: privat grense.",
+        "thread_ids": [
+          "privacy_vs_extraction",
+          "disagreement_vs_consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_personlige_lesningen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: privat grense.",
+        "thread_ids": [
+          "privacy_vs_extraction",
+          "curation_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_personlige_lesningen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: privat grense.",
+        "thread_ids": [
+          "privacy_vs_extraction",
+          "disagreement_vs_consensus",
+          "curation_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_personlige_lesningen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: programvalg.",
+        "thread_ids": [
+          "curation_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#bokvalget"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: programvalg.",
+        "thread_ids": [
+          "curation_vs_prestige",
+          "privacy_vs_extraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#bokvalget"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: programvalg.",
+        "thread_ids": [
+          "curation_vs_prestige",
+          "facilitation_vs_lecture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#bokvalget"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: programvalg.",
+        "thread_ids": [
+          "curation_vs_prestige",
+          "privacy_vs_extraction",
+          "facilitation_vs_lecture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#bokvalget"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: fasilitering.",
+        "thread_ids": [
+          "facilitation_vs_lecture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#møtet_som_ble_seminar"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: fasilitering.",
+        "thread_ids": [
+          "facilitation_vs_lecture",
+          "curation_vs_prestige"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#møtet_som_ble_seminar"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: fasilitering.",
+        "thread_ids": [
+          "facilitation_vs_lecture",
+          "context_vs_speculation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#møtet_som_ble_seminar"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: fasilitering.",
+        "thread_ids": [
+          "facilitation_vs_lecture",
+          "curation_vs_prestige",
+          "context_vs_speculation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#møtet_som_ble_seminar"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: forfatterkontekst.",
+        "thread_ids": [
+          "context_vs_speculation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#uenighet_om_forfatteren"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: forfatterkontekst.",
+        "thread_ids": [
+          "context_vs_speculation",
+          "facilitation_vs_lecture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#uenighet_om_forfatteren"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: forfatterkontekst.",
+        "thread_ids": [
+          "context_vs_speculation",
+          "pace_vs_exclusion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#uenighet_om_forfatteren"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: forfatterkontekst.",
+        "thread_ids": [
+          "context_vs_speculation",
+          "facilitation_vs_lecture",
+          "pace_vs_exclusion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#uenighet_om_forfatteren"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: leserytme.",
+        "thread_ids": [
+          "pace_vs_exclusion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#pausen_mellom_motene"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: leserytme.",
+        "thread_ids": [
+          "pace_vs_exclusion",
+          "context_vs_speculation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#pausen_mellom_motene"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: leserytme.",
+        "thread_ids": [
+          "pace_vs_exclusion",
+          "chat_repair_vs_escalation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#pausen_mellom_motene"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: leserytme.",
+        "thread_ids": [
+          "pace_vs_exclusion",
+          "context_vs_speculation",
+          "chat_repair_vs_escalation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#pausen_mellom_motene"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: chatkonflikt.",
+        "thread_ids": [
+          "chat_repair_vs_escalation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#krangelen_i_chatten"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: chatkonflikt.",
+        "thread_ids": [
+          "chat_repair_vs_escalation",
+          "pace_vs_exclusion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#krangelen_i_chatten"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: chatkonflikt.",
+        "thread_ids": [
+          "chat_repair_vs_escalation",
+          "revision_vs_face"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#krangelen_i_chatten"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: chatkonflikt.",
+        "thread_ids": [
+          "chat_repair_vs_escalation",
+          "pace_vs_exclusion",
+          "revision_vs_face"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#krangelen_i_chatten"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: synlig revisjon.",
+        "thread_ids": [
+          "revision_vs_face"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_gode_revisjonen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: synlig revisjon.",
+        "thread_ids": [
+          "revision_vs_face",
+          "chat_repair_vs_escalation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_gode_revisjonen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: synlig revisjon.",
+        "thread_ids": [
+          "revision_vs_face",
+          "community_vs_quantity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_gode_revisjonen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: synlig revisjon.",
+        "thread_ids": [
+          "revision_vs_face",
+          "chat_repair_vs_escalation",
+          "community_vs_quantity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_gode_revisjonen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: fellesskapets praksis.",
+        "thread_ids": [
+          "community_vs_quantity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#lesesirkel_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: fellesskapets praksis.",
+        "thread_ids": [
+          "community_vs_quantity",
+          "revision_vs_face"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#lesesirkel_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: fellesskapets praksis.",
+        "thread_ids": [
+          "community_vs_quantity",
+          "preparation_vs_bluff"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#lesesirkel_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: fellesskapets praksis.",
+        "thread_ids": [
+          "community_vs_quantity",
+          "revision_vs_face",
+          "preparation_vs_bluff"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#lesesirkel_som_praksis"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "preparation_vs_bluff",
+      "relationship": "forberedelse mot kunnskapsbløff",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "14/lunch",
+        "14/evening",
+        "2/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "interpretation_vs_status",
+      "relationship": "tolkning mot statusforsvar",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "1/lunch",
+        "1/evening",
+        "3/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "turntaking_vs_domination",
+      "relationship": "taletid mot dominans",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "2/lunch",
+        "2/evening",
+        "4/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "source_care_vs_memory",
+      "relationship": "tekstbelegg mot minne som autoritet",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "3/lunch",
+        "3/evening",
+        "5/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "access_vs_gatekeeping",
+      "relationship": "tilgang mot portvakt",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "4/lunch",
+        "4/evening",
+        "6/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "disagreement_vs_consensus",
+      "relationship": "uenighet mot enkel konsensus",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "5/lunch",
+        "5/evening",
+        "7/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "privacy_vs_extraction",
+      "relationship": "privat erfaring mot fortolkningspress",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "6/lunch",
+        "6/evening",
+        "8/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "curation_vs_prestige",
+      "relationship": "programvalg mot prestisje",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "7/lunch",
+        "7/evening",
+        "9/afternoon",
+        "9/evening"
+      ]
+    },
+    {
+      "id": "facilitation_vs_lecture",
+      "relationship": "fasilitering mot uformelt foredrag",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "8/lunch",
+        "8/evening",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "context_vs_speculation",
+      "relationship": "kontekst mot spekulasjon",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "9/lunch",
+        "9/evening",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "pace_vs_exclusion",
+      "relationship": "leserytme mot ekskludering",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "10/lunch",
+        "10/evening",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "chat_repair_vs_escalation",
+      "relationship": "chatreparasjon mot eskalering",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "11/lunch",
+        "11/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "revision_vs_face",
+      "relationship": "revisjon mot ansiktstap",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "12/lunch",
+        "12/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "community_vs_quantity",
+      "relationship": "fellesskap mot mengdemåling",
+      "beat_refs": [
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening",
+        "13/lunch",
+        "13/evening",
+        "1/afternoon",
+        "1/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "bluff_ble_til_avgrensning",
+      "description": "Spilleren blir tydeligere på hva som faktisk er lest.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#teksten_du_ikke_ble_ferdig_med",
+        "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#sitatet_uten_side"
+      ]
+    },
+    {
+      "id": "uenighet_ble_til_revisjon",
+      "description": "Tolkning kan endres uten at det blir sosialt nederlag.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#tolkningen_som_ble_utfordret",
+        "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_gode_revisjonen"
+      ]
+    },
+    {
+      "id": "taletid_ble_til_struktur",
+      "description": "Sirkelen får en mer bevisst praksis for hvem som får plass.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_stille_deltakeren",
+        "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#møtet_som_ble_seminar"
+      ]
+    },
+    {
+      "id": "program_ble_til_vertsskap",
+      "description": "Tekstvalg vurderes også ut fra tilgjengelighet og formål.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#nykommeren",
+        "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#bokvalget"
+      ]
+    },
+    {
+      "id": "tempo_ble_til_tilhoring",
+      "description": "Leseomfang og rytme behandles som inkluderingsspørsmål.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#pausen_mellom_motene",
+        "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#lesesirkel_som_praksis"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "ufullfort_blir_tillit",
+      "setup_ref": "1/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "tolkning_blir_revisjon",
+      "setup_ref": "2/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "reputation",
+        "psyche"
+      ]
+    },
+    {
+      "id": "taletid_blir_tilhoring",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "class_power"
+      ]
+    },
+    {
+      "id": "nykommer_blir_fellesskap",
+      "setup_ref": "5/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "programvalg_blir_deltakelse",
+      "setup_ref": "8/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "class_power",
+        "relationship"
+      ]
+    },
+    {
+      "id": "chatkonflikt_blir_reparasjon",
+      "setup_ref": "12/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#teksten_du_ikke_ble_ferdig_med",
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#tolkningen_som_ble_utfordret",
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_stille_deltakeren",
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#sitatet_uten_side",
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#nykommeren",
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#boka_alle_hater",
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_personlige_lesningen",
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#bokvalget",
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#møtet_som_ble_seminar",
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#uenighet_om_forfatteren",
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#pausen_mellom_motene",
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#krangelen_i_chatten",
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#den_gode_revisjonen",
+      "data/Civication/narratives/leisure/filosofi_lesesirkelmenneske.json#lesesirkel_som_praksis"
+    ]
+  }
+}
