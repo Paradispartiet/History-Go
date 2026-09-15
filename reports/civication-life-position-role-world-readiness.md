@@ -47,6 +47,7 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 | 27 | `utdanning/laeringsutforsker` | needs_authored_depth | 0 | 0 | 0 |
 | 28 | `utdanning/utdanningskritiker` | needs_authored_depth | 0 | 0 | 0 |
 | 29 | `vitenskap/folkeforsker` | needs_authored_depth | 0 | 0 | 0 |
+| 30 | `vitenskap/labnerd` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 
