@@ -1,0 +1,1174 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_arkivrotte",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "historie",
+    "id": "arkivrotte",
+    "label": "Arkivrotte"
+  },
+  "title": "Arkivrotte",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å finne, lese og koble historiske spor uten å rive dokumenter løs fra proveniens, samlingshistorie, materialitet, adgangsregler og usikkerhet",
+    "description": "Arkivrotte-verdenen følger en historieinteresse som trives mellom kataloger, mapper, mikrofilm og gamle dokumenter. Spilleren lærer å gjøre kildejakt sporbar: dokumentere signaturer, kontrollere proveniens, håndtere mangler, transkripsjon og motstridende kilder og respektere lesesalens regler. Rollen gir ingen profesjonell arkivmyndighet, ingen rett til å endre samlinger eller overskride tilgangs- og personvernregler, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "invisible_work",
+    "local_knowledge_vs_system",
+    "bureaucratic_power",
+    "professional_culture",
+    "public_attention",
+    "status_anxiety",
+    "shame_reputation",
+    "social_mask"
+  ],
+  "social_environments": [
+    "lesesalen der stillhet, rutiner og materialhensyn legger rammene for nysgjerrigheten",
+    "katalogsøket der administrative beskrivelser og signaturer avgjør om et spor kan finnes igjen",
+    "den private notatboka der hypoteser, usikre transkripsjoner og kontrollspor må holdes fra hverandre",
+    "samtalen med andre historieinteresserte der sjeldne funn gir status og fristelse til å konkludere raskt",
+    "den digitale samlingen der kopier er lett tilgjengelige, men fysisk kontekst og baksider kan forsvinne",
+    "etterkantssituasjonen der et gammelt funn bare er nyttig dersom referansen fortsatt leder tilbake til kilden"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "lesesalsvert",
+      "social_function": "forklarer regler, bestillingsrutiner og materialhensyn i samlingen",
+      "class_position": "institusjonell kunnskapsforvalter med ansvar for tilgang og bevaring",
+      "status": "høy i lesesalen fordi personen kjenner systemet og materialets vilkår",
+      "power_over_player": "kan åpne eller avgrense praktisk tilgang innen gjeldende regler",
+      "wants": "at materialet skal kunne brukes uten å miste sporbarhet eller ta skade",
+      "conceals": "hvor mye usynlig logistikk som ligger bak en enkel bestilling",
+      "speech_style": "rolig, presis og orientert mot signaturer, prosedyrer og materialtype",
+      "teaches_player": "at tilgang er en forvaltet relasjon, ikke eierskap"
+    },
+    {
+      "id": "funnjegeren",
+      "social_function": "søker aktivt etter ukjente detaljer og elsker øyeblikket der noe uventet dukker opp",
+      "class_position": "engasjert amatør med mye tid og høy symbolsk gevinst av originale funn",
+      "status": "stigende når personen kan vise til sjeldne dokumenter andre har oversett",
+      "power_over_player": "kan gjøre fart og originalitet mer attraktivt enn kontroll og kontekst",
+      "wants": "å finne noe som endrer en kjent historie",
+      "conceals": "hvor ofte ønsket om et stort funn styrer hvilke tolkninger som føles plausible",
+      "speech_style": "entusiastisk, detaljert og rask til å se mønstre",
+      "teaches_player": "at et sjeldent funn krever mer kontroll, ikke mindre"
+    },
+    {
+      "id": "katalogkjenner",
+      "social_function": "ser serier, arkivskapere og metadata der andre bare ser enkeltdokumenter",
+      "class_position": "erfaren bruker med høy institusjonell alfabetisering, uten å eie samlingen",
+      "status": "høy blant dem som trenger å finne fram i komplekse arkivsystemer",
+      "power_over_player": "kan avgjøre hvilke søkeveier som blir synlige eller oversett",
+      "wants": "at spørsmål formuleres så de faktisk kan spores gjennom katalog og proveniens",
+      "conceals": "at katalogsystemet også bærer eldre beskrivelser og feil",
+      "speech_style": "systematisk, referansetung og opptatt av nivå, serie og signatur",
+      "teaches_player": "at katalogdata både er verktøy og kilde"
+    },
+    {
+      "id": "lokalhistorikeren",
+      "social_function": "kobler dokumenter til steder, slekter og hendelser som ikke alltid er godt beskrevet i sentrale systemer",
+      "class_position": "kunnskapsrik lokal deltaker med sterk erfarings- og stedsforankring",
+      "status": "høy i lokale nettverk, men varierende i formelle kunnskapsmiljøer",
+      "power_over_player": "kan gi kontekst som endrer tolkningen av et ellers anonymt dokument",
+      "wants": "at lokal kunnskap skal bli kontrollert og brukt, ikke oversett",
+      "conceals": "at nærhet til en historie også kan gjøre enkelte tolkninger følelsesmessig attraktive",
+      "speech_style": "navnesterk, konkret og rik på stedlige forbindelser",
+      "teaches_player": "å kombinere lokal kunnskap med sporbar dokumentasjon"
+    },
+    {
+      "id": "kildekritikeren",
+      "social_function": "spør konsekvent hvem som skrev, for hvem, når og gjennom hvilken prosess",
+      "class_position": "kunnskapsorientert deltaker med høy metodisk kapital",
+      "status": "moderat til høy fordi personen kan svekke både populære og akademiske påstander",
+      "power_over_player": "kan bremse en fristende historie ved å kreve eksplisitt proveniens og alternativ forklaring",
+      "wants": "at en kilde brukes til det den faktisk kan bære",
+      "conceals": "at kritikk også kan bli en vane som gjør det vanskelig å erkjenne når evidensen faktisk er sterk",
+      "speech_style": "spørrende, avgrensende og opptatt av sammenheng",
+      "teaches_player": "at kildekritikk er sterkest når den er proporsjonal"
+    },
+    {
+      "id": "digitalisatoren",
+      "social_function": "gjør eldre materiale søkbart og tilgjengelig gjennom skanning, metadata og digitale grensesnitt",
+      "class_position": "teknisk kunnskapsarbeider mellom fysisk samling og digital bruker",
+      "status": "ofte lavt synlig selv når arbeidet bestemmer hva som kan finnes på nett",
+      "power_over_player": "kan påvirke hvilke sider, utsnitt og metadata som blir tilgjengelige digitalt",
+      "wants": "at digitale representasjoner skal være nyttige, konsistente og sporbare til originalen",
+      "conceals": "hvor mye fysisk informasjon som kan gå tapt i en flat digital kopi",
+      "speech_style": "praktisk, formatbevisst og opptatt av oppløsning, metadata og filstruktur",
+      "teaches_player": "at digital tilgang er en representasjon av materialet, ikke materialet selv"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "catalog_vs_fragment",
+      "meaning": "katalogkontekst mot løsrevet fragment",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "provenance_vs_transparency",
+      "meaning": "proveniens mot forestilt nøytralitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "archival_silence_vs_reconstruction",
+      "meaning": "arkivhull mot sikker rekonstruksjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "transcription_vs_certainty",
+      "meaning": "transkripsjon mot falsk sikkerhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "copy_vs_original",
+      "meaning": "kopi mot original og overleveringskjede",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "access_vs_ownership",
+      "meaning": "tilgang mot eierskap og delingsrett",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "metadata_vs_source_critique",
+      "meaning": "metadata mot kildekritikk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rare_find_vs_sensationalism",
+      "meaning": "sjeldent funn mot sensasjonalisme",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "collection_vs_selection_bias",
+      "meaning": "samling mot seleksjonsbias",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "identity_linkage_vs_guessing",
+      "meaning": "identitetskobling mot gjetning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "materiality_vs_flattening",
+      "meaning": "materialitet mot digital utflating",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_conflict_vs_confirmation",
+      "meaning": "kildekonflikt mot bekreftelsesvalg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "traceability_vs_memory",
+      "meaning": "sporbar referanse mot hukommelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "archive_practice_vs_possession",
+      "meaning": "arkivpraksis mot eierskap til fortiden",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: katalogen er en del av funnet.",
+        "thread_ids": [
+          "catalog_vs_fragment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#katalogen_for_funnet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: katalogen er en del av funnet.",
+        "thread_ids": [
+          "catalog_vs_fragment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#katalogen_for_funnet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: katalogen er en del av funnet.",
+        "thread_ids": [
+          "catalog_vs_fragment",
+          "materiality_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#katalogen_for_funnet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: katalogen er en del av funnet.",
+        "thread_ids": [
+          "catalog_vs_fragment",
+          "access_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#katalogen_for_funnet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: hvem skapte materialet — og hvorfor?.",
+        "thread_ids": [
+          "provenance_vs_transparency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#proveniensen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: hvem skapte materialet — og hvorfor?.",
+        "thread_ids": [
+          "provenance_vs_transparency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#proveniensen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: hvem skapte materialet — og hvorfor?.",
+        "thread_ids": [
+          "provenance_vs_transparency",
+          "source_conflict_vs_confirmation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#proveniensen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 2, evening: hvem skapte materialet — og hvorfor?.",
+        "thread_ids": [
+          "provenance_vs_transparency",
+          "metadata_vs_source_critique"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#proveniensen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: fravær i arkivet er også informasjon.",
+        "thread_ids": [
+          "archival_silence_vs_reconstruction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#mappen_som_mangler"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: fravær i arkivet er også informasjon.",
+        "thread_ids": [
+          "archival_silence_vs_reconstruction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#mappen_som_mangler"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: fravær i arkivet er også informasjon.",
+        "thread_ids": [
+          "archival_silence_vs_reconstruction",
+          "traceability_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#mappen_som_mangler"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: fravær i arkivet er også informasjon.",
+        "thread_ids": [
+          "archival_silence_vs_reconstruction",
+          "rare_find_vs_sensationalism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#mappen_som_mangler"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: transkripsjon er en tolkning i små skritt.",
+        "thread_ids": [
+          "transcription_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#mikrofilmens_skrift"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 4, lunch: transkripsjon er en tolkning i små skritt.",
+        "thread_ids": [
+          "transcription_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#mikrofilmens_skrift"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: transkripsjon er en tolkning i små skritt.",
+        "thread_ids": [
+          "transcription_vs_certainty",
+          "archive_practice_vs_possession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#mikrofilmens_skrift"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 4, evening: transkripsjon er en tolkning i små skritt.",
+        "thread_ids": [
+          "transcription_vs_certainty",
+          "collection_vs_selection_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#mikrofilmens_skrift"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: en kopi kan være verdifull uten å være identisk med originalen.",
+        "thread_ids": [
+          "copy_vs_original"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#kopien_og_originalen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: en kopi kan være verdifull uten å være identisk med originalen.",
+        "thread_ids": [
+          "copy_vs_original"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#kopien_og_originalen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: en kopi kan være verdifull uten å være identisk med originalen.",
+        "thread_ids": [
+          "catalog_vs_fragment",
+          "copy_vs_original"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#kopien_og_originalen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: en kopi kan være verdifull uten å være identisk med originalen.",
+        "thread_ids": [
+          "copy_vs_original",
+          "identity_linkage_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#kopien_og_originalen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: tilgang gir ikke eierskap.",
+        "thread_ids": [
+          "access_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#lesesalens_regler"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 6, lunch: tilgang gir ikke eierskap.",
+        "thread_ids": [
+          "access_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#lesesalens_regler"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: tilgang gir ikke eierskap.",
+        "thread_ids": [
+          "provenance_vs_transparency",
+          "access_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#lesesalens_regler"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 6, evening: tilgang gir ikke eierskap.",
+        "thread_ids": [
+          "access_vs_ownership",
+          "materiality_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#lesesalens_regler"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 7, morning: katalogdata kan også ta feil.",
+        "thread_ids": [
+          "metadata_vs_source_critique"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#metadatafeilen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: katalogdata kan også ta feil.",
+        "thread_ids": [
+          "metadata_vs_source_critique"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#metadatafeilen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: katalogdata kan også ta feil.",
+        "thread_ids": [
+          "archival_silence_vs_reconstruction",
+          "metadata_vs_source_critique"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#metadatafeilen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: katalogdata kan også ta feil.",
+        "thread_ids": [
+          "metadata_vs_source_critique",
+          "source_conflict_vs_confirmation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#metadatafeilen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: et sjeldent funn trenger mer kontroll, ikke mindre.",
+        "thread_ids": [
+          "rare_find_vs_sensationalism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#sjeldent_funn_i_margen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 8, lunch: et sjeldent funn trenger mer kontroll, ikke mindre.",
+        "thread_ids": [
+          "rare_find_vs_sensationalism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#sjeldent_funn_i_margen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: et sjeldent funn trenger mer kontroll, ikke mindre.",
+        "thread_ids": [
+          "transcription_vs_certainty",
+          "rare_find_vs_sensationalism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#sjeldent_funn_i_margen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 8, evening: et sjeldent funn trenger mer kontroll, ikke mindre.",
+        "thread_ids": [
+          "rare_find_vs_sensationalism",
+          "traceability_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#sjeldent_funn_i_margen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: en samling viser også hva noen valgte å bevare.",
+        "thread_ids": [
+          "collection_vs_selection_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#samlingen_som_ble_bygget"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: en samling viser også hva noen valgte å bevare.",
+        "thread_ids": [
+          "collection_vs_selection_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#samlingen_som_ble_bygget"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: en samling viser også hva noen valgte å bevare.",
+        "thread_ids": [
+          "copy_vs_original",
+          "collection_vs_selection_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#samlingen_som_ble_bygget"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: en samling viser også hva noen valgte å bevare.",
+        "thread_ids": [
+          "collection_vs_selection_bias",
+          "archive_practice_vs_possession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#samlingen_som_ble_bygget"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: identitet må kobles, ikke bare gjettes.",
+        "thread_ids": [
+          "identity_linkage_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#navnet_som_flytter_seg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: identitet må kobles, ikke bare gjettes.",
+        "thread_ids": [
+          "identity_linkage_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#navnet_som_flytter_seg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: identitet må kobles, ikke bare gjettes.",
+        "thread_ids": [
+          "access_vs_ownership",
+          "identity_linkage_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#navnet_som_flytter_seg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 10, evening: identitet må kobles, ikke bare gjettes.",
+        "thread_ids": [
+          "catalog_vs_fragment",
+          "identity_linkage_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#navnet_som_flytter_seg"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: materialitet kan bære historisk informasjon.",
+        "thread_ids": [
+          "materiality_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#dokumentets_bakside"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: materialitet kan bære historisk informasjon.",
+        "thread_ids": [
+          "materiality_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#dokumentets_bakside"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: materialitet kan bære historisk informasjon.",
+        "thread_ids": [
+          "metadata_vs_source_critique",
+          "materiality_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#dokumentets_bakside"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: materialitet kan bære historisk informasjon.",
+        "thread_ids": [
+          "provenance_vs_transparency",
+          "materiality_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#dokumentets_bakside"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: motstridende kilder må holdes i samme rom.",
+        "thread_ids": [
+          "source_conflict_vs_confirmation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#to_mapper_to_historier"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 12, lunch: motstridende kilder må holdes i samme rom.",
+        "thread_ids": [
+          "source_conflict_vs_confirmation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#to_mapper_to_historier"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: motstridende kilder må holdes i samme rom.",
+        "thread_ids": [
+          "rare_find_vs_sensationalism",
+          "source_conflict_vs_confirmation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#to_mapper_to_historier"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: motstridende kilder må holdes i samme rom.",
+        "thread_ids": [
+          "archival_silence_vs_reconstruction",
+          "source_conflict_vs_confirmation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#to_mapper_to_historier"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: et godt funn skal kunne finnes igjen.",
+        "thread_ids": [
+          "traceability_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#fotnoten_tilbake_til_esken"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: et godt funn skal kunne finnes igjen.",
+        "thread_ids": [
+          "traceability_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#fotnoten_tilbake_til_esken"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: et godt funn skal kunne finnes igjen.",
+        "thread_ids": [
+          "collection_vs_selection_bias",
+          "traceability_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#fotnoten_tilbake_til_esken"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: et godt funn skal kunne finnes igjen.",
+        "thread_ids": [
+          "transcription_vs_certainty",
+          "traceability_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#fotnoten_tilbake_til_esken"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: målet er sporbar nysgjerrighet, ikke å eie fortiden.",
+        "thread_ids": [
+          "archive_practice_vs_possession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#arkivrotte_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 14, lunch: målet er sporbar nysgjerrighet, ikke å eie fortiden.",
+        "thread_ids": [
+          "archive_practice_vs_possession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#arkivrotte_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: målet er sporbar nysgjerrighet, ikke å eie fortiden.",
+        "thread_ids": [
+          "identity_linkage_vs_guessing",
+          "archive_practice_vs_possession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#arkivrotte_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 14, evening: målet er sporbar nysgjerrighet, ikke å eie fortiden.",
+        "thread_ids": [
+          "copy_vs_original",
+          "archive_practice_vs_possession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_arkivrotte.json#arkivrotte_som_praksis"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "catalog_vs_fragment",
+      "relationship": "katalogkontekst mot løsrevet fragment",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "5/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "provenance_vs_transparency",
+      "relationship": "proveniens mot forestilt nøytralitet",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "archival_silence_vs_reconstruction",
+      "relationship": "arkivhull mot sikker rekonstruksjon",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "transcription_vs_certainty",
+      "relationship": "transkripsjon mot falsk sikkerhet",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "copy_vs_original",
+      "relationship": "kopi mot original og overleveringskjede",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "access_vs_ownership",
+      "relationship": "tilgang mot eierskap og delingsrett",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "metadata_vs_source_critique",
+      "relationship": "metadata mot kildekritikk",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "rare_find_vs_sensationalism",
+      "relationship": "sjeldent funn mot sensasjonalisme",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "12/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "collection_vs_selection_bias",
+      "relationship": "samling mot seleksjonsbias",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "identity_linkage_vs_guessing",
+      "relationship": "identitetskobling mot gjetning",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "materiality_vs_flattening",
+      "relationship": "materialitet mot digital utflating",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "1/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "source_conflict_vs_confirmation",
+      "relationship": "kildekonflikt mot bekreftelsesvalg",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "2/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "traceability_vs_memory",
+      "relationship": "sporbar referanse mot hukommelse",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "3/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "archive_practice_vs_possession",
+      "relationship": "arkivpraksis mot eierskap til fortiden",
+      "beat_refs": [
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening",
+        "4/afternoon",
+        "9/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "signaturen_blir_vane",
+      "description": "Du begynner å skrive arkivsignatur og kontekst før du skriver den spennende tolkningen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_arkivrotte.json#katalogen_for_funnet",
+        "data/Civication/narratives/leisure/historie_arkivrotte.json#fotnoten_tilbake_til_esken"
+      ]
+    },
+    {
+      "id": "hullet_faar_navn",
+      "description": "Manglende materiale blir et eksplisitt problem i notatene i stedet for et tomrom som fylles umerkelig.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_arkivrotte.json#mappen_som_mangler",
+        "data/Civication/narratives/leisure/historie_arkivrotte.json#samlingen_som_ble_bygget"
+      ]
+    },
+    {
+      "id": "funnet_mister_hastverk",
+      "description": "Sjeldne funn gir fortsatt begeistring, men ikke lenger behov for å publisere før konteksten er kontrollert.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_arkivrotte.json#sjeldent_funn_i_margen",
+        "data/Civication/narratives/leisure/historie_arkivrotte.json#to_mapper_to_historier"
+      ]
+    },
+    {
+      "id": "materialet_blir_tredimensjonalt",
+      "description": "Du ser oftere på baksider, stempler, avskrifter og overleveringskjeder før du behandler en digital fil som hele kilden.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_arkivrotte.json#kopien_og_originalen",
+        "data/Civication/narratives/leisure/historie_arkivrotte.json#dokumentets_bakside"
+      ]
+    },
+    {
+      "id": "nysgjerrighet_med_grense",
+      "description": "Arkivinteressen blir mer intens samtidig som respekt for adgang, personvern og samlingsregler blir tydeligere.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_arkivrotte.json#lesesalens_regler",
+        "data/Civication/narratives/leisure/historie_arkivrotte.json#arkivrotte_som_praksis"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "katalogsporet_returnerer",
+      "setup_ref": "1/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "knowledge",
+        "reputation"
+      ]
+    },
+    {
+      "id": "arkivhullet_returnerer",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "knowledge",
+        "judgment"
+      ]
+    },
+    {
+      "id": "transkripsjonen_blir_testet",
+      "setup_ref": "4/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "knowledge",
+        "reputation"
+      ]
+    },
+    {
+      "id": "sjeldent_funn_moter_kontroll",
+      "setup_ref": "8/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "reputation",
+        "identity"
+      ]
+    },
+    {
+      "id": "identiteten_moter_nytt_spor",
+      "setup_ref": "10/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "knowledge",
+        "identity"
+      ]
+    },
+    {
+      "id": "referansen_blir_praksis",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "knowledge",
+        "relationships"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#katalogen_for_funnet",
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#proveniensen",
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#mappen_som_mangler",
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#mikrofilmens_skrift",
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#kopien_og_originalen",
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#lesesalens_regler",
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#metadatafeilen",
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#sjeldent_funn_i_margen",
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#samlingen_som_ble_bygget",
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#navnet_som_flytter_seg",
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#dokumentets_bakside",
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#to_mapper_to_historier",
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#fotnoten_tilbake_til_esken",
+      "data/Civication/narratives/leisure/historie_arkivrotte.json#arkivrotte_som_praksis"
+    ]
+  }
+}

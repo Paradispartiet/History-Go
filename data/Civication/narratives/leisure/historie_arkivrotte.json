@@ -1,0 +1,705 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "historie_arkivrotte_stream",
+  "type": "leisure",
+  "title": "Arkivrotte",
+  "sociological_theme": "samlinger_kildejakt_proveniens_sjeldne_funn_og_sporbar_historisk_praksis",
+  "applies_when": {
+    "any_tags": [
+      "historie:arkivrotte"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "leisure",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "katalogen_for_funnet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesesalen",
+      "subject": "Katalogen er en del av funnet",
+      "situation": [
+        "Du leter etter et bestemt spor og oppdager at samme navn finnes i flere katalogposter, mapper og perioder.",
+        "Det mest spennende dokumentet frister til å hoppe over kataloginformasjonen som virker administrativ.",
+        "For en arkivrotte er signatur, serie, datering og plassering en del av kildejakten fordi de forteller hvor dokumentet hører hjemme."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter katalogreferansen og sammenhengen før du bygger en historie rundt dokumentet.",
+          "effect": 1,
+          "tags": [
+            "catalog_context_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "Ta bilde av den interessante siden og dropp resten av katalogsporet.",
+          "effect": -1,
+          "tags": [
+            "catalog_context_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_catalog_context"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "proveniensen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Katalogen",
+      "subject": "Hvem skapte materialet — og hvorfor?",
+      "situation": [
+        "En mappe inneholder presise beskrivelser av en konflikt, og teksten ser ut som et direkte vindu til hendelsen.",
+        "Så ser du at dokumentene ble produsert av én av partene med et tydelig formål.",
+        "Proveniens handler om hvem som skapte materialet, i hvilken funksjon og gjennom hvilken administrativ eller personlig prosess."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Les opplysningene sammen med hvem som skapte materialet og hvilket formål dokumentet hadde.",
+          "effect": 1,
+          "tags": [
+            "provenance_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "Behandle detaljrikdommen som bevis på at teksten må være nøytral.",
+          "effect": -1,
+          "tags": [
+            "provenance_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_provenance"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "mappen_som_mangler",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Notatboka",
+      "subject": "Fravær i arkivet er også informasjon",
+      "situation": [
+        "En serie ser komplett ut helt til du oppdager et tydelig hull i årgangen du trenger.",
+        "Det er fristende å fylle tomrommet med det som virker mest sannsynlig ut fra nabomappene.",
+        "Arkiver bevarer ikke fortiden jevnt; tap, kassasjon, taushet og seleksjon former hva som finnes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker hullet som et faktisk kildeproblem og skill det fra det du bare antar kan ha stått der.",
+          "effect": 1,
+          "tags": [
+            "archival_silence_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "Rekonstruer den manglende mappen som om nabodokumentene beviser innholdet.",
+          "effect": -1,
+          "tags": [
+            "archival_silence_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_missing_record"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "mikrofilmens_skrift",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Transkripsjon er en tolkning i små skritt",
+      "situation": [
+        "På en mikrofilm er håndskriften svak og flere ord kan leses på mer enn én måte.",
+        "En rask transkripsjon gir en elegant setning som passer teorien din.",
+        "Men ett feil bokstavvalg kan endre navn, sted eller mening og deretter spre seg videre som et tilsynelatende sitat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker usikre ord, sammenlign bokstavformer og skill sikker lesning fra forslag.",
+          "effect": 1,
+          "tags": [
+            "transcription_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "Velg den lesningen som gir mest mening i historien og skriv den uten forbehold.",
+          "effect": -1,
+          "tags": [
+            "transcription_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_transcription"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kopien_og_originalen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesesalen",
+      "subject": "En kopi kan være verdifull uten å være identisk med originalen",
+      "situation": [
+        "Du finner en senere avskrift av et dokument som er langt lettere å lese enn den eldre versjonen.",
+        "Avskriften kan være korrekt, men du vet ikke om stavemåte, utelatelser eller margnotater er bevart.",
+        "Materialitet og overleveringskjede påvirker hva en kilde faktisk kan dokumentere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk avskriften som hjelp, men noter hvilken versjon du bygger på og hva originalen kan tilføre.",
+          "effect": 1,
+          "tags": [
+            "copy_original_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "Behandle avskrift og original som helt utskiftbare fordi teksten ser lik ut.",
+          "effect": -1,
+          "tags": [
+            "copy_original_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_copy_chain"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lesesalens_regler",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Katalogen",
+      "subject": "Tilgang gir ikke eierskap",
+      "situation": [
+        "Du får lese materiale i en institusjon med tydelige regler for håndtering, fotografering og personopplysninger.",
+        "Et dokument inneholder noe sensasjonelt som ville gitt mye oppmerksomhet dersom du delte det med én gang.",
+        "Arkivrotte-praksis krever respekt for tilgangsvilkår, materialets sårbarhet og rettigheter som fortsatt kan gjelde."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg lesesalens regler og avklar deling før du gjør opplysningen offentlig.",
+          "effect": 1,
+          "tags": [
+            "access_stewardship_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "Del straks fordi det som kan leses i en samling må være fritt å publisere.",
+          "effect": -1,
+          "tags": [
+            "access_stewardship_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_access_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "metadatafeilen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Notatboka",
+      "subject": "Katalogdata kan også ta feil",
+      "situation": [
+        "En katalogpost daterer et fotografi til et bestemt år, men motivet inneholder detaljer som ikke passer.",
+        "Katalogen er nyttig, men metadata er selv produsert av mennesker og systemer med egne historikker.",
+        "Kildekritikk gjelder også beskrivelsene som gjør materialet søkbart."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle metadata som en kilde som kan kontrolleres mot selve materialet og andre dateringsspor.",
+          "effect": 1,
+          "tags": [
+            "metadata_critique_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "La katalogdatoen avslutte spørsmålet fordi den står i det offisielle systemet.",
+          "effect": -1,
+          "tags": [
+            "metadata_critique_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_metadata_check"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sjeldent_funn_i_margen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Et sjeldent funn trenger mer kontroll, ikke mindre",
+      "situation": [
+        "I margen på et dokument finner du en notis som ser ut til å endre en kjent historie.",
+        "Fordi funnet er uventet, kjenner du hvor fristende det er å fortelle om det før noen andre gjør det.",
+        "Jo mer ekstraordinært et funn er, desto viktigere blir datering, håndskrift, kontekst og uavhengige kontrollspor."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dokumenter funnsted, sammenheng og alternative forklaringer før du gjør en stor påstand.",
+          "effect": 1,
+          "tags": [
+            "rare_find_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "Publiser den mest oppsiktsvekkende tolkningen først og undersøk detaljene senere.",
+          "effect": -1,
+          "tags": [
+            "rare_find_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_rare_find"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samlingen_som_ble_bygget",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesesalen",
+      "subject": "En samling viser også hva noen valgte å bevare",
+      "situation": [
+        "En privat samling virker rik på én type brev og nesten tom for andre stemmer.",
+        "Det kan skyldes fortiden, men også samlerens egne interesser, familiehierarkier eller senere ordning.",
+        "Samlingshistorien er derfor en del av kildekritikken."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hvordan samlingen ble bygget, bevart og ordnet før du tolker fravær som historisk fravær.",
+          "effect": 1,
+          "tags": [
+            "collection_bias_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "Anta at samlingen gjenspeiler fortiden proporsjonalt fordi den inneholder mange dokumenter.",
+          "effect": -1,
+          "tags": [
+            "collection_bias_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_collection_history"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "navnet_som_flytter_seg",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Katalogen",
+      "subject": "Identitet må kobles, ikke bare gjettes",
+      "situation": [
+        "Det samme etternavnet dukker opp i flere protokoller med litt ulik stavemåte.",
+        "Du vil gjerne knytte postene til én person fordi det gir et sammenhengende livsløp.",
+        "Historiske identiteter må bygges av flere spor som tid, sted, relasjoner og andre kjennetegn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Koble postene bare når flere uavhengige kjennetegn støtter samme identitet.",
+          "effect": 1,
+          "tags": [
+            "identity_linkage_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "Slå sammen postene fordi navnelikheten gjør historien mer sammenhengende.",
+          "effect": -1,
+          "tags": [
+            "identity_linkage_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_identity_linkage"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "dokumentets_bakside",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Notatboka",
+      "subject": "Materialitet kan bære historisk informasjon",
+      "situation": [
+        "Et fotografi ser kjent ut på forsiden, men baksiden har stempel, nummer og en senere håndskrevet merknad.",
+        "Den digitale kopien du først fant viste bare motivet.",
+        "Fysisk form, påskrifter og spor etter bruk kan fortelle om dokumentets reise og funksjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrer både motivet og de materielle sporene som sier noe om bruk og proveniens.",
+          "effect": 1,
+          "tags": [
+            "materiality_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "Se bort fra baksiden fordi selve bildet allerede viser det viktigste.",
+          "effect": -1,
+          "tags": [
+            "materiality_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_materiality"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_mapper_to_historier",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Motstridende kilder må holdes i samme rom",
+      "situation": [
+        "To mapper beskriver den samme hendelsen forskjellig og begge virker interne og detaljerte.",
+        "Du merker at den ene versjonen passer bedre med historien du allerede hadde.",
+        "Kildejakt blir først robust når konflikt mellom kilder ikke ryddes bort for tidlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bevar uenigheten, undersøk hvem kildene er skrevet for og hva hver av dem kunne vite.",
+          "effect": 1,
+          "tags": [
+            "source_conflict_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "Velg den mest bekvemme versjonen og bruk den andre som et avvik.",
+          "effect": -1,
+          "tags": [
+            "source_conflict_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_source_conflict"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fotnoten_tilbake_til_esken",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesesalen",
+      "subject": "Et godt funn skal kunne finnes igjen",
+      "situation": [
+        "Du skal forklare et funn til andre noen uker etter besøket.",
+        "Bildet og notatene er tydelige for deg, men mangler arkivsignatur, mappenummer og sidereferanse.",
+        "Etterprøvbarhet er forskjellen mellom en spennende historie og et spor andre faktisk kan kontrollere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bygg referansen slik at en annen person kan finne dokumentet igjen uten å gjette.",
+          "effect": 1,
+          "tags": [
+            "traceability_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "Nøy deg med institusjonsnavn og dato fordi detaljene bare er nyttige for spesialister.",
+          "effect": -1,
+          "tags": [
+            "traceability_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_traceability"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arkivrotte_som_praksis",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Katalogen",
+      "subject": "Målet er sporbar nysgjerrighet, ikke å eie fortiden",
+      "situation": [
+        "Etter mange mapper, mikrofilmer og katalogspor ser du at de beste funnene ofte kommer fra tålmodig arbeid som få andre ser.",
+        "Du har også lært at dokumenter aldri står alene: de har skaper, system, materialitet, hull og regler for bruk.",
+        "Arkivrotta avslutter ikke med institusjonell arkivmyndighet, men med en sterkere vane for kildejakt, sporbarhet og respekt for samlingene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold en praksis der funn dokumenteres, kontekstualiseres og kan etterprøves av andre.",
+          "effect": 1,
+          "tags": [
+            "archive_practice_deliberate",
+            "alternative_life_status",
+            "source_criticism"
+          ],
+          "feedback": "Du gjør funnet mer etterprøvbart uten å miste nysgjerrigheten."
+        },
+        {
+          "id": "B",
+          "label": "Gjør rollen til et samlerinstinkt der det viktigste er å finne noe ingen andre har sett.",
+          "effect": -1,
+          "tags": [
+            "archive_practice_drift",
+            "context_loss",
+            "archive_overreach"
+          ],
+          "feedback": "Det spennende sporet får mer sikkerhet enn dokumentasjonen og konteksten bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "arkivrotte_practice_integrated"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
