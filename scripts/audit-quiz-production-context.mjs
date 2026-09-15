@@ -326,6 +326,11 @@ export async function auditQuizProductionContext({ root = process.cwd() } = {}) 
       const artifact = await readJson(root, paths.context_artifact);
       const rebuiltArtifact = await buildQuizProductionContext({ root, categoryId, targetId });
       if (JSON.stringify(artifact) !== JSON.stringify(rebuiltArtifact)) {
+        if ((categoryId === "by" && targetId === "nydalen") || (categoryId === "scenekunst" && targetId === "dramatikkens_hus")) {
+          console.error(`QUIZ_CONTEXT_REBUILD_BEGIN ${categoryId}/${targetId}`);
+          console.error(JSON.stringify(rebuiltArtifact));
+          console.error(`QUIZ_CONTEXT_REBUILD_END ${categoryId}/${targetId}`);
+        }
         addFailure(failures, paths.context_artifact, "kontekstarterfakt avviker fra deterministisk rebuild");
       }
       if (artifact.categoryId !== categoryId || artifact.targetId !== targetId) {
