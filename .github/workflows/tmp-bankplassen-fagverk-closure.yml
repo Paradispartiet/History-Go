@@ -1,0 +1,73 @@
+name: TEMP Bankplassen Fagverk closure
+
+on:
+  push:
+    branches:
+      - agent/norges-bank-bankplassen-4-place-production-20260914
+    paths:
+      - .github/workflows/tmp-bankplassen-fagverk-closure.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: agent/norges-bank-bankplassen-4-place-production-20260914
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Materialize canonical generated artifacts
+        run: |
+          set -euo pipefail
+          node scripts/materialize-natur-final-registry.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-naeringsliv-fagpakke-registry.mjs
+      - name: Verify Fagverk release determinism
+        run: |
+          set -euo pipefail
+          node --test tests/fagverk-release-manifest.test.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Verify Næringsliv registry audit determinism
+        run: |
+          set -euo pipefail
+          node scripts/audit-naeringsliv-fagpakke-registry.mjs
+      - name: Enforce generated-only scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          changed="$(git status --porcelain | sed 's/^...//' | sort)"
+          if [ -z "$changed" ]; then
+            echo 'Expected generated drift, found none' >&2
+            exit 1
+          fi
+          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(data/fagverk/fagverk_registry\.json|data/fagverk/subject_status\.json|data/fagverk/fagverk_release\.json|reports/naeringsliv_fagpakke_registry_audit\.json)$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo 'Unexpected generated changes:' >&2
+            printf '%s\n' "$unexpected" >&2
+            exit 1
+          fi
+          printf '%s\n' "$changed" | grep -Fx 'data/fagverk/fagverk_release.json' >/dev/null || { echo 'Missing expected Fagverk release drift' >&2; exit 1; }
+          printf '%s\n' "$changed" | grep -Fx 'reports/naeringsliv_fagpakke_registry_audit.json' >/dev/null || { echo 'Missing expected Næringsliv registry drift' >&2; exit 1; }
+      - name: Commit generated closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/fagverk_release.json \
+            reports/naeringsliv_fagpakke_registry_audit.json
+          if git diff --cached --quiet; then
+            echo 'No generated closure changes to commit' >&2
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: refresh Bankplassen Fagverk release artifacts'
+          git push origin HEAD:agent/norges-bank-bankplassen-4-place-production-20260914
