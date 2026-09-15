@@ -30,10 +30,10 @@
     "productions"
   ],
   "object_category_boundary": "Sceneriggen og annet fysisk utstyr hører i Objects; navngitte forestillinger hører i Productions.",
-  "active_phase": "foundation_exact_head_validation",
-  "active_file_scope": "foundation sources + production evidence + leksikon + Språkleksikon + Fagverk + generated epoch/place-open",
-  "active_merge_boundary": "foundation/evidence",
-  "branch_status": "PR",
+  "active_phase": "four_collection_materialization",
+  "active_file_scope": "People + Objects + Brands + Productions + standing frontImage + canonical PlaceCard v2 profile",
+  "active_merge_boundary": "collections_and_placecard_media",
+  "branch_status": "pushed",
   "live_status": "not_live",
   "preserve": {
     "coordinates": "Behold eksisterende verifiserte koordinater med mindre konkret regresjon dokumenteres.",
@@ -61,13 +61,12 @@
     "exact_head_ci": "pending"
   },
   "next_required": [
-    "Pass exact-head foundation CI and merge this boundary",
-    "Materialize four image-ready collections: People, Objects, Brands, Productions",
+    "Regenerate place-open/index runtime and validate exact four PlaceCard collection previews",
+    "Pass collection exact-head CI and merge this boundary",
     "Produce genuine Story and Lesespor",
     "Audit existing quiz and select adaptive profile",
     "Produce full quiz and dedicated QuizCard",
-    "Create portrait frontImage with provenance",
-    "Regenerate runtime/indexes and complete manual final QA"
+    "Complete manual mobile/desktop flip and final Place QA"
   ],
   "verified_at": "2026-09-15",
   "rule_preflight": {
@@ -139,5 +138,71 @@
         "final_content_plan"
       ]
     }
-  }
+  },
+  "people_status": {
+    "status": "PASS",
+    "members": [
+      "anne_may_nilsen",
+      "kristin_auestad_danielsen"
+    ],
+    "preview_member": "kristin_auestad_danielsen",
+    "note": "Anne-May Nilsen beholdes som historisk grunnlegger-/lederanker. Kristin Auestad Danielsen er direkte dokumentert husdramatiker 2014/15 og har lovlig Commons-portrett."
+  },
+  "objects_status": {
+    "status": "PASS",
+    "members": [
+      "dramatikkens_hus_scenerigg_hallen"
+    ],
+    "preview_member": "dramatikkens_hus_scenerigg_hallen",
+    "single_signature_object_exception": true,
+    "note": "Sceneriggen i Hallen er et dokumentert signaturobjekt for stedets scenetekniske hovedfunksjon; ingen sekundær gjenstand er lagt inn som filler."
+  },
+  "brands_status": {
+    "status": "PASS",
+    "members": [
+      "det_aapne_teater"
+    ],
+    "preview_member": "det_aapne_teater",
+    "note": "Det Åpne Teater er en dokumentert historisk legacy-identitet med autentisk fasadeordmerke. Dramatikkens hus selv er eksplisitt holdt place-first."
+  },
+  "productions_status": {
+    "status": "PASS",
+    "members": [
+      "dramatikkens_hus_hun_er_vred_arg_sint_2026"
+    ],
+    "preview_member": "dramatikkens_hus_hun_er_vred_arg_sint_2026",
+    "note": "Kalenderen merker gjestespillet «Hun er vred/arg/sint» som Forestilling. Arbeidsvisninger, lesninger og verksteder er ikke brukt i Productions."
+  },
+  "front_image_status": {
+    "status": "PASS",
+    "path": "bilder/places/dramatikkens_hus_front_portrait.webp",
+    "dimensions": "900x1200",
+    "orientation": "portrait",
+    "source": "Wikimedia Commons / Jan-Tore Egge / CC BY-SA 4.0"
+  },
+  "place_card_status": {
+    "status": "READY_FOR_INTEGRATION_VALIDATION",
+    "schema": "history_go_place_card_profile_v2",
+    "collection_ids": [
+      "people",
+      "objects",
+      "brands",
+      "productions"
+    ],
+    "all_four_have_member_images": true,
+    "related_used_as_collection": false,
+    "filler_used": false
+  },
+  "completed_phases": [
+    "foundation_evidence_merged",
+    "four_collection_source_materialization"
+  ],
+  "notes": [
+    "Collections boundary uses exactly People · Objects · Brands · Productions.",
+    "People preview is Kristin Auestad Danielsen; Anne-May Nilsen remains preserved as the historical person anchor.",
+    "Objects uses one signature-object exception for Hallen-riggen; no filler object was added.",
+    "Det Åpne Teater is the historical Brand identity; Dramatikkens hus is not duplicated as a Brand.",
+    "Productions contains an explicit Forestilling guest performance and does not reclassify arbeidsvisninger.",
+    "frontImage is a real 900x1200 local portrait variant, not a CSS crop or QuizCard."
+  ]
 }
