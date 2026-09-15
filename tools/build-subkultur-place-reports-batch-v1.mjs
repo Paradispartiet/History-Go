@@ -512,7 +512,13 @@ const CASES = [
     placeFile: 'data/places/subkultur/oslo/places_subkultur/torggata_blad.json',
     anchorType: 'independent_media_or_shop',
     start: '2007',
-    emneIds: ['em_sub_fanziner_plakater', 'em_sub_dokumentasjon_arkiv'],
+    emneIds: ['em_sub_diy_praksis', 'em_sub_uavhengige_medier', 'em_sub_fanziner_plakater', 'em_sub_dokumentasjon_arkiv'],
+    topicRationaleByEmne: {
+      em_sub_diy_praksis: 'Oppstarten dokumenterer selvorganisert innsamling, layout, trykk og distribusjon rundt en liten redaksjon.',
+      em_sub_uavhengige_medier: 'Publikasjonen definerer seg som uavhengig og dokumenterer en bred, skiftende bidragsyterkrets.',
+      em_sub_fanziner_plakater: 'Papirutgavene er konkrete selvpubliserte medieobjekter og del av prosjektets identitet.',
+      em_sub_dokumentasjon_arkiv: 'Tidlige PDF-utgaver og mastheader gjør redaksjonssted, formatendringer og kontinuitet etterprøvbare over tid.'
+    },
     methodId: 'met_sub_mediearkeologisk_analyse',
     milieuUrl: 'https://torggatablad.no/bror-en-helt-unik-skrifttype/',
     milieuLocation: 'Torggata Blad – egen historikk og 2026-presentasjon',
@@ -1373,7 +1379,7 @@ function report(config) {
     },
     subcultureTopics: config.emneIds.map((emneId) => ({
       emneId,
-      siteSpecificRationale: config.topicRationale ?? `Emnet er knyttet til dokumenterte praksiser, organisering og rombruk ved ${config.placeId}, ikke til arenaetiketten alene.`,
+      siteSpecificRationale: config.topicRationaleByEmne?.[emneId] ?? config.topicRationale ?? `Emnet er knyttet til dokumenterte praksiser, organisering og rombruk ved ${config.placeId}, ikke til arenaetiketten alene.`,
       caseIds: [caseId]
     })),
     sources: [
