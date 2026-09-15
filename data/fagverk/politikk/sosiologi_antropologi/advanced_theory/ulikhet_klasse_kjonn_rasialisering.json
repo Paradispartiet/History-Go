@@ -1,0 +1,63 @@
+{
+  "schema": "history_go_sosiologi_antropologi_advanced_theory_domain_overlay_v1",
+  "version": "1.0.0",
+  "subject_id": "politikk",
+  "canonical_subcategory_id": "sosiologi_antropologi",
+  "domain_id": "ulikhet_klasse_kjonn_rasialisering",
+  "status": "advanced_theory_fulltext_materialized",
+  "source_canon": "data/fag/politikk/sosiologi_antropologi/advanced_theory_reading_canon_v1.json",
+  "refresh_contract": "data/fag/politikk/sosiologi_antropologi/advanced_theory_fulltext_refresh_v1.json",
+  "works": [
+    {
+      "id": "adv10-piketty-capital-ideology",
+      "author": "Thomas Piketty",
+      "title": "Capital and Ideology",
+      "first_published": 2019,
+      "source_url": "https://www.hup.harvard.edu/catalog.php?isbn=9780674980822",
+      "source_type": "scholarly-primary-monograph",
+      "existing_coverage": "gap",
+      "theory_units": [
+        {
+          "id": "adv10-inequality-regimes",
+          "name": "Ulikhetsregimer",
+          "summary": "Historiske ordninger for eiendom, status, skatt og makt sammenlignes med sine legitimeringer.",
+          "analytic_question": "Hvilke institusjoner og begrunnelser holder ulikhetsordenen sammen?",
+          "misuse_guardrail": "Ikke reduser all ulikhet til én variabel.",
+          "teaching_text": {
+            "explanation": "Historiske ordninger for eiendom, status, skatt og makt sammenlignes med sine legitimeringer.",
+            "analytic_prompt": "Hvilke institusjoner og begrunnelser holder ulikhetsordenen sammen?",
+            "scope_guardrail": "Ikke reduser all ulikhet til én variabel."
+          }
+        },
+        {
+          "id": "adv10-ideological-legitimation",
+          "name": "Ideologisk legitimering",
+          "summary": "Fordeling ledsages av fortellinger om rettferdighet, eiendom og fortjeneste.",
+          "analytic_question": "Hvordan begrunnes fordelingen som legitim?",
+          "misuse_guardrail": "Skill normativ uenighet fra empirisk dokumentasjon.",
+          "teaching_text": {
+            "explanation": "Fordeling ledsages av fortellinger om rettferdighet, eiendom og fortjeneste.",
+            "analytic_prompt": "Hvordan begrunnes fordelingen som legitim?",
+            "scope_guardrail": "Skill normativ uenighet fra empirisk dokumentasjon."
+          }
+        },
+        {
+          "id": "adv10-political-cleavages",
+          "name": "Politiske konfliktlinjer",
+          "summary": "Partier og velgerkoalisjoner endrer sosial sammensetning over tid.",
+          "analytic_question": "Hvordan kobles utdanning, inntekt, eiendom og politiske koalisjoner?",
+          "misuse_guardrail": "Gruppemønstre predikerer ikke enkeltpersoners valg.",
+          "teaching_text": {
+            "explanation": "Partier og velgerkoalisjoner endrer sosial sammensetning over tid.",
+            "analytic_prompt": "Hvordan kobles utdanning, inntekt, eiendom og politiske koalisjoner?",
+            "scope_guardrail": "Gruppemønstre predikerer ikke enkeltpersoners valg."
+          }
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "works": 1,
+    "theory_units": 3
+  }
+}

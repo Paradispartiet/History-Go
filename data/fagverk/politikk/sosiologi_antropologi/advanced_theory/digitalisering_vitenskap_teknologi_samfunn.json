@@ -1,0 +1,63 @@
+{
+  "schema": "history_go_sosiologi_antropologi_advanced_theory_domain_overlay_v1",
+  "version": "1.0.0",
+  "subject_id": "politikk",
+  "canonical_subcategory_id": "sosiologi_antropologi",
+  "domain_id": "digitalisering_vitenskap_teknologi_samfunn",
+  "status": "advanced_theory_fulltext_materialized",
+  "source_canon": "data/fag/politikk/sosiologi_antropologi/advanced_theory_reading_canon_v1.json",
+  "refresh_contract": "data/fag/politikk/sosiologi_antropologi/advanced_theory_fulltext_refresh_v1.json",
+  "works": [
+    {
+      "id": "adv12-zuboff-surveillance-capitalism",
+      "author": "Shoshana Zuboff",
+      "title": "The Age of Surveillance Capitalism",
+      "first_published": 2019,
+      "source_url": "https://www.hachettebookgroup.com/titles/shoshana-zuboff/the-age-of-surveillance-capitalism/9781610395700/",
+      "source_type": "scholarly-critical-monograph",
+      "existing_coverage": "gap",
+      "theory_units": [
+        {
+          "id": "adv12-behavioral-surplus",
+          "name": "Atferdsoverskudd",
+          "summary": "Data utover tjenestens umiddelbare behov beskrives som råstoff for kommersiell analyse.",
+          "analytic_question": "Hvilke data samles inn utover brukerens tjenestebehov?",
+          "misuse_guardrail": "Begrepet er Zuboffs teoretiske ramme, ikke nøytral industristandard.",
+          "teaching_text": {
+            "explanation": "Data utover tjenestens umiddelbare behov beskrives som råstoff for kommersiell analyse.",
+            "analytic_prompt": "Hvilke data samles inn utover brukerens tjenestebehov?",
+            "scope_guardrail": "Begrepet er Zuboffs teoretiske ramme, ikke nøytral industristandard."
+          }
+        },
+        {
+          "id": "adv12-prediction-products",
+          "name": "Prediksjonsprodukter",
+          "summary": "Atferdsdata bearbeides til modeller som forsøker å forutsi framtidig handling.",
+          "analytic_question": "Hvem produserer prediksjoner om hvem, og for hvilke beslutninger?",
+          "misuse_guardrail": "Ikke anta at alle datamodeller inngår i samme forretningsmodell.",
+          "teaching_text": {
+            "explanation": "Atferdsdata bearbeides til modeller som forsøker å forutsi framtidig handling.",
+            "analytic_prompt": "Hvem produserer prediksjoner om hvem, og for hvilke beslutninger?",
+            "scope_guardrail": "Ikke anta at alle datamodeller inngår i samme forretningsmodell."
+          }
+        },
+        {
+          "id": "adv12-instrumentarian-power",
+          "name": "Instrumentær makt",
+          "summary": "Digitale infrastrukturer kan søke å forme atferd uten direkte tvang.",
+          "analytic_question": "Hvordan påvirker systemdesign handlingsrom?",
+          "misuse_guardrail": "Teorien er omstridt og krever konkret teknisk og økonomisk evidens.",
+          "teaching_text": {
+            "explanation": "Digitale infrastrukturer kan søke å forme atferd uten direkte tvang.",
+            "analytic_prompt": "Hvordan påvirker systemdesign handlingsrom?",
+            "scope_guardrail": "Teorien er omstridt og krever konkret teknisk og økonomisk evidens."
+          }
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "works": 1,
+    "theory_units": 3
+  }
+}
