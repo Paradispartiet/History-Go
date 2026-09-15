@@ -1,0 +1,676 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "musikk_konsertgjenger_stream",
+  "type": "leisure",
+  "title": "Konsertgjenger",
+  "sociological_theme": "konsert_scene_ny_favoritt_billetter_publikumskoder_kropp_telefon_merch_fandom_og_grensen_mot_liveproduksjonsmyndighet",
+  "applies_when": {
+    "any_tags": [
+      "musikk:konsertgjenger"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "billetten_som_flytter_budsjettet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Billettappen",
+      "subject": "Salget åpner",
+      "situation": [
+        "En artist du liker slipper billetter, og de dyreste kategoriene forsvinner først.",
+        "Live-øyeblikket føles unikt, men billettpris, gebyrer og transport gjør opplevelsen til et økonomisk valg.",
+        "Konsertglede trenger ikke bevises med den dyreste plassen eller flest datoer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge en billett som passer budsjettet og fortsatt gir deg konserten.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Strekke økonomien fordi en ekte fan bør være nærmest mulig.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "experience_vs_spend"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "koen_for_dorene_apner",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fortauet",
+      "subject": "Før innslipp",
+      "situation": [
+        "Du kommer tidlig og havner i en kø der folk sammenligner hvor mange ganger de har sett artisten før.",
+        "Ventetid og forventning skaper fellesskap, men også små rangordninger basert på erfaring og tilgang.",
+        "Å ha vært på færre konserter gjør ikke opplevelsen mindre legitim."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakke om hva dere gleder dere til uten å gjøre historikken til rangering.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Markere hvor erfaren du er for å sikre deg status i køen.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "belonging_vs_status"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "plassen_i_salen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Publikum",
+      "subject": "Siktlinjen",
+      "situation": [
+        "Du finner en plass med god lyd, men noen bak deg ser dårligere når du flytter deg frem.",
+        "Konsertrommet er delt infrastruktur: alle prøver å høre, se og bevege seg samtidig.",
+        "Publikumskultur består av små forhandlinger om kropp, plass og hensyn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finne en plass som fungerer uten å gjøre andres opplevelse unødvendig dårlig.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta plassen du vil ha fordi alle må passe på seg selv.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "presence_vs_shared_space"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "telefonen_foran_scenen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Hovedsettet",
+      "subject": "Skjermen mellom deg og låten",
+      "situation": [
+        "Favorittlåten starter, og du løfter telefonen for å filme.",
+        "Et kort opptak kan bevare et minne, men en skjerm over hodet påvirker både egen og andres opplevelse.",
+        "Å dokumentere konserten er ikke det samme som å være til stede i den."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Filme kort og senke telefonen igjen.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Holde telefonen oppe gjennom hele låten for å få et komplett opptak.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "memory_vs_presence"
+      ],
+      "risk_links": [
+        "attention_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "supportbandet_du_ikke_kjenner",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Tidligsettet",
+      "subject": "Før hovednavnet",
+      "situation": [
+        "Supportbandet går på mens mange fortsatt snakker eller er i baren.",
+        "Du kom for hovedartisten, men kvelden er også arbeid og eksponering for dem som spiller først.",
+        "Å lytte åpent gir ingen plikt til å like, men det skiller nysgjerrighet fra ren venting."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi settet noen låter før du bestemmer deg.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle det som bakgrunnsstøy fram til hovednavnet.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "curiosity_vs_hierarchy"
+      ],
+      "risk_links": [
+        "shame_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lyden_som_er_for_hoy",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Salen",
+      "subject": "Trykket i ørene",
+      "situation": [
+        "Lyden er fysisk sterk, og du kjenner at ørene blir slitne før konserten er halvveis.",
+        "Volum er del av live-opplevelsen, men kroppen har grenser uavhengig av sceneidealer.",
+        "Hørselvern er ikke mindre engasjement."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke ørepropper eller flytte deg til et roligere område.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bli stående uten vern fordi det virker lite rocka å beskytte ørene.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "intensity_vs_body"
+      ],
+      "risk_links": [
+        "body_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "allsangen_som_tar_over",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Refrenget",
+      "subject": "Hele rommet synger",
+      "situation": [
+        "Publikum synger så høyt at du knapt hører artisten i et refreng du har ventet på.",
+        "Felles sang kan være selve høydepunktet for noen og en forstyrrelse for andre.",
+        "Live-kultur innebærer at opplevelsen skapes av både scene og sal."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bli med der det passer og akseptere at publikum også er del av lydbildet.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Klage høylytt på alle rundt deg fordi du betalte for å høre artisten alene.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "collective_energy_vs_control"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "merchbordet_etterpå",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Foajeen",
+      "subject": "T-skjorten",
+      "situation": [
+        "Etter konserten står du ved merchbordet med følelsen fortsatt i kroppen.",
+        "Merch kan støtte artisten og markere et minne, men begeistring gjør impulskjøp ekstra lette.",
+        "Støtte og identitet kan skilles fra hvor mye du kjøper."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kjøpe noe du faktisk vil bruke, eller la være.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Handle mer enn planlagt fordi kvelden føles viktig akkurat nå.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "support_vs_consumption"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konserten_alene",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Inngangen",
+      "subject": "Ingen å gå med",
+      "situation": [
+        "Ingen av vennene dine kunne bli med, men du har allerede billett.",
+        "Å gå alene kan kjennes sosialt utsatt i et rom som ser ut til å være fullt av grupper.",
+        "Publikumsrollen kan være selvstendig uten å bli ensomhetsbevis."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå inn og la musikken være nok grunn til å være der.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Droppe konserten fordi det vil se rart ut å stå alene.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "autonomy_vs_social_mask"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "setlisten_du_hapet_pa",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Ute etterpå",
+      "subject": "Den låten kom aldri",
+      "situation": [
+        "Konserten var god, men artisten spilte ikke låten du hadde håpet mest på.",
+        "Publikums forventninger formes av katalog, turnéhistorikk og setlist-diskusjoner, men konserten er ikke en bestilling.",
+        "Skuffelse kan være ekte uten å bli krav på programmet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakke om savnet uten å gjøre det til artistens plikt å spille din favoritt.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Beskrive settet som feil fordi den ene låten manglet.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "expectation_vs_entitlement"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_nye_favoritten_live",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "På vei hjem",
+      "subject": "Låten som traff annerledes",
+      "situation": [
+        "En låt du nesten alltid hoppet over på albumet blir kveldens sterkeste øyeblikk live.",
+        "Konserter kan endre hvordan repertoar, arrangement og artistkontakt oppfattes.",
+        "Live-erfaring er en annen kunnskapsform enn statistikk og fanrangeringer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La den nye erfaringen endre hva du hører etter neste gang.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke øyeblikket som bevis på at du nå forstår artisten bedre enn andre fans.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "discovery_vs_status_capture"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "festivalvalget",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Programmet",
+      "subject": "To scener samtidig",
+      "situation": [
+        "To artister du vil se spiller samtidig på hver sin scene.",
+        "Festivaler gjør oppmerksomhet til knapp ressurs, og enhver rute innebærer tap.",
+        "Å velge bort noe er ikke et nederlag; det er en del av formatet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge ett sett og faktisk være til stede der.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Løpe mellom scenene for å kunne si at du fikk med deg begge.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "curation_vs_completion"
+      ],
+      "risk_links": [
+        "attention_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "etterpraten_om_lyden",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Baren",
+      "subject": "Var det egentlig bra?",
+      "situation": [
+        "Etter konserten diskuterer gruppen miks, vokal, publikum og låtvalg.",
+        "Erfaring gjør det mulig å beskrive hva du hørte, men publikum har ikke tilgang til lydteknikerens bord, artistens monitorer eller produksjonsbeslutninger.",
+        "Konsertvurdering er legitim uten å late som den er teknisk fasit."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskrive hva du opplevde fra din plass og skille det fra produksjonskunnskap.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Forklare sikkert hva lydteknikeren gjorde feil uten å kjenne rigg eller beslutninger.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "listener_judgment_vs_technical_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_konsertgjenger",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Billettmappen",
+      "subject": "Live som del av livet",
+      "situation": [
+        "Du har sett mange scener, lært hvilke rom du liker og oppdaget artister live før de ble favoritter.",
+        "Det er reell publikums- og lyttekompetanse, men gir ingen artist-, booker-, manager-, crew-, sikkerhets- eller venue-myndighet.",
+        "Spørsmålet er om erfaringen gjør deg mer åpen og presis eller bare mer opptatt av å rangere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde rollen som erfaren publikummer med tydelige myndighetsgrenser.",
+          "effect": 1,
+          "tags": [
+            "live_music",
+            "role_clarity",
+            "shared_space"
+          ],
+          "feedback": "Du bruker konserterfaringen til bedre lytting og hensyn uten å gjøre den til rang eller produksjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "La konsertmengden fungere som fullmakt til å avgjøre hvem som hører til og hvordan show skal produseres.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overconsumption",
+            "role_inflation"
+          ],
+          "feedback": "Live-erfaringen blir brukt som status, krav eller lånt myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "practice_vs_live_authority"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    }
+  ]
+}
