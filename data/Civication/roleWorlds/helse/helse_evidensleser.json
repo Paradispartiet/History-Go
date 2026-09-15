@@ -1,0 +1,1174 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "helse",
+  "role_scope": "helse_evidensleser",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "helse",
+    "id": "evidensleser",
+    "label": "Evidensleser"
+  },
+  "title": "Evidensleser",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å kalibrere helsepåstander etter studiedesign, datagrunnlag og usikkerhet uten å gjøre skepsis til enten blind autoritetstro eller total handlingslammelse",
+    "description": "Evidensleser-verdenen handler om hverdagslig evidenskompetanse: å skille funn fra overskrift, utvalg fra befolkning, sammenheng fra årsak og presisjon fra sikkerhet. Spilleren møter lenker, venner, offentlige diskusjoner og egne tidligere påstander, men får ingen klinisk rolle, diagnostisk myndighet eller behandlingsansvar. Verden trener kildevurdering og revisjon gjennom eksisterende narrative flater uten ny runtime."
+  },
+  "theme_ids": [
+    "numerical_control",
+    "public_attention",
+    "professional_culture",
+    "status_anxiety",
+    "shame_reputation",
+    "social_mask",
+    "care_vs_efficiency",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "gruppechatten der én studie raskt blir brukt som argument for en mye større påstand",
+    "nyhetsstrømmen der overskrift, grafikk og delingstempo konkurrerer med metode og forbehold",
+    "kjøkkenbordet der venner vil vite hva en studie betyr uten at samtalen blir til individuell medisinsk rådgivning",
+    "den offentlige kommentaren der status, sikker tone og lenker fungerer som sosial kapital",
+    "lesestunden der tabeller, utvalg og utfall må oversettes til forståelig språk uten å miste grensene sine",
+    "etterkantssamtalen der en tidligere påstand må korrigeres når bedre data endrer kunnskapsbildet"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "lenkevenn",
+      "social_function": "sender studier og ber om en rask vurdering før hele grunnlaget er lest",
+      "class_position": "ressurssterk hverdagsleser med god tilgang til informasjon, men uten særskilt faglig myndighet",
+      "status": "middels sosial status og høy påvirkning i vennegruppen fordi personen deler mye og tidlig",
+      "power_over_player": "kan presse spilleren til raske ja-nei-svar og gjøre forbehold sosialt kostbare",
+      "wants": "et forståelig svar som kan brukes i samtalen med en gang",
+      "conceals": "hvor ofte ønsket om et tydelig svar kommer før interessen for metode og usikkerhet",
+      "speech_style": "direkte, lenkedrevet og utålmodig med lange forbehold",
+      "teaches_player": "at omsorg for en venn ikke krever at usikkerhet skjules"
+    },
+    {
+      "id": "overskriftsformidler",
+      "social_function": "gjør komplekse funn om til korte budskap som sprer seg raskt",
+      "class_position": "synlig formidler med større rekkevidde enn kontroll over forskningsgrunnlaget",
+      "status": "høy oppmerksomhetsstatus fordi klare budskap belønnes mer enn metodiske nyanser",
+      "power_over_player": "kan definere hvilke deler av en studie alle andre diskuterer",
+      "wants": "en formulering som både er sann nok og enkel nok til å få respons",
+      "conceals": "hvor mye sikkerhet som legges til når et forsiktig funn blir en overskrift",
+      "speech_style": "kort, sikker og orientert mot kontrast og tydelige poenger",
+      "teaches_player": "at offentlig oppmerksomhet kan forsterke avstanden mellom data og konklusjon"
+    },
+    {
+      "id": "metodevenn",
+      "social_function": "spør om utvalg, sammenligningsgrunnlag og hva studien faktisk var designet for å undersøke",
+      "class_position": "kunnskapsorientert deltaker uten formell behandlerrolle",
+      "status": "lavmælt, men økende status når diskusjonen trenger presisjon fremfor retorisk sikkerhet",
+      "power_over_player": "kan bremse spillerens raske konklusjoner ved å kreve eksplisitte begrunnelser",
+      "wants": "at påstander skal kunne spores tilbake til hvordan kunnskapen ble produsert",
+      "conceals": "at egen forkjærlighet for metode også kan bli en måte å unngå vanskelige vurderinger på",
+      "speech_style": "spørrende, konkret og opptatt av hva som faktisk ble målt",
+      "teaches_player": "at metodekritikk også trenger proporsjon og relevans"
+    },
+    {
+      "id": "fagperson_med_grenser",
+      "social_function": "viser hvordan ekspertise kan være sterk og samtidig avgrenset til et bestemt fagområde",
+      "class_position": "formelt utdannet person med høy kulturell kapital, men ikke universell autoritet",
+      "status": "høy fordi andre tillegger tittelen større rekkevidde enn fagområdet nødvendigvis gir",
+      "power_over_player": "kan legitimere eller overskygge argumenter før kildene vurderes",
+      "wants": "at relevante faglige vurderinger tas alvorlig uten at tittelen brukes som snarvei i andre spørsmål",
+      "conceals": "hvor vanskelig det er å markere egne kunnskapsgrenser når andre forventer sikkerhet",
+      "speech_style": "presis, avgrensende og tydelig på hvilket grunnlag utsagnet hviler på",
+      "teaches_player": "at respekt for ekspertise krever like stor respekt for ekspertisens grenser"
+    },
+    {
+      "id": "sikker_debattant",
+      "social_function": "belønner entydige standpunkter og framstiller usikkerhet som svakhet",
+      "class_position": "deltaker med høy retorisk selvsikkerhet og varierende tilgang til primærgrunnlaget",
+      "status": "høy i raske diskusjoner fordi personen sjelden nøler offentlig",
+      "power_over_player": "kan gjøre kalibrert språk sosialt dyrt ved å kreve enkle konklusjoner",
+      "wants": "å vinne definisjonen av hva funnet betyr før diskusjonen flytter seg videre",
+      "conceals": "hvor ofte sikkerheten kommer fra identitet og gruppeposisjon snarere enn datakvalitet",
+      "speech_style": "kategorisk, kontrasterende og rask til å kreve ja eller nei",
+      "teaches_player": "at epistemisk ydmykhet kan kreve sosial motstand mot overdrevet sikkerhet"
+    },
+    {
+      "id": "rolig_kildejeger",
+      "social_function": "finner originalgrunnlag, sammenligner versjoner og følger rettelser over tid",
+      "class_position": "uformell kunnskapsarbeider med tid og ferdigheter til å gå bak sekundærformidlingen",
+      "status": "moderat og ofte usynlig fordi arbeidet skjer før samtalen får et klart svar",
+      "power_over_player": "kan endre hele diskusjonen ved å finne hva kilden faktisk sier eller senere har korrigert",
+      "wants": "at kunnskapsstatus skal være sporbar nok til at andre kan etterprøve den",
+      "conceals": "hvor lett grundighet kan bli en endeløs jakt på én siste kilde",
+      "speech_style": "rolig, dokumenterende og villig til å si at noe fortsatt er uavklart",
+      "teaches_player": "at etterprøvbarhet er en praksis, ikke et tegn på permanent tvil"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "headline_vs_design",
+      "meaning": "overskrift mot studiedesign",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sample_vs_generalization",
+      "meaning": "utvalg mot generalisering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "relative_vs_absolute",
+      "meaning": "relativ forskjell mot absolutt målestokk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "association_vs_causation",
+      "meaning": "sammenheng mot årsak",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "precision_vs_confidence",
+      "meaning": "punktestimat mot usikkerhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "single_study_vs_total_evidence",
+      "meaning": "enkeltstudie mot samlet kunnskapsbilde",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_conflict_vs_quality",
+      "meaning": "kildekonflikt mot vurdering av grunnlag",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "proxy_vs_meaningful_outcome",
+      "meaning": "nært mål mot bredere utfall",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "subgroup_vs_cherry_picking",
+      "meaning": "undergruppe mot etterrasjonalisering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "publication_vs_replication",
+      "meaning": "publisering mot uavhengig etterprøving",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "expertise_vs_transfer",
+      "meaning": "relevant ekspertise mot grenseløs autoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "uncertainty_vs_action",
+      "meaning": "usikkerhet mot handlingsstopp",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "correction_vs_identity",
+      "meaning": "rettelse mot identitetsforsvar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "evidence_literacy_vs_certainty",
+      "meaning": "evidenskompetanse mot behov for permanent sikkerhet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: overskriften lover mer enn studiedesignet.",
+        "thread_ids": [
+          "headline_vs_design"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#overskriften_for_studien"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: overskriften lover mer enn studiedesignet.",
+        "thread_ids": [
+          "headline_vs_design"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#overskriften_for_studien"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: overskriften lover mer enn studiedesignet.",
+        "thread_ids": [
+          "headline_vs_design",
+          "expertise_vs_transfer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#overskriften_for_studien"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: overskriften lover mer enn studiedesignet.",
+        "thread_ids": [
+          "headline_vs_design",
+          "single_study_vs_total_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#overskriften_for_studien"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: utvalget setter grenser for generalisering.",
+        "thread_ids": [
+          "sample_vs_generalization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#hvem_ble_studert"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: utvalget setter grenser for generalisering.",
+        "thread_ids": [
+          "sample_vs_generalization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#hvem_ble_studert"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: utvalget setter grenser for generalisering.",
+        "thread_ids": [
+          "sample_vs_generalization",
+          "uncertainty_vs_action"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#hvem_ble_studert"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 2, evening: utvalget setter grenser for generalisering.",
+        "thread_ids": [
+          "sample_vs_generalization",
+          "source_conflict_vs_quality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#hvem_ble_studert"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: et prosenttall trenger en nevner.",
+        "thread_ids": [
+          "relative_vs_absolute"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#prosent_uten_nevner"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: et prosenttall trenger en nevner.",
+        "thread_ids": [
+          "relative_vs_absolute"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#prosent_uten_nevner"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: et prosenttall trenger en nevner.",
+        "thread_ids": [
+          "relative_vs_absolute",
+          "correction_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#prosent_uten_nevner"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: et prosenttall trenger en nevner.",
+        "thread_ids": [
+          "relative_vs_absolute",
+          "proxy_vs_meaningful_outcome"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#prosent_uten_nevner"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: sammenheng er ikke automatisk årsak.",
+        "thread_ids": [
+          "association_vs_causation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#sammenheng_eller_arsak"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 4, lunch: sammenheng er ikke automatisk årsak.",
+        "thread_ids": [
+          "association_vs_causation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#sammenheng_eller_arsak"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: sammenheng er ikke automatisk årsak.",
+        "thread_ids": [
+          "association_vs_causation",
+          "evidence_literacy_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#sammenheng_eller_arsak"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 4, evening: sammenheng er ikke automatisk årsak.",
+        "thread_ids": [
+          "association_vs_causation",
+          "subgroup_vs_cherry_picking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#sammenheng_eller_arsak"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: et lite materiale kan gi bred usikkerhet.",
+        "thread_ids": [
+          "precision_vs_confidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#lite_utvalg_stor_sikkerhet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: et lite materiale kan gi bred usikkerhet.",
+        "thread_ids": [
+          "precision_vs_confidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#lite_utvalg_stor_sikkerhet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: et lite materiale kan gi bred usikkerhet.",
+        "thread_ids": [
+          "headline_vs_design",
+          "precision_vs_confidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#lite_utvalg_stor_sikkerhet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: et lite materiale kan gi bred usikkerhet.",
+        "thread_ids": [
+          "precision_vs_confidence",
+          "publication_vs_replication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#lite_utvalg_stor_sikkerhet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: én studie er ikke hele kunnskapsbildet.",
+        "thread_ids": [
+          "single_study_vs_total_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#enkeltstudien_i_gruppechatten"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 6, lunch: én studie er ikke hele kunnskapsbildet.",
+        "thread_ids": [
+          "single_study_vs_total_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#enkeltstudien_i_gruppechatten"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: én studie er ikke hele kunnskapsbildet.",
+        "thread_ids": [
+          "sample_vs_generalization",
+          "single_study_vs_total_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#enkeltstudien_i_gruppechatten"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 6, evening: én studie er ikke hele kunnskapsbildet.",
+        "thread_ids": [
+          "single_study_vs_total_evidence",
+          "expertise_vs_transfer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#enkeltstudien_i_gruppechatten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 7, morning: kildekonflikt krever vurdering, ikke avstemning.",
+        "thread_ids": [
+          "source_conflict_vs_quality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#to_kilder_i_konflikt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: kildekonflikt krever vurdering, ikke avstemning.",
+        "thread_ids": [
+          "source_conflict_vs_quality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#to_kilder_i_konflikt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: kildekonflikt krever vurdering, ikke avstemning.",
+        "thread_ids": [
+          "relative_vs_absolute",
+          "source_conflict_vs_quality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#to_kilder_i_konflikt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: kildekonflikt krever vurdering, ikke avstemning.",
+        "thread_ids": [
+          "source_conflict_vs_quality",
+          "uncertainty_vs_action"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#to_kilder_i_konflikt"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: et mål kan være nært eller fjernt fra det som betyr noe.",
+        "thread_ids": [
+          "proxy_vs_meaningful_outcome"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#surrogat_eller_utfall"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 8, lunch: et mål kan være nært eller fjernt fra det som betyr noe.",
+        "thread_ids": [
+          "proxy_vs_meaningful_outcome"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#surrogat_eller_utfall"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: et mål kan være nært eller fjernt fra det som betyr noe.",
+        "thread_ids": [
+          "association_vs_causation",
+          "proxy_vs_meaningful_outcome"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#surrogat_eller_utfall"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 8, evening: et mål kan være nært eller fjernt fra det som betyr noe.",
+        "thread_ids": [
+          "proxy_vs_meaningful_outcome",
+          "correction_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#surrogat_eller_utfall"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: et spennende undergruppefunn trenger varsomhet.",
+        "thread_ids": [
+          "subgroup_vs_cherry_picking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#undergruppen_som_skinner"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: et spennende undergruppefunn trenger varsomhet.",
+        "thread_ids": [
+          "subgroup_vs_cherry_picking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#undergruppen_som_skinner"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: et spennende undergruppefunn trenger varsomhet.",
+        "thread_ids": [
+          "precision_vs_confidence",
+          "subgroup_vs_cherry_picking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#undergruppen_som_skinner"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: et spennende undergruppefunn trenger varsomhet.",
+        "thread_ids": [
+          "subgroup_vs_cherry_picking",
+          "evidence_literacy_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#undergruppen_som_skinner"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: publisering er et startpunkt, ikke en garanti.",
+        "thread_ids": [
+          "publication_vs_replication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#publisert_men_ikke_gjentatt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: publisering er et startpunkt, ikke en garanti.",
+        "thread_ids": [
+          "publication_vs_replication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#publisert_men_ikke_gjentatt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: publisering er et startpunkt, ikke en garanti.",
+        "thread_ids": [
+          "single_study_vs_total_evidence",
+          "publication_vs_replication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#publisert_men_ikke_gjentatt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 10, evening: publisering er et startpunkt, ikke en garanti.",
+        "thread_ids": [
+          "headline_vs_design",
+          "publication_vs_replication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#publisert_men_ikke_gjentatt"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: ekspertise har også faglige grenser.",
+        "thread_ids": [
+          "expertise_vs_transfer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#fagperson_utenfor_feltet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: ekspertise har også faglige grenser.",
+        "thread_ids": [
+          "expertise_vs_transfer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#fagperson_utenfor_feltet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: ekspertise har også faglige grenser.",
+        "thread_ids": [
+          "source_conflict_vs_quality",
+          "expertise_vs_transfer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#fagperson_utenfor_feltet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: ekspertise har også faglige grenser.",
+        "thread_ids": [
+          "sample_vs_generalization",
+          "expertise_vs_transfer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#fagperson_utenfor_feltet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: usikkerhet kan navngis uten å bli handlingsstopp.",
+        "thread_ids": [
+          "uncertainty_vs_action"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#usikkerhet_nar_noe_ma_avgjores"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 12, lunch: usikkerhet kan navngis uten å bli handlingsstopp.",
+        "thread_ids": [
+          "uncertainty_vs_action"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#usikkerhet_nar_noe_ma_avgjores"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: usikkerhet kan navngis uten å bli handlingsstopp.",
+        "thread_ids": [
+          "proxy_vs_meaningful_outcome",
+          "uncertainty_vs_action"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#usikkerhet_nar_noe_ma_avgjores"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: usikkerhet kan navngis uten å bli handlingsstopp.",
+        "thread_ids": [
+          "relative_vs_absolute",
+          "uncertainty_vs_action"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#usikkerhet_nar_noe_ma_avgjores"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: en rettelse tester identiteten din som leser.",
+        "thread_ids": [
+          "correction_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#rettelsen_i_etterkant"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: en rettelse tester identiteten din som leser.",
+        "thread_ids": [
+          "correction_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#rettelsen_i_etterkant"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: en rettelse tester identiteten din som leser.",
+        "thread_ids": [
+          "subgroup_vs_cherry_picking",
+          "correction_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#rettelsen_i_etterkant"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: en rettelse tester identiteten din som leser.",
+        "thread_ids": [
+          "association_vs_causation",
+          "correction_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#rettelsen_i_etterkant"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: målet er bedre kalibrering, ikke permanent sikkerhet.",
+        "thread_ids": [
+          "evidence_literacy_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#evidensleser_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 14, lunch: målet er bedre kalibrering, ikke permanent sikkerhet.",
+        "thread_ids": [
+          "evidence_literacy_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#evidensleser_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: målet er bedre kalibrering, ikke permanent sikkerhet.",
+        "thread_ids": [
+          "publication_vs_replication",
+          "evidence_literacy_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#evidensleser_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 14, evening: målet er bedre kalibrering, ikke permanent sikkerhet.",
+        "thread_ids": [
+          "precision_vs_confidence",
+          "evidence_literacy_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_evidensleser.json#evidensleser_som_praksis"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "headline_vs_design",
+      "relationship": "overskrift mot studiedesign",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "5/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "sample_vs_generalization",
+      "relationship": "utvalg mot generalisering",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "relative_vs_absolute",
+      "relationship": "relativ forskjell mot absolutt målestokk",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "association_vs_causation",
+      "relationship": "sammenheng mot årsak",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "precision_vs_confidence",
+      "relationship": "punktestimat mot usikkerhet",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "single_study_vs_total_evidence",
+      "relationship": "enkeltstudie mot samlet kunnskapsbilde",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "source_conflict_vs_quality",
+      "relationship": "kildekonflikt mot vurdering av grunnlag",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "proxy_vs_meaningful_outcome",
+      "relationship": "nært mål mot bredere utfall",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "12/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "subgroup_vs_cherry_picking",
+      "relationship": "undergruppe mot etterrasjonalisering",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "publication_vs_replication",
+      "relationship": "publisering mot uavhengig etterprøving",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "expertise_vs_transfer",
+      "relationship": "relevant ekspertise mot grenseløs autoritet",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "1/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "uncertainty_vs_action",
+      "relationship": "usikkerhet mot handlingsstopp",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "2/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "correction_vs_identity",
+      "relationship": "rettelse mot identitetsforsvar",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "3/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "evidence_literacy_vs_certainty",
+      "relationship": "evidenskompetanse mot behov for permanent sikkerhet",
+      "beat_refs": [
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening",
+        "4/afternoon",
+        "9/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "deling_ble_til_vane",
+      "description": "Du begynner å vente med deling til du kan skille overskrift fra studiedesign.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_evidensleser.json#overskriften_for_studien",
+        "data/Civication/narratives/leisure/helse_evidensleser.json#enkeltstudien_i_gruppechatten"
+      ]
+    },
+    {
+      "id": "usikkerhet_uten_panikk",
+      "description": "Usikkerhet blir et språk for grad og grenser, ikke et signal om at all kunnskap kollapser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_evidensleser.json#lite_utvalg_stor_sikkerhet",
+        "data/Civication/narratives/leisure/helse_evidensleser.json#usikkerhet_nar_noe_ma_avgjores"
+      ]
+    },
+    {
+      "id": "vennskap_taler_tilbake",
+      "description": "Du lærer å svare på lenker fra venner uten å gjøre evidensvurdering til personlig overlegenhet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_evidensleser.json#enkeltstudien_i_gruppechatten",
+        "data/Civication/narratives/leisure/helse_evidensleser.json#to_kilder_i_konflikt"
+      ]
+    },
+    {
+      "id": "rettelse_uten_skam",
+      "description": "Å endre en tidligere påstand blir en del av praksisen i stedet for et sosialt nederlag.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_evidensleser.json#publisert_men_ikke_gjentatt",
+        "data/Civication/narratives/leisure/helse_evidensleser.json#rettelsen_i_etterkant"
+      ]
+    },
+    {
+      "id": "kunnskap_med_grense",
+      "description": "Du blir tydeligere på hva evidens kan støtte uten å opptre som klinisk myndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_evidensleser.json#fagperson_utenfor_feltet",
+        "data/Civication/narratives/leisure/helse_evidensleser.json#evidensleser_som_praksis"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "overskrift_moter_metode",
+      "setup_ref": "1/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "knowledge",
+        "reputation"
+      ]
+    },
+    {
+      "id": "utvalgsgrense_returnerer",
+      "setup_ref": "2/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "knowledge",
+        "relationships"
+      ]
+    },
+    {
+      "id": "prosenten_far_nevner",
+      "setup_ref": "3/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "knowledge",
+        "judgment"
+      ]
+    },
+    {
+      "id": "usikkerhet_taler_tilbake",
+      "setup_ref": "5/lunch",
+      "return_ref": "10/evening",
+      "domains": [
+        "psyche",
+        "knowledge"
+      ]
+    },
+    {
+      "id": "kildekonflikt_blir_praksis",
+      "setup_ref": "7/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationships",
+        "knowledge"
+      ]
+    },
+    {
+      "id": "rettelse_blir_integritet",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "identity"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/helse_evidensleser.json#overskriften_for_studien",
+      "data/Civication/narratives/leisure/helse_evidensleser.json#hvem_ble_studert",
+      "data/Civication/narratives/leisure/helse_evidensleser.json#prosent_uten_nevner",
+      "data/Civication/narratives/leisure/helse_evidensleser.json#sammenheng_eller_arsak",
+      "data/Civication/narratives/leisure/helse_evidensleser.json#lite_utvalg_stor_sikkerhet",
+      "data/Civication/narratives/leisure/helse_evidensleser.json#enkeltstudien_i_gruppechatten",
+      "data/Civication/narratives/leisure/helse_evidensleser.json#to_kilder_i_konflikt",
+      "data/Civication/narratives/leisure/helse_evidensleser.json#surrogat_eller_utfall",
+      "data/Civication/narratives/leisure/helse_evidensleser.json#undergruppen_som_skinner",
+      "data/Civication/narratives/leisure/helse_evidensleser.json#publisert_men_ikke_gjentatt",
+      "data/Civication/narratives/leisure/helse_evidensleser.json#fagperson_utenfor_feltet",
+      "data/Civication/narratives/leisure/helse_evidensleser.json#usikkerhet_nar_noe_ma_avgjores",
+      "data/Civication/narratives/leisure/helse_evidensleser.json#rettelsen_i_etterkant",
+      "data/Civication/narratives/leisure/helse_evidensleser.json#evidensleser_som_praksis"
+    ]
+  }
+}
