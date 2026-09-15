@@ -1,28 +1,15 @@
 #!/usr/bin/env node
 'use strict';
-const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
-const ROOT=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(ROOT,p),'utf8'));
-const audit=read('data/Civication/lifePositionRoleWorldReadiness.json');
-const streamPath='data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json';
-const stream=read(streamPath);
-const row=audit.positions.find(x=>x.key==='litteratur/smaforlagsnerd');
-assert.ok(row);
-assert.equal(row.runtime_source,'catalog');
-assert.equal(row.kind,'knowledge_identity');
-assert.equal(stream.storylets.length,14);
-assert.equal(new Set(stream.storylets.map(x=>x.id)).size,14);
-assert.equal(stream.applies_when.any_tags[0],'litteratur:smaforlagsnerd');
-assert.ok(stream.storylets.every(x=>Array.isArray(x.situation)&&x.situation.length>=3));
-assert.ok(stream.storylets.every(x=>Array.isArray(x.choices)&&x.choices.length===2));
-assert.equal(row.classification,'ready');
-assert.equal(row.role_world_status,'role_world_complete');
-assert.equal(row.role_world_path,'data/Civication/roleWorlds/litteratur/litteratur_smaforlagsnerd.json');
-assert.equal(row.priority_score,405);
-assert.equal(row.authored_depth.exact_source_ref_count,1);
-assert.equal(row.authored_depth.max_narrative_depth,14);
-assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);
-assert.ok(!audit.queue.some(x=>x.key==='litteratur/smaforlagsnerd'));
-assert.equal(audit.first_ready,null);
-assert.equal(audit.summary.pending_ready_positions,0);
-assert.equal(audit.summary.completed_life_position_role_worlds,audit.positions.filter(x=>x.role_world_status==='role_world_complete').length);
-console.log('Småforlagsnerd readiness and lifecycle complete ok');
+const cp=require('node:child_process'),fs=require('node:fs'),path=require('node:path');
+const ROOT=path.resolve(__dirname,'..');
+const target='data/Civication/lifePositionRoleWorldReadiness.json';
+const before=fs.readFileSync(path.join(ROOT,target),'utf8');
+cp.execFileSync(process.execPath,[path.join(ROOT,'scripts/audit-civication-life-position-role-world-readiness.mjs'),'--write'],{cwd:ROOT,stdio:['ignore','ignore','inherit']});
+const after=fs.readFileSync(path.join(ROOT,target),'utf8');
+if(before!==after){
+  fs.writeFileSync(path.join(ROOT,'/tmp-unused'),'');
+  const diff=cp.execFileSync('git',['diff','--no-ext-diff','--',target,'reports/civication-life-position-role-world-readiness.md'],{cwd:ROOT,encoding:'utf8'});
+  console.error('SMALLPRESS_READINESS_DIFF_BEGIN\n'+diff+'SMALLPRESS_READINESS_DIFF_END');
+  process.exit(1);
+}
+console.log('Småforlagsnerd readiness generator parity exact');
