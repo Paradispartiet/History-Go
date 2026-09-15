@@ -2,19 +2,29 @@
   "schema": "history_go_sosiologi_antropologi_advanced_theory_fulltext_refresh_audit_v1",
   "version": "1.0.0",
   "updated_at": "2026-09-15",
-  "status": "pass",
+  "status": "pass_phase3_runtime_pending",
   "subject_id": "politikk",
   "canonical_subcategory_id": "sosiologi_antropologi",
+  "runtime_ready": false,
+  "next_gate": "fulltext_source_verification_and_phase4_runtime_release",
   "counts": {
     "domains": 7,
     "works": 20,
-    "theory_units": 60
+    "theory_units": 60,
+    "sections": 20,
+    "paragraphs": 60,
+    "claims": 60,
+    "assessment_items": 60
   },
   "gates": {
     "existing_domains_only": true,
     "strict_completion_preserved": true,
     "generator_owned_fulltext": true,
     "every_work_has_traceable_source": true,
-    "every_theory_has_explanation_question_and_guardrail": true
+    "every_theory_has_explanation_question_and_guardrail": true,
+    "every_primary_domain_has_materialized_owner": true,
+    "phase3_paragraph_claim_trace_complete": true,
+    "phase3_assessment_trace_complete": true,
+    "runtime_claims_remain_pending": true
   }
 }
