@@ -36,18 +36,12 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
+          import hashlib
+          import json
           import subprocess
 
           source = Path('.github/workflows/tmp-klassekampen-phase1-materialize.yml')
           lines = source.read_text().splitlines()
-          targets = [
-              'Verify locked ancestry',
-              'Materialize canonical Phase 1 sources',
-              'Regenerate owner-controlled outputs',
-              'Validate Phase 1 contracts',
-              'Record Phase 1 checkpoint',
-              'Enforce exact Phase 1 write surface',
-          ]
 
           def extract_run(name):
               marker = f'      - name: {name}'
@@ -77,9 +71,58 @@ jobs:
                   raise SystemExit(f'{name}: empty run block')
               return script
 
-          for name in targets:
+          def run_locked(name):
               print(f'=== {name} ===', flush=True)
               subprocess.run(['bash', '-lc', extract_run(name)], check=True)
+
+          run_locked('Verify locked ancestry')
+          run_locked('Materialize canonical Phase 1 sources')
+
+          place_path = Path('data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json')
+          packet_path = Path('data/places/production/klassekampen_redaksjon.json')
+          place = json.loads(place_path.read_text())
+          packet = json.loads(packet_path.read_text())
+
+          popup = place['popupDesc']
+          if '\n\n' in popup:
+              raise SystemExit('expected one-paragraph locked popup before policy repair')
+
+          old_first = 'Første nummer av dagens Klassekampen kom i februar 1969.'
+          new_first = 'Dagens Klassekampen begynte å komme ut i februar 1969.'
+          old_meta = 'History Go bruker Grønland 4 som kartanker for den aktive redaksjonen, mens institusjonshistorien brukes som bakgrunn og tidslinje.'
+          new_meta = 'Grønland 4 er den dokumenterte redaksjonsadressen i dag, mens institusjonshistorien gir bakgrunn og tidslinje.'
+          break_after_distribution = 'Bokmagasinet og Musikkmagasinet er egne løpende publikasjoner knyttet til avisen.'
+          break_after_timeline = 'Bjørgulv Braanen ble redaktør i 2002, og Mari Skurdal overtok som sjefredaktør i 2018.'
+
+          for needle in [old_first, old_meta, break_after_distribution, break_after_timeline]:
+              count = popup.count(needle)
+              if count != 1:
+                  raise SystemExit(f'expected exactly one popup fragment, found {count}: {needle}')
+
+          popup = popup.replace(old_first, new_first, 1)
+          popup = popup.replace(old_meta, new_meta, 1)
+          popup = popup.replace(break_after_distribution, break_after_distribution + '\n\n', 1)
+          popup = popup.replace(break_after_timeline, break_after_timeline + '\n\n', 1)
+
+          if popup.count('\n\n') != 2:
+              raise SystemExit('popup policy repair did not produce exactly three paragraphs')
+          if 'History Go' in popup:
+              raise SystemExit('forbidden product meta text remains in popup')
+          if old_first in popup:
+              raise SystemExit('strong-term wording remains in popup sentence 5')
+
+          place['popupDesc'] = popup
+          packet['textHashes']['popupDesc'] = hashlib.sha256(popup.encode('utf-8')).hexdigest()
+          place_path.write_text(json.dumps(place, ensure_ascii=False, indent=2) + '\n')
+          packet_path.write_text(json.dumps(packet, ensure_ascii=False, indent=2) + '\n')
+
+          for name in [
+              'Regenerate owner-controlled outputs',
+              'Validate Phase 1 contracts',
+              'Record Phase 1 checkpoint',
+              'Enforce exact Phase 1 write surface',
+          ]:
+              run_locked(name)
           PY
 
       - name: Commit validated Phase 1 sources
