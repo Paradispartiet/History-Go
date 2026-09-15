@@ -9,11 +9,13 @@ test('advanced theory source evidence remains fail-closed until 60/60 fulltext v
   const evidence = read('data/fag/politikk/sosiologi_antropologi/advanced_theory_source_evidence_v1.json');
   const canonicalUnits = canon.works.flatMap((work) => work.theory_units.map((unit) => `${work.id}:${unit.id}`));
   const rows = evidence.evidence_units ?? [];
+  const rowKeys = rows.map((row) => `${row.work_id}:${row.theory_unit_id}`);
   const fulltext = rows.filter((row) => row.verification_status === 'fulltext_verified');
 
   assert.equal(canonicalUnits.length, 60);
-  assert.equal(new Set(rows.map((row) => `${row.work_id}:${row.theory_unit_id}`)).size, rows.length);
-  assert.ok(rows.every((row) => canonicalUnits.includes(`${row.work_id}:${row.theory_unit_id}`)));
+  assert.equal(rows.length, 60);
+  assert.equal(new Set(rowKeys).size, rows.length);
+  assert.deepEqual([...rowKeys].sort(), [...canonicalUnits].sort());
   assert.ok(rows.every((row) => ['mapping_supported', 'fulltext_verified'].includes(row.verification_status)));
   assert.ok(rows.every((row) => row.locator && row.evidence_url?.startsWith('https://') && row.evidence_kind));
   assert.ok(fulltext.every((row) => row.evidence_kind.includes('full') || row.evidence_kind.includes('inspectable_text')));
@@ -27,7 +29,7 @@ test('advanced theory source evidence remains fail-closed until 60/60 fulltext v
 
   assert.deepEqual(evidence.counts, {
     expected_units: 60,
-    mapping_supported: rows.length,
+    mapping_supported: 60,
     fulltext_verified: fulltext.length,
     runtime_releasable: fulltext.length === 60 ? 60 : 0,
   });
