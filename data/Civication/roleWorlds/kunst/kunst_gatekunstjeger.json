@@ -1,0 +1,1182 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "kunst",
+  "role_scope": "kunst_gatekunstjeger",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "kunst",
+    "id": "gatekunstjeger",
+    "label": "Gatekunstjeger"
+  },
+  "title": "Gatekunstjeger",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å dokumentere forgjengelig gatekunst med sporbarhet, lokal kontekst og respekt for sted, mennesker og rettigheter uten å gjøre samlingen til fasit eller egen interesse til profesjonell myndighet",
+    "description": "Gatekunstjeger-verdenen følger en spiller som leter etter vegger, underganger og midlertidige uttrykk før de forsvinner. Praksisen trener datering, attribusjonsforsiktighet, foto- og stedskontekst, personvern, tilgangsgrenser, geotagging, lokal kunnskap, overmaling, kommersialisering, materialomsorg, kartleggingsbias og rettighetsskiller. Rollen gir ingen kunsthistoriker-, autentisator-, kurator-, konservator-, politi-, saksbehandler-, rettighetshaver- eller offentlig registratormyndighet, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "public_attention",
+    "professional_culture",
+    "class_power",
+    "shame_reputation",
+    "bureaucratic_power",
+    "care_vs_efficiency",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "undergangen der et nytt lag kan være synlig én dag og overmalt den neste",
+    "gatehjørnet der dokumentasjon av et verk samtidig fanger mennesker, trafikk og privatliv",
+    "bakgårdsgrensen der et synlig motiv ikke gjør privat eller avstengt område offentlig tilgjengelig",
+    "nabolagssamtalen der muntlige minner og lokale konflikter endrer hvordan en vegg kan forstås",
+    "kartappen der presise lokasjoner kan spre oppmerksomhet raskere enn stedet tåler",
+    "det private bildearkivet der utvalg, ruter og manglende metadata former hva som senere fremstår som byens historie",
+    "den sosiale plattformen der usikre attribusjoner kan bli hardere fakta for hver deling",
+    "rettighetsforespørselen der fotografens fil, kunstverkets opphav og brukstillatelser må holdes fra hverandre"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "nabolagsbeboeren",
+      "social_function": "bærer stednære minner om vegger, overmalinger og lokale hendelser",
+      "class_position": "lokal deltaker med erfaringskunnskap uten formell kunstfaglig myndighet",
+      "status": "høy når tidslinjer og endringer i nærmiljøet skal forstås",
+      "power_over_player": "kan åpne kontekst som ikke finnes i bildearkivet og korrigere samlerens utenfrablikk",
+      "wants": "at stedet og menneskene rundt veggen ikke reduseres til kulisse",
+      "conceals": "hvor mye eget minne også er formet av senere fortellinger og konflikt",
+      "speech_style": "stedsspesifikk, episodisk og full av før-og-etter-referanser",
+      "teaches_player": "at lokalkunnskap er en kilde som må kontekstualiseres, ikke pynt"
+    },
+    {
+      "id": "kunstneren_med_pseudonym",
+      "social_function": "gjør spørsmål om attribusjon, anonymitet og kontroll over eget arbeid konkrete",
+      "class_position": "opphaver med situert kunnskap om egen praksis, men ikke nødvendigvis offentlig identitet",
+      "status": "kan være høy symbolsk status samtidig som identiteten er skjult eller omstridt",
+      "power_over_player": "kan bekrefte, avvise eller la attribusjon forbli uavklart og sette grenser for deling",
+      "wants": "å beholde kontroll over hva som faktisk kan knyttes til personen eller pseudonymet",
+      "conceals": "hvor strategisk anonymitet, crews og skiftende signaturer kan være",
+      "speech_style": "knapp, selektiv og tydelig på hva som ikke skal kobles sammen",
+      "teaches_player": "at et gjenkjennelig uttrykk ikke opphever retten til attribusjonsforsiktighet"
+    },
+    {
+      "id": "bildearkivaren",
+      "social_function": "viser hvordan metadata, filnavn, datoer og utvalg gjør private bilder etterprøvbare eller villedende",
+      "class_position": "erfaren dokumentasjonsutøver uten automatisk museum-, arkiv- eller registratormandat",
+      "status": "høy i spørsmål om sporbar dokumentasjon, begrenset utenfor eget materiale",
+      "power_over_player": "kan lære bort kildepraksis og synliggjøre hull i spillerens samling",
+      "wants": "at bilder skal kunne forstås også etter at veggen og minnene har endret seg",
+      "conceals": "hvor mye også et ryddig arkiv bærer samlerens egne ruter og preferanser",
+      "speech_style": "metadataorientert, konkret og skeptisk til sikre påstander uten dato og kontekst",
+      "teaches_player": "at dokumentasjon alltid er et utvalg"
+    },
+    {
+      "id": "gaardeieren",
+      "social_function": "representerer materiell rådighet, vedlikehold og adgang rundt en vegg",
+      "class_position": "eier eller forvalter med kontroll over fysisk tilgang, men ikke automatisk kunstfaglig autoritet",
+      "status": "høy i spørsmål om adgang, vedlikehold og bruk av eiendommen",
+      "power_over_player": "kan åpne eller stenge tilgang og beslutte vedlikehold innenfor sin faktiske rådighet",
+      "wants": "at eiendommen skal fungere uten uavklarte kostnader, risiko eller trafikk",
+      "conceals": "at økonomiske og praktiske valg også former hvilke kulturelle spor som overlever",
+      "speech_style": "praktisk, eiendomsorientert og opptatt av ansvar, skade og tilgang",
+      "teaches_player": "at offentlig synlighet og fysisk eierskap er ulike lag"
+    },
+    {
+      "id": "den_andre_gatekunstjegeren",
+      "social_function": "tester status, konkurranse, attribusjon og delingsnormer mellom samlere",
+      "class_position": "jevnaldrende hobby- eller praksisutøver med eget bildearkiv og nettverk",
+      "status": "uformell status gjennom hvor tidlig og bredt personen oppdager spor",
+      "power_over_player": "kan spre metadata, utfordre attribusjoner og gjøre oppdagelser til sosial valuta",
+      "wants": "å være tidlig ute og ha den mest interessante oversikten uten å miste tillit",
+      "conceals": "hvor ofte sikkerheten i påstandene øker når konkurransen om kreditering blir sterkere",
+      "speech_style": "rask, stedskjent og referansetett",
+      "teaches_player": "at samlerstatus kan presse usikkerhet ut av dokumentasjonen"
+    },
+    {
+      "id": "kulturforvalteren",
+      "social_function": "kobler offentlige regler, vedlikehold og kulturminnehensyn til konkrete steder uten å gjøre spilleren til saksbehandler",
+      "class_position": "institusjonell aktør med avgrenset offentlig mandat",
+      "status": "høy i formelle spørsmål om kommunale eller forvaltede flater",
+      "power_over_player": "kan forklare prosedyrer, ansvar og hvorfor enkelte spor dokumenteres eller fjernes",
+      "wants": "at påstander om offentlig praksis skilles fra antakelser og rykter",
+      "conceals": "hvor fragmentert ansvaret kan være mellom eiendom, drift, kultur og andre enheter",
+      "speech_style": "presis, prosedyreorientert og forsiktig med å love mer enn eget mandat",
+      "teaches_player": "at offentlig systemkunnskap ikke kan erstattes av å lese tegn på veggen"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "ephemerality_vs_capture",
+      "meaning": "forgjengelig spor mot kontekstløs innsamling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "attribution_vs_guessing",
+      "meaning": "attribusjon mot gjetning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "documentation_vs_bystander_privacy",
+      "meaning": "dokumentasjon mot forbipasserendes personvern",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "access_vs_entitlement",
+      "meaning": "synlig motiv mot uberettiget stedstilgang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "location_sharing_vs_stewardship",
+      "meaning": "presis lokasjonsdeling mot stedshensyn",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "removal_vs_ownership",
+      "meaning": "overmaling og fjerning mot ubegrunnet eierskapsdom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "local_context_vs_collector_gaze",
+      "meaning": "lokal kontekst mot samlerblikk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "commercialization_vs_context",
+      "meaning": "kommersialisering mot kontekst og kreditering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observation_vs_conservation",
+      "meaning": "observasjon mot uoppnevnt konservering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "virality_vs_source_care",
+      "meaning": "viral spredning mot kildepleie",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "mapping_vs_selection_bias",
+      "meaning": "kartlegging mot utvalgsbias",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "documentation_vs_enforcement_role",
+      "meaning": "dokumentasjon mot politi- og saksbehandlerrolle",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "photography_vs_rights",
+      "meaning": "fotografisk dokumentasjon mot rettighetsforveksling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "street_art_practice_vs_professional_authority",
+      "meaning": "gatekunstpraksis mot profesjonell kunst- og registreringsautoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: bildet må tas før veggen endrer seg.",
+        "thread_ids": [
+          "ephemerality_vs_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#veggen_som_kan_vaere_borte"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: bildet må tas før veggen endrer seg.",
+        "thread_ids": [
+          "ephemerality_vs_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#veggen_som_kan_vaere_borte"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: bildet må tas før veggen endrer seg.",
+        "thread_ids": [
+          "ephemerality_vs_capture",
+          "mapping_vs_selection_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#veggen_som_kan_vaere_borte"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: bildet må tas før veggen endrer seg.",
+        "thread_ids": [
+          "ephemerality_vs_capture",
+          "removal_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#veggen_som_kan_vaere_borte"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 2, morning: en signatur er et spor, ikke en bekreftet identitet.",
+        "thread_ids": [
+          "attribution_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#signaturen_uten_sikker_avsender"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: en signatur er et spor, ikke en bekreftet identitet.",
+        "thread_ids": [
+          "attribution_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#signaturen_uten_sikker_avsender"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: en signatur er et spor, ikke en bekreftet identitet.",
+        "thread_ids": [
+          "attribution_vs_guessing",
+          "documentation_vs_enforcement_role"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#signaturen_uten_sikker_avsender"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 2, evening: en signatur er et spor, ikke en bekreftet identitet.",
+        "thread_ids": [
+          "attribution_vs_guessing",
+          "local_context_vs_collector_gaze"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#signaturen_uten_sikker_avsender"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: offentlig rom er ikke et tomt bakteppe.",
+        "thread_ids": [
+          "documentation_vs_bystander_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#forbipasserende_i_bildet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: offentlig rom er ikke et tomt bakteppe.",
+        "thread_ids": [
+          "documentation_vs_bystander_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#forbipasserende_i_bildet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: offentlig rom er ikke et tomt bakteppe.",
+        "thread_ids": [
+          "documentation_vs_bystander_privacy",
+          "photography_vs_rights"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#forbipasserende_i_bildet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: offentlig rom er ikke et tomt bakteppe.",
+        "thread_ids": [
+          "documentation_vs_bystander_privacy",
+          "commercialization_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#forbipasserende_i_bildet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 4, morning: synlig betyr ikke tilgjengelig.",
+        "thread_ids": [
+          "access_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#verket_bak_gjerdet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 4, lunch: synlig betyr ikke tilgjengelig.",
+        "thread_ids": [
+          "access_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#verket_bak_gjerdet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: synlig betyr ikke tilgjengelig.",
+        "thread_ids": [
+          "access_vs_entitlement",
+          "street_art_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#verket_bak_gjerdet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 4, evening: synlig betyr ikke tilgjengelig.",
+        "thread_ids": [
+          "access_vs_entitlement",
+          "observation_vs_conservation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#verket_bak_gjerdet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: et presist sted kan også være en belastning.",
+        "thread_ids": [
+          "location_sharing_vs_stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#geotaggen_og_det_saarbare_stedet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 5, lunch: et presist sted kan også være en belastning.",
+        "thread_ids": [
+          "location_sharing_vs_stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#geotaggen_og_det_saarbare_stedet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: et presist sted kan også være en belastning.",
+        "thread_ids": [
+          "location_sharing_vs_stewardship",
+          "ephemerality_vs_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#geotaggen_og_det_saarbare_stedet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: et presist sted kan også være en belastning.",
+        "thread_ids": [
+          "location_sharing_vs_stewardship",
+          "virality_vs_source_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#geotaggen_og_det_saarbare_stedet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 6, morning: at et verk forsvinner er også historie.",
+        "thread_ids": [
+          "removal_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#overmalingen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: at et verk forsvinner er også historie.",
+        "thread_ids": [
+          "removal_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#overmalingen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: at et verk forsvinner er også historie.",
+        "thread_ids": [
+          "removal_vs_ownership",
+          "attribution_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#overmalingen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 6, evening: at et verk forsvinner er også historie.",
+        "thread_ids": [
+          "removal_vs_ownership",
+          "mapping_vs_selection_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#overmalingen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: lokalkunnskap endrer hva bildet betyr.",
+        "thread_ids": [
+          "local_context_vs_collector_gaze"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#nabolaget_husker_noe_annet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 7, lunch: lokalkunnskap endrer hva bildet betyr.",
+        "thread_ids": [
+          "local_context_vs_collector_gaze"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#nabolaget_husker_noe_annet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: lokalkunnskap endrer hva bildet betyr.",
+        "thread_ids": [
+          "local_context_vs_collector_gaze",
+          "documentation_vs_bystander_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#nabolaget_husker_noe_annet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: lokalkunnskap endrer hva bildet betyr.",
+        "thread_ids": [
+          "local_context_vs_collector_gaze",
+          "documentation_vs_enforcement_role"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#nabolaget_husker_noe_annet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 8, morning: når gateuttrykk blir salgsflate.",
+        "thread_ids": [
+          "commercialization_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#veggen_som_blir_merkevare"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 8, lunch: når gateuttrykk blir salgsflate.",
+        "thread_ids": [
+          "commercialization_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#veggen_som_blir_merkevare"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: når gateuttrykk blir salgsflate.",
+        "thread_ids": [
+          "commercialization_vs_context",
+          "access_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#veggen_som_blir_merkevare"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 8, evening: når gateuttrykk blir salgsflate.",
+        "thread_ids": [
+          "commercialization_vs_context",
+          "photography_vs_rights"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#veggen_som_blir_merkevare"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: omsorg betyr noen ganger å la være å røre.",
+        "thread_ids": [
+          "observation_vs_conservation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#flaket_som_losner"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: omsorg betyr noen ganger å la være å røre.",
+        "thread_ids": [
+          "observation_vs_conservation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#flaket_som_losner"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: omsorg betyr noen ganger å la være å røre.",
+        "thread_ids": [
+          "observation_vs_conservation",
+          "location_sharing_vs_stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#flaket_som_losner"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: omsorg betyr noen ganger å la være å røre.",
+        "thread_ids": [
+          "observation_vs_conservation",
+          "street_art_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#flaket_som_losner"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 10, morning: et populært bilde trenger fortsatt kilde.",
+        "thread_ids": [
+          "virality_vs_source_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#bildet_som_tar_av"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: et populært bilde trenger fortsatt kilde.",
+        "thread_ids": [
+          "virality_vs_source_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#bildet_som_tar_av"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: et populært bilde trenger fortsatt kilde.",
+        "thread_ids": [
+          "virality_vs_source_care",
+          "removal_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#bildet_som_tar_av"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 10, evening: et populært bilde trenger fortsatt kilde.",
+        "thread_ids": [
+          "virality_vs_source_care",
+          "ephemerality_vs_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#bildet_som_tar_av"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: et kart viser også hva du selv har valgt å se.",
+        "thread_ids": [
+          "mapping_vs_selection_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#kartet_over_sporene"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 11, lunch: et kart viser også hva du selv har valgt å se.",
+        "thread_ids": [
+          "mapping_vs_selection_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#kartet_over_sporene"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: et kart viser også hva du selv har valgt å se.",
+        "thread_ids": [
+          "mapping_vs_selection_bias",
+          "local_context_vs_collector_gaze"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#kartet_over_sporene"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: et kart viser også hva du selv har valgt å se.",
+        "thread_ids": [
+          "mapping_vs_selection_bias",
+          "attribution_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#kartet_over_sporene"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 12, morning: dokumentasjon gjør deg ikke til etterforsker.",
+        "thread_ids": [
+          "documentation_vs_enforcement_role"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#verket_som_kan_vaere_ulovlig"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: dokumentasjon gjør deg ikke til etterforsker.",
+        "thread_ids": [
+          "documentation_vs_enforcement_role"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#verket_som_kan_vaere_ulovlig"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: dokumentasjon gjør deg ikke til etterforsker.",
+        "thread_ids": [
+          "documentation_vs_enforcement_role",
+          "commercialization_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#verket_som_kan_vaere_ulovlig"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: dokumentasjon gjør deg ikke til etterforsker.",
+        "thread_ids": [
+          "documentation_vs_enforcement_role",
+          "documentation_vs_bystander_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#verket_som_kan_vaere_ulovlig"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: fotografiet og motivet har ulike rettighetsspørsmål.",
+        "thread_ids": [
+          "photography_vs_rights"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#hvem_eier_bildet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 13, lunch: fotografiet og motivet har ulike rettighetsspørsmål.",
+        "thread_ids": [
+          "photography_vs_rights"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#hvem_eier_bildet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: fotografiet og motivet har ulike rettighetsspørsmål.",
+        "thread_ids": [
+          "photography_vs_rights",
+          "observation_vs_conservation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#hvem_eier_bildet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: fotografiet og motivet har ulike rettighetsspørsmål.",
+        "thread_ids": [
+          "photography_vs_rights",
+          "access_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#hvem_eier_bildet"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 14, morning: å følge spor gir kunnskap, ikke sertifisering.",
+        "thread_ids": [
+          "street_art_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#hva_slags_gatekunstjeger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: å følge spor gir kunnskap, ikke sertifisering.",
+        "thread_ids": [
+          "street_art_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#hva_slags_gatekunstjeger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: å følge spor gir kunnskap, ikke sertifisering.",
+        "thread_ids": [
+          "street_art_practice_vs_professional_authority",
+          "virality_vs_source_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#hva_slags_gatekunstjeger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 14, evening: å følge spor gir kunnskap, ikke sertifisering.",
+        "thread_ids": [
+          "street_art_practice_vs_professional_authority",
+          "location_sharing_vs_stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#hva_slags_gatekunstjeger"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "ephemerality_vs_capture",
+      "relationship": "forgjengelig spor mot kontekstløs innsamling",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "5/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "attribution_vs_guessing",
+      "relationship": "attribusjon mot gjetning",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "documentation_vs_bystander_privacy",
+      "relationship": "dokumentasjon mot forbipasserendes personvern",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "access_vs_entitlement",
+      "relationship": "synlig motiv mot uberettiget stedstilgang",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "location_sharing_vs_stewardship",
+      "relationship": "presis lokasjonsdeling mot stedshensyn",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "removal_vs_ownership",
+      "relationship": "overmaling og fjerning mot ubegrunnet eierskapsdom",
+      "beat_refs": [
+        "1/evening",
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon"
+      ]
+    },
+    {
+      "id": "local_context_vs_collector_gaze",
+      "relationship": "lokal kontekst mot samlerblikk",
+      "beat_refs": [
+        "2/evening",
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon"
+      ]
+    },
+    {
+      "id": "commercialization_vs_context",
+      "relationship": "kommersialisering mot kontekst og kreditering",
+      "beat_refs": [
+        "3/evening",
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "12/afternoon"
+      ]
+    },
+    {
+      "id": "observation_vs_conservation",
+      "relationship": "observasjon mot uoppnevnt konservering",
+      "beat_refs": [
+        "4/evening",
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "virality_vs_source_care",
+      "relationship": "viral spredning mot kildepleie",
+      "beat_refs": [
+        "5/evening",
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "mapping_vs_selection_bias",
+      "relationship": "kartlegging mot utvalgsbias",
+      "beat_refs": [
+        "1/afternoon",
+        "6/evening",
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "documentation_vs_enforcement_role",
+      "relationship": "dokumentasjon mot politi- og saksbehandlerrolle",
+      "beat_refs": [
+        "2/afternoon",
+        "7/evening",
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "photography_vs_rights",
+      "relationship": "fotografisk dokumentasjon mot rettighetsforveksling",
+      "beat_refs": [
+        "3/afternoon",
+        "8/evening",
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "street_art_practice_vs_professional_authority",
+      "relationship": "gatekunstpraksis mot profesjonell kunst- og registreringsautoritet",
+      "beat_refs": [
+        "4/afternoon",
+        "9/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "bildene_faar_tidsstempel_og_kontekst",
+      "description": "Dokumentasjonen blir mindre avhengig av hukommelse fordi dato, sted og observerbare detaljer følger bildet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#veggen_som_kan_vaere_borte",
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#bildet_som_tar_av",
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#kartet_over_sporene"
+      ]
+    },
+    {
+      "id": "attribusjonen_blir_gradert",
+      "description": "Signaturer, stil og gjentatte påstander behandles som evidens med ulik styrke i stedet for som automatisk bekreftet opphav.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#signaturen_uten_sikker_avsender",
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#bildet_som_tar_av",
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#hva_slags_gatekunstjeger"
+      ]
+    },
+    {
+      "id": "stedet_blir_mer_enn_bakgrunn",
+      "description": "Personvern, tilgang, geotagging og nabolagskontekst blir en del av dokumentasjonspraksisen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#forbipasserende_i_bildet",
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#verket_bak_gjerdet",
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#geotaggen_og_det_saarbare_stedet",
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#nabolaget_husker_noe_annet"
+      ]
+    },
+    {
+      "id": "forsvinningen_blir_dokumentert_uten_eierskapsdom",
+      "description": "Overmaling og fysisk forfall registreres som endringer uten at du automatisk avgjør hvem som hadde rett til å bevare eller fjerne.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#overmalingen",
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#flaket_som_losner"
+      ]
+    },
+    {
+      "id": "samlingen_faar_tydeligere_rollegrenser",
+      "description": "Kommersialisering, lovlighet og rettigheter behandles som spørsmål med egne mandatgrenser, ikke som noe samlererfaring alene avgjør.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#veggen_som_blir_merkevare",
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#verket_som_kan_vaere_ulovlig",
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#hvem_eier_bildet",
+        "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#hva_slags_gatekunstjeger"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "forste_bilde_moter_overmalingen",
+      "setup_ref": "1/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "attribusjonen_moter_nytt_spor",
+      "setup_ref": "2/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "geotaggen_moter_oppmerksomheten",
+      "setup_ref": "5/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "lokalminnet_moter_arkivet",
+      "setup_ref": "7/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "narrative",
+        "relationship"
+      ]
+    },
+    {
+      "id": "materialskaden_moter_rollegrensen",
+      "setup_ref": "9/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "reputation",
+        "psyche"
+      ]
+    },
+    {
+      "id": "rettighetsforesporselen_moter_samlingen",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "livelihood",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#veggen_som_kan_vaere_borte",
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#signaturen_uten_sikker_avsender",
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#forbipasserende_i_bildet",
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#verket_bak_gjerdet",
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#geotaggen_og_det_saarbare_stedet",
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#overmalingen",
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#nabolaget_husker_noe_annet",
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#veggen_som_blir_merkevare",
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#flaket_som_losner",
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#bildet_som_tar_av",
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#kartet_over_sporene",
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#verket_som_kan_vaere_ulovlig",
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#hvem_eier_bildet",
+      "data/Civication/narratives/leisure/kunst_gatekunstjeger.json#hva_slags_gatekunstjeger"
+    ]
+  }
+}
