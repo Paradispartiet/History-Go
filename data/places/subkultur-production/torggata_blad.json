@@ -5,10 +5,10 @@
   "placeFile": "data/places/subkultur/oslo/places_subkultur/torggata_blad.json",
   "status": "ready",
   "subculturalIdentity": {
-    "statement": "Torggata Blad er et uavhengig papir- og nettidsskrift med systemkritisk profil og en skiftende krets av bidragsytere.",
+    "statement": "Torggata Blad er en uavhengig papir- og nettpublikasjon grunnlagt i 2007, med dokumentert historisk redaksjon i Hausmannsgate 19 og senere virksomhet i andre formater og på andre adresser.",
     "anchorType": "independent_media_or_shop",
     "mainSocietyRelationship": "Tidsskriftet produserer en alternativ offentlig stemme utenfor de store mediehusene, men er samtidig del av støtte-, medlems- og distribusjonsordninger for kulturtidsskrift.",
-    "placeObjectDistinction": "Rapporten skiller det fysiske stedet, driftsorganisasjonen, arrangementene og miljøene som bruker tilbudet.",
+    "placeObjectDistinction": "Place-et er det historiske redaksjons- og publiseringsstedet i Hausmannsgate 19. Fysiske papireksemplarer er Objects; Torggata Blad som vedvarende publikasjon og kunst-/medieprosjekt er Production/Brand og kan fortsette etter relokalisering.",
     "temporalScope": {
       "start": "2007",
       "end": "2026",
@@ -22,15 +22,29 @@
   },
   "subcultureTopics": [
     {
+      "emneId": "em_sub_diy_praksis",
+      "siteSpecificRationale": "Oppstarten dokumenterer selvorganisert innsamling, layout, trykk og distribusjon rundt en liten redaksjon.",
+      "caseIds": [
+        "case_torggata_blad_environment"
+      ]
+    },
+    {
+      "emneId": "em_sub_uavhengige_medier",
+      "siteSpecificRationale": "Publikasjonen definerer seg som uavhengig og dokumenterer en bred, skiftende bidragsyterkrets.",
+      "caseIds": [
+        "case_torggata_blad_environment"
+      ]
+    },
+    {
       "emneId": "em_sub_fanziner_plakater",
-      "siteSpecificRationale": "Emnet er knyttet til dokumenterte praksiser, organisering og rombruk ved torggata_blad, ikke til arenaetiketten alene.",
+      "siteSpecificRationale": "Papirutgavene er konkrete selvpubliserte medieobjekter og del av prosjektets identitet.",
       "caseIds": [
         "case_torggata_blad_environment"
       ]
     },
     {
       "emneId": "em_sub_dokumentasjon_arkiv",
-      "siteSpecificRationale": "Emnet er knyttet til dokumenterte praksiser, organisering og rombruk ved torggata_blad, ikke til arenaetiketten alene.",
+      "siteSpecificRationale": "Tidlige PDF-utgaver og mastheader gjør redaksjonssted, formatendringer og kontinuitet etterprøvbare over tid.",
       "caseIds": [
         "case_torggata_blad_environment"
       ]
@@ -39,59 +53,82 @@
   "sources": [
     {
       "id": "source_torggata_blad_milieu",
-      "url": "https://torggatablad.no/om-tb/",
-      "sourceLocation": "Torggata Blad, Om TB; selvdefinisjon, redaksjonell profil og forum for en sammensatt bidragsyterkrets",
+      "url": "https://torggatablad.no/bror-en-helt-unik-skrifttype/",
+      "sourceLocation": "Torggata Blad – egen historikk og 2026-presentasjon",
       "sourceType": "community_primary",
       "perspective": "milieu",
-      "verifiedAt": "2026-08-04",
-      "temporalCoverage": "current",
-      "provenance": "Miljøets eller driftsorganisasjonens egen publiserte beskrivelse og programinformasjon.",
-      "limitations": "Egenpresentasjonen dokumenterer praksis og selvforståelse, men kan framheve positive sider og kommersielle mål."
+      "verifiedAt": "2026-09-15",
+      "temporalCoverage": "current_and_historical",
+      "provenance": "Publikasjonens egen publiserte historikk.",
+      "limitations": "Egenpresentasjon må balanseres med uavhengige/offentlige kilder."
     },
     {
       "id": "source_torggata_blad_outside",
-      "url": "https://www.tidsskriftforeningen.no/nyhet/2023/tidsskriftdagen/tidsskriftdagen-2023/174103",
-      "sourceLocation": "Norsk Tidsskriftforening, program om Torggata Blad som politisk motkulturelt tidsskrift og redaksjonell praksis, 13. oktober 2023",
-      "sourceType": "reputable_secondary",
+      "url": "https://www.oslo.kommune.no/get-file/1126231/0de193bea6cc858d37b88441beb1abedcae567f4dc4a8c2f33a4085ce7794457",
+      "sourceLocation": "Oslo kommune, Kulturetaten, mediestøtte 2021",
+      "sourceType": "official",
       "perspective": "secondary",
-      "verifiedAt": "2026-08-04",
+      "verifiedAt": "2026-09-15",
       "temporalCoverage": "historical",
-      "provenance": "Uavhengig redaksjonell, katalog- eller reiselivsomtale kontrollert mot miljøkilden.",
-      "limitations": "Tidsskriftforeningen dokumenterer feltposisjon og motkulturell selvforståelse, men ikke alle interne redaksjonelle prosesser."
+      "provenance": "Offentlig saksframstilling med egen vurdering av publikasjonen.",
+      "limitations": "Vurderer publikasjonen opp mot én støtteordning."
+    },
+    {
+      "id": "source_torggata_blad_history",
+      "url": "https://torggatablad.no/wp-content/uploads/2020/04/torggatablad_nr02_07_web.pdf",
+      "sourceLocation": "Torggata Blad nr. 2, 2007; redaksjon i Hausmannsgate 19, 6. etasje",
+      "sourceType": "primary_document",
+      "perspective": "milieu",
+      "verifiedAt": "2026-09-15",
+      "temporalCoverage": "historical",
+      "provenance": "Samtidig papirutgave.",
+      "limitations": "Dokumenterer 2007, ikke dagens lokalisering."
+    },
+    {
+      "id": "source_torggata_blad_current_base",
+      "url": "https://bradyogvadstein.no/",
+      "sourceLocation": "Brady & Vadstein – prosjektbeskrivelse og dagens Sagene-base",
+      "sourceType": "community_primary",
+      "perspective": "milieu",
+      "verifiedAt": "2026-09-15",
+      "temporalCoverage": "current_and_historical",
+      "provenance": "Hovedpådrivernes prosjektpresentasjon.",
+      "limitations": "Selvpresentasjon brukt sammen med offentlig kilde."
     }
   ],
   "subcultureCases": [
     {
       "id": "case_torggata_blad_environment",
-      "claim": "Vedvarende redaksjonell produksjon og bidragsyterforum gjør Torggata Blad til en uavhengig mediepraksis; kontoradressen alene er ikke et offentlig subkultursted.",
+      "claim": "Vedvarende selvorganisert publisering, skiftende bidragsytere og bevisst arbeid med papir, nett og kollektive uttrykk gjør Torggata Blad til en dokumentert uavhengig mediepraksis. Det canonicale Place-et er den historiske redaksjonen i Hausmannsgate 19, ikke publikasjonens nåværende base.",
       "actors": [
         {
-          "name": "Deltakere, arrangører og skapere",
-          "roleOrInterest": "Bygger aktivitet, uttrykk og gjentatt sosial bruk.",
-          "positionOrPower": "Former miljøet i praksis, men kontrollerer ikke nødvendigvis lokalet eller alle adgangsvilkår.",
+          "name": "Bror Wyller og den tidlige redaksjonen",
+          "roleOrInterest": "Initierte og produserte de tidlige papirutgavene fra det dokumenterte redaksjonsstedet.",
+          "positionOrPower": "Grunnlegger og tidlig redaksjonell kjerne, men ikke identisk med alle senere bidragsytere.",
           "sourceIds": [
             "source_torggata_blad_milieu",
-            "source_torggata_blad_outside"
+            "source_torggata_blad_history"
           ]
         },
         {
-          "name": "Driftsorganisasjon, vertskap og eksterne rammesettere",
-          "roleOrInterest": "Styrer program, lokaler, økonomi og formelle vilkår.",
-          "positionOrPower": "Har større kontroll over kapasitet, booking, medlemskap eller arrangementssted.",
+          "name": "Paul Brady, Hege Vadstein og den skiftende bidragsyterkretsen",
+          "roleOrInterest": "Viderefører kollektiv publisering på papir, nett og i kunstprosjekter.",
+          "positionOrPower": "Brady og Vadstein beskrives som hovedpådrivere; en større krets deltar med ulike motiver.",
           "sourceIds": [
-            "source_torggata_blad_milieu",
+            "source_torggata_blad_current_base",
             "source_torggata_blad_outside"
           ]
         }
       ],
       "practicesAndCommunity": {
         "practices": [
-          "redigering og utgivelse på papir og nett",
+          "redigering, layout og utgivelse på papir og nett",
           "systemkritisk tekst, satire, tegning og kulturstoff",
-          "bidragsytersamarbeid og offentlig debatt"
+          "kollektiv publisering med skiftende bidragsytere",
+          "papirutgaver som medieobjekt og kunstnerisk uttrykk"
         ],
-        "belongingAndParticipation": "Gjentatt deltakelse skaper gjenkjennelse og sosial læring, men adgang og tilhørighet er ikke lik for alle.",
-        "organizationOrGovernance": "Egenpresentasjonen beskriver forumet og den redaksjonelle stemmen; Tidsskriftforeningen plasserer publikasjonen eksplisitt i en motkulturell tidsskrifttradisjon.",
+        "belongingAndParticipation": "Kildene beskriver en bred krets av bidragsytere med ulike bakgrunner; publikasjonen skal derfor ikke framstilles som ett homogent miljø.",
+        "organizationOrGovernance": "Den tidlige kjernen bestod av Wyller, Brady og Vadstein; senere beskrives Brady og Vadstein som hovedpådrivere i en større, skiftende krets.",
         "codesOrExpressions": {
           "status": "documented",
           "statement": "Satire, grafisk form, irregulær stemme og systemkritikk er redaksjonelle praksiser, ikke bare visuell stil.",
@@ -102,38 +139,38 @@
         },
         "sourceIds": [
           "source_torggata_blad_milieu",
-          "source_torggata_blad_outside"
+          "source_torggata_blad_current_base",
+          "source_torggata_blad_history"
         ]
       },
       "spaceAndPower": {
-        "accessAndTerritory": "Publikasjonen er lesbar og kan kjøpes eller abonneres på, mens redaksjonelle valg og bidragsopptak ikke er grenseløst åpne.",
+        "accessAndTerritory": "Historisk produksjon var knyttet til redaksjonsrommet i Hausmannsgate 19; lesing og distribusjon var bredere. Dagens prosjekt er ikke bundet til det gamle lokalet.",
         "controlOrRegulation": {
           "status": "documented",
-          "statement": "Redaktøransvar, økonomi, støtteordninger, opphavsrett og publiseringsetikk regulerer den uavhengige praksisen.",
+          "statement": "Redaksjonelle valg, selskapsform, støtteordninger, opphavsrett og publiseringsetikk gir formelle rammer rundt den uavhengige praksisen.",
           "sourceIds": [
-            "source_torggata_blad_milieu",
-            "source_torggata_blad_outside"
+            "source_torggata_blad_outside",
+            "source_torggata_blad_current_base"
           ]
         },
         "conflictOrNegotiation": {
-          "status": "not_documented",
-          "rationale": "Kildene viser en motkulturell posisjon i offentligheten, men dokumenterer ikke én konkret pågående konflikt med myndighet eller marked.",
+          "status": "documented",
+          "statement": "Oslo kommunes 2021-vurdering viser en institusjonell terskel: publikasjonen oppfylte ikke støtteordningens frekvens- og lokalinnholdskrav.",
           "sourceIds": [
-            "source_torggata_blad_milieu",
             "source_torggata_blad_outside"
           ]
         },
         "displacementOrInstitutionalization": {
           "status": "documented",
-          "statement": "Et uavhengig blad fra 2007 er blitt medlem av tidsskriftfeltets organisasjoner og støtteinfrastruktur uten å oppgi systemkritisk profil.",
+          "statement": "Publikasjonen har fortsatt etter den historiske Hausmannsgate-redaksjonen og beskrives nå gjennom Brady & Vadsteins Sagene-base.",
           "sourceIds": [
-            "source_torggata_blad_milieu",
-            "source_torggata_blad_outside"
+            "source_torggata_blad_current_base"
           ]
         },
         "sourceIds": [
-          "source_torggata_blad_milieu",
-          "source_torggata_blad_outside"
+          "source_torggata_blad_history",
+          "source_torggata_blad_outside",
+          "source_torggata_blad_current_base"
         ]
       },
       "representationAndEthics": {
@@ -161,16 +198,19 @@
       },
       "methodAndInference": {
         "methodId": "met_sub_mediearkeologisk_analyse",
-        "observationOrEvidence": "Analysen kombinerer organisasjonsform, gjentatt program, deltakelsespraksis og adgang til stedet.",
+        "observationOrEvidence": "Analysen sammenholder papirutgaver, mastheader, nettversjon, offentlig institusjonell beskrivelse og dagens prosjektbase.",
         "alternativeExplanations": [
-          "Popularitet kan skyldes beliggenhet, markedsføring eller lav pris uten at alle brukere inngår i ett miljø."
+          "Formatendringer kan skyldes praktiske og økonomiske forhold og beviser ikke alene ideologisk utvikling.",
+          "Endret adresse betyr ikke at publikasjonen eller bidragsyterfellesskapet opphørte."
         ],
         "inferenceStatus": "associational",
-        "reflexivity": "Rapporten antar ikke at alle besøkende deler samme identitet, normer eller grad av tilhørighet.",
-        "uncertainty": "Kildene dokumenterer offentlig program og selvforståelse bedre enn uformelle relasjoner og interne uenigheter.",
+        "reflexivity": "Rapporten skiller publikasjon, historisk redaksjonsrom, fysisk bladeksemplar, brand og skiftende bidragsytere.",
+        "uncertainty": "Kildene dokumenterer offentlig publisering og navngitte aktører bedre enn interne beslutningsprosesser.",
         "sourceIds": [
           "source_torggata_blad_milieu",
-          "source_torggata_blad_outside"
+          "source_torggata_blad_outside",
+          "source_torggata_blad_history",
+          "source_torggata_blad_current_base"
         ]
       },
       "changeOverTime": {
@@ -178,40 +218,43 @@
           "start": "2007",
           "end": "2026",
           "precision": "period",
-          "rationale": "Perioden følger oppstart og siste kontrollerte publiserte aktivitet."
+          "rationale": "Fra dokumentert grunnleggelse og redaksjonssted til siste kontrollerte aktive publisering."
         },
-        "startingPoint": "Miljø- eller driftsformen er dokumentert fra 2007.",
-        "changeOrTurningPoint": "Et uavhengig blad fra 2007 er blitt medlem av tidsskriftfeltets organisasjoner og støtteinfrastruktur uten å oppgi systemkritisk profil.",
-        "currentOrEndPoint": "Torggata Blad publiserer fortsatt nettinnhold og beskriver seg som et uavhengig forum for ulike bidragsytere.",
+        "startingPoint": "Papirutgivelse fra 2007 med tidlig redaksjon i Hausmannsgate 19.",
+        "changeOrTurningPoint": "Nettversjon fra 2012, senere retur til papir og fortsatt kollektiv kunst-/mediepraksis.",
+        "currentOrEndPoint": "Publikasjonen er aktiv, mens dagens Brady & Vadstein-base ligger på Sagene.",
         "continuities": [
-          "redigering og utgivelse på papir og nett",
-          "systemkritisk tekst, satire, tegning og kulturstoff"
+          "uavhengig publisering",
+          "skiftende bidragsytere",
+          "papir og nett som parallelle uttrykk"
         ],
         "sourceIds": [
           "source_torggata_blad_milieu",
+          "source_torggata_blad_current_base",
           "source_torggata_blad_outside"
         ]
       }
     }
   ],
   "presentFunction": {
-    "status": "active",
-    "statement": "Torggata Blad publiserer fortsatt nettinnhold og beskriver seg som et uavhengig forum for ulike bidragsytere.",
-    "historicalRelationship": "Nåværende eller siste dokumenterte drift viderefører deler av miljøfunksjonen, men organisering og adgang kan ha endret seg.",
-    "checkedAt": "2026-08-04",
+    "status": "relocated",
+    "statement": "Torggata Blad publiserer fortsatt i 2026, men Brady & Vadstein oppgir dagens arbeidssted på Sagene; Hausmannsgate-markøren er historisk.",
+    "historicalRelationship": "Publikasjonen viderefører den uavhengige mediepraksisen etter at den dokumenterte 2007–2008-redaksjonen i Hausmannsgate 19 ikke lenger er dagens base.",
+    "checkedAt": "2026-09-15",
     "sourceIds": [
-      "source_torggata_blad_milieu"
+      "source_torggata_blad_milieu",
+      "source_torggata_blad_current_base"
     ]
   },
   "quizOpening": {
-    "status": "N/A",
-    "rationale": "Ingen stedquiz produseres eller revideres i denne rapporten."
+    "status": "PASS",
+    "rationale": "Ny normal 4×7-stedquiz er produsert; de første 14 spørsmålene er direkte kildebundet og teori/metode starter først i finalsettet."
   },
   "chronologyStories": {
-    "status": "N/A",
+    "status": "PASS",
     "chronologyReviewed": true,
     "storiesReviewed": true,
-    "rationale": "Materialet krever ingen ny chronology-post eller selvstendig Story i denne endringen."
+    "rationale": "Åttepunkts kronologi og Story er kildekorrigert og synkronisert med historisk redaksjonsidentitet."
   },
   "gates": {
     "A": {
@@ -256,17 +299,23 @@
       ]
     },
     "G": {
-      "status": "N/A",
-      "rationale": "Ingen stedquiz produseres eller revideres i denne rapporten."
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening",
+        "data/quiz/subkultur/torggata_blad_sets.json"
+      ]
     },
     "H": {
-      "status": "N/A",
-      "rationale": "Ingen chronology eller Story produseres eller revideres."
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories",
+        "data/stories/stories_torggata_blad.json"
+      ]
     }
   },
   "review": {
     "reviewer": "Subkultur-fagverkredaksjon",
-    "reviewedAt": "2026-08-04",
-    "notes": "Definisjon, stemmebalanse, rommakt, representasjon, slutningsgrense og nåstatus er kontrollert."
+    "reviewedAt": "2026-09-15",
+    "notes": "Full Place-produksjon: identitet, stemmebalanse, rommakt, mediearkeologi, relokalisering, quiz og kronologi kontrollert."
   }
 }
