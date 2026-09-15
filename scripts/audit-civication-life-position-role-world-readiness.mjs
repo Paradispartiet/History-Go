@@ -474,21 +474,7 @@ if (writeMode) {
 }
 if (checkMode) {
   if (!exists(OUTPUT) || !exists(REPORT)) throw new Error('Readiness outputs missing; run with --write.');
-  if (readText(OUTPUT)!==jsonText) {
-    const existing = readJson(OUTPUT);
-    const existingByKey = new Map((existing.positions || []).map((row) => [row.key, row]));
-    const changedPositions = rows
-      .filter((row) => JSON.stringify(existingByKey.get(row.key)) !== JSON.stringify(row))
-      .map((row) => ({ key: row.key, expected: row, actual: existingByKey.get(row.key) || null }));
-    console.error('READINESS_DIAGNOSTIC ' + JSON.stringify({
-      expected_summary: output.summary,
-      actual_summary: existing.summary,
-      expected_first_ready: output.first_ready,
-      actual_first_ready: existing.first_ready,
-      changed_positions: changedPositions
-    }));
-    throw new Error(`${OUTPUT} is stale; run with --write.`);
-  }
+  if (readText(OUTPUT)!==jsonText) throw new Error(`${OUTPUT} is stale; run with --write.`);
   if (readText(REPORT)!==reportText) throw new Error(`${REPORT} is stale; run with --write.`);
   const expectedSelectable = Number(taxonomy.canonical_counts?.selectable_life_positions_total);
   if (!Number.isInteger(expectedSelectable) || expectedSelectable < 1) throw new Error('Canonical selectable life-position count missing from taxonomy.');
