@@ -1,0 +1,705 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "helse_omsorgsetiker_stream",
+  "type": "leisure",
+  "title": "Omsorgsetiker",
+  "sociological_theme": "autonomi_rettferdighet_omsorg_skade_makt_og_vanskelige_avveiinger",
+  "applies_when": {
+    "any_tags": [
+      "helse:omsorgsetiker"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "leisure",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "hjelp_uten_a_overstyre",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Omsorg kan bli overstyring hvis stemmen til den det gjelder forsvinner",
+      "situation": [
+        "En samtale handler om noen som trenger støtte i en vanskelig situasjon.",
+        "Flere rundt bordet vil hjelpe raskt, men snakker mest om personen og mindre med personen.",
+        "Omsorgsetikk krever både vilje til å hjelpe og respekt for autonomi og egen stemme."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva personen selv ønsker og trenger før du antar at hjelp og overstyring er det samme.",
+          "effect": 1,
+          "tags": [
+            "care_autonomy_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "La de mest handlekraftige rundt personen bestemme fordi gode intensjoner bør være nok.",
+          "effect": -1,
+          "tags": [
+            "care_autonomy_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_autonomy_seen"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samtykke_under_press",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Etikkbordet",
+      "subject": "Et ja kan være mindre fritt når presset rundt er stort",
+      "situation": [
+        "En beslutning omtales som frivillig fordi personen formelt har sagt ja.",
+        "Samtidig finnes sosialt press, avhengighet og tydelige forventninger fra andre.",
+        "Etisk refleksjon må derfor spørre både om svaret og om betingelsene svaret ble gitt under."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se på frivillighet, forståelse og press rundt beslutningen før du kaller samtykket uproblematisk.",
+          "effect": 1,
+          "tags": [
+            "consent_pressure_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "Behandle ethvert uttalt ja som tilstrekkelig uansett hvilke forventninger som ligger rundt.",
+          "effect": -1,
+          "tags": [
+            "consent_pressure_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_consent_context"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "likt_eller_rettferdig",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Hverdagen",
+      "subject": "Lik behandling er ikke alltid det samme som rettferdighet",
+      "situation": [
+        "To mennesker får identisk støtte fordi ordningen skal være lik for alle.",
+        "Utgangspunktene deres er svært forskjellige, og den samme løsningen gir derfor svært ulik effekt.",
+        "Rettferdighet kan kreve at like regler vurderes opp mot reelle behov og konsekvenser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom identisk behandling og rimelig rettferdighet når behovene faktisk er ulike.",
+          "effect": 1,
+          "tags": [
+            "equality_justice_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "Kall ordningen rettferdig bare fordi alle får nøyaktig det samme.",
+          "effect": -1,
+          "tags": [
+            "equality_justice_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_justice_distinction"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verdighet_og_effektivitet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Refleksjonsgruppen",
+      "subject": "Effektivitet kan skjule hva mennesker opplever som verdig",
+      "situation": [
+        "En løsning sparer tid og ressurser og ser svært effektiv ut på systemnivå.",
+        "Noen som berøres beskriver at den samtidig reduserer privatliv, verdighet eller mulighet til å bli hørt.",
+        "Omsorgsetikk spør hva effektiviteten koster, ikke bare hvor mye den sparer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta både ressursbruk og verdighet med i vurderingen før du kaller løsningen bedre.",
+          "effect": 1,
+          "tags": [
+            "dignity_efficiency_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "La effektivitet avgjøre alene fordi alt annet er vanskeligere å måle.",
+          "effect": -1,
+          "tags": [
+            "dignity_efficiency_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_dignity"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "personvern_og_stotte",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "God støtte gir ikke automatisk rett til all informasjon",
+      "situation": [
+        "Noen ønsker å hjelpe en person og ber derfor om stadig mer privat informasjon.",
+        "Jo mer de vet, desto lettere mener de det blir å organisere støtte.",
+        "Samtidig kan personvern være en del av verdighet og selvbestemmelse, også når andre har gode intensjoner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hvilken informasjon som faktisk er nødvendig og hvem personen ønsker skal få den.",
+          "effect": 1,
+          "tags": [
+            "privacy_support_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "Del mest mulig fordi enhver opplysning kan være nyttig for noen som vil hjelpe.",
+          "effect": -1,
+          "tags": [
+            "privacy_support_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_privacy"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "risiko_og_beskyttelse",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Etikkbordet",
+      "subject": "Beskyttelse kan bli paternalistisk hvis all risiko fjernes på andres vegne",
+      "situation": [
+        "En person ønsker å gjøre noe som innebærer en viss risiko.",
+        "Andre vil stoppe det helt fordi de opplever beskyttelse som den tryggeste formen for omsorg.",
+        "Etisk refleksjon må skille mellom reell fare, tolerabel risiko og retten til å leve et selvbestemt liv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder risikoen konkret og hold beskyttelse opp mot personens egen stemme og handlingsrom.",
+          "effect": 1,
+          "tags": [
+            "protection_autonomy_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "Fjern all risiko på personens vegne fordi sikkerhet alltid bør trumfe autonomi.",
+          "effect": -1,
+          "tags": [
+            "protection_autonomy_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_risk_balance"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "parorende_og_egen_stemme",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Hverdagen",
+      "subject": "Pårørende kan vite mye uten å eie personens perspektiv",
+      "situation": [
+        "En nær pårørende kjenner historien godt og har sterke meninger om hva som er best.",
+        "Personens egne ønsker er mindre tydelige og får derfor mindre plass i samtalen.",
+        "Omsorgsetikk må kunne verdsette relasjonell kunnskap uten å gjøre pårørende til automatisk talsperson."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lytt til pårørende som en viktig kilde, men hold personens egen stemme som et eget etisk hensyn.",
+          "effect": 1,
+          "tags": [
+            "relative_voice_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "La den nærmeste pårørende definere personens ønsker fordi de kjenner historien best.",
+          "effect": -1,
+          "tags": [
+            "relative_voice_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_relative_voice"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "knappe_ressurser",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Refleksjonsgruppen",
+      "subject": "Ressursknapphet gjør kriterier til etiske valg",
+      "situation": [
+        "En felles ressurs kan ikke dekke alle ønsker samtidig.",
+        "Det er fristende å late som fordelingen er teknisk og derfor etisk nøytral.",
+        "Hvilke behov, gevinster, ulemper og fordelingsprinsipper som teller, er i seg selv verdibaserte valg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør kriteriene og hvem som rammes av dem eksplisitte før du vurderer om fordelingen er forsvarlig.",
+          "effect": 1,
+          "tags": [
+            "scarcity_criteria_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "Presenter fordelingen som rent teknisk slik at verdikonflikten slipper å diskuteres.",
+          "effect": -1,
+          "tags": [
+            "scarcity_criteria_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_scarcity"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "omsorg_eller_kontroll",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Omsorg kan brukes som språk for kontroll",
+      "situation": [
+        "En regel begrunnes med at den er til personens eget beste.",
+        "Regelen gjør hverdagen enklere for omgivelsene, men begrenser også personens valgmuligheter.",
+        "Et omsorgsetisk blikk spør hvem som faktisk beskyttes og hvem som får mer kontroll."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk både begrunnelsen, maktforholdet og hvordan personen selv opplever regelen.",
+          "effect": 1,
+          "tags": [
+            "care_control_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "Godta kontrollen fordi formuleringen til personens beste gjør hensikten etisk tilstrekkelig.",
+          "effect": -1,
+          "tags": [
+            "care_control_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_power_check"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kultur_uten_stereotypi",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Etikkbordet",
+      "subject": "Kulturell hensynsfullhet krever mer enn antakelser om grupper",
+      "situation": [
+        "Noen forklarer en persons ønsker ved å vise til hvilken gruppe eller tradisjon personen forbindes med.",
+        "Antakelsen kan være velment, men gjør gruppetilhørighet til erstatning for å spørre personen selv.",
+        "Etisk sensitivitet betyr å kjenne kontekst uten å gjøre individet til en stereotypi."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk kultur som mulig kontekst, men spør personen hva som faktisk betyr noe i denne situasjonen.",
+          "effect": 1,
+          "tags": [
+            "culture_stereotype_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "Anta at gruppetilhørighet forteller deg hvilke ønsker personen har.",
+          "effect": -1,
+          "tags": [
+            "culture_stereotype_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_cultural_humility"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "skade_ved_a_handle_og_ikke_handle",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Hverdagen",
+      "subject": "Både handling og passivitet kan ha kostnader",
+      "situation": [
+        "En vanskelig avveiing fremstilles som om bare aktive valg kan skape skade.",
+        "Men det å vente, avstå eller la dagens ordning fortsette kan også få konsekvenser.",
+        "Etisk vurdering må derfor sammenligne relevante handlingsalternativer, ikke bare handling mot en tenkt nøytralitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta med både konsekvensene av handling og konsekvensene av å la være.",
+          "effect": 1,
+          "tags": [
+            "action_inaction_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "Behandle passivitet som etisk nøytral fordi ingen aktiv beslutning tas.",
+          "effect": -1,
+          "tags": [
+            "action_inaction_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_action_inaction"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenighet_uten_fasit",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Refleksjonsgruppen",
+      "subject": "Vanskelige avveiinger kan være reelle selv når alle kjenner fakta",
+      "situation": [
+        "To personer kjenner de samme opplysningene, men vektlegger autonomi, skade og rettferdighet forskjellig.",
+        "Diskusjonen leter etter ett faktum som kan avslutte verdikonflikten.",
+        "Noen etiske uenigheter skyldes imidlertid faktisk ulik vekting av legitime hensyn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør hensynene og vektingen eksplisitt i stedet for å late som ett nytt faktum automatisk løser alt.",
+          "effect": 1,
+          "tags": [
+            "value_conflict_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "Anta at etisk uenighet alltid skyldes at den ene parten mangler informasjon.",
+          "effect": -1,
+          "tags": [
+            "value_conflict_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_value_conflict"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "moralsk_ubehag",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samtalen",
+      "subject": "Etisk ubehag kan være informasjon uten å være fasit",
+      "situation": [
+        "Du merker sterkt ubehag ved en løsning som andre mener er praktisk og forsvarlig.",
+        "Følelsen kan peke mot et oversett hensyn, men kan også være preget av vane, identitet eller usikkerhet.",
+        "Omsorgsetikeren må undersøke ubehaget uten å gjøre egen magefølelse til autoritet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk ubehaget som grunn til å undersøke hvilke hensyn du mener står på spill.",
+          "effect": 1,
+          "tags": [
+            "moral_discomfort_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "Gjør ubehaget til bevis for at løsningen nødvendigvis er moralsk feil.",
+          "effect": -1,
+          "tags": [
+            "moral_discomfort_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_moral_discomfort"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "omsorgsetiker_som_praksis",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Etikkbordet",
+      "subject": "Etisk refleksjon er å synliggjøre hensyn, makt og grenser",
+      "situation": [
+        "Etter mange diskusjoner om autonomi, skade, verdighet og rettferdighet ser du at gode intensjoner sjelden er hele analysen.",
+        "Du spør oftere hvem som får bestemme, hvem som bærer kostnaden og hvilke verdier som skjules i det som fremstilles som praktisk.",
+        "Omsorgsetikeren avslutter ikke med klinisk beslutningsmyndighet, men med bedre spørsmål om vanskelige avveiinger og tydeligere grenser for egen rolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold en praksis der autonomi, omsorg, skade, rettferdighet og makt gjøres eksplisitte uten å opptre som behandler.",
+          "effect": 1,
+          "tags": [
+            "care_ethics_practice_deliberate",
+            "ethics_identity",
+            "care_ethics"
+          ],
+          "feedback": "Du gjør hensyn, makt og grenser tydeligere uten å ta over beslutningen for andre."
+        },
+        {
+          "id": "B",
+          "label": "Bruk etikkspråket som grunn til å overta beslutninger som tilhører personen selv eller kvalifiserte profesjoner.",
+          "effect": -1,
+          "tags": [
+            "care_ethics_practice_drift",
+            "ethical_overreach",
+            "paternalism_pressure"
+          ],
+          "feedback": "Ett hensyn eller én autoritetsposisjon får dominere en vanskelig avveiing uten tilstrekkelig begrunnelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "omsorgsetiker_practice_integrated"
+      ],
+      "risk_links": [
+        "relationship_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
