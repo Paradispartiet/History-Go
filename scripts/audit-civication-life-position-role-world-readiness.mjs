@@ -474,42 +474,7 @@ if (writeMode) {
 }
 if (checkMode) {
   if (!exists(OUTPUT) || !exists(REPORT)) throw new Error('Readiness outputs missing; run with --write.');
-  if (readText(OUTPUT)!==jsonText) {
-    const actual = JSON.parse(readText(OUTPUT));
-    const diffs = [];
-    const walkDiff = (a,b,p='') => {
-      if (diffs.length >= 80) return;
-      if (Array.isArray(a) || Array.isArray(b)) {
-        if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) {
-          diffs.push({ path:p, expected:Array.isArray(a)?`array(${a.length})`:a, actual:Array.isArray(b)?`array(${b.length})`:b });
-          return;
-        }
-        for (let i=0;i<a.length;i+=1) walkDiff(a[i],b[i],`${p}[${i}]`);
-        return;
-      }
-      if ((a && typeof a === 'object') || (b && typeof b === 'object')) {
-        if (!a || !b || typeof a !== 'object' || typeof b !== 'object') { diffs.push({path:p,expected:a,actual:b}); return; }
-        const keys = new Set([...Object.keys(a),...Object.keys(b)]);
-        for (const k of keys) walkDiff(a[k],b[k],p ? `${p}.${k}` : k);
-        return;
-      }
-      if (a !== b) diffs.push({path:p,expected:a,actual:b});
-    };
-    walkDiff(output,actual);
-    const actualByKey = new Map((actual.positions || []).map((row) => [row.key, row]));
-    const changedRows = (output.positions || [])
-      .filter((row) => JSON.stringify(row) !== JSON.stringify(actualByKey.get(row.key)))
-      .map((row) => ({ key: row.key, expected: row, actual: actualByKey.get(row.key) || null }));
-    console.error('READINESS_ROW_DIFF', JSON.stringify({
-      diffs,
-      changed_rows: changedRows,
-      summary_expected: output.summary,
-      summary_actual: actual.summary,
-      queue_expected: output.queue,
-      queue_actual: actual.queue
-    }));
-    throw new Error(`${OUTPUT} is stale; run with --write.`);
-  }
+  if (readText(OUTPUT)!==jsonText) throw new Error(`${OUTPUT} is stale; run with --write.`);
   if (readText(REPORT)!==reportText) throw new Error(`${REPORT} is stale; run with --write.`);
   const expectedSelectable = Number(taxonomy.canonical_counts?.selectable_life_positions_total);
   if (!Number.isInteger(expectedSelectable) || expectedSelectable < 1) throw new Error('Canonical selectable life-position count missing from taxonomy.');
