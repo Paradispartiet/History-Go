@@ -6,19 +6,16 @@ const p=path.join(ROOT,'data/Civication/lifePositionRoleWorldReadiness.json');
 const before=JSON.parse(fs.readFileSync(p,'utf8'));
 execFileSync(process.execPath,[path.join(ROOT,'scripts/audit-civication-life-position-role-world-readiness.mjs'),'--write'],{cwd:ROOT,stdio:['ignore','pipe','pipe']});
 const after=JSON.parse(fs.readFileSync(p,'utf8'));
-const diffs=[];
-function walk(a,b,key){
-  if(Array.isArray(a)&&Array.isArray(b)){
-    if(a.length!==b.length)diffs.push([key+'.length',a.length,b.length]);
-    const n=Math.max(a.length,b.length);for(let i=0;i<n;i++)walk(a[i],b[i],key+'['+i+']');
-    return;
+const changed=[];
+for(let i=0;i<Math.max(before.positions.length,after.positions.length);i++){
+  const a=before.positions[i],b=after.positions[i];
+  if(JSON.stringify(a)!==JSON.stringify(b)){
+    changed.push({
+      i,
+      key:b?.key,
+      thematic_count:b?.authored_depth?.thematic_source_ref_count,
+      thematic_refs:b?.evidence?.thematic_source_refs
+    });
   }
-  if(a&&b&&typeof a==='object'&&typeof b==='object'){
-    for(const k of [...new Set([...Object.keys(a),...Object.keys(b)])].sort())walk(a[k],b[k],key?key+'.'+k:k);
-    return;
-  }
-  if(JSON.stringify(a)!==JSON.stringify(b))diffs.push([key,a,b]);
 }
-walk(before,after,'');
-const compact=diffs.map((d,i)=>i+':'+d[0]+'='+JSON.stringify(d[1])+'->'+JSON.stringify(d[2])).join('\n');
-throw new Error('KAMPANJEMENNESKE_DIFF_COUNT='+diffs.length+'\n'+compact.slice(0,12000));
+throw new Error('KAMPANJEMENNESKE_CHANGED_ROWS='+JSON.stringify(changed));
