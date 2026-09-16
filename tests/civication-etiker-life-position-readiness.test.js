@@ -1,16 +1,8 @@
 #!/usr/bin/env node
 'use strict';
-const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
 const ROOT=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(ROOT,p),'utf8'));
-const audit=read('data/Civication/lifePositionRoleWorldReadiness.json');
-const streamPath='data/Civication/narratives/leisure/filosofi_etiker.json';
-const stream=read(streamPath),row=audit.positions.find(x=>x.key==='filosofi/etiker');
-assert.ok(row);assert.equal(row.kind,'ethics_specialization');assert.equal(row.semantic_mode,'lived_identity_or_practice');assert.equal(row.runtime_source,'badge_tier');
-assert.equal(stream.storylets.length,14);assert.equal(new Set(stream.storylets.map(x=>x.id)).size,14);
-assert.equal(stream.applies_when.any_tags[0],'filosofi:etiker');
-assert.equal(row.classification,'ready');assert.equal(row.role_world_status,'role_world_complete');
-assert.equal(row.role_world_path,'data/Civication/roleWorlds/filosofi/filosofi_etiker.json');assert.equal(row.priority_score,390);
-assert.equal(row.authored_depth.exact_source_ref_count,1);assert.equal(row.authored_depth.max_narrative_depth,14);
-assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);assert.ok(!audit.queue.some(x=>x.key===row.key));
-assert.equal(audit.first_ready,null);assert.equal(audit.summary.pending_ready_positions,0);
-console.log('Etiker readiness and lifecycle complete ok');
+cp.execFileSync(process.execPath,[path.join(ROOT,'scripts/audit-civication-life-position-role-world-readiness.mjs'),'--write'],{cwd:ROOT,stdio:['ignore','pipe','pipe']});
+const generatorDiff=cp.execFileSync('git',['diff','--','data/Civication/lifePositionRoleWorldReadiness.json','reports/civication-life-position-role-world-readiness.md'],{cwd:ROOT,encoding:'utf8'});
+console.error('ETIKER_GENERATOR_DIFF_START\n'+generatorDiff+'\nETIKER_GENERATOR_DIFF_END');
+throw new Error('intentional Etiker generator diagnostic; do not merge this head');
