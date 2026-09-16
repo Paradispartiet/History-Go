@@ -1,0 +1,115 @@
+{
+  "version": 2,
+  "failClosedPrefixes": [
+    "data/places/workflow/"
+  ],
+  "governanceOnlyPaths": [
+    "docs/PLACE_PRODUCTION_CHECKLIST.md",
+    "docs/PLACE_PRODUCTION_PROFILES.md",
+    "docs/PLACE_PRODUCTION_V3.md"
+  ],
+  "sharedContractPaths": [
+    "data/places/README_place_rounds.md",
+    "data/places/regler/place_production_workflow_v3.schema.json",
+    "scripts/place-production-v3-lib.mjs",
+    "scripts/build-place-production-v3-projections.mjs",
+    "scripts/place-production-routing-v2-lib.mjs",
+    "scripts/place-production-routing-v2.mjs",
+    "scripts/run-place-regressions-v1.mjs",
+    ".github/ci/place-production-routing-v2.json",
+    ".github/ci/place-regression-registry-v1.json",
+    ".github/workflows/data-checks.yml",
+    ".github/workflows/place-rounds-governance.yml",
+    ".github/workflows/place-production-v3.yml"
+  ],
+  "fullMatrixPaths": [
+    "data/places/manifest.json",
+    "data/places/places_index.json",
+    "data/places/category_overrides",
+    "scripts/check-places.sh",
+    "js/map.ts",
+    "js/map.js",
+    "js/app.js",
+    "js/views/MapView.js",
+    "js/ui/place-card.js",
+    "js/ui/place-rounds-visual-collections.js",
+    "js/ui/place-rounds-fill-layout.js",
+    "js/ui/place-card-quizcards-patch.js",
+    "js/ui/placeQuizCards.ts",
+    "js/ui/popup-utils.js",
+    "js/ui/place-popup-tabs.js",
+    "css/place-rounds-fill-layout.css"
+  ],
+  "places": [
+    {
+      "id": "birkelunden",
+      "match": ["birkelunden"],
+      "gates": ["places"],
+      "tests": [
+        "tests/birkelunden-phase7a-about.test.mjs",
+        "tests/birkelunden-phase7b-history.test.mjs",
+        "tests/birkelunden-phase7d-before-after.test.mjs",
+        "tests/birkelunden-phase7e-news.test.mjs",
+        "tests/birkelunden-phase7f-reading-trail.test.mjs",
+        "tests/birkelunden-phase7g-sources.test.mjs"
+      ]
+    },
+    {
+      "id": "torggata",
+      "match": ["torggata"],
+      "gates": ["places"],
+      "tests": [
+        "tests/torggata-phase14-discovery.test.mjs",
+        "tests/torggata-phase15-physical-visit.test.mjs",
+        "tests/torggata-phase16-favorite-progress.test.mjs",
+        "tests/torggata-phase17-profile-unlocks.test.mjs",
+        "tests/torggata-phase21-webgl-fallback.test.mjs",
+        "tests/torggata-phase22-content-qa.test.mjs",
+        "tests/torggata-phase23-ci-gates.test.mjs",
+        "tests/torggata-phase24-one-place-gate.test.mjs"
+      ]
+    },
+    {
+      "id": "youngstorget",
+      "match": ["youngstorget"],
+      "gates": ["places"],
+      "tests": ["tests/youngstorget-full-completion.test.mjs"]
+    },
+    {
+      "id": "storgata",
+      "match": ["storgata"],
+      "gates": ["places"],
+      "tests": ["tests/storgata-full-completion.test.mjs"]
+    },
+    {
+      "id": "brugata_storgata_rusmiljo",
+      "match": ["brugata_storgata_rusmiljo", "brugata-storgata-rusmiljo"],
+      "gates": ["places"],
+      "tests": ["tests/brugata-storgata-rusmiljo-full-completion.test.mjs"]
+    },
+    {
+      "id": "det_kongelige_mausoleum",
+      "match": ["det_kongelige_mausoleum", "det-kongelige-mausoleum"],
+      "gates": ["places"],
+      "tests": ["tests/det-kongelige-mausoleum-completion.test.mjs"]
+    },
+    {
+      "id": "myntgatakvartalet",
+      "match": ["myntgatakvartalet"],
+      "gates": ["places"],
+      "tests": ["tests/myntgatakvartalet-completion.test.mjs"]
+    },
+    {
+      "id": "22_juli_senteret",
+      "match": ["22_juli_senteret", "22-juli-senteret"],
+      "gates": ["places"],
+      "tests": ["tests/22-juli-senteret-completion.test.mjs"]
+    },
+    {
+      "id": "akershus_slott",
+      "match": ["akershus_slott", "akershus-slott"],
+      "gates": ["places", "place-production-v3"],
+      "tests": ["tests/akershus-slott-place-production-v3.test.mjs"]
+    }
+  ]
+}
