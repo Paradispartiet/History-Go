@@ -25,15 +25,15 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 82,
-  needs_authored_depth: 77,
+  ready: 83,
+  needs_authored_depth: 76,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 82);
+assert.equal(audit.summary.completed_life_position_role_worlds, 83);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 82);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 82);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 83);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 83);
 assert.equal(audit.first_ready, null);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
@@ -703,6 +703,16 @@ assert.equal(labnerd.authored_depth.exact_source_ref_count, 1);
 assert.equal(labnerd.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(labnerd.evidence.exact_source_refs, ['data/Civication/narratives/leisure/vitenskap_labnerd.json']);
 assert.ok(!(audit.queue || []).some((row) => row.key === 'vitenskap/labnerd'));
+const stjernekikker = audit.positions.find((row) => row.key === 'vitenskap/stjernekikker');
+assert.ok(stjernekikker);
+assert.equal(stjernekikker.classification, 'ready');
+assert.equal(stjernekikker.role_world_status, 'role_world_complete');
+assert.equal(stjernekikker.role_world_path, 'data/Civication/roleWorlds/vitenskap/vitenskap_stjernekikker.json');
+assert.equal(stjernekikker.priority_score, 405);
+assert.equal(stjernekikker.authored_depth.exact_source_ref_count, 1);
+assert.equal(stjernekikker.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(stjernekikker.evidence.exact_source_refs, ['data/Civication/narratives/leisure/vitenskap_stjernekikker.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'vitenskap/stjernekikker'));
 
 assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjenner','film_tv/filmklubbmenneske'].includes(row.key)),
   'completed life-position worlds must leave the readiness queue');
@@ -715,4 +725,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 82 ready / 77 authored-depth / 40 not-standalone; 82 complete / no pending-ready');
+console.log('civication life-position Role World readiness v2 ok: 83 ready / 76 authored-depth / 40 not-standalone; 83 complete / no pending-ready');
