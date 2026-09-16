@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "natur_turgaer_stream",
+  "type": "leisure",
+  "title": "Turgåer",
+  "sociological_theme": "ferdsel_tempo_utstyr_vær_naturbelastning_fellesskap_tilgang_og_grensen_mot_profesjonell_turmyndighet",
+  "applies_when": {
+    "any_tags": [
+      "natur:turgaer"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "ruta_som_ser_enklere_ut_pa_kartet",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Kartet",
+      "subject": "Det er bare noen kilometer",
+      "situation": [
+        "Du planlegger en tur som ser kort og ryddig ut på kartet, men høyde, underlag og årstid er dårligere synlig enn distansen.",
+        "En turgåer lærer ofte at samme antall kilometer kan bety svært forskjellige ting.",
+        "Planlegging blir derfor mer enn å lese ett tall."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder underlag, høyde, lys, vær og egen kapasitet før du bestemmer tempo og rute.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du lar kartet være et verktøy, ikke en garanti."
+        },
+        {
+          "id": "B",
+          "label": "Bruk kilometer alene som bevis på at turen blir enkel.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Et enkelt tall blir gjort til full beskrivelse av turen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_route_context"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vaeret_som_flytter_seg",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Værmeldingen",
+      "subject": "Det skulle jo holde seg",
+      "situation": [
+        "Været endrer seg raskere enn du forventet, og turen føles annerledes enn da du startet.",
+        "Friluftsliv gir handlingsrom, men omgivelsene har ingen plikt til å følge planen.",
+        "Å snu eller endre rute kan være et aktivt valg, ikke et nederlag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Juster planen etter forholdene og snu når det er det mest forsvarlige valget.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du lar faktiske forhold styre mer enn prestisjen i planen."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett uendret fordi du allerede har bestemt deg og vil fullføre.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Planen får høyere status enn situasjonen rundt deg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_weather_flexibility"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tempoet_i_turfolget",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Turfølget",
+      "subject": "Vi må jo holde litt fart",
+      "situation": [
+        "Gruppen går fortere enn én av deltakerne er komfortabel med.",
+        "Tempo er både fysisk kapasitet og sosial makt: den som setter farten bestemmer ofte pauser, avstand og hvem som rekker å være med.",
+        "En tur kan være sosialt inkluderende eller ekskluderende uten at noen sier det høyt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar tempo og pauser slik at gruppen faktisk fungerer som en gruppe.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du gjør tempo til en felles beslutning."
+        },
+        {
+          "id": "B",
+          "label": "La de raskeste bestemme og behandle avstanden bakover som et individuelt problem.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Prestasjon får større plass enn fellesskapet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_group_pace"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utstyret_som_blir_identitet",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Pausen",
+      "subject": "Er den jakka egentlig verdt det?",
+      "situation": [
+        "Samtalen handler mer og mer om sko, sekker, klokker og tekniske plagg.",
+        "Godt utstyr kan være nyttig, men pris og merke kan også fungere som sosial rang.",
+        "Turgåer-identiteten blir smal hvis tilhørighet må kjøpes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakk om hva utstyret faktisk løser, og la ulike budsjetter og løsninger få plass.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du skiller funksjon fra status."
+        },
+        {
+          "id": "B",
+          "label": "Bruk merke og pris som tegn på hvem som tar friluftslivet mest seriøst.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Forbruk blir gjort til mål på erfaring og verdi."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_gear_status"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "snarveien_over_det_blote_partiet",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Stien",
+      "subject": "Her går alle rundt",
+      "situation": [
+        "Et vått eller slitt parti gjør at folk tråkker stadig lenger ut i terrenget for å holde skoene tørre.",
+        "Små individuelle valg kan sammen bli bredere erosjon og mer slitasje.",
+        "Den mest komfortable linjen akkurat nå er ikke alltid den minst belastende."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold deg til robust ferdsel og etablerte løsninger selv om det betyr litt mer gjørme eller omvei.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du ser egen ferdsel som del av et mønster."
+        },
+        {
+          "id": "B",
+          "label": "Lag en ny tørr linje utenfor stien fordi ett ekstra fotspor neppe betyr noe.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Bekvemmelighet blir skilt fra den samlede belastningen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_trail_erosion"
+      ],
+      "risk_links": [
+        "ecological_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporet_som_ma_deles",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Turappen",
+      "subject": "Ny personlig rekord",
+      "situation": [
+        "En app viser fart, høydemeter og segmenter, og det blir fristende å la tallene definere om turen var vellykket.",
+        "Måling kan motivere og dokumentere, men kan også flytte oppmerksomheten fra sted og kropp til sammenligning.",
+        "Turen kan ha verdi uten at den blir en prestasjonspost."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk tallene som informasjon uten å gjøre dem til fasit på turens verdi.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du lar måling være et hjelpemiddel."
+        },
+        {
+          "id": "B",
+          "label": "Øk tempo og velg rute først og fremst for å forbedre rangeringen.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Tallene blir sosial dom over opplevelsen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_metrics_status"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bålet_som_passet_sa_bra",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Rasteplassen",
+      "subject": "Det hadde vært perfekt med bål",
+      "situation": [
+        "Du kommer til en fin rasteplass og vil fyre, men forhold, sesong eller lokale regler gjør situasjonen mindre opplagt.",
+        "En vane fra én tur kan ikke automatisk flyttes til alle steder og tider.",
+        "Friluftsliv krever også at lokale begrensninger får være reelle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekk gjeldende forhold og regler, og la være når det er tvil eller forbud.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du lar situert informasjon overstyre vane."
+        },
+        {
+          "id": "B",
+          "label": "Fyr fordi stedet ser trygt ut og du alltid har gjort det før.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Egen erfaring blir gjort til universell tillatelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_fire_boundary"
+      ],
+      "risk_links": [
+        "ecological_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hunden_som_alle_skal_like",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Stien",
+      "subject": "Den er bare vennlig",
+      "situation": [
+        "En hund i turfølget løper bort til andre turgåere og dyr.",
+        "Eieren oppfatter atferden som vennlig, mens andre kan oppleve den som uønsket eller utrygg.",
+        "Felles naturrom krever at egen intensjon ikke blir eneste mål på konsekvensen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta hensyn til andre brukere, lokale regler og situasjonen framfor å anta at alle ønsker kontakt.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du skiller egen opplevelse fra andres grense."
+        },
+        {
+          "id": "B",
+          "label": "La hundens gode hensikt avgjøre og forvent at andre bare må venne seg til det.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Intensjon blir brukt som erstatning for situasjonsforståelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_shared_space"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stedet_du_helst_vil_ha_for_deg_selv",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Utsiktspunktet",
+      "subject": "Det var bedre før alle kom",
+      "situation": [
+        "Et sted du liker har blitt mer populært og travlere.",
+        "Naturglede kan blandes med eierskapsfølelse selv når stedet aldri var privat.",
+        "Det er mulig å savne ro uten å gjøre nye brukere illegitime."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Juster tidspunkt eller rute og skill ønsket om ro fra påstanden om at andre ikke hører til.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du beskytter egen opplevelse uten å gjøre tilhørighet til enerett."
+        },
+        {
+          "id": "B",
+          "label": "Behandle nye besøkende som folk som ødelegger et sted du mener er ditt.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Fortrolighet med stedet blir gjort om til sosial eiendomsrett."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_belonging_gatekeeping"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "turvennen_som_ikke_vil_snu",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Turfølget",
+      "subject": "Vi er jo nesten framme",
+      "situation": [
+        "En turvenn vil fortsette selv om energien, tiden eller forholdene har endret seg.",
+        "Det kan være vanskelig å være den som foreslår å snu når et mål er synlig og resten av gruppen er motivert.",
+        "Gruppelojalitet kan både beskytte og presse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør situasjonen eksplisitt og velg sammen ut fra kapasitet, tid og forhold.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du lar sikkerhet og kapasitet være legitime gruppehensyn."
+        },
+        {
+          "id": "B",
+          "label": "Press videre for å unngå å være den som ødelegger turen for de andre.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Sosial skyld får styre mer enn situasjonen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_turnaround_pressure"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_private_veien",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Skiltet",
+      "subject": "Kartsporet går rett gjennom",
+      "situation": [
+        "Ruten i appen fortsetter gjennom et område med skilting, drift eller bruk som gjør adgangen uklar.",
+        "Digitale spor og tidligere ferdsel kan være utdaterte eller mangelfulle.",
+        "At en linje finnes på skjermen gir ikke automatisk rett til å følge den."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Respekter tydelige grenser og avklar eller velg alternativ rute når adgangen er usikker.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du skiller kartdata fra faktisk adgang."
+        },
+        {
+          "id": "B",
+          "label": "Følg sporet fordi andre åpenbart har gått der før.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Popularitet i data blir gjort til tillatelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_access_boundary"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "morket_som_kom_for_tidlig",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Skogsbilveien",
+      "subject": "Det ble mørkt fort",
+      "situation": [
+        "Turen tok lenger tid enn planlagt, og dagslyset forsvinner mens du fortsatt har et stykke igjen.",
+        "Små forsinkelser blir viktigere når lys, temperatur og orientering endres samtidig.",
+        "Turgåerpraksis handler også om marginer, ikke bare om å klare seg når planen går perfekt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg den enklere veien tilbake og bruk de ressursene du faktisk har til å redusere kompleksiteten.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du bruker margin som en del av dømmekraften."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett den opprinnelige krevende ruten for å bevise at du ikke trenger å endre planen.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Stahet blir forvekslet med erfaring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_margin_awareness"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_som_krever_et_skritt_til",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Utsikten",
+      "subject": "Bare litt nærmere kanten",
+      "situation": [
+        "Et godt bilde frister deg eller noen i gruppen til å gå nærmere et utsatt eller sårbart punkt.",
+        "Sosiale medier kan gjøre et øyeblikk mer synlig enn vurderingen som ligger bak.",
+        "Et bilde er ikke mer verdifullt fordi posisjonen var mer dramatisk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg en trygg og lite belastende plass selv om bildet blir mindre spektakulært.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du lar dokumentasjon følge situasjonen, ikke omvendt."
+        },
+        {
+          "id": "B",
+          "label": "Ta det ekstra skrittet fordi bildet ellers ikke vil skille seg ut.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Synlighet og dramatikk får styre ferdselen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_photo_pressure"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_turgaer",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Etter sesongen",
+      "subject": "Hva har alle turene gjort med blikket ditt?",
+      "situation": [
+        "Etter mange turer kjenner du flere ruter, værskifter, sosiale rytmer og lokale grenser enn før.",
+        "Du har også sett hvordan utstyr, måling, tempo, tilhørighet og ønsket om å fullføre kan forme valgene underveis.",
+        "Turgåer er en selvvalgt hobby_identity, ikke en automatisk profesjonstittel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold rollen som erfaren turgåer med tydelig situasjonsblikk og grense mot guide-, rednings- og forvaltningsmyndighet.",
+          "effect": 1,
+          "tags": [
+            "hiking_practice",
+            "role_clarity",
+            "situational_attention"
+          ],
+          "feedback": "Du avslutter sesongen med mer erfaring og tydeligere rollegrense."
+        },
+        {
+          "id": "B",
+          "label": "Gjør turerfaringen til grunnlag for å opptre som profesjonell guide, redningspersonell eller naturforvalter for andre.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Fritidserfaring blir omgjort til profesjonell fullmakt den ikke gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turgaer_practice_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
