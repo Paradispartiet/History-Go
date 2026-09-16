@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "filosofi_nysgjerrig",
+  "type": "leisure",
+  "title": "Nysgjerrig — utforskning, kildekritikk og spørsmål uten ekspertmyndighet",
+  "sociological_theme": "Hvordan mennesker kan følge spørsmål, usikkerhet, kilder, uenighet og nye spor på en systematisk måte uten å gjøre nysgjerrighet til krav på andres privatliv, ukritisk novelty-jakt, risikofylt eksperimentering eller automatisk forsker- og ekspertmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "filosofi:nysgjerrig"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "sporsmalet_som_var_bedre_enn_svaret",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Spørsmålsvennen",
+      "subject": "Hva prøver du egentlig å finne ut?",
+      "situation": [
+        "Du har samlet flere interessante fakta.",
+        "De peker i ulike retninger.",
+        "Nysgjerrighet blir mer lærende når spørsmålet er tydelig nok til at informasjon kan vurderes mot noe."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler ett konkret spørsmål og sorter funnene etter om de faktisk hjelper deg å undersøke det.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å samle alt som virker interessant; et tydelig spørsmål kan komme senere.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "question_focus_vs_fact_collecting"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_nye_som_ikke_var_det_sanne",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kildevennen",
+      "subject": "Det er overraskende — men er det godt dokumentert?",
+      "situation": [
+        "En påstand er ny og fascinerende.",
+        "Den deles fordi den bryter med det vanlige.",
+        "Nyhet og overraskelse sier ingenting alene om hvor godt påstanden er underbygget."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold nysgjerrigheten, men vurder kilde, dokumentasjon og alternative forklaringer før du sprer påstanden.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Prioriter det mest overraskende funnet; det er nettopp slike ting som gjør utforskning verdt det.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "novelty_vs_verification"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bredden_som_ble_overflaten",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fordypningsvennen",
+      "subject": "Hvor mange spor kan du følge før ingenting blir undersøkt ordentlig?",
+      "situation": [
+        "Du har fem nye temaer åpne samtidig.",
+        "Alle virker verdt å utforske.",
+        "Bred nysgjerrighet kan gi koblinger, men også hindre at ett spørsmål får nok dybde."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg ett hovedspor for denne runden og parker resten i en eksplisitt senere-liste.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Hold alle sporene aktive; bredde er viktigere enn å gå dypt i ett av dem.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "breadth_vs_depth"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_private_sporsmalet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Grensevennen",
+      "subject": "Du er nysgjerrig — men skylder den andre deg et svar?",
+      "situation": [
+        "Et personlig spørsmål kan gjøre en samtale mer interessant.",
+        "Den andre personen nøler.",
+        "Nysgjerrighet gir ikke automatisk rett til innsyn i andres privatliv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør det lett å avstå fra å svare og la grensen stå uten å presse fram en begrunnelse.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Forklar hvorfor spørsmålet er uskyldig og spør én gang til for å få et tydelig svar.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "curiosity_vs_privacy_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "usikkerheten_som_fikk_sta",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Tålmodighetsvennen",
+      "subject": "Må du ha et svar i dag?",
+      "situation": [
+        "Du har flere plausible forklaringer.",
+        "Ingen av dem er godt nok dokumentert.",
+        "Å tåle midlertidig usikkerhet er en del av reell utforskning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv ned hva som fortsatt er uklart og hvilke funn som faktisk kunne skille forklaringene.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Velg den mest plausible forklaringen foreløpig og behandle den som arbeidsfasit.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uncertainty_vs_answer_pressure"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kilden_som_bare_siterte_kilden",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kildevennen",
+      "subject": "Har du tre kilder — eller én påstand gjentatt tre ganger?",
+      "situation": [
+        "Flere tekster forteller den samme historien.",
+        "De ser uavhengige ut.",
+        "Ved nærmere lesing bygger alle på den samme opprinnelige kilden."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spor påstanden tilbake og tell uavhengige evidenskilder, ikke bare antall lenker.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Bruk antall omtaler som styrke; tre forskjellige publikasjoner er bedre enn én.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "source_diversity_vs_repetition"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kaninhullet_som_spiste_kvelden",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fordypningsvennen",
+      "subject": "Er dette fortsatt relevant for spørsmålet ditt?",
+      "situation": [
+        "Et sidespor er blitt stadig mer fascinerende.",
+        "Du har brukt mye tid på detaljer.",
+        "Sidesporet svarer nesten ikke lenger på spørsmålet du startet med."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker sidesporet som eget tema og gå tilbake til hovedspørsmålet før du fortsetter.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Følg interessen så lenge den varer; relevans kan vurderes når du er ferdig.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "rabbit_hole_vs_relevance"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_som_apnet_sporet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalevennen",
+      "subject": "Hva ser den andre som du ikke ser?",
+      "situation": [
+        "En person er uenig i konklusjonen din.",
+        "Du tror fortsatt du har de beste grunnene.",
+        "Uenighet kan brukes som en test av premisser og perspektiver uten at noen må gi seg med en gang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be den andre peke på hvilket premiss, begrep eller faktum de vurderer annerledes, og undersøk det.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar konklusjonen først; ellers kan samtalen skli ut før grunnlaget ditt er tydelig.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "disagreement_vs_defensiveness"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nybegynnersporsmalet_som_ble_holdt_tilbake",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalevennen",
+      "subject": "Alle andre virker som de allerede vet dette",
+      "situation": [
+        "Du er i et rom med folk som kan mer enn deg.",
+        "Et grunnleggende spørsmål dukker opp.",
+        "Statuspress kan få mennesker til å skjule reelle kunnskapshull."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Still spørsmålet presist og skill mellom det du vet, antar og ikke forstår.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Vent til du kan formulere spørsmålet på et mer avansert nivå; du bør ikke sinke de andre.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "beginner_question_vs_status_mask"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nysgjerrigheten_som_ble_risiko",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Forsiktighetsvennen",
+      "subject": "Må dette prøves i praksis for å undersøkes?",
+      "situation": [
+        "Du vil teste noe selv for å forstå det bedre.",
+        "Eksperimentet kan påvirke helse, sikkerhet, økonomi eller andre mennesker.",
+        "Utforskning gir ikke fritak fra vanlige sikkerhets- og ansvarsgrenser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn en tryggere observasjons-, simulerings- eller ekspertkilde før du gjør noe som kan skade deg selv eller andre.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Start i liten skala; det er vanskelig å lære uten å prøve selv.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "exploration_vs_safety_boundary"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "mennesket_som_ble_et_fenomen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Grensevennen",
+      "subject": "Er dette utforskning — eller sladder med fagord?",
+      "situation": [
+        "En bekjent gjør noe du synes er interessant.",
+        "Du begynner å diskutere mulige motiver med andre.",
+        "Nysgjerrighet om mennesker kan raskt bli spekulasjon om privatliv eller personlighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold deg til det som faktisk er offentlig eller frivillig delt, og unngå å konstruere skjulte motiver.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Utforsk flere mulige forklaringer så lenge du tydelig sier at de bare er hypoteser.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "social_curiosity_vs_gossip"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_kjedelige_mellomleddet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Tålmodighetsvennen",
+      "subject": "Det spennende spørsmålet krever en kjedelig kontroll",
+      "situation": [
+        "Du har funnet en mulig sammenheng.",
+        "Neste steg er repetitivt og lite spennende.",
+        "God utforskning består ofte av stille kontrollarbeid som ikke gir nyhet hver gang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør kontrollen ferdig før du går videre til neste interessante hypotese.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Hopp videre og kom tilbake hvis den nye hypotesen faktisk ser lovende ut.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "curiosity_vs_verification_work"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "notatene_som_ble_ekspertise",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kildevennen",
+      "subject": "Du har lest mye — men hva kan du faktisk hevde?",
+      "situation": [
+        "Du har samlet notater om et felt over tid.",
+        "Andre begynner å spørre deg om råd.",
+        "Stor personlig interesse kan gi kunnskap uten å gi formell ekspertise eller mandat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del det du kan dokumentere, marker usikkerheten og vis videre til fagfolk når spørsmålet krever kvalifikasjon.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Svar så godt du kan; erfaringen din er relevant selv om du ikke har formell tittel.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "informed_interest_vs_expert_claim"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nysgjerrig_ikke_forsker",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Utforskning er ikke automatisk forskning eller fagmyndighet",
+      "situation": [
+        "Du har utviklet en systematisk utforskingspraksis.",
+        "Du dokumenterer kilder og stiller gode spørsmål.",
+        "Nysgjerrig som Badge-posisjon er en exploration_interest life position, ikke forskerstilling, grad, profesjonell kvalifikasjon eller institusjonelt mandat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold den systematiske praksisen, men skill tydelig mellom personlig utforskning og påstander som krever forskningsmetode, fagkvalifikasjon eller institusjonell myndighet.",
+          "effect": 1,
+          "tags": [
+            "curiosity_practice",
+            "evidence_awareness",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utforskningen åpen samtidig som spørsmål, evidens og grenser blir tydeligere."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den systematiske arbeidsmåten som grunnlag for å presentere deg som uavhengig ekspert.",
+          "effect": -1,
+          "tags": [
+            "curiosity_shortcut",
+            "novelty_bias",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar interesse eller fremdrift veie tyngre enn evidens, relevans eller rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "exploration_interest_vs_formal_expertise"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
