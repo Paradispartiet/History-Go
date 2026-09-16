@@ -1,0 +1,27 @@
+name: TEMP Bankplassen repair aebe v2
+
+on:
+  push:
+    branches:
+      - repair/bankplassen-4-aebe-20260916
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run validated materializer body
+        shell: bash
+        run: |
+          set -euo pipefail
+          src=.github/workflows/tmp-bankplassen-repair-aebe.yml
+          awk 'f{sub(/^          /,""); print} /^          set -euo pipefail$/{f=1; sub(/^          /,""); print}' "$src" > /tmp/materialize.sh
+          sed -i 's#test "$(git rev-parse HEAD\^)" = "$BASE"#git merge-base --is-ancestor "$BASE" HEAD#' /tmp/materialize.sh
+          sed -i '/rm -f \.github\/workflows\/tmp-bankplassen-repair-aebe.yml/a\          rm -f .github/workflows/tmp-bankplassen-repair-aebe-v2.yml' /tmp/materialize.sh
+          bash -n /tmp/materialize.sh
+          bash /tmp/materialize.sh
