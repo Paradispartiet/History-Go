@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "psykologi_monsterjeger",
+  "type": "leisure",
+  "title": "Mønsterjeger — observasjon, kontekst og usikkerhet",
+  "sociological_theme": "Hvordan mennesker oppdager gjentakelser i hverdagen, og hvordan notater, moteksempler, kontekst, alternative forklaringer og språk kan hindre at observasjoner blir gjort om til sikre forklaringer, merkelapper eller diagnoser.",
+  "applies_when": {
+    "any_tags": [
+      "psykologi:monsterjeger"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "tre_ganger_blir_en_regel",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Notatvennen",
+      "subject": "Det har skjedd tre ganger nå",
+      "situation": [
+        "Tre lignende hendelser på kort tid gjør at spilleren begynner å omtale dem som et fast mønster.",
+        "Gjentakelse er verdt å legge merke til, men få tilfeller sier lite om hvor stabilt mønsteret er.",
+        "Et nyttig første steg er å skille det du faktisk har sett fra det du forventer å se neste gang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv de tre hendelsene konkret og behold konklusjonen åpen til du har sett flere situasjoner.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Kall det et fast mønster nå; tre ganger er nok til å vite hvordan dette fungerer.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_repetition_vs_rule"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "loggen_som_bare_tar_med_det_som_passer",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Skeptisk venn",
+      "subject": "Hva med dagene det ikke skjedde?",
+      "situation": [
+        "Notatene inneholder mange eksempler som passer hypotesen, men nesten ingen registrering av situasjoner der den samme tingen ikke skjedde.",
+        "Når bare treffene blir husket, kan et mønster se sterkere ut enn det er.",
+        "Fravær og moteksempler er også informasjon når en vane eller situasjon skal forstås."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Begynn også å notere relevante situasjoner der det forventede mønsteret uteblir.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å samle bare de tydeligste treffene; de andre dagene sier ingenting.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_hits_vs_misses"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uka_som_ikke_ligner_de_andre",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kontekstminneren",
+      "subject": "Denne uka var jo helt spesiell",
+      "situation": [
+        "En uke med reise, frister og uvanlig døgnrytme gir et tydelig avvik fra det spilleren vanligvis ser.",
+        "Et avvik kan være interessant uten å være representativt for hverdagen.",
+        "Kontekst gjør det mulig å skille et stabilt mønster fra en reaksjon på en uvanlig situasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Merk uka som uvanlig og sammenlign først når hverdagsbetingelsene ligner mer.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk uka som bevis på at hele den tidligere forståelsen var feil.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_ordinary_vs_exception"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samme_handling_ulike_situasjoner",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Det ser likt ut, men skjer av ulike grunner",
+      "situation": [
+        "Den samme synlige handlingen dukker opp i to situasjoner som ellers er svært forskjellige.",
+        "Atferd som ser lik ut utenfra kan inngå i ulike sammenhenger og ha ulike praktiske funksjoner.",
+        "Et mønster i handling er ikke automatisk et mønster i motiv eller personlighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold observasjonen på handlingsnivå og noter forskjellene i situasjonen rundt.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gi begge hendelsene samme forklaring fordi handlingen ser identisk ut.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_behavior_vs_motive"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "personen_som_blir_en_etikett",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Personen det gjelder",
+      "subject": "Det der er én ting jeg gjør, ikke hvem jeg er",
+      "situation": [
+        "En gjentatt vane blir omtalt som om den beskriver hele personen.",
+        "Mønsterord er praktiske, men kan gli fra beskrivelse av en situasjon til en identitetsmerkelapp.",
+        "Jo bredere merkelappen blir, desto mer kan nye hendelser tolkes gjennom den på forhånd."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv den konkrete vanen og situasjonene den opptrer i, uten å gjøre den til en total karakteristikk.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den korte merkelappen videre; den gjør personen lettere å forstå.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_pattern_vs_identity"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forst_kom_dette_sa_det_andre",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Skeptisk venn",
+      "subject": "Rekkefølgen er tydelig, men er årsaken det?",
+      "situation": [
+        "To hendelser kommer ofte i samme rekkefølge, og spilleren begynner å anta at den første skaper den andre.",
+        "Tidsrekkefølge kan være et spor, men flere forhold kan påvirke begge hendelsene.",
+        "Å skille rekkefølge fra årsak gjør hypotesen mer presis uten å avvise observasjonen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter rekkefølgen som et funn og hold flere mulige forklaringer åpne.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Skriv at den første hendelsen forårsaker den andre fordi den kommer først.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_sequence_vs_cause"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "appen_som_teller_alt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Tallentusiasten",
+      "subject": "Nå har vi en graf for hver dag",
+      "situation": [
+        "En app gjør det lett å telle stadig flere små handlinger og sammenligne dager.",
+        "Tall kan gjøre gjentakelser synlige, men de kan også flytte oppmerksomheten mot det som er lettest å måle.",
+        "Målet er å bruke telling som ett spor, ikke som erstatning for situasjonen rundt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg noen få mål som faktisk svarer på spørsmålet og behold korte kontekstnotater.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Tell alt som kan telles; flere kurver gir alltid et sikrere bilde.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_measurement_vs_meaning"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "minnet_som_er_tydeligere_enn_notatene",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Notatvennen",
+      "subject": "Jeg husker det annerledes",
+      "situation": [
+        "Et sterkt minne peker én vei, mens eldre notater viser et mer blandet bilde.",
+        "Levende enkelthendelser kan være lettere å hente fram enn ordinære moteksempler.",
+        "Uenighet mellom minne og notater er en grunn til å undersøke, ikke til å velge den mest overbevisende historien."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold begge kildene synlige og sjekk hva som faktisk ble registrert da hendelsene skjedde.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Stol på det klareste minnet; det føles mer presist enn de gamle notatene.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_memory_vs_record"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "moensteret_som_forsvinner_et_annet_sted",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kontekstminneren",
+      "subject": "Det skjer bare her",
+      "situation": [
+        "En vane som virker stabil i én setting dukker nesten ikke opp når stedet, gruppen eller tidspunktet endres.",
+        "Et mønster kan være tett knyttet til omgivelsene uten at det derfor er uviktig.",
+        "Å finne grensene for når noe skjer er ofte mer informativt enn å gi mønsteret et bredt navn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hvilke betingelser som ser ut til å følge mønsteret og hvilke som ikke gjør det.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Konkluder med at mønsteret var falskt fordi det ikke finnes overalt.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_context_vs_trait"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_moennstre_som_peker_hver_sin_vei",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Tallentusiasten",
+      "subject": "Begge ser ekte ut",
+      "situation": [
+        "To ulike måter å gruppere de samme notatene på gir forskjellige, men tilsynelatende ryddige mønstre.",
+        "Sortering kan fremheve ulike sider av den samme historien.",
+        "Når flere mønstre passer, bør spørsmålet bli mer presist i stedet for at den peneste figuren vinner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign hva hver gruppering forklarer, og noter hvor de gir ulike forventninger.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Velg den grupperingen som ser mest regelmessig ut og forkast den andre.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_competing_patterns"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_forste_forklaringen_faar_motstand",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Hva annet kunne gitt samme spor?",
+      "situation": [
+        "Spilleren har en plausibel forklaring, men en annen person peker på to alternative måter de samme observasjonene kan ha oppstått på.",
+        "En alternativ forklaring svekker ikke nødvendigvis observasjonen; den tester hvor mye konklusjonen egentlig bærer.",
+        "Flere hypoteser gjør det lettere å se hvilken ny observasjon som faktisk ville skille dem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv ned minst én alternativ forklaring og hva du måtte se for å skille dem.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Hold fast ved første forklaring fordi den kom naturlig og passer de fleste eksemplene.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_one_story_vs_alternatives"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "observasjonen_som_ble_delt_som_fasit",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Personen det gjelder",
+      "subject": "Du sa det som om du visste det",
+      "situation": [
+        "En foreløpig observasjon blir gjenfortalt til andre som en sikker forklaring på en persons vane.",
+        "Språket kan gjøre en hypotese sterkere i andres ører enn den var i notatene.",
+        "Særlig når observasjonen handler om andre mennesker, bør graden av sikkerhet og avgrensning følge med."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Korriger formuleringen, skill det observerte fra tolkningen og begrens hvem som trenger opplysningen.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "La formuleringen stå; det er enklere enn å åpne saken igjen.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_observation_vs_claim"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "naar_moennsteret_ikke_kommer_tilbake",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Notatvennen",
+      "subject": "Nå har det vært stille lenge",
+      "situation": [
+        "Et tidligere tydelig mønster uteblir gjennom mange sammenlignbare situasjoner.",
+        "Et mønster kan endre seg, ha vært midlertidig eller ha vært svakere enn først antatt.",
+        "Det er like viktig å oppdatere en gammel forståelse som å oppdage en ny."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Nedjuster hvor sikker du er og noter hva som har endret seg siden mønsteret så sterkest ut.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behold den gamle konklusjonen; fraværet betyr bare at mønsteret skjuler seg.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_revision_vs_attachment"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_moensterjeger",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Skeptisk venn",
+      "subject": "Du ser mønstre overalt nå",
+      "situation": [
+        "Etter mye øvelse legger spilleren raskt merke til gjentakelser, avvik og mulige sammenhenger.",
+        "Mønsterblikk kan være nyttig når det holdes på observasjonsnivå, men det gir ingen klinisk, diagnostisk eller profesjonell myndighet.",
+        "Den viktigste ferdigheten er å kunne endre mening når nye situasjoner ikke passer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk mønsterblikket til å stille bedre spørsmål, vise usikkerhet og holde diagnose og skjulte motiver utenfor rollen.",
+          "effect": 1,
+          "tags": [
+            "pattern_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du holder observasjon, tolkning og sikkerhet adskilt uten å gjøre mønsterblikk til fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "La erfaringen med mønstre gi deg rett til å forklare hva som egentlig foregår i andre mennesker.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "labeling",
+            "false_certainty"
+          ],
+          "feedback": "En foreløpig observasjon blir gjort bredere eller sikrere enn grunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "monsterjeger_practice_vs_clinical_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
