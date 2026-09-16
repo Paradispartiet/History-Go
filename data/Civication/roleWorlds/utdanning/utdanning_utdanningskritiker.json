@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "utdanning",
+  "role_scope": "utdanning_utdanningskritiker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "utdanning",
+    "id": "utdanningskritiker",
+    "label": "Utdanningskritiker"
+  },
+  "title": "Utdanningskritiker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å granske institusjoner, reformer, ulikhet, måltall, adgang, ressursvalg og makt i utdanning på en etterprøvbar måte uten at offentlig analyse blir profesjons- eller beslutningsmyndighet",
+    "description": "Utdanningskritiker-verdenen undersøker gjennomsnitt og fordeling, anekdoter og systempåstander, reformintensjon og implementering, endringskapasitet, måltall, sammenlignbarhet, praktisk adgang, strukturelle betingelser, alternativkostnad, medvirkning, korrelasjon og årsak, kildeinteresser, totalforklaringer og formell myndighet. Utdanningskritiker er en public_education_analysis life position. Rollen gir ingen automatisk lærerrolle, forskerstatus, embetsmyndighet, skoleledermandat eller politisk beslutningsmyndighet, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "bureaucratic_power",
+    "numerical_control",
+    "class_power",
+    "public_attention",
+    "status_anxiety",
+    "local_knowledge_vs_system",
+    "professional_culture",
+    "shame_reputation"
+  ],
+  "social_environments": [
+    "offentlige diskusjoner der utdanningstall og enkelterfaringer konkurrerer om oppmerksomhet",
+    "institusjoner der reformer møter eksisterende rutiner, ressurser og profesjonskultur",
+    "sammenligninger mellom skoler eller tilbud med ulike startbetingelser og lokal kontekst",
+    "adgangs- og ressursdiskusjoner der formelle regler og praktiske barrierer ikke er identiske",
+    "medvirkningsprosesser der det må skilles mellom å bli hørt og å ha beslutningsmakt",
+    "møter med forsknings-, forvaltnings-, leder- og politiske roller som faktisk bærer formelt mandat"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "analysevennen",
+      "social_function": "gjør statistikk, fordeling, indikatorer og årsaksspørsmål konkrete uten å late som tall taler alene",
+      "class_position": "kunnskapsinteressert deltaker uten forsker- eller utredningsmandat",
+      "status": "middels uformell metodeautoritet",
+      "power_over_player": "kan gjøre tekniske mål til det eneste legitime språket for kvalitet",
+      "wants": "at kritikken skal kunne etterprøves og ikke falle på enkle metodefeil",
+      "conceals": "at valget av hva som måles også er en normativ prioritering",
+      "speech_style": "presis, tallbevisst og spørsmålende",
+      "teaches_player": "at tall må leses sammen med definisjoner, fordeling og kausal usikkerhet"
+    },
+    {
+      "id": "erfaringsstemmen",
+      "social_function": "bærer konkrete erfaringer fra elever og familier inn i systemanalysen",
+      "class_position": "berørt deltaker uten plikt til å representere alle med lignende erfaring",
+      "status": "høy erfaringsnær troverdighet, ingen automatisk representasjonsmyndighet",
+      "power_over_player": "kan gjøre en sterk historie følelsesmessig vanskelig å avgrense metodisk",
+      "wants": "at erfaringer ikke forsvinner bak gjennomsnitt og institusjonsspråk",
+      "conceals": "at egen historie ikke sier hvor utbredt mekanismen er",
+      "speech_style": "konkret, personlig og konsekvensorientert",
+      "teaches_player": "at anekdoter kan være viktige data uten å være prevalensmål"
+    },
+    {
+      "id": "institusjonsvennen",
+      "social_function": "viser hvordan reformer, ressursvalg og implementering ser ut innenfra en organisasjon",
+      "class_position": "institusjonsnær deltaker uten toppledermandat",
+      "status": "middels systemkunnskap og høy lokalkunnskap",
+      "power_over_player": "kan normalisere institusjonens egne forklaringer og kapasitetsgrenser",
+      "wants": "at analyser tar hensyn til hva gjennomføring faktisk krever",
+      "conceals": "at interne rutiner også kan beskytte gamle prioriteringer",
+      "speech_style": "praktisk, prosessorientert og nyansert",
+      "teaches_player": "at reformtekst og implementert praksis er to forskjellige analysenivåer"
+    },
+    {
+      "id": "laererstemmen",
+      "social_function": "gjør endringstakt, målepress og hverdagskonsekvenser synlige fra profesjonsnært nivå",
+      "class_position": "yrkesutøver med profesjonelt ansvar i egen rolle, men ikke systemeier",
+      "status": "høy situert praksiskunnskap",
+      "power_over_player": "kan gjøre egen arbeidshverdag til hovedmål for hele systemanalysen",
+      "wants": "at endringer skal være faglig forståelige og praktisk gjennomførbare",
+      "conceals": "at profesjonsinteresser og elevhensyn ikke alltid peker samme vei",
+      "speech_style": "erfaringsbasert, konkret og kapasitetsbevisst",
+      "teaches_player": "at implementering har reelle arbeids- og læringskostnader"
+    },
+    {
+      "id": "debattvennen",
+      "social_function": "tester offentlige argumenter, moteksempler og konkurrerende forklaringer",
+      "class_position": "likestilt offentlig debattdeltaker uten beslutningsmandat",
+      "status": "varierende symbolsk status gjennom argumentasjon og synlighet",
+      "power_over_player": "kan belønne bastante totalforklaringer fordi de er enklere å kommunisere",
+      "wants": "at kritikken skal være tydelig nok til å diskuteres og vanskelig nok til å avvise",
+      "conceals": "at offentlig klarhet ofte presser usikkerhet ut av argumentet",
+      "speech_style": "spiss, kontrasterende og motspørrende",
+      "teaches_player": "at god kritikk må tåle alternativer og vite hva som ville svekke den"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "markerer skillet mellom offentlig kritikk og formell forskning, forvaltning, ledelse eller politisk beslutning",
+      "class_position": "kvalifisert eller mandatbærende fagrolle med avgrenset ansvar",
+      "status": "høy situert myndighet i eget fag- eller beslutningsområde",
+      "power_over_player": "kan kreve klarere dokumentasjon og stoppe rolleoverskridelser",
+      "wants": "at offentlig analyse er skarp uten å bli forvekslet med formelt mandat",
+      "conceals": "at også ekspert- og institusjonsroller har interesser, usikkerhet og avgrensninger",
+      "speech_style": "presis, kildebevisst og tydelig om mandat",
+      "teaches_player": "at kritikk kan informere beslutninger uten å eie dem"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "average_vs_distribution",
+      "meaning": "gjennomsnittstall mot fordelingen og hvem som faktisk endrer resultat",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "anecdote_vs_system_claim",
+      "meaning": "sterke enkelterfaringer mot påstander om hvor vanlig et systemmønster er",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "policy_intent_vs_implementation",
+      "meaning": "reformintensjon mot lokal implementering og faktisk virkning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reform_goal_vs_change_capacity",
+      "meaning": "ønsket endring mot institusjonell kapasitet og reformtempo",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "metric_vs_goal_substitution",
+      "meaning": "indikatorer som informasjon mot måltall som endrer selve arbeidet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "comparison_vs_context",
+      "meaning": "institusjonssammenligning mot ulike startbetingelser og lokal kontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "formal_access_vs_practical_access",
+      "meaning": "formell adgang mot kostnader og barrierer for faktisk deltakelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "structural_condition_vs_individual_blame",
+      "meaning": "strukturelle betingelser mot individualiserende forklaringer på gruppemønstre",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "visible_investment_vs_opportunity_cost",
+      "meaning": "synlige satsinger mot alternativkostnader og mindre synlige grunnfunksjoner",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "voice_vs_decision_power",
+      "meaning": "medvirkning og konsultasjon mot faktisk beslutningsmakt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "correlation_vs_causation",
+      "meaning": "statistisk sammenheng mot påstander om årsak og mekanisme",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_interest_vs_evidence_use",
+      "meaning": "avsenderinteresser mot metodisk bruk og kontroll av relevante kilder",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "critical_frame_vs_totalizing_explanation",
+      "meaning": "kritisk rammeverk mot totalforklaringer som ikke tåler moteksempler",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_analysis_vs_formal_authority",
+      "meaning": "offentlig utdanningsanalyse mot lærer-, forsker-, embets-, leder- og politisk beslutningsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Snittet steg — men for hvem?.",
+        "thread_ids": [
+          "average_vs_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#gjennomsnittet_som_skjulte_forskjellen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Snittet steg — men for hvem?.",
+        "thread_ids": [
+          "average_vs_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#gjennomsnittet_som_skjulte_forskjellen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Snittet steg — men for hvem?.",
+        "thread_ids": [
+          "average_vs_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#gjennomsnittet_som_skjulte_forskjellen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Snittet steg — men for hvem?.",
+        "thread_ids": [
+          "average_vs_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#gjennomsnittet_som_skjulte_forskjellen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Dette skjedde med oss — derfor er systemet sånn.",
+        "thread_ids": [
+          "anecdote_vs_system_claim",
+          "average_vs_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#historien_som_ble_systembevis"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Dette skjedde med oss — derfor er systemet sånn.",
+        "thread_ids": [
+          "anecdote_vs_system_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#historien_som_ble_systembevis"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Dette skjedde med oss — derfor er systemet sånn.",
+        "thread_ids": [
+          "anecdote_vs_system_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#historien_som_ble_systembevis"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Dette skjedde med oss — derfor er systemet sånn.",
+        "thread_ids": [
+          "anecdote_vs_system_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#historien_som_ble_systembevis"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Målet var tydelig — gjennomføringen ble noe annet.",
+        "thread_ids": [
+          "policy_intent_vs_implementation",
+          "anecdote_vs_system_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#reformen_med_god_intensjon"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Målet var tydelig — gjennomføringen ble noe annet.",
+        "thread_ids": [
+          "policy_intent_vs_implementation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#reformen_med_god_intensjon"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Målet var tydelig — gjennomføringen ble noe annet.",
+        "thread_ids": [
+          "policy_intent_vs_implementation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#reformen_med_god_intensjon"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Målet var tydelig — gjennomføringen ble noe annet.",
+        "thread_ids": [
+          "policy_intent_vs_implementation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#reformen_med_god_intensjon"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Vi er fortsatt på forrige omlegging.",
+        "thread_ids": [
+          "reform_goal_vs_change_capacity",
+          "policy_intent_vs_implementation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#endringen_som_aldri_fikk_ro"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Vi er fortsatt på forrige omlegging.",
+        "thread_ids": [
+          "reform_goal_vs_change_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#endringen_som_aldri_fikk_ro"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Vi er fortsatt på forrige omlegging.",
+        "thread_ids": [
+          "reform_goal_vs_change_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#endringen_som_aldri_fikk_ro"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Vi er fortsatt på forrige omlegging.",
+        "thread_ids": [
+          "reform_goal_vs_change_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#endringen_som_aldri_fikk_ro"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Når målingen blir viktig nok, endrer arbeidet seg.",
+        "thread_ids": [
+          "metric_vs_goal_substitution",
+          "reform_goal_vs_change_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#tallet_som_ble_malet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Når målingen blir viktig nok, endrer arbeidet seg.",
+        "thread_ids": [
+          "metric_vs_goal_substitution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#tallet_som_ble_malet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Når målingen blir viktig nok, endrer arbeidet seg.",
+        "thread_ids": [
+          "metric_vs_goal_substitution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#tallet_som_ble_malet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Når målingen blir viktig nok, endrer arbeidet seg.",
+        "thread_ids": [
+          "metric_vs_goal_substitution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#tallet_som_ble_malet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Kan vi sammenligne disse direkte?.",
+        "thread_ids": [
+          "comparison_vs_context",
+          "metric_vs_goal_substitution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#to_skoler_som_ikke_startet_likt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Kan vi sammenligne disse direkte?.",
+        "thread_ids": [
+          "comparison_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#to_skoler_som_ikke_startet_likt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Kan vi sammenligne disse direkte?.",
+        "thread_ids": [
+          "comparison_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#to_skoler_som_ikke_startet_likt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Kan vi sammenligne disse direkte?.",
+        "thread_ids": [
+          "comparison_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#to_skoler_som_ikke_startet_likt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Alle kan søke — men ikke alle kan bruke tilbudet.",
+        "thread_ids": [
+          "formal_access_vs_practical_access",
+          "comparison_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#barrieren_som_saa_ut_som_valg"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Alle kan søke — men ikke alle kan bruke tilbudet.",
+        "thread_ids": [
+          "formal_access_vs_practical_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#barrieren_som_saa_ut_som_valg"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Alle kan søke — men ikke alle kan bruke tilbudet.",
+        "thread_ids": [
+          "formal_access_vs_practical_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#barrieren_som_saa_ut_som_valg"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Alle kan søke — men ikke alle kan bruke tilbudet.",
+        "thread_ids": [
+          "formal_access_vs_practical_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#barrieren_som_saa_ut_som_valg"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: De må bare følge bedre opp hjemme.",
+        "thread_ids": [
+          "structural_condition_vs_individual_blame",
+          "formal_access_vs_practical_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#ulikheten_som_ble_personforklaring"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: De må bare følge bedre opp hjemme.",
+        "thread_ids": [
+          "structural_condition_vs_individual_blame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#ulikheten_som_ble_personforklaring"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: De må bare følge bedre opp hjemme.",
+        "thread_ids": [
+          "structural_condition_vs_individual_blame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#ulikheten_som_ble_personforklaring"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: De må bare følge bedre opp hjemme.",
+        "thread_ids": [
+          "structural_condition_vs_individual_blame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#ulikheten_som_ble_personforklaring"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Dette prosjektet ser imponerende ut — men hva fortrengte det?.",
+        "thread_ids": [
+          "visible_investment_vs_opportunity_cost",
+          "structural_condition_vs_individual_blame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#ressursen_som_var_mest_synlig"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Dette prosjektet ser imponerende ut — men hva fortrengte det?.",
+        "thread_ids": [
+          "visible_investment_vs_opportunity_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#ressursen_som_var_mest_synlig"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Dette prosjektet ser imponerende ut — men hva fortrengte det?.",
+        "thread_ids": [
+          "visible_investment_vs_opportunity_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#ressursen_som_var_mest_synlig"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Dette prosjektet ser imponerende ut — men hva fortrengte det?.",
+        "thread_ids": [
+          "visible_investment_vs_opportunity_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#ressursen_som_var_mest_synlig"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Vi ble spurt — men avgjørelsen var allerede tatt.",
+        "thread_ids": [
+          "voice_vs_decision_power",
+          "visible_investment_vs_opportunity_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#medvirkningen_som_ble_sitat"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Vi ble spurt — men avgjørelsen var allerede tatt.",
+        "thread_ids": [
+          "voice_vs_decision_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#medvirkningen_som_ble_sitat"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Vi ble spurt — men avgjørelsen var allerede tatt.",
+        "thread_ids": [
+          "voice_vs_decision_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#medvirkningen_som_ble_sitat"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Vi ble spurt — men avgjørelsen var allerede tatt.",
+        "thread_ids": [
+          "voice_vs_decision_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#medvirkningen_som_ble_sitat"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: De to tingene følger hverandre — men hvorfor?.",
+        "thread_ids": [
+          "correlation_vs_causation",
+          "voice_vs_decision_power"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#sammenhengen_som_ble_arsak"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: De to tingene følger hverandre — men hvorfor?.",
+        "thread_ids": [
+          "correlation_vs_causation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#sammenhengen_som_ble_arsak"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: De to tingene følger hverandre — men hvorfor?.",
+        "thread_ids": [
+          "correlation_vs_causation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#sammenhengen_som_ble_arsak"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: De to tingene følger hverandre — men hvorfor?.",
+        "thread_ids": [
+          "correlation_vs_causation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#sammenhengen_som_ble_arsak"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Tallene er ekte — avsenderen har også noe å vinne.",
+        "thread_ids": [
+          "source_interest_vs_evidence_use",
+          "correlation_vs_causation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#kilden_med_interesse"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Tallene er ekte — avsenderen har også noe å vinne.",
+        "thread_ids": [
+          "source_interest_vs_evidence_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#kilden_med_interesse"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Tallene er ekte — avsenderen har også noe å vinne.",
+        "thread_ids": [
+          "source_interest_vs_evidence_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#kilden_med_interesse"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Tallene er ekte — avsenderen har også noe å vinne.",
+        "thread_ids": [
+          "source_interest_vs_evidence_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#kilden_med_interesse"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Alt henger sammen med dette ene problemet.",
+        "thread_ids": [
+          "critical_frame_vs_totalizing_explanation",
+          "source_interest_vs_evidence_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#kritikken_som_ble_totalforklaring"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Alt henger sammen med dette ene problemet.",
+        "thread_ids": [
+          "critical_frame_vs_totalizing_explanation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#kritikken_som_ble_totalforklaring"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Alt henger sammen med dette ene problemet.",
+        "thread_ids": [
+          "critical_frame_vs_totalizing_explanation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#kritikken_som_ble_totalforklaring"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Alt henger sammen med dette ene problemet.",
+        "thread_ids": [
+          "critical_frame_vs_totalizing_explanation",
+          "public_analysis_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#kritikken_som_ble_totalforklaring"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Kritikk gir ikke mandat til å styre systemet.",
+        "thread_ids": [
+          "public_analysis_vs_formal_authority",
+          "critical_frame_vs_totalizing_explanation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#utdanningskritiker_ikke_beslutningstaker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Kritikk gir ikke mandat til å styre systemet.",
+        "thread_ids": [
+          "public_analysis_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#utdanningskritiker_ikke_beslutningstaker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Kritikk gir ikke mandat til å styre systemet.",
+        "thread_ids": [
+          "public_analysis_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#utdanningskritiker_ikke_beslutningstaker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Kritikk gir ikke mandat til å styre systemet.",
+        "thread_ids": [
+          "public_analysis_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#utdanningskritiker_ikke_beslutningstaker"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "average_vs_distribution",
+      "relationship": "gjennomsnittstall mot fordelingen og hvem som faktisk endrer resultat",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "anecdote_vs_system_claim",
+      "relationship": "sterke enkelterfaringer mot påstander om hvor vanlig et systemmønster er",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "policy_intent_vs_implementation",
+      "relationship": "reformintensjon mot lokal implementering og faktisk virkning",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "reform_goal_vs_change_capacity",
+      "relationship": "ønsket endring mot institusjonell kapasitet og reformtempo",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "metric_vs_goal_substitution",
+      "relationship": "indikatorer som informasjon mot måltall som endrer selve arbeidet",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "comparison_vs_context",
+      "relationship": "institusjonssammenligning mot ulike startbetingelser og lokal kontekst",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "formal_access_vs_practical_access",
+      "relationship": "formell adgang mot kostnader og barrierer for faktisk deltakelse",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "structural_condition_vs_individual_blame",
+      "relationship": "strukturelle betingelser mot individualiserende forklaringer på gruppemønstre",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "visible_investment_vs_opportunity_cost",
+      "relationship": "synlige satsinger mot alternativkostnader og mindre synlige grunnfunksjoner",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "voice_vs_decision_power",
+      "relationship": "medvirkning og konsultasjon mot faktisk beslutningsmakt",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "correlation_vs_causation",
+      "relationship": "statistisk sammenheng mot påstander om årsak og mekanisme",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "source_interest_vs_evidence_use",
+      "relationship": "avsenderinteresser mot metodisk bruk og kontroll av relevante kilder",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "critical_frame_vs_totalizing_explanation",
+      "relationship": "kritisk rammeverk mot totalforklaringer som ikke tåler moteksempler",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "public_analysis_vs_formal_authority",
+      "relationship": "offentlig utdanningsanalyse mot lærer-, forsker-, embets-, leder- og politisk beslutningsmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "tall_med_fordeling",
+      "description": "Gjennomsnitt og anekdoter brukes uten at de alene får definere systemtilstanden.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#gjennomsnittet_som_skjulte_forskjellen",
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#historien_som_ble_systembevis"
+      ]
+    },
+    {
+      "id": "reform_med_gjennomforing",
+      "description": "Intensjon, implementering, endringstakt og indikatorinsentiver skilles analytisk.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#reformen_med_god_intensjon",
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#endringen_som_aldri_fikk_ro",
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#tallet_som_ble_malet"
+      ]
+    },
+    {
+      "id": "adgang_med_kontekst",
+      "description": "Institusjonssammenligning, praktisk adgang og strukturelle betingelser blir synlige uten determinisme.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#to_skoler_som_ikke_startet_likt",
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#barrieren_som_saa_ut_som_valg",
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#ulikheten_som_ble_personforklaring"
+      ]
+    },
+    {
+      "id": "prioritering_og_makt",
+      "description": "Alternativkostnad og medvirkning leses som spørsmål om prioritering og faktisk beslutningsmakt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#ressursen_som_var_mest_synlig",
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#medvirkningen_som_ble_sitat"
+      ]
+    },
+    {
+      "id": "kritikk_med_usikkerhet_og_mandat",
+      "description": "Årsak, kildeinteresse og kritiske rammer holdes etterprøvbare uten å bli formell myndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#sammenhengen_som_ble_arsak",
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#kilden_med_interesse",
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#kritikken_som_ble_totalforklaring",
+        "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#utdanningskritiker_ikke_beslutningstaker"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "snitt_moter_systemhistorie",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "reputation",
+        "analysis"
+      ]
+    },
+    {
+      "id": "reform_moter_kapasitet",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "institution",
+        "fatigue"
+      ]
+    },
+    {
+      "id": "metric_moter_sammenligning",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "status",
+        "analysis"
+      ]
+    },
+    {
+      "id": "adgang_moter_struktur",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "class",
+        "relationship"
+      ]
+    },
+    {
+      "id": "medvirkning_moter_arsak",
+      "setup_ref": "10/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "power",
+        "analysis"
+      ]
+    },
+    {
+      "id": "kritisk_ramme_moter_mandat",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "authority",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#gjennomsnittet_som_skjulte_forskjellen",
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#historien_som_ble_systembevis",
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#reformen_med_god_intensjon",
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#endringen_som_aldri_fikk_ro",
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#tallet_som_ble_malet",
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#to_skoler_som_ikke_startet_likt",
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#barrieren_som_saa_ut_som_valg",
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#ulikheten_som_ble_personforklaring",
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#ressursen_som_var_mest_synlig",
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#medvirkningen_som_ble_sitat",
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#sammenhengen_som_ble_arsak",
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#kilden_med_interesse",
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#kritikken_som_ble_totalforklaring",
+      "data/Civication/narratives/leisure/utdanning_utdanningskritiker.json#utdanningskritiker_ikke_beslutningstaker"
+    ]
+  }
+}

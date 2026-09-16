@@ -171,12 +171,12 @@ vm.runInContext(
 assert.equal(relationshipSandbox.window.CivicationRelationshipEngine.STAGE_BY_LEVEL.length, 6,
   'relasjonssystemet skal fortsatt eie seks vennskapsstadier separat fra livsposisjoner');
 
-assert.equal(roleWorldIndex.roles.length, 164, 'Role World-indeksen skal ha 85 karriereverdener + syttini life-position worlds');
+assert.equal(roleWorldIndex.roles.length, 165, 'Role World-indeksen skal ha 85 karriereverdener + åtti life-position worlds');
 assert.ok(roleWorldIndex.roles.every((role) => role.status === 'role_world_complete'));
 const careerRoleWorlds = roleWorldIndex.roles.filter((role) => role.subject_type !== 'life_position');
 const lifePositionWorlds = roleWorldIndex.roles.filter((role) => role.subject_type === 'life_position');
 assert.equal(careerRoleWorlds.length, 85, 'karriereverdener skal fortsatt være nøyaktig 85');
-assert.equal(lifePositionWorlds.length, 79, 'syttini canonical life-position worlds skal være materialisert, inkludert Læringsutforsker');
+assert.equal(lifePositionWorlds.length, 80, 'åtti canonical life-position worlds skal være materialisert, inkludert Utdanningskritiker');
 const lifeWorldByKey = new Map(lifePositionWorlds.map((row) => [row.life_position_key, row]));
 assert.deepEqual(lifeWorldByKey.get('subkultur/gangster').life_position_ref, { badge_id: 'subkultur', id: null, label: 'Gangster' });
 assert.deepEqual(lifeWorldByKey.get('sport/supporter').life_position_ref, { badge_id: 'sport', id: 'supporter', label: 'Supporter' });
@@ -191,6 +191,8 @@ assert.deepEqual(lifeWorldByKey.get('utdanning/klasseromsobservator').life_posit
 assert.equal(lifeWorldByKey.get('utdanning/klasseromsobservator').role_scope, 'utdanning_klasseromsobservator');
 assert.deepEqual(lifeWorldByKey.get('utdanning/laeringsutforsker').life_position_ref, { badge_id: 'utdanning', id: 'laeringsutforsker', label: 'Læringsutforsker' });
 assert.equal(lifeWorldByKey.get('utdanning/laeringsutforsker').role_scope, 'utdanning_laeringsutforsker');
+assert.deepEqual(lifeWorldByKey.get('utdanning/utdanningskritiker').life_position_ref, { badge_id: 'utdanning', id: 'utdanningskritiker', label: 'Utdanningskritiker' });
+assert.equal(lifeWorldByKey.get('utdanning/utdanningskritiker').role_scope, 'utdanning_utdanningskritiker');
 assert.deepEqual(lifeWorldByKey.get('by/nabolagskjenner').life_position_ref, { badge_id: 'by', id: 'nabolagskjenner', label: 'Nabolagskjenner' });
 assert.equal(lifeWorldByKey.get('by/nabolagskjenner').role_scope, 'by_nabolagskjenner');
 assert.deepEqual(lifeWorldByKey.get('film_tv/filmklubbmenneske').life_position_ref, { badge_id: 'film_tv', id: 'filmklubbmenneske', label: 'Filmklubbmenneske' });
@@ -309,7 +311,7 @@ assert.deepEqual(lifeWorldByKey.get('scenekunst/premieregjenger').life_position_
 assert.equal(lifeWorldByKey.get('scenekunst/premieregjenger').role_scope, 'scenekunst_premieregjenger');
 assert.deepEqual(lifeWorldByKey.get('scenekunst/teatergjenganger').life_position_ref, { badge_id: 'scenekunst', id: 'teatergjenganger', label: 'Teatergjenganger' });
 assert.equal(lifeWorldByKey.get('scenekunst/teatergjenganger').role_scope, 'scenekunst_teatergjenganger');
-assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 164, career_role_worlds: 85, life_position_role_worlds: 79 });
+assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 165, career_role_worlds: 85, life_position_role_worlds: 80 });
 assert.equal(roleModelManifest.files.length, 293,
   'roleModel-manifestet er authored inventory og skal ikke forveksles med spillerrolle-antallet');
 assert.equal(scenarioPeople.summary.role_model_file_count, 293);
@@ -336,8 +338,8 @@ const expectedCounts = {
   life_circumstance_option_values: 18,
   relationship_stages: 6,
   career_role_worlds: 85,
-  life_position_role_worlds: 79,
-  total_role_worlds: 164,
+  life_position_role_worlds: 80,
+  total_role_worlds: 165,
   role_model_manifest_files: 293,
   canonical_scenario_role_models: 287,
   shadowed_role_models: 6,
@@ -356,4 +358,4 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.allowed_subject_classes,
   ['career_role', 'life_position']);
 assert.equal(taxonomy.role_world_rollout_boundary.mass_materialization_allowed, false);
 
-console.log('civication non-career role taxonomy ok: 199 selectable life positions / 85 career Role Worlds + 79 life-position worlds / layers remain separate');
+console.log('civication non-career role taxonomy ok: 199 selectable life positions / 85 career Role Worlds + 80 life-position worlds / layers remain separate');

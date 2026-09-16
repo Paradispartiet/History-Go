@@ -25,15 +25,15 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 79,
-  needs_authored_depth: 80,
+  ready: 80,
+  needs_authored_depth: 79,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 79);
+assert.equal(audit.summary.completed_life_position_role_worlds, 80);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 79);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 79);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 80);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 80);
 assert.equal(audit.first_ready, null);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
@@ -673,6 +673,16 @@ assert.equal(laeringsutforsker.authored_depth.exact_source_ref_count, 1);
 assert.equal(laeringsutforsker.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(laeringsutforsker.evidence.exact_source_refs, ['data/Civication/narratives/leisure/utdanning_laeringsutforsker.json']);
 assert.ok(!(audit.queue || []).some((row) => row.key === 'utdanning/laeringsutforsker'));
+const utdanningskritiker = audit.positions.find((row) => row.key === 'utdanning/utdanningskritiker');
+assert.ok(utdanningskritiker);
+assert.equal(utdanningskritiker.classification, 'ready');
+assert.equal(utdanningskritiker.role_world_status, 'role_world_complete');
+assert.equal(utdanningskritiker.role_world_path, 'data/Civication/roleWorlds/utdanning/utdanning_utdanningskritiker.json');
+assert.equal(utdanningskritiker.priority_score, 405);
+assert.equal(utdanningskritiker.authored_depth.exact_source_ref_count, 1);
+assert.equal(utdanningskritiker.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(utdanningskritiker.evidence.exact_source_refs, ['data/Civication/narratives/leisure/utdanning_utdanningskritiker.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'utdanning/utdanningskritiker'));
 
 assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjenner','film_tv/filmklubbmenneske'].includes(row.key)),
   'completed life-position worlds must leave the readiness queue');
@@ -685,4 +695,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 79 ready / 80 authored-depth / 40 not-standalone; 79 complete / no pending-ready');
+console.log('civication life-position Role World readiness v2 ok: 80 ready / 79 authored-depth / 40 not-standalone; 80 complete / no pending-ready');
