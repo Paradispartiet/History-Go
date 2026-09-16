@@ -9,6 +9,7 @@
     "category",
     "contracts",
     "sources",
+    "read_first",
     "profile",
     "source_review",
     "collections",
@@ -42,6 +43,33 @@
           "items": { "type": "string", "minLength": 1 },
           "uniqueItems": true
         }
+      }
+    },
+    "read_first": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "status", "recorded_at", "rule_files", "contracts", "attestation"],
+      "properties": {
+        "schema": { "const": "history_go_place_read_first_v3" },
+        "status": { "const": "PASS" },
+        "recorded_at": { "type": "string", "minLength": 1 },
+        "rule_files": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "contracts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["place_production", "place_card_collections", "quiz_production"],
+          "properties": {
+            "place_production": { "const": "v3" },
+            "place_card_collections": { "type": "string", "minLength": 1 },
+            "quiz_production": { "type": "string", "minLength": 1 }
+          }
+        },
+        "attestation": { "type": "string", "minLength": 1 }
       }
     },
     "profile": {
