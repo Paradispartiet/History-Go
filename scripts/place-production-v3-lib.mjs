@@ -154,3 +154,45 @@ export function loadWorkflowRecord(placeId, repoRoot = DEFAULT_REPO_ROOT) {
   }
   return record;
 }
+
+export function renderWorkcardProjection(record) {
+  return {
+    schema: 'history_go_place_workcard_projection_v3',
+    generated: true,
+    source: `data/places/workflow/${record.place_id}.json`,
+    place_id: record.place_id,
+    category: record.category,
+    state: deriveWorkflowState(record),
+    profile: record.profile,
+    selected_collections: deriveSelectedCollections(record),
+    collections: record.collections,
+    modules: record.modules,
+    blockers: record.blockers,
+    manual_reviews: record.manual_reviews,
+  };
+}
+
+export function renderQualityGateProjection(record) {
+  return {
+    schema: 'history_go_place_quality_gate_projection_v3',
+    generated: true,
+    source: `data/places/workflow/${record.place_id}.json`,
+    place_id: record.place_id,
+    derived_state: deriveWorkflowState(record),
+    selected_collections: deriveSelectedCollections(record),
+    blockers: record.blockers,
+    manual_reviews: record.manual_reviews,
+  };
+}
+
+export function stableJson(value) {
+  return `${JSON.stringify(value, null, 2)}\n`;
+}
+
+export function projectionPaths(placeId, repoRoot = DEFAULT_REPO_ROOT) {
+  const slug = placeId.replaceAll('_', '-');
+  return {
+    workcard: path.join(repoRoot, 'reports', 'place-production', `${slug}-workcard-current.json`),
+    qualityGate: path.join(repoRoot, 'reports', 'place-production', `${slug}-quality-gate-current.json`),
+  };
+}
