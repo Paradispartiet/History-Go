@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_livssynsutforsker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "religion",
+    "id": "livssynsutforsker",
+    "label": "Livssynsutforsker"
+  },
+  "title": "Livssynsutforsker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å sammenligne hvordan mennesker gir mening til liv, død, fellesskap og ritualer uten å gjøre grupper homogene, ytre praksis til sikker privat tro eller sammenligning til rangering",
+    "description": "Livssynsutforsker-verdenen undersøker begrepsbetydning, lære mot levd praksis, ritual mot antatt overbevisning, gruppelabel mot person, historiske kilder mot nåtid, majoritets- og minoritetsposisjon, analytiske kategorier, innenfra- og utenfraspråk, sammenligning uten rangering, kildetyper, endring over tid, offentlig identitet mot privat overbevisning, samtaleetikk og rollegrenser. Livssynsutforsker er en knowledge_identity og selvvalgt kunnskapsinteresse. Rollen gir ingen automatisk myndighet som trosrepresentant, prest, imam, teolog, humanistisk talsperson, jurist, religionsforsker eller annen fagperson, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "social_mask",
+    "shame_reputation",
+    "bureaucratic_power",
+    "public_private_leakage",
+    "professional_culture",
+    "class_power",
+    "public_attention"
+  ],
+  "social_environments": [
+    "lesesirkler der like ord brukes i ulike tradisjoner og må forstås i sin egen sammenheng",
+    "tros- og livssynssteder der lokale regler, rom og ritualer kan observeres uten at privat tro antas",
+    "samtaler der selvbeskrivelse, gruppetilhørighet og personlig endring ikke alltid peker samme vei",
+    "historiske og institusjonelle kilder som beskriver andre tidspunkter eller andre formål enn levd praksis i dag",
+    "nabolag der majoritetsvaner og minoritetsposisjoner påvirker synlighet og praktiske rammer",
+    "private refleksjoner der sammenligning kan gi ny forståelse uten å bli en rangering av mennesker eller livssyn"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "lesesirkelvennen",
+      "social_function": "sammenligner tekster og begreper på tvers av tradisjoner uten å kreve at like ord betyr det samme",
+      "class_position": "likestilt leser uten teologisk eller religionsvitenskapelig mandat",
+      "status": "troverdig gjennom faktisk lesing og vilje til å slå opp begreper",
+      "power_over_player": "kan gjøre elegante likheter fristende før kildegrunnlaget er kontrollert",
+      "wants": "et språk for sammenligning som ikke visker ut forskjeller",
+      "conceals": "at egne favoritttekster får mer oppmerksomhet enn andre kilder",
+      "speech_style": "nysgjerrig, tekstnær og glad i presise definisjoner",
+      "teaches_player": "at sammenligning begynner med å forstå ordene lokalt"
+    },
+    {
+      "id": "praksisvennen",
+      "social_function": "holder levd hverdagspraksis synlig når spilleren fokuserer for mye på normative tekster og institusjoner",
+      "class_position": "privat deltaker med situasjonskunnskap, ikke representant for en hel gruppe",
+      "status": "høy relevans for egen erfaring og miljøet vedkommende faktisk kjenner",
+      "power_over_player": "kan vise avstanden mellom offisiell framstilling og hverdagsliv",
+      "wants": "at praksis beskrives som variert og konkret",
+      "conceals": "at egen erfaring heller ikke representerer alle andre",
+      "speech_style": "jordnær, personlig og konkret",
+      "teaches_player": "at levd religion og livssyn ikke kan utledes fullstendig fra lære"
+    },
+    {
+      "id": "besoksverten",
+      "social_function": "forklarer lokale regler, rom og ritualer uten å kreve at alle deltakere deler samme mening",
+      "class_position": "lokal vert eller frivillig med stedskunnskap, ikke automatisk tros- eller fagautoritet",
+      "status": "praktisk autoritet i det konkrete besøket",
+      "power_over_player": "kan sette grenser for fotografering, spørsmål og hvordan rommet brukes",
+      "wants": "et respektfullt besøk med tydelige forventninger",
+      "conceals": "at lokale rutiner kan være særpregede og ikke universelle",
+      "speech_style": "vennlig, praktisk og tydelig på etikette",
+      "teaches_player": "at respekt begynner med konkrete lokale normer"
+    },
+    {
+      "id": "kildegranskeren",
+      "social_function": "skiller historiske, institusjonelle, personlige og akademiske kilder og undersøker rekkevidden deres",
+      "class_position": "kildeinteressert deltaker uten profesjonell forskerrolle",
+      "status": "troverdig når avsender, dato og formål blir uklare",
+      "power_over_player": "kan stoppe brede påstander ved å spørre hvem kilden faktisk beskriver",
+      "wants": "sporbare påstander med tydelig tid og avsender",
+      "conceals": "at også gode kilder krever fortolkning",
+      "speech_style": "nøktern, dokumenterende og kildeorientert",
+      "teaches_player": "at kildepluralitet er nødvendig når fenomenet selv er mangfoldig"
+    },
+    {
+      "id": "samtalepartneren",
+      "social_function": "viser hvordan personlig livssyn kan endres og hvordan gruppelabel og selvbeskrivelse ikke alltid overlapper",
+      "class_position": "privat person med myndighet over egen selvbeskrivelse, ikke over hele tradisjonen",
+      "status": "førstehåndskilde til egen erfaring",
+      "power_over_player": "kan korrigere kategorier, avvise spørsmål og endre hvordan egen historie formuleres",
+      "wants": "å bli møtt som person og ikke eksempel",
+      "conceals": "at egen forståelse også kan være i bevegelse",
+      "speech_style": "personlig, nyansert og tydelig på grenser",
+      "teaches_player": "at individets egen beskrivelse må få plass ved siden av analytiske kategorier"
+    },
+    {
+      "id": "nabolagsvennen",
+      "social_function": "holder majoritetsvaner, minoritetsposisjon, offentlig synlighet og praktiske rammer med i sammenligningen",
+      "class_position": "lokal observatør uten mandat til å rangere miljøer",
+      "status": "troverdig gjennom langvarig kjennskap til nærmiljøet",
+      "power_over_player": "kan vise hvordan samme formelle regel møter ulike sosiale utgangspunkt",
+      "wants": "at institusjoner og hverdagsliv ses sammen",
+      "conceals": "at lokal kjennskap kan bli for generell når byen endrer seg",
+      "speech_style": "konkret, stedfestet og lite glad i abstrakte totalbilder",
+      "teaches_player": "at livssyn også har en sosial og romlig kontekst"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "shared_word_vs_local_meaning",
+      "meaning": "felles ord mot tradisjonsspesifikk betydning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "doctrine_vs_lived_practice",
+      "meaning": "normativ tekst mot levd praksis",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "ritual_vs_assumed_belief",
+      "meaning": "ritualdeltakelse mot antatt personlig overbevisning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "group_label_vs_person",
+      "meaning": "gruppetilhørighet mot individuell selvbeskrivelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "history_vs_present",
+      "meaning": "historisk kilde mot nåtidig miljø",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "formal_symmetry_vs_social_position",
+      "meaning": "formell likhet mot ulik sosial posisjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sacred_vs_external_category",
+      "meaning": "utenforstående kategori mot lokal betydning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "insider_vs_outsider_language",
+      "meaning": "selvbeskrivelse mot analytisk språk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "comparison_without_ranking",
+      "meaning": "sammenligning av livstolkning mot rangering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_type_vs_claim",
+      "meaning": "kildetype mot rekkevidde i påstanden",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "identity_vs_change",
+      "meaning": "livssynsidentitet mot endring over tid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_identity_vs_private_conviction",
+      "meaning": "offentlig identitet mot privat overbevisning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "conversation_vs_extraction",
+      "meaning": "samtale som kilde mot uthenting av personlige svar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "knowledge_vs_authority",
+      "meaning": "livssynskunnskap mot representasjons- og fagmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Det samme ordet betyr ikke nødvendigvis det samme.",
+        "thread_ids": [
+          "shared_word_vs_local_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#samme_ord_ulike_betydninger"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Det samme ordet betyr ikke nødvendigvis det samme.",
+        "thread_ids": [
+          "shared_word_vs_local_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#samme_ord_ulike_betydninger"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Det samme ordet betyr ikke nødvendigvis det samme.",
+        "thread_ids": [
+          "shared_word_vs_local_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#samme_ord_ulike_betydninger"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Det samme ordet betyr ikke nødvendigvis det samme.",
+        "thread_ids": [
+          "shared_word_vs_local_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#samme_ord_ulike_betydninger"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Teksten sier én ting; hverdagen ser mer sammensatt ut.",
+        "thread_ids": [
+          "doctrine_vs_lived_practice",
+          "shared_word_vs_local_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#teksten_og_hverdagen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Teksten sier én ting; hverdagen ser mer sammensatt ut.",
+        "thread_ids": [
+          "doctrine_vs_lived_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#teksten_og_hverdagen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Teksten sier én ting; hverdagen ser mer sammensatt ut.",
+        "thread_ids": [
+          "doctrine_vs_lived_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#teksten_og_hverdagen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Teksten sier én ting; hverdagen ser mer sammensatt ut.",
+        "thread_ids": [
+          "doctrine_vs_lived_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#teksten_og_hverdagen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Du så ritualet, men vet du hva det betydde for personen?.",
+        "thread_ids": [
+          "ritual_vs_assumed_belief",
+          "doctrine_vs_lived_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#ritualet_uten_fasit"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Du så ritualet, men vet du hva det betydde for personen?.",
+        "thread_ids": [
+          "ritual_vs_assumed_belief"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#ritualet_uten_fasit"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Du så ritualet, men vet du hva det betydde for personen?.",
+        "thread_ids": [
+          "ritual_vs_assumed_belief"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#ritualet_uten_fasit"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Du så ritualet, men vet du hva det betydde for personen?.",
+        "thread_ids": [
+          "ritual_vs_assumed_belief"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#ritualet_uten_fasit"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: En gruppelabel er ikke en ferdig personbeskrivelse.",
+        "thread_ids": [
+          "group_label_vs_person",
+          "ritual_vs_assumed_belief"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#etiketten_og_personen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: En gruppelabel er ikke en ferdig personbeskrivelse.",
+        "thread_ids": [
+          "group_label_vs_person"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#etiketten_og_personen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: En gruppelabel er ikke en ferdig personbeskrivelse.",
+        "thread_ids": [
+          "group_label_vs_person"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#etiketten_og_personen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: En gruppelabel er ikke en ferdig personbeskrivelse.",
+        "thread_ids": [
+          "group_label_vs_person"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#etiketten_og_personen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Den historiske beskrivelsen lever ikke nødvendigvis uendret.",
+        "thread_ids": [
+          "history_vs_present",
+          "group_label_vs_person"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#gamle_kilder_nye_miljoer"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Den historiske beskrivelsen lever ikke nødvendigvis uendret.",
+        "thread_ids": [
+          "history_vs_present"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#gamle_kilder_nye_miljoer"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Den historiske beskrivelsen lever ikke nødvendigvis uendret.",
+        "thread_ids": [
+          "history_vs_present"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#gamle_kilder_nye_miljoer"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Den historiske beskrivelsen lever ikke nødvendigvis uendret.",
+        "thread_ids": [
+          "history_vs_present"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#gamle_kilder_nye_miljoer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Samme regel kan møte ulike utgangspunkt.",
+        "thread_ids": [
+          "formal_symmetry_vs_social_position",
+          "history_vs_present"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#flertall_og_mindretall"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Samme regel kan møte ulike utgangspunkt.",
+        "thread_ids": [
+          "formal_symmetry_vs_social_position"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#flertall_og_mindretall"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Samme regel kan møte ulike utgangspunkt.",
+        "thread_ids": [
+          "formal_symmetry_vs_social_position"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#flertall_og_mindretall"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Samme regel kan møte ulike utgangspunkt.",
+        "thread_ids": [
+          "formal_symmetry_vs_social_position"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#flertall_og_mindretall"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Er «hellig» riktig ord her?.",
+        "thread_ids": [
+          "sacred_vs_external_category",
+          "formal_symmetry_vs_social_position"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#hellig_eller_bare_viktig"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Er «hellig» riktig ord her?.",
+        "thread_ids": [
+          "sacred_vs_external_category"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#hellig_eller_bare_viktig"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Er «hellig» riktig ord her?.",
+        "thread_ids": [
+          "sacred_vs_external_category"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#hellig_eller_bare_viktig"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Er «hellig» riktig ord her?.",
+        "thread_ids": [
+          "sacred_vs_external_category"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#hellig_eller_bare_viktig"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Begge språkene kan være relevante — men de gjør ulike jobber.",
+        "thread_ids": [
+          "insider_vs_outsider_language",
+          "sacred_vs_external_category"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#innenfra_og_utenfra"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Begge språkene kan være relevante — men de gjør ulike jobber.",
+        "thread_ids": [
+          "insider_vs_outsider_language"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#innenfra_og_utenfra"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Begge språkene kan være relevante — men de gjør ulike jobber.",
+        "thread_ids": [
+          "insider_vs_outsider_language"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#innenfra_og_utenfra"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Begge språkene kan være relevante — men de gjør ulike jobber.",
+        "thread_ids": [
+          "insider_vs_outsider_language"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#innenfra_og_utenfra"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Ulike svar er ikke en poengtavle.",
+        "thread_ids": [
+          "comparison_without_ranking",
+          "insider_vs_outsider_language"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#liv_dod_og_mening"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Ulike svar er ikke en poengtavle.",
+        "thread_ids": [
+          "comparison_without_ranking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#liv_dod_og_mening"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Ulike svar er ikke en poengtavle.",
+        "thread_ids": [
+          "comparison_without_ranking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#liv_dod_og_mening"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Ulike svar er ikke en poengtavle.",
+        "thread_ids": [
+          "comparison_without_ranking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#liv_dod_og_mening"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: En nettside, et intervju og en lærebok svarer på ulike ting.",
+        "thread_ids": [
+          "source_type_vs_claim",
+          "comparison_without_ranking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#hvem_er_kilden"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: En nettside, et intervju og en lærebok svarer på ulike ting.",
+        "thread_ids": [
+          "source_type_vs_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#hvem_er_kilden"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: En nettside, et intervju og en lærebok svarer på ulike ting.",
+        "thread_ids": [
+          "source_type_vs_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#hvem_er_kilden"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: En nettside, et intervju og en lærebok svarer på ulike ting.",
+        "thread_ids": [
+          "source_type_vs_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#hvem_er_kilden"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Selvbeskrivelsen har forandret seg.",
+        "thread_ids": [
+          "identity_vs_change",
+          "source_type_vs_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#personen_som_endret_syn"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Selvbeskrivelsen har forandret seg.",
+        "thread_ids": [
+          "identity_vs_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#personen_som_endret_syn"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Selvbeskrivelsen har forandret seg.",
+        "thread_ids": [
+          "identity_vs_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#personen_som_endret_syn"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Selvbeskrivelsen har forandret seg.",
+        "thread_ids": [
+          "identity_vs_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#personen_som_endret_syn"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Det synlige forteller ikke alt det private.",
+        "thread_ids": [
+          "public_identity_vs_private_conviction",
+          "identity_vs_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#offentlig_symbol_privatt_svar"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Det synlige forteller ikke alt det private.",
+        "thread_ids": [
+          "public_identity_vs_private_conviction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#offentlig_symbol_privatt_svar"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Det synlige forteller ikke alt det private.",
+        "thread_ids": [
+          "public_identity_vs_private_conviction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#offentlig_symbol_privatt_svar"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Det synlige forteller ikke alt det private.",
+        "thread_ids": [
+          "public_identity_vs_private_conviction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#offentlig_symbol_privatt_svar"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Et godt spørsmål gir ikke automatisk rett til svaret.",
+        "thread_ids": [
+          "conversation_vs_extraction",
+          "public_identity_vs_private_conviction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#samtalen_som_kilde"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Et godt spørsmål gir ikke automatisk rett til svaret.",
+        "thread_ids": [
+          "conversation_vs_extraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#samtalen_som_kilde"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Et godt spørsmål gir ikke automatisk rett til svaret.",
+        "thread_ids": [
+          "conversation_vs_extraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#samtalen_som_kilde"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Et godt spørsmål gir ikke automatisk rett til svaret.",
+        "thread_ids": [
+          "conversation_vs_extraction",
+          "knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#samtalen_som_kilde"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Du kan vite mer uten å tale på vegne av andre.",
+        "thread_ids": [
+          "knowledge_vs_authority",
+          "conversation_vs_extraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#utforsker_uten_talerstol"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Du kan vite mer uten å tale på vegne av andre.",
+        "thread_ids": [
+          "knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#utforsker_uten_talerstol"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Du kan vite mer uten å tale på vegne av andre.",
+        "thread_ids": [
+          "knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#utforsker_uten_talerstol"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Du kan vite mer uten å tale på vegne av andre.",
+        "thread_ids": [
+          "knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_livssynsutforsker.json#utforsker_uten_talerstol"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "shared_word_vs_local_meaning",
+      "relationship": "felles ord mot tradisjonsspesifikk betydning",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "doctrine_vs_lived_practice",
+      "relationship": "normativ tekst mot levd praksis",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "ritual_vs_assumed_belief",
+      "relationship": "ritualdeltakelse mot antatt personlig overbevisning",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "group_label_vs_person",
+      "relationship": "gruppetilhørighet mot individuell selvbeskrivelse",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "history_vs_present",
+      "relationship": "historisk kilde mot nåtidig miljø",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "formal_symmetry_vs_social_position",
+      "relationship": "formell likhet mot ulik sosial posisjon",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "sacred_vs_external_category",
+      "relationship": "utenforstående kategori mot lokal betydning",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "insider_vs_outsider_language",
+      "relationship": "selvbeskrivelse mot analytisk språk",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "comparison_without_ranking",
+      "relationship": "sammenligning av livstolkning mot rangering",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "source_type_vs_claim",
+      "relationship": "kildetype mot rekkevidde i påstanden",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "identity_vs_change",
+      "relationship": "livssynsidentitet mot endring over tid",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "public_identity_vs_private_conviction",
+      "relationship": "offentlig identitet mot privat overbevisning",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "conversation_vs_extraction",
+      "relationship": "samtale som kilde mot uthenting av personlige svar",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "knowledge_vs_authority",
+      "relationship": "livssynskunnskap mot representasjons- og fagmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "begreper_far_lokal_betydning",
+      "description": "Like ord og analytiske kategorier blir oftere forklart med sin lokale betydning og avsender.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#samme_ord_ulike_betydninger",
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#hellig_eller_bare_viktig",
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#innenfra_og_utenfra"
+      ]
+    },
+    {
+      "id": "praksis_skilles_fra_antakelse",
+      "description": "Tekst, ritual, gruppetilhørighet og personlig overbevisning holdes som forskjellige kunnskapsnivåer.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#teksten_og_hverdagen",
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#ritualet_uten_fasit",
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#etiketten_og_personen"
+      ]
+    },
+    {
+      "id": "tid_og_posisjon_blir_synlig",
+      "description": "Historisk endring og ulik sosial posisjon følger sammenligningen i stedet for å forsvinne bak formell likhet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#gamle_kilder_nye_miljoer",
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#flertall_og_mindretall",
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#personen_som_endret_syn"
+      ]
+    },
+    {
+      "id": "sammenligning_far_kilder",
+      "description": "Påstander om mening og livstolkning bindes tydeligere til kildetype uten at perspektivene rangeres samlet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#liv_dod_og_mening",
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#hvem_er_kilden"
+      ]
+    },
+    {
+      "id": "nysgjerrighet_far_grenser",
+      "description": "Privat overbevisning, samtaleetikk og representasjonsmyndighet setter tydelige grenser for hva kunnskapsinteressen kan kreve.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#offentlig_symbol_privatt_svar",
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#samtalen_som_kilde",
+        "data/Civication/narratives/leisure/religion_livssynsutforsker.json#utforsker_uten_talerstol"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "ord_moter_praksis",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "knowledge",
+        "identity"
+      ]
+    },
+    {
+      "id": "ritual_moter_person",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "knowledge",
+        "relationship"
+      ]
+    },
+    {
+      "id": "historie_moter_natid",
+      "setup_ref": "5/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "knowledge",
+        "time"
+      ]
+    },
+    {
+      "id": "kategori_moter_stemme",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "knowledge",
+        "authority"
+      ]
+    },
+    {
+      "id": "sammenligning_moter_kilde",
+      "setup_ref": "9/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "knowledge",
+        "reputation"
+      ]
+    },
+    {
+      "id": "samtale_moter_rollegrense",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#samme_ord_ulike_betydninger",
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#teksten_og_hverdagen",
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#ritualet_uten_fasit",
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#etiketten_og_personen",
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#gamle_kilder_nye_miljoer",
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#flertall_og_mindretall",
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#hellig_eller_bare_viktig",
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#innenfra_og_utenfra",
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#liv_dod_og_mening",
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#hvem_er_kilden",
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#personen_som_endret_syn",
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#offentlig_symbol_privatt_svar",
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#samtalen_som_kilde",
+      "data/Civication/narratives/leisure/religion_livssynsutforsker.json#utforsker_uten_talerstol"
+    ]
+  }
+}

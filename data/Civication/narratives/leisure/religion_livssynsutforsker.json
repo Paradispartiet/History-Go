@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "religion_livssynsutforsker",
+  "type": "leisure",
+  "title": "Livssynsutforsker — mening, kilder og variasjon",
+  "sociological_theme": "Hvordan tros- og livssynskunnskap kan sammenligne mening, ritual, fellesskap og livstolkning uten å gjøre lære til identisk praksis, grupper til homogene personer eller kunnskapsinteresse til representasjonsmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "religion:livssynsutforsker"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "samme_ord_ulike_betydninger",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Lesesirkelvennen",
+      "subject": "Det samme ordet betyr ikke nødvendigvis det samme",
+      "situation": [
+        "Et kjent ord om tro, mening eller ritual brukes i to ulike kilder, men sammenhengen rundt ordet er forskjellig.",
+        "Lik ordlyd kan skjule ulike begrepshistorier, praksiser og avgrensninger.",
+        "Livssynsutforskeren trenger først å finne ut hvordan ordet brukes i hver kilde før det sammenlignes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv betydningen i hver sammenheng før du sammenligner likheter og forskjeller.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Bruk samme norske ord som bevis på at de to tradisjonene mener det samme.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_shared_word"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "teksten_og_hverdagen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Praksisvennen",
+      "subject": "Teksten sier én ting; hverdagen ser mer sammensatt ut",
+      "situation": [
+        "En tekst beskriver hvordan noe bør forstås eller gjøres, mens mennesker i hverdagen praktiserer på flere måter.",
+        "Normative kilder kan være viktige uten å beskrive all faktisk praksis.",
+        "Forskjellen mellom lære, institusjon og levd religion eller livssyn er informasjon, ikke nødvendigvis inkonsistens."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold tekstens norm og den observerte praksisen som to ulike kildetyper og undersøk forholdet mellom dem.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Bruk teksten som fasit på hva alle som tilhører tradisjonen faktisk gjør og mener.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_doctrine_vs_practice"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ritualet_uten_fasit",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Besøksverten",
+      "subject": "Du så ritualet, men vet du hva det betydde for personen?",
+      "situation": [
+        "Spilleren observerer mennesker som deltar i et ritual og fristes til å tolke deltakelsen som et entydig uttrykk for personlig tro.",
+        "Ritualer kan romme tro, vane, familie, identitet, sorg, høytid, fellesskap eller flere ting samtidig.",
+        "Ytre deltakelse gir ikke automatisk tilgang til den enkeltes private overbevisning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv ritualet du observerte og la personens egen forklaring avgjøre hva deltakelsen betyr for dem.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Slutt fra deltakelsen til hva personen innerst inne tror.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_ritual_vs_belief"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "etiketten_og_personen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "En gruppelabel er ikke en ferdig personbeskrivelse",
+      "situation": [
+        "En samtale bruker en bred religiøs eller livssynsmessig kategori som forklaring på en bestemt persons syn.",
+        "Kategorier kan være relevante for historie og institusjoner, men rommer intern variasjon og ulike grader av tilhørighet.",
+        "Den enkelte kan bruke, avvise eller nyansere kategorien på måter utsiden ikke ser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk gruppen som kontekst og personens egen selvbeskrivelse som kilde til hvordan kategorien gjelder dem.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "La gruppelabelen bestemme hvilke holdninger personen sannsynligvis har.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_label_vs_person"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gamle_kilder_nye_miljoer",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kildegranskeren",
+      "subject": "Den historiske beskrivelsen lever ikke nødvendigvis uendret",
+      "situation": [
+        "En eldre kilde gir en tydelig beskrivelse av praksis og organisering som fortsatt siteres i dag.",
+        "Tradisjoner, institusjoner, språk og demografi kan endre seg over tid.",
+        "Historisk kontinuitet må undersøkes, ikke bare antas fordi navnet på tradisjonen er det samme."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk den eldre kilden historisk og finn nyere kilder før du beskriver dagens praksis.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Presenter den historiske beskrivelsen som fortsatt gjeldende fordi tradisjonen har samme navn.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_history_vs_present"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "flertall_og_mindretall",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nabolagsvennen",
+      "subject": "Samme regel kan møte ulike utgangspunkt",
+      "situation": [
+        "To livssynsmiljøer møter den samme formelle regelen, men har svært ulik størrelse, synlighet og tilgang til etablerte arenaer.",
+        "Formell likhet er viktig, men beskriver ikke alltid hvordan makt, vane og majoritetsposisjon virker i praksis.",
+        "Sammenligning blir mer presis når både regel og sosial plassering er synlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv den felles regelen og de ulike praktiske utgangspunktene uten å anta at forskjell automatisk betyr urett.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Anta at identisk regel betyr at gruppenes faktiske situasjon derfor er identisk.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_symmetry_vs_position"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hellig_eller_bare_viktig",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Besøksverten",
+      "subject": "Er «hellig» riktig ord her?",
+      "situation": [
+        "Spilleren vil beskrive et sted, en gjenstand eller en praksis med et kjent religionsfaglig ord.",
+        "Begrepet kan være nyttig, men lokale deltakere bruker kanskje et annet språk eller trekker grensen et annet sted.",
+        "Analytiske kategorier bør ikke erstatte aktørenes egne begreper uten forklaring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hvordan stedet eller praksisen beskrives lokalt, og forklar tydelig dersom du bruker en annen analytisk kategori.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den kjente kategorien uten forbehold fordi den gjør sammenligningen enklere.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_external_category"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "innenfra_og_utenfra",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kildegranskeren",
+      "subject": "Begge språkene kan være relevante — men de gjør ulike jobber",
+      "situation": [
+        "En deltaker beskriver sin praksis med ett språk, mens en faglig eller historisk kilde bruker andre kategorier.",
+        "Selvbeskrivelse gir tilgang til mening og identitet; analytisk språk kan gjøre sammenligning mulig på tvers.",
+        "Ingen av språkene bør skjules eller automatisk gis enerett på alle spørsmål."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker hvem som bruker hvilket begrep, og hva hvert språk hjelper deg å beskrive.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Velg ett språk som det eneste sanne og omskriv alle kilder til det.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_insider_outsider"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "liv_dod_og_mening",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Lesesirkelvennen",
+      "subject": "Ulike svar er ikke en poengtavle",
+      "situation": [
+        "Flere kilder gir ulike svar på spørsmål om liv, død, plikt, håp og fellesskap.",
+        "Sammenligning kan vise struktur, likhet og forskjell uten å avgjøre hvilket livssyn som er mest sant, modent eller rasjonelt.",
+        "Livssynsutforskeren trenger kriterier for beskrivelse, ikke en skjult rangering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign hvilke spørsmål, begreper og praksiser kildene vektlegger uten å kåre et samlet bedre livssyn.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Sorter perspektivene etter hvilket som virker mest rasjonelt for deg.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_compare_without_ranking"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_er_kilden",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kildegranskeren",
+      "subject": "En nettside, et intervju og en lærebok svarer på ulike ting",
+      "situation": [
+        "Spilleren har en institusjonell nettside, et personlig intervju og en akademisk framstilling som beskriver samme miljø ulikt.",
+        "Kildene kan alle være relevante, men representerer ulike avsendere, formål og nivåer.",
+        "Påstanden må passe med hva kilden faktisk kan si noe om."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom institusjonens offisielle framstilling, personens erfaring og forskerens analyse når du bruker kildene.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Slå kildene sammen til én samlet beskrivelse uten å markere hvem som sier hva.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_source_type"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "personen_som_endret_syn",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Selvbeskrivelsen har forandret seg",
+      "situation": [
+        "En person beskriver sitt livssyn annerledes nå enn for noen år siden.",
+        "Livssyn kan endres gradvis, gjennom brudd eller ved at gamle ord får ny betydning.",
+        "Tidligere selvbeskrivelse er historisk informasjon, ikke nødvendigvis fasit på dagens identitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La begge tidspunktene stå og beskriv endringen med personens egne nåværende ord.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den eldre selvbeskrivelsen som den egentlige fordi den kom først.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_identity_change"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "offentlig_symbol_privatt_svar",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nabolagsvennen",
+      "subject": "Det synlige forteller ikke alt det private",
+      "situation": [
+        "En person er offentlig knyttet til et miljø, et symbol eller en høytid, men ønsker ikke å forklare sitt private livssyn.",
+        "Offentlig identitet kan være sosialt viktig uten å gi andre rett til detaljer om tro, tvil eller ikke-tro.",
+        "Kunnskapsinteresse må tåle at noen grenser forblir private."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv bare den offentlige tilknytningen du faktisk kjenner, og la privat overbevisning stå åpen.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Fyll inn det private synet ut fra den synlige identiteten.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_public_private"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samtalen_som_kilde",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Praksisvennen",
+      "subject": "Et godt spørsmål gir ikke automatisk rett til svaret",
+      "situation": [
+        "Spilleren ønsker å forstå et livssyn gjennom samtaler med mennesker som lever med det.",
+        "Nysgjerrighet kan åpne kunnskap, men den andre personen bestemmer selv hva som deles, hva som er privat og om samtalen skal brukes videre.",
+        "En samtale er en relasjon og en situert kilde, ikke gratis feltmateriale."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør med tydelig formål, respekter avslag og avklar før personlige utsagn brukes utenfor samtalen.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Still alle relevante spørsmål og noter svarene fordi kunnskapsformålet gjør dem legitime å bruke.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_conversation_ethics"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utforsker_uten_talerstol",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kildegranskeren",
+      "subject": "Du kan vite mer uten å tale på vegne av andre",
+      "situation": [
+        "Etter mye lesing og mange samtaler blir spilleren bedt om å forklare hva et bestemt tros- eller livssynsmiljø egentlig mener.",
+        "Kunnskapsinteresse kan gi bedre oversikt over kilder og begreper, men gjør ikke spilleren til representant, teolog, prest, imam, humanistisk talsperson, jurist eller religionsforsker.",
+        "Livssynsutforsker er en knowledge_identity, ikke et mandat til å definere andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del det du kan kildebelegge, marker intern variasjon og pek på miljøets egne kilder når representasjon er spørsmålet.",
+          "effect": 1,
+          "tags": [
+            "source_literacy",
+            "comparison",
+            "role_clarity"
+          ],
+          "feedback": "Du holder kilder, selvbeskrivelse og sammenligning tydelig adskilt og lar variasjon være en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Svar på vegne av miljøet fordi du har lest mer om det enn de fleste.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "category_error",
+            "false_authority"
+          ],
+          "feedback": "Sammenligningen blir mer kategorisk enn kildene eller personenes egne beskrivelser gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livssyn_knowledge_vs_authority"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
