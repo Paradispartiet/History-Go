@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "filosofi_filosofisk_veileder",
+  "type": "leisure",
+  "title": "Filosofisk veileder — avklarende samtale uten terapi- eller rådgivningsmyndighet",
+  "sociological_theme": "Hvordan mennesker kan bruke filosofiske spørsmål, begrepsavklaring, verdikonflikter og refleksjon i samtale uten å overta den andres beslutning eller gjøre praksisen til terapi, behandling, juridisk rådgivning eller annen profesjonsmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "filosofi:filosofisk_veileder"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "sporsmalet_bak_sporsmalet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Hva er det du egentlig prøver å få klarhet i?",
+      "situation": [
+        "En person ber om råd om et konkret valg.",
+        "Bak spørsmålet ligger flere forskjellige hensyn som ikke er skilt fra hverandre.",
+        "Filosofisk veiledning kan begynne med å avklare spørsmålet før man forsøker å svare."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill fakta, verdier og selve beslutningen før dere undersøker hva personen trenger klarhet i.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "Gi et tydelig råd først og bruk samtalen til å begrunne det etterpå.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "question_clarification_vs_advice_first"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "antakelsen_som_ble_usynlig",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Begrepsvennen",
+      "subject": "Må dette faktisk være sant for at problemet skal se sånn ut?",
+      "situation": [
+        "En konklusjon virker opplagt fordi flere premisser aldri blir sagt høyt.",
+        "Ett av premissene viser seg å være en antakelse, ikke et gitt faktum.",
+        "Å gjøre antakelser synlige kan åpne flere mulige tolkninger uten å avgjøre valget."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler den skjulte antakelsen eksplisitt og undersøk hva som endres dersom den ikke holder.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "Behold antakelsen så lenge den virker rimelig; samtalen trenger et stabilt utgangspunkt.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hidden_assumption_vs_fixed_frame"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verdiene_som_pekte_forskjellig",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Begge tingene betyr mye — men de trekker ulikt",
+      "situation": [
+        "Personen beskriver to verdier som begge oppleves viktige.",
+        "Valget gjør det vanskelig å realisere begge fullt ut.",
+        "Veiledning kan tydeliggjøre konflikten uten å rangere verdiene på vegne av personen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hjelp personen å formulere hva hver verdi beskytter og hvilken kostnad hvert valg har.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "Prioriter den verdien som vanligvis gir det mest konsistente livet.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "value_conflict_vs_external_ranking"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "radet_som_ble_eierskap",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Veiledningsvennen",
+      "subject": "Hvis du sier hva jeg bør gjøre, blir det lettere",
+      "situation": [
+        "Personen ber uttrykkelig om at du tar stilling.",
+        "Et konkret råd kan føles omsorgsfullt og effektivt.",
+        "Filosofisk veiledning mister noe dersom veilederen overtar beslutningen som den andre må leve med."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vær tydelig på at beslutningen er personens, og bruk samtalen til å gjøre begrunnelsene mer synlige.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "Gi anbefalingen du selv mener er best, men understrek at personen står fritt.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "clarification_vs_decision_ownership"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "begrepet_som_endret_samtalen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Begrepsvennen",
+      "subject": "Hva mener du med et godt liv her?",
+      "situation": [
+        "Et stort begrep brukes flere ganger som om betydningen er åpenbar.",
+        "Når dere prøver å definere det, oppdager personen at flere forskjellige idealer ligger under samme ord.",
+        "Begrepsavklaring kan endre samtalen uten å levere et ferdig svar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Utforsk hvilke konkrete kriterier personen legger i begrepet og hvor de kommer fra.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "Bruk en etablert filosofisk definisjon så samtalen får et presist felles språk.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "personal_concept_vs_imported_definition"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stillheten_som_ikke_maatte_fylles",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Veiledningsvennen",
+      "subject": "Det er stille — betyr det at samtalen stopper?",
+      "situation": [
+        "Et vanskelig spørsmål blir fulgt av en lang pause.",
+        "Det er fristende å hjelpe ved å legge fram flere perspektiver.",
+        "Noen pauser er en del av tenkningen og trenger ikke fylles av veilederen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La pausen stå litt og spør først etterpå hva som skjedde i tanken.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "Tilby flere mulige svar så personen ikke blir sittende fast.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "reflection_space_vs_helper_filling"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historien_som_ble_teori",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Dette minner om en filosof jeg har lest",
+      "situation": [
+        "Personens erfaring ligner et kjent filosofisk problem.",
+        "Teorien gir et nyttig språk, men kan også presse erfaringen inn i en ferdig modell.",
+        "Et faglig perspektiv bør støtte undersøkelsen, ikke erstatte personens egen beskrivelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Presenter teorien som ett mulig perspektiv og sjekk hva den faktisk belyser eller overser.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "Bruk teorien som hovedramme; likheten gjør den særlig relevant.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "theory_as_lens_vs_theory_capture"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_som_maatte_fa_staa",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Veiledningsvennen",
+      "subject": "Jeg mener fortsatt noe annet enn deg",
+      "situation": [
+        "Personen lander på en begrunnelse du selv ikke ville valgt.",
+        "Begrunnelsen er sammenhengende og bygger på verdier personen faktisk står for.",
+        "Veiledning krever rom for uenighet når det ikke handler om sikkerhet, lov eller faglig mandat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Test begrunnelsen ærlig, men la personens konklusjon forbli deres egen når premissene er tydelige.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å utfordre til personen ser hvorfor din vurdering er mer holdbar.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogue_vs_convergence_pressure"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fortroligheten_som_trengte_grense",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Praksisvennen",
+      "subject": "Kan jeg fortelle deg noe veldig privat?",
+      "situation": [
+        "Samtalen går fra abstrakte spørsmål til sensitiv personlig informasjon.",
+        "Tilliten kan være viktig, men en uformell filosofisk praksis har ikke automatisk samme taushets- og journalrammer som profesjonelle tjenester.",
+        "Ramme og forventning bør være tydelig før stadig mer privat materiale deles."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hva slags fortrolighet og databehandling praksisen faktisk kan tilby før samtalen går videre.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "La personen fortelle først; etiske detaljer kan avklares hvis det senere blir nødvendig.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trust_vs_confidentiality_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "problemet_som_ble_behandling",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Dette krever noe annet enn filosofisk samtale",
+      "situation": [
+        "Personens problem handler ikke lenger bare om verdier eller begrepsavklaring.",
+        "Det oppstår behov som krever helsefaglig, juridisk eller annen profesjonell vurdering.",
+        "Filosofisk veiledning bør kjenne sin grense og ikke konkurrere med mandat den ikke har."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si tydelig hva denne praksisen ikke kan vurdere, og pek videre til relevant kvalifisert hjelp der det er nødvendig.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett med filosofiske spørsmål så lenge personen opplever samtalen som nyttig.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "philosophical_scope_vs_professional_referral"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "metoden_som_ble_oppskrift",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Praksisvennen",
+      "subject": "Dette spørsmålet fungerte sist — fungerer det alltid?",
+      "situation": [
+        "En bestemt samtaleteknikk har gitt gode samtaler flere ganger.",
+        "Det er fristende å gjøre den til fast sekvens.",
+        "Metodisk struktur kan hjelpe uten å gjøre forskjellige mennesker og problemer til samme prosess."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk teknikken som et verktøy og begrunn hvorfor den passer akkurat denne samtalen.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "Standardiser rekkefølgen; en stabil metode gjør kvaliteten mer pålitelig.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "method_tool_vs_method_recipe"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "betalingen_som_endret_forventningen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Praksisvennen",
+      "subject": "Når noen betaler, forventer de også et resultat",
+      "situation": [
+        "En filosofisk samtale får en tydeligere tjenestelignende ramme.",
+        "Betaling kan skape forventning om effekt, ekspertise eller ansvar som går lenger enn praksisen faktisk kan love.",
+        "Rollen må beskrives presist også når aktiviteten får økonomiske sider."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hva samtalen tilbyr, hva den ikke lover, og hvilke profesjonstitler du ikke gjør krav på.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "La kvaliteten på samtalen definere forventningen; formelle avgrensninger virker unødvendig defensive.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "paid_practice_vs_implied_expertise"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "avslutningen_som_ikke_trengte_fasit",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Hva skal jeg ta med meg herfra?",
+      "situation": [
+        "Samtalen har åpnet flere perspektiver, men ikke produsert ett endelig svar.",
+        "Det kan føles utilfredsstillende å avslutte uten konklusjon.",
+        "Et godt resultat kan også være et klarere spørsmål, tydeligere alternativer eller bedre begrunnelser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppsummer hva som ble klarere, hva som fortsatt er åpent, og hva personen selv vil undersøke videre.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "Formuler en avsluttende konklusjon så samtalen får et tydelig resultat.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "clarity_outcome_vs_answer_pressure"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "filosofisk_veileder_ikke_terapeut",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Samtalepraksis er ikke automatisk terapi eller profesjonell rådgivning",
+      "situation": [
+        "Du har blitt god til å stille spørsmål, avklare begreper og undersøke verdikonflikter.",
+        "Andre begynner å omtale praksisen som terapi, behandling eller faglig rådgivning.",
+        "Filosofisk veileder er en employment-independent philosophical_practice life position og gir ikke automatisk psykolog-, terapeut-, helse-, juridisk eller annen profesjonsautoritet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv praksisen presist som filosofisk samtale og hold profesjonelle vurderinger hos kvalifiserte roller.",
+          "effect": 1,
+          "tags": [
+            "philosophical_dialogue",
+            "self_authorship",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker filosofisk samtale til å klargjøre spørsmål og begrunnelser uten å overta beslutning eller profesjonsmandat."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den bredere rådgivningstittelen fordi samtalene ofte hjelper mennesker i vanskelige valg.",
+          "effect": -1,
+          "tags": [
+            "advice_capture",
+            "role_blur",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar ønsket om å hjelpe gjøre samtalen til råd, behandling eller ekspertmyndighet den ikke har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "philosophical_practice_vs_professional_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
