@@ -10,7 +10,6 @@ permissions:
 
 jobs:
   materialize:
-    if: github.event.head_commit.message == 'ci: trace Bankplassen v3 v5 failure'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -46,14 +45,14 @@ jobs:
           s = s.replace(place, place + context + release, 1)
           s = s.replace(
               'git push origin HEAD:repair/bankplassen-4-v3-20260916\n',
-              'echo "TRACE: remote push suppressed"\n',
+              'echo "TRACE remote push suppressed"\n',
               1,
           )
           p.write_text(s)
           PY
           bash -n /tmp/bankplassen-v3-materialize.sh
           set +e
-          PS4='+${LINENO}: ' bash -x /tmp/bankplassen-v3-materialize.sh > /tmp/bankplassen-v5-trace.log 2>&1
+          bash -x /tmp/bankplassen-v3-materialize.sh > /tmp/bankplassen-v5-trace.log 2>&1
           rc=$?
           set -e
           printf '%s\n' "$rc" > /tmp/bankplassen-v5-trace.rc
