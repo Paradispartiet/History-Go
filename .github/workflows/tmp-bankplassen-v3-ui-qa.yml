@@ -62,122 +62,172 @@ jobs:
               });
               const page = await context.newPage();
               const pageErrors = [];
+              let blockerAudit = null;
               page.on('pageerror', error => pageErrors.push(`pageerror: ${error.message}`));
               page.on('console', message => {
                 if (message.type() === 'error') pageErrors.push(`console: ${message.text()}`);
               });
 
-              await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
-              await page.waitForFunction(() => window.__HG_ROUTER_STARTED__ === true, null, { timeout: 60000 });
-              await page.waitForSelector('#placeCard[aria-hidden="false"]', { state: 'visible', timeout: 60000 });
-              await page.waitForFunction(() => (document.querySelector('#pcTitle')?.textContent || '').includes('Norges Bank'), null, { timeout: 30000 });
-              await page.waitForFunction(() => {
-                const img = document.querySelector('#pcFrontImage');
-                return Boolean(img && img.complete && img.naturalWidth > 0 && img.naturalHeight > 0);
-              }, null, { timeout: 30000 });
+              try {
+                await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+                await page.waitForFunction(() => window.__HG_ROUTER_STARTED__ === true, null, { timeout: 60000 });
+                await page.waitForSelector('#placeCard[aria-hidden="false"]', { state: 'visible', timeout: 60000 });
+                await page.waitForFunction(() => (document.querySelector('#pcTitle')?.textContent || '').includes('Norges Bank'), null, { timeout: 30000 });
+                await page.waitForFunction(() => {
+                  const img = document.querySelector('#pcFrontImage');
+                  return Boolean(img && img.complete && img.naturalWidth > 0 && img.naturalHeight > 0);
+                }, null, { timeout: 30000 });
 
-              const onboardingModal = page.locator('#hgOnboardingModal');
-              const onboardingStart = page.locator('#hgOnboardingModal [data-action="start"]');
-              if (await onboardingModal.isVisible().catch(() => false)) {
-                if (!await onboardingStart.isVisible().catch(() => false)) {
-                  throw new Error(`${name}: onboarding modal visible but start action is not visible`);
-                }
-                await onboardingStart.click();
-                await onboardingModal.waitFor({ state: 'hidden', timeout: 30000 });
-              }
-
-              const placeCardAudit = await page.evaluate(() => {
-                const visible = id => {
-                  const el = document.getElementById(id);
-                  if (!el || el.hidden) return false;
-                  const style = getComputedStyle(el);
-                  return style.display !== 'none' && style.visibility !== 'hidden';
-                };
-                const img = document.querySelector('#pcFrontImage');
-                return {
-                  title: (document.querySelector('#pcTitle')?.textContent || '').trim(),
-                  meta: (document.querySelector('#pcMeta')?.textContent || '').trim(),
-                  description: (document.querySelector('#pcDesc')?.textContent || '').trim(),
-                  front_image: img?.getAttribute('src') || '',
-                  front_image_size: [img?.naturalWidth || 0, img?.naturalHeight || 0],
-                  people_visible: visible('pcPeopleIcon'),
-                  brands_visible: visible('pcBrandsIcon'),
-                  works_visible: visible('pcWorksIcon'),
-                  forna_visible: visible('pcForNaIcon'),
-                  leksikon_visible: visible('pcLeksikonIcon'),
-                };
-              });
-              if (placeCardAudit.title !== 'Norges Bank – Bankplassen 4') {
-                throw new Error(`${name}: unexpected title ${JSON.stringify(placeCardAudit.title)}`);
-              }
-              if (!placeCardAudit.people_visible || !placeCardAudit.brands_visible) {
-                throw new Error(`${name}: expected People and Brands collections to be visible: ${JSON.stringify(placeCardAudit)}`);
-              }
-              await page.screenshot({ path: `${outDir}/${name}-placecard.png`, fullPage: true });
-
-              const blockerAudit = await page.evaluate(() => {
-                const button = document.querySelector('#pcInfo');
-                if (!button) return { error: 'pcInfo missing' };
-                const rect = button.getBoundingClientRect();
-                const x = rect.left + rect.width / 2;
-                const y = rect.top + rect.height / 2;
-                const top = document.elementFromPoint(x, y);
-                const describe = el => {
-                  if (!el) return null;
-                  const chain = [];
-                  let cur = el;
-                  for (let i = 0; cur && i < 6; i += 1, cur = cur.parentElement) {
-                    chain.push({
-                      tag: cur.tagName,
-                      id: cur.id || '',
-                      className: typeof cur.className === 'string' ? cur.className : '',
-                      role: cur.getAttribute?.('role') || '',
-                      ariaModal: cur.getAttribute?.('aria-modal') || '',
-                      text: (cur.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 240),
-                    });
+                const onboardingModal = page.locator('#hgOnboardingModal');
+                const onboardingStart = page.locator('#hgOnboardingModal [data-action="start"]');
+                if (await onboardingModal.isVisible().catch(() => false)) {
+                  if (!await onboardingStart.isVisible().catch(() => false)) {
+                    throw new Error(`${name}: onboarding modal visible but start action is not visible`);
                   }
-                  return chain;
-                };
-                const visibleCandidates = [...document.querySelectorAll('[role="dialog"], [aria-modal="true"], .modal, [class*="modal" i], [class*="overlay" i], [class*="welcome" i], [class*="consent" i]')]
-                  .filter(el => {
+                  await onboardingStart.click();
+                  await onboardingModal.waitFor({ state: 'hidden', timeout: 30000 });
+                }
+
+                const placeCardAudit = await page.evaluate(() => {
+                  const visible = id => {
+                    const el = document.getElementById(id);
+                    if (!el || el.hidden) return false;
                     const style = getComputedStyle(el);
-                    const r = el.getBoundingClientRect();
-                    return style.display !== 'none' && style.visibility !== 'hidden' && Number(style.opacity || 1) !== 0 && r.width > 0 && r.height > 0;
-                  })
-                  .slice(0, 20)
-                  .map(el => {
-                    const r = el.getBoundingClientRect();
-                    return {
-                      tag: el.tagName,
-                      id: el.id || '',
-                      className: typeof el.className === 'string' ? el.className : '',
-                      role: el.getAttribute('role') || '',
-                      ariaModal: el.getAttribute('aria-modal') || '',
-                      rect: [Math.round(r.left), Math.round(r.top), Math.round(r.width), Math.round(r.height)],
-                      text: (el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 500),
-                    };
-                  });
-                return {
-                  buttonRect: [Math.round(rect.left), Math.round(rect.top), Math.round(rect.width), Math.round(rect.height)],
-                  center: [Math.round(x), Math.round(y)],
-                  topAtCenter: describe(top),
-                  buttonChain: describe(button),
-                  visibleCandidates,
+                    return style.display !== 'none' && style.visibility !== 'hidden';
+                  };
+                  const img = document.querySelector('#pcFrontImage');
+                  return {
+                    title: (document.querySelector('#pcTitle')?.textContent || '').trim(),
+                    meta: (document.querySelector('#pcMeta')?.textContent || '').trim(),
+                    description: (document.querySelector('#pcDesc')?.textContent || '').trim(),
+                    front_image: img?.getAttribute('src') || '',
+                    front_image_size: [img?.naturalWidth || 0, img?.naturalHeight || 0],
+                    people_visible: visible('pcPeopleIcon'),
+                    brands_visible: visible('pcBrandsIcon'),
+                    works_visible: visible('pcWorksIcon'),
+                    forna_visible: visible('pcForNaIcon'),
+                    leksikon_visible: visible('pcLeksikonIcon'),
+                  };
+                });
+                if (placeCardAudit.title !== 'Norges Bank – Bankplassen 4') {
+                  throw new Error(`${name}: unexpected title ${JSON.stringify(placeCardAudit.title)}`);
+                }
+                if (!placeCardAudit.people_visible || !placeCardAudit.brands_visible) {
+                  throw new Error(`${name}: expected People and Brands collections to be visible: ${JSON.stringify(placeCardAudit)}`);
+                }
+                await page.screenshot({ path: `${outDir}/${name}-placecard.png`, fullPage: true });
+
+                blockerAudit = await page.evaluate(() => {
+                  const button = document.querySelector('#pcInfo');
+                  if (!button) return { error: 'pcInfo missing' };
+                  const rect = button.getBoundingClientRect();
+                  const x = rect.left + rect.width / 2;
+                  const y = rect.top + rect.height / 2;
+                  const top = document.elementFromPoint(x, y);
+                  const describe = el => {
+                    if (!el) return null;
+                    const chain = [];
+                    let cur = el;
+                    for (let i = 0; cur && i < 6; i += 1, cur = cur.parentElement) {
+                      chain.push({
+                        tag: cur.tagName,
+                        id: cur.id || '',
+                        className: typeof cur.className === 'string' ? cur.className : '',
+                        role: cur.getAttribute?.('role') || '',
+                        ariaModal: cur.getAttribute?.('aria-modal') || '',
+                        text: (cur.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 240),
+                      });
+                    }
+                    return chain;
+                  };
+                  const visibleCandidates = [...document.querySelectorAll('[role="dialog"], [aria-modal="true"], .modal, [class*="modal" i], [class*="overlay" i], [class*="welcome" i], [class*="consent" i]')]
+                    .filter(el => {
+                      const style = getComputedStyle(el);
+                      const r = el.getBoundingClientRect();
+                      return style.display !== 'none' && style.visibility !== 'hidden' && Number(style.opacity || 1) !== 0 && r.width > 0 && r.height > 0;
+                    })
+                    .slice(0, 20)
+                    .map(el => {
+                      const r = el.getBoundingClientRect();
+                      return {
+                        tag: el.tagName,
+                        id: el.id || '',
+                        className: typeof el.className === 'string' ? el.className : '',
+                        role: el.getAttribute('role') || '',
+                        ariaModal: el.getAttribute('aria-modal') || '',
+                        rect: [Math.round(r.left), Math.round(r.top), Math.round(r.width), Math.round(r.height)],
+                        text: (el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 500),
+                      };
+                    });
+                  return {
+                    buttonRect: [Math.round(rect.left), Math.round(rect.top), Math.round(rect.width), Math.round(rect.height)],
+                    center: [Math.round(x), Math.round(y)],
+                    topAtCenter: describe(top),
+                    buttonChain: describe(button),
+                    visibleCandidates,
+                  };
+                });
+                console.log(`BLOCKER_DIAG ${name} ${JSON.stringify(blockerAudit)}`);
+                console.error(`::notice title=BLOCKER_DIAG ${name}::${gha(JSON.stringify(blockerAudit))}`);
+
+                await page.click('#pcInfo');
+                await page.waitForSelector('.hg-place-popup-v2', { state: 'visible', timeout: 30000 });
+                const popupTitle = (await page.locator('.hg-place-popup-v2 .hg-popup-title').first().textContent() || '').trim();
+                if (popupTitle !== 'Norges Bank – Bankplassen 4') {
+                  throw new Error(`${name}: unexpected popup title ${JSON.stringify(popupTitle)}`);
+                }
+                await page.screenshot({ path: `${outDir}/${name}-popup.png`, fullPage: true });
+
+                audits.push({ name, viewport, isMobile, placeCardAudit, popupTitle, pageErrors });
+              } catch (error) {
+                const locatorState = await page.evaluate(() => {
+                  const button = document.querySelector('#pcInfo');
+                  if (!button) return { error: 'pcInfo missing' };
+                  const rect = button.getBoundingClientRect();
+                  const style = getComputedStyle(button);
+                  const centerX = rect.left + rect.width / 2;
+                  const centerY = rect.top + rect.height / 2;
+                  const top = document.elementFromPoint(centerX, centerY);
+                  const describe = el => el ? {
+                    tag: el.tagName,
+                    id: el.id || '',
+                    className: typeof el.className === 'string' ? el.className : '',
+                    text: (el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 500),
+                  } : null;
+                  return {
+                    rect: [Math.round(rect.left), Math.round(rect.top), Math.round(rect.width), Math.round(rect.height)],
+                    display: style.display,
+                    visibility: style.visibility,
+                    opacity: style.opacity,
+                    disabled: Boolean(button.disabled),
+                    ariaHidden: button.getAttribute('aria-hidden'),
+                    ariaDisabled: button.getAttribute('aria-disabled'),
+                    topAtCenter: describe(top),
+                  };
+                }).catch(locatorError => ({ error: `locator audit failed: ${locatorError.message}` }));
+                const failure = {
+                  name,
+                  viewport,
+                  isMobile,
+                  requestedUrl: url,
+                  currentUrl: page.url(),
+                  message: error?.message || String(error),
+                  stack: error?.stack || '',
+                  locatorState,
+                  blockerAudit,
+                  pageErrors,
                 };
-              });
-              console.log(`BLOCKER_DIAG ${name} ${JSON.stringify(blockerAudit)}`);
-              console.error(`::notice title=BLOCKER_DIAG ${name}::${gha(JSON.stringify(blockerAudit))}`);
-
-              await page.click('#pcInfo');
-              await page.waitForSelector('.hg-place-popup-v2', { state: 'visible', timeout: 30000 });
-              const popupTitle = (await page.locator('.hg-place-popup-v2 .hg-popup-title').first().textContent() || '').trim();
-              if (popupTitle !== 'Norges Bank – Bankplassen 4') {
-                throw new Error(`${name}: unexpected popup title ${JSON.stringify(popupTitle)}`);
+                fs.writeFileSync(`${outDir}/${name}-failure.json`, JSON.stringify(failure, null, 2) + '\n');
+                await page.screenshot({ path: `${outDir}/${name}-failure.png`, fullPage: true }).catch(screenshotError => {
+                  fs.writeFileSync(`${outDir}/${name}-screenshot-error.txt`, `${screenshotError.stack || screenshotError.message || screenshotError}\n`);
+                });
+                const html = await page.content().catch(contentError => `<!-- page.content failed: ${contentError.message} -->`);
+                fs.writeFileSync(`${outDir}/${name}-failure.html`, html);
+                console.error(`FAILURE_DIAG ${name} ${JSON.stringify(failure)}`);
+                throw error;
+              } finally {
+                await context.close().catch(() => {});
               }
-              await page.screenshot({ path: `${outDir}/${name}-popup.png`, fullPage: true });
-
-              audits.push({ name, viewport, isMobile, placeCardAudit, popupTitle, pageErrors });
-              await context.close();
             }
 
             await capture('desktop', { width: 1440, height: 1000 }, false);
@@ -191,6 +241,14 @@ jobs:
             process.exit(1);
           });
           NODE
+      - name: Upload QA failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bankplassen-v3-ui-qa-${{ github.run_id }}
+          path: reports/place-production/qa-bankplassen-v3
+          if-no-files-found: error
+          retention-days: 7
       - name: Commit QA evidence for inspection
         shell: bash
         run: |
