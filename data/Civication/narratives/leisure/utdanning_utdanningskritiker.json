@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "utdanning_utdanningskritiker",
+  "type": "leisure",
+  "title": "Utdanningskritiker — institusjoner, ulikhet og reformanalyse uten beslutningsmyndighet",
+  "sociological_theme": "Hvordan mennesker kan granske institusjoner, reformer, ulikhet, måltall, adgang, ressursvalg og makt i utdanning uten å gjøre offentlig analyse til lærer-, forsker-, embets-, leder- eller politisk beslutningsmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "utdanning:utdanningskritiker"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "gjennomsnittet_som_skjulte_forskjellen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Analysevennen",
+      "subject": "Snittet steg — men for hvem?",
+      "situation": [
+        "En rapport viser bedre gjennomsnittsresultater etter en endring.",
+        "Fordelingen under gjennomsnittet er ikke synlig i sammendraget.",
+        "Et samlet tall kan være korrekt og samtidig skjule at utviklingen er ulik mellom grupper eller steder."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om fordelingen bak gjennomsnittet og skill tydelig mellom total utvikling og hvem som faktisk har endret resultat.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Bruk forbedringen i snittet som bevis på at endringen virket likt for alle.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "average_vs_distribution"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historien_som_ble_systembevis",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Foreldrestemmen",
+      "subject": "Dette skjedde med oss — derfor er systemet sånn",
+      "situation": [
+        "En sterk personlig historie gjør et institusjonelt problem konkret.",
+        "Historien kan vise noe viktig uten alene å fortelle hvor vanlig eller representativt mønsteret er.",
+        "Offentlig kritikk trenger både erfaringer som kan høres og en tydelig grense for hva de kan bevise."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta erfaringen alvorlig som eksempel og undersøk hvor bredt mønsteret er før du generaliserer.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Bruk historien som hovedbevis fordi konkrete erfaringer er mer troverdige enn statistikk.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "anecdote_vs_system_claim"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "reformen_med_god_intensjon",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Institusjonsvennen",
+      "subject": "Målet var tydelig — gjennomføringen ble noe annet",
+      "situation": [
+        "En reform er begrunnet med et klart mål, men møter ulike rutiner, ressurser og fortolkninger lokalt.",
+        "Resultatet kan derfor avvike fra både intensjonen og den formelle teksten.",
+        "Å analysere politikk krever å skille mål, virkemiddel, implementering og faktisk effekt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv intensjonen og implementeringen separat, og undersøk hvor i kjeden utfallet endrer seg.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Vurder reformen ut fra målet alene fordi en god eller dårlig intensjon forteller hva ordningen egentlig er.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "policy_intent_vs_implementation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "endringen_som_aldri_fikk_ro",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Laererstemmen",
+      "subject": "Vi er fortsatt på forrige omlegging",
+      "situation": [
+        "Nye prosedyrer kommer før den forrige endringen har satt seg.",
+        "Noe motstand kan handle om interesser eller vane, men hyppige omstillinger har også reelle lærings- og kapasitetskostnader.",
+        "Reformtempo er derfor en del av analysen, ikke bare et spørsmål om hvem som er positiv til endring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk både innholdet i reformen og hva omstillingstakten gjør med kapasitet, rutiner og sammenlignbarhet.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Tolke trettheten som generell endringsmotstand og hold analysen til selve reformteksten.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "reform_goal_vs_change_capacity"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tallet_som_ble_malet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Analysevennen",
+      "subject": "Når målingen blir viktig nok, endrer arbeidet seg",
+      "situation": [
+        "En indikator brukes først for å følge utvikling.",
+        "Etter hvert får institusjonene sterke grunner til å prioritere det som påvirker akkurat indikatoren.",
+        "Måltall kan gi styringsinformasjon samtidig som de endrer atferden de skulle beskrive."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder både hva indikatoren måler og hvilke insentiver den skaper når den får konsekvenser.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Behandle indikatoren som nøytral fordi definisjonen og beregningen er teknisk tydelig.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "metric_vs_goal_substitution"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_skoler_som_ikke_startet_likt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Lokalkjenneren",
+      "subject": "Kan vi sammenligne disse direkte?",
+      "situation": [
+        "To institusjoner har ulike elevgrunnlag, størrelse, lokalmiljø og ressurser.",
+        "Resultatene deres står likevel side om side i samme oversikt.",
+        "Sammenligning kan være nyttig, men krever at forskjeller i startbetingelser ikke forsvinner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk sammenligningen, men gjør premissene og relevante forskjeller eksplisitte før du trekker konklusjoner.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Hold deg til samme indikator for begge; lik målestokk er den mest rettferdige sammenligningen.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "comparison_vs_context"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "barrieren_som_saa_ut_som_valg",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Elevstemmen",
+      "subject": "Alle kan søke — men ikke alle kan bruke tilbudet",
+      "situation": [
+        "Et tilbud er formelt åpent for alle som oppfyller kriteriene.",
+        "Reisevei, kostnader, tid, informasjon eller digitale krav gjør likevel deltakelsen enklere for noen enn andre.",
+        "Formell adgang og praktisk tilgjengelighet er to forskjellige spørsmål."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom retten til å søke og de konkrete kostnadene ved å faktisk delta.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Regn tilbudet som likt tilgjengelig fordi kriteriene og søknadsskjemaet er de samme for alle.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "formal_access_vs_practical_access"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ulikheten_som_ble_personforklaring",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Foreldrestemmen",
+      "subject": "De må bare følge bedre opp hjemme",
+      "situation": [
+        "Et mønster i resultater sammenfaller med forskjeller i økonomi, tid, språk og ressurser utenfor institusjonen.",
+        "Individuelle valg betyr noe, men kan ikke automatisk forklare et stabilt gruppemønster.",
+        "Systemkritikk krever å holde både individuell variasjon og strukturelle betingelser synlige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk hvilke ressurser og betingelser som varierer, uten å gjøre gruppetilhørighet til skjebne for enkeltpersoner.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Forklar mønsteret med oppfølging og holdninger fordi de ligger nærmest den enkelte familie.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "structural_condition_vs_individual_blame"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ressursen_som_var_mest_synlig",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Institusjonsvennen",
+      "subject": "Dette prosjektet ser imponerende ut — men hva fortrengte det?",
+      "situation": [
+        "En satsing er synlig, lett å vise fram og populær i presentasjoner.",
+        "Den bruker samtidig tid og penger som kunne gått til mindre synlige grunnfunksjoner.",
+        "Ressursvalg bør analyseres som prioriteringer med alternativkostnader, ikke bare som isolerte tiltak."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør både hva satsingen gir og hva institusjonen må gjøre mindre av for å finansiere og bemanne den.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Vurder prosjektet på egne resultater; andre budsjettvalg er en separat diskusjon.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "visible_investment_vs_opportunity_cost"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "medvirkningen_som_ble_sitat",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Elevstemmen",
+      "subject": "Vi ble spurt — men avgjørelsen var allerede tatt",
+      "situation": [
+        "Deltakere inviteres til å fortelle om erfaringene sine.",
+        "Uttalelsene kommer med i presentasjonen, men det er uklart hva de faktisk kan påvirke.",
+        "Å bli hørt og å ha innflytelse er ikke nødvendigvis det samme."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv presist hva medvirkningen kan endre, og skill konsultasjon fra reell beslutningsmakt.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Regn prosessen som inkluderende fordi berørte grupper fikk ordet før beslutningen ble offentliggjort.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "voice_vs_decision_power"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sammenhengen_som_ble_arsak",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Analysevennen",
+      "subject": "De to tingene følger hverandre — men hvorfor?",
+      "situation": [
+        "To forhold beveger seg tydelig sammen i materialet.",
+        "Det er fristende å beskrive det ene som årsaken til det andre.",
+        "Sammenheng kan støtte en hypotese uten alene å avgjøre retning, mekanisme eller andre forklaringer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv sammenhengen først, og merk årsaksforklaringen som en hypotese som trenger mer evidens.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Velg den mest plausible årsaksretningen slik at analysen blir tydelig og handlingsrelevant.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "correlation_vs_causation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kilden_med_interesse",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kildevennen",
+      "subject": "Tallene er ekte — avsenderen har også noe å vinne",
+      "situation": [
+        "En aktør publiserer data som er relevante og metodisk nyttige.",
+        "Aktøren har samtidig en tydelig interesse i hvordan problemet blir forstått.",
+        "Interessekonflikt gjør ikke data automatisk ugyldige, men påvirker hvilke spørsmål man bør stille."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk materialet med åpen kildeangivelse og kontroller metode, utvalg og alternative kilder der det er viktig.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Forkast materialet på grunn av avsenderens interesse; nøytrale kilder bør være eneste grunnlag.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "source_interest_vs_evidence_use"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kritikken_som_ble_totalforklaring",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Debattvennen",
+      "subject": "Alt henger sammen med dette ene problemet",
+      "situation": [
+        "Du har funnet en mekanisme som forklarer flere svakheter i systemet.",
+        "Etter hvert begynner nesten alle nye observasjoner å bli lest gjennom samme ramme.",
+        "En god kritisk forklaring kan bli dårligere hvis den ikke lenger kan møte moteksempler eller konkurrerende forklaringer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv ned hva teorien faktisk forklarer, hva som ville tale mot den, og hvilke andre mekanismer som fortsatt er plausible.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den samme rammen konsekvent; en samlet systemforklaring er mer nyttig enn mange delvise forklaringer.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "critical_frame_vs_totalizing_explanation"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utdanningskritiker_ikke_beslutningstaker",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Kritikk gir ikke mandat til å styre systemet",
+      "situation": [
+        "Du har blitt god til å lese institusjoner, måltall, tilgang, ulikhet og reformargumenter kritisk.",
+        "Andre begynner å behandle analysen din som om den gir profesjonell eller politisk beslutningsmyndighet.",
+        "Offentlig utdanningsanalyse kan være skarp og kunnskapsrik uten å gjøre deg til lærer, forsker, embetsperson, skoleleder eller valgt beslutningstaker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill analysen og argumentene dine fra formell myndighet, og vær tydelig på hvilke beslutninger og fagvurderinger andre roller faktisk eier.",
+          "effect": 1,
+          "tags": [
+            "public_analysis",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller data, erfaring, årsak, interesse og myndighet tydelig nok til at kritikken kan etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Ta styring over løsningen fordi du har identifisert systemproblemet og derfor forstår hva som må gjøres.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_cause",
+            "authority_overclaim"
+          ],
+          "feedback": "Kritikken hopper fra ett signal til en større konklusjon eller gir analysen mer myndighet enn den faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "public_analysis_vs_formal_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
