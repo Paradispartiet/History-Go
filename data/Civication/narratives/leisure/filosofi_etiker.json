@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "filosofi_etiker",
+  "type": "leisure",
+  "title": "Etiker — verdikonflikter, ansvar og konsekvenser uten beslutningsmyndighet",
+  "sociological_theme": "Hvordan mennesker kan analysere samtykke, skade, fordelingsprinsipper, rolleplikt, interessekonflikter, usikkerhet og verdikonflikter uten at etisk refleksjon blir profesjonell eller institusjonell beslutningsmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "filosofi:etiker"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "samtykket_som_var_mer_enn_et_ja",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalevennen",
+      "subject": "Sa personen ja — eller var det reelt frivillig?",
+      "situation": [
+        "Et valg blir formelt akseptert.",
+        "Den andre parten har mindre informasjon og opplever et tydelig sosialt press.",
+        "Et samtykke kan være juridisk eller sosialt gyldig på papiret og samtidig etisk svakt hvis frivillighet eller forståelse mangler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk informasjon, frivillighet og reell mulighet til å si nei før du behandler svaret som tilstrekkelig.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "Legg mest vekt på at personen faktisk sa ja; ellers blir samtykkebegrepet umulig å bruke.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "consent_vs_pressure"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nytten_som_fordelte_seg_skjevt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Analysevennen",
+      "subject": "Totalgevinsten er stor — men hvem bærer kostnaden?",
+      "situation": [
+        "Et tiltak gir tydelig samlet nytte.",
+        "En liten gruppe får nesten hele ulempen.",
+        "Total gevinst og fordeling av byrder er to forskjellige etiske spørsmål."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder både samlet effekt og hvordan kostnader og fordeler fordeles mellom dem som berøres.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "Prioriter totalgevinsten; et tiltak kan ikke optimaliseres for alle samtidig.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "aggregate_benefit_vs_burden_distribution"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "regelen_som_traff_unntaket",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalevennen",
+      "subject": "Samme regel for alle — men samme virkning?",
+      "situation": [
+        "En generell regel er laget for å være lik og forutsigbar.",
+        "I et konkret tilfelle skaper den en uvanlig hard konsekvens.",
+        "Lik regelbehandling kan være viktig selv når konsekvensene er ulike."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold behovet for konsistens synlig, men vurder om regelen har en legitim unntaks- eller skjønnsmekanisme.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "Følg regelen uten videre; rettferdighet betyr at samme regel brukes likt i alle tilfeller.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "rule_consistency_vs_exception"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "narmeste_rolle_eller_storste_behov",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Rollevennen",
+      "subject": "Hvem har du faktisk ansvar for?",
+      "situation": [
+        "Du kan hjelpe flere, men har et konkret ansvar overfor én person eller gruppe.",
+        "Andre har større behov totalt sett.",
+        "Etisk vurdering må skille generell omtanke fra spesifikke rolleforpliktelser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør både rolleplikten og de bredere konsekvensene eksplisitte før du velger hvordan ansvaret skal balanseres.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "Se bort fra rolleplikten; det største behovet bør alltid komme først.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "role_duty_vs_general_need"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "interessen_som_ikke_gjorde_argumentet_usant",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Analysevennen",
+      "subject": "Du har noe å vinne på konklusjonen",
+      "situation": [
+        "Du argumenterer for en løsning som også gagner deg selv.",
+        "Det betyr ikke automatisk at begrunnelsen er feil.",
+        "Interessekonflikt handler om åpenhet og risiko for skjev vurdering, ikke om at alle argumenter fra interesserte er ugyldige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Opplys om egeninteressen og bruk samme kriterier som du ville krevd av andre.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "Hold egeninteressen utenfor diskusjonen; bare argumentets logikk bør vurderes.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "conflict_of_interest_vs_argument_validity"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "skaden_som_var_liten_men_irreversibel",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Forsiktighetsvennen",
+      "subject": "Sannsynligheten er lav — men konsekvensen kan ikke gjøres om",
+      "situation": [
+        "Et valg har lav sannsynlighet for alvorlig skade.",
+        "Gevinsten er moderat og reversibel.",
+        "Risikovurdering handler både om sannsynlighet, alvorlighet og reversibilitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vekt irreversibiliteten eksplisitt og se om samme gevinst kan oppnås med mindre varig risiko.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "Velg etter forventet gjennomsnitt; svært lav sannsynlighet bør telle lite selv om utfallet er permanent.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "low_probability_vs_irreversible_harm"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rettferdighet_som_ikke_var_likhet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalevennen",
+      "subject": "Skal alle få det samme — eller det de trenger?",
+      "situation": [
+        "En ressurs kan fordeles likt mellom alle.",
+        "Behovene er samtidig svært forskjellige.",
+        "Likhet og behovsbasert rettferdighet er to ulike fordelingsprinsipper."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hvilket fordelingsprinsipp du bruker og hvorfor det passer akkurat denne ressursen og situasjonen.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "Velg lik fordeling; den er enklest å forsvare fordi ingen får mer enn andre.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "equality_vs_equity_principle"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "intensjonen_som_ikke_fjernet_konsekvensen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Rollevennen",
+      "subject": "Du mente det godt — men noen ble skadet",
+      "situation": [
+        "Handlingen hadde en tydelig god intensjon.",
+        "Konsekvensen ble dårligere enn forventet.",
+        "Etisk ansvar kan omfatte både intensjon, aktsomhet og faktisk effekt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom intensjonen og hva du med rimelighet burde ha forutsett, og vurder ansvar på begge nivåer.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "La intensjonen veie tyngst; moralsk ansvar bør følge hva man forsøkte å gjøre.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "good_intent_vs_foreseeable_effect"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verdien_som_kolliderte_med_en_annen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Begrepsvennen",
+      "subject": "Begge prinsippene er viktige — men ikke samtidig her",
+      "situation": [
+        "To verdier du normalt støtter peker mot ulike handlinger.",
+        "Ingen av dem kan maksimeres fullt ut.",
+        "Etiske konflikter kan kreve prioritering uten at den tapende verdien blir uviktig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hvilke verdier som kolliderer, hva som ofres, og hvorfor prioriteringen er begrenset til denne situasjonen.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "Velg den verdien du vanligvis setter høyest; konsistens krever samme rangering hver gang.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "value_conflict_vs_fixed_hierarchy"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "reversibilitetstesten",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Forsiktighetsvennen",
+      "subject": "Ville du akseptert dette hvis rollene var byttet?",
+      "situation": [
+        "En løsning virker rimelig fra din nåværende posisjon.",
+        "Den andre parten har mindre kontroll over utfallet.",
+        "Å bytte perspektiv kan avsløre skjulte privilegier eller blinde flekker uten å avgjøre saken alene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Test begrunnelsen fra den andre posisjonen og se om kriteriene fortsatt virker forsvarlige.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "Hold deg til faktisk rollefordeling; hypotetiske bytter gjør vurderingen mindre realistisk.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "reversibility_vs_position_bias"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "usikkerheten_som_ble_gjemt_i_beslutningen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Analysevennen",
+      "subject": "Hvor sikker må du være før du handler?",
+      "situation": [
+        "Du må ta et valg før all relevant informasjon finnes.",
+        "Noen konsekvenser er usikre og tidsfristen er reell.",
+        "Etisk vurdering må noen ganger håndtere uvisshet direkte i stedet for å late som den er borte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør usikkerheten eksplisitt og velg en handling som kan justeres hvis ny informasjon kommer.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "Bestem den mest sannsynlige forklaringen og handle som om den er riktig; beslutninger krever tydelighet.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "uncertainty_vs_false_certainty"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konsekvensen_som_kom_senere",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Rollevennen",
+      "subject": "Det fungerte nå — men hva etablerer det over tid?",
+      "situation": [
+        "Et valg løser problemet i øyeblikket.",
+        "Det skaper samtidig en presedens eller vane som andre kan møte senere.",
+        "Kortsiktig effekt og institusjonell eller sosial langsiktighet kan trekke i ulike retninger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder både enkelttilfellet og hvilken praksis beslutningen gjør lettere å gjenta senere.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "Løs saken foran deg; fremtidige tilfeller kan vurderes på nytt når de oppstår.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "immediate_fix_vs_precedent"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "moralsk_uvennskap",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalevennen",
+      "subject": "Uenighet om verdi er ikke nødvendigvis dårlig vilje",
+      "situation": [
+        "En annen person lander på en annen etisk konklusjon enn deg.",
+        "Begge kan forklare hvilke hensyn de prioriterer.",
+        "Moralsk uenighet kan skyldes ulik vekting av legitime verdier, ikke nødvendigvis uvitenhet eller ondskap."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn hvor vektingen skiller lag og diskuter akkurat det uten å tillegge motiv du ikke kan dokumentere.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "Press videre på konsekvensene; hvis personen ser dem klart nok vil den riktige prioriteringen bli åpenbar.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "moral_disagreement_vs_motive_attribution"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "etiker_ikke_beslutningstaker",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Etisk analyse gir ikke automatisk mandat til å bestemme",
+      "situation": [
+        "Du har blitt god til å se verdikonflikter, byrdefordeling og langsiktige konsekvenser.",
+        "Andre begynner å behandle vurderingene dine som endelige svar i saker som også krever fagkunnskap, juss eller formelt ansvar.",
+        "Etisk analyse kan tydeliggjøre hensyn uten å gi deg profesjonell eller institusjonell beslutningsmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør verdihensynene eksplisitte, men la relevante fag- og mandatroller eie beslutninger de faktisk har ansvar for.",
+          "effect": 1,
+          "tags": [
+            "ethical_analysis",
+            "tradeoffs",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør de etiske hensynene og usikkerheten tydeligere uten å late som analysen alene avgjør saken."
+        },
+        {
+          "id": "B",
+          "label": "Ta stilling som endelig dommer når de etiske hensynene er tydeligst formulert hos deg.",
+          "effect": -1,
+          "tags": [
+            "ethical_shortcut",
+            "single_principle",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør ett prinsipp eller én posisjon til hele avgjørelsen og skjuler relevante avveiinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "ethical_analysis_vs_formal_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
