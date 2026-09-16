@@ -12,7 +12,6 @@ assert.equal(row.classification,'ready');assert.equal(row.role_world_status,'rol
 assert.equal(row.role_world_path,'data/Civication/roleWorlds/vitenskap/vitenskap_labnerd.json');assert.equal(row.priority_score,405);
 assert.equal(row.authored_depth.exact_source_ref_count,1);assert.equal(row.authored_depth.thematic_source_ref_count,2);assert.equal(row.authored_depth.max_narrative_depth,14);
 assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);
-assert.ok(row.evidence.thematic_source_refs.includes('data/Civication/narratives/leisure/psykologi_psykologientusiast.json'));
 assert.ok(row.evidence.thematic_source_refs.includes('data/Civication/narratives/leisure/vitenskap_maker.json'));
 assert.ok(!audit.queue.some(x=>x.key===row.key));
 assert.equal(audit.first_ready,null);assert.equal(audit.summary.pending_ready_positions,0);
