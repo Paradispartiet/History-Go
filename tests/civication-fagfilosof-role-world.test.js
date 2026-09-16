@@ -51,6 +51,6 @@ assert.ok(entry);
 assert.equal(entry.role_scope,'filosofi_fagfilosof');
 assert.equal(entry.path,worldPath);
 assert.equal(index.career_role_world_count,85);
-assert.equal(index.life_position_role_world_count,87);
-assert.equal(index.roles.length,172);
+assert.equal(index.life_position_role_world_count,88);
+assert.equal(index.roles.length,173);
 console.log('Fagfilosof Role World gate ok: 14 storylets / 56 beats / 14 threads / 6 people / 5 aftermath / 6 delayed');
