@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "scenekunst_teatergjenganger",
+  "type": "leisure",
+  "title": "Teatergjenganger — repertoar, gjentatt praksis og åpen vurdering",
+  "sociological_theme": "Hvordan gjentatt teaterbesøk bygger repertoarkunnskap, huskunnskap og sammenligningsgrunnlag uten at vane, ansiennitet eller kulturell selvsikkerhet blir gatekeeping eller profesjonell autoritet.",
+  "applies_when": {
+    "any_tags": [
+      "scenekunst:teatergjenganger"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "repertoar_mot_enkeltforestilling",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Teaterkameraten",
+      "subject": "Du har sett tre forestillinger denne måneden",
+      "situation": [
+        "Flere forestillinger på kort tid gjør mønstre i repertoaret tydelige.",
+        "Erfaring fra mange kvelder kan gi bedre sammenligningsgrunnlag, men også friste til å lese alt gjennom det man allerede har sett.",
+        "Den aktuelle forestillingen må fortsatt få være sitt eget verk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk repertoarerfaringen som bakgrunn, men beskriv først hva denne forestillingen faktisk gjør.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Avgjør hva forestillingen er verdt ut fra hvordan den rangerer mot de andre du nylig har sett.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "repertoire_vs_single_show"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_kjente_huset",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Husvankeren",
+      "subject": "Du vet hvor alt er her",
+      "situation": [
+        "Du kjenner foajeen, salen, garderoben og rytmen i huset.",
+        "Familiaritet gjør kvelden enklere, men kan også gli over i en følelse av eierskap.",
+        "Andre gjester har samme rett til å orientere seg langsommere eller stille spørsmål."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk huskunnskapen til å hjelpe uten å opptre som om du eier rommet.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Rett på andre og ta deg til rette fordi du har vært her mange ganger.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "familiarity_vs_entitlement"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sammenligningen_med_forrige_oppsetning",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Repertoarvennen",
+      "subject": "Den forrige oppsetningen var bedre",
+      "situation": [
+        "Du har sett samme tekst i en annen oppsetning.",
+        "Sammenligning kan åpne for presise observasjoner om regi, rytme og sceniske valg.",
+        "Den kan også skygge for hva den nye oppsetningen prøver å gjøre på egne premisser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign konkrete valg uten å gjøre den forrige oppsetningen til fasit.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Avvis den nye oppsetningen fordi den ikke gjentar løsningen du allerede liker.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "comparison_vs_present_work"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vanen_i_setet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Abonnenten",
+      "subject": "Torsdag betyr teater",
+      "situation": [
+        "Teaterbesøket har blitt en fast del av hverdagen.",
+        "Rutine gjør at du faktisk møter opp, men kan også gjøre oppmerksomheten automatisk.",
+        "En gjentatt kulturvane er mest verdifull når den fortsatt rommer nysgjerrighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold vanen, men møt forestillingen som noe du ennå ikke kjenner.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "La rutinen gå på autopilot og bestem deg på forhånd for hvordan kvelden pleier å være.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "habit_vs_attention"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "abonnementet_som_merkevare",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Abonnenten",
+      "subject": "Vi har hatt faste plasser i årevis",
+      "situation": [
+        "Et abonnement gir kontinuitet og senker terskelen for å se bredt.",
+        "Langvarig tilhørighet kan også bli brukt som sosial rangmarkør.",
+        "Antall sesonger er erfaring, ikke formell autoritet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se abonnementet som en praktisk inngang til mer kunst, ikke som rang over andre.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk ansienniteten din til å antyde at nye gjester forstår mindre eller hører mindre til.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "subscription_vs_status"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "foajeen_som_arbeidsplass",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Foajeverten",
+      "subject": "Du kjenner rutinene, men ikke skiftet",
+      "situation": [
+        "Du vet omtrent hvordan huset vanligvis fungerer før og etter forestilling.",
+        "Ansatte håndterer likevel den konkrete kvelden og kan måtte endre rutiner.",
+        "Erfaring som gjest gir ikke driftsmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg vertens beskjed selv når den avviker fra det du er vant til.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Overstyr verten med hvordan huset pleier å gjøre det fordi du går her ofte.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "venue_knowledge_vs_staff_authority"
+      ],
+      "risk_links": [
+        "workplace_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stillheten_og_hostet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nykommeren",
+      "subject": "Når er det egentlig lov å reagere?",
+      "situation": [
+        "En ny gjest er usikker på applaus, hoste, pauser og når man kan forlate salen.",
+        "Teateretikette kan beskytte konsentrasjon og arbeidsro.",
+        "Uskrevne regler kan samtidig bli unødvendig ekskluderende når ingen forklarer dem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar det praktiske vennlig og skill hensyn fra statusmarkører.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjør små feil til bevis på at nykommeren ikke hører hjemme i teateret.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "etiquette_vs_gatekeeping"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tilgjengeligheten_i_praksis",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nykommeren",
+      "subject": "Det som er enkelt for deg er ikke enkelt for alle",
+      "situation": [
+        "Du beveger deg vant gjennom bestilling, ankomst, garderobe og sal.",
+        "En annen gjest møter syns-, hørsels-, bevegelses- eller informasjonsbarrierer.",
+        "Egen rutine sier lite om hvor tilgjengelig huset faktisk er for andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lytt til den konkrete barrieren og hjelp uten å anta at din egen erfaring er universell.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Avfei problemet fordi du selv aldri har hatt vansker med å bruke huset.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "routine_vs_accessibility"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rollebesetningen_er_endret",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Repertoarvennen",
+      "subject": "Det er en annen skuespiller i kveld",
+      "situation": [
+        "En rolle spilles av en annen enn den du forventet.",
+        "Endringer i besetningen kan endre tempo, kjemi og fortolkning.",
+        "De gir et nytt sammenligningsgrunnlag, men ikke automatisk en svakere kveld."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se hva den aktuelle besetningen gjør før du vurderer forskjellen.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bestem at kvelden er annenrangs fordi favorittskuespilleren ikke står på scenen.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "cast_change_vs_expectation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "klassikeren_pa_nytt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Teaterkameraten",
+      "subject": "Sånn pleier ikke denne teksten å gjøres",
+      "situation": [
+        "Du kjenner stykket fra før og oppdager store endringer i form, tid eller tone.",
+        "Kjennskap til tradisjonen gjør bruddene synlige.",
+        "Tradisjonen er samtidig et sammenligningsgrunnlag, ikke en instruks som alle nye oppsetninger må følge."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk hva nytolkningen vinner og mister før du feller dom.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Avvis endringene fordi en klassiker bør se ut slik du kjenner den.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tradition_vs_reinterpretation"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ut_i_pausen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Foajeverten",
+      "subject": "Du vurderer å gå i pausen",
+      "situation": [
+        "Forestillingen treffer deg ikke, og du har lyst til å forlate huset.",
+        "Som gjest står du fritt til å gå, men måten du gjør det på påvirker andre og de ansatte.",
+        "En avsluttet kveld trenger ikke bli en demonstrasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå rolig i pausen og hold eventuell kritikk konkret og adskilt fra personalet som håndterer salen.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Lag en markering av at du går og krev at de ansatte bekrefter vurderingen din.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "exit_vs_respect"
+      ],
+      "risk_links": [
+        "workplace_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ta_med_en_ny",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nykommeren",
+      "subject": "Jeg har nesten aldri vært på teater",
+      "situation": [
+        "Du tar med noen som ikke kjenner huset, sjangeren eller kodene.",
+        "Din erfaring kan senke terskelen og gi kontekst.",
+        "Den kan også bli en forelesning som tar eierskap over den andres opplevelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi bare nødvendig kontekst og la nykommeren formulere sin egen opplevelse først.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Forklar på forhånd hva den andre bør legge merke til og hva som teller som en god reaksjon.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "guidance_vs_gatekeeping"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lojalitet_til_huset",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Husvankeren",
+      "subject": "Dette huset pleier å levere",
+      "situation": [
+        "Du har sterke positive erfaringer med et bestemt teater.",
+        "Lojalitet kan gjøre at du følger repertoaret over tid og oppdager utvikling.",
+        "Den kan også gjøre kritisk distanse vanskelig når en forestilling ikke fungerer for deg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold tilhørigheten, men vurder den aktuelle forestillingen på egne observasjoner.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar huset automatisk fordi kritikk kjennes som kritikk av din egen identitet.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "institution_loyalty_vs_distance"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "teatergjenganger_ikke_kritiker",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kritikkleseren",
+      "subject": "Du har sett mer enn de fleste",
+      "situation": [
+        "Mange besøk gir erfaring med repertoar, sjangre, scenerom og publikumspraksis.",
+        "Erfaringen kan gjøre samtalen mer presis.",
+        "Den gjør deg ikke automatisk til profesjonell kritiker, dramaturg, kurator, produsent eller kunstnerisk leder."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk erfaringen tydelig som publikums- og hobbykunnskap, og marker grensene mot fag- og beslutningsmyndighet.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker erfaring som bakgrunn uten å gjøre vane eller mengde til rang, fasit eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Presenter mengden teaterbesøk som om den i seg selv gir profesjonell autoritet over verk, kunstnere eller institusjoner.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "habit_status"
+          ],
+          "feedback": "Erfaringen blir gjort om til rang, lukkethet eller større myndighet enn teatergjengerrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hobby_vs_professional_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}

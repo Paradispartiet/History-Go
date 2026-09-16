@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_teatergjenganger",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "scenekunst",
+    "id": "teatergjenganger",
+    "label": "Teatergjenganger"
+  },
+  "title": "Teatergjenganger",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bygge teatererfaring gjennom mange forestillinger, hus og repertoarer uten å gjøre vane, ansiennitet, smak eller mengde til gatekeeping, sosial rang eller profesjonell kritiker- og bransjemyndighet",
+    "description": "Teatergjenganger-verdenen undersøker repertoarerfaring, familiaritet med teaterhus, sammenligning mellom oppsetninger, kulturvaner, abonnement, gjest–arbeidsplass-grenser, etikette, tilgjengelighet, rollebesetningsendringer, klassikere og nytolkninger, det å gå i pausen, å ta med nykommere, institusjonslojalitet og rollegrenser. Teatergjenganger er en hobby_identity. Rollen gir ingen automatisk myndighet som kritiker, dramaturg, kurator, produsent, kunstnerisk leder eller annen fagperson, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "social_mask",
+    "status_anxiety",
+    "shame_reputation",
+    "care_vs_efficiency",
+    "local_knowledge_vs_system",
+    "public_private_leakage",
+    "loyalty_up_down"
+  ],
+  "social_environments": [
+    "teatersaler der gjentatt besøk gjør sjanger- og repertoarmønstre synlige",
+    "foajeer der erfarne og nye gjester møtes under ulike uskrevne koder",
+    "abonnements- og repertoarsituasjoner der kontinuitet kan bli identitet og status",
+    "samtaler etter forestilling der tidligere oppsetninger brukes som sammenligningsgrunnlag",
+    "situasjoner med tilgjengelighetsbehov der egen rutine ikke kan tas som universell",
+    "teaterhus som både er kulturarenaer for gjester og arbeidsplasser for ansatte"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "teaterkameraten",
+      "social_function": "deler forestillinger og sammenligninger uten å gjøre smak til fasit",
+      "class_position": "likestilt teatergjenger",
+      "status": "erfaren sosial ledsager uten formell myndighet",
+      "power_over_player": "kan gjøre sammenligning og vane sosialt sterke",
+      "wants": "å dele teateropplevelser over tid",
+      "conceals": "at egen smak har blitt mer fastlåst enn han liker å innrømme",
+      "speech_style": "engasjert, refererende og konkret",
+      "teaches_player": "at erfaring kan skjerpe blikket uten å lukke det"
+    },
+    {
+      "id": "repertoarvennen",
+      "social_function": "holder oversikt over tidligere oppsetninger og gjør forskjeller synlige",
+      "class_position": "aktiv teatergjenger",
+      "status": "høy erfaringskunnskap, ingen fagmyndighet",
+      "power_over_player": "kan gjøre sammenligning til rangering",
+      "wants": "å se utvikling mellom verk og oppsetninger",
+      "conceals": "at nostalgi påvirker vurderingene",
+      "speech_style": "sammenlignende, detaljorientert og minnebasert",
+      "teaches_player": "at sammenligning er et verktøy, ikke en domstol"
+    },
+    {
+      "id": "abonnenten",
+      "social_function": "viser hvordan kontinuitet, rutine og institusjonstilhørighet formes",
+      "class_position": "langvarig betalende gjest",
+      "status": "høy tilhørighet, lav formell myndighet",
+      "power_over_player": "kan gjøre ansiennitet og faste plasser til status",
+      "wants": "å holde teater som fast del av hverdagen",
+      "conceals": "at abonnementet også fungerer som identitetsmarkør",
+      "speech_style": "rolig, rutinert og institusjonsnær",
+      "teaches_player": "at kontinuitet ikke gir rang"
+    },
+    {
+      "id": "nykommeren",
+      "social_function": "synliggjør terskler, uskrevne regler og behovet for åpen inngang",
+      "class_position": "uerfaren gjest",
+      "status": "lav kulturkapital i rommet, full rett til egen opplevelse",
+      "power_over_player": "kan utfordre spillerens vaner og selvbilde som erfaren",
+      "wants": "å forstå nok til å føle seg fri i opplevelsen",
+      "conceals": "usikkerhet på om egne reaksjoner er riktige",
+      "speech_style": "spørrende, direkte og lite kodet",
+      "teaches_player": "at kunnskap kan deles uten gatekeeping"
+    },
+    {
+      "id": "foajeverten",
+      "social_function": "representerer husets praktiske drift og den konkrete kveldens rammer",
+      "class_position": "ansatt vert med situasjonsmyndighet",
+      "status": "høy praktisk myndighet, ingen kunstkritisk myndighet",
+      "power_over_player": "kan sette grenser for adgang, flyt og praktiske rutiner",
+      "wants": "at gjester følger den faktiske kveldens beskjeder",
+      "conceals": "at faste gjester ofte tror de kjenner rutinene bedre enn personalet",
+      "speech_style": "vennlig, tydelig og kort",
+      "teaches_player": "at gjestefamiliaritet ikke erstatter arbeidsplassens ansvar"
+    },
+    {
+      "id": "kritikkleseren",
+      "social_function": "setter publikumspraksis i dialog med profesjonell kritikk uten å blande rollene",
+      "class_position": "aktiv leser og teatergjenger",
+      "status": "analytisk samtalepartner uten redaksjonell rolle",
+      "power_over_player": "kan gjøre erfaringsmengde til påstått ekspertise",
+      "wants": "å finne presise språk for sceniske erfaringer",
+      "conceals": "at profesjonelle formuleringer lett blir lånt som egne",
+      "speech_style": "analytisk, kildebevisst og nyansert",
+      "teaches_player": "at profesjonell kritikk kan leses uten at leseren blir kritiker"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "repertoire_vs_single_show",
+      "meaning": "repertoarerfaring mot vurdering av den enkelte forestillingen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "familiarity_vs_entitlement",
+      "meaning": "huskunnskap og familiaritet mot opplevd eierskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "comparison_vs_present_work",
+      "meaning": "sammenligning med tidligere oppsetninger mot nærvær i den aktuelle",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "habit_vs_attention",
+      "meaning": "kulturvane mot aktiv oppmerksomhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "subscription_vs_status",
+      "meaning": "abonnement og ansiennitet mot sosial rang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "venue_knowledge_vs_staff_authority",
+      "meaning": "gjestekunnskap om huset mot ansattes situasjonsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "etiquette_vs_gatekeeping",
+      "meaning": "hensynsfull etikette mot ekskluderende uskrevne regler",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "routine_vs_accessibility",
+      "meaning": "egen rutine mot andres tilgjengelighetsbehov",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cast_change_vs_expectation",
+      "meaning": "rollebesetningsendring mot fastlåst forventning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "tradition_vs_reinterpretation",
+      "meaning": "kjennskap til tradisjon mot åpenhet for nytolkning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "exit_vs_respect",
+      "meaning": "retten til å gå mot respekt for andre og arbeidsplassen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "guidance_vs_gatekeeping",
+      "meaning": "å hjelpe en nykommer mot å eie den andres opplevelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "institution_loyalty_vs_distance",
+      "meaning": "tilhørighet til et teater mot kritisk distanse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "hobby_vs_professional_authority",
+      "meaning": "lang publikumspraksis mot profesjonell kritiker- og bransjemyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du har sett tre forestillinger denne måneden.",
+        "thread_ids": [
+          "repertoire_vs_single_show"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#repertoar_mot_enkeltforestilling"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du har sett tre forestillinger denne måneden.",
+        "thread_ids": [
+          "repertoire_vs_single_show"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#repertoar_mot_enkeltforestilling"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du har sett tre forestillinger denne måneden.",
+        "thread_ids": [
+          "repertoire_vs_single_show"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#repertoar_mot_enkeltforestilling"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du har sett tre forestillinger denne måneden.",
+        "thread_ids": [
+          "repertoire_vs_single_show"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#repertoar_mot_enkeltforestilling"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Du vet hvor alt er her.",
+        "thread_ids": [
+          "familiarity_vs_entitlement",
+          "repertoire_vs_single_show"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#det_kjente_huset"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Du vet hvor alt er her.",
+        "thread_ids": [
+          "familiarity_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#det_kjente_huset"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Du vet hvor alt er her.",
+        "thread_ids": [
+          "familiarity_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#det_kjente_huset"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Du vet hvor alt er her.",
+        "thread_ids": [
+          "familiarity_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#det_kjente_huset"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Den forrige oppsetningen var bedre.",
+        "thread_ids": [
+          "comparison_vs_present_work",
+          "familiarity_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#sammenligningen_med_forrige_oppsetning"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Den forrige oppsetningen var bedre.",
+        "thread_ids": [
+          "comparison_vs_present_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#sammenligningen_med_forrige_oppsetning"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Den forrige oppsetningen var bedre.",
+        "thread_ids": [
+          "comparison_vs_present_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#sammenligningen_med_forrige_oppsetning"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Den forrige oppsetningen var bedre.",
+        "thread_ids": [
+          "comparison_vs_present_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#sammenligningen_med_forrige_oppsetning"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Torsdag betyr teater.",
+        "thread_ids": [
+          "habit_vs_attention",
+          "comparison_vs_present_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#vanen_i_setet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Torsdag betyr teater.",
+        "thread_ids": [
+          "habit_vs_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#vanen_i_setet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Torsdag betyr teater.",
+        "thread_ids": [
+          "habit_vs_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#vanen_i_setet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Torsdag betyr teater.",
+        "thread_ids": [
+          "habit_vs_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#vanen_i_setet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Vi har hatt faste plasser i årevis.",
+        "thread_ids": [
+          "subscription_vs_status",
+          "habit_vs_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#abonnementet_som_merkevare"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Vi har hatt faste plasser i årevis.",
+        "thread_ids": [
+          "subscription_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#abonnementet_som_merkevare"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Vi har hatt faste plasser i årevis.",
+        "thread_ids": [
+          "subscription_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#abonnementet_som_merkevare"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Vi har hatt faste plasser i årevis.",
+        "thread_ids": [
+          "subscription_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#abonnementet_som_merkevare"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Du kjenner rutinene, men ikke skiftet.",
+        "thread_ids": [
+          "venue_knowledge_vs_staff_authority",
+          "subscription_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#foajeen_som_arbeidsplass"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Du kjenner rutinene, men ikke skiftet.",
+        "thread_ids": [
+          "venue_knowledge_vs_staff_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#foajeen_som_arbeidsplass"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Du kjenner rutinene, men ikke skiftet.",
+        "thread_ids": [
+          "venue_knowledge_vs_staff_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#foajeen_som_arbeidsplass"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Du kjenner rutinene, men ikke skiftet.",
+        "thread_ids": [
+          "venue_knowledge_vs_staff_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#foajeen_som_arbeidsplass"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Når er det egentlig lov å reagere?.",
+        "thread_ids": [
+          "etiquette_vs_gatekeeping",
+          "venue_knowledge_vs_staff_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#stillheten_og_hostet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Når er det egentlig lov å reagere?.",
+        "thread_ids": [
+          "etiquette_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#stillheten_og_hostet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Når er det egentlig lov å reagere?.",
+        "thread_ids": [
+          "etiquette_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#stillheten_og_hostet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Når er det egentlig lov å reagere?.",
+        "thread_ids": [
+          "etiquette_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#stillheten_og_hostet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Det som er enkelt for deg er ikke enkelt for alle.",
+        "thread_ids": [
+          "routine_vs_accessibility",
+          "etiquette_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#tilgjengeligheten_i_praksis"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Det som er enkelt for deg er ikke enkelt for alle.",
+        "thread_ids": [
+          "routine_vs_accessibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#tilgjengeligheten_i_praksis"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Det som er enkelt for deg er ikke enkelt for alle.",
+        "thread_ids": [
+          "routine_vs_accessibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#tilgjengeligheten_i_praksis"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Det som er enkelt for deg er ikke enkelt for alle.",
+        "thread_ids": [
+          "routine_vs_accessibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#tilgjengeligheten_i_praksis"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Det er en annen skuespiller i kveld.",
+        "thread_ids": [
+          "cast_change_vs_expectation",
+          "routine_vs_accessibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#rollebesetningen_er_endret"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Det er en annen skuespiller i kveld.",
+        "thread_ids": [
+          "cast_change_vs_expectation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#rollebesetningen_er_endret"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Det er en annen skuespiller i kveld.",
+        "thread_ids": [
+          "cast_change_vs_expectation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#rollebesetningen_er_endret"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Det er en annen skuespiller i kveld.",
+        "thread_ids": [
+          "cast_change_vs_expectation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#rollebesetningen_er_endret"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Sånn pleier ikke denne teksten å gjøres.",
+        "thread_ids": [
+          "tradition_vs_reinterpretation",
+          "cast_change_vs_expectation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#klassikeren_pa_nytt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Sånn pleier ikke denne teksten å gjøres.",
+        "thread_ids": [
+          "tradition_vs_reinterpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#klassikeren_pa_nytt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Sånn pleier ikke denne teksten å gjøres.",
+        "thread_ids": [
+          "tradition_vs_reinterpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#klassikeren_pa_nytt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Sånn pleier ikke denne teksten å gjøres.",
+        "thread_ids": [
+          "tradition_vs_reinterpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#klassikeren_pa_nytt"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Du vurderer å gå i pausen.",
+        "thread_ids": [
+          "exit_vs_respect",
+          "tradition_vs_reinterpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#ut_i_pausen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Du vurderer å gå i pausen.",
+        "thread_ids": [
+          "exit_vs_respect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#ut_i_pausen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Du vurderer å gå i pausen.",
+        "thread_ids": [
+          "exit_vs_respect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#ut_i_pausen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Du vurderer å gå i pausen.",
+        "thread_ids": [
+          "exit_vs_respect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#ut_i_pausen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Jeg har nesten aldri vært på teater.",
+        "thread_ids": [
+          "guidance_vs_gatekeeping",
+          "exit_vs_respect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#ta_med_en_ny"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Jeg har nesten aldri vært på teater.",
+        "thread_ids": [
+          "guidance_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#ta_med_en_ny"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Jeg har nesten aldri vært på teater.",
+        "thread_ids": [
+          "guidance_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#ta_med_en_ny"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Jeg har nesten aldri vært på teater.",
+        "thread_ids": [
+          "guidance_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#ta_med_en_ny"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Dette huset pleier å levere.",
+        "thread_ids": [
+          "institution_loyalty_vs_distance",
+          "guidance_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#lojalitet_til_huset"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Dette huset pleier å levere.",
+        "thread_ids": [
+          "institution_loyalty_vs_distance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#lojalitet_til_huset"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Dette huset pleier å levere.",
+        "thread_ids": [
+          "institution_loyalty_vs_distance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#lojalitet_til_huset"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Dette huset pleier å levere.",
+        "thread_ids": [
+          "institution_loyalty_vs_distance",
+          "hobby_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#lojalitet_til_huset"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Du har sett mer enn de fleste.",
+        "thread_ids": [
+          "hobby_vs_professional_authority",
+          "institution_loyalty_vs_distance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#teatergjenganger_ikke_kritiker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Du har sett mer enn de fleste.",
+        "thread_ids": [
+          "hobby_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#teatergjenganger_ikke_kritiker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Du har sett mer enn de fleste.",
+        "thread_ids": [
+          "hobby_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#teatergjenganger_ikke_kritiker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Du har sett mer enn de fleste.",
+        "thread_ids": [
+          "hobby_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#teatergjenganger_ikke_kritiker"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "repertoire_vs_single_show",
+      "relationship": "repertoarerfaring mot vurdering av den enkelte forestillingen",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "familiarity_vs_entitlement",
+      "relationship": "huskunnskap og familiaritet mot opplevd eierskap",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "comparison_vs_present_work",
+      "relationship": "sammenligning med tidligere oppsetninger mot nærvær i den aktuelle",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "habit_vs_attention",
+      "relationship": "kulturvane mot aktiv oppmerksomhet",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "subscription_vs_status",
+      "relationship": "abonnement og ansiennitet mot sosial rang",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "venue_knowledge_vs_staff_authority",
+      "relationship": "gjestekunnskap om huset mot ansattes situasjonsmyndighet",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "etiquette_vs_gatekeeping",
+      "relationship": "hensynsfull etikette mot ekskluderende uskrevne regler",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "routine_vs_accessibility",
+      "relationship": "egen rutine mot andres tilgjengelighetsbehov",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "cast_change_vs_expectation",
+      "relationship": "rollebesetningsendring mot fastlåst forventning",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "tradition_vs_reinterpretation",
+      "relationship": "kjennskap til tradisjon mot åpenhet for nytolkning",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "exit_vs_respect",
+      "relationship": "retten til å gå mot respekt for andre og arbeidsplassen",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "guidance_vs_gatekeeping",
+      "relationship": "å hjelpe en nykommer mot å eie den andres opplevelse",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "institution_loyalty_vs_distance",
+      "relationship": "tilhørighet til et teater mot kritisk distanse",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "hobby_vs_professional_authority",
+      "relationship": "lang publikumspraksis mot profesjonell kritiker- og bransjemyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "erfaring_uten_fasit",
+      "description": "Repertoarerfaring og sammenligning blir tydeligere som bakgrunnskunnskap fremfor rangering.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#repertoar_mot_enkeltforestilling",
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#det_kjente_huset",
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#sammenligningen_med_forrige_oppsetning"
+      ]
+    },
+    {
+      "id": "vane_uten_status",
+      "description": "Rutine og abonnement skilles fra sosial rang og opplevd eierskap til huset.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#vanen_i_setet",
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#abonnementet_som_merkevare",
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#foajeen_som_arbeidsplass"
+      ]
+    },
+    {
+      "id": "koder_blir_apne",
+      "description": "Etikette og huskunnskap brukes til hensyn og inkludering fremfor gatekeeping.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#stillheten_og_hostet",
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#tilgjengeligheten_i_praksis"
+      ]
+    },
+    {
+      "id": "forventning_blir_fleksibel",
+      "description": "Besetningsendringer og nytolkninger blir lest som kunstneriske variasjoner før de rangeres.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#rollebesetningen_er_endret",
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#klassikeren_pa_nytt"
+      ]
+    },
+    {
+      "id": "tilhorighet_med_grenser",
+      "description": "Nykommerveiledning, institusjonslojalitet og teatererfaring beholder tydelige grenser mot profesjonell autoritet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#ut_i_pausen",
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#ta_med_en_ny",
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#lojalitet_til_huset",
+        "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#teatergjenganger_ikke_kritiker"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "repertoar_moter_sammenligning",
+      "setup_ref": "1/afternoon",
+      "return_ref": "3/evening",
+      "domains": [
+        "identity",
+        "reputation"
+      ]
+    },
+    {
+      "id": "familiaritet_moter_ansvar",
+      "setup_ref": "2/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "status",
+        "workplace"
+      ]
+    },
+    {
+      "id": "vane_moter_inkludering",
+      "setup_ref": "4/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "identity",
+        "relationship"
+      ]
+    },
+    {
+      "id": "abonnement_moter_tilgjengelighet",
+      "setup_ref": "5/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "status",
+        "care"
+      ]
+    },
+    {
+      "id": "tradisjon_moter_nykommer",
+      "setup_ref": "10/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "identity",
+        "relationship"
+      ]
+    },
+    {
+      "id": "lojalitet_moter_rollegrense",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#repertoar_mot_enkeltforestilling",
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#det_kjente_huset",
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#sammenligningen_med_forrige_oppsetning",
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#vanen_i_setet",
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#abonnementet_som_merkevare",
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#foajeen_som_arbeidsplass",
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#stillheten_og_hostet",
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#tilgjengeligheten_i_praksis",
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#rollebesetningen_er_endret",
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#klassikeren_pa_nytt",
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#ut_i_pausen",
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#ta_med_en_ny",
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#lojalitet_til_huset",
+      "data/Civication/narratives/leisure/scenekunst_teatergjenganger.json#teatergjenganger_ikke_kritiker"
+    ]
+  }
+}
