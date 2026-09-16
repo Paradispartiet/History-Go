@@ -55,6 +55,6 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 - This audit does not create a NonCareerRoleEngine or new scene format.
 - Circumstances, relationships and livelihood remain separate runtime layers.
 - Generic private-life scenes may support aftermath, but cannot prove a specific life-position world by themselves.
-- Achievement/fame/legacy/mandate statuses are not standalone worlds by default unless later governed evidence proves an independent authored social world.
+- Achievement/fame/legacy/mandate statuses are not standalone worlds by default unless later governed evidence proves an independent social world.
 - Every actual Role World remains one subject per PR and must pass the normal Role World + Scene Pipeline gates.
 
