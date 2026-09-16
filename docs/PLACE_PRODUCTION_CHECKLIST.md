@@ -26,6 +26,12 @@ Micro Places følger:
 
 - `docs/MICRO_PLACE_CONTRACT.md`
 
+For Places som er migrert til Place Production v3 følger den operative workflow-state-/CLI-flyten:
+
+- `docs/PLACE_PRODUCTION_V3.md`
+
+V3 endrer ikke de faglige kravene i denne sjekklisten. `data/places/production/<place_id>.json` beholder factuality-/claim-eierskapet; `data/places/workflow/<place_id>.json` eier bare workflow-state. Workcard og quality-gate for migrerte V3-Places er genererte projeksjoner og skal ikke håndredigeres.
+
 > **Hovedregel:** Alle ordinære Places har samme harde canonical core. Hovedbadge og underbadges bestemmer hva produksjonen skal undersøke; stedets faktiske kilder bestemmer hvilke kandidater og samlinger som faktisk kvalifiserer; produksjonsprofilen bestemmer hvor dypt vi går. Et lettere sted er smalere ferdig — aldri halvferdig.
 
 ---
