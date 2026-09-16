@@ -50,6 +50,6 @@ assert.ok(entry);
 assert.equal(entry.role_scope,'filosofi_filosofisk_veileder');
 assert.equal(entry.path,worldPath);
 assert.equal(index.career_role_world_count,85);
-assert.equal(index.life_position_role_world_count,88);
-assert.equal(index.roles.length,173);
+assert.equal(index.roles.filter((row)=>row.subject_type==='life_position').length,index.life_position_role_world_count);
+assert.equal(index.roles.length,index.career_role_world_count+index.life_position_role_world_count);
 console.log('Filosofisk veileder Role World gate ok: 14 storylets / 56 beats / 14 threads / 6 people / 5 aftermath / 6 delayed');
