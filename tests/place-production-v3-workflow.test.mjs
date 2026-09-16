@@ -23,7 +23,7 @@ const complete = {
     status: 'PASS',
     recorded_at: '2026-09-16T12:30:00Z',
     rule_files: ['fixture-rule.md'],
-    contracts,
+    contracts: { ...contracts },
     attestation: 'Fixture rules were read before production decisions were recorded.',
   },
   profile: { id: 'standard', status: 'confirmed', reason: 'Source-backed.' },
