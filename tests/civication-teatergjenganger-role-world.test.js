@@ -19,3 +19,4 @@ assert.match(world.sociological_core.description,/ingen ny runtime/i);
 assert.ok(world.sociological_core.description.includes('repertoarerfaring'));
 assert.ok(world.sociological_core.description.includes('tilgjengelighet'));
 console.log('Teatergjenganger Role World gate ok');
+
