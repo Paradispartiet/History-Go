@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "psykologi_selvgransker",
+  "type": "leisure",
+  "title": "Selvgransker — refleksjon, blindsoner og revisjon",
+  "sociological_theme": "Hvordan egenrefleksjon kan bli mer presis gjennom konkrete observasjoner, alternative forklaringer, tilbakemelding, kontekst og revisjon uten å bli global selvdom, tankelesing eller klinisk myndighet.",
+  "applies_when": {
+    "any_tags": [
+      "psykologi:selvgransker"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "forklaringen_som_kom_forst",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Refleksjonsvennen",
+      "subject": "Den første forklaringen føles riktig",
+      "situation": [
+        "Etter en vanskelig situasjon lager spilleren raskt en forklaring på hvorfor han handlet som han gjorde.",
+        "En plausibel forklaring kan være nyttig uten å være den eneste mulige.",
+        "Selvgransking blir mer presis når flere forklaringer kan stå åpne til nye observasjoner kommer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv ned den første forklaringen og minst én alternativ forklaring som også passer hendelsen.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Behandle den første forklaringen som fasit fordi den kom spontant.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_first_story"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "minnet_og_notatet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Notatvennen",
+      "subject": "Jeg husket det annerledes",
+      "situation": [
+        "En hendelse virker klar i minnet noen dager senere, men et kort notat fra samme kveld viser flere detaljer.",
+        "Minne er verdifullt, men rekonstrueres og påvirkes av det som skjedde etterpå.",
+        "Samtidige notater kan fungere som motvekt uten å være perfekte fasiter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign minnet med notatet og behold uenigheten synlig i stedet for å velge én versjon med en gang.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Forkast notatet fordi dagens minne føles tydeligere.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_memory_vs_record"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "jeg_mente_det_bra",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Personen det gjaldt",
+      "subject": "Intensjonen var god, men virkningen ble en annen",
+      "situation": [
+        "Spilleren vet hva han ønsket å oppnå i en samtale, mens den andre personen beskriver en helt annen virkning.",
+        "Intensjon forklarer noe om eget utgangspunkt, men ikke automatisk hvordan handlingen traff.",
+        "Selvgransking krever plass til både egen hensikt og andres erfaring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold fast på intensjonen som informasjon, men undersøk også hva ved handlingen som ga den faktiske virkningen.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den gode intensjonen som bevis på at den andre må ha misforstått.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_intention_vs_effect"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "darlig_dag_fast_egenskap",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Hverdagsvennen",
+      "subject": "Én dårlig dag ble til en identitet",
+      "situation": [
+        "Etter en tung dag beskriver spilleren seg selv med et bredt negativt ord.",
+        "Midlertidige reaksjoner kan kjennes representative mens de står på.",
+        "En konkret beskrivelse av situasjonen gir mer informasjon enn en total merkelapp på selvet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hva som faktisk skjedde den dagen og vent med brede konklusjoner om hvem du er.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Bruk dagen som bekreftelse på en fast negativ egenskap ved deg selv.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_state_vs_identity"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "dommen_uten_handling",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Refleksjonsvennen",
+      "subject": "Hva gjorde du egentlig?",
+      "situation": [
+        "Spilleren sier at han var egoistisk, svak eller vanskelig, men klarer først ikke å peke på hvilken handling som ligger bak.",
+        "Globale selvdommer kan føles forklarende uten å gjøre situasjonen mer forståelig.",
+        "Konkrete handlinger kan undersøkes, endres og settes i sammenheng."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bytt ut dommen med en beskrivelse av den konkrete handlingen, valget og situasjonen rundt.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Behold merkelappen; den forklarer personen bedre enn detaljene gjør.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_judgment_vs_behavior"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tilbakemeldingen_som_svir",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Ærlig venn",
+      "subject": "Det var ikke slik jeg så meg selv",
+      "situation": [
+        "En nær person peker på et tilbakevendende trekk i spillerens atferd som spilleren ikke kjenner igjen.",
+        "Tilbakemelding kan være feil, delvis riktig eller situasjonsbundet.",
+        "Blindsoner blir lettere å undersøke når ubehag ikke automatisk avgjør om observasjonen avvises."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om konkrete eksempler og se om samme mønster finnes i flere situasjoner før du konkluderer.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Avvis tilbakemeldingen straks fordi den ikke passer med selvbildet ditt.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_feedback_vs_defense"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verdien_og_valget",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Prioriteringsvennen",
+      "subject": "Det du sier er viktig, fikk ingen tid",
+      "situation": [
+        "Spilleren sier at noe er svært viktig, men kalenderen og de siste valgene peker konsekvent en annen vei.",
+        "Verdier og faktiske prioriteringer trenger ikke være identiske, men avstanden mellom dem er informasjon.",
+        "Selvgransking kan undersøke gapet uten å redusere det til hykleri eller moralsk dom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se på de konkrete valgene og spør hvilke begrensninger, vaner eller konkurrerende hensyn som faktisk styrte dem.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Hold fast på at den uttalte verdien alene viser hva du prioriterer.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_values_vs_choices"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samme_reaksjon_ulike_rom",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Kontekstvennen",
+      "subject": "Det skjer her, men ikke der",
+      "situation": [
+        "En reaksjon går igjen i én type situasjon, men nesten aldri i en annen.",
+        "Et personlig mønster kan være reelt samtidig som det er sterkt avhengig av sted, relasjon eller krav.",
+        "Kontekst gjør mønsteret mer presist i stedet for mindre personlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hvilke situasjoner som øker eller reduserer reaksjonen før du gjør den til en generell egenskap.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Se bort fra konteksten fordi et ekte personlig mønster må komme innenfra.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_pattern_vs_context"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "alt_var_mitt_valg",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Hverdagsvennen",
+      "subject": "Hvor mye kunne du faktisk styre?",
+      "situation": [
+        "Et utfall blir dårlig, og spilleren legger hele forklaringen på egne valg.",
+        "Egne valg betyr noe, men tid, ressurser, andres handlinger og tilfeldigheter påvirker også utfallet.",
+        "Presis ansvarstaking krever både eierskap og realistiske grenser for kontroll."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill hva du faktisk kunne påvirke fra forhold du måtte håndtere uten å kontrollere dem.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Ta hele utfallet som bevis på at du personlig burde ha klart å styre alt.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_control_vs_conditions"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historien_om_hvem_jeg_er",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Notatvennen",
+      "subject": "Passer alle eksemplene inn i samme historie?",
+      "situation": [
+        "Spilleren har en etablert fortelling om å alltid være den ansvarlige, den stille eller den som trekker seg unna.",
+        "Nye hendelser passer dårlig inn, men blir raskt forklart bort som unntak.",
+        "Selvfortellinger organiserer erfaring, men kan også filtrere bort informasjon som ville gjort bildet mer nyansert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta moteksemplene på alvor og oppdater selvfortellingen slik at den rommer flere sider.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Behold den gamle historien og regn alle avvik som tilfeldige unntak.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_self_story"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sammenligningen_som_ble_maalestokk",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Sammenligningsvennen",
+      "subject": "Alle andre ser ut til å få dette til",
+      "situation": [
+        "Spilleren vurderer egen fremgang ved å sammenligne seg med andres synlige resultater.",
+        "Sammenligning kan gi informasjon, men tilgang til andres forutsetninger, problemer og hele forløp er begrenset.",
+        "Egen tidligere praksis kan være en mer stabil målestokk for endring over tid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk andres erfaring som referanse, men sammenlign også med ditt eget tidligere utgangspunkt og faktiske utvikling.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "La andres synlige resultat være hovedbeviset på hvor godt eller dårlig du selv fungerer.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_comparison_vs_baseline"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "refleksjonen_som_gar_i_ring",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Refleksjonsvennen",
+      "subject": "Du tenker fortsatt på det samme",
+      "situation": [
+        "Spilleren går gjennom den samme hendelsen mange ganger uten at nye spørsmål eller data kommer til.",
+        "Refleksjon kan gi ny innsikt når den endrer spørsmål, sammenligner kilder eller leder til et konkret neste steg.",
+        "Ren repetisjon kan føles grundig uten å gjøre forståelsen mer presis."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler ett nytt spørsmål eller ett konkret neste observasjonspunkt og stopp når du ikke får ny informasjon.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å spille hendelsen om igjen til den føles fullstendig forklart.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_reflection_vs_replay"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_private_som_ble_analysert_hoyt",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Personen det gjaldt",
+      "subject": "Din refleksjon handlet også om meg",
+      "situation": [
+        "Spilleren deler en detaljert analyse av egen reaksjon, men analysen inneholder private opplysninger og antakelser om en annen person.",
+        "Selvgransking gir ikke automatisk rett til å offentliggjøre andres historie eller motiv.",
+        "Eget perspektiv kan beskrives uten å gjøre andre til råmateriale for selvforklaringen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Begrens delingen til egen opplevelse og fjern unødvendige opplysninger og antakelser om den andre.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Del hele analysen fordi det er din egen refleksjon og derfor bare handler om deg.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_privacy_vs_analysis"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "selvinnsikt_uten_fagrolle",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Ærlig venn",
+      "subject": "Å kjenne egne mønstre gjør deg ikke til behandler",
+      "situation": [
+        "Etter mye refleksjon begynner andre å be spilleren analysere deres reaksjoner eller gi råd som om han hadde fagrolle.",
+        "Erfaring med egen refleksjon kan gjøre språk og spørsmål bedre, men gir ikke klinisk kompetanse eller mandat over andres psykiske helse.",
+        "Selvgransker er en praksisidentitet, ikke en snarvei til diagnose, terapi eller profesjonell psykologrolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del egne erfaringer som egne erfaringer, og hold vurdering av andres kliniske spørsmål hos kvalifiserte fagpersoner.",
+          "effect": 1,
+          "tags": [
+            "self_reflection",
+            "context",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør refleksjonen mer konkret og revisjonsåpen uten å gi den større sikkerhet eller myndighet enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Bruk din egen selvinnsikt som grunnlag for å analysere eller diagnostisere andre.",
+          "effect": -1,
+          "tags": [
+            "global_judgment",
+            "overclaim",
+            "false_authority"
+          ],
+          "feedback": "Refleksjonen blir bredere, sikrere eller mer kategorisk enn observasjonene gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selvgransker_self_knowledge_vs_authority"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
