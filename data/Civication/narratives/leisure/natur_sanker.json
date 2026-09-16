@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "natur_sanker_stream",
+  "type": "leisure",
+  "title": "Sanker",
+  "sociological_theme": "artskunnskap_høsting_sårbarhet_matsikkerhet_tilgang_og_grensen_mot_profesjonell_veiledning",
+  "applies_when": {
+    "any_tags": [
+      "natur:sanker"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "arten_du_nesten_kjenner",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Skogkanten",
+      "subject": "Den ser kjent ut",
+      "situation": [
+        "Du finner noe du tror du kjenner igjen fra tidligere turer, men flere kjennetegn passer ikke helt med minnet.",
+        "Sanking gjør artskunnskap praktisk fordi en feil identifikasjon kan få større konsekvenser enn et feil navn i en liste.",
+        "Erfaring blir derfor verdifull når den også gjør det lettere å si at noe fortsatt er usikkert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La funnet stå til du har trygg identifikasjon fra relevant kunnskap eller fagkyndig hjelp.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du lar usikkerhet stoppe innsamlingen i stedet for å presse fram et sikkert svar."
+        },
+        {
+          "id": "B",
+          "label": "Ta det med fordi du nesten er sikker og fordi det ligner det du fant sist.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Nesten-sikker kunnskap blir behandlet som tilstrekkelig fordi du ønsker funnet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_identification_uncertainty"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kurven_som_blir_for_full",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Kurven",
+      "subject": "Mer enn du rekker å bruke",
+      "situation": [
+        "Et område gir langt mer enn du forventet, og det er lett å fortsette fordi det fortsatt finnes mye igjen.",
+        "Synlig overflod kan gjøre høsting til et spørsmål om mengde, selv når eget behov er begrenset.",
+        "En sankepraksis må også forholde seg til rester, andre brukere og stedet som skal finnes igjen senere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp når du har det du faktisk kan bruke, og la resten bli igjen.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du skiller mellom at noe finnes og at alt bør tas."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å fylle fordi mye på stedet gjør maksimal høsting rimelig.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Overflod blir behandlet som personlig tilgjengelighet uten resthensyn."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_harvest_restraint"
+      ],
+      "risk_links": [
+        "ecological_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_gode_plassen_som_alle_vil_ha",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Gruppechatten",
+      "subject": "Hvor er den plassen?",
+      "situation": [
+        "Et bilde av et godt funn gjør at flere spør etter nøyaktig sted.",
+        "Stedsdeling kan bygge fellesskap, men kan også konsentrere ferdsel og høsting på et lite område.",
+        "Det sosiale presset blir størst når hemmelighold og åpenhet begge kan tolkes som statusmarkører."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del på et nivå som tåler belastningen, og forklar hvorfor noen lokaliteter bør behandles varsomt.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du lar stedets tåleevne veie mer enn statusen som åpen eller innviet."
+        },
+        {
+          "id": "B",
+          "label": "Send nøyaktig posisjon med en gang for å vise at du ikke er en som holder på hemmeligheter.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Sosial anerkjennelse blir viktigere enn hvordan trafikken påvirker stedet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_sharing_pressure"
+      ],
+      "risk_links": [
+        "ecological_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "appen_som_svarer_for_sikkert",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Telefonen",
+      "subject": "Appen har et navn",
+      "situation": [
+        "Et bildeverktøy foreslår en art med høy tilsynelatende sikkerhet.",
+        "Digitale forslag kan være nyttige innganger, men bildet mangler ofte egenskaper som krever nærmere vurdering.",
+        "Når funnet skal spises eller brukes, er et forslag ikke det samme som en trygg identifikasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk forslaget som et spor og krev uavhengig bekreftelse før bruk.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du bruker verktøyet uten å overføre ansvar til det."
+        },
+        {
+          "id": "B",
+          "label": "La prosenttallet i appen avgjøre fordi teknologien virker mer sikker enn deg.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Et maskinforslag blir behandlet som matsikkerhetsautoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_app_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "veikanten_som_ser_frodig_ut",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Veikanten",
+      "subject": "Det vokser mye her",
+      "situation": [
+        "Et lett tilgjengelig område er fullt av det du leter etter, men ligger tett på trafikk, fyllmasser eller annen mulig forurensning.",
+        "Et funn kan være riktig identifisert og likevel være dårlig egnet til mat.",
+        "Sanking krever derfor oppmerksomhet både på art og på stedet den kommer fra."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La være å bruke funnet når voksestedet gir rimelig grunn til tvil, og velg et bedre dokumentert sted.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du vurderer lokaliteten som en del av funnet."
+        },
+        {
+          "id": "B",
+          "label": "Se bort fra voksestedet fordi riktig art automatisk betyr trygg råvare.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Artsnavnet brukes som om det også beviser kvaliteten på voksestedet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_site_quality"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stedet_som_trenger_mer_ro",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Naturstien",
+      "subject": "Ikke alt som kan plukkes bør plukkes her",
+      "situation": [
+        "Du kommer til et område med sårbar vegetasjon, mye ferdsel eller lokale hensyn som gjør ekstra høsting mindre uproblematisk.",
+        "Regler og naturhensyn varierer mellom steder og kan endres over tid.",
+        "Sankeren må derfor kunne avstå selv når ressursen ser fristende ut."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekk lokale rammer og la være når vern, sårbarhet eller usikkerhet tilsier det.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du lar stedsspesifikke rammer begrense praksisen."
+        },
+        {
+          "id": "B",
+          "label": "Anta at alle ville planter og sopper alltid er frie å ta så lenge du finner dem selv.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "En generell forestilling om fri ferdsel blir gjort om til universell høsterett."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_local_limits"
+      ],
+      "risk_links": [
+        "ecological_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "turen_med_den_erfarne_sankeren",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fellesturen",
+      "subject": "Han sier han har gjort dette i tretti år",
+      "situation": [
+        "En erfaren sanker identifiserer funn raskt og gruppen følger vurderingene uten mange spørsmål.",
+        "Lang erfaring kan gi presis feltkunnskap, men uformell autoritet blir sterkest når andre slutter å etterprøve.",
+        "Et godt læringsmiljø tåler at begrunnelsen blir synlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om kjennetegn og begrunnelse slik at vurderingen kan forstås, ikke bare adlydes.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du bruker erfaring som kilde til læring fremfor som taus fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Behandle erfaringen alene som bevis og kopier alle vurderingene uten spørsmål.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Hierarki erstatter etterprøvbar kunnskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_experience_gatekeeping"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "grensa_som_gar_gjennom_enga",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En lokal grunneier",
+      "subject": "Her begynner privat område",
+      "situation": [
+        "Det mest lovende området ligger på eller nær eiendom der bruk, innmark eller lokal drift setter tydelige grenser.",
+        "Interesse for et funn skaper ikke i seg selv adgang til alle arealer.",
+        "Lokalkunnskap kan også være viktigere enn kartets grove skillelinjer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Respekter grensen og avklar adgang når området ikke åpenbart er tilgjengelig.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du lar adgang være et eget spørsmål, uavhengig av hvor interessant funnet er."
+        },
+        {
+          "id": "B",
+          "label": "Gå inn fordi sanking føles ufarlig og funnet er rett på andre siden.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Ønsket om å samle blir gjort viktigere enn situert rett til bruk av stedet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_access_boundary"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "soppen_som_ikke_ligner_helt",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Skogbunnen",
+      "subject": "En viktig detalj stemmer ikke",
+      "situation": [
+        "Du finner en sopp som ligner en art du tidligere har brukt, men én eller flere egenskaper skaper tvil.",
+        "Ved potensielt farlige forvekslinger er tvil i seg selv relevant informasjon.",
+        "Matlyst og ønsket om et godt funn kan gjøre det fristende å forklare bort avvik."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ikke bruk soppen som mat uten sikker identifikasjon fra egnet fagkyndig kilde.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du gjør sikkerhet viktigere enn ønsket om å få med funnet hjem."
+        },
+        {
+          "id": "B",
+          "label": "Tolke avviket som naturlig variasjon fordi resten ser kjent ut.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Du forklarer bort usikkerheten for å beholde funnet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_mushroom_uncertainty"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "smaken_som_blir_status",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Middagsbordet",
+      "subject": "Dette plukket jeg selv",
+      "situation": [
+        "Et hjemmelaget måltid med sankede råvarer får mye oppmerksomhet og spørsmål.",
+        "Sanking kan bli del av smak, identitet og status, ikke bare matauk eller naturopplevelse.",
+        "Da blir også fristelsen større til å framstå sikrere og mer erfaren enn man er."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell hva du faktisk vet og hva du fikk hjelp til å avklare.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du lar sosial verdi være separat fra faglig sikkerhet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk gjestenes begeistring til å opptre som ekspert på arter du bare kjenner litt.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Anerkjennelsen blir omgjort til lånt ekspertstatus."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_taste_status"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "glassene_i_kjelleren",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Kjøkkenet",
+      "subject": "Høsten skal vare til vinteren",
+      "situation": [
+        "Du vil tørke, fryse eller legge inn mer av fangsten enn du har gjort før.",
+        "Konservering har egne matsikkerhetskrav som ikke følger automatisk av at råvaren var riktig identifisert.",
+        "Tradisjon, oppskrift og improvisasjon kan ha ulik verdi avhengig av råvare og metode."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk dokumenterte metoder og søk kvalifisert råd når prosessen har sikkerhetskritiske punkter.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du skiller mellom sanking, tilberedning og konserveringskompetanse."
+        },
+        {
+          "id": "B",
+          "label": "Improviser fritt fordi hjemmelaget lagring alltid er tryggere enn industrimat.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Selvplukket råvare blir brukt som garanti for en metode du ikke har kontroll på."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_preservation_safety"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "barnet_som_vil_smake_i_feltet",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Turfølget",
+      "subject": "Kan jeg smake på denne?",
+      "situation": [
+        "Et barn eller en nybegynner vil smake direkte på et funn fordi du virker trygg på stedet.",
+        "Når andre bruker din ro som sikkerhetssignal får rollen en annen tyngde.",
+        "Ansvar handler også om å gjøre usikkerhet synlig før noen handler på den."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp smakingen til funnet er trygt identifisert og egnet til bruk.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du tar høyde for at andre tolker atferden din som råd."
+        },
+        {
+          "id": "B",
+          "label": "La dem smake litt fordi du selv sannsynligvis ville gjort det.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Din egen risikovilje blir gjort til standard for andre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_care_responsibility"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_du_tenkte_a_selge",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Markedstanken",
+      "subject": "Kunne dette blitt litt ekstra inntekt?",
+      "situation": [
+        "Et godt sankeår gjør det fristende å selge noe av det du har samlet eller bearbeidet.",
+        "Når mat går fra privat bruk til salg, oppstår andre krav, ansvar og forventninger enn i egen husholdning.",
+        "Sanker-identiteten gir ikke automatisk nærings-, kontroll- eller matsikkerhetsmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill privat sanking fra salg og undersøk gjeldende krav før du eventuelt tilbyr mat til andre.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du behandler kommersiell bruk som et eget regulert spørsmål."
+        },
+        {
+          "id": "B",
+          "label": "Begynn å selge smått og anta at omfanget gjør regler og ansvar irrelevante.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Hobbypraksis blir gjort om til salg uten at ansvaret endres tilsvarende."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_sale_boundary"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_sanker",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Etter sesongen",
+      "subject": "Hva har du egentlig lært å ta med deg?",
+      "situation": [
+        "Etter mange turer kjenner du flere steder, mønstre og råvarer enn før.",
+        "Du har også sett hvordan mengde, status, teknologi, eiendomsgrenser, sårbar natur og matsikkerhet former det som havner i kurven.",
+        "Sanker er en selvvalgt practice_identity, ikke en automatisk profesjonstittel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold rollen som oppmerksom sanker med tydelig usikkerhet, stedshensyn og grense mot faglig myndighet.",
+          "effect": 1,
+          "tags": [
+            "foraging_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du avslutter sesongen med mer feltkunnskap og klarere rollegrense."
+        },
+        {
+          "id": "B",
+          "label": "Gjør erfaringen til grunnlag for å opptre som botaniker, mykolog, naturforvalter eller matsikkerhetsekspert for andre.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Erfaring blir omgjort til profesjonell fullmakt den ikke gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sanker_practice_authority"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
