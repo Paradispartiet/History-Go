@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "natur_fuglekikker_stream",
+  "type": "leisure",
+  "title": "Fuglekikker",
+  "sociological_theme": "fuglekikking_lyd_identifikasjon_sjeldenhet_hekkefred_lokalitetsdeling_utstyrsstatus_fellesskap_og_grensen_mot_profesjonell_ornitologi_og_naturforvaltning",
+  "applies_when": {
+    "any_tags": [
+      "natur:fuglekikker"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "lyden_for_du_ser_fuglen",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En turkamerat",
+      "subject": "Du hører den før du ser den",
+      "situation": [
+        "En kort sangstrofe kommer fra krattet før du får øye på fuglen.",
+        "Du kjenner igjen deler av lyden, men bakgrunnsstøy og avstand gjør artsbestemmelsen mindre sikker enn førsteinntrykket.",
+        "Fuglekikking belønner oppmerksomhet, men praksisen må tåle at et godt spor ikke alltid blir et sikkert funn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter lyden og usikkerheten, og vent på flere kjennetegn før du bestemmer arten.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du lar hørsel være et spor i stedet for et bevis."
+        },
+        {
+          "id": "B",
+          "label": "Gjør lydglimtet til et sikkert kryss fordi sangen lignet på det du håpet å høre.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Ønsket art får større plass enn det du faktisk observerte."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_sound_evidence"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "varselet_om_den_sjeldne_gjesten",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fuglechatten",
+      "subject": "En sjelden gjest er meldt",
+      "situation": [
+        "Et varsel om en sjelden fugl får mange til å bevege seg mot samme sted.",
+        "Meldingen er knapp, og det er uklart hvor fersk observasjonen er eller hvor mange som allerede er på vei.",
+        "Sjeldenhet kan skjerpe oppmerksomheten, men også gjøre tempo, prestisje og flokkpress sterkere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk varselet som et mulig spor og vurder sted, tid og belastning før du drar.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du lar nysgjerrighet eksistere uten å gjøre hastverk til bevis."
+        },
+        {
+          "id": "B",
+          "label": "Skynd deg av gårde og del varselet videre som sikkert før opplysningene er kontrollert.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Sjeldenhet blir et sosialt kappløp som forsterker usikker informasjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_rarity_pressure"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "reiret_som_ligger_for_naert",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Stien",
+      "subject": "Du ser mer enn du burde nærme deg",
+      "situation": [
+        "Du oppdager aktivitet som tyder på et reir nær stien.",
+        "Et bedre bilde ville kreve at du går nærmere eller blir stående lenge i samme område.",
+        "Fuglekikkerpraksis gir ingen rett til å prioritere dokumentasjon foran hekkefred."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Trekk deg tilbake, hold avstand og la hekkingen veie tyngre enn bildet.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du gjør avstand til en del av god observasjonspraksis."
+        },
+        {
+          "id": "B",
+          "label": "Gå nærmere én rask gang fordi et dokumentert reir føles viktigere enn mulig forstyrrelse.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Dokumentasjonsbehovet brukes til å legitimere en belastning fuglen ikke har valgt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_nesting_distance"
+      ],
+      "risk_links": [
+        "ecological_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kikkerten_som_blir_status",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Utsiktspunktet",
+      "subject": "Hvem har best optikk?",
+      "situation": [
+        "Samtalen dreier over på kikkerter, objektiver og priser.",
+        "Godt utstyr kan hjelpe observasjonen, men gir også synlige statussignaler i miljøet.",
+        "Fuglekikking kan bli mindre inkluderende hvis kompetanse leses direkte av utstyrsnivå."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakk om hva utstyret faktisk gjør mulig, og la erfaring og nysgjerrighet telle mer enn pris.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du skiller hjelpemiddel fra sosial rang."
+        },
+        {
+          "id": "B",
+          "label": "Bruk utstyret som snarvei til å avgjøre hvem som bør tas mest alvorlig.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Pris og merke får fungere som uformell autorisasjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_gear_status"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "appen_som_er_mer_sikker_enn_deg",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Artsappen",
+      "subject": "Appen foreslår et navn",
+      "situation": [
+        "En app gir et tydelig artsforslag fra et uklart bilde eller lydklipp.",
+        "Forslaget ser presist ut, men modellen kjenner ikke hele situasjonen og kan ta feil.",
+        "Digital hjelp kan støtte læring uten å overta vurderingen av svakt feltgrunnlag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk forslaget som hypotese og sammenlign med synlige eller hørbare kjennetegn.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Teknologien blir et hjelpemiddel i en etterprøvbar vurdering."
+        },
+        {
+          "id": "B",
+          "label": "Registrer appens første forslag som sikkert fordi prosenttallet ser overbevisende ut.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Et grensesnitt får mer autoritet enn datagrunnlaget tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_app_evidence"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "trekket_som_ikke_kommer_nar_det_skal",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Våtmarka",
+      "subject": "Kalenderen og fuglene er uenige",
+      "situation": [
+        "Du har planlagt turen etter tidligere års trekkmønster, men arten dukker ikke opp.",
+        "Vær, mattilgang og mange andre forhold kan forskyve det som ofte beskrives som en sesongrytme.",
+        "Fuglekikking lærer deg mønstre, men naturen skylder ikke observatøren å følge kalenderen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle fraværet som informasjon og juster forventningen uten å late som mønsteret er en avtale.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du lar et mønster være nyttig uten å gjøre det deterministisk."
+        },
+        {
+          "id": "B",
+          "label": "Tolke fraværet som at stedet er ødelagt før du har nok observasjoner til en slik konklusjon.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "En enkelt bomtur blir gjort til en stor økologisk konklusjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_migration_uncertainty"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stedet_som_ikke_bor_deles_presist",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Meldingsfeltet",
+      "subject": "Noen ber om nøyaktig posisjon",
+      "situation": [
+        "Du har sett en attraktiv eller sårbar art på et sted få kjenner.",
+        "Andre ber om koordinater for å kunne se den samme fuglen.",
+        "Deling bygger fellesskap, men presis lokasjon kan også samle trafikk rundt et sensitivt område."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del bare så mye stedskunnskap som er forsvarlig, og forklar hvorfor presisjon noen ganger holdes tilbake.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du behandler lokasjonsdata som noe som kan ha konsekvenser."
+        },
+        {
+          "id": "B",
+          "label": "Legg ut eksakte koordinater straks fordi alle bør få samme sjanse til et kryss.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Lik tilgang til et kryss får overstyre sårbarhet og lokal belastning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_location_protection"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "turen_med_den_erfarne_kikkeren",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fuglegruppa",
+      "subject": "Den erfarne stemmen fyller rommet",
+      "situation": [
+        "En svært erfaren fuglekikker identifiserer arter raskt og blir sjelden motsagt.",
+        "Du lærer mye, men merker også at nybegynnere slutter å si hva de selv observerer.",
+        "Uformell ekspertise kan være verdifull og samtidig bli til gatekeeping hvis læring bare går én vei."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør etter kjennetegn og inviter de mindre erfarne til å beskrive hva de faktisk la merke til.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Erfaring blir gjort etterprøvbar og delbar."
+        },
+        {
+          "id": "B",
+          "label": "Godta identifikasjonene uten spørsmål og la rang i miljøet erstatte eget feltarbeid.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Miljøets statusorden blir behandlet som bevis."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_learning_gatekeeping"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lokking_med_lyd",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Skogkanten",
+      "subject": "Et lydklipp kan få svar",
+      "situation": [
+        "Gruppa vurderer å spille av fuglelyd for å få en skjult fugl fram.",
+        "Metoden kan gi en observasjon, men kan også påvirke atferd, særlig i sårbare perioder.",
+        "At en teknikk virker betyr ikke at den alltid bør brukes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avstå når det kan forstyrre, og prioriter passiv observasjon framfor et sikrere kryss.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du lar hensynet til fuglen begrense metodene dine."
+        },
+        {
+          "id": "B",
+          "label": "Spill av flere ganger fordi et kort svar neppe kan ha betydning.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Effektiv observasjon blir viktigere enn påvirkningen på dyret."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_playback_disturbance"
+      ],
+      "risk_links": [
+        "ecological_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gruppen_som_gar_fortere_enn_deg",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fellesturen",
+      "subject": "Tempoet bestemmer hvem som får være med",
+      "situation": [
+        "En fellestur beveger seg raskt mellom observasjonspunktene.",
+        "Noen faller bak, trenger pauser eller bruker lenger tid på å finne fuglene i kikkerten.",
+        "Et miljø kan være faglig åpent og likevel sosialt ekskluderende gjennom tempo og uskrevne krav."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Juster rytmen og gjør observasjonene delbare også for dem som trenger mer tid.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Fellesskapet blir en del av praksisen, ikke en test i effektivitet."
+        },
+        {
+          "id": "B",
+          "label": "Hold tempoet oppe fordi de mest dedikerte bør klare å følge gruppa.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Tempo blir et skjult medlemskrav."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_group_belonging"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fuglen_pa_privatomradet",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Kartet",
+      "subject": "Den beste vinkelen ligger på den andre siden",
+      "situation": [
+        "Fuglen sitter synlig fra et område som ikke er fritt tilgjengelig.",
+        "Et par meter over en grense ville gitt bedre sikt, og ingen ser ut til å være i nærheten.",
+        "Interesse for fugl opphever ikke eiendomsgrenser, ferdselsregler eller lokal bruk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn en lovlig observasjonsplass eller be om adgang hvis situasjonen faktisk tillater det.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du lar tilgangsreglene begrense jakten på en bedre observasjon."
+        },
+        {
+          "id": "B",
+          "label": "Kryss grensen kort fordi du bare skal se og ikke ta med deg noe.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Et interessant funn blir brukt som personlig adgangstillatelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_access_respect"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_skadde_fuglen",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Veikanten",
+      "subject": "Omsorg krever også rolleforståelse",
+      "situation": [
+        "Du finner en fugl som virker skadet eller ute av stand til å fly.",
+        "Det er fristende å håndtere den med en gang, men feil håndtering kan gjøre situasjonen verre.",
+        "Fuglekikkerrollen gir ikke automatisk rehabiliterings-, veterinær- eller viltmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sikre situasjonen så langt det er trygt og kontakt relevant fag- eller hjelpetjeneste før du gjør mer.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Omsorg kobles til riktig hjelp og tydelig rollegrense."
+        },
+        {
+          "id": "B",
+          "label": "Ta fuglen med hjem og improviser behandling fordi du kjenner arter bedre enn folk flest.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Kunnskap om fugler blir forvekslet med behandlingsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_care_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "listen_som_tar_over_turen",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Notatboka",
+      "subject": "Alt blir et nytt kryss",
+      "situation": [
+        "Du merker at turen først føles vellykket når lista får en ny art.",
+        "Vanlige arter, vær, lyd og selskap får mindre oppmerksomhet fordi de ikke forbedrer statistikken.",
+        "Lister kan strukturere læring, men også gjøre naturmøtet til en endeløs prestasjonsmåling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk lista som hukommelse og læringsspor uten å la den definere verdien av hele turen.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Registrering støtter praksisen uten å eie den."
+        },
+        {
+          "id": "B",
+          "label": "Planlegg bare etter arter som kan forbedre totalen og behandle resten som bortkastet tid.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Måltallet gjør oppmerksomheten smalere enn interessen som startet den."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_list_presence"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_fuglekikker",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Etter sesongen",
+      "subject": "Hva har du egentlig lært å se?",
+      "situation": [
+        "Etter mange turer kjenner du flere lyder, steder og mønstre enn før.",
+        "Du har også sett hvordan sjeldenhet, teknologi, utstyr, gruppehierarki og sårbare lokaliteter former hva som blir observert og delt.",
+        "Fuglekikker er en selvvalgt practice_identity, ikke en automatisk profesjonstittel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold rollen som nysgjerrig observatør med tydelig usikkerhet, hensyn og grense mot profesjonell myndighet.",
+          "effect": 1,
+          "tags": [
+            "birding_practice",
+            "role_clarity",
+            "field_attention"
+          ],
+          "feedback": "Du avslutter sesongen med mer feltkunnskap og klarere rollegrense."
+        },
+        {
+          "id": "B",
+          "label": "Gjør antall arter og erfaring til grunnlag for å opptre som ornitolog, biolog eller naturforvalter for andre.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_inference",
+            "role_inflation"
+          ],
+          "feedback": "Erfaring blir omgjort til en profesjonell fullmakt den ikke gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fuglekikker_practice_authority"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
