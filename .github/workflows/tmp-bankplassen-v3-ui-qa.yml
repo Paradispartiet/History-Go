@@ -72,6 +72,16 @@ jobs:
                 return Boolean(img && img.complete && img.naturalWidth > 0 && img.naturalHeight > 0);
               }, null, { timeout: 30000 });
 
+              const onboardingModal = page.locator('#hgOnboardingModal');
+              const onboardingStart = page.locator('#hgOnboardingModal [data-action="start"]');
+              if (await onboardingModal.isVisible().catch(() => false)) {
+                if (!await onboardingStart.isVisible().catch(() => false)) {
+                  throw new Error(`${name}: onboarding modal visible but start action is not visible`);
+                }
+                await onboardingStart.click();
+                await onboardingModal.waitFor({ state: 'hidden', timeout: 30000 });
+              }
+
               const placeCardAudit = await page.evaluate(() => {
                 const visible = id => {
                   const el = document.getElementById(id);
