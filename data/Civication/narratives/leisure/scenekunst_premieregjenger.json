@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "scenekunst_premieregjenger",
+  "type": "leisure",
+  "title": "Premieregjenger — første kveld, publikum og etterprat",
+  "sociological_theme": "Hvordan premiereopplevelser kombinerer kunst, sosial energi, forventning og rask vurdering uten at første kveld blir fasit eller publikumsentusiasme blir kritiker- eller bransjeautoritet.",
+  "applies_when": {
+    "any_tags": [
+      "scenekunst:premieregjenger"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "forventningen_for_teppet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Teatervennen",
+      "subject": "Alle sier dette blir årets forestilling",
+      "situation": [
+        "Premieren er utsolgt og forventningene er høye før lyset går ned.",
+        "Første kveld kommer med rykter, omtale og sosial energi som kan forme hva publikum tror de skal se.",
+        "En egen opplevelse blir tydeligere når forventningen får være bakgrunn, ikke fasit."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg merke til forventningen, men vurder forestillingen ut fra det som faktisk skjer på scenen.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Bruk forhåndssnakket som målestokk; hvis alle forventer storhet bør du også oppleve det slik.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_expectation_vs_experience"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nervene_i_rommet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medpublikummeren",
+      "subject": "Det var hakkete i kveld",
+      "situation": [
+        "Små feil og forsinkelser merkes tydelig på første forestilling.",
+        "Premieren kan være ekstra spent og sårbar uten at alt som skjer den kvelden er representativt for resten av spilleperioden.",
+        "En premiereopplevelse er ekte, men den er også én kveld."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hva som skjedde i kveld og unngå å gjøre alle premiereknekk til permanent dom over forestillingen.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Konkluder med at produksjonen er mislykket fordi premieren hadde synlige feil.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_tension_vs_quality"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "applausen_som_malestokk",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Teatervennen",
+      "subject": "Alle reiste seg",
+      "situation": [
+        "Publikum responderer kraftig ved teppefall, og stemningen gjør det lett å følge flokken.",
+        "Applaus kan uttrykke glede, støtte, høflighet, premiereenergi eller flere ting samtidig.",
+        "Din vurdering trenger ikke bli lik rommets for å være legitim."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Delta slik du vil, men skill publikums kollektive reaksjon fra din egen vurdering.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Ta stående applaus som bevis på at forestillingen objektivt var svært god.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_applause_vs_judgment"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "foajeen_etterpa",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Hva syntes du — egentlig?",
+      "situation": [
+        "I foajeen danner det seg raskt en dominerende mening om kvelden.",
+        "Etterprat kan hjelpe publikum å oppdage detaljer, men sosialt press kan også gjøre nyanser mindre synlige.",
+        "Uenighet om kunst trenger ikke bli konkurranse om hvem som forstod mest."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv én konkret ting du reagerte på og spør hvordan den andre opplevde det.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Tilpass vurderingen til tonen i gruppen så du ikke virker som den som misforstod.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_aftertalk_vs_consensus"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "slaktet_for_anmeldelsen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kritikkleseren",
+      "subject": "Anmeldelsen kom før du rakk å lande",
+      "situation": [
+        "En rask premiereanmeldelse gir forestillingen en tydelig ramme morgenen etter.",
+        "Profesjonell kritikk kan tilføre kontekst uten å erstatte publikums egen erfaring.",
+        "Det er mulig å endre mening etter å ha lest, men endringen bør være synlig for deg selv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Les anmeldelsen som et perspektiv og noter hva den faktisk får deg til å se annerledes.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Bytt vurdering til kritikerens; profesjonell anmeldelse er den riktige tolkningen.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_review_vs_own_view"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "suksess_etter_en_kveld",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medpublikummeren",
+      "subject": "Det er allerede en suksess",
+      "situation": [
+        "Gode reaksjoner på premieren fører raskt til store ord om hele produksjonen.",
+        "Premieren betyr mye sosialt og kommunikativt, men publikumsrespons kan endre seg gjennom spilleperioden.",
+        "Én kveld kan starte en fortelling uten å avgjøre hele løpet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kall premieren vellykket hvis den var det, men skill det fra påstander om hele produksjonens videre mottakelse.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Bruk premierejubelen som bevis på at forestillingen allerede er en varig suksess.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_opening_vs_run"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_pa_scenen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Vennen på scenen",
+      "subject": "Si at du likte det",
+      "situation": [
+        "En venn spiller i forestillingen og spør rett etterpå hva du syntes.",
+        "Nærhet gjør ærlighet, støtte og timing mer komplisert enn en vanlig publikumsdiskusjon.",
+        "Du kan være varm uten å late som du har én enkel dom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi konkret støtte og vær ærlig om at du fortsatt prøver å forstå helheten.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Gi en total positiv dom uansett; vennskap betyr at vurderingen må være ubetinget.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_relationship_vs_evaluation"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "foerste_kveld_og_fomo",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Teatervennen",
+      "subject": "Alle viktige var der",
+      "situation": [
+        "Premieren blir omtalt som kvelden man måtte være på.",
+        "Å være til stede kan være morsomt og sosialt uten at det gjør publikummeren viktigere eller mer kvalifisert enn dem som kommer senere.",
+        "Første kveld er en opplevelsesform, ikke en rang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se premieredeltakelsen som en preferanse og opplevelse, ikke som adgang til høyere publikumsstatus.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Bruk premiereinvitasjonen som bevis på at du står nærmere kunstfeltet enn vanlige publikummere.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_attendance_vs_status"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ryktet_for_start",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Jeg hørte prøvene var kaos",
+      "situation": [
+        "Et rykte om en vanskelig prøveperiode sirkulerer før forestillingen.",
+        "Slik informasjon kan farge hvordan feil, spenning og prestasjoner leses.",
+        "Publikum har sjelden hele grunnlaget for å trekke produksjonskonklusjoner fra rykter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold ryktet adskilt fra det du faktisk kan observere som publikum.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Bruk ryktet som forklaring på alt som virker ujevnt på scenen.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_rumor_vs_observation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_etter_teppet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medpublikummeren",
+      "subject": "Kan jeg poste dette nå?",
+      "situation": [
+        "Et bilde fra teppefall og en rask dom frister til umiddelbar publisering.",
+        "Deling kan være del av premiereopplevelsen, men tidlig publisering kan også flate ut nyanser eller røpe elementer andre ikke vil vite.",
+        "Publikum kan dele uten å gjøre seg til pressekanal."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del fra eget perspektiv og unngå unødvendige spoilere eller påstander om ting du ikke kjenner.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Post en kategorisk dom og alle detaljene mens stemningen er fersk.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_sharing_vs_context"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "premieren_som_arbeidsplass",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Foajeverten",
+      "subject": "For deg er det fest, for andre er det jobb",
+      "situation": [
+        "Premieren oppleves som en sosial begivenhet, men mange rundt publikum er på jobb.",
+        "Entusiasme gir ikke automatisk rett til å holde ansatte igjen, kreve ekstra tilgang eller gjøre servicerollen til nettverkskontakt.",
+        "Publikumsrollen er også en gjesterolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Respekter arbeidstid, køer og grenser selv om stemningen er festlig.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Bruk premiereenergien til å be om ekstra tilgang og tjenester; dette er jo en spesiell kveld.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_audience_vs_workplace"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samtalen_med_kunstneren",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kunstneren",
+      "subject": "Hva tror du forestillingen handler om?",
+      "situation": [
+        "Etter forestillingen oppstår en uformell samtale med en av kunstnerne.",
+        "Publikum kan ha skarpe lesninger uten at de dermed kjenner kunstnerens intensjon eller produksjonsprosess.",
+        "Gode samtaler tåler at perspektiver ikke smelter sammen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv din egen lesning som publikumsopplevelse og spør heller enn å fastslå intensjonen.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Forklar kunstneren hva verket egentlig betyr; du så jo premieren.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_audience_view_vs_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "dagen_derpa",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kritikkleseren",
+      "subject": "Du likte det mindre i går enn i dag",
+      "situation": [
+        "Noen inntrykk endrer seg når forestillingen får litt avstand.",
+        "Premierekvelden belønner raske reaksjoner, men kunstoplevelser kan også modnes eller miste kraft etterpå.",
+        "Å revidere en vurdering er ikke inkonsekvens."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Tillat at førsteinntrykket endres og noter hva som faktisk flyttet vurderingen.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Hold fast ved den første dommen; premierepoenget er at reaksjonen skal være umiddelbar.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_reaction_vs_revision"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "premieregjenger_ikke_kritiker",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Teatervennen",
+      "subject": "Du har sett mange premierer — er du kritiker nå?",
+      "situation": [
+        "Etter mange førstekvelder begynner andre å spørre spilleren om hva som kommer til å lykkes og hvem som burde få oppmerksomhet.",
+        "Erfaring som publikummer kan gi sammenligningsgrunnlag uten å gi redaksjonell, kuratorisk eller profesjonell vurderingsmyndighet.",
+        "Premieregjenger er en hobbyidentitet, ikke en kritiker- eller bransjetittel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del egne publikumsobservasjoner og vær tydelig på at de ikke er profesjonell kritikk eller bransjeautoritet.",
+          "effect": 1,
+          "tags": [
+            "audience_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du holder premiereopplevelsen åpen, konkret og tydelig som publikumspraksis uten å gjøre første kveld til fasit."
+        },
+        {
+          "id": "B",
+          "label": "Ta rollen som uformell kritiker og snakk på vegne av feltet fordi du har sett mange premierer.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "premiere_hype"
+          ],
+          "feedback": "Premiereenergien blir gjort om til rang, skråsikkerhet eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premiere_hobby_vs_authority"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
