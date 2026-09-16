@@ -1,0 +1,85 @@
+{
+  "schema": "history_go_place_production_workflow_v3",
+  "place_id": "akershus_slott",
+  "category": "historie",
+  "contracts": {
+    "place_production": "v3",
+    "place_card_collections": "v2",
+    "quiz_production": "canonical-v1"
+  },
+  "sources": {
+    "factuality_record": "data/places/production/akershus_slott.json",
+    "evidence_refs": [
+      "reports/place-production/akershus-slott-phase1-24-gate-audit-v1.json"
+    ]
+  },
+  "read_first": {
+    "schema": "history_go_place_read_first_v3",
+    "status": "PASS",
+    "recorded_at": "2026-09-16T12:49:32Z",
+    "rule_files": [
+      "docs/PLACE_PRODUCTION_CHECKLIST.md",
+      "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+      "docs/PLACE_PRODUCTION_PROFILES.md",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/places/README_place_rounds.md",
+      "data/badges/index.json",
+      "data/badges/place_production_routing_v1.json",
+      "docs/PLACE_OBJECTS_CANONICAL.md",
+      "data/brands/brand_rules_v1_1.json",
+      "data/badges/historie.json"
+    ],
+    "contracts": {
+      "place_production": "v3",
+      "place_card_collections": "v2",
+      "quiz_production": "canonical-v1"
+    },
+    "attestation": "The current canonical rule set for this Historie workflow was read in full before this V3 READ-FIRST attestation was recorded; this attestation does not change existing production decisions or factuality data."
+  },
+  "profile": {
+    "id": "major",
+    "status": "confirmed",
+    "reason": "Akershus slott has several independent source-backed historical, material, restoration and representative-use layers."
+  },
+  "source_review": {
+    "status": "complete",
+    "evidence": "Existing completed factuality record and phase1-24 quality audit."
+  },
+  "collections": {
+    "people": {
+      "status": "PASS",
+      "refs": ["reports/place-production/akershus-slott-phase1-24-gate-audit-v1.json"]
+    },
+    "objects": {
+      "status": "PASS",
+      "refs": ["reports/place-production/akershus-slott-phase1-24-gate-audit-v1.json"]
+    },
+    "brands": {
+      "status": "PASS",
+      "refs": ["reports/place-production/akershus-slott-phase1-24-gate-audit-v1.json"]
+    },
+    "productions": {
+      "status": "PASS",
+      "refs": ["reports/place-production/akershus-slott-phase1-24-gate-audit-v1.json"]
+    }
+  },
+  "modules": {
+    "stories": { "status": "PASS" },
+    "before_after": { "status": "PASS" },
+    "news": { "status": "PASS" },
+    "reading_tracks": { "status": "PASS" },
+    "language": { "status": "PASS" }
+  },
+  "blockers": [],
+  "manual_reviews": {
+    "images": {
+      "status": "PASS",
+      "evidence": "reports/place-production/akershus-slott-phase1-24-gate-audit-v1.json#manual_image_review"
+    },
+    "final_ui": {
+      "status": "PASS",
+      "evidence": "Existing completed Akershus slott production gate and live QA."
+    }
+  },
+  "state": "complete"
+}

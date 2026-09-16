@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
+import { validateWorkflowRecord } from "./place-production-v3-lib.mjs";
 
 const root = process.cwd();
 
@@ -20,6 +21,7 @@ export const STATIC_RULE_FILES = [
 ];
 
 const WORKCARD_SCHEMA = "history_go_place_workcard_v2";
+const V3_WORKCARD_SCHEMA = "history_go_place_workcard_projection_v3";
 const PREFLIGHT_SCHEMA = "history_go_place_rule_preflight_v1";
 const STATUS_ONLY_WORKCARD_KEYS = new Set(["status", "branch_status", "live_status"]);
 
@@ -95,7 +97,62 @@ export function buildRulePreflight(placeId, category) {
   };
 }
 
+function sameStringSet(left, right) {
+  if (!Array.isArray(left) || !Array.isArray(right) || left.length !== right.length) return false;
+  const a = [...left].sort();
+  const b = [...right].sort();
+  return a.every((value, index) => value === b[index]);
+}
+
+function validateV3GeneratedWorkcard(workcard, workcardPath) {
+  const errors = [];
+  const placeId = workcard?.place_id;
+  const category = workcard?.category;
+  if (!placeId) errors.push(`${workcardPath}: missing place_id`);
+  if (!category) errors.push(`${workcardPath}: missing category`);
+  if (workcard?.schema !== V3_WORKCARD_SCHEMA) errors.push(`${workcardPath}: V3 generated workcard schema must be ${V3_WORKCARD_SCHEMA}`);
+  if (workcard?.generated !== true) errors.push(`${workcardPath}: V3 workcard must declare generated: true`);
+  if (!placeId || !category) return errors;
+
+  const expectedSource = `data/places/workflow/${placeId}.json`;
+  if (workcard.source !== expectedSource) {
+    errors.push(`${workcardPath}: V3 workflow source must be ${expectedSource}`);
+    return errors;
+  }
+
+  const workflow = safeReadJson(expectedSource);
+  if (!workflow) {
+    errors.push(`${workcardPath}: V3 workflow source is missing or invalid JSON: ${expectedSource}`);
+    return errors;
+  }
+
+  const validation = validateWorkflowRecord(workflow);
+  if (!validation.ok) {
+    for (const error of validation.errors) errors.push(`${workcardPath}: V3 workflow invalid: ${error}`);
+    return errors;
+  }
+  if (workflow.place_id !== placeId) errors.push(`${workcardPath}: V3 workflow place_id does not match workcard place_id`);
+  if (workflow.category !== category) errors.push(`${workcardPath}: V3 workflow category does not match workcard category`);
+
+  let expectedFiles;
+  try {
+    expectedFiles = requiredRuleFiles(category);
+  } catch (error) {
+    errors.push(`${workcardPath}: ${error.message}`);
+    return errors;
+  }
+  if (!sameStringSet(workflow.read_first?.rule_files, expectedFiles)) {
+    errors.push(`${workcardPath}: V3 READ-FIRST rule_files must match the current canonical rule set`);
+  }
+
+  return errors;
+}
+
 export function validateWorkcard(workcard, workcardPath = "<workcard>") {
+  if (workcard?.schema === V3_WORKCARD_SCHEMA || workcard?.generated === true) {
+    return validateV3GeneratedWorkcard(workcard, workcardPath);
+  }
+
   const errors = [];
   if (!workcard || typeof workcard !== "object") return [`${workcardPath}: invalid JSON object`];
   const placeId = workcard.place_id;
@@ -192,7 +249,7 @@ function safeReadJson(relPath) {
 
 function isCanonicalPlaceFile(relPath) {
   if (!relPath.startsWith("data/places/") || !relPath.endsWith(".json")) return false;
-  if (relPath.includes("/regler/") || relPath.endsWith("places_index.json")) return false;
+  if (relPath.includes("/regler/") || relPath.includes("/workflow/") || relPath.endsWith("places_index.json")) return false;
   const current = safeReadJson(relPath);
   return Boolean(current && current.id && current.category);
 }
@@ -248,7 +305,7 @@ function check(args) {
     const place = readJson(relPath);
     const workcardPath = findWorkcardForPlace(place.id);
     if (!workcardPath) {
-      errors.push(`${relPath}: full-production change for ${place.id} requires reports/place-production/*-workcard-current.json with rule_preflight`);
+      errors.push(`${relPath}: full-production change for ${place.id} requires reports/place-production/*-workcard-current.json with READ-FIRST evidence`);
       continue;
     }
     workcardsToValidate.add(workcardPath);
