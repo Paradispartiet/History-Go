@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "sport_sondagsutover",
+  "type": "leisure",
+  "title": "Søndagsutøver — mosjon, vane og konkurranse uten profesjonell autoritet",
+  "sociological_theme": "Hvordan hobbyidrett bygger helse, mestring, vennskap og kontinuitet uten at treningsmengde, utstyr, resultater eller selvdisiplin blir sosial rang eller trener-, medisinsk- eller profesjonell utøvermyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "sport:sondagsutover"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "sondag_som_avtale",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Treningsvennen",
+      "subject": "Vi sa jo søndag klokka ti",
+      "situation": [
+        "Den faste søndagsøkten gjør det lettere å faktisk komme seg ut.",
+        "En avtale kan bygge kontinuitet og vennskap, men også bli en plikt som spiser av restitusjon og privatliv.",
+        "Mosjon fungerer best når forpliktelsen er reell uten at én uteblitt økt blir moralsk svikt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold avtalen når du kan, og si tydelig fra når kroppen eller livet krever at du står over.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Møt opp uansett og behandle det å stå over som mangel på karakter.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "routine_vs_obligation"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "personlig_rekord_uten_publikum",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den konkurranseglade",
+      "subject": "Bare litt raskere enn sist",
+      "situation": [
+        "Klokka viser at du er nær personlig rekord.",
+        "Mål kan gjøre framgang synlig og motiverende.",
+        "De kan også gjøre en vanlig tur til en prøve du må bestå hver gang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk tiden som informasjon og la dagsform og opplevelse telle sammen med tallet.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Press farten bare for å slå forrige økt, selv om kroppen sier at dette ikke er dagen.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "personal_best_vs_wellbeing"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_alltid_er_raskere",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Treningsvennen",
+      "subject": "Du trenger ikke ta meg igjen",
+      "situation": [
+        "En treningsvenn holder høyere tempo enn deg nesten hver uke.",
+        "Sammenligning kan gi retning, men den kan også gjøre vennskapet til en løpende rangering.",
+        "Forskjellig kapasitet er normalt i mosjonsidrett."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk forskjellen som praktisk informasjon og avtal et tempo som gjør økten sosial.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjør hver søndag til et skjult kappløp for å bevise at du hører til.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "comparison_vs_companionship"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utstyret_som_terskel",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nybegynneren",
+      "subject": "Må jeg virkelig kjøpe alt dette først?",
+      "situation": [
+        "Nybegynneren spør om sko, klokke, klær og annet utstyr før første økt.",
+        "Noe utstyr kan gi komfort eller sikkerhet.",
+        "Utstyrsprat kan samtidig gjøre en enkel hobby dyrere og mer ekskluderende enn nødvendig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill nødvendig utstyr fra entusiasme og dyre oppgraderinger, og gjør inngangen så enkel som mulig.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Presenter dyrt utstyr som et tegn på at noen tar sporten seriøst nok.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "equipment_vs_participation"
+      ],
+      "risk_links": [
+        "class_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vaeret_som_unskyldning",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Treningsvennen",
+      "subject": "Det regner sidelengs",
+      "situation": [
+        "Planen var en utendørsøkt, men været er dårlig.",
+        "Å trene under varierende forhold kan være en del av vanen.",
+        "Fleksibilitet er ikke det samme som svak disiplin når forholdene faktisk endrer risiko og trivsel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder forholdene konkret og bytt tid, sted eller aktivitet når det er fornuftig.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjør det til en karaktertest å gjennomføre nøyaktig planen uansett forhold.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "consistency_vs_flexibility"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "smerten_i_kneet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Klubbtreneren",
+      "subject": "Det der bør du ikke diagnostisere selv",
+      "situation": [
+        "En tilbakevendende smerte dukker opp under økten.",
+        "Erfaring kan hjelpe deg å beskrive når og hvordan det skjer.",
+        "Mosjonserfaring gir ikke medisinsk kompetanse til å fastslå årsak eller behandling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp eller juster når det trengs, noter hva som skjer og søk kvalifisert hjelp ved vedvarende eller alvorlige plager.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bestem selv hva skaden er og gi samme diagnose videre til andre mosjonister.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "body_signal_vs_medical_authority"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "radet_som_blir_trenerrolle",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nybegynneren",
+      "subject": "Kan du lage treningsplanen min?",
+      "situation": [
+        "En ny deltaker spør deg fordi du har holdt på lenge.",
+        "Du kan dele egne erfaringer og praktiske tips.",
+        "Det er noe annet enn å opptre som trener med ansvar for progresjon, belastning og prestasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del hva som har fungert for deg, men marker at du ikke overtar trenerrollen.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Sett opp et detaljert opplegg og presenter det som om erfaringen din gjør deg kvalifisert trener.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "peer_advice_vs_coaching_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gruppen_som_loper_fra",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nybegynneren",
+      "subject": "Jeg ser dere bare i ryggen",
+      "situation": [
+        "En gruppeøkt blir raskere enn den nye deltakeren klarer å følge.",
+        "Felles aktivitet kan skape tilhørighet.",
+        "Når tempo blir sosial rang, blir gruppen fort mindre åpen enn den tror."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar tempo, vent ved behov og gjør det mulig å delta uten å måtte bevise kapasitet.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "La gruppen løpe fra og forklar etterpå at den som ikke henger med får trene mer.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "group_pace_vs_inclusion"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "klokka_som_eier_turen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den konkurranseglade",
+      "subject": "Hvis det ikke er registrert, skjedde det nesten ikke",
+      "situation": [
+        "Treningsklokka og appen gir detaljer om fart, distanse og belastning.",
+        "Data kan gjøre mønstre synlige.",
+        "Når registreringen blir selve poenget, kan en enkel fritidsaktivitet miste mye av friheten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk data når de hjelper, og la enkelte turer være verdifulle uten optimalisering.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Avskriv en økt som bortkastet fordi den ikke ga gode tall eller ble lagret feil.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tracking_vs_experience"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konkurransen_pa_mandag",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den konkurranseglade",
+      "subject": "Jeg slo deg i går",
+      "situation": [
+        "En uformell konkurranse lever videre i praten etterpå.",
+        "Konkurranse kan være morsom og skjerpende.",
+        "Den blir sosialt dyr når resultatet brukes som fast rang mellom venner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La resultatet være en del av leken og behold relasjonen større enn plasseringen.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk seieren som varig bevis på hvem som er mest seriøs eller sterkest i gruppen.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "competition_vs_friendship"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_tapte_uka",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Naerpersonen",
+      "subject": "Du rakk ikke en eneste økt",
+      "situation": [
+        "En travel uke gjør at treningen faller helt bort.",
+        "En vane tåler avbrudd dårligere når den er blitt hele selvbildet.",
+        "Mosjonsidentitet kan være stabil selv om kalenderen varierer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se uka som et avbrudd og start igjen uten å gjøre det til et personlig nederlag.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Konkluder med at du har ødelagt formen og straff deg selv med et ekstremt comeback.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "missed_session_vs_identity"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "comebacket_for_fort",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Klubbtreneren",
+      "subject": "Du trenger ikke ta igjen alt på én dag",
+      "situation": [
+        "Etter en pause frister det å gå rett tilbake til gammel mengde.",
+        "Erfaringen av hva du pleide å tåle kan være misvisende etter avbrekk.",
+        "Gradvis retur er en praktisk grense mot stolthet og hastverk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bygg opp igjen stegvis og juster etter faktisk respons.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Forsøk å hente inn all tapt trening på kort tid for å bevise at pausen ikke betydde noe.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "comeback_vs_overreach"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arrangementet_som_status",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Arrangoren",
+      "subject": "Alle snakker om hvem som stilte",
+      "situation": [
+        "Et lokalt mosjonsarrangement samler folk med svært ulike mål.",
+        "Startnummer og resultatliste kan gi fellesskap og motivasjon.",
+        "De kan også bli statussymboler som gjør vanlig deltakelse til rang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk arrangementet som en ramme for egen aktivitet og fellesskap, ikke som mål på menneskeverd eller seriøsitet.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Sorter folk sosialt etter tid, distanse eller hvor mange arrangementer de har gjennomført.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "event_participation_vs_status"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sondagsutover_ikke_profesjonell",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Klubbtreneren",
+      "subject": "Mange økter gjør deg ikke til trener eller toppidrettsutøver",
+      "situation": [
+        "Du har trent lenge og kjenner rutiner, lokale løyper og egen kropp godt.",
+        "Erfaringen er reell og kan deles.",
+        "Den gir ikke automatisk trenerkompetanse, medisinsk autoritet eller profesjonell utøverstatus."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk erfaringen tydelig som hobbykunnskap og hold grensene mot trener-, behandlings- og profesjonell utøvermyndighet.",
+          "effect": 1,
+          "tags": [
+            "recreational_sport",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du beholder mosjonen som fleksibel hobbypraksis uten å gjøre prestasjon, disiplin eller erfaring til rang eller fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Presenter lang mosjonserfaring som om den i seg selv gir faglig eller profesjonell autoritet over andres trening.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "overtraining"
+          ],
+          "feedback": "Hobbyidretten blir gjort om til sosial rang, tvang eller større trener-, helse- eller prestasjonsmyndighet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hobby_vs_professional_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
