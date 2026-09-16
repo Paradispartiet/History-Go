@@ -41,7 +41,15 @@ jobs:
           place = 'npm run place:build -- "$PLACE_ID"\n'
           push = 'git push origin HEAD:repair/bankplassen-4-v3-20260916\n'
           cleanup = 'rm -f .github/workflows/tmp-bankplassen-v3-materialize.yml\n'
-          for needle, label in [(context, 'context build'), (release, 'release build'), (place, 'place build'), (push, 'old push target'), (cleanup, 'cleanup anchor')]:
+          diff_check = 'git diff --cached --check\n'
+          for needle, label in [
+              (context, 'context build'),
+              (release, 'release build'),
+              (place, 'place build'),
+              (push, 'old push target'),
+              (cleanup, 'cleanup anchor'),
+              (diff_check, 'cached diff check'),
+          ]:
               if s.count(needle) != 1:
                   raise SystemExit(f'expected exactly one {label}, found {s.count(needle)}')
           s = s.replace(context, '', 1)
@@ -49,6 +57,12 @@ jobs:
           s = s.replace(place, place + context + release, 1)
           s = s.replace(push, 'git push origin HEAD:repair/bankplassen-4-v3-clean-20260916\n', 1)
           s = s.replace(cleanup, cleanup + 'rm -f .github/workflows/tmp-bankplassen-v3-clean-materialize.yml\n', 1)
+          source_review = 'reports/place-production/norges_bank_bankplassen_4-source-review-v1.md'
+          protected_check = (
+              f'test "$(git hash-object -- {source_review})" = 8182d4f5c071a0ff2f9c3b6362fde3127455bbe5\n'
+              f'git diff --cached --check -- . ":(exclude){source_review}"\n'
+          )
+          s = s.replace(diff_check, protected_check, 1)
           p.write_text(s)
           PY
           bash -n /tmp/bankplassen-v3-materialize.sh
