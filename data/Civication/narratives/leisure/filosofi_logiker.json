@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "filosofi_logiker",
+  "type": "leisure",
+  "title": "Logiker — slutningsstruktur, premisser og gyldighet uten beslutningsmyndighet",
+  "sociological_theme": "Hvordan mennesker kan bruke logiske verktøy til å skille premiss, konklusjon, gyldighet, sannhet, kvantorer, nødvendige og tilstrekkelige vilkår, analogier, bevisbyrde, tvetydighet og moteksempler uten å gjøre logisk analyse til empirisk fasit eller formell beslutningsmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "filosofi:logiker"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "premissene_som_bar_konklusjonen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Premissvennen",
+      "subject": "Holder konklusjonen hvis ett premiss faller bort?",
+      "situation": [
+        "En påstand virker overbevisende fordi konklusjonen passer godt med det du allerede tror.",
+        "Argumentet hviler samtidig på to premisser som ikke er like godt begrunnet.",
+        "Logisk analyse må skille selve slutningsformen fra hvor godt hvert premiss faktisk støttes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Identifiser premissene eksplisitt og test om konklusjonen fortsatt følger når de vurderes hver for seg.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "Godta helheten fordi konklusjonen virker rimelig; detaljene i premissene kan tas senere.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "premise_structure_vs_intuitive_conclusion"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gyldig_men_ikke_nodvendigvis_sant",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Formvennen",
+      "subject": "Et gyldig argument kan fortsatt starte feil",
+      "situation": [
+        "En slutning er formelt gyldig: hvis premissene er sanne, må konklusjonen følge.",
+        "Det er likevel uklart om minst ett av premissene faktisk stemmer.",
+        "Gyldighet og sannhet er to ulike spørsmål og må ikke smelte sammen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bekreft den logiske gyldigheten, men vurder sannhetsverdien til premissene separat.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "Kall argumentet sant fordi formen er gyldig; ellers blir logikk unødvendig komplisert.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "validity_vs_truth"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "premisset_som_aldri_ble_sagt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Premissvennen",
+      "subject": "Hva må være sant for at dette steget skal fungere?",
+      "situation": [
+        "Argumentet hopper fra en observasjon til en sterk konklusjon uten å nevne mellomleddet.",
+        "En skjult antakelse gjør slutningen mulig, men den er aldri uttalt.",
+        "Uuttalte premisser kan være rimelige, men de må gjøres synlige før de kan vurderes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler det manglende premisset eksplisitt og spør om det faktisk kan forsvares.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "Fyll inn det mest velvillige premisset selv og gå videre uten å problematisere det.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "implicit_premise_vs_unstated_assumption"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nodvendig_eller_tilstrekkelig",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Begrepsvennen",
+      "subject": "Er dette et krav — eller er det nok i seg selv?",
+      "situation": [
+        "Noen sier at én betingelse er nødvendig for et resultat.",
+        "I neste setning behandles den som om den også er tilstrekkelig.",
+        "Forveksling av nødvendige og tilstrekkelige vilkår endrer hva argumentet faktisk hevder."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill tydelig mellom hva som må være til stede og hva som alene er nok til å utløse resultatet.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "Bruk nødvendig og tilstrekkelig omtrent som synonymer; poenget er uansett forståelig.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "necessary_vs_sufficient"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "alle_noen_og_ingen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Formvennen",
+      "subject": "Hvor mye hevder egentlig kvantoren?",
+      "situation": [
+        "En diskusjon beveger seg raskt mellom 'noen', 'de fleste' og 'alle'.",
+        "Konklusjonen blir sterkere for hver omskriving selv om evidensen ikke endres.",
+        "Kvantorer bestemmer hvor omfattende en påstand er og kan ikke byttes fritt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv påstanden med den svakeste kvantoren evidensen faktisk støtter, og test om konklusjonen fortsatt holder.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "Velg den kvantoren som gjør poenget tydeligst; små språklige forskjeller betyr lite.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "quantifier_scope_vs_overgeneralization"
+      ],
+      "risk_links": [
+        "public_attention"
+      ],
+      "links": []
+    },
+    {
+      "id": "analogien_som_bar_for_mye",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Analogivennen",
+      "subject": "Ligner tilfellene på riktig måte?",
+      "situation": [
+        "To situasjoner har flere synlige likheter og brukes som analogi.",
+        "Den egenskapen som er avgjørende for konklusjonen kan likevel være ulik.",
+        "En god analogi krever relevante likheter, ikke bare mange likheter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Identifiser hvilken likhet slutningen faktisk trenger, og test om akkurat den finnes i begge tilfeller.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "Tell hvor mange likheter tilfellene har; mange nok likheter gjør analogien sterk.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relevant_similarity_vs_surface_analogy"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_muligheter_som_ble_hele_verden",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Formvennen",
+      "subject": "Er dette virkelig de eneste alternativene?",
+      "situation": [
+        "Et valg presenteres som enten A eller B.",
+        "Flere mellomformer eller tredje alternativer er ikke undersøkt.",
+        "Et falskt dilemma kan gjøre en konklusjon sterkere ved å skjule reelle muligheter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Test om alternativene er uttømmende før du bruker enten-eller-strukturen i konklusjonen.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "Hold deg til A eller B; flere alternativer gjør bare analysen mindre beslutningsdyktig.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "false_dilemma_vs_open_alternatives"
+      ],
+      "risk_links": [
+        "decision_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konklusjonen_som_stod_i_premisset",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Premissvennen",
+      "subject": "Beviser argumentet noe — eller gjentar det bare?",
+      "situation": [
+        "Et argument virker ryddig fordi konklusjonen allerede ligger innebygd i et sentralt premiss.",
+        "Premisset begrunnes igjen med en formulering som forutsetter konklusjonen.",
+        "Sirkulær begrunnelse kan være grammatisk elegant uten å gi uavhengig støtte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn hvilket ledd som skal gi uavhengig støtte og sjekk om det faktisk gjør mer enn å gjenta konklusjonen.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "Godta argumentet hvis premiss og konklusjon uttrykker samme kjerneidé konsekvent.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "independent_support_vs_circularity"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_som_ma_bevise_hva",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Debattvennen",
+      "subject": "Hvem har bevisbyrden her?",
+      "situation": [
+        "En sterk påstand fremsettes og møtes med skepsis.",
+        "Påstandshaveren svarer at kritikeren må bevise at påstanden er feil.",
+        "Bevisbyrde følger normalt styrken og typen påstand, ikke bare hvem som snakker sist."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Plasser bevisbyrden hos den som fremmer den positive eller ekstraordinære påstanden, og avklar hva som ville telle som støtte.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "Krev at skeptikeren motbeviser påstanden; ellers har den foreløpig bestått testen.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "burden_of_proof_vs_reversal"
+      ],
+      "risk_links": [
+        "public_attention"
+      ],
+      "links": []
+    },
+    {
+      "id": "ordet_som_skiftet_betydning",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Begrepsvennen",
+      "subject": "Brukes samme ord på samme måte hele veien?",
+      "situation": [
+        "Et nøkkelord dukker opp i både premiss og konklusjon.",
+        "Betydningen glir fra én bruk til en annen uten at skiftet markeres.",
+        "Tvetydighet kan få en slutning til å se gyldig ut selv om de to leddene snakker om forskjellige ting."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definer nøkkelordet i hvert ledd og test om argumentet fortsatt virker når betydningen holdes stabil.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "Behold ordet udefinert; naturlig språk tåler at betydningen tilpasses konteksten.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "equivocation_vs_stable_meaning"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ett_moteksempel_var_nok",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Formvennen",
+      "subject": "Hva skjer hvis vi finner ett tilfelle som bryter regelen?",
+      "situation": [
+        "En universell påstand sier at noe gjelder i alle tilfeller.",
+        "Et konkret eksempel ser ut til å bryte mønsteret.",
+        "For universelle påstander kan ett ekte moteksempel være nok til å falsifisere akkurat den formuleringen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk om moteksemplet faktisk faller innenfor påstandens område; hvis ja, revider den universelle formuleringen.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "Behold regelen hvis den virker riktig i de fleste tilfeller; unntak trenger ikke påvirke logikken.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "counterexample_vs_universal_claim"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "formalismen_som_mistet_konteksten",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Formvennen",
+      "subject": "Hva forsvinner når vi formaliserer?",
+      "situation": [
+        "Et komplekst utsagn oversettes til symbolsk eller skjematisk form.",
+        "Strukturen blir klarere, men flere kontekstuelle nyanser forsvinner.",
+        "Formalisering er nyttig når man husker hvilke deler av meningen som er abstrahert bort."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk formalismen til å teste strukturen og gå deretter tilbake til originalspråket for å kontrollere hva modellen utelot.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "La den formelle modellen erstatte originalteksten; det som ikke kan formaliseres er ikke relevant for argumentet.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "formal_structure_vs_context_loss"
+      ],
+      "risk_links": [
+        "professional_culture"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_som_var_om_regelen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Debattvennen",
+      "subject": "Er vi uenige om fakta — eller om slutningsregelen?",
+      "situation": [
+        "To personer deler mange av de samme observasjonene, men lander på ulike konklusjoner.",
+        "Uenigheten skyldes delvis at de bruker forskjellige regler for hva som teller som god slutning.",
+        "Å lokalisere uenigheten er viktigere enn å anta at én side bare mangler fakta."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom uenighet om premisser, begreper og inferensregler før du vurderer hvilket ledd som trenger mer begrunnelse.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "Samle flere fakta først; logiske uenigheter forsvinner vanligvis når datamengden blir stor nok.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "inference_rule_vs_factual_disagreement"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "logiker_ikke_beslutningstaker",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "God logikk gir ikke automatisk beslutningsmandat",
+      "situation": [
+        "En gruppe ber deg avgjøre hva de bør gjøre fordi du har analysert argumentene grundig.",
+        "Du kan påvise ugyldige slutninger, skjulte premisser og uklare begreper.",
+        "Det følger ikke av dette at du eier de empiriske, juridiske, medisinske, politiske eller institusjonelle beslutningene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Presenter hva analysen faktisk viser, hvilke premisser som fortsatt må avklares, og hvem som har formelt ansvar for beslutningen.",
+          "effect": 1,
+          "tags": [
+            "logical_analysis",
+            "argument_structure",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør slutningsstrukturen tydeligere uten å late som logisk analyse alene avgjør sannhet, fakta eller mandat."
+        },
+        {
+          "id": "B",
+          "label": "Ta avgjørelsen når argumentstrukturen er klar; logisk ryddighet gir tilstrekkelig grunnlag for mandat.",
+          "effect": -1,
+          "tags": [
+            "logical_shortcut",
+            "scope_error",
+            "authority_overclaim"
+          ],
+          "feedback": "Du gjør én logisk forenkling til hele vurderingen og skjuler premisser, rekkevidde eller ansvar som fortsatt må undersøkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "logical_analysis_vs_formal_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
