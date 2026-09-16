@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "politikk_organisasjonsmenneske",
+  "type": "leisure",
+  "title": "Organisasjonsmenneske — struktur, medlemskap og rollegrenser",
+  "sociological_theme": "Hvordan frivillige organisasjoner bæres av dokumenter, mennesker og taus praksis, og hvordan vedtekter, medlemskap, økonomi, delegasjon, samarbeid og intern uenighet kan holdes tydelig adskilt fra valgt eller profesjonell myndighet.",
+  "applies_when": {
+    "any_tags": [
+      "politikk:organisasjonsmenneske"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "vedtektene_som_huskes_forskjellig",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Styresekretæren",
+      "subject": "Det står ikke helt slik i vedtektene",
+      "situation": [
+        "To erfarne deltakere husker den samme regelen forskjellig når en oppgave skal fordeles.",
+        "Uformell organisasjonshukommelse er nyttig, men den kan bli styrende selv når teksten sier noe annet.",
+        "Når praksis og dokumentasjon glir fra hverandre, blir det vanskelig å vite hva andre kan etterprøve."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn den gjeldende teksten, skill vane fra regel og dokumenter hvilken praksis som faktisk brukes videre.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den versjonen de mest erfarne husker fordi det sparer tid.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_rule_vs_memory"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "medlemslista_faar_et_ekstra_felt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medlemsansvarlig",
+      "subject": "Skal vi bare legge inn dette også?",
+      "situation": [
+        "En intern medlemsliste foreslås utvidet med opplysninger som kan være praktiske i noen aktiviteter.",
+        "Flere opplysninger kan gjøre koordinering enklere, men samlingen blir også mer omfattende enn før.",
+        "Organisasjonsbehov bør beskrives konkret før nye personopplysninger blir standard."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hvilket konkret formål feltet har, hvem som trenger det og om organisasjonen kan klare seg uten.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Legg inn feltet for alle nå; det kan sikkert bli nyttig senere.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_data_vs_scope"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arbeidsgruppen_som_ble_fast",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Prosjektansvarlig",
+      "subject": "Vi har jo gjort dette i et halvt år allerede",
+      "situation": [
+        "En midlertidig arbeidsgruppe fortsetter å møtes og fordele oppgaver lenge etter at det opprinnelige prosjektet ble avsluttet.",
+        "Stabilitet kan være verdifull, men en midlertidig struktur kan få varig innflytelse uten at ansvarslinjene oppdateres.",
+        "Når arbeidsformer varer lenger enn mandatet, bør rollen beskrives på nytt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar om gruppen skal avsluttes, få et nytt avgrenset mandat eller legges inn i den ordinære strukturen.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "La gruppen fortsette som før fordi den fungerer og alle kjenner ordningen.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_temporary_vs_permanent"
+      ],
+      "risk_links": [
+        "loyalty_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arsmoteunderlaget_som_kom_sent",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nytt medlem",
+      "subject": "Når skulle vi egentlig lese dette?",
+      "situation": [
+        "Viktige dokumenter til et større medlemsmøte blir tilgjengelige så sent at flere bare rekker å skumme dem.",
+        "Formell tilgang er ikke alltid det samme som praktisk mulighet til å forstå og vurdere innholdet.",
+        "Forberedelsestid påvirker hvem som kan delta med mer enn umiddelbare reaksjoner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Synliggjør tidspunktet, prioriter hva som må forstås før behandling og avgrens saker som ikke er godt nok forberedt.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Behandle alt fullt ut fordi dokumentene tross alt ligger tilgjengelig før møtestart.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_prep_vs_access"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utlegget_uten_spor",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kassereren",
+      "subject": "Det er bare et lite beløp",
+      "situation": [
+        "En liten utgift er allerede lagt ut privat, men kvittering og godkjenning er uklare.",
+        "Små beløp kan virke ubetydelige, men gjentatte unntak gjør økonomiske rutiner vanskelige å følge.",
+        "En enkel kontrollspor er like mye læring som kontroll."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn dokumentasjonen, avklar hvem som kunne godkjenne utgiften og registrer den på samme måte som andre utlegg.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Før beløpet uten videre spørsmål fordi summen er liten og personen er kjent.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_money_vs_trace"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_som_alltid_tar_siste_vakt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Erfaren frivillig",
+      "subject": "Jeg kan ta den også",
+      "situation": [
+        "Den samme frivillige tar igjen en oppgave ingen andre har meldt seg til.",
+        "Pålitelighet holder mye organisasjonsarbeid i gang, men kan gjøre overbelastning usynlig.",
+        "Når én persons fleksibilitet blir systemets reservekapasitet, bygges sårbarhet inn i driften."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør belastningen synlig, fordel eller reduser oppgaven og avklar hva som faktisk kan stå ugjort.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "La den erfarne ta oppgaven igjen fordi det er den sikreste måten å få den gjort.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_capacity_vs_dependence"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "skjermbildet_fra_internchatten",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kommunikasjonsansvarlig",
+      "subject": "Dette er allerede sendt videre",
+      "situation": [
+        "Et skjermbilde fra en intern diskusjon har blitt delt utenfor gruppen og mangler deler av konteksten.",
+        "Interne rom er ikke nødvendigvis hemmelige, men løsrevne utdrag kan endre hvordan samtalen forstås.",
+        "Organisasjoner trenger språk for hva som er internt arbeidsmateriale, hva som kan siteres og hvem som uttaler seg på vegne av hvem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bevar hele konteksten, avklar hva som faktisk kan deles og skill private kommentarer fra organisasjonens formelle avsender.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Svar med et nytt skjermbilde som viser at den andre siden også skrev noe problematisk.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_internal_vs_public"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samarbeidet_som_ble_storre",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Ekstern samarbeidspartner",
+      "subject": "Vi tenkte at dette også kunne ligge hos dere",
+      "situation": [
+        "Et avgrenset samarbeid utvides gradvis med nye oppgaver fordi partene allerede jobber godt sammen.",
+        "Samarbeid kan gi kapasitet, men også uklare forventninger om hvem som eier arbeid, data og beslutninger.",
+        "Et godt forhold erstatter ikke en tydelig avgrensning av ansvar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv den nye oppgaven separat og avklar ansvar, ressursbruk og hvem som kan beslutte før den tas inn.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Ta oppgaven inn uformelt nå og finn ut av ansvaret senere.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_cooperation_vs_scope"
+      ],
+      "risk_links": [
+        "loyalty_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_gamle_praksisen_ingen_finner",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Styresekretæren",
+      "subject": "Vi pleier å gjøre det slik",
+      "situation": [
+        "En rutine brukes hvert år, men ingen finner beslutningen eller dokumentet som forklarer hvorfor den finnes.",
+        "Praksiser kan være fornuftige selv om dokumentasjonen er svak, men da er begrunnelsen vanskelig å kontrollere eller forbedre.",
+        "Organisatorisk hukommelse blir mer robust når taus kunnskap kan gjøres synlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hva praksisen skal løse, let etter tidligere grunnlag og vedta eller endre den på en sporbar måte.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett som før og skriv ikke mer om det; alle som trenger å vite det kjenner rutinen.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_practice_vs_record"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_som_blir_personsak",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nytt medlem",
+      "subject": "Nå handler alt om hvem som sa det",
+      "situation": [
+        "En uenighet om arbeidsmåte har gradvis blitt omtalt som en konflikt mellom to personer.",
+        "Personlige relasjoner påvirker samarbeid, men kan også skjule hvilket konkret spørsmål organisasjonen faktisk må løse.",
+        "Når sak og person blandes, blir både kritikk og reparasjon mindre presis."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill de konkrete beslutningspunktene fra relasjonen og gi partene en tydelig prosess for begge deler.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Be gruppen velge hvem de stoler mest på slik at uenigheten kan avsluttes raskt.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_issue_vs_person"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rollefordelingen_for_neste_periode",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Erfaren frivillig",
+      "subject": "Vi vet jo omtrent hvem som bør gjøre hva",
+      "situation": [
+        "Før neste periode begynner, diskuterer en liten krets uformelt hvem som passer til ulike interne roller.",
+        "Erfaring kan gi nyttig kunnskap om kapasitet, men uformelle forventninger kan gjøre åpne prosesser mindre reelle.",
+        "Forslag bør skilles fra beslutningsmyndighet og fra press på personer om å stille."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør kriterier og behov synlige, spør berørte personer før antakelser fester seg og la den formelle prosessen stå åpen.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Fordel rollene uformelt først; den formelle behandlingen kan bekrefte det senere.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_informal_vs_formal_roles"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forslaget_som_kom_rett_for_fr1800",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medlemsansvarlig",
+      "subject": "Fristen går om ti minutter",
+      "situation": [
+        "Et omfattende medlemsforslag kommer like før den publiserte interne fristen.",
+        "En frist skaper forutsigbarhet, men organisasjonen må også vite hva fristen faktisk regulerer og hvilke unntak som finnes.",
+        "Ad hoc-unntak kan være rimelige i én situasjon og bli uoversiktlige når de mangler begrunnelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hva fristen gjelder, registrer tidspunktet og bruk samme synlige regel for dette og senere forslag.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Ta forslaget inn uten å nevne fristen fordi innholdet virker viktig.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_deadline_vs_consistency"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prosjektet_som_rapporterer_til_seg_selv",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Prosjektansvarlig",
+      "subject": "Vi kan godkjenne rapporten i gruppa",
+      "situation": [
+        "En prosjektgruppe ønsker å godkjenne sin egen sluttrapport uten separat gjennomgang fra den delen av organisasjonen som ga oppdraget.",
+        "Faglig eierskap til arbeidet er viktig, men egenrapportering og endelig godkjenning er ulike funksjoner.",
+        "En enkel rollefordeling kan gjøre både ansvar og læring tydeligere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La gruppen skrive og forklare rapporten, men la godkjenning eller mottak ligge hos den rollen som faktisk ga mandatet.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "La prosjektgruppen godkjenne alt selv fordi den kjenner detaljene best.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_delivery_vs_oversight"
+      ],
+      "risk_links": [
+        "loyalty_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_organisasjonsmenneske",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Erfaren frivillig",
+      "subject": "Du kjenner jo hele maskineriet nå",
+      "situation": [
+        "Etter lang tid kjenner spilleren personer, rutiner, dokumenter, snarveier og tilbakevendende konflikter godt.",
+        "Dyp organisasjonserfaring kan gi stor praktisk innflytelse uten å være det samme som valgt verv, ansettelse eller generell beslutningsmyndighet.",
+        "Rollen er mest presis når erfaringskunnskap brukes til å gjøre systemet mer forståelig for andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk erfaringen til å gjøre ansvar, dokumentasjon og innganger tydeligere uten å overta formell myndighet.",
+          "effect": 1,
+          "tags": [
+            "organization_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar, prosess og rollegrenser tydeligere uten å ta stilling til organisasjonens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "La lang fartstid i seg selv begrunne at du kan avgjøre hva organisasjonen bør gjøre.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Vane, fart eller personlig tillit får erstatte en synlig organisasjonsgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "organisasjonsmenneske_practice_vs_authority"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
