@@ -19,7 +19,7 @@ test('Subkultur-runtime materialiserer hele canonicalkjeden', () => {
     rejectedCaseCount: 8,
     pathwayCount: 8,
     assessmentQuestionCount: 40,
-    knowledgeUnitCount: 107,
+    knowledgeUnitCount: 135,
     legacyQuestionAuditCount: 83,
     activeLegacyQuestionCount: 0
   });

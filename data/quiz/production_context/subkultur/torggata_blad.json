@@ -1,0 +1,522 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "manual_source_first_v1",
+  "categoryId": "subkultur",
+  "targetId": "torggata_blad",
+  "profile": "normal_4x7",
+  "manifest": "data/fag/fag_manifest.json",
+  "resolved_files": {
+    "pensum": "data/fag/subkultur/subkulturpensum_canonical_v4_5.json",
+    "emner": "data/fag/subkultur/emner_subkultur_canonical_v4_5.json",
+    "fagkart": "data/fag/subkultur/fagkart_subkultur_canonical_v4_5.json",
+    "methods": "data/fag/subkultur/methods_subkultur_canonical_v4_5.json",
+    "supersetQuizMal": "data/fag/subkultur/supersetQUIZMAL_subkultur.json",
+    "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+    "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": [
+    "data/quiz/production_briefs/subkultur/torggata_blad.json"
+  ],
+  "planned_quiz_file": "data/quiz/subkultur/torggata_blad_sets.json",
+  "source_registry": {
+    "tb_current": {
+      "url": "https://torggatablad.no/bror-en-helt-unik-skrifttype/",
+      "type": "community_primary",
+      "label": "Torggata Blad – historikk og 2026-status"
+    },
+    "tb_2007": {
+      "url": "https://torggatablad.no/wp-content/uploads/2020/04/torggatablad_nr02_07_web.pdf",
+      "type": "primary_document",
+      "label": "Torggata Blad nr. 2, 2007"
+    },
+    "tb_2008": {
+      "url": "https://www.torggatablad.no/torggatablad_nr01_08_web.pdf",
+      "type": "primary_document",
+      "label": "Torggata Blad nr. 1, 2008"
+    },
+    "brady": {
+      "url": "https://bradyogvadstein.no/",
+      "type": "community_primary",
+      "label": "Brady & Vadstein"
+    },
+    "oslo": {
+      "url": "https://www.oslo.kommune.no/get-file/1126231/0de193bea6cc858d37b88441beb1abedcae567f4dc4a8c2f33a4085ce7794457",
+      "type": "official",
+      "label": "Oslo kommune, mediestøtte 2021"
+    },
+    "osloopen": {
+      "url": "https://osloopen.no/nb/kunstnere/6433",
+      "type": "curated_external",
+      "label": "Oslo Open"
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/subkultur/torggata_blad_sets.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Ingen manifestlastet Torggata Blad-stedquiz fantes; produser normal 4×7."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "retained_rule": "Ingen eldre manifestlastet quiz å migrere."
+    }
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire kildebårne sett dekker oppstart, medieendring, uavhengig offentlighet og sluttlig metode/kildekritikk uten filler."
+  },
+  "held_back_candidates": [
+    "Udokumenterte interne konflikter.",
+    "Påstander om at Hausmannsgate 19 fortsatt er redaksjonsadresse.",
+    "Påstander om at alle bidragsytere deler samme identitet eller politiske syn."
+  ],
+  "considered_curriculum": {
+    "emne_ids": [
+      "em_sub_diy_praksis",
+      "em_sub_uavhengige_medier",
+      "em_sub_fanziner_plakater",
+      "em_sub_dokumentasjon_arkiv"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [
+      "met_sub_mediearkeologisk_analyse"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "medier_objekter_praksiser",
+      "fellesskap_scener_egenorganisering"
+    ],
+    "emne_ids": [
+      "em_sub_diy_praksis",
+      "em_sub_uavhengige_medier",
+      "em_sub_fanziner_plakater",
+      "em_sub_dokumentasjon_arkiv"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [
+      "met_sub_mediearkeologisk_analyse"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_torggata_blad_quiz_1",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hvem grunnla Torggata Blad? — Bror Wyller",
+      "source_ids": [
+        "tb_current"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_uavhengige_medier"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_2",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "I hvilket år ble Torggata Blad grunnlagt? — 2007",
+      "source_ids": [
+        "tb_current"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_uavhengige_medier"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_3",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Når kom den første papirutgaven ifølge Brady & Vadstein? — Oktober 2007",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_fanziner_plakater"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_4",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hva var publikasjonen i starten? — Et gratis lokalblad for Torggata og områdene rundt",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_fanziner_plakater"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_5",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hvilken adresse dokumenterer nr. 2 fra 2007 som redaksjonssted? — Hausmannsgate 19",
+      "source_ids": [
+        "tb_2007"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_dokumentasjon_arkiv"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_6",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hvilken etasje oppga bladet for redaksjonen i 2007? — 6. etasje",
+      "source_ids": [
+        "tb_2007"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_dokumentasjon_arkiv"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_7",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hvem utgjorde den tidlige redaksjonelle kjernen? — Wyller, Brady og Vadstein",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_diy_praksis"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_8",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Når ble nettversjonen opprettet? — 2012",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_uavhengige_medier"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_9",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hva skjedde med papirutgivelsen fram mot 2012? — Den kom sporadisk",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_fanziner_plakater"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hva skjedde i 2018 ifølge bladets historikk? — Papirutgivelsen ble tatt opp igjen",
+      "source_ids": [
+        "tb_current"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_fanziner_plakater"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Omtrent hvor mange skiftende bidragsytere beskriver Brady & Vadstein? — 30–40",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_diy_praksis"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hvem beskrives som hovedpådrivere i dag? — Brady og Vadstein",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_diy_praksis"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hvordan beskrives hver papirutgave? — Som et verk",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_uavhengige_medier"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hvordan beskrives den samlede virksomheten? — Som et relasjonelt estetisk prosjekt",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_uavhengige_medier"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hvordan beskrev Oslo kommune Torggata Blad i 2021? — Som et uavhengig blad og nettmagasin",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_uavhengige_medier"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hvem oppga Oslo kommune som utgiver? — Brady & Vadstein AS",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_uavhengige_medier"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hvor ligger dagens Brady & Vadstein-base? — På Sagene",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_dokumentasjon_arkiv"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hva betyr det for History Go-markøren? — Den representerer et historisk redaksjonssted",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_dokumentasjon_arkiv"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hva dokumenterer Oslo Open fra 2024? — En Torggata Blad-installasjon i Nürnberg",
+      "source_ids": [
+        "osloopen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_uavhengige_medier"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hva viser kombinasjonen papir og nett best? — At flere medieformer kan sameksistere",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_fanziner_plakater"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hvorfor er Torggata Blad relevant som subkultursted? — Konkrete publiseringspraksiser bygger en alternativ offentlighet",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_diy_praksis"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "method",
+      "statement": "Hva gjør mediearkeologisk analyse her? — Sammenligner papir, nett og materialitet over tid",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_dokumentasjon_arkiv"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "method",
+      "statement": "Hva kan dagens eiendomsfoto dokumentere sikkert? — Hvordan adresseankeret ser ut i dag",
+      "source_ids": [
+        "tb_2007"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_dokumentasjon_arkiv"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "method",
+      "statement": "Hvorfor hører et fysisk eksemplar til Objects og publikasjonen til Productions? — Objektet er en konkret ting, publikasjonen er et verk og en praksis",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_fanziner_plakater"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "method",
+      "statement": "Hvorfor er den historiske mastheaden sentral for adressen? — Den dokumenterer redaksjonens egen oppgitte adresse i samtiden",
+      "source_ids": [
+        "tb_2008"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_dokumentasjon_arkiv"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "method",
+      "statement": "Hvorfor brukes også Oslo kommune som kilde? — For å balansere egenpresentasjon med en uavhengig institusjonell beskrivelse",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_uavhengige_medier"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "method",
+      "statement": "Hva betyr statusen «relocated»? — Publikasjonen lever videre, men det historiske redaksjonsstedet er ikke dagens base",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_dokumentasjon_arkiv"
+    },
+    {
+      "claim_id": "claim_torggata_blad_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "method",
+      "statement": "Hvilken slutning skal vi unngå om bidragsyterne? — At alle deler samme identitet eller syn fordi de publiserer i samme blad",
+      "source_ids": [
+        "brady"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_diy_praksis"
+    }
+  ],
+  "story_units": [
+    {
+      "id": "tb_opening",
+      "phase": "opening",
+      "summary": "Starten i Hausmannsgate"
+    },
+    {
+      "id": "tb_middle",
+      "phase": "middle",
+      "summary": "Papir blir nett – og papir igjen"
+    },
+    {
+      "id": "tb_bridge",
+      "phase": "bridge",
+      "summary": "Uavhengig offentlighet"
+    },
+    {
+      "id": "tb_final",
+      "phase": "final",
+      "summary": "Mediearkeologi og kildekritikk"
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "torggata_blad_set_1",
+      "order": 1,
+      "phase": "opening",
+      "title": "Starten i Hausmannsgate",
+      "question_count": 7
+    },
+    {
+      "set_id": "torggata_blad_set_2",
+      "order": 2,
+      "phase": "middle",
+      "title": "Papir blir nett – og papir igjen",
+      "question_count": 7
+    },
+    {
+      "set_id": "torggata_blad_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "title": "Uavhengig offentlighet",
+      "question_count": 7
+    },
+    {
+      "set_id": "torggata_blad_set_4",
+      "order": 4,
+      "phase": "final",
+      "title": "Mediearkeologi og kildekritikk",
+      "question_count": 7
+    }
+  ],
+  "question_balance": {
+    "fact": 14,
+    "context": 7,
+    "method": 7,
+    "total": 28,
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  }
+}
