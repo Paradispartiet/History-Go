@@ -1,0 +1,60 @@
+name: TEMP Bankplassen v3 materialize v5
+
+on:
+  push:
+    branches:
+      - repair/bankplassen-4-v3-20260916
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install repository dependencies
+        run: npm ci
+      - name: Run locked Bankplassen materializer with final dependency ordering
+        shell: bash
+        run: |
+          set -euo pipefail
+          src=.github/workflows/tmp-bankplassen-v3-materialize.yml
+          awk 'f{sub(/^          /,""); print} /^        run: \|$/{f=1}' "$src" > /tmp/bankplassen-v3-materialize.sh
+          python <<'PY'
+          from pathlib import Path
+          p = Path('/tmp/bankplassen-v3-materialize.sh')
+          s = p.read_text()
+          context = 'node scripts/build-quiz-production-context.mjs --category naeringsliv --target "$PLACE_ID" --output data/quiz/production_context/naeringsliv/norges_bank_bankplassen_4.json\n'
+          release = 'node scripts/build-fagverk-release-manifest.mjs\n'
+          place = 'npm run place:build -- "$PLACE_ID"\n'
+          if s.count(context) != 1:
+              raise SystemExit(f'expected exactly one initial context build, found {s.count(context)}')
+          if s.count(release) != 1:
+              raise SystemExit(f'expected exactly one non-check release build, found {s.count(release)}')
+          if s.count(place) != 1:
+              raise SystemExit(f'expected exactly one place build, found {s.count(place)}')
+          s = s.replace(context, '', 1)
+          s = s.replace(release, '', 1)
+          s = s.replace(place, place + context + release, 1)
+          cleanup = 'rm -f .github/workflows/tmp-bankplassen-v3-materialize.yml\n'
+          if cleanup not in s:
+              raise SystemExit('materializer cleanup anchor missing')
+          s = s.replace(
+              cleanup,
+              cleanup
+              + 'rm -f .github/workflows/tmp-bankplassen-v3-materialize-v5.yml\n'
+              + 'rm -f .github/workflows/tmp-bankplassen-v3-diagnose-v2.yml\n'
+              + 'rm -f .github/workflows/tmp-bankplassen-fagverk-order-diagnose.yml\n',
+              1,
+          )
+          p.write_text(s)
+          PY
+          bash -n /tmp/bankplassen-v3-materialize.sh
+          bash /tmp/bankplassen-v3-materialize.sh
