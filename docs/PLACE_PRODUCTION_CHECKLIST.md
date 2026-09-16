@@ -161,7 +161,7 @@ For nye og fullproduserte ordinære Places gjelder:
 
 - `place_card_profile.collection_ids` inneholder bare samlinger som har `PASS` for dette stedet;
 - ordinære fullprofiler vurderer People, Objects, Brands og kategoriens uttrykk, men materialiserer bare de samlingene stedet faktisk bærer;
-- det finnes ikke lenger et universelt krav om nøyaktig fire ordinære samlinger; normalt vil et sted ha 1–4 kvalifiserte samlinger, og også null er gyldig dersom dokumentert kandidataudit viser at ingen av de fire samlingstypene hører naturlig til stedet;
+- det finnes ikke lenger et universelt krav om nøyaktig fire ordinære samlinger; et ordinært PlaceCard bruker 1–4 kvalifiserte samlinger etter dokumentert kandidataudit. Dersom ingen av de fire kandidattypene kvalifiserer, kan stedet ikke materialisere en ordinær `place_card_profile_v2` og må vurderes mot riktig canonical profil/scope fremfor å fylles kunstig;
 - Nature bruker Kart, Flora, Fauna og Turmål når den canonicale naturkontrakten krever dette; andre canonicale spesialprofiler følger sine egne eksplisitte faste sett;
 - `related` er et relasjons-/navigasjonssystem og kan aldri brukes som PlaceCard-samling eller reserve;
 - kategoriuttrykket følger matrisen i `data/places/README_place_rounds.md`; Structures utenfor By krever et sentralt, substansielt bygnings-/anleggsmiljø og uttrykkelig begrunnelse;
@@ -175,7 +175,7 @@ For nye og fullproduserte ordinære Places gjelder:
 - PlaceCard-layouten tilpasser seg antall valgte samlinger; 1, 2, 3 og 4 samlinger skal alle kunne presenteres som balanserte, tilsiktede komposisjoner uten tomme reservefelter;
 - People/Flora/Fauna beholder sirkelform; øvrige samlinger er avrundede rektangler;
 - `frontImage` er den stående hovedflaten og er **alltid** en faktisk stående fil/variant (`height > width`) når feltet finnes, aldri bare en liggende fil beskåret eller maskert av CSS; dette gjelder også legacy-steder når bildefeltet berøres;
-- hvert nytt eller fullprodusert ordinært Place skal ha et dedikert QuizCard som PlaceCard-bakside og kunne flippe fra `frontImage` til quizkortet gjennom den canonicale PlaceCard-runtimeflyten;
+- hvert nytt eller fullproduserte ordinært Place skal ha et dedikert QuizCard som PlaceCard-bakside og kunne flippe fra `frontImage` til quizkortet gjennom den canonicale PlaceCard-runtimeflyten;
 - før nytt QuizCard produseres skal `bilder/QuizCards/**`, runtime-mapping/resolver og tidligere stedsspesifikke quizkort auditeres, slik at eksisterende quizkort bevares og ikke dobbeltproduseres;
 - `bilder/QuizCards/**` er kun QuizCard/flip-support og skal aldri brukes som `image` eller `frontImage`; quizkortet skal være en separat visuell flate, og det utgåtte `cardImage`-feltet skal aldri brukes som alias eller reserve;
 - manglende QuizCard, manglende runtime-binding eller en flip som ikke virker med faktisk input er BLOCKED for ordinær fullproduksjon;
@@ -380,7 +380,7 @@ Objects følger kategoriens hovedfunksjon. Kunst kan for eksempel ha både Objec
 
 Brands skal alltid kandidatauditeres når Badge-, underbadge- eller source-grunnlaget peker mot en mulig profesjonell, institusjonell, venue-, organisasjons-, legacy-, produkt- eller skiltidentitet med selvstendig gjenkjennelse og direkte stedstilknytning. Ingen underbadge kan godkjenne Brand alene.
 
-Null treff i eksisterende register betyr «undersøk kildene», ikke automatisk N/A. Etter et faktisk dokumentert kandidatsøk gjelder:
+Null treff i eksisterende register betyr «må researches», ikke automatisk N/A. Et faktisk dokumentert kandidatsøk mot stedskildene skal gjennomføres før Brand kan avsluttes som `BEGRUNNET N/A`. Etter dette gjelder:
 
 - kvalifisert og ferdig Brand → `PASS`;
 - ingen kandidat består Brand-definisjonen for stedet → `BEGRUNNET N/A`;
