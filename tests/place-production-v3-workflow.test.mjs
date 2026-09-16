@@ -6,16 +6,26 @@ import {
   deriveWorkflowState,
 } from '../scripts/place-production-v3-lib.mjs';
 
+const contracts = {
+  place_production: 'v3',
+  place_card_collections: 'v2',
+  quiz_production: 'canonical-v1',
+};
+
 const complete = {
   schema: 'history_go_place_production_workflow_v3',
   place_id: 'example_place',
   category: 'historie',
-  contracts: {
-    place_production: 'v3',
-    place_card_collections: 'v2',
-    quiz_production: 'canonical-v1',
-  },
+  contracts,
   sources: { factuality_record: 'data/places/production/example_place.json' },
+  read_first: {
+    schema: 'history_go_place_read_first_v3',
+    status: 'PASS',
+    recorded_at: '2026-09-16T12:30:00Z',
+    rule_files: ['fixture-rule.md'],
+    contracts,
+    attestation: 'Fixture rules were read before production decisions were recorded.',
+  },
   profile: { id: 'standard', status: 'confirmed', reason: 'Source-backed.' },
   source_review: { status: 'complete' },
   collections: {
@@ -58,6 +68,12 @@ test('rich is not a production profile', () => {
 test('BEGRUNNET_NA and BLOCKED require reasons', () => {
   const record = structuredClone(complete);
   record.collections.objects = { status: 'BEGRUNNET_NA' };
+  assert.equal(validateWorkflowRecord(record).ok, false);
+});
+
+test('READ-FIRST contracts must match workflow contracts', () => {
+  const record = structuredClone(complete);
+  record.read_first.contracts.place_card_collections = 'v1';
   assert.equal(validateWorkflowRecord(record).ok, false);
 });
 
