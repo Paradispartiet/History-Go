@@ -10,6 +10,16 @@ import {
 } from '../scripts/place-production-v3-lib.mjs';
 
 const PLACE_ID = 'norges_bank_bankplassen_4';
+const TEST_PATH = 'tests/norges-bank-bankplassen-4-place-production-v3.test.mjs';
+
+test('Norges Bank Bankplassen 4 is registered in Place Production v3 routing', () => {
+  const routing = JSON.parse(fs.readFileSync('.github/ci/place-production-routing-v2.json', 'utf8'));
+  const entry = routing.places.find((candidate) => candidate.id === PLACE_ID);
+  assert.ok(entry, `${PLACE_ID} must be registered in Place Production v3 routing`);
+  assert.deepEqual(entry.match, ['norges_bank_bankplassen_4', 'norges-bank-bankplassen-4']);
+  assert.deepEqual(entry.gates, ['places', 'place-production-v3']);
+  assert.deepEqual(entry.tests, [TEST_PATH]);
+});
 
 test('Norges Bank Bankplassen 4 is a complete Place Production v3 workflow', () => {
   const record = loadWorkflowRecord(PLACE_ID);
