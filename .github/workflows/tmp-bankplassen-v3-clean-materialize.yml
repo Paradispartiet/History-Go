@@ -10,7 +10,6 @@ permissions:
 
 jobs:
   materialize:
-    if: github.event.head_commit.message == 'ci: materialize clean Bankplassen v3 repair'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -28,7 +27,6 @@ jobs:
           set -euo pipefail
           CLEAN_BASE='6aab13c42ec2b74793377a246a4f338a6f0f7c76'
           SOURCE_REPAIR='ae7291e64cb14ef3f31e37c4fc567bb866e823a3'
-          TARGET_BRANCH='repair/bankplassen-4-v3-clean-20260916'
           git merge-base --is-ancestor "$CLEAN_BASE" HEAD
           git fetch origin "$SOURCE_REPAIR":refs/remotes/origin/bankrepair-source
           git show refs/remotes/origin/bankrepair-source:tests/norges-bank-bankplassen-4-place-production-v3.test.mjs > tests/norges-bank-bankplassen-4-place-production-v3.test.mjs
