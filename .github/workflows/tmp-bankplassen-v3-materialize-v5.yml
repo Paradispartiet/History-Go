@@ -6,10 +6,11 @@ on:
       - repair/bankplassen-4-v3-20260916
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   materialize:
+    if: github.event.head_commit.message == 'ci: trace Bankplassen v3 v5 failure'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -21,10 +22,10 @@ jobs:
           cache: npm
       - name: Install repository dependencies
         run: npm ci
-      - name: Run locked Bankplassen materializer with final dependency ordering
+      - name: Trace locked Bankplassen materializer with final dependency ordering
         shell: bash
         run: |
-          set -euo pipefail
+          set -u
           src=.github/workflows/tmp-bankplassen-v3-materialize.yml
           awk 'f{sub(/^          /,""); print} /^        run: \|$/{f=1}' "$src" > /tmp/bankplassen-v3-materialize.sh
           python <<'PY'
@@ -43,18 +44,32 @@ jobs:
           s = s.replace(context, '', 1)
           s = s.replace(release, '', 1)
           s = s.replace(place, place + context + release, 1)
-          cleanup = 'rm -f .github/workflows/tmp-bankplassen-v3-materialize.yml\n'
-          if cleanup not in s:
-              raise SystemExit('materializer cleanup anchor missing')
           s = s.replace(
-              cleanup,
-              cleanup
-              + 'rm -f .github/workflows/tmp-bankplassen-v3-materialize-v5.yml\n'
-              + 'rm -f .github/workflows/tmp-bankplassen-v3-diagnose-v2.yml\n'
-              + 'rm -f .github/workflows/tmp-bankplassen-fagverk-order-diagnose.yml\n',
+              'git push origin HEAD:repair/bankplassen-4-v3-20260916\n',
+              'echo "TRACE: remote push suppressed"\n',
               1,
           )
           p.write_text(s)
           PY
           bash -n /tmp/bankplassen-v3-materialize.sh
-          bash /tmp/bankplassen-v3-materialize.sh
+          set +e
+          PS4='+${LINENO}: ' bash -x /tmp/bankplassen-v3-materialize.sh > /tmp/bankplassen-v5-trace.log 2>&1
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > /tmp/bankplassen-v5-trace.rc
+          tail -n 300 /tmp/bankplassen-v5-trace.log > /tmp/bankplassen-v5-trace-tail.log
+          exit 0
+      - name: Upload trace
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bankplassen-v5-trace
+          path: |
+            /tmp/bankplassen-v5-trace.log
+            /tmp/bankplassen-v5-trace-tail.log
+            /tmp/bankplassen-v5-trace.rc
+          if-no-files-found: error
+      - name: Preserve traced result
+        if: always()
+        shell: bash
+        run: test "$(cat /tmp/bankplassen-v5-trace.rc)" = 0
