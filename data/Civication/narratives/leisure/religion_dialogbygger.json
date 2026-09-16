@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "religion_dialogbygger",
+  "type": "leisure",
+  "title": "Dialogbygger — forskjell, møte og tillit",
+  "sociological_theme": "Hvordan mennesker med ulike tros- og livssyn kan møtes, samarbeide og bygge tillit uten å late som forskjeller forsvinner, uten å skyve representasjonsbyrden over på enkeltpersoner og uten å gjøre dialogpraksis til tros- eller fagmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "religion:dialogbygger"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "invitasjonen_med_ferdig_svar",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Verten",
+      "subject": "Er dette dialog hvis svaret allerede er bestemt?",
+      "situation": [
+        "Invitasjonen sier at møtet skal være åpent, men teksten antyder samtidig hvilket resultat arrangøren ønsker.",
+        "Dialog trenger en tydelig ramme uten at deltakernes forskjeller reduseres til pynt rundt en ferdig konklusjon.",
+        "Et åpent spørsmål gjør det mulig å møte hverandre uten å kreve enighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler formålet som et spørsmål og skill tydelig mellom hva som er fast ramme og hva som faktisk er åpent.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "Behold den ønskede konklusjonen i invitasjonen; da vet alle hva god dialog skal føre til.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_invitation"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "reglene_som_passet_noen_best",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Rammevokteren",
+      "subject": "Samme regel treffer ikke alle likt",
+      "situation": [
+        "Gruppen lager én enkel regel for hvordan alle skal delta.",
+        "En formelt lik regel kan likevel kreve mer forklaring, eksponering eller tilbakeholdenhet fra enkelte deltakere.",
+        "Rammer bør derfor vurderes etter hvordan de faktisk virker, ikke bare etter om de ser symmetriske ut."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Test regelen mot ulike deltakerposisjoner og juster den hvis belastningen blir skjev.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "Behold regelen uendret fordi lik ordlyd betyr lik behandling.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_rules"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_far_forklare_hvem",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Den inviterte",
+      "subject": "Jeg kan bare snakke for meg selv",
+      "situation": [
+        "En deltaker blir spurt om å forklare et helt tros- eller livssynsmiljø.",
+        "Deltakeren kjenner egen erfaring godt, men er ikke automatisk representant for alle som deler én etikett.",
+        "Dialog blir mer presis når personlig erfaring ikke forveksles med full grupperepresentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be personen beskrive eget perspektiv og marker at andre i samme miljø kan tenke annerledes.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "Be personen gi gruppens syn; noen må jo kunne forklare hva de mener.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_representation"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ordet_som_betyr_noe_annet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Begrepsbroen",
+      "subject": "Vi bruker samme ord forskjellig",
+      "situation": [
+        "To deltakere bruker ord som høres like ut, men legger ulik historie og betydning i dem.",
+        "Å oversette mellom livssynsspråk handler ofte om å finne nærmeste forståelige begrep uten å late som uttrykkene er identiske.",
+        "Forskjellen kan være like viktig som likheten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be begge forklare hvordan de bruker ordet og noter både overlapp og det som ikke lar seg oversette direkte.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "Velg ett felles ord og behandle betydningene som de samme for å holde samtalen enkel.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_translation"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenighet_som_ble_tolket_som_avvisning",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Skeptikeren",
+      "subject": "Vi er fortsatt uenige",
+      "situation": [
+        "Etter en god samtale står to deltakere fortsatt langt fra hverandre i et viktig spørsmål.",
+        "Dialog kan øke forståelsen uten å fjerne selve uenigheten.",
+        "Hvis respekt måles som enighet, blir reelle forskjeller vanskelige å uttrykke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppsummer hva partene forstår bedre, og la selve uenigheten stå tydelig igjen.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "Press fram en felles formulering slik at møtet kan kalles vellykket.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_disagreement"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_som_ble_sagt_i_rommet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Den inviterte",
+      "subject": "Skulle dette deles videre?",
+      "situation": [
+        "Etter møtet ønsker arrangøren å publisere et detaljert referat for å vise hvor godt dialogen gikk.",
+        "Noe av det mest ærlige ble sagt fordi deltakerne trodde rommet hadde en viss fortrolighet.",
+        "Synlighet og dokumentasjon må derfor avklares før private eller sårbare utsagn blir brukt utad."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del bare det som er avklart for offentlighet, og be om eksplisitt samtykke før personlige utsagn siteres.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "Publiser hele referatet; åpenhet er viktigere enn at enkelte angrer etterpå.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_confidentiality"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bordet_med_ulike_titler",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Institusjonskontakten",
+      "subject": "Noen titler fyller mer av rommet",
+      "situation": [
+        "En høyt titulert deltaker og flere uformelle deltakere sitter ved samme bord.",
+        "Formelt lik taletid fjerner ikke nødvendigvis forskjeller i autoritet, språk eller hvem andre forventer å lytte til.",
+        "Dialogbyggeren må gjøre plass uten å late som maktforskjellene ikke finnes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør taletid og rekkefølge tydelig og inviter aktivt inn stemmer som ellers blir stående i skyggen.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "La samtalen flyte helt fritt; statusforskjeller forsvinner når alle sitter rundt samme bord.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_status"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_som_alltid_gjor_oversettelsesjobben",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Brobyggerkollegaen",
+      "subject": "Hvorfor er det alltid jeg som må forklare?",
+      "situation": [
+        "Én deltaker blir stadig den som forklarer begreper, demper konflikt og gjør andres utsagn forståelige.",
+        "Slikt broarbeid kan være verdifullt, men blir fort usynlig arbeid hvis ansvaret samler seg hos samme person.",
+        "Dialog krever at flere deler ansvaret for forståelighet og reparasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fordel oppklarings- og oppfølgingsarbeidet og spør hva den som har båret mye faktisk trenger.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å bruke den samme personen; vedkommende er jo best til å bygge bro.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_bridge_burden"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konflikten_som_ble_pakket_bort",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Skeptikeren",
+      "subject": "Vi snakker rundt det vanskeligste",
+      "situation": [
+        "Samtalen er hyggelig, men et kjent konfliktpunkt blir konsekvent hoppet over.",
+        "Trygghet betyr ikke at alle vanskelige tema må unngås; noen ganger blir tausheten selv en kilde til mistillit.",
+        "Et vanskelig tema kan tas opp med klare grenser uten å gjøre rommet til en debattkonkurranse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Navngi temaet, avklar hva som kan diskuteres konstruktivt, og gi deltakerne mulighet til å sette grenser.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "La temaet ligge permanent; god dialog bør unngå alt som kan skape konflikt.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_conflict"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ritualet_som_alle_antok_var_noytralt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Verten",
+      "subject": "Det praktiske opplegget var ikke nøytralt",
+      "situation": [
+        "Tidspunkt, mat, rombruk eller åpning av møtet er valgt som om det bare var praktiske detaljer.",
+        "Praktiske valg kan ha ulik betydning for deltakere med forskjellige tradisjoner og livssyn.",
+        "Godt vertskap spør før det antar hva som er nøytralt eller uproblematisk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg relevante praktiske behov på forhånd og forklar hvilke rammer som faktisk kan tilpasses.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "Behold standardopplegget; religiøse eller livssynsmessige hensyn får deltakerne håndtere selv.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_host_norm"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fellesprosjektet_uten_felles_tro",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Prosjektvennen",
+      "subject": "Kan vi gjøre noe sammen uten å mene det samme?",
+      "situation": [
+        "Gruppen finner et lokalt prosjekt alle ser verdi i, selv om begrunnelsene deres er forskjellige.",
+        "Samarbeid trenger ikke bygge på felles teologi, filosofi eller identitet.",
+        "Et konkret prosjekt kan skape tillit uten at forskjellene gjøres irrelevante."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definer det konkrete felles målet og la deltakerne beholde ulike begrunnelser for hvorfor det er viktig.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "Lag først en felles verdiplattform som alle må godta før praktisk samarbeid kan begynne.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_cooperation"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historien_som_ble_pressepoeng",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Institusjonskontakten",
+      "subject": "Kan vi bruke møtet i kommunikasjonen?",
+      "situation": [
+        "Et vellykket møte frister arrangøren til å bruke bilder og sitater som bevis på godt dialogarbeid.",
+        "Synlighet kan støtte prosjektet, men kan også gjøre deltakere til symboler i en fortelling de ikke kontrollerer.",
+        "Tillit krever tydelig avtale om hva som er deltakelse og hva som er offentlig representasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill dialogdeltakelse fra kommunikasjonsbruk og innhent konkret samtykke til bilder, navn og sitater.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "Bruk materialet fritt; deltakelse i et offentlig prosjekt innebærer at kommunikasjon må være lov.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_publicity"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "mote_nummer_to",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Oppfolgingspartneren",
+      "subject": "Hva skjer etter den gode kvelden?",
+      "situation": [
+        "Første møte gikk godt, men ingen vet hvem som følger opp spørsmål, misforståelser eller nye invitasjoner.",
+        "Tillit bygges ofte i små gjentatte handlinger mer enn i én symbolsk kveld.",
+        "Oppfølging gjør det mulig å vise om dialogen faktisk får en relasjonell fortsettelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtal ett konkret oppfølgingspunkt, ansvar og tidspunkt før gruppen går hver til sitt.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "La den gode stemningen være resultatet; oppfølging kan gjøre dialogen for organisert.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_followup"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "dialogbygger_uten_mandat",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Brobyggerkollegaen",
+      "subject": "Du bygger møteplasser, men representerer ikke alle",
+      "situation": [
+        "Etter flere vellykkede møter begynner andre å behandle spilleren som autoritativ fortolker av religioner, livssyn og konflikter.",
+        "Erfaring med å skape gode rammer kan være reell uten å gi mandat til å representere tradisjoner eller opptre som profesjonell megler.",
+        "Dialogbygger er en community_identity, ikke en tros-, juridisk, terapeutisk eller profesjonell meklingsrolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hva du kan om prosess og relasjon, og avgrens spørsmål som krever representativt mandat eller fagkompetanse.",
+          "effect": 1,
+          "tags": [
+            "dialogue",
+            "plurality",
+            "role_clarity"
+          ],
+          "feedback": "Du styrker møtet uten å gjøre forskjell til en feil som må fjernes eller gi deg selv større mandat enn rollen tåler."
+        },
+        {
+          "id": "B",
+          "label": "Ta rollen som nøytral autoritet; erfaringen med dialog gjør deg kvalifisert til å forklare alle sider.",
+          "effect": -1,
+          "tags": [
+            "false_consensus",
+            "representation_drift",
+            "authority_overreach"
+          ],
+          "feedback": "Rammen blir mer asymmetrisk, representativ eller autoritativ enn deltakerne og situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogbygger_authority"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

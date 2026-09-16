@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_dialogbygger",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "religion",
+    "id": "dialogbygger",
+    "label": "Dialogbygger"
+  },
+  "title": "Dialogbygger",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å skape møte og samarbeid mellom ulike tros- og livssynsperspektiver uten å presse fram falsk enighet, gjøre enkeltpersoner til grupperepresentanter eller skjule ulik makt og belastning",
+    "description": "Dialogbygger-verdenen undersøker invitasjon, rammer, representasjon, begrepsoversettelse, uenighet, fortrolighet, status, broarbeid, konflikt, vertskapsnormer, samarbeid uten konsensus, offentlighet, oppfølging og rollegrenser. Dialogbygger er en community_identity og selvvalgt fellesskapspraksis. Rollen gir ingen automatisk myndighet som trosrepresentant, teolog, jurist, terapeut, profesjonell megler eller annen fagperson, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "social_mask",
+    "care_vs_efficiency",
+    "bureaucratic_power",
+    "shame_reputation",
+    "professional_culture",
+    "loyalty_up_down",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "lokale møteplasser der ulike tros- og livssynsmiljøer inviteres inn på samme arrangement",
+    "planleggingsmøter der regler, språk og praktiske rammer kan belaste deltakerne ulikt",
+    "samtaler der personlige erfaringer lett blir gjort til representasjon for en hel gruppe",
+    "vanskelige diskusjoner der respekt må skilles fra krav om enighet",
+    "institusjonelle sammenhenger der offentlig kommunikasjon og omdømme møter fortrolighet",
+    "oppfølging over tid der tillit avhenger av små løfter, gjentakelse og delt arbeid"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "verten",
+      "social_function": "holder praktiske rammer, invitasjon og tilgjengelighet tydelige uten å bestemme hva deltakerne skal mene",
+      "class_position": "lokal arrangør eller frivillig uten tros- eller fagmyndighet over deltakerne",
+      "status": "synlig gjennom vertskapsrollen, men avhengig av deltakernes tillit",
+      "power_over_player": "kan prioritere tid, rom og format og dermed ubevisst favorisere enkelte former for deltakelse",
+      "wants": "et trygt møte som faktisk kan gjennomføres",
+      "conceals": "at arrangørens standardløsninger ofte oppleves som mer nøytrale enn de er",
+      "speech_style": "praktisk, vennlig og opptatt av logistikk",
+      "teaches_player": "at god dialog begynner før selve samtalen"
+    },
+    {
+      "id": "den_inviterte",
+      "social_function": "viser forskjellen mellom personlig erfaring og å bli gjort til representant for en hel gruppe",
+      "class_position": "deltaker med egen tros- eller livssynserfaring uten automatisk representasjonsmandat",
+      "status": "høy relevans for egen erfaring, men ikke universell talsperson",
+      "power_over_player": "kan korrigere generalisering og sette grenser for hva som kan deles videre",
+      "wants": "å bli hørt som person uten å bære hele gruppens forklaringsansvar",
+      "conceals": "at også eget miljø kan være internt uenig og sammensatt",
+      "speech_style": "personlig, konkret og tydelig når representasjonskrav blir for brede",
+      "teaches_player": "at nærhet til et miljø ikke betyr mandat til å representere alle"
+    },
+    {
+      "id": "skeptikeren",
+      "social_function": "tester om dialogen tåler reell uenighet og vanskelige tema uten å gå over i prestisjedebatt",
+      "class_position": "deltaker som ikke lar høflig konsensus stå uimotsagt",
+      "status": "kan oppfattes som krevende, men får verdi når gruppen unngår reelle konflikter",
+      "power_over_player": "kan tvinge fram tydeligere formål og skille respekt fra enighet",
+      "wants": "at forskjeller skal kunne sies høyt uten at møtet kollapser",
+      "conceals": "at skepsis også kan bli en identitet som overser faktisk tillitsbygging",
+      "speech_style": "direkte, kritisk og lite imponert av symbolsk enighet",
+      "teaches_player": "at dialog uten uenighet lett blir representasjonsteater"
+    },
+    {
+      "id": "institusjonskontakten",
+      "social_function": "kobler møteplassen til en større organisasjon, offentlighet og ressurser",
+      "class_position": "formell representant med mer institusjonell status enn mange andre deltakere",
+      "status": "høy gjennom tittel, tilgang og kommunikasjonskanaler",
+      "power_over_player": "kan åpne ressurser men også trekke dialogen mot omdømme, rapportering og synlighet",
+      "wants": "at dialogarbeidet skal være synlig, ryddig og legitimt",
+      "conceals": "at kommunikasjonshensyn kan gjøre deltakerne til symboler",
+      "speech_style": "formell, løsningsorientert og opptatt av ansvar og dokumentasjon",
+      "teaches_player": "at institusjonell støtte og relasjonell tillit ikke alltid følger samme logikk"
+    },
+    {
+      "id": "brobyggerkollegaen",
+      "social_function": "deler oppklarings-, oversettelses- og reparasjonsarbeid og merker når belastningen blir skjev",
+      "class_position": "likestilt frivillig eller deltaker uten profesjonelt meklingsmandat",
+      "status": "uformell tillit gjennom evne til å holde flere perspektiver i rommet",
+      "power_over_player": "kan avdekke usynlig emosjonelt og språklig arbeid",
+      "wants": "at broarbeid blir delt og ikke tas for gitt",
+      "conceals": "at også brobyggere kan begynne å definere hva andre egentlig mener",
+      "speech_style": "rolig, presis og opptatt av hvem som gjør arbeidet",
+      "teaches_player": "at tillit krever delt ansvar, ikke én permanent oversetter"
+    },
+    {
+      "id": "oppfolgingspartneren",
+      "social_function": "holder trådene etter møtet og gjør tillit til noe som må vedlikeholdes gjennom konkrete handlinger",
+      "class_position": "lokal deltaker uten høy formell status",
+      "status": "vokser gjennom pålitelig oppfølging over tid",
+      "power_over_player": "kan synliggjøre avstanden mellom gode arrangementer og faktisk relasjon",
+      "wants": "små løfter som blir fulgt opp",
+      "conceals": "at kontinuitet krever tid og kapasitet som ikke alltid finnes",
+      "speech_style": "lavmælt, konkret og opptatt av hvem som gjør hva etterpå",
+      "teaches_player": "at dialog først blir relasjon når noen kommer tilbake"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "invitation_vs_open_question",
+      "meaning": "åpen invitasjon mot ferdig konklusjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rules_vs_asymmetry",
+      "meaning": "felles regler mot ulik belastning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "representation_vs_individual_voice",
+      "meaning": "representasjon mot individuell stemme",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "translation_vs_equivalence",
+      "meaning": "begrepsoversettelse mot falsk likhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "disagreement_vs_disrespect",
+      "meaning": "saklig uenighet mot personlig avvisning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "confidentiality_vs_recap",
+      "meaning": "fortrolighet mot offentlig oppsummering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "status_vs_participation",
+      "meaning": "institusjonsstatus mot faktisk deltakelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "bridge_work_vs_burden",
+      "meaning": "brobygging mot skjev belastning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "conflict_vs_avoidance",
+      "meaning": "reell konflikt mot høflig unngåelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "host_norm_vs_plurality",
+      "meaning": "vertsnorm mot mangfoldige praksiser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cooperation_vs_consensus",
+      "meaning": "praktisk samarbeid mot livssynsenighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "publicity_vs_trust",
+      "meaning": "offentlig synlighet mot relasjonell tillit",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "event_vs_relationship",
+      "meaning": "enkeltmøte mot tillit over tid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "dialog_role_vs_authority",
+      "meaning": "dialogpraksis mot tros-, megler- og fagmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Er dette dialog hvis svaret allerede er bestemt?.",
+        "thread_ids": [
+          "invitation_vs_open_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#invitasjonen_med_ferdig_svar"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Er dette dialog hvis svaret allerede er bestemt?.",
+        "thread_ids": [
+          "invitation_vs_open_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#invitasjonen_med_ferdig_svar"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Er dette dialog hvis svaret allerede er bestemt?.",
+        "thread_ids": [
+          "invitation_vs_open_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#invitasjonen_med_ferdig_svar"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Er dette dialog hvis svaret allerede er bestemt?.",
+        "thread_ids": [
+          "invitation_vs_open_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#invitasjonen_med_ferdig_svar"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Samme regel treffer ikke alle likt.",
+        "thread_ids": [
+          "rules_vs_asymmetry",
+          "invitation_vs_open_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#reglene_som_passet_noen_best"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Samme regel treffer ikke alle likt.",
+        "thread_ids": [
+          "rules_vs_asymmetry"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#reglene_som_passet_noen_best"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Samme regel treffer ikke alle likt.",
+        "thread_ids": [
+          "rules_vs_asymmetry"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#reglene_som_passet_noen_best"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Samme regel treffer ikke alle likt.",
+        "thread_ids": [
+          "rules_vs_asymmetry"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#reglene_som_passet_noen_best"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Jeg kan bare snakke for meg selv.",
+        "thread_ids": [
+          "representation_vs_individual_voice",
+          "rules_vs_asymmetry"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#hvem_far_forklare_hvem"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Jeg kan bare snakke for meg selv.",
+        "thread_ids": [
+          "representation_vs_individual_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#hvem_far_forklare_hvem"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Jeg kan bare snakke for meg selv.",
+        "thread_ids": [
+          "representation_vs_individual_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#hvem_far_forklare_hvem"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Jeg kan bare snakke for meg selv.",
+        "thread_ids": [
+          "representation_vs_individual_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#hvem_far_forklare_hvem"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Vi bruker samme ord forskjellig.",
+        "thread_ids": [
+          "translation_vs_equivalence",
+          "representation_vs_individual_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#ordet_som_betyr_noe_annet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Vi bruker samme ord forskjellig.",
+        "thread_ids": [
+          "translation_vs_equivalence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#ordet_som_betyr_noe_annet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Vi bruker samme ord forskjellig.",
+        "thread_ids": [
+          "translation_vs_equivalence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#ordet_som_betyr_noe_annet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Vi bruker samme ord forskjellig.",
+        "thread_ids": [
+          "translation_vs_equivalence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#ordet_som_betyr_noe_annet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Vi er fortsatt uenige.",
+        "thread_ids": [
+          "disagreement_vs_disrespect",
+          "translation_vs_equivalence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#uenighet_som_ble_tolket_som_avvisning"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Vi er fortsatt uenige.",
+        "thread_ids": [
+          "disagreement_vs_disrespect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#uenighet_som_ble_tolket_som_avvisning"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Vi er fortsatt uenige.",
+        "thread_ids": [
+          "disagreement_vs_disrespect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#uenighet_som_ble_tolket_som_avvisning"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Vi er fortsatt uenige.",
+        "thread_ids": [
+          "disagreement_vs_disrespect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#uenighet_som_ble_tolket_som_avvisning"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Skulle dette deles videre?.",
+        "thread_ids": [
+          "confidentiality_vs_recap",
+          "disagreement_vs_disrespect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#det_som_ble_sagt_i_rommet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Skulle dette deles videre?.",
+        "thread_ids": [
+          "confidentiality_vs_recap"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#det_som_ble_sagt_i_rommet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Skulle dette deles videre?.",
+        "thread_ids": [
+          "confidentiality_vs_recap"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#det_som_ble_sagt_i_rommet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Skulle dette deles videre?.",
+        "thread_ids": [
+          "confidentiality_vs_recap"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#det_som_ble_sagt_i_rommet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Noen titler fyller mer av rommet.",
+        "thread_ids": [
+          "status_vs_participation",
+          "confidentiality_vs_recap"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#bordet_med_ulike_titler"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Noen titler fyller mer av rommet.",
+        "thread_ids": [
+          "status_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#bordet_med_ulike_titler"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Noen titler fyller mer av rommet.",
+        "thread_ids": [
+          "status_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#bordet_med_ulike_titler"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Noen titler fyller mer av rommet.",
+        "thread_ids": [
+          "status_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#bordet_med_ulike_titler"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Hvorfor er det alltid jeg som må forklare?.",
+        "thread_ids": [
+          "bridge_work_vs_burden",
+          "status_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#den_som_alltid_gjor_oversettelsesjobben"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Hvorfor er det alltid jeg som må forklare?.",
+        "thread_ids": [
+          "bridge_work_vs_burden"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#den_som_alltid_gjor_oversettelsesjobben"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Hvorfor er det alltid jeg som må forklare?.",
+        "thread_ids": [
+          "bridge_work_vs_burden"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#den_som_alltid_gjor_oversettelsesjobben"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Hvorfor er det alltid jeg som må forklare?.",
+        "thread_ids": [
+          "bridge_work_vs_burden"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#den_som_alltid_gjor_oversettelsesjobben"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Vi snakker rundt det vanskeligste.",
+        "thread_ids": [
+          "conflict_vs_avoidance",
+          "bridge_work_vs_burden"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#konflikten_som_ble_pakket_bort"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Vi snakker rundt det vanskeligste.",
+        "thread_ids": [
+          "conflict_vs_avoidance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#konflikten_som_ble_pakket_bort"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Vi snakker rundt det vanskeligste.",
+        "thread_ids": [
+          "conflict_vs_avoidance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#konflikten_som_ble_pakket_bort"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Vi snakker rundt det vanskeligste.",
+        "thread_ids": [
+          "conflict_vs_avoidance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#konflikten_som_ble_pakket_bort"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Det praktiske opplegget var ikke nøytralt.",
+        "thread_ids": [
+          "host_norm_vs_plurality",
+          "conflict_vs_avoidance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#ritualet_som_alle_antok_var_noytralt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Det praktiske opplegget var ikke nøytralt.",
+        "thread_ids": [
+          "host_norm_vs_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#ritualet_som_alle_antok_var_noytralt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Det praktiske opplegget var ikke nøytralt.",
+        "thread_ids": [
+          "host_norm_vs_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#ritualet_som_alle_antok_var_noytralt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Det praktiske opplegget var ikke nøytralt.",
+        "thread_ids": [
+          "host_norm_vs_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#ritualet_som_alle_antok_var_noytralt"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Kan vi gjøre noe sammen uten å mene det samme?.",
+        "thread_ids": [
+          "cooperation_vs_consensus",
+          "host_norm_vs_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#fellesprosjektet_uten_felles_tro"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Kan vi gjøre noe sammen uten å mene det samme?.",
+        "thread_ids": [
+          "cooperation_vs_consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#fellesprosjektet_uten_felles_tro"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Kan vi gjøre noe sammen uten å mene det samme?.",
+        "thread_ids": [
+          "cooperation_vs_consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#fellesprosjektet_uten_felles_tro"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Kan vi gjøre noe sammen uten å mene det samme?.",
+        "thread_ids": [
+          "cooperation_vs_consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#fellesprosjektet_uten_felles_tro"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Kan vi bruke møtet i kommunikasjonen?.",
+        "thread_ids": [
+          "publicity_vs_trust",
+          "cooperation_vs_consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#historien_som_ble_pressepoeng"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Kan vi bruke møtet i kommunikasjonen?.",
+        "thread_ids": [
+          "publicity_vs_trust"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#historien_som_ble_pressepoeng"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Kan vi bruke møtet i kommunikasjonen?.",
+        "thread_ids": [
+          "publicity_vs_trust"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#historien_som_ble_pressepoeng"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Kan vi bruke møtet i kommunikasjonen?.",
+        "thread_ids": [
+          "publicity_vs_trust"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#historien_som_ble_pressepoeng"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Hva skjer etter den gode kvelden?.",
+        "thread_ids": [
+          "event_vs_relationship",
+          "publicity_vs_trust"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#mote_nummer_to"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Hva skjer etter den gode kvelden?.",
+        "thread_ids": [
+          "event_vs_relationship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#mote_nummer_to"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Hva skjer etter den gode kvelden?.",
+        "thread_ids": [
+          "event_vs_relationship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#mote_nummer_to"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Hva skjer etter den gode kvelden?.",
+        "thread_ids": [
+          "event_vs_relationship",
+          "dialog_role_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#mote_nummer_to"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Du bygger møteplasser, men representerer ikke alle.",
+        "thread_ids": [
+          "dialog_role_vs_authority",
+          "event_vs_relationship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#dialogbygger_uten_mandat"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Du bygger møteplasser, men representerer ikke alle.",
+        "thread_ids": [
+          "dialog_role_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#dialogbygger_uten_mandat"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Du bygger møteplasser, men representerer ikke alle.",
+        "thread_ids": [
+          "dialog_role_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#dialogbygger_uten_mandat"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Du bygger møteplasser, men representerer ikke alle.",
+        "thread_ids": [
+          "dialog_role_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_dialogbygger.json#dialogbygger_uten_mandat"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "invitation_vs_open_question",
+      "relationship": "åpen invitasjon mot ferdig konklusjon",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "rules_vs_asymmetry",
+      "relationship": "felles regler mot ulik belastning",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "representation_vs_individual_voice",
+      "relationship": "representasjon mot individuell stemme",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "translation_vs_equivalence",
+      "relationship": "begrepsoversettelse mot falsk likhet",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "disagreement_vs_disrespect",
+      "relationship": "saklig uenighet mot personlig avvisning",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "confidentiality_vs_recap",
+      "relationship": "fortrolighet mot offentlig oppsummering",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "status_vs_participation",
+      "relationship": "institusjonsstatus mot faktisk deltakelse",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "bridge_work_vs_burden",
+      "relationship": "brobygging mot skjev belastning",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "conflict_vs_avoidance",
+      "relationship": "reell konflikt mot høflig unngåelse",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "host_norm_vs_plurality",
+      "relationship": "vertsnorm mot mangfoldige praksiser",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "cooperation_vs_consensus",
+      "relationship": "praktisk samarbeid mot livssynsenighet",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "publicity_vs_trust",
+      "relationship": "offentlig synlighet mot relasjonell tillit",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "event_vs_relationship",
+      "relationship": "enkeltmøte mot tillit over tid",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "dialog_role_vs_authority",
+      "relationship": "dialogpraksis mot tros-, megler- og fagmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "invitasjon_far_apenhet",
+      "description": "Formål og regler blir tydeligere skilt fra ønsket konklusjon og vurdert etter hvordan de faktisk virker for ulike deltakere.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#invitasjonen_med_ferdig_svar",
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#reglene_som_passet_noen_best"
+      ]
+    },
+    {
+      "id": "stemmer_far_grenser",
+      "description": "Personlig erfaring, grupperepresentasjon og begrepsoversettelse holdes tydeligere fra hverandre.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#hvem_far_forklare_hvem",
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#ordet_som_betyr_noe_annet"
+      ]
+    },
+    {
+      "id": "uenighet_far_rom",
+      "description": "Uenighet kan stå igjen uten å bli tolket som respektløshet, samtidig som fortrolighet og konflikt håndteres eksplisitt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#uenighet_som_ble_tolket_som_avvisning",
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#det_som_ble_sagt_i_rommet",
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#konflikten_som_ble_pakket_bort"
+      ]
+    },
+    {
+      "id": "makt_og_arbeid_blir_synlig",
+      "description": "Status, vertskapsnormer og broarbeid behandles som konkrete makt- og belastningsspørsmål i møteplassen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#bordet_med_ulike_titler",
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#den_som_alltid_gjor_oversettelsesjobben",
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#ritualet_som_alle_antok_var_noytralt"
+      ]
+    },
+    {
+      "id": "tillit_far_fortsettelse",
+      "description": "Samarbeid, offentlighet og oppfølging skilles fra falsk konsensus, og spillerens dialogrolle får klare mandatgrenser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#fellesprosjektet_uten_felles_tro",
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#historien_som_ble_pressepoeng",
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#mote_nummer_to",
+        "data/Civication/narratives/leisure/religion_dialogbygger.json#dialogbygger_uten_mandat"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "invitasjon_moter_regler",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "relationship",
+        "authority"
+      ]
+    },
+    {
+      "id": "representasjon_moter_oversettelse",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "identity",
+        "knowledge"
+      ]
+    },
+    {
+      "id": "uenighet_moter_konflikt",
+      "setup_ref": "5/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "fortrolighet_moter_offentlighet",
+      "setup_ref": "6/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "status_moter_broarbeid",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "authority",
+        "care"
+      ]
+    },
+    {
+      "id": "samarbeid_moter_rollegrense",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#invitasjonen_med_ferdig_svar",
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#reglene_som_passet_noen_best",
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#hvem_far_forklare_hvem",
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#ordet_som_betyr_noe_annet",
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#uenighet_som_ble_tolket_som_avvisning",
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#det_som_ble_sagt_i_rommet",
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#bordet_med_ulike_titler",
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#den_som_alltid_gjor_oversettelsesjobben",
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#konflikten_som_ble_pakket_bort",
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#ritualet_som_alle_antok_var_noytralt",
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#fellesprosjektet_uten_felles_tro",
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#historien_som_ble_pressepoeng",
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#mote_nummer_to",
+      "data/Civication/narratives/leisure/religion_dialogbygger.json#dialogbygger_uten_mandat"
+    ]
+  }
+}
