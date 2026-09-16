@@ -77,7 +77,6 @@ Eksempler:
 - `natur + geologi` prioriterer kart-/landformsporet; Nature-spesialprofilen følger fortsatt sine egne krav og erstatter aldri manglende stedsspesifikk dokumentasjon med generiske arter;
 - én fysisk enhet skal aldri splittes kunstig til både Object og Structure bare for å fylle kortet;
 - chronology skal aldri kopieres til en svak Story bare for å fylle Stories.
-
 ### Produksjonsprofiler
 
 - **major** — bredt, betydelig sted med flere selvstendige kildebårne spor;
@@ -158,7 +157,6 @@ De bruker samme prinsipp: relevant kildebåret innhold materialiseres; irrelevan
 Canonical samlingskontrakt: `data/places/README_place_rounds.md`.
 
 For nye og fullproduserte ordinære Places gjelder:
-
 - `place_card_profile.collection_ids` inneholder bare samlinger som har `PASS` for dette stedet;
 - ordinære fullprofiler vurderer People, Objects, Brands og kategoriens uttrykk, men materialiserer bare de samlingene stedet faktisk bærer;
 - det finnes ikke lenger et universelt krav om nøyaktig fire ordinære samlinger; et ordinært PlaceCard bruker 1–4 kvalifiserte samlinger etter dokumentert kandidataudit. Dersom ingen av de fire kandidattypene kvalifiserer, kan stedet ikke materialisere en ordinær `place_card_profile_v2` og må vurderes mot riktig canonical profil/scope fremfor å fylles kunstig;
@@ -317,7 +315,6 @@ Når dialektlaget researches på et område-Place, skal minst ett reelt kildebel
 ## 7. Kronologi og epoker
 
 **KRONOLOGI/EPOKE — ALLE ORDINÆRE PLACES / RESEARCH ALDRI N/A**
-
 Kronologi produseres samtidig med stedet, ikke som senere gaparbeid.
 
 - research identitetsbærende hendelser som etablering, bygging/åpning, funksjonsskifte, utvidelse, ombruk, nedleggelse og andre reelle vendepunkter;
@@ -380,7 +377,7 @@ Objects følger kategoriens hovedfunksjon. Kunst kan for eksempel ha både Objec
 
 Brands skal alltid kandidatauditeres når Badge-, underbadge- eller source-grunnlaget peker mot en mulig profesjonell, institusjonell, venue-, organisasjons-, legacy-, produkt- eller skiltidentitet med selvstendig gjenkjennelse og direkte stedstilknytning. Ingen underbadge kan godkjenne Brand alene.
 
-Null treff i eksisterende register betyr «må researches», ikke automatisk N/A. Et faktisk dokumentert kandidatsøk mot stedskildene skal gjennomføres før Brand kan avsluttes som `BEGRUNNET N/A`. Etter dette gjelder:
+Null treff i eksisterende register betyr «må researches», ikke automatisk N/A. Et faktisk kandidatsøk, dokumentert mot stedskildene, skal gjennomføres før Brand kan avsluttes som `BEGRUNNET N/A`. Etter dette gjelder:
 
 - kvalifisert og ferdig Brand → `PASS`;
 - ingen kandidat består Brand-definisjonen for stedet → `BEGRUNNET N/A`;
@@ -397,7 +394,6 @@ Stories følger `docs/STORIES_DATA_GOVERNANCE.md`.
 Badge-/underbadge-rutingen kan peke på sannsynlige narrative akser, men en ny Story skal fortsatt ha selvstendig narrativ motor — konflikt, valg, overraskelse, forvandling eller annet som gir mer enn chronology.
 
 Anti-dupliseringsregel:
-
 > Hvis datoen fjernes, må det fortsatt finnes en tydelig fortelling.
 
 Hvis ikke, hører stoffet i chronology/leksikon i stedet. Et Focused Place kan være komplett uten Story når kildene ikke bærer en ekte fortelling.
@@ -478,7 +474,6 @@ profile_status: confirmed
 profile_reason:
 profile_changed_from: <valgfritt>
 ```
-
 Nye Places klassifiseres direkte som `confirmed` i preflight.
 
 ---
@@ -557,7 +552,6 @@ Før neste checkpoint starter skal aktivt arbeid være reviewet og arbeidskort o
 Et checkpoint trenger ikke egen PR.
 
 ---
-
 ## 15. Mergegrenser følger risiko
 
 Standard er få fokuserte mergegrenser, ikke én PR per fase.
@@ -637,7 +631,6 @@ Badge-/produksjonsprofil-systemet skal ha permanent test for:
 - at alle Badge-filer har canonical underbadges;
 - at routingrekkefølgen krever underbadges og source review før endelig innholdsplan;
 - at Badge-hints aldri overstyrer kilder eller skaper filler.
-
 PlaceCard-systemendringer skal ha permanente tester for:
 
 - schema/runtime aksepterer stedsavhengig antall ordinære samlinger og krever bare ferdige PASS-samlinger i `collection_ids`;
