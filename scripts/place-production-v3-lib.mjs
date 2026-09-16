@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const WORKFLOW_SCHEMA_ID = 'history_go_place_production_workflow_v3';
+export const READ_FIRST_SCHEMA_ID = 'history_go_place_read_first_v3';
 export const DECISION_STATUSES = new Set(['PASS', 'BEGRUNNET_NA', 'BLOCKED']);
 export const PRODUCTION_PROFILES = new Set(['major', 'standard', 'focused', 'micro']);
 export const PROFILE_STATUSES = new Set(['confirmed', 'provisional']);
@@ -19,6 +20,7 @@ const REQUIRED_KEYS = [
   'category',
   'contracts',
   'sources',
+  'read_first',
   'profile',
   'source_review',
   'collections',
@@ -46,6 +48,7 @@ export function deriveWorkflowState(record) {
     ...Object.values(record.modules ?? {}),
   ];
   if ((record.blockers ?? []).length || decisions.some((item) => item?.status === 'BLOCKED')) return 'blocked';
+  if (record.read_first?.status !== 'PASS') return 'in_progress';
   if (record.source_review?.status !== 'complete') return 'in_progress';
   if (record.manual_reviews?.images?.status !== 'PASS') return 'in_progress';
   if (record.manual_reviews?.final_ui?.status !== 'PASS') return 'in_progress';
@@ -54,6 +57,10 @@ export function deriveWorkflowState(record) {
 
 function nonEmptyString(value) {
   return typeof value === 'string' && value.trim().length > 0;
+}
+
+function sameJson(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
 }
 
 function validateDecisionMap(name, value, errors) {
@@ -74,6 +81,28 @@ function validateDecisionMap(name, value, errors) {
       errors.push(`${name}.${id}.reason is required for ${decision.status}`);
     }
   }
+}
+
+function validateReadFirst(record, errors) {
+  const readFirst = record.read_first;
+  if (!readFirst || typeof readFirst !== 'object' || Array.isArray(readFirst)) {
+    errors.push('read_first must be an object');
+    return;
+  }
+  if (readFirst.schema !== READ_FIRST_SCHEMA_ID) errors.push(`read_first.schema must be ${READ_FIRST_SCHEMA_ID}`);
+  if (readFirst.status !== 'PASS') errors.push('read_first.status must be PASS');
+  if (!nonEmptyString(readFirst.recorded_at)) errors.push('read_first.recorded_at is required');
+  if (!Array.isArray(readFirst.rule_files) || readFirst.rule_files.length === 0 || readFirst.rule_files.some((value) => !nonEmptyString(value))) {
+    errors.push('read_first.rule_files must be a non-empty array of rule paths');
+  } else if (new Set(readFirst.rule_files).size !== readFirst.rule_files.length) {
+    errors.push('read_first.rule_files must be unique');
+  }
+  if (!readFirst.contracts || typeof readFirst.contracts !== 'object') {
+    errors.push('read_first.contracts must be an object');
+  } else if (!sameJson(readFirst.contracts, record.contracts)) {
+    errors.push('read_first.contracts must match workflow contracts');
+  }
+  if (!nonEmptyString(readFirst.attestation)) errors.push('read_first.attestation is required');
 }
 
 export function validateWorkflowRecord(record) {
@@ -101,6 +130,8 @@ export function validateWorkflowRecord(record) {
   if (!record.sources || typeof record.sources !== 'object' || !nonEmptyString(record.sources.factuality_record)) {
     errors.push('sources.factuality_record is required');
   }
+
+  validateReadFirst(record, errors);
 
   if (!record.profile || typeof record.profile !== 'object') {
     errors.push('profile must be an object');
