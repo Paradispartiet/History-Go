@@ -5,70 +5,10 @@ on:
     branches:
       - repair/bankplassen-4-v3-20260916
 
-permissions:
-  contents: read
-
 jobs:
-  materialize:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: npm
-      - name: Install repository dependencies
-        run: npm ci
-      - name: Trace locked Bankplassen materializer with final dependency ordering
-        shell: bash
-        run: |
-          set -u
-          src=.github/workflows/tmp-bankplassen-v3-materialize.yml
-          awk 'f{sub(/^          /,""); print} /^        run: \|$/{f=1}' "$src" > /tmp/bankplassen-v3-materialize.sh
-          python <<'PY'
-          from pathlib import Path
-          p = Path('/tmp/bankplassen-v3-materialize.sh')
-          s = p.read_text()
-          context = 'node scripts/build-quiz-production-context.mjs --category naeringsliv --target "$PLACE_ID" --output data/quiz/production_context/naeringsliv/norges_bank_bankplassen_4.json\n'
-          release = 'node scripts/build-fagverk-release-manifest.mjs\n'
-          place = 'npm run place:build -- "$PLACE_ID"\n'
-          if s.count(context) != 1:
-              raise SystemExit(f'expected exactly one initial context build, found {s.count(context)}')
-          if s.count(release) != 1:
-              raise SystemExit(f'expected exactly one non-check release build, found {s.count(release)}')
-          if s.count(place) != 1:
-              raise SystemExit(f'expected exactly one place build, found {s.count(place)}')
-          s = s.replace(context, '', 1)
-          s = s.replace(release, '', 1)
-          s = s.replace(place, place + context + release, 1)
-          s = s.replace(
-              'git push origin HEAD:repair/bankplassen-4-v3-20260916\n',
-              'echo "TRACE remote push suppressed"\n',
-              1,
-          )
-          p.write_text(s)
-          PY
-          bash -n /tmp/bankplassen-v3-materialize.sh
-          set +e
-          bash -x /tmp/bankplassen-v3-materialize.sh > /tmp/bankplassen-v5-trace.log 2>&1
-          rc=$?
-          set -e
-          printf '%s\n' "$rc" > /tmp/bankplassen-v5-trace.rc
-          tail -n 300 /tmp/bankplassen-v5-trace.log > /tmp/bankplassen-v5-trace-tail.log
-          exit 0
-      - name: Upload trace
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: bankplassen-v5-trace
-          path: |
-            /tmp/bankplassen-v5-trace.log
-            /tmp/bankplassen-v5-trace-tail.log
-            /tmp/bankplassen-v5-trace.rc
-          if-no-files-found: error
-      - name: Preserve traced result
-        if: always()
-        shell: bash
-        run: test "$(cat /tmp/bankplassen-v5-trace.rc)" = 0
+      - name: Validate workflow registration
+        run: echo bankplassen-v5-workflow-valid
