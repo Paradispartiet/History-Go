@@ -1,11 +1,11 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 85 ready / 74 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 86 ready / 73 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 14
-**Exact governed-source matches:** 85
-**Multi-scene narrative foundations:** 85
-**Completed life-position Role Worlds:** 85
+**Exact governed-source matches:** 86
+**Multi-scene narrative foundations:** 86
+**Completed life-position Role Worlds:** 86
 **Pending ready positions:** 0
 
 ## Decision
@@ -18,36 +18,36 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `filosofi/etiker` | needs_authored_depth | 0 | 0 | 0 |
-| 2 | `filosofi/fagfilosof` | needs_authored_depth | 0 | 0 | 0 |
-| 3 | `filosofi/filosofisk_veileder` | needs_authored_depth | 0 | 0 | 0 |
-| 4 | `filosofi/logiker` | needs_authored_depth | 0 | 0 | 0 |
-| 5 | `filosofi/nysgjerrig` | needs_authored_depth | 0 | 0 | 0 |
-| 6 | `filosofi/samtalepartner` | needs_authored_depth | 0 | 0 | 0 |
-| 7 | `filosofi/sporrer` | needs_authored_depth | 0 | 0 | 0 |
-| 8 | `kunst/gallerist` | needs_authored_depth | 0 | 0 | 0 |
-| 9 | `litteratur/aktiv_leser` | needs_authored_depth | 0 | 0 | 0 |
-| 10 | `litteratur/anmelder` | needs_authored_depth | 0 | 0 | 0 |
-| 11 | `litteratur/dramatiker` | needs_authored_depth | 0 | 0 | 0 |
-| 12 | `litteratur/essayist` | needs_authored_depth | 0 | 0 | 0 |
-| 13 | `litteratur/forfatter` | needs_authored_depth | 0 | 0 | 0 |
-| 14 | `litteratur/leser` | needs_authored_depth | 0 | 0 | 0 |
-| 15 | `litteratur/litteraturinteressert` | needs_authored_depth | 0 | 0 | 0 |
-| 16 | `litteratur/litteraturkritiker` | needs_authored_depth | 0 | 0 | 0 |
-| 17 | `litteratur/poet` | needs_authored_depth | 0 | 0 | 0 |
-| 18 | `litteratur/skald` | needs_authored_depth | 0 | 0 | 0 |
-| 19 | `litteratur/skribent` | needs_authored_depth | 0 | 0 | 0 |
-| 20 | `media/bidragsyter` | needs_authored_depth | 0 | 0 | 0 |
-| 21 | `media/folger` | needs_authored_depth | 0 | 0 | 0 |
-| 22 | `media/frilansjournalist` | needs_authored_depth | 0 | 0 | 0 |
-| 23 | `media/kommentator_felt` | needs_authored_depth | 0 | 0 | 0 |
-| 24 | `media/leser` | needs_authored_depth | 0 | 0 | 0 |
-| 25 | `musikk/plateartist` | needs_authored_depth | 0 | 0 | 0 |
-| 26 | `musikk/publikum_deltaker` | needs_authored_depth | 0 | 0 | 0 |
-| 27 | `musikk/solist` | needs_authored_depth | 0 | 0 | 0 |
-| 28 | `musikk/utovende_musiker` | needs_authored_depth | 0 | 0 | 0 |
-| 29 | `natur/artsobservator` | needs_authored_depth | 0 | 0 | 0 |
-| 30 | `natur/feltobservator` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `filosofi/fagfilosof` | needs_authored_depth | 0 | 0 | 0 |
+| 2 | `filosofi/filosofisk_veileder` | needs_authored_depth | 0 | 0 | 0 |
+| 3 | `filosofi/logiker` | needs_authored_depth | 0 | 0 | 0 |
+| 4 | `filosofi/nysgjerrig` | needs_authored_depth | 0 | 0 | 0 |
+| 5 | `filosofi/samtalepartner` | needs_authored_depth | 0 | 0 | 0 |
+| 6 | `filosofi/sporrer` | needs_authored_depth | 0 | 0 | 0 |
+| 7 | `kunst/gallerist` | needs_authored_depth | 0 | 0 | 0 |
+| 8 | `litteratur/aktiv_leser` | needs_authored_depth | 0 | 0 | 0 |
+| 9 | `litteratur/anmelder` | needs_authored_depth | 0 | 0 | 0 |
+| 10 | `litteratur/dramatiker` | needs_authored_depth | 0 | 0 | 0 |
+| 11 | `litteratur/essayist` | needs_authored_depth | 0 | 0 | 0 |
+| 12 | `litteratur/forfatter` | needs_authored_depth | 0 | 0 | 0 |
+| 13 | `litteratur/leser` | needs_authored_depth | 0 | 0 | 0 |
+| 14 | `litteratur/litteraturinteressert` | needs_authored_depth | 0 | 0 | 0 |
+| 15 | `litteratur/litteraturkritiker` | needs_authored_depth | 0 | 0 | 0 |
+| 16 | `litteratur/poet` | needs_authored_depth | 0 | 0 | 0 |
+| 17 | `litteratur/skald` | needs_authored_depth | 0 | 0 | 0 |
+| 18 | `litteratur/skribent` | needs_authored_depth | 0 | 0 | 0 |
+| 19 | `media/bidragsyter` | needs_authored_depth | 0 | 0 | 0 |
+| 20 | `media/folger` | needs_authored_depth | 0 | 0 | 0 |
+| 21 | `media/frilansjournalist` | needs_authored_depth | 0 | 0 | 0 |
+| 22 | `media/kommentator_felt` | needs_authored_depth | 0 | 0 | 0 |
+| 23 | `media/leser` | needs_authored_depth | 0 | 0 | 0 |
+| 24 | `musikk/plateartist` | needs_authored_depth | 0 | 0 | 0 |
+| 25 | `musikk/publikum_deltaker` | needs_authored_depth | 0 | 0 | 0 |
+| 26 | `musikk/solist` | needs_authored_depth | 0 | 0 | 0 |
+| 27 | `musikk/utovende_musiker` | needs_authored_depth | 0 | 0 | 0 |
+| 28 | `natur/artsobservator` | needs_authored_depth | 0 | 0 | 0 |
+| 29 | `natur/feltobservator` | needs_authored_depth | 0 | 0 | 0 |
+| 30 | `natur/naturinteressert` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 

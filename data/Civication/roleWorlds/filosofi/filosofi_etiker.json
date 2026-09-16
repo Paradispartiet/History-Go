@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_etiker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "filosofi",
+    "id": "etiker",
+    "label": "Etiker"
+  },
+  "title": "Etiker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å analysere samtykke, skade, fordelingsprinsipper, rolleplikt, interessekonflikter, usikkerhet og verdikonflikter uten at etisk refleksjon blir profesjonell eller institusjonell beslutningsmyndighet",
+    "description": "Etiker-verdenen undersøker frivillighet og press, nytte og byrdefordeling, regler og unntak, rolleplikt, interessekonflikter, irreversibel skade, likhet og behov, intensjon og konsekvens, verdikonflikt, reversibilitet, beslutning under usikkerhet, presedens, moralsk uenighet og formell myndighet. Etiker er en ethics_specialization life position. Rollen gir ingen automatisk fagdommerrolle, juridisk autoritet, behandlingsmandat, forskermandat eller institusjonell beslutningsmyndighet, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "care_vs_efficiency",
+    "status_anxiety",
+    "social_mask",
+    "shame_reputation",
+    "bureaucratic_power",
+    "professional_culture",
+    "local_knowledge_vs_system",
+    "public_attention"
+  ],
+  "social_environments": [
+    "hverdagslige relasjoner der samtykke, press og ansvar må vurderes uten formell prosedyre",
+    "fordelingssituasjoner der samlet nytte og hvem som bærer kostnaden trekker i ulike retninger",
+    "grupper og institusjoner der regler, unntak, roller og presedens former hva som oppleves som rettferdig",
+    "samtaler der legitime verdier kolliderer uten at én av dem kan maksimeres fullt ut",
+    "beslutninger under usikkerhet der sannsynlighet, alvorlighet og reversibilitet må skilles",
+    "møter med faglige, juridiske og institusjonelle roller som faktisk eier formelt ansvar"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "samtalevennen",
+      "social_function": "gjør samtykke, fordelingsprinsipper og moralsk uenighet konkrete i hverdagslige relasjoner",
+      "class_position": "likestilt deltaker uten profesjonelt mandat",
+      "status": "middels uformell tillit og høy relasjonell nærhet",
+      "power_over_player": "kan gjøre sosialt press og nærhet til skjulte premisser i etiske valg",
+      "wants": "at hensynene blir tydelige uten at samtalen blir en domstol",
+      "conceals": "at egne verdier også påvirker hvilke hensyn som føles mest rimelige",
+      "speech_style": "rolig, spørrende og relasjonell",
+      "teaches_player": "at etisk uenighet ikke automatisk betyr dårlig motiv"
+    },
+    {
+      "id": "analysevennen",
+      "social_function": "tester nytte, byrdefordeling, interessekonflikt og usikkerhet uten å gjøre modellen til fasit",
+      "class_position": "metodeinteressert deltaker uten beslutningsmyndighet",
+      "status": "middels uformell analyseautoritet",
+      "power_over_player": "kan gjøre målbare konsekvenser mer dominerende enn vanskeligere verdier",
+      "wants": "at begrunnelser skal være etterprøvbare og eksplisitte",
+      "conceals": "at modellvalg også uttrykker prioriteringer",
+      "speech_style": "strukturert, sannsynlighetsbevisst og nøktern",
+      "teaches_player": "at usikkerhet og fordeling må synliggjøres, ikke skjules"
+    },
+    {
+      "id": "rollevennen",
+      "social_function": "gjør plikt, ansvar, intensjon og presedens konkrete gjennom sosiale roller",
+      "class_position": "person med et avgrenset ansvar i en gruppe eller institusjon",
+      "status": "middels situert ansvar",
+      "power_over_player": "kan gjøre rolleplikt til et argument som skyver andre behov til side",
+      "wants": "å vite hva man faktisk skylder andre i en bestemt rolle",
+      "conceals": "at etablerte roller selv kan være urettferdig organisert",
+      "speech_style": "praktisk, ansvarstydelig og konsekvensorientert",
+      "teaches_player": "at rolleplikt er ett hensyn blant flere, ikke automatisk siste ord"
+    },
+    {
+      "id": "forsiktighetsvennen",
+      "social_function": "holder irreversible skader, reversibilitet og risiko synlig når gevinster frister",
+      "class_position": "risikobevisst deltaker uten sikkerhets- eller fagmyndighet",
+      "status": "lav formell men høy uformell forsiktighetsverdi",
+      "power_over_player": "kan trekke beslutninger for langt mot forsiktighet hvis all risiko behandles likt",
+      "wants": "at alvorlige og irreversible utfall ikke forsvinner i gjennomsnittstall",
+      "conceals": "at overdreven forsiktighet også kan ha kostnader",
+      "speech_style": "lavmælt, sannsynlighetsbevisst og scenarioorientert",
+      "teaches_player": "at sannsynlighet, alvorlighet og reversibilitet må skilles"
+    },
+    {
+      "id": "begrepsvennen",
+      "social_function": "rydder i verdier, prinsipper og ord når flere legitime hensyn kolliderer",
+      "class_position": "filosofiinteressert deltaker uten akademisk eller profesjonell autoritet",
+      "status": "middels symbolsk status i refleksjonssamtaler",
+      "power_over_player": "kan gjøre språklig ryddighet til en illusjon av løst konflikt",
+      "wants": "at uenighet skal handle om reelle prinsippforskjeller fremfor uklare ord",
+      "conceals": "at klare begreper ikke fjerner vanskelige avveininger",
+      "speech_style": "presis, langsom og kontrasterende",
+      "teaches_player": "at verdikonflikt kan være reell selv når alle begreper er avklart"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "markerer skillet mellom etisk refleksjon og profesjonell, juridisk eller institusjonell beslutning",
+      "class_position": "kvalifisert eller mandatbærende fagrolle med avgrenset ansvar",
+      "status": "høy formell myndighet i eget ansvarsområde",
+      "power_over_player": "kan stoppe rolleoverskridelser og kreve faglig eller juridisk grunnlag utover etikkdiskusjonen",
+      "wants": "at etisk analyse brukes som begrunnelse og spørsmål, ikke som skjult fullmakt",
+      "conceals": "at også formelle beslutninger inneholder verdiprioriteringer",
+      "speech_style": "presis, ansvarstydelig og rolig",
+      "teaches_player": "at etisk kompetanse og beslutningsmandat er forskjellige ting"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "consent_vs_pressure",
+      "meaning": "formelt ja mot reell frivillighet, informasjon og sosialt press",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "aggregate_benefit_vs_burden_distribution",
+      "meaning": "samlet nytte mot hvem som faktisk bærer kostnaden",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rule_consistency_vs_exception",
+      "meaning": "lik regelbehandling mot uvanlig harde enkelttilfeller",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "role_duty_vs_general_need",
+      "meaning": "spesifikke rolleforpliktelser mot større generelle behov",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "conflict_of_interest_vs_argument_validity",
+      "meaning": "interessekonflikt mot selve gyldigheten i et argument",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "low_probability_vs_irreversible_harm",
+      "meaning": "lav sannsynlighet mot alvorlig og irreversibel skade",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "equality_vs_equity_principle",
+      "meaning": "lik fordeling mot behovsbasert rettferdighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "good_intent_vs_foreseeable_effect",
+      "meaning": "god intensjon mot aktsomhet og faktisk konsekvens",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "value_conflict_vs_fixed_hierarchy",
+      "meaning": "verdikonflikt mot forestillingen om én fast rangering av alle hensyn",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reversibility_vs_position_bias",
+      "meaning": "egen posisjon mot hva som blir synlig når roller byttes",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "uncertainty_vs_false_certainty",
+      "meaning": "beslutning under usikkerhet mot å late som premissene er sikrere enn de er",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "immediate_fix_vs_precedent",
+      "meaning": "kortsiktig løsning mot presedens, vane og langsiktig norm",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "moral_disagreement_vs_motive_attribution",
+      "meaning": "moralsk uenighet mot raske påstander om uvitenhet eller dårlig motiv",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "ethical_analysis_vs_formal_authority",
+      "meaning": "etisk analyse mot profesjonell, juridisk og institusjonell beslutningsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Sa personen ja — eller var det reelt frivillig?.",
+        "thread_ids": [
+          "consent_vs_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#samtykket_som_var_mer_enn_et_ja"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Sa personen ja — eller var det reelt frivillig?.",
+        "thread_ids": [
+          "consent_vs_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#samtykket_som_var_mer_enn_et_ja"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Sa personen ja — eller var det reelt frivillig?.",
+        "thread_ids": [
+          "consent_vs_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#samtykket_som_var_mer_enn_et_ja"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Sa personen ja — eller var det reelt frivillig?.",
+        "thread_ids": [
+          "consent_vs_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#samtykket_som_var_mer_enn_et_ja"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Totalgevinsten er stor — men hvem bærer kostnaden?.",
+        "thread_ids": [
+          "aggregate_benefit_vs_burden_distribution",
+          "consent_vs_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#nytten_som_fordelte_seg_skjevt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Totalgevinsten er stor — men hvem bærer kostnaden?.",
+        "thread_ids": [
+          "aggregate_benefit_vs_burden_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#nytten_som_fordelte_seg_skjevt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Totalgevinsten er stor — men hvem bærer kostnaden?.",
+        "thread_ids": [
+          "aggregate_benefit_vs_burden_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#nytten_som_fordelte_seg_skjevt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Totalgevinsten er stor — men hvem bærer kostnaden?.",
+        "thread_ids": [
+          "aggregate_benefit_vs_burden_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#nytten_som_fordelte_seg_skjevt"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Samme regel for alle — men samme virkning?.",
+        "thread_ids": [
+          "rule_consistency_vs_exception",
+          "aggregate_benefit_vs_burden_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#regelen_som_traff_unntaket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Samme regel for alle — men samme virkning?.",
+        "thread_ids": [
+          "rule_consistency_vs_exception"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#regelen_som_traff_unntaket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Samme regel for alle — men samme virkning?.",
+        "thread_ids": [
+          "rule_consistency_vs_exception"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#regelen_som_traff_unntaket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Samme regel for alle — men samme virkning?.",
+        "thread_ids": [
+          "rule_consistency_vs_exception"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#regelen_som_traff_unntaket"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Hvem har du faktisk ansvar for?.",
+        "thread_ids": [
+          "role_duty_vs_general_need",
+          "rule_consistency_vs_exception"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#narmeste_rolle_eller_storste_behov"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Hvem har du faktisk ansvar for?.",
+        "thread_ids": [
+          "role_duty_vs_general_need"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#narmeste_rolle_eller_storste_behov"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Hvem har du faktisk ansvar for?.",
+        "thread_ids": [
+          "role_duty_vs_general_need"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#narmeste_rolle_eller_storste_behov"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Hvem har du faktisk ansvar for?.",
+        "thread_ids": [
+          "role_duty_vs_general_need"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#narmeste_rolle_eller_storste_behov"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Du har noe å vinne på konklusjonen.",
+        "thread_ids": [
+          "conflict_of_interest_vs_argument_validity",
+          "role_duty_vs_general_need"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#interessen_som_ikke_gjorde_argumentet_usant"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Du har noe å vinne på konklusjonen.",
+        "thread_ids": [
+          "conflict_of_interest_vs_argument_validity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#interessen_som_ikke_gjorde_argumentet_usant"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Du har noe å vinne på konklusjonen.",
+        "thread_ids": [
+          "conflict_of_interest_vs_argument_validity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#interessen_som_ikke_gjorde_argumentet_usant"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Du har noe å vinne på konklusjonen.",
+        "thread_ids": [
+          "conflict_of_interest_vs_argument_validity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#interessen_som_ikke_gjorde_argumentet_usant"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Sannsynligheten er lav — men konsekvensen kan ikke gjøres om.",
+        "thread_ids": [
+          "low_probability_vs_irreversible_harm",
+          "conflict_of_interest_vs_argument_validity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#skaden_som_var_liten_men_irreversibel"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Sannsynligheten er lav — men konsekvensen kan ikke gjøres om.",
+        "thread_ids": [
+          "low_probability_vs_irreversible_harm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#skaden_som_var_liten_men_irreversibel"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Sannsynligheten er lav — men konsekvensen kan ikke gjøres om.",
+        "thread_ids": [
+          "low_probability_vs_irreversible_harm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#skaden_som_var_liten_men_irreversibel"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Sannsynligheten er lav — men konsekvensen kan ikke gjøres om.",
+        "thread_ids": [
+          "low_probability_vs_irreversible_harm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#skaden_som_var_liten_men_irreversibel"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Skal alle få det samme — eller det de trenger?.",
+        "thread_ids": [
+          "equality_vs_equity_principle",
+          "low_probability_vs_irreversible_harm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#rettferdighet_som_ikke_var_likhet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Skal alle få det samme — eller det de trenger?.",
+        "thread_ids": [
+          "equality_vs_equity_principle"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#rettferdighet_som_ikke_var_likhet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Skal alle få det samme — eller det de trenger?.",
+        "thread_ids": [
+          "equality_vs_equity_principle"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#rettferdighet_som_ikke_var_likhet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Skal alle få det samme — eller det de trenger?.",
+        "thread_ids": [
+          "equality_vs_equity_principle"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#rettferdighet_som_ikke_var_likhet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Du mente det godt — men noen ble skadet.",
+        "thread_ids": [
+          "good_intent_vs_foreseeable_effect",
+          "equality_vs_equity_principle"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#intensjonen_som_ikke_fjernet_konsekvensen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Du mente det godt — men noen ble skadet.",
+        "thread_ids": [
+          "good_intent_vs_foreseeable_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#intensjonen_som_ikke_fjernet_konsekvensen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Du mente det godt — men noen ble skadet.",
+        "thread_ids": [
+          "good_intent_vs_foreseeable_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#intensjonen_som_ikke_fjernet_konsekvensen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Du mente det godt — men noen ble skadet.",
+        "thread_ids": [
+          "good_intent_vs_foreseeable_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#intensjonen_som_ikke_fjernet_konsekvensen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Begge prinsippene er viktige — men ikke samtidig her.",
+        "thread_ids": [
+          "value_conflict_vs_fixed_hierarchy",
+          "good_intent_vs_foreseeable_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#verdien_som_kolliderte_med_en_annen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Begge prinsippene er viktige — men ikke samtidig her.",
+        "thread_ids": [
+          "value_conflict_vs_fixed_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#verdien_som_kolliderte_med_en_annen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Begge prinsippene er viktige — men ikke samtidig her.",
+        "thread_ids": [
+          "value_conflict_vs_fixed_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#verdien_som_kolliderte_med_en_annen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Begge prinsippene er viktige — men ikke samtidig her.",
+        "thread_ids": [
+          "value_conflict_vs_fixed_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#verdien_som_kolliderte_med_en_annen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Ville du akseptert dette hvis rollene var byttet?.",
+        "thread_ids": [
+          "reversibility_vs_position_bias",
+          "value_conflict_vs_fixed_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#reversibilitetstesten"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Ville du akseptert dette hvis rollene var byttet?.",
+        "thread_ids": [
+          "reversibility_vs_position_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#reversibilitetstesten"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Ville du akseptert dette hvis rollene var byttet?.",
+        "thread_ids": [
+          "reversibility_vs_position_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#reversibilitetstesten"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Ville du akseptert dette hvis rollene var byttet?.",
+        "thread_ids": [
+          "reversibility_vs_position_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#reversibilitetstesten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Hvor sikker må du være før du handler?.",
+        "thread_ids": [
+          "uncertainty_vs_false_certainty",
+          "reversibility_vs_position_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#usikkerheten_som_ble_gjemt_i_beslutningen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Hvor sikker må du være før du handler?.",
+        "thread_ids": [
+          "uncertainty_vs_false_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#usikkerheten_som_ble_gjemt_i_beslutningen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Hvor sikker må du være før du handler?.",
+        "thread_ids": [
+          "uncertainty_vs_false_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#usikkerheten_som_ble_gjemt_i_beslutningen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Hvor sikker må du være før du handler?.",
+        "thread_ids": [
+          "uncertainty_vs_false_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#usikkerheten_som_ble_gjemt_i_beslutningen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Det fungerte nå — men hva etablerer det over tid?.",
+        "thread_ids": [
+          "immediate_fix_vs_precedent",
+          "uncertainty_vs_false_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#konsekvensen_som_kom_senere"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Det fungerte nå — men hva etablerer det over tid?.",
+        "thread_ids": [
+          "immediate_fix_vs_precedent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#konsekvensen_som_kom_senere"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Det fungerte nå — men hva etablerer det over tid?.",
+        "thread_ids": [
+          "immediate_fix_vs_precedent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#konsekvensen_som_kom_senere"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Det fungerte nå — men hva etablerer det over tid?.",
+        "thread_ids": [
+          "immediate_fix_vs_precedent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#konsekvensen_som_kom_senere"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Uenighet om verdi er ikke nødvendigvis dårlig vilje.",
+        "thread_ids": [
+          "moral_disagreement_vs_motive_attribution",
+          "immediate_fix_vs_precedent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#moralsk_uvennskap"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Uenighet om verdi er ikke nødvendigvis dårlig vilje.",
+        "thread_ids": [
+          "moral_disagreement_vs_motive_attribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#moralsk_uvennskap"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Uenighet om verdi er ikke nødvendigvis dårlig vilje.",
+        "thread_ids": [
+          "moral_disagreement_vs_motive_attribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#moralsk_uvennskap"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Uenighet om verdi er ikke nødvendigvis dårlig vilje.",
+        "thread_ids": [
+          "moral_disagreement_vs_motive_attribution",
+          "ethical_analysis_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#moralsk_uvennskap"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Etisk analyse gir ikke automatisk mandat til å bestemme.",
+        "thread_ids": [
+          "ethical_analysis_vs_formal_authority",
+          "moral_disagreement_vs_motive_attribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#etiker_ikke_beslutningstaker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Etisk analyse gir ikke automatisk mandat til å bestemme.",
+        "thread_ids": [
+          "ethical_analysis_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#etiker_ikke_beslutningstaker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Etisk analyse gir ikke automatisk mandat til å bestemme.",
+        "thread_ids": [
+          "ethical_analysis_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#etiker_ikke_beslutningstaker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Etisk analyse gir ikke automatisk mandat til å bestemme.",
+        "thread_ids": [
+          "ethical_analysis_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_etiker.json#etiker_ikke_beslutningstaker"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "consent_vs_pressure",
+      "relationship": "formelt ja mot reell frivillighet, informasjon og sosialt press",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "aggregate_benefit_vs_burden_distribution",
+      "relationship": "samlet nytte mot hvem som faktisk bærer kostnaden",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "rule_consistency_vs_exception",
+      "relationship": "lik regelbehandling mot uvanlig harde enkelttilfeller",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "role_duty_vs_general_need",
+      "relationship": "spesifikke rolleforpliktelser mot større generelle behov",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "conflict_of_interest_vs_argument_validity",
+      "relationship": "interessekonflikt mot selve gyldigheten i et argument",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "low_probability_vs_irreversible_harm",
+      "relationship": "lav sannsynlighet mot alvorlig og irreversibel skade",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "equality_vs_equity_principle",
+      "relationship": "lik fordeling mot behovsbasert rettferdighet",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "good_intent_vs_foreseeable_effect",
+      "relationship": "god intensjon mot aktsomhet og faktisk konsekvens",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "value_conflict_vs_fixed_hierarchy",
+      "relationship": "verdikonflikt mot forestillingen om én fast rangering av alle hensyn",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "reversibility_vs_position_bias",
+      "relationship": "egen posisjon mot hva som blir synlig når roller byttes",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "uncertainty_vs_false_certainty",
+      "relationship": "beslutning under usikkerhet mot å late som premissene er sikrere enn de er",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "immediate_fix_vs_precedent",
+      "relationship": "kortsiktig løsning mot presedens, vane og langsiktig norm",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "moral_disagreement_vs_motive_attribution",
+      "relationship": "moralsk uenighet mot raske påstander om uvitenhet eller dårlig motiv",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "ethical_analysis_vs_formal_authority",
+      "relationship": "etisk analyse mot profesjonell, juridisk og institusjonell beslutningsmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "samtykke_og_fordeling",
+      "description": "Frivillighet, press, samlet nytte og byrdefordeling holdes adskilt i vurderingen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_etiker.json#samtykket_som_var_mer_enn_et_ja",
+        "data/Civication/narratives/leisure/filosofi_etiker.json#nytten_som_fordelte_seg_skjevt"
+      ]
+    },
+    {
+      "id": "regel_rolle_og_interesse",
+      "description": "Lik regel, rolleplikt og interessekonflikt behandles som ulike hensyn med hver sin begrunnelse.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_etiker.json#regelen_som_traff_unntaket",
+        "data/Civication/narratives/leisure/filosofi_etiker.json#narmeste_rolle_eller_storste_behov",
+        "data/Civication/narratives/leisure/filosofi_etiker.json#interessen_som_ikke_gjorde_argumentet_usant"
+      ]
+    },
+    {
+      "id": "skade_rettferdighet_og_intensjon",
+      "description": "Irreversibel skade, fordelingsprinsipp og gode intensjoner vurderes uten å redusere hverandre.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_etiker.json#skaden_som_var_liten_men_irreversibel",
+        "data/Civication/narratives/leisure/filosofi_etiker.json#rettferdighet_som_ikke_var_likhet",
+        "data/Civication/narratives/leisure/filosofi_etiker.json#intensjonen_som_ikke_fjernet_konsekvensen"
+      ]
+    },
+    {
+      "id": "verdikonflikt_med_usikkerhet",
+      "description": "Perspektivbytte og eksplisitt usikkerhet gjør verdikonflikter tydeligere uten å late som de forsvinner.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_etiker.json#verdien_som_kolliderte_med_en_annen",
+        "data/Civication/narratives/leisure/filosofi_etiker.json#reversibilitetstesten",
+        "data/Civication/narratives/leisure/filosofi_etiker.json#usikkerheten_som_ble_gjemt_i_beslutningen"
+      ]
+    },
+    {
+      "id": "presedens_uenighet_og_mandat",
+      "description": "Langsiktige normer og moralsk uenighet håndteres uten at etisk analyse blir formell beslutningsmyndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_etiker.json#konsekvensen_som_kom_senere",
+        "data/Civication/narratives/leisure/filosofi_etiker.json#moralsk_uvennskap",
+        "data/Civication/narratives/leisure/filosofi_etiker.json#etiker_ikke_beslutningstaker"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "samtykke_moter_fordeling",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "relationship",
+        "status"
+      ]
+    },
+    {
+      "id": "regel_moter_rolleplikt",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "interesse_moter_irreversibel_skade",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "reputation",
+        "safety"
+      ]
+    },
+    {
+      "id": "rettferdighet_moter_intensjon",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "status",
+        "reputation"
+      ]
+    },
+    {
+      "id": "verdikonflikt_moter_usikkerhet",
+      "setup_ref": "9/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "reputation",
+        "identity"
+      ]
+    },
+    {
+      "id": "presedens_moter_mandat",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/filosofi_etiker.json#samtykket_som_var_mer_enn_et_ja",
+      "data/Civication/narratives/leisure/filosofi_etiker.json#nytten_som_fordelte_seg_skjevt",
+      "data/Civication/narratives/leisure/filosofi_etiker.json#regelen_som_traff_unntaket",
+      "data/Civication/narratives/leisure/filosofi_etiker.json#narmeste_rolle_eller_storste_behov",
+      "data/Civication/narratives/leisure/filosofi_etiker.json#interessen_som_ikke_gjorde_argumentet_usant",
+      "data/Civication/narratives/leisure/filosofi_etiker.json#skaden_som_var_liten_men_irreversibel",
+      "data/Civication/narratives/leisure/filosofi_etiker.json#rettferdighet_som_ikke_var_likhet",
+      "data/Civication/narratives/leisure/filosofi_etiker.json#intensjonen_som_ikke_fjernet_konsekvensen",
+      "data/Civication/narratives/leisure/filosofi_etiker.json#verdien_som_kolliderte_med_en_annen",
+      "data/Civication/narratives/leisure/filosofi_etiker.json#reversibilitetstesten",
+      "data/Civication/narratives/leisure/filosofi_etiker.json#usikkerheten_som_ble_gjemt_i_beslutningen",
+      "data/Civication/narratives/leisure/filosofi_etiker.json#konsekvensen_som_kom_senere",
+      "data/Civication/narratives/leisure/filosofi_etiker.json#moralsk_uvennskap",
+      "data/Civication/narratives/leisure/filosofi_etiker.json#etiker_ikke_beslutningstaker"
+    ]
+  }
+}
