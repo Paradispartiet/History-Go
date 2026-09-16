@@ -474,24 +474,7 @@ if (writeMode) {
 }
 if (checkMode) {
   if (!exists(OUTPUT) || !exists(REPORT)) throw new Error('Readiness outputs missing; run with --write.');
-  if (readText(OUTPUT)!==jsonText) {
-    let actual=null;
-    try { actual=JSON.parse(readText(OUTPUT)); } catch {}
-    const actualByKey=new Map((actual?.positions||[]).map((row)=>[row.key,row]));
-    const changedRows=output.positions
-      .filter((row)=>JSON.stringify(actualByKey.get(row.key))!==JSON.stringify(row))
-      .map((row)=>({ key:row.key, actual:actualByKey.get(row.key)||null, expected:row }));
-    console.error('READINESS_DIAGNOSTIC '+JSON.stringify({
-      actual_summary:actual?.summary||null,
-      expected_summary:output.summary,
-      actual_first_ready:actual?.first_ready||null,
-      expected_first_ready:output.first_ready,
-      actual_queue_head:(actual?.queue||[]).slice(0,32),
-      expected_queue_head:output.queue.slice(0,32),
-      changed_rows:changedRows
-    },null,2));
-    throw new Error(`${OUTPUT} is stale; run with --write.`);
-  }
+  if (readText(OUTPUT)!==jsonText) throw new Error(`${OUTPUT} is stale; run with --write.`);
   if (readText(REPORT)!==reportText) throw new Error(`${REPORT} is stale; run with --write.`);
   const expectedSelectable = Number(taxonomy.canonical_counts?.selectable_life_positions_total);
   if (!Number.isInteger(expectedSelectable) || expectedSelectable < 1) throw new Error('Canonical selectable life-position count missing from taxonomy.');
