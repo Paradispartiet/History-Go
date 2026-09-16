@@ -1,0 +1,1143 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_kampanjemenneske",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "politikk",
+    "id": "kampanjemenneske",
+    "label": "Kampanjemenneske"
+  },
+  "title": "Kampanjemenneske — organisering, dokumentasjon og rollegrenser",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å få en kampanje til å fungere praktisk og offentlig uten at tempo, synlighet, data, ressurser eller uformell tillit gjør prosessgrenser usynlige eller frivillig erfaring til formelt mandat",
+    "description": "Kampanjemenneske-verdenen undersøker kontaktdata, tidsplaner, faktagrunnlag, bildebruk, arbeidsfordeling, tydelig avsender, mediekontakt, støtte og bindinger, referater, arrangementsroller, dataminimering, korreksjoner, samarbeid og grensen mot formelt mandat. Kampanjemenneske er en practice_identity og selvvalgt organisasjonspraksis. Rollen gir ingen automatisk myndighet som valgt representant, profesjonell politisk rådgiver, offentlig saksbehandler eller beslutningstaker, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "bureaucratic_power",
+    "public_attention",
+    "loyalty_up_down",
+    "shame_reputation",
+    "social_mask",
+    "care_vs_efficiency",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "arbeidsmøter og digitale tavler der oppgaver, kapasitet og ansvar må bli konkrete nok til at frivillig arbeid faktisk kan fordeles",
+    "kontaktlister, skjemaer og kartverktøy der praktisk organisering raskt kan samle mer personinformasjon enn den trenger",
+    "materiell- og dokumentarbeid der korte formuleringer må holdes innenfor det faktagrunnlaget som faktisk finnes",
+    "frivillige arbeidsøkter og arrangementer der intern deltakelse, offentlig eksponering og praktiske roller ikke alltid er det samme",
+    "mediekontakt og offentlige prosesser der talerolle, avsender og mandat blir mer synlig enn i interne samtaler",
+    "samarbeid med eksterne aktører der støtte, ressurser og felles aktivitet kan skape forventninger som må avgrenses"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "koordineringsvenn",
+      "social_function": "deler planlegging og gjør tidsbruk, oppgavefordeling og interne forventninger synlige",
+      "class_position": "likestilt frivillig deltaker uten formelt mandat",
+      "status": "høy praktisk betydning når mange små oppgaver skal henge sammen",
+      "power_over_player": "kan forsterke tempo og gjennomføringspress eller bidra til realistiske grenser",
+      "wants": "at arbeidet faktisk blir gjort uten kaos",
+      "conceals": "at egen tilgjengelighet lett blir gjort til standard for andre",
+      "speech_style": "kort, praktisk og opptatt av neste leveranse",
+      "teaches_player": "at kapasitet og ansvar må designes, ikke bare antas"
+    },
+    {
+      "id": "erfaren_kampanjedeltaker",
+      "social_function": "representerer uformell prosesskompetanse om materiell, arrangementer og koordinering",
+      "class_position": "erfaren frivillig uten automatisk valgt eller profesjonelt mandat",
+      "status": "høy uformell autoritet fordi vedkommende kjenner rutiner og fallgruver",
+      "power_over_player": "kan definere hva som oppfattes som normal arbeidsform og nødvendig tempo",
+      "wants": "ryddig gjennomføring og få overraskelser",
+      "conceals": "at rutine også kan gjøre gamle arbeidsmåter vanskeligere å utfordre",
+      "speech_style": "effektiv, erfaringsbasert og prosessorientert",
+      "teaches_player": "at erfaring bør oversettes til begrunnelser og delbar kunnskap"
+    },
+    {
+      "id": "ny_frivillig",
+      "social_function": "gjør informasjonsbehov, arbeidsterskler og forventningspress synlig fra perspektivet til en ny deltaker",
+      "class_position": "ny frivillig med lav uformell status og ingen myndighet",
+      "status": "avhengig av om oppgaver og grenser faktisk forklares",
+      "power_over_player": "kan vise om kampanjen er forståelig uten taus forkunnskap",
+      "wants": "en tydelig oppgave og rett til å si nei uten sosial kostnad",
+      "conceals": "at usikkerhet ofte skjules når alle andre virker travle",
+      "speech_style": "konkret, spørrende og forsiktig med å forstyrre",
+      "teaches_player": "at åpen deltakelse krever mer enn en invitasjon"
+    },
+    {
+      "id": "dokumentasjonsansvarlig",
+      "social_function": "gjør kildegrunnlag, referater, korreksjoner og sporbarhet til konkrete arbeidsoppgaver",
+      "class_position": "frivillig eller medarbeider med avgrenset dokumentansvar, ikke offentlig myndighet",
+      "status": "situert autoritet over arbeidsflyt og dokumentversjoner",
+      "power_over_player": "kan stoppe materiale som mangler grunnlag eller kreve synlig korreksjon",
+      "wants": "at det som publiseres kan forstås og etterprøves i ettertid",
+      "conceals": "at streng dokumentasjon også koster tid når tempoet er høyt",
+      "speech_style": "presis, kildeorientert og lite imponert av formuleringer uten grunnlag",
+      "teaches_player": "at kampanjearbeid blir mer robust når feil kan finnes og rettes"
+    },
+    {
+      "id": "praktisk_samarbeidspartner",
+      "social_function": "representerer eksterne aktører som kan bidra med lokaler, trykk, logistikk eller felles aktivitet",
+      "class_position": "selvstendig lokal aktør med egne interesser og eget mandat",
+      "status": "kan ha ressurser kampanjen mangler uten å være del av kampanjen",
+      "power_over_player": "kan endre hva som er praktisk mulig og skape forventninger om gjensidighet",
+      "wants": "et avklart samarbeid med tydelig rolle og begrensning",
+      "conceals": "at også praktisk støtte kan påvirke relasjoner og forventninger",
+      "speech_style": "konkret, løsningsorientert og opptatt av hvem som gjør hva",
+      "teaches_player": "at ressurser og samarbeid trenger eksplisitte grenser"
+    },
+    {
+      "id": "offentlig_kontaktperson",
+      "social_function": "gjør skillet mellom frivillig kampanjearbeid og formell offentlig prosess synlig",
+      "class_position": "saksbehandler eller annen offentlig kontakt med avgrenset mandat",
+      "status": "formell autoritet innen egen prosess, men ikke over kampanjens interne standpunkter",
+      "power_over_player": "kan forklare hvilke opplysninger, frister eller formater som faktisk inngår i en offentlig prosess",
+      "wants": "presise innspill og tydelig avsender",
+      "conceals": "at institusjonelle formater ikke alltid fanger hele bredden i frivillig arbeid",
+      "speech_style": "saklig, rolleavgrenset og prosessorientert",
+      "teaches_player": "at tilgang til en offentlig kanal ikke er det samme som beslutningsmyndighet"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "ambition_vs_capacity",
+      "meaning": "om arbeidsplanen tar frivillig kapasitet og marginer på alvor fremfor å gjøre maksimal aktivitet til normaltilstand",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "message_vs_evidence",
+      "meaning": "om offentlig materiell forblir bundet til dokumenterbart grunnlag selv når enklere formuleringer er mer attraktive",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "visibility_vs_consent",
+      "meaning": "om intern deltakelse holdes adskilt fra automatisk offentlig profilering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "resources_vs_independence",
+      "meaning": "om støtte og praktiske ressurser håndteres med synlige bindinger og avgrenset forventning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "speed_vs_record",
+      "meaning": "om høyt tempo fortsatt gir rom for referater, kildekontroll og synlige korreksjoner",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cooperation_vs_scope",
+      "meaning": "om samarbeid beskrives så smalt som det faktisk er, uten å låne generell tilslutning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "practice_vs_formal_authority",
+      "meaning": "om omfattende kampanjeerfaring holdes tydelig adskilt fra valgt, profesjonell rådgivende og offentlig myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Kan vi bruke den gamle lista igjen?.",
+        "thread_ids": [
+          "data_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#kontaktlista_fra_sist"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Kan vi bruke den gamle lista igjen?.",
+        "thread_ids": [
+          "data_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#kontaktlista_fra_sist"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Kan vi bruke den gamle lista igjen?.",
+        "thread_ids": [
+          "data_vs_scope",
+          "design_vs_sender_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#kontaktlista_fra_sist"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Kan vi bruke den gamle lista igjen?.",
+        "thread_ids": [
+          "data_vs_scope",
+          "flexibility_vs_role_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#kontaktlista_fra_sist"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Alt får plass hvis alle leverer.",
+        "thread_ids": [
+          "ambition_vs_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#tidsplanen_som_ser_perfekt_ut"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Alt får plass hvis alle leverer.",
+        "thread_ids": [
+          "ambition_vs_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#tidsplanen_som_ser_perfekt_ut"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Alt får plass hvis alle leverer.",
+        "thread_ids": [
+          "ambition_vs_capacity",
+          "media_speed_vs_mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#tidsplanen_som_ser_perfekt_ut"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Alt får plass hvis alle leverer.",
+        "thread_ids": [
+          "ambition_vs_capacity",
+          "tools_vs_data_minimization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#tidsplanen_som_ser_perfekt_ut"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Den formuleringen sitter.",
+        "thread_ids": [
+          "message_vs_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#faktaarket_med_den_gode_setningen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Den formuleringen sitter.",
+        "thread_ids": [
+          "message_vs_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#faktaarket_med_den_gode_setningen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Den formuleringen sitter.",
+        "thread_ids": [
+          "message_vs_evidence",
+          "resources_vs_independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#faktaarket_med_den_gode_setningen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Den formuleringen sitter.",
+        "thread_ids": [
+          "message_vs_evidence",
+          "reputation_vs_correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#faktaarket_med_den_gode_setningen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Dette viser jo hvor bra det gikk.",
+        "thread_ids": [
+          "visibility_vs_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#bildet_fra_arbeidsokta"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Dette viser jo hvor bra det gikk.",
+        "thread_ids": [
+          "visibility_vs_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#bildet_fra_arbeidsokta"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Dette viser jo hvor bra det gikk.",
+        "thread_ids": [
+          "visibility_vs_consent",
+          "unity_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#bildet_fra_arbeidsokta"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Dette viser jo hvor bra det gikk.",
+        "thread_ids": [
+          "visibility_vs_consent",
+          "cooperation_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#bildet_fra_arbeidsokta"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Kan du bare ordne denne også?.",
+        "thread_ids": [
+          "efficiency_vs_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#den_som_alltid_tar_telefonen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Kan du bare ordne denne også?.",
+        "thread_ids": [
+          "efficiency_vs_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#den_som_alltid_tar_telefonen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Kan du bare ordne denne også?.",
+        "thread_ids": [
+          "efficiency_vs_distribution",
+          "flexibility_vs_role_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#den_som_alltid_tar_telefonen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Kan du bare ordne denne også?.",
+        "thread_ids": [
+          "efficiency_vs_distribution",
+          "practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#den_som_alltid_tar_telefonen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Det ser nesten kommunalt ut.",
+        "thread_ids": [
+          "design_vs_sender_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#materiellet_med_offisiell_tone"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Det ser nesten kommunalt ut.",
+        "thread_ids": [
+          "design_vs_sender_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#materiellet_med_offisiell_tone"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Det ser nesten kommunalt ut.",
+        "thread_ids": [
+          "design_vs_sender_clarity",
+          "tools_vs_data_minimization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#materiellet_med_offisiell_tone"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Det ser nesten kommunalt ut.",
+        "thread_ids": [
+          "design_vs_sender_clarity",
+          "data_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#materiellet_med_offisiell_tone"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Hva mener kampanjen om dette?.",
+        "thread_ids": [
+          "media_speed_vs_mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#journalisten_vil_ha_en_kort_kommentar"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Hva mener kampanjen om dette?.",
+        "thread_ids": [
+          "media_speed_vs_mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#journalisten_vil_ha_en_kort_kommentar"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Hva mener kampanjen om dette?.",
+        "thread_ids": [
+          "media_speed_vs_mandate",
+          "reputation_vs_correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#journalisten_vil_ha_en_kort_kommentar"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Hva mener kampanjen om dette?.",
+        "thread_ids": [
+          "media_speed_vs_mandate",
+          "ambition_vs_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#journalisten_vil_ha_en_kort_kommentar"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Vi kan betale trykkekostnaden.",
+        "thread_ids": [
+          "resources_vs_independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#stotten_fra_den_lokale_bedriften"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Vi kan betale trykkekostnaden.",
+        "thread_ids": [
+          "resources_vs_independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#stotten_fra_den_lokale_bedriften"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Vi kan betale trykkekostnaden.",
+        "thread_ids": [
+          "resources_vs_independence",
+          "cooperation_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#stotten_fra_den_lokale_bedriften"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Vi kan betale trykkekostnaden.",
+        "thread_ids": [
+          "resources_vs_independence",
+          "message_vs_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#stotten_fra_den_lokale_bedriften"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Må all uenighet stå her?.",
+        "thread_ids": [
+          "unity_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#referatet_som_glatter_ut"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Må all uenighet stå her?.",
+        "thread_ids": [
+          "unity_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#referatet_som_glatter_ut"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Må all uenighet stå her?.",
+        "thread_ids": [
+          "unity_vs_record",
+          "practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#referatet_som_glatter_ut"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Må all uenighet stå her?.",
+        "thread_ids": [
+          "unity_vs_record",
+          "visibility_vs_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#referatet_som_glatter_ut"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Hvem har egentlig ansvar for hva?.",
+        "thread_ids": [
+          "flexibility_vs_role_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#arrangementet_med_for_mange_roller"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Hvem har egentlig ansvar for hva?.",
+        "thread_ids": [
+          "flexibility_vs_role_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#arrangementet_med_for_mange_roller"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Hvem har egentlig ansvar for hva?.",
+        "thread_ids": [
+          "flexibility_vs_role_clarity",
+          "data_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#arrangementet_med_for_mange_roller"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Hvem har egentlig ansvar for hva?.",
+        "thread_ids": [
+          "flexibility_vs_role_clarity",
+          "efficiency_vs_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#arrangementet_med_for_mange_roller"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Her bor de som har meldt seg.",
+        "thread_ids": [
+          "tools_vs_data_minimization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#kartet_med_prikker"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Her bor de som har meldt seg.",
+        "thread_ids": [
+          "tools_vs_data_minimization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#kartet_med_prikker"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Her bor de som har meldt seg.",
+        "thread_ids": [
+          "tools_vs_data_minimization",
+          "ambition_vs_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#kartet_med_prikker"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Her bor de som har meldt seg.",
+        "thread_ids": [
+          "tools_vs_data_minimization",
+          "design_vs_sender_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#kartet_med_prikker"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Vi skrev feil i går.",
+        "thread_ids": [
+          "reputation_vs_correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#feilen_som_allerede_er_delt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Vi skrev feil i går.",
+        "thread_ids": [
+          "reputation_vs_correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#feilen_som_allerede_er_delt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Vi skrev feil i går.",
+        "thread_ids": [
+          "reputation_vs_correction",
+          "message_vs_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#feilen_som_allerede_er_delt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Vi skrev feil i går.",
+        "thread_ids": [
+          "reputation_vs_correction",
+          "media_speed_vs_mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#feilen_som_allerede_er_delt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Vi kan stå sammen om denne aktiviteten.",
+        "thread_ids": [
+          "cooperation_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#den_nye_samarbeidspartneren"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Vi kan stå sammen om denne aktiviteten.",
+        "thread_ids": [
+          "cooperation_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#den_nye_samarbeidspartneren"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Vi kan stå sammen om denne aktiviteten.",
+        "thread_ids": [
+          "cooperation_vs_scope",
+          "visibility_vs_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#den_nye_samarbeidspartneren"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Vi kan stå sammen om denne aktiviteten.",
+        "thread_ids": [
+          "cooperation_vs_scope",
+          "resources_vs_independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#den_nye_samarbeidspartneren"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Hva var rollen din egentlig?.",
+        "thread_ids": [
+          "practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#hva_slags_kampanjemenneske"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Hva var rollen din egentlig?.",
+        "thread_ids": [
+          "practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#hva_slags_kampanjemenneske"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Hva var rollen din egentlig?.",
+        "thread_ids": [
+          "practice_vs_formal_authority",
+          "efficiency_vs_distribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#hva_slags_kampanjemenneske"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Hva var rollen din egentlig?.",
+        "thread_ids": [
+          "practice_vs_formal_authority",
+          "unity_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#hva_slags_kampanjemenneske"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "data_vs_scope",
+      "relationship": "kontaktdata mot avgrenset formål",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "6/evening",
+        "10/afternoon"
+      ]
+    },
+    {
+      "id": "ambition_vs_capacity",
+      "relationship": "ambisiøs plan mot frivillig kapasitet",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "7/evening",
+        "11/afternoon"
+      ]
+    },
+    {
+      "id": "message_vs_evidence",
+      "relationship": "kort budskap mot etterprøvbart faktagrunnlag",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "8/evening",
+        "12/afternoon"
+      ]
+    },
+    {
+      "id": "visibility_vs_consent",
+      "relationship": "offentlig synlighet mot deltakersamtykke",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "9/evening",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "efficiency_vs_distribution",
+      "relationship": "effektivitet mot bærekraftig oppgavefordeling",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "10/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "design_vs_sender_clarity",
+      "relationship": "profesjonelt uttrykk mot tydelig avsenderrolle",
+      "beat_refs": [
+        "1/afternoon",
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "media_speed_vs_mandate",
+      "relationship": "medietempo mot faktisk talerolle",
+      "beat_refs": [
+        "2/afternoon",
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "resources_vs_independence",
+      "relationship": "praktisk støtte mot synlige bindinger",
+      "beat_refs": [
+        "3/afternoon",
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "unity_vs_record",
+      "relationship": "samlet framstilling mot dokumentert uenighet",
+      "beat_refs": [
+        "4/afternoon",
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "flexibility_vs_role_clarity",
+      "relationship": "frivillig fleksibilitet mot avklart arrangementsansvar",
+      "beat_refs": [
+        "1/evening",
+        "5/afternoon",
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "tools_vs_data_minimization",
+      "relationship": "analyseverktøy mot nødvendig datamengde",
+      "beat_refs": [
+        "2/evening",
+        "6/afternoon",
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "reputation_vs_correction",
+      "relationship": "fasade mot synlig korrigerbarhet",
+      "beat_refs": [
+        "3/evening",
+        "7/afternoon",
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "cooperation_vs_scope",
+      "relationship": "samarbeid mot ubegrunnet generalisering av støtte",
+      "beat_refs": [
+        "4/evening",
+        "8/afternoon",
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "practice_vs_formal_authority",
+      "relationship": "kampanjeerfaring mot valgt, rådgivende og offentlig myndighet",
+      "beat_refs": [
+        "5/evening",
+        "9/afternoon",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "kontaktdata_far_et_formal",
+      "description": "Spilleren blir mer oppmerksom på at kontaktdata, kart og gamle lister må ha et konkret og avgrenset bruksgrunnlag.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#kontaktlista_fra_sist",
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#kartet_med_prikker"
+      ]
+    },
+    {
+      "id": "kapasitet_blir_synlig",
+      "description": "Tidsplan og oppgavefordeling vurderes mer etter faktisk kapasitet enn etter idealet om maksimal aktivitet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#tidsplanen_som_ser_perfekt_ut",
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#den_som_alltid_tar_telefonen",
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#arrangementet_med_for_mange_roller"
+      ]
+    },
+    {
+      "id": "materiellet_blir_mer_etterprovbart",
+      "description": "Kilder, avsender og korreksjoner blir en tydeligere del av offentlig arbeid.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#faktaarket_med_den_gode_setningen",
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#materiellet_med_offisiell_tone",
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#feilen_som_allerede_er_delt"
+      ]
+    },
+    {
+      "id": "synlighet_far_grenser",
+      "description": "Bilder, mediekontakt og offentlig talerolle skilles tydeligere fra intern deltakelse og personlig vurdering.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#bildet_fra_arbeidsokta",
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#journalisten_vil_ha_en_kort_kommentar"
+      ]
+    },
+    {
+      "id": "rollen_far_en_tydelig_mandatgrense",
+      "description": "Kampanjeerfaring kan være dyp uten å bli valgt, profesjonell rådgivende eller offentlig beslutningsmyndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#stotten_fra_den_lokale_bedriften",
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#referatet_som_glatter_ut",
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#den_nye_samarbeidspartneren",
+        "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#hva_slags_kampanjemenneske"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "kontaktlista_moter_datakartet",
+      "setup_ref": "1/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "privacy",
+        "authority"
+      ]
+    },
+    {
+      "id": "maksimalplanen_moter_frivilligbelastningen",
+      "setup_ref": "2/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "care",
+        "relationship"
+      ]
+    },
+    {
+      "id": "faktaarket_moter_korreksjonen",
+      "setup_ref": "3/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "knowledge",
+        "reputation"
+      ]
+    },
+    {
+      "id": "bildet_moter_offentlig_talerolle",
+      "setup_ref": "4/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "public_attention",
+        "relationship"
+      ]
+    },
+    {
+      "id": "offisiell_tone_moter_stotten",
+      "setup_ref": "6/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "authority",
+        "resources"
+      ]
+    },
+    {
+      "id": "referatet_moter_samarbeidets_grense",
+      "setup_ref": "9/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "bureaucracy",
+        "loyalty"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#kontaktlista_fra_sist",
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#tidsplanen_som_ser_perfekt_ut",
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#faktaarket_med_den_gode_setningen",
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#bildet_fra_arbeidsokta",
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#den_som_alltid_tar_telefonen",
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#materiellet_med_offisiell_tone",
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#journalisten_vil_ha_en_kort_kommentar",
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#stotten_fra_den_lokale_bedriften",
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#referatet_som_glatter_ut",
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#arrangementet_med_for_mange_roller",
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#kartet_med_prikker",
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#feilen_som_allerede_er_delt",
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#den_nye_samarbeidspartneren",
+      "data/Civication/narratives/leisure/politikk_kampanjemenneske.json#hva_slags_kampanjemenneske"
+    ]
+  }
+}
