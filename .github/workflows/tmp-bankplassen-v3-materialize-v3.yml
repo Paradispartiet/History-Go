@@ -1,0 +1,32 @@
+name: TEMP Bankplassen v3 materialize v3
+
+on:
+  push:
+    branches:
+      - repair/bankplassen-4-v3-20260916
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install repository dependencies
+        run: npm ci
+      - name: Run locked Bankplassen materializer body
+        shell: bash
+        run: |
+          set -euo pipefail
+          src=.github/workflows/tmp-bankplassen-v3-materialize.yml
+          awk 'f{sub(/^          /,""); print} /^        run: \|$/{f=1}' "$src" > /tmp/bankplassen-v3-materialize.sh
+          sed -i '/rm -f \.github\/workflows\/tmp-bankplassen-v3-materialize.yml/a\rm -f .github/workflows/tmp-bankplassen-v3-materialize-v3.yml' /tmp/bankplassen-v3-materialize.sh
+          bash -n /tmp/bankplassen-v3-materialize.sh
+          bash /tmp/bankplassen-v3-materialize.sh
