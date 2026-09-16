@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "vitenskap_labnerd",
+  "type": "leisure",
+  "title": "Labnerd — målepraksis, kontroll og feilkilder uten laboratorieautoritet",
+  "sociological_theme": "Hvordan mennesker kan dyrke presis måle- og eksperimentpraksis med kontroll, sporbarhet, replikasjon og sikkerhetsbevissthet uten at hobbykompetanse blir laboratorie-, HMS-, forsker- eller godkjenningsmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "vitenskap:labnerd"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "maaleapparatet_som_maatte_sjekkes",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Utstyrsvennen",
+      "subject": "Før vi måler mer: stemmer måleren?",
+      "situation": [
+        "To runder gir litt forskjellige tall selv om oppsettet ser likt ut.",
+        "Det er fristende å tolke forskjellen som et nytt funn.",
+        "Først må selve måleverktøyet og nullpunktet behandles som mulige feilkilder."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekk instrumentets nullpunkt og sammenlign med en kjent referanse før du tolker variasjonen.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett måleserien og bruk gjennomsnittet til å glatte over forskjellen.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "instrument_check_vs_premature_interpretation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kontrollen_som_manglet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Forsoksvennen",
+      "subject": "Hvordan vet vi at endringen kom fra akkurat dette?",
+      "situation": [
+        "Resultatet ser annerledes ut etter at én faktor ble endret.",
+        "Flere andre ting i oppsettet endret seg samtidig uten at noen noterte det.",
+        "Uten en sammenlignbar kontroll blir årsaken vanskeligere å isolere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjenta med en kontroll der bare den relevante faktoren endres.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den første forskjellen som bevis fordi den oppsto rett etter endringen.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "control_vs_confounded_change"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "proven_som_var_blitt_borte_i_etikettene",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Loggvennen",
+      "subject": "Hvilken prøve var dette igjen?",
+      "situation": [
+        "Flere beholdere eller målepunkter ser nesten like ut etter noen runder.",
+        "En etikett mangler tidspunkt og serienummer.",
+        "Selv gode målinger mister verdi når sporbarheten forsvinner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp serien, rekonstruer det som faktisk kan dokumenteres, og merk resten som usikkert i loggen.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Velg den mest sannsynlige identiteten ut fra rekkefølgen og fortsett.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "traceability_vs_guessing"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "blindproven_som_avslorte_forventningen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Forsoksvennen",
+      "subject": "Du traff bare når du visste hvilken som var hvilken",
+      "situation": [
+        "En enkel sammenligning virker tydelig når du kjenner etikettene på forhånd.",
+        "Når prøvene anonymiseres forsvinner forskjellen nesten.",
+        "Forventning kan påvirke observasjon selv når man prøver å være nøytral."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold blindingen i neste runde og skriv ned kriteriene før du ser identiteten.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Gå tilbake til åpne etiketter fordi du trenger konteksten for å vurdere riktig.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "blinding_vs_expectation_bias"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kontaminasjonen_som_ikke_syntes",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "HMSvennen",
+      "subject": "Det ser rent ut — men det betyr ikke at historikken er borte",
+      "situation": [
+        "Utstyret ser rent ut etter forrige runde.",
+        "Små rester eller overføring kan likevel påvirke neste måling.",
+        "Renhet handler om prosedyre og sporbarhet, ikke bare om synlig utseende."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg den avtalte rengjørings- og separasjonsrutinen og noter når utstyret sist ble brukt.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Bruk utstyret videre fordi ingen synlige rester er igjen.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "cleanliness_vs_cross_contamination"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "temperaturen_som_flyttet_resultatet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Utstyrsvennen",
+      "subject": "Samme oppsett, annen dag, annet rom",
+      "situation": [
+        "Målingene flytter seg litt mellom to økter.",
+        "Forskjellen følger samtidig endring i romtemperatur og tid siden oppstart.",
+        "Miljøbetingelser kan bli skjulte variabler hvis de ikke registreres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Logg relevante miljøbetingelser og test om forskjellen følger dem før du kaller det et nytt mønster.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Slå sammen dagene i én serie fordi oppsettet ellers er identisk.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "environmental_condition_vs_hidden_variable"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "outlieren_som_var_irriterende",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Dataanalytikeren",
+      "subject": "Den ene målingen ødelegger hele serien",
+      "situation": [
+        "Én verdi ligger langt fra resten.",
+        "Det kan være en feil, men også det eneste signalet om at noe uventet skjedde.",
+        "Å fjerne et avvik krever en dokumentert grunn, ikke bare et penere resultat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk målelogg og oppsett rundt avviket, og behold eller ekskluder det med en eksplisitt begrunnelse.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Fjern verdien fordi resten av serien blir mer konsistent.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "outlier_review_vs_cleanup"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "replikasjonen_som_ikke_ble_lik",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Forsoksvennen",
+      "subject": "Vi gjorde det samme — hvorfor ble det annerledes?",
+      "situation": [
+        "Et tidligere resultat dukker ikke opp igjen i en ny runde.",
+        "Fristelsen er å kalle den nye runden dårlig utført.",
+        "Replikasjon tester både funnet og hvor presist oppsettet faktisk er beskrevet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign prosedyre, miljø, instrument og logg steg for steg før du bestemmer hvilken runde som er mest troverdig.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Behandle originalresultatet som fasit og let bare etter feilen i den nye runden.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "replication_vs_original_authority"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "flere_desimaler_enn_metoden_taalte",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Dataanalytikeren",
+      "subject": "Displayet viser seks desimaler",
+      "situation": [
+        "Instrumentet viser mange sifre og programmet kan beregne enda flere.",
+        "Oppløsningen i displayet er bedre enn sikkerheten i hele målekjeden.",
+        "Flere desimaler kan derfor se mer presist ut enn metoden faktisk er."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rapporter presisjon i tråd med måleusikkerheten, ikke bare antall sifre instrumentet viser.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Behold alle desimalene fordi rådataene faktisk inneholder dem.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "display_precision_vs_measurement_uncertainty"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "notatboka_som_ble_redigert_i_ettertid",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Loggvennen",
+      "subject": "Det blir ryddigere hvis jeg skriver alt rent nå",
+      "situation": [
+        "Notatene fra økten er rotete og fulle av små korreksjoner.",
+        "En pen omskriving vil være enklere å lese.",
+        "Samtidig kan etterredigering skjule når beslutninger faktisk ble tatt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold originalnotatet og lag en tydelig datert renskrevet oppsummering ved siden av.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Erstatt originalen med en ryddig versjon så dokumentasjonen ser profesjonell ut.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "raw_log_vs_reconstructed_record"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sikkerhetsgrensen_som_ikke_var_forhandlingsbar",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "HMSvennen",
+      "subject": "Dette oppsettet trenger faktisk riktig rom og godkjenning",
+      "situation": [
+        "Du har bygget et oppsett som fungerer teknisk i liten skala.",
+        "Neste steg vil kreve utstyr, miljø eller håndtering som ligger utenfor hobbyrommets rammer.",
+        "Teknisk nysgjerrighet gir ikke fritak fra sikkerhets- og institusjonskrav."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp ved grensen og flytt neste trinn til et miljø med riktig ansvar, utstyr og godkjenning.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett forsiktig i mindre skala fordi du kjenner oppsettet godt.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "curiosity_vs_safety_boundary"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "filnavnet_som_ble_metoden",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Dataanalytikeren",
+      "subject": "Hvor kom denne bearbeidede filen fra?",
+      "situation": [
+        "Du har både rådata og flere eksporterte versjoner.",
+        "Den mest brukte filen mangler tydelig kobling til script, innstillinger eller tidspunkt.",
+        "Reproduserbar analyse krever mer enn selve sluttfilen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Koble hvert bearbeidet datasett til råkilden og dokumenter transformasjonene som produserte det.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Behold den siste eksporten som master fordi tallene ser riktige ut.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "data_lineage_vs_orphaned_output"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "resultatet_som_ble_presentert_for_sikkert",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Formidlingsvennen",
+      "subject": "Det høres tydeligere ut uten alle forbeholdene",
+      "situation": [
+        "Et mønster er interessant, men serien er liten og flere feilkilder er fortsatt åpne.",
+        "Publikum forstår konklusjonen lettere hvis usikkerheten tones ned.",
+        "Formidling blir misvisende hvis tydelighet oppnås ved å skjule hva dataene ikke kan avgjøre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler hovedfunnet kort, men si eksplisitt hva som fortsatt er usikkert og hva som må replikeres.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Presenter hovedmønsteret først og legg usikkerheten i en detaljert fotnote.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "clarity_vs_uncertainty_communication"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "labnerd_ikke_labansvarlig",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Godt oppsett gir ikke laboratorieansvar",
+      "situation": [
+        "Du har blitt god til å planlegge målinger, dokumentere feilkilder og holde orden på utstyr.",
+        "Andre begynner å spørre deg om sikkerhetsgodkjenning, analyseansvar og hva laboratoriet bør tillate.",
+        "Labnerd-erfaring kan være solid uten å gjøre deg til laboratorieleder, HMS-ansvarlig, forsker, ingeniør eller faglig godkjenner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk erfaringen til å forbedre egne oppsett og spørsmål, men la formelle roller eie sikkerhet, godkjenning og faglig ansvar.",
+          "effect": 1,
+          "tags": [
+            "measurement_practice",
+            "traceability",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler oppsett, feilkilder og dokumentasjon som noe som må kunne etterprøves."
+        },
+        {
+          "id": "B",
+          "label": "Ta avgjørelsene fordi du kjenner oppsettet bedre enn de fleste som bruker det.",
+          "effect": -1,
+          "tags": [
+            "measurement_shortcut",
+            "overclaim",
+            "hidden_error"
+          ],
+          "feedback": "Du lar et ryddig resultat eller egen erfaring erstatte kontroll, sporbarhet eller formell rollegrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "lab_practice_vs_formal_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
