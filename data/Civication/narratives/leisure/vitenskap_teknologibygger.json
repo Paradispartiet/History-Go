@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "vitenskap_teknologibygger",
+  "type": "leisure",
+  "title": "Teknologibygger — prototyper, integrasjon og teknisk gjeld uten systemmyndighet",
+  "sociological_theme": "Hvordan mennesker kan kombinere kode, elektronikk eller mekanikk til små systemer og lære av prototyper, integrasjon, testing og drift uten at byggekompetanse blir formell ingeniør-, HMS-, sikkerhets-, personvern- eller systemeiermyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "vitenskap:teknologibygger"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "problemet_for_losningen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Byggekompisen",
+      "subject": "Hva er det egentlig denne skal løse?",
+      "situation": [
+        "Du har allerede valgt noen komponenter og begynt å kode.",
+        "Etter hvert viser det seg at dere beskriver problemet på forskjellige måter.",
+        "Et teknisk system blir lettere å bygge når behovet er tydeligere enn favorittløsningen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv ned ett konkret brukerproblem og et enkelt suksesskriterium før dere bygger mer.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett med prototypen; når den virker blir det tydelig hva den kan brukes til.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "problem_definition_vs_solution_first"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prototypen_som_ble_produkt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Byggekompisen",
+      "subject": "Den virker jo — kan vi ikke bare bruke den sånn?",
+      "situation": [
+        "En rask prototype demonstrerer ideen godt.",
+        "Den mangler fortsatt feilhåndtering, dokumentasjon og flere praktiske sikkerhetsnett.",
+        "At noe virker én gang er ikke det samme som at det er klart for stabil bruk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Merk prototypen som prototype og lag en eksplisitt liste over hva som mangler før fast bruk.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "Sett den i vanlig bruk og reparer problemene når de faktisk oppstår.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "prototype_vs_operational_readiness"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kravet_som_vokste_underveis",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Brukeren",
+      "subject": "Kan den ikke bare gjøre én ting til?",
+      "situation": [
+        "Et lite tillegg høres enkelt ut isolert.",
+        "Flere slike tillegg endrer grensesnitt, dataflyt og hva systemet må tåle.",
+        "Scope creep oppstår ofte gjennom mange rimelige ønsker, ikke ett stort feilvalg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder tilleggene samlet og prioriter hva som faktisk hører til første stabile versjon.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "Legg inn hvert lite ønske fortløpende så brukerne slipper å vente.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scope_growth_vs_stable_core"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "grensesnittet_som_ingen_eide",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Integrasjonsvennen",
+      "subject": "Begge delene virker hver for seg",
+      "situation": [
+        "To moduler fungerer fint isolert, men utveksler data på litt forskjellige måter.",
+        "Begge utviklerne mener den andre siden burde tilpasse seg.",
+        "Systemfeil oppstår ofte i grensen mellom fungerende deler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definer kontrakten mellom delene eksplisitt og test den fra begge sider.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "Legg inn en midlertidig oversettelse i den ene modulen så integrasjonen kommer videre.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "interface_contract_vs_local_patch"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "avhengigheten_som_forsvant",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kodevennen",
+      "subject": "Den pakken finnes ikke i samme versjon lenger",
+      "situation": [
+        "Prosjektet bygger på flere eksterne biblioteker og verktøy.",
+        "En oppdatering endrer oppførsel som dere hadde tatt for gitt.",
+        "Teknisk stabilitet krever oversikt over avhengigheter, ikke bare egen kode."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lås og dokumenter versjoner, og test oppgraderingen separat før den blir ny standard.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "Oppgrader alt til siste versjon samtidig så prosjektet ikke blir hengende etter.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dependency_change_vs_uncontrolled_upgrade"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "backupen_som_aldri_var_testet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Driftsvennen",
+      "subject": "Vi har jo en kopi et sted",
+      "situation": [
+        "Prosjektet har automatiske kopier av viktige filer.",
+        "Ingen har forsøkt å gjenopprette en fungerende versjon fra dem.",
+        "En backup er først virkelig nyttig når restore-prosessen også er kjent."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Test en gjenoppretting i et trygt miljø og dokumenter hva som faktisk trengs.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "Stol på at kopiene holder; en restore-test kan vente til noe går galt.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "backup_vs_restore_proof"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "testen_som_bare_testet_solskinn",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Testvennen",
+      "subject": "Alt fungerer når inputen er riktig",
+      "situation": [
+        "Hovedflyten passerer alle demoene.",
+        "Feil input, avbrudd og delvise data er nesten ikke prøvd.",
+        "Robusthet blir synlig når systemet møter noe annet enn idealtilfellet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag noen enkle tester for feil, avbrudd og tomme verdier før dere kaller flyten stabil.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "Prioriter flere funksjoner; feiltilfellene kan tas når de faktisk dukker opp.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "happy_path_vs_failure_modes"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "loggen_som_samlet_for_mye",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Personvernvennen",
+      "subject": "Det er praktisk å logge alt mens vi feilsøker",
+      "situation": [
+        "Detaljerte logger gjør det lettere å finne en feil.",
+        "De kan samtidig samle innhold eller identifikatorer som ikke trengs etter feilsøkingen.",
+        "Observability og dataminimering må planlegges sammen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Logg bare det som trengs for feilsøkingen og fjern eller maskér unødvendige persondata.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "Behold full logging midlertidig; dere kan rydde når systemet er stabilt.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observability_vs_data_minimization"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "strømmen_som_var_mer_enn_programvare",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Sikkerhetsvennen",
+      "subject": "Denne delen er fysisk, ikke bare kode",
+      "situation": [
+        "Prosjektet kombinerer programvare med elektronikk eller mekanikk.",
+        "En feil kan derfor påvirke varme, strøm, bevegelse eller fysisk utstyr.",
+        "Programvareerfaring alene gir ikke automatisk kompetanse til å godkjenne alle fysiske risikoer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold deg innenfor trygge hobbyrammer og få kvalifisert hjelp når strøm, belastning eller fysisk sikkerhet går utover det du kan dokumentere.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett forsiktig fordi styringskoden er enkel og prototypen hittil har oppført seg normalt.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "software_confidence_vs_physical_safety"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_midleritidige_losningen_som_ble_fast",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kodevennen",
+      "subject": "Den TODO-en er fra i fjor",
+      "situation": [
+        "En snarvei gjorde det mulig å levere raskt.",
+        "Senere funksjoner har bygget videre på akkurat den snarveien.",
+        "Teknisk gjeld blir dyrere når flere antakelser vokser rundt den."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør gjelden synlig, avgrens konsekvensene og planlegg en faktisk opprydding før mer bygges oppå den.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "La den stå; omskriving er risikabelt når systemet allerede virker.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "technical_debt_vs_deferred_cost"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "eieren_som_bare_var_i_hodet_ditt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Driftsvennen",
+      "subject": "Hva skjer hvis du ikke er her neste uke?",
+      "situation": [
+        "Du kjenner alle små særheter i systemet.",
+        "Andre kan bruke løsningen, men vet ikke hvordan den feilsøkes eller settes opp på nytt.",
+        "Et system som bare én person forstår har en skjult driftsrisiko."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dokumenter oppstart, feilsøking og de viktigste avhengighetene slik at en annen faktisk kan overta.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "Skriv dokumentasjon senere; akkurat nå går det raskere at folk bare spør deg.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "single_owner_vs_handover"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "metrikkene_som_ble_selvmaal",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Brukeren",
+      "subject": "Den er raskere nå — men enklere å bruke?",
+      "situation": [
+        "En teknisk metrikk har blitt markant bedre.",
+        "Brukeren opplever samtidig at arbeidsflyten har fått flere steg.",
+        "Optimalisering av én måling kan flytte kostnaden til et annet sted i systemet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Mål både teknisk ytelse og brukerens faktiske oppgave før du bestemmer at endringen er en forbedring.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "Behold optimaliseringen; lavere responstid er objektivt bedre.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "technical_metric_vs_user_outcome"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "releasen_som_manglet_returbillett",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Driftsvennen",
+      "subject": "Hvis dette går galt, hvordan går vi tilbake?",
+      "situation": [
+        "En ny versjon er klar og endrer flere deler samtidig.",
+        "Planen beskriver hvordan den rulles ut, men ikke hvordan den reverseres.",
+        "En trygg release trenger også en kjent vei tilbake."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definer rollback eller annen gjenoppretting før releasen går ut.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "Rull ut når testene er grønne; rollback er bare nødvendig hvis noe faktisk feiler.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "release_vs_recovery_plan"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "teknologibygger_ikke_systemeier",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Å bygge systemet er ikke det samme som å eie alle beslutninger",
+      "situation": [
+        "Du har blitt god til å kombinere kode, elektronikk eller mekanikk i fungerende prototyper.",
+        "Andre begynner å behandle deg som sikkerhetsansvarlig, arkitekt, driftsleder eller faglig godkjenner.",
+        "Teknologibygger-kompetanse kan være reell uten å gi formell ingeniør-, HMS-, sikkerhets-, personvern- eller driftsmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta ansvar for det du faktisk bygger og dokumenterer, men la kvalifiserte eller mandatbærende roller eie beslutninger som krever formelt ansvar.",
+          "effect": 1,
+          "tags": [
+            "technical_building",
+            "maintainability",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør tekniske valg eksplisitte nok til at systemet kan testes, driftes og overtas."
+        },
+        {
+          "id": "B",
+          "label": "Ta beslutningene selv fordi du kjenner systemet best fra innsiden.",
+          "effect": -1,
+          "tags": [
+            "technical_shortcut",
+            "hidden_dependency",
+            "authority_overclaim"
+          ],
+          "feedback": "Du lar framdrift eller teknisk fortrolighet skjule gjeld, risiko eller formelle rollegrenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "builder_practice_vs_formal_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
