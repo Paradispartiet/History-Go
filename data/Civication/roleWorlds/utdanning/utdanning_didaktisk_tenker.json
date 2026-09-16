@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "utdanning",
+  "role_scope": "utdanning_didaktisk_tenker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "utdanning",
+    "id": "didaktisk_tenker",
+    "label": "Didaktisk tenker"
+  },
+  "title": "Didaktisk tenker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å se sammenhengen mellom mål, innhold, arbeidsmåter og vurdering i hverdagslæring uten at god refleksjon blir lærer-, sensor- eller spesialpedagogmyndighet",
+    "description": "Didaktisk tenker-verdenen undersøker målprioritering, stoffutvalg, forkunnskaper, aktivitetsdesign, synlige kriterier, læringsrettet tilbakemelding, tempo, gruppedeltakelse, måling, eksempler, digitale hjelpemidler, feilmønstre, redesign og profesjonsgrenser. Didaktisk tenker er en didactic_reflection life position. Rollen gir ingen automatisk lærerrolle, sensorfunksjon, spesialpedagogisk myndighet, elevansvar eller profesjonskvalifikasjon, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "care_vs_efficiency",
+    "numerical_control",
+    "status_anxiety",
+    "shame_reputation",
+    "invisible_work",
+    "professional_culture",
+    "local_knowledge_vs_system",
+    "bureaucratic_power"
+  ],
+  "social_environments": [
+    "studiegrupper der mål, kriterier og arbeidsmåter forhandles mellom likestilte",
+    "frivillig formidling der komplekst innhold må prioriteres innen reelle tidsrammer",
+    "verksted og hobbylæring der aktivitet, produkt og faktisk læring kan trekke i ulike retninger",
+    "gruppearbeid der arbeidsdeling og tempo former hvem som får øve og forstå",
+    "digitale læringssituasjoner der verktøy kan støtte eller skjule selve læringsprosessen",
+    "møter med kvalifiserte fagroller der refleksjon må skilles fra profesjonelt ansvar"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "studievennen",
+      "social_function": "gjør mål, kriterier og arbeidsmåter til konkrete valg i uformell læring",
+      "class_position": "likestilt deltaker uten formell undervisningsmyndighet",
+      "status": "høy nærhet og praktisk innsikt i egen studieprosess",
+      "power_over_player": "kan normalisere overarbeid, skjulte forventninger eller produktjag",
+      "wants": "at gruppa faktisk lærer uten å drukne i opplegg",
+      "conceals": "at egne styrker gjør noen arbeidsmåter lettere enn de er for andre",
+      "speech_style": "direkte, nysgjerrig og praktisk",
+      "teaches_player": "at didaktiske valg også finnes i læring mellom likestilte"
+    },
+    {
+      "id": "deltakeren",
+      "social_function": "synliggjør hvordan forkunnskaper, tempo, eksempler og respons oppleves fra mottakersiden",
+      "class_position": "deltaker uten plikt til å mestre på én bestemt måte eller i ett tempo",
+      "status": "varierende situert trygghet i gruppa",
+      "power_over_player": "kan avsløre at et opplegg som virker logisk for avsenderen ikke er tilgjengelig i praksis",
+      "wants": "å forstå hva som forventes og få en reell vei videre",
+      "conceals": "at usikkerhet ofte gjør det vanskelig å si nøyaktig hvor forståelsen brøt sammen",
+      "speech_style": "konkret, forsiktig og ærlig",
+      "teaches_player": "at mottakerens erfaring er data om arbeidsmåten, ikke bare om mottakeren"
+    },
+    {
+      "id": "formidlingsvennen",
+      "social_function": "kobler stoffutvalg, forklaring og tidsrammer i frivillig eller offentlig formidling",
+      "class_position": "erfaren formidler uten automatisk lærer- eller sensorrolle",
+      "status": "middels uformell autoritet gjennom presentasjonserfaring",
+      "power_over_player": "kan gjøre tempo og stoffmengde til prestisje",
+      "wants": "at komplekst stoff blir interessant uten å bli trivialisert",
+      "conceals": "at det er vanskelig å gi slipp på materiale man selv liker",
+      "speech_style": "energisk, komprimerende og idéorientert",
+      "teaches_player": "at innholdsvalg alltid er et didaktisk valg"
+    },
+    {
+      "id": "verkstedvennen",
+      "social_function": "representerer læring gjennom aktivitet, prøving, verktøy og feil",
+      "class_position": "likestilt praktikant eller hobbyutøver",
+      "status": "høy praktisk troverdighet i konkrete aktiviteter",
+      "power_over_player": "kan få aktivitet og sluttprodukt til å overskygge hva som faktisk trenes",
+      "wants": "at folk lærer ved å gjøre noe virkelig",
+      "conceals": "at gode produkter noen ganger blir laget av de mest erfarne mens andre ser på",
+      "speech_style": "handlingsorientert, uformell og løsningsrask",
+      "teaches_player": "at aktivitet må kobles til mål og deltakelse"
+    },
+    {
+      "id": "gruppemedlemmet",
+      "social_function": "gjør arbeidsdeling, tempo og deltakelse synlig i kollektive læringsformer",
+      "class_position": "likestilt gruppedeltaker med ulik kapasitet og forkunnskap",
+      "status": "avhenger av oppgave og sosial trygghet",
+      "power_over_player": "kan forsterke eller utfordre uformelle hierarkier i gruppa",
+      "wants": "at samarbeidet både fungerer og føles rettferdig",
+      "conceals": "at effektivitet ofte gjør det fristende å la de sterkeste gjøre mest",
+      "speech_style": "hverdagslig, samarbeidsorientert og noen ganger tilbakeholden",
+      "teaches_player": "at gruppearbeid må vurderes etter hvem som faktisk lærer og deltar"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "markerer grensen mellom generell didaktisk refleksjon og profesjonelt undervisnings-, vurderings- eller spesialpedagogansvar",
+      "class_position": "kvalifisert fagperson med avgrenset profesjonsansvar",
+      "status": "høy situert myndighet når formelle vurderinger eller profesjonsbeslutninger kreves",
+      "power_over_player": "kan avklare når refleksjon ikke er tilstrekkelig grunnlag for myndighetsutøvelse",
+      "wants": "at didaktisk interesse brukes godt uten rolleforvirring",
+      "conceals": "at profesjonelle systemer også kan ha dårlige vaner og trenger kritisk refleksjon",
+      "speech_style": "presis, begrunnende og tydelig om ansvar",
+      "teaches_player": "at god didaktisk tenkning og profesjonsmyndighet er to ulike ting"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "goal_scope_vs_overload",
+      "meaning": "målavklaring mot overlesset ambisjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "content_selection_vs_completeness",
+      "meaning": "innholdsvalg mot ønsket om fullstendighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "explanation_vs_prerequisites",
+      "meaning": "forklaring mot ulike forkunnskaper og innganger",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "activity_vs_learning_goal",
+      "meaning": "aktivitet og engasjement mot faktisk læringsmål",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "criteria_vs_hidden_expectations",
+      "meaning": "vurderingskriterier mot skjulte forventninger",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "feedback_vs_verdict",
+      "meaning": "tilbakemelding som læringsstøtte mot ren dom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "pace_vs_access",
+      "meaning": "fremdrift og tempo mot tilgjengelig deltakelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "group_work_vs_participation",
+      "meaning": "gruppearbeid mot reell faglig deltakelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "measurement_vs_understanding",
+      "meaning": "måleresultat mot faktisk forståelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "example_vs_assumed_background",
+      "meaning": "eksempler mot skjulte antakelser om felles erfaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "tool_use_vs_learning_process",
+      "meaning": "hjelpemidler mot den prosessen som faktisk skal læres",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "error_pattern_vs_blame",
+      "meaning": "systematiske feil som informasjon mot individualisert skyld",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "redesign_vs_patchwork",
+      "meaning": "helhetlig redesign mot stadig flere lokale lappeløsninger",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reflection_vs_professional_authority",
+      "meaning": "didaktisk refleksjon mot lærer-, sensor- og spesialpedagogmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Hva er det egentlig vi skal lære her?.",
+        "thread_ids": [
+          "goal_scope_vs_overload"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#maalet_som_ble_for_stort"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Hva er det egentlig vi skal lære her?.",
+        "thread_ids": [
+          "goal_scope_vs_overload"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#maalet_som_ble_for_stort"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Hva er det egentlig vi skal lære her?.",
+        "thread_ids": [
+          "goal_scope_vs_overload"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#maalet_som_ble_for_stort"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Hva er det egentlig vi skal lære her?.",
+        "thread_ids": [
+          "goal_scope_vs_overload"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#maalet_som_ble_for_stort"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Vi har tjue minutter og femti minutter stoff.",
+        "thread_ids": [
+          "content_selection_vs_completeness",
+          "goal_scope_vs_overload"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#innholdet_som_ikke_faar_plass"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Vi har tjue minutter og femti minutter stoff.",
+        "thread_ids": [
+          "content_selection_vs_completeness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#innholdet_som_ikke_faar_plass"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Vi har tjue minutter og femti minutter stoff.",
+        "thread_ids": [
+          "content_selection_vs_completeness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#innholdet_som_ikke_faar_plass"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Vi har tjue minutter og femti minutter stoff.",
+        "thread_ids": [
+          "content_selection_vs_completeness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#innholdet_som_ikke_faar_plass"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Jeg skjønner ordene, men ikke poenget.",
+        "thread_ids": [
+          "explanation_vs_prerequisites",
+          "content_selection_vs_completeness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#samme_forklaring_til_alle"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Jeg skjønner ordene, men ikke poenget.",
+        "thread_ids": [
+          "explanation_vs_prerequisites"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#samme_forklaring_til_alle"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Jeg skjønner ordene, men ikke poenget.",
+        "thread_ids": [
+          "explanation_vs_prerequisites"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#samme_forklaring_til_alle"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Jeg skjønner ordene, men ikke poenget.",
+        "thread_ids": [
+          "explanation_vs_prerequisites"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#samme_forklaring_til_alle"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Det var gøy — men hva lærte vi?.",
+        "thread_ids": [
+          "activity_vs_learning_goal",
+          "explanation_vs_prerequisites"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#aktiviteten_som_tok_over"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Det var gøy — men hva lærte vi?.",
+        "thread_ids": [
+          "activity_vs_learning_goal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#aktiviteten_som_tok_over"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Det var gøy — men hva lærte vi?.",
+        "thread_ids": [
+          "activity_vs_learning_goal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#aktiviteten_som_tok_over"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Det var gøy — men hva lærte vi?.",
+        "thread_ids": [
+          "activity_vs_learning_goal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#aktiviteten_som_tok_over"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Det var visst dette vi ble vurdert på.",
+        "thread_ids": [
+          "criteria_vs_hidden_expectations",
+          "activity_vs_learning_goal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#kriteriene_som_kom_etterpaa"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Det var visst dette vi ble vurdert på.",
+        "thread_ids": [
+          "criteria_vs_hidden_expectations"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#kriteriene_som_kom_etterpaa"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Det var visst dette vi ble vurdert på.",
+        "thread_ids": [
+          "criteria_vs_hidden_expectations"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#kriteriene_som_kom_etterpaa"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Det var visst dette vi ble vurdert på.",
+        "thread_ids": [
+          "criteria_vs_hidden_expectations"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#kriteriene_som_kom_etterpaa"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Jeg vet fortsatt ikke hva jeg skal gjøre annerledes.",
+        "thread_ids": [
+          "feedback_vs_verdict",
+          "criteria_vs_hidden_expectations"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tilbakemeldingen_som_ble_dom"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Jeg vet fortsatt ikke hva jeg skal gjøre annerledes.",
+        "thread_ids": [
+          "feedback_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tilbakemeldingen_som_ble_dom"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Jeg vet fortsatt ikke hva jeg skal gjøre annerledes.",
+        "thread_ids": [
+          "feedback_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tilbakemeldingen_som_ble_dom"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Jeg vet fortsatt ikke hva jeg skal gjøre annerledes.",
+        "thread_ids": [
+          "feedback_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tilbakemeldingen_som_ble_dom"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Kan vi stoppe litt før neste del?.",
+        "thread_ids": [
+          "pace_vs_access",
+          "feedback_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tempoet_som_ble_norm"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Kan vi stoppe litt før neste del?.",
+        "thread_ids": [
+          "pace_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tempoet_som_ble_norm"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Kan vi stoppe litt før neste del?.",
+        "thread_ids": [
+          "pace_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tempoet_som_ble_norm"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Kan vi stoppe litt før neste del?.",
+        "thread_ids": [
+          "pace_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tempoet_som_ble_norm"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: To personer gjorde egentlig alt.",
+        "thread_ids": [
+          "group_work_vs_participation",
+          "pace_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#gruppearbeidet_uten_roller"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: To personer gjorde egentlig alt.",
+        "thread_ids": [
+          "group_work_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#gruppearbeidet_uten_roller"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: To personer gjorde egentlig alt.",
+        "thread_ids": [
+          "group_work_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#gruppearbeidet_uten_roller"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: To personer gjorde egentlig alt.",
+        "thread_ids": [
+          "group_work_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#gruppearbeidet_uten_roller"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Scoren gikk opp — betyr det at vi lærte mer?.",
+        "thread_ids": [
+          "measurement_vs_understanding",
+          "group_work_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tallet_som_ble_laering"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Scoren gikk opp — betyr det at vi lærte mer?.",
+        "thread_ids": [
+          "measurement_vs_understanding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tallet_som_ble_laering"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Scoren gikk opp — betyr det at vi lærte mer?.",
+        "thread_ids": [
+          "measurement_vs_understanding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tallet_som_ble_laering"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Scoren gikk opp — betyr det at vi lærte mer?.",
+        "thread_ids": [
+          "measurement_vs_understanding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tallet_som_ble_laering"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Det eksempelet kjenner jeg ikke.",
+        "thread_ids": [
+          "example_vs_assumed_background",
+          "measurement_vs_understanding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#eksempelet_som_forutsatte_for_mye"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Det eksempelet kjenner jeg ikke.",
+        "thread_ids": [
+          "example_vs_assumed_background"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#eksempelet_som_forutsatte_for_mye"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Det eksempelet kjenner jeg ikke.",
+        "thread_ids": [
+          "example_vs_assumed_background"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#eksempelet_som_forutsatte_for_mye"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Det eksempelet kjenner jeg ikke.",
+        "thread_ids": [
+          "example_vs_assumed_background"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#eksempelet_som_forutsatte_for_mye"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Vi fikk svar med en gang — men kan vi gjøre det selv?.",
+        "thread_ids": [
+          "tool_use_vs_learning_process",
+          "example_vs_assumed_background"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#hjelpemiddelet_som_gjorde_jobben"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Vi fikk svar med en gang — men kan vi gjøre det selv?.",
+        "thread_ids": [
+          "tool_use_vs_learning_process"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#hjelpemiddelet_som_gjorde_jobben"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Vi fikk svar med en gang — men kan vi gjøre det selv?.",
+        "thread_ids": [
+          "tool_use_vs_learning_process"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#hjelpemiddelet_som_gjorde_jobben"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Vi fikk svar med en gang — men kan vi gjøre det selv?.",
+        "thread_ids": [
+          "tool_use_vs_learning_process"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#hjelpemiddelet_som_gjorde_jobben"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Alle gjorde samme feil.",
+        "thread_ids": [
+          "error_pattern_vs_blame",
+          "tool_use_vs_learning_process"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#feilen_som_data"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Alle gjorde samme feil.",
+        "thread_ids": [
+          "error_pattern_vs_blame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#feilen_som_data"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Alle gjorde samme feil.",
+        "thread_ids": [
+          "error_pattern_vs_blame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#feilen_som_data"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Alle gjorde samme feil.",
+        "thread_ids": [
+          "error_pattern_vs_blame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#feilen_som_data"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Vi må endre mer enn siste slide.",
+        "thread_ids": [
+          "redesign_vs_patchwork",
+          "error_pattern_vs_blame"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#opplegget_som_maatte_bygges_om"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Vi må endre mer enn siste slide.",
+        "thread_ids": [
+          "redesign_vs_patchwork"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#opplegget_som_maatte_bygges_om"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Vi må endre mer enn siste slide.",
+        "thread_ids": [
+          "redesign_vs_patchwork"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#opplegget_som_maatte_bygges_om"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Vi må endre mer enn siste slide.",
+        "thread_ids": [
+          "redesign_vs_patchwork",
+          "reflection_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#opplegget_som_maatte_bygges_om"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: God refleksjon er ikke det samme som profesjonsmyndighet.",
+        "thread_ids": [
+          "reflection_vs_professional_authority",
+          "redesign_vs_patchwork"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#didaktisk_tenker_ikke_laerer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: God refleksjon er ikke det samme som profesjonsmyndighet.",
+        "thread_ids": [
+          "reflection_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#didaktisk_tenker_ikke_laerer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: God refleksjon er ikke det samme som profesjonsmyndighet.",
+        "thread_ids": [
+          "reflection_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#didaktisk_tenker_ikke_laerer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: God refleksjon er ikke det samme som profesjonsmyndighet.",
+        "thread_ids": [
+          "reflection_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#didaktisk_tenker_ikke_laerer"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "goal_scope_vs_overload",
+      "relationship": "målavklaring mot overlesset ambisjon",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "content_selection_vs_completeness",
+      "relationship": "innholdsvalg mot ønsket om fullstendighet",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "explanation_vs_prerequisites",
+      "relationship": "forklaring mot ulike forkunnskaper og innganger",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "activity_vs_learning_goal",
+      "relationship": "aktivitet og engasjement mot faktisk læringsmål",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "criteria_vs_hidden_expectations",
+      "relationship": "vurderingskriterier mot skjulte forventninger",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "feedback_vs_verdict",
+      "relationship": "tilbakemelding som læringsstøtte mot ren dom",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "pace_vs_access",
+      "relationship": "fremdrift og tempo mot tilgjengelig deltakelse",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "group_work_vs_participation",
+      "relationship": "gruppearbeid mot reell faglig deltakelse",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "measurement_vs_understanding",
+      "relationship": "måleresultat mot faktisk forståelse",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "example_vs_assumed_background",
+      "relationship": "eksempler mot skjulte antakelser om felles erfaring",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "tool_use_vs_learning_process",
+      "relationship": "hjelpemidler mot den prosessen som faktisk skal læres",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "error_pattern_vs_blame",
+      "relationship": "systematiske feil som informasjon mot individualisert skyld",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "redesign_vs_patchwork",
+      "relationship": "helhetlig redesign mot stadig flere lokale lappeløsninger",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "reflection_vs_professional_authority",
+      "relationship": "didaktisk refleksjon mot lærer-, sensor- og spesialpedagogmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "maal_og_innhold_henger_sammen",
+      "description": "Spilleren oppdager at tydelige mål også krever reelle prioriteringer i innholdet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#maalet_som_ble_for_stort",
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#innholdet_som_ikke_faar_plass"
+      ]
+    },
+    {
+      "id": "arbeidsmaate_er_ikke_noytral",
+      "description": "Forklaring, aktivitet og tempo blir lest som valg som fordeler tilgang til læring.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#samme_forklaring_til_alle",
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#aktiviteten_som_tok_over",
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#kriteriene_som_kom_etterpaa",
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tilbakemeldingen_som_ble_dom",
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tempoet_som_ble_norm"
+      ]
+    },
+    {
+      "id": "deltakelse_ma_designes",
+      "description": "Gruppearbeid og eksempler vurderes etter hvem som faktisk får delta og forstå.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#gruppearbeidet_uten_roller",
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#eksempelet_som_forutsatte_for_mye"
+      ]
+    },
+    {
+      "id": "vurdering_er_mer_enn_tall",
+      "description": "Måling og hjelpemidler blir brukt som signaler i stedet for erstatninger for forståelse.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tallet_som_ble_laering",
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#hjelpemiddelet_som_gjorde_jobben",
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#feilen_som_data"
+      ]
+    },
+    {
+      "id": "refleksjon_med_rollegrense",
+      "description": "Redesign og didaktisk innsikt brukes uten å bli gjort om til profesjonsmyndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#opplegget_som_maatte_bygges_om",
+        "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#didaktisk_tenker_ikke_laerer"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "maal_moter_aktivitet",
+      "setup_ref": "1/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "learning",
+        "identity"
+      ]
+    },
+    {
+      "id": "innhold_moter_tempo",
+      "setup_ref": "2/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "learning",
+        "relationship"
+      ]
+    },
+    {
+      "id": "forklaring_moter_eksempel",
+      "setup_ref": "3/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "learning",
+        "relationship"
+      ]
+    },
+    {
+      "id": "kriterier_moter_maaling",
+      "setup_ref": "5/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "status",
+        "learning"
+      ]
+    },
+    {
+      "id": "gruppearbeid_moter_feilmonster",
+      "setup_ref": "8/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "learning"
+      ]
+    },
+    {
+      "id": "redesign_moter_profesjonsgrense",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "authority",
+        "identity"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#maalet_som_ble_for_stort",
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#innholdet_som_ikke_faar_plass",
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#samme_forklaring_til_alle",
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#aktiviteten_som_tok_over",
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#kriteriene_som_kom_etterpaa",
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tilbakemeldingen_som_ble_dom",
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tempoet_som_ble_norm",
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#gruppearbeidet_uten_roller",
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#tallet_som_ble_laering",
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#eksempelet_som_forutsatte_for_mye",
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#hjelpemiddelet_som_gjorde_jobben",
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#feilen_som_data",
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#opplegget_som_maatte_bygges_om",
+      "data/Civication/narratives/leisure/utdanning_didaktisk_tenker.json#didaktisk_tenker_ikke_laerer"
+    ]
+  }
+}
