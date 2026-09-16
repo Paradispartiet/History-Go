@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_teknologibygger",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "vitenskap",
+    "id": "teknologibygger",
+    "label": "Teknologibygger"
+  },
+  "title": "Teknologibygger",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å kombinere kode, elektronikk eller mekanikk til små systemer som faktisk løser problemer og kan testes, driftes og overtas uten at byggekompetanse blir formell ingeniør-, sikkerhets-, personvern- eller systemeiermyndighet",
+    "description": "Teknologibygger-verdenen undersøker problemdefinisjon, prototyper, scope creep, grensesnitt, avhengigheter, backup og restore, feilmodi, logging og personvern, fysisk sikkerhet, teknisk gjeld, handover, brukerutfall, rollback og formell myndighet. Teknologibygger er en practice_identity life position. Rollen gir ingen automatisk ingeniørrolle, systemarkitektmandat, HMS- eller sikkerhetsansvar, personvernmyndighet, driftslederrolle eller faglig godkjenningsmandat, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "professional_culture",
+    "invisible_work",
+    "care_vs_efficiency",
+    "numerical_control",
+    "status_anxiety",
+    "bureaucratic_power",
+    "shame_reputation"
+  ],
+  "social_environments": [
+    "hobby- og makerprosjekter der prototypehastighet og faktisk problemforståelse konkurrerer",
+    "små kodebaser der avhengigheter, grensesnitt og teknisk gjeld vokser rundt fungerende funksjoner",
+    "integrerte systemer der programvare møter elektronikk, mekanikk eller fysisk sikkerhet",
+    "driftssituasjoner der backup, restore, release og rollback avgjør hvor robust løsningen egentlig er",
+    "brukersituasjoner der tekniske forbedringer må måles mot faktisk oppgave og friksjon",
+    "møter med kvalifiserte ingeniør-, sikkerhets-, personvern- og driftsroller som eier formelt ansvar"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "byggekompisen",
+      "social_function": "holder fokus på brukerproblem, prototype og avgrensning av første stabile kjerne",
+      "class_position": "likestilt maker eller hobbybygger uten systemeiermandat",
+      "status": "middels uformell teknisk autoritet",
+      "power_over_player": "kan belønne synlig fremdrift selv når problemet og driftskravene fortsatt er uklare",
+      "wants": "å få en fungerende løsning i hendene raskt",
+      "conceals": "at entusiasme for bygging gjør scope vanskelig å begrense",
+      "speech_style": "praktisk, fremoverlent og løsningsorientert",
+      "teaches_player": "at et problem må være tydeligere enn favorittløsningen"
+    },
+    {
+      "id": "kodevennen",
+      "social_function": "gjør avhengigheter, teknisk gjeld og vedlikehold konkrete i kodebasen",
+      "class_position": "erfaren utvikler eller hobbykoder uten arkitekt- eller driftsmandat",
+      "status": "høy uformell kodeautoritet",
+      "power_over_player": "kan normalisere lokale snarveier fordi de virker raskest nå",
+      "wants": "at systemet skal kunne endres uten at alt ryker",
+      "conceals": "hvor lett egne abstraheringer blir usynlige for andre",
+      "speech_style": "kort, refaktoriserende og avhengighetsbevisst",
+      "teaches_player": "at gjeld og avhengigheter må være synlige før de blir dyre"
+    },
+    {
+      "id": "driftsvennen",
+      "social_function": "kobler backup, restore, handover og release til faktisk stabil bruk",
+      "class_position": "driftsnær person uten automatisk systemeiermyndighet",
+      "status": "middels situert driftsautoritet",
+      "power_over_player": "kan stoppe en release når recovery og overtakelse ikke er tydelige",
+      "wants": "at systemet kan feile uten å bli uopprettelig",
+      "conceals": "at drift ofte blir nedprioritert helt til noe går galt",
+      "speech_style": "nøktern, sjekklisteorientert og konsekvensbevisst",
+      "teaches_player": "at stabil drift inkluderer vei tilbake og annen person enn byggeren"
+    },
+    {
+      "id": "brukeren",
+      "social_function": "gjør nytte, arbeidsflyt og scope konkrete fra mottakersiden",
+      "class_position": "person som bruker systemet uten plikt til å forstå teknisk arkitektur",
+      "status": "høy situert autoritet på eget behov",
+      "power_over_player": "kan utvide scope gjennom mange små legitime ønsker",
+      "wants": "at løsningen faktisk gjør oppgaven enklere",
+      "conceals": "at tekniske forbedringer ikke nødvendigvis forbedrer egen arbeidsflyt",
+      "speech_style": "konkret, oppgaveorientert og lite opptatt av intern teknikk",
+      "teaches_player": "at teknisk kvalitet må kobles til virkelig brukerutfall"
+    },
+    {
+      "id": "sikkerhetsvennen",
+      "social_function": "markerer når elektronikk, mekanikk, strøm eller data krever eksplisitte sikkerhets- og personvernrammer",
+      "class_position": "person med relevant avgrenset sikkerhetskompetanse eller ansvar",
+      "status": "høy situert myndighet når fysisk sikkerhet eller sensitive data berøres",
+      "power_over_player": "kan stoppe oppsett som går utenfor dokumenterte hobby- eller sikkerhetsrammer",
+      "wants": "at teknisk nysgjerrighet ikke skjuler konsekvenser for mennesker og fysisk utstyr",
+      "conceals": "at sikkerhet ofte virker som friksjon før den faktisk trengs",
+      "speech_style": "direkte, risikobevisst og grenseklar",
+      "teaches_player": "at programvarekontroll ikke erstatter fysisk eller juridisk ansvar"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "skiller praktisk byggerkompetanse fra formell ingeniør-, arkitekt-, HMS-, sikkerhets-, personvern- og driftsmyndighet",
+      "class_position": "kvalifisert eller mandatbærende fagrolle",
+      "status": "høy formell myndighet i eget ansvarsområde",
+      "power_over_player": "kan avklare hvilke beslutninger som krever profesjons- eller systemeieransvar",
+      "wants": "at gode prototyper og løsninger brukes uten rolleforvirring",
+      "conceals": "at formelle systemer også trenger praktisk builder-kunnskap",
+      "speech_style": "presis, ansvarstydelig og arkitekturbevisst",
+      "teaches_player": "at det å ha bygget systemet ikke betyr at man eier alle beslutningene"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "problem_definition_vs_solution_first",
+      "meaning": "brukerproblem og suksesskriterium mot løsning valgt før behovet er avklart",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "prototype_vs_operational_readiness",
+      "meaning": "prototype som demonstrasjon mot system klart for stabil bruk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "scope_growth_vs_stable_core",
+      "meaning": "mange små tillegg mot en avgrenset stabil kjerne",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "interface_contract_vs_local_patch",
+      "meaning": "eksplisitt kontrakt mellom moduler mot lokale integrasjonslapper",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "dependency_change_vs_uncontrolled_upgrade",
+      "meaning": "styrte avhengighetsversjoner mot brede samtidige oppgraderinger",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "backup_vs_restore_proof",
+      "meaning": "backup som filkopi mot faktisk testet gjenoppretting",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "happy_path_vs_failure_modes",
+      "meaning": "hovedflyt mot feilinput, avbrudd og tomme verdier",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observability_vs_data_minimization",
+      "meaning": "feilsøkingslogger mot unødvendig innsamling av persondata",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "software_confidence_vs_physical_safety",
+      "meaning": "programvarekontroll mot strøm, varme, mekanikk og fysisk sikkerhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "technical_debt_vs_deferred_cost",
+      "meaning": "midlertidig snarvei mot akkumulert teknisk gjeld",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "single_owner_vs_handover",
+      "meaning": "personavhengig systemkunnskap mot dokumentert overtakbar drift",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "technical_metric_vs_user_outcome",
+      "meaning": "teknisk ytelsesmetrik mot faktisk brukerutfall",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "release_vs_recovery_plan",
+      "meaning": "releaseplan mot rollback og kjent gjenopprettingsvei",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "builder_practice_vs_formal_authority",
+      "meaning": "byggekompetanse mot ingeniør-, HMS-, sikkerhets-, personvern- og driftsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Hva er det egentlig denne skal løse?.",
+        "thread_ids": [
+          "problem_definition_vs_solution_first"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#problemet_for_losningen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Hva er det egentlig denne skal løse?.",
+        "thread_ids": [
+          "problem_definition_vs_solution_first"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#problemet_for_losningen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Hva er det egentlig denne skal løse?.",
+        "thread_ids": [
+          "problem_definition_vs_solution_first"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#problemet_for_losningen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Hva er det egentlig denne skal løse?.",
+        "thread_ids": [
+          "problem_definition_vs_solution_first"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#problemet_for_losningen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Den virker jo — kan vi ikke bare bruke den sånn?.",
+        "thread_ids": [
+          "prototype_vs_operational_readiness",
+          "problem_definition_vs_solution_first"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#prototypen_som_ble_produkt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Den virker jo — kan vi ikke bare bruke den sånn?.",
+        "thread_ids": [
+          "prototype_vs_operational_readiness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#prototypen_som_ble_produkt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Den virker jo — kan vi ikke bare bruke den sånn?.",
+        "thread_ids": [
+          "prototype_vs_operational_readiness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#prototypen_som_ble_produkt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Den virker jo — kan vi ikke bare bruke den sånn?.",
+        "thread_ids": [
+          "prototype_vs_operational_readiness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#prototypen_som_ble_produkt"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Kan den ikke bare gjøre én ting til?.",
+        "thread_ids": [
+          "scope_growth_vs_stable_core",
+          "prototype_vs_operational_readiness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#kravet_som_vokste_underveis"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Kan den ikke bare gjøre én ting til?.",
+        "thread_ids": [
+          "scope_growth_vs_stable_core"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#kravet_som_vokste_underveis"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Kan den ikke bare gjøre én ting til?.",
+        "thread_ids": [
+          "scope_growth_vs_stable_core"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#kravet_som_vokste_underveis"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Kan den ikke bare gjøre én ting til?.",
+        "thread_ids": [
+          "scope_growth_vs_stable_core"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#kravet_som_vokste_underveis"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Begge delene virker hver for seg.",
+        "thread_ids": [
+          "interface_contract_vs_local_patch",
+          "scope_growth_vs_stable_core"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#grensesnittet_som_ingen_eide"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Begge delene virker hver for seg.",
+        "thread_ids": [
+          "interface_contract_vs_local_patch"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#grensesnittet_som_ingen_eide"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Begge delene virker hver for seg.",
+        "thread_ids": [
+          "interface_contract_vs_local_patch"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#grensesnittet_som_ingen_eide"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Begge delene virker hver for seg.",
+        "thread_ids": [
+          "interface_contract_vs_local_patch"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#grensesnittet_som_ingen_eide"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Den pakken finnes ikke i samme versjon lenger.",
+        "thread_ids": [
+          "dependency_change_vs_uncontrolled_upgrade",
+          "interface_contract_vs_local_patch"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#avhengigheten_som_forsvant"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Den pakken finnes ikke i samme versjon lenger.",
+        "thread_ids": [
+          "dependency_change_vs_uncontrolled_upgrade"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#avhengigheten_som_forsvant"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Den pakken finnes ikke i samme versjon lenger.",
+        "thread_ids": [
+          "dependency_change_vs_uncontrolled_upgrade"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#avhengigheten_som_forsvant"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Den pakken finnes ikke i samme versjon lenger.",
+        "thread_ids": [
+          "dependency_change_vs_uncontrolled_upgrade"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#avhengigheten_som_forsvant"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Vi har jo en kopi et sted.",
+        "thread_ids": [
+          "backup_vs_restore_proof",
+          "dependency_change_vs_uncontrolled_upgrade"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#backupen_som_aldri_var_testet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Vi har jo en kopi et sted.",
+        "thread_ids": [
+          "backup_vs_restore_proof"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#backupen_som_aldri_var_testet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Vi har jo en kopi et sted.",
+        "thread_ids": [
+          "backup_vs_restore_proof"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#backupen_som_aldri_var_testet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Vi har jo en kopi et sted.",
+        "thread_ids": [
+          "backup_vs_restore_proof"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#backupen_som_aldri_var_testet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Alt fungerer når inputen er riktig.",
+        "thread_ids": [
+          "happy_path_vs_failure_modes",
+          "backup_vs_restore_proof"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#testen_som_bare_testet_solskinn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Alt fungerer når inputen er riktig.",
+        "thread_ids": [
+          "happy_path_vs_failure_modes"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#testen_som_bare_testet_solskinn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Alt fungerer når inputen er riktig.",
+        "thread_ids": [
+          "happy_path_vs_failure_modes"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#testen_som_bare_testet_solskinn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Alt fungerer når inputen er riktig.",
+        "thread_ids": [
+          "happy_path_vs_failure_modes"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#testen_som_bare_testet_solskinn"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Det er praktisk å logge alt mens vi feilsøker.",
+        "thread_ids": [
+          "observability_vs_data_minimization",
+          "happy_path_vs_failure_modes"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#loggen_som_samlet_for_mye"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Det er praktisk å logge alt mens vi feilsøker.",
+        "thread_ids": [
+          "observability_vs_data_minimization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#loggen_som_samlet_for_mye"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Det er praktisk å logge alt mens vi feilsøker.",
+        "thread_ids": [
+          "observability_vs_data_minimization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#loggen_som_samlet_for_mye"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Det er praktisk å logge alt mens vi feilsøker.",
+        "thread_ids": [
+          "observability_vs_data_minimization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#loggen_som_samlet_for_mye"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Denne delen er fysisk, ikke bare kode.",
+        "thread_ids": [
+          "software_confidence_vs_physical_safety",
+          "observability_vs_data_minimization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#strømmen_som_var_mer_enn_programvare"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Denne delen er fysisk, ikke bare kode.",
+        "thread_ids": [
+          "software_confidence_vs_physical_safety"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#strømmen_som_var_mer_enn_programvare"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Denne delen er fysisk, ikke bare kode.",
+        "thread_ids": [
+          "software_confidence_vs_physical_safety"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#strømmen_som_var_mer_enn_programvare"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Denne delen er fysisk, ikke bare kode.",
+        "thread_ids": [
+          "software_confidence_vs_physical_safety"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#strømmen_som_var_mer_enn_programvare"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Den TODO-en er fra i fjor.",
+        "thread_ids": [
+          "technical_debt_vs_deferred_cost",
+          "software_confidence_vs_physical_safety"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#den_midleritidige_losningen_som_ble_fast"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Den TODO-en er fra i fjor.",
+        "thread_ids": [
+          "technical_debt_vs_deferred_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#den_midleritidige_losningen_som_ble_fast"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Den TODO-en er fra i fjor.",
+        "thread_ids": [
+          "technical_debt_vs_deferred_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#den_midleritidige_losningen_som_ble_fast"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Den TODO-en er fra i fjor.",
+        "thread_ids": [
+          "technical_debt_vs_deferred_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#den_midleritidige_losningen_som_ble_fast"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Hva skjer hvis du ikke er her neste uke?.",
+        "thread_ids": [
+          "single_owner_vs_handover",
+          "technical_debt_vs_deferred_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#eieren_som_bare_var_i_hodet_ditt"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Hva skjer hvis du ikke er her neste uke?.",
+        "thread_ids": [
+          "single_owner_vs_handover"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#eieren_som_bare_var_i_hodet_ditt"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Hva skjer hvis du ikke er her neste uke?.",
+        "thread_ids": [
+          "single_owner_vs_handover"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#eieren_som_bare_var_i_hodet_ditt"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Hva skjer hvis du ikke er her neste uke?.",
+        "thread_ids": [
+          "single_owner_vs_handover"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#eieren_som_bare_var_i_hodet_ditt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Den er raskere nå — men enklere å bruke?.",
+        "thread_ids": [
+          "technical_metric_vs_user_outcome",
+          "single_owner_vs_handover"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#metrikkene_som_ble_selvmaal"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Den er raskere nå — men enklere å bruke?.",
+        "thread_ids": [
+          "technical_metric_vs_user_outcome"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#metrikkene_som_ble_selvmaal"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Den er raskere nå — men enklere å bruke?.",
+        "thread_ids": [
+          "technical_metric_vs_user_outcome"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#metrikkene_som_ble_selvmaal"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Den er raskere nå — men enklere å bruke?.",
+        "thread_ids": [
+          "technical_metric_vs_user_outcome"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#metrikkene_som_ble_selvmaal"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Hvis dette går galt, hvordan går vi tilbake?.",
+        "thread_ids": [
+          "release_vs_recovery_plan",
+          "technical_metric_vs_user_outcome"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#releasen_som_manglet_returbillett"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Hvis dette går galt, hvordan går vi tilbake?.",
+        "thread_ids": [
+          "release_vs_recovery_plan"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#releasen_som_manglet_returbillett"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Hvis dette går galt, hvordan går vi tilbake?.",
+        "thread_ids": [
+          "release_vs_recovery_plan"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#releasen_som_manglet_returbillett"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Hvis dette går galt, hvordan går vi tilbake?.",
+        "thread_ids": [
+          "release_vs_recovery_plan",
+          "builder_practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#releasen_som_manglet_returbillett"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Å bygge systemet er ikke det samme som å eie alle beslutninger.",
+        "thread_ids": [
+          "builder_practice_vs_formal_authority",
+          "release_vs_recovery_plan"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#teknologibygger_ikke_systemeier"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Å bygge systemet er ikke det samme som å eie alle beslutninger.",
+        "thread_ids": [
+          "builder_practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#teknologibygger_ikke_systemeier"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Å bygge systemet er ikke det samme som å eie alle beslutninger.",
+        "thread_ids": [
+          "builder_practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#teknologibygger_ikke_systemeier"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Å bygge systemet er ikke det samme som å eie alle beslutninger.",
+        "thread_ids": [
+          "builder_practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#teknologibygger_ikke_systemeier"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "problem_definition_vs_solution_first",
+      "relationship": "brukerproblem og suksesskriterium mot løsning valgt før behovet er avklart",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "prototype_vs_operational_readiness",
+      "relationship": "prototype som demonstrasjon mot system klart for stabil bruk",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "scope_growth_vs_stable_core",
+      "relationship": "mange små tillegg mot en avgrenset stabil kjerne",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "interface_contract_vs_local_patch",
+      "relationship": "eksplisitt kontrakt mellom moduler mot lokale integrasjonslapper",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "dependency_change_vs_uncontrolled_upgrade",
+      "relationship": "styrte avhengighetsversjoner mot brede samtidige oppgraderinger",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "backup_vs_restore_proof",
+      "relationship": "backup som filkopi mot faktisk testet gjenoppretting",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "happy_path_vs_failure_modes",
+      "relationship": "hovedflyt mot feilinput, avbrudd og tomme verdier",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "observability_vs_data_minimization",
+      "relationship": "feilsøkingslogger mot unødvendig innsamling av persondata",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "software_confidence_vs_physical_safety",
+      "relationship": "programvarekontroll mot strøm, varme, mekanikk og fysisk sikkerhet",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "technical_debt_vs_deferred_cost",
+      "relationship": "midlertidig snarvei mot akkumulert teknisk gjeld",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "single_owner_vs_handover",
+      "relationship": "personavhengig systemkunnskap mot dokumentert overtakbar drift",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "technical_metric_vs_user_outcome",
+      "relationship": "teknisk ytelsesmetrik mot faktisk brukerutfall",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "release_vs_recovery_plan",
+      "relationship": "releaseplan mot rollback og kjent gjenopprettingsvei",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "builder_practice_vs_formal_authority",
+      "relationship": "byggekompetanse mot ingeniør-, HMS-, sikkerhets-, personvern- og driftsmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "problem_for_prototype",
+      "description": "Problemet og suksesskriteriet avgrenses før prototypen får bli permanent løsning.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#problemet_for_losningen",
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#prototypen_som_ble_produkt"
+      ]
+    },
+    {
+      "id": "stabil_kjerne_med_kontrakter",
+      "description": "Scope og modulgrenser gjøres eksplisitte før nye lapper bygges inn.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#kravet_som_vokste_underveis",
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#grensesnittet_som_ingen_eide"
+      ]
+    },
+    {
+      "id": "avhengighet_restore_og_feilmodus",
+      "description": "Avhengigheter, restore og feiltilfeller testes som del av systemet, ikke som ettertanke.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#avhengigheten_som_forsvant",
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#backupen_som_aldri_var_testet",
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#testen_som_bare_testet_solskinn"
+      ]
+    },
+    {
+      "id": "data_og_fysisk_risiko",
+      "description": "Logging, dataminimering og fysisk sikkerhet behandles som egne konsekvensområder.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#loggen_som_samlet_for_mye",
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#strømmen_som_var_mer_enn_programvare"
+      ]
+    },
+    {
+      "id": "vedlikeholdbarhet_med_mandat",
+      "description": "Teknisk gjeld, handover, brukerutfall, recovery og formell myndighet holdes synlige.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#den_midleritidige_losningen_som_ble_fast",
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#eieren_som_bare_var_i_hodet_ditt",
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#metrikkene_som_ble_selvmaal",
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#releasen_som_manglet_returbillett",
+        "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#teknologibygger_ikke_systemeier"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "problem_moter_prototype",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "product",
+        "reputation"
+      ]
+    },
+    {
+      "id": "scope_moter_grensesnitt",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "product",
+        "maintenance"
+      ]
+    },
+    {
+      "id": "avhengighet_moter_restore",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "maintenance",
+        "recovery"
+      ]
+    },
+    {
+      "id": "feilmodus_moter_personvern",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "reputation",
+        "privacy"
+      ]
+    },
+    {
+      "id": "fysisk_sikkerhet_moter_teknisk_gjeld",
+      "setup_ref": "9/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "safety",
+        "maintenance"
+      ]
+    },
+    {
+      "id": "handover_moter_formell_myndighet",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "authority",
+        "operations"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#problemet_for_losningen",
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#prototypen_som_ble_produkt",
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#kravet_som_vokste_underveis",
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#grensesnittet_som_ingen_eide",
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#avhengigheten_som_forsvant",
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#backupen_som_aldri_var_testet",
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#testen_som_bare_testet_solskinn",
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#loggen_som_samlet_for_mye",
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#strømmen_som_var_mer_enn_programvare",
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#den_midleritidige_losningen_som_ble_fast",
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#eieren_som_bare_var_i_hodet_ditt",
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#metrikkene_som_ble_selvmaal",
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#releasen_som_manglet_returbillett",
+      "data/Civication/narratives/leisure/vitenskap_teknologibygger.json#teknologibygger_ikke_systemeier"
+    ]
+  }
+}
