@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_relasjonsbygger",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "psykologi",
+    "id": "relasjonsbygger",
+    "label": "Relasjonsbygger"
+  },
+  "title": "Relasjonsbygger",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å investere i relasjoner uten at omsorg blir løsningspress, nærhet blir tilgangskrav, konflikt blir persondom eller sosial tillit blir terapeutisk myndighet",
+    "description": "Relasjonsbygger-verdenen undersøker lytting mot løsningsrefleks, tolkning mot avklaring, reparasjon mot dom, unnskyldning mot nullstilling, grenser, fortrolighet, tillit og privatliv, gjensidighet, triangulering, timing, råd og autonomi, oppfølging etter konflikt, nærhet og tilgjengelighet samt rollegrenser. Relasjonsbygger er en community_identity og selvvalgt sosial praksis. Rollen gir ingen automatisk myndighet som psykolog, terapeut, behandler, mekler eller annen fagperson, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "emotional_labor",
+    "care_vs_efficiency",
+    "social_mask",
+    "shame_reputation",
+    "invisible_work",
+    "status_anxiety",
+    "public_private_leakage",
+    "alienation"
+  ],
+  "social_environments": [
+    "nære vennskap der lytting, råd og forventninger til tilgjengelighet må avklares",
+    "familie- og vennegrupper der konflikter lett kan spre seg gjennom tredjepartsallianser",
+    "digitale samtaler der tone, svartid og korte meldinger kan bli overtolket",
+    "fortrolige samtaler der behovet for støtte må balanseres mot andres privatliv",
+    "relasjoner i reparasjon der unnskyldninger må følges av konkret endring over tid",
+    "sosiale fellesskap der spilleren blir kjent som en god samtalepartner uten å få profesjonell myndighet"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "den_naere_vennen",
+      "social_function": "gjør lytting, råd, tilgjengelighet og gjensidighet konkrete i en relasjon med høy tillit",
+      "class_position": "likestilt nær venn uten profesjonell rolle",
+      "status": "høy emosjonell betydning, men ingen formell myndighet",
+      "power_over_player": "kan gjøre uenighet og avstand særlig merkbar fordi relasjonen betyr mye",
+      "wants": "å bli møtt med interesse uten at hvert problem blir overtatt",
+      "conceals": "at forventninger til nærhet også kan bli uklare og urealistiske",
+      "speech_style": "direkte, personlig og rask til å merke om spilleren lytter eller løser",
+      "teaches_player": "at nærhet krever både oppmerksomhet og rom"
+    },
+    {
+      "id": "konfliktparten",
+      "social_function": "bærer reelle uenigheter der ansvar, reparasjon og oppfølging må skilles fra persondommer",
+      "class_position": "likestilt part i en vedvarende sosial relasjon",
+      "status": "varierer med konfliktens publikum og historikk",
+      "power_over_player": "kan trekke seg, utfordre spillerens versjon og stille krav om konkret endring",
+      "wants": "at konfliktens skade blir tatt alvorlig uten å fryse hele relasjonen fast i den",
+      "conceals": "at egen fortelling også forenkler hva som skjedde",
+      "speech_style": "presis når rolig, mer kategorisk under press",
+      "teaches_player": "at reparasjon krever handling og tid, ikke bare riktig formulering"
+    },
+    {
+      "id": "grensesetteren",
+      "social_function": "viser hvordan nei, kapasitet, svartid og privatliv kan eksistere inne i en nær relasjon",
+      "class_position": "venn eller familiær relasjon med tydelig behov for autonomi",
+      "status": "kan feilaktig oppfattes som avvisende når grensen bryter med gruppens norm",
+      "power_over_player": "kan redusere kontakt hvis grenser gjentatte ganger presses",
+      "wants": "å beholde relasjonen uten å måtte være konstant tilgjengelig",
+      "conceals": "at tydelige grenser også kan være vanskelige å forklare i øyeblikket",
+      "speech_style": "kort, vennlig og konkret om hva som går og ikke går",
+      "teaches_player": "at respekt for grenser er en del av tillit"
+    },
+    {
+      "id": "den_tredje_vennen",
+      "social_function": "gir perspektiv og støtte, men synliggjør risikoen for triangulering og sosiale allianser",
+      "class_position": "felles venn uten mandat til å avgjøre konflikten",
+      "status": "høy informasjonsposisjon når flere betror seg til samme person",
+      "power_over_player": "kan spre eller dempe en konflikt gjennom hva som videreformidles",
+      "wants": "å hjelpe uten å bli brukt som dommer eller budbringer",
+      "conceals": "at det kan være sosialt fristende å være den som vet mest",
+      "speech_style": "forsiktig, nyansert og ofte opptatt av hva som faktisk bør sies videre",
+      "teaches_player": "at støtte fra tredjepart ikke erstatter direkte samtale"
+    },
+    {
+      "id": "taushetsbaereren",
+      "social_function": "gjør fortrolighet, behov for egen støtte og deling av andres historier til en konkret avveiing",
+      "class_position": "betrodd privatperson uten taushetsplikt som profesjon, men med sosialt ansvar",
+      "status": "tillit bygges langsomt og kan tapes raskt ved unødvendig deling",
+      "power_over_player": "kan sette norm for hva gruppen oppfatter som trygt å fortelle",
+      "wants": "at betroelser behandles med omtanke uten at én person må bære alt alene",
+      "conceals": "at ønsket om støtte kan gli over i interesse for selve historien",
+      "speech_style": "lavmælt, diskret og konkret om hvem som trenger å vite hva",
+      "teaches_player": "at fortrolighet kan kombineres med ansvarlig egen støtte"
+    },
+    {
+      "id": "samtalepartneren",
+      "social_function": "holder avklaring, råd, autonomi og rollegrenser synlige når spilleren blir den andre søker for gode samtaler",
+      "class_position": "likestilt medmenneske uten terapeutisk, klinisk eller rådgivende mandat",
+      "status": "høy sosial tillit gjennom lytting, ikke gjennom faglig autoritet",
+      "power_over_player": "kan speile når hjelpsomhet begynner å bli kontroll eller ubedt analyse",
+      "wants": "at gode samtaler skal gjøre folk friere til å eie egne valg",
+      "conceals": "at også den som stiller gode spørsmål kan bli for sikker på sin egen betydning",
+      "speech_style": "rolig, avklarende og opptatt av forskjellen mellom støtte og overtakelse",
+      "teaches_player": "at relasjonskompetanse ikke er det samme som behandlerrolle"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "listening_vs_fixing",
+      "meaning": "lytting mot løsningsrefleks",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "interpretation_vs_checking",
+      "meaning": "antatt mening mot avklaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "repair_vs_verdict",
+      "meaning": "reparasjon mot endelig dom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "apology_vs_erasure",
+      "meaning": "unnskyldning mot krav om øyeblikkelig nullstilling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "boundary_vs_rejection",
+      "meaning": "grense mot avvisning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "confidentiality_vs_venting",
+      "meaning": "fortrolighet mot ventilering til tredjepart",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "trust_vs_total_disclosure",
+      "meaning": "tillit mot krav om full åpenhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reciprocity_vs_scorekeeping",
+      "meaning": "gjensidighet mot løpende poengregnskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "directness_vs_triangulation",
+      "meaning": "direkte samtale mot tredjepartsallianser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "timing_vs_avoidance",
+      "meaning": "pause og timing mot varig unngåelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "advice_vs_autonomy",
+      "meaning": "råd mot eierskap til eget valg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "gesture_vs_followthrough",
+      "meaning": "symbolsk reparasjon mot stabil oppfølging",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "closeness_vs_access",
+      "meaning": "nærhet mot krav på tid og tilgjengelighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "community_care_vs_professional_authority",
+      "meaning": "relasjonsomsorg mot terapeutisk eller profesjonell myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Kan du høre ferdig før du løser det?.",
+        "thread_ids": [
+          "listening_vs_fixing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#lytte_uten_a_fikse"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Kan du høre ferdig før du løser det?.",
+        "thread_ids": [
+          "listening_vs_fixing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#lytte_uten_a_fikse"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Kan du høre ferdig før du løser det?.",
+        "thread_ids": [
+          "listening_vs_fixing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#lytte_uten_a_fikse"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Kan du høre ferdig før du løser det?.",
+        "thread_ids": [
+          "listening_vs_fixing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#lytte_uten_a_fikse"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Det var ikke det jeg mente.",
+        "thread_ids": [
+          "interpretation_vs_checking",
+          "listening_vs_fixing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#setningen_du_tolket"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Det var ikke det jeg mente.",
+        "thread_ids": [
+          "interpretation_vs_checking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#setningen_du_tolket"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Det var ikke det jeg mente.",
+        "thread_ids": [
+          "interpretation_vs_checking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#setningen_du_tolket"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Det var ikke det jeg mente.",
+        "thread_ids": [
+          "interpretation_vs_checking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#setningen_du_tolket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Skal dette repareres eller avgjøres?.",
+        "thread_ids": [
+          "repair_vs_verdict",
+          "interpretation_vs_checking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#etter_krangelen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Skal dette repareres eller avgjøres?.",
+        "thread_ids": [
+          "repair_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#etter_krangelen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Skal dette repareres eller avgjøres?.",
+        "thread_ids": [
+          "repair_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#etter_krangelen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Skal dette repareres eller avgjøres?.",
+        "thread_ids": [
+          "repair_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#etter_krangelen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Jeg har sagt unnskyld — er vi ferdige nå?.",
+        "thread_ids": [
+          "apology_vs_erasure",
+          "repair_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#unnskyldningen_som_skal_nullstille_alt"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Jeg har sagt unnskyld — er vi ferdige nå?.",
+        "thread_ids": [
+          "apology_vs_erasure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#unnskyldningen_som_skal_nullstille_alt"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Jeg har sagt unnskyld — er vi ferdige nå?.",
+        "thread_ids": [
+          "apology_vs_erasure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#unnskyldningen_som_skal_nullstille_alt"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Jeg har sagt unnskyld — er vi ferdige nå?.",
+        "thread_ids": [
+          "apology_vs_erasure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#unnskyldningen_som_skal_nullstille_alt"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Et nei er ikke hele relasjonen.",
+        "thread_ids": [
+          "boundary_vs_rejection",
+          "apology_vs_erasure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#nei_som_ble_tatt_personlig"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Et nei er ikke hele relasjonen.",
+        "thread_ids": [
+          "boundary_vs_rejection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#nei_som_ble_tatt_personlig"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Et nei er ikke hele relasjonen.",
+        "thread_ids": [
+          "boundary_vs_rejection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#nei_som_ble_tatt_personlig"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Et nei er ikke hele relasjonen.",
+        "thread_ids": [
+          "boundary_vs_rejection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#nei_som_ble_tatt_personlig"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Var det din historie å dele?.",
+        "thread_ids": [
+          "confidentiality_vs_venting",
+          "boundary_vs_rejection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#historien_som_ble_ventilert_videre"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Var det din historie å dele?.",
+        "thread_ids": [
+          "confidentiality_vs_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#historien_som_ble_ventilert_videre"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Var det din historie å dele?.",
+        "thread_ids": [
+          "confidentiality_vs_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#historien_som_ble_ventilert_videre"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Var det din historie å dele?.",
+        "thread_ids": [
+          "confidentiality_vs_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#historien_som_ble_ventilert_videre"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Må jeg fortelle alt for at du skal stole på meg?.",
+        "thread_ids": [
+          "trust_vs_total_disclosure",
+          "confidentiality_vs_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#tillit_er_ikke_full_innsynsrett"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Må jeg fortelle alt for at du skal stole på meg?.",
+        "thread_ids": [
+          "trust_vs_total_disclosure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#tillit_er_ikke_full_innsynsrett"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Må jeg fortelle alt for at du skal stole på meg?.",
+        "thread_ids": [
+          "trust_vs_total_disclosure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#tillit_er_ikke_full_innsynsrett"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Må jeg fortelle alt for at du skal stole på meg?.",
+        "thread_ids": [
+          "trust_vs_total_disclosure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#tillit_er_ikke_full_innsynsrett"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Relasjonen har fått et regneark.",
+        "thread_ids": [
+          "reciprocity_vs_scorekeeping",
+          "trust_vs_total_disclosure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#hvem_gjorde_mest"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Relasjonen har fått et regneark.",
+        "thread_ids": [
+          "reciprocity_vs_scorekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#hvem_gjorde_mest"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Relasjonen har fått et regneark.",
+        "thread_ids": [
+          "reciprocity_vs_scorekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#hvem_gjorde_mest"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Relasjonen har fått et regneark.",
+        "thread_ids": [
+          "reciprocity_vs_scorekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#hvem_gjorde_mest"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Alle vet det, bortsett fra personen selv.",
+        "thread_ids": [
+          "directness_vs_triangulation",
+          "reciprocity_vs_scorekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#snakke_med_alle_unntatt_den_det_gjelder"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Alle vet det, bortsett fra personen selv.",
+        "thread_ids": [
+          "directness_vs_triangulation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#snakke_med_alle_unntatt_den_det_gjelder"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Alle vet det, bortsett fra personen selv.",
+        "thread_ids": [
+          "directness_vs_triangulation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#snakke_med_alle_unntatt_den_det_gjelder"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Alle vet det, bortsett fra personen selv.",
+        "thread_ids": [
+          "directness_vs_triangulation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#snakke_med_alle_unntatt_den_det_gjelder"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Vi tar det senere — men når?.",
+        "thread_ids": [
+          "timing_vs_avoidance",
+          "directness_vs_triangulation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#pausen_som_kan_bli_unngaelse"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Vi tar det senere — men når?.",
+        "thread_ids": [
+          "timing_vs_avoidance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#pausen_som_kan_bli_unngaelse"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Vi tar det senere — men når?.",
+        "thread_ids": [
+          "timing_vs_avoidance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#pausen_som_kan_bli_unngaelse"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Vi tar det senere — men når?.",
+        "thread_ids": [
+          "timing_vs_avoidance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#pausen_som_kan_bli_unngaelse"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Du ba om råd, ikke om en beslutning.",
+        "thread_ids": [
+          "advice_vs_autonomy",
+          "timing_vs_avoidance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#radet_som_tok_over_valget"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Du ba om råd, ikke om en beslutning.",
+        "thread_ids": [
+          "advice_vs_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#radet_som_tok_over_valget"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Du ba om råd, ikke om en beslutning.",
+        "thread_ids": [
+          "advice_vs_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#radet_som_tok_over_valget"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Du ba om råd, ikke om en beslutning.",
+        "thread_ids": [
+          "advice_vs_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#radet_som_tok_over_valget"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Det var fint — men skjer det samme igjen?.",
+        "thread_ids": [
+          "gesture_vs_followthrough",
+          "advice_vs_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#det_store_gestet_uten_hverdagsendring"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Det var fint — men skjer det samme igjen?.",
+        "thread_ids": [
+          "gesture_vs_followthrough"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#det_store_gestet_uten_hverdagsendring"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Det var fint — men skjer det samme igjen?.",
+        "thread_ids": [
+          "gesture_vs_followthrough"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#det_store_gestet_uten_hverdagsendring"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Det var fint — men skjer det samme igjen?.",
+        "thread_ids": [
+          "gesture_vs_followthrough"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#det_store_gestet_uten_hverdagsendring"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Nær betyr ikke alltid tilgjengelig.",
+        "thread_ids": [
+          "closeness_vs_access",
+          "gesture_vs_followthrough"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#naerhet_som_tilgangskrav"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Nær betyr ikke alltid tilgjengelig.",
+        "thread_ids": [
+          "closeness_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#naerhet_som_tilgangskrav"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Nær betyr ikke alltid tilgjengelig.",
+        "thread_ids": [
+          "closeness_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#naerhet_som_tilgangskrav"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Nær betyr ikke alltid tilgjengelig.",
+        "thread_ids": [
+          "closeness_vs_access",
+          "community_care_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#naerhet_som_tilgangskrav"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Du er god å snakke med — men du er ikke behandler.",
+        "thread_ids": [
+          "community_care_vs_professional_authority",
+          "closeness_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#den_gode_samtalen_blir_en_rolle"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Du er god å snakke med — men du er ikke behandler.",
+        "thread_ids": [
+          "community_care_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#den_gode_samtalen_blir_en_rolle"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Du er god å snakke med — men du er ikke behandler.",
+        "thread_ids": [
+          "community_care_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#den_gode_samtalen_blir_en_rolle"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Du er god å snakke med — men du er ikke behandler.",
+        "thread_ids": [
+          "community_care_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#den_gode_samtalen_blir_en_rolle"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "listening_vs_fixing",
+      "relationship": "lytting mot løsningsrefleks",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "interpretation_vs_checking",
+      "relationship": "antatt mening mot avklaring",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "repair_vs_verdict",
+      "relationship": "reparasjon mot endelig dom",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "apology_vs_erasure",
+      "relationship": "unnskyldning mot krav om øyeblikkelig nullstilling",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "boundary_vs_rejection",
+      "relationship": "grense mot avvisning",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "confidentiality_vs_venting",
+      "relationship": "fortrolighet mot ventilering til tredjepart",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "trust_vs_total_disclosure",
+      "relationship": "tillit mot krav om full åpenhet",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "reciprocity_vs_scorekeeping",
+      "relationship": "gjensidighet mot løpende poengregnskap",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "directness_vs_triangulation",
+      "relationship": "direkte samtale mot tredjepartsallianser",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "timing_vs_avoidance",
+      "relationship": "pause og timing mot varig unngåelse",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "advice_vs_autonomy",
+      "relationship": "råd mot eierskap til eget valg",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "gesture_vs_followthrough",
+      "relationship": "symbolsk reparasjon mot stabil oppfølging",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "closeness_vs_access",
+      "relationship": "nærhet mot krav på tid og tilgjengelighet",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "community_care_vs_professional_authority",
+      "relationship": "relasjonsomsorg mot terapeutisk eller profesjonell myndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "lytting_blir_mer_presis",
+      "description": "Spilleren skiller bedre mellom å lytte, stille spørsmål og tilby løsninger.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#lytte_uten_a_fikse",
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#setningen_du_tolket",
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#radet_som_tok_over_valget"
+      ]
+    },
+    {
+      "id": "grenser_blir_del_av_tilliten",
+      "description": "Nei, privatliv og varierende kapasitet blir behandlet som relasjonelle rammer fremfor automatisk avvisning.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#nei_som_ble_tatt_personlig",
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#tillit_er_ikke_full_innsynsrett",
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#naerhet_som_tilgangskrav"
+      ]
+    },
+    {
+      "id": "konflikt_far_reparasjonsarbeid",
+      "description": "Unnskyldning, konkrete endringer og oppfølging over tid erstatter raske dommer eller symbolske nullstillinger.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#etter_krangelen",
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#unnskyldningen_som_skal_nullstille_alt",
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#det_store_gestet_uten_hverdagsendring"
+      ]
+    },
+    {
+      "id": "det_sosiale_rommet_blir_mindre_triangulert",
+      "description": "Fortrolighet og tredjepartsstøtte brukes med tydeligere grenser slik at konflikter ikke automatisk blir gruppeprosjekter.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#historien_som_ble_ventilert_videre",
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#snakke_med_alle_unntatt_den_det_gjelder",
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#pausen_som_kan_bli_unngaelse"
+      ]
+    },
+    {
+      "id": "omsorg_far_rollegrense",
+      "description": "Gjensidighet og gode samtaler beholdes som sosial praksis uten å bli terapeutisk eller profesjonell myndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#hvem_gjorde_mest",
+        "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#den_gode_samtalen_blir_en_rolle"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "lytting_moter_rad",
+      "setup_ref": "1/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "identity"
+      ]
+    },
+    {
+      "id": "tolkning_moter_direkte_avklaring",
+      "setup_ref": "2/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "unnskyldning_moter_oppfolging",
+      "setup_ref": "4/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "trust"
+      ]
+    },
+    {
+      "id": "grense_moter_tilgjengelighet",
+      "setup_ref": "5/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "relationship",
+        "status"
+      ]
+    },
+    {
+      "id": "fortrolighet_moter_tredjepart",
+      "setup_ref": "6/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "reputation",
+        "care"
+      ]
+    },
+    {
+      "id": "samtalerolle_moter_myndighetsgrense",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "care",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#lytte_uten_a_fikse",
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#setningen_du_tolket",
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#etter_krangelen",
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#unnskyldningen_som_skal_nullstille_alt",
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#nei_som_ble_tatt_personlig",
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#historien_som_ble_ventilert_videre",
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#tillit_er_ikke_full_innsynsrett",
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#hvem_gjorde_mest",
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#snakke_med_alle_unntatt_den_det_gjelder",
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#pausen_som_kan_bli_unngaelse",
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#radet_som_tok_over_valget",
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#det_store_gestet_uten_hverdagsendring",
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#naerhet_som_tilgangskrav",
+      "data/Civication/narratives/leisure/psykologi_relasjonsbygger.json#den_gode_samtalen_blir_en_rolle"
+    ]
+  }
+}
