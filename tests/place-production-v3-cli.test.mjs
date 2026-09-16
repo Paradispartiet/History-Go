@@ -29,12 +29,21 @@ test('build steps are explicit argument arrays, never shell strings', () => {
 });
 
 test('validator rejects a complete claim with a BLOCKED decision', () => {
+  const contracts = { place_production: 'v3', place_card_collections: 'v2', quiz_production: 'canonical-v1' };
   const record = {
     schema: 'history_go_place_production_workflow_v3',
     place_id: 'blocked_fixture',
     category: 'historie',
-    contracts: { place_production: 'v3', place_card_collections: 'v2', quiz_production: 'canonical-v1' },
+    contracts,
     sources: { factuality_record: 'data/places/production/blocked_fixture.json' },
+    read_first: {
+      schema: 'history_go_place_read_first_v3',
+      status: 'PASS',
+      recorded_at: '2026-09-16T12:30:00Z',
+      rule_files: ['fixture-rule.md'],
+      contracts,
+      attestation: 'Fixture rules were read before production decisions were recorded.',
+    },
     profile: { id: 'standard', status: 'confirmed', reason: 'Fixture.' },
     source_review: { status: 'complete' },
     collections: { people: { status: 'BLOCKED', reason: 'Missing evidence.' } },
