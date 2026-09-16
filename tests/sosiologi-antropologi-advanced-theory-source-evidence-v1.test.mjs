@@ -51,3 +51,42 @@ test('advanced theory materializer derives a fail-closed release gate from sourc
   assert.equal(gate.runtime_release_gate_open, fulltextCount === 60);
   assert.equal(gate.rowsByUnitKey.size, 60);
 });
+
+test('advanced theory packages become runtime-ready only after the 60/60 release gate opens', async () => {
+  const canon = read('data/fag/politikk/sosiologi_antropologi/advanced_theory_reading_canon_v1.json');
+  const contract = read('data/fag/politikk/sosiologi_antropologi/advanced_theory_fulltext_refresh_v1.json');
+  const evidence = read('data/fag/politikk/sosiologi_antropologi/advanced_theory_source_evidence_v1.json');
+  const production = read('data/fag/politikk/sosiologi_antropologi/production_registry_v1.json');
+  const { evaluateSourceEvidence, buildOverlays, buildDomainPackages } = await import('../scripts/materialize-sosiologi-antropologi-advanced-theory-fulltext-refresh-v1.mjs');
+  const gate = evaluateSourceEvidence(canon, evidence);
+  const packages = buildDomainPackages(buildOverlays(canon, contract), production, gate);
+
+  assert.equal(gate.runtime_release_gate_open, true);
+  assert.equal(packages.length, 7);
+  assert.ok(packages.every((pkg) => pkg.module.runtimeReady === true));
+  assert.ok(packages.every((pkg) => pkg.claims.status === 'runtime_released'));
+  assert.ok(packages.flatMap((pkg) => pkg.claims.claims).every((claim) => claim.status === 'verified_runtime_released'));
+  assert.ok(packages.every((pkg) => pkg.assessment.status === 'runtime_ready'));
+});
+
+test('advanced theory packages remain pending when any source evidence falls below fulltext verification', async () => {
+  const canon = read('data/fag/politikk/sosiologi_antropologi/advanced_theory_reading_canon_v1.json');
+  const contract = read('data/fag/politikk/sosiologi_antropologi/advanced_theory_fulltext_refresh_v1.json');
+  const evidence = read('data/fag/politikk/sosiologi_antropologi/advanced_theory_source_evidence_v1.json');
+  const production = read('data/fag/politikk/sosiologi_antropologi/production_registry_v1.json');
+  const downgraded = structuredClone(evidence);
+  downgraded.evidence_units[0].verification_status = 'mapping_supported';
+  downgraded.status = 'source_verification_in_progress';
+  downgraded.counts.fulltext_verified = 59;
+  downgraded.counts.runtime_releasable = 0;
+
+  const { evaluateSourceEvidence, buildOverlays, buildDomainPackages } = await import('../scripts/materialize-sosiologi-antropologi-advanced-theory-fulltext-refresh-v1.mjs');
+  const gate = evaluateSourceEvidence(canon, downgraded);
+  const packages = buildDomainPackages(buildOverlays(canon, contract), production, gate);
+
+  assert.equal(gate.runtime_release_gate_open, false);
+  assert.ok(packages.every((pkg) => pkg.module.runtimeReady === false));
+  assert.ok(packages.every((pkg) => pkg.claims.status === 'fulltext_verification_pending'));
+  assert.ok(packages.flatMap((pkg) => pkg.claims.claims).every((claim) => claim.status === 'planned_requires_fulltext_verification'));
+  assert.ok(packages.every((pkg) => pkg.assessment.status === 'claim_verification_pending'));
+});
