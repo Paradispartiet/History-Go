@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "filosofi_argumentbygger",
+  "type": "leisure",
+  "title": "Argumentbygger — premisser, evidens og motargument uten faglig dommerrolle",
+  "sociological_theme": "Hvordan mennesker kan bygge og teste argumenter med tydelige premisser, evidens, begreper, moteksempler og revisjon uten at argumentasjonsferdighet blir ekspertise eller formell beslutningsmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "filosofi:argumentbygger"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "paastanden_uten_premiss",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Diskusjonsvennen",
+      "subject": "Hva bygger du egentlig dette på?",
+      "situation": [
+        "Du har formulert en tydelig konklusjon.",
+        "Når noen spør hvorfor, hopper du rett til et eksempel.",
+        "Et eksempel kan illustrere poenget uten å være selve premisset som bærer konklusjonen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv ut premisset som må være sant for at konklusjonen skal følge, og vurder om eksemplet faktisk støtter det.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "Bruk flere eksempler; nok konkrete tilfeller gjør premisset tydelig av seg selv.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "claim_vs_explicit_premise"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "motpartens_svake_versjon",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Diskusjonsvennen",
+      "subject": "Det er lett å vinne mot en dårlig versjon",
+      "situation": [
+        "Du oppsummerer argumentet du er uenig i på en måte som er lett å avvise.",
+        "Den andre personen sier at du har utelatt den viktigste forutsetningen.",
+        "En svak parafrase kan gi retorisk framdrift, men dårligere faktisk uenighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler den sterkeste versjonen du kan som motparten selv vil kjenne igjen før du svarer.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "Svar på den mest problematiske konsekvensen av argumentet; det er der svakheten ligger.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "strawman_vs_steelman"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ordet_som_betydde_to_ting",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Begrepsvennen",
+      "subject": "Dere bruker samme ord på to forskjellige måter",
+      "situation": [
+        "To argumenter ser ut til å motsi hverandre.",
+        "Et nøkkelord skifter betydning mellom eksemplene.",
+        "Uenigheten kan derfor ligge i definisjonen før den ligger i konklusjonen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hvilken betydning ordet har i hvert ledd før dere vurderer om argumentene faktisk kolliderer.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "Hold deg til vanlig språkbruk; spesialdefinisjoner gjør diskusjonen unødvendig teknisk.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "ambiguity_vs_definition"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bevisbyrden_som_flyttet_seg",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Skeptikeren",
+      "subject": "Du sier jeg må bevise at du tar feil",
+      "situation": [
+        "Du fremsetter en positiv påstand som er vanskelig å teste direkte.",
+        "Når den blir utfordret, ber du motparten dokumentere det motsatte.",
+        "Bevisbyrde handler om hvem som introduserer hvilken påstand, ikke hvem som er mest skeptisk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta ansvar for evidensen til din egen påstand og skill det fra hva motparten eventuelt hevder.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "Be motparten motbevise deg; ellers står påstanden som det beste alternativet.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "burden_of_proof_vs_reversal"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "korrelasjonen_som_ble_forklaring",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Analysevennen",
+      "subject": "De følger hverandre — men betyr det årsak?",
+      "situation": [
+        "To forhold varierer sammen på en slående måte.",
+        "Det gjør en bestemt årsaksforklaring plausibel.",
+        "Sammenheng alene avgjør likevel ikke retning, mekanisme eller tredjevariabler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Presenter årsaksforklaringen som hypotese og si hva slags ekstra evidens som ville skilt den fra alternativer.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "Velg den mest intuitive retningen; ellers blir argumentet for forsiktig til å være nyttig.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "correlation_vs_causal_argument"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "moteksemplet_som_faktisk_betydde_noe",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Skeptikeren",
+      "subject": "Dette ene tilfellet passer ikke regelen din",
+      "situation": [
+        "Du har formulert en generell regel.",
+        "Noen viser til et tilfelle som ser ut til å bryte den.",
+        "Et moteksempel kan være irrelevant, men kan også avsløre at påstanden er for bred."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekk om regelen virkelig var universell, og snevr den inn hvis moteksemplet treffer premissene.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "Behandle tilfellet som et unntak uten å endre regelen; alle regler har unntak.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "counterexample_vs_overbroad_claim"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verdi_som_ble_presentert_som_fakta",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Begrepsvennen",
+      "subject": "Er dette sant — eller ønskelig?",
+      "situation": [
+        "En setning beskriver først hvordan noe er.",
+        "Konklusjonen går videre til hvordan det bør være.",
+        "Det normative steget kan være rimelig, men trenger egne verdipremisser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill beskrivelsen fra verdipremisset som gjør anbefalingen mulig.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "La overgangen stå; hvis fakta er sterke nok følger det ofte hva man bør gjøre.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fact_vs_value_premise"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "autoriteten_som_ble_siste_ord",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagvennen",
+      "subject": "Eksperten sier det — men hva støtter vurderingen?",
+      "situation": [
+        "En relevant ekspert støtter konklusjonen din.",
+        "Ekspertuttalelsen er viktig evidens, men dekker et felt med usikkerhet og metodiske valg.",
+        "Autoritet kan være god grunn til tillit uten å erstatte hele argumentet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk ekspertisen som kilde og forklar hvilket kunnskapsgrunnlag eller metode vurderingen bygger på.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "Stopp ved ekspertuttalelsen; faglig autoritet gjør ytterligere argumentasjon overflødig.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "expertise_vs_authority_shortcut"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_falske_todelingen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Diskusjonsvennen",
+      "subject": "Er dette virkelig de eneste to alternativene?",
+      "situation": [
+        "Argumentet ditt setter opp to tydelige valg.",
+        "Det gjør konflikten lett å forstå.",
+        "Noen peker på et tredje alternativ som ikke passer inn i rammen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Utvid alternativrommet og vurder om konklusjonen fortsatt står når flere realistiske valg tas med.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "Hold todelingen; mellomløsninger skjuler ofte bare at man unngår å velge.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "false_dilemma_vs_option_space"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "eksemplet_som_ble_utvalg",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Analysevennen",
+      "subject": "Hvorfor er det akkurat disse tilfellene du viser?",
+      "situation": [
+        "Du har flere treffende eksempler som støtter argumentet.",
+        "Du har også sett tilfeller som peker svakere eller motsatt vei.",
+        "Utvalg av evidens påvirker hvor robust argumentet ser ut."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vis hvordan eksemplene ble valgt og ta med relevant motstridende materiale i vurderingen.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "Bruk de tydeligste eksemplene; argumentet trenger ikke bli en full forskningsrapport.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "cherry_picking_vs_evidence_scope"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "argumentet_som_endret_seg_etter_innvendingen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Skeptikeren",
+      "subject": "Nå sier du noe litt annet enn først",
+      "situation": [
+        "En innvending treffer den opprinnelige formuleringen.",
+        "Du justerer påstanden så den blir mer presis.",
+        "Det kan se ut som tilbaketrekning, men revisjon er også en del av god argumentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker eksplisitt hva du endrer og hvorfor, og la den reviderte påstanden erstatte den gamle.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "Presenter den nye formuleringen som om det var det du mente hele tiden.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "revision_vs_moving_goalposts"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "publikummet_som_endret_spraket",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Formidlingsvennen",
+      "subject": "Samme argument, annen forklaring",
+      "situation": [
+        "Du skal forklare et resonnement til noen uten samme bakgrunnskunnskap.",
+        "Teknisk presisjon og forståelig språk trekker delvis i ulike retninger.",
+        "Forenkling er nyttig så lenge argumentets logiske struktur ikke endres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bytt eksempler og språk, men behold premisser, usikkerhet og konklusjon intakt.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "Gjør konklusjonen tydeligere ved å kutte de mest kompliserte forbeholdene.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "audience_adaptation_vs_argument_distortion"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_som_egentlig_var_premiss",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Diskusjonsvennen",
+      "subject": "Dere er enige om fakta, men ikke om hva de betyr",
+      "situation": [
+        "Begge parter aksepterer det samme faktagrunnlaget.",
+        "De trekker likevel ulike konklusjoner.",
+        "Forskjellen kan ligge i et skjult normativt eller metodisk premiss."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn premisset der argumentene faktisk skiller lag, i stedet for å fortsette å gjenta de samme faktaene.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "Legg fram faktagrunnlaget enda tydeligere; uenighet skyldes ofte at den andre siden ikke har forstått det.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "shared_facts_vs_hidden_premise"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "argumentbygger_ikke_fagdommer",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Et godt argument gir ikke automatisk faglig mandat",
+      "situation": [
+        "Du har blitt god til å avdekke premisser, uklarheter og svake slutninger.",
+        "Andre begynner å bruke deg som endelig dommer i spørsmål som krever spesialisert fagkunnskap eller formell beslutningsmyndighet.",
+        "Argumentasjonsferdighet kan forbedre begrunnelser uten å erstatte ekspertise, faktaarbeid eller mandat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk argumentanalysen til å klargjøre hva som må avgjøres, men la relevant fagkunnskap og formelle roller eie konklusjoner de har ansvar for.",
+          "effect": 1,
+          "tags": [
+            "argumentation",
+            "clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør premisser, evidens og uenighet tydeligere uten å gi argumentet mer autoritet enn grunnlaget bærer."
+        },
+        {
+          "id": "B",
+          "label": "Ta stilling som endelig dommer fordi en logisk svak begrunnelse viser hvilken side som må være feil.",
+          "effect": -1,
+          "tags": [
+            "argument_shortcut",
+            "overclaim",
+            "rhetorical_win"
+          ],
+          "feedback": "Du velger en retorisk snarvei som gjør argumentet enklere å vinne med, men svakere å etterprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "argument_skill_vs_formal_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
