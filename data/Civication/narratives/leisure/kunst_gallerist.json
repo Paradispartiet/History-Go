@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "kunst_gallerist",
+  "type": "leisure",
+  "title": "Gallerist — program, marked og ansvar uten automatisk rådgivningsmyndighet",
+  "sociological_theme": "Hvordan galleridrift kan balansere program, kunstnerrelasjoner, provisjon, inventar, logistikk, publikum, samlere, messer og usynlig arbeid uten å gjøre markedskunnskap til skjult definisjonsmakt eller automatisk juridisk, takst- eller finansiell myndighet.",
+  "applies_when": {
+    "any_tags": [
+      "kunst:gallerist"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "programmet_som_skal_selge",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Programvennen",
+      "subject": "Velger du det som passer programmet — eller det som er lettest å selge?",
+      "situation": [
+        "En kunstner passer tydelig inn i galleriets langsiktige program.",
+        "Et annet forslag virker enklere å selge raskt.",
+        "Galleridrift må ofte balansere kunstnerisk retning mot økonomisk bærekraft uten å late som de to er det samme."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill eksplisitt mellom programargumentet og salgsargumentet før du bestemmer hvordan utstillingen skal prioriteres.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Velg det sikreste salget og presenter det som den sterkeste kunstneriske beslutningen.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "program_integrity_vs_sales_pressure"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "representasjonen_som_var_uklar",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kunstnervennen",
+      "subject": "Hva betyr egentlig at galleriet «representerer» kunstneren?",
+      "situation": [
+        "En kunstner forventer aktiv salgsinnsats og langsiktig oppfølging.",
+        "Galleriet tenker mer prosjektbasert.",
+        "Uklare forventninger om eksklusivitet, territorium, varighet og innsats kan bli konflikt senere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar skriftlig hva representasjonen faktisk omfatter før samarbeidet fremstilles som mer omfattende enn det er.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Hold formuleringen fleksibel; det er lettere å løse detaljene når salget kommer.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "representation_scope_vs_ambiguity"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prisen_og_provisjonen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Økonomivennen",
+      "subject": "Hvem ser hva når et verk prises og selges?",
+      "situation": [
+        "Et verk får en utsalgspris.",
+        "Galleriandel, kunstnerandel og eventuelle kostnader må fordeles.",
+        "Uklare provisjoner og tillegg kan svekke tillit selv når totalsummen virker markedsmessig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør prisgrunnlag, provisjon og relevante kostnader eksplisitte for kunstneren før salgsarbeidet starter.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Bruk standardprosenten og ta detaljene i oppgjøret; alle i markedet kjenner omtrent modellen.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "commission_transparency_vs_hidden_costs"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verket_som_ble_levert_uten_spor",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Registreringsvennen",
+      "subject": "Har du faktisk dokumentert hva som kom inn døren?",
+      "situation": [
+        "Flere verk leveres tett før montering.",
+        "Tilstand, mål, nummerering og emballasje varierer.",
+        "Uten inventar- og tilstandsspor blir skade, retur og eierskap vanskeligere å avklare."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrer hvert verk, tilstand og relevant dokumentasjon før det går videre til montering eller lager.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Ta bilder underveis og rydd inventaret etter åpningen når presset har lagt seg.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "inventory_traceability_vs_memory"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "transporten_som_ble_en_kunstavgjorelse",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Logistikkvennen",
+      "subject": "Når blir håndtering, transport og forsikring et fagansvar?",
+      "situation": [
+        "Et sårbart verk skal flyttes til en messe.",
+        "Billigere transport kan gå raskere.",
+        "Galleriinteresse gir ikke automatisk konservator-, transportør- eller forsikringsfaglig kompetanse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk dokumenterte håndteringskrav og relevant fagkompetanse når risikoen krever det.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Velg den rimelige løsningen og stol på ekstra forsiktig håndtering fra eget team.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "art_logistics_vs_informal_handling"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjestelisten_som_ble_portvakt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Åpningsvennen",
+      "subject": "Hvem får føle at rommet er for dem?",
+      "situation": [
+        "En åpning har begrenset kapasitet.",
+        "Samlere og nøkkelkontakter prioriteres.",
+        "En gjesteliste kan være praktisk samtidig som den bygger statusgrenser rundt et offentlig kunstrom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag prioriteringer som kan forklares praktisk uten å gjøre sosial nærhet til skjult kvalitetsmål.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Prioriter de mest verdifulle relasjonene først; åpninger er en del av forretningsarbeidet.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "access_vs_status_gatekeeping"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samleren_som_ville_styre_programmet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samlerkontakten",
+      "subject": "Hvor mye programinnflytelse følger med et sterkt kundeforhold?",
+      "situation": [
+        "En viktig samler kjøper jevnlig.",
+        "Samleren begynner å foreslå hvilke kunstnere galleriet bør satse på.",
+        "Økonomisk betydning kan bli kuratorisk press selv uten eksplisitte krav."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta innspill som markedsinformasjon, men hold programbeslutningen separat fra kundens kjøpekraft.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Gi ønskene ekstra vekt; stabile samlere gjør det mulig å drive et ambisiøst program.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "collector_influence_vs_program_independence"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verket_som_ikke_ble_solgt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kunstnervennen",
+      "subject": "Hva skjer med usolgte verk når utstillingen er over?",
+      "situation": [
+        "Utstillingen stenger med flere usolgte verk.",
+        "Noen kan bli på lager for videre salg.",
+        "Retur, lagerperiode, fortsatt salgsrett og ansvar bør ikke være underforstått."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hvilke verk som returneres, hvilke som blir, hvor lenge og på hvilke vilkår.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Behold de mest lovende verkene og avklar detaljene hvis et salg faktisk oppstår.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "post_show_inventory_vs_open_ended_control"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "reservasjonen_som_ble_et_løfte",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Salgsvennen",
+      "subject": "Når er et verk reservert, og når er det faktisk solgt?",
+      "situation": [
+        "En kunde vil ha tid til å bestemme seg.",
+        "En annen interessent spør om samme verk.",
+        "Uklare reservasjonsregler kan skape press, dobbeltløfter og konflikt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk tydelig tidsavgrenset reservasjon og skill den fra inngått salg og mottatt betaling.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Hold begge interessentene varme til noen faktisk betaler.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "reservation_clarity_vs_double_commitment"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "proveniensen_som_ble_autentisering",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Dokumentasjonsvennen",
+      "subject": "Du har papirer på historikken — betyr det at du kan garantere autentisiteten?",
+      "situation": [
+        "Et verk kommer med dokumentasjon om tidligere eiere og utstillinger.",
+        "En kjøper ber om sikker bekreftelse på autentisitet og verdi.",
+        "Gallerirollen kan samle og formidle proveniens uten automatisk å være autorisert autentisator eller takstfaglig instans."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv dokumentasjonen du faktisk har, og bruk relevant ekstern ekspertise når autentisering eller formell vurdering kreves.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Gi en tydelig bekreftelse basert på galleriets erfaring og kjennskap til kunstneren.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "provenance_documentation_vs_authentication_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "messen_som_spiste_budsjettet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Messevennen",
+      "subject": "Hvor mye av årets program skal én messe få koste?",
+      "situation": [
+        "En internasjonal kunstmesse kan gi synlighet og salg.",
+        "Stand, frakt, reise, produksjon og bemanning binder mye kapital.",
+        "Prestisje og markedstilgang må vurderes mot galleriets faktiske bæreevne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag full kostnadsramme og beslutningskriterier før messen behandles som nødvendig for status.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Søk plass først; hvis galleriet kommer inn, må finansieringen løses fordi muligheten er sjelden.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "fair_visibility_vs_financial_exposure"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_ble_kunstner_pa_programmet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Programvennen",
+      "subject": "Når blir nærhet en interessekonflikt?",
+      "situation": [
+        "En nær venn lager arbeid som passer galleriets profil.",
+        "Programkomiteen er liten og relasjonene tette.",
+        "Kunstfeltet bygger på relasjoner, men habilitet og transparens blir viktigere når galleriet fordeler knapp synlighet og markedstilgang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør relasjonen eksplisitt og sørg for at beslutningen kan vurderes uten at vennskapet skjules.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Vurder verket som alle andre; relasjonen er irrelevant hvis du mener kvaliteten er høy.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relationship_network_vs_conflict_of_interest"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_usynlige_arbeidet_bak_apningen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Driftsvennen",
+      "subject": "Hvem bærer rydding, registrering, pakking og publikumsarbeid?",
+      "situation": [
+        "Utstillingen ser sømløs ut for publikum.",
+        "Bak åpningen ligger mange små oppgaver og sene timer.",
+        "Når arbeid fordeles uformelt kan læring, lojalitet og entusiasme bli brukt som erstatning for tydelig ansvar og betaling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør oppgaver, ansvar, forventet tid og eventuell betaling eksplisitte før ekstraarbeid blir normalisert.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Be alle bidra litt ekstra i åpningsuken; slik fungerer små gallerier når det virkelig gjelder.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "invisible_gallery_labor_vs_role_clarity"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gallerist_ikke_takstmann_eller_radgiver",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Gallerirollen har markeds- og programkunnskap — men hvor stopper myndigheten?",
+      "situation": [
+        "En kunde ber deg vurdere investeringsverdi, forsikringstakst og juridiske konsekvenser av et kjøp.",
+        "Du kjenner markedet, kunstnerne og historiske priser godt.",
+        "Gallerist som Badge-posisjon er en gallery_operator_practice_or_business_role, ikke automatisk juridisk virksomhet, autorisert takstrolle, finansiell rådgivning, arbeidsgiverstatus eller kontraktsfullmakt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi dokumenterbare galleriopplysninger, marker egen interesse i salget og vis videre til kvalifisert juridisk, takst- eller finansfaglig rådgivning der det kreves.",
+          "effect": 1,
+          "tags": [
+            "gallery_practice",
+            "program_integrity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør program, økonomi, dokumentasjon og ansvar mer eksplisitt uten å late som galleriet eier all fagmyndighet rundt verket."
+        },
+        {
+          "id": "B",
+          "label": "Gi en helhetsvurdering med tydelig forbehold; lang markedserfaring gjør deg godt plassert til å anslå risikoen.",
+          "effect": -1,
+          "tags": [
+            "gallery_shortcut",
+            "status_gatekeeping",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar markedspress, nettverk eller uformell praksis gjøre mer arbeid enn de avtalte rollene og dokumentasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gallery_practice_vs_formal_advisory_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
