@@ -3,38 +3,40 @@
 Status: **eneste autoritative PlaceCard-samlingskontrakt**  
 Eier: `place_card_collections_contract_v2`  
 Runtime: `js/ui/place-rounds-visual-collections.js`  
-Layout: `js/ui/place-rounds-fill-layout.js` og `css/place-rounds-fill-layout.css`
+Layout: `js/ui/place-rounds-fill-layout.js` og `css/place-rounds-fill-layout.css`  
 Schema: `data/places/regler/place_card_profile_v2.schema.json`  
-Sted-for-sted arbeidsflyt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
-Sist kontrollert: **2026-08-31**
+Sted-for-sted arbeidsflyt: `docs/PLACE_PRODUCTION_CHECKLIST.md`  
+Sist kontrollert: **2026-09-16**
 
 Filnavnet beholdes slik at gamle lenker og arbeidsløp ikke brytes. Kontrakten handler om **samlinger**, ikke om dekorative rundinger eller en meny over alt et sted inneholder.
 
-> **Et fullprodusert ordinært Place har alltid nøyaktig fire ferdige innholdssamlinger i et fast 2 × 2-felt. Related er ikke en PlaceCard-samling.**
+> **Et fullprodusert ordinært Place viser én til fire ferdige, relevante innholdssamlinger. Bare samlinger stedet faktisk bærer vises. Related er ikke en PlaceCard-samling.**
 
-## 1. Fast fullkomposisjon
+## 1. Adaptiv fullkomposisjon
 
 Et fullprodusert ordinært PlaceCard viser:
 
 1. én stående `frontImage`-/medieflate;
-2. nøyaktig fire innholdssamlinger i et balansert 2 × 2-felt;
+2. én til fire ferdige innholdssamlinger i en adaptiv, balansert komposisjon;
 3. Badges separat ved stedsoverskriften;
 4. de sju små stedspopup-snarveiene i sitt eget felt;
 5. tydelig obligatorisk Quiz-handling i PlaceCard-footeren.
 
-Badge, Quiz, bilder, Stories, Før/etter, Leksikon, relasjoner og popupfaner teller ikke blant de fire samlingene.
+Badge, Quiz, bilder, Stories, Før/etter, Leksikon, relasjoner og popupfaner teller ikke som PlaceCard-samlinger.
 
-Det finnes ingen fullført ordinær 1-, 2- eller 3-samlingsprofil. Dersom fire sanne, bildeklare samlinger ikke er ferdige, er fullproduksjonen blokkert. Stedet kan bare følge Micro-kontrakten når det uavhengig kvalifiserer som Micro Place; Micro kan aldri brukes som en snarvei rundt manglende produksjon.
+Det finnes ingen tomme reservefelt. Dersom en kandidatsamling ikke har et ekte, kvalifisert, bildeklart medlem etter dokumentert kandidataudit, avsluttes den som `BEGRUNNET N/A` og vises ikke. Dersom en reell kvalifisert kandidat finnes, men evidens, asset, proveniens eller materialisering mangler, er samlingen `BLOCKED`. Micro følger sin egen kontrakt og kan aldri brukes som snarvei rundt manglende produksjon.
 
 ## 2. Grunnprofiler
 
-Vanlige fullproduserte Places bruker:
+Vanlige fullproduserte Places vurderer disse kandidatsamlingene:
 
 ```text
 People · Objects · Brands · kategoriuttrykk
 ```
 
-Natursteder bruker:
+De er ikke universelle slots. Bare kandidatsamlinger med `PASS` legges i `place_card_profile.collection_ids`.
+
+Natursteder følger sin eksplisitte spesialprofil:
 
 ```text
 Kart · Flora · Fauna · Turmål
@@ -46,11 +48,13 @@ Canonicale Miljø og gjenbruk-steder med spesialprofil bruker:
 Ombruk · Materialer · Miljø · Systemer
 ```
 
-Kategoriuttrykket viser hva kategorien faktisk frembringer, gjør eller organiserer: verk, hendelser, metoder, praksiser, behandlinger, programmer, konkurranser, produksjon eller byrom. Det skal ikke erstattes av `related` eller en tilfeldig Structure bare fordi den delte fjerde plassen må fylles.
+Kategoriuttrykket viser hva kategorien faktisk frembringer, gjør eller organiserer: verk, hendelser, metoder, praksiser, behandlinger, programmer, konkurranser, produksjon eller byrom. Det skal ikke erstattes av `related` eller en tilfeldig Structure bare for å fylle layouten.
 
 ## 3. Alle 19 hovedkategorier
 
-| Kategori | Fire samlinger | Brukerrettet kategoriuttrykk |
+Tabellen viser kandidatsettet som skal vurderes, ikke en obligatorisk firefeltskvote.
+
+| Kategori | Kandidatsamlinger | Brukerrettet kategoriuttrykk |
 | --- | --- | --- |
 | `by` | People · Objects · Brands · Structures | **Byrom og anlegg** |
 | `historie` | People · Objects · Brands · Historical Events | **Historiske hendelser** |
@@ -76,11 +80,11 @@ Alias normaliseres gjennom `data/categories/category_contract.json`; alias oppre
 
 ### Stedsspesifikk Structure-variant
 
-`Structures` er ikke automatisk kategoriuttrykk utenfor By. Den kan erstatte kategoriens normale fjerde samling når flere navngitte bygg eller anlegg utgjør en selvstendig, sentral og bildeklart dokumentert gruppe ved akkurat dette stedet.
+`Structures` er ikke automatisk kategoriuttrykk utenfor By. Den kan erstatte kategoriens normale uttrykk når flere navngitte bygg eller anlegg utgjør en selvstendig, sentral og bildeklart dokumentert gruppe ved akkurat dette stedet.
 
 Eksempler kan være et fabrikkkompleks, sykehusanlegg, universitetscampus eller klosterkompleks. At en virksomhet holder til i en bygning er ikke nok. Valget og hvorfor det er bedre enn kategoriens normaluttrykk skal begrunnes i arbeidskortet.
 
-Freia-fabrikken kan derfor bruke People · Objects · Brands · Structures fordi fabrikkbygningene, Freiasalen og Freiaparken utgjør et reelt fysisk anleggsspor. Det gjør ikke Structures til standard for alle Næringsliv-steder.
+Freia-fabrikken kan derfor bruke Structures dersom fabrikkbygningene, Freiasalen og Freiaparken utgjør et reelt fysisk anleggsspor. Det gjør ikke Structures til standard for alle Næringsliv-steder og tvinger heller ikke People, Objects eller Brands inn dersom kandidatauditen ender `BEGRUNNET N/A`.
 
 ## 4. Form og bilde
 
@@ -88,22 +92,22 @@ Freia-fabrikken kan derfor bruke People · Objects · Brands · Structures fordi
 - øvrige samlinger vises som avrundede rektangler;
 - Badges står separat og kan beholde sin egen form;
 - `frontImage` er en faktisk stående fil/variant med `height > width`;
-- hver samling viser et lastet bilde av ett faktisk canonical medlem i samlingen;
+- hver valgt samling viser et lastet bilde av ett faktisk canonical medlem i samlingen;
 - previewet er en inngang til hele samlingen og filtrerer aldri popupinnholdet;
 - ikon-/statusfallback er bare runtime-feilhåndtering og kan ikke lukke produksjonsgaten.
 
-Et tomt kort, et synlig 0-tall, et bilde fra en annen samling eller `frontImage` gjenbrukt som falskt medlemsbilde er blocker.
+Et tomt kort, et synlig 0-tall, et bilde fra en annen samling eller `frontImage` gjenbrukt som falskt medlemsbilde er blocker. En `BEGRUNNET N/A`-samling vises ikke som tomt kort.
 
 ## 5. Canonical profil
 
-Et ordinært fullprodusert sted bruker:
+Et ordinært fullprodusert sted kan for eksempel bruke:
 
 ```json
 {
   "place_card_profile": {
     "schema": "history_go_place_card_profile_v2",
-    "collection_ids": ["people", "objects", "brands", "structures"],
-    "reason": "Fire stedsspesifikke, substansielle og bildeklare samlinger er kontrollert i full 2 × 2-komposisjon.",
+    "collection_ids": ["people", "structures"],
+    "reason": "Kandidataudit bekrefter People og Structures som de to kildebårne, bildeklare samlingene for stedet; Objects og Brands er begrunnet N/A.",
     "verifiedAt": "YYYY-MM-DD"
   }
 }
@@ -111,12 +115,13 @@ Et ordinært fullprodusert sted bruker:
 
 Krav:
 
-- `collection_ids` har nøyaktig fire unike canonical IDs;
-- vanlig profil har People, Objects og Brands i denne rekkefølgen, fulgt av kategoriuttrykket;
-- Nature og canonicale spesialprofiler følger sine faste firersett;
+- `collection_ids` har én til fire unike canonical IDs, i tråd med schemaets `minItems: 1` og `maxItems: 4`;
+- listen inneholder bare samlinger med `PASS`;
+- vanlig profil vurderer People, Objects, Brands og kategoriuttrykket, men krever ikke at alle fire materialiseres;
+- Nature og canonicale spesialprofiler følger sine eksplisitte faste sett;
 - `related`, `images`, `badges` og popup-/handlingsflater kan aldri forekomme i `collection_ids`;
 - hvert medlem og hvert preview følger sin egen subsystemkontrakt;
-- `reason` forklarer kategoriuttrykket og eventuell stedsspesifikk Structure-variant;
+- `reason` forklarer hvorfor valgte samlinger kvalifiserer og eventuelle `BEGRUNNET N/A`-avgjørelser dokumenteres i arbeidskortet;
 - `verifiedAt` er datoen for reell innholds- og UI-kontroll.
 
 Schema-PASS er aldri nok dersom innhold, bilde eller eierskap er feil.
@@ -155,7 +160,7 @@ Prioriter:
 
 Arkitekter tas ikke inn automatisk fordi et bygg har en arkitekt. Arkitekten kvalifiserer som People-kandidat når arkitekten er kjent/kanonisert, bygget er et sentralt kanonisert verk, og forbindelsen tilfører mer enn en teknisk kreditering.
 
-En berømt perifer person eller et kjent sekundært kulturspor skal ikke dominere People-previewet eller hovedutvalget.
+En berømt perifer person eller et kjent sekundært kulturspor skal ikke dominere People-previewet eller hovedutvalget. Dersom dokumentert kandidataudit ikke finner en kvalifisert direkte personkobling, er People `BEGRUNNET N/A`.
 
 ## 8. Objects
 
@@ -184,13 +189,13 @@ Et Object er den fysiske, identifiserbare tingen. Hovedfunksjonen styrer utvalge
 | Filosofi | manuskripter, brev, annoterte bøker og forelesningsmateriale |
 | Film og TV | kameraer, rekvisitter, kostymer, scenografimodeller og fysiske manuskripter |
 
-Naturprofilen bruker ikke den ordinære Objects-samlingen.
+Naturprofilen bruker ikke den ordinære Objects-samlingen. Dersom dokumentert kandidataudit ikke finner et kvalifisert fysisk Object, er Objects `BEGRUNNET N/A`; en kvalifisert, men uferdig Object-kandidat er `BLOCKED`.
 
 ## 9. Brands
 
 Canonical semantisk eier er `data/brands/brand_rules_v1_1.json`.
 
-Brands er en fast research- og produksjonsflate i alle ordinære fullprofiler. Brands er langt bredere enn forbrukerprodukter og kan omfatte:
+Brands er en kandidatsamling når Badge-, underbadge- eller source-grunnlaget peker mot mulig selvstendig merke-/institusjonsidentitet. Brands er langt bredere enn forbrukerprodukter og kan omfatte:
 
 - kommersielle og historiske virksomheter;
 - produktidentiteter;
@@ -200,7 +205,7 @@ Brands er en fast research- og produksjonsflate i alle ordinære fullprofiler. B
 - legacy-navn, autentiske ordmerker og skiltidentiteter;
 - kjente place-first-identiteter når Brand-kontrakten uttrykkelig består.
 
-Navnet må ha selvstendig gjenkjennelse, dokumentert stedstilknytning og verifisert logo eller autentisk historisk ordmerke. Et tilfeldig aktørnavn eller et vanlig stedsnavn blir ikke Brand bare fordi samlingen er obligatorisk.
+Navnet må ha selvstendig gjenkjennelse, dokumentert stedstilknytning og verifisert logo eller autentisk historisk ordmerke. Et tilfeldig aktørnavn eller et vanlig stedsnavn blir ikke Brand bare for å fylle PlaceCard. Dersom ingen kandidat består Brand-definisjonen etter dokumentert kandidataudit, er Brands `BEGRUNNET N/A`.
 
 Den fysiske Freia-emballasjen er Object; Freia-identiteten og en kvalifisert produktidentitet er Brands. Samme record skal ikke dupliseres, men de to forskjellige entity-rollene kan eksistere samtidig.
 
@@ -260,7 +265,7 @@ Utøvere hører i People. Drakter, pokaler og utstyr hører i Objects. Klubb-, l
 
 ## 13. Map, Flora, Fauna og Destinations
 
-Natursteder bruker alltid fire samlinger:
+Natursteder bruker alltid fire samlinger når den canonicale naturprofilen gjelder:
 
 ```text
 Map · Flora · Fauna · Destinations
@@ -281,7 +286,7 @@ Relasjoner mellom Places er fortsatt viktige canonical data og kan brukes i Rela
 
 - stå i `place_card_profile.collection_ids`;
 - brukes som kategoriuttrykk;
-- fylle den fjerde plassen;
+- brukes som reserve for en `BEGRUNNET N/A`-samling;
 - absorbere Objects, Structures, Brands eller andre Places.
 
 ## 15. Bilder er medieinnhold
@@ -292,7 +297,7 @@ Bilder skal dedupliseres, kilde- og lisensføres og aldri kopieres eller gis ny 
 
 ## 16. Ikke PlaceCard-samlinger
 
-Følgende teller ikke blant de fire:
+Følgende er ikke PlaceCard-samlinger:
 
 - Badges;
 - Related/relasjoner;
@@ -310,29 +315,29 @@ At noe ikke er PlaceCard-samling gjør det ikke valgfritt i den øvrige stedspro
 
 Legacy Places kan fortsatt leses gjennom eksisterende kompatibilitetsadapter til de faktisk revideres. Kompatibilitetsvisning er ikke redaksjonell ferdigstatus.
 
-Når et ordinært sted fullproduseres eller vesentlig revideres, skal det migreres til firefeltskontrakten. En gammel profil med færre samlinger eller `related` kan ikke kopieres videre som ny canonical profil.
+Når et ordinært sted fullproduseres eller vesentlig revideres, skal det bruke den adaptive `history_go_place_card_profile_v2`-kontrakten med én til fire kuraterte PASS-samlinger. En gammel profil med `related`, `images` eller tomme reservekort kan ikke kopieres videre som ny canonical profil. Eksisterende korrekte fire-samlingsprofiler kan beholdes uendret.
 
 ## 18. Produksjonsgate
 
 Et ordinært sted er PlaceCard-ferdig når:
 
 1. `frontImage` er stående, stedstro og har full proveniens;
-2. `place_card_profile` inneholder nøyaktig fire riktige samlings-ID-er;
-3. alle fire samlinger har canonicale, stedsspesifikke medlemmer;
-4. hvert samlingskort viser et faktisk lastet medlemsbilde;
-5. People, Objects og Brands er produsert etter sine eierkontrakter;
+2. `place_card_profile` inneholder én til fire riktige, unike samlings-ID-er;
+3. alle valgte samlinger har canonicale, stedsspesifikke medlemmer;
+4. hvert valgt samlingskort viser et faktisk lastet medlemsbilde;
+5. People, Objects, Brands og kategoriuttrykk er vurdert når de er plausible og har dokumentert `PASS`, `BEGRUNNET N/A` eller `BLOCKED`;
 6. kategoriuttrykket følger kategorimatrisen eller en eksplisitt begrunnet Structure-variant;
 7. Objects og kategoriuttrykket har tydelig entity-grense;
-8. Brands er auditert etter den brede Brand-definisjonen og har 100 % logo-/ordmerkedekning;
+8. en valgt Brand-samling er auditert etter Brand-definisjonen og har nødvendig logo-/ordmerkedekning;
 9. `related`, Bilder, Badges og handlings-/popupflater er ute av samlingsfeltet;
-10. full 2 × 2-layout er kontrollert på mobil og desktop;
-11. hver samling åpner riktig popupinnhold og datakilde;
+10. adaptiv layout er kontrollert på mobil og desktop for det faktiske antallet valgte samlinger;
+11. hver valgt samling åpner riktig popupinnhold og datakilde;
 12. own-place-/entity-grenser er intakte;
 13. schema, renderer, layout og permanente tester passerer;
 14. manuell slutt-QA vurderer kortet som pent, tilsiktet og komplett.
 
-**Stoppgate:** Et fullprodusert ordinært Place kan aldri lukkes med færre enn fire samlinger, tomt samlingskort, manglende medlemsbilde, `related` som reserve eller filler-entity.
+**Stoppgate:** Et fullprodusert ordinært Place kan aldri lukkes med tomt samlingskort, manglende medlemsbilde, `related` som reserve, filler-entity eller en reelt kvalifisert samling som fortsatt er `BLOCKED`.
 
 ## Kort regel
 
-**Fire samlinger på alle fulle steder. Vanlige steder viser People, Objects, Brands og kategoriens eget uttrykk. Natur viser Kart, Flora, Fauna og Turmål. Related er aldri en samling.**
+**Én til fire ferdige PASS-samlinger på ordinære fulle steder. People, Objects, Brands og kategoriuttrykk vurderes, men bare samlinger stedet faktisk bærer vises. Natur følger sin eksplisitte fire-samlingsprofil. Related er aldri en samling. Ingen filler. Ingen tomme kort.**

@@ -25,15 +25,15 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 66,
-  needs_authored_depth: 93,
+  ready: 73,
+  needs_authored_depth: 86,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 66);
+assert.equal(audit.summary.completed_life_position_role_worlds, 73);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 66);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 66);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 73);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 73);
 assert.equal(audit.first_ready, null);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
@@ -537,6 +537,83 @@ assert.equal(selvgransker.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(selvgransker.evidence.exact_source_refs, ['data/Civication/narratives/leisure/psykologi_selvgransker.json']);
 assert.ok(!(audit.queue || []).some((row) => row.key === 'psykologi/selvgransker'));
 
+const vaneeksperimentor = audit.positions.find((row) => row.key === 'psykologi/vaneeksperimentor');
+assert.ok(vaneeksperimentor);
+assert.equal(vaneeksperimentor.classification, 'ready');
+assert.equal(vaneeksperimentor.role_world_status, 'role_world_complete');
+assert.equal(vaneeksperimentor.role_world_path, 'data/Civication/roleWorlds/psykologi/psykologi_vaneeksperimentor.json');
+assert.equal(vaneeksperimentor.priority_score, 405);
+assert.equal(vaneeksperimentor.authored_depth.exact_source_ref_count, 1);
+assert.equal(vaneeksperimentor.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(vaneeksperimentor.evidence.exact_source_refs, ['data/Civication/narratives/leisure/psykologi_vaneeksperimentor.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'psykologi/vaneeksperimentor'));
+
+const dialogbygger = audit.positions.find((row) => row.key === 'religion/dialogbygger');
+assert.ok(dialogbygger);
+assert.equal(dialogbygger.classification, 'ready');
+assert.equal(dialogbygger.role_world_status, 'role_world_complete');
+assert.equal(dialogbygger.role_world_path, 'data/Civication/roleWorlds/religion/religion_dialogbygger.json');
+assert.equal(dialogbygger.priority_score, 405);
+assert.equal(dialogbygger.authored_depth.exact_source_ref_count, 1);
+assert.equal(dialogbygger.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(dialogbygger.evidence.exact_source_refs, ['data/Civication/narratives/leisure/religion_dialogbygger.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'religion/dialogbygger'));
+
+const livssynsutforsker = audit.positions.find((row) => row.key === 'religion/livssynsutforsker');
+assert.ok(livssynsutforsker);
+assert.equal(livssynsutforsker.classification, 'ready');
+assert.equal(livssynsutforsker.role_world_status, 'role_world_complete');
+assert.equal(livssynsutforsker.role_world_path, 'data/Civication/roleWorlds/religion/religion_livssynsutforsker.json');
+assert.equal(livssynsutforsker.priority_score, 405);
+assert.equal(livssynsutforsker.authored_depth.exact_source_ref_count, 1);
+assert.equal(livssynsutforsker.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(livssynsutforsker.evidence.exact_source_refs, ['data/Civication/narratives/leisure/religion_livssynsutforsker.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'religion/livssynsutforsker'));
+
+const pilegrim = audit.positions.find((row) => row.key === 'religion/pilegrim');
+assert.ok(pilegrim);
+assert.equal(pilegrim.classification, 'ready');
+assert.equal(pilegrim.role_world_status, 'role_world_complete');
+assert.equal(pilegrim.role_world_path, 'data/Civication/roleWorlds/religion/religion_pilegrim.json');
+assert.equal(pilegrim.priority_score, 405);
+assert.equal(pilegrim.authored_depth.exact_source_ref_count, 1);
+assert.equal(pilegrim.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(pilegrim.evidence.exact_source_refs, ['data/Civication/narratives/leisure/religion_pilegrim.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'religion/pilegrim'));
+
+const trosstedsvandrer = audit.positions.find((row) => row.key === 'religion/trosstedsvandrer');
+assert.ok(trosstedsvandrer);
+assert.equal(trosstedsvandrer.classification, 'ready');
+assert.equal(trosstedsvandrer.role_world_status, 'role_world_complete');
+assert.equal(trosstedsvandrer.role_world_path, 'data/Civication/roleWorlds/religion/religion_trosstedsvandrer.json');
+assert.equal(trosstedsvandrer.priority_score, 405);
+assert.equal(trosstedsvandrer.authored_depth.exact_source_ref_count, 1);
+assert.equal(trosstedsvandrer.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(trosstedsvandrer.evidence.exact_source_refs, ['data/Civication/narratives/leisure/religion_trosstedsvandrer.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'religion/trosstedsvandrer'));
+
+const improentusiast = audit.positions.find((row) => row.key === 'scenekunst/improentusiast');
+assert.ok(improentusiast);
+assert.equal(improentusiast.classification, 'ready');
+assert.equal(improentusiast.role_world_status, 'role_world_complete');
+assert.equal(improentusiast.role_world_path, 'data/Civication/roleWorlds/scenekunst/scenekunst_improentusiast.json');
+assert.equal(improentusiast.priority_score, 405);
+assert.equal(improentusiast.authored_depth.exact_source_ref_count, 1);
+assert.equal(improentusiast.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(improentusiast.evidence.exact_source_refs, ['data/Civication/narratives/leisure/scenekunst_improentusiast.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'scenekunst/improentusiast'));
+
+const premieregjenger = audit.positions.find((row) => row.key === 'scenekunst/premieregjenger');
+assert.ok(premieregjenger);
+assert.equal(premieregjenger.classification, 'ready');
+assert.equal(premieregjenger.role_world_status, 'role_world_complete');
+assert.equal(premieregjenger.role_world_path, 'data/Civication/roleWorlds/scenekunst/scenekunst_premieregjenger.json');
+assert.equal(premieregjenger.priority_score, 405);
+assert.equal(premieregjenger.authored_depth.exact_source_ref_count, 1);
+assert.equal(premieregjenger.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(premieregjenger.evidence.exact_source_refs, ['data/Civication/narratives/leisure/scenekunst_premieregjenger.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'scenekunst/premieregjenger'));
+
 assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjenner','film_tv/filmklubbmenneske'].includes(row.key)),
   'completed life-position worlds must leave the readiness queue');
 assert.ok((audit.queue || []).every((row) => row.classification !== 'not_a_standalone_world'));
@@ -548,4 +625,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 66 ready / 93 authored-depth / 40 not-standalone; 66 complete / no pending-ready');
+console.log('civication life-position Role World readiness v2 ok: 73 ready / 86 authored-depth / 40 not-standalone; 73 complete / no pending-ready');

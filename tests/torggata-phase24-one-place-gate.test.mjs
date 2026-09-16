@@ -64,20 +64,20 @@ test("all reopened findings are closed and the six-part score passes", () => {
   });
 });
 
-test("global checklist keeps the fixed four-collection composition and owner boundaries", () => {
+test("global checklist keeps the adaptive source-dependent collection composition and owner boundaries", () => {
   const workflow = fs.readFileSync("docs/PLACE_PRODUCTION_CHECKLIST.md", "utf8");
   const checklist = fs.readFileSync("docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md", "utf8");
   const contract = fs.readFileSync("data/places/README_place_rounds.md", "utf8");
 
   assert.match(workflow, /PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1\.md/);
   assert.match(workflow, /Alle faglige, redaksjonelle, faktuelle og subsystemspesifikke krav i referansen er fortsatt bindende/);
-  assert.match(contract, /fullprodusert ordinært Place har alltid nøyaktig fire ferdige innholdssamlinger/i);
+  assert.match(contract, /Et fullprodusert ordinært Place viser én til fire ferdige, relevante innholdssamlinger/i);
   assert.match(contract, /Badges separat ved stedsoverskriften/);
-  assert.match(contract, /Badge, Quiz, bilder, Stories, Før\/etter, Leksikon, relasjoner og popupfaner teller ikke blant de fire samlingene/);
-  assert.match(workflow, /`place_card_profile\.collection_ids` inneholder \*\*nøyaktig fire ferdige, relevante samlinger\*\*/);
-  assert.match(workflow, /ordinære fullprofiler bruker People, Objects, Brands og kategoriens uttrykk/);
+  assert.match(contract, /Badge, Quiz, bilder, Stories, Før\/etter, Leksikon, relasjoner og popupfaner teller ikke som PlaceCard-samlinger/);
+  assert.match(workflow, /`place_card_profile\.collection_ids` inneholder bare samlinger som har `PASS` for dette stedet/);
+  assert.match(workflow, /ordinære fullprofiler vurderer People, Objects, Brands og kategoriens uttrykk, men materialiserer bare de samlingene stedet faktisk bærer/);
   assert.match(workflow, /`related` er et relasjons-\/navigasjonssystem og kan aldri brukes som PlaceCard-samling eller reserve/);
-  assert.match(workflow, /fast, balansert 2×2-komposisjon/);
+  assert.match(workflow, /PlaceCard-layouten tilpasser seg antall valgte samlinger; 1, 2, 3 og 4 samlinger skal alle kunne presenteres som balanserte, tilsiktede komposisjoner uten tomme reservefelter/);
   assert.match(workflow, /ingen tomme PlaceCard-kort er tillatt ved closeout/i);
   assert.match(checklist, /delsted som har egen canonical place-oppføring brukes ikke som primært Før\/etter-stedfortreder/i);
   assert.match(checklist, /Nyheter kan ikke godkjennes som tom\/N\/A/);
