@@ -38,6 +38,10 @@ jobs:
           node <<'NODE'
           const fs = require('fs');
           const { chromium } = require('playwright');
+          const gha = value => String(value)
+            .replace(/%/g, '%25')
+            .replace(/\r/g, '%0D')
+            .replace(/\n/g, '%0A');
 
           (async () => {
             const outDir = 'reports/place-production/qa-bankplassen-v3';
@@ -162,6 +166,7 @@ jobs:
                 };
               });
               console.log(`BLOCKER_DIAG ${name} ${JSON.stringify(blockerAudit)}`);
+              console.error(`::notice title=BLOCKER_DIAG ${name}::${gha(JSON.stringify(blockerAudit))}`);
 
               await page.click('#pcInfo');
               await page.waitForSelector('.hg-place-popup-v2', { state: 'visible', timeout: 30000 });
@@ -181,6 +186,8 @@ jobs:
             fs.writeFileSync(`${outDir}/audit.json`, JSON.stringify({ placeId, url, audits }, null, 2) + '\n');
           })().catch(error => {
             console.error(error);
+            const detail = error?.stack || error?.message || String(error);
+            console.error(`::error title=Bankplassen UI QA::${gha(detail)}`);
             process.exit(1);
           });
           NODE
